@@ -1,0 +1,83 @@
+{
+  "id": "enhanced-act-read-time-use-table-023",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "reading",
+  "domainSlug": "act-reading-integration-of-knowledge-and-ideas",
+  "skillSlug": "act-read-iki-visual-and-quantitative-information",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A reader claims that the table shows the single-activity rule hid the most childcare in the region where the least childcare had been recorded. Is that claim supported by the table?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Yes, because the recorded total roughly doubled in every region, which means every region hid an identical amount."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "No, because all three regions gained the same number of hours, so no region hid more childcare than another."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "No, because Interior recorded the fewest primary-column hours but gained 10.8, while Coastal recorded the most and gained 12.9."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Yes, because Interior recorded the fewest hours in the primary column and gained the most hours when the secondary column was added."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The hidden childcare in each region is the amount the secondary column adds, so compute that difference for all three rows before judging the claim:\n\n- Northern: $21.9 - 11.2 = 10.7$ hours\n- Coastal: $26.4 - 13.5 = 12.9$ hours\n- Interior: $20.6 - 9.8 = 10.8$ hours\n\nNow test the claim's two halves. The region with the least childcare recorded under the old rule is Interior, at 9.8 hours — that half is right. But the region where the most was hidden is Coastal, at 12.9 hours, and Coastal had the *highest* primary-column figure, 13.5. The two halves point at different regions, so the claim fails, and choice B gives precisely that reason with the figures.\n\nCheck the arithmetic by adding each gain back: $9.8 + 10.8 = 20.6$ and $13.5 + 12.9 = 26.4$, which match the table. A useful habit on a question like this is to reject any \"yes/no\" option whose reason is false even when its yes or no happens to be right — here C says no for a reason the table contradicts.",
+  "distractorRationale": {
+    "d": "Gets Interior's primary-column rank right but its gain wrong. Interior gained 10.8 hours; Coastal gained 12.9, which is larger, so Interior is not the region where the most was hidden.",
+    "b": "Asserts equal gains without subtracting. The three gains are 10.7, 12.9 and 10.8 hours, which are not equal, so the reason is false even though the verdict \"no\" happens to be correct.",
+    "a": "Mistakes a roughly constant ratio for a constant amount. Doubling a larger base adds more hours: Coastal's 13.5 roughly doubles to 26.4, a gain of 12.9, while Interior's 9.8 roughly doubles to 20.6, a gain of only 10.8."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": {
+    "id": "enhanced-act-stim-read-time-use-004",
+    "version": 1
+  },
+  "accessibilityText": "The question refers to a three-row table of mean childcare hours per adult per week. Northern: 11.2 hours recorded with the primary column only, 21.9 hours with primary plus secondary. Coastal: 13.5 primary only, 26.4 primary plus secondary. Interior: 9.8 primary only, 20.6 primary plus secondary. The reader's claim under test is that the most childcare was hidden in the region where the least was recorded.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-topup-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank against an original passage and an invented data set. Not derived from, and not a paraphrase of, any ACT-published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "enhanced-act-topup-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": {
+      "solvedBy": "enhanced-act-round2-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Gains computed from the table: Northern 21.9-11.2=10.7; Coastal 26.4-13.5=12.9; Interior 20.6-9.8=10.8. Interior does have the fewest primary-column hours (9.8), but the largest gain is Coastal's 12.9, so the claim fails and B states both figures correctly. A asserts Interior 'gained the most hours', which is numerically false (10.8 < 12.9); C is false (gains differ: 10.7, 12.9, 10.8); D both answers 'Yes' on a false premise and misreads 'roughly doubled' as identical amounts."
+    },
+    "notes": "Author solved the item and tried to defend each distractor. Gains are Northern 10.7, Coastal 12.9, Interior 10.8, so the largest gain belongs to the region with the largest primary-column figure and the claim fails. A misstates Interior's gain, C asserts equal gains that the subtraction refutes, D confuses a ratio with an absolute amount. Awaiting an independent blind solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "quarantined",
+  "quarantine": {
+    "reason": "The independent solver agreed with the key but found a SECOND defensible answer, so the item is ambiguous regardless of which answer was intended. Reviewer matched the key, but the stem phrase \"hid the most childcare\" is ambiguous between absolute and proportional readings. Under the proportional reading the claim holds and NO option is correct. Reword the stem to name the measure explicitly.",
+    "replacedBy": null
+  },
+  "tags": [
+    "reading",
+    "social-science",
+    "quantitative-information",
+    "table-interpretation"
+  ]
+}

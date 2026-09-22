@@ -1,0 +1,70 @@
+{
+  "id": "bocconi-ug-crit-colloquium-deduction-021",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-critical-thinking",
+  "skillSlug": "critical-thinking-deducibility",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The registrar of the Ferrara seminar records two rules that were applied without exception last year.\n\n> 1. Every student who submitted the optional essay was invited to the spring colloquium.\n>\n> 2. No student who missed more than two seminar sessions was invited to the spring colloquium.\n\nIf both statements are true, which one of the following must also be true?",
+  "instructionsMd": "This item has three answer options and carries the heavier penalty for a wrong answer, so answer only if you can justify your choice from the two statements alone.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "No student who missed more than two seminar sessions submitted the optional essay."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Every student who was invited to the spring colloquium had submitted the optional essay."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Some students who missed more than two seminar sessions were invited to the spring colloquium."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Take a single student and follow the two rules through.\n\nSuppose a student missed more than two sessions. Rule 2 says that student was **not** invited to the colloquium.\n\nNow look at rule 1 the other way round. Rule 1 says submitting the essay guarantees an invitation. So anyone who was *not* invited cannot have submitted the essay, otherwise rule 1 would have been broken. That reversed form is the **contrapositive**, and it is always as true as the rule itself.\n\nPutting the two together: missed more than two sessions, therefore not invited, therefore did not submit the essay. That is exactly option C.\n\n**How to check the answer.** Try to build a counter-example. To break option C you would need a student who missed more than two sessions *and* submitted the essay. Rule 1 would then have invited that student, and rule 2 would have refused the invitation. The two rules would contradict each other, so no such student can exist. When an attempted counter-example forces a contradiction, the conclusion is genuinely forced.\n\n**The technique.** Write each rule as an arrow between groups: essay $\\rightarrow$ invited, and missed more than two $\\rightarrow$ not invited. A valid chain has to link arrows head to tail, reversing one of them if necessary by flipping both ends. An arrow can never simply be read backwards without flipping both ends, which is the error behind option A.",
+  "distractorRationale": {
+    "b": "This reads rule 1 backwards without flipping both ends. Rule 1 says essay submitters were all invited; it does not say they were the only ones invited. The registrar may have invited prize-winners or exchange students as well, and nothing in the two statements rules that out.",
+    "c": "This flatly contradicts rule 2, which says that no such student was invited. A statement that denies one of the givens cannot be deduced from them; a candidate who picks it has read rule 2 as a general tendency rather than as the exceptionless rule the stem says it is."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A critical thinking question presenting two numbered rules about a university seminar. Rule one: every student who submitted the optional essay was invited to the spring colloquium. Rule two: no student who missed more than two seminar sessions was invited to the spring colloquium. The question asks which of three statements must also be true if both rules hold.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-topup-author",
+    "aiAssisted": true,
+    "notes": "Original item. The two rules form a simple hypothetical syllogism whose only valid consequence is the chained contrapositive; the wrong options are the converse error and a direct contradiction of a given. Written with three options to match the Bocconi three-option critical thinking format."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-topup-author",
+    "reviewer": "bocconi-undergraduate-round2-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-round2-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Essay -> invited (rule 1); missed>2 -> not invited (rule 2), contrapositive invited -> not missed>2. Chaining: essay -> not missed>2, equivalently missed>2 -> no essay, which is C. A is the converse of rule 1 (invited students need not have submitted). B directly contradicts rule 2."
+    },
+    "notes": "Author checked uniqueness by model: let S be essay submitters, I invitees, M students missing more than two sessions. Given S is a subset of I and M and I are disjoint, it follows that M and S are disjoint, which is option C. A model in which I is strictly larger than S falsifies option A, and option B contradicts the second given outright, so exactly one option is defensible. Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "three-option",
+    "deduction",
+    "contrapositive"
+  ]
+}

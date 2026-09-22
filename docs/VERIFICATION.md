@@ -5,7 +5,7 @@ recorded alongside the passes; a verification document that reports only
 successes is not evidence of anything.
 
 Verification dates: exam facts **2026-09-18**, re-checked by the coordinating
-agent **2026-09-18/20**. Test runs **2026-09-22**.
+agent **2026-09-18/20**. Test runs **2026-09-23**.
 
 ---
 
@@ -71,6 +71,23 @@ and run through the same `isResponseCorrect` the application uses
 
 96 of 96 independent solves agreed with the authors' keys.
 
+A second round covered the 49 questions written to fill coverage gaps:
+
+```
+49 verdicts applied
+  published:   47
+  quarantined:  2
+```
+
+Both quarantines came from a finding that **agreement alone would have missed**.
+On `lsat-lr-disagreement-115` and `enhanced-act-read-time-use-table-023` the
+reviewer's answer matched the key, but they showed a second answer was
+defensible — on the ACT item, under one reading of the stem no option is correct
+at all. The pipeline originally quarantined only on disagreement, so this was a
+real hole: `Verdict.ambiguous` now exists, and an item flagged ambiguous is
+quarantined no matter how the answers compared. Neither item is served to
+learners, and neither was "repaired" by guessing at the intended answer.
+
 ### What review caught that agreement did not
 
 The valuable finding was structural, not an incorrect key. Correct answers
@@ -110,7 +127,7 @@ npm run verify     # typecheck + content validation + unit tests
 npm run e2e        # browser tests
 ```
 
-### Unit and integration — 160 passing
+### Unit and integration — 170 passing
 
 | Suite | Tests | Covers |
 | --- | --- | --- |
@@ -120,6 +137,7 @@ npm run e2e        # browser tests
 | `select.test.ts` | 20 | Determinism, difficulty mixes, freshness, passage grouping, sufficiency |
 | `attempts.test.ts` | 27 | Full lifecycle against a real database |
 | `auth.test.ts` | 27 | Hashing, sessions, revocation, rate limiting |
+| `adaptive-routing.test.ts` | 10 | The routing rule, and a full SAT simulation routed end to end |
 
 Tests that speak directly to the definition of done:
 
@@ -149,8 +167,21 @@ Tests that speak directly to the definition of done:
    section 2 and LSAT LR2 select on their own section key, but domains are
    tagged to the first. Fixed with `SectionConfig.poolSectionKey`. Without it,
    half the SAT blueprints were permanently unfillable.
+4. **Adaptive routing always routed down.** The completed part was scored
+   *after* the routing decision was computed, so accuracy was read off
+   unscored rows and came out zero for everyone. Found by the first end-to-end
+   routing test; the fix scores the part first, then routes.
+5. **A dropped audit field failed silently.** One reviewer omitted `solvedBy`
+   from its verdicts, and `JSON.stringify` drops `undefined` properties, so the
+   reviewer of record vanished from 15 files instead of the run failing.
+   `apply-review` now validates every verdict before writing anything.
+6. **Option-order normalisation was not idempotent**, and re-ran on published
+   content. Shuffling an already-shuffled list with the same seed gives a new
+   order, so every run churned the bank. It now canonicalises before shuffling
+   and refuses to touch anything already published, which also moved it to its
+   correct place in the pipeline: before review, not after.
 
-### Browser tests — 33 passing, 1 skipped
+### Browser tests — 37 passing, 1 skipped
 
 Desktop Chrome and emulated Pixel 7, against a production build and a freshly
 seeded database.
@@ -165,6 +196,28 @@ question navigator; robots.txt and sitemap behaviour.
 
 The skip is deliberate: Tab-order traversal is asserted on desktop only, since
 the mobile project emulates a touch device.
+
+### Authorization, verified against a running server
+
+Checked by hand against the production build, then locked in as browser tests:
+
+| Actor | `/dashboard` | `/admin` | `PATCH /api/admin/flags/:id` |
+| --- | --- | --- | --- |
+| Signed out | 307 to sign-in | 307 to sign-in | 401 |
+| Signed-in learner | 200 | **404** | 403 |
+| Editor / admin | 200 | 200 | 200 |
+
+The 404 is deliberate: a learner probing `/admin` cannot tell the area exists.
+An earlier implementation rendered a denial page at HTTP 200, which leaked no
+data but was semantically wrong and inconsistent with the learner pages; page
+guards now live in `src/lib/auth/guards.ts`.
+
+Also verified end to end: account export returns only the acting user's rows and
+contains neither the password hash nor any session token; deletion requires
+typing the account email, kills the session immediately, and leaves **zero**
+orphaned attempts, review-queue rows or sessions; and a second attempt to resolve
+an already-decided content flag returns 409 rather than silently overwriting the
+first editor's decision.
 
 ### Build
 
@@ -185,9 +238,6 @@ Stated plainly, because these are real gaps:
   the WCAG 2.2 AA checklist and is covered by the structural assertions above,
   but "targets WCAG 2.2 AA" is a design intent here, not a tested conformance
   claim.
-- **Adaptive routing has never run end to end.** The logic is implemented and
-  unit-tested, but no GRE blueprint currently has enough reviewed content to
-  reach the second stage.
 - **No load or concurrency testing.**
 - **No penetration testing.** Security work was structural: server-side
   authorization on every query, parameterised SQL throughout, an origin check on

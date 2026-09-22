@@ -1,0 +1,81 @@
+{
+  "id": "bocconi-law-numrsn-appeal-outcomes-022",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-numerical-reasoning",
+  "skillSlug": "law-numrsn-charts-and-tables",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which of the following statements is supported by the table?",
+  "instructionsMd": "No calculator is permitted. Watch which statements are about a number of appeals and which are about a share of a section's appeals.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The Civil section overturned more appeals in full than any other section, and a quarter of the appeals decided by the Tax section were overturned in full."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Every section upheld at least half of the appeals it decided."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The Tax section decided fewer appeals than any other section and upheld more of them than it overturned."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The Labour section overturned, in whole or in part, a larger share of the appeals it decided than the Criminal section did."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Check each statement against the columns it actually needs.\n\n**C — two independent claims, both true.** Read down the \"overturned in full\" column: Civil 90, Criminal 80, Labour 30, Tax 50. Civil's 90 is the largest, so the first half holds. For the second half, Tax overturned 50 of the 200 appeals it decided, and $\\frac{50}{200} = \\frac{1}{4}$. Both halves hold, so C is supported.\n\n**A — a share, so the counts must be divided by the section's own total.** Labour overturned $60 + 30 = 90$ of 300, which is $\\frac{90}{300} = 30\\%$. Criminal overturned $120 + 80 = 200$ of 400, which is $50\\%$. Labour's share is the smaller, so the statement is reversed.\n\n**B — two claims, and the second fails.** Tax did decide the fewest appeals, 200. But it upheld only 80 and overturned $70 + 50 = 120$, so it overturned more than it upheld.\n\n**D — one counter-example is enough.** Tax upheld 80 of 200, which is $40\\%$, below half. The statement fails on the Tax row.\n\n**How to check.** Every share in this table is a round percentage, so verify by rebuilding the row rather than re-dividing: Tax's 200 appeals split 80 / 70 / 50, which is $40\\% / 35\\% / 25\\%$ and adds to 100%. That single line confirms both the quarter in C and the failure of B and D at once.",
+  "distractorRationale": {
+    "d": "Compares the raw counts of overturned appeals — Labour's 90 against Criminal's 200 would be the right comparison for a question about numbers — and then attaches the word 'share' to it. Divided by each section's own total the order reverses: 30% for Labour against 50% for Criminal.",
+    "c": "The first half is correct, and the temptation is to stop there. Tax upheld 80 but overturned 70 in part and 50 in full, which is 120 in all, so it overturned more than it upheld. A compound statement is supported only if every part of it is.",
+    "b": "True for Civil (360 of 600) and Labour (210 of 300), and exactly half for Criminal (200 of 400), which is why it looks safe. Tax breaks it: 80 of 200 is 40%. A claim about every row needs all four rows checked."
+  },
+  "estimatedSeconds": 125,
+  "stimulusRef": {
+    "id": "bocconi-law-table-appeal-outcomes-005",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying table of four court of appeal sections, which gives for each section the appeals decided and how many were upheld, overturned in part and overturned in full. Four statements about the table follow and the question asks which one the table supports. The explanation uses fractions such as 50 over 200 and percentage figures.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-topup-author",
+    "aiAssisted": true,
+    "notes": "Original item written against the original table stimulus bocconi-law-table-appeal-outcomes-005, authored alongside it. Every share in the table is a round percentage so that the item can be solved mentally, as no calculator is permitted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-topup-author",
+    "reviewer": "bocconi-law-round2-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-law-round2-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Civil overturned 90 in full vs 80 (Criminal), 30 (Labour), 50 (Tax), and Tax's 50 of 200 decided is exactly a quarter. (a) fails: Labour 90/300=30% vs Criminal 200/400=50%; (b) fails: Tax upheld 80 but overturned 120; (d) fails on Tax, 80/200=40% (Criminal's 200/400 does satisfy 'at least half')."
+    },
+    "notes": "Author verified each statement: A reverses the shares (30% Labour against 50% Criminal), B fails on its second half (Tax upheld 80, overturned 120), D fails on the Tax row (40%), and both halves of C hold (Civil 90 is the largest in-full figure; Tax 50 of 200 is a quarter). Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "numerical-reasoning",
+    "tables",
+    "percentages",
+    "share-vs-count",
+    "no-calculator"
+  ]
+}

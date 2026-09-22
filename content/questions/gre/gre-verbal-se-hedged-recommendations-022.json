@@ -1,0 +1,92 @@
+{
+  "id": "gre-verbal-se-hedged-recommendations-022",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "verbal-1",
+  "domainSlug": "verbal-sentence-equivalence",
+  "skillSlug": "se-conclude-from-partial-information",
+  "subskillSlug": null,
+  "responseType": "multi_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Far from being ______, the review panel's recommendations were hedged with so many conditions and exceptions that not one department could work out what it was actually being asked to do.",
+  "instructionsMd": "Select exactly two answer choices that, when used to complete the sentence, fit the meaning of the sentence as a whole and produce completed sentences alike in meaning. There is no credit for a partially correct selection.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "unequivocal"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "contentious"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "tentative"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "categorical"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "ambiguous"
+    },
+    {
+      "id": "f",
+      "label": "F",
+      "textMd": "perfunctory"
+    }
+  ],
+  "answerKey": {
+    "type": "multi_select",
+    "optionIds": [
+      "d",
+      "a"
+    ],
+    "grading": "exact"
+  },
+  "explanationMd": "The whole item turns on two words at the front of the sentence: **\"Far from being.\"** That construction says *the opposite of what follows is true*. Whatever the recommendations actually were, the blank must name the reverse of it.\n\n**Step 1 — describe what the recommendations actually were.** They were \"hedged with so many conditions and exceptions\" that no department could tell what was being asked. In one word: qualified, and as a result unclear.\n\n**Step 2 — negate it.** The blank therefore needs a word meaning unqualified, admitting no conditions, stated flatly and without reservation.\n\n**Step 3 — find the pair with that meaning.** *Categorical* means stated absolutely and without qualification. *Unequivocal* means admitting of no doubt or second reading. Both fill the blank with the same idea, and the two completed sentences are alike in meaning. **The answer is categorical and unequivocal.**\n\n**How to check:** read your completed sentence aloud and confirm the contrast actually holds. \"Far from being categorical, the recommendations were hedged with conditions\" — the contrast is real, because a categorical statement admits no conditions. Then try the same reading with the pair you rejected: \"Far from being ambiguous, the recommendations were hedged with so many conditions that nobody could tell what was meant\" — the sentence now contradicts itself, since hedging to the point of incomprehensibility *is* ambiguity. That self-contradiction is the reliable sign you have followed the trap. On any item beginning \"Far from being,\" \"Rather than,\" or \"Instead of,\" the fastest route is to write down the plain description first, then reverse it, and only then look at the six choices.",
+  "distractorRationale": {
+    "e": "\"Ambiguous\" describes the recommendations as they are, not their opposite. \"Far from being\" demands a reversal, so filling the blank with a word for unclear makes the sentence deny the very quality it goes on to document.",
+    "b": "\"Contentious\" means likely to provoke disagreement. Recommendations can be simultaneously contentious and heavily hedged, so this word sets up no contrast with the second half of the sentence; it also introduces a dispute the sentence never mentions.",
+    "f": "\"Perfunctory\" means done carelessly, as a formality. Piling up conditions and exceptions is if anything over-elaborate rather than cursory, and in any case carelessness is not the opposite of hedging, so no contrast is produced.",
+    "c": "\"Tentative\" means hesitant and provisional, which is a near-synonym of the hedging the sentence describes. It pairs with \"ambiguous\" as the decoy synonym pair, and like that word it points in the direction the reversal forbids."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": null,
+  "accessibilityText": "Sentence with one blank: Far from being blank, the review panel's recommendations were hedged with so many conditions and exceptions that not one department could work out what it was actually being asked to do. The six choices are: A, ambiguous. B, categorical. C, contentious. D, perfunctory. E, tentative. F, unequivocal. Select exactly two choices that fit the sentence and produce completed sentences alike in meaning. There is no credit for a partially correct selection.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gre-topup-author",
+    "aiAssisted": true,
+    "notes": "Original Sentence Equivalence item. Six choices, exactly two correct, scored all-or-nothing. The decoy synonym pair (ambiguous / tentative) is deliberate: both words describe what the recommendations were, which the 'Far from being' reversal excludes. Not adapted from any ETS item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gre-topup-author",
+    "reviewer": "gre-round2-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "gre-round2-reviewer",
+      "solvedAnswer": "d,a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "'Far from being ___' reverses the polarity, so the blank must be the opposite of 'hedged with so many conditions and exceptions' - i.e. absolute and plain, giving categorical and unequivocal, which are near-synonyms. Ambiguous and tentative are what the recommendations actually were, so they break the 'far from' contrast; contentious and perfunctory are off-axis and have no partner."
+    },
+    "notes": "Uniqueness argument: categorical and unequivocal are the only near-synonymous pair meaning 'unqualified', which is what 'Far from being' requires. Ambiguous and tentative form the only other synonym pair and both are ruled out by the reversal. Contentious and perfunctory have no synonym partner among the six, so neither can form a valid pair. sectionKey is verbal-1 because the exam config attaches the verbal-sentence-equivalence domain to verbal-1 and the loader errors on a domain/section mismatch; verbal-2 draws from the verbal-1 pool via poolSectionKey. Awaiting blind independent solve; author must not publish own work. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "sentence-equivalence",
+    "select-two",
+    "reversal-signal",
+    "decoy-synonym-pair"
+  ]
+}

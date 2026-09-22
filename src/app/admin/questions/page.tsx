@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getDb } from '@/lib/db';
-import { ForbiddenError, UnauthorizedError, requireRole } from '@/lib/auth/session';
+import { requireEditorial } from '@/lib/auth/guards';
 import { EXAM_CONFIGS, getExamConfig, labelsFor } from '@/lib/exams/registry';
 import { loadContent } from '@/lib/content/loader';
 import type { Question } from '@/lib/content/question-schema';
@@ -77,44 +77,6 @@ interface QuestionListRow {
   stemMd: string | null;
 }
 
-function accessScreen(error: unknown) {
-  if (error instanceof UnauthorizedError) {
-    return (
-      <Container size="narrow">
-        <PageHeader eyebrow="Internal" title="Sign in to continue" />
-        <Alert tone="caution" role="alert" title="You are not signed in">
-          <p>
-            The question inventory is limited to editorial staff. Sign in with an editor or
-            administrator account to continue.
-          </p>
-        </Alert>
-        <div className="mt-6">
-          <ButtonLink href="/sign-in?next=/admin/questions">Sign in</ButtonLink>
-        </div>
-      </Container>
-    );
-  }
-  if (error instanceof ForbiddenError) {
-    return (
-      <Container size="narrow">
-        <PageHeader eyebrow="Internal" title="You do not have access" />
-        <Alert tone="negative" role="alert" title="Editorial access required">
-          <p>
-            Your account is signed in, but it does not hold the editor or administrator role that this
-            area requires. No question data has been loaded.
-          </p>
-        </Alert>
-        <div className="mt-6">
-          <ButtonLink href="/" variant="secondary">
-            Back to the site
-          </ButtonLink>
-        </div>
-      </Container>
-    );
-  }
-  throw error;
-}
-
 function day(value: string | null): string {
   return value ? value.slice(0, 10) : '—';
 }
@@ -124,11 +86,9 @@ export default async function AdminQuestionsPage({
 }: {
   searchParams: Promise<{ exam?: string; state?: string }>;
 }) {
-  try {
-    await requireRole('admin', 'editor');
-  } catch (error) {
-    return accessScreen(error);
-  }
+  // Redirects to sign-in when signed out (307), and 404s for a signed-in
+  // learner, so the area's existence is never confirmed. See guards.ts.
+  await requireEditorial('/admin/questions');
 
   const query = await searchParams;
 

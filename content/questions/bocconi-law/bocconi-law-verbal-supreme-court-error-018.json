@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-law-verbal-supreme-court-error-018",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-verbal-reasoning",
+  "skillSlug": "law-verbal-logical-error",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Consider this argument:\n\n> Every lawyer who has argued a case before the supreme court has at least fifteen years of practice. Dr Merlo is a lawyer with twenty-two years of practice. Therefore Dr Merlo has argued a case before the supreme court.\n\nWhich of the following identifies the logical error in the argument?",
+  "instructionsMd": "Both premises are to be taken as true. The question is why the conclusion does not follow from them.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "It confuses how long Dr Merlo has practised with how well she has practised."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "It treats a condition that is merely necessary for arguing before the supreme court as though it were sufficient for it."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "It draws a conclusion about one individual from a claim about a group average."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "It generalises from a sample of lawyers too small to support the rule it states."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Write the first premise as an arrow and watch which way it points:\n\n$$\\text{argued before the supreme court} \\Rightarrow \\text{at least fifteen years of practice}$$\n\nFifteen years is therefore a **necessary** condition for having argued there — a gate everyone must pass. The argument then finds that Dr Merlo has passed the gate and concludes she is inside. That runs the arrow backwards: it treats the necessary condition as though it were **sufficient**, which is option D.\n\nThe premise is perfectly compatible with a profession in which thousands of lawyers have twenty-two years of practice and only a handful have ever appeared before the supreme court. Nothing in it says that long practice produces such an appearance.\n\n**How to check.** Build a counter-model — a world where both premises are true and the conclusion is false. Take a bar in which every supreme-court advocate has twenty-five years of practice, and Dr Merlo, with her twenty-two years, has spent her career in tax tribunals. Premise 1 holds, premise 2 holds, the conclusion fails. A valid argument admits no such world, so the argument is invalid, and the option naming the direction of the error is the answer.",
+  "distractorRationale": {
+    "c": "No average appears anywhere. The first premise is a universal claim — *every* such lawyer has at least fifteen years — not a claim about a typical or mean figure, so the familiar average-to-individual fallacy is not what is going wrong here.",
+    "a": "The argument says nothing about quality of advocacy; both premises and the conclusion are about years of practice and about whether an appearance occurred. Reading a quality claim into it imports a concern the argument never raises.",
+    "d": "The first premise is asserted as a universal rule, not inferred from any sample. There is no inductive step to criticise; the fault lies entirely in how the rule is applied to Dr Merlo, not in how the rule was arrived at."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A logical-error question. The argument runs: every lawyer who has argued before the supreme court has at least fifteen years of practice; Dr Merlo is a lawyer with twenty-two years of practice; therefore Dr Merlo has argued before the supreme court. Four candidate descriptions of the error follow. The explanation restates the first premise as an arrow from 'argued before the supreme court' to 'at least fifteen years of practice'.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-topup-author",
+    "aiAssisted": true,
+    "notes": "Original item written to the published syllabus entry 'identifying logical errors in an argument'. Dr Merlo and the argument are invented."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-topup-author",
+    "reviewer": "bocconi-law-round2-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-law-round2-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Fifteen years of practice is stated as necessary for having argued before the supreme court; the argument reads it as sufficient and affirms the consequent from Merlo's twenty-two years. No average (a), no quality claim (b) and no sampling claim (c) is involved."
+    },
+    "notes": "Author confirmed a counter-model in which both premises hold and the conclusion fails, and checked that A, B and C each name a fault the argument does not commit (no average, no quality claim, no inductive step). Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "verbal-reasoning",
+    "logical-error",
+    "necessary-vs-sufficient"
+  ]
+}

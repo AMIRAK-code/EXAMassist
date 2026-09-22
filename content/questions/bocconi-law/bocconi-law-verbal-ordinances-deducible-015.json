@@ -1,0 +1,71 @@
+{
+  "id": "bocconi-law-verbal-ordinances-deducible-015",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-verbal-reasoning",
+  "skillSlug": "law-verbal-true-false-not-deducible",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "An archivist reports the following about the commune of Valmarina:\n\n- All the ordinances passed by the commune before 1400 were written in Latin.\n- Some ordinances written in Latin were annulled by the bishop.\n- No ordinance annulled by the bishop was ever re-enacted.\n\nNow judge this statement against the report:\n\n> Some ordinances passed before 1400 were annulled by the bishop.",
+  "instructionsMd": "Decide whether the statement is true on the report, false on the report, or neither — that is, consistent with the report but not established by it.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "False: the report rules it out."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "True: the report establishes it."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Not deducible: the report neither establishes it nor rules it out."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Line up the two groups the statement joins: *ordinances passed before 1400* and *ordinances annulled by the bishop*.\n\nThe first record puts every pre-1400 ordinance inside the group of Latin ordinances — but it does not say the two groups are the same. Latin could well have continued in use after 1400, so the Latin group may be larger than the pre-1400 group.\n\nThe second record says that *some* Latin ordinances were annulled. \"Some\" points at an unidentified part of the Latin group. Those annulled ordinances might all be pre-1400 ones; they might equally all be later Latin ones. The report simply does not say which.\n\nSo the statement could be true and could be false while every record holds. That is exactly what \"not deducible\" means, and it is option C. The third record, about re-enactment, plays no part — it is there to be recognised as irrelevant.\n\n**How to check.** Construct two archives. In the first, the only annulled Latin ordinances date from 1350 — all three records hold and the statement is true. In the second, the only annulled Latin ordinances date from 1450 — all three records still hold and the statement is false. Two consistent archives disagreeing about the statement is the definition of not deducible.",
+  "distractorRationale": {
+    "b": "Slides from 'all pre-1400 ordinances were in Latin' to 'all Latin ordinances were pre-1400'. That is the converse of the first record, and the archive in which every annulled Latin ordinance dates from 1450 shows it fails.",
+    "a": "Nothing in the report excludes a pre-1400 annulment; the archive in which the annulled Latin ordinances date from 1350 satisfies every record. Marking a statement false requires a record that contradicts it, and there is none here — the record about re-enactment is about what happened afterwards, not about which ordinances were annulled."
+  },
+  "estimatedSeconds": 105,
+  "stimulusRef": null,
+  "accessibilityText": "A true / false / not deducible question with three answer options. The report states: all ordinances passed before 1400 were in Latin; some Latin ordinances were annulled by the bishop; no annulled ordinance was re-enacted. The statement to judge is that some ordinances passed before 1400 were annulled by the bishop.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-topup-author",
+    "aiAssisted": true,
+    "notes": "Original verbal-reasoning item in Bocconi's published true / false / not deducible format, which carries three verdicts by construction. Not tagged 'three-option': the heavier 0.33 penalty is published for the critical-thinking area, and this item sits in Verbal reasoning. The commune, ordinances and bishop are invented."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-topup-author",
+    "reviewer": "bocconi-law-round2-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-law-round2-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Pre-1400 ordinances are a subset of the Latin ones, so the annulled Latin ordinances of record 2 could all be Latin ordinances passed after 1400; nothing establishes the overlap and nothing excludes it, so the statement is consistent but not deducible."
+    },
+    "notes": "Author verified non-deducibility with two models that both satisfy all three records: annulled Latin ordinances dated 1350 (statement true) and dated 1450 (statement false). Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "verbal-reasoning",
+    "true-false-not-deducible",
+    "quantifiers",
+    "history"
+  ]
+}
