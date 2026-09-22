@@ -12,11 +12,31 @@
   "stemMd": "The manufacturer defines a *preferred supplier* as one whose on-time delivery rate was at least $92.0$ percent **and** whose defect rate was fewer than $5.0$ defects per $1{,}000$ units. Based on the table, how many of the eight suppliers were preferred suppliers last financial year?",
   "instructionsMd": "Use the table to answer the question. The table may be sorted on any column.",
   "options": [
-    { "id": "a", "label": "A", "textMd": "$2$" },
-    { "id": "b", "label": "B", "textMd": "$3$" },
-    { "id": "c", "label": "C", "textMd": "$4$" },
-    { "id": "d", "label": "D", "textMd": "$5$" },
-    { "id": "e", "label": "E", "textMd": "$6$" }
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$2$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$3$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$4$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$5$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$6$"
+    }
   ],
   "answerKey": {
     "type": "single_select",
@@ -44,12 +64,18 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "gmat-topup-author",
-    "reviewer": null,
-    "reviewedOn": null,
-    "independentSolve": null,
+    "reviewer": "gmat-round2-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "gmat-round2-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "On-time >= 92.0 AND defects < 5.0: Alderay 96.4/2.1 PASS; Borsen 88.2 fail; Calluna 99.1/6.8 fail; Dunmoor 92.7/3.3 PASS; Everlin 85.0 fail; Farrow 97.8/4.6 PASS; Gildas 90.6 fail; Halvic 94.3/5.2 fail on defects. Three preferred suppliers."
+    },
     "notes": "Author filtered the table in both orders (on-time first, then defects first) and obtained the same three suppliers. Awaiting blind independent solve before publication."
   },
-  "state": "in_review",
+  "state": "published",
   "quarantine": null,
   "tags": [
     "table-analysis",

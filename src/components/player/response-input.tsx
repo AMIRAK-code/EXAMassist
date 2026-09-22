@@ -200,22 +200,26 @@ export function ResponseInput({ item, disabled, onChange }: Props) {
 
     case 'two_part': {
       const selections = response?.type === 'two_part' ? response.selections : [];
-      // Columns are encoded on the option ids as "<columnId>:<optionId>".
-      const columns = [...new Set(item.options.map((o) => o.id.split(':')[0]))];
+      // Option ids are "<columnId>-<optionId>"; option ids may not contain a
+      // colon, so the column is the text before the FIRST hyphen. The selection
+      // carries the whole option id, which is what the answer key stores.
+      const columnOf = (optionId: string) => optionId.slice(0, optionId.indexOf('-'));
+      const columns = [...new Set(item.options.map((o) => columnOf(o.id)))].filter(Boolean);
+
       return (
         <div className="space-y-5">
           {columns.map((columnId) => {
-            const columnOptions = item.options.filter((o) => o.id.startsWith(`${columnId}:`));
+            const columnOptions = item.options.filter((o) => columnOf(o.id) === columnId);
             const current = selections.find((s) => s.columnId === columnId);
             return (
               <ChoiceList
                 key={columnId}
                 name={`${name}-${columnId}`}
                 type="radio"
-                legend={`Select one answer for ${columnId}`}
+                legend={`Select one answer for ${columnId.replace(/[-_]/g, ' ')}`}
                 hint={columnId.replace(/[-_]/g, ' ')}
                 choices={columnOptions.map((o) => ({
-                  id: o.id.split(':')[1] ?? o.id,
+                  id: o.id,
                   label: o.label,
                   html: o.html,
                 }))}

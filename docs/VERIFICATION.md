@@ -88,6 +88,34 @@ real hole: `Verdict.ambiguous` now exists, and an item flagged ambiguous is
 quarantined no matter how the answers compared. Neither item is served to
 learners, and neither was "repaired" by guessing at the intended answer.
 
+A third round covered the 14 GMAT Data Insights and Verbal items:
+
+```
+14 verdicts applied
+  published:   14
+  quarantined:  0
+```
+
+That round produced the project's first apparent disagreements — three of them —
+and all three turned out to be **defects in the review tooling, not the
+content**:
+
+- Two two-part items failed because option ids are stored as
+  `columnId-optionId` (the schema forbids a colon in an option id), while
+  reviewers were asked for `columnId:optionId` and the parser split on the
+  colon. The reviewers' substantive answers matched the keys exactly. The parser
+  now resolves either notation against the item's real option ids, the player's
+  column grouping was fixed to match (it had the same wrong assumption, so
+  two-part items would not have rendered their columns correctly), and
+  `validateQuestion` now enforces the convention so it cannot recur silently.
+- One graphics-interpretation item failed on a **transcription slip**: the
+  reviewer's own working derived +136 thousand, which is option (c), but they
+  recorded the letter "a". The coordinating agent recomputed both series from
+  the stimulus rows (401 new, 265 cancelled, net +136), confirmed option (c)
+  reads "An increase of 136 thousand", and adjudicated the verdict. The
+  correction and the reason are written into the item's audit record rather than
+  applied silently.
+
 ### What review caught that agreement did not
 
 The valuable finding was structural, not an incorrect key. Correct answers
@@ -138,6 +166,9 @@ npm run e2e        # browser tests
 | `attempts.test.ts` | 27 | Full lifecycle against a real database |
 | `auth.test.ts` | 27 | Hashing, sessions, revocation, rate limiting |
 | `adaptive-routing.test.ts` | 10 | The routing rule, and a full SAT simulation routed end to end |
+
+**157 questions published across all seven exam configurations**, every one at
+or above the 20-item target; 2 quarantined.
 
 Tests that speak directly to the definition of done:
 

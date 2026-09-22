@@ -41,7 +41,11 @@ if (!verdictsPath) {
 }
 
 /** Turns the reviewer's plain-text answer into a Response the engine can score. */
-function toResponse(responseType: string, raw: string): Response | null {
+function toResponse(
+  responseType: string,
+  raw: string,
+  optionIds: readonly string[] = [],
+): Response | null {
   const value = raw.trim();
   if (value === '') return null;
 
@@ -74,8 +78,18 @@ function toResponse(responseType: string, raw: string): Response | null {
             .map((pair) => pair.trim())
             .filter(Boolean)
             .map((pair) => {
-              const [columnId, optionId] = pair.split(':').map((s) => s.trim());
-              return { columnId, optionId: optionId?.toLowerCase() ?? '' };
+              // Reviewers are asked for "columnId:optionId", but option ids are
+              // stored as "columnId-optionId". Resolve whatever they wrote
+              // against the item's real ids rather than failing the item on a
+              // notation difference.
+              const [rawColumn, rawOption] = pair.split(':').map((part) => part.trim().toLowerCase());
+              const column = rawColumn ?? '';
+              const suffix = rawOption ?? '';
+              const resolved =
+                optionIds.find((id) => id.toLowerCase() === suffix) ??
+                optionIds.find((id) => id.toLowerCase() === `${column}-${suffix}`) ??
+                suffix;
+              return { columnId: column, optionId: resolved };
             }),
         });
       default:
@@ -128,7 +142,11 @@ function main(): void {
     const question = entry.question;
     if (question.state !== 'in_review') continue;
 
-    const response = toResponse(question.responseType, verdict.solvedAnswer);
+    const response = toResponse(
+      question.responseType,
+      verdict.solvedAnswer,
+      question.options.map((o) => o.id),
+    );
     let agrees = false;
 
     if (response === null) {
