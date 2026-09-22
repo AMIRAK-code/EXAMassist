@@ -1,0 +1,79 @@
+{
+  "id": "gmat-msr-site-schedule-110",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-multi-source-reasoning",
+  "skillSlug": "msr-draw-combined-inferences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which of the following is most strongly supported by the three sources taken together?",
+  "instructionsMd": "Consider all three sources. Each answer choice must be judged against the sources as a whole, not against any one of them.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Halvern requires a new floor slab because its available floor area is larger than Kestrel Park's."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The packaging line can be producing by 1 December only if the company chooses Kestrel Park."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Kestrel Park could have the line producing sooner than Halvern could, even though work can begin at Halvern a month earlier."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The five-year lease at Kestrel Park would cost less than replacing the floor slab at Halvern."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Finance's comparison omits the cost of fit-out, which Source 1 identifies as the project's largest single expense."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "No single source settles this. The durations are in Source 1, the start dates are in Source 3, and the answer comes from putting them together.\n\n**Build the two schedules.**\n\n*Halvern.* Work can begin on 1 April (Source 3). The slab replacement takes $11$ weeks and the fit-out takes $9$ weeks, and Source 1 says the two cannot overlap, so they run back to back:\n\n$$11 + 9 = 20 \\text{ weeks from 1 April},$$\n\nwhich lands in the second half of August.\n\n*Kestrel Park.* Work can begin on 1 May (Source 3) — a month later. But Kestrel Park is ready for fit-out immediately, so there is no slab stage:\n\n$$9 \\text{ weeks from 1 May},$$\n\nwhich lands in early July.\n\nEarly July is earlier than late August, so **Kestrel Park could have the line producing sooner than Halvern could, even though work can begin at Halvern a month earlier**. That is the correct choice, and it is exactly the kind of conclusion no single source supports on its own.\n\n**Why each of the others fails.**\n\n- The claim that **the five-year lease would cost less than the slab** fails a straight arithmetic check against Source 2: the lease is $5 \\times 310{,}000 = 1{,}550{,}000$ pounds, which is more, not less, than the $1{,}400{,}000$ pound slab.\n- The claim that **only Kestrel Park can meet 1 December** overstates the schedule finding. Halvern is slower, but late August is still more than three months ahead of the deadline, so both sites meet it.\n- The claim that **Finance omits a fit-out cost Source 1 calls the largest expense** attributes to Source 1 a ranking it never makes; Source 1 contains no money at all.\n- The claim that **the larger floor area is why Halvern needs a new slab** invents a causal link. Source 3 records that Halvern has $4{,}800$ square metres against Kestrel Park's $4{,}100$, and no source says why the slab needs replacing.\n\n**How to check this.** Convert both schedules into a common unit before comparing. Twenty weeks is $140$ days and nine weeks is $63$ days; $140$ days from 1 April is 19 August, and $63$ days from 1 May is 3 July. The head start at Halvern is worth about $30$ days, while the slab stage costs $77$ days, so the head start cannot make up the difference. Whenever a Multi-Source set gives you a head start in one place and extra work in another, put both on the same clock — that comparison is almost always the point of the set.",
+  "distractorRationale": {
+    "d": "This reverses the arithmetic in Source 2. Five years of lease at 310,000 pounds a year is 1,550,000 pounds, which exceeds the 1,400,000 pound slab replacement, and Source 2 says so explicitly.",
+    "b": "This treats Halvern as unable to meet the deadline. Twenty weeks from 1 April finishes in the second half of August, more than three months before the 1 December deadline, so both sites can meet it.",
+    "e": "This attributes a cost ranking to Source 1 that Source 1 never makes. Source 1 gives only durations; no source states what fit-out costs or that it is the largest expense.",
+    "a": "This invents a causal explanation for the slab replacement. No source gives a reason for it, and Source 3 merely records that Halvern has 4,800 square metres against Kestrel Park's 4,100."
+  },
+  "estimatedSeconds": 210,
+  "stimulusRef": {
+    "id": "gmat-msr-packaging-line-siting-001",
+    "version": 1
+  },
+  "accessibilityText": "A Multi-Source Reasoning question about the accompanying three sources on siting a packaging line. It asks which statement is most strongly supported by the three sources taken together. Five options are offered, concerning the relative cost of the lease and the slab, whether only Kestrel Park can meet the December deadline, an alleged omission of fit-out cost, an alleged reason for the slab replacement, and which site could have the line producing sooner.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-topup-author",
+    "aiAssisted": true,
+    "notes": "Original item written against the existing original three-source stimulus. The key requires Source 1 durations and Source 3 start dates to be combined; every distractor is refuted by a specific line in one of the sources rather than merely being unattractive."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-topup-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author converted both schedules to days (140 days from 1 April gives 19 August; 63 days from 1 May gives 3 July) and checked each distractor against the source text. Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. Explanation prose refers to answer choices by their content rather than by letter, so the item survives any later reordering of the options. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "multi-source-reasoning",
+    "scheduling",
+    "combined-inference"
+  ]
+}

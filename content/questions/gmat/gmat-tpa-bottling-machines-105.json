@@ -1,0 +1,68 @@
+{
+  "id": "gmat-tpa-bottling-machines-105",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-two-part-analysis",
+  "skillSlug": "tpa-simultaneous-equations",
+  "subskillSlug": null,
+  "responseType": "two_part",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A bottling plant runs two machines. Machine P fills $1{,}200$ bottles per hour and Machine Q fills $800$ bottles per hour; each machine fills at its own constant rate the whole time it is running, and neither machine stops once started. On Tuesday the two machines together filled $25{,}600$ bottles, and Machine P ran for exactly $3$ hours longer than Machine Q.\n\nIn the column **Hours Machine Q ran**, select the number of hours Machine Q was running on Tuesday. In the column **Bottles filled by Machine P**, select the number of bottles Machine P filled on Tuesday. Make only one selection in each column.",
+  "instructionsMd": "This is a Two-Part Analysis question. Two columns of choices are offered; select exactly one choice in each column. Credit is given only when both selections are correct.",
+  "options": [
+    { "id": "hours-a", "label": "A", "textMd": "$8$" },
+    { "id": "hours-b", "label": "B", "textMd": "$11$" },
+    { "id": "hours-c", "label": "C", "textMd": "$12.8$" },
+    { "id": "hours-d", "label": "D", "textMd": "$14$" },
+    { "id": "hours-e", "label": "E", "textMd": "$17$" },
+    { "id": "bottles-a", "label": "A", "textMd": "$8{,}800$" },
+    { "id": "bottles-b", "label": "B", "textMd": "$12{,}800$" },
+    { "id": "bottles-c", "label": "C", "textMd": "$13{,}200$" },
+    { "id": "bottles-d", "label": "D", "textMd": "$16{,}800$" },
+    { "id": "bottles-e", "label": "E", "textMd": "$20{,}400$" }
+  ],
+  "answerKey": {
+    "type": "two_part",
+    "selections": [
+      { "columnId": "hours", "optionId": "hours-b" },
+      { "columnId": "bottles", "optionId": "bottles-d" }
+    ]
+  },
+  "explanationMd": "Put the unknown on the machine you are asked about, then write one equation for the total.\n\nLet $q$ be the number of hours Machine Q ran. Machine P ran $q + 3$ hours. Bottles filled equals rate times time, so\n\n$$1200(q + 3) + 800q = 25{,}600.$$\n\nExpand and collect:\n\n$$1200q + 3600 + 800q = 25{,}600 \\;\\Longrightarrow\\; 2000q = 22{,}000 \\;\\Longrightarrow\\; q = 11.$$\n\nSo **Machine Q ran $11$ hours**, and Machine P ran $11 + 3 = 14$ hours.\n\nThe second column asks only about Machine P's output:\n\n$$1200 \\times 14 = 16{,}800 \\text{ bottles}.$$\n\n**How to check this.** Compute the other machine's output and add: Machine Q filled $800 \\times 11 = 8{,}800$ bottles, and $16{,}800 + 8{,}800 = 25{,}600$, which is exactly the total given. Both selections are confirmed by one addition.\n\n**The transferable technique.** On a Two-Part Analysis item the two columns are almost never two independent puzzles. Here the second column is *dependent* on the first: once $q$ is known, the second answer is a single multiplication. Always solve the column that carries the unknown first, and then read the other column off it — trying to attack both columns at once is what makes these items feel slow. Also note the trap built into the stem: the $3$-hour difference belongs to Machine P, so $q$ is the *smaller* time. Writing \"$P = q + 3$\" explicitly, rather than carrying the relationship in your head, is what keeps the sign straight.",
+  "distractorRationale": {
+    "hours-a": "This subtracts the 3-hour gap a second time, from Machine Q's own 11 hours. The gap has already been used once, when Machine P's time was written as q + 3.",
+    "hours-c": "This is 25,600 divided by the combined rate of 2,000 bottles per hour, which assumes both machines ran for the same length of time. The stem says Machine P ran 3 hours longer.",
+    "hours-d": "This is Machine P's running time, not Machine Q's. The column asks for Q, which is the shorter of the two.",
+    "hours-e": "This adds the 3-hour gap to Machine P's 14 hours instead of recognising that 14 already includes it.",
+    "bottles-a": "This is Machine Q's output, 800 times 11 hours. The column asks for Machine P's output.",
+    "bottles-b": "This is half of 25,600, which splits the total evenly between the machines. They ran at different rates for different lengths of time, so an even split is not justified.",
+    "bottles-c": "This is 1,200 times 11, which applies Machine P's rate to Machine Q's running time and so forgets the extra 3 hours Machine P ran.",
+    "bottles-e": "This is 1,200 times 17, using the mistaken 17-hour figure for Machine P that comes from adding the 3-hour gap to P's time a second time."
+  },
+  "estimatedSeconds": 180,
+  "stimulusRef": null,
+  "accessibilityText": "A Two-Part Analysis question. Machine P fills 1,200 bottles per hour and Machine Q fills 800 bottles per hour, each at a constant rate. Together they filled 25,600 bottles on Tuesday, and Machine P ran 3 hours longer than Machine Q. The first column, headed Hours Machine Q ran, offers 8, 11, 12.8, 14 and 17. The second column, headed Bottles filled by Machine P, offers 8,800; 12,800; 13,200; 16,800 and 20,400. One choice must be made in each column.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-topup-author",
+    "aiAssisted": true,
+    "notes": "Original item. The total of 25,600 was chosen to make the hours a whole number, and the two columns were given numerically disjoint option sets so that no choice in one column can be confused with a choice in the other."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-topup-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved the item and verified the pair by reconstructing the 25,600 total from the two machine outputs. Each distractor was traced back to a specific arithmetic or reading error. Awaiting blind independent solve before publication."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "two-part-analysis",
+    "rates",
+    "simultaneous-equations"
+  ]
+}

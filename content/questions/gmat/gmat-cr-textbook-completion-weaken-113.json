@@ -1,0 +1,76 @@
+{
+  "id": "gmat-cr-textbook-completion-weaken-113",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "verbal-reasoning",
+  "domainSlug": "verbal-critical-reasoning",
+  "skillSlug": "cr-weaken-argument",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A publisher surveyed readers of its introductory chemistry textbook and found that those who reported finishing the book scored, on average, $18$ points higher on a standardised chemistry test than those who reported abandoning it partway through. The publisher's advertising now claims that finishing the textbook raises a reader's score on that test by about $18$ points.\n\nWhich of the following, if true, most seriously weakens the publisher's claim?",
+  "instructionsMd": "Select the single best answer.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The textbook costs more than most competing introductory chemistry textbooks."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The standardised chemistry test covers several topics that the textbook does not address."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "A few readers who finished the textbook scored below the average score of those who abandoned it."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Readers who already understood chemistry well before opening the book were far more likely to finish it than readers who did not."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The publisher intends to release a revised edition of the textbook next year."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Separate what was measured from what is being claimed.\n\n**Measured:** finishers score about $18$ points higher than abandoners. That is an *association* between two groups that sorted themselves.\n\n**Claimed:** finishing the book *raises* a reader's score by about $18$ points. That is a causal claim about what would happen to a given reader who kept going.\n\nThe gap between the two is the possibility that the groups differed before anyone opened the book. To weaken the claim, find the choice that makes that possibility concrete.\n\n**The correct choice does exactly that:** readers who already understood chemistry well were far more likely to finish. If so, the finishers were the stronger chemists to begin with, and their higher scores are explained by the knowledge they brought rather than by the pages they turned. The $18$-point gap survives as a fact about the two groups while the causal claim collapses. This is self-selection, the standard defect in any \"people who did X scored higher\" argument built on volunteers rather than on random assignment.\n\n**Why the others do not work.**\n\n- The choice noting that **the test covers topics the book does not address** limits how much the book could possibly help, but that limitation applies to finishers and abandoners alike, so it does not explain why the two groups differ by $18$ points.\n- The choice about **the book's price** is beside the point: what a book costs has no bearing on whether reading all of it improves a score.\n- The choice noting that **a few finishers scored below the abandoners' average** is consistent with the claim rather than against it. A statement about group averages does not assert that every finisher beat every abandoner, and a few low scorers is what any real distribution looks like.\n- The choice about **a revised edition next year** concerns a future product and says nothing about the effect the current one had on the readers surveyed.\n\n**How to check this.** Ask what experiment would settle the question: take readers who are alike at the outset, have some finish the book and some stop, then compare. The publisher's survey is not that experiment, because readers chose for themselves whether to finish. Whenever a conclusion rests on a comparison between self-selected groups, the winning weakener is almost always the one naming a pre-existing difference between them.",
+  "distractorRationale": {
+    "b": "This limits how much the textbook could help, but the limitation applies to finishers and abandoners alike. It does not explain why the two groups' averages differ by 18 points, so it leaves the comparison intact.",
+    "a": "This concerns the book's price. Price bears on whether the book is worth buying, not on whether reading all of it raises a reader's score.",
+    "c": "This is compatible with the claim rather than damaging to it. A statement about group averages does not assert that every finisher outscored every abandoner, so a few low scorers among the finishers is expected.",
+    "e": "This reports a future publishing plan. A revised edition next year says nothing about the effect the current edition had on the readers who were surveyed."
+  },
+  "estimatedSeconds": 140,
+  "stimulusRef": null,
+  "accessibilityText": "A Critical Reasoning question. A publisher found that readers who finished its chemistry textbook scored 18 points higher on a standardised test than readers who abandoned it, and now advertises that finishing the book raises scores by about 18 points. The question asks which statement most seriously weakens that claim. Five options follow, concerning the test's coverage, the prior chemistry knowledge of readers who finished, the book's price, the spread of finishers' scores, and a planned revised edition.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-topup-author",
+    "aiAssisted": true,
+    "notes": "Original argument. The publisher, the textbook and the 18-point figure were invented. The item targets self-selection specifically, and distractor D was written to look like a counterexample while actually being consistent with a claim about averages."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-topup-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author confirmed that only B introduces a pre-existing difference between the two self-selected groups, and checked that A limits the effect size without explaining the observed gap. Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. Explanation prose refers to answer choices by their content rather than by letter, so the item survives any later reordering of the options. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "critical-reasoning",
+    "weaken",
+    "self-selection"
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "id": "gmat-ds-consultant-hours-103",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-data-sufficiency",
+  "skillSlug": "ds-sufficiency-threshold",
+  "subskillSlug": null,
+  "responseType": "data_sufficiency",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A team of consultants, each of whom logged a whole number of hours, worked on a single project. What was the average (arithmetic mean) number of hours logged per consultant on the project?\n\n1. The team logged $1{,}260$ hours on the project in total.\n2. No consultant on the team logged fewer than $30$ hours or more than $90$ hours on the project.",
+  "instructionsMd": "Each Data Sufficiency problem gives a question and two statements. Using the data in the statements plus your knowledge of mathematics and everyday facts, decide whether the data are sufficient to answer the question, then select the corresponding option. Do not solve for the value unless you need to.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "EACH statement ALONE is sufficient."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Statements (1) and (2) TOGETHER are NOT sufficient."
+    }
+  ],
+  "answerKey": {
+    "type": "data_sufficiency",
+    "choice": "E"
+  },
+  "explanationMd": "The mean is $\\dfrac{\\text{total hours}}{\\text{number of consultants}}$, so we need both the total and the head count. Let $n$ be the number of consultants.\n\n**Statement (1): total $= 1{,}260$.** The head count is missing, so the mean could be anything of the form $1260/n$. Not sufficient.\n\n**Statement (2): every individual total lies between $30$ and $90$ inclusive.** This bounds the mean between $30$ and $90$, but a bound is not a value, and neither the total nor $n$ is given. Not sufficient.\n\n**Together.** The temptation is to think that the range in (2) restricts $n$ enough to fix the mean. It does restrict $n$: since each consultant logged at most $90$ hours,\n\n$$n \\ge \\frac{1260}{90} = 14,$$\n\nand since each logged at least $30$ hours,\n\n$$n \\le \\frac{1260}{30} = 42.$$\n\nBut every $n$ in that window is genuinely possible, and each gives a different mean. Three concrete cases:\n\n- $n = 14$, every consultant logging exactly $90$ hours: total $14 \\times 90 = 1260$, mean $90$.\n- $n = 42$, every consultant logging exactly $30$ hours: total $42 \\times 30 = 1260$, mean $30$.\n- $n = 20$, say eighteen consultants logging $63$ hours and two logging $63$ hours as well: $20 \\times 63 = 1260$, mean $63$.\n\nAll three satisfy both statements, and the mean is $90$, $30$ and $63$ respectively. Since more than one mean is possible, the statements together are not sufficient. The answer is **E**.\n\n**How to check this.** On any \"what is the average\" question, write the mean as a fraction and ask separately whether the numerator and the denominator are pinned down. If a statement supplies only inequalities, test the two extremes: if the extremes give different answers, you are done and the answer is E. Here the extremes $n = 14$ and $n = 42$ differ by a factor of three, so no further work is needed.",
+  "distractorRationale": {
+    "a": "This treats a total as an average. Without the number of consultants, 1,260 hours is consistent with a mean of 30, 63, 90 or many other values.",
+    "b": "This mistakes a range for a value. Bounds of 30 and 90 hours per person constrain the mean to lie between those numbers but do not identify it.",
+    "c": "This assumes the range in statement (2) narrows the head count to a single possibility. It narrows it only to 14 through 42 consultants, and every value in that window yields a different mean.",
+    "d": "This claims each statement works alone, but neither supplies both a total and a head count, so neither can produce a mean."
+  },
+  "estimatedSeconds": 130,
+  "stimulusRef": null,
+  "accessibilityText": "A Data Sufficiency question. A team of consultants each logged a whole number of hours on one project; the question asks the arithmetic mean number of hours per consultant. Statement 1: the team logged 1,260 hours in total. Statement 2: no consultant logged fewer than 30 hours or more than 90 hours. The five standard Data Sufficiency answer options follow.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-topup-author",
+    "aiAssisted": true,
+    "notes": "Original item. 1,260 was chosen because it is divisible by both 14 and 42, so the two extreme head counts are exactly realisable and the insufficiency is demonstrable rather than merely asserted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-topup-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved the item and constructed three explicit teams satisfying both statements with means of 30, 63 and 90. Awaiting blind independent solve before publication."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "data-sufficiency",
+    "statistics",
+    "average"
+  ]
+}
