@@ -1,0 +1,76 @@
+{
+  "id": "gmat-ds-lamp-profit-102",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-data-sufficiency",
+  "skillSlug": "ds-recognize-relevant-data",
+  "subskillSlug": null,
+  "responseType": "data_sufficiency",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A retailer bought a batch of identical lamps and later sold every lamp in the batch. What was the retailer's total profit on the batch?\n\n1. The retailer sold each lamp for $\\$45$, which was $25\\%$ more than the price the retailer paid for each lamp.\n2. The retailer paid $\\$2{,}880$ for the batch and received $\\$3{,}600$ from selling it.",
+  "instructionsMd": "Each Data Sufficiency problem gives a question and two statements. Using the data in the statements plus your knowledge of mathematics and everyday facts, decide whether the data are sufficient to answer the question, then select the corresponding option. Do not solve for the value unless you need to.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "EACH statement ALONE is sufficient."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Statements (1) and (2) TOGETHER are NOT sufficient."
+    }
+  ],
+  "answerKey": {
+    "type": "data_sufficiency",
+    "choice": "B"
+  },
+  "explanationMd": "Total profit is total revenue minus total cost. Read each statement for whether it delivers *totals*, not per-unit figures.\n\n**Statement (1).** The selling price is $\\$45$ and that is $125\\%$ of the cost, so the cost per lamp is\n\n$$\\frac{45}{1.25} = \\$36,$$\n\nand the profit per lamp is $45 - 36 = \\$9$. But the batch size is never given. If the batch held $50$ lamps the profit was $\\$450$; if it held $200$ lamps the profit was $\\$1{,}800$. A per-unit margin without a quantity cannot produce a total. Not sufficient.\n\n**Statement (2).** This gives both totals directly:\n\n$$3{,}600 - 2{,}880 = \\$720.$$\n\nThat is the answer, and no other information is needed — the number of lamps is irrelevant once both totals are known. Sufficient.\n\nSince (2) works alone and (1) does not, the answer is **B**.\n\n**How to check this.** Confirm that the two statements are consistent, as they always are on this question type. Statement (2) implies $2{,}880 / 3{,}600 = 0.8$, so cost is $80\\%$ of revenue, i.e. revenue is $125\\%$ of cost — exactly the relationship in statement (1). It also implies a batch of $2{,}880 / 36 = 80$ lamps, and $80 \\times \\$9 = \\$720$, matching. The consistency check is a good habit: if your two statements disagree, you have misread one of them. The wider lesson is that Data Sufficiency rewards asking *what quantity is actually being requested*. Here it is a total, so a statement that fixes only a rate per unit can never finish the job.",
+  "distractorRationale": {
+    "a": "This mistakes a per-lamp margin for a total. Statement (1) fixes the $9 profit on each lamp but never says how many lamps were in the batch, so the total profit is undetermined.",
+    "c": "This assumes both statements are needed. Statement (2) already gives total revenue and total cost, so the total profit follows without any help from statement (1).",
+    "d": "This requires statement (1) to be sufficient as well. It is not, because the batch size is missing, so only one of the two statements stands alone.",
+    "e": "This claims the pair fails. Statement (2) alone settles the question, so the two together certainly do."
+  },
+  "estimatedSeconds": 105,
+  "stimulusRef": null,
+  "accessibilityText": "A Data Sufficiency question. A retailer bought a batch of identical lamps and sold all of them; the question asks the total profit on the batch. Statement 1: each lamp sold for 45 dollars, which was 25 percent more than the retailer paid per lamp. Statement 2: the retailer paid 2,880 dollars for the batch and received 3,600 dollars from selling it. The five standard Data Sufficiency answer options follow.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-topup-author",
+    "aiAssisted": true,
+    "notes": "Original item. Figures were chosen so the two statements are mutually consistent (80 lamps at 36 dollars cost and 45 dollars sale price), which is the behaviour of real Data Sufficiency statements."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-topup-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved the item and verified statement consistency in both directions. Awaiting blind independent solve before publication."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "data-sufficiency",
+    "profit",
+    "percent"
+  ]
+}

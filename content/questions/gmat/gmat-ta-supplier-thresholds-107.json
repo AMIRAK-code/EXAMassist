@@ -1,0 +1,59 @@
+{
+  "id": "gmat-ta-supplier-thresholds-107",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-table-analysis",
+  "skillSlug": "ta-analyze-spreadsheet-data",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The manufacturer defines a *preferred supplier* as one whose on-time delivery rate was at least $92.0$ percent **and** whose defect rate was fewer than $5.0$ defects per $1{,}000$ units. Based on the table, how many of the eight suppliers were preferred suppliers last financial year?",
+  "instructionsMd": "Use the table to answer the question. The table may be sorted on any column.",
+  "options": [
+    { "id": "a", "label": "A", "textMd": "$2$" },
+    { "id": "b", "label": "B", "textMd": "$3$" },
+    { "id": "c", "label": "C", "textMd": "$4$" },
+    { "id": "d", "label": "D", "textMd": "$5$" },
+    { "id": "e", "label": "E", "textMd": "$6$" }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Two conditions have to hold at once, so apply the more selective one first and then filter what survives. Ignore the volume and price columns entirely: they bear on neither condition.\n\n**Step 1 — on-time rate of at least $92.0$ percent.**\n\n| Supplier | On-time (%) | Passes? |\n| --- | --- | --- |\n| Alderay | $96.4$ | yes |\n| Borsen | $88.2$ | no |\n| Calluna | $99.1$ | yes |\n| Dunmoor | $92.7$ | yes |\n| Everlin | $85.0$ | no |\n| Farrow | $97.8$ | yes |\n| Gildas | $90.6$ | no |\n| Halvic | $94.3$ | yes |\n\nFive suppliers survive: Alderay, Calluna, Dunmoor, Farrow and Halvic.\n\n**Step 2 — fewer than $5.0$ defects per $1{,}000$ units, applied only to those five.**\n\n- Alderay $2.1$ — passes\n- Calluna $6.8$ — fails\n- Dunmoor $3.3$ — passes\n- Farrow $4.6$ — passes\n- Halvic $5.2$ — fails\n\nThree suppliers meet both conditions: **Alderay, Dunmoor and Farrow**. The answer is $3$.\n\n**How to check this.** Run the filter in the opposite order and confirm the same names emerge. Taking defects below $5.0$ first gives Alderay $2.1$, Borsen $1.4$, Dunmoor $3.3$, Everlin $0.9$, Farrow $4.6$ and Gildas $2.7$ — six suppliers — and of those, only Alderay, Dunmoor and Farrow also reach $92.0$ percent on time. Same three names, so the count is right.\n\n**The habit this item is training.** On Table Analysis the two things that cost marks are reading a column that is not in the condition, and mishandling the boundary wording. \"At least $92.0$\" is inclusive; \"fewer than $5.0$\" is strict, so a supplier at exactly $5.0$ — or at $5.2$, as Calluna's neighbour Halvic is — would fail. Underline the inequality words before you look at a single number.",
+  "distractorRationale": {
+    "a": "This drops Farrow by treating its 4.6 defects per 1,000 as failing, which happens if the defect threshold is read as 4.0 or if 4.6 is rounded up to 5 before the comparison. The stated cut-off is fewer than 5.0, and 4.6 is below it.",
+    "c": "This counts Halvic as well. Halvic's defect rate is 5.2 per 1,000, which is not fewer than 5.0, so it fails the second condition despite its 94.3 percent on-time rate.",
+    "d": "This applies only the on-time condition and stops there. Five suppliers reach 92.0 percent, but Calluna and Halvic are disqualified by their defect rates.",
+    "e": "This reads the on-time threshold as 90 percent, which lets Gildas (90.6) through, and then ignores the defect condition entirely."
+  },
+  "estimatedSeconds": 160,
+  "stimulusRef": {
+    "id": "gmat-table-supplier-scorecard-001",
+    "version": 1
+  },
+  "accessibilityText": "A Table Analysis question about the accompanying supplier scorecard table. A preferred supplier is defined as one with an on-time delivery rate of at least 92.0 percent and fewer than 5.0 defects per 1,000 units. The question asks how many of the eight suppliers met both conditions. Five numeric options are offered: 2, 3, 4, 5 and 6.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-topup-author",
+    "aiAssisted": true,
+    "notes": "Original item written against the existing original supplier scorecard stimulus. Thresholds were set so that Halvic (5.2 defects) and Gildas (90.6 percent on time) each fail exactly one condition, giving each distractor a distinct and nameable cause."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-topup-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author filtered the table in both orders (on-time first, then defects first) and obtained the same three suppliers. Awaiting blind independent solve before publication."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "table-analysis",
+    "filtering",
+    "thresholds"
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "id": "gmat-cr-hygiene-rating-flaw-114",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "verbal-reasoning",
+  "domainSlug": "verbal-critical-reasoning",
+  "skillSlug": "cr-identify-flaw",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Every one of the twelve restaurants in Calder that received the top hygiene rating last year keeps a digital temperature log. The owner of another Calder restaurant, which has just installed a digital temperature log, reasons that her restaurant will therefore receive the top hygiene rating this year.\n\nThe owner's reasoning is most vulnerable to criticism on the ground that it",
+  "instructionsMd": "Select the single best answer.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "overlooks the possibility that some restaurants without a digital temperature log also received the top hygiene rating last year"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "relies on a sample of twelve restaurants that is too small to support any conclusion about restaurants in Calder"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "treats a feature shared by all the restaurants that achieved an outcome as by itself enough to produce that outcome"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "confuses the number of restaurants that received the top rating with the proportion of restaurants that received it"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "draws a conclusion about one restaurant from a claim made about a group of restaurants"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Write the premise and the conclusion in conditional form, because that is where the defect becomes visible.\n\n**Premise:** if a Calder restaurant received the top rating last year, then it keeps a digital temperature log. In symbols, $\\text{top rating} \\rightarrow \\text{log}$.\n\n**Conclusion:** this restaurant keeps a log, therefore it will receive the top rating. In symbols, $\\text{log} \\rightarrow \\text{top rating}$.\n\nThe second is the *converse* of the first, and a conditional does not licence its converse. The log is something every top-rated restaurant happens to have; nothing in the premise says it is what earns the rating. Inspectors presumably also look at cleaning, storage, staff training and pest control, and a restaurant can keep an immaculate temperature log while failing all of those. The correct choice names exactly this move: **treating a feature shared by all the restaurants that achieved an outcome as by itself enough to produce that outcome**.\n\n**Why the others fail.**\n\n- The choice about **restaurants without a log also receiving the top rating** describes a state of affairs the premise rules out. The premise says *every* top-rated restaurant keeps a log, so there were none without one. A criticism cannot rest on something the argument has already excluded.\n- The choice about **drawing a conclusion about one restaurant from a claim about a group** describes a move that is perfectly legitimate. Applying a general claim to a particular case is valid; the trouble here is the direction of the conditional, not the shift from group to individual.\n- The choice about **the sample of twelve being too small** misreads the premise. Those twelve are not a sample: they are every restaurant that received the rating, so the premise is a census and there is no inference from sample to population to attack.\n- The choice alleging a confusion between **a number and a proportion** has nothing to attach to, because the argument never reasons about proportions at all.\n\n**How to check a flaw answer.** A correct flaw description has to match the argument's actual structure, not merely sound like a plausible worry. Test it by asking whether fixing the described problem would rescue the argument. Suppose the premise covered a thousand restaurants rather than twelve: the reasoning would still be converse error, because \"all the top-rated ones keep a log\" still would not mean \"a log gets you top-rated\". Only the sufficiency answer survives that test.",
+  "distractorRationale": {
+    "a": "The premise already excludes this. It states that every one of the twelve top-rated restaurants keeps a digital temperature log, so there were no top-rated restaurants without one to overlook.",
+    "e": "Applying a general claim to a particular case is valid reasoning, not a flaw. The defect here lies in the direction of the conditional, not in the move from a group to an individual member.",
+    "b": "Sample size is not the issue, because the twelve restaurants are not a sample. They are every restaurant that received the top rating, so the premise is a census rather than a generalisation from part to whole.",
+    "d": "The argument never reasons about proportions. It uses only the fact that all twelve top-rated restaurants kept a log, so there is no count-versus-proportion confusion to identify."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": "A Critical Reasoning question. All twelve Calder restaurants that received the top hygiene rating last year keep a digital temperature log, and the owner of another restaurant that has just installed one concludes her restaurant will receive the top rating this year. The question asks what the reasoning is most vulnerable to criticism for. Five options follow, describing an overlooked possibility, a group-to-individual inference, a small sample, a count-versus-proportion confusion, and treating a shared feature as sufficient on its own.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-topup-author",
+    "aiAssisted": true,
+    "notes": "Original argument. Calder, the restaurants and the digital temperature log were invented. The distractors were chosen to name flaws that are real in other arguments but structurally absent here, so each can be refuted by pointing at the premise rather than by preference."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-topup-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author formalised the premise and conclusion as conditionals to confirm the defect is converse error (necessary treated as sufficient), and checked that choice A contradicts the stated premise rather than describing an oversight. Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. Explanation prose refers to answer choices by their content rather than by letter, so the item survives any later reordering of the options. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "critical-reasoning",
+    "identify-flaw",
+    "conditional-reasoning"
+  ]
+}
