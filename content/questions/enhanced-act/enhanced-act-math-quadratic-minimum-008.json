@@ -1,0 +1,76 @@
+{
+  "id": "enhanced-act-math-quadratic-minimum-008",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "math",
+  "domainSlug": "act-math-algebra",
+  "skillSlug": "act-math-alg-quadratic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In the standard $(x,y)$ coordinate plane, what is the least value of $y$ on the graph of $y = x^{2} - 6x + 11$ ?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$-2$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$2$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$3$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$11$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The coefficient of $x^{2}$ is positive, so the parabola opens upward and its lowest point is the vertex. Complete the square to find it.\n\n$$y = x^{2} - 6x + 11$$\n\nHalf of $-6$ is $-3$, and $(-3)^{2} = 9$, so add and subtract $9$:\n\n$$y = (x^{2} - 6x + 9) + 11 - 9 = (x-3)^{2} + 2$$\n\nBecause $(x-3)^{2}$ is never negative, the smallest value it can take is $0$, at $x = 3$. Then $y = 0 + 2 = 2$, so the least value of $y$ is $2$.\n\nCheck by substituting $x = 3$ into the original: $9 - 18 + 11 = 2$. Test a neighbour to confirm it is a minimum: at $x = 2$, $y = 4 - 12 + 11 = 3$, and at $x = 4$, $y = 16 - 24 + 11 = 3$. Both are larger than $2$.",
+  "distractorRationale": {
+    "c": "This is the $x$-coordinate of the vertex, not the $y$-value there. The question asks for the least value of $y$, so you must substitute $x = 3$ back into the equation.",
+    "a": "Comes from a sign slip while completing the square: subtracting $9$ from $11$ but then attaching the wrong sign, or computing $9 - 11$ instead of $11 - 9$. The constant left outside the square is $11 - 9 = +2$.",
+    "d": "This is the $y$-intercept, the value of $y$ at $x = 0$. The vertex of this parabola is at $x = 3$, not $x = 0$, so $11$ is not the smallest value the graph reaches."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": null,
+  "accessibilityText": "Find the smallest y-value on the graph of y equals x squared minus six x plus eleven.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Not derived from, and not a paraphrase of, any ACT-published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "enhanced-act-author",
+    "reviewer": "enhanced-act-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "enhanced-act-independent-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Completing the square: x^2 - 6x + 11 = (x-3)^2 + 2, so the vertex is (3, 2) and the least y-value is 2."
+    },
+    "notes": "Author solved the item and attempted to defend each distractor before keying it. Awaiting an independent blind solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "quadratic",
+    "vertex",
+    "completing-the-square"
+  ]
+}

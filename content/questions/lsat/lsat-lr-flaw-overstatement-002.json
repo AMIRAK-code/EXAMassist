@@ -1,0 +1,83 @@
+{
+  "id": "lsat-lr-flaw-overstatement-002",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "lr1",
+  "domainSlug": "logical-reasoning",
+  "skillSlug": "lr-argument-flaws",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A magazine for amateur astronomers invited its readers to report how many nights a month they observe. The average reported was eleven. The magazine's editors concluded that their readers observe far more often than telescope owners generally. A columnist objected: readers who bothered to return the questionnaire are surely the keenest observers, so the eleven-night figure tells us nothing whatever about the magazine's readership.\n\nThe columnist's objection is most vulnerable to criticism on the grounds that it",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "confuses the average number of nights that readers observe with the total number of readers who observe"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "draws a conclusion about an entire population from a sample known to be unrepresentative of it"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "overlooks the possibility that some of the magazine's readers do not own a telescope"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "treats a consideration that reduces the weight of the evidence as though it showed the evidence to be worthless"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "presumes, without giving justification, that a questionnaire is a less reliable instrument than an interview"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "This is a flaw question about the **objector**, not about the editors. Read the question stem carefully: it asks what is wrong with *the columnist's* reasoning.\n\nThe columnist's point is real. When people volunteer responses, the volunteers differ systematically from the silent majority — here, the keen observers are the ones who write in. That is genuine self-selection bias, and it does mean the eleven-night average overstates the typical reader.\n\nBut look at what the columnist concludes from it: the figure \"tells us nothing whatever\" about the readership. That does not follow. A biased sample is not an empty one. If the responders are the keenest observers, the eleven-night average still functions as an *upper bound* on the readership's true average, and it still tells us that at least some readers observe very often. Evidence can be weakened without being annihilated. The columnist has taken a reason for discounting the figure and treated it as a reason for discarding it entirely. That is (A).\n\nA useful check: ask whether the criticism, as stated, would license the columnist's exact words. \"The sample is skewed upward\" licenses \"the true average is lower than eleven.\" It does not license \"we learn nothing.\" The gap between what the objection establishes and what it asserts is the flaw.\n\nThe habit to build here is watching the **strength** of a conclusion, not only its direction. Absolute words — *nothing whatever*, *no reason at all*, *cannot possibly* — are where correct-sounding objections overreach, and the LSAT tests that overreach constantly.",
+  "distractorRationale": {
+    "b": "This describes the error the columnist **accuses the editors of**, not one the columnist commits. Choosing it means answering the question the passage invites rather than the one actually asked — the stem targets the objection, not the editors' original inference. Note too that the columnist draws no conclusion about a population at all; the conclusion is that we can conclude nothing.",
+    "e": "The columnist never compares instruments. The objection turns entirely on who chose to respond, and it would apply with identical force to a self-selected set of interviews or phone calls. Nothing in the objection assumes anything about questionnaires as such.",
+    "c": "Whether some readers own no telescope is beside the point. The columnist's claim concerns what the eleven-night figure reveals about the magazine's readership, and that claim is over-strong regardless of how many readers own equipment. This choice raises a real-sounding gap in the wrong argument at the wrong place.",
+    "a": "No such confusion occurs. The columnist works with the reported average throughout and never converts it into, or treats it as, a headcount of observers. This is a plausible-sounding statistical error that simply is not present in the text."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A short argument. A magazine for amateur astronomers asked readers to report how many nights a month they observe; the average reported was eleven, and the editors concluded readers observe far more often than telescope owners generally. A columnist objects that respondents are the keenest observers, so the figure tells us nothing whatever about the readership. The question asks on what grounds the columnist's objection is most vulnerable to criticism. Five answer choices, labelled A through E. No notation or figures.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "lsat-author",
+    "aiAssisted": true,
+    "notes": "Original stimulus and choices. A two-level flaw item: the flaw is in the objection, not in the argument the objection attacks. Not derived from any published LSAT item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "lsat-author",
+    "reviewer": "lsat-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "lsat-independent-reviewer",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Self-selection is a genuine problem, but the columnist leaps from 'respondents are the keenest' to the figure telling us 'nothing whatever' - an overstatement of a point that merely discounts the evidence. B describes the editors' flaw, not the columnist's, since the columnist draws no population conclusion; C, D and E reference material absent from the exchange."
+    },
+    "notes": "Author confirmed only (A) describes an error in the columnist's own reasoning; (B) is deliberately the strongest trap because it correctly describes the editors' error. The absolute phrase 'nothing whatever' was chosen so the overstatement is textually anchored rather than inferred. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logical-reasoning",
+    "flaw",
+    "self-selection",
+    "overstatement"
+  ]
+}

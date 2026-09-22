@@ -1,0 +1,79 @@
+{
+  "id": "digital-sat-rw-evidence-quant-germination-007",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "rw-module-1",
+  "domainSlug": "information-and-ideas",
+  "skillSlug": "command-of-evidence-quantitative",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Berg concluded that chemical dormancy, rather than the hard seed coat, is the greater obstacle to emergence in this species. Which choice best describes data from the table that support that conclusion?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Cold-stratified seeds emerged at a rate of 61.0%, well above the 48.0% of seeds that were only scarified."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Each of the four treatments was applied to the same number of seeds, 200."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Seeds that were both scarified and cold-stratified emerged at a rate of 65.5%, the highest rate of the four treatments."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Untreated seeds emerged at a rate of 17.0%, the lowest rate of the four treatments."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Turn the conclusion into a comparison before you look at the table. Berg is ranking two obstacles, so the supporting data must isolate one obstacle against the other.\n\nScarification removes the seed-coat barrier and nothing else: 48.0% emergence. Cold stratification removes the dormancy barrier and nothing else: 61.0% emergence. Removing dormancy alone produces the larger gain, so dormancy is the greater obstacle. That is choice C.\n\nCheck it by asking what each treatment controls for. Both rows start from the same untreated baseline of 17.0% and the same 200 seeds, so the only difference between them is which barrier was lifted — which is exactly what makes the comparison fair.",
+  "distractorRationale": {
+    "d": "True but not relevant to the ranking. A low untreated baseline shows only that some treatment helps; it says nothing about which of the two barriers matters more, because no barrier was lifted in that row.",
+    "c": "True but it compares the combined treatment with everything else. A row in which both barriers are removed at once cannot separate the effect of one barrier from the other, which is what the conclusion requires.",
+    "b": "This describes the design of the experiment rather than its outcome. Equal sample sizes make the comparison fair, but on their own they contain no evidence about which obstacle is greater."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": {
+    "id": "digital-sat-stim-germination-table-005",
+    "version": 1
+  },
+  "accessibilityText": "Using the four-row seed-treatment table, choose the option that best describes data supporting Berg's conclusion that chemical dormancy is a greater obstacle to emergence than the hard seed coat.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "digital-sat-author",
+    "aiAssisted": true,
+    "notes": "Original item built on the original germination table; every figure cited appears in the table."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "digital-sat-author",
+    "reviewer": "digital-sat-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "digital-sat-independent-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Isolating each obstacle: cold stratification alone (removes chemical dormancy) gives 61.0% versus scarification alone (removes the coat barrier) at 48.0%, so the chemical obstacle is the larger one. A, B and D do not separate the two obstacles."
+    },
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "reading",
+    "command-of-evidence",
+    "data-table"
+  ]
+}

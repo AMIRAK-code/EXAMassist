@@ -1,0 +1,65 @@
+{
+  "id": "gre-quant-di-audiobook-growth-012",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-data-analysis",
+  "skillSlug": "data-tables-and-graphs",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "By what percent did audiobook borrowings increase from $2022$ to $2024$?\n\nGive your answer as a percent, without the percent sign.",
+  "instructionsMd": "Enter your answer in the box. Equivalent forms of the same value are accepted.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 125
+      }
+    ],
+    "acceptedStrings": [
+      "125",
+      "125.0",
+      "125%"
+    ],
+    "unit": "percent"
+  },
+  "explanationMd": "Percent increase is always measured against the **starting** value:\n\n$$\\text{percent increase} = \\frac{\\text{new} - \\text{old}}{\\text{old}} \\times 100.$$\n\n**Read the two figures.** Audiobooks in $2022$: $12$ thousand. Audiobooks in $2024$: $27$ thousand.\n\n**Compute the change.**\n\n$$27 - 12 = 15 \\ \\text{thousand}.$$\n\n**Divide by the original value and convert.**\n\n$$\\frac{15}{12} = 1.25 = 125\\%.$$\n\n**Check it two ways.** First, $125\\%$ of $12$ is $15$, and $12 + 15 = 27$. Second, the new value is $27/12 = 2.25$ times the old one; a multiplier of $2.25$ means the quantity grew to $225\\%$ of its old size, which is an increase of $225 - 100 = 125$ percent.\n\nThe most common error here is dividing by the new value instead of the old: $15/27 \\approx 55.6\\%$. That answers a different question — it tells you what fraction of the 2024 figure the growth represents. A percent *increase* is always relative to where you started.\n\nA second trap is answering $225$: that is the new value as a percent of the old, not the increase.",
+  "distractorRationale": {},
+  "estimatedSeconds": 100,
+  "stimulusRef": {
+    "id": "gre-di-riverbend-library-001",
+    "version": 1
+  },
+  "accessibilityText": "Using the library borrowing chart, audiobook borrowings were 12 thousand in 2022 and 27 thousand in 2024. Find the percent increase over that period and type the number without a percent sign.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gre-author",
+    "aiAssisted": true,
+    "notes": "Original item in an original data interpretation set. The 12 to 27 rise was chosen by the author to give an exact 125 percent increase; not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gre-author",
+    "reviewer": "gre-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "gre-independent-reviewer",
+      "solvedAnswer": "125",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Audiobooks go 12 (2022) to 27 (2024); increase = 15/12 = 1.25, so a 125 percent increase."
+    },
+    "notes": "Author solved as 125 (15/12) and cross-checked with the 2.25 multiplier. Awaiting blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "data-interpretation",
+    "percent-increase",
+    "numeric-entry"
+  ]
+}

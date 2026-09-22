@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-ug-fn-composition-004",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-functions-concepts",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Let $f(x) = 2x - 3$ and $g(x) = x^{2} + 1$. What is the value of $f\\big(g(2)\\big)$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$2$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$5$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$6$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$7$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "In $f\\big(g(2)\\big)$ the inner function is evaluated first, and its output becomes the input of $f$.\n\nStep 1 — evaluate the inner function:\n\n$$g(2) = 2^{2} + 1 = 4 + 1 = 5$$\n\nStep 2 — feed that output into $f$:\n\n$$f(5) = 2(5) - 3 = 10 - 3 = 7$$\n\nSo $f\\big(g(2)\\big) = 7$.\n\nA useful check is to build the composite function in general and then substitute:\n\n$$f\\big(g(x)\\big) = 2\\left(x^{2} + 1\\right) - 3 = 2x^{2} + 2 - 3 = 2x^{2} - 1$$\n\nAt $x = 2$ this gives $2(4) - 1 = 7$, which agrees. Notice that the brackets matter: the $2$ multiplies **both** terms of $x^{2} + 1$.",
+  "distractorRationale": {
+    "a": "This is $g\\big(f(2)\\big)$, the composition taken in the opposite order: $f(2) = 1$ and then $g(1) = 1 + 1 = 2$. Composition is not commutative, and the inner function in $f(g(2))$ is $g$, the one written next to the $2$.",
+    "b": "This is $g(2) = 5$, the value of the inner function. The work stopped one step early: that output still has to be substituted into $f$.",
+    "c": "This comes from failing to distribute the $2$ across the bracket when forming the composite: writing $f(g(x)) = 2x^{2} + 1 - 3 = 2x^{2} - 2$ gives $8 - 2 = 6$. The correct composite is $2(x^{2}+1) - 3 = 2x^{2} - 1$."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "f of x equals two x minus three, and g of x equals x squared plus one. Find the value of f evaluated at g of two.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Not reproduced or adapted from any published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-author",
+    "reviewer": "bocconi-undergraduate-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-independent-reviewer",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "g(2)=4+1=5, then f(5)=10-3=7. Option B (5) is g(2) alone and A (2) is g(f(2))=g(1)=2, neither matches f(g(2))."
+    },
+    "notes": "Awaiting blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "composition",
+    "functions"
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "id": "gre-quant-di-digital-share-011",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-data-analysis",
+  "skillSlug": "data-tables-and-graphs",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In $2024$, borrowings of digital titles accounted for approximately what percent of all items borrowed from the library that year?",
+  "instructionsMd": "Select one answer choice.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$28\\%$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$36\\%$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$40\\%$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$18\\%$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$45\\%$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "A \"percent of the whole\" question needs two numbers from the same year: the part and that year's total.\n\n**Step 1 — the part.** Digital titles in $2024$: $54$ thousand.\n\n**Step 2 — the whole.** Every borrowed item falls into exactly one of the four categories, so add the four $2024$ figures:\n\n$$42 + 27 + 27 + 54 = 150 \\ \\text{thousand}.$$\n\n**Step 3 — the percent.**\n\n$$\\frac{54}{150} = \\frac{54 \\div 6}{150 \\div 6} = \\frac{9}{25} = 0.36 = 36\\%.$$\n\n**Check.** Thirty-six percent is a bit over a third, and $54$ is indeed a bit over a third of $150$ (a third would be $50$). The units are thousands on both top and bottom, so they cancel and never need converting.\n\nThe habit that protects you on data interpretation sets: before dividing, confirm out loud that the numerator and the denominator come from the same year and the same chart. Almost every wrong answer below comes from mixing years.",
+  "distractorRationale": {
+    "d": "This is $27 / 150 = 18\\%$, the share of audiobooks rather than digital titles. In $2024$ audiobooks and print nonfiction both stand at $27$, which makes it easy to read the wrong bar.",
+    "a": "This is $42 / 150 = 28\\%$, using the $2023$ digital figure of $42$ over the $2024$ total. The numerator was taken from the wrong year.",
+    "c": "This is $54 / 135 = 40\\%$, the correct $2024$ numerator divided by the $2023$ total. The denominator was taken from the wrong year.",
+    "e": "This is $54 / 120 = 45\\%$, the correct $2024$ numerator divided by the $2022$ total. Again the denominator comes from the wrong year; note that using an earlier, smaller total always inflates the share."
+  },
+  "estimatedSeconds": 105,
+  "stimulusRef": {
+    "id": "gre-di-riverbend-library-001",
+    "version": 1
+  },
+  "accessibilityText": "Using the library borrowing chart, find what percent of all items borrowed in 2024 were digital titles. The choices are 18 percent, 28 percent, 36 percent, 40 percent and 45 percent.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gre-author",
+    "aiAssisted": true,
+    "notes": "Original item in an original data interpretation set. Every distractor is a real quotient available from the chart via a specific year-mixing error; not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gre-author",
+    "reviewer": "gre-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "gre-independent-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "2024 total = 42+27+27+54 = 150; digital 54/150 = 36 percent exactly, matching only option c."
+    },
+    "notes": "Author solved as 36 percent (54 over 150) and confirmed each distractor corresponds to a distinct mismatched year pairing. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "data-interpretation",
+    "percent-of-total",
+    "chart-reading"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "gmat-ps-work-rates-003",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-applied-arithmetic-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Working alone, pump A empties a full tank in $12$ hours and pump B empties the same full tank in $18$ hours. Starting with the tank full, both pumps run together for $4$ hours, after which pump A is switched off and pump B continues alone. How many additional hours does pump B need to finish emptying the tank?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$8$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$9$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$12$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$14$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$18$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Work with rates measured in tanks per hour, and take the full tank as $1$ unit of work.\n\n$$\\text{rate}_A = \\frac{1}{12}, \\qquad \\text{rate}_B = \\frac{1}{18}, \\qquad \\text{rate}_{A+B} = \\frac{1}{12} + \\frac{1}{18} = \\frac{3}{36} + \\frac{2}{36} = \\frac{5}{36}.$$\n\nIn the first $4$ hours together they empty\n\n$$4 \\times \\frac{5}{36} = \\frac{20}{36} = \\frac{5}{9} \\text{ of the tank},$$\n\nso the fraction still to be emptied is $1 - \\frac{5}{9} = \\frac{4}{9}$.\n\nPump B alone works at $\\frac{1}{18}$ of a tank per hour, so the time it needs is\n\n$$t = \\frac{4/9}{1/18} = \\frac{4}{9} \\times 18 = 8 \\text{ hours}.$$\n\nCheck the answer by adding up the work done: A runs $4$ hours and does $\\frac{4}{12} = \\frac{1}{3}$; B runs $4 + 8 = 12$ hours and does $\\frac{12}{18} = \\frac{2}{3}$; together $\\frac{1}{3} + \\frac{2}{3} = 1$, one whole tank. That total-work check is the fastest way to confirm any combined-rate answer.",
+  "distractorRationale": {
+    "b": "This assumes the two pumps emptied exactly half the tank in the first $4$ hours and so halves B's solo time of $18$ hours. They actually emptied $\\frac{5}{9}$, slightly more than half, and the remaining work must be divided by B's rate rather than estimated.",
+    "c": "This counts only pump A's output during the first $4$ hours: $\\frac{4}{12} = \\frac{1}{3}$ done, leaving $\\frac{2}{3}$, so B would need $\\frac{2}{3} \\times 18 = 12$ hours. Pump B was also running during those first four hours.",
+    "d": "This counts only pump B's own output during the first $4$ hours: $\\frac{4}{18} = \\frac{2}{9}$ done, leaving $\\frac{7}{9}$, so B would need $\\frac{7}{9} \\times 18 = 14$ hours. It ignores the work pump A contributed before being switched off.",
+    "e": "This is the time pump B needs to empty a full tank on its own. More than half the tank is already gone when pump A stops, so B cannot need its full solo time."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": "Pump A empties a full tank in 12 hours and pump B empties it in 18 hours. Both run together for 4 hours, then pump A stops and pump B continues alone. Find how many more hours pump B needs to finish emptying the tank.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-author",
+    "aiAssisted": true,
+    "notes": "Original item. Each distractor corresponds to omitting one pump's contribution or to an estimation shortcut; all five values are distinct integers."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-author",
+    "reviewer": "gmat-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "gmat-independent-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Combined rate 1/12 + 1/18 = 5/36 per hour; in 4 hours they empty 20/36 = 5/9, leaving 4/9. B alone at 1/18 per hour needs (4/9)/(1/18) = 8 additional hours."
+    },
+    "notes": "Author verified via the total-work check that A's 4 hours plus B's 12 hours sum to exactly one tank. Awaiting blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "rates",
+    "combined-work",
+    "word-problem"
+  ]
+}

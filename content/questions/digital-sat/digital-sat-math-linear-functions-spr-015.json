@@ -1,0 +1,60 @@
+{
+  "id": "digital-sat-math-linear-functions-spr-015",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "algebra",
+  "skillSlug": "linear-functions",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The function $f$ is defined by $f(x) = mx + b$, where $m$ and $b$ are constants. If $f(3) = 17$ and $f(7) = 33$, what is the value of $f(0)$?",
+  "instructionsMd": "Student-produced response. Enter your answer in the box. Do not enter symbols such as a percent sign, comma, or dollar sign. If your answer is a fraction that does not fit in the box, enter its decimal equivalent instead.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 5
+      }
+    ],
+    "acceptedStrings": [
+      "5"
+    ]
+  },
+  "explanationMd": "A linear function has a constant rate of change, so find $m$ from the two given points and then work back to $x = 0$.\n\n$$m = \\frac{f(7) - f(3)}{7 - 3} = \\frac{33 - 17}{4} = \\frac{16}{4} = 4$$\n\nNow use either point to find $b$. Using $f(3) = 17$:\n\n$$17 = 4(3) + b \\;\\Rightarrow\\; 17 = 12 + b \\;\\Rightarrow\\; b = 5$$\n\nSince $f(0) = m(0) + b = b$, the answer is $f(0) = 5$.\n\nThere is a faster route worth knowing: $f(0)$ is three steps of size $m$ below $f(3)$, so $f(0) = 17 - 3(4) = 5$.\n\nCheck with the other given point: $f(7) = 4(7) + 5 = 33$, which matches. A common slip is to report $m = 4$ instead of $f(0)$, so reread what the question asks before entering your answer.",
+  "distractorRationale": {},
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "The function f of x equals m times x plus b, with m and b constant. Given that f of 3 equals 17 and f of 7 equals 33, find f of 0. Enter a number.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "digital-sat-author",
+    "aiAssisted": true,
+    "notes": "Original item. Values chosen so the slope and the y-intercept are both small integers."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "digital-sat-author",
+    "reviewer": "digital-sat-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "digital-sat-independent-reviewer",
+      "solvedAnswer": "5",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "m = (33-17)/(7-3) = 16/4 = 4; f(3)=17 gives 12 + b = 17, so b = 5 and f(0) = b = 5."
+    },
+    "notes": "Awaiting blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "algebra",
+    "linear-function",
+    "student-produced-response"
+  ]
+}

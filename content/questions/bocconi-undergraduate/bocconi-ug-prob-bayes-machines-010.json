@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-prob-bayes-machines-010",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-probability-conditional-bayes",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A workshop produces components on two machines. Machine $A$ makes $60\\%$ of the output and machine $B$ makes the remaining $40\\%$. Of the components made by $A$, $5\\%$ are defective; of those made by $B$, $10\\%$ are defective.\n\nA component is drawn at random from the day's output and is found to be defective. What is the probability that it was made by machine $B$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\frac{2}{5}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\frac{3}{7}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\frac{4}{7}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\frac{1}{10}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The quickest hand method is to imagine a concrete batch rather than to manipulate the formula. Take $1000$ components.\n\n- Machine $A$ makes $600$ of them, and $5\\%$ of $600$ is $30$ defective.\n- Machine $B$ makes $400$ of them, and $10\\%$ of $400$ is $40$ defective.\n- Total defective: $30 + 40 = 70$.\n\nOf those $70$ defective components, $40$ came from $B$, so\n\n$$P(B \\mid D) = \\frac{40}{70} = \\frac{4}{7}$$\n\nThe same result from Bayes' theorem, using the law of total probability for the denominator:\n\n$$P(D) = 0.6 \\times 0.05 + 0.4 \\times 0.10 = 0.03 + 0.04 = 0.07$$\n$$P(B \\mid D) = \\frac{P(D \\mid B)\\,P(B)}{P(D)} = \\frac{0.04}{0.07} = \\frac{4}{7}$$\n\n**How to check the answer is reasonable.** Machine $B$ makes less than half the output but is twice as likely to produce a defect, so among defective items $B$ should account for *more* than its $40\\%$ share of production. Any answer at or below $\\frac{2}{5}$ can be rejected on that reasoning alone. Also, $P(A \\mid D)$ and $P(B \\mid D)$ must add to $1$: $\\frac{3}{7} + \\frac{4}{7} = 1$. ",
+  "distractorRationale": {
+    "d": "This is $P(D \\mid B) = 10\\%$, the conditional probability the other way round: the chance that a component from $B$ is defective, not the chance that a defective component came from $B$. Reversing a conditional probability is the classic error this item targets.",
+    "a": "This is the prior $P(B) = 0.4$, machine $B$'s share of production, used without updating on the evidence. Learning that the component is defective is informative precisely because $B$'s defect rate is higher, so the posterior must exceed the prior.",
+    "b": "This is $P(A \\mid D) = \\frac{30}{70} = \\frac{3}{7}$, the probability that the defective component came from machine $A$. The arithmetic is right but the answer reported concerns the wrong machine; note that $\\frac{3}{7} + \\frac{4}{7} = 1$."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "Machine A makes sixty per cent of output with a five per cent defect rate; machine B makes forty per cent of output with a ten per cent defect rate. Given that a randomly chosen component is defective, find the probability it came from machine B. Answer options are fractions: one tenth, two fifths, three sevenths, four sevenths.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Numbers chosen so the posterior is an exact simple fraction reachable by a natural-frequency argument without a calculator."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-author",
+    "reviewer": "bocconi-undergraduate-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-independent-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "P(B and D)=0.4*0.10=0.04; P(D)=0.6*0.05+0.04=0.07; so P(B|D)=0.04/0.07=4/7. Option C (3/7) is P(A|D), the complement, and 2/5 is the unconditional P(B)."
+    },
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "bayes",
+    "conditional-probability",
+    "total-probability"
+  ]
+}

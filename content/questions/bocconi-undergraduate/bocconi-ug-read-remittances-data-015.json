@@ -1,0 +1,79 @@
+{
+  "id": "bocconi-ug-read-remittances-data-015",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-reading-comprehension",
+  "skillSlug": "reading-economic-data-passages",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Suppose the global average charge fell from the level given in the passage to the target level also given there. By approximately what percentage would the amount a sender pays to transfer 200 dollars fall?",
+  "instructionsMd": "Use only the figures given in the passage. No calculator.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "About 52 per cent"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "About 107 per cent"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "About 3.2 per cent"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "About 3 per cent"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The passage gives a current average of about $6.2\\%$ and a target of $3\\%$. Work in money, because the question asks about the amount the sender pays.\n\n**Amount paid now:**\n\n$$6.2\\% \\text{ of } 200 = 2 \\times 6.2 = 12.40 \\text{ dollars}$$\n\n(one per cent of 200 is 2, so multiply the rate by 2.)\n\n**Amount paid at the target:**\n\n$$3\\% \\text{ of } 200 = 2 \\times 3 = 6.00 \\text{ dollars}$$\n\n**Fall as a proportion of what was paid before:**\n\n$$\\frac{12.40 - 6.00}{12.40} = \\frac{6.40}{12.40} \\approx 0.516$$\n\nabout $52\\%$.\n\n**A faster route.** A percentage change in the *fee* is the same whatever the transfer amount, so the 200 dollars is not needed at all: $\\frac{6.2 - 3}{6.2} = \\frac{3.2}{6.2}$. Since $3.1$ would be exactly half of $6.2$, and $3.2$ is slightly more than $3.1$, the answer must be slightly more than $50\\%$. That estimate alone selects option C.\n\n**The distinction being tested.** A change *of* 3.2 percentage points in the rate is not the same as a 3.2 per cent fall in the cost. Always ask what the denominator is: here it is the original fee, $12.40$ dollars.",
+  "distractorRationale": {
+    "d": "This reports the new rate, 3 per cent, as though it were the size of the fall. The target is the level the charge would fall *to*, not the amount by which it falls.",
+    "c": "This is the fall measured in percentage points, $6.2 - 3 = 3.2$, relabelled as a percentage. A percentage change must be divided by the original value: $3.2$ out of $6.2$ is roughly a half, not roughly a thirty-second.",
+    "b": "This comes from dividing the wrong way round, $\\frac{6.2}{3} \\approx 2.07$, and reading the excess as a 107 per cent change. That figure is how much *higher* the current charge is than the target, not how far the charge would fall. A quantity that decreases can never fall by more than 100 per cent."
+  },
+  "estimatedSeconds": 115,
+  "stimulusRef": {
+    "id": "bocconi-ug-stim-remittances-001",
+    "version": 1
+  },
+  "accessibilityText": "Using the accompanying passage, which states a current average transfer charge of about 6.2 per cent and a target of 3 per cent, work out the approximate percentage reduction in the fee paid to send two hundred dollars. The answer options are four approximate percentages: three, three point two, fifty-two and one hundred and seven.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-author",
+    "aiAssisted": true,
+    "notes": "Original item written against an original passage. Figures chosen so the estimate is resolvable by comparison with a half, with no calculator."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-author",
+    "reviewer": "bocconi-undergraduate-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-independent-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "6.2% of 200 = $12.40 and 3% of 200 = $6.00, a fall of $6.40, which is 6.40/12.40 = 51.6%, about 52%. Option B (3.2) is the percentage-point drop, not the percentage fall in the amount paid, and the stem asks about the amount the sender pays."
+    },
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "passage-remittances",
+    "percentage-change",
+    "data-in-prose"
+  ]
+}

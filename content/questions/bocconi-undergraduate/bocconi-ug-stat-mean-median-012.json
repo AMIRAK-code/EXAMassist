@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-stat-mean-median-012",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-statistics-central-dispersion",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A shop records the number of umbrellas sold on each of six days:\n\n$$4,\\ 7,\\ 7,\\ 9,\\ 13,\\ 20$$\n\nBy how much does the mean of this data set exceed its median?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$1$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$2$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$3$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$4$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "**Mean.** Add the six values and divide by how many there are:\n\n$$4 + 7 + 7 + 9 + 13 + 20 = 60$$\n$$\\bar{x} = \\frac{60}{6} = 10$$\n\n**Median.** The values are already in increasing order. With an **even** number of observations there is no single middle value, so the median is the average of the two middle ones — here the third and fourth, $7$ and $9$:\n\n$$\\text{median} = \\frac{7 + 9}{2} = 8$$\n\n**Difference.**\n\n$$10 - 8 = 2$$\n\n**Why the mean is the larger of the two here.** The value $20$ is far above the rest. The mean uses the size of every observation, so a single large value pulls it upwards; the median only uses position, so it barely moves. Whenever a data set has a long right tail you should expect mean $>$ median, which is a useful check on the sign of your answer before you look at the options.\n\n**Position check:** with $n = 6$ the two middle positions are $\\frac{n}{2} = 3$ and $\\frac{n}{2} + 1 = 4$.",
+  "distractorRationale": {
+    "a": "This takes the median to be $9$, the fourth value, treating it as 'the middle one'. With six observations there is no single middle value: the median is the mean of the third and fourth values, $\\frac{7+9}{2} = 8$, which gives a difference of $2$ rather than $1$.",
+    "c": "This takes the median to be $7$, the third value. As with option A, it picks one of the two middle observations instead of averaging them. It may also come from confusing the median with the mode, which is $7$ here.",
+    "d": "This comes from dividing the total by $5$ instead of $6$, giving a mean of $12$ and a difference of $12 - 8 = 4$. There are six observations, even though only five of the values are distinct; the repeated $7$ must be counted twice."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "Six numbers listed in increasing order: four, seven, seven, nine, thirteen, twenty. Find the amount by which the arithmetic mean of these six numbers is greater than their median.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Values chosen so that the mean, the median and each distractor path all land on distinct small integers."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-author",
+    "reviewer": "bocconi-undergraduate-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-independent-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Sum 4+7+7+9+13+20=60, mean=10; with six sorted values the median is (7+9)/2=8; 10-8=2. Taking 7 or 9 as a single median would give 3 or 1, but with an even count the average of the two middle values is the standard definition."
+    },
+    "notes": "Awaiting blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "mean",
+    "median",
+    "descriptive-statistics"
+  ]
+}

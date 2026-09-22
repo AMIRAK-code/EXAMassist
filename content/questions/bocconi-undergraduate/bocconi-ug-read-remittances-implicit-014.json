@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-ug-read-remittances-implicit-014",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-reading-comprehension",
+  "skillSlug": "reading-implicit-meaning",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The passage implies that transfer charges have remained high in certain markets mainly because of",
+  "instructionsMd": "Answer on the basis of the passage only.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "exclusive arrangements that keep competing providers out."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "the counter-cyclical behaviour of remittance flows."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "the small share of national income that remittances represent there."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "weak demand for transfers into those markets."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The passage never says outright 'lack of competition causes high prices', so this is an inference question. The inference rests on a pattern the author builds across three sentences:\n\n1. 'Corridors served by many competing operators ... cost under 4 per cent' — many providers, low price.\n2. 'Mobile money has narrowed the gap where it has been allowed to compete' — new entry, price falls.\n3. 'in some markets banks hold exclusive agreements with payment networks, and where that exclusivity holds, prices have barely moved in a decade' — entry blocked, price static.\n\nAll three sentences vary the same factor, the presence of competing providers, and the price moves with it. The implied explanation is therefore the exclusivity that keeps competitors out, which is option C.\n\n**Technique.** For an implication question, look for a variable the author changes more than once while the outcome changes with it. That repeated pairing is the author's implicit causal claim. Ideas that appear in the passage but never vary alongside the outcome — such as counter-cyclicality — are decoys.",
+  "distractorRationale": {
+    "b": "Counter-cyclicality is discussed in the second paragraph, but it concerns the *volume and timing* of remittance flows in a downturn, not what providers charge. The passage draws no link at all between counter-cyclical behaviour and price, so this imports a real detail from the wrong paragraph.",
+    "d": "The passage never mentions weak demand, and it in fact points the other way: remittances are described as large, rising in downturns, and worth more than a quarter of national income in some states. This option supplies a plausible economic explanation from outside the text.",
+    "c": "The passage says remittances exceed a quarter of national income in a handful of small states; it never says the share is small anywhere, and never connects that share to the level of charges. The high-cost corridors named are not identified as low-share ones."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": {
+    "id": "bocconi-ug-stim-remittances-001",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying prose passage on remittances. It asks what the passage implies is the main reason transfer charges stay high in some markets. There is no figure or notation; the options complete the sentence stem.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-author",
+    "aiAssisted": true,
+    "notes": "Original item written against an original passage. Distractors are drawn from other paragraphs of the same passage so that recognition alone does not identify the key."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-author",
+    "reviewer": "bocconi-undergraduate-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-independent-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Final sentence: 'banks hold exclusive agreements with payment networks, and where that exclusivity holds, prices have barely moved in a decade'. A and D name facts from other paragraphs with no causal link to price, and B (weak demand) appears nowhere in the passage."
+    },
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "passage-remittances",
+    "inference"
+  ]
+}

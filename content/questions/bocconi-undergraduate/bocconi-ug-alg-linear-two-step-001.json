@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-ug-alg-linear-two-step-001",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-algebra-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "If $3(x - 2) = 2(x + 5)$, what is the value of $x$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$4$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$11$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$12$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$16$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Expand both sides, then collect the $x$ terms on one side and the constants on the other.\n\n$$3(x-2) = 2(x+5)$$\n$$3x - 6 = 2x + 10$$\n\nSubtract $2x$ from both sides:\n\n$$x - 6 = 10$$\n\nAdd $6$ to both sides:\n\n$$x = 16$$\n\nCheck by substituting back: the left side is $3(16-2) = 3 \\times 14 = 42$, and the right side is $2(16+5) = 2 \\times 21 = 42$. Both sides agree, so $x = 16$ is correct.\n\nOn the Bocconi test a wrong answer costs $-0.2$ points while leaving the question blank costs nothing, so only guess when you can eliminate at least one option. Here, substitution checks an answer in a few seconds.",
+  "distractorRationale": {
+    "a": "This comes from moving the $-6$ across the equals sign without changing its sign: $x = 10 - 6 = 4$. When a term moves to the other side of an equation its sign flips, so it should be $x = 10 + 6$.",
+    "b": "This is what you get if the right-hand side is not fully distributed: reading $2(x+5)$ as $2x + 5$ gives $3x - 6 = 2x + 5$ and so $x = 11$. The factor of $2$ multiplies both terms inside the brackets.",
+    "c": "This is what you get if the left-hand side is not fully distributed: reading $3(x-2)$ as $3x - 2$ gives $3x - 2 = 2x + 10$ and so $x = 12$. The factor of $3$ multiplies both terms inside the brackets."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "Solve the equation three times the quantity x minus two equals two times the quantity x plus five.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "coordinating-agent",
+    "aiAssisted": true,
+    "notes": "Written as the worked template for the question bank. Not derived from any Bocconi published item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "coordinating-agent",
+    "reviewer": "bocconi-undergraduate-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-independent-reviewer",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "3(x-2)=2(x+5) gives 3x-6=2x+10, so x=16. Options 4, 11, 12 all fail on substitution (e.g. x=4 gives 6 vs 18)."
+    },
+    "notes": "Awaiting blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "template",
+    "linear-equation"
+  ]
+}

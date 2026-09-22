@@ -1,0 +1,83 @@
+{
+  "id": "lsat-lr-principle-apply-006",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "lr1",
+  "domainSlug": "logical-reasoning",
+  "skillSlug": "lr-principles-and-rules",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A reviewer who stands to gain financially from a book's success should not review that book. A reviewer's admiration for an author, however strong, is a different matter entirely: critical judgment is compromised by interest, not by taste. Where a financial interest exists but is trivial, disclosing it is enough; where it is substantial, the reviewer must decline the assignment.\n\nThe principles above, if valid, most help to justify which one of the following judgments?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Nadia, who strongly dislikes an author's politics, should disclose that dislike before reviewing the author's memoir."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Tomas, who owns a large stake in the publishing house whose profits depend on a novel's sales, should decline to review that novel, even though he is confident he can judge it impartially."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Oscar, whose brother wrote the book he has been asked to review, may review it so long as he mentions the relationship."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Ravi, who was paid a small fee years ago for copyediting an earlier book by an author, must decline to review that author's new book."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Beatriz, who considers a certain poet the finest of her generation, should decline to review that poet's new collection."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Principle questions are matching exercises. Extract the rules first, in a form you can test a case against.\n\n1. **Financial interest, substantial** $\\rightarrow$ decline.\n2. **Financial interest, trivial** $\\rightarrow$ disclosure is sufficient (declining is not required).\n3. **Taste or admiration** $\\rightarrow$ not a ground for declining at all; interest compromises judgment, taste does not.\n\nNow test each judgment. A judgment is justified only if some rule actually reaches its facts and delivers its verdict.\n\nTake (A). Tomas owns a *large stake* in the house whose profits depend on the book: that is a financial interest, and a substantial one. Rule 1 applies and its verdict is *decline*, which is exactly what (A) says he should do. The clause about impartiality is a deliberate distraction — rule 1 is triggered by the interest itself, not by any finding that the reviewer's judgment has in fact been corrupted. So (A) is justified.\n\nEvery other judgment either applies a rule that does not reach the facts, or reaches a verdict the rules do not give. Two of them are outright contradicted: (B) requires declining for admiration, which rule 3 rejects, and (C) requires declining for a trivial interest, which rule 2 says need only be disclosed.\n\nThe technique to reuse: before reading the choices, write each principle as a conditional with its trigger on the left and its verdict on the right. Then ask two questions of every choice — *is the trigger met?* and *is the verdict the one the rule gives?* A choice that fails either question is out, and that is usually four of the five.",
+  "distractorRationale": {
+    "e": "This is directly contradicted by the principles, which say that admiration however strong is not a ground for declining because taste does not compromise critical judgment. Choosing it means treating any strong feeling about an author as a conflict of interest, which is the precise distinction the passage draws in order to reject.",
+    "d": "This applies the wrong verdict to a trivial interest. A small fee received years ago for copyediting is the paradigm of a minor financial interest, and the principles say disclosure suffices in that case. The choice upgrades 'should disclose' into 'must decline,' which the rules do not license.",
+    "a": "Dislike of an author's politics is taste, not financial interest, so no rule in the passage reaches it. The principles impose a disclosure requirement only where a trivial financial interest exists; they say nothing that would require disclosing an opinion. Nothing here is justified by the stated principles.",
+    "c": "A brother's authorship is a personal relationship, and the principles address only financial interest and taste. It may well be that Oscar stands to gain nothing financially, in which case no rule applies at all, and the passage supplies no authority for the permission this choice grants. The principles are silent, and silence does not justify."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": "A short passage stating principles about book reviewing. A reviewer who stands to gain financially from a book's success should not review it; admiration for an author is not a disqualification because judgment is compromised by interest, not taste; a trivial financial interest requires only disclosure, while a substantial one requires declining. The question asks which judgment the principles most help to justify. Five answer choices, labelled A through E, each describing a named reviewer's situation. The explanation uses arrow notation, where 'substantial financial interest arrow decline' means 'if a reviewer has a substantial financial interest, then the reviewer must decline.'",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "lsat-author",
+    "aiAssisted": true,
+    "notes": "Original principle set and choices. Built so that the three rules partition the cases cleanly: one trigger met with the right verdict, two contradicted verdicts, two cases the rules do not reach. Names are invented. Not derived from any published LSAT item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "lsat-author",
+    "reviewer": "lsat-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "lsat-independent-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "A large stake in a publisher whose profits depend on the novel's sales is a substantial financial interest, and the principle says substantial interest requires declining, with 'judgment is compromised by interest, not by taste' rebutting Tomas's confidence in his own impartiality. B and D concern taste, which the principle expressly exempts; C is a past fee, not a stake in this book's success, and even a trivial interest would need only disclosure; E involves a familial rather than a financial interest, which the principles do not license."
+    },
+    "notes": "Author checked that exactly one choice has both a satisfied trigger and the verdict the rule supplies. (E) was rewritten from an earlier 'no stake at all' version, which risked being weakly defensible, to a familial relationship the principles plainly do not address. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logical-reasoning",
+    "principle",
+    "apply-the-principle",
+    "conflict-of-interest"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "lsat-lr-parallel-reasoning-007",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "lr1",
+  "domainSlug": "logical-reasoning",
+  "skillSlug": "lr-reasoning-patterns",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Every member of the hiking club who finished the summit route had trained at altitude. No one who trained at altitude finished the summit route in under four hours. So no member of the hiking club finished the summit route in under four hours.\n\nWhich one of the following arguments is most similar in its pattern of reasoning to the argument above?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "No member of the debating society has competed internationally. Every member of the debating society has won a regional prize. So no one who has won a regional prize has competed internationally."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Some of the pottery in the collection was fired in a wood kiln. No pottery fired in a wood kiln has a uniform glaze. So most of the pottery in the collection lacks a uniform glaze."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "All of the cheeses sold at that market stall are made from unpasteurised milk. No cheese made from unpasteurised milk may be shipped abroad. So no cheese sold at that stall may be shipped abroad."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Every bridge in the county was built before 1950, and no bridge built before 1950 meets the current building code. The county should therefore replace all of its bridges."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "All of the novels on the prize shortlist were published last year. Some books published last year sold poorly. So some of the shortlisted novels sold poorly."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Parallel-reasoning questions are about **form**, not subject matter. Strip the content down to letters before you read the choices.\n\nLet $F$ = club members who finished the route, $G$ = trained at altitude, $H$ = finished in under four hours. The argument is:\n\n- Premise: All $F$ are $G$.\n- Premise: No $G$ are $H$.\n- Conclusion: No $F$ are $H$.\n\nThis is **valid**, and you should register that as part of the pattern: a correct parallel answer must be valid too. To see the validity, suppose some club member did finish in under four hours. Being a finisher, they trained at altitude; having trained at altitude, they did not finish in under four hours. Contradiction, so no such member exists.\n\nNow (C): let $F$ = cheeses at the stall, $G$ = made from unpasteurised milk, $H$ = may be shipped abroad. All $F$ are $G$; no $G$ are $H$; therefore no $F$ are $H$. Identical form, identical validity, same two universal premises and the same universal negative conclusion. That is the match.\n\nThe efficient way to eliminate is to check **quantifiers and validity** before anything else:\n\n- (A) and (D) both run a *some* premise into a conclusion stronger than it supports, so they are invalid and cannot match a valid argument.\n- (E) is invalid in a different way: it takes a fact about every member of one group and converts it into a claim about everyone in a larger group.\n- (B) has premises of the right shape, but its conclusion is a recommendation, not a statement of fact.\n\nThe habit to build: note the conclusion's *kind* (fact or recommendation), its *quantifier* (all, some, none), and the argument's *validity*. A choice that differs on any one of those three is out, usually in a few seconds each.",
+  "distractorRationale": {
+    "e": "The second premise here is a 'some' statement, where the original's is a universal 'no.' That makes this argument invalid — shortlisted novels could all be among the last year's books that sold well — whereas the original is valid. A parallel-reasoning answer must reproduce the original's validity, not merely borrow its vocabulary of groups.",
+    "d": "This is the strongest trap, because its two premises really do have the original's shape: all bridges are pre-1950, no pre-1950 bridge meets the code. But the conclusion switches from a factual claim to a prescription about what the county 'should' do, introducing a recommendation that has no counterpart in the original's purely descriptive conclusion.",
+    "b": "This weakens the first premise to 'some' and then strengthens the conclusion to 'most,' so it commits a quantifier error in two directions at once. From 'some pottery was wood-fired' nothing follows about most of the collection. The original moves from a universal premise to a universal conclusion and is valid throughout.",
+    "a": "This argument illegitimately expands its subject. From facts about every member of the debating society it draws a conclusion about everyone who has won a regional prize, a group that may be far larger and may include international competitors. The original never reasons outward from a subgroup to a larger group in this way."
+  },
+  "estimatedSeconds": 105,
+  "stimulusRef": null,
+  "accessibilityText": "A short argument with two premises and a conclusion. Premise one: every hiking club member who finished the summit route had trained at altitude. Premise two: no one who trained at altitude finished the route in under four hours. Conclusion: no hiking club member finished the route in under four hours. The question asks which argument is most similar in its pattern of reasoning. Five answer choices, labelled A through E, each a short argument on a different subject. The explanation labels the three groups F, G and H and writes the pattern as: all F are G; no G are H; therefore no F are H.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "lsat-author",
+    "aiAssisted": true,
+    "notes": "Original stimulus and choices. Parallel-reasoning item on the valid form 'all F are G; no G are H; therefore no F are H.' Not derived from any published LSAT item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "lsat-author",
+    "reviewer": "lsat-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "lsat-independent-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Abstract form: all A are B; no B is C; therefore no A is C. Option C matches exactly (all stall cheeses are unpasteurised; no unpasteurised cheese may be shipped; so no stall cheese may be shipped). E reverses the order and concludes about the wrong term, A and D are invalid 'some' inferences, and B adds a prescriptive conclusion absent from the original."
+    },
+    "notes": "Author formalised all five choices to confirm a unique match. An earlier version of (B) read 'no student who missed the lab could sit the exam; every seminar student sat the exam; so no seminar student missed the lab' — that is logically equivalent to the stimulus form, since 'no G are H' and 'no H are G' convert, and it was replaced to avoid a second defensible answer. The replacement keeps the premise shape but changes the conclusion to a prescription. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logical-reasoning",
+    "parallel-reasoning",
+    "formal-logic"
+  ]
+}

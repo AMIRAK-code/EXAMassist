@@ -1,0 +1,76 @@
+{
+  "id": "gre-quant-qc-integer-remainders-001",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-arithmetic",
+  "skillSlug": "arith-integer-properties",
+  "subskillSlug": null,
+  "responseType": "quantitative_comparison",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "$n$ is a positive integer, and the remainder when $n$ is divided by $6$ is $4$.\n\n| Quantity A | Quantity B |\n| --- | --- |\n| The remainder when $n$ is divided by $3$ | $1$ |",
+  "instructionsMd": "Compare Quantity A and Quantity B and select the one statement that is true for every value consistent with the information given.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Quantity A is greater."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Quantity B is greater."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The two quantities are equal."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The relationship cannot be determined from the information given."
+    }
+  ],
+  "answerKey": {
+    "type": "quantitative_comparison",
+    "choice": "C"
+  },
+  "explanationMd": "Write what the given condition means algebraically. \"The remainder when $n$ is divided by $6$ is $4$\" says\n\n$$n = 6k + 4 \\quad \\text{for some integer } k \\ge 0.$$\n\nNow divide that by $3$. Since $6k$ is a multiple of $3$, it contributes no remainder:\n\n$$n = 3(2k) + 4 = 3(2k + 1) + 1.$$\n\nSo $n$ is one more than a multiple of $3$, and the remainder when $n$ is divided by $3$ is $1$, no matter which value of $k$ you take. Quantity A is always $1$, which equals Quantity B.\n\nTo check, list the first few values of $n$: $4, 10, 16, 22, 28$. Dividing each by $3$ gives remainders $1, 1, 1, 1, 1$. Because the remainder never changes, the answer is not (D); a single unchanging value is exactly what (C) claims.\n\nThe general lesson is worth keeping: if you know $n$'s remainder on division by $6$, you automatically know its remainder on division by $3$, because $3$ divides $6$. The reverse is not true.",
+  "distractorRationale": {
+    "a": "Chosen by treating the remainder on division by the smaller number as necessarily larger, or by carrying the given remainder $4$ straight across and comparing $4$ with $1$. The remainder must be reduced: $4$ is not a valid remainder on division by $3$, since $4 = 3 + 1$.",
+    "b": "Chosen by reasoning that dividing by a smaller number must leave a smaller remainder, and concluding Quantity A is $0$. That would require $n$ to be a multiple of $3$, but $n = 6k + 4$ is never a multiple of $3$.",
+    "d": "Chosen by noticing that $n$ itself is not determined and concluding that nothing about it is determined. $n$ varies, but the quantity asked about does not: every $n$ of the form $6k + 4$ leaves remainder $1$ on division by $3$. Test two or three values before settling on (D)."
+  },
+  "estimatedSeconds": 95,
+  "stimulusRef": null,
+  "accessibilityText": "n is a positive integer, and the remainder when n is divided by 6 is 4. Quantity A is the remainder when n is divided by 3. Quantity B is the number 1. Decide which quantity is greater, whether they are equal, or whether the relationship cannot be determined.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gre-author",
+    "aiAssisted": true,
+    "notes": "Original item. Numbers chosen by the author so the remainder is invariant; not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gre-author",
+    "reviewer": "gre-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "gre-independent-reviewer",
+      "solvedAnswer": "C",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "n = 6k+4, so n mod 3 = (6k+4) mod 3 = 4 mod 3 = 1 for every such n (4, 10, 16, ...); the two quantities are always equal."
+    },
+    "notes": "Author solved as C and checked the invariance against n = 4, 10, 16, 22, 28. Awaiting blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "quantitative-comparison",
+    "remainders",
+    "divisibility"
+  ]
+}

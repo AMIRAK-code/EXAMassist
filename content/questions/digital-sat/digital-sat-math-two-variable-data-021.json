@@ -1,0 +1,80 @@
+{
+  "id": "digital-sat-math-two-variable-data-021",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "problem-solving-and-data-analysis",
+  "skillSlug": "two-variable-data",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which of the following is the best interpretation of the number $7.2$ in the equation of the line of best fit?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The estimated height, in centimetres, of the shoot at the time of the first measurement."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The estimated height, in centimetres, of the shoot after $1$ week."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The estimated number of weeks needed for the shoot to grow $1$ centimetre."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The estimated increase in the height of the shoot, in centimetres, for each additional week."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The line of best fit is $h = 7.2w + 4.8$, which is in the form $y = mx + b$. The number $7.2$ is the slope, $m$.\n\nSlope is always a rate: the change in the $y$-variable per one-unit change in the $x$-variable. Here $h$ is measured in centimetres and $w$ in weeks, so the slope has units of centimetres per week. The model therefore estimates that the shoot gains about $7.2$ centimetres for every extra week. That is choice B.\n\nCheck it against the model directly. At $w = 2$, $h = 7.2(2) + 4.8 = 19.2$; at $w = 3$, $h = 7.2(3) + 4.8 = 26.4$. The difference is $26.4 - 19.2 = 7.2$ centimetres, exactly the slope, and the measured data ($19$ cm then $27$ cm) change by a similar amount.\n\nThe habit to build: in $y = mx + b$, $m$ answers \"per unit, how much?\" and $b$ answers \"how much at the start?\"",
+  "distractorRationale": {
+    "a": "This describes the $y$-intercept, which is $4.8$, not the slope. The initial height is the value of $h$ when $w = 0$, and it is the other constant in the equation.",
+    "b": "This confuses the slope with a predicted value. Substituting $w = 1$ gives $h = 7.2(1) + 4.8 = 12$ centimetres, not $7.2$ centimetres.",
+    "c": "This inverts the rate. Weeks per centimetre would be $\\frac{1}{7.2} \\approx 0.14$ weeks; $7.2$ is centimetres per week, the other way round."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": {
+    "id": "digital-sat-stim-bamboo-growth-006",
+    "version": 1
+  },
+  "accessibilityText": "Using the scatterplot of bamboo height against week and its line of best fit h equals 7.2 w plus 4.8, choose the best interpretation of the number 7.2.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "digital-sat-author",
+    "aiAssisted": true,
+    "notes": "Original item. The line of best fit in the stimulus was computed by least squares from the six invented data points, so the slope quoted is genuinely the slope of that data."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "digital-sat-author",
+    "reviewer": "digital-sat-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "digital-sat-independent-reviewer",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "In h = 7.2w + 4.8, 7.2 is the slope, i.e. the estimated centimetres of growth per additional week. A describes the intercept 4.8, C would be 7.2 + 4.8 = 12, and D is the reciprocal interpretation."
+    },
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "problem-solving",
+    "line-of-best-fit",
+    "scatterplot"
+  ]
+}

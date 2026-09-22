@@ -1,0 +1,75 @@
+{
+  "id": "enhanced-act-math-function-composition-010",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "math",
+  "domainSlug": "act-math-functions",
+  "skillSlug": "act-math-fn-composition-transformation-inverse",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "The functions $f$ and $g$ are defined by $f(x) = 2x - 5$ and $g(x) = x^{2} + 1$. What is the value of $f(g(3))$ ?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$2$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$10$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$14$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$15$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Composition works from the inside out. Evaluate the inner function first.\n\n$$g(3) = 3^{2} + 1 = 9 + 1 = 10$$\n\nNow feed that result into $f$:\n\n$$f(10) = 2(10) - 5 = 20 - 5 = 15$$\n\nSo $f(g(3)) = 15$.\n\nThe order matters. $f(g(3))$ means \"apply $g$ first, then $f$\" — the function written next to the input is the one that acts first. Check by computing the other order and confirming it is different: $g(f(3)) = g(2\\cdot 3 - 5) = g(1) = 1^{2} + 1 = 2$, which is not the same. Whenever a composition question offers both results, the placement of the parentheses decides which one you want.",
+  "distractorRationale": {
+    "a": "This is $g(f(3))$: the functions were applied in the reverse order, $f$ first and $g$ second. In $f(g(3))$ the inner function $g$ acts on $3$ first.",
+    "b": "This is $g(3)$ by itself. The inner function was evaluated correctly but the result was never substituted into $f$.",
+    "c": "Comes from breaking order of operations inside $g$: computing $2\\cdot 3^{2} + 1 - 5 = 18 + 1 - 5 = 14$, which squares and doubles in the same step instead of finishing $g(3) = 10$ before applying $f$."
+  },
+  "estimatedSeconds": 55,
+  "stimulusRef": null,
+  "accessibilityText": "With f of x equal to two x minus five, and g of x equal to x squared plus one, find f of g of three.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Not derived from, and not a paraphrase of, any ACT-published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "enhanced-act-author",
+    "reviewer": "enhanced-act-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "enhanced-act-independent-reviewer",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "g(3) = 3^2 + 1 = 10, then f(10) = 2(10) - 5 = 15."
+    },
+    "notes": "Author solved the item and attempted to defend each distractor before keying it. Awaiting an independent blind solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "functions",
+    "composition"
+  ]
+}

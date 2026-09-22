@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-ug-geo-rhombus-perimeter-005",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-plane-geometry-formulas",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A rhombus has diagonals of length $12$ cm and $16$ cm. What is its perimeter, in centimetres?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$40$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$56$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$80$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$96$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The two diagonals of a rhombus bisect each other **at right angles**. That is the key fact: each half-diagonal is a leg of a right triangle whose hypotenuse is a side of the rhombus.\n\nHalf-diagonals:\n\n$$\\frac{12}{2} = 6 \\qquad \\text{and} \\qquad \\frac{16}{2} = 8$$\n\nBy Pythagoras, the side $\\ell$ satisfies\n\n$$\\ell = \\sqrt{6^{2} + 8^{2}} = \\sqrt{36 + 64} = \\sqrt{100} = 10$$\n\nAll four sides of a rhombus are equal, so\n\n$$P = 4 \\times 10 = 40 \\text{ cm}$$\n\nTwo quick checks. First, the $6$–$8$–$10$ triangle is the familiar $3$–$4$–$5$ triangle doubled, so no calculator is needed. Second, sanity-check the size: the longer diagonal is $16$, and a side must be shorter than the longer diagonal but longer than half of it, so a side of $10$ is plausible while a side of $20$ is impossible.",
+  "distractorRationale": {
+    "b": "This comes from treating the diagonals as if they were sides: $2(12 + 16) = 56$, the perimeter formula for a rectangle with those dimensions. A rhombus has four equal sides, and its diagonals are not sides.",
+    "c": "This uses the **full** diagonals as the legs of the right triangle instead of the halves: $\\sqrt{12^{2} + 16^{2}} = \\sqrt{400} = 20$, giving $4 \\times 20 = 80$. The diagonals bisect each other, so the legs are $6$ and $8$, not $12$ and $16$.",
+    "d": "This is the area of the rhombus, $\\frac{1}{2} \\times 12 \\times 16 = 96$ square centimetres, not the perimeter. It answers a different question and carries the wrong units."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A rhombus, a four-sided figure with all sides equal, has diagonals measuring twelve centimetres and sixteen centimetres. Find the total distance around the figure.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Not reproduced or adapted from any published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-author",
+    "reviewer": "bocconi-undergraduate-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-independent-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Half-diagonals 6 and 8 give side sqrt(36+64)=10, so perimeter 4*10=40. 56 is 2*(12+16) and 96 is the area, not the perimeter."
+    },
+    "notes": "Awaiting blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "rhombus",
+    "pythagoras"
+  ]
+}

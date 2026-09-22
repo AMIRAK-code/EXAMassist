@@ -1,0 +1,85 @@
+{
+  "id": "gmat-rc-storage-main-idea-001",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "verbal-reasoning",
+  "domainSlug": "verbal-reading-comprehension",
+  "skillSlug": "rc-main-idea",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The primary purpose of the passage is to",
+  "instructionsMd": "Answer on the basis of what is stated or implied in the passage.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "explain why lithium-ion batteries have fallen in cost more rapidly than competing storage technologies"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "argue that a standard cost measure conceals a difference between two storage roles, one of which no current payment rewards"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "compare the round-trip efficiencies of the leading grid-scale storage technologies"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "describe the engineering obstacles that prevent underground hydrogen caverns from storing energy across seasons"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "recommend that utilities abandon lithium-ion batteries in favour of iron-air cells, pumped water and hydrogen caverns"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "A primary-purpose question is answered by the shape of the whole passage, not by any one sentence.\n\nTrace the structure. Paragraph 1 introduces the installed-cost metric and says the assumption behind it fails, because daily-cycling storage and seasonal storage earn their money in completely different ways. Paragraph 2 says this difference has produced two separate engineering agendas and that collapsing them into one number overstates the progress of the second. Paragraph 3 says tariffs pay for the first agenda and not the second, so the seasonal problem persists for commercial rather than technical reasons.\n\nSo the passage does two things: it exposes what a single cost measure hides, and it identifies the missing payment for the neglected role. Choice B states exactly that pair.\n\nA reliable way to check a primary-purpose answer: ask whether the choice covers the last paragraph as well as the first. Only B does — the phrase \"no current payment rewards\" accounts for paragraph 3, which every other choice leaves out entirely.",
+  "distractorRationale": {
+    "a": "The passage mentions that lithium-ion installed costs have fallen, but it never explains why, and it uses the fact only as the premise it goes on to question. A supporting premise is being mistaken for the purpose.",
+    "e": "This overstates the passage. The author says lithium-ion \"serves\" the first agenda well and is merely \"the wrong tool\" for the second, which is a claim about matching technology to role, not a recommendation to abandon a technology.",
+    "d": "The passage explicitly denies this: the final sentence says the seasonal problem persists \"not because the engineering is impossible, but because no one is paid to solve it.\" This choice reverses the author's conclusion.",
+    "c": "Efficiency appears in one clause of paragraph 2, where the author notes that the second agenda tolerates wasting half the energy. No efficiencies are compared, and a single detail cannot be the purpose of the whole passage."
+  },
+  "estimatedSeconds": 200,
+  "stimulusRef": {
+    "id": "gmat-rc-passage-grid-storage-001",
+    "version": 1
+  },
+  "accessibilityText": "Question asking for the primary purpose of the accompanying three-paragraph passage about electricity grid storage. Five options describe different possible purposes.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-author",
+    "aiAssisted": true,
+    "notes": "Original item written against an original passage. The estimated time includes first reading of the shared passage."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-author",
+    "reviewer": "gmat-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "gmat-independent-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The passage attacks the single installed-cost / 'levelised cost of storage' metric for collapsing two distinct storage roles, and closes with 'nothing pays an asset for the option value... no one is paid to solve it' - exactly B. A, D and E describe details the passage never develops, and C overstates: the passage says lithium-ion is the wrong tool only for the seasonal role, not that utilities should abandon it."
+    },
+    "notes": "Author checked each distractor against the passage text; only B accounts for all three paragraphs. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "reading-comprehension",
+    "main-idea",
+    "passage-set-grid-storage"
+  ]
+}
