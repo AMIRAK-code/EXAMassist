@@ -1,0 +1,85 @@
+{
+  "id": "lsat-cr-expert-relationship-111",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "rc",
+  "domainSlug": "comparative-reading",
+  "skillSlug": "cr-passage-relationships",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which one of the following most accurately describes the relationship between the two passages?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Passage B denies that the phenomenon described in passage A occurs at all, and offers a different account of the evidence passage A relies on."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Passage B agrees that expert testimony is often unreliable but locates the source of the unreliability in a different feature of the practice than passage A does, and argues that passage A's remedy would make matters worse in the cases that most need fixing."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Passage B applies to one particular forensic technique the general principle that passage A defends."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The two passages recommend the same reform, each supporting it on different grounds."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Passage A explicitly rejects the reform that passage B proposes."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "On a comparative set, settle three things before reading the choices: what each author diagnoses, what each prescribes, and whether the second author is disputing the first's diagnosis, the first's prescription, or both.\n\n**Passage A.** Diagnosis: experts are \"chosen by a party, paid by that party, and prepared for testimony by that party's lawyers\", and selection alone \"produces a systematically skewed sample of opinion in the courtroom.\" Prescription: courts should appoint an expert from a professional body's roster.\n\n**Passage B.** Diagnosis: \"Reformers who worry about who hires the expert have fixed on the wrong variable\"; in toolmark comparison \"the technique had no measured error rate.\" Prescription: a threshold requirement that error rates be measured before opinions resting on a technique are admitted.\n\nSo B disputes both halves. On the diagnosis, B does not deny that experts are party-selected — it says that was \"never\" the trouble in its example. On the prescription, B says a court-appointed examiner \"would not have supplied the missing number\", would have removed \"the one check the adversarial system does provide\", and would lend an unvalidated method \"the authority of the court\" — a worsening, and specifically in the unvalidated cases. Choice (B) states both moves.\n\nHow to check: test a candidate relationship against a sentence from each passage. The claim that B holds unreliability real but differently caused is confirmed by B's own toolmark story, in which testimony was unreliable for decades. The claim that B thinks A's remedy backfires is confirmed by \"where a method is unvalidated, neutrality is an aggravating factor.\" Any description that cannot be anchored in both passages this way is wrong.",
+  "distractorRationale": {
+    "a": "Passage B never denies that experts are selected and paid by the parties or that this skews their selection; it says only that in its example the payment arrangement 'was never' what made the testimony unreliable. Treating a claim that something is not the cause as a claim that it does not happen is the error this choice rewards.",
+    "c": "This reverses the passages' relation. Passage A's principle is that courts should appoint neutral experts, and passage B uses toolmark comparison to argue against exactly that appointment, saying it would have supplied no missing error rate and would have removed the adversarial check.",
+    "d": "The reforms are different and, on passage B's account, incompatible. Passage A proposes court appointment from a professional roster; passage B proposes an admissibility threshold based on a measured error rate, and expressly argues that appointing an examiner would make an unvalidated technique worse rather than better.",
+    "e": "Passage A never discusses an admissibility threshold or the measurement of error rates, so it rejects nothing that passage B proposes. The only objection passage A anticipates is that its own appointee would be unduly influential, which it answers by pointing out that an appointed expert can be cross-examined."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": {
+    "id": "lsat-stim-expert-witness-pair-003",
+    "version": 1
+  },
+  "accessibilityText": "A comparative-reading question on the paired passages about expert witnesses, labelled Passage A and Passage B, asking which choice most accurately describes the relationship between them. Five answer choices labelled A through E. No figures, tables or mathematical notation.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "lsat-topup-author",
+    "aiAssisted": true,
+    "notes": "Original question written against an original comparative pair in this bank. Not adapted from any LSAC comparative set."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "lsat-topup-author",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "B accepts that the testimony was unreliable, relocates the cause from party selection to lack of a measured error rate, and says A's remedy is 'an aggravating factor' where a method is unvalidated - i.e. worse in the cases most needing fixing. (a) B never denies A's selection effect occurs; (c) B rejects rather than applies A's principle; (d) the two reforms differ; (e) A never mentions error-rate thresholds.",
+      "solvedBy": "lsat-round2-reviewer"
+    },
+    "notes": "Both clauses of the key were anchored to sentences in passage B. (C) was the strongest competitor and fails because passage B opposes rather than applies passage A's principle; (E) was written to be cleanly false since passage A says nothing about error-rate thresholds. Awaiting blind independent solve.",
+    "reviewer": "lsat-round2-reviewer"
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "comparative-reading",
+    "passage-relationship",
+    "law"
+  ]
+}

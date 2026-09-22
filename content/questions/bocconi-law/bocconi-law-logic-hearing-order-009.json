@@ -1,0 +1,77 @@
+{
+  "id": "bocconi-law-logic-hearing-order-009",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-deductive-conditions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A court lists four appeals — Baldi, Conti, Ferri and Greco — for hearing on four consecutive days, Monday to Thursday, one appeal per day. The listing satisfies all of the following conditions:\n\n- Baldi is heard on an earlier day than Conti.\n- Greco is heard on the day immediately after Ferri.\n- Ferri is not heard on Monday.\n\nWhich of the following must be true?",
+  "instructionsMd": "Exactly one of the four statements holds in every listing that satisfies the conditions.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Ferri is heard on Wednesday."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Conti is heard on Thursday."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Baldi is heard on Monday."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Greco is heard on the day immediately before Conti."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Start with the condition that constrains the most: Ferri and Greco occupy two **adjacent** days in that order, so the pair sits on Mon–Tue, Tue–Wed or Wed–Thu. Ferri is not heard on Monday, which kills the first, so the pair is Tue–Wed or Wed–Thu.\n\n**Listing 1 — Ferri Tuesday, Greco Wednesday.** Baldi and Conti take the two days left, Monday and Thursday. Baldi must come before Conti, so Baldi is Monday and Conti is Thursday: *Baldi, Ferri, Greco, Conti.*\n\n**Listing 2 — Ferri Wednesday, Greco Thursday.** Baldi and Conti take Monday and Tuesday. Baldi before Conti gives Baldi Monday, Conti Tuesday: *Baldi, Conti, Ferri, Greco.*\n\nThose are the only two listings. Baldi is on Monday in both, so option B must be true.\n\n**How to check.** Once you have the full set of admissible listings, a \"must be true\" answer is simply a statement that survives every one of them. Test each option against both listings in turn; the moment an option fails in one listing it is out. Here A and D fail in listing 2, C fails in listing 1, and only B survives both — which is also the quickest confirmation that the answer is unique.",
+  "distractorRationale": {
+    "b": "True only in listing 1. This is what you get if you stop after finding the first arrangement that works and treat it as the only one, instead of also testing Ferri on Wednesday.",
+    "a": "True only in listing 2. It comes from fixing the Ferri–Greco pair at the latest possible position without checking that Tuesday–Wednesday is equally admissible.",
+    "d": "True only in listing 1, where the order is Baldi, Ferri, Greco, Conti. In listing 2 Greco is last and Conti is on Tuesday, so the adjacency described here is a feature of one arrangement, not a consequence of the conditions."
+  },
+  "estimatedSeconds": 105,
+  "stimulusRef": null,
+  "accessibilityText": "A deductive reasoning question. Four appeals named Baldi, Conti, Ferri and Greco are heard one per day from Monday to Thursday. Baldi is earlier than Conti; Greco is on the day immediately after Ferri; Ferri is not on Monday. The question asks which of four statements must be true.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-topup-author",
+    "aiAssisted": true,
+    "notes": "Original ordering item written to the published Bocconi Law syllabus entry 'a series of initial conditions followed by a question to be answered by deductive reasoning'. The names and scenario are invented."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-topup-author",
+    "reviewer": "bocconi-law-round2-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-law-round2-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Ferri must be Tue or Wed (Greco follows immediately, Ferri not Monday), giving exactly two listings: Baldi-Ferri-Greco-Conti and Baldi-Conti-Ferri-Greco. Baldi is Monday in both; (a),(c),(d) each hold in only one."
+    },
+    "notes": "Author solved the item by full enumeration: exactly two listings satisfy the conditions, and only 'Baldi is heard on Monday' holds in both. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "ordering",
+    "must-be-true",
+    "no-calculator"
+  ]
+}

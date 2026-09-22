@@ -23,6 +23,8 @@ import { createRng, shuffle } from '../src/lib/assessment/select';
  * distractor notes and independent-solve record are remapped with them, so
  * every cross-reference in the file stays correct.
  *
+ * Only draft and in-review items are touched: published order is immutable.
+ *
  *   npx tsx scripts/normalise-option-order.ts [--dry-run]
  */
 
@@ -57,6 +59,16 @@ function main(): void {
 
   for (const entry of questions) {
     const question = entry.question;
+
+    // Published content is immutable. Re-ordering a published item would change
+    // what a learner was shown and would make this script non-idempotent, so
+    // ordering is fixed while an item is still in review, before anyone sees
+    // it. Run this BEFORE the blind review, not after.
+    if (question.state !== 'draft' && question.state !== 'in_review') {
+      skipped += 1;
+      continue;
+    }
+
     if (!SHUFFLEABLE.has(question.responseType) || question.options.length < 2) {
       skipped += 1;
       continue;
@@ -65,11 +77,16 @@ function main(): void {
     const values = question.options.map((option) => numericValue(option.textMd));
     const allNumeric = values.every((value) => value !== null);
 
+    // Canonicalise before shuffling, so the shuffle's input never depends on a
+    // previous run. Without this, re-running the script re-randomises the same
+    // item every time, because a shuffled list is a different input.
+    const canonical = [...question.options].sort((a, b) => a.textMd.localeCompare(b.textMd, 'en'));
+
     const ordered = allNumeric
       ? [...question.options].sort(
           (a, b) => (numericValue(a.textMd) ?? 0) - (numericValue(b.textMd) ?? 0),
         )
-      : shuffle(question.options, createRng(`option-order:${question.id}`));
+      : shuffle(canonical, createRng(`option-order:${question.id}`));
 
     const unchanged = ordered.every((option, index) => option.id === question.options[index]?.id);
     if (unchanged) {

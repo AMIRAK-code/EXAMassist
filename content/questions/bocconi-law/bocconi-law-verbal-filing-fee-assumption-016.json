@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-law-verbal-filing-fee-assumption-016",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-verbal-reasoning",
+  "skillSlug": "law-verbal-assumption",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A council proposes to clear the backlog in the small-claims court by tripling the fee for filing a claim. Its reasoning is set out in one sentence: \"The backlog exists because too many claims are filed, so a much higher filing fee will shrink it.\"\n\nThe council's argument depends on which of the following assumptions?",
+  "instructionsMd": "An assumption is something the argument needs in order to work, not merely something consistent with it.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The present filing fee is lower than the fee charged in neighbouring districts."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Tripling the filing fee will reduce the number of claims filed."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The claimants who can afford the higher fee are those with the strongest cases."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The backlog in the small-claims court has grown in each of the last ten years."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Set the argument out in two steps:\n\n1. *Stated premise:* the backlog exists because too many claims are filed.\n2. *Conclusion:* tripling the filing fee will shrink the backlog.\n\nThere is a hole between them. Step 1 links the backlog to the **number of claims**; step 2 talks about the **price of filing**. Nothing said so far connects price to quantity. The argument silently supplies that link — it takes for granted that a higher price means fewer claims. That is option C.\n\n**How to check — the negation test.** Deny the candidate assumption and see whether the argument still stands. Deny C: tripling the fee does *not* reduce the number of claims filed. Then the same number of claims arrives, the stated cause of the backlog is untouched, and the conclusion collapses. An assumption whose denial destroys the argument is a genuine assumption. Run the same test on the others and the argument survives each denial, which is how you know they are not assumptions.",
+  "distractorRationale": {
+    "a": "Comparison with neighbouring districts is background colour. Deny it — the fee is already the highest in the region — and the argument is untouched, because it never claims the fee is low, only that raising it will deter filings.",
+    "d": "A claim about the backlog's history, not about the proposal's mechanism. Deny it — the backlog appeared suddenly last year — and the council's reasoning works exactly as before, since it rests on the current volume of claims, not on a trend.",
+    "c": "This concerns which claims survive the fee rise, not whether fewer are filed. Deny it — the wealthiest claimants have the weakest cases — and the backlog would still shrink if filings fell, so the argument's conclusion still follows. It identifies a fairness objection, which is a different thing from a hidden premise."
+  },
+  "estimatedSeconds": 95,
+  "stimulusRef": null,
+  "accessibilityText": "An assumption question. A council argues that because the small-claims backlog is caused by too many filings, tripling the filing fee will shrink the backlog. Four candidate assumptions follow, and the question asks which one the argument depends on.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-topup-author",
+    "aiAssisted": true,
+    "notes": "Original argument-analysis item written to the published syllabus entry 'identifying the assumption on which an argument depends'. The council, court and proposal are invented."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-topup-author",
+    "reviewer": "bocconi-law-round2-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-law-round2-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The argument moves from 'too many claims are filed' to 'a higher fee will shrink the backlog', which requires that the higher fee actually deters filings; negating (c) destroys the argument. (a), (b) and (d) are merely consistent background."
+    },
+    "notes": "Author applied the negation test to all four options; only the denial of C breaks the inference from 'too many claims cause the backlog' to 'a higher fee shrinks it'. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "verbal-reasoning",
+    "assumption",
+    "negation-test"
+  ]
+}

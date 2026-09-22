@@ -1,0 +1,79 @@
+{
+  "id": "bocconi-ug-num-solar-multiple-020",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-numerical-reasoning",
+  "skillSlug": "numerical-reasoning-relevance",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The capacity connected in 2025 was how many times the capacity connected in 2021?",
+  "instructionsMd": "Use only the figures shown. No calculator.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$4.25$ times"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$3.25$ times"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "About $1.4$ times"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "About $2.8$ times"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "First decide which two numbers the question needs. The stem names two years, 2025 and 2021, and one quantity, capacity connected. Everything else on the chart is irrelevant here, including the whole subsidy column and the three middle years.\n\n$$\\text{2025} = 170 \\text{ MW} \\qquad \\text{2021} = 40 \\text{ MW}$$\n\n\"How many times\" asks for the ratio of the later figure to the earlier one:\n\n$$\\frac{170}{40} = \\frac{17}{4} = 4.25$$\n\n**Doing it by hand.** Cancel the common factor of $10$ first, which turns an awkward division into $17 \\div 4$. Four goes into 17 four times with 1 left over, and $\\frac{1}{4} = 0.25$, so the answer is $4.25$.\n\n**How to check the answer.** Multiply back: $40 \\times 4.25 = 40 \\times 4 + 40 \\times 0.25 = 160 + 10 = 170$, which is the 2025 figure. If the multiplication does not return the later number, the ratio is wrong or upside down.\n\n**The distinction being tested.** \"How many times the 2021 figure\" and \"how many times *larger than* the 2021 figure\" are different questions. The first is $\\frac{170}{40} = 4.25$. The second is the growth on top of the original, $\\frac{170 - 40}{40} = \\frac{130}{40} = 3.25$, which is always exactly one less. Read the comparison word before dividing, and note that the two answers differ by exactly $1$ whenever this confusion arises.",
+  "distractorRationale": {
+    "c": "This compares 2025 with 2024 rather than with 2021: $\\frac{170}{120} \\approx 1.4$. It uses the year immediately before, which is the natural reading of a line chart but not what the stem names. The base year is stated explicitly as 2021.",
+    "d": "This divides by the 2022 figure, $\\frac{170}{60} \\approx 2.8$, treating the second point on the line as the starting point. Off-by-one errors of this kind come from counting plotted points instead of reading the year labels on the horizontal axis.",
+    "b": "This answers \"how many times larger\" instead of \"how many times\": $\\frac{170 - 40}{40} = 3.25$. It measures only the increase, 130 MW, as a multiple of the original, so it omits the original capacity itself and is exactly 1 less than the correct ratio."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": {
+    "id": "bocconi-ug-stim-solar-capacity-005",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying chart and table of solar capacity newly connected in Mirenza each year from 2021 to 2025. It asks how many times the 2021 figure the 2025 figure was. The four answer options are multiples, listed in increasing order: about 1.4 times, about 2.8 times, 3.25 times and 4.25 times.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-topup-author",
+    "aiAssisted": true,
+    "notes": "Original item written against an original data set. A subsidy column is included in the stimulus and is deliberately superfluous to this item, so that the candidate has to select the relevant figures. Each distractor is a different wrong base year or the times-larger confusion. Options are in ascending order, as the real test presents numeric choices."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-topup-author",
+    "reviewer": "bocconi-undergraduate-round2-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-round2-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "New capacity 2025 = 170 MW, 2021 = 40 MW; 170/40 = 4.25 exactly. Option C (3.25) is the proportional increase (130/40) rather than the multiple; A and B match no pair in the data. Subsidy column is irrelevant here, consistent with the relevance skill tag."
+    },
+    "notes": "Author checked uniqueness: 170/40 = 4.25 exactly, and the stem says 'how many times the capacity connected in 2021', which fixes both the base year and the form of the comparison, so 3.25 ('times larger') is not defensible. No two options are numerically equal. Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "chart-solar-capacity",
+    "ratios",
+    "relevant-information"
+  ]
+}

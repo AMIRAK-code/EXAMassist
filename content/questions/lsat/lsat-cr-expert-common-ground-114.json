@@ -1,0 +1,85 @@
+{
+  "id": "lsat-cr-expert-common-ground-114",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "rc",
+  "domainSlug": "comparative-reading",
+  "skillSlug": "cr-passage-relationships",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Both passages are committed to which one of the following claims?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Expert testimony can be unreliable without any expert having behaved dishonestly."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Professional bodies are better placed than courts to identify which specialists are qualified."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "A court should refuse to admit expert opinion when the error rate of the underlying technique is unknown."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The adversarial system provides no effective check on unreliable expert evidence."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Jurors attach too much weight to testimony that carries the court's endorsement."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "A common-ground question is the mirror image of a disagreement question, and the same two-step test applies: the claim must be one each passage is committed to, and the commitments must point the same way.\n\nStart with choice (A) and find each author's commitment.\n\n- Passage A: \"The distortion need not involve dishonesty... Selection alone, operating on an entirely honest population, produces a systematically skewed sample of opinion in the courtroom.\" Unreliable output, honest inputs.\n- Passage B: \"no honest examiner could have said how much weight the conclusion deserved\", because the technique had no measured error rate. Again unreliable output, honest inputs.\n\nThe two authors reach that shared claim by different routes — one through selection effects, the other through an unvalidated method — which is exactly why it is common ground rather than a point of dispute. So (A) is the answer.\n\nHow to check: for each of the others, name the passage that would refuse it. (B) is passage A's proposal and passage B gives no support to rosters at all. (C) is passage B's proposal and passage A never mentions error rates. (D) is denied by passage B, which calls the opposing expert \"the one check the adversarial system does provide.\" (E) sits close to passage B's worry about the court's imprimatur, but passage A takes the opposite line, answering that an appointed expert who is wrong \"can be cross-examined like any other.\" A claim that only one passage would sign is the standard wrong answer in this question type.",
+  "distractorRationale": {
+    "b": "This belongs to passage A alone, which would have a roster maintained by a professional body. Passage B argues that appointment from a neutral roster solves nothing where the technique is unvalidated and would remove the adversarial check, so it gives professional bodies no such role.",
+    "c": "This is passage B's proposed threshold for admissibility. Passage A never discusses error rates or admissibility at all; its remedy operates on who is chosen to testify, not on what may be admitted, so passage A is not committed to this claim.",
+    "d": "Passage B denies it outright, calling the opposing expert 'the one check the adversarial system does provide'. Passage A also relies on adversarial machinery, since its answer to the objection against its own proposal is that the court's appointee can be cross-examined.",
+    "e": "Passage B raises something close to this in worrying that neutrality would lend an unvalidated method 'the authority of the court', but passage A rejects the corresponding objection to its own proposal, holding that an appointed expert who is wrong can be cross-examined like any other. The two passages therefore diverge on this claim rather than sharing it."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": {
+    "id": "lsat-stim-expert-witness-pair-003",
+    "version": 1
+  },
+  "accessibilityText": "A comparative-reading question on the paired passages about expert witnesses, asking which claim both passages are committed to. Five answer choices labelled A through E. No figures, tables or mathematical notation.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "lsat-topup-author",
+    "aiAssisted": true,
+    "notes": "Original question written against an original comparative pair in this bank. Not adapted from any LSAC comparative set."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "lsat-topup-author",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Passage A: 'The distortion need not involve dishonesty ... operating on an entirely honest population'. Passage B: 'no honest examiner could have said how much weight the conclusion deserved' - unreliable toolmark testimony without dishonesty. Both are committed to (a). (b) only A gestures at professional bodies; (c) is B alone; (d) B explicitly contradicts ('the one check the adversarial system does provide'); (e) B alone hints at court imprimatur while A rebuts the undue-influence objection.",
+      "solvedBy": "lsat-round2-reviewer"
+    },
+    "notes": "Key is anchored to an explicit disclaimer of dishonesty in each passage. Every other choice was matched to the single passage that holds it and to the sentence in the other passage that refuses or ignores it. Awaiting blind independent solve.",
+    "reviewer": "lsat-round2-reviewer"
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "comparative-reading",
+    "passage-relationship",
+    "law"
+  ]
+}

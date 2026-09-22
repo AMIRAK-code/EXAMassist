@@ -1,0 +1,77 @@
+{
+  "id": "bocconi-law-logic-mediators-degree-011",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-data-propositions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A professional register records exactly three facts about the people it lists:\n\n- Every certified mediator holds a law degree.\n- Some holders of a law degree are under 25.\n- No one under 25 has ten years of practice.\n\nWhich of the following follows from these three records alone?",
+  "instructionsMd": "Accept the three records as given and add nothing to them.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Some certified mediators are under 25."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Every holder of a law degree who has ten years of practice is a certified mediator."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "No certified mediator under 25 has ten years of practice."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "No holder of a law degree has ten years of practice."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Write the three records as relations between groups:\n\n1. mediators $\\subseteq$ law-degree holders\n2. some law-degree holders are under 25\n3. under-25s $\\cap$ ten-years-of-practice $= \\varnothing$\n\nRecord 3 is a flat exclusion: **being under 25 rules out ten years of practice, whoever you are.** A certified mediator who is under 25 is, first of all, a person under 25, so record 3 applies to them directly and they cannot have ten years of practice. That is option D, and it holds whether or not any such mediator actually exists — \"no X is Y\" does not require an X.\n\n**How to check.** Try to build a register that obeys all three records but breaks your answer. For D you cannot: any counter-example would need a mediator who is under 25 *and* has ten years of practice, which record 3 forbids outright. Run the same test on the other options and you will succeed in building a counter-example for each, which is exactly why they fail.",
+  "distractorRationale": {
+    "a": "Reverses record 1. Knowing that every mediator holds a law degree tells you nothing about which law-degree holders are mediators, so the under-25 holders mentioned in record 2 need not include a single mediator. A register in which every mediator is 40 obeys all three records.",
+    "b": "Also reverses record 1, this time with a condition attached. The records never say that a law degree plus ten years of practice makes someone a mediator; certification could require anything else besides. A register with one 40-year-old law graduate who was never certified obeys all three records and breaks this.",
+    "d": "Turns record 2's 'some' into 'all'. Only some law-degree holders are under 25, so the exclusion in record 3 reaches only that part of the group. The remaining holders may have any length of practice at all."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": null,
+  "accessibilityText": "A logic question given as three statements in a register: every certified mediator holds a law degree; some holders of a law degree are under 25; no one under 25 has ten years of practice. Four candidate conclusions follow, and the question asks which one follows from the three statements alone. The explanation uses the subset symbol and the empty-set symbol to restate the three statements.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-topup-author",
+    "aiAssisted": true,
+    "notes": "Original 'data propositions' item written to the published syllabus entry 'judging which statements do and do not follow from the data supplied'. The register and its facts are invented."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-topup-author",
+    "reviewer": "bocconi-law-round2-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-law-round2-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Record 3 alone (no one under 25 has ten years of practice) makes (d) true for certified mediators as a special case. (a) is an illicit existential transfer, (b) reverses record 1, (c) overreads 'some' in record 2."
+    },
+    "notes": "Author checked uniqueness by constructing an explicit counter-model for each of A, B and C while satisfying all three records, and confirmed that no model satisfying the records can falsify D. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "data-propositions",
+    "quantifiers",
+    "no-calculator"
+  ]
+}

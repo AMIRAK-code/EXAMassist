@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getDb } from '@/lib/db';
-import { ForbiddenError, UnauthorizedError, requireRole } from '@/lib/auth/session';
+import { requireEditorial } from '@/lib/auth/guards';
 import { EXAM_CONFIGS, getHubForConfig } from '@/lib/exams/registry';
 import { examCoverage } from '@/lib/attempts/availability';
 import { Alert, Badge, Breadcrumbs, ButtonLink, Card, Container, PageHeader } from '@/components/ui';
@@ -68,54 +68,14 @@ interface StatusCountRow {
   n: number;
 }
 
-function accessScreen(error: unknown) {
-  if (error instanceof UnauthorizedError) {
-    return (
-      <Container size="narrow">
-        <PageHeader eyebrow="Internal" title="Sign in to continue" />
-        <Alert tone="caution" role="alert" title="You are not signed in">
-          <p>
-            The content administration area is limited to editorial staff. Sign in with an editor or
-            administrator account to continue.
-          </p>
-        </Alert>
-        <div className="mt-6">
-          <ButtonLink href="/sign-in?next=/admin">Sign in</ButtonLink>
-        </div>
-      </Container>
-    );
-  }
-  if (error instanceof ForbiddenError) {
-    return (
-      <Container size="narrow">
-        <PageHeader eyebrow="Internal" title="You do not have access" />
-        <Alert tone="negative" role="alert" title="Editorial access required">
-          <p>
-            Your account is signed in, but it does not hold the editor or administrator role that this
-            area requires. Nothing on this page has been loaded.
-          </p>
-        </Alert>
-        <div className="mt-6">
-          <ButtonLink href="/" variant="secondary">
-            Back to the site
-          </ButtonLink>
-        </div>
-      </Container>
-    );
-  }
-  throw error;
-}
-
 function isoDay(value: string): string {
   return value.slice(0, 10);
 }
 
 export default async function AdminOverviewPage() {
-  try {
-    await requireRole('admin', 'editor');
-  } catch (error) {
-    return accessScreen(error);
-  }
+  // Redirects to sign-in when signed out (307), and 404s for a signed-in
+  // learner, so the area's existence is never confirmed. See guards.ts.
+  await requireEditorial('/admin');
 
   const db = getDb();
 

@@ -833,22 +833,29 @@ function openNextPart(db: Db, attemptId: string, userId: string, fromIndex: numb
   const previousBlueprintPart = blueprintParts[fromIndex];
   const nextBlueprintPart = blueprintParts[nextIndex];
 
+  // Score the completed part FIRST. Routing reads is_correct, which only exists
+  // once the part has been scored, so computing the decision before this would
+  // read every answer as wrong and route everyone down.
+  const scoreCompletedPart = db.transaction(() => {
+    scorePart(db, attemptId, fromIndex, config, now);
+  });
+  scoreCompletedPart();
+
   // Adaptive routing is declared on the routing part and applies to the part
   // that follows it.
   let routing: RoutingDecision | null = null;
   if (previousBlueprintPart?.adaptive?.enabled) {
-    const previousItems = items.filter((i) => i.part_index === fromIndex);
-    const correct = previousItems.filter((i) => i.is_correct === 1).length;
-    const scorable = previousItems.length;
-    const accuracy = scorable > 0 ? correct / scorable : 0;
+    const scored = db
+      .prepare(
+        'SELECT is_correct AS isCorrect FROM attempt_items WHERE attempt_id = ? AND part_index = ?',
+      )
+      .all(attemptId, fromIndex) as Array<{ isCorrect: 0 | 1 | null }>;
+    const correct = scored.filter((row) => row.isCorrect === 1).length;
+    const accuracy = scored.length > 0 ? correct / scored.length : 0;
     routing = decideRoute(accuracy, previousBlueprintPart.adaptive);
   }
 
   const run = db.transaction(() => {
-    // Score the completed part now so routing can use it and so a later crash
-    // cannot lose the result.
-    scorePart(db, attemptId, fromIndex, config, now);
-
     if (routing && nextBlueprintPart) {
       const rerouted = applyRoute(nextBlueprintPart.selection, nextBlueprintPart.itemCount, routing.route);
       const pool = getPool(db, attempt.exam_key, userId);

@@ -1,0 +1,85 @@
+{
+  "id": "lsat-rc-groundwater-explicit-102",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "rc",
+  "domainSlug": "reading-comprehension",
+  "skillSlug": "rc-explicit-information",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "According to the passage, the reasonable-use rule restrains which one of the following?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Any pumping that causes a neighbouring well to run dry."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Withdrawals that exceed an owner's proportional share of a supply too small to satisfy everyone."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Withdrawals from an aquifer that exchanges water with a surface stream."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The number of wells that a single owner may sink on one parcel of land."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Wasting water, and applying it somewhere other than the land overlying the aquifer."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Explicit-information questions are won by locating the sentence, not by reasoning from the passage's general drift. The stem names the reasonable-use rule, so go to the sentence that defines it in the second paragraph: the rule \"permits unlimited pumping so long as the water is applied to a beneficial purpose on the overlying land; it restrains only waste and export.\"\n\nThat sentence gives two restraints and the word \"only\" forecloses any third:\n\n- **waste** — water used for no beneficial purpose;\n- **export** — water applied somewhere other than the overlying land, which is the very condition the first half of the sentence attaches.\n\nChoice (E) is those two restraints, with \"export\" unpacked into the passage's own definition.\n\nHow to check: re-read the defining sentence with each choice held beside it, and treat the word \"only\" as a test. Anything the rule restrains must appear in that clause. It also helps to notice which *other* thing in the passage each wrong answer belongs to — on this passage, two of the four are accurate statements about something else entirely, which is the usual design of a strong wrong answer in this question type.",
+  "distractorRationale": {
+    "a": "This is the grievance the rule of absolute ownership left without a remedy, not a restraint the reasonable-use rule imposes. The passage says the reasonable-use rule permits unlimited pumping for a beneficial purpose, so harm to a neighbour's well is precisely what it does not, by itself, restrain.",
+    "b": "This describes the correlative-rights rule, the other doctrine in the same paragraph, which treats overlying owners as sharers in a common supply and proportions withdrawals when the aquifer cannot satisfy everyone. Proportioning is the feature that distinguishes correlative rights from reasonable use.",
+    "c": "The exchange between aquifers and surface streams belongs to the third paragraph, where it is evidence that aquifer boundaries are indistinct. The passage never presents it as a category of withdrawal that the reasonable-use rule restrains, and indeed its point is that the doctrines fail to address such connections.",
+    "d": "The passage never mentions the number of wells at all. It is not a limit imposed by any of the three doctrines described, and inventing a plausible-sounding regulatory limit is exactly the error this choice is designed to catch."
+  },
+  "estimatedSeconds": 55,
+  "stimulusRef": {
+    "id": "lsat-stim-groundwater-doctrine-001",
+    "version": 1
+  },
+  "accessibilityText": "A question asking what the reasonable-use rule restrains, according to the four-paragraph passage on groundwater law, with five answer choices labelled A through E. No figures, tables or mathematical notation.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "lsat-topup-author",
+    "aiAssisted": true,
+    "notes": "Original question written against an original passage in this bank. Not adapted from any LSAC item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "lsat-topup-author",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Paragraph 2: reasonable use 'permits unlimited pumping so long as the water is applied to a beneficial purpose on the overlying land; it restrains only waste and export.' (e) restates waste plus export. (b) is the correlative-rights rule; (a) is what absolute ownership refused and reasonable use still permits; (c) and (d) are never stated.",
+      "solvedBy": "lsat-round2-reviewer"
+    },
+    "notes": "Key rests on the explicit clause 'it restrains only waste and export', read together with the preceding 'applied to a beneficial purpose on the overlying land', which is what licenses the paraphrase of export in (E). Each other choice was checked against the passage text: (A) and (B) describe other doctrines, (C) belongs to paragraph 3, (D) is absent. Awaiting blind independent solve.",
+    "reviewer": "lsat-round2-reviewer"
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "reading-comprehension",
+    "explicit-information",
+    "law"
+  ]
+}

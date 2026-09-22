@@ -161,6 +161,54 @@ test.describe('authorization', () => {
     await second.close();
   });
 
+
+  test('private learner pages redirect a signed-out visitor to sign in', async ({ page }) => {
+    for (const path of ['/dashboard', '/review', '/study-plan', '/account']) {
+      const response = await page.goto(path);
+      expect(response?.status(), `${path} should not error`).toBeLessThan(400);
+      expect(page.url(), `${path} should redirect to sign-in`).toContain('/sign-in');
+      expect(page.url()).toContain(encodeURIComponent(path));
+    }
+  });
+
+  test('the admin area is hidden from a signed-out visitor and from a learner', async ({ page }) => {
+    // Signed out: redirected to sign in, carrying a return path.
+    await page.goto('/admin');
+    expect(page.url()).toContain('/sign-in');
+
+    // Signed in as an ordinary learner: 404, so the area's existence is not
+    // confirmed, and the admin API refuses with 403.
+    const email = `probe-${Date.now()}@example.invalid`;
+    const signUp = await page.evaluate(async (address) => {
+      const response = await fetch('/api/auth/sign-up', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'examer' },
+        body: JSON.stringify({ email: address, password: 'a quiet harbour at dawn' }),
+      });
+      return response.status;
+    }, email);
+    expect(signUp).toBe(201);
+
+    for (const path of ['/admin', '/admin/questions', '/admin/flags']) {
+      const response = await page.goto(path);
+      expect(response?.status(), `${path} should be 404 for a learner`).toBe(404);
+    }
+
+    const apiStatus = await page.evaluate(async () => {
+      const response = await fetch('/api/admin/flags/does-not-exist', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'examer' },
+        body: JSON.stringify({ status: 'accepted' }),
+      });
+      return response.status;
+    });
+    expect(apiStatus).toBe(403);
+
+    // The learner's own area still works.
+    const dashboard = await page.goto('/dashboard');
+    expect(dashboard?.status()).toBe(200);
+  });
+
   test('private pages are marked noindex', async ({ page }) => {
     const attemptId = await startPracticeSession(page);
     await page.goto(`/attempt/${attemptId}`);

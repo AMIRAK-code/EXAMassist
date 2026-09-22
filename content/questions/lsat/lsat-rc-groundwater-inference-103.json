@@ -1,0 +1,85 @@
+{
+  "id": "lsat-rc-groundwater-inference-103",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "rc",
+  "domainSlug": "reading-comprehension",
+  "skillSlug": "rc-inferences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "The passage most strongly supports which one of the following statements?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Applying the correlative-rights rule requires identifying a group of owners whose membership modern hydrology does not sharply determine."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Nineteenth-century courts adopted the rule of absolute ownership because they believed that one landowner's pumping could not affect a neighbour's well."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "An administrative permitting regime would allocate water more accurately than courts do when the effects of a withdrawal unfold over many decades."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The boundary problem described in the third paragraph troubles reasonable-use jurisdictions less than it troubles correlative-rights jurisdictions."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Legal doctrine ought not to rest on scientific findings that later research may revise."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "An inference answer must be something the passage *forces*, built by joining two of its statements. Build the chain before looking at the choices.\n\nFrom the second paragraph: the correlative-rights rule \"treat[s] all overlying owners as sharers in a common supply and proportion[s] withdrawals when the aquifer cannot satisfy everyone.\" To proportion withdrawals among sharers, you must know who the sharers are.\n\nFrom the third paragraph: \"Each rule presupposes that an aquifer's boundaries can be drawn, so that the set of owners entitled to share is determinable,\" and modern hydrology \"describes instead a continuum\" — aquifers leak into one another across semipermeable layers. \"The legal categories require edges; the physical system supplies gradients.\"\n\nJoin them: the rule needs a determinate set of overlying owners; hydrology does not deliver the sharp boundary that would fix that set. That is choice (A), stated at exactly the strength the passage licenses — hydrology fails to determine the membership *sharply*, which is weaker than saying it tells us nothing.\n\nHow to check: for each remaining choice, try to name the sentence that would have to be in the passage for it to follow, and see whether that sentence is there. For (D) the passage says the opposite in one word — \"**Each** rule presupposes\" — which is the fastest disqualification on the page. (C) runs against \"uncertainties that widen precisely as the time scale lengthens.\" (B) and (E) require sentences about judicial motive and about legal method that the passage never supplies.",
+  "distractorRationale": {
+    "b": "This converts the courts' confessed ignorance into a positive belief. The passage says the rule \"was not a judgment about hydrology so much as a confession of ignorance about it\" — courts did not know how groundwater moved, which is different from believing that pumping had no effect on neighbours. The passage also notes the neighbour with a dry well, so the effect itself was evidently recognised.",
+    "c": "The passage argues the reverse for exactly this case. The models a permitting regime relies on \"carry uncertainties that widen precisely as the time scale lengthens\", and the long-delayed depletion of a stream by a distant pump is the passage's own example of a long horizon. Nothing in the passage claims greater accuracy for the agency; the author says only the institution absorbing the indeterminacy changes.",
+    "d": "The third paragraph begins its indictment with \"Each rule presupposes that an aquifer's boundaries can be drawn\", so the boundary problem is stated to apply to both doctrines alike. The choice is tempting because proportioning shares feels more boundary-dependent than restraining waste, but the passage explicitly refuses that distinction.",
+    "e": "This generalises a specific criticism into a sweeping rule of legal method that the passage never endorses. The author's complaint is not that hydrology might be revised but that its current, settled picture of gradients cannot supply the edges the doctrines require; and the final paragraph accepts that models will be used, asking only what follows from their uncertainty."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": {
+    "id": "lsat-stim-groundwater-doctrine-001",
+    "version": 1
+  },
+  "accessibilityText": "An inference question on the four-paragraph passage about groundwater law, asking which statement the passage most strongly supports, with five answer choices labelled A through E. No figures, tables or mathematical notation.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "lsat-topup-author",
+    "aiAssisted": true,
+    "notes": "Original question written against an original passage in this bank. Not adapted from any LSAC item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "lsat-topup-author",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Paragraph 3: 'Each rule presupposes that an aquifer's boundaries can be drawn, so that the set of owners entitled to share is determinable', while hydrology supplies a continuum - so the correlative-rights group of sharers is not sharply determined. (b) misstates paragraph 1 (a 'confession of ignorance', not a belief about non-effect); (c) is contradicted since model uncertainty 'widen[s] precisely as the time scale lengthens'; (d) is ruled out by 'Each rule'; (e) is a general prescription the passage never makes.",
+      "solvedBy": "lsat-round2-reviewer"
+    },
+    "notes": "Key joins the paragraph 2 definition of correlative rights with the paragraph 3 sentence about determinable sets of owners. (D) was the closest competitor and is defeated by the word 'Each'; (C) is defeated by 'widen precisely as the time scale lengthens'. Awaiting blind independent solve.",
+    "reviewer": "lsat-round2-reviewer"
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "reading-comprehension",
+    "inference",
+    "law"
+  ]
+}

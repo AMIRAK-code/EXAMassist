@@ -1,0 +1,85 @@
+{
+  "id": "lsat-rc-language-organization-106",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "rc",
+  "domainSlug": "reading-comprehension",
+  "skillSlug": "rc-organization",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which one of the following most accurately describes the organization of the passage?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "A long-running controversy is described, the evidence on each side is weighed, and the author declares one side the winner."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "A proposal is defended against a series of objections, each of which is shown to rest on a misunderstanding of the proposal."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Two rival methods are compared in detail, and the older is shown to remain preferable for certain restricted purposes."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "A method is described, the assumption behind it is shown to be false and its failure documented, the discipline's revised approach is set out, and a remaining objection is granted force but denied its conclusion."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "An analogy is introduced, extended to a new domain, and then used to support a general claim about how scientific methods should be assessed."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Structure questions are best answered by writing a one-verb summary of each paragraph *before* reading the choices, then finding the choice whose clauses match in the same order.\n\n1. **Describes** the mid-century method: a two-hundred-meaning list, an assumed constant replacement rate, a proportion of retained cognates converted into elapsed time.\n2. **Refutes its assumption and reports the test results**: \"The analogy was seductive and, as analogies go, badly chosen\", because decay is indifferent to its surroundings and vocabulary replacement is not; testing against independently documented dates produced errors that \"tracked the social histories of the languages concerned.\"\n3. **Sets out the field's revised approach**: rates estimated from the data, allowed to vary by meaning and by branch, with a distribution of dates reported rather than a single number.\n4. **Grants an objection force but rejects its conclusion**: the sceptics' point \"has force, but it is an argument for reporting uncertainty honestly, not for abandoning the enterprise.\"\n\nChoice (D) has exactly those four clauses in exactly that order.\n\nHow to check: test the clauses that are easiest to falsify. The fourth paragraph opens with \"Sceptics answer\" and concedes the objection \"has force\", which immediately kills (B), since an objection with force is not one resting on a misunderstanding. The second paragraph rejects the decay analogy, which kills (E), since the analogy is dismantled rather than extended. If a choice misdescribes even one paragraph, it is wrong however well it captures the others.",
+  "distractorRationale": {
+    "a": "The passage does not adjudicate between two camps. The author agrees with the sceptics that the choice of meanings and of cognates rests on unsupplied judgments, and disagrees only about what follows, so no side is declared the winner and no weighing of rival bodies of evidence takes place.",
+    "b": "Only one objection is considered, and the author concedes that it 'has force' rather than tracing it to a misunderstanding. The response is to accept the criticism and deny the inference drawn from it, which is a different rhetorical move from showing an objection to be confused.",
+    "c": "The older method is not preserved for restricted purposes; it is described as having collapsed when tested against independently documented dates. There is also no detailed comparison of the two approaches, since the mid-century method is abandoned before the current one is introduced.",
+    "e": "The decay analogy is introduced only to be rejected as 'badly chosen', not extended. The passage's closing point about wide intervals being more defensible than point estimates is drawn from the history of this particular method, not derived from the analogy."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": {
+    "id": "lsat-stim-language-dating-002",
+    "version": 1
+  },
+  "accessibilityText": "An organization question on the four-paragraph passage about dating the separation of related languages, with five answer choices labelled A through E, each describing a sequence of moves the passage might make. No figures, tables or mathematical notation.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "lsat-topup-author",
+    "aiAssisted": true,
+    "notes": "Original question written against an original passage in this bank. Not adapted from any LSAC item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "lsat-topup-author",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Paragraph 1 describes the glottochronological method, paragraph 2 shows the constant-rate assumption false and documents the failed tests, paragraph 3 sets out the field's revised approach, paragraph 4 grants the sceptics' objection force but denies its conclusion - exactly (d). (a), (b), (c) and (e) each misdescribe at least two of the four paragraphs.",
+      "solvedBy": "lsat-round2-reviewer"
+    },
+    "notes": "Each choice was tested clause by clause against the four paragraphs. (B) fails on the concession that the objection has force; (E) fails because the analogy is rejected rather than extended; (A) and (C) misdescribe the passage's treatment of the sceptics and of the older method respectively. Awaiting blind independent solve.",
+    "reviewer": "lsat-round2-reviewer"
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "reading-comprehension",
+    "organization",
+    "linguistics"
+  ]
+}

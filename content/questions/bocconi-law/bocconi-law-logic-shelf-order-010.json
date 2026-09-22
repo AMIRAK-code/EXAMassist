@@ -1,0 +1,72 @@
+{
+  "id": "bocconi-law-logic-shelf-order-010",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-deductive-conditions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Four bound volumes — Corpus, Digest, Ephemeris and Forum — stand side by side on one shelf, in positions 1 to 4 counted from the left. Their arrangement satisfies both of the following conditions:\n\n- Digest stands somewhere to the left of Forum.\n- Corpus stands immediately to the right of Ephemeris.\n\nIf Ephemeris does not stand in position 1, which of the following must be true?",
+  "instructionsMd": "This question has only three answer options. On the real test a wrong answer to a three-option critical-thinking item costs 0.33 points instead of 0.2, so an unaided guess is worth less here than elsewhere.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Digest stands in position 1."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Ephemeris stands immediately to the right of Digest."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Corpus stands in position 4."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Treat Ephemeris–Corpus as a single block **EC** two positions wide, because Corpus is immediately to the right of Ephemeris. The block can sit at positions 1–2, 2–3 or 3–4, and Digest and Forum fill whatever is left, with Digest to the left of Forum.\n\n- Block at 1–2: E, C, then Digest and Forum in 3 and 4 — *Ephemeris, Corpus, Digest, Forum.*\n- Block at 2–3: Digest and Forum take 1 and 4 — *Digest, Ephemeris, Corpus, Forum.*\n- Block at 3–4: Digest and Forum take 1 and 2 — *Digest, Forum, Ephemeris, Corpus.*\n\nThe extra condition in the question — Ephemeris is not in position 1 — rules out the first arrangement only. Two arrangements survive, and Digest is in position 1 in both. So option C must be true.\n\n**How to check.** Confirm that each surviving arrangement really obeys both original conditions (Digest left of Forum; Corpus immediately right of Ephemeris) and the added one, then read each option off both arrangements. Anything true in only one of the two is a distractor, not an answer.",
+  "distractorRationale": {
+    "c": "True in the arrangement Digest, Forum, Ephemeris, Corpus but false in Digest, Ephemeris, Corpus, Forum, where Forum is last. This is the error of pushing the Ephemeris–Corpus block as far right as it will go and treating that single arrangement as forced.",
+    "b": "True in the arrangement Digest, Ephemeris, Corpus, Forum but false in Digest, Forum, Ephemeris, Corpus. It reads the condition about Corpus and Ephemeris as though it also fixed what stands to the left of Ephemeris, which the conditions never say."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "A deductive reasoning question with three answer options. Four volumes named Corpus, Digest, Ephemeris and Forum stand in positions 1 to 4 from the left. Digest is somewhere left of Forum; Corpus is immediately right of Ephemeris; and, for this question, Ephemeris is not in position 1. The question asks which of three statements must be true.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-topup-author",
+    "aiAssisted": true,
+    "notes": "Original ordering item. Written with exactly three options because Bocconi states that some critical-thinking items carry only three, and the heavier 0.33 penalty attaches to those."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-topup-author",
+    "reviewer": "bocconi-law-round2-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-law-round2-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "With Ephemeris not in position 1, the EC block sits at 2-3 or 3-4, leaving D-E-C-F and D-F-E-C. Digest is position 1 in both; Corpus is 4 only in the first arrangement and E follows D immediately only in the first."
+    },
+    "notes": "Author solved by enumerating the three block positions; the added condition leaves two arrangements and only 'Digest stands in position 1' holds in both. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "ordering",
+    "must-be-true",
+    "three-option",
+    "no-calculator"
+  ]
+}

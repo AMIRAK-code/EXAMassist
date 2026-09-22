@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-law-logic-reading-rooms-012",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-deductive-conditions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Four clerks — Ilari, Neri, Ostuni and Pavan — are each assigned to exactly one of two reading rooms, North and South. At least one clerk is assigned to each room. The assignment satisfies all of the following conditions:\n\n- Ilari and Neri are not assigned to the same room.\n- If Ostuni is assigned to North, then Pavan is assigned to South.\n- Neri is assigned to South.\n\nWhich of the following must be true?",
+  "instructionsMd": "Exactly one of the four statements holds in every assignment that satisfies the conditions.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Exactly two clerks are assigned to North."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Pavan is assigned to South."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Ilari is assigned to North."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Ostuni is assigned to South."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Chain the conditions rather than guessing. Neri is in South, and Ilari must not share a room with Neri, so **Ilari is in North**. Nothing else can move that, which already settles option A.\n\nTo confirm that nothing else is settled, split on Ostuni:\n\n- **Ostuni in North.** The conditional then forces Pavan into South. Assignment: North = Ilari, Ostuni; South = Neri, Pavan.\n- **Ostuni in South.** The conditional's antecedent is false, so it imposes nothing and Pavan is free. Assignment 2: North = Ilari; South = Neri, Ostuni, Pavan. Assignment 3: North = Ilari, Pavan; South = Neri, Ostuni.\n\nAll three satisfy the \"at least one clerk per room\" rule. Ilari is in North in every one; each of the other three statements fails in at least one.\n\n**How to check.** A conditional only bites when its antecedent is true. Whenever you see \"if P then Q\", test both P true and P false — if the P-false branch produces a second valid assignment, then Q is not forced, and any option asserting Q is a distractor.",
+  "distractorRationale": {
+    "d": "Fails in the assignment North = Ilari, Ostuni; South = Neri, Pavan. The conditional says what follows *if* Ostuni is in North; it does not forbid Ostuni from being there. Reading a conditional as a prohibition is the error.",
+    "b": "Fails in the assignment North = Ilari, Pavan; South = Neri, Ostuni. Pavan is forced into South only on the branch where Ostuni is in North. Applying the consequent of a conditional whose antecedent is false is the error.",
+    "a": "Fails in the assignment North = Ilari; South = Neri, Ostuni, Pavan. The rule is that each room gets at least one clerk, not that the four are split evenly; assuming a two-two split is an assumption the conditions never make."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "A deductive reasoning question. Four clerks named Ilari, Neri, Ostuni and Pavan are each assigned to one of two reading rooms, North or South, with at least one clerk in each room. Ilari and Neri are in different rooms; if Ostuni is in North then Pavan is in South; Neri is in South. The question asks which of four statements must be true.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-topup-author",
+    "aiAssisted": true,
+    "notes": "Original grouping item testing conditional reasoning, written to the published syllabus entry on deductive reasoning from initial conditions. Names and scenario are invented."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-topup-author",
+    "reviewer": "bocconi-law-round2-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-law-round2-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Neri is South, so Ilari is North in every assignment. Ostuni/Pavan admit three combinations (O-North/P-South, O-South/P-North, O-South/P-South), which falsify (b), (c) and (d) respectively."
+    },
+    "notes": "Author enumerated all three admissible assignments and named the one that falsifies each distractor. Only 'Ilari is assigned to North' survives all three. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "grouping",
+    "conditionals",
+    "must-be-true",
+    "no-calculator"
+  ]
+}
