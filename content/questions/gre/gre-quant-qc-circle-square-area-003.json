@@ -1,0 +1,77 @@
+{
+  "id": "gre-quant-qc-circle-square-area-003",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-geometry",
+  "skillSlug": "geom-circles",
+  "subskillSlug": null,
+  "responseType": "quantitative_comparison",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Square $S$ has a perimeter of $24$. Circle $C$ has a circumference of $24$.\n\n| Quantity A | Quantity B |\n| --- | --- |\n| The area of square $S$ | The area of circle $C$ |",
+  "instructionsMd": "Compare Quantity A and Quantity B and select the one statement that is true.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Quantity A is greater."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Quantity B is greater."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The two quantities are equal."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The relationship cannot be determined from the information given."
+    }
+  ],
+  "answerKey": {
+    "type": "quantitative_comparison",
+    "choice": "B"
+  },
+  "explanationMd": "Find each area from the boundary length it is given.\n\n**The square.** A square's perimeter is four times its side, so\n\n$$4s = 24 \\;\\Rightarrow\\; s = 6, \\qquad \\text{area} = s^{2} = 36.$$\n\n**The circle.** A circle's circumference is $2\\pi r$, so\n\n$$2\\pi r = 24 \\;\\Rightarrow\\; r = \\frac{12}{\\pi}, \\qquad \\text{area} = \\pi r^{2} = \\pi \\cdot \\frac{144}{\\pi^{2}} = \\frac{144}{\\pi}.$$\n\nNow compare $36$ with $\\dfrac{144}{\\pi}$. Rather than reaching for a decimal, note that $\\dfrac{144}{\\pi} > 36$ exactly when $144 > 36\\pi$, that is when $\\pi < 4$. Since $\\pi \\approx 3.14$, the circle's area is larger. Quantity B is greater.\n\nAs a numerical check, $\\dfrac{144}{\\pi} \\approx 45.8$, comfortably more than $36$.\n\nThis is a specific case of a general fact worth remembering for the GRE: among all plane figures with the same perimeter, the circle encloses the greatest area. Once you recognise that, you can answer this item without computing either area.",
+  "distractorRationale": {
+    "a": "Chosen by forgetting to square the radius: after correctly finding $r = 12/\\pi \\approx 3.82$, computing the area as $\\pi r \\approx 12$ instead of $\\pi r^{2} \\approx 45.8$ makes the circle look far smaller than the square's $36$. The area of a circle is $\\pi r^{2}$; $\\pi r$ is half the circumference, not an area.",
+    "c": "Chosen by assuming that equal boundary lengths must enclose equal areas. Perimeter and area are not proportional to each other across different shapes; only figures of the same shape scale together.",
+    "d": "Chosen by treating $\\pi$ as an unknown quantity that leaves the comparison open. Both figures are fully determined by the information given, so both areas are specific numbers ($36$ and $144/\\pi$) and the relationship is fixed."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "Square S has perimeter 24. Circle C has circumference 24. Quantity A is the area of square S. Quantity B is the area of circle C. Decide which quantity is greater, whether they are equal, or whether the relationship cannot be determined.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gre-author",
+    "aiAssisted": true,
+    "notes": "Original item. The shared boundary length of 24 was chosen by the author so the square's side is a whole number; not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gre-author",
+    "reviewer": "gre-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "gre-independent-reviewer",
+      "solvedAnswer": "B",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Square side 24/4 = 6 gives area 36; circle radius 12/pi gives area pi*(12/pi)^2 = 144/pi = 45.84, so Quantity B is greater."
+    },
+    "notes": "Author solved as B: square area 36, circle area 144/pi which is about 45.8. Awaiting blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "quantitative-comparison",
+    "circles",
+    "area",
+    "isoperimetric"
+  ]
+}

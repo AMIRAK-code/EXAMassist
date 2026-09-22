@@ -1,0 +1,79 @@
+{
+  "id": "digital-sat-rw-inferences-soil-crust-002",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "rw-module-1",
+  "domainSlug": "information-and-ideas",
+  "skillSlug": "inferences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which choice most logically completes the text?\n\nOkonkwo's results suggest that if vehicle traffic were to destroy the soil crusts across a large area of the basin, then rainfall on that ground would ______",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "run off more slowly than it did while the crusts were intact."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "become less frequent than it had been while the crusts were intact."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "soak in less deeply than it did while the crusts were intact."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "kill the shrubs growing between the crusted patches within a single season."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "An inference item asks for the conclusion the text most directly supports — nothing larger.\n\nThe experiment compared intact crusts with scraped ones. Scraping is a physical removal of the crust, which is exactly what heavy vehicle traffic would do. In the scraped plots water reached 6.1 cm rather than 9.4 cm, so removing crusts over a wide area should reduce penetration depth in the same way. That is choice A.\n\nCheck an inference by asking: could I point to the sentence that makes this almost certain? For A the answer is the results sentence. For every other choice there is no such sentence — which is the fastest way to eliminate them.",
+  "distractorRationale": {
+    "b": "This confuses how much rain falls with what happens to rain after it lands. The study measured penetration depth only; nothing in the text connects soil crusts to rainfall frequency.",
+    "a": "This reverses the mechanism. Okonkwo says the crust's ridged surface is what slows runoff, so removing the crust should make runoff faster, not slower.",
+    "d": "This is a specific ecological prediction the text never supports. The passage measures water depth, says nothing about shrub survival, and gives no timeframe such as a single season."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": {
+    "id": "digital-sat-stim-soil-crust-001",
+    "version": 1
+  },
+  "accessibilityText": "Choose the option that most logically completes the sentence: Okonkwo's results suggest that if vehicle traffic destroyed the soil crusts across a large area, rainfall on that ground would blank.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "digital-sat-author",
+    "aiAssisted": true,
+    "notes": "Original item built on the original soil-crust passage."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "digital-sat-author",
+    "reviewer": "digital-sat-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "digital-sat-independent-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Scraped plots took water to 6.1 cm versus 9.4 cm with intact crusts, so destroying the crusts means shallower penetration. C reverses the runoff logic (crusts slow runoff), B confuses infiltration with rainfall frequency, and D is an unsupported leap about shrub mortality."
+    },
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "reading",
+    "inference",
+    "science-passage"
+  ]
+}

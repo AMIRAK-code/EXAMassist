@@ -1,0 +1,82 @@
+{
+  "id": "gmat-ps-ratio-mixture-001",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-applied-arithmetic-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A juice blend is made by mixing concentrate and water in the ratio $2:7$ by volume. A distributor holds $540$ litres of the blend and wants the ratio of concentrate to water to become $2:5$ by adding concentrate only. How many litres of concentrate must be added?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$48$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$96$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$120$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$160$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$168$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The quantity that does not change is the water, so make that the anchor.\n\nThe blend is in the ratio $2:7$, which is $9$ equal parts. With $540$ litres in total, each part is $540 \\div 9 = 60$ litres, so the blend holds\n\n$$\\text{concentrate} = 2 \\times 60 = 120 \\text{ litres}, \\qquad \\text{water} = 7 \\times 60 = 420 \\text{ litres}.$$\n\nOnly concentrate is added, so the water stays at $420$ litres. In the new blend the ratio of concentrate to water is $2:5$, so\n\n$$\\frac{\\text{new concentrate}}{420} = \\frac{2}{5} \\quad\\Longrightarrow\\quad \\text{new concentrate} = 420 \\times \\frac{2}{5} = 168 \\text{ litres}.$$\n\nThe blend already contains $120$ litres of concentrate, so the amount added is\n\n$$168 - 120 = 48 \\text{ litres}.$$\n\nCheck the answer: after adding, the mixture is $168$ litres of concentrate to $420$ litres of water, and dividing both by $84$ gives $2:5$ exactly. Two habits make this type quick: convert a ratio into equal parts immediately, and identify which component is held fixed before writing any equation.",
+  "distractorRationale": {
+    "b": "This comes from applying the new ratio to the original total instead of to the water: $\\frac{2}{5} \\times 540 = 216$, then $216 - 120 = 96$. The $2:5$ in the question is concentrate to water, not concentrate to total.",
+    "c": "This is the amount of concentrate the blend already contains, not the amount that must be added. It answers a question the stem did not ask.",
+    "d": "This comes from reading $2:5$ as a part-to-whole ratio and solving $\\frac{120+x}{540+x} = \\frac{2}{5}$, which gives $x = 160$. The stem gives concentrate to water, so the denominator must be the unchanged $420$ litres of water.",
+    "e": "This is the total amount of concentrate the new blend must contain, not the amount added. The $120$ litres already present still has to be subtracted."
+  },
+  "estimatedSeconds": 135,
+  "stimulusRef": null,
+  "accessibilityText": "A juice blend mixes concentrate and water in the ratio two to seven by volume. There are 540 litres of this blend. Concentrate alone is added until the ratio of concentrate to water becomes two to five. Find how many litres of concentrate are added.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-author",
+    "aiAssisted": true,
+    "notes": "Original item. Numbers chosen so that each named error produces a distinct whole-number value."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-author",
+    "reviewer": "gmat-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "gmat-independent-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "540 L at 2:7 gives 120 L concentrate and 420 L water; water is unchanged, so (120+x)/420 = 2/5 gives 120+x = 168, x = 48. E (168) is the final concentrate total, not the amount added, so it is a trap rather than a second correct answer."
+    },
+    "notes": "Author solved the item and checked each distractor against a specific misconception. Awaiting blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "ratio",
+    "mixture",
+    "word-problem"
+  ]
+}

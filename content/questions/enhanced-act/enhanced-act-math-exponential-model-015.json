@@ -1,0 +1,76 @@
+{
+  "id": "enhanced-act-math-exponential-model-015",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "math",
+  "domainSlug": "act-math-modeling",
+  "skillSlug": "act-math-mod-interpreting",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A laboratory models the number of bacteria in a culture with the function\n\n$$N(t) = 800(1.15)^{t}$$\n\nwhere $t$ is the number of hours after noon. Which of the following statements best describes what this model says about the culture?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "At noon there were $1.15$ bacteria, and the number becomes $800$ times as large each hour."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "At noon there were $800$ bacteria, and the number increases by $115\\%$ each hour."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "At noon there were $800$ bacteria, and the number increases by $15\\%$ each hour."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "At noon there were $800$ bacteria, and the number increases by $15$ bacteria each hour."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Read an exponential model $N(t) = a\\,b^{t}$ one constant at a time.\n\n**The constant $a = 800$.** Substitute $t = 0$: $N(0) = 800(1.15)^{0} = 800 \\times 1 = 800$. Since $t$ counts hours after noon, $t = 0$ **is** noon, so the culture started at $800$ bacteria.\n\n**The base $b = 1.15$.** Each time $t$ increases by $1$, the model multiplies by another factor of $1.15$. Writing $1.15 = 1 + 0.15$ separates the whole that is kept ($1$) from the part that is added ($0.15 = 15\\%$), so the population grows by $15\\%$ per hour.\n\nCheck with numbers: $N(1) = 800(1.15) = 920$, an increase of $120$ over $800$, and $\\frac{120}{800} = 0.15 = 15\\%$ ✓. Then $N(2) = 920(1.15) = 1058$, an increase of $138$ — a **larger** jump than the first hour. That rising increase is the signature of a percent (exponential) growth model rather than a constant one.",
+  "distractorRationale": {
+    "d": "Describes linear growth, which would have the form $N(t) = 800 + 15t$. In the given model the $1.15$ is a multiplier applied to a growing amount, so the increase gets bigger each hour ($120$ in the first hour, $138$ in the second) rather than staying at a fixed $15$.",
+    "b": "Mistakes the growth **factor** $1.15$ for the growth **rate**. A $115\\%$ increase each hour would mean multiplying by $2.15$; the rate is the part above $1$, that is $0.15$, or $15\\%$.",
+    "a": "Swaps the roles of the two constants, treating the base as the starting amount and the starting amount as the multiplier. In $a\\,b^{t}$ the constant $a$ is the value at $t = 0$ and $b$ is the per-hour factor."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "A bacteria population is modelled by N of t equals eight hundred times one point one five raised to the power t, where t is hours after noon. Choose the statement that best describes what the model says.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Not derived from, and not a paraphrase of, any ACT-published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "enhanced-act-author",
+    "reviewer": "enhanced-act-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "enhanced-act-independent-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "N(0) = 800 gives the noon count, and the base 1.15 = 1 + 0.15 means a 15% increase per hour (not a 115% increase, which would be a base of 2.15)."
+    },
+    "notes": "Author solved the item and attempted to defend each distractor before keying it. Awaiting an independent blind solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "modeling",
+    "exponential-growth",
+    "interpretation"
+  ]
+}

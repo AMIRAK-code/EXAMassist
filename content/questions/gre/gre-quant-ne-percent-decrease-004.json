@@ -1,0 +1,62 @@
+{
+  "id": "gre-quant-ne-percent-decrease-004",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-arithmetic",
+  "skillSlug": "arith-percent",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A shop reduced the price of a jacket by $20$ percent. In a later clearance sale, it reduced that already-reduced price by a further $25$ percent.\n\nThe final clearance price is what percent of the original price?\n\nGive your answer as a percent, without the percent sign.",
+  "instructionsMd": "Enter your answer in the box. Equivalent forms of the same value are accepted.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 60
+      }
+    ],
+    "acceptedStrings": [
+      "60",
+      "60.0",
+      "60%"
+    ],
+    "unit": "percent"
+  },
+  "explanationMd": "Successive percent changes multiply; they do not add. Work with multipliers.\n\nA $20$ percent reduction leaves $80$ percent of the price, a multiplier of $0.80$. A further $25$ percent reduction leaves $75$ percent of whatever it is applied to, a multiplier of $0.75$. Applying them in turn:\n\n$$0.80 \\times 0.75 = 0.60,$$\n\nso the final price is $60$ percent of the original.\n\n**Check with a concrete number.** Let the original price be $\\$100$. After the first cut it is $\\$80$. Twenty-five percent of $\\$80$ is $\\$20$, so the clearance price is $\\$60$. That is $60$ percent of $\\$100$, confirming the multiplier calculation. Choosing $\\$100$ as the starting value is the fastest way to check any chain of percent changes.\n\nNotice why adding is wrong: $20 + 25 = 45$, which would give a final price of $55$ percent. The second discount is taken on the smaller price, not on the original, so the combined discount is only $40$ percent.",
+  "distractorRationale": {},
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A jacket's price is reduced by 20 percent, and then the reduced price is reduced by a further 25 percent. Find the final price as a percent of the original price, and type the number without a percent sign.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gre-author",
+    "aiAssisted": true,
+    "notes": "Original item. The 20 and 25 percent figures were chosen by the author so the combined multiplier is exactly 0.6; not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gre-author",
+    "reviewer": "gre-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "gre-independent-reviewer",
+      "solvedAnswer": "60",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Successive multipliers 0.80 and 0.75 give 0.60 of the original price, i.e. 60 percent."
+    },
+    "notes": "Author solved as 60 by multiplier (0.8 x 0.75) and verified with a $100 starting price. Awaiting blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "numeric-entry",
+    "percent",
+    "successive-change"
+  ]
+}

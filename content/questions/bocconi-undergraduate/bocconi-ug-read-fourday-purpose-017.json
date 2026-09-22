@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-ug-read-fourday-purpose-017",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-reading-comprehension",
+  "skillSlug": "reading-implicit-meaning",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The author mentions that the participating firms spent months redesigning meetings and approval chains in order to",
+  "instructionsMd": "Answer on the basis of the passage only.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "show that moving to a shorter week requires very little preparation."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "identify a change that could by itself account for the results attributed to the shorter week."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "explain why service firms volunteered for the trials more often than manufacturers did."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "argue that the trials should have been measured over a full year rather than six months."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "This is a question about the **function** of a detail, not its content. The sentence itself supplies the answer in its final clause: the reorganisation was 'a reorganisation that might well have raised productivity on its own'.\n\nThat clause names an alternative cause. If tidying up meetings and approval chains could have lifted productivity by itself, then a productivity gain observed after the change cannot be credited to the shorter week alone. The detail is therefore presented as a **confounding variable**, which is exactly what option C describes, and it feeds directly into the thesis stated in the next paragraph.\n\n**Technique.** When a question asks why an author mentions something, read the sentence *after* the detail as well as the detail itself. Authors usually state the point of an example immediately after giving it. Here the following paragraph begins 'None of this shows that the four-day week fails. It shows that the published results cannot separate...' — a direct statement of the purpose the detail serves.",
+  "distractorRationale": {
+    "a": "This reverses the passage. The point of 'spent months' is that the preparation was substantial, not negligible. The author uses the scale of the preparation to make the confounding problem serious; if preparation had been trivial it could not plausibly explain the results.",
+    "c": "The service-sector skew is a separate criticism, supported by a different detail — that a knowledge worker's week contains more slack than a production shift. The redesign of meetings and approval chains is offered about the trial firms generally and is never used to explain who volunteered.",
+    "d": "The recommendation about a full year appears in the next paragraph as part of a *better study design*, alongside comparing teams within one firm. It is a proposed remedy, not the purpose of mentioning the redesign, which is to expose the flaw that the remedy would fix."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": {
+    "id": "bocconi-ug-stim-fourday-week-002",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying prose passage on trials of the four-day working week. It asks why the author mentions that participating firms redesigned their meetings and approval processes before shortening the week. The options complete the sentence stem.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-author",
+    "aiAssisted": true,
+    "notes": "Original item written against an original passage. Each distractor is tied to a different, genuine element of the passage so that none is dismissible as off-topic noise."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-author",
+    "reviewer": "bocconi-undergraduate-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-independent-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The redesign is described as 'a reorganisation that might well have raised productivity on its own', i.e. a confound that could alone explain the results. A reverses the point, B attributes the sentence to the services remark, and D belongs to the separate one-year-measurement recommendation."
+    },
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "passage-fourday",
+    "function-of-detail"
+  ]
+}

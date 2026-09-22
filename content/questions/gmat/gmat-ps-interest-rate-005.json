@@ -1,0 +1,82 @@
+{
+  "id": "gmat-ps-interest-rate-005",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-elementary-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A deposit of $\\$8{,}000$ earns simple annual interest at a constant rate, and after $3$ years the balance is $\\$9{,}440$. If the same $\\$8{,}000$ had instead earned interest at that same annual rate compounded annually, what would the balance have been after $2$ years?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\$9{,}440.00$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\$8{,}988.80$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\$9{,}528.13$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\$11{,}139.20$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\$8{,}960.00$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "This is two steps: first solve for the rate using the simple-interest information, then apply it as compound interest.\n\n**Step 1 — find the annual rate.** With simple interest the balance after $t$ years is $P(1 + rt)$, so\n\n$$8000(1 + 3r) = 9440.$$\n\nDivide by $8000$: $1 + 3r = 1.18$, so $3r = 0.18$ and $r = 0.06$. The rate is $6\\%$ per year. (Equivalently: the total interest is $9440 - 8000 = 1440$ over three years, which is $480$ per year, and $480 / 8000 = 6\\%$.)\n\n**Step 2 — compound for two years.**\n\n$$8000 \\times (1.06)^2 = 8000 \\times 1.1236 = 8988.80.$$\n\nCheck the answer year by year: after one year the balance is $8000 + 480 = 8480$; the second year's interest is $6\\%$ of $8480$, which is $508.80$; so the balance is $8480 + 508.80 = 8988.80$. That matches. Note that the compound figure must exceed the two-year simple figure of $\\$8{,}960$ by exactly the interest earned on the first year's interest, $6\\%$ of $480 = \\$28.80$ — a useful sanity check.",
+  "distractorRationale": {
+    "e": "This is the two-year *simple*-interest balance, $8000 + 2 \\times 480 = 8960$. It ignores the second year's interest on the first year's interest, which is the whole point of compounding.",
+    "a": "This is the three-year simple-interest balance quoted in the stem. It is the input to the problem, not the answer, and it is for the wrong number of years and the wrong interest convention.",
+    "c": "This is $8000 \\times (1.06)^3 = 9528.13$, compounding for three years rather than the two the question asks for. The three years belongs to the simple-interest sentence only.",
+    "d": "This treats the whole $\\$1{,}440$ of interest as one year's worth, giving a rate of $18\\%$, and then compounds: $8000 \\times (1.18)^2 = 11139.20$. The $\\$1{,}440$ accumulated over three years, so the annual rate is $6\\%$."
+  },
+  "estimatedSeconds": 145,
+  "stimulusRef": null,
+  "accessibilityText": "Eight thousand dollars earns simple annual interest and grows to nine thousand four hundred forty dollars after three years. Find what the balance would be after two years if the same annual rate were compounded annually instead.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-author",
+    "aiAssisted": true,
+    "notes": "Original item. Figures chosen so the rate is an exact 6 percent and every distractor is an exactly computable alternative, avoiding rounding ambiguity."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-author",
+    "reviewer": "gmat-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "gmat-independent-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Simple interest: 8000*3r = 1440, so r = 6%. Compounded 2 years: 8000*(1.06)^2 = 8000*1.1236 = $8,988.80. A is 8000*1.06*... no, A=8960 is 2 years of simple interest, so it is a distractor, not defensible."
+    },
+    "notes": "Author verified 1.06 squared equals 1.1236 and the year-by-year check. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "interest",
+    "percent",
+    "linear-equation"
+  ]
+}

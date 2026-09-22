@@ -1,0 +1,82 @@
+{
+  "id": "gmat-ps-percent-successive-002",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-arithmetic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A retailer raises the price of a jacket by $20\\%$. Later, during a clearance, the retailer reduces the raised price by $25\\%$. The clearance price is $\\$135$. What was the price of the jacket before the increase?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\$121.50$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\$112.50$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\$168.75$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\$150.00$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\$180.00$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Successive percent changes multiply. Let $P$ be the original price.\n\nA $20\\%$ increase multiplies by $1.20$. A $25\\%$ reduction multiplies by $0.75$. So\n\n$$P \\times 1.20 \\times 0.75 = 135.$$\n\nSince $1.20 \\times 0.75 = 0.90$, this is\n\n$$0.90P = 135 \\quad\\Longrightarrow\\quad P = \\frac{135}{0.90} = 150.$$\n\nCheck by working forward: $150 \\times 1.20 = 180$, and $180$ reduced by $25\\%$ is $180 - 45 = 135$. That matches the stem, so $\\$150$ is correct.\n\nTwo things worth remembering. First, percent changes are never added: a $20\\%$ rise followed by a $25\\%$ fall is not a $5\\%$ fall, it is a $10\\%$ fall, because $1.20 \\times 0.75 = 0.90$. Second, to undo a percent change you divide by its multiplier; you do not apply the same percentage in the opposite direction.",
+  "distractorRationale": {
+    "b": "This is $135 \\div 1.20$, which undoes only the $20\\%$ increase and forgets that a $25\\%$ reduction was also applied. Both multipliers have to be undone.",
+    "a": "This treats $\\$135$ as the original price and works forward instead of backward: $135 \\times 1.20 \\times 0.75 = 121.50$. The stem states that $\\$135$ is the final clearance price.",
+    "c": "This undoes the $25\\%$ reduction by adding $25\\%$ back: $135 \\times 1.25 = 168.75$. Reversing a $25\\%$ cut requires dividing by $0.75$, not multiplying by $1.25$, and the $20\\%$ increase still has to be undone.",
+    "e": "This is $135 \\div 0.75 = 180$, the price just before the clearance reduction. It is a correct intermediate value, but the question asks for the price before the $20\\%$ increase, which requires one further division by $1.20$."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "A jacket's price is increased by twenty percent, then the increased price is reduced by twenty-five percent, giving a final price of 135 dollars. Find the price before the increase.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-author",
+    "aiAssisted": true,
+    "notes": "Original item. Option D is the classic reverse-percentage error and option E is the one-step-short answer; both are distinct values."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-author",
+    "reviewer": "gmat-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "gmat-independent-reviewer",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "x * 1.20 * 0.75 = 0.90x = 135, so x = $150.00. Checked the others: 180 would give 162 clearance, 168.75 gives 151.88 - none matches, so C is uniquely defensible."
+    },
+    "notes": "Author verified the forward check 150 to 180 to 135. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "percent",
+    "successive-change",
+    "reverse-percentage"
+  ]
+}

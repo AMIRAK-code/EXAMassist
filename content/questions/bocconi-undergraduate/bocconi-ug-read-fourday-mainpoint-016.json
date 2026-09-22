@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-ug-read-fourday-mainpoint-016",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-reading-comprehension",
+  "skillSlug": "reading-information-processing",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which of the following best expresses the main point of the passage?",
+  "instructionsMd": "Answer on the basis of the passage only.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The published trials cannot separate the effect of the shorter week from the effect of the preparation that preceded it."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Service firms gain from a four-day week while manufacturers do not."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The evidence from the trials is strong enough that other firms can adopt the shorter week directly."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The four-day week reduces output, so firms should abandon the idea."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The author states the thesis almost verbatim in the third paragraph: 'It shows that the published results cannot separate the effect of the shorter week from the effect of the preparation for it.' Everything else in the passage serves that claim. The three features listed in paragraph two — voluntary participation, a service-sector skew, and months of reorganisation beforehand — are reasons the trials are **confounded**, and the fourth paragraph draws the practical consequence: run your own experiment.\n\n**Technique for a main-point question.** A main point must be (i) a claim the author actually makes, (ii) broad enough to cover the whole passage, and (iii) no stronger than the author's own wording. Test each option against all three conditions. Option B is the only one that survives: options A and D take positions the author explicitly refuses, and option C covers only one sentence of the passage.\n\nNote in particular the sentence 'None of this shows that the four-day week fails.' Any option claiming the four-day week does not work, or claiming it does work, misreads a passage about the quality of evidence as a passage about the policy itself.",
+  "distractorRationale": {
+    "d": "The passage explicitly denies this: 'None of this shows that the four-day week fails.' The author criticises the study design, not the policy, and never claims that output falls. This option confuses 'the evidence is inconclusive' with 'the evidence is negative'.",
+    "b": "The passage mentions that most participating firms were in services and that a knowledge worker's week 'contains more slack' than a production shift, but that is offered as a reason the *sample* is unrepresentative, not as a finding about which firms benefit. The author draws no conclusion about manufacturers at all.",
+    "c": "This is the reading the author sets out to reject. The final paragraph says employers should treat the trial evidence 'as a reason to run their own experiment, not as a result they can import', and that 'what travels between firms is the method, not the finding'."
+  },
+  "estimatedSeconds": 95,
+  "stimulusRef": {
+    "id": "bocconi-ug-stim-fourday-week-002",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying prose passage on trials of the four-day working week. It asks which sentence best states the passage's main point. There is no figure or notation; the options are full sentences.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-author",
+    "aiAssisted": true,
+    "notes": "Original item written against an original passage. Not reproduced or adapted from any published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-author",
+    "reviewer": "bocconi-undergraduate-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-independent-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Paragraph 3 states the thesis directly: the published results 'cannot separate the effect of the shorter week from the effect of the preparation for it'. A and D are both explicitly denied ('None of this shows that the four-day week fails'; 'not as a result they can import'), and C overreads the incidental remark that most participants were service firms."
+    },
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "passage-fourday",
+    "main-point"
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "id": "digital-sat-math-systems-linear-014",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "algebra",
+  "skillSlug": "systems-of-two-linear-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The system of equations below has the solution $(x, y)$.\n\n$$3x + 2y = 31$$\n$$5x - 2y = 25$$\n\nWhat is the value of $x + y$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$2$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$5$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$7$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$12$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The $y$ terms are $+2y$ and $-2y$, so adding the equations eliminates $y$ immediately — no rearranging needed.\n\n$$(3x + 2y) + (5x - 2y) = 31 + 25$$\n$$8x = 56$$\n$$x = 7$$\n\nSubstitute $x = 7$ into the first equation:\n\n$$3(7) + 2y = 31 \\;\\Rightarrow\\; 21 + 2y = 31 \\;\\Rightarrow\\; 2y = 10 \\;\\Rightarrow\\; y = 5$$\n\nSo $x + y = 7 + 5 = 12$.\n\nCheck both equations, not just the one you substituted into: $3(7) + 2(5) = 31$ and $5(7) - 2(5) = 35 - 10 = 25$. Both hold.\n\nNote what the question actually asks for. It wants $x + y$, not $x$ and not $y$ — reread the final line before you choose.",
+  "distractorRationale": {
+    "a": "This is $x - y = 7 - 5$. The signs in the system tempt you into subtracting the values at the end, but the question asks for their sum.",
+    "b": "This is the value of $y$ alone. It is correct as far as it goes, but the question asks for $x + y$, so the substitution step was never completed.",
+    "c": "This is the value of $x$ alone, obtained after the elimination step. Stopping here skips finding $y$ and skips the addition the question asks for."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A system of two equations: three x plus two y equals thirty-one, and five x minus two y equals twenty-five. Find the value of x plus y.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "digital-sat-author",
+    "aiAssisted": true,
+    "notes": "Original item. Numbers chosen so elimination is immediate and x, y, x+y and x-y are four distinct values."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "digital-sat-author",
+    "reviewer": "digital-sat-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "digital-sat-independent-reviewer",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Adding the equations eliminates y: 8x = 56, x = 7; then 21 + 2y = 31 gives y = 5, so x + y = 12. Options B and C are y and x individually."
+    },
+    "notes": "Awaiting blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "algebra",
+    "systems"
+  ]
+}

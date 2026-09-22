@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-analytic-parabola-vertex-007",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-analytic-conics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "What are the coordinates of the vertex of the parabola $y = x^{2} - 6x + 5$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$(3,\\ -4)$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$(0,\\ 5)$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$(5,\\ 0)$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$(-3,\\ 32)$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "For a parabola $y = ax^{2} + bx + c$ the vertex sits on the axis of symmetry $x = -\\frac{b}{2a}$.\n\nHere $a = 1$, $b = -6$ and $c = 5$, so\n\n$$x_{V} = -\\frac{-6}{2 \\times 1} = \\frac{6}{2} = 3$$\n\nSubstitute back to get the $y$-coordinate:\n\n$$y_{V} = 3^{2} - 6(3) + 5 = 9 - 18 + 5 = -4$$\n\nThe vertex is $(3, -4)$.\n\nAn independent way to confirm it, which also guards against a sign slip, is completing the square:\n\n$$y = x^{2} - 6x + 5 = (x - 3)^{2} - 9 + 5 = (x - 3)^{2} - 4$$\n\nThis is the vertex form $y = (x - h)^{2} + k$ with $h = 3$ and $k = -4$, confirming the vertex $(3, -4)$. A third check: the roots are $x = 1$ and $x = 5$, and the vertex of a parabola lies midway between its roots, at $x = \\frac{1 + 5}{2} = 3$.",
+  "distractorRationale": {
+    "d": "This comes from dropping the minus sign in the formula and computing $x = \\frac{b}{2a} = -3$, then substituting to get $9 + 18 + 5 = 32$. The formula is $x = -\\frac{b}{2a}$, and with $b = -6$ the two minus signs cancel to give $+3$.",
+    "b": "This is the $y$-intercept, the point where $x = 0$ and $y = c = 5$. The constant term gives the intercept, not the vertex; the vertex is found from the axis of symmetry.",
+    "c": "This is one of the two $x$-intercepts, since $x^{2} - 6x + 5 = (x-1)(x-5)$ vanishes at $x = 5$. A root lies on the curve but not at its turning point; the vertex is halfway between the two roots, at $x = 3$."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "Find the turning point of the parabola whose equation is y equals x squared minus six x plus five. Each answer option is an ordered pair giving an x-coordinate and then a y-coordinate.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Not reproduced or adapted from any published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-author",
+    "reviewer": "bocconi-undergraduate-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-independent-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Vertex at x=-b/(2a)=6/2=3, y=9-18+5=-4, so (3,-4). (0,5) is the y-intercept and (5,0) a root, neither is the vertex."
+    },
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "parabola",
+    "vertex",
+    "completing-the-square"
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "id": "enhanced-act-math-probability-without-replacement-013",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "math",
+  "domainSlug": "act-math-statistics-and-probability",
+  "skillSlug": "act-math-stat-probability",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A jar contains $4$ red marbles and $6$ blue marbles and nothing else. Two marbles are drawn at random, one after the other, and the first marble is **not** put back before the second is drawn. What is the probability that both marbles are blue?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\dfrac{1}{3}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\dfrac{3}{5}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\dfrac{5}{9}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\dfrac{9}{25}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "For two events in sequence, multiply the probability of the first by the probability of the second **given** that the first happened.\n\nThere are $10$ marbles, $6$ of them blue, so\n\n$$P(\\text{first is blue}) = \\frac{6}{10}$$\n\nIf that marble is blue and is not replaced, $9$ marbles remain and $5$ of them are blue:\n\n$$P(\\text{second is blue}\\mid\\text{first was blue}) = \\frac{5}{9}$$\n\nMultiply:\n\n$$\\frac{6}{10}\\times\\frac{5}{9} = \\frac{30}{90} = \\frac{1}{3}$$\n\nCheck by counting instead. The number of ways to choose $2$ blue marbles from $6$ is $\\binom{6}{2} = 15$; the number of ways to choose any $2$ marbles from $10$ is $\\binom{10}{2} = 45$. And $\\frac{15}{45} = \\frac{1}{3}$ — the same answer by a different route, which is good evidence it is right.",
+  "distractorRationale": {
+    "d": "Treats the draws as if the first marble were replaced: $\\frac{6}{10}\\times\\frac{6}{10} = \\frac{9}{25}$. Because the marble is kept out, both the count of blues and the total drop by one for the second draw.",
+    "c": "This is only the second factor, $\\frac{5}{9}$ — the conditional probability that the second marble is blue given the first was. It still has to be multiplied by the probability of the first draw.",
+    "b": "This is $\\frac{6}{10}$, the probability that just the first marble is blue. It answers a one-draw question rather than the two-draw question asked."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": null,
+  "accessibilityText": "A jar holds four red marbles and six blue marbles. Two marbles are drawn one after the other without replacing the first. Find the probability that both are blue.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Not derived from, and not a paraphrase of, any ACT-published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "enhanced-act-author",
+    "reviewer": "enhanced-act-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "enhanced-act-independent-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "P(both blue) = (6/10)(5/9) = 30/90 = 1/3; option B (9/25) is the with-replacement answer, so the \"not put back\" wording is what decides it."
+    },
+    "notes": "Author solved the item and attempted to defend each distractor before keying it. Awaiting an independent blind solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "probability",
+    "without-replacement",
+    "conditional"
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "id": "enhanced-act-math-arithmetic-sequence-011",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "math",
+  "domainSlug": "act-math-functions",
+  "skillSlug": "act-math-fn-sequences-and-series",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In an arithmetic sequence, the 3rd term is $14$ and the 7th term is $34$. What is the 1st term?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$4$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$5$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$9$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$24$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "In an arithmetic sequence each term differs from the next by a constant $d$. Going from the 3rd term to the 7th term takes **four** steps, not seven, so\n\n$$4d = 34 - 14 = 20 \\quad\\Rightarrow\\quad d = 5$$\n\nNow step backwards twice from the 3rd term to reach the 1st:\n\n$$a_{1} = a_{3} - 2d = 14 - 2(5) = 14 - 10 = 4$$\n\nCheck by writing the sequence out: $4, 9, 14, 19, 24, 29, 34$. The 3rd term is $14$ ✓ and the 7th is $34$ ✓.\n\nThe step that trips people up is counting the gaps. Between term $m$ and term $n$ there are $n - m$ gaps, so $a_{n} = a_{m} + (n-m)d$.",
+  "distractorRationale": {
+    "c": "Comes from stepping back only once from the 3rd term: $14 - 5 = 9$. That gives the 2nd term. Reaching the 1st term from the 3rd requires two steps of $d$.",
+    "d": "This is the average of $14$ and $34$, which is the 5th term — the midpoint of the two given terms, not the beginning of the sequence.",
+    "b": "This is the common difference $d$, computed correctly, but the question asks for the 1st term of the sequence rather than the amount added at each step."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": null,
+  "accessibilityText": "An arithmetic sequence has third term fourteen and seventh term thirty-four. Find its first term.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Not derived from, and not a paraphrase of, any ACT-published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "enhanced-act-author",
+    "reviewer": "enhanced-act-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "enhanced-act-independent-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "a7 - a3 = 34 - 14 = 20 spans 4 common differences, so d = 5; a1 = a3 - 2d = 14 - 10 = 4."
+    },
+    "notes": "Author solved the item and attempted to defend each distractor before keying it. Awaiting an independent blind solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "sequences",
+    "arithmetic-sequence"
+  ]
+}

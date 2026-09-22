@@ -1,0 +1,61 @@
+{
+  "id": "digital-sat-math-nonlinear-functions-spr-019",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "advanced-math",
+  "skillSlug": "nonlinear-functions",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The height above the ground, in feet, of a ball $x$ seconds after it is launched is modelled by $h(x) = -16x^2 + 64x + 5$. What is the maximum height, in feet, that the ball reaches?",
+  "instructionsMd": "Student-produced response. Enter your answer in the box. Do not enter symbols such as a percent sign, comma, or dollar sign. If your answer is a fraction that does not fit in the box, enter its decimal equivalent instead.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 69
+      }
+    ],
+    "acceptedStrings": [
+      "69"
+    ]
+  },
+  "explanationMd": "The model is a quadratic with a negative leading coefficient, so its graph is a downward-opening parabola and the maximum height occurs at the vertex.\n\nThe vertex is at $x = -\\frac{b}{2a}$, with $a = -16$ and $b = 64$:\n\n$$x = -\\frac{64}{2(-16)} = -\\frac{64}{-32} = 2$$\n\nSo the ball is highest $2$ seconds after launch. Substitute $x = 2$ into the model:\n\n$$h(2) = -16(2)^2 + 64(2) + 5 = -64 + 128 + 5 = 69$$\n\nThe maximum height is $69$ feet.\n\nCheck it by testing a second either side of the vertex: $h(1) = -16 + 64 + 5 = 53$ and $h(3) = -144 + 192 + 5 = 53$. Both are below $69$ and equal to each other, which is exactly what you expect on a parabola symmetric about $x = 2$.\n\nA common error is to enter $2$, the time at which the maximum occurs, instead of the height itself — the question asks for feet, not seconds.",
+  "distractorRationale": {},
+  "estimatedSeconds": 115,
+  "stimulusRef": null,
+  "accessibilityText": "The height in feet of a ball x seconds after launch is h of x equals negative sixteen x squared plus sixty-four x plus five. Find the maximum height in feet. Enter a number.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "digital-sat-author",
+    "aiAssisted": true,
+    "notes": "Original item. Vertex and symmetry check computed to confirm the maximum value."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "digital-sat-author",
+    "reviewer": "digital-sat-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "digital-sat-independent-reviewer",
+      "solvedAnswer": "69",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Vertex at x = -64/(2*-16) = 2; h(2) = -16(4) + 64(2) + 5 = -64 + 128 + 5 = 69 feet."
+    },
+    "notes": "Awaiting blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "advanced-math",
+    "quadratic",
+    "student-produced-response",
+    "real-world-context"
+  ]
+}

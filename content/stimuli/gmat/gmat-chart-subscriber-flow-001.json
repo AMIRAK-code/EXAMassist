@@ -1,0 +1,42 @@
+{
+  "id": "gmat-chart-subscriber-flow-001",
+  "version": 1,
+  "examKey": "gmat",
+  "kind": "chart",
+  "title": "New subscribers and cancellations by quarter",
+  "bodyMd": "The graph plots two series for a subscription service over eight consecutive quarters: new subscribers gained during the quarter, and subscriptions cancelled during the quarter, both in thousands. No subscriber is counted in both series in the same quarter, and these are the only two ways the subscriber base changes.",
+  "data": {
+    "columns": [
+      { "key": "quarter", "label": "Quarter" },
+      { "key": "newSubscribers", "label": "New subscribers (thousands)" },
+      { "key": "cancellations", "label": "Cancellations (thousands)" }
+    ],
+    "rows": [
+      { "quarter": "2024 Q1", "newSubscribers": 42, "cancellations": 18 },
+      { "quarter": "2024 Q2", "newSubscribers": 47, "cancellations": 21 },
+      { "quarter": "2024 Q3", "newSubscribers": 51, "cancellations": 26 },
+      { "quarter": "2024 Q4", "newSubscribers": 58, "cancellations": 30 },
+      { "quarter": "2025 Q1", "newSubscribers": 55, "cancellations": 35 },
+      { "quarter": "2025 Q2", "newSubscribers": 53, "cancellations": 41 },
+      { "quarter": "2025 Q3", "newSubscribers": 49, "cancellations": 44 },
+      { "quarter": "2025 Q4", "newSubscribers": 46, "cancellations": 50 }
+    ],
+    "caption": "New subscribers and cancellations, in thousands, for eight consecutive quarters.",
+    "chart": {
+      "type": "line",
+      "xKey": "quarter",
+      "yKeys": ["newSubscribers", "cancellations"],
+      "xLabel": "Quarter",
+      "yLabel": "Subscribers (thousands)"
+    }
+  },
+  "accessibilityText": "A line graph with two series over eight quarters, measured in thousands. New subscribers: 2024 Q1 is 42, 2024 Q2 is 47, 2024 Q3 is 51, 2024 Q4 is 58, then the line falls to 55 in 2025 Q1, 53 in 2025 Q2, 49 in 2025 Q3 and 46 in 2025 Q4. Cancellations rise steadily throughout: 18, 21, 26, 30, 35, 41, 44 and 50 over the same eight quarters. The two lines converge from 2024 Q4 onwards and cross between 2025 Q3 and 2025 Q4, so cancellations exceed new subscribers only in the final quarter shown.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-author",
+    "aiAssisted": true,
+    "notes": "Original chart data. The eight quarterly pairs were constructed so the two series cross exactly once, in the final quarter, giving a single defensible answer."
+  },
+  "rightsStatus": "original-owned",
+  "state": "in_review"
+}

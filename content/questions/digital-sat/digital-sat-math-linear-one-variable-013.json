@@ -1,0 +1,76 @@
+{
+  "id": "digital-sat-math-linear-one-variable-013",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "algebra",
+  "skillSlug": "linear-equations-one-variable",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "If $\\frac{2x + 9}{5} = x - 3$, what is the value of $x$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$-12$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$4$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$8$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$24$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Clear the fraction first by multiplying **both** sides by $5$:\n\n$$\\frac{2x+9}{5} = x - 3$$\n$$2x + 9 = 5(x - 3)$$\n\nDistribute the $5$ across both terms in the bracket:\n\n$$2x + 9 = 5x - 15$$\n\nSubtract $2x$ from both sides and add $15$ to both sides:\n\n$$24 = 3x$$\n\nDivide by $3$:\n\n$$x = 8$$\n\nCheck by substituting back into the original equation. The left side is $\\frac{2(8)+9}{5} = \\frac{25}{5} = 5$, and the right side is $8 - 3 = 5$. They agree, so $x = 8$.\n\nOn the SAT a check like this takes about ten seconds and catches every one of the sign and distribution errors that the wrong choices come from.",
+  "distractorRationale": {
+    "a": "This comes from cancelling the denominator on the left without multiplying the right side by $5$: $2x + 9 = x - 3$ gives $x = -12$. Whatever you do to one side of an equation must be done to the whole of the other side.",
+    "b": "This comes from distributing the $5$ to only the first term inside the bracket: $2x + 9 = 5x - 3$ gives $3x = 12$ and $x = 4$. The $5$ multiplies the $-3$ as well.",
+    "d": "This is the value of $3x$, not of $x$. The work stops at $24 = 3x$ without the final division by $3$."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "Solve for x in the equation: the quantity two x plus nine, all divided by five, equals x minus three.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "digital-sat-author",
+    "aiAssisted": true,
+    "notes": "Original item. Coefficients chosen so the solution is an integer and each distractor traces to one named error."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "digital-sat-author",
+    "reviewer": "digital-sat-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "digital-sat-independent-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Multiply by 5: 2x + 9 = 5x - 15, so 24 = 3x and x = 8. Check: (16+9)/5 = 5 = 8-3; no other option satisfies the equation."
+    },
+    "notes": "Awaiting blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "algebra",
+    "linear-equation"
+  ]
+}

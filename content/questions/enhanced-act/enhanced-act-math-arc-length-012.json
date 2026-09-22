@@ -1,0 +1,75 @@
+{
+  "id": "enhanced-act-math-arc-length-012",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "math",
+  "domainSlug": "act-math-geometry",
+  "skillSlug": "act-math-geo-triangles-and-circles",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A circle has a radius of $10$ centimetres. A central angle of $72^{\\circ}$ cuts off an arc of the circle. What is the length, in centimetres, of that arc?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$2\\pi$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$4\\pi$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$8\\pi$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$20\\pi$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "An arc is a fraction of the whole circumference, and the fraction is the central angle over $360^{\\circ}$.\n\nFirst the circumference:\n\n$$C = 2\\pi r = 2\\pi(10) = 20\\pi \\text{ cm}$$\n\nThen the fraction of the circle:\n\n$$\\frac{72}{360} = \\frac{1}{5}$$\n\nSo the arc length is\n\n$$\\frac{1}{5}\\times 20\\pi = 4\\pi \\text{ cm}$$\n\nCheck it for reasonableness: $72^{\\circ}$ is one fifth of a full turn, five such arcs should rebuild the circle, and $5 \\times 4\\pi = 20\\pi$, which is exactly the circumference. As a decimal the arc is about $12.6$ cm, comfortably less than the full $62.8$ cm.",
+  "distractorRationale": {
+    "a": "Comes from using $\\pi r$ instead of $2\\pi r$ for the circumference: $\\frac{1}{5}\\times 10\\pi = 2\\pi$. The circumference formula uses the diameter, so it is $2\\pi r$.",
+    "c": "Comes from doubling the radius to $20$ and then using that as the radius: $2\\pi(20) = 40\\pi$, one fifth of which is $8\\pi$. The given $10$ cm is already the radius, so the circumference is $20\\pi$, not $40\\pi$.",
+    "d": "This is the entire circumference of the circle. The central angle of $72^{\\circ}$ was never used, so the fraction $\\frac{72}{360}$ was left out."
+  },
+  "estimatedSeconds": 65,
+  "stimulusRef": null,
+  "accessibilityText": "A circle of radius ten centimetres has a central angle of seventy-two degrees. Find the length in centimetres of the arc that the angle cuts off.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Not derived from, and not a paraphrase of, any ACT-published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "enhanced-act-author",
+    "reviewer": "enhanced-act-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "enhanced-act-independent-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Circumference = 2*pi*10 = 20*pi; the 72-degree central angle is 72/360 = 1/5 of the circle, so the arc is (1/5)(20*pi) = 4*pi cm."
+    },
+    "notes": "Author solved the item and attempted to defend each distractor before keying it. Awaiting an independent blind solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "circles",
+    "arc-length"
+  ]
+}

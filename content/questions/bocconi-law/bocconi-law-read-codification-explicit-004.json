@@ -1,0 +1,79 @@
+{
+  "id": "bocconi-law-read-codification-explicit-004",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-reading-comprehension",
+  "skillSlug": "law-read-explicit-information",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "According to the passage, what did many early statute books instruct should be done where the written text was **silent**?",
+  "instructionsMd": "Answer on the basis of the passage only.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The ancient custom was to be followed."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The elders of the commune were to be consulted about the decision."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "A trained jurist was to decide the case."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The commune was to amend the statute before the case could proceed."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "This is a locate-and-match question: the answer is stated almost word for word, so the work is finding the right sentence and then resisting the options that describe something nearby but different.\n\nThe third paragraph says that many early statute books contain a clause instructing that **where the written text is silent, the ancient custom is to be followed**, and that some add a further rule for cases where the text is *obscure*. Option A restates the first of these two rules.\n\n**How to check.** Notice that the paragraph distinguishes two situations — silence and obscurity — and make sure your answer matches the one the question names. For \"silent\", the instruction is to follow ancient custom. For \"obscure\", the instruction (in some books) is that custom governs the reading of the text. A question that swapped the two words would have a different answer, which is exactly why the passage is worth re-reading before you commit.",
+  "distractorRationale": {
+    "c": "The passage does say that the interpreter was increasingly a trained jurist, but that describes what happened in practice once statutes had to be interpreted; it is not what the clauses in the statute books instructed. This option takes a claim from the second paragraph and attaches it to the third.",
+    "d": "Amending the statute is never mentioned. The passage in fact says the opposite about the oral system — that custom changed \"without anyone announcing an amendment\" — and this option borrows that vocabulary while reversing its point.",
+    "b": "Consulting the elders belongs to the second paragraph’s description of how unwritten custom worked, not to any clause in a statute book. The clauses referred to \"the ancient custom\", not to any particular people who were to be asked."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": {
+    "id": "bocconi-law-passage-codification-001",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying history passage, asking what many early statute books instructed should happen when the written statute text said nothing about a matter.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-author",
+    "aiAssisted": true,
+    "notes": "Original item written against an original passage."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-author",
+    "reviewer": "bocconi-law-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-law-independent-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Paragraph 3 states verbatim that many early statute books contain 'a clause instructing that where the written text is silent, the ancient custom is to be followed'. The trained jurist (B) appears only as the interpreter of obscure text, and the elders (D) belong to the description of unwritten custom in paragraph 2, not to any statutory instruction."
+    },
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "reading-comprehension",
+    "explicit-detail",
+    "history"
+  ]
+}

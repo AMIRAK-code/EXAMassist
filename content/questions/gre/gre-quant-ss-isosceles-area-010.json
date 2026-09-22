@@ -1,0 +1,83 @@
+{
+  "id": "gre-quant-ss-isosceles-area-010",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-geometry",
+  "skillSlug": "geom-triangles",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In triangle $ABC$, $AB = AC = 13$ and $BC = 10$.\n\nWhat is the area of triangle $ABC$?",
+  "instructionsMd": "Select one answer choice.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$30$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$60$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$65$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$84.5$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$120$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The triangle is isosceles with $AB = AC$, so the altitude from $A$ to $BC$ meets $BC$ at its midpoint. That is the key fact: it splits the triangle into two congruent right triangles.\n\n**Find the height.** The midpoint $M$ of $BC$ gives $BM = 10 / 2 = 5$. In right triangle $ABM$, the hypotenuse is $AB = 13$ and one leg is $BM = 5$, so by the Pythagorean theorem\n\n$$AM = \\sqrt{13^{2} - 5^{2}} = \\sqrt{169 - 25} = \\sqrt{144} = 12.$$\n\n**Find the area.** Using $BC$ as the base and $AM$ as the height,\n\n$$\\text{Area} = \\tfrac{1}{2} \\times 10 \\times 12 = 60.$$\n\n**Check.** The right triangle $ABM$ has sides $5$, $12$, $13$ — a standard Pythagorean triple, which confirms the height. Each half-triangle has area $\\tfrac{1}{2}(5)(12) = 30$, and the two halves give $60$.\n\nThe altitude of an isosceles triangle bisecting the unequal side is worth memorising: it turns almost every isosceles-triangle area problem into a Pythagorean calculation.",
+  "distractorRationale": {
+    "a": "This is the area of just one of the two right halves, $\\tfrac{1}{2}(5)(12) = 30$. After splitting the triangle down the altitude you must add both halves back, or use the full base of $10$ rather than the half-base of $5$.",
+    "c": "Comes from using the slant side $13$ as though it were the height: $\\tfrac{1}{2}(10)(13) = 65$. The height must be perpendicular to the base; $AB$ is not, so $13$ overstates it. Note that $65 > 60$, as it must be, since the slant side is longer than the true height.",
+    "d": "Comes from treating the two equal sides as perpendicular legs and computing $\\tfrac{1}{2}(13)(13) = 84.5$. Nothing in the problem makes the angle at $A$ a right angle; if it were, $BC$ would be $13\\sqrt{2} \\approx 18.4$, not $10$.",
+    "e": "Comes from finding the height of $12$ correctly but forgetting the factor of $\\tfrac{1}{2}$, giving $10 \\times 12 = 120$. That product is the area of the rectangle enclosing the triangle, which is exactly twice the triangle's area."
+  },
+  "estimatedSeconds": 105,
+  "stimulusRef": null,
+  "accessibilityText": "Triangle A B C has two equal sides: A B and A C are each 13 units long, and the third side B C is 10 units long. Find the area of the triangle. The choices are 30, 60, 65, 84.5 and 120. No figure is provided.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gre-author",
+    "aiAssisted": true,
+    "notes": "Original item. Side lengths chosen by the author so the altitude is the 5-12-13 triple; not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gre-author",
+    "reviewer": "gre-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "gre-independent-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The altitude to base BC bisects it, so height = sqrt(13^2 - 5^2) = 12; area = (1/2)(10)(12) = 60."
+    },
+    "notes": "Author solved as 60 via altitude 12 from the 5-12-13 right triangle. Each distractor traced to a distinct named error. Awaiting blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "triangles",
+    "isosceles",
+    "area",
+    "pythagorean-theorem"
+  ]
+}

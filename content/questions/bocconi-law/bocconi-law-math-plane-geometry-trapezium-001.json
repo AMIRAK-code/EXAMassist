@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-law-math-plane-geometry-trapezium-001",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-mathematics",
+  "skillSlug": "law-math-plane-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A trapezium has parallel sides of length $14$ cm and $8$ cm and a height of $6$ cm. A triangle has a base of $12$ cm and the same area as the trapezium. What is the height of the triangle?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$14$ cm"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$22$ cm"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$11$ cm"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$5.5$ cm"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Work out the area of the trapezium first, then run the triangle formula backwards.\n\nThe area of a trapezium is the **average** of the two parallel sides multiplied by the height:\n\n$$A = \\frac{14 + 8}{2} \\times 6 = 11 \\times 6 = 66 \\text{ cm}^2$$\n\nThe area of a triangle is half the base times the height, so with base $12$ cm and area $66$ cm$^2$:\n\n$$\\frac{1}{2} \\times 12 \\times h = 66$$\n$$6h = 66$$\n$$h = 11 \\text{ cm}$$\n\n**How to check.** Substitute back: $\\frac{1}{2} \\times 12 \\times 11 = 66$, which matches the trapezium’s area. A second sanity check is a rough size estimate: the trapezium is $6$ cm tall and averages $11$ cm wide, while the triangle is only $12$ cm wide at its base and tapers to a point, so it must be noticeably taller than $6$ cm to hold the same area. That rules out any answer below about $8$ cm immediately.\n\nRemember that a wrong answer costs $-0.2$ on this test and an omission costs nothing, so a quick substitution check is worth the ten seconds it takes.",
+  "distractorRationale": {
+    "d": "This comes from dropping the factor of $\\frac{1}{2}$ in the triangle formula: computing $12h = 66$ gives $h = 5.5$. The area of a triangle is half the base times the height, not the base times the height.",
+    "a": "This comes from using only the longer parallel side for the trapezium, $14 \\times 6 = 84$, and then solving $\\frac{1}{2} \\times 12 \\times h = 84$ to get $h = 14$. The trapezium formula uses the average of the two parallel sides, not the longer one.",
+    "b": "This comes from forgetting to halve the sum of the parallel sides: $(14 + 8) \\times 6 = 132$, then $\\frac{1}{2} \\times 12 \\times h = 132$ gives $h = 22$. That doubles the true area of the trapezium."
+  },
+  "estimatedSeconds": 95,
+  "stimulusRef": null,
+  "accessibilityText": "A trapezium has two parallel sides measuring 14 centimetres and 8 centimetres and a height of 6 centimetres. A triangle has a base of 12 centimetres and the same area as that trapezium. Find the height of the triangle.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-author",
+    "aiAssisted": true,
+    "notes": "Original item on the plane-geometry formulas named in the Bocconi Law mathematics syllabus. Figures chosen for whole-number arithmetic because no calculator is permitted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-author",
+    "reviewer": "bocconi-law-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-law-independent-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Trapezium area = ((14+8)/2) x 6 = 11 x 6 = 66 cm^2; setting (1/2) x 12 x h = 66 gives 6h = 66, h = 11 cm. 22 cm results from dropping the factor 1/2 and 5.5 cm from halving twice, so neither is defensible."
+    },
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "plane-geometry",
+    "area",
+    "trapezium",
+    "triangle",
+    "no-calculator"
+  ]
+}

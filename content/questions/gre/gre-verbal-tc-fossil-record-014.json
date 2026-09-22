@@ -1,0 +1,82 @@
+{
+  "id": "gre-verbal-tc-fossil-record-014",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "verbal-1",
+  "domainSlug": "verbal-text-completion",
+  "skillSlug": "tc-select-words-for-blanks",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The fossil record for this period is so ______ that paleontologists have reconstructed the animal's gait almost entirely from a single preserved trackway.",
+  "instructionsMd": "Select the one entry from the five choices that best completes the text.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "abundant"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "recent"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "contested"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "pristine"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "scanty"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Build the logic of the sentence before looking at the choices.\n\nThe structure is **\"so ______ that ...\"**, which signals a cause and its consequence: whatever fills the blank must be extreme enough to *force* the consequence. The consequence given is that researchers relied on **\"a single preserved trackway\"** and **\"almost entirely\"** on it. Relying on one piece of evidence is what you do when there is hardly any evidence to choose from.\n\nSo the blank needs a word meaning *meagre* or *sparse*. **\"Scanty\"** is exactly that, and it is the answer.\n\n**How to check your choice:** read the completed sentence straight through and ask whether the \"so ... that\" relationship actually holds. \"The fossil record is so scanty that researchers used only one trackway\" — the scarcity explains the reliance. That is a genuine causal link, not merely a compatible pairing.\n\nA useful discipline on single-blank Text Completion is to predict your own word first — here, something like *sparse* — and only then scan the choices for the one closest to your prediction. It stops you from being pulled toward a word that merely sounds appropriate to the subject matter.",
+  "distractorRationale": {
+    "a": "The opposite of what the sentence needs. If the record were abundant, researchers would have had many specimens to work from and would not have been confined to one trackway. Readers pick this by matching \"fossil record\" with a word that sounds positive about it, without tracing the \"so ... that\" logic.",
+    "c": "Plausible on the surface, because scholarly records often are contested, but it does not produce the stated consequence. A disputed record would prompt debate over how to interpret the evidence, not a shortage of evidence forcing reliance on one trackway — and the trackway itself would be just as open to dispute.",
+    "d": "Describes the quality of preservation rather than the quantity of material. A pristine record is a well-preserved one, which would make reconstruction easier, not restrict researchers to a single piece of evidence.",
+    "b": "Describes the age of the record, which the sentence never makes relevant. How recently fossils were laid down or discovered says nothing about how much material exists, so it cannot explain the reliance on one trackway."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "A single sentence with one blank: The fossil record for this period is so blank that paleontologists have reconstructed the animal's gait almost entirely from a single preserved trackway. Choose one word from five to fill the blank.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gre-author",
+    "aiAssisted": true,
+    "notes": "Original sentence written for this question bank. Not adapted from any ETS Text Completion item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gre-author",
+    "reviewer": "gre-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "gre-independent-reviewer",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "\"so ___ that ... almost entirely from a single preserved trackway\" signals extreme scarcity of evidence, so scanty; abundant and pristine reverse the sense, and contested/recent do not explain reliance on one trackway."
+    },
+    "notes": "Author tested each of the five words in the completed sentence against the 'so ... that' causal requirement; only 'scanty' produces the stated consequence. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "text-completion",
+    "one-blank",
+    "cause-and-consequence"
+  ]
+}

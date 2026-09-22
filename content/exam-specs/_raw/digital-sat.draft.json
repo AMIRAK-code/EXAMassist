@@ -1,0 +1,1235 @@
+{
+  "examKey": "digital-sat",
+  "examName": "SAT (Digital SAT)",
+  "versionLabel": "Digital SAT, Bluebook two-stage adaptive (2026-27 testing year / 2026-27 admissions cycle)",
+  "verificationDate": "2026-09-18",
+  "region": "Global (United States and international test centers; identical structure for SAT Weekend and SAT School Day)",
+  "deliveryMode": "Digital, delivered in College Board's Bluebook application on a student or school device. Two-stage (multistage) adaptive at module level. Linear (non-adaptive) Bluebook or paper forms exist only as an accommodation and have different question counts and timing.",
+  "admissionsCycle": "2026-27 (facts verified against College Board's Fall 2026 / 2026-27 published materials; College Board's \"Changes for 2026-27 Testing\" page announces no changes to structure, timing, question counts, adaptivity, calculator policy, or scoring)",
+  "summary": "The Digital SAT is a two-section, two-stage adaptive test delivered in Bluebook: a Reading and Writing section (2 modules x 27 questions x 32 minutes = 54 questions / 64 minutes) and a Math section (2 modules x 22 questions x 35 minutes = 44 questions / 70 minutes), for 98 questions in 134 minutes (2 hours 14 minutes) plus one 10-minute break between sections. Each module carries 2 embedded pretest (unscored) questions, so 50 of 54 Reading and Writing and 40 of 44 Math questions are operational. Adaptivity is at module level only: performance on the first (routing) module determines whether Bluebook delivers a higher- or lower-difficulty second module; within a module students may move freely, review, and mark questions for review, but once a module is submitted they cannot return to it. Scores are 400-1600 total and 200-800 per section; there is no per-question guessing penalty, but scoring is Item Response Theory based rather than a raw-count conversion, and the IRT item parameters, scale-score tables, and routing cut score are not published.",
+  "sections": [
+    {
+      "name": "Reading and Writing — Module 1 (routing module)",
+      "order": 1,
+      "questionCount": "27 administered (25 operational + 2 pretest/unscored)",
+      "timeMinutes": "32",
+      "questionTypes": [
+        "single_select four-option multiple choice"
+      ],
+      "calculatorPolicy": "No calculator permitted. College Board: \"You may not use a calculator while working on the Reading and Writing section.\"",
+      "navigationRules": "Free navigation within the module: student may move back and forth between questions, change answers, skip, and review until the module timer expires. Mark for Review (bookmark icon) and a Question Menu listing skipped/marked questions are available. When the timer reaches zero the student is advanced automatically.",
+      "adaptiveBehavior": "This is the routing module. It contains a broad, fixed mix of easy, medium-difficulty, and hard questions, identical in difficulty profile for all test takers. Questions from all four Reading and Writing content domains appear in it.",
+      "sourceUrls": [
+        "https://satsuite.collegeboard.org/media/pdf/english-sat-test-directions-bb.pdf",
+        "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+        "https://satsuite.collegeboard.org/sat/whats-on-the-test/math/calculator-use",
+        "https://satsuite.collegeboard.org/sat/what-to-bring-do/what-to-expect"
+      ],
+      "breakAfter": "None — student proceeds directly to Reading and Writing Module 2."
+    },
+    {
+      "name": "Reading and Writing — Module 2 (second-stage adaptive module)",
+      "order": 2,
+      "questionCount": "27 administered (25 operational + 2 pretest/unscored)",
+      "timeMinutes": "32",
+      "questionTypes": [
+        "single_select four-option multiple choice"
+      ],
+      "calculatorPolicy": "No calculator permitted.",
+      "navigationRules": "Free navigation within the module, same as Module 1. The student cannot return to Module 1: \"Once you move on from any module, you cannot return to it.\"",
+      "adaptiveBehavior": "Bluebook selects one of two possible second-stage modules based on performance in Module 1 — one averaging higher difficulty, one averaging lower difficulty. Both contain easy, medium-difficulty, and hard questions in differing proportions. The exact routing cut score is not published; College Board states only that roughly half of test takers route to each.",
+      "sourceUrls": [
+        "https://satsuite.collegeboard.org/media/pdf/english-sat-test-directions-bb.pdf",
+        "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf"
+      ],
+      "breakAfter": "10-minute break before the Math section"
+    },
+    {
+      "name": "Math — Module 1 (routing module)",
+      "order": 3,
+      "questionCount": "22 administered (20 operational + 2 pretest/unscored)",
+      "timeMinutes": "35",
+      "questionTypes": [
+        "single_select four-option multiple choice (~75% of Math section)",
+        "student-produced response / numeric entry (~25% of Math section)"
+      ],
+      "calculatorPolicy": "Calculator permitted for every question. Built-in Desmos calculator (graphing and scientific, toggleable, draggable, resizable as of 2026-27) embedded in Bluebook; students may also bring their own approved handheld calculator. Non-CAS only. A formula reference sheet is available throughout.",
+      "navigationRules": "Free navigation within the module: move back and forth, change answers, skip, Mark for Review, Question Menu. Automatic advance when the timer reaches zero.",
+      "adaptiveBehavior": "Routing module. Broad, fixed mix of easy, medium-difficulty, and hard questions; questions from all four Math content domains appear.",
+      "sourceUrls": [
+        "https://satsuite.collegeboard.org/media/pdf/english-sat-test-directions-bb.pdf",
+        "https://satsuite.collegeboard.org/sat/whats-on-the-test/math/calculator-use",
+        "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+        "https://satsuite.collegeboard.org/sat/testing-staff/changes"
+      ],
+      "breakAfter": "None — student proceeds directly to Math Module 2."
+    },
+    {
+      "name": "Math — Module 2 (second-stage adaptive module)",
+      "order": 4,
+      "questionCount": "22 administered (20 operational + 2 pretest/unscored)",
+      "timeMinutes": "35",
+      "questionTypes": [
+        "single_select four-option multiple choice",
+        "student-produced response / numeric entry"
+      ],
+      "calculatorPolicy": "Calculator permitted for every question; identical policy to Math Module 1. Bluebook directions state: \"Use of a calculator is permitted for all questions.\" (shown for both Math modules).",
+      "navigationRules": "Free navigation within the module. Cannot return to Math Module 1 or to either Reading and Writing module.",
+      "adaptiveBehavior": "Bluebook selects a higher-difficulty or lower-difficulty second-stage Math module based on Module 1 performance. Routing threshold not published.",
+      "sourceUrls": [
+        "https://satsuite.collegeboard.org/media/pdf/english-sat-test-directions-bb.pdf",
+        "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf"
+      ],
+      "breakAfter": "None — test ends"
+    }
+  ],
+  "totalQuestions": "98 administered (54 Reading and Writing + 44 Math); 90 operational/scored (50 Reading and Writing + 40 Math) and 8 embedded pretest/unscored (4 per section, 2 per module)",
+  "totalTimeMinutes": "134 minutes of testing time (2 hours 14 minutes), excluding the 10-minute break; 144 minutes wall-clock from start of Module 1 to end of Math Module 2",
+  "timingAndBreaks": "Each of the four modules is separately timed with its own countdown clock: Reading and Writing 32 + 32 minutes (64 total), Math 35 + 35 minutes (70 total). Total testing time 2 hours 14 minutes. Exactly one scheduled break — 10 minutes — between the Reading and Writing section and the Math section. There is no break between Module 1 and Module 2 within a section. Unused time in a module does NOT roll over: when a module timer reaches zero the student is automatically advanced. A student who finishes a module early can either review within that module or submit and advance; time saved is not credited to the next module. The Bluebook timer can be hidden by the student, with a mandatory alert at 5 minutes remaining. Accommodated timing (+50%, +100%, >+100%) and extra/extended breaks exist but College Board does not publish per-module minute tables for accommodated forms in the sources verified here.",
+  "navigationAndReview": "WITHIN a module: fully free. The student may move backward and forward between questions, answer out of order, skip, change answers, and review until that module's timer expires. Bluebook provides Mark for Review (a bookmark icon on any question), a Question Menu that lists which questions were skipped or marked for review and allows jumping directly to any question in the module, an Option Eliminator for crossing out multiple-choice answer options, Highlights & Notes annotation, and a Line Reader. BETWEEN modules: strictly one-way. \"Once you move on from any module, you cannot return to it.\" This applies both to advancing early and to being auto-advanced at timer expiry. There is no cross-section review and no end-of-test review screen covering earlier modules. Note that the Question Menu is scoped to the current module (College Board's Bluebook tools page phrases it as \"any question in the section\", which in Bluebook's on-screen usage means the current timed part; the hard no-return-to-a-finished-module rule is stated explicitly in the Bluebook test directions and on the What to Expect page).",
+  "calculatorRules": "A calculator is permitted on the ENTIRE Math section — both Module 1 and Module 2, every question. There is no no-calculator portion on the Digital SAT (this was a deliberate change from the paper SAT, which had separately timed no-calculator and calculator portions). Two options, usable interchangeably: (1) the Desmos calculator embedded in Bluebook, which offers graphing and scientific modes that the student can toggle between at any point in the Math section, can be dragged anywhere on screen, and (as of 2026-27) can be resized; (2) the student's own approved handheld calculator. Only non-CAS calculators are allowed; College Board no longer publishes an allowed-model list and instead publishes a prohibited list. If a personal calculator fails mid-test the student may continue with the built-in Desmos. A formula reference sheet is available throughout the Math section. NO calculator is permitted on the Reading and Writing section.",
+  "adaptiveBehavior": "Multistage adaptive testing (MST) at MODULE level, not question level. Each section is split into two separately timed stages. Stage 1 (the \"routing module\") is the same broad easy/medium/hard mix for every test taker and contains half the section's questions, drawn from all four content domains of that section so all domains are sampled before routing. Based on performance across the whole routing module, Bluebook then selects one of two prebuilt second-stage modules: one averaging higher difficulty, one averaging lower difficulty. Both second-stage options still contain easy, medium-difficulty, and hard questions, in differing proportions. Routing happens once per section (so twice per test: once for Reading and Writing, once for Math) and the two sections route independently. Because routing is module level, the difficulty of question N+1 never depends on the answer to question N — which is precisely why free within-module navigation is possible, unlike in question-by-question CAT. College Board publishes qualitative facts about the algorithm (routing accuracy >93% and consistency >90% in simulation; break point \"set around the median\" section score; roughly a 50/50 split of test takers; deliberate under-performance to reach the easier module yields a LOWER score) but does NOT publish the numeric routing threshold, the IRT parameters, the difficulty distribution of each second-stage panel, or the algorithm itself.",
+  "scoringRawRules": "There is NO per-question wrong-answer or guessing penalty. College Board explicitly distinguishes the current model from the pre-2015-16 guessing penalty and advises students to answer every question; blank answers earn nothing and are never better than a guess. Omitted answers simply score as incorrect for the purpose of the ability estimate. CRITICAL: the Digital SAT does NOT convert a raw count of correct answers to a scale score. Scoring uses Item Response Theory ability estimation over the operational questions actually administered, so the difficulty and other characteristics of the specific questions a student answered correctly affect the score — \"Two students who answer the same number of questions correctly in a test section may earn differing section scores.\" The 8 embedded pretest questions (2 per module) contribute nothing to the score and are indistinguishable from operational questions to the test taker. Reported scores: Reading and Writing section 200-800, Math section 200-800, each in 10-point intervals; total score 400-1600 in 10-point intervals and equal to the arithmetic sum of the two section scores. No subscores or cross-test scores are reported. College and Career Readiness Benchmarks are 480 (Reading and Writing) and 530 (Math).",
+  "scoringScaleRules": "Total 400-1600 in 10-point intervals; Reading and Writing 200-800 and Math 200-800, each in 10-point intervals; total = sum of the two section scores. The scale is maintained via IRT ability estimation plus concordance and vertical-scaling studies. College Board uses the word \"linking\" rather than \"equating\" for the digital-to-paper relationship, stating that the process \"falls short of meeting the psychometric criteria for equating\" because the two measure similar but not identical content. The actual IRT item parameters, theta-to-scale-score transformations, and any per-form conversion tables are NOT published. Percentile tables and Skills Insight descriptors are published in score reports but were not verified in this session and must not be reproduced or approximated by the platform.",
+  "scoringNotPubliclyDocumented": [
+    "The IRT model family and the item parameters (difficulty, discrimination, guessing) for any SAT question — never published.",
+    "The theta-to-scale-score transformation and any raw-to-scaled conversion table for any specific Digital SAT form. College Board deliberately does not publish these because the score is not a raw-count conversion.",
+    "The numeric routing cut score / theta threshold between the higher-difficulty and lower-difficulty second-stage modules. Only the qualitative statement that the break point is 'set around the median ... section scores' and that roughly half of test takers go each way is published.",
+    "The exact difficulty composition (proportion of easy/medium/hard items) of the routing module and of each of the two second-stage modules.",
+    "The maximum and minimum section score obtainable via the lower-difficulty second-stage path, and the exact region of score overlap between the two paths. College Board says 'many midlevel section scores are, by design, obtainable from either path' but gives no numbers.",
+    "The positions within a module at which the 2 pretest questions are placed, and whether pretest placement is fixed or randomized.",
+    "How responses to pretest questions are excluded from the ability estimate in practice (only the outcome — that they do not affect scores — is stated).",
+    "Whether and how partially-completed modules or omitted responses are treated differently from incorrect responses in the IRT ability estimate.",
+    "Percentile rank tables and conditional standard error of measurement by score point for 2026-27 forms.",
+    "The scoring rubric and scale for the Digital SAT Essay (available only in select U.S. School Day administrations) — not verified in this session."
+  ],
+  "taxonomy": [
+    {
+      "section": "Reading and Writing",
+      "domain": "Information and Ideas",
+      "domainSlug": "information-and-ideas",
+      "skills": [
+        "Central Ideas and Details",
+        "Command of Evidence: Textual",
+        "Command of Evidence: Quantitative",
+        "Inferences"
+      ],
+      "sourceUrl": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf"
+    },
+    {
+      "section": "Reading and Writing",
+      "domain": "Craft and Structure",
+      "domainSlug": "craft-and-structure",
+      "skills": [
+        "Words in Context",
+        "Text Structure and Purpose",
+        "Cross-Text Connections"
+      ],
+      "sourceUrl": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf"
+    },
+    {
+      "section": "Reading and Writing",
+      "domain": "Expression of Ideas",
+      "domainSlug": "expression-of-ideas",
+      "skills": [
+        "Rhetorical Synthesis",
+        "Transitions"
+      ],
+      "sourceUrl": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf"
+    },
+    {
+      "section": "Reading and Writing",
+      "domain": "Standard English Conventions",
+      "domainSlug": "standard-english-conventions",
+      "skills": [
+        "Boundaries",
+        "Form, Structure, and Sense"
+      ],
+      "sourceUrl": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf"
+    },
+    {
+      "section": "Math",
+      "domain": "Algebra",
+      "domainSlug": "algebra",
+      "skills": [
+        "Linear equations in one variable",
+        "Linear equations in two variables",
+        "Linear functions",
+        "Systems of two linear equations in two variables",
+        "Linear inequalities in one or two variables"
+      ],
+      "sourceUrl": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf"
+    },
+    {
+      "section": "Math",
+      "domain": "Advanced Math",
+      "domainSlug": "advanced-math",
+      "skills": [
+        "Equivalent expressions",
+        "Nonlinear equations in one variable and systems of equations in two variables",
+        "Nonlinear functions"
+      ],
+      "sourceUrl": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf"
+    },
+    {
+      "section": "Math",
+      "domain": "Problem-Solving and Data Analysis",
+      "domainSlug": "problem-solving-and-data-analysis",
+      "skills": [
+        "Ratios, rates, proportional relationships, and units",
+        "Percentages",
+        "One-variable data: distributions and measures of center and spread",
+        "Two-variable data: models and scatterplots",
+        "Probability and conditional probability",
+        "Inference from sample statistics and margin of error",
+        "Evaluating statistical claims: observational studies and experiments"
+      ],
+      "sourceUrl": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf"
+    },
+    {
+      "section": "Math",
+      "domain": "Geometry and Trigonometry",
+      "domainSlug": "geometry-and-trigonometry",
+      "skills": [
+        "Area and volume",
+        "Lines, angles, and triangles",
+        "Right triangles and trigonometry",
+        "Circles"
+      ],
+      "sourceUrl": "https://satsuite.collegeboard.org/media/pdf/digital-sat-test-spec-overview.pdf"
+    }
+  ],
+  "responseTypesNeeded": [
+    "single_select",
+    "numeric_entry"
+  ],
+  "claims": [
+    {
+      "id": "sat-two-sections",
+      "topic": "structure",
+      "statement": "The Digital SAT has exactly two sections: Reading and Writing, and Math.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/sat/whats-on-the-test/structure",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "The SAT is composed of two sections: (1) the Reading and Writing section, and (2) the Math section.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-section-timing",
+      "topic": "timing",
+      "statement": "Reading and Writing is 64 minutes and Math is 70 minutes, for 2 hours 14 minutes of testing time.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/sat/whats-on-the-test/structure",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "You have 64 minutes to complete the Reading and Writing section and 70 minutes to complete the Math section",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-module-minutes",
+      "topic": "timing",
+      "statement": "Each Reading and Writing module is 32 minutes; each Math module is 35 minutes; modules are separately timed.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/digital-sat-test-spec-overview.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "Each Reading and Writing module lasts 32 minutes, while each Math module lasts 35 minutes.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://satsuite.collegeboard.org/sat/what-to-bring-do/what-to-expect",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "Each section of the test (Reading and Writing and Math) has 2 parts called modules, and each module is timed separately.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-rw-module-questions",
+      "topic": "question counts",
+      "statement": "The Reading and Writing section has 54 questions in two modules of 27 questions each.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/english-sat-test-directions-bb.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "There are two modules in the Reading and Writing section. Each module has 27 questions.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-math-module-questions",
+      "topic": "question counts",
+      "statement": "The Math section has 44 questions in two modules of 22 questions each.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/english-sat-test-directions-bb.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "There are two modules in the Math section. Each module has 22 questions.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-operational-vs-pretest-rw",
+      "topic": "pretest / unscored questions",
+      "statement": "Each Reading and Writing module contains 25 operational questions and 2 pretest questions (50 operational + 4 pretest per section).",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "1st module: 25 operational questions and 2 pretest questions",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/digital-sat-test-spec-overview.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "1st module: 25 operational questions and 2 pretest questions",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-operational-vs-pretest-math",
+      "topic": "pretest / unscored questions",
+      "statement": "Each Math module contains 20 operational questions and 2 pretest questions (40 operational + 4 pretest per section).",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "1st module: 20 operational questions and 2 pretest questions",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-pretest-per-module-confirmed",
+      "topic": "pretest / unscored questions",
+      "statement": "College Board publicly confirms two pretest questions per module whose responses do not affect scores — so the per-module pretest count IS published, contrary to a common assumption.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/scores/what-scores-mean/how-scores-calculated",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "Two pretest questions are also included in each module.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://satsuite.collegeboard.org/scores/what-scores-mean/how-scores-calculated",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "Student responses to these pretest questions don't affect their scores.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-pretest-indistinguishable",
+      "topic": "pretest / unscored questions",
+      "statement": "Pretest questions are indistinguishable from operational questions to the test taker; their positions within a module are not published.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "these pretest questions are otherwise indistinguishable to students from the operational questions on which their scores are based",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-break",
+      "topic": "breaks",
+      "statement": "There is exactly one scheduled break, 10 minutes, between the Reading and Writing section and the Math section; there is no break between modules within a section.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/sat/what-to-bring-do/what-to-expect",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "Students will have one 10-minute break during the test between test sections.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://satsuite.collegeboard.org/sat/whats-on-the-test/structure",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "there is a 10-minute break between the Reading and Writing section and the Math section",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-mst-module-level",
+      "topic": "adaptivity",
+      "statement": "Adaptivity is module level (multistage), not question level: Bluebook picks one of two prebuilt second-stage modules based on first-module performance.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "Based on student performance on the initial module, Bluebook selects one of two potential second-stage modules to administer.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://satsuite.collegeboard.org/scores/what-scores-mean/how-scores-calculated",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "The SAT and PSAT-related assessments use a multistage adaptive design.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-not-question-adaptive",
+      "topic": "adaptivity",
+      "statement": "College Board explicitly contrasts the SAT with question-by-question adaptive models, which is why free within-module navigation is possible.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "unlike in most question-by-question adaptive testing models, students taking one of the digital SAT Suite tests can navigate freely",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-routing-median",
+      "topic": "adaptivity",
+      "statement": "The routing break point is set around the median section score, so roughly half of test takers receive each second-stage module; the numeric threshold is not published.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "roughly half of all test takers are routed to the higher-difficulty module and half to the lower-difficulty module",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-routing-domains-sampled",
+      "topic": "adaptivity",
+      "statement": "All four content domains of a section appear in both of that section's modules, so the routing decision is not driven by a single domain.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "Questions from all four Reading and Writing and Math content domains are included in each section's modules",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-nav-within-module",
+      "topic": "navigation",
+      "statement": "Within a module a test taker may move back and forth between questions and review answers until the module timer expires.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/sat/what-to-bring-do/what-to-expect",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "You can move back and forth between questions in a module and review your answers until time expires.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/english-sat-test-directions-bb.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "If time permits, you can review your answers in a given module.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-nav-no-return",
+      "topic": "navigation",
+      "statement": "Once a module is left, the test taker can never return to it — navigation between modules is strictly one-way.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/english-sat-test-directions-bb.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "Once you move on from any module, you cannot return to it.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://satsuite.collegeboard.org/sat/what-to-bring-do/what-to-expect",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "Once you've moved on from a module, you cannot go back to it.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-auto-advance",
+      "topic": "navigation",
+      "statement": "When a module timer reaches zero the test taker is advanced automatically; unused time does not carry to the next module.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/english-sat-test-directions-bb.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "When the timer reaches zero, you will automatically move on.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-mark-for-review",
+      "topic": "navigation",
+      "statement": "Bluebook provides a Mark for Review bookmark on any question and a Question Menu showing skipped and marked questions for direct navigation.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://bluebook.collegeboard.org/students/tools",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "Use the bookmark icon to flag any question you want to come back to.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://bluebook.collegeboard.org/students/tools",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "See which questions you skipped or marked for review and navigate to any question in the section.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-timer-hide",
+      "topic": "navigation",
+      "statement": "The Bluebook countdown timer can be hidden by the test taker but an alert is shown at 5 minutes remaining in each module.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://bluebook.collegeboard.org/students/tools",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "You can hide it until 5 minutes remain, then you'll get an alert.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-option-eliminator",
+      "topic": "navigation",
+      "statement": "Bluebook provides an Option Eliminator (cross out answer choices, undoable), Highlights & Notes annotation, and a Line Reader.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://bluebook.collegeboard.org/students/tools",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "Cross out answer choices you think are wrong. You can undo this if you change your mind.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-calc-all-math-questions",
+      "topic": "calculator",
+      "statement": "A calculator is permitted for every question in both Math modules; there is no no-calculator portion.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/english-sat-test-directions-bb.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "Use of a calculator is permitted for all questions.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/digital-sat-test-spec-overview.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "A built-in graphing calculator is available on the entire Math section.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-calc-desmos",
+      "topic": "calculator",
+      "statement": "Bluebook embeds a Desmos calculator with graphing and scientific modes; students may instead or additionally bring an approved non-CAS handheld calculator.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/sat/whats-on-the-test/math/calculator-use",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "Bluebook contains an embedded Desmos calculator with two options—graphing or scientific.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://satsuite.collegeboard.org/sat/whats-on-the-test/math/calculator-use",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "You may use your own approved handheld calculator or take advantage of the Desmos calculator embedded in Bluebook.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://satsuite.collegeboard.org/sat/whats-on-the-test/math/calculator-use",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "Only non-CAS (computer algebra system) calculators are allowed.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-calc-none-rw",
+      "topic": "calculator",
+      "statement": "No calculator is permitted on the Reading and Writing section.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/sat/whats-on-the-test/math/calculator-use",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "You may not use a calculator while working on the Reading and Writing section.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-reference-sheet",
+      "topic": "calculator",
+      "statement": "A reference sheet of common formulas is available throughout the Math section.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://bluebook.collegeboard.org/students/tools",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "A reference sheet with commonly used formulas will appear on all tests with math questions.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-rw-format",
+      "topic": "question formats",
+      "statement": "Every Reading and Writing question is four-option multiple choice with a single best answer.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/english-sat-test-directions-bb.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "All questions in this section are multiple-choice with four answer choices. Each question has a single best answer.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-math-format-split",
+      "topic": "question formats",
+      "statement": "Roughly 75% of Math questions are four-option multiple choice and roughly 25% are student-produced response (SPR).",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/digital-sat-test-spec-overview.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "Discrete; four-option multiple-choice (≈75%) and student-produced response (SPR) (≈25%)",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "Approximately three-quarters of the Math questions use the four-option multiple-choice format",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-spr-character-limit",
+      "topic": "SPR entry rules",
+      "statement": "SPR answers accept up to 5 characters for a positive answer and up to 6 characters for a negative answer, the extra character being the leading negative sign.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/english-sat-test-directions-bb.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "You can enter up to 5 characters for a positive answer and up to 6 characters (including the negative sign)",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-spr-fractions",
+      "topic": "SPR entry rules",
+      "statement": "Fractions are entered with a slash; a fraction that does not fit the character limit must be entered as its decimal equivalent.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/english-sat-test-directions-bb.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "If your answer is a fraction that doesn't fit in the provided space, enter the decimal equivalent.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-spr-decimals",
+      "topic": "SPR entry rules",
+      "statement": "A decimal that does not fit must be truncated or rounded at the fourth digit; both truncation and rounding are accepted.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/english-sat-test-directions-bb.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "If your answer is a decimal that doesn't fit in the provided space, enter it by truncating or rounding at the fourth digit.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-spr-mixed-numbers",
+      "topic": "SPR entry rules",
+      "statement": "Mixed numbers are not accepted as such; they must be entered as an improper fraction or a decimal.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/english-sat-test-directions-bb.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "If your answer is a mixed number (such as 3½), enter it as an improper fraction (7/2) or its decimal equivalent (3.5).",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-spr-no-symbols",
+      "topic": "SPR entry rules",
+      "statement": "Percent signs, commas and dollar signs must not be entered in an SPR field; the only non-digit characters allowed are the negative sign, the slash, and the decimal point.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/english-sat-test-directions-bb.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "Don't enter symbols such as a percent sign, comma, or dollar sign.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "use of nonnumerical characters other than the negative sign and the slash for fractional answers",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-spr-multiple-correct",
+      "topic": "SPR entry rules",
+      "statement": "An SPR question may have more than one acceptable correct answer, but the test taker enters only one.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/english-sat-test-directions-bb.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "If you find more than one correct answer, enter only one answer.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://satsuite.collegeboard.org/sat/whats-on-the-test/math/student-produced",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "SPR questions may have more than one correct response, although you'll supply only one answer.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-spr-validation",
+      "topic": "SPR entry rules",
+      "statement": "Bluebook validates SPR entries in real time, previews the parsed answer back to the student, and errors on an invalid entry such as a misplaced negative sign.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "error messages are presented when students make clear entry errors (e.g., a negative sign in a position other than as the first character)",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-discrete-questions",
+      "topic": "question formats",
+      "statement": "All Digital SAT questions are discrete/standalone — there are no passage sets, so no shared-stimulus question groups exist.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "All questions on the digital SAT Suite are in a discrete (standalone) format",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-rw-passage-length",
+      "topic": "content",
+      "statement": "Reading and Writing passages (or passage pairs) run 25 to 150 words, each supporting exactly one question.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "Passages (or pairs of passages) used in Reading and Writing questions range in length from 25 to 150 words.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-scale",
+      "topic": "scoring",
+      "statement": "The SAT total score is 400-1600 in 10-point intervals; each section score is 200-800 in 10-point intervals; the total is the arithmetic sum of the two section scores.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "A total score, which is the arithmetic sum of the two section scores",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/digital-sat-test-spec-overview.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "SAT 400–1600, in 10-point intervals 200–800, in 10-point intervals",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-no-guessing-penalty",
+      "topic": "scoring",
+      "statement": "There is no per-question guessing penalty; College Board explicitly distinguishes the current IRT model from the pre-2015-16 guessing penalty and advises guessing over leaving blanks.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "This evaluation of scoring patterns is, however, not the same as a \"guessing penalty,\"",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://satsuite.collegeboard.org/scores/what-scores-mean/how-scores-calculated",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "it's better to guess than leave a question blank, especially if a student can eliminate one or two answer options",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-not-raw-count-scoring",
+      "topic": "scoring",
+      "statement": "The section score is NOT a function of the number of correct answers alone — it is an IRT ability estimate that weights question characteristics such as difficulty.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/scores/what-scores-mean/how-scores-calculated",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "Two students who answer the same number of questions correctly in a test section may earn differing section scores",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "the use of item response theory (IRT) and ability estimation provides the basis for calculating scale scores in near real time",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-linking-not-equating",
+      "topic": "scoring",
+      "statement": "College Board describes the digital-to-paper score relationship as linking rather than equating, and publishes no raw-to-scale conversion tables.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "We use the term linking instead of equating because what the digital SAT measures is similar but not identical",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-rw-domain-distribution",
+      "topic": "taxonomy",
+      "statement": "Reading and Writing operational questions distribute as Craft and Structure ~28% (13-15), Information and Ideas ~26% (12-14), Standard English Conventions ~26% (11-15), Expression of Ideas ~20% (8-12) — percentages of the 50 operational questions, not the 54 administered.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "Table 10. Digital SAT Suite Reading and Writing Section Content Domains and Operational Question Distribution.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-math-domain-distribution",
+      "topic": "taxonomy",
+      "statement": "Math operational questions distribute as Algebra ~35% (13-15), Advanced Math ~35% (13-15), Problem-Solving and Data Analysis ~15% (5-7), Geometry and Trigonometry ~15% (5-7) — percentages of the 40 operational questions.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/sat/whats-on-the-test/math/overview",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "Algebra: 13–15 questions",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "Table 16. Digital SAT Math Section Content Domains and Operational Question Distribution.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-math-in-context",
+      "topic": "content",
+      "statement": "About 30% of Math questions are set in a real-world, science or social-science context.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/sat/whats-on-the-test/math/overview",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "Approximately 30% of the Math section's questions are set in context.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-question-ordering",
+      "topic": "content",
+      "statement": "Within a module, questions of a given domain/skill grouping are arranged from easiest to hardest, and Math questions across a module run easiest to hardest.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/digital-sat-test-spec-overview.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "Across each module, questions are arranged from easiest to hardest",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-no-essay-standard",
+      "topic": "question formats",
+      "statement": "The standard Digital SAT has no essay; a digital SAT Essay exists only in select U.S. School Day administrations and is not part of SAT Weekend or international administrations.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "the digital SAT Essay, which is currently administered only as part of select U.S. school day administrations",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-no-2026-27-structural-change",
+      "topic": "administration year",
+      "statement": "College Board's Changes for 2026-27 Testing page announces no change to structure, timing, question counts, adaptive design, or scoring; the only Math-tool change is that the embedded calculator can now be resized.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/sat/testing-staff/changes",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "resize the embedded calculator in the Math section",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-linear-accommodation-form",
+      "topic": "accommodations",
+      "statement": "A non-adaptive linear form exists as an accommodation with different specs: Reading and Writing 2x33 questions / 2x39 minutes (66 total), Math 2x27 questions / 2x43 minutes (54 total), all operational with no pretest questions.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "1st module: 33 questions, all operational 2nd module: 33 questions, all operational",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-benchmarks",
+      "topic": "scoring",
+      "statement": "College and Career Readiness Benchmarks are 480 for Reading and Writing and 530 for Math; these are readiness indicators, not admissions thresholds.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/scores/what-scores-mean/how-scores-calculated",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "Math benchmark at 530 and Reading/Writing at 480",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "sat-offline-resilience",
+      "topic": "delivery",
+      "statement": "Bluebook saves answers locally and encrypted if connectivity drops, with no loss of testing time — a behaviour worth mirroring in the platform's autosave design.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+          "publisher": "College Board",
+          "isOfficial": true,
+          "quote": "If a student loses Wi-Fi connectivity during testing, their answers will be encrypted and saved to the device they tested on",
+          "fetchedOk": true
+        }
+      ]
+    }
+  ],
+  "unverifiable": [
+    "The exact routing threshold between the higher- and lower-difficulty second-stage modules. Only 'set around the median section score' and 'roughly half each way' are published. => The engine MUST NOT claim exam-accurate routing. Either disable routing entirely and deliver a fixed second module, or route on a clearly labelled house heuristic (e.g. percent correct on the routing module) marked 'our approximation, not College Board's algorithm'.",
+    "IRT item parameters and the theta-to-scale-score transformation. => The engine MUST NOT report an estimated 400-1600 or 200-800 score as if it were exam-accurate. Disable scaled-score reporting, or gate it behind an explicit, documented, clearly labelled approximation.",
+    "Any raw-to-scaled conversion table for any Digital SAT form. None exists publicly because scoring is not raw-count based. => No 'your raw 42/54 = 680' feature.",
+    "The difficulty mix (proportion easy/medium/hard) of the routing module and each second-stage module. => Cannot build blueprint-accurate adaptive panels. Any adaptive practice panel must be labelled as an approximation.",
+    "The positions of the 2 pretest questions within each module, and whether they are fixed or randomised. => Cannot replicate 'indistinguishable unscored items' authentically. Recommend either omitting unscored items from simulations (and disclosing the difference) or inserting them at random positions with a clear disclosure.",
+    "The exact score range attainable from the lower-difficulty second-stage path, and the overlap region between paths. => No 'your ceiling is X because you were routed down' messaging.",
+    "Percentile ranks and conditional standard error of measurement by score point for 2026-27. => No percentile display, no score-confidence-interval display.",
+    "Per-module minute allocations under accommodated timing (+50%, +100%, >+100%) and extended-break schedules. => Extended-time modes must be built as a generic multiplier and labelled as such, not as an exam-accurate accommodation replica.",
+    "Whether the Bluebook Question Menu's scope is strictly the current module (College Board's tools page says 'any question in the section', which conflicts in wording with the hard module-lock rule). => Implement the review panel as module-scoped, which is the conservative reading consistent with the explicit no-return rule.",
+    "The exact SPR answer-matching tolerance College Board applies (e.g. whether .6666 and .6667 are both accepted for 2/3 — the published example table implies yes, but the general tolerance rule is not stated). => Author each SPR item with an explicit accepted-answer set rather than relying on a global tolerance rule.",
+    "Bluebook's precise autosave interval and reconnect-recovery mechanics. => Design our own autosave contract; do not claim it matches Bluebook."
+  ],
+  "briefDiscrepancies": [
+    {
+      "briefClaim": "The coordinator brief instructs: 'Investigate specifically: ... SAT claims about unscored questions', implying the supplied per-exam attachment makes a suspect or unsupported claim about unscored SAT questions.",
+      "verifiedFinding": "College Board DOES publish this, precisely. Two pretest (unscored) questions are embedded in EVERY module — 2 x 4 modules = 8 per test — and the operational/pretest split is published as 25+2 per Reading and Writing module and 20+2 per Math module. So 90 of 98 administered questions are scored. The claim is verifiable, not unsupported. What is NOT published is where the pretest items sit within a module.",
+      "sourceUrl": "https://satsuite.collegeboard.org/scores/what-scores-mean/how-scores-calculated",
+      "implementationConsequence": "Exam config must distinguish administered count (54/44) from operational count (50/40). Domain distribution percentages are stated over OPERATIONAL questions, so a 54-question Reading and Writing blueprint built on 28%/26%/26%/20% of 54 produces wrong counts. Blueprint against 50 and 40, then add 2 unscored per module if we choose to simulate them."
+    },
+    {
+      "briefClaim": "The brief lists 'Unsupported claims about proprietary adaptive scoring' as something to investigate, and separately warns 'Do not claim to reproduce proprietary SAT, GMAT, or GRE scoring algorithms.'",
+      "verifiedFinding": "The adaptive design itself is real, official, and well documented — but only qualitatively. The routing threshold, the IRT parameters, and the scale-score transformation are all unpublished. Any product claiming to reproduce SAT scaled scores is fabricating.",
+      "sourceUrl": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+      "implementationConsequence": "The brief's warning is correct and must be enforced for the SAT. Ship raw accuracy, per-domain accuracy, and timing. Do NOT ship a 400-1600 estimate unless we publish a documented methodology page and label it an approximation everywhere it appears."
+    },
+    {
+      "briefClaim": "The brief's engine spec requires each exam configuration to carry 'Raw-scoring rules' and lists a generic raw-to-scale path.",
+      "verifiedFinding": "For the Digital SAT a raw-count-to-scale model is factually wrong. College Board states that two students with the same number of correct answers can receive different section scores, because scoring is IRT ability estimation over the specific items administered.",
+      "sourceUrl": "https://satsuite.collegeboard.org/scores/what-scores-mean/how-scores-calculated",
+      "implementationConsequence": "The exam config schema needs a scoringModel discriminator, not just raw rules. For digital-sat set scoringModel = 'raw_only_reporting' with scaledScoreReporting = false, and surface a UI note explaining why we do not show a 1600-scale score."
+    },
+    {
+      "briefClaim": "The brief requires the engine to support 'Quantitative comparison' and 'Data sufficiency and structured data interpretation' response types among the verified exams.",
+      "verifiedFinding": "Neither exists on the Digital SAT. The SAT uses exactly two response types: four-option single-select multiple choice, and student-produced response (numeric entry). Quantitative comparison is GRE; data sufficiency is GMAT.",
+      "sourceUrl": "https://satsuite.collegeboard.org/media/pdf/english-sat-test-directions-bb.pdf",
+      "implementationConsequence": "The digital-sat config must whitelist only single_select and numeric_entry. Authoring UI should refuse to create QC or DS items tagged digital-sat."
+    },
+    {
+      "briefClaim": "The brief requires support for 'Shared passage or stimulus groups' as a response/grouping type across exams.",
+      "verifiedFinding": "The Digital SAT has NO passage sets. Every question is discrete and standalone; each Reading and Writing question carries its own 25-150 word passage or passage pair. This was a deliberate design change from the paper SAT.",
+      "sourceUrl": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+      "implementationConsequence": "Do not model SAT Reading and Writing items as members of a passage group. Attach the stimulus 1:1 to the item. Passage-group support is still needed for LSAT/GMAT/GRE but must be disabled for digital-sat, otherwise adaptive item selection and the easiest-to-hardest ordering break."
+    },
+    {
+      "briefClaim": "The brief treats 'adaptive routing where implemented' as a testable engine behaviour for the SAT.",
+      "verifiedFinding": "Module-level routing is real and can be simulated structurally (two prebuilt second modules, one harder, one easier). But the actual decision rule is not public — College Board says only that the break point sits around the median section score.",
+      "sourceUrl": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+      "implementationConsequence": "We can and should implement and persist a two-stage routing decision (it is structurally faithful and affects the learner experience), but the threshold is ours, must be stored with the attempt, and must be labelled in the results screen as 'our approximation'. Tests should assert routing is deterministic and persisted, not that it matches College Board."
+    },
+    {
+      "briefClaim": "The brief's generic model assumes a per-exam 'navigation and answer-review permissions' setting.",
+      "verifiedFinding": "The SAT needs TWO distinct navigation scopes, not one: unrestricted within a module (back/forward, change answers, skip, mark for review, jump via question menu) and hard-locked between modules ('Once you move on from any module, you cannot return to it'). Auto-advance on timer expiry is mandatory.",
+      "sourceUrl": "https://satsuite.collegeboard.org/media/pdf/english-sat-test-directions-bb.pdf",
+      "implementationConsequence": "Navigation permissions must be modelled at module granularity with a one-way module lock enforced SERVER-side, not just by hiding a button. A resumed attempt must not be able to re-enter a submitted module."
+    },
+    {
+      "briefClaim": "Not in the brief, but a very common third-party error worth recording: that the Digital SAT has a no-calculator Math portion, as the paper SAT did.",
+      "verifiedFinding": "False for the Digital SAT. 'Use of a calculator is permitted for all questions' in both Math modules, with an embedded Desmos graphing/scientific calculator plus the option of an approved non-CAS handheld. No calculator on Reading and Writing.",
+      "sourceUrl": "https://satsuite.collegeboard.org/sat/whats-on-the-test/math/calculator-use",
+      "implementationConsequence": "calculatorPolicy for digital-sat is uniform across both Math modules: {graphing: true, scientific: true, allowed: true}; Reading and Writing modules: {allowed: false}. Do not build a per-module calculator toggle for the SAT."
+    },
+    {
+      "briefClaim": "Two official College Board documents disagree on the SPR character limit.",
+      "verifiedFinding": "The Assessment Framework (section 5.1.15) says 'Math SPR questions require students to enter answers of up to six characters, the first of which may be a negative sign.' The Fall 2026 Bluebook Test Directions say 'You can enter up to 5 characters for a positive answer and up to 6 characters (including the negative sign) for a negative answer.' The operational directions are narrower for positive answers and are the current, administration-year-specific source.",
+      "sourceUrl": "https://satsuite.collegeboard.org/media/pdf/english-sat-test-directions-bb.pdf",
+      "implementationConsequence": "Implement the Fall 2026 operational rule: max 5 characters if no leading minus, max 6 if the first character is a minus. Flag this in content-authoring docs so item writers do not author positive answers needing 6 characters."
+    },
+    {
+      "briefClaim": "The supplied brief file in this repo ('researcxh context.md') is the coordinator prompt, not a per-exam fact sheet.",
+      "verifiedFinding": "The repository contains only the orchestration brief. The referenced attachment carrying specific per-exam factual claims (SAT unscored questions, ACT totals, LSAT logic games, Bocconi thresholds) is NOT present in the working directory, so its individual SAT claims could not be compared line by line.",
+      "sourceUrl": "https://satsuite.collegeboard.org/sat/whats-on-the-test/structure",
+      "implementationConsequence": "The discrepancy register above is built against the brief's own investigation prompts and against the SAT errors those prompts imply. If the original attachment is supplied, re-run this comparison; the verified claim set here is sufficient to adjudicate any SAT claim in it."
+    }
+  ],
+  "implementationNotes": [
+    "EXAM CONFIG SHAPE. digital-sat needs four module objects, not two section objects: rw-m1 (27q/32min), rw-m2 (27q/32min), math-m1 (22q/35min), math-m2 (22q/35min), with a single 10-minute break node between rw-m2 and math-m1. Model the break as a first-class timed node so pause/resume behaviour is explicit.",
+    "TIMER SEMANTICS. Each module has its own server-authoritative deadline computed at module start. Unused time NEVER rolls forward — on expiry the server closes the module and opens the next one regardless of client state. Emit a 5-minute-remaining event per module to mirror Bluebook's alert. Allow the learner to hide the timer but force it visible at T-5:00.",
+    "MODULE LOCK MUST BE SERVER-SIDE. Once a module is submitted or expires, the server must reject any answer write scoped to that module. Refreshing, reconnecting, or replaying a request must not reopen it. This is the single most important exam-accuracy rule for the SAT and is directly testable.",
+    "WITHIN-MODULE NAVIGATION IS UNRESTRICTED. Free back/forward, answer change, skip, mark-for-review flag, and a module-scoped question menu showing answered / skipped / marked state. Also implement an option eliminator (strike-through on MC choices, undoable) since Bluebook has one and learners practise with it. Persist eliminator and mark-for-review state across refresh; they are part of attempt state, not UI ephemera.",
+    "RESPONSE TYPES. Whitelist exactly single_select (4 options, exactly one key) and numeric_entry. Reject any other type at the config layer for this exam.",
+    "NUMERIC ENTRY VALIDATION. Implement Bluebook's rules exactly: allowed characters are digits, one leading '-', one '/', one '.'; max length 5 without a leading minus and 6 with; reject percent, comma, dollar, spaces and any other symbol at input time with an inline error; render a live preview of the parsed value beneath the field (Bluebook does this and it measurably reduces entry error). Mixed numbers must be rejected with the guidance to enter an improper fraction or decimal.",
+    "NUMERIC ENTRY GRADING. An SPR item can have MULTIPLE acceptable answers. The question schema needs acceptedAnswers as a set, not a single correctAnswer string, and each item must enumerate its accepted forms (e.g. 2/3, .6666, .6667, 0.6666, 0.6667 for two-thirds). Accept both truncation and rounding at the fourth digit. Do not implement a global float tolerance and hope — the exact tolerance rule is not published.",
+    "CALCULATOR AVAILABILITY. Boolean per module, not per section-half: Reading and Writing modules false, both Math modules true. Provide a graphing+scientific calculator (Desmos is the real thing; if we embed the public Desmos API, check licensing before shipping) and a formula reference sheet available on every Math question. Make the calculator draggable and resizable to match 2026-27 Bluebook.",
+    "ADAPTIVE ROUTING. Implement two prebuilt second-stage modules per section (higher-difficulty panel, lower-difficulty panel). Route once per section on completion of module 1. The threshold is OURS and must be stored on the attempt alongside the panel id, so a refresh or resume replays the same panel and results are reproducible. Label the routing as our approximation in the UI. Never adapt question-to-question — that would break the free within-module navigation the SAT guarantees.",
+    "BLUEPRINT COUNTS. Build panels against OPERATIONAL counts: Reading and Writing 50 operational (Craft and Structure 13-15, Information and Ideas 12-14, Standard English Conventions 11-15, Expression of Ideas 8-12), Math 40 operational (Algebra 13-15, Advanced Math 13-15, Problem-Solving and Data Analysis 5-7, Geometry and Trigonometry 5-7), split evenly across the two modules with all four domains present in each module. Only after the operational blueprint is satisfied should unscored filler be considered.",
+    "UNSCORED ITEMS. Since pretest positions are not published, the honest options are (a) omit them and run 50/40-question modules, disclosing the difference from the real 54/44, or (b) include 2 per module at random positions, flagged unscored in the attempt record and excluded from all accuracy reporting. Prefer (b) only once the bank is deep enough that filling 8 extra slots does not force duplication. Whichever we pick, state it on the simulation page.",
+    "SIMULATION GATE. A full Digital SAT simulation requires at minimum 50 + 40 = 90 reviewed operational items per panel path, and with two second-stage panels per section that is realistically ~180 reviewed items for one non-duplicating adaptive form. Until that threshold is met, do not present a full simulation; offer single-module timed practice (32 or 35 minutes) explicitly labelled as practice, which is honest and still pedagogically useful.",
+    "SCORING. scoringModel = IRT-based and NOT reproducible. Report per-domain and per-skill accuracy, time per question, and raw correct counts. Do NOT emit a 400-1600 or 200-800 estimate. If product later insists, it needs a written methodology page, a visible confidence range, the word 'estimate' adjacent to every instance, and an explicit statement that College Board does not publish conversion tables. Omitted answers score as incorrect; there is no penalty beyond that.",
+    "CONTENT ORDERING. Within a module, order questions easiest-to-hardest within each skill grouping (Reading and Writing) and easiest-to-hardest across the module (Math). Store an editorial difficulty label and keep it distinct from any empirically calibrated difficulty, per the brief's schema requirement.",
+    "STIMULUS MODEL. One passage (25-150 words, sometimes a pair) per Reading and Writing question, owned by that question. No passage groups. Informational graphics in Reading and Writing are limited to tables, bar graphs and line graphs; Math graphics are broader. Store underlying data for every chart and render an accessible table alternative.",
+    "RESILIENCE. Mirror Bluebook's guarantee that a connectivity loss costs no testing time: autosave answers locally, reconcile on reconnect, use idempotent submission keys, and keep the deadline server-authoritative so a client clock cannot be gamed. Test: kill the network mid-module, answer three questions, restore, verify all three persisted and the deadline did not shift.",
+    "ACCOMMODATIONS. Build extended time as a generic multiplier on each module's duration (+50%, +100%) and label it 'our extended-time mode', not an exam-accurate accommodation replica, since per-module accommodated timing tables are not published. The published linear accommodation form (Reading and Writing 2x33 / 2x39min, Math 2x27 / 2x43min, no pretest items) is a separate, non-adaptive config if we ever want it.",
+    "PUBLIC CONTENT. Every SAT fact page must carry the administration year ('2026-27 testing year'), a College Board source link near the claim, and an explicit separation between College Board's documented rules and our approximations. The 480/530 benchmarks are readiness indicators — never present them, or any score, as a Bocconi or other admissions threshold."
+  ],
+  "sources": [
+    {
+      "url": "https://satsuite.collegeboard.org/sat/whats-on-the-test/structure",
+      "publisher": "College Board",
+      "isOfficial": true,
+      "quote": "The SAT is composed of two sections: (1) the Reading and Writing section, and (2) the Math section.",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://satsuite.collegeboard.org/media/pdf/english-sat-test-directions-bb.pdf",
+      "publisher": "College Board",
+      "isOfficial": true,
+      "quote": "Once you move on from any module, you cannot return to it.",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+      "publisher": "College Board",
+      "isOfficial": true,
+      "quote": "Based on student performance on the initial module, Bluebook selects one of two potential second-stage modules to administer.",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://satsuite.collegeboard.org/media/pdf/digital-sat-test-spec-overview.pdf",
+      "publisher": "College Board",
+      "isOfficial": true,
+      "quote": "Each Reading and Writing module lasts 32 minutes, while each Math module lasts 35 minutes.",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://satsuite.collegeboard.org/scores/what-scores-mean/how-scores-calculated",
+      "publisher": "College Board",
+      "isOfficial": true,
+      "quote": "Two pretest questions are also included in each module.",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://satsuite.collegeboard.org/sat/what-to-bring-do/what-to-expect",
+      "publisher": "College Board",
+      "isOfficial": true,
+      "quote": "You can move back and forth between questions in a module and review your answers until time expires.",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://satsuite.collegeboard.org/sat/whats-on-the-test/math/calculator-use",
+      "publisher": "College Board",
+      "isOfficial": true,
+      "quote": "Bluebook contains an embedded Desmos calculator with two options—graphing or scientific.",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://bluebook.collegeboard.org/students/tools",
+      "publisher": "College Board",
+      "isOfficial": true,
+      "quote": "Use the bookmark icon to flag any question you want to come back to.",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://satsuite.collegeboard.org/sat/whats-on-the-test/math/overview",
+      "publisher": "College Board",
+      "isOfficial": true,
+      "quote": "Approximately 30% of the Math section's questions are set in context.",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://satsuite.collegeboard.org/sat/whats-on-the-test/math/student-produced",
+      "publisher": "College Board",
+      "isOfficial": true,
+      "quote": "SPR questions may have more than one correct response, although you'll supply only one answer.",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://satsuite.collegeboard.org/sat/testing-staff/changes",
+      "publisher": "College Board",
+      "isOfficial": true,
+      "quote": "resize the embedded calculator in the Math section",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://satsuite.collegeboard.org/sat/whats-on-the-test/reading-writing/overview",
+      "publisher": "College Board",
+      "isOfficial": true,
+      "quote": "(not quoted — this URL returned HTTP 404 and was not used as a source)",
+      "fetchedOk": false
+    }
+  ]
+}

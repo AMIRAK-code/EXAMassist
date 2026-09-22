@@ -1,0 +1,82 @@
+{
+  "id": "gre-quant-ss-cylinder-volume-009",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-geometry",
+  "skillSlug": "geom-volume",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A right circular cylinder has a height of $10$ centimetres and a base of radius $3$ centimetres. A second right circular cylinder has exactly the same volume, but its base has radius $6$ centimetres.\n\nWhat is the height, in centimetres, of the second cylinder?",
+  "instructionsMd": "Select one answer choice.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$1.25$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$2.5$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$5$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$20$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$40$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The volume of a right circular cylinder is $V = \\pi r^{2} h$.\n\n**Volume of the first cylinder.**\n\n$$V = \\pi (3)^{2}(10) = 90\\pi \\ \\text{cm}^{3}.$$\n\n**Height of the second.** Set its volume equal to $90\\pi$ and solve for $h$:\n\n$$\\pi (6)^{2} h = 90\\pi$$\n$$36 h = 90$$\n$$h = \\frac{90}{36} = 2.5 \\ \\text{cm}.$$\n\n**Check.** $\\pi(6)^{2}(2.5) = \\pi \\times 36 \\times 2.5 = 90\\pi$, matching the first cylinder. Note that $\\pi$ cancels from both sides, so you never need its numerical value here.\n\n**The idea to take away.** Doubling the radius multiplies the base area by $2^{2} = 4$, because area depends on the *square* of the radius. To keep the volume fixed, the height must therefore be divided by $4$: $10 / 4 = 2.5$. Recognising that squared relationship lets you answer this in one step.",
+  "distractorRationale": {
+    "c": "Comes from treating volume as proportional to the radius rather than to its square: doubling the radius is taken to double the base area, so the height is halved to $10 / 2 = 5$. Base area scales with $r^{2}$, so it quadruples, not doubles.",
+    "d": "Comes from applying the scaling in the wrong direction, multiplying the height by $2$ instead of dividing. A wider base needs a shorter cylinder to hold the same volume, not a taller one.",
+    "e": "Comes from both errors at once: recognising the factor of $4$ from squaring the radius but multiplying the height by it, giving $10 \\times 4 = 40$. A quick sanity check catches this: a cylinder twice as wide and four times as tall would hold sixteen times the volume.",
+    "a": "Comes from cubing the scale factor, as one would for a solid scaled in all three dimensions, and dividing the height by $8$: $10 / 8 = 1.25$. Only the radius changes here; the height is the unknown, so the base area scales by $4$, not by $8$."
+  },
+  "estimatedSeconds": 105,
+  "stimulusRef": null,
+  "accessibilityText": "A right circular cylinder has height 10 centimetres and base radius 3 centimetres. A second right circular cylinder has the same volume but base radius 6 centimetres. Find the height in centimetres of the second cylinder. The choices are 1.25, 2.5, 5, 20 and 40.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gre-author",
+    "aiAssisted": true,
+    "notes": "Original item. Dimensions chosen by the author so the radius exactly doubles and the answer is a clean decimal; not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gre-author",
+    "reviewer": "gre-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "gre-independent-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "V = pi*3^2*10 = 90pi; setting pi*6^2*h = 90pi gives h = 90/36 = 2.5 cm."
+    },
+    "notes": "Author solved as 2.5 by equating 90*pi with 36*pi*h, and checked that no other listed value reproduces 90*pi. Awaiting blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "volume",
+    "cylinder",
+    "scaling"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "id": "gre-quant-ne-mean-median-006",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-data-analysis",
+  "skillSlug": "data-descriptive-statistics",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The five numbers $8$, $11$, $12$, $15$ and $k$ have an arithmetic mean (average) of $13$.\n\nWhat is the median of the five numbers?",
+  "instructionsMd": "Enter your answer in the box. Equivalent forms of the same value are accepted.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 12
+      }
+    ],
+    "acceptedStrings": [
+      "12",
+      "12.0"
+    ]
+  },
+  "explanationMd": "This is a two-step item: first recover the missing value from the mean, then order the list to read off the median.\n\n**Step 1 — find $k$.** The mean of five numbers is their sum divided by $5$, so the sum must be\n\n$$5 \\times 13 = 65.$$\n\nThe four known numbers add to $8 + 11 + 12 + 15 = 46$, so\n\n$$k = 65 - 46 = 19.$$\n\n**Step 2 — find the median.** Put all five numbers in increasing order:\n\n$$8, \\; 11, \\; 12, \\; 15, \\; 19.$$\n\nWith an odd count of five values, the median is the third one, which is $12$.\n\n**Check.** Add them: $8 + 11 + 12 + 15 + 19 = 65$, and $65 / 5 = 13$, matching the stated mean. Two values lie below $12$ and two lie above it, which is exactly what being the median of five numbers means.\n\nThe trap here is entering $19$: that is $k$, the value you had to find along the way, not the answer to the question that was asked. Always re-read the final sentence before typing.",
+  "distractorRationale": {},
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "Five numbers are 8, 11, 12, 15 and an unknown value k. Their arithmetic mean is 13. Find the median of the five numbers and type it in the answer box.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gre-author",
+    "aiAssisted": true,
+    "notes": "Original item. Values chosen by the author so that k is an integer and lands at the top of the ordered list; not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gre-author",
+    "reviewer": "gre-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "gre-independent-reviewer",
+      "solvedAnswer": "12",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Sum must be 5*13 = 65 and 8+11+12+15 = 46, so k = 19; ordered list 8, 11, 12, 15, 19 has median 12."
+    },
+    "notes": "Author solved as 12: k = 19, ordered list 8, 11, 12, 15, 19, third value is 12. Awaiting blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "numeric-entry",
+    "mean",
+    "median",
+    "descriptive-statistics"
+  ]
+}

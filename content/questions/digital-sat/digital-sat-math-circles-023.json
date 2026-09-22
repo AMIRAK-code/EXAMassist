@@ -1,0 +1,77 @@
+{
+  "id": "digital-sat-math-circles-023",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "geometry-and-trigonometry",
+  "skillSlug": "circles",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "In the $xy$-plane, the equation $x^2 + y^2 - 10x + 6y = 2$ defines a circle. What is the radius of the circle?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\sqrt{2}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$6$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$3\\sqrt{2}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$36$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Put the equation into the standard form $(x - h)^2 + (y - k)^2 = r^2$ by completing the square in $x$ and in $y$ separately.\n\nGroup the terms:\n\n$$(x^2 - 10x) + (y^2 + 6y) = 2$$\n\nFor $x$: half of $-10$ is $-5$, and $(-5)^2 = 25$. For $y$: half of $6$ is $3$, and $3^2 = 9$. Add both to **each** side:\n\n$$(x^2 - 10x + 25) + (y^2 + 6y + 9) = 2 + 25 + 9$$\n$$(x - 5)^2 + (y + 3)^2 = 36$$\n\nSo the circle has centre $(5, -3)$ and $r^2 = 36$, which gives\n\n$$r = \\sqrt{36} = 6$$\n\nCheck by expanding your standard form back out: $(x-5)^2 + (y+3)^2 = x^2 - 10x + 25 + y^2 + 6y + 9$, and setting that equal to $36$ returns $x^2 + y^2 - 10x + 6y = 2$. The original equation is recovered, so the completion of the square was done correctly.",
+  "distractorRationale": {
+    "a": "This reads the radius off the right-hand side of the original equation, treating $2$ as $r^2$. The equation is not yet in standard form, so the right-hand side is not $r^2$ until both squares have been completed.",
+    "c": "This is $\\sqrt{18}$, which comes from subtracting the $9$ instead of adding it: $2 + 25 - 9 = 18$. Completing a square adds a constant to the left side, so the same constant must be added, not subtracted, on the right.",
+    "d": "This is $r^2$, not $r$. The standard form gives $(x-5)^2 + (y+3)^2 = 36$, and the final square root step is missing."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "In the x y plane, the equation x squared plus y squared minus ten x plus six y equals two defines a circle. Find its radius.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "digital-sat-author",
+    "aiAssisted": true,
+    "notes": "Original item. Constants chosen so completing the square yields a perfect square, 36, and an integer radius."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "digital-sat-author",
+    "reviewer": "digital-sat-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "digital-sat-independent-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Completing the square: (x-5)^2 - 25 + (y+3)^2 - 9 = 2, so (x-5)^2 + (y+3)^2 = 36 and r = 6. Option D (36) is r^2, not r; A and B do not arise from any step."
+    },
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "geometry",
+    "circle",
+    "completing-the-square"
+  ]
+}
