@@ -33,7 +33,7 @@ A learner can do all of this today, end to end, verified in a browser:
 - **Report** — flag a question as wrong or ambiguous, which an editor triages in
   a role-gated admin area.
 
-**43 routes**, typecheck clean, **160 unit and integration tests**, **33 browser
+**43 routes**, typecheck clean, **170 unit and integration tests**, **37 browser
 tests** across desktop and mobile, production build succeeds.
 
 ## 2. How to run it
@@ -56,8 +56,8 @@ An admin account is created by `npm run db:seed` if `ADMIN_EMAIL` and
 Verification:
 
 ```bash
-npm run verify   # typecheck + content validation + 160 tests
-npm run e2e      # 33 browser tests; prepares its own database
+npm run verify   # typecheck + content validation + 170 tests
+npm run e2e      # 37 browser tests; prepares its own database
 ```
 
 ## 3. Coverage per exam — the honest table
@@ -66,19 +66,25 @@ Reviewed questions and what each exam can actually offer. "Practice" is the
 open, untimed drill; "timed section" reproduces a real published section; a
 simulation needs both verified rules and enough content.
 
-| Exam | Reviewed questions | Domains covered | Practice | Timed section | Full simulation |
-| --- | --- | --- | --- | --- | --- |
-| Digital SAT | 24 | 8 / 8 | Yes | No — needs 22–27 per module | No — needs 98 |
-| GRE General | 17 | 5 / 8 | Yes | Quant section 1 only | Rules not fully verified |
-| Bocconi (undergraduate) | 17 | 2 / 4 | Yes | No — needs 50 | Rules verified; needs 50 |
-| Enhanced ACT | 15 | 10 / 17 | Yes | No | No — ACT's own documents conflict on breaks |
-| GMAT | 8 | 2 / 8 | Not yet — needs 10 | No | No — question-level adaptive, algorithm proprietary |
-| Bocconi (law) | 8 | 2 / 5 | Not yet — needs 10 | No | Rules verified; needs 50 |
-| LSAT | 7 | 1 / 4 | Not yet — needs 10 | No | LSAC does not publish item counts |
+| Exam | Reviewed questions | Domains covered | Practice | Diagnostic | Timed section | Full simulation |
+| --- | --- | --- | --- | --- | --- | --- |
+| Digital SAT | 24 | 8 / 8 | Yes | Yes | No — needs 22–27 per module | No — needs 98 |
+| GRE General | 23 | 7 / 8 | Yes | 1 short | Quant section 1 | Rules not fully verified |
+| Bocconi (undergraduate) | 23 | 4 / 4 | Yes | 1 short | No — needs 50 | Rules verified; needs 50 |
+| Enhanced ACT | 22 | 13 / 17 | Yes | 4 short | No | No — ACT's own documents conflict on breaks |
+| Bocconi (law) | 22 | 5 / 5 | Yes | Yes | No — needs 50 | Rules verified; needs 50 |
+| LSAT | 21 | 3 / 4 | Yes | Yes | No — needs ~24 per section | LSAC does not publish item counts |
+| GMAT | 8 published, 14 in review | 2 / 8 | Pending review | No | No | No — question-level adaptive, algorithm proprietary |
+
+The uncovered domains are the two essay domains we deliberately do not author
+(GRE Analyze an Issue, LSAT Argumentative Writing), the ACT science section, and
+the GMAT domains still in review. Two items are **quarantined**, not published,
+because an independent reviewer found a second defensible answer.
 
 **This is a starter library, not a course.** The brief's target was 20 reviewed
-questions per exam; only the Digital SAT meets it. A top-up pass for the six
-thin exams was in progress when the session ended — see §6.
+questions per exam. Six of the seven configurations now meet it; GMAT's 14 new
+items are written and awaiting their blind independent solve, which is the last
+step before they publish.
 
 Every one of those gaps is visible in the product, with its reason, before a
 learner commits to anything. Nothing is presented as available and then fails.
@@ -141,10 +147,9 @@ asked for are instead enforced on everything *we* author.
 
 | Limitation | Impact | Notes |
 | --- | --- | --- |
-| Thin question bank | Three exams cannot yet offer practice | The main gap; see §6 |
+| Thin question bank | Sectional and full-length formats are still gated | Six of seven exams now meet the 20-item target; see §6 |
 | SQLite, not PostgreSQL | Single writer | Forced by the environment; porting path in `ARCHITECTURE.md` |
 | No screen-reader or axe pass | Accessibility is an intent, not a tested claim | Structural checks are automated |
-| Adaptive routing never run end to end | Unit-tested only | Needs enough GRE content to reach stage two |
 | No dark theme | — | One theme done properly |
 | Essays are not scored | GRE and ACT writing show a rubric only | Deliberate: automated essay scoring would be a fabricated number |
 | Admin question view reads JSON at request time | Fine at this size | Independent-solve evidence is not in the database |
@@ -153,15 +158,19 @@ asked for are instead enforced on everything *we* author.
 
 ## 6. Next-release backlog, in priority order
 
-1. **Finish the question bank.** Reach 20+ reviewed items per exam and cover
-   every major domain. Priority: LSAT reading comprehension (missing entirely),
-   GMAT Data Insights and critical reasoning (missing entirely), Bocconi law
-   logic and verbal reasoning, ACT reading. Use the existing pipeline:
-   author → `export-review-batch` → blind solve → `apply-review` →
-   `normalise-option-order` → `db:seed`.
+1. **Grow the bank towards sectional practice.** Every exam now has open
+   practice, but a timed section needs the exam's real item count (22–27 for an
+   SAT module, ~24 for an LSAT section, 50 for a Bocconi form). Priority: ACT
+   science (no items at all), GMAT quantitative and verbal depth, SAT modules.
+   The pipeline, in this order:
+   author → `normalise-option-order` → `export-review-batch` → blind solve →
+   `apply-review` → `db:seed`. Normalisation runs BEFORE review so option order
+   is fixed while an item is still unpublished.
 2. **Accessibility conformance.** An axe-core run in CI plus a screen-reader
    walkthrough of the player, then replace the intent claim with a real one.
-3. **Exercise adaptive routing end to end** once GRE content allows it.
+3. **Rewrite the two quarantined items.** `lsat-lr-disagreement-115` and
+   `enhanced-act-read-time-use-table-023` each have a second defensible reading.
+   Each file records why, and neither is served to learners.
 4. **Password reset**, which needs an email provider.
 5. **Move independent-solve evidence into the database** (a migration adding
    `question_versions.independent_solve_json` and `quarantine_reason`).

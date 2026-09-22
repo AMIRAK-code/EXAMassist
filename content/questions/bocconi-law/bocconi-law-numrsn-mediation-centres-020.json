@@ -1,0 +1,80 @@
+{
+  "id": "bocconi-law-numrsn-mediation-centres-020",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-numerical-reasoning",
+  "skillSlug": "law-numrsn-relevant-vs-superfluous",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which of the following statements is supported by the table?",
+  "instructionsMd": "No calculator is permitted. Each statement can be settled by a single comparison; find the one figure or pair of figures that decides it and ignore the rest of the table.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Dora received 300 more cases than Arno and resolved exactly as many."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Brenta resolved a larger share of the cases it received than Arno did."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The centre with the most mediators also had the shortest average time to resolution."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Chienti's mediators each resolved six times as many cases as Dora's."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Take the options one at a time and read only the columns each one actually needs.\n\n**D — two columns, no arithmetic beyond a subtraction.** Cases received: Dora 1,500 against Arno 1,200, a difference of 300. Cases resolved: Dora 900 and Arno 900 — identical. Both halves hold, so D is supported.\n\n**A — mediators and average days.** Dora has the most mediators at 15. Its average time to resolution is 50 days, the *longest* of the four, not the shortest (Brenta's 25 days is the shortest). The statement fails.\n\n**B — resolved cases per mediator.** Chienti: $360 \\div 6 = 60$. Dora: $900 \\div 15 = 60$. Equal, not six times as many.\n\n**C — share of cases received that were resolved.** Brenta: $\\frac{600}{800} = \\frac{3}{4}$. Arno: $\\frac{900}{1200} = \\frac{3}{4}$. Equal, so neither share is larger.\n\n**How to check.** Notice that only D can be settled without dividing anything, and that the other three each fail on a comparison that turns out to be an equality or a reversal. Re-run those three: $900 \\div 15$ and $360 \\div 6$ both give 60, and both $\\frac{600}{800}$ and $\\frac{900}{1200}$ reduce to $\\frac{3}{4}$. Confirming the ties is what proves D is the only supported statement.",
+  "distractorRationale": {
+    "c": "Assumes more mediators must mean faster resolution. The table says the opposite for Dora: 15 mediators, the largest staff, and 50 days, the longest average. Reading a plausible relationship into the data instead of checking the column is the error.",
+    "d": "Compares the number of mediators (6 against 15) instead of the resolved cases per mediator. Chienti does have roughly a third of Dora's staff, but it also resolved roughly a third as many cases, so the per-mediator figures are both 60 and the ratio is 1, not 6.",
+    "b": "Compares the raw counts of cases received, where Arno's 1,200 dwarfs Brenta's 800, and forgets that a share is a ratio. Both centres resolved three quarters of what they received, so neither share is larger than the other."
+  },
+  "estimatedSeconds": 115,
+  "stimulusRef": {
+    "id": "bocconi-law-table-mediation-centres-003",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying table of four mediation centres, which lists for each centre the cases received, the cases resolved, the average days to resolution and the number of mediators. Four statements about the table follow and the question asks which one the table supports. The explanation uses division signs and fractions such as 600 over 800.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-topup-author",
+    "aiAssisted": true,
+    "notes": "Original item written against the existing original table stimulus bocconi-law-table-mediation-centres-003. Every comparison is exact and hand-sized, as no calculator is permitted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-topup-author",
+    "reviewer": "bocconi-law-round2-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-law-round2-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Dora 1500 received vs Arno 1200 is 300 more, and both resolved 900. (a) fails: most mediators is Dora (15) but shortest average is Brenta (25 days); (b) fails: 360/6=60 equals 900/15=60; (c) fails: 600/800 and 900/1200 are both 75%."
+    },
+    "notes": "Author checked all four statements against the table: A is reversed (Dora has the most mediators and the longest average), B and C are exact ties (60 resolved cases per mediator each; three quarters resolved each), and only D holds (1500 - 1200 = 300; 900 = 900). Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "numerical-reasoning",
+    "tables",
+    "ratios",
+    "no-calculator"
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "id": "bocconi-ug-crit-bikes-cars-overlap-022",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-critical-thinking",
+  "skillSlug": "critical-thinking-truth-evaluation",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A survey covered all 400 households in the Lanzo district and reported three findings.\n\n> - 60 per cent of the households own at least one bicycle.\n> - 45 per cent of the households own at least one car.\n> - Every household surveyed owns a bicycle, a car, or both.\n\nOn the basis of these findings, which one of the following statements is true?",
+  "instructionsMd": "This item has three answer options and carries the heavier penalty for a wrong answer. No calculator.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "At least 5 per cent of the households own both a bicycle and a car, but the survey does not contain enough information to fix the exact figure."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "More households own a car but no bicycle than own a bicycle but no car."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Exactly 20 of the 400 households own both a bicycle and a car."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Turn the percentages into households first, because 400 is an easy base: one per cent is 4 households.\n\n$$\\text{bicycle owners} = 60\\% \\text{ of } 400 = 240 \\qquad \\text{car owners} = 45\\% \\text{ of } 400 = 180$$\n\nThe third finding is the one that does the work: every household owns at least one of the two, so the two groups together cover all 400 households and no household sits outside both.\n\nAdding the two groups counts a household that owns both **twice**, once in each group. So the double-counting is the excess of the sum over the true total:\n\n$$240 + 180 = 420 \\qquad 420 - 400 = 20$$\n\nExactly 20 households own both. This is the inclusion-exclusion rule, $|B \\cup C| = |B| + |C| - |B \\cap C|$, rearranged.\n\n**How to check the answer.** Rebuild the district from the four categories and see whether it adds to 400. Bicycle only: $240 - 20 = 220$. Car only: $180 - 20 = 160$. Both: $20$. Neither: $0$, because the third finding forbids it. Total: $220 + 160 + 20 = 400$. It balances, so the figure of 20 is right.\n\n**Why the third finding matters so much.** Without it, the overlap could be anything from 20 households up to 180, and the honest answer would be a range. The statement that nobody owns neither is what pins the answer to a single number. In data questions, the sentence that looks like a throwaway remark is often the binding constraint.",
+  "distractorRationale": {
+    "a": "This treats the overlap as a lower bound only, which would be correct if some households could own neither a bicycle nor a car. The third finding rules that out, and once the two groups must cover all 400 households the overlap is pinned to exactly 20. The information is sufficient, so the second half of the statement is false.",
+    "b": "This reverses the comparison. Car only is $180 - 20 = 160$ and bicycle only is $240 - 20 = 220$, so the bicycle-only group is the larger of the two by 60 households. Subtracting the same overlap of 20 from both groups cannot change which group started out bigger, and bicycles led 240 to 180."
+  },
+  "estimatedSeconds": 105,
+  "stimulusRef": null,
+  "accessibilityText": "A critical thinking question about a survey of all 400 households in a district. The three findings are: 60 per cent of households own at least one bicycle; 45 per cent own at least one car; and every household owns a bicycle, a car, or both. The question asks which of three statements is true on the basis of these findings.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-topup-author",
+    "aiAssisted": true,
+    "notes": "Original item. Percentages were chosen so the overlap is a whole number of households and the household counts in every category are whole numbers, so the whole item is workable by hand. Written with three options to match the Bocconi three-option critical thinking format."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-topup-author",
+    "reviewer": "bocconi-undergraduate-round2-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-round2-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Bike = 0.60*400 = 240, car = 0.45*400 = 180, union = 400 because every household owns at least one. Inclusion-exclusion: both = 240 + 180 - 400 = 20 exactly, so A holds. B is false because its second clause denies that the exact figure is fixed, which it is. C is false: car-only = 180-20 = 160 < bike-only = 240-20 = 220."
+    },
+    "notes": "Author checked uniqueness by inclusion-exclusion: with the union fixed at 400, the intersection is 240 + 180 - 400 = 20 and no other value is consistent, so option B's sufficiency claim is false. Bicycle only is 220 against car only 160, so option C is false. Exactly one option is defensible. Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "three-option",
+    "inclusion-exclusion",
+    "sets-and-overlap"
+  ]
+}

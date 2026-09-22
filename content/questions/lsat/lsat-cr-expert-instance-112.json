@@ -1,0 +1,85 @@
+{
+  "id": "lsat-cr-expert-instance-112",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "rc",
+  "domainSlug": "comparative-reading",
+  "skillSlug": "cr-generalization-instance",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "In relation to the generalization advanced in passage A, passage B's discussion of toolmark comparison functions primarily to",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "identify a field in which there is no body of specialists whose judgments can be compared"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "show that court-appointed experts have in practice performed worse than party-selected ones"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "provide an example of a technique whose error rate has since been measured"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "present a case in which the defect passage A identifies was present but was not what made the testimony unreliable"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "demonstrate that examiners in the field were systematically dishonest"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "When one passage generalises and the other supplies a case, ask what work the case is doing *against the generalization* — supporting it, limiting it, or cutting it off from the conclusion drawn from it.\n\nPassage A's generalization: selection by a party skews the opinion the court hears, and that is what makes expert testimony untrustworthy.\n\nNow look at what passage B's example contains. The examiners were prosecution witnesses, so passage A's defect — party selection and payment — was present. Yet passage B says flatly: \"The trouble was never that the examiners were paid by the prosecution. It was that the technique had no measured error rate, so that no honest examiner could have said how much weight the conclusion deserved.\"\n\nThat is a case where A's defect is present and is nonetheless *not* the cause of the unreliability. Such a case does not deny the generalization; it severs the link between the generalization and A's remedy, which is why passage B can go on to say that appointing a neutral examiner \"would not have supplied the missing number.\" Choice (D) describes exactly that function.\n\nHow to check: ask what the example would have to contain for each other choice to be its point, and see whether passage B supplies it. For (C) you would need a sentence saying the error rate was later measured; passage B says only that \"for decades no study established\" it. For (E) you would need evidence of dishonesty; both passages go out of their way to say honest experts suffice for the problem. An example only does the work the text actually gives it.",
+  "distractorRationale": {
+    "a": "Passage A limits its proposal to fields with 'a body of specialists whose judgments can be compared', so this would be a real limitation if passage B asserted it — but passage B never says that toolmark examiners lack such a body. Its objection is that the technique's error rate was unmeasured, which is a defect of the method rather than of the profession's size.",
+    "b": "No court-appointed expert appears in the toolmark story at all. Passage B argues about what appointment 'would not have supplied' and 'would have removed', which is a counterfactual claim about a reform never tried, not a report of comparative performance.",
+    "c": "Passage B says that 'for decades no study established how often an examiner reaches that conclusion wrongly', and it closes by urging that error rates be measured as a condition of admissibility. Both statements presuppose that the measurement has not been made, so the example cannot be one of a rate since measured.",
+    "e": "Passage B's whole point is that the failure survives complete honesty: 'no honest examiner could have said how much weight the conclusion deserved'. Passage A makes the parallel disclaimer that the distortion it describes 'need not involve dishonesty', so attributing dishonesty to the examiners misreads both passages at once."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": {
+    "id": "lsat-stim-expert-witness-pair-003",
+    "version": 1
+  },
+  "accessibilityText": "A comparative-reading question on the paired passages about expert witnesses, asking what role passage B's discussion of toolmark comparison plays in relation to the generalization advanced in passage A. Five answer choices labelled A through E. No figures, tables or mathematical notation.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "lsat-topup-author",
+    "aiAssisted": true,
+    "notes": "Original question written against an original comparative pair in this bank. Not adapted from any LSAC comparative set."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "lsat-topup-author",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "B concedes the examiners were 'paid by the prosecution' - A's defect was present - but says 'The trouble was never that'; the real defect was the unmeasured error rate. That is exactly (d). (c) fails: B says for decades no study established the rate and never says one since has; (e) fails because B treats examiners as honest; (a) fails because B assumes a roster of such examiners could be assembled; (b) is never claimed.",
+      "solvedBy": "lsat-round2-reviewer"
+    },
+    "notes": "Key turns on the explicit sentence 'The trouble was never that the examiners were paid by the prosecution', which establishes both that passage A's defect was present and that it was not the operative cause. (A) was the closest competitor and is unsupported by any sentence about the profession. Awaiting blind independent solve.",
+    "reviewer": "lsat-round2-reviewer"
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "comparative-reading",
+    "generalization-instance",
+    "law"
+  ]
+}

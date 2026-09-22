@@ -1,0 +1,79 @@
+{
+  "id": "bocconi-ug-num-bakery-revenue-per-staff-018",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-numerical-reasoning",
+  "skillSlug": "numerical-reasoning-charts-tables",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In which city did Casa Verde take the most revenue per member of staff in 2025?",
+  "instructionsMd": "Use only the figures in the table. No calculator.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Arno"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Brenta"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Carso"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Dorsa"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "\"Revenue per member of staff\" is revenue **divided by** staff. The shops column is not needed at all, so ignore it.\n\n$$\\text{Arno} = \\frac{960}{48} = 20 \\qquad \\text{Brenta} = \\frac{1200}{80} = 15$$\n\n$$\\text{Carso} = \\frac{720}{24} = 30 \\qquad \\text{Dorsa} = \\frac{600}{50} = 12$$\n\nAll four divide exactly, in thousands of euros per person. Carso's $30$ is the largest, so **Carso** is the answer.\n\n**Doing the division by hand.** Each one is a familiar multiple rather than long division: $48 \\times 20 = 960$; $8 \\times 15 = 120$, so $80 \\times 15 = 1200$; $24 \\times 30 = 720$; and $50 \\times 12 = 600$. Hunting for the multiplication that fits is faster than dividing.\n\n**How to check the answer.** Carso is the smallest city by staff yet not the smallest by revenue, so a high ratio is exactly what you should expect there. Dorsa is the reverse: almost as many staff as Brenta on half of Brenta's revenue, and it finishes last. A sanity check of that kind catches an arithmetic slip without repeating the division.\n\n**The trap to name.** Brenta leads on revenue and on shops, and Arno leads on revenue per shop. Neither is what was asked. Before comparing anything, fix which two columns the word \"per\" is joining.",
+  "distractorRationale": {
+    "a": "Arno leads on revenue per *shop*, $\\frac{960}{6} = 160$, the highest of the four. This uses the wrong denominator: the stem asks per member of staff, not per shop, and on staff Arno gives only $\\frac{960}{48} = 20$.",
+    "b": "Brenta has the largest revenue in the table, 1200, and also the most shops. This reads the revenue column on its own and never divides at all. Brenta also carries by far the most staff, 80, so on the ratio actually asked for it is the second worst at 15.",
+    "d": "Dorsa is the answer to the inverted ratio: it employs the most staff per euro of revenue, $\\frac{50}{600}$, one person for every 12 thousand euros, a larger figure than any other city gives. Dividing staff by revenue instead of revenue by staff turns the weakest performer into the apparent best."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": {
+    "id": "bocconi-ug-stim-bakery-cities-004",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying table of the Casa Verde bakery chain in four cities. It asks which city took the most revenue for each member of staff employed. The four answer options are the four city names: Arno, Brenta, Carso, Dorsa.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-topup-author",
+    "aiAssisted": true,
+    "notes": "Original item written against an original table. The table was built so that each wrong city is the answer to one specific, nameable misreading: wrong denominator, no division at all, or an inverted ratio."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-topup-author",
+    "reviewer": "bocconi-undergraduate-round2-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-round2-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Revenue per staff (thousand euros): Arno 960/48 = 20, Brenta 1200/80 = 15, Carso 720/24 = 30, Dorsa 600/50 = 12. Carso is highest by a clear margin, so exactly one option is defensible."
+    },
+    "notes": "Author checked uniqueness by computing all four ratios: 20, 15, 30 and 12 thousand euros per person. Only Carso attains the maximum and no two cities tie on it, so exactly one option is defensible. Awaiting blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "table-bakery-cities",
+    "ratios",
+    "per-unit-comparison"
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "id": "bocconi-law-logic-bar-examination-013",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-data-propositions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A regional bar association publishes exactly the following data about its 2024 admission round:\n\n- 400 candidates passed the written examination.\n- Every candidate who passed the oral examination had already passed the written examination.\n- Fewer than half of the candidates who passed the written examination passed the oral examination.\n\nWhich of the following must be true?",
+  "instructionsMd": "This question has only three answer options. On the real test a wrong answer to a three-option critical-thinking item costs 0.33 points instead of 0.2. Use the published data only.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Fewer than 200 candidates passed the oral examination."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Every candidate who passed the written examination sat the oral examination."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "At least 200 candidates sat the oral examination and failed it."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The third record fixes a ceiling. The candidates who passed the oral are \"fewer than half\" of the 400 who passed the written, and half of 400 is 200, so the number who passed the oral is strictly below 200. That is option B, and it needs no other record.\n\nNotice what the data does **not** give you. It says who *passed* each examination; it never says how many candidates *sat* the oral examination. The second record only tells you that oral passers are drawn from written passers — it does not say the two groups have the same members, and it says nothing at all about anyone who sat the oral and failed.\n\n**How to check.** Ask, for each option, which of the three records would have to be rewritten to make it false. For B you would have to change \"fewer than half\" or the figure 400. For A and C you cannot point to any record at all, because both talk about *sitting* an examination, a quantity the data never reports — that absence is the tell.",
+  "distractorRationale": {
+    "b": "Confuses passing the written examination with going on to sit the oral one. The data reports passes, not attendance; any number of the 400 written passers could have withdrawn, deferred or failed to appear, and every published record would still hold.",
+    "c": "Assumes that all 400 written passers sat the oral examination and then subtracts. Both halves of that are unsupported: the data gives no figure for how many sat the oral, so no figure for how many failed it can be derived."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A logic question with three answer options, based on three published figures: 400 candidates passed a written examination; everyone who passed the oral examination had already passed the written one; fewer than half of the written passers passed the oral. The question asks which of three statements must be true.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-topup-author",
+    "aiAssisted": true,
+    "notes": "Original 'data propositions' item with exactly three options, matching Bocconi's published statement that some critical-thinking items carry only three. The association and its figures are invented."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-topup-author",
+    "reviewer": "bocconi-law-round2-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-law-round2-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Oral passers are a subset of the 400 written passers, and fewer than half of those 400 passed the oral, so oral passers < 200. (a) and (c) need facts about who sat the oral, which the data never gives."
+    },
+    "notes": "Author verified that A and C both turn on the number of candidates who SAT the oral examination, a quantity the data never supplies, while B follows from 'fewer than half of 400' alone. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "data-propositions",
+    "three-option",
+    "no-calculator"
+  ]
+}

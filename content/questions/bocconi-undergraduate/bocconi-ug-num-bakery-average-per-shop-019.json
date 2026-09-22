@@ -1,0 +1,79 @@
+{
+  "id": "bocconi-ug-num-bakery-average-per-shop-019",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-numerical-reasoning",
+  "skillSlug": "numerical-reasoning-data-analysis",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Taking the chain as a whole, what was Casa Verde's revenue per shop in 2025, to the nearest thousand euros?",
+  "instructionsMd": "Use only the figures in the table. No calculator.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "160 thousand euros"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "129 thousand euros"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "120 thousand euros"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "130 thousand euros"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "\"The chain as a whole\" means one shop drawn from the whole chain, so total the two relevant columns first and divide once at the end. The staff column is not needed.\n\n**Total revenue:**\n\n$$960 + 1200 + 720 + 600 = 3480$$\n\n(Pair them to keep it easy: $960 + 720 = 1680$ and $1200 + 600 = 1800$, and $1680 + 1800 = 3480$.)\n\n**Total shops:**\n\n$$6 + 10 + 6 + 5 = 27$$\n\n**Divide:**\n\n$$\\frac{3480}{27} = 128.9\\ldots$$\n\nbecause $27 \\times 128 = 3456$, leaving a remainder of $24$, and $\\frac{24}{27}$ is close to $0.9$. To the nearest thousand euros that is $129$.\n\n**How to check the answer.** Multiply back. $27 \\times 129 = 3483$, only $3$ above the true total of $3480$, whereas $27 \\times 128 = 3456$ is $24$ below it. So $129$ is much the closer whole number, and the rounding is safe.\n\n**The distinction being tested.** There are two different \"averages\" available here and they do not agree. The four cities' own figures are $160$, $120$, $120$ and $120$; averaging *those four numbers* gives $130$. That treats Arno, with 6 shops, as counting for as much as Brenta, with 10. The question asks about a shop, not about a city, so each shop must count once: that is the **weighted** average, total over total, which is $129$. Whenever you average ratios, ask what the thing being averaged is.",
+  "distractorRationale": {
+    "c": "This takes $120$ because three of the four cities happen to show revenue per shop of exactly $120$, and treats the commonest value as the chain figure. That is the mode of the four city figures, not an average, and it ignores Arno entirely; Arno's six shops at $160$ each pull the true chain figure above $120$.",
+    "d": "This averages the four cities' per-shop figures with equal weight: $\\frac{160 + 120 + 120 + 120}{4} = \\frac{520}{4} = 130$. It gives Arno's 6 shops the same weight as Brenta's 10, so the high-revenue small city is over-counted and the result is pushed above the true $129$.",
+    "a": "This is Arno's own revenue per shop, $\\frac{960}{6} = 160$, the largest single figure in the table, read off as though it described the chain. It is the best city, not the average one; no chain average can exceed the highest city figure, and three of the four cities sit at $120$."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": {
+    "id": "bocconi-ug-stim-bakery-cities-004",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying table of the Casa Verde bakery chain in four cities. It asks for the chain's revenue per shop across all four cities together, rounded to the nearest thousand euros. The four answer options are amounts in thousands of euros, listed in increasing order: 120, 129, 130 and 160.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-topup-author",
+    "aiAssisted": true,
+    "notes": "Original item written against an original table. The figures were chosen so the weighted mean (129) and the unweighted mean of the city ratios (130) are close but unambiguously distinct after rounding, which is the point of the item. Options are in ascending order, as the real test presents numeric choices."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-topup-author",
+    "reviewer": "bocconi-undergraduate-round2-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-round2-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Chain totals: revenue 960+1200+720+600 = 3480 thousand; shops 6+10+6+5 = 27. 3480/27 = 128.9, so 129 thousand. Option C (130) is the unweighted mean of the four city per-shop figures (160, 120, 120, 120), the intended trap; A and D are single-city values."
+    },
+    "notes": "Author checked uniqueness: 3480/27 = 128.89, which rounds to 129 and to nothing else. The nearest competing value, 130, is the unweighted mean and is a genuinely different quantity, so no second option is defensible under the stem's wording 'taking the chain as a whole'. Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "table-bakery-cities",
+    "weighted-average",
+    "aggregation"
+  ]
+}

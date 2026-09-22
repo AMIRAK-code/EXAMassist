@@ -1,0 +1,85 @@
+{
+  "id": "lsat-rc-language-inference-109",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "rc",
+  "domainSlug": "reading-comprehension",
+  "skillSlug": "rc-inferences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Suppose two related languages separated long ago and each was thereafter spoken in prolonged isolation, with no dominant neighbour. The passage most strongly supports which one of the following claims about what the mid-twentieth-century method would yield for such a pair?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "It would place their separation earlier than the separation actually occurred."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "It would place their separation more recently than the separation actually occurred."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "It would find no cognates remaining between them on the two-hundred-meaning list."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "It could not be applied to them, because their common descent could not be established by sound correspondences."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "It would give the same date as current methods, since neither language had a dominant neighbour."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Work out the machinery of the method first, then feed the new case through it.\n\nThe method has two moving parts, both in the first paragraph. It assumes \"each language replaces items on that list at a roughly constant rate\", and then \"the proportion retained yields an elapsed time.\" Because the assumed rate is fixed, the relationship runs one way: **the more cognates still shared, the shorter the elapsed time the method reports.** That is what makes it an analogue of decay — a sample with more of the original material left is read as younger.\n\nNow add the fact the second paragraph supplies about isolation: languages \"in prolonged contact with a dominant neighbour shed even basic vocabulary quickly; isolated ones shed it slowly.\"\n\nPut the two together. Our pair sheds vocabulary *more slowly* than the assumed constant rate. So after the true elapsed time, they still share *more* cognates than that rate predicts. The method reads that high retention as a *short* elapsed time. The date it returns is therefore too shallow — the separation looks more recent than it was. That is choice (B).\n\nHow to check: run the opposite case and make sure it comes out the other way. A pair in heavy contact sheds basic vocabulary quickly, retains fewer cognates than the assumed rate predicts, and so is dated as having separated too long ago. Getting both cases to fall out symmetrically confirms that the direction in (B) is the right one, and it also explains the passage's report of \"errors in both directions\".",
+  "distractorRationale": {
+    "a": "This gets the direction exactly backwards, and it is the error produced by dating the wrong case. Slow shedding leaves more shared cognates, and under a fixed assumed rate more retention means less elapsed time, so the method dates an isolated pair as too recent. Too early a date is what the method returns for languages in prolonged contact with a dominant neighbour.",
+    "c": "Total loss of shared cognates is the extreme of rapid replacement, which is the opposite of what isolation produces according to the passage. The scenario also grants that the two languages are related, and the passage says regular sound correspondences run through a large vocabulary in such cases.",
+    "d": "The first paragraph says that establishing common descent 'is often easy' because regular sound correspondences are not produced by chance or by borrowing, and nothing in the passage ties that demonstration to contact history. The question also stipulates that the two languages are related, so this choice denies the premise it was given.",
+    "e": "The current methods estimate rates from the data and let them vary by meaning and by branch, and they report a distribution of dates rather than a single number, so they would not return the older method's point estimate in any case. Absence of a dominant neighbour is not a reason for the two approaches to converge; it is the very condition under which the old fixed rate is too fast."
+  },
+  "estimatedSeconds": 95,
+  "stimulusRef": {
+    "id": "lsat-stim-language-dating-002",
+    "version": 1
+  },
+  "accessibilityText": "An inference question on the four-paragraph passage about dating the separation of related languages. It supposes a pair of related languages spoken in prolonged isolation and asks what date the mid-twentieth-century method would give for their separation. Five answer choices labelled A through E. No figures, tables or mathematical notation.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "lsat-topup-author",
+    "aiAssisted": true,
+    "notes": "Original question written against an original passage in this bank. Not adapted from any LSAC item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "lsat-topup-author",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "'isolated ones shed it slowly', so an isolated pair retains more cognates than the assumed constant rate predicts for the true elapsed time; a high retention proportion converts to a short elapsed time, placing separation too recently. (a) is the mirror case of contact languages; (c) contradicts slow shedding; (d) is wrong because regular sound correspondences still establish descent; (e) is unsupported since current methods estimate rates from data.",
+      "solvedBy": "lsat-round2-reviewer"
+    },
+    "notes": "Direction of the key was derived twice: once forward from 'the proportion retained yields an elapsed time' under a fixed assumed rate, and once by checking that the contact case comes out symmetrically, which reproduces the passage's 'errors in both directions'. (A) is the reversed reading and is the only near competitor. Awaiting blind independent solve.",
+    "reviewer": "lsat-round2-reviewer"
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "reading-comprehension",
+    "inference",
+    "linguistics"
+  ]
+}

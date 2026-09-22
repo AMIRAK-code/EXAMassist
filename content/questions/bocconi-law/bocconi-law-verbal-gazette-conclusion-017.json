@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-law-verbal-gazette-conclusion-017",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-verbal-reasoning",
+  "skillSlug": "law-verbal-conclusion",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Every measure enacted by the assembly in the present session was published in the official gazette within thirty days of its enactment. The rule on market stalls was not published in the official gazette within thirty days of the date it bears.\n\nWhich of the following is a conclusion that follows from these two statements?",
+  "instructionsMd": "Choose the statement that the two premises together establish — not the strongest-sounding claim.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The official gazette failed to publish at least one measure enacted in the present session."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The rule on market stalls has never been published in the official gazette."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The assembly did not enact the rule on market stalls in the present session."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Either the rule on market stalls was not enacted by the assembly in the present session, or the date it bears is not the date on which it was enacted."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The first premise is a rule with a sharp shape: *enacted this session* $\\Rightarrow$ *published within thirty days of enactment*. The contrapositive is just as strong: anything not published within thirty days of its enactment was not enacted this session.\n\nThe trap is in the second premise. It does not say the rule went unpublished within thirty days of **enactment**; it says within thirty days of **the date it bears**. Those coincide only if the date a document bears is its date of enactment — and nothing in the premises says so.\n\nSo there are exactly two ways the second premise can be true while the first holds:\n\n- the rule was not enacted by the assembly this session, so the rule in premise 1 never applied to it; or\n- it was enacted this session, was published within thirty days of enactment, and the date it bears is simply not its enactment date.\n\nThe premises do not tell you which. What they do establish is that at least one of the two holds — the disjunction in option A.\n\n**How to check.** Write out one world for each branch and confirm both premises are true in each. Branch one: the rule came from a different body. Branch two: enacted on 1 March, published on 10 March, but bearing the date 1 January. Both worlds obey both premises, so any option that picks a single branch is too strong; only the statement covering both survives.",
+  "distractorRationale": {
+    "c": "Picks one branch of the disjunction and asserts it alone. It is refuted by the world in which the rule was enacted on 1 March, published on 10 March and bears the date 1 January — both premises hold and the assembly did enact it. The error is treating the date a document bears as necessarily its enactment date.",
+    "a": "Contradicts the first premise, which says every measure enacted this session was published in time. It comes from reading the second premise as a failure by the gazette rather than as a mismatch between two dates.",
+    "b": "Overstates the second premise. Not published *within thirty days of the date it bears* is compatible with publication on the thirty-first day, or a year later, or within thirty days of an enactment date that differs from the date borne. Turning 'not by a deadline' into 'never' is the error."
+  },
+  "estimatedSeconds": 115,
+  "stimulusRef": null,
+  "accessibilityText": "A conclusion question. Premise one: every measure enacted by the assembly this session was published in the official gazette within thirty days of enactment. Premise two: the rule on market stalls was not published within thirty days of the date it bears. Four candidate conclusions follow. The explanation uses an arrow symbol to show the implication in premise one.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-topup-author",
+    "aiAssisted": true,
+    "notes": "Original item written to the published syllabus entry 'identifying the logical conclusion of an argument'. The assembly, gazette and rule on market stalls are invented."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-topup-author",
+    "reviewer": "bocconi-law-round2-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-law-round2-reviewer",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Premise 1 keys the 30 days to the date of enactment while premise 2 keys them to the date the rule bears, so all that follows is the denial of the conjunction: either it was not enacted this session or the borne date is not the enactment date. (b) is the trap that silently equates the two dates, (c) contradicts premise 1, (d) goes beyond the 30-day window."
+    },
+    "notes": "Author verified that the two premises leave exactly two open branches, that each of B, C and D is falsified by a world satisfying both premises, and that only the disjunction in A survives every such world. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "verbal-reasoning",
+    "conclusion",
+    "contrapositive"
+  ]
+}
