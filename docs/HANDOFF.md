@@ -72,19 +72,23 @@ simulation needs both verified rules and enough content.
 | GRE General | 23 | 7 / 8 | Yes | 1 short | Quant section 1 | Rules not fully verified |
 | Bocconi (undergraduate) | 23 | 4 / 4 | Yes | 1 short | No — needs 50 | Rules verified; needs 50 |
 | Enhanced ACT | 22 | 13 / 17 | Yes | 4 short | No | No — ACT's own documents conflict on breaks |
+| GMAT | 22 | 8 / 8 | Yes | Yes | No — needs 20–23 per section | No — question-level adaptive, algorithm proprietary |
 | Bocconi (law) | 22 | 5 / 5 | Yes | Yes | No — needs 50 | Rules verified; needs 50 |
 | LSAT | 21 | 3 / 4 | Yes | Yes | No — needs ~24 per section | LSAC does not publish item counts |
-| GMAT | 8 published, 14 in review | 2 / 8 | Pending review | No | No | No — question-level adaptive, algorithm proprietary |
 
-The uncovered domains are the two essay domains we deliberately do not author
-(GRE Analyze an Issue, LSAT Argumentative Writing), the ACT science section, and
-the GMAT domains still in review. Two items are **quarantined**, not published,
-because an independent reviewer found a second defensible answer.
+**157 published questions. All seven configurations meet the 20-item target**,
+and four cover every configured domain. The uncovered domains are the two essay
+domains we deliberately do not author (GRE Analyze an Issue, LSAT Argumentative
+Writing) and the ACT science section, which has no items yet.
 
-**This is a starter library, not a course.** The brief's target was 20 reviewed
-questions per exam. Six of the seven configurations now meet it; GMAT's 14 new
-items are written and awaiting their blind independent solve, which is the last
-step before they publish.
+Two further items are **quarantined rather than published**, because an
+independent reviewer found a second defensible answer. They are not served to
+learners, and neither was repaired by guessing at the intended answer.
+
+**This is a starter library, not a course.** Open practice and, on five exams, a
+diagnostic are available. Sectional practice needs an exam's real item count
+(22–27 for an SAT module, 50 for a Bocconi form), which is the next content
+milestone rather than a defect.
 
 Every one of those gaps is visible in the product, with its reason, before a
 learner commits to anything. Nothing is presented as available and then fails.
@@ -147,7 +151,7 @@ asked for are instead enforced on everything *we* author.
 
 | Limitation | Impact | Notes |
 | --- | --- | --- |
-| Thin question bank | Sectional and full-length formats are still gated | Six of seven exams now meet the 20-item target; see §6 |
+| Bank supports practice, not sectional simulation | Timed sections and full-length runs are still gated | All seven exams meet the 20-item target; a section needs 22–50 items |
 | SQLite, not PostgreSQL | Single writer | Forced by the environment; porting path in `ARCHITECTURE.md` |
 | No screen-reader or axe pass | Accessibility is an intent, not a tested claim | Structural checks are automated |
 | No dark theme | — | One theme done properly |
@@ -159,9 +163,10 @@ asked for are instead enforced on everything *we* author.
 ## 6. Next-release backlog, in priority order
 
 1. **Grow the bank towards sectional practice.** Every exam now has open
-   practice, but a timed section needs the exam's real item count (22–27 for an
-   SAT module, ~24 for an LSAT section, 50 for a Bocconi form). Priority: ACT
-   science (no items at all), GMAT quantitative and verbal depth, SAT modules.
+   practice and most have a diagnostic, but a timed section needs the exam's
+   real item count (22–27 for an SAT module, ~24 for an LSAT section, 50 for a
+   Bocconi form). Priority: ACT science (no items at all), then SAT modules and
+   GMAT sectional depth.
    The pipeline, in this order:
    author → `normalise-option-order` → `export-review-batch` → blind solve →
    `apply-review` → `db:seed`. Normalisation runs BEFORE review so option order

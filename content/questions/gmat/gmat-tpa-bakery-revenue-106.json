@@ -12,22 +12,68 @@
   "stemMd": "In 2025 a bakery sold $4{,}000$ loaves of its sourdough at $3.00$ euros each, and sold nothing else. For 2026 the bakery will raise the sourdough price to $3.60$ euros and expects to sell $10$ percent fewer loaves than it sold in 2025. Assume the plan and the expectation are both realised exactly, and that sourdough remains the bakery's only product.\n\nIn the column **Loaves sold in 2026**, select the number of loaves the bakery expects to sell in 2026. In the column **Change in revenue**, select the percent change in the bakery's revenue from 2025 to 2026. Make only one selection in each column.",
   "instructionsMd": "This is a Two-Part Analysis question. Two columns of choices are offered; select exactly one choice in each column. Credit is given only when both selections are correct.",
   "options": [
-    { "id": "loaves-a", "label": "A", "textMd": "$400$" },
-    { "id": "loaves-b", "label": "B", "textMd": "$3{,}200$" },
-    { "id": "loaves-c", "label": "C", "textMd": "$3{,}600$" },
-    { "id": "loaves-d", "label": "D", "textMd": "$4{,}000$" },
-    { "id": "loaves-e", "label": "E", "textMd": "$4{,}400$" },
-    { "id": "change-a", "label": "A", "textMd": "A decrease of $10$ percent" },
-    { "id": "change-b", "label": "B", "textMd": "An increase of $8$ percent" },
-    { "id": "change-c", "label": "C", "textMd": "An increase of $10$ percent" },
-    { "id": "change-d", "label": "D", "textMd": "An increase of $20$ percent" },
-    { "id": "change-e", "label": "E", "textMd": "An increase of $30$ percent" }
+    {
+      "id": "loaves-a",
+      "label": "A",
+      "textMd": "$400$"
+    },
+    {
+      "id": "loaves-b",
+      "label": "B",
+      "textMd": "$3{,}200$"
+    },
+    {
+      "id": "loaves-c",
+      "label": "C",
+      "textMd": "$3{,}600$"
+    },
+    {
+      "id": "loaves-d",
+      "label": "D",
+      "textMd": "$4{,}000$"
+    },
+    {
+      "id": "loaves-e",
+      "label": "E",
+      "textMd": "$4{,}400$"
+    },
+    {
+      "id": "change-a",
+      "label": "A",
+      "textMd": "A decrease of $10$ percent"
+    },
+    {
+      "id": "change-b",
+      "label": "B",
+      "textMd": "An increase of $8$ percent"
+    },
+    {
+      "id": "change-c",
+      "label": "C",
+      "textMd": "An increase of $10$ percent"
+    },
+    {
+      "id": "change-d",
+      "label": "D",
+      "textMd": "An increase of $20$ percent"
+    },
+    {
+      "id": "change-e",
+      "label": "E",
+      "textMd": "An increase of $30$ percent"
+    }
   ],
   "answerKey": {
     "type": "two_part",
     "selections": [
-      { "columnId": "loaves", "optionId": "loaves-c" },
-      { "columnId": "change", "optionId": "change-b" }
+      {
+        "columnId": "loaves",
+        "optionId": "loaves-c"
+      },
+      {
+        "columnId": "change",
+        "optionId": "change-b"
+      }
     ]
   },
   "explanationMd": "**Column 1: loaves in 2026.**\n\n\"Ten percent fewer\" means the 2025 figure multiplied by $0.9$. It does not mean $10$ loaves fewer, and it is not $10$ percent of the figure:\n\n$$4{,}000 \\times 0.9 = 3{,}600 \\text{ loaves}.$$\n\n**Column 2: percent change in revenue.**\n\nRevenue is price times quantity, so compute both years in euros and compare.\n\n$$\\text{2025 revenue} = 4{,}000 \\times 3.00 = 12{,}000$$\n\n$$\\text{2026 revenue} = 3{,}600 \\times 3.60 = 12{,}960$$\n\nThe change is\n\n$$\\frac{12{,}960 - 12{,}000}{12{,}000} = \\frac{960}{12{,}000} = 0.08,$$\n\nan increase of $8$ percent.\n\n**The faster route, and why the answer is not $10$ percent.** Successive percent changes on a product multiply; they do not add. The price rises from $3.00$ to $3.60$, a factor of $\\frac{3.60}{3.00} = 1.2$. The quantity falls by a tenth, a factor of $0.9$. Revenue therefore changes by\n\n$$1.2 \\times 0.9 = 1.08,$$\n\nan $8$ percent increase — not the $20 - 10 = 10$ percent that subtracting the percentages would suggest. The missing two percentage points are the interaction: the $20$ percent price rise is earned on a base that has itself shrunk by a tenth.\n\n**How to check this.** Recompute the 2026 revenue by a different route. If volume had held, revenue would be $12{,}000 \\times 1.2 = 14{,}400$; applying the tenth fall gives $14{,}400 \\times 0.9 = 12{,}960$. The same figure arrives two ways. And because $12{,}960 > 12{,}000$, every \"decrease\" option can be eliminated before any arithmetic at all.",
@@ -53,12 +99,18 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "gmat-topup-author",
-    "reviewer": null,
-    "reviewedOn": null,
-    "independentSolve": null,
+    "reviewer": "gmat-round2-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "gmat-round2-reviewer",
+      "solvedAnswer": "loaves:c;change:b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Loaves: 4,000 x 0.90 = 3,600 (loaves-c). Revenue 2025 = 4,000 x 3.00 = 12,000; 2026 = 3,600 x 3.60 = 12,960; change = 960/12,000 = +8% (change-b). Distractor change-d (+20%) is the price rise alone and change-a (-10%) the volume fall alone."
+    },
     "notes": "Author solved the item by two independent routes (direct revenue computation and multiplication of factors) and confirmed both give 12,960 euros. Awaiting blind independent solve before publication."
   },
-  "state": "in_review",
+  "state": "published",
   "quarantine": null,
   "tags": [
     "two-part-analysis",
