@@ -12,11 +12,31 @@
   "stemMd": "For how many of the seven stores did average weekly footfall rise by **more than** $20$ percent from before the refit to after it, while the refit cost **less than** $500$ thousand euros?",
   "instructionsMd": "Use the table to answer the question. The table may be sorted on any column.",
   "options": [
-    { "id": "a", "label": "A", "textMd": "$1$" },
-    { "id": "b", "label": "B", "textMd": "$2$" },
-    { "id": "c", "label": "C", "textMd": "$3$" },
-    { "id": "d", "label": "D", "textMd": "$4$" },
-    { "id": "e", "label": "E", "textMd": "$5$" }
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$1$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$2$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$3$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$4$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$5$"
+    }
   ],
   "answerKey": {
     "type": "single_select",
@@ -44,12 +64,18 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "gmat-topup-author",
-    "reviewer": null,
-    "reviewedOn": null,
-    "independentSolve": null,
+    "reviewer": "gmat-round2-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "gmat-round2-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Footfall growth and cost: Ashmere 18->22.5 = +25%, 420 PASS; Brantly +25% but 610 fail; Cordell 15->17.7 = +18% fail; Dunwold 12.5->15.5 = +24%, 455 PASS; Esgrove 31->34.1 = +10% fail; Fanshaw 9->11.7 = +30%, 295 PASS; Garrick 20->24 = exactly +20%, which is not MORE than 20%, fail. Three stores qualify."
+    },
     "notes": "Author computed all seven percentage changes (25, 25, 18, 24, 10, 30 and 20 percent) and applied the two conditions in both orders, obtaining Ashmere, Dunwold and Fanshaw each time. Awaiting blind independent solve before publication."
   },
-  "state": "in_review",
+  "state": "published",
   "quarantine": null,
   "tags": [
     "table-analysis",

@@ -61,12 +61,18 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "gmat-topup-author",
-    "reviewer": null,
-    "reviewedOn": null,
-    "independentSolve": null,
+    "reviewer": "gmat-round2-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "gmat-round2-reviewer",
+      "solvedAnswer": "E",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Average = 1260/n. (1) gives the total but not n. (2) bounds each value at 30-90 so the mean is in [30,90], not unique. Together, n must satisfy 30n <= 1260 <= 90n, i.e. 14 <= n <= 42; n=14 (all 90 hours) gives mean 90 and n=42 (all 30 hours) gives mean 30, so the mean is still not determined."
+    },
     "notes": "Author solved the item and constructed three explicit teams satisfying both statements with means of 30, 63 and 90. Awaiting blind independent solve before publication."
   },
-  "state": "in_review",
+  "state": "published",
   "quarantine": null,
   "tags": [
     "data-sufficiency",

@@ -271,6 +271,45 @@ export function validateQuestion(
     }
   }
 
+  // Two-part items encode their column on the option id as "<column>-<option>".
+  // Option ids may not contain a colon, so the hyphen is the separator, and the
+  // answer key stores the WHOLE option id.
+  if (question.responseType === 'two_part') {
+    const columnOf = (id: string) => (id.includes('-') ? id.slice(0, id.indexOf('-')) : '');
+    const columns = new Set(question.options.map((o) => columnOf(o.id)).filter(Boolean));
+
+    if (question.options.some((o) => !o.id.includes('-'))) {
+      err(
+        'two-part-option-id',
+        'Two-part option ids must be "<columnId>-<optionId>", e.g. "loaves-c", so the player can group them.',
+      );
+    }
+    if (columns.size < 2) {
+      err('two-part-columns', `A two-part item needs at least two columns; found ${columns.size}.`);
+    }
+    if (key.type === 'two_part') {
+      for (const selection of key.selections) {
+        if (!uniqueOptionIds.has(selection.optionId)) {
+          err(
+            'two-part-key',
+            `Answer key references option "${selection.optionId}", which is not one of this item's options. ` +
+              'The key must hold the full option id, not the bare suffix.',
+          );
+        }
+        if (columnOf(selection.optionId) !== selection.columnId) {
+          err(
+            'two-part-key-column',
+            `Answer key pairs column "${selection.columnId}" with option "${selection.optionId}", ` +
+              'whose id belongs to a different column.',
+          );
+        }
+      }
+      if (new Set(key.selections.map((sel) => sel.columnId)).size !== columns.size) {
+        err('two-part-key-coverage', 'The answer key must name exactly one option per column.');
+      }
+    }
+  }
+
   if (question.stimulusRef && context.stimulusIds && !context.stimulusIds.has(question.stimulusRef.id)) {
     err('missing-stimulus', `Stimulus "${question.stimulusRef.id}" does not exist.`);
   }
