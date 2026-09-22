@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-ug-comb-committee-009",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-discrete-permutations-combinations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A university society has $6$ economics students and $4$ law students. A three-person delegation is to be formed containing exactly $2$ economics students and $1$ law student. The delegation has no ranks or roles, so the order in which members are chosen does not matter.\n\nHow many different delegations are possible?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$15$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$19$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$60$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$120$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The delegation is an unordered selection, so each part of the choice is a **combination**, and the two independent choices are combined with the **product rule**.\n\nChoose the $2$ economics students from $6$:\n\n$$\\binom{6}{2} = \\frac{6 \\times 5}{2 \\times 1} = 15$$\n\nChoose the $1$ law student from $4$:\n\n$$\\binom{4}{1} = 4$$\n\nEvery one of the $15$ economics pairs can be paired with any of the $4$ law students, and different pairings give different delegations, so multiply:\n\n$$15 \\times 4 = 60$$\n\n**Why multiply rather than add?** Add when the cases are alternatives (either this *or* that); multiply when the choices are made together (this *and* that). Here the delegation needs economics students **and** a law student, so the counts multiply.\n\n**A sanity check without a calculator:** the total number of unrestricted three-person delegations is $\\binom{10}{3} = 120$. Our restricted count must be smaller than that, and $60$ is exactly half, which is plausible given that the composition $2$–$1$ is the most common of the four possible splits.",
+  "distractorRationale": {
+    "a": "This is $\\binom{6}{2} = 15$ on its own: the two economics students have been chosen but the law student has not. The delegation is not complete until the third member is selected, so this count must still be multiplied by $\\binom{4}{1} = 4$.",
+    "b": "This is $15 + 4$: the sum rule has been used where the product rule is needed. Adding would count the number of ways to pick *either* an economics pair *or* a law student, whereas the delegation requires both choices to be made together.",
+    "d": "This is $\\binom{10}{3} = 120$, the number of three-person delegations with no restriction on composition. It ignores the requirement of exactly two economics students and one law student, and so includes delegations such as three law students."
+  },
+  "estimatedSeconds": 95,
+  "stimulusRef": null,
+  "accessibilityText": "A society has six economics students and four law students. Count the unordered three-person groups containing exactly two economics students and exactly one law student.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Option values were checked so that no two arise from the same arithmetic path."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-author",
+    "reviewer": "bocconi-undergraduate-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-independent-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "C(6,2)*C(4,1)=15*4=60. 120 would be the ordered count for the two economics students; 15 and 19 ignore the law student factor."
+    },
+    "notes": "Awaiting blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "combinations",
+    "product-rule"
+  ]
+}

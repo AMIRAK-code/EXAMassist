@@ -1,0 +1,869 @@
+{
+  "examKey": "gmat-focus",
+  "examName": "GMAT Exam",
+  "versionLabel": "GMAT Exam (current version, formerly branded \"GMAT Exam (Focus Edition)\") — 2026 administration; Policies & Procedures last updated August 12, 2026",
+  "verificationDate": "2026-09-18",
+  "region": "Global (delivered at Pearson VUE test centers and online at home; identical structure, timing, scoring and Question Review & Edit rules in both modes)",
+  "deliveryMode": "Computer-delivered, question-level computer-adaptive. Two delivery channels: test center and online-at-home proctored. Both use the same three 45-minute sections, the same on-screen calculator rule and the same Question Review & Edit feature. Differences are logistical only (noteboards vs. digital/physical whiteboard; online break auto-starts after 60 seconds; online appointment must finish within 3.5 hours of the appointment start).",
+  "admissionsCycle": "Graduate management admissions (MBA and business master's). Scores are valid for five years from the test date, so a score taken in the 2026 administration year is usable through 2031 application cycles. Legacy \"GMAT Exam (10th Edition)\" scores remain valid for 5 years from their appointment date but are NOT comparable to current scores.",
+  "summary": "GMAC now brands the exam simply as the \"GMAT Exam\"; the \"Focus Edition\" label is legacy. The GMAT Exam (10th Edition) was sunset 31 January 2024 and replaced by the GMAT Exam (Focus Edition) on 1 February 2024, and by 2026 mba.com and the August 2026 Policies & Procedures use plain \"GMAT Exam\" throughout, while the percentile/scoring pages still carry the parenthetical \"(Focus Edition)\". The exam is 2 hours 15 minutes of testing time, 64 questions, in three equally-timed 45-minute sections: Quantitative Reasoning (21), Verbal Reasoning (23) and Data Insights (20), taken in any of six orders the candidate picks, with one optional 10-minute break. Sentence Correction, the AWA essay and Integrated Reasoning as a standalone section no longer exist; Data Sufficiency has moved out of Quant into Data Insights, and integrated-reasoning item formats now live inside Data Insights. All sections are question-level adaptive, an on-screen calculator is available in Data Insights only, and section scores run 60–90 with a Total Score of 205–805 with published percentiles.",
+  "totalQuestions": "64",
+  "totalTimeMinutes": "135 minutes of testing time (2 hours 15 minutes), excluding the optional 10-minute break. Test-center appointment length is approximately 2.5 hours including check-in and break.",
+  "sections": [
+    {
+      "name": "Quantitative Reasoning",
+      "order": 1,
+      "questionCount": "21",
+      "timeMinutes": "45",
+      "questionTypes": [
+        "Problem Solving (5-option single-select multiple choice)"
+      ],
+      "calculatorPolicy": "No calculator of any kind. mba.com Exam Content states plainly: \"You cannot use a calculator while working on this section.\" Personal and watch calculators are prohibited items under the Policies & Procedures. A noteboard (test center) or digital/physical whiteboard (online) is provided for scratch work.",
+      "navigationRules": "Linear forward-only delivery while answering: the adaptive engine serves one question at a time based on prior responses, so a candidate cannot freely page backwards mid-section. Questions may be bookmarked while moving through the section. After ALL questions in the section are answered, and only if time remains, the candidate is taken to a Question Review & Edit screen listing every question number with bookmarks flagged; from there they may jump to any question, review as many as they like, and change up to three (3) answers using the remaining section time. If no time remains, the review screen is skipped entirely and the candidate is moved to the break screen or next section.",
+      "adaptiveBehavior": "Question-level computer-adaptive. mba.com: \"All sections of the test use computer-adaptive testing, which means the program selects your next question based on your previous responses.\" GMAC does not publish the routing rule, item parameters or exposure controls.",
+      "questionCount_note": "21 questions, all Problem Solving. No Data Sufficiency in this section any more — it moved to Data Insights.",
+      "breakAfter": "Optional 10-minute break may be taken after this section if it is the candidate's first or second section. Only one break is permitted for the whole exam.",
+      "sourceUrls": [
+        "https://www.mba.com/exams/gmat-exam/about/exam-structure",
+        "https://www.mba.com/exams/gmat-exam/about/exam-content",
+        "https://www.mba.com/exams/gmat-exam/prep-for-the-exam/prep-strategies/quantitative-reasoning",
+        "https://www.mba.com/exams/gmat-exam/scores/understanding-your-score",
+        "https://www.mba.com/exams-and-exam-prep/gmat-exam/what-to-expect-during-gmat"
+      ]
+    },
+    {
+      "name": "Verbal Reasoning",
+      "order": 2,
+      "questionCount": "23",
+      "timeMinutes": "45",
+      "questionTypes": [
+        "Reading Comprehension (passage-group, 5-option single-select)",
+        "Critical Reasoning (short stimulus usually under 100 words, 5-option single-select)"
+      ],
+      "calculatorPolicy": "No calculator. Not applicable to the content; the on-screen calculator is provided in Data Insights only.",
+      "navigationRules": "Same as all sections: adaptive one-at-a-time delivery with bookmarking, then a Question Review & Edit screen after all questions are answered (only if section time remains), permitting unlimited review and a maximum of three (3) answer changes.",
+      "adaptiveBehavior": "Question-level computer-adaptive, same as every other section. Note for implementation: because Reading Comprehension items are grouped under a shared passage, adaptive item selection must operate on passage sets, but GMAC does not publish how set-based items are selected or how many items hang off each passage.",
+      "questionCount_note": "23 questions, Reading Comprehension and Critical Reasoning only. Sentence Correction has been removed.",
+      "breakAfter": "Optional 10-minute break may be taken after this section if it is the candidate's first or second section, and only if the break has not already been used.",
+      "sourceUrls": [
+        "https://www.mba.com/exams/gmat-exam/about/exam-structure",
+        "https://www.mba.com/exams/gmat-exam/about/exam-content",
+        "https://www.mba.com/exams/gmat-exam/prep-for-the-exam/prep-strategies/verbal-reasoning",
+        "https://www.mba.com/exams/gmat-exam/scores/understanding-your-score",
+        "https://www.gmac.com/resources/learners/how-to-apply/exams-preparation/new-gmat-exam-details"
+      ]
+    },
+    {
+      "name": "Data Insights",
+      "order": 3,
+      "questionCount": "20",
+      "timeMinutes": "45",
+      "questionTypes": [
+        "Data Sufficiency (5 fixed answer choices about statement sufficiency)",
+        "Multi-Source Reasoning (tabbed sources: text, tables, graphics; multiple questions per source set)",
+        "Table Analysis (sortable spreadsheet-like table; a set of statements each judged on a binary condition such as yes/no or true/false)",
+        "Graphics Interpretation (graph or chart with drop-down menus completing statements)",
+        "Two-Part Analysis (two response columns against a shared option list; tasks may be dependent or independent, and the same option may be correct in both columns)"
+      ],
+      "calculatorPolicy": "On-screen calculator IS provided, and only here. mba.com Exam Content: \"You can use an on-screen calculator while working on this section.\" The August 2026 Policies & Procedures confirm for online delivery: \"During the Data Insights portion of the exam, you will be provided with access to a digital on-screen calculator.\"",
+      "navigationRules": "Same as all sections: adaptive one-at-a-time delivery with bookmarking, then a Question Review & Edit screen after all questions are answered (only if section time remains), permitting unlimited review and a maximum of three (3) answer changes. Multi-Source Reasoning stimuli are tabbed and must remain accessible while answering each question in the set.",
+      "adaptiveBehavior": "Question-level computer-adaptive, same as every other section. GMAC does not publish how multi-part items or Multi-Source Reasoning sets are treated by the routing engine.",
+      "questionCount_note": "20 questions spanning all five Data Insights question types. This is where Data Sufficiency now lives, and where the former Integrated Reasoning formats (MSR, Table Analysis, Graphics Interpretation, Two-Part Analysis) were absorbed.",
+      "breakAfter": "No break after the final section. The single optional break must be taken after the first or the second section.",
+      "sourceUrls": [
+        "https://www.mba.com/exams/gmat-exam/about/exam-structure",
+        "https://www.mba.com/exams/gmat-exam/about/exam-content",
+        "https://www.mba.com/exams/gmat-exam/prep-for-the-exam/prep-strategies/data-insights",
+        "https://www.mba.com/exams/gmat-exam/scores/understanding-your-score",
+        "https://www.mba.com/-/media/files/mba2/the-gmat-exam/files/register/gmat-policies-and-procedures_aug-2026.pdf"
+      ]
+    }
+  ],
+  "timingAndBreaks": "Testing time is 135 minutes (2 hours 15 minutes): three sections of exactly 45 minutes each, with 21 / 23 / 20 questions respectively. There is exactly ONE optional 10-minute break, and the candidate chooses whether to take it after the first section or after the second section. mba.com is explicit that using it early forfeits the later option: \"If you take your break after the first section, you will not have the option to take another break after the second section.\" There is no break after the third section. Overrunning the break is penalised: the August 2026 Policies & Procedures state that the excess time \"will automatically be deducted from the next section of the test, or the test administrator may consider your test to be abandoned, and your score will be canceled.\" For the online exam the break auto-starts sixty (60) seconds after it is offered unless the candidate elects to skip it. Test-center appointment length is approximately 2.5 hours including check-in; for the online exam the candidate must finish within 3.5 hours of the appointment start time. Section order is chosen before testing begins, via a Select Section Order prompt that appears after the navigation tutorial and immediately before the exam; there are six section-order choices, and if no selection is made within two minutes the first order is selected by default. Time-based accommodations, where pre-approved, override the appointment-length limits.",
+  "navigationAndReview": "Within a section, delivery is adaptive and one question at a time, so free backward navigation while answering is not available. The distinctive rule is Question Review & Edit, and its constraints are precise. (1) Bookmarking is UNLIMITED — a candidate may bookmark as many questions as they wish while moving through a section. (2) Reviewing is UNLIMITED — \"You can review as many questions as you would like\". (3) Editing is HARD-CAPPED at three: \"can edit up to three (3) answers\" per section, restated on mba.com as \"you can change up to three answers per section with any time you have remaining at the end of a section.\" (4) The review screen is gated on completion AND on remaining time. It appears only after every question in the section has been answered, and mba.com warns: \"If there is no time remaining in the section, you will NOT proceed to the Question Review & Edit screen and you will automatically be moved to your optional break screen or the next section (if you have already taken your optional break).\" (5) The review screen shows a numbered list of every question in the section with bookmarked ones flagged, and clicking a number jumps directly to that question. The edit budget is per section and does not carry over. Time spent on the review screen counts against the section clock, and the Official Score Report separately reports a \"Summary of Question Review & Changes\" showing how much time was spent reviewing and editing.",
+  "calculatorRules": "An on-screen calculator is available in Data Insights ONLY. mba.com Exam Content is explicit in both directions: for Quantitative Reasoning, \"You cannot use a calculator while working on this section\"; for Data Insights, \"You can use an on-screen calculator while working on this section.\" The August 2026 Policies & Procedures confirm for the online exam: \"During the Data Insights portion of the exam, you will be provided with access to a digital on-screen calculator.\" Verbal Reasoning has no calculator. Personal calculators and watch calculators are explicitly listed as prohibited testing aids at test centers and online, including during the break. Scratch work is done on a provided noteboard booklet with noteboard pen (test center; equivalent of five erasable noteboards, replaceable on request) or on a digital whiteboard, or optionally an approved physical whiteboard no larger than 12 x 20 inches (online). GMAC does not publish the calculator's exact feature set (e.g. whether it has memory functions, square root, or exponent keys), so a simulation cannot claim functional parity.",
+  "adaptiveBehavior": "CONFIRMED: question-level computer-adaptive in all three sections. mba.com states \"All sections of the test use computer-adaptive testing, which means the program selects your next question based on your previous responses.\" This is per-question routing, not the SAT-style module/stage routing — there are no modules and no between-module branching. Section scoring is described as depending on three factors: the number of questions answered, whether the answers are correct or incorrect, and the difficulty and other parameters of the questions answered. Crucially, GMAC publishes NO detail on the routing rule itself: no item-selection algorithm, no item response theory parameters, no ability-estimation method, no exposure or content-balancing constraints, and no statement of how the Question Review & Edit answer changes are folded back into the ability estimate. An interaction that a simulation cannot model: because the section is adaptive, the three permitted answer changes occur AFTER the adaptive path has already been determined by the original responses — GMAC does not document whether a changed answer re-scores against the item actually delivered or has any other effect on the routing history. This must not be guessed.",
+  "scoringRawRules": "GMAC does not publish a raw-score formula. What IS officially stated, identically for all three sections: \"The [section] score is based on three factors: 1) the number of questions answered, 2) whether the answers are correct or incorrect, and 3) the difficulty and other parameters of the questions answered.\" For Data Insights there is an additional published rule: \"Some questions may have multiple parts; all parts of a question must be answered correctly to receive credit for that question\" — i.e. no partial credit on Two-Part Analysis, Table Analysis statement sets, Graphics Interpretation dual drop-downs, or multi-part Multi-Source Reasoning items. There is NO documented wrong-answer penalty (no negative marking); an incorrect answer is simply not credited. Unanswered questions ARE penalised relative to answering: \"your scores will reflect the number of questions answered and will decrease significantly with each unanswered question.\" Candidates who run out of time still receive scores provided they have worked on every section. No raw-to-scaled conversion table is published for any section.",
+  "scoringScaleRules": "Three section scores, each on a 60–90 scale in 1-point increments: Quantitative Reasoning 60–90, Verbal Reasoning 60–90, Data Insights 60–90. Total Score is 205–805 in 10-point increments, and the three sections are weighted EQUALLY in its calculation. Percentile rankings are published by GMAC for the Total Score and for each section score, drawn from a rolling multi-year sample; the tables currently on mba.com cite a 2021–2026 data period with a Total Score sample of 509,182, a Total Score mean of 554.94 and a standard deviation of 94.24. Section means and standard deviations are also published (Quantitative mean 77.92 / SD 6.52, Verbal mean 79.43 / SD 4.89, Data Insights mean 75.14 / SD 5.98). The Total Score scale is deliberately NOT comparable to the legacy GMAT Exam (10th Edition) 200–800 scale: mba.com states that \"comparing total scores or section scores is not appropriate, accurate, or a meaningful comparison of performance,\" and directs users to compare percentile rankings via a published concordance table instead. Scores are valid five years from the test date.",
+  "scoringNotPubliclyDocumented": [
+    "The adaptive item-selection / routing algorithm. GMAC states only that the program selects the next question based on previous responses. No selection rule, no stopping rule, no content-balancing or exposure-control constraints are published anywhere on mba.com or gmac.com.",
+    "Item response theory parameters. GMAC does not publish the IRT model used, item difficulty/discrimination/guessing parameters, or the calibration procedure for any live item. (Third-party prep sites assert a 3PL model; this is NOT an official claim and must not be presented as fact.)",
+    "The raw-to-scaled conversion. No table or function mapping performance to the 60–90 section scale is published for any section.",
+    "The Total Score composition formula. mba.com says the three sections are 'weighted equally' in the Total Score but does not publish the arithmetic that maps three 60–90 section scores onto the 205–805, 10-point-increment Total Score scale.",
+    "The ability-estimation method and how it converts to a reported score.",
+    "How the three permitted answer changes in Question Review & Edit are incorporated into scoring, given that the adaptive path was already fixed by the original responses.",
+    "The exact magnitude of the unanswered-question penalty. mba.com says scores 'decrease significantly with each unanswered question' but publishes no quantity.",
+    "How multi-part Data Insights items are weighted relative to single-part items, beyond the all-or-nothing credit rule.",
+    "The number of unscored / pretest (experimental) items, if any, in each section. GMAC publishes no statement either way for the current exam.",
+    "The item pool size, blueprint, and per-section content distribution targets."
+  ],
+  "taxonomy": [
+    {
+      "section": "Quantitative Reasoning",
+      "domain": "Quantitative Problem Solving",
+      "domainSlug": "quant-problem-solving",
+      "skills": [
+        "Arithmetic",
+        "Elementary algebra",
+        "Applying arithmetic and algebraic knowledge to solve problems",
+        "Logic and analytical reasoning applied to quantitative problems",
+        "Approximation and estimation"
+      ],
+      "sourceUrl": "https://www.mba.com/exams/gmat-exam/about/exam-content"
+    },
+    {
+      "section": "Verbal Reasoning",
+      "domain": "Reading Comprehension",
+      "domainSlug": "verbal-reading-comprehension",
+      "skills": [
+        "Main idea",
+        "Supporting idea",
+        "Inference",
+        "Application",
+        "Logical structure",
+        "Style"
+      ],
+      "sourceUrl": "https://www.mba.com/exams/gmat-exam/about/exam-content"
+    },
+    {
+      "section": "Verbal Reasoning",
+      "domain": "Critical Reasoning",
+      "domainSlug": "verbal-critical-reasoning",
+      "skills": [
+        "Construct or make an argument",
+        "Evaluate an argument",
+        "Strengthen an argument",
+        "Weaken an argument",
+        "Identify a flaw in the reasoning",
+        "Formulate or evaluate a plan of action"
+      ],
+      "sourceUrl": "https://www.mba.com/exams/gmat-exam/about/exam-content"
+    },
+    {
+      "section": "Data Insights",
+      "domain": "Data Sufficiency",
+      "domainSlug": "di-data-sufficiency",
+      "skills": [
+        "Analyze a quantitative problem",
+        "Recognize which data is relevant",
+        "Determine at what point there is enough data to solve the problem",
+        "Avoid unwarranted assumptions from figures not drawn to scale",
+        "Distinguish a unique value from a range of values"
+      ],
+      "sourceUrl": "https://www.mba.com/exams/gmat-exam/about/exam-content"
+    },
+    {
+      "section": "Data Insights",
+      "domain": "Multi-Source Reasoning",
+      "domainSlug": "di-multi-source-reasoning",
+      "skills": [
+        "Examine data from multiple sources (text passages, tables, graphics)",
+        "Recognize discrepancies among different sources of data",
+        "Draw inferences from combined sources",
+        "Determine whether a data source is relevant"
+      ],
+      "sourceUrl": "https://www.mba.com/exams/gmat-exam/about/exam-content"
+    },
+    {
+      "section": "Data Insights",
+      "domain": "Table Analysis",
+      "domainSlug": "di-table-analysis",
+      "skills": [
+        "Sort a table of data",
+        "Analyze spreadsheet-like data",
+        "Determine what information is relevant",
+        "Judge whether a stated condition has been met"
+      ],
+      "sourceUrl": "https://www.mba.com/exams/gmat-exam/about/exam-content"
+    },
+    {
+      "section": "Data Insights",
+      "domain": "Graphics Interpretation",
+      "domainSlug": "di-graphics-interpretation",
+      "skills": [
+        "Interpret scatter plots",
+        "Interpret x/y graphs",
+        "Interpret bar charts",
+        "Interpret pie charts",
+        "Interpret statistical curve distributions",
+        "Discern relationships from a graphic",
+        "Make inferences from graphical data"
+      ],
+      "sourceUrl": "https://www.mba.com/exams/gmat-exam/about/exam-content"
+    },
+    {
+      "section": "Data Insights",
+      "domain": "Two-Part Analysis",
+      "domainSlug": "di-two-part-analysis",
+      "skills": [
+        "Solve complex quantitative, verbal or combined problems",
+        "Evaluate trade-offs",
+        "Solve simultaneous equations",
+        "Discern relationships between two entities",
+        "Handle dependent versus independent paired tasks"
+      ],
+      "sourceUrl": "https://www.mba.com/exams/gmat-exam/about/exam-content"
+    }
+  ],
+  "responseTypesNeeded": [
+    "single_select",
+    "multi_select",
+    "data_sufficiency",
+    "passage_group",
+    "two_part"
+  ],
+  "claims": [
+    {
+      "id": "gmat-current-official-name",
+      "topic": "Exam naming",
+      "statement": "As of 2026-09-18 GMAC brands the exam simply as the \"GMAT Exam\" on mba.com and in the August 2026 Policies & Procedures; \"GMAT Exam (Focus Edition)\" survives as a legacy label on the scoring and percentile pages, and the pre-2024 exam is now called the \"GMAT Exam (10th Edition)\".",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.mba.com/exams/gmat-exam/faqs",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "It launched in 2012 and was replaced by the GMAT Exam (Focus Edition) on February 1, 2024.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.mba.com/exams/gmat-exam/scores/understanding-your-score",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "Total Scores for the GMAT Exam (Focus Edition) range from 205 to 805.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.mba.com/exams/gmat-exam/register/exam-policies/policies-and-procedures",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "Download the GMAT™ Exam Policies & Procedures Download the GMAT™ Exam (10th Edition) Policies & Procedures",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "gmat-total-structure",
+      "topic": "Structure and timing",
+      "statement": "The exam is 2 hours 15 minutes of testing time with one optional 10-minute break and 64 questions total, split into three 45-minute sections: Quantitative Reasoning 21 questions, Verbal Reasoning 23 questions, Data Insights 20 questions.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.mba.com/exams/gmat-exam/about/exam-structure",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "The GMAT exam is 2 hours and 15 minutes long (with one optional 10-minute break) and consists of 64 questions in total",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.mba.com/exams/gmat-exam/faqs",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "The GMAT exam is comprised of three, 45-minute sections: Quantitative Reasoning, Verbal Reasoning, and Data Insights.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "gmat-section-order-six-choices",
+      "topic": "Section order selection",
+      "statement": "The candidate chooses the section order from six possible orders at a Select Section Order prompt shown after the navigation tutorial and immediately before the exam; failing to choose within two minutes selects the first order by default.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.mba.com/exams-and-exam-prep/gmat-exam/what-to-expect-during-gmat",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "You can take the exam in whatever section order you prefer, which ultimately totals six section-order choices.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.mba.com/exams/gmat-exam/about/exam-structure",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "You can answer the three sections in any order, giving you a more personalized testing experience.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "gmat-single-break",
+      "topic": "Breaks",
+      "statement": "There is exactly one optional 10-minute break, taken at the candidate's choice after the first OR the second section; taking it after the first section forfeits the option after the second, and there is no break after the third section.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.mba.com/exams-and-exam-prep/gmat-exam/what-to-expect-during-gmat",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "If you take your break after the first section, you will not have the option to take another break after the second section.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.mba.com/-/media/files/mba2/the-gmat-exam/files/register/gmat-policies-and-procedures_aug-2026.pdf",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "One (1) optional ten-minute break is scheduled during the test administration.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "gmat-break-overrun-penalty",
+      "topic": "Breaks",
+      "statement": "Exceeding the 10-minute break is penalised: the excess time is automatically deducted from the next section, or the test may be treated as abandoned and the score canceled. In the online exam the break auto-starts after 60 seconds unless the candidate elects to skip it.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.mba.com/-/media/files/mba2/the-gmat-exam/files/register/gmat-policies-and-procedures_aug-2026.pdf",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "If you exceed the time allowed for the break, the excess time will automatically be deducted from the next section of the test",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "gmat-review-edit-three",
+      "topic": "Question Review & Edit",
+      "statement": "Bookmarking and reviewing are unlimited, but a candidate may edit at most three (3) answers per section, using time remaining at the end of that section.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.mba.com/exams/gmat-exam/about/exam-structure",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "You can review as many questions as you would like and can edit up to three (3) answers.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.mba.com/exams-and-exam-prep/gmat-exam/what-to-expect-during-gmat",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "you can change up to three answers per section with any time you have remaining at the end of a section",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.gmac.com/resources/learners/how-to-apply/exams-preparation/new-gmat-exam-details",
+          "publisher": "GMAC",
+          "isOfficial": true,
+          "quote": "Candidates will be able to review as many questions as they like and edit a maximum of three answers per section.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "gmat-review-screen-gated-on-time",
+      "topic": "Question Review & Edit",
+      "statement": "The Question Review & Edit screen appears only after every question in the section has been answered AND only if section time remains; with no time remaining the candidate is routed straight to the break screen or the next section.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.mba.com/exams/gmat-exam/about/exam-structure",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "If there is no time remaining in the section, you will NOT proceed to the Question Review & Edit screen",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "gmat-review-screen-layout",
+      "topic": "Question Review & Edit",
+      "statement": "The review screen presents a numbered list of all questions in the section, flags which ones the candidate bookmarked, and clicking a number jumps directly to that question.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.mba.com/exams/gmat-exam/about/exam-structure",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "Each Question Review & Edit screen includes a numbered list of the questions in that section and indicates the questions you bookmarked.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "gmat-question-level-adaptive",
+      "topic": "Adaptive behaviour",
+      "statement": "All three sections are question-level computer-adaptive: the next question is selected based on previous responses. There is no module/stage structure.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.mba.com/exams-and-exam-prep/gmat-exam/what-to-expect-during-gmat",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "All sections of the test use computer-adaptive testing, which means the program selects your next question based on your previous responses.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "gmat-calculator-di-only",
+      "topic": "Calculator policy",
+      "statement": "An on-screen calculator is available in Data Insights only. It is explicitly unavailable in Quantitative Reasoning, and personal or watch calculators are prohibited items.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.mba.com/exams/gmat-exam/about/exam-content",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "You cannot use a calculator while working on this section.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.mba.com/-/media/files/mba2/the-gmat-exam/files/register/gmat-policies-and-procedures_aug-2026.pdf",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "During the Data Insights portion of the exam, you will be provided with access to a digital on- screen calculator.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "gmat-quant-problem-solving-only",
+      "topic": "Question types",
+      "statement": "Quantitative Reasoning consists solely of 21 Problem Solving questions. Data Sufficiency is no longer part of this section.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.mba.com/exams/gmat-exam/about/exam-content",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "It is composed of 21 Problem Solving questions.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.mba.com/exams/gmat-exam/prep-for-the-exam/prep-strategies/quantitative-reasoning",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "This section is composed of Problem Solving questions.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "gmat-sentence-correction-removed",
+      "topic": "Question types",
+      "statement": "Sentence Correction NO LONGER EXISTS. Verbal Reasoning is composed only of Reading Comprehension and Critical Reasoning questions, and GMAC states the exam does not test grammar.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.mba.com/exams/gmat-exam/prep-for-the-exam/prep-strategies/verbal-reasoning",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "This section is composed of Reading Comprehension and Critical Reasoning questions.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.gmac.com/resources/learners/how-to-apply/exams-preparation/new-gmat-exam-details",
+          "publisher": "GMAC",
+          "isOfficial": true,
+          "quote": "Within the GMAT Focus Edition this section will no longer include sentence correction questions.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.mba.com/exams/gmat-exam/faqs",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "it does not test vocabulary or grammar",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "gmat-awa-essay-removed",
+      "topic": "Question types",
+      "statement": "The Analytical Writing Assessment essay NO LONGER EXISTS. The current GMAT contains no essay task and all items are multiple choice.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.mba.com/exams/gmat-exam/faqs",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "It also does not include an essay writing section, like the GRE.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.gmac.com/resources/learners/how-to-apply/exams-preparation/new-gmat-exam-details",
+          "publisher": "GMAC",
+          "isOfficial": true,
+          "quote": "GMAT Focus will have no essay requirement and all questions will be multiple-choice, focusing on key business skills.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "gmat-integrated-reasoning-absorbed",
+      "topic": "Question types",
+      "statement": "Integrated Reasoning no longer exists as a standalone section. Its item formats (Multi-Source Reasoning, Table Analysis, Graphics Interpretation, Two-Part Analysis) now sit inside Data Insights alongside Data Sufficiency.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.mba.com/exams/gmat-exam/prep-for-the-exam/prep-strategies/data-insights",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "This section is composed of 5 types of questions: Data Sufficiency, Multi-Source Reasoning, Table Analysis, Graphics Interpretation, and Two-Part Analysis.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.gmac.com/resources/learners/how-to-apply/exams-preparation/new-gmat-exam-details",
+          "publisher": "GMAC",
+          "isOfficial": true,
+          "quote": "The new Data Insights section will have 20 questions, some of which will test integrated reasoning",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "gmat-data-sufficiency-in-di",
+      "topic": "Question types",
+      "statement": "Data Sufficiency now lives in the Data Insights section, not in Quantitative Reasoning.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.mba.com/exams/gmat-exam/about/exam-content",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "Data Sufficiency: Measures your ability to analyze a quantitative problem, recognize which data is relevant",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.gmac.com/resources/learners/how-to-apply/exams-preparation/new-gmat-exam-details",
+          "publisher": "GMAC",
+          "isOfficial": true,
+          "quote": "it will contain none of the data sufficiency questions that appear in the current GMAT",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "gmat-score-ranges",
+      "topic": "Scoring",
+      "statement": "Each section (Quantitative Reasoning, Verbal Reasoning, Data Insights) is scored 60–90; the Total Score ranges 205–805 and the three sections are weighted equally in it.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.mba.com/exams/gmat-exam/scores/understanding-your-score",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "Your Total Score ranges from 205 to 805 and is based on your performance across all three sections of the exam.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.mba.com/exams/gmat-exam/scores/understanding-your-score",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "Score Range: Quantitative Reasoning scores range from 60 – 90.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "gmat-percentiles-published",
+      "topic": "Scoring",
+      "statement": "GMAC publishes percentile rankings for the Total Score and for each section score, currently from a 2021–2026 data period (Total Score sample 509,182; mean 554.94; SD 94.24).",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.mba.com/exams/gmat-exam/scores/understanding-your-score",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "A percentile ranking for your Total Score and each section score.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "gmat-scoring-three-factors",
+      "topic": "Scoring",
+      "statement": "Each section score depends on the number of questions answered, whether the answers are correct or incorrect, and the difficulty and other parameters of the questions answered. No wrong-answer penalty is documented.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.mba.com/exams/gmat-exam/scores/understanding-your-score",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "the number of questions answered, 2) whether the answers are correct or incorrect, and 3) the difficulty and other parameters",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "gmat-di-multipart-all-or-nothing",
+      "topic": "Scoring",
+      "statement": "In Data Insights, multi-part questions award no partial credit: all parts must be answered correctly to receive credit for the question.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.mba.com/exams/gmat-exam/scores/understanding-your-score",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "Some questions may have multiple parts; all parts of a question must be answered correctly to receive credit for that question.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "gmat-unanswered-penalty",
+      "topic": "Scoring",
+      "statement": "Unanswered questions materially reduce the score, though GMAC does not quantify the effect. A candidate who runs out of time still receives scores provided they worked on every section.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.mba.com/exams-and-exam-prep/gmat-exam/what-to-expect-during-gmat",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "your scores will reflect the number of questions answered and will decrease significantly with each unanswered question",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "gmat-scale-not-comparable-to-legacy",
+      "topic": "Scoring",
+      "statement": "The 205–805 scale is not comparable to the legacy 200–800 GMAT (10th Edition) scale; GMAC directs users to compare percentile rankings via a concordance table instead of raw totals.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.mba.com/exams/gmat-exam/scores/understanding-your-score",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "comparing total scores or section scores is not appropriate, accurate, or a meaningful comparison of performance",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "gmat-score-report-taxonomy-dimensions",
+      "topic": "Taxonomy",
+      "statement": "The Official Score Report reports performance along three tagging dimensions — Content Domain, Question Type and Fundamental Skills — plus time management and a Question Review & Edit summary; but GMAC does not publish the enumerated lists behind Content Domain or Fundamental Skills.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.mba.com/exams/gmat-exam/scores/official-score-reports",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "you'll get insights by section, question type, and content domain (meaning, a specific area of knowledge)",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "gmat-retake-and-validity",
+      "topic": "Policy",
+      "statement": "Scores are valid five years from the test date. A candidate may take the exam five times in a rolling 12-month period with no lifetime limit, and must wait at least 16 days between attempts.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.mba.com/exams/gmat-exam/faqs",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "you must wait at least 16 days between attempts",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.mba.com/-/media/files/mba2/the-gmat-exam/files/register/gmat-policies-and-procedures_aug-2026.pdf",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "You must wait at least sixteen (16) days after you take the exam",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "gmat-adaptive-algorithm-not-public",
+      "topic": "Scoring limitations",
+      "statement": "GMAC does not publish the adaptive routing algorithm, IRT item parameters, or any raw-to-scaled conversion table. No official mba.com or gmac.com page reviewed on 2026-09-18 contained this information.",
+      "confidence": "unverified",
+      "sources": [
+        {
+          "url": "https://www.mba.com/exams/gmat-exam/scores/understanding-your-score",
+          "publisher": "GMAC / mba.com",
+          "isOfficial": true,
+          "quote": "The Quantitative Reasoning score is based on three factors",
+          "fetchedOk": true
+        }
+      ]
+    }
+  ],
+  "unverifiable": [
+    "The adaptive routing algorithm and item-selection rule. DISABLE any claim of exam-accurate adaptive routing; a practice engine may adapt difficulty but must be labelled as our own educational approximation, not a GMAT simulation.",
+    "IRT item parameters and the ability-estimation method. DISABLE any calibrated ability estimate or 'estimated GMAT score' feature.",
+    "Raw-to-scaled conversion for the 60–90 section scales and the formula mapping section scores to the 205–805 Total Score. DISABLE scaled-score reporting entirely; report raw accuracy, per-domain accuracy and pacing instead.",
+    "The exact magnitude of the unanswered-question penalty. Our scoring must not model a specific penalty.",
+    "How answer changes made in Question Review & Edit are re-scored against an already-fixed adaptive path. Implement the edit cap as a UI/navigation rule only; do not model any scoring consequence beyond replacing the stored response.",
+    "The enumerated official Content Domain list and Fundamental Skills list used in the Official Score Report. Our taxonomy below is built from the public Exam Content page; tag it internally as 'derived from official exam content descriptions', NOT as GMAC's score-report taxonomy.",
+    "Whether the exam includes unscored / pretest items, and how many. Do not implement an unscored-item feature for GMAT.",
+    "The exact feature set of the Data Insights on-screen calculator (memory, roots, exponents). Provide a basic four-function calculator and label it an approximation.",
+    "The number of Reading Comprehension passages per section and the number of questions per passage; likewise the number of questions per Multi-Source Reasoning set. Our simulation must fix these editorially and disclose that the real exam's distribution is not published.",
+    "The number of Table Analysis statement rows and Graphics Interpretation drop-down blanks per item. Fix editorially and disclose.",
+    "Accommodation configurations (extended time multipliers, extra/longer breaks). GMAC references pre-approved time-based accommodations but publishes no multipliers on the pages reviewed. Do not ship accommodation presets for GMAT.",
+    "Whether the section-order choice affects scoring or item selection in any way. Assume no effect; do not model one."
+  ],
+  "briefDiscrepancies": [
+    {
+      "briefClaim": "The brief lists the exam as 'GMAT — current format; accommodate searches using \"Focus Edition\"' without stating what the exam is actually called today.",
+      "verifiedFinding": "GMAC's current branding is plain 'GMAT Exam'. The August 2026 Policies & Procedures contains no occurrence of 'Focus Edition' at all, and the main exam pages say 'The GMAT Exam'. However 'GMAT Exam (Focus Edition)' is still used on the scores/percentile pages, and the pre-2024 exam is now officially named 'GMAT Exam (10th Edition)' (sunset 31 Jan 2024, replaced 1 Feb 2024).",
+      "sourceUrl": "https://www.mba.com/exams/gmat-exam/faqs",
+      "implementationConsequence": "Canonical exam name = 'GMAT Exam'. Store aliases ['GMAT Focus Edition','GMAT Focus','GMAT Exam (Focus Edition)'] for search and SEO, plus a distinct disambiguation alias 'GMAT Exam (10th Edition)' that must resolve to a 'this exam was retired' page, NOT to our current GMAT content. Note in content QA that mba.com is itself internally inconsistent on the name."
+    },
+    {
+      "briefClaim": "The brief's generic response-type list for the assessment engine includes quantitative comparison, numeric entry and essay responses.",
+      "verifiedFinding": "The current GMAT uses none of these. GMAC states all questions are multiple choice, there is no essay requirement, and there is no quantitative-comparison or numeric-entry format in any section.",
+      "sourceUrl": "https://www.gmac.com/resources/learners/how-to-apply/exams-preparation/new-gmat-exam-details",
+      "implementationConsequence": "The GMAT exam config must declare supportedResponseTypes = [single_select, multi_select, data_sufficiency, passage_group, two_part] and explicitly exclude essay, numeric_entry and quantitative_comparison. Quantitative comparison belongs to the GRE, not the GMAT — do not let a shared question bank leak QC items into GMAT drills."
+    },
+    {
+      "briefClaim": "The brief treats adaptive exams generically and (via the SAT/ACT work) assumes module- or stage-based adaptive routing.",
+      "verifiedFinding": "The GMAT is question-level adaptive in all three sections, with no modules and no between-module routing.",
+      "sourceUrl": "https://www.mba.com/exams-and-exam-prep/gmat-exam/what-to-expect-during-gmat",
+      "implementationConsequence": "The exam-config schema needs an adaptivity field with at least two values ('question_level' for GMAT, 'module_routing' for the Digital SAT). A single module-routing implementation cannot express GMAT behaviour. Persist per-question routing decisions so a refresh cannot regenerate the sequence."
+    },
+    {
+      "briefClaim": "The brief asks for 'navigation and answer-review permissions' as a generic config field.",
+      "verifiedFinding": "GMAT's rule is unusually specific and cannot be expressed as a simple boolean: unlimited bookmarking, unlimited review, a hard cap of exactly three answer edits per section, a review screen reachable only after all questions are answered AND only if section time remains, with review time charged to the section clock.",
+      "sourceUrl": "https://www.mba.com/exams/gmat-exam/about/exam-structure",
+      "implementationConsequence": "Model review permissions as a structured object: {backNavigationDuringSection: false, bookmarkLimit: null, reviewLimit: null, answerEditsPerSection: 3, reviewScreenRequiresAllAnswered: true, reviewScreenRequiresTimeRemaining: true, reviewTimeCountsAgainstSectionClock: true}. A boolean 'canReview' flag would silently mis-simulate the GMAT."
+    },
+    {
+      "briefClaim": "The brief assumes calculator policy can be set at exam level ('Calculator rules' as a single item).",
+      "verifiedFinding": "GMAT calculator availability is per section: none in Quantitative Reasoning (explicitly prohibited), none in Verbal, on-screen calculator in Data Insights only.",
+      "sourceUrl": "https://www.mba.com/exams/gmat-exam/about/exam-content",
+      "implementationConsequence": "Calculator availability must be a per-section (and for the Digital SAT, per-module) config field, not an exam-level field. Ship the GMAT calculator only inside Data Insights, and label it an approximation since GMAC does not publish its feature set."
+    },
+    {
+      "briefClaim": "The brief warns against 'unsupported claims about proprietary adaptive scoring' but does not say what GMAT scoring can legitimately be reported.",
+      "verifiedFinding": "GMAC publishes the scales (60–90 per section, 205–805 total, equal weighting) and percentile tables, but publishes no routing algorithm, no IRT parameters and no raw-to-scaled conversion.",
+      "sourceUrl": "https://www.mba.com/exams/gmat-exam/scores/understanding-your-score",
+      "implementationConsequence": "We may display the official scales and cite official percentile tables as reference information. We must NOT output an estimated 205–805 score or an estimated percentile from our own practice attempts. Results screens report raw accuracy, per-domain accuracy, per-question-type accuracy and pacing only."
+    },
+    {
+      "briefClaim": "The brief's initial content target is '20 reviewed original questions per exam' covering each major domain.",
+      "verifiedFinding": "The GMAT has 8 distinct question-type domains across three sections (Problem Solving; Reading Comprehension; Critical Reasoning; Data Sufficiency; Multi-Source Reasoning; Table Analysis; Graphics Interpretation; Two-Part Analysis), four of which need non-trivial interactive widgets (sortable table, tabbed multi-source stimulus, drop-down-in-chart, two-column response grid).",
+      "sourceUrl": "https://www.mba.com/exams/gmat-exam/prep-for-the-exam/prep-strategies/data-insights",
+      "implementationConsequence": "20 questions cannot cover 8 domains meaningfully. Either raise the GMAT target to ~40 (5 per domain) or scope the initial release to Problem Solving, Reading Comprehension, Critical Reasoning and Data Sufficiency, and mark the four interactive Data Insights types as 'not yet implemented' rather than shipping them thin."
+    },
+    {
+      "briefClaim": "The brief lists 'Data sufficiency and structured data interpretation' among response types without saying where Data Sufficiency sits.",
+      "verifiedFinding": "Data Sufficiency has moved out of Quantitative Reasoning and now sits in Data Insights. Any legacy tagging that files DS under Quant is wrong for the current exam.",
+      "sourceUrl": "https://www.mba.com/exams/gmat-exam/about/exam-content",
+      "implementationConsequence": "Question-bank tags must place data_sufficiency under section=data-insights, domainSlug=di-data-sufficiency. Add a content-audit rule that rejects any GMAT DS item tagged to Quantitative Reasoning, and quarantine any imported item carrying the legacy tag."
+    },
+    {
+      "briefClaim": "The brief implies break behaviour is a simple 'breaks' config value.",
+      "verifiedFinding": "GMAT's break is a single optional 10-minute break whose POSITION the candidate chooses at runtime (after section 1 or after section 2), which is forfeited if used early, and whose overrun is deducted from the next section.",
+      "sourceUrl": "https://www.mba.com/-/media/files/mba2/the-gmat-exam/files/register/gmat-policies-and-procedures_aug-2026.pdf",
+      "implementationConsequence": "Breaks need a 'candidate-elected, single-use, position-choosable' mode, not a fixed schedule. The engine must track breakUsed state and offer the break only at eligible boundaries, and must implement server-side overrun deduction from the following section's deadline."
+    }
+  ],
+  "implementationNotes": [
+    "Exam config version key: gmat-exam@2026-08 (pin to the 12 Aug 2026 Policies & Procedures). Every attempt pins this version so a later GMAC change cannot alter historical results.",
+    "Sections are order-agnostic: define the three sections without a fixed order and add a pre-exam 'Select Section Order' step offering all six permutations. Mirror the official default: show the prompt after the tutorial, and auto-select the first order if the candidate does not choose within 120 seconds. Persist the chosen order on the attempt before the first question is served so a refresh cannot re-roll it.",
+    "Timing is server-authoritative per section: three independent 45-minute deadlines, not one 135-minute exam deadline. A candidate who finishes a section early does NOT bank the time. Store sectionDeadlineAt server-side and validate every answer submission against it.",
+    "Break handling: one optional 10-minute break, offered only at the boundary after section 1 or section 2, with a breakUsed flag that removes the second offer. Implement the overrun rule server-side — if the candidate returns late, subtract the excess from the next section's deadline. Do not implement the 'test abandoned / score canceled' branch; that is a proctoring decision we cannot replicate, so document it as out of scope.",
+    "Question Review & Edit is the highest-risk navigation feature to get wrong. Implement as: (a) unlimited bookmark toggles during the section; (b) no backward navigation while questions remain unanswered; (c) on answering the last question, check remaining time — if zero, skip straight to break/next section; (d) otherwise render the review grid with all question numbers and bookmark flags; (e) allow unlimited navigation and re-reading within the grid; (f) enforce a server-side counter of answer CHANGES, capped at 3 per section, where a change means the stored response differs from the previously stored response. Changing an answer and then changing it back should count as two changes unless we decide otherwise — GMAC does not specify, so pick one, document it in the 'our approximation' column, and surface the remaining edit budget in the UI.",
+    "Review time counts against the section clock. The timer must keep running on the review screen, and the attempt must record time spent reviewing separately so our results screen can mirror the official 'Summary of Question Review & Changes' insight.",
+    "Adaptive routing: build a question-level (not module-level) difficulty-stepping practice engine, but gate it behind a clear label such as 'adaptive practice (our approximation)'. Persist every routing decision and the served item id per position so refresh/reconnect replays the identical sequence. Never describe it as the GMAT algorithm.",
+    "Calculator: per-section availability. Enable a basic on-screen calculator ONLY for the Data Insights section; hard-disable it in Quantitative Reasoning and Verbal Reasoning, and show an explicit 'no calculator in this section' affordance in Quant so learners build the right habit. Provide a scratch-pad/whiteboard surface in all sections.",
+    "Response-type widgets required: single_select (5 options) for Problem Solving, Reading Comprehension, Critical Reasoning; data_sufficiency (a fixed, reusable 5-option statement-sufficiency answer set that should be a first-class type, not free-text options); passage_group for Reading Comprehension and for Multi-Source Reasoning tabbed stimuli; multi_select to carry Table Analysis and Multi-Source Reasoning binary statement grids (each row a yes/no or true/false judgement); two_part for Two-Part Analysis (two response columns sharing one option list, same option may be correct in both) and for Graphics Interpretation (two drop-down blanks completing a sentence).",
+    "Scoring config: scoringMode = 'raw_only' for GMAT. rawRules = {wrongAnswerPenalty: 0, omittedPenalty: 0, partialCredit: false}. The no-partial-credit rule is officially documented for Data Insights multi-part items, so enforce all-or-nothing grading on every multi-part DI item. Surface scaledScore = null and percentile = null; do not compute either.",
+    "Results screen should report: per-section raw accuracy, accuracy by question type, accuracy by our derived domain taxonomy, average time per question versus a configured target, and a review/edit summary. Display the official 60–90 and 205–805 scales and the official percentile tables as reference content on the exam hub page only, clearly separated from the learner's own results.",
+    "Question bank tagging: use the domainSlug values given in the taxonomy field. Add a validation rule that GMAT items tagged di-data-sufficiency must belong to section data-insights, and reject any GMAT item tagged with a sentence-correction, essay, geometry-heavy or standalone-integrated-reasoning domain — those belong to the retired GMAT Exam (10th Edition) and must be quarantined, not silently re-tagged.",
+    "SEO and discoverability: the exam hub must rank for 'GMAT', 'GMAT Focus Edition' and 'GMAT Focus', and should carry an explicit explainer that GMAC has dropped the 'Focus Edition' branding while still using it on its scoring pages. Add a separate retired-exam page for 'GMAT Exam (10th Edition)' so legacy searches do not land on current-format content.",
+    "Content-accuracy guardrails for editorial: (1) no Sentence Correction items; (2) no essay prompts; (3) no Data Sufficiency in Quant drills; (4) Quant items must be solvable without a calculator; (5) Data Insights items must be solvable with a basic four-function calculator; (6) Critical Reasoning stimuli should stay under roughly 100 words per the official description; (7) Reading Comprehension explanations must be answerable from the passage alone.",
+    "Accessibility: Graphics Interpretation and Table Analysis items must store the underlying data and expose an accessible table alternative. Two-Part Analysis grids and Table Analysis statement grids need proper table semantics with row/column headers and programmatic labels, and drop-down completions must be real select elements with visible labels."
+  ],
+  "sources": [
+    {
+      "url": "https://www.mba.com/exams/gmat-exam/about/exam-structure",
+      "publisher": "GMAC / mba.com",
+      "isOfficial": true,
+      "quote": "The GMAT exam is 2 hours and 15 minutes long (with one optional 10-minute break) and consists of 64 questions in total",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://www.mba.com/exams/gmat-exam/about/exam-content",
+      "publisher": "GMAC / mba.com",
+      "isOfficial": true,
+      "quote": "You cannot use a calculator while working on this section.",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://www.mba.com/exams/gmat-exam/scores/understanding-your-score",
+      "publisher": "GMAC / mba.com",
+      "isOfficial": true,
+      "quote": "Your Total Score ranges from 205 to 805 and is based on your performance across all three sections of the exam.",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://www.mba.com/exams/gmat-exam/faqs",
+      "publisher": "GMAC / mba.com",
+      "isOfficial": true,
+      "quote": "It launched in 2012 and was replaced by the GMAT Exam (Focus Edition) on February 1, 2024.",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://www.mba.com/exams-and-exam-prep/gmat-exam/what-to-expect-during-gmat",
+      "publisher": "GMAC / mba.com",
+      "isOfficial": true,
+      "quote": "All sections of the test use computer-adaptive testing, which means the program selects your next question based on your previous responses.",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://www.mba.com/exams/gmat-exam/prep-for-the-exam/prep-strategies/data-insights",
+      "publisher": "GMAC / mba.com",
+      "isOfficial": true,
+      "quote": "This section is composed of 5 types of questions: Data Sufficiency, Multi-Source Reasoning, Table Analysis, Graphics Interpretation, and Two-Part Analysis.",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://www.mba.com/exams/gmat-exam/prep-for-the-exam/prep-strategies/quantitative-reasoning",
+      "publisher": "GMAC / mba.com",
+      "isOfficial": true,
+      "quote": "This section is composed of Problem Solving questions.",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://www.mba.com/exams/gmat-exam/prep-for-the-exam/prep-strategies/verbal-reasoning",
+      "publisher": "GMAC / mba.com",
+      "isOfficial": true,
+      "quote": "This section is composed of Reading Comprehension and Critical Reasoning questions.",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://www.mba.com/exams/gmat-exam/register/exam-policies/policies-and-procedures",
+      "publisher": "GMAC / mba.com",
+      "isOfficial": true,
+      "quote": "Download the GMAT™ Exam Policies & Procedures Download the GMAT™ Exam (10th Edition) Policies & Procedures",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://www.mba.com/-/media/files/mba2/the-gmat-exam/files/register/gmat-policies-and-procedures_aug-2026.pdf",
+      "publisher": "GMAC / mba.com",
+      "isOfficial": true,
+      "quote": "During the Data Insights portion of the exam, you will be provided with access to a digital on- screen calculator.",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://www.mba.com/exams/gmat-exam/scores/official-score-reports",
+      "publisher": "GMAC / mba.com",
+      "isOfficial": true,
+      "quote": "you'll get insights by section, question type, and content domain (meaning, a specific area of knowledge)",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://www.mba.com/exams/gmat-exam",
+      "publisher": "GMAC / mba.com",
+      "isOfficial": true,
+      "quote": "the GMAT is the most widely used assessment designed specifically for graduate business education",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://www.gmac.com/resources/learners/how-to-apply/exams-preparation/new-gmat-exam-details",
+      "publisher": "GMAC",
+      "isOfficial": true,
+      "quote": "Within the GMAT Focus Edition this section will no longer include sentence correction questions.",
+      "fetchedOk": true
+    }
+  ]
+}

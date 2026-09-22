@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-ug-read-remittances-explicit-013",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-reading-comprehension",
+  "skillSlug": "reading-explicit-information",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "According to the passage, which of the following is stated about the global average charge for sending 200 dollars?",
+  "instructionsMd": "Answer on the basis of the passage only.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "It has not changed in any market over the past decade."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "It has fallen below 4 per cent in every corridor."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "It is highest in the corridor running from the Gulf states to South Asia."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "It is more than twice the 3 per cent target that governments set under the Sustainable Development Goals."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The third paragraph states the figure directly: the global average charge for sending 200 dollars 'sits at about 6.2 per cent, more than double the 3 per cent target that governments set for themselves under the Sustainable Development Goals'. Option B restates exactly that relationship, and the arithmetic agrees: $2 \\times 3 = 6$, and $6.2 > 6$.\n\n**How to work an explicit-information question efficiently.** Locate the sentence that contains the number in the stem, then test each option against that sentence and its immediate neighbours. Do not reason from what seems economically likely — only from what the text says.\n\nThe three wrong options each fail on a single word that the passage contradicts or never supplies: *any* market, *every* corridor, and *highest*. Scanning for these absolute quantifiers is the fastest way to eliminate options on this question type.",
+  "distractorRationale": {
+    "a": "The passage says prices 'have barely moved in a decade' only 'where that exclusivity holds' — that is, in the particular markets where banks have exclusive agreements with payment networks. Option A removes that condition and generalises to every market, which the passage does not support; indeed it says mobile money has narrowed the gap where it has been allowed to compete.",
+    "b": "The passage gives 'under 4 per cent' as the cost of one specific kind of corridor, those served by many competing operators. It says in the very next clause that several intra-African corridors exceed 8 per cent, so the claim that every corridor is below 4 per cent contradicts the text.",
+    "c": "This reverses the passage. The Gulf-to-South-Asia corridor is offered as an example of a cheap corridor, under 4 per cent, because many operators compete there. The expensive corridors named are several intra-African ones, at over 8 per cent."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": {
+    "id": "bocconi-ug-stim-remittances-001",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying prose passage on remittances. It asks which statement about the average charge for sending two hundred dollars is explicitly made in the passage. There is no figure or notation; the answer options are full sentences.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-author",
+    "aiAssisted": true,
+    "notes": "Original item written against an original passage. Not reproduced or adapted from any published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-author",
+    "reviewer": "bocconi-undergraduate-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-independent-reviewer",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The passage says the average 'sits at about 6.2 per cent, more than double the 3 per cent target ... under the Sustainable Development Goals', which is B verbatim. A overstates 'in some markets' to 'any market', C contradicts the 8%+ African corridors, and D reverses the Gulf-to-South-Asia corridor, which is cited as cheap."
+    },
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "passage-remittances",
+    "detail"
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "id": "gre-quant-di-true-statements-013",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-data-analysis",
+  "skillSlug": "data-tables-and-graphs",
+  "subskillSlug": null,
+  "responseType": "multi_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Consider each statement separately. Select **all** of the statements that are true according to the chart.",
+  "instructionsMd": "Select all that apply. There is no credit for a partially correct selection.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Print fiction borrowings fell by more than $15$ percent from $2022$ to $2024$."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Print nonfiction borrowings decreased by the same number of items in each of the two year-to-year changes shown."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Total borrowings across all four categories were greater in $2023$ than in $2022$, and greater in $2024$ than in $2023$."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "In $2024$, audiobook borrowings were equal to print nonfiction borrowings."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "In $2023$, digital title borrowings exceeded the combined borrowings of audiobooks and print nonfiction."
+    }
+  ],
+  "answerKey": {
+    "type": "multi_select",
+    "optionIds": [
+      "c",
+      "d"
+    ],
+    "grading": "exact"
+  },
+  "explanationMd": "Work out the yearly totals once, then test each statement against the chart. The totals are\n\n$$2022:\\; 48 + 32 + 12 + 28 = 120, \\qquad 2023:\\; 45 + 30 + 18 + 42 = 135, \\qquad 2024:\\; 42 + 27 + 27 + 54 = 150.$$\n\n**(A) True.** $120 < 135 < 150$, so the total rose in both year-to-year steps.\n\n**(B) False.** Print fiction went from $48$ to $42$, a fall of $6$. As a percent of the starting value that is $6/48 = 0.125 = 12.5\\%$, which is *less* than $15$ percent, not more.\n\n**(C) True.** In $2024$ both audiobooks and print nonfiction stand at $27$ thousand.\n\n**(D) False.** In $2023$, digital titles were $42$, while audiobooks plus print nonfiction were $18 + 30 = 48$. Since $42 < 48$, digital did not exceed the pair.\n\n**(E) False.** Print nonfiction fell from $32$ to $30$, a drop of $2$, and then from $30$ to $27$, a drop of $3$. The drops are not equal.\n\nThe correct selection is **A and C**.\n\n**How to check.** Each statement is a separate true-or-false question, and because the item is scored all-or-nothing, a single misread sinks the whole point. Compute the three totals before you start, write them down, and then read each statement twice: once to see which years it names and once to see which categories.",
+  "distractorRationale": {
+    "a": "Selected by comparing the raw drop of $6$ against the threshold, or by dividing by the wrong base: $6/42 \\approx 14.3\\%$ and $6/48 = 12.5\\%$ are both under $15$ percent, but a hurried reader who sees fiction falling in both years may assume the decline must be large. Percent change is computed against the starting value, and here it is only $12.5$ percent.",
+    "e": "Selected by comparing the $2023$ digital figure of $42$ against just one of the two categories named — it does exceed audiobooks ($18$) and it does exceed print nonfiction ($30$) individually, but the statement asks about their combined total of $48$, which is larger. Read the statement to the end before judging it.",
+    "b": "Selected by noticing that print nonfiction declines in both intervals and assuming a steady decline means an equal one. The drops are $2$ and then $3$; equal *direction* is not equal *amount*. Subtract each pair rather than eyeballing the bars, which differ by too little to distinguish visually."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": {
+    "id": "gre-di-riverbend-library-001",
+    "version": 1
+  },
+  "accessibilityText": "Using the library borrowing chart, judge five statements about the data and select every statement that is true. The statements concern the direction of change in yearly totals, the percent fall in print fiction from 2022 to 2024, whether audiobooks equalled print nonfiction in 2024, whether digital titles in 2023 exceeded audiobooks plus print nonfiction that year, and whether print nonfiction fell by the same amount in each year-to-year step.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gre-author",
+    "aiAssisted": true,
+    "notes": "Original item in an original data interpretation set. Each false statement is false for a different reason: a percent threshold just missed, a combined-versus-single comparison, and an equal-direction-versus-equal-amount confusion. Not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gre-author",
+    "reviewer": "gre-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "gre-independent-reviewer",
+      "solvedAnswer": "c,d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Totals 120/135/150 so (a) true; fiction fell 6/48 = 12.5 percent so (b) false; 2024 audiobooks 27 = nonfiction 27 so (c) true; 2023 digital 42 < 18+30 = 48 so (d) false; nonfiction fell 2 then 3 so (e) false."
+    },
+    "notes": "Author evaluated all five statements arithmetically against the stimulus data; only A and C hold. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "data-interpretation",
+    "select-all",
+    "chart-reading"
+  ]
+}

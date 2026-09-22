@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-law-math-lines-perpendicular-002",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-mathematics",
+  "skillSlug": "law-math-analytic-geometry-lines",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In the Cartesian plane, the line $r$ passes through the points $A(-2,\\,1)$ and $B(4,\\,5)$. Which of the following is the equation of the line perpendicular to $r$ that passes through the point $P(0,\\,3)$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$y = \\frac{2}{3}x + 3$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$y = \\frac{3}{2}x + 3$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$y = -\\frac{3}{2}x + 3$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$y = -\\frac{2}{3}x + 3$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Two steps: find the slope of $r$, then take the negative reciprocal.\n\n**Slope of $r$.** Using $A(-2,1)$ and $B(4,5)$:\n\n$$m_r = \\frac{5 - 1}{4 - (-2)} = \\frac{4}{6} = \\frac{2}{3}$$\n\n**Perpendicular slope.** Two non-vertical lines are perpendicular when the product of their slopes is $-1$, so\n\n$$m_\\perp = -\\frac{1}{m_r} = -\\frac{1}{2/3} = -\\frac{3}{2}$$\n\n**Through $P(0,3)$.** The point $P$ lies on the $y$-axis, so its $y$-coordinate *is* the intercept: $q = 3$. The line is\n\n$$y = -\\frac{3}{2}x + 3$$\n\n**How to check.** Multiply the two slopes: $\\frac{2}{3} \\times \\left(-\\frac{3}{2}\\right) = -1$, as required. Then substitute $x = 0$: $y = 3$, so the line really does pass through $P$. A quick visual check also helps — $r$ rises from left to right, so a line perpendicular to it must fall from left to right, which immediately eliminates both positive-slope options.",
+  "distractorRationale": {
+    "a": "This is the slope of $r$ itself, so this line is **parallel** to $r$, not perpendicular. The question asks for the perpendicular line, and $\\frac{2}{3} \\times \\frac{2}{3} = \\frac{4}{9}$, not $-1$.",
+    "d": "This comes from only changing the sign of the slope instead of taking the negative reciprocal. Checking the test: $\\frac{2}{3} \\times \\left(-\\frac{2}{3}\\right) = -\\frac{4}{9}$, which is not $-1$, so the lines are not perpendicular.",
+    "b": "This comes from inverting the fraction but forgetting the minus sign. The product of the slopes is $\\frac{2}{3} \\times \\frac{3}{2} = +1$, not $-1$; a line with a positive slope cannot be perpendicular to another line with a positive slope."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "A line r passes through point A at coordinates minus two, one, and point B at coordinates four, five. Find the equation of the line that is perpendicular to r and passes through point P at coordinates zero, three. Each answer option is a line written in the form y equals a slope times x plus three.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-author",
+    "aiAssisted": true,
+    "notes": "Original item on the analytic geometry of lines (slope, perpendicularity, intersection with the y-axis) listed in the Bocconi Law mathematics syllabus. Coordinates chosen so the slope is a simple fraction."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-author",
+    "reviewer": "bocconi-law-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-law-independent-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Slope of r = (5-1)/(4-(-2)) = 4/6 = 2/3, so the perpendicular slope is -3/2; passing through P(0,3) gives intercept 3, i.e. y = -(3/2)x + 3. The other three options carry slopes 2/3, -2/3 and 3/2, none of which is the negative reciprocal of 2/3."
+    },
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "analytic-geometry",
+    "lines",
+    "slope",
+    "perpendicular",
+    "no-calculator"
+  ]
+}

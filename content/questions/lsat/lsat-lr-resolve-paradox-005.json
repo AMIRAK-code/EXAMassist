@@ -1,0 +1,82 @@
+{
+  "id": "lsat-lr-resolve-paradox-005",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "lr1",
+  "domainSlug": "logical-reasoning",
+  "skillSlug": "lr-explanations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Ten years ago Fenwick County began requiring high-efficiency insulation in every house sold or substantially renovated, and within five years almost every house in the county had been brought up to the standard. Yet over the decade the total heating fuel burned in the county's houses rose by nearly a fifth. The number of houses in the county stayed essentially constant, and no winter in the decade was colder than the decade's first.\n\nWhich one of the following, if true, most helps to explain the rise in fuel consumption?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Two counties neighbouring Fenwick adopted similar insulation requirements during the same decade."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Because heating each square foot became cheaper, county homeowners added rooms to their houses and began heating rooms they had previously kept closed off."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The insulation requirement applied only to houses that were sold or substantially renovated, and few houses in the county were either."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The price of heating fuel in the county rose steadily throughout the decade."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "High-efficiency insulation of the type required lasts at least thirty years without needing replacement."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "First, state the puzzle precisely, and notice what the stimulus has already ruled out.\n\n- Insulation improved almost everywhere, so each unit of heated space should need **less** fuel.\n- Yet total household fuel use rose about 20%.\n- It is not more houses: the count held constant.\n- It is not harsher weather: no winter was colder than the first.\n\nSo the explanation cannot be *more homes* or *colder air*. What is left? The amount of space being heated, and how warm people keep it. That is the door (A) walks through.\n\n(A) describes the **rebound effect**: efficiency lowers the cost of heating a square foot, and people respond by buying more square feet of warmth — extensions, and rooms that used to be shut up for the winter. Each square foot now needs less fuel, yet there are many more heated square feet, and the second effect outweighs the first. Both facts in the stimulus are now true together, with no contradiction. Note that (A) is consistent with the constant house count: the houses did not multiply, they grew.\n\nCheck your answer by asking whether it makes the surprising fact *unsurprising*. Under (A), a 20% rise is exactly what you would predict. Under each other choice, the rise remains just as puzzling as before — and under (C) it becomes more puzzling still.\n\nThe habit worth building: on an explain-the-discrepancy question, list what the stimulus has explicitly eliminated before reading the choices. Here the two eliminations (house count, weather) point straight at the remaining variable, so the correct answer can often be predicted before you look.",
+  "distractorRationale": {
+    "c": "This explains at most why fuel use would fail to **fall**; it cannot explain a rise of a fifth. It also contradicts the stimulus, which states that within five years almost every house had been brought up to the standard. This is the strongest trap because it correctly attacks the assumption that the policy took effect, while answering a question the stem did not ask.",
+    "d": "This deepens the puzzle rather than resolving it. Fuel growing steadily more expensive gives households a reason to burn less, so a 20% rise alongside rising prices is harder to account for, not easier. Choosing it means reacting to a plausible-sounding economic fact without checking its direction.",
+    "e": "Durability is irrelevant to the decade in question. If anything, insulation that lasts thirty years without replacement means its benefit persisted throughout the period, which makes the rise more surprising. Nothing here bears on how much fuel was burned.",
+    "a": "What neighbouring counties did has no effect on fuel burned inside Fenwick's houses. The stimulus makes a claim about one county's own consumption, and no comparison is at issue. This is an inert distractor that supplies context rather than explanation."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "A short passage describing a surprising result. Fenwick County required high-efficiency insulation in houses sold or substantially renovated, and within five years nearly every house met the standard, yet total household heating fuel use rose by nearly a fifth over the decade. The number of houses stayed constant and no winter was colder than the decade's first. The question asks which statement most helps explain the rise. Five answer choices, labelled A through E. No notation or figures.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "lsat-author",
+    "aiAssisted": true,
+    "notes": "Original stimulus and choices. Explain-the-discrepancy item built on the rebound effect, with the two commonest rival explanations (more dwellings, colder weather) closed off in the stimulus itself. Not derived from any published LSAT item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "lsat-author",
+    "reviewer": "lsat-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "lsat-independent-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "A classic rebound effect: cheaper per-square-foot heating led owners to add rooms and heat previously closed-off rooms, so total fuel rose even with a constant house count and no colder winter. B directly contradicts the stimulus's statement that almost every house was brought up to standard within five years, C would push consumption down, and D and E are irrelevant."
+    },
+    "notes": "Author tested each choice against the question 'does this make a 20 percent rise expected?' Only (A) does. (C) was written as a price rise rather than a price fall precisely so that it cannot serve as a second defensible explanation. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logical-reasoning",
+    "explain-discrepancy",
+    "rebound-effect"
+  ]
+}

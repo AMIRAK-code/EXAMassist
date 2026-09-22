@@ -1,0 +1,82 @@
+{
+  "id": "gmat-ps-number-properties-004",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-arithmetic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "If $n$ is a positive integer and $n^2$ is divisible by $72$, what is the largest positive integer that must be a divisor of $n$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$6$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$8$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$12$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$24$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$36$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Work in prime factorisations. First, $72 = 2^3 \\times 3^2$.\n\nWrite $n = 2^a \\times 3^b \\times m$, where $m$ shares no factor of $2$ or $3$. Then $n^2 = 2^{2a} \\times 3^{2b} \\times m^2$.\n\nFor $72 \\mid n^2$ we need the exponents in $n^2$ to be at least those in $72$:\n\n$$2a \\ge 3 \\quad\\Longrightarrow\\quad a \\ge 1.5 \\quad\\Longrightarrow\\quad a \\ge 2 \\ \\ (\\text{exponents are integers}),$$\n$$2b \\ge 2 \\quad\\Longrightarrow\\quad b \\ge 1.$$\n\nSo every such $n$ is divisible by $2^2 \\times 3 = 12$, and $12$ is forced.\n\nIs anything larger forced? Test the smallest $n$ that satisfies the condition, $n = 12$: indeed $12^2 = 144 = 2 \\times 72$, so $n = 12$ qualifies. But $12$ is not divisible by $24$, by $36$ or by $8$, so none of those can be required. The answer is $12$.\n\nHow to check your own answer on this question type: find the smallest value of $n$ that satisfies the condition. Whatever the answer is, it cannot exceed that smallest $n$, and here the smallest $n$ is exactly $12$.",
+  "distractorRationale": {
+    "a": "This comes from halving each exponent of $72$ and rounding down, giving $2^1 \\times 3^1 = 6$. The exponent of $2$ must round up: $2a \\ge 3$ forces $a \\ge 2$, not $a \\ge 1$. $6$ does divide $n$, but it is not the largest integer that must.",
+    "b": "This is $2^3$, the full power of $2$ appearing in $72$. That power belongs to $n^2$, not to $n$. The counterexample $n = 12$ satisfies the condition and is not divisible by $8$.",
+    "d": "This is $2^3 \\times 3 = 24$, again carrying the full power of $2$ from $72$ into $n$. Since $n = 12$ works and $24 \\nmid 12$, $24$ is not forced.",
+    "e": "This is the largest perfect square that divides $72$. It is a fact about $72$, not about $n$: the counterexample $n = 12$ satisfies $72 \\mid n^2$ and is not divisible by $36$."
+  },
+  "estimatedSeconds": 140,
+  "stimulusRef": null,
+  "accessibilityText": "n is a positive integer and n squared is divisible by 72. Find the largest positive integer that must divide n.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-author",
+    "aiAssisted": true,
+    "notes": "Original item. Uniqueness is guaranteed by the single counterexample n = 12, which eliminates 8, 24 and 36 at once, while 6 is forced but not maximal."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-author",
+    "reviewer": "gmat-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "gmat-independent-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "72 = 2^3 * 3^2; if n = 2^a*3^b*k then 2a >= 3 forces a >= 2 and 2b >= 2 forces b >= 1, so 2^2*3 = 12 always divides n. 24 fails since n = 12 satisfies 144/72 = 2, so 12 is the largest forced divisor."
+    },
+    "notes": "Author confirmed 12 squared equals 144 equals 2 times 72, so n = 12 is admissible and rules out every larger option. Awaiting blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "number-properties",
+    "prime-factorisation",
+    "divisibility"
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-ug-alg-quadratic-inequality-002",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-algebra-inequalities",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "For which real values of $x$ is $x^{2} - 5x + 6 < 0$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$2 \\le x \\le 3$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$-3 < x < -2$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$2 < x < 3$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$x < 2$ or $x > 3$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Factor the quadratic first:\n\n$$x^{2} - 5x + 6 = (x - 2)(x - 3)$$\n\nThe roots are $x = 2$ and $x = 3$. Because the coefficient of $x^{2}$ is positive, the parabola opens upwards, so the expression is **negative between the roots** and positive outside them.\n\nTherefore $(x-2)(x-3) < 0$ exactly when\n\n$$2 < x < 3$$\n\nThe inequality is strict, so the roots themselves are excluded: at $x = 2$ and $x = 3$ the expression equals $0$, which is not less than $0$.\n\nHow to check it in a few seconds without a calculator: test one value from each region. At $x = 0$ the expression is $6 > 0$; at $x = 2.5$ it is $6.25 - 12.5 + 6 = -0.25 < 0$; at $x = 4$ it is $16 - 20 + 6 = 2 > 0$. Only the middle region satisfies the inequality.",
+  "distractorRationale": {
+    "d": "This is the set where the expression is positive, not negative. It comes from remembering the rule as 'outside the roots' regardless of the direction of the inequality. For an upward parabola, 'outside the roots' answers $> 0$ and 'between the roots' answers $< 0$.",
+    "a": "The interval is right but the endpoints have been included. At $x = 2$ and $x = 3$ the expression equals exactly $0$, and $0 < 0$ is false, so a strict inequality must use open endpoints. Closed endpoints would be correct only for $x^{2} - 5x + 6 \\le 0$.",
+    "b": "This comes from reading the roots off the factorisation $(x-2)(x-3)$ with the wrong signs, as $-2$ and $-3$. A factor $(x - 2)$ vanishes when $x = +2$, not when $x = -2$; substituting $x = -2$ gives $4 + 10 + 6 = 20$, which is far from zero."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": "Find all real numbers x for which x squared minus five x plus six is less than zero.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Not reproduced or adapted from any published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-author",
+    "reviewer": "bocconi-undergraduate-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-independent-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "x^2-5x+6=(x-2)(x-3), negative strictly between the roots, so 2<x<3. Option C fails because at x=2 and x=3 the expression is 0, not <0; A is the >0 set; D has the wrong signs."
+    },
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "quadratic-inequality",
+    "sign-chart"
+  ]
+}

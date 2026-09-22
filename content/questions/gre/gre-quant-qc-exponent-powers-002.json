@@ -1,0 +1,76 @@
+{
+  "id": "gre-quant-qc-exponent-powers-002",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-algebra",
+  "skillSlug": "alg-exponent-operations",
+  "subskillSlug": null,
+  "responseType": "quantitative_comparison",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "| Quantity A | Quantity B |\n| --- | --- |\n| $2^{30}$ | $3^{20}$ |",
+  "instructionsMd": "Compare Quantity A and Quantity B and select the one statement that is true.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Quantity A is greater."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Quantity B is greater."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The two quantities are equal."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The relationship cannot be determined from the information given."
+    }
+  ],
+  "answerKey": {
+    "type": "quantitative_comparison",
+    "choice": "B"
+  },
+  "explanationMd": "Both numbers are far too large for the on-screen calculator, which displays only eight digits, so rewrite them with a common exponent instead of evaluating them.\n\nThe exponents $30$ and $20$ share the factor $10$, so pull that out:\n\n$$2^{30} = \\left(2^{3}\\right)^{10} = 8^{10}, \\qquad 3^{20} = \\left(3^{2}\\right)^{10} = 9^{10}.$$\n\nNow the comparison is between $8^{10}$ and $9^{10}$. Both bases are positive and the exponent is the same, so the larger base gives the larger value:\n\n$$8^{10} < 9^{10}, \\quad \\text{so} \\quad 2^{30} < 3^{20}.$$\n\nQuantity B is greater.\n\nYou can sanity-check the method on numbers small enough to compute directly. Scale both exponents down by a factor of $5$: $2^{6} = 64$ and $3^{4} = 81$. Rewriting these the same way gives $2^{6} = 8^{2}$ and $3^{4} = 9^{2}$, and indeed $64 < 81$. The structure is identical, so the same conclusion holds at the tenth power.\n\nThe general technique: when comparing $a^{m}$ with $b^{n}$, look for a common factor of $m$ and $n$ and rewrite both as something raised to that shared power. Then you only have to compare the bases.",
+  "distractorRationale": {
+    "a": "Chosen by comparing the exponents alone and reasoning that $30 > 20$ makes Quantity A larger. The base matters just as much as the exponent; here the larger base more than compensates for the smaller exponent.",
+    "c": "Chosen by multiplying base and exponent, getting $2 \\times 30 = 60$ and $3 \\times 20 = 60$, and concluding the quantities are equal. Exponentiation is repeated multiplication, not multiplication of the base by the exponent.",
+    "d": "Chosen by assuming that numbers too large to compute cannot be compared. Both quantities are specific numbers with no variables in them, so the relationship is always determined; (D) can never be correct when both quantities are pure constants."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "Quantity A is 2 raised to the power 30. Quantity B is 3 raised to the power 20. Decide which quantity is greater, whether they are equal, or whether the relationship cannot be determined.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gre-author",
+    "aiAssisted": true,
+    "notes": "Original item. Exponents chosen by the author to share the factor 10; not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gre-author",
+    "reviewer": "gre-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "gre-independent-reviewer",
+      "solvedAnswer": "B",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "2^30 = 8^10 and 3^20 = 9^10; since 9 > 8 and the exponent is the same positive integer, 3^20 > 2^30 (3,486,784,401 vs 1,073,741,824)."
+    },
+    "notes": "Author solved as B by rewriting both as tenth powers (8^10 vs 9^10). Awaiting blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "quantitative-comparison",
+    "exponents",
+    "no-calculator-value"
+  ]
+}

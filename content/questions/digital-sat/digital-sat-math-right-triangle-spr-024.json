@@ -1,0 +1,60 @@
+{
+  "id": "digital-sat-math-right-triangle-spr-024",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "geometry-and-trigonometry",
+  "skillSlug": "right-triangles-and-trigonometry",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In right triangle $ABC$, angle $B$ is the right angle. If $\\sin A = \\frac{7}{25}$ and the length of $\\overline{AC}$ is $100$, what is the length of $\\overline{BC}$?",
+  "instructionsMd": "Student-produced response. Enter your answer in the box. Do not enter symbols such as a percent sign, comma, or dollar sign. If your answer is a fraction that does not fit in the box, enter its decimal equivalent instead.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 28
+      }
+    ],
+    "acceptedStrings": [
+      "28"
+    ]
+  },
+  "explanationMd": "Identify the sides relative to angle $A$ before using any ratio.\n\nThe right angle is at $B$, so the hypotenuse is the side opposite $B$, which is $\\overline{AC}$. The side opposite angle $A$ is $\\overline{BC}$.\n\nSince sine is opposite over hypotenuse,\n\n$$\\sin A = \\frac{BC}{AC}$$\n\nSubstitute the given values:\n\n$$\\frac{7}{25} = \\frac{BC}{100}$$\n\nCross-multiply:\n\n$$25 \\cdot BC = 700 \\;\\Rightarrow\\; BC = 28$$\n\nCheck that the triangle is consistent. If $BC = 28$ and $AC = 100$, then by the Pythagorean theorem $AB = \\sqrt{100^2 - 28^2} = \\sqrt{10000 - 784} = \\sqrt{9216} = 96$. The sides $28$, $96$, $100$ are $4$ times the $7$-$24$-$25$ right triangle, so the triangle closes exactly and $\\sin A = \\frac{28}{100} = \\frac{7}{25}$ as required.\n\nThe error to guard against is taking $\\overline{BC}$ for the hypotenuse. The hypotenuse is always opposite the right angle, which here is at $B$ — so the hypotenuse is $\\overline{AC}$.",
+  "distractorRationale": {},
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "In right triangle A B C the right angle is at B. The sine of angle A is seven twenty-fifths and side A C has length 100. Find the length of side B C. Enter a number.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "digital-sat-author",
+    "aiAssisted": true,
+    "notes": "Original item. Side lengths form a 4-times-scaled 7-24-25 right triangle, verified with the Pythagorean theorem."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "digital-sat-author",
+    "reviewer": "digital-sat-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "digital-sat-independent-reviewer",
+      "solvedAnswer": "28",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Angle B is the right angle, so AC is the hypotenuse and sin A = BC/AC = 7/25; BC = 100 * 7/25 = 28."
+    },
+    "notes": "Awaiting blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "geometry",
+    "trigonometry",
+    "student-produced-response"
+  ]
+}

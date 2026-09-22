@@ -1,0 +1,82 @@
+{
+  "id": "lsat-lr-necessary-assumption-001",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "lr1",
+  "domainSlug": "logical-reasoning",
+  "skillSlug": "lr-assumptions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Three years ago the city converted one lane of each major avenue into a bus-only lane. Average commute time across the city is unchanged: riders who switched to buses now arrive sooner, but drivers in the remaining lanes arrive later, and the two effects have exactly offset each other. The city's population and its number of daily commuters have held steady throughout. The lanes are expensive to maintain. Clearly, then, the city has got nothing for its money.\n\nThe argument depends on assuming which one of the following?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Maintaining a bus-only lane costs the city more than maintaining an ordinary traffic lane of the same length."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "A reduction in average commute time is the only benefit the conversion could have produced."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The city could have reduced average commute time by spending the same money in some other way."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Most commuters who switched to buses would have preferred to go on driving."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The number of people commuting daily in the city has not increased since the conversion."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Sort the argument into its parts first.\n\n- Premise: average commute time is unchanged (the gain to bus riders and the loss to drivers offset exactly).\n- Premise: the lanes are expensive to maintain.\n- Conclusion: the city has got **nothing** for its money.\n\nThe premises are entirely about one quantity, commute time. The conclusion is about **value received overall**. That jump only works if commute time is the whole of the value at stake. So the argument must be assuming that nothing else the conversion might have produced — cleaner air, fewer collisions, a more reliable timetable, less wear on the roadway — counts as getting something for the money. That is exactly (B).\n\nUse the **negation test**, which is the reliable way to check a necessary assumption. Negate a choice; if the argument falls apart, the choice was necessary.\n\nNegate (B): \"A reduction in average commute time is *not* the only benefit the conversion could have produced.\" Then the conversion may well have delivered some other benefit, and the claim that the city got *nothing* collapses. (B) is necessary.\n\nNegate (A): \"Bus-only lanes cost no more than ordinary lanes.\" The lanes are still stated to be expensive, money was still spent, and the conclusion stands. Not necessary — and the same style of check disposes of (C), (D) and (E).\n\nTwo habits worth carrying forward. First, watch for a conclusion whose subject matter is broader than the premises' — here, \"value\" versus \"commute time\"; the assumption almost always lives in that gap. Second, when a choice restates something the passage already gives you as fact, it cannot be an assumption the argument *makes*; that disposes of (C) immediately.",
+  "distractorRationale": {
+    "a": "This is a comparison the argument never needs. The stimulus already grants that the lanes are expensive, so the conclusion that money was spent does not depend on how that cost compares with an ordinary lane's. Negate it — the lanes cost the same as ordinary lanes — and the reasoning is untouched. Picking this confuses a detail that sounds relevant to cost with a premise the argument actually rests on.",
+    "e": "This is stated in the stimulus as a fact ('its number of daily commuters have held steady throughout'), and an argument does not need to assume what it has already been given. This choice is the trap for a reader who spots the genuine worry it gestures at — holding commute time steady while demand grows would itself be a benefit — without noticing that the passage has already closed that door.",
+    "d": "Commuters' preferences are irrelevant to whether the city received value. Negate it: suppose the switchers were delighted to give up driving. The conclusion that no net commute time was saved, and so that nothing was got for the money, is exactly as strong as before. This choice substitutes a question about satisfaction for the argument's question about value.",
+    "c": "This says a better use of the money existed, which would support a different conclusion — that the city spent its money *badly*. The argument's conclusion is the stronger claim that the city got nothing at all, and that claim needs no comparison with alternative projects. Negate it: even if no alternative would have done better, the argument's reasoning is unchanged."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": "A short argument about a city that converted one lane of each major avenue into a bus-only lane three years ago. Average commute time is unchanged because gains to bus riders and losses to drivers offset exactly; population and commuter numbers are steady; the lanes are expensive to maintain. The argument concludes the city got nothing for its money. The question asks which assumption the argument depends on. Five answer choices, labelled A through E. No notation or figures.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "lsat-author",
+    "aiAssisted": true,
+    "notes": "Original stimulus and choices. Necessary-assumption item built on a premise/conclusion scope gap (commute time versus value). Not derived from any published LSAT item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "lsat-author",
+    "reviewer": "lsat-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "lsat-independent-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The argument moves from 'average commute time unchanged' to 'nothing for its money', so it must assume no other benefit (emissions, equity, rider comfort) counts; negating B gives a possible benefit and the conclusion collapses. C is stated in the stimulus as a premise rather than assumed, A is not required because the stimulus already grants the lanes are expensive, and D and E are irrelevant to whether a benefit exists."
+    },
+    "notes": "Author checked uniqueness with the negation test on all five choices; only (B) breaks the argument when negated. The sentence fixing commuter numbers as constant was added deliberately so that (C) states a given fact rather than a second necessary assumption. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logical-reasoning",
+    "necessary-assumption",
+    "negation-test"
+  ]
+}

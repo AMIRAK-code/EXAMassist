@@ -1,0 +1,77 @@
+{
+  "id": "digital-sat-math-linear-inequalities-016",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "algebra",
+  "skillSlug": "linear-inequalities",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A delivery drone can lift a total load of at most $9$ kilograms. It is loaded with one battery pack weighing $1.5$ kilograms and with $n$ identical parcels weighing $0.6$ kilograms each. Which inequality represents all possible values of $n$ for this load?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$0.6n + 1.5 \\le 9$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$0.6n + 1.5 \\ge 9$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$1.5n + 0.6 \\le 9$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$0.6n - 1.5 \\le 9$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Build the total load first, then attach the right comparison symbol.\n\nThe parcels contribute $0.6$ kilograms each, and there are $n$ of them, so they weigh $0.6n$ kilograms. The battery pack adds a further $1.5$ kilograms whether or not any parcels are carried, so the total load is\n\n$$0.6n + 1.5$$\n\n\"At most $9$ kilograms\" means the total may equal $9$ but may not exceed it, which is $\\le 9$. So the inequality is $0.6n + 1.5 \\le 9$.\n\nCheck it against a value you can reason about directly. Solving gives $0.6n \\le 7.5$, so $n \\le 12.5$ and at most $12$ parcels fit. Twelve parcels weigh $7.2$ kg, plus the $1.5$ kg battery is $8.7$ kg — under the limit. Thirteen parcels would give $7.8 + 1.5 = 9.3$ kg — over it. The inequality behaves correctly at the boundary.",
+  "distractorRationale": {
+    "d": "This subtracts the battery pack instead of adding it. The battery is part of the load the drone has to lift, so its mass increases the total rather than reducing it.",
+    "b": "The inequality symbol is reversed. \"At most $9$ kilograms\" sets an upper limit, so the total must be less than or equal to $9$; $\\ge 9$ would describe a load that is always at least that heavy.",
+    "c": "The two masses have been swapped, so the variable is attached to the wrong one. There is one battery pack and $n$ parcels, so $n$ must multiply the $0.6$ kilogram parcel mass, not the $1.5$ kilogram battery."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "A drone lifts at most 9 kilograms. Its load is one 1.5 kilogram battery pack plus n parcels of 0.6 kilograms each. Choose the inequality describing all possible values of n.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "digital-sat-author",
+    "aiAssisted": true,
+    "notes": "Original item. Each distractor isolates one modelling error: wrong sign, reversed symbol, or swapped coefficients."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "digital-sat-author",
+    "reviewer": "digital-sat-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "digital-sat-independent-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Total load = 0.6n (parcels) + 1.5 (battery) and 'at most 9' means <= 9, giving 0.6n + 1.5 <= 9. B subtracts the battery, C reverses the inequality, D swaps the two weights."
+    },
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "algebra",
+    "inequality",
+    "real-world-context"
+  ]
+}

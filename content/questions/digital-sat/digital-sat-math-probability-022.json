@@ -1,0 +1,76 @@
+{
+  "id": "digital-sat-math-probability-022",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "problem-solving-and-data-analysis",
+  "skillSlug": "probability-and-conditional-probability",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A community garden has $150$ registered plots: $90$ in the sunny section and $60$ in the shaded section. Of the sunny plots, $72$ grew tomatoes last season; of the shaded plots, $21$ grew tomatoes last season. If one plot is selected at random from among the plots that grew tomatoes, what is the probability that the selected plot is in the shaded section?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\frac{7}{20}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\frac{7}{31}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\frac{7}{50}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\frac{24}{31}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "This is a conditional probability. The phrase \"selected at random from among the plots that grew tomatoes\" tells you that the denominator is not $150$ — it is the number of tomato plots only.\n\nCount the tomato plots:\n\n$$72 \\text{ (sunny)} + 21 \\text{ (shaded)} = 93$$\n\nOf those $93$, the shaded ones number $21$. So\n\n$$P(\\text{shaded} \\mid \\text{tomatoes}) = \\frac{21}{93} = \\frac{7}{31}$$\n\nafter dividing numerator and denominator by $3$.\n\nCheck the result two ways. First, it should be a number well below $\\frac12$, since most tomato plots are sunny — and $\\frac{7}{31} \\approx 0.226$. Second, the complementary probability, that the plot is sunny, should be $\\frac{72}{93} = \\frac{24}{31}$, and indeed $\\frac{7}{31} + \\frac{24}{31} = 1$.\n\nThe discipline that makes these items reliable: identify the group you are choosing *from* before you write anything down, and make that group the denominator.",
+  "distractorRationale": {
+    "c": "This is $\\frac{21}{150}$, which divides by every plot in the garden. That ignores the condition that the selection is made only from plots that grew tomatoes.",
+    "a": "This is $\\frac{21}{60}$, the probability that a shaded plot grew tomatoes. That is the reverse conditional: it conditions on the section rather than on tomatoes.",
+    "d": "This is $\\frac{72}{93}$, the probability that the selected tomato plot is in the sunny section. The denominator is right, but the numerator counts the wrong section."
+  },
+  "estimatedSeconds": 105,
+  "stimulusRef": null,
+  "accessibilityText": "A garden has 150 plots: 90 sunny and 60 shaded. Seventy-two sunny plots and twenty-one shaded plots grew tomatoes. A plot is chosen at random from those that grew tomatoes. Find the probability it is in the shaded section.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "digital-sat-author",
+    "aiAssisted": true,
+    "notes": "Original item. Counts chosen so the answer reduces to a simple fraction and the three distractors are distinct reductions."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "digital-sat-author",
+    "reviewer": "digital-sat-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "digital-sat-independent-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Tomato-growing plots total 72 + 21 = 93; the conditional probability of shaded given tomatoes is 21/93 = 7/31. 7/50 uses 150 as the denominator, 7/20 is shaded-and-tomato out of shaded-ish counts, and 24/31 is the complement."
+    },
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "problem-solving",
+    "conditional-probability"
+  ]
+}

@@ -1,0 +1,1012 @@
+{
+  "examKey": "enhanced-act",
+  "examName": "The ACT (Enhanced ACT)",
+  "versionLabel": "Enhanced ACT — 2026-2027 administration year (national online + national paper; state/district from spring 2026)",
+  "verificationDate": "2026-09-18",
+  "region": "United States (national Saturday and state/district school-day testing) and international test centers. Verified for the 2026-2027 national testing year; international pages confirm the new Composite from September 2025 and \"additional enhancements\" from February 2026.",
+  "deliveryMode": "Both paper-and-pencil and online (TestNav). ACT design framework: \"The ACT test can be taken online or on paper... Test mode options are not changing with the enhancements to the ACT.\" Online is a choice, not a requirement. The enhanced format now applies to both modes on national test dates (online from April 2025, paper from September 2025) and to ACT State and District Testing (paper and online) from spring 2026. As of 2026-09-18 the rollout is complete across all three channels.",
+  "admissionsCycle": "2026-2027 national test dates: September 19, 2026; October 17, 2026; December 12, 2026; February 27, 2027; April 10, 2027; June 12, 2027; July 10, 2027. Scores from these dates feed autumn 2027 entry cycles (and rolling/early cycles earlier).",
+  "summary": "The Enhanced ACT is a fixed-form (non-adaptive) multiple-choice test with three core sections — English, Mathematics, Reading — plus an optional Science section and an optional Writing essay. The core test is 131 administered questions in 125 minutes, of which 108 are scored and 23 are embedded unscored field-test items; adding Science gives 171 administered questions (142 scored, 29 field-test) in 165 minutes. Every section is scaled 1-36 and the Composite is now the rounded average of English, Math and Reading only, with Science feeding a separate STEM score and Writing (2-12) feeding an ELA score. Math answer choices were reduced from five to four, calculators are permitted only on Mathematics, and there is no penalty for wrong answers.",
+  "totalQuestions": "Core test (English + Math + Reading): 131 administered questions = 108 scored + 23 embedded field-test. With Science: 171 administered = 142 scored + 29 field-test. Adding Writing adds 1 essay prompt (not counted in the multiple-choice totals). These totals are my own arithmetic from ACT's per-section numbers and match ACT's own published totals row exactly (50+45+36=131; 40+41+27=108; 10+4+9=23; +40/+34/+6 for Science).",
+  "totalTimeMinutes": "Core test: 125 minutes of testing (35+50+40). With Science: 165 minutes (125+40). With Science and Writing: 205 minutes. With Writing but no Science: 165 minutes. These are testing minutes only and exclude breaks, check-in and instructions.",
+  "timingAndBreaks": "Section time limits are fixed and per-section: English 35, Math 50, Reading 40, Science 40, Writing 40 minutes. ACT states Composite scores now require \"125 minutes of testing for the enhanced ACT rather than the 175 minutes required for the legacy ACT.\" For national testing, examinees taking only the core test are dismissed after Reading; those continuing \"will remain in the testing room while the other examinees are dismissed after the reading test. There will be a short break, after which they will return to their seats\" for Science and/or Writing, and \"Examinees taking both science and writing will have a short break before beginning the writing test.\" Both optional sections are 40 minutes and are given in the same room. For state/district testing, \"English, math, and reading must be completed in one sitting, flexible ACT testing policies allow breaks before science and/or writing,\" and states/districts may administer Science and Writing on a separate day from the three core sections. The exact duration of the enhanced-format breaks is NOT published; ACT's online student tutorial still describes the legacy pattern (15-minute break after mathematics, 5-minute break after science), which conflicts with the enhanced-format description in the design framework.",
+  "navigationAndReview": "Free navigation WITHIN the currently open section, but no cross-section movement. Online (TestNav): \"Select Next or Prev at the top of the Test page to move to the next or previous question\"; an Item Navigation (\"Nav\") panel \"lists all the questions in the test, and shows whether they are answered or flagged for review\"; a bottom navigation bar shows answered (bold, grey background) vs unanswered (grey text, white background) questions and allows direct jumps. Answers can be changed: \"The previously chosen answer is still selected.\" Flagging is supported for multiple-choice items only — \"You can flag a multiple-choice question for review\" — and \"You cannot flag an essay question for review.\" Flags are purely a navigation aid: \"all questions are counted towards scoring whether they are flagged or not.\" Section integrity is enforced: \"You cannot end the test in the middle of a section,\" and the test ends \"once you have completed all sections or time has expired for all sections.\" Tools available online include a highlighter, zoom, and an Answer Eliminator (cross out answer options). A 5-minute warning is shown in each section, and the timer can be hidden/unhidden by the examinee.",
+  "calculatorRules": "Calculator permitted on Mathematics only: \"Calculators may only be used on the mathematics test, including ACT WorkKeys Applied Math.\" Not permitted on English, Reading, Science or Writing. Never required — \"all problems may be solved without a calculator\" — and ACT does not provide a formula sheet (\"the enhanced ACT will not provide a formula sheet for the math test\"). Permitted types: \"any 4-function, scientific, or graphing calculator, if it is not on the prohibited list and it is modified... if needed.\" Prohibited: anything with computer algebra system (CAS) functionality, specifically Texas Instruments \"all model numbers that begin with TI-89 or TI-92\" (TI-Nspire non-CAS is permitted), Hewlett-Packard \"HP Prime, HP 48GII, all model numbers that begin with HP 40G, HP 49G, or HP 50G\", Casio \"fx-CP400 (ClassPad 400), ClassPad 300 or ClassPad 330, Algebra fx 2.0, all model numbers that begin with CFX-9970G\"; also handheld/tablet/laptop computers, pen-input devices (Sharp EL 9600 permitted), calculators built into phones, and QWERTY-keyboard calculators (this QWERTY rule is \"not applicable to calculators provided in a secure test delivery platform\"). Modifications required for programmable calculators (remove CAS programs/documents), paper tape (remove), noise (mute), infrared port (cover), power cords (remove). Online: \"The Desmos on-screen calculator will be available,\" and \"Examinees may still use a preferred calculator for online testing in lieu of the on-screen option.\" Calculator sharing is prohibited. ACT confirms the policy itself did not change with the enhancements. Policy document version: updated June 1, 2026.",
+  "adaptiveBehavior": "NOT adaptive in any mode or section. ACT: \"While the ACT can be taken online, it is not a computer-adaptive test.\" Computer-adaptive testing was explicitly ruled out during the enhancement design because it \"would make paper and online modes not equivalent.\" There is no routing, no module selection, and no difficulty adaptation. Embedded field-test items sit in fixed slots within a given form (they move between forms, not within an administration). Consequence: the engine must set adaptive=none for enhanced-act and disable all routing UI and persistence paths.",
+  "scoringRawRules": "Raw score = count of correct answers only: \"The number of questions you answered correctly on each test section is a raw score.\" No penalty for wrong answers and no penalty for guessing; omitted answers simply score zero — they are neither penalised nor rewarded. Maximum raw scores under the enhanced format are the scored-item counts: English 40, Mathematics 41, Reading 27, Science 34. Embedded field-test items are excluded — the enhanced test \"includes embedded field-test items, which are not counted in students' scores\" — and ACT's own scoring keys mark them \"Not Scored\". Reporting-category raw subscores are computed by summing correct answers within each category code (English: POW + KLA + CSE = 40; Math: PHM + IES = 41; Science: IOD + SIN + EMI = 34).",
+  "scoringScaleRules": "Each section raw score converts to a 1-36 scale score via a form-specific conversion table: \"Each ACT test section generates a single scale score between 1 and 36.\" The ACT scale \"will remain 1-36 with no changes to ACT benchmarks or state-specific achievement standards.\" Composite = average of the three core sections only: \"Your Composite score is the average of your English, math, and reading scores, rounded to the nearest whole number.\" The explicit rounding rule from ACT's enhanced scoring key: add English + Mathematics + Reading scale scores, \"Divide the sum by 3. If the resulting number ends in a fraction, round it to the nearest whole number. (Round down any fraction less than one-half, except for averages lower than one; round up any fraction that is one-half or more. Also round up averages that are less than one.)\" Science is reported as a separate 1-36 section score and is excluded from the Composite. STEM score = average of Math and Science, awarded only if Science is taken: \"students will receive a STEM score only if they take the optional science section.\" ELA score requires English, Reading and Writing: \"a test taker must take the English, reading, and optional writing sections to receive a combined ELA score.\" Writing is scored 2-12, as the rounded average of four domain scores (Ideas and Analysis, Development and Support, Organization, Language Use and Conventions). Superscore Composite is also now English/Math/Reading only, mixing best section scores across legacy and enhanced attempts; Science superscores are still reported and still feed STEM but not the Superscore Composite.",
+  "scoringNotPubliclyDocumented": [
+    "Raw-to-scale conversion tables are form-specific and ACT does not publish a general or current-form table. ACT publishes conversion tables only for released practice forms; those tables cannot be used to score an original question bank. Any scaled score our engine reports is an approximation, not an ACT score.",
+    "The equating / pre-equating methodology and the item-level IRT parameters used to build each form's conversion table are not published.",
+    "The blueprint constraints used to assemble an operational form (difficulty targets, DOK distribution, passage-type mix beyond the published percentage ranges, matrix-sampling tier assignments for actual forms) are proprietary. ACT publishes an illustrative three-tier matrix-sampling protocol for Math but not the operational sampling rules.",
+    "The positions of embedded field-test items within an operational form are not published. In ACT's released enhanced practice form the unscored English items are clustered at the start, while the design framework says field-test items are 'placed strategically throughout the section tests' — the operational placement rule is not disclosed.",
+    "Writing essay scoring: the domain rubrics are published but the rater model, adjudication rules and any automated-scoring engine behaviour are not documented in a way that permits replication.",
+    "Percentile ranks / national norms for the enhanced Composite are not documented in the sources fetched here, so the engine must not display ACT percentiles.",
+    "The exact durations of the enhanced-format breaks on national test dates ('a short break') are not published.",
+    "There is no adaptive routing algorithm to document — ACT is explicitly non-adaptive — so any 'adaptive practice' we build is our own pedagogy, not an ACT behaviour."
+  ],
+  "responseTypesNeeded": [
+    "single_select",
+    "passage_group",
+    "essay"
+  ],
+  "unverifiable": [
+    "Exact duration of the 'short break' between Reading and the optional Science/Writing sections on national test dates, and whether any break exists between Math and Reading under the enhanced format. ACT's own online student tutorial still describes the legacy pattern (15-minute break after mathematics, 5-minute break after science), which contradicts the enhanced-format description in the February 2026 design framework. DISABLE exam-accurate break timing; present breaks as untimed or clearly labelled as an approximation.",
+    "Whether the paper (offline) administration permits the same free within-section navigation and review as TestNav. The navigation rules verified here come from the online TestNav tutorial. Paper testing almost certainly allows free navigation within a section, but no official statement was located. Do not present navigation rules as mode-specific.",
+    "The exact split of English items between short and long passages, and the number of passages per English form. ACT states the enhanced English test 'will now feature a mix of short and long essays' but does not publish the counts.",
+    "Number of Reading passages per form. ACT confirms passage lengths (two ~750 standard words, one ~650) and the presence of a paired/synthesis element, but the official reading description page does not state a fixed passage count for the enhanced form.",
+    "Number of Science passages per form and the enhanced-format split across Data Representation / Research Summaries / Conflicting Viewpoints. Percentages found on ACT's science description page (25-35% / 45-60% / 15-20%) are not re-stated in the February 2026 enhanced design framework and may be legacy figures.",
+    "Placement of the 'Visual and Quantitative Information' reading skill area under a specific reporting category. The PDF table columns could not be read unambiguously; ACT's reading description page implies Craft and Structure / Integration of Knowledge and Ideas but does not assign it explicitly.",
+    "Whether Science can be selected or deselected after registration, and the precise registration-time mechanics for choosing Science/Writing on national test dates.",
+    "Percentile ranks and national norms for the enhanced Composite.",
+    "Accommodation timing multipliers (50%/100% extended time) under the enhanced format — not verified in this session.",
+    "Whether international (non-US) test dates in the 2026-2027 cycle are offered in both paper and online modes, and what the February 2026 'additional enhancements for international test takers' consist of."
+  ],
+  "briefDiscrepancies": [
+    {
+      "briefClaim": "The brief flags as a known problem: 'ACT totals that do not match the listed section counts.'",
+      "verifiedFinding": "ACT's own totals are internally consistent once you distinguish ADMINISTERED items from SCORED items — the mismatch in third-party material comes from mixing the two. Verified per-section administered/scored/field-test: English 50/40/10, Math 45/41/4, Reading 36/27/9, Science 40/34/6. Core totals: 131 administered = 108 scored + 23 field-test, in 125 minutes. With Science: 171 administered = 142 scored + 29 field-test, in 165 minutes. ACT's published totals row states exactly these figures, and ACT's enhanced scoring key independently confirms maximum raw scores of English 40, Mathematics 41, Reading 27, Science 34.",
+      "sourceUrl": "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf",
+      "implementationConsequence": "The exam config must carry TWO counts per section (administeredCount and scoredCount) and a per-item scored flag. Progress UI, section headers and 'question X of Y' must use the administered count; raw score, reporting-category subscores and any scale estimate must use only scored items. Never display 131 or 171 as a scored total."
+    },
+    {
+      "briefClaim": "The brief's list of response types to support includes multiple-select, numeric entry, quantitative comparison, data sufficiency and structured data interpretation.",
+      "verifiedFinding": "The Enhanced ACT uses none of these. Every multiple-choice item in all four sections is a four-option single-select item (math was reduced from five options to four; English/Reading/Science were already four). The only non-multiple-choice response is the optional Writing essay. 'Structured data interpretation' on the ACT is a stimulus format (tables, graphs, figures inside Science and Reading passage groups), not a response type.",
+      "sourceUrl": "https://www.act.org/content/dam/act/unsecured/documents/act-enhancements-educator-guide.pdf",
+      "implementationConsequence": "For examKey enhanced-act, restrict supportedResponseTypes to single_select, passage_group and essay. Set optionsPerItem = 4 for all four multiple-choice sections. Authoring/QA must reject any five-option ACT math item as stale legacy content. Quantitative-comparison and data-sufficiency renderers belong to the GRE/GMAT configs only and must not be reachable from the ACT config."
+    },
+    {
+      "briefClaim": "The brief treats adaptive behaviour and 'adaptive routing decisions' as a general engine capability to persist per attempt, and warns against 'unsupported claims about proprietary adaptive scoring.'",
+      "verifiedFinding": "The ACT is explicitly and deliberately non-adaptive in every mode: 'While the ACT can be taken online, it is not a computer-adaptive test.' ACT states that adaptive testing was ruled out because it 'would make paper and online modes not equivalent.'",
+      "sourceUrl": "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf",
+      "implementationConsequence": "Set adaptive: none in the enhanced-act exam config and hard-disable any routing UI, stage indicator or 'module 2 difficulty' messaging on ACT simulations. Any adaptive drill mode we offer for ACT practice must be labelled as our own study feature, explicitly NOT an ACT behaviour, in both the UI and the public exam-format page."
+    },
+    {
+      "briefClaim": "The brief implicitly treats Science as one of the exam's standard sections (it lists Science alongside English, Math and Reading without noting optionality) and does not state which sections form the Composite.",
+      "verifiedFinding": "Science is optional and is EXCLUDED from the Composite. 'With the enhanced ACT, the Composite score is now calculated from the English, math, and reading scores.' Science yields a separate 1-36 section score and a STEM score (average of Math and Science) only if taken. ACT defines exactly four legitimate section combinations: (1) English, math, reading; (2) + science; (3) + writing; (4) + science and writing. For state/district testing the science decision belongs to the state or district, not the individual student.",
+      "sourceUrl": "https://www.act.org/content/dam/act/unsecured/documents/act-enhancements-educator-guide.pdf",
+      "implementationConsequence": "Model the ACT as one exam config with four selectable section bundles rather than a single fixed blueprint. Composite computation must average exactly three scale scores and must not be blocked or altered when Science is absent. STEM requires Math AND Science; ELA requires English AND Reading AND Writing — gate both on section presence. Results pages must not show an empty or zeroed Science score for core-only attempts."
+    },
+    {
+      "briefClaim": "The brief asks for 'timed practice and exam simulations' with verified timing, navigation and break rules, implying a fully exam-accurate simulation is achievable from published sources.",
+      "verifiedFinding": "Section timing and within-section navigation are fully verifiable, but break structure is not. ACT's February 2026 design framework describes a short break after Reading before the optional sections, while ACT's own online student tutorial still states 'A 15-minute break after the mathematics test and a 5-minute break after the science test' — the legacy pattern. No official source gives the enhanced-format break durations.",
+      "sourceUrl": "https://www.act.org/content/dam/act/unsecured/documents/CBT-StudentTutorial-June.pdf",
+      "implementationConsequence": "Ship the ACT simulation with exam-accurate section timers and navigation, but mark break timing as UNVERIFIED: either omit timed breaks or render them as untimed pauses with a visible note that ACT has not published enhanced-format break durations. Do not label the simulation 'exam-accurate' end to end; scope that claim to timing and navigation."
+    },
+    {
+      "briefClaim": "The brief directs that 'Answers save and results calculate correctly' and that results should distinguish official facts from practice approximations, but does not identify which ACT scoring step is unreproducible.",
+      "verifiedFinding": "Raw scoring is fully reproducible (count of correct answers, no wrong-answer penalty, scored items only). Raw-to-scale conversion is NOT: ACT publishes conversion tables only for specific released practice forms, and the equating methodology and item parameters are proprietary.",
+      "sourceUrl": "https://www.act.org/content/dam/act/unsecured/documents/ACT-Ntl-Enhancements-Scoring-Key-and-Conversion-Tables.pdf",
+      "implementationConsequence": "Report raw score, per-reporting-category accuracy and timing as authoritative. Do NOT report a 1-36 scale score or Composite for attempts built from our original question bank unless we attach a documented, clearly-labelled approximation method. Any 1-36 number shown must carry an 'estimate, not an ACT score' disclosure adjacent to it, and percentiles must be suppressed entirely."
+    }
+  ],
+  "sections": [
+    {
+      "name": "English",
+      "order": 1,
+      "questionCount": "50 administered (40 scored + 10 embedded field-test)",
+      "timeMinutes": "35",
+      "questionTypes": [
+        "single_select (4 options)",
+        "passage_group (prose passages with per-item stems; mix of short and long passages; at least one argumentative passage per form)"
+      ],
+      "calculatorPolicy": "Not permitted.",
+      "navigationRules": "Free movement within the section via Next/Prev, the bottom navigation bar and the Nav item-navigation panel. Answers may be changed until section time expires. Items may be flagged for review; flags do not affect scoring. No return to this section once time is called.",
+      "adaptiveBehavior": "None. Fixed linear form, identical for all takers of that form.",
+      "breakAfter": "Not specified for the enhanced format.",
+      "sourceUrls": [
+        "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf",
+        "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/act-exam-sections-and-structure.html",
+        "https://www.act.org/content/dam/act/unsecured/documents/CBT-StudentTutorial-June.pdf"
+      ]
+    },
+    {
+      "name": "Mathematics",
+      "order": 2,
+      "questionCount": "45 administered (41 scored + 4 embedded field-test)",
+      "timeMinutes": "50",
+      "questionTypes": [
+        "single_select (4 options — reduced from 5 under the enhanced format)"
+      ],
+      "calculatorPolicy": "Permitted but not required. Any 4-function, scientific or graphing calculator not on the prohibited list (CAS models banned). Online testing provides the Desmos on-screen calculator; examinees may still bring their own. No formula sheet is provided.",
+      "navigationRules": "Free movement within the section via Next/Prev, navigation bar and Nav panel; answers changeable; flagging supported; no return after time is called.",
+      "adaptiveBehavior": "None. Fixed linear form.",
+      "breakAfter": "Conflicting official sources: ACT's online student tutorial states a 15-minute break after mathematics (legacy pattern); the February 2026 enhanced design framework describes breaks only after Reading. Treat as unverified.",
+      "sourceUrls": [
+        "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf",
+        "https://www.act.org/content/dam/act/unsecured/documents/ACT-calculator-policy.pdf",
+        "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/act-exam-sections-and-structure.html"
+      ]
+    },
+    {
+      "name": "Reading",
+      "order": 3,
+      "questionCount": "36 administered (27 scored + 9 embedded field-test)",
+      "timeMinutes": "40",
+      "questionTypes": [
+        "single_select (4 options)",
+        "passage_group (literary and informational passages; two ~750 standard words and one ~650 standard words; includes paired/synthesis and visual-quantitative elements)"
+      ],
+      "calculatorPolicy": "Not permitted.",
+      "navigationRules": "Free movement within the section; answers changeable; flagging supported; no return after time is called.",
+      "adaptiveBehavior": "None. Fixed linear form.",
+      "breakAfter": "On national test dates, examinees taking only the core test are dismissed after Reading; those continuing to Science and/or Writing remain and take 'a short break' (duration not published) before the optional section.",
+      "sourceUrls": [
+        "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf",
+        "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/description-of-reading-test.html"
+      ]
+    },
+    {
+      "name": "Science (optional)",
+      "order": 4,
+      "questionCount": "40 administered (34 scored + 6 embedded field-test)",
+      "timeMinutes": "40",
+      "questionTypes": [
+        "single_select (4 options)",
+        "passage_group (data representation, research summaries and conflicting viewpoints stimuli with tables, graphs and diagrams; at least one engineering-and-design passage per enhanced form)"
+      ],
+      "calculatorPolicy": "Not permitted.",
+      "navigationRules": "Free movement within the section; answers changeable; flagging supported; no return after time is called.",
+      "adaptiveBehavior": "None. Fixed linear form.",
+      "breakAfter": "Examinees taking both Science and Writing 'will have a short break before beginning the writing test' (duration not published). Examinees taking Science only are dismissed after it.",
+      "sourceUrls": [
+        "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf",
+        "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/description-of-science-test.html"
+      ]
+    },
+    {
+      "name": "Writing (optional essay)",
+      "order": 5,
+      "questionCount": "1 essay prompt",
+      "timeMinutes": "40",
+      "questionTypes": [
+        "essay (argumentative response to a prompt presenting three perspectives on a complex issue)"
+      ],
+      "calculatorPolicy": "Not permitted.",
+      "navigationRules": "Single prompt. The essay question cannot be flagged for review. No return after time is called.",
+      "adaptiveBehavior": "None. ACT states the writing test design, timing and scoring procedures are unchanged from the legacy test.",
+      "breakAfter": "None — final section.",
+      "sourceUrls": [
+        "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf",
+        "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/act-exam-sections-and-structure.html",
+        "https://www.act.org/content/dam/act/unsecured/documents/CBT-StudentTutorial-June.pdf"
+      ]
+    }
+  ],
+  "taxonomy": [
+    {
+      "section": "English",
+      "domain": "Production of Writing (POW) — 38-43% of scored items",
+      "domainSlug": "act-english-production-of-writing",
+      "skills": [
+        "Topic Development — Purpose and Focus",
+        "Organization, Unity, and Cohesion"
+      ],
+      "sourceUrl": "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/description-of-english-test.html"
+    },
+    {
+      "section": "English",
+      "domain": "Knowledge of Language (KLA) — 18-23% of scored items",
+      "domainSlug": "act-english-knowledge-of-language",
+      "skills": [
+        "Expressing Ideas Clearly (precision and concision in word choice)",
+        "Style (consistency of style and tone)"
+      ],
+      "sourceUrl": "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/description-of-english-test.html"
+    },
+    {
+      "section": "English",
+      "domain": "Conventions of Standard English (CSE) — 38-43% of scored items",
+      "domainSlug": "act-english-conventions-of-standard-english",
+      "skills": [
+        "Sentence Structure and Formation",
+        "Usage Conventions",
+        "Punctuation Conventions"
+      ],
+      "sourceUrl": "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/description-of-english-test.html"
+    },
+    {
+      "section": "Mathematics",
+      "domain": "Preparing for Higher Math (PHM) — 80% of scored items (parent category)",
+      "domainSlug": "act-math-preparing-for-higher-math",
+      "skills": [
+        "Number and Quantity",
+        "Algebra",
+        "Functions",
+        "Geometry",
+        "Statistics and Probability"
+      ],
+      "sourceUrl": "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/description-of-math-test.html"
+    },
+    {
+      "section": "Mathematics",
+      "domain": "PHM: Number and Quantity — 10-12% of scored items",
+      "domainSlug": "act-math-number-and-quantity",
+      "skills": [
+        "Rational and Irrational Numbers",
+        "Properties of Exponents",
+        "Vectors and Matrices",
+        "Complex Numbers",
+        "Quantities and Units"
+      ],
+      "sourceUrl": "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf"
+    },
+    {
+      "section": "Mathematics",
+      "domain": "PHM: Algebra — 17-20% of scored items",
+      "domainSlug": "act-math-algebra",
+      "skills": [
+        "Linear Expressions, Equations, and Inequalities",
+        "Quadratic Expressions, Equations, and Inequalities",
+        "Rational and Radical Expressions and Equations",
+        "Polynomial Expressions and Equations",
+        "Systems of Equations and Inequalities",
+        "Representation of Expressions and Equations"
+      ],
+      "sourceUrl": "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf"
+    },
+    {
+      "section": "Mathematics",
+      "domain": "PHM: Functions — 17-20% of scored items",
+      "domainSlug": "act-math-functions",
+      "skills": [
+        "Properties of Functions",
+        "Function Composition, Transformation, and Inverse Functions",
+        "Sequences and Series",
+        "Trigonometric Functions",
+        "Exponential and Logarithmic Functions"
+      ],
+      "sourceUrl": "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf"
+    },
+    {
+      "section": "Mathematics",
+      "domain": "PHM: Geometry — 17-20% of scored items",
+      "domainSlug": "act-math-geometry",
+      "skills": [
+        "Congruence and similarity relationships",
+        "Surface area and volume",
+        "Triangles and circles; missing values",
+        "Trigonometric ratios",
+        "Equations of conic sections"
+      ],
+      "sourceUrl": "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/description-of-math-test.html"
+    },
+    {
+      "section": "Mathematics",
+      "domain": "PHM: Statistics and Probability — 12-15% of scored items",
+      "domainSlug": "act-math-statistics-and-probability",
+      "skills": [
+        "Center and spread of distributions",
+        "Data collection methods",
+        "Relationships in bivariate data",
+        "Probability"
+      ],
+      "sourceUrl": "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/description-of-math-test.html"
+    },
+    {
+      "section": "Mathematics",
+      "domain": "Integrating Essential Skills (IES) — 20% of scored items",
+      "domainSlug": "act-math-integrating-essential-skills",
+      "skills": [
+        "Rate and proportion",
+        "Area",
+        "Using expressions to represent quantities",
+        "Using equations to capture relationships",
+        "Rational exponents",
+        "Basics of functions",
+        "Data analysis"
+      ],
+      "sourceUrl": "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf"
+    },
+    {
+      "section": "Mathematics",
+      "domain": "Modeling — greater than 20% of scored items (OVERLAY category: each modeling item is also counted in its content category, so this does not sum to 100% with PHM + IES)",
+      "domainSlug": "act-math-modeling",
+      "skills": [
+        "Producing models",
+        "Interpreting models",
+        "Understanding models",
+        "Evaluating models",
+        "Improving models"
+      ],
+      "sourceUrl": "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf"
+    },
+    {
+      "section": "Reading",
+      "domain": "Key Ideas and Details (KID) — 44-52% of scored items",
+      "domainSlug": "act-reading-key-ideas-and-details",
+      "skills": [
+        "Close Reading",
+        "Central Ideas, Themes, and Summaries",
+        "Relationships"
+      ],
+      "sourceUrl": "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/description-of-reading-test.html"
+    },
+    {
+      "section": "Reading",
+      "domain": "Craft and Structure — 26-33% of scored items",
+      "domainSlug": "act-reading-craft-and-structure",
+      "skills": [
+        "Word Meanings and Word Choice",
+        "Text Structure",
+        "Purpose and Point of View"
+      ],
+      "sourceUrl": "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/description-of-reading-test.html"
+    },
+    {
+      "section": "Reading",
+      "domain": "Integration of Knowledge and Ideas (IKI) — 19-26% of scored items",
+      "domainSlug": "act-reading-integration-of-knowledge-and-ideas",
+      "skills": [
+        "Arguments",
+        "Synthesis of Multiple Texts",
+        "Visual and Quantitative Information (category assignment inferred; not stated unambiguously in the source table)"
+      ],
+      "sourceUrl": "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/description-of-reading-test.html"
+    },
+    {
+      "section": "Science",
+      "domain": "Interpretation of Data (IOD) — 38-50% of scored items",
+      "domainSlug": "act-science-interpretation-of-data",
+      "skills": [
+        "Manipulate and analyse scientific data in tables, graphs and diagrams",
+        "Identify and interpret trends and relationships",
+        "Translate between data representations",
+        "Interpolate and extrapolate from data"
+      ],
+      "sourceUrl": "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/description-of-science-test.html"
+    },
+    {
+      "section": "Science",
+      "domain": "Scientific Investigation (SIN) — 18-32% of scored items",
+      "domainSlug": "act-science-scientific-investigation",
+      "skills": [
+        "Understand experimental tools, procedures and design",
+        "Compare and extend experiments",
+        "Predict the results of modifying an experiment"
+      ],
+      "sourceUrl": "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/description-of-science-test.html"
+    },
+    {
+      "section": "Science",
+      "domain": "Evaluating Scientific Arguments and Models with Evidence (code EMI; renamed from 'Evaluation of Models, Inferences, and Experimental Results') — 24-38% of scored items",
+      "domainSlug": "act-science-evaluating-scientific-arguments-and-models",
+      "skills": [
+        "Judge the credibility of scientific information",
+        "Draw conclusions and make predictions from evidence",
+        "Evaluate and compare competing models, hypotheses and viewpoints",
+        "Integrate scientific background knowledge with the passage"
+      ],
+      "sourceUrl": "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/description-of-science-test.html"
+    },
+    {
+      "section": "Writing (optional)",
+      "domain": "Essay domain scores — each 2-12, averaged and rounded to a single 2-12 subject score",
+      "domainSlug": "act-writing-essay-domains",
+      "skills": [
+        "Ideas and Analysis",
+        "Development and Support",
+        "Organization",
+        "Language Use and Conventions"
+      ],
+      "sourceUrl": "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/act-exam-sections-and-structure.html"
+    }
+  ],
+  "claims": [
+    {
+      "id": "act-core-vs-optional-sections",
+      "topic": "Section structure",
+      "statement": "Under the enhanced ACT, English, Mathematics and Reading are the core sections; Science and Writing are both optional and neither affects the Composite score. ACT defines exactly four permitted section combinations.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.act.org/content/act/en/products-and-services/the-act/test-changes/enhancements.html",
+          "publisher": "ACT",
+          "isOfficial": true,
+          "quote": "The science and writing sections are optional and do not affect your Composite score.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "Option 1: English, math, and reading",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "act-section-counts-and-timing",
+      "topic": "Question counts and timing",
+      "statement": "Enhanced ACT per-section administered/scored/field-test counts and time limits: English 50/40/10 in 35 minutes; Mathematics 45/41/4 in 50 minutes; Reading 36/27/9 in 40 minutes; Science 40/34/6 in 40 minutes; Writing 1 essay in 40 minutes.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/act-exam-sections-and-structure.html",
+          "publisher": "ACT",
+          "isOfficial": true,
+          "quote": "50 (40 scored)",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "The enhanced test also includes embedded field-test items, which are not counted in students' scores.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.act.org/content/act/en/products-and-services/the-act-educator/the-act-test/enhancements-k12/faqs.html",
+          "publisher": "ACT",
+          "isOfficial": true,
+          "quote": "Mathematics: \"45\" questions, \"50\" minutes",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "act-computed-totals",
+      "topic": "Totals arithmetic",
+      "statement": "Computed from ACT's per-section figures: the core test is 131 administered questions (108 scored, 23 field-test) in 125 minutes; with Science it is 171 administered questions (142 scored, 29 field-test) in 165 minutes; with Science and Writing, 205 minutes. ACT's own totals row states the same numbers, and ACT's scoring key confirms maximum raw scores of 40/41/27/34.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "Composite scores requiring 125 minutes of testing for the enhanced ACT rather than the 175 minutes",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/ACT-Ntl-Enhancements-Scoring-Key-and-Conversion-Tables.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "English: 40",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/act-enhancements-educator-guide.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "There are 44 fewer questions overall.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "act-embedded-field-test",
+      "topic": "Scored vs unscored items",
+      "statement": "The enhanced ACT embeds unscored field-test items inside each section (English 10, Math 4, Reading 9, Science 6), replacing the legacy stand-alone 5th test. Examinees are not told which items are unscored, and the items blend with operational items.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "field-test items are placed strategically throughout the section tests, blending seamlessly with operational items",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/ACT-Ntl-Enhancements-Scoring-Key-and-Conversion-Tables.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "Total English Raw Score           = of 40",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "act-math-four-options",
+      "topic": "Response format",
+      "statement": "Enhanced ACT math questions have four answer choices, reduced from five. English, Reading and Science items also use four options, so the whole test is uniformly four-option single-select (plus the optional essay).",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/act-enhancements-educator-guide.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "The number of answer choices in math questions has been reduced from five to four.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "For the enhanced math test, the number of response options has been reduced from five to four.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "act-rollout-by-channel",
+      "topic": "Rollout / delivery mode",
+      "statement": "Enhanced format rollout: national ONLINE from April 2025; all national administrations including PAPER from September / fall 2025; ACT State and District Testing (paper and online) from spring 2026. As of 2026-09-18 the rollout is complete in all three channels. For state/district testing the decision to include Science rests with the state or district, not the individual student.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "The change will be applied to state and district testing in the spring of 2026",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.act.org/content/act/en/products-and-services/the-act-educator/the-act-test/enhancements-k12/faqs.html",
+          "publisher": "ACT",
+          "isOfficial": true,
+          "quote": "As of September 2025, the enhanced ACT is available on paper for the ACT National (Saturday) test.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "act-not-adaptive",
+      "topic": "Adaptive behaviour",
+      "statement": "The ACT is not a computer-adaptive test in any delivery mode. Adaptive testing was explicitly ruled out to keep paper and online modes equivalent.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "While the ACT can be taken online, it is not a computer-adaptive test.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "act-navigation-within-section",
+      "topic": "Navigation and review",
+      "statement": "Within an open section, examinees may move freely forward and backward, change answers, jump via a navigation bar or item-navigation panel, and flag multiple-choice items for review. Flags do not affect scoring, essays cannot be flagged, and a section cannot be exited early.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/CBT-StudentTutorial-June.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "Select Next or Prev at the top of the Test page to move to the next or previous question",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/CBT-StudentTutorial-June.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "You cannot end the test in the middle of a section.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "act-calculator-policy",
+      "topic": "Calculator rules",
+      "statement": "Calculators are allowed only on the Mathematics section, are never required, and must not have computer algebra system functionality. Online testing provides the Desmos on-screen calculator, and examinees may still bring a permitted calculator. No formula sheet is provided.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/ACT-calculator-policy.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "Calculators may only be used on the mathematics test, including ACT WorkKeys Applied Math.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/ACT-calculator-policy.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "The Desmos on-screen calculator will be available.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "the enhanced ACT will not provide a formula sheet for the math test",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "act-composite-definition",
+      "topic": "Scoring — Composite",
+      "statement": "The enhanced Composite is the average of the English, Mathematics and Reading scale scores, rounded to the nearest whole number (fractions below one-half round down, one-half or more round up). Science is excluded. The 1-36 scale is unchanged.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/act-enhancements-educator-guide.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "With the enhanced ACT, the Composite score is now calculated from the English, math, and reading scores.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/ACT-Ntl-Enhancements-Scoring-Key-and-Conversion-Tables.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "Compute the Composite score by averaging the three scale scores",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.act.org/content/act/en/products-and-services/the-act/scores/understanding-your-scores.html",
+          "publisher": "ACT",
+          "isOfficial": true,
+          "quote": "Your Composite score is the average of your English, math, and reading scores, rounded to the nearest whole number.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "act-stem-ela-scores",
+      "topic": "Scoring — STEM and ELA",
+      "statement": "A STEM score (average of Mathematics and Science) is reported only if the optional Science section is taken. An ELA score requires English, Reading and the optional Writing section.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "students will receive a STEM score only if they take the optional science section",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "a test taker must take the English, reading, and optional writing sections to receive a combined ELA score",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "act-raw-scoring-no-penalty",
+      "topic": "Scoring — raw rules",
+      "statement": "Raw score equals the number of questions answered correctly. There is no deduction for wrong answers and no penalty for guessing; omitted answers simply score zero.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/ACT-Ntl-Enhancements-Scoring-Key-and-Conversion-Tables.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "The number of questions you answered correctly on each test section is a raw score.",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.act.org/content/act/en/products-and-services/the-act/scores/understanding-your-scores.html",
+          "publisher": "ACT",
+          "isOfficial": true,
+          "quote": "There is no penalty for incorrect answers.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "act-writing-scale",
+      "topic": "Scoring — Writing",
+      "statement": "The optional Writing test is scored on a 2-12 scale, computed as the rounded average of four domain scores: Ideas and Analysis, Development and Support, Organization, and Language Use and Conventions. ACT states the Writing test design, timing and scoring procedures did not change with the enhancements.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/act-exam-sections-and-structure.html",
+          "publisher": "ACT",
+          "isOfficial": true,
+          "quote": "essays scored on a 2-12 scale across four domains",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "The ACT writing test is not changing: The design, timing, and scoring procedures are the same",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "act-reporting-categories-english",
+      "topic": "Taxonomy — English",
+      "statement": "Enhanced English reporting categories and percentage ranges of scored items: Production of Writing 38-43%, Knowledge of Language 18-23%, Conventions of Standard English 38-43%. Conventions dropped from the legacy 52-55% while Production of Writing rose from 29-32%.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/description-of-english-test.html",
+          "publisher": "ACT",
+          "isOfficial": true,
+          "quote": "Production of Writing (38-43%)",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "a reduction in the percentage of items in the Conventions of Standard English reporting category",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "act-reporting-categories-math",
+      "topic": "Taxonomy — Mathematics",
+      "statement": "Enhanced Mathematics reporting categories: Preparing for Higher Math 80% (Number & Quantity 10-12%, Algebra 17-20%, Functions 17-20%, Geometry 17-20%, Statistics & Probability 12-15%), Integrating Essential Skills 20%, and Modeling >20% as an overlay counted within the other categories.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/description-of-math-test.html",
+          "publisher": "ACT",
+          "isOfficial": true,
+          "quote": "Statistics & Probability (12-15%)",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "Each modeling item is also counted in the other appropriate reporting categories discussed above.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "act-reporting-categories-reading",
+      "topic": "Taxonomy — Reading",
+      "statement": "Enhanced Reading reporting categories: Key Ideas and Details 44-52%, Craft and Structure 26-33%, Integration of Knowledge and Ideas 19-26%. Key Ideas and Details fell from the legacy 53-60%.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/description-of-reading-test.html",
+          "publisher": "ACT",
+          "isOfficial": true,
+          "quote": "Key Ideas and Details: \"44-52%\"",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "The enhanced reading test has a smaller percentage of items that align to the Key Ideas and Details reporting category",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "act-reporting-categories-science",
+      "topic": "Taxonomy — Science",
+      "statement": "Enhanced Science reporting categories: Interpretation of Data 38-50%, Scientific Investigation 18-32%, Evaluating Scientific Arguments and Models with Evidence 24-38%. The third category was renamed from 'Evaluation of Models, Inferences, and Experimental Results' but keeps the code EMI in ACT scoring keys.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/description-of-science-test.html",
+          "publisher": "ACT",
+          "isOfficial": true,
+          "quote": "Interpretation of Data (38-50%)",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "The science test renamed one reporting category, Evaluating Scientific Arguments and Models with Evidence",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "act-breaks-conflict",
+      "topic": "Breaks — conflicting official sources",
+      "statement": "Two official ACT sources disagree on break structure. The February 2026 design framework describes a short break after Reading before the optional sections and another short break between Science and Writing, with no stated durations. ACT's online student tutorial still states the legacy pattern of a 15-minute break after mathematics and a 5-minute break after science.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "There will be a short break, after which they will return to their seats",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/CBT-StudentTutorial-June.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "A 15-minute break after the mathematics test and a 5-minute break after the science test.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "act-math-blueprint-internal-conflict",
+      "topic": "Internal source conflict — Math Statistics & Probability",
+      "statement": "Within the same ACT design framework, the 'Initial Enhanced ACT Math Content Blueprint' (Table 1.10) gives Statistics & Probability as 4-5 items (10-12%), while the final 'Operational Item Reporting Category Alignment' table and ACT's public math description page both give 12-15%. Use 12-15% as the current specification; the blueprint table is labelled 'Initial' and reflects a development-stage proposal.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "Table 1.10. Initial Enhanced ACT Math Content Blueprint",
+          "fetchedOk": true
+        },
+        {
+          "url": "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/description-of-math-test.html",
+          "publisher": "ACT",
+          "isOfficial": true,
+          "quote": "Statistics & Probability (12-15%)",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "act-2026-2027-test-dates",
+      "topic": "Administration calendar",
+      "statement": "ACT national test dates for 2026-2027: September 19, 2026; October 17, 2026; December 12, 2026; February 27, 2027; April 10, 2027; June 12, 2027; July 10, 2027 — seven dates, all using the enhanced format.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.act.org/content/act/en/products-and-services/the-act/registration/test-dates.html",
+          "publisher": "ACT",
+          "isOfficial": true,
+          "quote": "The ACT is offered 7 times per year at test centers across the United States.",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "act-international-rollout",
+      "topic": "International / non-US",
+      "statement": "For international (non-US) test takers the new three-section Composite applies from the September 2025 test date, with further enhancements introduced from February 2026. Per-section international delivery-mode detail was not stated on the page fetched.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://global.act.org/content/global/en/products-and-services/the-act-non-us/test-preparation/test-enhancements.html",
+          "publisher": "ACT",
+          "isOfficial": true,
+          "quote": "Beginning with the September 2025 test, all students will receive the new ACT Composite Score",
+          "fetchedOk": true
+        }
+      ]
+    },
+    {
+      "id": "act-state-district-flexibility",
+      "topic": "School-day administration policy",
+      "statement": "For ACT State and District testing, English, Math and Reading must be completed in one sitting, but breaks are permitted before Science and/or Writing, and those optional sections may be administered on a separate day from the three core sections.",
+      "confidence": "verified-official",
+      "sources": [
+        {
+          "url": "https://www.act.org/content/dam/act/unsecured/documents/act-enhancements-educator-guide.pdf",
+          "publisher": "ACT Education Corp.",
+          "isOfficial": true,
+          "quote": "while English, math, and reading must be completed in one sitting, flexible ACT testing policies allow breaks before science and/or writing",
+          "fetchedOk": true
+        }
+      ]
+    }
+  ],
+  "implementationNotes": [
+    "EXAM CONFIG SHAPE: model enhanced-act as ONE versioned config with four selectable section bundles (core; core+science; core+writing; core+science+writing), not four separate exams. Attempt records must pin the bundle chosen, because Composite, STEM and ELA eligibility all depend on it.",
+    "DUAL ITEM COUNTS: every section needs administeredCount and scoredCount plus a per-item isScored flag (English 50/40, Math 45/41, Reading 36/27, Science 40/34). Timers, progress bars and 'question X of Y' use administeredCount; raw scores and category subscores use only scored items. This is the single fix for the 'ACT totals do not match section counts' problem in the brief.",
+    "TIMING: strictly per-section server-authoritative deadlines of 35/50/40/40/40 minutes. There is no global test clock and no borrowing time between sections. Emit a 5-minute warning per section to match the real interface. Total core testing time is 125 minutes.",
+    "NAVIGATION LOCKS: allow free forward/backward movement, answer changes, direct jumps and flagging WITHIN the active section; hard-lock any return to a completed section server-side. Block 'submit section early' if we want fidelity — ACT states you cannot end the test in the middle of a section. Flags must be persisted per attempt but must never influence scoring.",
+    "CALCULATOR AVAILABILITY: calculatorPolicy must be per-section, not per-exam — enabled on Mathematics only, disabled on English, Reading, Science and Writing. If we ship an on-screen calculator, a Desmos-style graphing calculator on Math only is the faithful choice. Do NOT provide a formula sheet on ACT math.",
+    "ADAPTIVE ROUTING: set adaptive=none and disable every routing code path for this exam. Persisting 'adaptive routing decisions' per attempt (required by the brief for other exams) is a no-op here — persist only question order. Any adaptive drill mode must be labelled as our own study feature, not an ACT behaviour, in UI copy and on public pages.",
+    "SCORING PIPELINE: rawScore = count correct over scored items; no wrong-answer penalty; omitted == incorrect for scoring but must be tracked separately for analytics. Category subscores sum correct answers per reporting-category tag (English POW+KLA+CSE=40; Math PHM+IES=41; Science IOD+SIN+EMI=34). Composite = round(avg(englishScale, mathScale, readingScale)) with ACT's explicit half-up rule. Gate STEM on math+science present and ELA on english+reading+writing present.",
+    "SCALED SCORES: we cannot compute real 1-36 scale scores for original items — conversion tables are form-specific and unpublished. Default the ACT results screen to raw score, percent correct, per-category accuracy and pacing. If a 1-36 estimate is shown at all, it must sit behind a documented methodology and an adjacent 'estimate, not an ACT score' label, and percentiles must be suppressed entirely.",
+    "ITEM AUTHORING CONSTRAINTS: all ACT multiple-choice items must have exactly 4 options. Reject or quarantine any 5-option math item as stale legacy content. ACT convention alternates A/B/C/D and F/G/H/J between odd and even items — worth mirroring for realism but it is presentational only. English items now carry an explicit stem, so legacy-style 'NO CHANGE' items with no question text should be re-authored with a stem.",
+    "PASSAGE GROUPS: English, Reading and Science all need shared-stimulus grouping. Reading needs paired-passage support (synthesis across two texts) and at least one passage carrying a visual or quantitative element. Science needs table/graph/diagram stimuli with an accessible data table stored alongside, per the brief's chart rule.",
+    "FIELD-TEST SIMULATION: if we mirror embedded unscored items for realism, their positions must be fixed in the pinned form version and invisible to the learner during the attempt, but the results screen must disclose which items were unscored. Do not cluster them at the start of English just because ACT's released practice form does — that placement is form-specific and ACT does not publish the operational rule.",
+    "BREAKS: implement breaks as configurable and default them OFF or untimed for ACT, with a visible note that enhanced-format break durations are not published and official sources conflict. Do not hard-code the legacy 15/5-minute pattern.",
+    "RESPONSE TYPE ALLOWLIST: single_select, passage_group, essay only. The ACT config must not expose multi_select, numeric_entry, quantitative_comparison, data_sufficiency or two_part renderers.",
+    "ESSAY HANDLING: the Writing prompt cannot be flagged, is 40 minutes, and produces four domain scores of 2-12 averaged and rounded. Automated essay scoring is not replicable from published material — offer rubric-guided self-assessment or clearly-labelled AI feedback, never a claimed ACT Writing score.",
+    "PUBLIC CONTENT VERSIONING: every ACT fact page must state 'Enhanced ACT, 2026-2027 administration year' and note that material describing a 215-question, 175-minute, science-mandatory ACT is legacy. Composite-from-three-sections and four-option math are the two changes most likely to be wrong in competing prep content, so lead with them."
+  ],
+  "sources": [
+    {
+      "url": "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf",
+      "publisher": "ACT Education Corp.",
+      "isOfficial": true,
+      "quote": "While the ACT can be taken online, it is not a computer-adaptive test.",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://www.act.org/content/dam/act/unsecured/documents/act-enhancements-educator-guide.pdf",
+      "publisher": "ACT Education Corp.",
+      "isOfficial": true,
+      "quote": "The number of answer choices in math questions has been reduced from five to four.",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://www.act.org/content/act/en/products-and-services/the-act/test-changes/enhancements.html",
+      "publisher": "ACT",
+      "isOfficial": true,
+      "quote": "The science and writing sections are optional and do not affect your Composite score.",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://www.act.org/content/act/en/products-and-services/the-act-educator/the-act-test/enhancements-k12/faqs.html",
+      "publisher": "ACT",
+      "isOfficial": true,
+      "quote": "As of September 2025, the enhanced ACT is available on paper for the ACT National (Saturday) test.",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/act-exam-sections-and-structure.html",
+      "publisher": "ACT",
+      "isOfficial": true,
+      "quote": "50 (40 scored)",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://www.act.org/content/dam/act/unsecured/documents/ACT-Ntl-Enhancements-Scoring-Key-and-Conversion-Tables.pdf",
+      "publisher": "ACT Education Corp.",
+      "isOfficial": true,
+      "quote": "The number of questions you answered correctly on each test section is a raw score.",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://www.act.org/content/dam/act/unsecured/documents/ACT-calculator-policy.pdf",
+      "publisher": "ACT Education Corp.",
+      "isOfficial": true,
+      "quote": "Calculators may only be used on the mathematics test, including ACT WorkKeys Applied Math.",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://www.act.org/content/act/en/products-and-services/the-act/test-day/calculator-policy.html",
+      "publisher": "ACT",
+      "isOfficial": true,
+      "quote": "4-function, scientific, and graphing models are allowed unless prohibited",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://www.act.org/content/dam/act/unsecured/documents/CBT-StudentTutorial-June.pdf",
+      "publisher": "ACT Education Corp.",
+      "isOfficial": true,
+      "quote": "You can flag a multiple-choice question for review.",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://www.act.org/content/act/en/products-and-services/the-act/scores/understanding-your-scores.html",
+      "publisher": "ACT",
+      "isOfficial": true,
+      "quote": "Your Composite score is the average of your English, math, and reading scores, rounded to the nearest whole number.",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/description-of-english-test.html",
+      "publisher": "ACT",
+      "isOfficial": true,
+      "quote": "Production of Writing (38-43%)",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/description-of-math-test.html",
+      "publisher": "ACT",
+      "isOfficial": true,
+      "quote": "Number & Quantity (10-12%)",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/description-of-reading-test.html",
+      "publisher": "ACT",
+      "isOfficial": true,
+      "quote": "Key Ideas and Details: \"44-52%\"",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/description-of-science-test.html",
+      "publisher": "ACT",
+      "isOfficial": true,
+      "quote": "Interpretation of Data (38-50%)",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://www.act.org/content/act/en/products-and-services/the-act/registration/test-dates.html",
+      "publisher": "ACT",
+      "isOfficial": true,
+      "quote": "The ACT is offered 7 times per year at test centers across the United States.",
+      "fetchedOk": true
+    },
+    {
+      "url": "https://global.act.org/content/global/en/products-and-services/the-act-non-us/test-preparation/test-enhancements.html",
+      "publisher": "ACT",
+      "isOfficial": true,
+      "quote": "Beginning with the September 2025 test, all students will receive the new ACT Composite Score",
+      "fetchedOk": true
+    }
+  ]
+}

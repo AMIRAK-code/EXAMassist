@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-ug-pct-successive-change-011",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-numbers-percentages",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A jacket is priced at $€80$. In March its price is increased by $20\\%$. In July the new price is reduced by $25\\%$.\n\nWhat is the price of the jacket after the July reduction?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "€80"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "€96"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "€72"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "€76"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Successive percentage changes are applied one after the other, each to the price that is current at the time — never both to the original price.\n\n**March increase of $20\\%$:**\n\n$$80 \\times 1.20 = 96$$\n\n**July reduction of $25\\%$, applied to $€96$:**\n\n$$96 \\times 0.75 = 72$$\n\nIf the $0.75$ is awkward, take a quarter off directly: a quarter of $96$ is $24$, and $96 - 24 = 72$.\n\nThe final price is $€72$.\n\n**The general rule.** Combine successive changes by multiplying their factors:\n\n$$1.20 \\times 0.75 = 0.90$$\n\nso the two moves together are a single $10\\%$ decrease, and $80 \\times 0.90 = 72$. This also shows why a $20\\%$ rise and a $25\\%$ fall do not cancel: they are percentages of different bases.\n\n**Check:** the multiplier $0.90$ is below $1$, so the final price must be below the original $€80$ — which immediately rules out any answer of $€80$ or more.",
+  "distractorRationale": {
+    "d": "This applies both percentages to the original $€80$: $80 + 16 - 20 = 76$. The July reduction is $25\\%$ of the March price of $€96$, which is $€24$, not $25\\%$ of $€80$, which is $€20$. Each change acts on the price current at that moment.",
+    "a": "This assumes the two moves cancel because $20\\%$ up and then roughly a quarter down feel symmetric. They do not: the rise is taken on $€80$ and the fall on the larger $€96$, so the combined multiplier $1.20 \\times 0.75 = 0.90$ leaves the jacket cheaper than it started.",
+    "b": "This is the March price, after the increase but before the July reduction. The work stopped one step early; the second percentage change still has to be applied."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "A jacket costs eighty euros. Its price rises by twenty per cent, and then the new price falls by twenty-five per cent. Find the final price in euros.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Not reproduced or adapted from any published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-author",
+    "reviewer": "bocconi-undergraduate-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-independent-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "80*1.20=96, then 96*0.75=72. 96 is the March price only, and 80 would require the two changes to cancel, which they do not."
+    },
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "percentages",
+    "successive-change"
+  ]
+}

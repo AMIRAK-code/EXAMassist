@@ -1,0 +1,76 @@
+{
+  "id": "enhanced-act-math-percent-markup-discount-014",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "math",
+  "domainSlug": "act-math-integrating-essential-skills",
+  "skillSlug": "act-math-ies-rate-and-proportion",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A shop prices a jacket at $40\\%$ above the wholesale cost it paid. Later the jacket is put on sale at $25\\%$ off that marked price. The sale price is $\\$126$. What was the wholesale cost of the jacket?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\$168$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\$90$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\$132.30$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\$120$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Let $C$ be the wholesale cost and build the chain of multipliers.\n\nA $40\\%$ markup multiplies the cost by $1.40$:\n\n$$\\text{marked price} = 1.40C$$\n\nA $25\\%$ discount leaves $75\\%$ of the marked price, so it multiplies by $0.75$:\n\n$$\\text{sale price} = 0.75\\times 1.40C = 1.05C$$\n\nSet that equal to the sale price and solve:\n\n$$1.05C = 126 \\quad\\Rightarrow\\quad C = \\frac{126}{1.05} = 120$$\n\nThe wholesale cost was $\\$120$.\n\nCheck forwards: $\\$120$ marked up $40\\%$ is $\\$168$; $25\\%$ off $\\$168$ is $\\$168 - \\$42 = \\$126$ ✓.\n\nNote what the $1.05$ tells you: successive percent changes **multiply**, they do not add. A $40\\%$ rise followed by a $25\\%$ fall is not a $15\\%$ rise; it is a $5\\%$ rise, because the $25\\%$ is taken off the larger, marked-up amount.",
+  "distractorRationale": {
+    "b": "Comes from undoing only the markup: $126 \\div 1.40 = 90$. That treats $\\$126$ as the marked price, but $\\$126$ is the price after the discount was also applied.",
+    "a": "This is the marked price, $126 \\div 0.75 = 168$. The discount has been undone correctly, but the $40\\%$ markup still has to be removed to get back to wholesale cost.",
+    "c": "Comes from multiplying by the combined factor instead of dividing: $126 \\times 1.05 = 132.30$. Since the sale price is $1.05$ times the cost, recovering the cost means dividing by $1.05$."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A jacket is marked up forty percent above wholesale cost, then discounted twenty-five percent off the marked price, giving a sale price of one hundred twenty-six dollars. Find the wholesale cost.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Not derived from, and not a paraphrase of, any ACT-published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "enhanced-act-author",
+    "reviewer": "enhanced-act-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "enhanced-act-independent-reviewer",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Sale price = 0.75 * 1.40 * C = 1.05C, so C = 126 / 1.05 = 120 dollars."
+    },
+    "notes": "Author solved the item and attempted to defend each distractor before keying it. Awaiting an independent blind solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "percent",
+    "markup-discount",
+    "multi-step"
+  ]
+}

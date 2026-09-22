@@ -1,0 +1,91 @@
+{
+  "id": "gre-quant-ms-divisor-set-007",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-arithmetic",
+  "skillSlug": "arith-integer-properties",
+  "subskillSlug": null,
+  "responseType": "multi_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "The positive integer $N$ has the prime factorization\n\n$$N = 2^{3} \\times 3^{2} \\times 5.$$\n\nSelect **all** of the following that are divisors of $N$.",
+  "instructionsMd": "Select all that apply. There is no credit for a partially correct selection.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$8$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$16$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$18$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$27$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$45$"
+    },
+    {
+      "id": "f",
+      "label": "F",
+      "textMd": "$75$"
+    }
+  ],
+  "answerKey": {
+    "type": "multi_select",
+    "optionIds": [
+      "a",
+      "c",
+      "e"
+    ],
+    "grading": "exact"
+  },
+  "explanationMd": "A number $d$ divides $N$ exactly when every prime in $d$'s factorization appears in $N$'s factorization **to at least as high a power**. So factor each choice and compare exponents against $N = 2^{3} \\times 3^{2} \\times 5^{1}$.\n\n| Choice | Factorization | Needs | $N$ supplies | Divisor? |\n| --- | --- | --- | --- | --- |\n| $8$ | $2^{3}$ | three $2$s | three $2$s | yes |\n| $16$ | $2^{4}$ | four $2$s | only three | no |\n| $18$ | $2 \\times 3^{2}$ | one $2$, two $3$s | three $2$s, two $3$s | yes |\n| $27$ | $3^{3}$ | three $3$s | only two | no |\n| $45$ | $3^{2} \\times 5$ | two $3$s, one $5$ | two $3$s, one $5$ | yes |\n| $75$ | $3 \\times 5^{2}$ | one $3$, two $5$s | only one $5$ | no |\n\nThe divisors are $8$, $18$ and $45$.\n\n**Check by division.** $N = 8 \\times 9 \\times 5 = 360$. Then $360 / 8 = 45$, $360 / 18 = 20$ and $360 / 45 = 8$, all whole numbers, while $360 / 16 = 22.5$, $360 / 27 \\approx 13.3$ and $360 / 75 = 4.8$ are not.\n\nThe exponent comparison is the faster method and it is the one to practise, because it scales to numbers far too large to divide by hand. Direct division is the check, not the main tool.",
+  "distractorRationale": {
+    "b": "Selected by seeing that $8$ divides $N$ and assuming the next power of two must as well. $16 = 2^{4}$ needs four factors of $2$, but $N$ contains only $2^{3}$, so $16$ does not divide $N$.",
+    "d": "Selected by seeing a $3$ in the factorization of $N$ and treating any power of $3$ as available. $27 = 3^{3}$ needs three factors of $3$, but $N$ contains only $3^{2}$.",
+    "f": "Selected by checking only that both primes $3$ and $5$ appear in $N$, without checking their exponents. $75 = 3 \\times 5^{2}$ needs two factors of $5$, and $N$ contains only one."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "N is the positive integer equal to 2 cubed times 3 squared times 5. From the list 8, 16, 18, 27, 45 and 75, select every number that divides N exactly. More than one answer may be correct and all correct answers must be selected.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gre-author",
+    "aiAssisted": true,
+    "notes": "Original item. Each incorrect choice was constructed by the author to overshoot exactly one prime exponent; not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gre-author",
+    "reviewer": "gre-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "gre-independent-reviewer",
+      "solvedAnswer": "a,c,e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "N = 8*9*5 = 360; 360/8=45, 360/18=20, 360/45=8 all integers, while 16 (needs 2^4), 27 (needs 3^3) and 75 (needs 5^2) exceed the available prime powers."
+    },
+    "notes": "Author solved as A, C, E and verified by dividing 360 by each of the six choices. Awaiting blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "select-all",
+    "divisibility",
+    "prime-factorization"
+  ]
+}

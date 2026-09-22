@@ -1,0 +1,75 @@
+{
+  "id": "enhanced-act-math-linear-system-009",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "math",
+  "domainSlug": "act-math-algebra",
+  "skillSlug": "act-math-alg-systems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "If $3x + 2y = 19$ and $x - y = 3$, what is the value of $x + y$ ?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$3$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$5$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$7$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$10$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Solve the system by substitution. The second equation gives $x = y + 3$. Put that into the first:\n\n$$3(y+3) + 2y = 19$$\n$$3y + 9 + 2y = 19$$\n$$5y = 10 \\quad\\Rightarrow\\quad y = 2$$\n\nThen $x = y + 3 = 5$, so\n\n$$x + y = 5 + 2 = 7$$\n\nCheck both original equations with $x = 5$, $y = 2$: $3(5) + 2(2) = 15 + 4 = 19$ ✓ and $5 - 2 = 3$ ✓.\n\nA faster route: adding the two equations after multiplying the second by $2$ gives $5x = 25$, so $x = 5$ immediately. Either way, read the question one last time before answering — it asks for $x + y$, not for $x$ or $y$ alone.",
+  "distractorRationale": {
+    "a": "This is $x - y$, the value handed to you by the second equation. It is the difference, not the sum; the question asks for $x + y$.",
+    "d": "This is the product $xy = 5 \\times 2 = 10$, which comes from multiplying the two solved values instead of adding them.",
+    "b": "This is the value of $x$ alone. It is correct as far as it goes, but the solution stops one step early: $y = 2$ still has to be added."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "Given the system three x plus two y equals nineteen, and x minus y equals three, find the value of x plus y.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Not derived from, and not a paraphrase of, any ACT-published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "enhanced-act-author",
+    "reviewer": "enhanced-act-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "enhanced-act-independent-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "From x - y = 3, x = y + 3; substituting gives 3(y+3) + 2y = 19, so 5y = 10, y = 2 and x = 5, hence x + y = 7."
+    },
+    "notes": "Author solved the item and attempted to defend each distractor before keying it. Awaiting an independent blind solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "systems",
+    "substitution"
+  ]
+}

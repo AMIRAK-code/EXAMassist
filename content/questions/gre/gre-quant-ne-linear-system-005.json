@@ -1,0 +1,60 @@
+{
+  "id": "gre-quant-ne-linear-system-005",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-algebra",
+  "skillSlug": "alg-simultaneous-equations",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "$$3x + 2y = 31$$\n$$x - y = 2$$\n\nWhat is the value of $x + y$?",
+  "instructionsMd": "Enter your answer in the box. Equivalent forms of the same value are accepted.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 12
+      }
+    ],
+    "acceptedStrings": [
+      "12",
+      "12.0"
+    ]
+  },
+  "explanationMd": "Solve the system, then form the requested combination.\n\nThe second equation gives $x$ in terms of $y$ immediately:\n\n$$x = y + 2.$$\n\nSubstitute into the first equation:\n\n$$3(y + 2) + 2y = 31$$\n$$3y + 6 + 2y = 31$$\n$$5y = 25$$\n$$y = 5.$$\n\nThen $x = y + 2 = 7$, so\n\n$$x + y = 7 + 5 = 12.$$\n\n**Check by substituting both values back into both equations.** First: $3(7) + 2(5) = 21 + 10 = 31$. Second: $7 - 5 = 2$. Both hold, so the solution is right.\n\nOne habit worth building: read what the question actually asks for. It asks for $x + y$, not for $x$ or $y$ separately, and a common way to lose the point here is to solve correctly and then enter $7$ out of momentum.",
+  "distractorRationale": {},
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "Two simultaneous equations: three x plus two y equals thirty-one, and x minus y equals two. Find the value of x plus y and type it in the answer box.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gre-author",
+    "aiAssisted": true,
+    "notes": "Original item. Coefficients chosen by the author to give integer solutions x = 7, y = 5; not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gre-author",
+    "reviewer": "gre-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "gre-independent-reviewer",
+      "solvedAnswer": "12",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Substituting x = y+2 into 3x+2y=31 gives 5y+6=31, so y=5 and x=7; x+y = 12."
+    },
+    "notes": "Author solved as 12 (x = 7, y = 5) and substituted back into both equations. Awaiting blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "numeric-entry",
+    "simultaneous-equations",
+    "substitution"
+  ]
+}

@@ -1,0 +1,255 @@
+import { expect, test, type Page } from '@playwright/test';
+
+/**
+ * The learner journeys the release is defined by, exercised in a real browser
+ * against a real server and a real seeded database.
+ */
+
+async function startPracticeSession(page: Page, examKey = 'digital-sat'): Promise<string> {
+  await page.goto(`/practice/${examKey}`);
+  await page.getByRole('button', { name: /start practising/i }).click();
+  await page.waitForURL(/\/attempt\/[0-9a-f-]+$/);
+  const match = /\/attempt\/([0-9a-f-]+)/.exec(page.url());
+  if (!match) throw new Error(`Did not land on an attempt page: ${page.url()}`);
+  return match[1];
+}
+
+/**
+ * Answers whatever the current question actually is. The bank mixes response
+ * types, so a session can open on a numeric-entry or select-all item just as
+ * easily as on a multiple-choice one.
+ */
+async function answerCurrentQuestion(page: Page): Promise<void> {
+  const radio = page.getByRole('radio').first();
+  const checkbox = page.getByRole('checkbox').first();
+  const textbox = page.getByRole('textbox').first();
+
+  if (await radio.count()) {
+    await expect(radio).toBeVisible();
+    await radio.check();
+  } else if (await checkbox.count()) {
+    await expect(checkbox).toBeVisible();
+    await checkbox.check();
+  } else {
+    await expect(textbox).toBeVisible();
+    await textbox.fill('12');
+  }
+
+  await expect(page.getByText('1 of 10 answered')).toBeVisible();
+}
+
+/** Submits from inside the page, so the browser's session cookie is used. */
+async function submitAttempt(page: Page, attemptId: string): Promise<{ status: number; body: string }> {
+  return page.evaluate(async (id) => {
+    const response = await fetch(`/api/attempts/${id}/submit`, {
+      method: 'POST',
+      headers: { 'X-Requested-With': 'examer' },
+    });
+    return { status: response.status, body: await response.text() };
+  }, attemptId);
+}
+
+test.describe('discovery', () => {
+  test('a visitor can reach an exam guide from the homepage', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.getByRole('heading', { level: 1 })).toContainText(/practice/i);
+
+    await page.getByRole('link', { name: 'Choose your exam' }).click();
+    await expect(page).toHaveURL(/\/exams$/);
+
+    await page.getByRole('link', { name: 'Digital SAT', exact: true }).first().click();
+    await expect(page).toHaveURL(/\/exams\/digital-sat$/);
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Digital SAT');
+  });
+
+  test('the exam guide states the verified structure and cites the test maker', async ({ page }) => {
+    await page.goto('/exams/digital-sat/format');
+    await expect(page.getByRole('heading', { level: 1 })).toContainText(/format and scoring/i);
+    await expect(page.getByRole('table').first()).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Sources' })).toBeVisible();
+
+    const html = await page.content();
+    expect(html).toContain('collegeboard.org');
+  });
+
+  test('public pages carry a canonical URL and structured data', async ({ page }) => {
+    await page.goto('/exams/digital-sat');
+    await expect(page.locator('link[rel="canonical"]')).toHaveCount(1);
+
+    const jsonLd = await page.locator('script[type="application/ld+json"]').allTextContents();
+    expect(jsonLd.length).toBeGreaterThan(0);
+    const parsed = jsonLd.flatMap((raw) => {
+      const value = JSON.parse(raw);
+      return Array.isArray(value) ? value : [value];
+    });
+    expect(parsed.some((entry) => entry['@type'] === 'BreadcrumbList')).toBe(true);
+  });
+});
+
+test.describe('practice', () => {
+  test('a guest can practise, see an explanation and reach results', async ({ page }) => {
+    const attemptId = await startPracticeSession(page);
+
+    await expect(page.getByRole('heading', { name: /^Question 1/ })).toBeVisible();
+    await answerCurrentQuestion(page);
+
+    // Untimed practice reveals the explanation straight away.
+    await expect(page.getByText(/^(Correct|Not correct)/).first()).toBeVisible();
+
+    const submitted = await submitAttempt(page, attemptId);
+    expect(submitted.status, submitted.body).toBe(200);
+
+    await page.goto(`/attempt/${attemptId}/results`);
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Your results');
+    await expect(page.getByRole('heading', { name: 'Performance by skill' })).toBeVisible();
+  });
+
+  test('answers and question order survive a reload', async ({ page }) => {
+    await startPracticeSession(page);
+    await answerCurrentQuestion(page);
+
+    const stemBefore = await page.locator('article .question-body').first().innerText();
+    await page.reload();
+
+    const stemAfter = await page.locator('article .question-body').first().innerText();
+    expect(stemAfter).toBe(stemBefore);
+    await expect(page.getByText('1 of 10 answered')).toBeVisible();
+    await expect(page.getByRole('button', { name: /Question 1, answered/ })).toBeVisible();
+  });
+
+  test('results never present an invented scaled score', async ({ page }) => {
+    const attemptId = await startPracticeSession(page);
+    await answerCurrentQuestion(page);
+    await submitAttempt(page, attemptId);
+    await page.goto(`/attempt/${attemptId}/results`);
+
+    await expect(page.getByText(/what we do not provide/i)).toBeVisible();
+    await expect(page.getByText(/do not report percentiles/i)).toBeVisible();
+  });
+
+  test('a format the bank cannot fill is shown as unavailable, with the reason', async ({ page }) => {
+    await page.goto('/practice/lsat');
+    await expect(page.getByText(/Not enough reviewed questions yet/i).first()).toBeVisible();
+  });
+});
+
+test.describe('authorization', () => {
+  test('one learner cannot open another learner’s attempt', async ({ browser }) => {
+    const first = await browser.newContext();
+    const firstPage = await first.newPage();
+    const attemptId = await startPracticeSession(firstPage);
+
+    // A separate browser context: different cookies, a different guest.
+    const second = await browser.newContext();
+    const secondPage = await second.newPage();
+    await secondPage.goto('/');
+
+    const read = await secondPage.request.get(`/api/attempts/${attemptId}`, {
+      headers: { 'X-Requested-With': 'examer' },
+      failOnStatusCode: false,
+    });
+    expect([401, 404]).toContain(read.status());
+
+    const write = await secondPage.request.post(`/api/attempts/${attemptId}/answer`, {
+      headers: { 'X-Requested-With': 'examer' },
+      data: { partIndex: 0, position: 0, response: { type: 'single_select', optionId: 'a' } },
+      failOnStatusCode: false,
+    });
+    expect([401, 404]).toContain(write.status());
+
+    await first.close();
+    await second.close();
+  });
+
+  test('private pages are marked noindex', async ({ page }) => {
+    const attemptId = await startPracticeSession(page);
+    await page.goto(`/attempt/${attemptId}`);
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
+  });
+
+  test('a cross-site POST is rejected', async ({ page }) => {
+    await page.goto('/');
+    const response = await page.request.post('/api/attempts', {
+      headers: { Origin: 'https://attacker.example', 'Content-Type': 'application/json' },
+      data: { examKey: 'digital-sat', blueprintId: 'practice' },
+      failOnStatusCode: false,
+    });
+    expect(response.status()).toBe(403);
+  });
+});
+
+test.describe('accessibility and responsiveness', () => {
+  test('the practice player is operable by keyboard alone', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name.includes('mobile'), 'Tab traversal is a desktop concern.');
+    await startPracticeSession(page);
+
+    if ((await page.getByRole('radio').count()) === 0) {
+      test.skip(true, 'This session opened on a non-multiple-choice question.');
+    }
+
+    const seen: string[] = [];
+    let isRadio = false;
+    for (let i = 0; i < 40 && !isRadio; i += 1) {
+      await page.keyboard.press('Tab');
+      const description = await page.evaluate(() => {
+        const element = document.activeElement as HTMLElement | null;
+        if (!element) return 'none';
+        const type = element.getAttribute('type');
+        return `${element.tagName.toLowerCase()}${type ? `[${type}]` : ''}`;
+      });
+      seen.push(description);
+      isRadio = description === 'input[radio]';
+    }
+    expect(isRadio, `focus order was: ${seen.join(' -> ')}`).toBe(true);
+
+    await page.keyboard.press('Space');
+    await expect(page.getByText('1 of 10 answered')).toBeVisible();
+  });
+
+  test('a skip link is the first thing a keyboard user reaches', async ({ page }) => {
+    await page.goto('/');
+    await page.keyboard.press('Tab');
+    const text = await page.evaluate(() => document.activeElement?.textContent?.trim() ?? '');
+    expect(text.toLowerCase()).toContain('skip to main content');
+  });
+
+  test('every public page has exactly one h1 and a main landmark', async ({ page }) => {
+    for (const path of ['/', '/exams', '/exams/digital-sat', '/guides']) {
+      await page.goto(path);
+      expect(await page.locator('h1').count(), `h1 count on ${path}`).toBe(1);
+      await expect(page.locator('main#main')).toHaveCount(1);
+    }
+  });
+
+  test('the practice player works at phone width without horizontal scrolling', async ({ page }) => {
+    await page.setViewportSize({ width: 360, height: 780 });
+    await startPracticeSession(page);
+
+    await expect(page.getByRole('heading', { name: /^Question 1/ })).toBeVisible();
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    );
+    expect(overflow).toBeLessThanOrEqual(1);
+
+    await answerCurrentQuestion(page);
+  });
+
+  test('question navigator buttons announce their state', async ({ page }) => {
+    await startPracticeSession(page);
+    await expect(page.getByRole('button', { name: /Question 2, not answered/ })).toBeVisible();
+  });
+});
+
+test.describe('indexing controls', () => {
+  test('robots.txt disallows everything while indexing is switched off', async ({ request }) => {
+    const response = await request.get('/robots.txt');
+    expect(response.ok()).toBe(true);
+    expect(await response.text()).toContain('Disallow: /');
+  });
+
+  test('the sitemap is empty while indexing is switched off', async ({ request }) => {
+    const response = await request.get('/sitemap.xml');
+    expect(response.ok()).toBe(true);
+    expect(await response.text()).not.toContain('<loc>');
+  });
+});

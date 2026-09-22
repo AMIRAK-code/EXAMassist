@@ -1,0 +1,75 @@
+{
+  "id": "enhanced-act-math-exponent-properties-007",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "math",
+  "domainSlug": "act-math-number-and-quantity",
+  "skillSlug": "act-math-nq-properties-of-exponents",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "For all nonzero values of $x$ and $y$, which of the following is equivalent to $\\dfrac{(2x^{3}y)^{4}}{8x^{5}y^{2}}$ ?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$x^{7}y^{2}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\dfrac{x^{7}y^{2}}{4}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$2x^{7}y^{2}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$2x^{12}y^{4}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Raise every factor inside the parentheses to the fourth power first, then divide.\n\n$$(2x^{3}y)^{4} = 2^{4}\\cdot (x^{3})^{4}\\cdot y^{4} = 16x^{12}y^{4}$$\n\nNow divide by $8x^{5}y^{2}$, subtracting exponents on like bases:\n\n$$\\frac{16x^{12}y^{4}}{8x^{5}y^{2}} = \\frac{16}{8}\\,x^{12-5}\\,y^{4-2} = 2x^{7}y^{2}$$\n\nTwo rules do all the work: $(ab)^{n} = a^{n}b^{n}$ (the outer exponent reaches **every** factor, including the coefficient $2$), and $\\frac{a^{m}}{a^{n}} = a^{m-n}$.\n\nCheck it with a number. Let $x = y = 1$: the original is $\\frac{2^{4}}{8} = 2$, and $2x^{7}y^{2} = 2$. Try $x = 2, y = 1$: the original is $\\frac{(2\\cdot 8)^{4}}{8\\cdot 32} = \\frac{65536}{256} = 256$, and $2\\cdot 2^{7} = 256$. Both agree.",
+  "distractorRationale": {
+    "b": "Comes from applying the outer exponent to the variables but not to the coefficient: treating $(2x^{3}y)^{4}$ as $2x^{12}y^{4}$ gives $\\frac{2}{8} = \\frac{1}{4}$ out front. The exponent applies to the $2$ as well, and $2^{4} = 16$.",
+    "a": "Comes from multiplying the coefficient by the exponent instead of raising it: using $2\\times 4 = 8$ rather than $2^{4} = 16$ makes the coefficient $\\frac{8}{8} = 1$.",
+    "d": "Comes from raising everything correctly to get $16x^{12}y^{4}$ and then dividing only the coefficients, forgetting to subtract the exponents of $x$ and $y$ in the denominator."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": null,
+  "accessibilityText": "Simplify the fraction whose numerator is the quantity two x cubed y, all raised to the fourth power, and whose denominator is eight x to the fifth power times y squared.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Not derived from, and not a paraphrase of, any ACT-published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "enhanced-act-author",
+    "reviewer": "enhanced-act-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "enhanced-act-independent-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "(2x^3 y)^4 = 16 x^12 y^4; dividing by 8 x^5 y^2 gives (16/8) x^(12-5) y^(4-2) = 2 x^7 y^2."
+    },
+    "notes": "Author solved the item and attempted to defend each distractor before keying it. Awaiting an independent blind solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "exponents",
+    "simplification"
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-ug-analytic-perpendicular-line-006",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-analytic-lines",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In the Cartesian plane, which equation describes the line that passes through the point $(2, -1)$ and is perpendicular to the line $y = \\frac{2}{3}x + 4$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$y = -\\frac{3}{2}x + 2$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$y = \\frac{2}{3}x - \\frac{7}{3}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$y = \\frac{3}{2}x - 4$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$y = -\\frac{2}{3}x + \\frac{1}{3}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Two lines are perpendicular when the product of their slopes is $-1$. Equivalently, the perpendicular slope is the **negative reciprocal**: flip the fraction *and* change the sign.\n\nThe given line has slope $m = \\frac{2}{3}$, so the perpendicular slope is\n\n$$m_{\\perp} = -\\frac{3}{2}$$\n\nNow use the point-slope form through $(2, -1)$:\n\n$$y - (-1) = -\\frac{3}{2}(x - 2)$$\n$$y + 1 = -\\frac{3}{2}x + 3$$\n$$y = -\\frac{3}{2}x + 2$$\n\nTwo checks, both quick by hand. Slope check: $\\frac{2}{3} \\times \\left(-\\frac{3}{2}\\right) = -1$, so the lines really are perpendicular. Point check: substituting $x = 2$ gives $y = -3 + 2 = -1$, which is the required point.\n\nBoth checks are needed. Three of the four options here pass one check and fail the other, so testing only the point or only the slope will not isolate the answer.",
+  "distractorRationale": {
+    "b": "This line passes through $(2, -1)$ but has slope $\\frac{2}{3}$, the same as the given line, so it is **parallel** to it rather than perpendicular. It comes from reusing the original slope instead of taking the negative reciprocal.",
+    "d": "The sign of the slope was changed but the fraction was not inverted, giving $-\\frac{2}{3}$ instead of $-\\frac{3}{2}$. The product of slopes is then $\\frac{2}{3} \\times \\left(-\\frac{2}{3}\\right) = -\\frac{4}{9}$, not $-1$, so the lines are not perpendicular.",
+    "c": "The fraction was inverted but the sign was not changed, giving $\\frac{3}{2}$. The product of slopes is $\\frac{2}{3} \\times \\frac{3}{2} = +1$, not $-1$. A negative reciprocal requires both operations, not just one."
+  },
+  "estimatedSeconds": 95,
+  "stimulusRef": null,
+  "accessibilityText": "Find the equation of the straight line that goes through the point with x-coordinate two and y-coordinate negative one, and that meets at a right angle the line whose equation is y equals two thirds x plus four.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Distractors were each re-derived through the stated point so that every option is internally consistent and only the slope distinguishes them."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-author",
+    "reviewer": "bocconi-undergraduate-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-independent-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Perpendicular slope is -3/2; -1=-3/2(2)+q gives q=2, so y=-3/2x+2. Only B has both the right slope and passes through (2,-1) (D has slope 3/2, C slope -2/3)."
+    },
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "analytic-geometry",
+    "perpendicular-lines"
+  ]
+}

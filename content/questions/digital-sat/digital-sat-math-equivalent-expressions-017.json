@@ -1,0 +1,77 @@
+{
+  "id": "digital-sat-math-equivalent-expressions-017",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "advanced-math",
+  "skillSlug": "equivalent-expressions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which expression is equivalent to $\\frac{6x^2 + 19x - 7}{3x - 1}$, where $x \\neq \\frac{1}{3}$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$2x + 7$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$2x - 7$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$3x + 7$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$6x + 7$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Factor the numerator so that $3x - 1$ appears as one of its factors.\n\nSince the denominator is $3x - 1$, look for a factorisation $(3x - 1)(ax + b)$. Matching the leading term $6x^2$ forces $3x \\cdot ax = 6x^2$, so $a = 2$. Matching the constant term $-7$ forces $(-1)(b) = -7$, so $b = 7$. Test the middle term:\n\n$$(3x - 1)(2x + 7) = 6x^2 + 21x - 2x - 7 = 6x^2 + 19x - 7$$\n\nThat matches the numerator exactly, so\n\n$$\\frac{6x^2 + 19x - 7}{3x - 1} = \\frac{(3x - 1)(2x + 7)}{3x - 1} = 2x + 7$$\n\nfor $x \\neq \\frac{1}{3}$.\n\nA fast independent check: substitute a convenient value, say $x = 1$. The original expression is $\\frac{6 + 19 - 7}{3 - 1} = \\frac{18}{2} = 9$, and $2(1) + 7 = 9$. They agree. Trying $x = 1$ in the other three choices gives $-5$, $10$ and $13$, none of which is $9$.",
+  "distractorRationale": {
+    "b": "This is a sign error in the factorisation. $(3x - 1)(2x - 7) = 6x^2 - 23x + 7$, whose middle and constant terms do not match the numerator; substituting $x = 1$ gives $-5$ rather than $9$.",
+    "c": "This comes from copying the leading coefficient of the denominator into the quotient. Dividing $6x^2$ by $3x$ gives $2x$, not $3x$; substituting $x = 1$ gives $10$ rather than $9$.",
+    "d": "This comes from cancelling only the $3$ in $3x - 1$ against the $6$ in $6x^2$, leaving $6x$ behind. A factor can be cancelled only when it divides the whole numerator, not one term of it."
+  },
+  "estimatedSeconds": 95,
+  "stimulusRef": null,
+  "accessibilityText": "Simplify the rational expression: six x squared plus nineteen x minus seven, all divided by three x minus one, for x not equal to one third.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "digital-sat-author",
+    "aiAssisted": true,
+    "notes": "Original item. The factorisation was expanded to confirm it reproduces the numerator exactly."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "digital-sat-author",
+    "reviewer": "digital-sat-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "digital-sat-independent-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "6x^2 + 19x - 7 factors as (3x - 1)(2x + 7) (check: 21x - 2x = 19x, -1*7 = -7), so dividing by (3x-1) leaves 2x + 7. Substituting x=1 gives 18/2 = 9 = 2(1)+7, which no other option matches."
+    },
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "advanced-math",
+    "factoring",
+    "rational-expression"
+  ]
+}

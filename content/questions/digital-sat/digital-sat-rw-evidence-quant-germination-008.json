@@ -1,0 +1,79 @@
+{
+  "id": "digital-sat-rw-evidence-quant-germination-008",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "rw-module-1",
+  "domainSlug": "information-and-ideas",
+  "skillSlug": "command-of-evidence-quantitative",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A grower reading Berg's results argues that once seeds have been cold-stratified, adding scarification buys very little. Which choice most effectively uses data from the table to support that argument?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Adding cold stratification to scarification raised emergence from 48.0% to 65.5%, a gain of 17.5 percentage points."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Adding scarification to cold stratification raised emergence from 61.0% to 65.5%, a gain of 4.5 percentage points."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Scarification alone raised emergence from 17.0% to 48.0%, a gain of 31.0 percentage points."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The combined treatment produced 131 seedlings, 97 more than the 34 produced with no treatment at all."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The argument names a starting point (\"once seeds have been cold-stratified\") and asks what one further step adds. So the supporting data must hold cold stratification fixed and vary only scarification.\n\nThe cold-stratified row is 122 seedlings, or 61.0%. The scarified-and-cold-stratified row is 131 seedlings, or 65.5%. The step from the first to the second is the step the grower is talking about, and it is worth $65.5 - 61.0 = 4.5$ percentage points, or 9 extra seedlings out of 200. Against the 31-point gain scarification produces on untreated seed, that is indeed very little. Choice A.\n\nTo check, confirm that the two rows you compared differ in exactly one treatment. Rows 3 and 4 differ only in scarification, so the difference between them is attributable to scarification alone.",
+  "distractorRationale": {
+    "a": "This holds the wrong variable fixed. It measures what cold stratification adds to scarification, which is the reverse of the grower's claim, and its large gain would actually argue against the point being made.",
+    "c": "This measures scarification against no treatment at all, not against cold-stratified seed. It shows scarification can matter a great deal, which undercuts rather than supports the grower's argument.",
+    "d": "This compares the combined treatment with the untreated baseline. It shows the treatments help overall but never isolates the final step from cold-stratified to combined, so it cannot show that the step is small."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": {
+    "id": "digital-sat-stim-germination-table-005",
+    "version": 1
+  },
+  "accessibilityText": "Using the four-row seed-treatment table, choose the option that best supports the argument that adding scarification to already cold-stratified seed produces only a small extra gain in emergence.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "digital-sat-author",
+    "aiAssisted": true,
+    "notes": "Original item built on the original germination table; all arithmetic was checked against the table rows."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "digital-sat-author",
+    "reviewer": "digital-sat-independent-reviewer",
+    "reviewedOn": "2026-09-22",
+    "independentSolve": {
+      "solvedBy": "digital-sat-independent-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The argument is about the marginal value of scarification added to cold stratification: 61.0% to 65.5% is only 4.5 points. B and C measure the opposite or a different increment, and D compares to no treatment at all."
+    },
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "reading",
+    "command-of-evidence",
+    "data-table"
+  ]
+}
