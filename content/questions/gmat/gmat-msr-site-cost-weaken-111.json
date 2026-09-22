@@ -1,0 +1,79 @@
+{
+  "id": "gmat-msr-site-cost-weaken-111",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-multi-source-reasoning",
+  "skillSlug": "msr-examine-multiple-sources",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Finance recommends Halvern on the ground that, over the five-year term it considers, Halvern is the cheaper site. Which of the following, if true, would most seriously weaken that recommendation?",
+  "instructionsMd": "Consider all three sources. Each answer choice must be judged against the sources as a whole, not against any one of them.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Halvern's available floor area exceeds Kestrel Park's by 700 square metres."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The capital spending on the slab could be written down over ten years rather than over five."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The floor slab replacement at Halvern could be completed in 9 weeks rather than the 11 weeks the engineers estimated."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Moving finished goods from Halvern to the main distribution hub would cost £45,000 a year more than moving them from Kestrel Park."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The Kestrel Park lease could be signed only at £330,000 a year rather than at £310,000 a year."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "First put a number on how strong Finance's case actually is, because a weakener only counts if it is big enough to overturn it.\n\nFrom Source 2, over five years the lease comes to\n\n$$5 \\times 310{,}000 = 1{,}550{,}000$$\n\npounds, against $1{,}400{,}000$ pounds for the slab replacement. Halvern is therefore ahead by\n\n$$1{,}550{,}000 - 1{,}400{,}000 = 150{,}000$$\n\npounds over five years — a margin of under ten percent of either figure, not a landslide.\n\nNow read the rest of Source 2 carefully. Finance states that it excluded the cost of *running* the line, because the analysis assumes running costs are identical at the two sites, and it flags that Operations has not confirmed that assumption. Source 3 makes the assumption look fragile: Halvern is $62$ km from the distribution hub while Kestrel Park is $18$ km.\n\n**The correct choice supplies exactly the missing figure.** An extra £45,000 a year of outbound transport at Halvern comes to\n\n$$5 \\times 45{,}000 = 225{,}000$$\n\npounds over the same five years, which exceeds the $150{,}000$ pound advantage. On Finance's own horizon Halvern becomes the more expensive site, by $75{,}000$ pounds. That is the strongest available weakener: it attacks the one assumption Finance itself admitted it had not tested, and it is quantitatively large enough to reverse the conclusion.\n\n**Why the others fail.**\n\n- **Completing the slab in 9 weeks rather than 11** changes the schedule, not the cost, and if anything it helps Halvern.\n- **A lease at £330,000 a year** raises the five-year figure to $5 \\times 330{,}000 = 1{,}650{,}000$ pounds, widening Halvern's advantage to $250{,}000$ pounds. That strengthens the recommendation rather than weakening it.\n- **The 700 square metre difference in floor area** is a fact about capacity, and Source 1 already says either site can house the line.\n- **Writing the slab spending down over ten years** changes the accounting treatment, not the cash outlay, so the comparison Finance made is untouched.\n\n**How to check this.** Whenever an argument rests on a stated numerical margin, size the candidate weakener against that margin before judging it. Had the transport figure been £25,000 a year, five years would give $125{,}000$ pounds — a real dent, but still short of $150{,}000$, so it would weaken the case without overturning it. The magnitude is doing the work, which is why a numerical answer choice should always be multiplied out rather than eyeballed.",
+  "distractorRationale": {
+    "c": "This changes the schedule, not the cost. Source 2's comparison contains no timing term, and a faster slab replacement would if anything make Halvern more attractive rather than less.",
+    "e": "This makes Kestrel Park more expensive, not less. At 330,000 pounds a year the five-year lease is 1,650,000 pounds, widening Halvern's advantage from 150,000 to 250,000 pounds, so it strengthens the recommendation.",
+    "a": "This reports a capacity difference that Source 3 already records. Source 1 states that either site can house the line, so the extra floor area has no bearing on the five-year cost comparison.",
+    "b": "This changes the accounting treatment of the slab spending, not the amount of cash spent. Finance's comparison is between 1,400,000 pounds of capital outlay and 1,550,000 pounds of lease payments, and a longer write-down period alters neither figure."
+  },
+  "estimatedSeconds": 215,
+  "stimulusRef": {
+    "id": "gmat-msr-packaging-line-siting-001",
+    "version": 1
+  },
+  "accessibilityText": "A Multi-Source Reasoning question about the accompanying three sources on siting a packaging line. Finance recommends Halvern as the cheaper site over five years; the question asks which statement would most seriously weaken that recommendation. Five options are offered: an extra 45,000 pounds a year of transport cost at Halvern, a two-week reduction in the slab replacement, a higher Kestrel Park lease of 330,000 pounds a year, a 700 square metre floor area difference, and a ten-year rather than five-year write-down of the slab spending.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-topup-author",
+    "aiAssisted": true,
+    "notes": "Original item written against the existing original three-source stimulus. The key was sized deliberately: 45,000 pounds a year over five years is 225,000 pounds against a stated 150,000 pound margin, so the weakener is unambiguously large enough to reverse the conclusion, while no other choice moves the five-year cash comparison in the weakening direction at all."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-topup-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author computed the five-year margin (150,000 pounds) from Source 2 and multiplied out every numerical answer choice against it. Choices C and E were checked specifically to confirm they move the comparison in the wrong direction or not at all. Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. Explanation prose refers to answer choices by their content rather than by letter, so the item survives any later reordering of the options. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "multi-source-reasoning",
+    "weaken",
+    "cost-comparison"
+  ]
+}

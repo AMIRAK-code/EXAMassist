@@ -1,0 +1,76 @@
+{
+  "id": "gmat-ds-stationery-prices-104",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-data-sufficiency",
+  "skillSlug": "ds-analyze-quantitative-problem",
+  "subskillSlug": null,
+  "responseType": "data_sufficiency",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A stationery shop sells every notebook at one fixed price and every pen at another fixed price. Last week the shop sold $20$ notebooks and $30$ pens for a combined total of $\\$190$. What is the price of one notebook?\n\n1. A notebook costs $\\$2$ more than a pen.\n2. Three notebooks and two pens cost $\\$21$ in total.",
+  "instructionsMd": "Each Data Sufficiency problem gives a question and two statements. Using the data in the statements plus your knowledge of mathematics and everyday facts, decide whether the data are sufficient to answer the question, then select the corresponding option. Do not solve for the value unless you need to.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "EACH statement ALONE is sufficient."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Statements (1) and (2) TOGETHER are NOT sufficient."
+    }
+  ],
+  "answerKey": {
+    "type": "data_sufficiency",
+    "choice": "D"
+  },
+  "explanationMd": "The stem itself carries an equation. Let $n$ be the notebook price and $p$ the pen price:\n\n$$20n + 30p = 190 \\quad\\Longrightarrow\\quad 2n + 3p = 19.$$\n\nThis one equation leaves infinitely many $(n, p)$ pairs, so each statement only has to supply a *second independent* equation.\n\n**Statement (1): $n = p + 2$.** Substituting,\n\n$$2(p + 2) + 3p = 19 \\;\\Longrightarrow\\; 5p + 4 = 19 \\;\\Longrightarrow\\; p = 3, \\; n = 5.$$\n\nA unique notebook price. Sufficient.\n\n**Statement (2): $3n + 2p = 21$.** Pair it with $2n + 3p = 19$. The two are independent because the coefficient ratios differ ($2:3$ against $3:2$; formally the determinant $2 \\cdot 2 - 3 \\cdot 3 = -5 \\neq 0$). Solving:\n\n$$3 \\times (2n + 3p) = 6n + 9p = 57, \\qquad 2 \\times (3n + 2p) = 6n + 4p = 42,$$\n\nand subtracting gives $5p = 15$, so $p = 3$ and $n = 5$. Sufficient.\n\nEach statement alone settles the question, so the answer is **D**.\n\n**How to check this.** Substitute $n = 5$ and $p = 3$ back into all three equations: $20(5) + 30(3) = 100 + 90 = 190$; $5 = 3 + 2$; $3(5) + 2(3) = 21$. All hold, which also confirms the statements are mutually consistent. The habit worth building here is to test *independence* rather than counting equations: a second equation that is a multiple of the first — say $4n + 6p = 38$ — would add nothing, and the answer would have been E. Check the determinant, not the number of lines.",
+  "distractorRationale": {
+    "a": "This overlooks that the stem already contains one equation. Statement (2) supplies a second independent equation and therefore also fixes the notebook price on its own.",
+    "b": "This overlooks the same thing in the other direction. Statement (1) gives n = p + 2, which combined with the stem yields p = 3 and n = 5.",
+    "c": "This treats the two statements as jointly necessary. Each one, paired with the equation already in the stem, produces a unique solution, so neither needs the other.",
+    "e": "This assumes no combination works, but a single statement plus the stem already gives two independent equations in two unknowns."
+  },
+  "estimatedSeconds": 95,
+  "stimulusRef": null,
+  "accessibilityText": "A Data Sufficiency question. A shop sells notebooks at one fixed price and pens at another; 20 notebooks and 30 pens sold for 190 dollars in total. The question asks the price of one notebook. Statement 1: a notebook costs 2 dollars more than a pen. Statement 2: three notebooks and two pens cost 21 dollars in total. The five standard Data Sufficiency answer options follow.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-topup-author",
+    "aiAssisted": true,
+    "notes": "Original item. Prices of 5 and 3 dollars were fixed first and every equation derived from them, so all three relationships are mutually consistent and both statements are genuinely independent of the stem equation."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-topup-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved each statement separately against the stem equation and checked the 2x2 determinant for statement (2) to confirm independence. Awaiting blind independent solve before publication."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "data-sufficiency",
+    "simultaneous-equations",
+    "linear-systems"
+  ]
+}

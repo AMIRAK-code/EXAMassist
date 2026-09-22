@@ -1,0 +1,79 @@
+{
+  "id": "gmat-gi-subscriber-net-change-109",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-graphics-interpretation",
+  "skillSlug": "gi-xy-graphs",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Taking the eight quarters shown in the graph together, what was the net change in the size of the service's subscriber base over that period?",
+  "instructionsMd": "Answer on the basis of the data in the graph and the statements accompanying it.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "A decrease of $4$ thousand"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "An increase of $46$ thousand"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "An increase of $136$ thousand"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "An increase of $265$ thousand"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "An increase of $401$ thousand"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The accompanying note says these two series are the *only* ways the subscriber base changes, so over the whole period\n\n$$\\text{net change} = \\text{total new subscribers} - \\text{total cancellations}.$$\n\nAdd each series across the eight quarters (all figures in thousands).\n\nNew subscribers: $42 + 47 + 51 + 58 + 55 + 53 + 49 + 46$. Running total: $89$, $140$, $198$, $253$, $306$, $355$, $401$.\n\nCancellations: $18 + 21 + 26 + 30 + 35 + 41 + 44 + 50$. Running total: $39$, $65$, $95$, $130$, $171$, $215$, $265$.\n\nTherefore\n\n$$401 - 265 = 136 \\text{ thousand}.$$\n\nThe base grew by $136$ thousand subscribers.\n\n**How to check this.** Take the difference quarter by quarter instead and add those, which is faster and less error-prone than two long columns:\n\n$$24,\\; 26,\\; 25,\\; 28,\\; 20,\\; 12,\\; 5,\\; -4.$$\n\nThese sum to $24 + 26 + 25 + 28 = 103$, then $+20 = 123$, $+12 = 135$, $+5 = 140$, $-4 = 136$. The two routes agree.\n\n**The trap the graph is built around.** The two lines converge and cross in the final quarter, so the *last* quarter is the only one in which cancellations exceed new subscribers. That is a striking visual feature, and it is easy to let it stand in for the answer. But a crossing tells you about the rate of change in one quarter, not about the accumulated total: seven quarters of solid growth are not undone by a single quarter of $-4$. When a question asks about a total over a period, the shape of the lines is a distraction — you have to aggregate.",
+  "distractorRationale": {
+    "a": "This is the net movement in the final quarter alone, 50 thousand cancellations against 46 thousand new subscribers. It reads the point where the two lines cross as though it described the whole period rather than one quarter.",
+    "b": "This is the new-subscriber figure for the final quarter, 46 thousand. It reads one plotted point instead of aggregating either series.",
+    "d": "This is the total of the cancellations series, 265 thousand. It sums the wrong line, and it also reports subscribers lost as though they were subscribers gained.",
+    "e": "This is the total of the new-subscriber series, 401 thousand, with cancellations ignored altogether. The accompanying note states that cancellations are the other way the base changes, so they must be subtracted."
+  },
+  "estimatedSeconds": 170,
+  "stimulusRef": {
+    "id": "gmat-chart-subscriber-flow-001",
+    "version": 1
+  },
+  "accessibilityText": "A Graphics Interpretation question about the accompanying line graph of new subscribers and cancellations over eight quarters, both in thousands. The question asks for the net change in the subscriber base across all eight quarters. Five options are offered: a decrease of 4 thousand, an increase of 46 thousand, an increase of 136 thousand, an increase of 265 thousand, and an increase of 401 thousand.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-topup-author",
+    "aiAssisted": true,
+    "notes": "Original item written against the existing original chart stimulus. The distractors are the two series totals, the final-quarter net movement and the final-quarter new-subscriber reading, so each names a distinct misreading of the graph."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-topup-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author summed both series independently (401 and 265) and separately summed the eight quarterly differences, obtaining 136 thousand both ways. Numeric options are deliberately ordered ascending, as on the real exam, so the position of the key follows from the arithmetic and must not be shuffled. Explanation prose refers to answer choices by their content rather than by letter, so the item survives any later reordering of the options. Awaiting blind independent solve before publication."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "graphics-interpretation",
+    "line-graph",
+    "aggregation"
+  ]
+}

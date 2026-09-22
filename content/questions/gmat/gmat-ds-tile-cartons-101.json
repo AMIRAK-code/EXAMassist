@@ -1,0 +1,76 @@
+{
+  "id": "gmat-ds-tile-cartons-101",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-data-sufficiency",
+  "skillSlug": "ds-unique-value-vs-range",
+  "subskillSlug": null,
+  "responseType": "data_sufficiency",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Every carton in a certain shipment contains either exactly $12$ tiles or exactly $20$ tiles, and contains nothing else. How many cartons in the shipment contain $20$ tiles?\n\n1. The shipment contains $15$ cartons.\n2. The shipment contains $236$ tiles.",
+  "instructionsMd": "Each Data Sufficiency problem gives a question and two statements. Using the data in the statements plus your knowledge of mathematics and everyday facts, decide whether the data are sufficient to answer the question, then select the corresponding option. Do not solve for the value unless you need to.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "EACH statement ALONE is sufficient."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Statements (1) and (2) TOGETHER are NOT sufficient."
+    }
+  ],
+  "answerKey": {
+    "type": "data_sufficiency",
+    "choice": "C"
+  },
+  "explanationMd": "Let $a$ be the number of $12$-tile cartons and $b$ the number of $20$-tile cartons. Both are non-negative integers, and the question asks for $b$.\n\n**Statement (1): $a + b = 15$.**\n\nOne equation in two unknowns. $b$ could be $0$, $7$, $15$ or anything between. Not sufficient.\n\n**Statement (2): $12a + 20b = 236$.**\n\nDivide through by $4$:\n\n$$3a + 5b = 59.$$\n\nThis is a single equation, but $a$ and $b$ must be non-negative integers, so it may still pin $b$ down. Work modulo $3$: $5b \\equiv 59 \\pmod 3$, and since $59 \\equiv 2$ and $5 \\equiv 2 \\pmod 3$, this gives $2b \\equiv 2 \\pmod 3$, so $b \\equiv 1 \\pmod 3$. Testing $b = 1, 4, 7, 10$:\n\n$$b = 1 \\Rightarrow a = 18, \\quad b = 4 \\Rightarrow a = 13, \\quad b = 7 \\Rightarrow a = 8, \\quad b = 10 \\Rightarrow a = 3.$$\n\n($b = 13$ would force $3a = -6$, so the list stops there.) Four different values of $b$ survive, so statement (2) alone is not sufficient.\n\n**Together.** Substitute $a = 15 - b$ into $3a + 5b = 59$:\n\n$$3(15 - b) + 5b = 59 \\;\\Longrightarrow\\; 45 + 2b = 59 \\;\\Longrightarrow\\; b = 7,$$\n\nand then $a = 8$, which is a legitimate non-negative integer. One value, so the two statements together are sufficient. The answer is **C**.\n\n**How to check this.** Verify the surviving case against both statements: $8 + 7 = 15$ cartons and $8 \\times 12 + 7 \\times 20 = 96 + 140 = 236$ tiles. Then confirm statement (2) really is insufficient on its own by checking that the other three solutions give different carton totals — $19$, $17$ and $13$ — so only the $15$-carton constraint selects one of them. The general lesson: on a Data Sufficiency integer problem, never dismiss a single equation as automatically insufficient, and never assume it is automatically sufficient. Enumerate.",
+  "distractorRationale": {
+    "a": "This treats the carton count as enough on its own. Knowing there are 15 cartons says nothing about how they split between the two sizes, so b is not determined.",
+    "b": "This assumes one linear equation with integer constraints must pin down a unique pair. Here 3a + 5b = 59 has four non-negative integer solutions, giving b = 1, 4, 7 or 10.",
+    "d": "This claims each statement works alone, which requires statement (1) to be sufficient. It is not: 15 cartons is consistent with any split of the two sizes.",
+    "e": "This underestimates the pair. Combining a + b = 15 with 3a + 5b = 59 is two independent equations in two unknowns and yields exactly b = 7."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": "A Data Sufficiency question. Every carton in a shipment holds either exactly 12 tiles or exactly 20 tiles and nothing else. The question asks how many cartons hold 20 tiles. Statement 1: the shipment contains 15 cartons. Statement 2: the shipment contains 236 tiles. The five standard Data Sufficiency answer options follow.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-topup-author",
+    "aiAssisted": true,
+    "notes": "Original item. The tile total 236 was chosen so that statement (2) alone admits exactly four non-negative integer solutions, making the C versus B decision turn on real enumeration rather than a memorised rule."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-topup-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved the item and enumerated every non-negative integer solution of 3a + 5b = 59 to confirm statement (2) is insufficient alone. Awaiting blind independent solve before publication."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "data-sufficiency",
+    "integer-constraints",
+    "diophantine"
+  ]
+}
