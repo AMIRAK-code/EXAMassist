@@ -28,12 +28,19 @@ A learner can do all of this today, end to end, verified in a browser:
 - **Improve** — a dashboard with recommendations that state their reasoning, a
   mistake notebook, bookmarks, and a study plan built from target date and
   weekly time.
+- **Judge readiness** — set the score they are aiming for and see how their
+  accuracy (weighted by the exam's own published domain mix), pace against the
+  exam's published pace, topic coverage, evidence volume and session-to-session
+  consistency measure against it. Where an exam publishes its scoring in full,
+  as the Bocconi test does, the target is turned into an actual projected raw
+  score and compared with the published eligibility floor. Where it does not,
+  the page says so rather than estimating.
 - **Account** — sign up (keeping guest history), sign in, export their data,
   delete their account.
 - **Report** — flag a question as wrong or ambiguous, which an editor triages in
   a role-gated admin area.
 
-**43 routes**, typecheck clean, **170 unit and integration tests**, **37 browser
+**46 routes**, typecheck clean, **193 unit and integration tests**, **41 browser
 tests** across desktop and mobile, production build succeeds.
 
 ## 2. How to run it
@@ -49,15 +56,19 @@ npm run build && npm start    # http://localhost:3000
 An admin account is created by `npm run db:seed` if `ADMIN_EMAIL` and
 `ADMIN_PASSWORD` are set in the environment.
 
-> `npm run dev` does not start on the build machine: an Application Control
-> policy blocks Next.js's native SWC binary. `npm run build && npm start` works
-> and is what the tests use. On an unrestricted machine `npm run dev` is normal.
+> `npm run dev` works normally. The browser tests deliberately run against a
+> production build (`npm run build && npm start`), which is what
+> `npm run e2e` starts for itself.
+>
+> If dev ever fails with `EINVAL ... readlink '.next/static/...'`, delete
+> `.next` and start again: a production build left in place can trip the dev
+> server on a OneDrive-synced folder.
 
 Verification:
 
 ```bash
-npm run verify   # typecheck + content validation + 170 tests
-npm run e2e      # 37 browser tests; prepares its own database
+npm run verify   # typecheck + content validation + 193 tests
+npm run e2e      # 41 browser tests; prepares its own database
 ```
 
 ## 3. Coverage per exam — the honest table
@@ -66,29 +77,29 @@ Reviewed questions and what each exam can actually offer. "Practice" is the
 open, untimed drill; "timed section" reproduces a real published section; a
 simulation needs both verified rules and enough content.
 
-| Exam | Reviewed questions | Domains covered | Practice | Diagnostic | Timed section | Full simulation |
+| Exam | Reviewed questions | Domains | Practice | Diagnostic | Timed section | Full simulation |
 | --- | --- | --- | --- | --- | --- | --- |
-| Digital SAT | 24 | 8 / 8 | Yes | Yes | No — needs 22–27 per module | No — needs 98 |
-| GRE General | 23 | 7 / 8 | Yes | 1 short | Quant section 1 | Rules not fully verified |
-| Bocconi (undergraduate) | 23 | 4 / 4 | Yes | 1 short | No — needs 50 | Rules verified; needs 50 |
-| Enhanced ACT | 22 | 13 / 17 | Yes | 4 short | No | No — ACT's own documents conflict on breaks |
-| GMAT | 22 | 8 / 8 | Yes | Yes | No — needs 20–23 per section | No — question-level adaptive, algorithm proprietary |
-| Bocconi (law) | 22 | 5 / 5 | Yes | Yes | No — needs 50 | Rules verified; needs 50 |
-| LSAT | 21 | 3 / 4 | Yes | Yes | No — needs ~24 per section | LSAC does not publish item counts |
+| Digital SAT | 50 | 8 / 8 | Yes | Yes | Both Math modules | No — needs 98 items |
+| GRE General | 44 | 7 / 8 | Yes | 1 short | All four sections | Rules not fully verified |
+| Bocconi (law) | 44 | 5 / 5 | Yes | Yes | No — needs 50 | Rules verified; needs 50 |
+| Bocconi (undergraduate) | 39 | 4 / 4 | Yes | 1 short | No — needs 50 | Rules verified; needs 50 |
+| Enhanced ACT | 38 | 16 / 17 | Yes | Yes | No | No — ACT's own documents conflict on breaks |
+| LSAT | 37 | 3 / 4 | Yes | Yes | No — needs ~24 per section | LSAC does not publish item counts |
+| GMAT | 33 | 8 / 8 | Yes | Yes | No — needs 20–23 per section | No — question-level adaptive, algorithm proprietary |
 
-**157 published questions. All seven configurations meet the 20-item target**,
-and four cover every configured domain. The uncovered domains are the two essay
-domains we deliberately do not author (GRE Analyze an Issue, LSAT Argumentative
-Writing) and the ACT science section, which has no items yet.
+**285 published questions across 55 passages, tables and charts.** Every
+configuration is well past the 20-item target; four cover every configured
+domain, and the only uncovered domains anywhere are the three essay domains we
+deliberately do not author (GRE Analyze an Issue, LSAT Argumentative Writing,
+ACT Writing).
 
-Two further items are **quarantined rather than published**, because an
+Open practice runs on all seven, a diagnostic on five, and **timed sectional
+practice is now open on the SAT Math modules and all four GRE sections** — the
+first formats that reproduce a real published section's item count and clock.
+
+Three items are **quarantined rather than published**, each because an
 independent reviewer found a second defensible answer. They are not served to
-learners, and neither was repaired by guessing at the intended answer.
-
-**This is a starter library, not a course.** Open practice and, on five exams, a
-diagnostic are available. Sectional practice needs an exam's real item count
-(22–27 for an SAT module, 50 for a Bocconi form), which is the next content
-milestone rather than a defect.
+learners, and none was repaired by guessing at the intended answer.
 
 Every one of those gaps is visible in the product, with its reason, before a
 learner commits to anything. Nothing is presented as available and then fails.
@@ -112,6 +123,9 @@ every load-bearing number first-hand; see `VERIFICATION.md` §1.
 - **No full-length simulations yet.** Both gates must pass.
 - **No admission probabilities.** Bocconi's published floors are shown as
   requirements; observed averages are never presented as thresholds.
+- **No readiness verdict the evidence cannot carry.** The readiness band is
+  capped by how much a learner has actually answered, so 100% on five questions
+  reads "not enough evidence", never "strong".
 
 ### Corrections made to the supplied brief
 

@@ -1,0 +1,83 @@
+{
+  "id": "gre-quant-ss-sector-perimeter-207",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-geometry",
+  "skillSlug": "geom-circles",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A sector of a circle of radius $6$ has a central angle of $120^\\circ$.\n\nWhat is the perimeter of the sector, that is, the sum of the two radii and the arc between them?",
+  "instructionsMd": "Select one answer choice.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$12 + 4\\pi$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$12 + 12\\pi$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$4\\pi$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$24 + 4\\pi$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$12 + 2\\pi$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "A sector is bounded by three pieces: two straight radii and one curved arc. Handle the straight part and the curved part separately, then add.\n\n**The two radii.** Each has length $6$, so together they contribute\n\n$$2 \\times 6 = 12.$$\n\n**The arc.** A central angle of $120^\\circ$ is $\\frac{120}{360} = \\frac{1}{3}$ of the full turn, so the arc is one third of the circumference:\n\n$$\\text{arc} = \\frac{1}{3} \\times 2\\pi r = \\frac{1}{3} \\times 2\\pi (6) = \\frac{12\\pi}{3} = 4\\pi.$$\n\n**Add.** The perimeter is $12 + 4\\pi$, which is choice (C).\n\n**How to check.** Estimate numerically: $4\\pi \\approx 12.6$, so the perimeter is about $24.6$. That is a reasonable size — it must exceed $12$ (the two radii alone) and must be less than the whole circumference plus two radii, $12\\pi + 12 \\approx 49.7$. It is. Notice also the structural check on units of the expression: the radii contribute a term with no $\\pi$ and the arc contributes a term with $\\pi$, so any answer missing one of the two kinds of term is describing the wrong figure.",
+  "distractorRationale": {
+    "c": "This is the arc alone. It forgets that the perimeter of a sector also includes the two straight radii that bound it, which is exactly what the stem spells out.",
+    "e": "This uses a full circumference of $2\\pi \\times 6$ but takes one sixth of it rather than one third, the error of reading $120^\\circ$ as $\\frac{120}{720}$ or of halving once too often. $120^\\circ$ is a third of $360^\\circ$.",
+    "d": "This doubles the straight contribution, counting four radii instead of two - the mistake of treating the sector like a rectangle with two pairs of parallel sides. A sector has exactly two radii.",
+    "b": "This uses the entire circumference $12\\pi$ as the arc, ignoring the $120^\\circ$ restriction altogether, and so describes a whole circle with two radii attached rather than a sector."
+  },
+  "estimatedSeconds": 105,
+  "stimulusRef": null,
+  "accessibilityText": "A sector cut from a circle of radius 6 has a central angle of 120 degrees. Find the perimeter of the sector, meaning the two straight radii plus the curved arc joining their ends. The five choices are: A, 4 pi. B, 12 plus 2 pi. C, 12 plus 4 pi. D, 24 plus 4 pi. E, 12 plus 12 pi.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gre-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for the wave 3 top-up. Each distractor encodes one specific error: arc only, wrong fraction of the circle, doubled radii, and whole circumference. Choices are ordered by increasing numerical value. Not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gre-wave3-author",
+    "reviewer": "gre-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "gre-wave3-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Arc = (120/360) * 2*pi*6 = (1/3)(12pi) = 4pi; two radii contribute 6 + 6 = 12. Perimeter = 12 + 4pi."
+    },
+    "notes": "Author solved: two radii give 12; arc = (120/360)(2 pi * 6) = 4 pi; total 12 + 4 pi, choice C. Numerical check 24.6, between 12 and 49.7. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "circles",
+    "sector",
+    "arc-length",
+    "geometry"
+  ]
+}

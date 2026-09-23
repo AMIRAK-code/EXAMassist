@@ -231,9 +231,15 @@ test.describe('accessibility and responsiveness', () => {
     test.skip(testInfo.project.name.includes('mobile'), 'Tab traversal is a desktop concern.');
     await startPracticeSession(page);
 
-    if ((await page.getByRole('radio').count()) === 0) {
-      test.skip(true, 'This session opened on a non-multiple-choice question.');
+    // The bank mixes response types, so walk the question navigator until we
+    // reach one that actually has radios rather than skipping the test.
+    for (let position = 1; position <= 10; position += 1) {
+      if ((await page.getByRole('radio').count()) > 0) break;
+      const next = page.getByRole('button', { name: new RegExp(`Question ${position + 1},`) });
+      if ((await next.count()) === 0) break;
+      await next.click();
     }
+    expect(await page.getByRole('radio').count()).toBeGreaterThan(0);
 
     const seen: string[] = [];
     let isRadio = false;
@@ -286,6 +292,101 @@ test.describe('accessibility and responsiveness', () => {
     await startPracticeSession(page);
     await expect(page.getByRole('button', { name: /Question 2, not answered/ })).toBeVisible();
   });
+});
+
+test.describe('readiness', () => {
+  test('assesses readiness against a target without inventing a score', async ({ page }) => {
+    // A learner with a target and some practice behind them.
+    await page.goto('/');
+    const email = `readiness-${Date.now()}@example.invalid`;
+    const signUp = await page.evaluate(async (address) => {
+      const response = await fetch('/api/auth/sign-up', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'examer' },
+        body: JSON.stringify({ email: address, password: 'a quiet harbour at dawn' }),
+      });
+      return response.status;
+    }, email);
+    expect(signUp).toBe(201);
+
+    await page.goto('/practice/bocconi-undergraduate');
+    await page.getByRole('button', { name: /start practising/i }).click();
+    await page.waitForURL(/\/attempt\/[0-9a-f-]+$/);
+    const attemptId = /\/attempt\/([0-9a-f-]+)/.exec(page.url())![1];
+
+    await answerCurrentQuestion(page);
+    await submitAttempt(page, attemptId);
+
+    const saved = await page.evaluate(async () => {
+      const response = await fetch('/api/exam-targets', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'examer' },
+        body: JSON.stringify({ examKey: 'bocconi-undergraduate', targetScore: 35, targetDate: null }),
+      });
+      return response.status;
+    });
+    expect(saved).toBe(200);
+
+    await page.goto('/readiness?exam=bocconi-undergraduate');
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Are you ready?');
+
+    // Bocconi publishes its raw scoring in full, so the target IS quantified,
+    // and the official floor is named as a requirement rather than a goal.
+    await expect(page.getByText('Projected raw score')).toBeVisible();
+    await expect(page.getByText('Official eligibility floor')).toBeVisible();
+
+    // And the limits are never omitted.
+    await expect(page.getByText(/do not report percentiles/i)).toBeVisible();
+    // The limitations section is always rendered open, never behind a details.
+    await expect(page.getByRole('heading', { name: 'What this assessment is not' })).toBeVisible();
+    await expect(page.getByText(/Every figure here comes from your answers/i)).toBeVisible();
+  });
+
+  test('refuses to project a score for an exam that does not publish its conversion', async ({ page }) => {
+    await page.goto('/');
+    const email = `readiness-sat-${Date.now()}@example.invalid`;
+    await page.evaluate(async (address) => {
+      await fetch('/api/auth/sign-up', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'examer' },
+        body: JSON.stringify({ email: address, password: 'a quiet harbour at dawn' }),
+      });
+    }, email);
+
+    await page.goto('/practice/digital-sat');
+    await page.getByRole('button', { name: /start practising/i }).click();
+    await page.waitForURL(/\/attempt\/[0-9a-f-]+$/);
+    const attemptId = /\/attempt\/([0-9a-f-]+)/.exec(page.url())![1];
+    await answerCurrentQuestion(page);
+    await submitAttempt(page, attemptId);
+
+    await page.evaluate(async () => {
+      await fetch('/api/exam-targets', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'examer' },
+        body: JSON.stringify({ examKey: 'digital-sat', targetScore: 1400, targetDate: null }),
+      });
+    });
+
+    await page.goto('/readiness?exam=digital-sat');
+    await expect(page.getByText(/We will not guess at this/i)).toBeVisible();
+    await expect(page.getByText(/cannot tell you whether your practice equals 1400/i)).toBeVisible();
+    await expect(page.getByText('Projected raw score')).toHaveCount(0);
+
+    // A target on the wrong scale is refused rather than stored. 2400 was the
+    // old three-section SAT; accepting it would make every figure nonsense.
+    const outOfRange = await page.evaluate(async () => {
+      const response = await fetch('/api/exam-targets', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'examer' },
+        body: JSON.stringify({ examKey: 'digital-sat', targetScore: 2400, targetDate: null }),
+      });
+      return { status: response.status, body: await response.text() };
+    });
+    expect(outOfRange.status).toBe(400);
+    expect(outOfRange.body).toContain('400 to 1600');
+  });
+
 });
 
 test.describe('indexing controls', () => {

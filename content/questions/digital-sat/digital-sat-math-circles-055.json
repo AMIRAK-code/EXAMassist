@@ -1,0 +1,77 @@
+{
+  "id": "digital-sat-math-circles-055",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "geometry-and-trigonometry",
+  "skillSlug": "circles",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "In the $xy$-plane, the equation $x^2 + y^2 - 10x + 6y + 18 = 0$ defines a circle. What is the radius of the circle?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$2$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$4$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$16$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$18$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The radius is only readable once the equation is in standard form, $(x - h)^2 + (y - k)^2 = r^2$. Get there by completing the square in $x$ and in $y$ separately.\n\nGroup the terms:\n\n$$(x^2 - 10x) + (y^2 + 6y) + 18 = 0$$\n\nFor $x$: half of $-10$ is $-5$, and $(-5)^2 = 25$, so $x^2 - 10x = (x - 5)^2 - 25$.\n\nFor $y$: half of $6$ is $3$, and $3^2 = 9$, so $y^2 + 6y = (y + 3)^2 - 9$.\n\nSubstitute both:\n\n$$(x - 5)^2 - 25 + (y + 3)^2 - 9 + 18 = 0$$\n\n$$(x - 5)^2 + (y + 3)^2 = 25 + 9 - 18 = 16$$\n\nSo $r^2 = 16$ and $r = \\sqrt{16} = 4$, Choice B. The centre, as a bonus, is $(5, -3)$.\n\nCheck by testing a point that must lie on the circle. Moving $4$ units right from the centre gives $(9, -3)$. Substituting: $81 + 9 - 90 - 18 + 18 = 0$. The point satisfies the equation, so the radius is indeed $4$.\n\nThe step learners most often lose is the sign bookkeeping: completing the square *adds* $25$ and $9$ to the left side, so both must be subtracted back before combining with the original constant $18$.",
+  "distractorRationale": {
+    "a": "This takes a square root one time too many. $\\sqrt{16} = 4$ is already the radius; taking the root again gives $2$, which is the square root of the radius and has no geometric meaning here.",
+    "c": "This reports $r^2$ rather than $r$. The standard form ends at $= 16$, and the final square root is still owed.",
+    "d": "This reads the constant of the unsimplified equation as $r^2$, ignoring the $-25$ and $-9$ that completing the square introduces. The right-hand side is $25 + 9 - 18 = 16$, not $18$."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "The equation x squared plus y squared minus 10 x plus 6 y plus 18 equals zero defines a circle in the xy-plane. Find its radius. The four options are the numbers 2, 4, 16 and 18.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "digital-sat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item. Coefficients chosen so that the centre coordinates and the radius are all whole numbers and each distractor is a nameable stopping point."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "digital-sat-wave3-author",
+    "reviewer": "digital-sat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "digital-sat-wave3-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Completing the square: (x-5)^2 - 25 + (y+3)^2 - 9 + 18 = 0, so (x-5)^2 + (y+3)^2 = 16 and the radius is 4. Option c (16) is the r^2 trap."
+    },
+    "notes": "Author solved and checked uniqueness: completing the square gives (x-5)^2 + (y+3)^2 = 16, so r = 4. Verified that (9, -3) satisfies the original equation. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "geometry",
+    "circle-equation",
+    "completing-the-square"
+  ]
+}

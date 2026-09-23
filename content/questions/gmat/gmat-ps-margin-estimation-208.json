@@ -1,0 +1,82 @@
+{
+  "id": "gmat-ps-margin-estimation-208",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-approximation-estimation",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Last quarter a regional freight carrier moved $4{,}182$ tonnes of cargo at an average revenue of €61.40 per tonne, and its total costs for the quarter were €197,000. Its operating margin is defined as operating profit expressed as a percentage of revenue. Which of the following is closest to the carrier's operating margin for the quarter?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$6$ percent"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$34$ percent"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$23$ percent"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$77$ percent"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$30$ percent"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The word *closest* is the instruction: the options are far enough apart that a controlled estimate settles the question without a calculator, which is what this section rewards.\n\n**Step 1 — estimate revenue, rounding gently and in opposite directions.** Round $4{,}182$ up to $4{,}200$ (a rise of $0.4$ percent) and €61.40 down to €61 (a fall of $0.7$ percent). The two errors partly cancel.\n\n$$4{,}200 \\times 61 = 4{,}200 \\times 60 + 4{,}200 = 252{,}000 + 4{,}200 = 256{,}200.$$\n\nRevenue is about €256,000.\n\n**Step 2 — estimate profit.**\n\n$$256{,}000 - 197{,}000 = 59{,}000.$$\n\n**Step 3 — form the ratio, and estimate that too.**\n\n$$\\frac{59{,}000}{256{,}000} \\approx \\frac{59}{256}.$$\n\nA quarter of $256$ is $64$, so $\\frac{59}{256}$ is a little under $25$ percent. It is comfortably above $\\frac{51.2}{256} = 20$ percent. So the margin sits between $20$ and $25$ percent, and of the options only $23$ percent lies in that band.\n\n**How to check the answer.** Run the exact arithmetic. $4{,}182 \\times 61.40 = 256{,}774.80$, so profit is $256{,}774.80 - 197{,}000 = 59{,}774.80$ and the margin is\n\n$$\\frac{59{,}774.80}{256{,}774.80} = 0.2328\\ldots \\approx 23.3 \\text{ percent}.$$\n\nThe estimate and the exact figure agree, and the gap between them — about $0.3$ of a percentage point — is far smaller than the gap to the nearest wrong option.\n\n**What good estimation discipline looks like.** Bound the answer before you commit to it. Costs of €197,000 against revenue of roughly €256,000 mean costs are a bit over three-quarters of revenue, so the margin must be a bit under a quarter. That one sentence disposes of every option except $23$ percent. The danger is rounding too hard: pushing $4{,}182$ up to $5{,}000$ distorts the base by almost $20$ percent, which is larger than the spacing between several of the options and turns an estimate into a guess.",
+  "distractorRationale": {
+    "a": "This rounds €61.40 down to €50 per tonne, which cuts estimated revenue to about €209,000 and leaves a margin near $6$ percent. A $19$ percent cut in the unit price is far coarser than the spacing between the options, so it destroys the very thing an estimate is for.",
+    "e": "This divides the profit by the €197,000 of costs rather than by revenue, giving about $30$ percent. That figure is the markup on cost, a different measure; the stem defines the margin against revenue.",
+    "b": "This rounds the tonnage up from $4{,}182$ to $5{,}000$ and the price down to €60, producing a revenue estimate of €300,000 and a margin near $34$ percent. Inflating the volume by almost $20$ percent moves the answer by more than the gap between adjacent options.",
+    "d": "This is the cost-to-revenue ratio, about €197,000 divided by €256,800, or $77$ percent. It reports the share of revenue consumed by costs, which is what remains after the margin rather than the margin itself; the two must sum to $100$ percent."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": "A freight carrier moved 4,182 tonnes of cargo last quarter at an average revenue of 61 euros 40 per tonne, with total costs of 197,000 euros. Operating margin is defined as operating profit as a percentage of revenue. The question asks which option is closest to that margin. Five options are offered in ascending order: 6 percent, 23 percent, 30 percent, 34 percent and 77 percent.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item. Figures were chosen so the exact margin is 23.3 percent and each option is at least six percentage points away from every other, so a disciplined estimate resolves the item while an over-coarse rounding does not. Named errors include the wrong denominator and the complementary cost ratio."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-wave3-author",
+    "reviewer": "gmat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "gmat-wave3-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Revenue = 4182 x 61.40 = 250,920 + 5,854.80 = 256,774.80; profit = 256,774.80 - 197,000 = 59,774.80; margin = 59,774.80 / 256,774.80 = 23.3%. Nearest option is 23 percent; 30 percent is 6.7 points away versus 0.3 points for 23 percent."
+    },
+    "notes": "Author estimated the margin at just under 25 percent and then computed it exactly as 23.28 percent, confirming that only one option lies in the feasible band. The two nearest options, 6 and 30 percent, are 17 and 7 percentage points away respectively, so no second option is defensible under any reasonable rounding. Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "estimation",
+    "percent",
+    "business-arithmetic"
+  ]
+}

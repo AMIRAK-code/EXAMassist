@@ -1,0 +1,82 @@
+{
+  "id": "lsat-lr-idling-sufficient-121",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "lr1",
+  "domainSlug": "logical-reasoning",
+  "skillSlug": "lr-assumptions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Any measure that reduces the number of emergency-room visits for asthma in this district saves the district money. The district's new ordinance against engine idling has reduced particulate levels near its schools. The ordinance, then, saves the district money.\n\nThe conclusion follows logically if which one of the following is assumed?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "If the ordinance has reduced particulate levels near the district's schools, then it has reduced the number of emergency-room visits for asthma in the district."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Reducing particulate levels near schools is the only way to reduce the number of emergency-room visits for asthma in the district."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "No measure other than the ordinance against engine idling has reduced particulate levels near the district's schools."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Most measures that reduce particulate levels near schools also reduce the number of emergency-room visits for asthma."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Any measure that saves the district money reduces the number of emergency-room visits for asthma in the district."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "This stem — \"the conclusion follows logically if which one of the following is assumed\" — asks for a **sufficient** assumption. The answer must be strong enough to make the conclusion follow with certainty, not merely plausible. Diagram before choosing.\n\nWrite $R$ for \"reduces asthma emergency-room visits in the district\", $S$ for \"saves the district money\", $P$ for \"the ordinance reduced particulate levels near schools\", and $O$ for \"the ordinance saves the district money\".\n\n- Premise 1: $R \\rightarrow S$ (any measure that does $R$ does $S$).\n- Premise 2: $P$ (the ordinance did reduce particulates).\n- Conclusion: $O$, i.e. the ordinance does $S$.\n\nTo reach $S$ through premise 1, you need the ordinance to do $R$. Nothing given says it does. The missing link is precisely $P \\rightarrow R$ for this ordinance — and that is (D). With (D) in hand the chain closes: $P$, and $P \\rightarrow R$, so $R$; and $R \\rightarrow S$, so $S$. The conclusion follows with no gap left.\n\nHow to check your own answer on a sufficient-assumption item: plug the choice in and see whether you can still construct a world in which every premise plus the choice is true and the conclusion false. With (D) you cannot. With (B) you can at once — let this ordinance be one of the minority of particulate-reducing measures that does *not* cut asthma visits, and the conclusion fails even though \"most\" remains true. Quantifier words like *most*, *usually* and *often* can never close a gap that a valid conclusion has to cross.\n\nA second habit: watch the direction of every conditional. (A) and (E) both connect the right ideas, but backwards, and a reversed conditional carries none of the force of the original.",
+  "distractorRationale": {
+    "b": "This makes reducing school-area particulates a necessary condition for cutting asthma visits, when the argument needs it to be a sufficient one. Written out, it says $R \\rightarrow P$: anything that cuts asthma visits must have worked through school particulates. That leaves it entirely open whether this ordinance cut asthma visits at all, so the conclusion still does not follow.",
+    "d": "This substitutes a statistical tendency for the guarantee a valid argument requires. Grant that most such measures cut asthma visits; this ordinance may be one of the exceptions, in which case premise 1 never fires and the conclusion is false while the assumption is true. A sufficient assumption must leave no such gap.",
+    "c": "This concerns whether anything else also reduced particulates, which the argument never needed to exclude. Even granting the ordinance sole credit for the particulate drop, nothing has yet linked a particulate drop to fewer asthma visits, so the chain to the money-saving conclusion is still broken at exactly the same place.",
+    "e": "This reverses the first premise, asserting $S \\rightarrow R$ instead of $R \\rightarrow S$. A reversed conditional supports nothing the original supported: it tells you what follows from saving money, whereas the argument needs a route into saving money. It is the classic trap for a reader matching vocabulary rather than direction."
+  },
+  "estimatedSeconds": 95,
+  "stimulusRef": null,
+  "accessibilityText": "A short conditional argument. Premise one: any measure that reduces asthma emergency-room visits in the district saves the district money. Premise two: the district's anti-idling ordinance reduced particulate levels near schools. Conclusion: the ordinance saves the district money. The question asks which assumption would make the conclusion follow logically. Five answer choices, labelled A through E. The explanation uses letters R, S, P and O to stand for the four claims and an arrow to mean 'if ... then'; no numerical computation is involved.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "lsat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original stimulus and choices. Sufficient-assumption item whose gap is a single missing conditional link; distractors are a reversed conditional, a necessary-condition inversion, a quantifier weakening, and an irrelevant exclusivity claim. Not derived from any published LSAT item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "lsat-wave3-author",
+    "reviewer": "lsat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "lsat-wave3-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Given \"reduces ER asthma visits -> saves money\" and \"ordinance reduced particulates\", the missing link is \"reduced particulates -> reduced ER visits\", which (a) supplies and makes the conclusion follow. (b)'s \"only way\" and (c) run the conditional backwards; (d)'s \"most\" is too weak for a conclusion that must follow logically; (e) reverses the first premise."
+    },
+    "notes": "Author checked each choice by trying to build a counter-model in which premises plus the choice hold and the conclusion fails. Only (D) admits none. An earlier draft of (B) read 'Any measure that reduces particulate levels near schools saves the district money', which would itself have been sufficient; it was rewritten to a 'most' claim to remove the second defensible answer. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logical-reasoning",
+    "sufficient-assumption",
+    "conditional-reasoning"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "gmat-ps-linear-substitution-203",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-elementary-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "If $5x - 3 = 2x + 18$, what is the value of $4x + 7$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$27$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$28$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$35$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$42$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$91$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "**Step 1 — solve for $x$.** Collect the $x$ terms on one side and the constants on the other. Subtracting $2x$ from both sides:\n\n$$3x - 3 = 18.$$\n\nAdding $3$ to both sides:\n\n$$3x = 21 \\quad \\Longrightarrow \\quad x = 7.$$\n\n**Step 2 — evaluate the expression the question actually asks about.**\n\n$$4x + 7 = 4(7) + 7 = 28 + 7 = 35.$$\n\n**How to check the answer.** Substitute $x = 7$ back into the original equation and confirm both sides match:\n\n$$5(7) - 3 = 35 - 3 = 32, \\qquad 2(7) + 18 = 14 + 18 = 32.$$\n\nBoth sides equal $32$, so $x = 7$ is right, and $4x + 7 = 35$ follows.\n\n**The trap this item is built around.** The equation solves to $x = 7$, and the expression evaluates to $35$ — but $28$, the value of $4x$ on its own, sits right there in the option list, and so does $91$, the value you get if you never divide by $3$. On a timed section the dangerous moment is not the algebra, it is the instant after the algebra, when it is easy to write down the number you were just holding in your head instead of the one the question asked for. Before selecting, re-read the final clause of the stem and confirm the quantity matches.",
+  "distractorRationale": {
+    "a": "This moves the $-3$ across the equals sign as a subtraction, giving $3x = 18 - 3 = 15$ and $x = 5$, so $4x + 7 = 27$. To cancel a $-3$ on the left you must add $3$ to both sides, which gives $3x = 21$.",
+    "b": "This computes $4x = 28$ correctly but stops before adding the $7$ that the expression $4x + 7$ requires.",
+    "d": "This adds the $7$ a second time, reaching $35$ and then adding $7$ again. The expression contains exactly one constant term.",
+    "e": "This forgets the final division, treating the line $3x = 21$ as though it read $x = 21$, and then evaluates $4(21) + 7 = 91$."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "Given the equation five x minus 3 equals two x plus 18, the question asks for the value of the expression four x plus 7. Five numeric options are offered in ascending order: 27, 28, 35, 42 and 91.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item. Coefficients were chosen so that the sign error, the dropped constant, the doubled constant and the missed division each land on a distinct integer, and so that x is a whole number."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-wave3-author",
+    "reviewer": "gmat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "gmat-wave3-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "5x - 3 = 2x + 18 gives 3x = 21, x = 7; then 4x + 7 = 28 + 7 = 35. Unique, so only option c fits."
+    },
+    "notes": "Author solved for x, substituted back into the original equation to confirm both sides equal 32, and evaluated the requested expression. Each distractor was reproduced from a specific misstep and none of them satisfies the stem, so exactly one option is defensible. Awaiting blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "linear-equation",
+    "algebra",
+    "substitution"
+  ]
+}

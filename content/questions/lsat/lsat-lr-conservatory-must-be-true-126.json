@@ -1,0 +1,83 @@
+{
+  "id": "lsat-lr-conservatory-must-be-true-126",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "lr1",
+  "domainSlug": "logical-reasoning",
+  "skillSlug": "lr-drawing-conclusions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Every applicant to the conservatory's composition programme must submit either a recorded performance or a written score. Every applicant who submits a recorded performance is interviewed by the performance faculty, and every applicant who submits a written score is interviewed by the theory faculty. No applicant is interviewed by both faculties. Rana applied to the composition programme and was not interviewed by the theory faculty.\n\nIf the statements above are true, which one of the following must also be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Rana submitted a written score."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Some applicants to the composition programme are interviewed by neither faculty."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Rana was interviewed by the performance faculty."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Every applicant who submits a recorded performance is admitted to the composition programme."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Rana submitted both a recorded performance and a written score."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Write the rules down before touching the choices.\n\n1. Applicant $\\rightarrow$ (recorded performance **or** written score).\n2. Recorded performance $\\rightarrow$ interviewed by performance faculty.\n3. Written score $\\rightarrow$ interviewed by theory faculty.\n4. No applicant is interviewed by both faculties.\n5. Rana is an applicant, and Rana was **not** interviewed by the theory faculty.\n\nChain the facts about Rana:\n\n- From 5 and the contrapositive of 3: if Rana had submitted a written score she would have been interviewed by the theory faculty. She was not. So Rana did **not** submit a written score.\n- From 1: Rana submitted one of the two. Having ruled out the score, Rana submitted a **recorded performance**.\n- From 2: Rana was therefore interviewed by the **performance faculty**. That is (D).\n\nNotice how rule 4 does its work. Without it, an applicant could submit both a recording and a score, and rule 3 would then have put Rana in front of the theory faculty — contradicting 5 — so rule 4 plus rule 5 is also what makes (E) impossible. Every rule in a formal set is there for a reason; if you can delete one without changing anything, reread it.\n\nTo check a must-be-true answer, do the opposite of proving it: try to build a consistent world in which the choice is **false**. For (D) you cannot — the chain above forces it. For (B) you can at once, since the rules say nothing whatever about admission; a world where every applicant is rejected satisfies all five statements. For (C), rules 1 through 3 guarantee every applicant is interviewed by at least one faculty, so (C) is not merely unsupported but false. A choice that the rules forbid, and a choice the rules simply leave open, both fail the same test.",
+  "distractorRationale": {
+    "a": "This is the opposite of what the rules force. If Rana had submitted a written score, rule 3 would have sent her to the theory faculty, and the stimulus says she was not interviewed by it. Choosing this reverses a contrapositive: the rule runs from score to theory interview, so the absence of the interview rules the score out rather than in.",
+    "d": "Nothing in the five statements concerns admission at all; they govern only what an applicant submits and who interviews her. A world in which every applicant is interviewed exactly as the rules require and every applicant is then rejected satisfies all of them, so this cannot be something that must be true.",
+    "b": "Rule 1 puts every applicant into one of two submission categories, and rules 2 and 3 attach an interview to each category, so every applicant is interviewed by at least one faculty. This choice mistakes the prohibition on being interviewed by both faculties for a possibility of being interviewed by neither.",
+    "e": "Submitting both would trigger rules 2 and 3 together and place the applicant before both faculties, which rule 4 forbids; it would also contradict the stated fact that Rana avoided the theory faculty. The choice tempts a reader who reads the inclusive 'either ... or' of rule 1 as permitting both without checking it against rule 4."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "A set of five conditional statements about a conservatory composition programme: every applicant submits either a recorded performance or a written score; recorded-performance applicants are interviewed by the performance faculty; written-score applicants are interviewed by the theory faculty; no applicant is interviewed by both faculties; and Rana, an applicant, was not interviewed by the theory faculty. The question asks what must also be true. Five answer choices, labelled A through E. The explanation uses arrows to mean 'if ... then'; no computation is involved.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "lsat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original stimulus and choices. A Logical Reasoning must-be-true item resolved by one contrapositive and a disjunctive elimination. This is deliberately NOT an Analytical Reasoning puzzle: there is no ordering, grouping or matching of a set of entities, only a short conditional chain about one named applicant, which is the form Logical Reasoning uses. Not derived from any published LSAT item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "lsat-wave3-author",
+    "reviewer": "lsat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "lsat-wave3-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Rana applied, so she submitted a recording or a score; a score would have meant a theory interview, which she did not have, so she submitted a recording, and \"every applicant who submits a recorded performance is interviewed by the performance faculty\" gives the performance interview. (a) and (e) are ruled out by the same step; (b) contradicts the rules; (d) adds an admissions claim never made."
+    },
+    "notes": "Author solved the item and tested each choice by trying to construct a consistent model in which it is false. A draft option reading 'Every applicant interviewed by the performance faculty submitted a recorded performance' was cut because it is also forced by the rules and would have been a second defensible answer. The remaining distractors are one contradicted claim, one contrapositive reversal, one impossibility and one wholly unaddressed subject. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logical-reasoning",
+    "must-be-true",
+    "conditional-reasoning",
+    "contrapositive"
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "id": "gmat-rc-experience-curve-purpose-210",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "verbal-reasoning",
+  "domainSlug": "verbal-reading-comprehension",
+  "skillSlug": "rc-main-idea",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The primary purpose of the passage is to",
+  "instructionsMd": "The question refers to the accompanying passage. Answer on the basis of what is stated or implied in the passage.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "challenge the causal interpretation commonly placed on a well-documented empirical pattern, and draw out what that challenge implies for the design of policy"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "argue that government subsidies for emerging manufacturing technologies rarely achieve the results claimed for them"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "propose a replacement for the experience curve that would not be vulnerable to the selection problem the author identifies"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "contrast the cost histories of two industries in which the experience curve has been documented"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "describe the statistical procedures by which declines in manufacturing cost have been measured across several industries"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "A primary-purpose question is answered by the **shape** of the passage, not by any one sentence. Trace what each paragraph does.\n\n- Paragraph 1 sets out a well-documented empirical pattern — cost falls a constant percentage per doubling of cumulative output — and the policy conclusion usually drawn from it.\n- Paragraph 2 opens with \"The regularity is real. The causal reading attached to it is not secure\", and gives two grounds for doubt: confounding and selection.\n- Paragraph 3 says subsidy is not futile but that \"the mechanism determines the instrument\", then lists three policy responses that follow from three different mechanisms.\n\nSo the passage grants a pattern, attacks the **causal** story attached to it, and then works out the policy consequence. That is exactly what the correct option says.\n\n**How to check the answer.** Test each option against a specific sentence and ask whether the passage would have to be rewritten for that option to be accurate.\n\n- Does the author say subsidies rarely work? No: \"None of this shows that subsidy is futile.\" That sentence exists precisely to block that reading.\n- Does the author describe statistical procedures? The passage mentions that some studies compare plants of identical scale, but it never explains how any curve is estimated.\n- Does the author contrast two industries? Four are listed in one clause, and none is discussed.\n- Does the author propose a replacement? The last sentence says the single curve \"remains in use\" because the data needed to do better are not released — the opposite of proposing a replacement.\n\nOnly one option survives all four tests.\n\n**The technique worth carrying forward.** A correct primary-purpose option is usually the one whose verb matches the passage's own argumentative move — here *challenge*, matching \"is not secure\". Options whose verbs overshoot (*argue that subsidies rarely achieve*) or undershoot (*describe*, *contrast*) are wrong for that reason alone, before any detail is checked.",
+  "distractorRationale": {
+    "b": "This overstates the author's conclusion. The third paragraph opens by explicitly disclaiming it — subsidy is not futile — and then describes three circumstances in which a well-chosen subsidy would work. The author's target is the reasoning behind a subsidy, not its effectiveness.",
+    "e": "This mistakes a passing reference for the subject. The passage refers to studies that hold plant scale and design constant, but it never describes how an experience curve is estimated, what data go into it or what techniques are used. A passage with this purpose would be largely methodological.",
+    "d": "This elevates a four-item list into the structure of the passage. Airframes, semiconductors, photovoltaic modules and battery cells appear in a single clause, offered as evidence of the pattern's breadth; no industry's cost history is described, and no two are compared.",
+    "c": "This adds a constructive step the passage never takes. The author diagnoses the selection problem but ends by explaining why the flawed curve remains in use — the plant-level data needed to do better are rarely released — which is an obstacle to a replacement, not a proposal for one."
+  },
+  "estimatedSeconds": 140,
+  "stimulusRef": {
+    "id": "gmat-rc-passage-experience-curve-200",
+    "version": 1
+  },
+  "accessibilityText": "A Reading Comprehension question about the accompanying passage on the experience curve in manufacturing. The question asks for the primary purpose of the passage. Five options describe different purposes: challenging a causal interpretation and drawing out policy implications; arguing that subsidies rarely work; describing statistical procedures; contrasting two industries' cost histories; and proposing a replacement for the experience curve.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written against the new original passage. Each distractor corresponds to a specific way of misreading the passage's scope: overstating the conclusion, mistaking a passing reference for the topic, elevating a list into a structure, and adding a constructive step the author declines to take."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-wave3-author",
+    "reviewer": "gmat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "gmat-wave3-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Deciding words: 'The regularity is real. The causal reading attached to it is not secure, for two reasons' (confounding, selection), then 'the mechanism determines the instrument' with three policy prescriptions - exactly a challenge to a causal interpretation plus its policy implications. B is contradicted by 'None of this shows that subsidy is futile'; C is contradicted by the closing line that the single curve 'remains in use' (no replacement proposed); D names no two contrasted cost histories (industries are listed only as examples); E describes no statistical procedures."
+    },
+    "notes": "Author tested each option against a named sentence of the passage. Option B is blocked by the explicit disclaimer opening paragraph 3; C, D and E each describe content the passage does not contain. Only one option matches the passage's own argumentative move. Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "reading-comprehension",
+    "main-idea",
+    "primary-purpose"
+  ]
+}

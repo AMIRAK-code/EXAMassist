@@ -1,0 +1,42 @@
+{
+  "id": "enhanced-act-stim-sci-insulation-006",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "kind": "table",
+  "title": "Study 2: Choosing a wrap for a hot-water storage can",
+  "bodyMd": "**Engineering and design.** A student team was asked to choose an insulating wrap for a small solar hot-water storage tank. The wrap had to keep the stored water hot for an hour, cost little, and add as little mass as possible to the tank.\n\n**Procedure.** Five identical 1.0 L steel cans were each filled with water at $90.0^{\\circ}\\text{C}$ and closed with the same type of lid. Four of the cans were wrapped in a 2.0 cm thick layer of one test material. The fifth can was left unwrapped. All five cans stood on the same insulating bench in a room held at $20.0^{\\circ}\\text{C}$, and the water temperature in each can was measured with the same thermometer 20, 40 and 60 minutes after filling.\n\nThe team also recorded, from the supplier's published figures, the cost of each material per square metre and the mass that a 2.0 cm layer adds to one can. Table 2 gives the results.",
+  "data": {
+    "columns": [
+      { "key": "wrap", "label": "Wrap" },
+      { "key": "t20", "label": "Water temperature at 20 min (°C)" },
+      { "key": "t40", "label": "Water temperature at 40 min (°C)" },
+      { "key": "t60", "label": "Water temperature at 60 min (°C)" },
+      { "key": "cost", "label": "Cost ($ per m²)" },
+      { "key": "mass", "label": "Mass added to one can (g)" }
+    ],
+    "rows": [
+      { "wrap": "Polystyrene foam", "t20": 78.0, "t40": 69.0, "t60": 62.0, "cost": 6, "mass": 40 },
+      { "wrap": "Sheep wool", "t20": 76.0, "t40": 66.0, "t60": 58.0, "cost": 14, "mass": 95 },
+      { "wrap": "Cork", "t20": 74.0, "t40": 63.0, "t60": 55.0, "cost": 22, "mass": 130 },
+      { "wrap": "Foil-lined air gap", "t20": 71.0, "t40": 59.0, "t60": 50.0, "cost": 9, "mass": 25 },
+      { "wrap": "None (unwrapped)", "t20": 62.0, "t40": 46.0, "t60": 36.0, "cost": 0, "mass": 0 }
+    ],
+    "caption": "Table 2. Water temperature at three times after filling, with supplier cost and added mass, for four wraps and an unwrapped can. Every can started at 90.0 °C in a room at 20.0 °C.",
+    "chart": {
+      "type": "line",
+      "xKey": "wrap",
+      "yKeys": ["t20", "t40", "t60"],
+      "xLabel": "Wrap",
+      "yLabel": "Water temperature (°C)"
+    }
+  },
+  "accessibilityText": "An engineering and design study, followed by Table 2, which has five rows and six columns. The columns are wrap, water temperature at 20 minutes, at 40 minutes and at 60 minutes in degrees Celsius, cost in dollars per square metre, and mass added to one can in grams. Every can started at 90.0 degrees Celsius in a room at 20.0 degrees Celsius. Polystyrene foam: 78.0, 69.0, 62.0 degrees; 6 dollars; 40 grams. Sheep wool: 76.0, 66.0, 58.0 degrees; 14 dollars; 95 grams. Cork: 74.0, 63.0, 55.0 degrees; 22 dollars; 130 grams. Foil-lined air gap: 71.0, 59.0, 50.0 degrees; 9 dollars; 25 grams. None, meaning the unwrapped can: 62.0, 46.0, 36.0 degrees; 0 dollars; 0 grams. Polystyrene foam keeps the water warmest at every time recorded, and the unwrapped can is coolest at every time recorded.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original engineering-and-design experiment description with an invented data set. The student team, the materials tested, the supplier figures and every temperature in Table 2 are fictional. Nothing here is drawn from, or modelled on, any ACT-published Science passage."
+  },
+  "rightsStatus": "original-owned",
+  "state": "in_review"
+}

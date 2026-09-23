@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-geo-trapezoid-area-037",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-plane-geometry-formulas",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "An isosceles trapezoid has parallel sides of length 14 cm and 8 cm, and each of its two equal legs measures 5 cm. What is its area?",
+  "instructionsMd": "No calculator.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$44$ cm²"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$55$ cm²"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$33$ cm²"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$88$ cm²"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The area of a trapezoid is\n\n$$A = \\frac{b_{1} + b_{2}}{2} \\times h$$\n\nThe two parallel sides are given, so the only missing ingredient is the height $h$, which is **not** the leg.\n\n**Step 1 — find the horizontal overhang.** Drop a perpendicular from each end of the shorter parallel side to the longer one. Because the trapezoid is isosceles, the two right triangles this creates are congruent, and the leftover length is split equally between them:\n\n$$\\text{each overhang} = \\frac{14 - 8}{2} = 3 \\text{ cm}$$\n\n**Step 2 — use Pythagoras in one right triangle.** Its hypotenuse is the 5 cm leg and one leg is the 3 cm overhang:\n\n$$h = \\sqrt{5^{2} - 3^{2}} = \\sqrt{25 - 9} = \\sqrt{16} = 4 \\text{ cm}$$\n\nThis is the familiar 3–4–5 right triangle, which is why the arithmetic stays clean without a calculator.\n\n**Step 3 — apply the area formula.**\n\n$$A = \\frac{14 + 8}{2} \\times 4 = 11 \\times 4 = 44 \\text{ cm}^{2}$$\n\n**How to check the answer.** Cut the trapezoid into three pieces: a central rectangle 8 cm by 4 cm, and two right triangles each with legs 3 cm and 4 cm. That gives\n\n$$8 \\times 4 + 2 \\times \\tfrac{1}{2} \\times 3 \\times 4 = 32 + 12 = 44 \\text{ cm}^{2}$$\n\nThe decomposition agrees with the formula, which confirms both the height and the final figure. A quick plausibility test also helps: the trapezoid must be smaller than the $14 \\times 5 = 70$ cm² rectangle that encloses it and bigger than the $8 \\times 4 = 32$ cm² rectangle inside it, and 44 sits between the two.",
+  "distractorRationale": {
+    "c": "This uses the 3 cm horizontal overhang as the height: $\\frac{14+8}{2} \\times 3 = 33$. The overhang is the horizontal leg of the right triangle, not its vertical one; the height is the other leg, 4 cm.",
+    "b": "This uses the 5 cm slanted leg as the height: $\\frac{14+8}{2} \\times 5 = 55$. The leg is the hypotenuse of the right triangle, so it is strictly longer than the height, and using it always overstates the area. Pythagoras converts it to the true height of 4 cm.",
+    "d": "This multiplies the *sum* of the parallel sides by the height, $(14 + 8) \\times 4 = 88$, forgetting the division by 2 in the formula. The result is exactly double the true area, which the decomposition check would immediately expose."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "An isosceles trapezoid has two parallel sides measuring fourteen centimetres and eight centimetres, and its two equal non-parallel sides each measure five centimetres. The question asks for its area. No figure is provided; the four options are thirty-three, forty-four, fifty-five and eighty-eight square centimetres.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Dimensions were chosen to produce a 3-4-5 right triangle so the height is exact without a calculator. Each distractor substitutes a specific wrong length for the height, or omits the halving in the formula."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-wave3-author",
+    "reviewer": "bocconi-undergraduate-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-wave3-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Horizontal projection of each leg = (14-8)/2 = 3, so the height is sqrt(5^2 - 3^2) = 4. Area = (14+8)/2 * 4 = 11 * 4 = 44 cm^2. Option d (88) omits the halving."
+    },
+    "notes": "Author's uniqueness check: the isosceles condition fixes the overhang at 3 cm, so the height is determined uniquely as 4 cm and the area as 44 cm squared. The decomposition into a rectangle plus two triangles reproduces the same figure by an independent route. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "trapezoid",
+    "pythagoras",
+    "area"
+  ]
+}

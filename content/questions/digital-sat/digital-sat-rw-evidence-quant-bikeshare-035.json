@@ -1,0 +1,80 @@
+{
+  "id": "digital-sat-rw-evidence-quant-bikeshare-035",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "rw-module-1",
+  "domainSlug": "information-and-ideas",
+  "skillSlug": "command-of-evidence-quantitative",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Okafor claims that the districts that gained protected lanes saw a far larger rise in weekday bicycle-share trips than the districts that did not. Which choice best describes data from the table that support Okafor's claim?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Weekday trips in Fenwick rose from 1,260 in 2023 to 1,340 in 2025, an increase of 80 trips."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Weekday trips rose by 890 in Harbour Row and by 675 in Millgate, while the two districts without new lanes changed by only 80 and −55."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "South Quay recorded fewer weekday trips in 2025 than it had in 2023."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "In 2025, Harbour Row recorded more weekday trips than any other district."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The claim is comparative — lane districts rose *far more than* no-lane districts — so the supporting data must contain both sides of the comparison. Every option here is a true reading of the table; only one does the job the claim needs.\n\nWork out the four changes first:\n\n- Harbour Row (lanes): $2{,}310 - 1{,}420 = 890$\n- Millgate (lanes): $1{,}655 - 980 = 675$\n- Fenwick (no lanes): $1{,}340 - 1{,}260 = 80$\n- South Quay (no lanes): $1{,}455 - 1{,}510 = -55$\n\nChoice D reports all four. The two lane districts gained hundreds of trips; the two without gained 80 and lost 55. That is exactly the contrast the claim asserts.\n\nCheck your answer by covering the claim and asking what the option alone would let you conclude. Choices A, B and C each describe one district, and one district cannot establish a difference between two groups.",
+  "distractorRationale": {
+    "d": "This is a true statement about a single year's total, not about change. A district can be the busiest in 2025 without having grown faster than anywhere else, so it supports no comparison.",
+    "c": "This gives only the no-lane side of the comparison, and only one district of it. Without the figures for Harbour Row and Millgate there is nothing to say the rise was far larger where lanes were built.",
+    "a": "This is an accurate calculation for a district without lanes, but it stands alone. An increase of 80 trips is only meaningful for the claim once it is set beside the 890 and 675 in the lane districts."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": {
+    "id": "digital-sat-stim-bikeshare-table-032",
+    "version": 1
+  },
+  "accessibilityText": "Using the table of Alderport weekday bicycle-share trips in 2023 and 2025, choose the description of the data that best supports the claim that districts with new protected lanes saw a far larger rise in trips than districts without them.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "digital-sat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item. Every option is a factually correct reading of the table, so the item turns on sufficiency rather than on spotting a false statement."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "digital-sat-wave3-author",
+    "reviewer": "digital-sat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "digital-sat-wave3-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Recomputed from the rows: Harbour Row +890 (1420->2310), Millgate +675 (980->1655), Fenwick +80, South Quay -55; option b reproduces all four and makes the contrast the claim needs."
+    },
+    "notes": "Author solved and checked uniqueness: the claim is comparative, and D is the only option that reports both groups. Arithmetic re-checked: 890, 675, 80, -55. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "reading",
+    "command-of-evidence",
+    "quantitative",
+    "table"
+  ]
+}

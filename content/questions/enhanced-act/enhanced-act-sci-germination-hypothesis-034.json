@@ -1,0 +1,79 @@
+{
+  "id": "enhanced-act-sci-germination-hypothesis-034",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "science",
+  "domainSlug": "act-science-evaluating-scientific-arguments-and-models",
+  "skillSlug": "act-sci-emi-conclusions-and-predictions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A student hypothesised that **Variety S is better suited than Variety R to soils that hold little water.** Do the results of Study 1 support this hypothesis?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "No; the mean root length of Variety S decreased steadily as soil water content increased."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Yes; at both 10% and 20% soil water content, Variety S had a higher germination percentage and a longer mean root length than Variety R."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "No; Variety S germinated less than Variety R did at 30% and at 40% soil water content."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Yes; Variety S reached a higher maximum germination percentage than Variety R reached."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "First decide which rows of Table 1 the hypothesis is actually about. \"Soils that hold little water\" means the **low** water contents, so the relevant rows are 10% and 20% — not the whole table.\n\nNow compare the two varieties in exactly those rows:\n\n| Water content | R germination | S germination | R root | S root |\n|---|---|---|---|---|\n| 10% | 18% | 42% | 9 mm | 21 mm |\n| 20% | 56% | 78% | 24 mm | 38 mm |\n\nIn both low-water rows, Variety S germinates more **and** grows longer roots. Both measured outcomes point the same way, so the data support the hypothesis, and choice A states the evidence correctly.\n\nCheck your reasoning by asking what evidence *would* have refuted the hypothesis: S doing worse than R at 10% or 20% water. That does not happen. What S does at 30% and 40% water is real, but it is evidence about wet soil, and the hypothesis makes no claim about wet soil at all — which is exactly why choice C, though its figures are true, does not refute anything.",
+  "distractorRationale": {
+    "d": "Reaches the right verdict from a false figure. Variety S's maximum germination was 78%, at 20% water, while Variety R reached 88% at 30% water, so S did not reach the higher maximum; $78 < 88$.",
+    "c": "Cites figures that are true — S did germinate less than R at 30% and 40% water — but uses them to answer a question about *dry* soils. Performance in wet soil is outside the scope of a hypothesis about soils that hold little water, so it cannot refute it.",
+    "a": "Misreads the Variety S root-length column. Those values are 21, 38, 33 and 16 mm: they rise before they fall, so root length does not decrease steadily, and the stated reason is simply not what the table shows."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": {
+    "id": "enhanced-act-stim-sci-germination-005",
+    "version": 1
+  },
+  "accessibilityText": "The question tests the hypothesis that Variety S suits low-water soils better than Variety R. The relevant rows of Table 1 are 10 percent soil water, where Variety R germinated 18 percent with 9 millimetre roots and Variety S germinated 42 percent with 21 millimetre roots, and 20 percent soil water, where Variety R germinated 56 percent with 24 millimetre roots and Variety S germinated 78 percent with 38 millimetre roots. Variety R's maximum germination was 88 percent at 30 percent water; Variety S's maximum was 78 percent at 20 percent water. Variety S root lengths across the four rows were 21, 38, 33 and 16 millimetres.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank against an original experiment description and invented data set. Not derived from, and not a paraphrase of, any ACT-published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "enhanced-act-wave3-author",
+    "reviewer": "enhanced-act-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "enhanced-act-wave3-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "At the two low water contents S beats R on both measures: 10% gives 42% vs 18% germination and 21 vs 9 mm roots; 20% gives 78% vs 56% and 38 vs 24 mm. (a) is false (S roots go 21, 38, 33, 16 - up then down), (c) is true but about wet soil so it does not bear on the hypothesis, and (d) is factually wrong since R's maximum 88% exceeds S's 78%."
+    },
+    "notes": "Author solved the item and attempted to defend each distractor before keying it. Scope is the load-bearing point: the hypothesis concerns low water contents only, so the 10% and 20% rows decide it and both favour Variety S on both measures. The 'no' option quoting the 30% and 40% rows states true figures but answers a different question, and the other two options misstate the maximum germination and the root-length trend. Awaiting an independent blind solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "science",
+    "evaluating-evidence",
+    "hypothesis-testing"
+  ]
+}

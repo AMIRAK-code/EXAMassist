@@ -1,0 +1,65 @@
+{
+  "id": "gre-quant-ne-box-surface-area-206",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-geometry",
+  "skillSlug": "geom-three-dimensional-figures",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A closed rectangular box has a square base. The volume of the box is $600$ cubic centimeters and its height is $6$ centimeters.\n\nWhat is the total surface area of the box, in square centimeters?",
+  "instructionsMd": "Enter your answer in the box. Equivalent forms of the same value are accepted.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 440
+      }
+    ],
+    "acceptedStrings": [
+      "440",
+      "440.0"
+    ]
+  },
+  "explanationMd": "The box is not drawn, so build it from the two facts given: the base is a square, and the height is $6$.\n\n**Step 1 — find the base edge.** Let the base edge be $s$. For a box, volume is base area times height, so\n\n$$s^{2} \\times 6 = 600 \\;\\Longrightarrow\\; s^{2} = 100 \\;\\Longrightarrow\\; s = \\sqrt{100} = 10.$$\n\nA length must be positive, so $s = 10$ centimeters.\n\n**Step 2 — add up the six faces.** A closed box has two square faces (top and bottom) and four rectangular sides, each $s$ by the height:\n\n$$\\text{top and bottom} = 2 \\times (10 \\times 10) = 200,$$\n$$\\text{four sides} = 4 \\times (10 \\times 6) = 240.$$\n\n$$\\text{total surface area} = 200 + 240 = 440 \\text{ square centimeters}.$$\n\n**How to check.** Verify the volume from your dimensions: a $10 \\times 10 \\times 6$ box has volume $600$, matching the stem. Then sanity-check the face count — a closed box has exactly six faces, and $200 + 240$ accounts for all six. If you had been asked for an open box, you would drop one square face and get $340$ instead; the word \"closed\" is doing real work in this stem.",
+  "distractorRationale": {
+    "trap-340-open-box": "Omitting the top face gives $100 + 240 = 340$. The stem says the box is closed, so both square faces count.",
+    "trap-240-sides-only": "Adding only the four rectangular sides gives 240 and forgets the square top and bottom entirely.",
+    "trap-100-stopping-at-the-base": "Stopping after $s^2 = 100$ reports the area of one face rather than the total surface area of the solid.",
+    "trap-600-reusing-the-volume": "Re-entering 600 confuses the given volume with the requested surface area; they are different quantities with different units."
+  },
+  "estimatedSeconds": 140,
+  "stimulusRef": null,
+  "accessibilityText": "A closed rectangular box has a square base. Its volume is 600 cubic centimeters and its height is 6 centimeters. Find the total surface area of the box in square centimeters and type it into the answer box.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gre-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for the wave 3 top-up. The volume and height were chosen so the base edge comes out as the whole number 10 and the surface area is a clean integer. Not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gre-wave3-author",
+    "reviewer": "gre-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "gre-wave3-reviewer",
+      "solvedAnswer": "440",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Square base side s: s^2 * 6 = 600 so s^2 = 100 and s = 10. Closed box surface area = 2(10*10) + 4(10*6) = 200 + 240 = 440."
+    },
+    "notes": "Author solved 6s^2 = 600, so s = 10; surface area = 2(100) + 4(60) = 200 + 240 = 440. Volume check: 10*10*6 = 600. Awaiting blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "numeric-entry",
+    "solid-geometry",
+    "surface-area"
+  ]
+}

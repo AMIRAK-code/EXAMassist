@@ -1,0 +1,89 @@
+{
+  "id": "gre-quant-di-museum-true-statements-211",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-data-analysis",
+  "skillSlug": "data-tables-and-graphs",
+  "subskillSlug": null,
+  "responseType": "multi_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Consider each statement separately. Select **all** of the statements that are true according to the chart.",
+  "instructionsMd": "Select all that apply. There is no credit for a partially correct selection.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "In every year shown, general-admission visitors outnumbered student and member visitors combined."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Student-ticket visitors made up a greater share of total attendance in $2020$ than in $2024$."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Member-ticket visitors more than doubled from $2020$ to $2024$."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Total attendance was greater in each year than in the year before it."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The greatest year-over-year increase in total attendance occurred between $2023$ and $2024$."
+    }
+  ],
+  "answerKey": {
+    "type": "multi_select",
+    "optionIds": [
+      "d",
+      "a"
+    ],
+    "grading": "exact"
+  },
+  "explanationMd": "Compute the five yearly totals once, write them down, and then test each statement against them. Doing the totals first turns five hard questions into five easy ones:\n\n$$2020:\\; 120 + 40 + 60 = 220, \\qquad 2021:\\; 150 + 50 + 66 = 266, \\qquad 2022:\\; 180 + 60 + 84 = 324,$$\n$$2023:\\; 198 + 72 + 90 = 360, \\qquad 2024:\\; 210 + 90 + 108 = 408.$$\n\n**(A) False.** Member tickets went from $60$ to $108$. Doubling would require $120$, and $108 < 120$, so the rise is a factor of $1.8$, not more than $2$.\n\n**(B) True.** $220 < 266 < 324 < 360 < 408$, so attendance rose at every step.\n\n**(C) False.** The year-over-year increases are $46$, $58$, $36$ and $48$. The largest is $58$, between $2021$ and $2022$, not the $48$ between $2023$ and $2024$.\n\n**(D) True.** Compare general admission with the other two added together: $120$ vs $100$; $150$ vs $116$; $180$ vs $144$; $198$ vs $162$; $210$ vs $198$. General admission wins in all five years, though only narrowly in $2024$.\n\n**(E) False.** In $2020$ the student share was $40/220 \\approx 18.2\\%$; in $2024$ it was $90/408 \\approx 22.1\\%$. The share rose rather than fell.\n\n**The correct selection is B and D.**\n\n**How to check.** Because the item is all-or-nothing, a single misread statement costs the whole point, so verify the two closest calls explicitly. For (A), test the doubling threshold by doubling the starting value ($60 \\times 2 = 120$) rather than by estimating a ratio. For (D), the tightest year is $2024$, so check that one first: $90 + 108 = 198$, and $210 > 198$, so the statement survives by $12$ thousand. A statement that is true in four years and false in one is false as written, and (D) was built to make you look.",
+  "distractorRationale": {
+    "c": "Selected by seeing member tickets rise steeply and calling that \"more than doubled\" without testing the threshold. $60$ doubled is $120$, and the 2024 figure is $108$, so the rise falls short of doubling.",
+    "e": "Selected by assuming the biggest jump must be the most recent one because the bars are tallest there. Absolute increases are $46$, $58$, $36$ and $48$; the largest is the 2021-to-2022 step, not the last one.",
+    "b": "Selected by noticing that total attendance grew a great deal and assuming the student share must therefore have been diluted. Student tickets grew faster than the total, so their share rose from about 18 percent to about 22 percent."
+  },
+  "estimatedSeconds": 165,
+  "stimulusRef": {
+    "id": "gre-di-northgate-museum-200",
+    "version": 1
+  },
+  "accessibilityText": "Using the museum attendance chart, judge five statements and select every statement that is true. The statements concern whether member tickets more than doubled from 2020 to 2024, whether total attendance rose every year, whether the largest year-over-year increase in total attendance came between 2023 and 2024, whether general admission outnumbered student and member visitors combined in every year, and whether student tickets were a greater share of total attendance in 2020 than in 2024.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gre-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item in an original data interpretation set written for the wave 3 top-up. Each false statement fails for a different reason: a threshold just missed, a largest-change misidentification, and a share-versus-absolute confusion. The one true statement about category dominance is deliberately tight in the final year. Not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gre-wave3-author",
+    "reviewer": "gre-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "gre-wave3-reviewer",
+      "solvedAnswer": "a,d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Totals 220/266/324/360/408. A true (general vs student+member: 120>100, 150>116, 180>144, 198>162, 210>198). B false (40/220 = 18.2% < 90/408 = 22.1%). C false (60 to 108 is less than double). D true (totals strictly rise). E false (year-over-year rises 46, 58, 36, 48 — the largest is 2021-2022)."
+    },
+    "notes": "Author computed totals 220, 266, 324, 360, 408. (A) 60 to 108 is 1.8x, false. (B) strictly increasing, true. (C) increases 46, 58, 36, 48, largest is 2021-22, false. (D) 120>100, 150>116, 180>144, 198>162, 210>198, true. (E) 18.2 percent vs 22.1 percent, false. Key is B and D. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "data-interpretation",
+    "select-all",
+    "chart-reading",
+    "percent-share"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "gmat-ps-markup-discount-201",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-arithmetic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A retailer buys a jacket for €45.00 and sets its list price at $60$ percent above that cost. During a sale the jacket is sold at $25$ percent off its list price. What is the sale price of the jacket?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "€54.00"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "€72.00"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "€33.75"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "€60.75"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "€65.25"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Handle the two percentage changes one at a time, each as a multiplier applied to whatever the price is at that moment.\n\n**Step 1 — the list price.** A markup of $60$ percent over cost multiplies the cost by $1.60$:\n\n$$45.00 \\times 1.60 = 72.00.$$\n\n**Step 2 — the sale price.** A discount of $25$ percent off the list price multiplies the list price by $1 - 0.25 = 0.75$:\n\n$$72.00 \\times 0.75 = 54.00.$$\n\nThe sale price is €54.00.\n\n**How to check the answer.** Combine the two multipliers into one and apply it to the cost in a single step:\n\n$$1.60 \\times 0.75 = 1.20, \\qquad 45.00 \\times 1.20 = 54.00.$$\n\nThe two routes agree, and the combined multiplier also tells you something useful: after a $60$ percent markup and a $25$ percent discount the retailer still clears $20$ percent over cost, or €9.00 on this jacket.\n\n**The point the item is drilling.** Successive percentage changes multiply; they never add or subtract. A $60$ percent rise followed by a $25$ percent fall is not a $35$ percent rise, because the discount is taken on the larger, marked-up price rather than on the original cost. Writing each change as a factor — $1.60$, then $0.75$ — makes that impossible to get wrong, and it scales to three or four successive changes without any extra thinking.",
+  "distractorRationale": {
+    "c": "This applies the $25$ percent discount straight to the €45.00 cost and never marks the jacket up at all. The discount is taken off the list price, which is €72.00.",
+    "d": "This subtracts the percentages, treating the pair of changes as a single net markup of $60 - 25 = 35$ percent and computing $45.00 \\times 1.35$. Successive percent changes multiply: $1.60 \\times 0.75 = 1.20$, not $1.35$.",
+    "e": "This takes $25$ percent off the €27.00 profit rather than off the €72.00 list price, giving $72.00 - 6.75$. The discount in the stem is a discount on price.",
+    "b": "This is the list price before the sale discount is applied. It stops after the first of the two steps the stem describes."
+  },
+  "estimatedSeconds": 105,
+  "stimulusRef": null,
+  "accessibilityText": "A retailer buys a jacket for 45 euros and lists it at 60 percent above cost, then sells it at 25 percent off the list price. The question asks for the sale price. Five money options are offered in ascending order: 33 euros 75, 54 euros 00, 60 euros 75, 65 euros 25 and 72 euros 00.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item. The €45 cost and the 60/25 percentage pair were chosen so the combined multiplier is exactly 1.20 and so each named error lands on a distinct money value that is not equivalent to any other option."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-wave3-author",
+    "reviewer": "gmat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "gmat-wave3-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "List price = 45.00 x 1.60 = 72.00; sale price = 72.00 x 0.75 = 54.00. Option b is the list price and c is 75% of cost, so neither answers the question asked."
+    },
+    "notes": "Author solved the item step by step and again through the combined 1.20 multiplier, obtaining €54.00 both ways. Each of the four remaining options was tested against a reading of the stem and none survives: the stem states the discount is taken off the list price, which rules out the €33.75 and €65.25 readings. Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "percent",
+    "successive-change",
+    "pricing"
+  ]
+}

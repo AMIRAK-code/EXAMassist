@@ -1,0 +1,83 @@
+{
+  "id": "lsat-lr-compost-supported-127",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "lr1",
+  "domainSlug": "logical-reasoning",
+  "skillSlug": "lr-drawing-conclusions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "In a survey of households in the town, 70 percent said that they compost their kitchen waste. An audit of the town's rubbish, which examined collected bags directly, found kitchen waste in the rubbish of 45 percent of the households sampled. The audit's method is reliable, its sample was representative, and a household that composts its kitchen waste puts no kitchen waste out with its rubbish.\n\nThe statements above most strongly support which one of the following?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The proportion of the town's households that compost has fallen since the survey was taken."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The audit undercounted the households that compost their kitchen waste."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Most households in the town do not compost their kitchen waste."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The survey figure overstates the proportion of the town's households that compost their kitchen waste."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Households that compost their kitchen waste put out less rubbish overall than households that do not."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Do the arithmetic the stimulus is inviting you to do.\n\nThe audit is reliable and representative, and a composting household leaves **no** kitchen waste in its rubbish. So every household whose rubbish contained kitchen waste is a household that does not compost. That is 45 percent of households.\n\n$$100\\% - 45\\% = 55\\%$$\n\nAt most 55 percent of households compost — \"at most\", because among the remaining 55 percent there may be households that neither compost nor happened to throw out kitchen waste in the sampled period. Meanwhile 70 percent told the survey they compost. Since $70 > 55$, the survey figure cannot be right: it is too high. That is (A).\n\nThis is the everyday pattern behind the item — self-reported behaviour on a socially approved activity tends to exceed measured behaviour — but you do not need the sociology. The two numbers simply cannot both be accurate, and the stimulus tells you which one to trust by stipulating that the audit is reliable and representative.\n\nHow to check the answer: fix the largest composting rate the audit allows, 55 percent, and ask which choices survive. (A) survives, since 70 exceeds 55. (B) does not: at 55 percent composting, *most* households do compost, so (B) may well be false. Watch that boundary — had the audit found kitchen waste in 62 percent of households, (B) would have been forced too, and the item would have had two answers. On \"most strongly supported\" questions, always test a choice against the *extreme* case the evidence still permits, not against the case you find most likely.",
+  "distractorRationale": {
+    "c": "The evidence caps composting at 55 percent of households but does not push it below half, so a world in which 55 percent compost is fully consistent with everything stated and makes this choice false. It is the natural overshoot for a reader who correctly sees that the survey is inflated and then assumes the truth must lie on the other side of a majority.",
+    "b": "The stimulus stipulates that the audit's method is reliable and its sample representative, so blaming the audit contradicts a given. It is the mirror image of the supported conclusion: the two figures disagree, and this choice resolves the disagreement against the source the passage tells you to trust.",
+    "e": "Total rubbish volume is never mentioned. Composting households are said only to leave no kitchen waste in their bags, which is compatible with their putting out just as much rubbish of every other kind. This choice slides from a claim about the composition of the rubbish to a claim about its quantity.",
+    "a": "Nothing establishes that the survey and the audit describe different moments, and no trend over time is reported at all. The choice invents a chronology to reconcile the two figures when the passage has already supplied the reconciliation: one of the figures is simply unreliable."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": null,
+  "accessibilityText": "A short set of facts about a town. In a survey, 70 percent of households said they compost kitchen waste; a reliable, representative audit found kitchen waste in the rubbish of 45 percent of households; and a composting household puts out no kitchen waste. The question asks what the statements most strongly support. Five answer choices, labelled A through E. The explanation performs one subtraction: 100 percent minus 45 percent equals 55 percent.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "lsat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original stimulus and choices. Most-strongly-supported item resting on a simple complement calculation and the gap between self-report and direct measurement. Not derived from any published LSAT item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "lsat-wave3-author",
+    "reviewer": "lsat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "lsat-wave3-reviewer",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "A composting household puts out no kitchen waste, so the 45 percent whose rubbish contained kitchen waste do not compost; therefore at most 55 percent compost, while the survey reported 70 percent — the survey figure must overstate. (c) fails because 55 percent composting is consistent with the audit, so \"most do not compost\" is not forced."
+    },
+    "notes": "Author solved the item and attempted a defence of each other choice. The audit figure was set at 45 percent rather than the 62 percent of an earlier draft precisely so that option (B), 'most households do not compost', is no longer forced; at 62 percent it would have been a second defensible answer. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logical-reasoning",
+    "most-strongly-supported",
+    "self-report",
+    "percentages"
+  ]
+}

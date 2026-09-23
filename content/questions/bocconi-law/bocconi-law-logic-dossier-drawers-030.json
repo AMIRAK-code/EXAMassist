@@ -1,0 +1,77 @@
+{
+  "id": "bocconi-law-logic-dossier-drawers-030",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-deductive-conditions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A registry clerk files five dossiers — Amato, Bruni, Costa, Dini and Esposito — in five drawers numbered 1 to 5, one dossier per drawer. The filing satisfies all of the following conditions:\n\n- Costa's drawer number is higher than Bruni's.\n- Amato is in drawer 3.\n- Dini and Esposito are in consecutively numbered drawers, in either order.\n\nWhich of the following must be true?",
+  "instructionsMd": "Exactly one of the four statements holds in every filing that satisfies the conditions.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Dini is in a lower-numbered drawer than Esposito."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Bruni is in drawer 1."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Costa is in drawer 5."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Bruni and Costa occupy consecutively numbered drawers."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Begin with the condition that removes the most possibilities. Amato is fixed in drawer 3, so the other four dossiers occupy drawers 1, 2, 4 and 5. Dini and Esposito must be **consecutively numbered**, and within $\\{1,2,4,5\\}$ the only consecutive pairs are $1$–$2$ and $4$–$5$, because drawer 3 is already taken.\n\n**Filing 1 — Dini and Esposito in drawers 1 and 2.** Bruni and Costa then take drawers 4 and 5. Costa must be higher than Bruni, so Bruni is in 4 and Costa is in 5.\n\n**Filing 2 — Dini and Esposito in drawers 4 and 5.** Bruni and Costa then take drawers 1 and 2. Costa higher than Bruni gives Bruni in 1 and Costa in 2.\n\nThose are the only two possibilities (each with Dini and Esposito in either order inside their pair, which the conditions never settle). In Filing 1, Bruni and Costa are in drawers 4 and 5; in Filing 2 they are in drawers 1 and 2. In both they are side by side, so option D must be true.\n\n**How to check.** A \"must be true\" statement is one that survives *every* admissible arrangement, so once you have the complete list, test each option against the whole list rather than against the first arrangement you found. Here A fails in Filing 2, C fails in Filing 1, B fails whenever Dini sits above Esposito inside its pair, and only D survives all of them — which is also the confirmation that the answer is unique.",
+  "distractorRationale": {
+    "c": "True in Filing 1 only. This is what you get by stopping at the first arrangement that works — Dini and Esposito low, Bruni and Costa high — and treating it as the only one, instead of also testing the pair in drawers 4 and 5.",
+    "a": "The conditions say Dini and Esposito are consecutive but never say which of the two comes first, so their relative order is left open in both filings. This option mistakes an unordered pairing for an ordered one.",
+    "b": "True in Filing 2 only. It comes from placing the Dini–Esposito pair as high as possible without checking that drawers 1 and 2 are equally admissible for them."
+  },
+  "estimatedSeconds": 105,
+  "stimulusRef": null,
+  "accessibilityText": "A deductive reasoning question. Five dossiers named Amato, Bruni, Costa, Dini and Esposito are filed one each in drawers numbered 1 to 5. Costa's drawer number is higher than Bruni's; Amato is in drawer 3; Dini and Esposito are in consecutively numbered drawers in either order. The question asks which of four statements must be true.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original ordering item written to the published Bocconi Law syllabus entry 'a series of initial conditions followed by a question to be answered by deductive reasoning'. Names and scenario are invented."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave3-author",
+    "reviewer": "bocconi-law-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "bocconi-law-wave3-reviewer",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Amato fixes drawer 3, so the Dini/Esposito consecutive pair is {1,2} or {4,5}. If they take 1-2 then Bruni/Costa take 4-5 with Costa higher (B4, C5); if they take 4-5 then Bruni/Costa take 1-2 (B1, C2). Both worlds leave Bruni and Costa adjacent, so D holds; A, B and C each fail in one of the two worlds."
+    },
+    "notes": "Author solved by full enumeration. Amato fixed at 3 leaves {1,2,4,5}; the only consecutive pairs there are 1-2 and 4-5, giving exactly two filings up to the internal order of the Dini-Esposito pair. Bruni and Costa are adjacent in both, so only option D survives. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "ordering",
+    "must-be-true",
+    "no-calculator"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "gmat-ps-tank-work-rates-200",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-applied-arithmetic-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Pump $P$ alone can fill an empty tank in $12$ hours, and pump $Q$ alone can fill the same empty tank in $18$ hours. Starting with the tank empty, both pumps run together for $4$ hours, after which $P$ is switched off and $Q$ continues alone until the tank is full. For how many additional hours does $Q$ run after $P$ is switched off?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$8$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$9$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$12$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$14$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$18$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Work-rate problems become arithmetic as soon as you write each pump's rate as a fraction of the tank filled per hour.\n\n$$P: \\frac{1}{12} \\text{ tank per hour}, \\qquad Q: \\frac{1}{18} \\text{ tank per hour}.$$\n\n**Step 1 — the joint stretch.** Running together, the pumps fill\n\n$$\\frac{1}{12} + \\frac{1}{18} = \\frac{3}{36} + \\frac{2}{36} = \\frac{5}{36}$$\n\nof the tank each hour. In $4$ hours they fill\n\n$$4 \\times \\frac{5}{36} = \\frac{20}{36} = \\frac{5}{9}$$\n\nof the tank.\n\n**Step 2 — what is left.** The remaining fraction is\n\n$$1 - \\frac{5}{9} = \\frac{4}{9}.$$\n\n**Step 3 — how long $Q$ needs for it.** Dividing the work left by $Q$'s rate,\n\n$$\\frac{4/9}{1/18} = \\frac{4}{9} \\times 18 = 8 \\text{ hours}.$$\n\nSo $Q$ runs for $8$ more hours.\n\n**How to check the answer.** Add up what each pump actually delivers over the whole job. $P$ ran for $4$ hours and contributed $\\frac{4}{12} = \\frac{1}{3}$ of the tank. $Q$ ran for $4 + 8 = 12$ hours and contributed $\\frac{12}{18} = \\frac{2}{3}$. Their total is $\\frac{1}{3} + \\frac{2}{3} = 1$, exactly one full tank, so the timing is consistent.\n\n**The habit worth building.** Write rates, never times, on the left-hand side of the equation. Times cannot be added — $12$ and $18$ hours do not combine into anything meaningful — but rates can, which is why $\\frac{1}{12} + \\frac{1}{18}$ is the only legitimate first move. Then read the final question once more: it asks for *additional* hours, not total elapsed hours.",
+  "distractorRationale": {
+    "b": "This approximates the remaining work as half a tank and halves $Q$'s solo time, $18 \\div 2 = 9$. The exact remainder is $\\frac{4}{9}$ of the tank, which is slightly less than a half, so the true time is slightly less than $9$.",
+    "c": "This is the total elapsed filling time, $4$ joint hours plus the $8$ that follow. The question asks only for the hours after $P$ is switched off.",
+    "d": "This counts only $Q$'s own output during the joint stretch, $\\frac{4}{18} = \\frac{2}{9}$, leaving $\\frac{7}{9}$ and therefore $14$ more hours. It discards the third of the tank that $P$ filled while both pumps ran.",
+    "e": "This is $Q$'s solo time for an entire empty tank. It ignores the $4$ hours of joint pumping that happened first."
+  },
+  "estimatedSeconds": 135,
+  "stimulusRef": null,
+  "accessibilityText": "Pump P fills an empty tank in 12 hours on its own; pump Q fills the same tank in 18 hours on its own. Both pumps run together for 4 hours starting from empty, then P stops and Q finishes the tank alone. The question asks how many additional hours Q runs after P stops. Five numeric options are offered: 8, 9, 12, 14 and 18.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item. The 12 and 18 hour rates were chosen so the joint rate is 5/36 and the remaining work divides exactly, giving a whole-number answer and letting each named misstep land on a distinct whole number."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-wave3-author",
+    "reviewer": "gmat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "gmat-wave3-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Combined rate = 1/12 + 1/18 = 5/36 per hour; in 4 hours they fill 20/36 = 5/9. Remaining 4/9 at Q's rate 1/18 takes (4/9) x 18 = 8 additional hours. Option c (12) is the total elapsed time, not the additional time asked for."
+    },
+    "notes": "Author solved the item twice, once forwards through the remaining fraction and once by checking that P's 1/3 and Q's 2/3 contributions sum to a full tank. Each distractor was traced to a single named misstep and no second option survives a correct reading of the stem. Awaiting blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "work-rates",
+    "fractions",
+    "word-problem"
+  ]
+}

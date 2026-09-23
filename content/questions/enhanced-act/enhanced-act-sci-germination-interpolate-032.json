@@ -1,0 +1,79 @@
+{
+  "id": "enhanced-act-sci-germination-interpolate-032",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "science",
+  "domainSlug": "act-science-interpretation-of-data",
+  "skillSlug": "act-sci-iod-interpolate-and-extrapolate",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Suppose Study 1 had included trays of Variety S held at a soil water content of 25%. Based on Table 1, the germination percentage of those trays would most likely have been closest to:",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$76\\%$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$62\\%$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$42\\%$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$90\\%$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "An interpolation question asks you to slot a new value **between two rows you already have**. A soil water content of 25% lies between the 20% row and the 30% row, so read only those two rows of the Variety S germination column:\n\n- At 20% water: $78\\%$ germination\n- At 30% water: $74\\%$ germination\n\nBecause 25% is halfway between the two water contents, the expected germination is roughly halfway between the two percentages:\n\n$$\\frac{78 + 74}{2} = \\frac{152}{2} = 76$$\n\nCheck the answer by asking whether it is bracketed correctly: a value at 25% water must lie between 74% and 78%, and only $76\\%$ does. Any choice outside that interval can be rejected without any arithmetic at all — that bracketing test is the fastest way to handle interpolation items.",
+  "distractorRationale": {
+    "c": "This is the Variety S value at 10% soil water content. It comes from reading the wrong row entirely; 25% water lies between the 20% and 30% rows, nowhere near 10%.",
+    "b": "This is the Variety R value at 40% water. It uses the wrong variety's column and the wrong row, and it falls outside the 74%-to-78% interval that any value at 25% water must lie in.",
+    "d": "This extrapolates an increasing trend that the data do not show. Variety S germination has already begun to fall by 30% water, so a value at 25% cannot exceed the 78% measured at 20% water, let alone reach 90%."
+  },
+  "estimatedSeconds": 55,
+  "stimulusRef": {
+    "id": "enhanced-act-stim-sci-germination-005",
+    "version": 1
+  },
+  "accessibilityText": "The question asks for the likely germination percentage of Variety S at 25 percent soil water content, a value not tested. In Table 1, Variety S germinated 78 percent at 20 percent water and 74 percent at 30 percent water. The four choices are 42 percent, 62 percent, 76 percent and 90 percent.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank against an original experiment description and invented data set. Not derived from, and not a paraphrase of, any ACT-published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "enhanced-act-wave3-author",
+    "reviewer": "enhanced-act-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "enhanced-act-wave3-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Variety S germination is 78% at 20% water and 74% at 30%, so 25% interpolates to about (78 + 74)/2 = 76%. (d) 90% exceeds both bracketing values and (b) 62% / (c) 42% fall well outside the interval."
+    },
+    "notes": "Author solved the item and attempted to defend each distractor before keying it. A value at 25% water must be bracketed by the 20% and 30% readings, 78% and 74%, so 76% is the only option inside the admissible interval. Awaiting an independent blind solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "science",
+    "interpolation",
+    "table-reading"
+  ]
+}

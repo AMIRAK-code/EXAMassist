@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-analytic-circle-line-039",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-analytic-conics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Consider the circle of equation\n\n$$x^{2} + y^{2} - 6x + 4y - 12 = 0$$\n\nWhat is its radius, and how many points does it have in common with the line $y = 1$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Radius $3$; exactly one common point."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Radius $1$; no common points."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Radius $2\\sqrt{3}$; two common points."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Radius $5$; two common points."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "**Step 1 — complete the square** to move from the general equation to the centre-radius form.\n\n$$x^{2} - 6x = (x - 3)^{2} - 9 \\qquad y^{2} + 4y = (y + 2)^{2} - 4$$\n\nSubstituting back:\n\n$$(x - 3)^{2} - 9 + (y + 2)^{2} - 4 - 12 = 0$$\n$$(x - 3)^{2} + (y + 2)^{2} = 25$$\n\nSo the centre is $C = (3,\\, -2)$ and the radius is $r = \\sqrt{25} = 5$.\n\nThe constants that were subtracted, 9 and 4, must be moved to the right-hand side where they **add** to the 12 already there: $9 + 4 + 12 = 25$. Handling those three signs is the whole difficulty of this item.\n\n**Step 2 — measure the distance from the centre to the line.** The line $y = 1$ is horizontal, so the distance is just the difference of the $y$-coordinates:\n\n$$d = |1 - (-2)| = 3$$\n\n**Step 3 — compare.** For a line and a circle:\n\n- $d < r$: two common points (secant)\n- $d = r$: one common point (tangent)\n- $d > r$: none\n\nHere $d = 3 < 5 = r$, so the line cuts the circle at **two** points.\n\n**How to check the answer.** Substitute $y = 1$ into the original equation and see how many solutions in $x$ appear:\n\n$$x^{2} + 1 - 6x + 4 - 12 = 0 \\;\\Longrightarrow\\; x^{2} - 6x - 7 = 0$$\n\nThis factors as $(x - 7)(x + 1) = 0$, giving $x = 7$ and $x = -1$: two points, $(7, 1)$ and $(-1, 1)$. The substitution also confirms the radius indirectly — both points should sit 5 units from $(3,-2)$, and indeed $\\sqrt{4^{2} + 3^{2}} = 5$ for each.\n\nThat substitution is the safest route under exam conditions: it answers the intersection question outright and needs no sign bookkeeping.",
+  "distractorRationale": {
+    "c": "This reads the constant term as the square of the radius, taking $r = \\sqrt{12} = 2\\sqrt{3}$. In the general form $x^{2}+y^{2}+ax+by+c=0$ the constant is not $r^{2}$; the radius satisfies $r^{2} = \\left(\\tfrac{a}{2}\\right)^{2} + \\left(\\tfrac{b}{2}\\right)^{2} - c$, which here gives $9 + 4 + 12 = 25$. The intersection count happens to survive the error, since $2\\sqrt{3} \\approx 3.46$ still exceeds 3, but the radius stated is wrong.",
+    "a": "This mistakes the distance from the centre to the line for the radius, then concludes tangency because the two numbers are now equal by construction. The distance is 3 and the radius is 5; substituting $y = 1$ into the circle's equation yields a quadratic with two distinct roots, so the line is a secant, not a tangent.",
+    "b": "This subtracts the constant instead of adding it when completing the square, giving $r^{2} = 9 + 4 - 12 = 1$ and $r = 1$, and then correctly concludes that a distance of 3 exceeds a radius of 1. The sign error comes first: the $-12$ moves to the right-hand side as $+12$, so $r^{2} = 25$."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "A circle is given by the equation x squared plus y squared minus six x plus four y minus twelve equals zero. The question asks for the radius of the circle and the number of points it shares with the horizontal line y equals one. No figure is shown; each option pairs a radius with a number of common points.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Coefficients were chosen so the radius is a whole number and the substituted quadratic factors over the integers, so the whole item is workable without a calculator. Each distractor pairs a specific sign or reading error in completing the square with the intersection count that error would consistently produce."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-wave3-author",
+    "reviewer": "bocconi-undergraduate-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-wave3-reviewer",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Completing the square: (x-3)^2 + (y+2)^2 = 12 + 9 + 4 = 25, centre (3,-2), radius 5. Distance from centre to y=1 is |1-(-2)| = 3 < 5, so the line is secant: two common points. Substituting y=1 confirms (x-3)^2 = 16, x = -1 or 7."
+    },
+    "notes": "Author's uniqueness check: completing the square gives (x-3)^2 + (y+2)^2 = 25 uniquely, so r = 5, and substituting y = 1 gives x^2 - 6x - 7 = 0 with discriminant 64 > 0, hence exactly two intersection points. Only option A states both correctly; each other option misstates the radius. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "circle",
+    "completing-the-square",
+    "line-conic-position"
+  ]
+}

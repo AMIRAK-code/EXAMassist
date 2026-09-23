@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-sets-two-languages-045",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-sets",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In a school of 120 students, 68 study French, 54 study German, and 21 study neither language. How many students study French but **not** German?",
+  "instructionsMd": "No calculator.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$21$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$23$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$31$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$45$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Let $F$ be the set of French students and $G$ the set of German students.\n\n**Step 1 — find how many study at least one language.** The 21 who study neither lie outside $F \\cup G$, so\n\n$$|F \\cup G| = 120 - 21 = 99$$\n\n**Step 2 — find the overlap using inclusion–exclusion.**\n\n$$|F \\cup G| = |F| + |G| - |F \\cap G|$$\n$$99 = 68 + 54 - |F \\cap G| = 122 - |F \\cap G|$$\n$$|F \\cap G| = 122 - 99 = 23$$\n\nThe count 122 exceeds the 99 actual language students precisely because the 23 students taking both have been counted twice.\n\n**Step 3 — subtract the overlap from the French total.**\n\n$$|F \\setminus G| = |F| - |F \\cap G| = 68 - 23 = 45$$\n\n**How to check the answer.** Fill in all four regions and see whether they total 120:\n\n| region | count |\n|---|---|\n| French only | **45** |\n| both | 23 |\n| German only | $54 - 23 = 31$ |\n| neither | 21 |\n| **total** | $45 + 23 + 31 + 21 = 120$ ✓ |\n\nEvery given figure is reproduced: French is $45 + 23 = 68$ ✓, German is $31 + 23 = 54$ ✓, and the whole school is 120 ✓. When all four regions of a two-set Venn diagram reconcile with every stated total, the answer is confirmed.\n\n**The habit to build.** Do not try to answer this kind of question directly from the stem. Draw the two circles, compute the overlap first, and fill in all four regions; then read off whichever region was asked for. The extra fifteen seconds removes every chance of reporting the wrong region.",
+  "distractorRationale": {
+    "a": "This is the figure the stem already supplies for the students who study **neither** language. It is a given, not a result, and it names the region of the diagram outside both circles rather than the French-only region.",
+    "b": "This is the overlap $|F \\cap G| = 23$, the students who study **both** languages. It is a necessary intermediate step, but the stem asks for the students who study French and not German, so the overlap must still be subtracted from the 68.",
+    "c": "This is $54 - 23 = 31$, the German-only region — the mirror image of what was asked. The subtraction is performed correctly but from the wrong total: the question starts from the 68 French students, not from the 54 German ones."
+  },
+  "estimatedSeconds": 95,
+  "stimulusRef": null,
+  "accessibilityText": "A school has one hundred and twenty students. Sixty-eight study French, fifty-four study German, and twenty-one study neither language. The question asks how many students study French but not German. The four options are the numbers twenty-one, twenty-three, thirty-one and forty-five.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Figures were chosen so that all four regions of the Venn diagram are whole numbers and reconcile exactly with every stated total. Each distractor is a different region of that same diagram, so the item tests which region is being asked for, not arithmetic."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-wave3-author",
+    "reviewer": "bocconi-undergraduate-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-wave3-reviewer",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Students taking at least one language: 120 - 21 = 99. Both languages: 68 + 54 - 99 = 23. French only: 68 - 23 = 45. Option b (23) is the 'both' count and a (21) the 'neither' count."
+    },
+    "notes": "Author's uniqueness check: with a universe of 120 and 21 outside the union, inclusion-exclusion fixes the overlap at 23 and therefore the four regions at 45, 23, 31 and 21, which sum to 120 and reproduce both language totals. Only one region answers the question asked, so exactly one option is defensible. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "sets",
+    "inclusion-exclusion",
+    "venn-diagram"
+  ]
+}

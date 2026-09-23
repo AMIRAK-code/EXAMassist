@@ -1,0 +1,77 @@
+{
+  "id": "digital-sat-math-linear-two-variables-044",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "algebra",
+  "skillSlug": "linear-equations-two-variables",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "The equation $4x + 3y = 48$ gives the total cost, in dollars, of $x$ adult tickets and $y$ child tickets to a planetarium show. If a group buys $6$ adult tickets and spends the full $\\$48$, how many child tickets does the group buy?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$4$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$6$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$8$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$16$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Substitute what you are told, then solve for what is left.\n\nThe group buys $6$ adult tickets, so $x = 6$:\n\n$$4(6) + 3y = 48$$\n\n$$24 + 3y = 48$$\n\nSubtract the adult cost from the total before dividing — this is the step most often skipped:\n\n$$3y = 48 - 24 = 24$$\n\n$$y = \\frac{24}{3} = 8$$\n\nThe group buys $8$ child tickets.\n\nCheck by putting both values back into the original equation: $4(6) + 3(8) = 24 + 24 = 48$, which matches the total. Reading the coefficients also helps you sanity-check the answer: $4$ is the price of an adult ticket and $3$ the price of a child ticket, so $\\$24$ of child tickets at $\\$3$ each must be $8$ tickets.",
+  "distractorRationale": {
+    "a": "This divides the remaining $\\$24$ by $6$, the number of adult tickets, instead of by $3$, the price of a child ticket. The $6$ is a count of tickets, not a price, so it cannot be the divisor here.",
+    "b": "This repeats the number of adult tickets, as though the group bought the same number of each kind. The two coefficients are different, so equal numbers of tickets would give $4(6) + 3(6) = 42$, not $48$.",
+    "d": "This divides the whole $\\$48$ by $3$ without first subtracting the $\\$24$ spent on adult tickets, so it counts the adult money as though it had been spent on children's tickets."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": null,
+  "accessibilityText": "The equation 4x plus 3y equals 48 gives the total cost in dollars of x adult tickets and y child tickets. Given that x equals 6 and the total is 48 dollars, find y. The four options are the numbers 4, 6, 8 and 16.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "digital-sat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item. Prices and totals chosen so that every distractor corresponds to a specific, nameable arithmetic slip."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "digital-sat-wave3-author",
+    "reviewer": "digital-sat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "digital-sat-wave3-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "4(6) + 3y = 48 gives 3y = 24 and y = 8 child tickets."
+    },
+    "notes": "Author solved and checked uniqueness: 4(6) = 24, 48 - 24 = 24, 24/3 = 8. Only one option satisfies the equation with x = 6. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "algebra",
+    "linear-equation",
+    "word-problem"
+  ]
+}

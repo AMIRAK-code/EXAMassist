@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-law-verbal-dissent-error-050",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-verbal-reasoning",
+  "skillSlug": "law-verbal-logical-error",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "> Every judge who has served on the constitutional court for more than ten years has written at least one dissent. Judge Marchesi has written three dissents. She must therefore have served on the court for more than ten years.\n\nWhich of the following best describes the logical error in this argument?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "It generalises from the record of a single judge to the practice of the whole court."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "It appeals to an authority who has no special competence on the question at issue."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "It confuses what a group does collectively with what each of its members does individually."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "It treats writing dissents, which long service brings about, as though it established long service."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Write the premise as an arrow: *served more than ten years $\\rightarrow$ has written at least one dissent.* Long service is the tail; dissents are the head.\n\nThe argument then observes a fact about the **head** — Judge Marchesi has written dissents — and concludes the **tail**. That is travelling backwards along an arrow the premise only licensed in one direction. Dissents are a consequence of long service, not a proof of it; a judge appointed two years ago may perfectly well have dissented three times. Option C names precisely this move.\n\nThe only conclusions the premise supports are the forward one (if a judge has served more than ten years, expect a dissent) and its contrapositive (a judge who has never dissented has not served more than ten years).\n\n**How to check.** Look for a counterexample that satisfies every premise and defeats the conclusion. A court on which all the long-serving judges have dissented — premise satisfied — and on which Judge Marchesi, appointed two years ago, has also dissented three times, makes every premise true and the conclusion false. An argument admitting such a case is invalid, and the description that identifies where the reversal happened is the correct diagnosis.",
+  "distractorRationale": {
+    "a": "The argument reasons from a general rule about the court to a claim about one judge, which is the opposite direction from the one this option describes. No feature of the court is inferred from Judge Marchesi's record.",
+    "c": "This describes the fallacy of division or composition, which needs a claim about a group taken as a whole. Here the premise is explicitly distributive — 'every judge who...' — so it already applies to members one by one, and no collective property is involved.",
+    "b": "No authority is cited anywhere in the argument. The premise is a stated regularity about the court and the evidence is a count of dissents; nothing turns on anyone's word or expertise."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "A verbal reasoning question. An argument states that every judge who has served on the constitutional court for more than ten years has written at least one dissent, that Judge Marchesi has written three dissents, and concludes that she must have served more than ten years. The question asks which of four descriptions best identifies the logical error.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written to the published Bocconi Law syllabus entry 'identifying logical errors in an argument'. The court, judge and figures are invented."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave3-author",
+    "reviewer": "bocconi-law-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "bocconi-law-wave3-reviewer",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The premise gives long service as sufficient for writing a dissent; the argument runs it backwards from dissents to long service (affirming the consequent), which is what D describes. A misdescribes the direction of the inference, B has no appeal to authority, C is a composition/division error not present here."
+    },
+    "notes": "Author's working: the argument affirms the consequent of 'more than ten years implies at least one dissent', which option C describes. A reverses the direction of the inference actually made, B requires a collective-to-member confusion that a distributive 'every' rules out, D requires an appeal to authority that never occurs. A two-year judge with three dissents is an explicit counterexample. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "verbal-reasoning",
+    "logical-error",
+    "affirming-the-consequent"
+  ]
+}

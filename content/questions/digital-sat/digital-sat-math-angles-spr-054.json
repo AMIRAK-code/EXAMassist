@@ -1,0 +1,60 @@
+{
+  "id": "digital-sat-math-angles-spr-054",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "geometry-and-trigonometry",
+  "skillSlug": "lines-angles-and-triangles",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "In triangle $ABC$, the measure of angle $A$ is $34^\\circ$ and the measure of angle $B$ is twice the measure of angle $A$. What is the measure, in degrees, of angle $C$?",
+  "instructionsMd": "Student-produced response. Enter your answer in the box. Do not enter symbols such as a degree sign, percent sign, comma, or dollar sign.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 78
+      }
+    ],
+    "acceptedStrings": [
+      "78"
+    ]
+  },
+  "explanationMd": "Find the second known angle, then use the fact that the three interior angles of a triangle sum to $180^\\circ$.\n\nAngle $B$ is twice angle $A$:\n\n$$m\\angle B = 2 \\times 34^\\circ = 68^\\circ$$\n\nNow subtract both known angles from $180^\\circ$:\n\n$$m\\angle C = 180^\\circ - 34^\\circ - 68^\\circ = 180^\\circ - 102^\\circ = 78^\\circ$$\n\nAngle $C$ measures $78$ degrees.\n\nCheck by adding all three back: $34 + 68 + 78 = 180$. If the three do not add to $180$, one of the two subtractions went wrong.\n\nA sanity check on the shape: all three angles are under $90^\\circ$, so this is an acute triangle, and angle $C$ is the largest of the three. In any triangle the largest angle faces the longest side, so side $AB$ must be the longest — a useful cross-check if a later part of a problem asks about side lengths.",
+  "distractorRationale": {},
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "In triangle ABC, angle A measures 34 degrees and angle B is twice angle A. Find the measure of angle C in degrees. Enter a number without a degree sign.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "digital-sat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item. The angle measure was chosen so that both the doubling and the subtraction give whole numbers."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "digital-sat-wave3-author",
+    "reviewer": "digital-sat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "digital-sat-wave3-reviewer",
+      "solvedAnswer": "78",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Angle B = 2 x 34 = 68. Angles sum to 180, so C = 180 - 34 - 68 = 78 degrees."
+    },
+    "notes": "Author solved and checked uniqueness: B = 68, C = 180 - 34 - 68 = 78, and 34 + 68 + 78 = 180. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "geometry",
+    "triangle-angle-sum",
+    "student-produced-response"
+  ]
+}

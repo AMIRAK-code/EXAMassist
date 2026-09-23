@@ -1,0 +1,82 @@
+{
+  "id": "gmat-ps-remainder-structure-209",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-logic-analytical-reasoning",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "When the positive integer $N$ is divided by $12$, the remainder is $7$. Which of the following could be the remainder when $N$ is divided by $8$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$0$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$1$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$2$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$4$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$7$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "The stem says $N = 12k + 7$ for some non-negative integer $k$. The question is which remainders that form can produce on division by $8$.\n\n**The fast route — generate a few values.**\n\n$$N = 7,\\; 19,\\; 31,\\; 43,\\; 55,\\; 67,\\; 79, \\dots$$\n\nDividing each by $8$:\n\n$$7 \\to 7, \\quad 19 \\to 3, \\quad 31 \\to 7, \\quad 43 \\to 3, \\quad 55 \\to 7, \\quad 67 \\to 3, \\quad 79 \\to 7.$$\n\nOnly $3$ and $7$ ever appear, and $7$ is the only one of those in the option list. (For $N = 7$: $7 = 0 \\times 8 + 7$, a legitimate division with quotient $0$ and remainder $7$. For a larger case, $31 = 3 \\times 8 + 7$.)\n\n**Why the pattern is exactly two values — the argument that makes it certain.** Split $12k + 7$ into a multiple of $8$ plus a leftover:\n\n$$N = 12k + 7 = 8k + (4k + 7),$$\n\nso $N \\equiv 4k + 7 \\pmod 8$. Now $4k$ depends only on whether $k$ is even or odd:\n\n- $k$ even $\\Rightarrow$ $4k \\equiv 0 \\pmod 8$ $\\Rightarrow$ $N \\equiv 7 \\pmod 8$;\n- $k$ odd $\\Rightarrow$ $4k \\equiv 4 \\pmod 8$ $\\Rightarrow$ $N \\equiv 11 \\equiv 3 \\pmod 8$.\n\nSo the remainder on division by $8$ is $7$ or $3$ — never anything else. Generating examples suggests the answer; this argument proves it, and on a question asking what *could* be true, one confirmed example is enough to select an option, while ruling the others out needs the general argument.\n\n**How to check the answer.** Two quick filters confirm the elimination without any modular arithmetic. First, $12k$ is always even and $7$ is odd, so $N$ is always **odd**. An odd number divided by $8$ must leave an odd remainder, which kills $0$, $2$ and $4$ in one stroke. Second, among the two odd options left, $1$ and $7$, the list of actual values above contains $7$ repeatedly and never contains $1$ — and the general argument shows why: the only reachable remainders are $3$ and $7$.\n\n**The transferable lesson.** $8$ does not divide $12$, so \"remainder $7$ on division by $12$\" does not fix the remainder on division by $8$; it narrows it to a short list. Had the second divisor been a factor of the first — dividing by $4$ or $6$ instead — the remainder would have been pinned to a single value. Checking whether one divisor divides the other tells you in advance whether to expect one answer or a small set.",
+  "distractorRationale": {
+    "a": "A remainder of $0$ would make $N$ a multiple of $8$, and therefore even. But $N = 12k + 7$ is an even number plus an odd number, so $N$ is odd for every $k$ and can never be a multiple of $8$.",
+    "b": "This would require $N \\equiv 1 \\pmod 8$. Writing $N = 8k + (4k + 7)$ shows the remainder is $7$ when $k$ is even and $3$ when $k$ is odd, so $1$ never occurs; the values $7, 19, 31, 43, 55$ give remainders $7, 3, 7, 3, 7$ and confirm it.",
+    "c": "This treats the remainder as unconstrained by parity. Since $N$ is always odd, its remainder on division by $8$ must be odd, and $2$ is even.",
+    "d": "The same parity objection applies: $4$ is an even remainder, which an odd $N$ cannot produce. This value is tempting because $4$ appears in the reduction $N \\equiv 4k + 7$, but that is a term inside the expression, not the remainder itself."
+  },
+  "estimatedSeconds": 165,
+  "stimulusRef": null,
+  "accessibilityText": "A positive integer N leaves a remainder of 7 when divided by 12. The question asks which of the listed values could be the remainder when N is divided by 8. Five single-digit options are offered in ascending order: 0, 1, 2, 4 and 7.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item. The divisor pair 12 and 8 was chosen because neither divides the other, so the reachable remainder set is exactly {3, 7}; only 7 appears among the options, and three of the four distractors are eliminated by a single parity observation, which is the transferable technique."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-wave3-author",
+    "reviewer": "gmat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "gmat-wave3-reviewer",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "N = 12k + 7; N mod 8 depends on k mod 2: k even gives 12k = 0 mod 8 so N = 7 mod 8 (e.g. 7, 31, 55); k odd gives 12k = 4 mod 8 so N = 3 mod 8 (e.g. 19, 43). Only 7 and 3 are attainable, and of the options only 7 appears, so e."
+    },
+    "notes": "Author enumerated N = 7, 19, 31, 43, 55, 67, 79 and obtained remainders 7, 3, 7, 3, 7, 3, 7 on division by 8, then proved the set is exactly {3, 7} by writing N = 8k + (4k + 7) and splitting on the parity of k. Since 3 is not offered, exactly one option is attainable and the other four are provably impossible. Awaiting blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "number-properties",
+    "remainders",
+    "modular-arithmetic"
+  ]
+}

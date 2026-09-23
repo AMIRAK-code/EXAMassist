@@ -1,0 +1,82 @@
+{
+  "id": "gmat-ps-alloy-blend-206",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-applied-arithmetic-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A workshop holds $90$ kilograms of an alloy that is $15$ percent silver by mass. Melting it together with a second alloy that is $60$ percent silver by mass is to produce a single batch that is $30$ percent silver by mass. How many kilograms of the $60$ percent alloy are required?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$13.5$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$22.5$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$27$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$30$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$45$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Mixture problems are conservation statements: the silver in the finished batch equals the silver that went in, and the mass of the finished batch equals the masses that went in. Write both.\n\nLet $y$ be the kilograms of the $60$ percent alloy added.\n\n**Silver going in:**\n\n$$0.15(90) + 0.60y = 13.5 + 0.60y.$$\n\n**Silver in the finished batch**, which has mass $90 + y$ and is $30$ percent silver:\n\n$$0.30(90 + y) = 27 + 0.30y.$$\n\n**Set them equal and solve.**\n\n$$13.5 + 0.60y = 27 + 0.30y \\;\\Longrightarrow\\; 0.30y = 13.5 \\;\\Longrightarrow\\; y = 45.$$\n\nSo $45$ kilograms of the $60$ percent alloy are required.\n\n**How to check the answer.** Rebuild the batch from scratch. The finished batch weighs $90 + 45 = 135$ kg and contains\n\n$$0.15(90) + 0.60(45) = 13.5 + 27 = 40.5 \\text{ kg of silver}.$$\n\nThen $40.5 \\div 135 = 0.30$ exactly, so the batch is $30$ percent silver as required.\n\n**A second route worth knowing — alligation.** The target, $30$, sits $15$ points above the weak alloy and $30$ points below the strong one. The masses are in the **inverse** ratio of those distances:\n\n$$\\frac{\\text{mass of } 15\\% \\text{ alloy}}{\\text{mass of } 60\\% \\text{ alloy}} = \\frac{30}{15} = \\frac{2}{1}.$$\n\nWith $90$ kg of the weak alloy, the strong alloy must be half as much: $45$ kg. The inversion is the part people get wrong — the alloy *further* from the target is needed in the *smaller* quantity, because each kilogram of it pulls harder.\n\n**Sanity check before any algebra.** The target of $30$ percent is nearer to $15$ than to $60$, so the batch must be mostly weak alloy. That alone tells you the answer must be well under $90$ kg, and it is.",
+  "distractorRationale": {
+    "a": "This is $0.15 \\times 90 = 13.5$, the mass of silver already sitting in the original batch. It is a mass of silver, not a mass of alloy, so it cannot answer a question about how much alloy to add.",
+    "b": "This divides the $13.5$ kg silver shortfall by $0.60$, the added alloy's own concentration, rather than by $0.30$. Each kilogram added does not contribute a full $0.60$ kg of useful silver: it also adds a kilogram of mass that must itself be brought up to $30$ percent, so the effective gain per kilogram is $0.60 - 0.30 = 0.30$.",
+    "c": "This is $0.30 \\times 90 = 27$, the silver that a $90$ kg batch would contain at the target concentration. It answers a different question and ignores the added mass entirely.",
+    "d": "This applies the alligation weight $\\frac{15}{15 + 30} = \\frac{1}{3}$ to the $90$ kg directly, giving $30$. The alligation distances give a *ratio between the two masses*, not a fraction of one of them, and the ratio must also be inverted."
+  },
+  "estimatedSeconds": 170,
+  "stimulusRef": null,
+  "accessibilityText": "A workshop has 90 kilograms of an alloy containing 15 percent silver by mass. It is melted together with a second alloy containing 60 percent silver by mass to produce a batch that is 30 percent silver by mass. The question asks how many kilograms of the 60 percent alloy are required. Five numeric options are offered in ascending order: 13.5, 22.5, 27, 30 and 45.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item. The 15/30/60 percentage triple gives a clean 2:1 alligation ratio, and the 90 kg base was chosen so the answer is a whole number while each named error (silver mass, wrong divisor, target silver, uninverted alligation fraction) lands on a distinct value."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-wave3-author",
+    "reviewer": "gmat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "gmat-wave3-reviewer",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Silver balance: 0.15(90) + 0.60x = 0.30(90+x) gives 13.5 + 0.6x = 27 + 0.3x, so 0.3x = 13.5 and x = 45. Checks: 45 kg gives 13.5+27=40.5 silver of 135 total = 30%. No other option satisfies the balance (13.5 -> 18.9%, 22.5 -> 22.5%, 27 -> 22.9%, 30 -> 26.25%)."
+    },
+    "notes": "Author solved the item by conservation of silver and again by alligation, obtaining 45 kg both ways, then verified the result by rebuilding the batch: 135 kg containing 40.5 kg of silver is exactly 30 percent. Each of the other four values was substituted back and none yields a 30 percent batch, so exactly one option is defensible. Awaiting blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "mixtures",
+    "alligation",
+    "percent"
+  ]
+}

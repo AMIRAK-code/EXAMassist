@@ -1,0 +1,77 @@
+{
+  "id": "gre-quant-qc-median-mean-203",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-data-analysis",
+  "skillSlug": "data-descriptive-statistics",
+  "subskillSlug": null,
+  "responseType": "quantitative_comparison",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The six numbers in list $L$ are $4$, $4$, $7$, $9$, $11$ and $13$.\n\n| Quantity A | Quantity B |\n| --- | --- |\n| The median of list $L$ | The arithmetic mean (average) of list $L$ |",
+  "instructionsMd": "Compare Quantity A and Quantity B and select the one statement that is true for every value consistent with the information given.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Quantity A is greater."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Quantity B is greater."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The two quantities are equal."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The relationship cannot be determined from the information given."
+    }
+  ],
+  "answerKey": {
+    "type": "quantitative_comparison",
+    "choice": "C"
+  },
+  "explanationMd": "The list is already in increasing order, which saves a step, but check that before you use it: $4 \\le 4 \\le 7 \\le 9 \\le 11 \\le 13$.\n\n**Quantity A — the median.** With an even count of six values there is no single middle entry, so the median is the average of the third and fourth values:\n\n$$\\text{median} = \\frac{7 + 9}{2} = \\frac{16}{2} = 8.$$\n\n**Quantity B — the mean.** Add all six and divide by six:\n\n$$4 + 4 + 7 + 9 + 11 + 13 = 48, \\qquad \\text{mean} = \\frac{48}{6} = 8.$$\n\nBoth quantities equal $8$, so **the two quantities are equal**, choice (C).\n\n**How to check.** A useful independent check on a mean is the balance test: measure each value's signed distance from $8$. Below: $-4, -4, -1$, total $-9$. Above: $+1, +3, +5$, total $+9$. The deviations cancel, which is precisely the property that makes $8$ the mean. It is worth noticing that the equality here is a coincidence of this particular list, not a rule — for most lists the mean and median differ, and a single large value pulls the mean away from the median without moving the median at all.",
+  "distractorRationale": {
+    "a": "Chosen by taking the median to be the fourth value, $9$, instead of averaging the two middle values. With an even number of entries the median is the average of the two central entries, so it need not be a member of the list.",
+    "b": "Chosen by assuming that a list with a repeated small value and a long right tail must have a mean above its median. That is a common pattern, not a law; here the two low $4$s are exactly offset by the high $11$ and $13$.",
+    "d": "Chosen by treating list $L$ as if some entry were unknown. Every value is given, so both statistics are single computable numbers and the comparison is fully determined."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "List L contains the six numbers 4, 4, 7, 9, 11 and 13. Quantity A is the median of list L. Quantity B is the arithmetic mean, or average, of list L. Decide which quantity is greater, whether they are equal, or whether the relationship cannot be determined.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gre-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for the wave 3 top-up. Values were chosen so that the mean and median coincide at 8 while the list is visibly asymmetric, defeating the shape heuristic. Not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gre-wave3-author",
+    "reviewer": "gre-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "gre-wave3-reviewer",
+      "solvedAnswer": "C",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "List already sorted: 4, 4, 7, 9, 11, 13. Median = (7+9)/2 = 8. Sum = 48, mean = 48/6 = 8. The list is fully specified, so the two quantities are equal."
+    },
+    "notes": "Author computed median = (7+9)/2 = 8 and mean = 48/6 = 8, so the quantities are equal and the answer is C. Deviation check: -4-4-1+1+3+5 = 0. Awaiting blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "quantitative-comparison",
+    "mean",
+    "median",
+    "descriptive-statistics"
+  ]
+}

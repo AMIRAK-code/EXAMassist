@@ -1,0 +1,81 @@
+{
+  "id": "digital-sat-math-one-variable-data-051",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "problem-solving-and-data-analysis",
+  "skillSlug": "one-variable-data",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which statement correctly compares the mean and the median of the volunteer hours shown in the table, and gives a correct reason?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The mean and the median are equal, because the distribution is symmetric about its centre."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The median cannot be determined from the table, because the individual members' values are not listed."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The mean is less than the median, because most members recorded fewer than $4$ hours."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The mean is greater than the median, because a few unusually large values pull the mean upward."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Compute both measures from the frequency table, then read the shape of the distribution.\n\n**Median.** There are $25$ values, so the median is the $13$th when they are put in order. Running the frequencies as a cumulative count: $4$ members at $2$ hours (values 1-4), $7$ at $3$ hours (values 5-11), $6$ at $4$ hours (values 12-17). The $13$th value therefore falls in the $4$-hour group, so the median is $4$ hours.\n\n**Mean.** Multiply each value by its frequency and add:\n\n$$2(4) + 3(7) + 4(6) + 6(5) + 12(3) = 8 + 21 + 24 + 30 + 36 = 119$$\n\n$$\\text{mean} = \\frac{119}{25} = 4.76 \\text{ hours}$$\n\nSo the mean ($4.76$) exceeds the median ($4$), and the reason is visible in the table: most members are clustered at $2$, $3$ and $4$ hours, while three members recorded $12$ hours. Those three sit far above everyone else and drag the mean up without moving the middle value. Choice A states both the comparison and that reason.\n\nCheck the effect directly. If the three $12$-hour members had recorded $5$ hours instead, the total would fall to $119 - 21 = 98$ and the mean to $3.92$, below the median — while the median itself would not move at all. That is the defining behaviour of a right-skewed distribution: the mean follows the extreme values, the median does not.",
+  "distractorRationale": {
+    "c": "The direction is backwards. The mean is $4.76$ and the median is $4$, so the mean is the larger of the two; the cluster of small values is exactly what the median already reflects.",
+    "a": "The distribution is not symmetric. Values run from $2$ to $12$ with most of the members bunched at the low end and a tail of three members at $12$ hours, and the computed mean of $4.76$ differs from the median of $4$.",
+    "b": "A frequency table does determine the median. The $25$ ordered values are fully specified by the counts, and the $13$th of them falls in the $4$-hour group."
+  },
+  "estimatedSeconds": 105,
+  "stimulusRef": {
+    "id": "digital-sat-stim-club-hours-034",
+    "version": 1
+  },
+  "accessibilityText": "Using the frequency table of volunteer hours for 25 club members, choose the statement that correctly compares the mean and the median and gives a correct reason.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "digital-sat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item. The frequencies were chosen so that the median sits cleanly inside one group and the skew is unambiguous, leaving exactly one defensible comparison."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "digital-sat-wave3-author",
+    "reviewer": "digital-sat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "digital-sat-wave3-reviewer",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Sum = 2(4)+3(7)+4(6)+6(5)+12(3) = 8+21+24+30+36 = 119, mean = 119/25 = 4.76. Cumulative counts 4, 11, 17 put the 13th value at 4, so median = 4; the three 12-hour values pull the mean above the median."
+    },
+    "notes": "Author solved and checked uniqueness: sum = 119 over 25 members gives a mean of 4.76; cumulative counts 4, 11, 17 put the 13th value at 4 hours. Mean > median, with the three 12-hour values as the cause. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "problem-solving",
+    "mean-and-median",
+    "skew",
+    "table"
+  ]
+}

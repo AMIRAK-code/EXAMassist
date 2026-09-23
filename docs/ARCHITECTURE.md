@@ -157,6 +157,8 @@ page unsanitised.
   above.
 - No dark theme. One theme was done properly rather than two half-checked for
   contrast.
-- The dev server cannot start on this machine (an Application Control policy
-  blocks Next's SWC binary); `npm run build && npm start` works, and that is
-  what the browser tests use.
+- The project lives inside a OneDrive-synced folder. A production build left in
+  `.next` can make the dev server fail with `EINVAL ... readlink`; deleting
+  `.next` fixes it. `outputFileTracingRoot` is pinned to the project directory
+  in `next.config.ts`, because Next otherwise infers the workspace root from the
+  nearest lockfile and an unrelated one higher up the tree wins.

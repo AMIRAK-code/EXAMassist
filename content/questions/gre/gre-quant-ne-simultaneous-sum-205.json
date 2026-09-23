@@ -1,0 +1,64 @@
+{
+  "id": "gre-quant-ne-simultaneous-sum-205",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-algebra",
+  "skillSlug": "alg-simultaneous-equations",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "$$3x + 2y = 31$$\n$$x - y = 2$$\n\nWhat is the value of $x + y$?",
+  "instructionsMd": "Enter your answer in the box. Equivalent forms of the same value are accepted.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 12
+      }
+    ],
+    "acceptedStrings": [
+      "12",
+      "12.0"
+    ]
+  },
+  "explanationMd": "Two independent linear equations in two unknowns determine both unknowns, so solve the system and then read off what was asked.\n\n**Substitute.** The second equation gives $x = y + 2$. Put that into the first:\n\n$$3(y + 2) + 2y = 31 \\;\\Longrightarrow\\; 3y + 6 + 2y = 31 \\;\\Longrightarrow\\; 5y = 25 \\;\\Longrightarrow\\; y = 5.$$\n\nThen $x = y + 2 = 7$, so\n\n$$x + y = 7 + 5 = 12.$$\n\n**An alternative route.** Elimination is just as quick: multiply the second equation by $2$ to get $2x - 2y = 4$ and add it to the first, which cancels the $y$ terms and gives $5x = 35$, so $x = 7$ and then $y = 5$.\n\n**How to check.** Substitute both values back into both original equations: $3(7) + 2(5) = 21 + 10 = 31$ and $7 - 5 = 2$. Both hold, so the solution is right. Then re-read the question — it asks for $x + y$, not for $x$ or $y$ separately, which is where most of the lost points on an item like this go.",
+  "distractorRationale": {
+    "trap-7-answering-x": "Solving correctly and then entering $x = 7$ answers a question that was not asked. The item asks for the sum.",
+    "trap-5-answering-y": "Entering $y = 5$ makes the same mistake in the other direction.",
+    "trap-2-reusing-the-given": "Entering $2$ confuses the given difference $x - y$ with the requested sum $x + y$."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "Two equations are given: 3x plus 2y equals 31, and x minus y equals 2. Find the value of x plus y and type it into the answer box.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gre-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for the wave 3 top-up. Coefficients were chosen so both unknowns are small positive integers and the requested sum differs from every intermediate value. Not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gre-wave3-author",
+    "reviewer": "gre-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "gre-wave3-reviewer",
+      "solvedAnswer": "12",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "From x - y = 2, x = y + 2; substituting, 3(y+2) + 2y = 31 gives 5y = 25, y = 5, x = 7. So x + y = 12 (check: 21 + 10 = 31)."
+    },
+    "notes": "Author solved by substitution: x = y + 2, so 5y + 6 = 31, y = 5, x = 7, x + y = 12; elimination gives the same values and both original equations check. Awaiting blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "numeric-entry",
+    "simultaneous-equations",
+    "algebra"
+  ]
+}
