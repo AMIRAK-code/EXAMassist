@@ -1,0 +1,77 @@
+{
+  "id": "bocconi-law-logic-course-enrolment-033",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-data-propositions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A law faculty's enrolment records establish all three of the following:\n\n- Every student enrolled in Roman Law is also enrolled in Legal History.\n- No student enrolled in Comparative Private Law is enrolled in Legal History.\n- Some students enrolled in Legal History are also enrolled in Canon Law.\n\nWhich of the following must be true?",
+  "instructionsMd": "Use only the three recorded facts.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "No student enrolled in Roman Law is enrolled in Comparative Private Law."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Every student enrolled in Canon Law is also enrolled in Legal History."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Some students enrolled in Comparative Private Law are also enrolled in Canon Law."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Some students enrolled in Roman Law are also enrolled in Canon Law."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Chain the two universal statements; the existential one is a decoy.\n\nThe first fact says every Roman Law student is inside Legal History. The second says the Comparative Private Law group and the Legal History group share nobody at all. Put those together: a student enrolled in both Roman Law and Comparative Private Law would have to be inside Legal History (by the first fact) and outside it (by the second) at the same time. No such student can exist, so option C must be true.\n\nA simple diagram makes the same point. Draw Legal History as a circle; Roman Law sits wholly inside it; Comparative Private Law sits wholly outside it. Two regions on opposite sides of the same boundary cannot overlap.\n\n**How to check.** Try to build a counterexample — a roster on which all three facts hold but the option fails. For C no such roster exists, which is what \"must be true\" means. For every other option you can build one: put the Canon Law students who are in Legal History outside Roman Law, and give Comparative Private Law a roster with no Canon Law students at all. All three facts still hold, and A, B and D all fail on that single roster.",
+  "distractorRationale": {
+    "d": "The third fact places some Legal History students in Canon Law, but Roman Law is only a part of Legal History, and the overlap may fall entirely outside that part. This option slides from 'some Legal History students' to 'some Roman Law students' without any warrant.",
+    "b": "This is the converse of the third fact. 'Some Legal History students are in Canon Law' says nothing about Canon Law students who are not in Legal History, and nothing forbids them. Converting a 'some' statement into an 'every' statement is the error.",
+    "c": "Nothing in the three facts connects Comparative Private Law to Canon Law in either direction, so the overlap may be empty. This option treats an unmentioned possibility as an established fact."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": null,
+  "accessibilityText": "A data propositions question about enrolment in four law courses. Every Roman Law student is enrolled in Legal History; no Comparative Private Law student is enrolled in Legal History; some Legal History students are enrolled in Canon Law. The question asks which of four statements must be true.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original categorical-reasoning item written to the published Bocconi Law syllabus entry 'data propositions'. Courses and faculty are invented."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave3-author",
+    "reviewer": "bocconi-law-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "bocconi-law-wave3-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Roman Law is a subset of Legal History, and Comparative Private Law is disjoint from Legal History, so Roman Law is disjoint from Comparative Private Law. B reverses the first premise's direction for Canon Law, C and D convert an 'some LH are Canon' into overlaps that need not exist."
+    },
+    "notes": "Author's working: Roman Law is a subset of Legal History and Comparative Private Law is disjoint from Legal History, so Roman Law and Comparative Private Law are disjoint (option C). A single counter-model - Canon Law overlapping Legal History only outside Roman Law, and disjoint from Comparative Private Law - falsifies A, B and D simultaneously, confirming uniqueness. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "data-propositions",
+    "categorical-reasoning",
+    "no-calculator"
+  ]
+}

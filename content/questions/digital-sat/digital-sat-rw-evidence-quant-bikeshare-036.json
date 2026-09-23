@@ -1,0 +1,80 @@
+{
+  "id": "digital-sat-rw-evidence-quant-bikeshare-036",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "rw-module-1",
+  "domainSlug": "information-and-ideas",
+  "skillSlug": "command-of-evidence-quantitative",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Okafor further claims that in 2025 a trip beginning in a district with protected lanes was more likely to end outside that district than a trip beginning in a district without them. Which choice best describes data from the table that support this claim?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "In 2025, 41% of trips beginning in Harbour Row and 36% of those beginning in Millgate ended in another district, compared with 22% in Fenwick and 19% in South Quay."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The share of trips ending in another district was highest in Harbour Row, which also had the largest increase in trips since 2023."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "About 947 of the trips beginning in Harbour Row in 2025 ended in another district, more such trips than in any other district."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Harbour Row and Millgate together recorded 3,965 weekday trips in 2025, more than Fenwick and South Quay recorded together."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The claim is about a *likelihood* — how likely a single trip is to end elsewhere. Likelihood is a rate, so the supporting data must be rates, and they must cover both groups.\n\nThe table's last column is exactly that rate. Lane districts: 41% and 36%. No-lane districts: 22% and 19%. The lowest lane figure (36%) is still well above the highest no-lane figure (22%), so the claim holds for every pairing. Choice A is the only option built from those rates.\n\nThe trap here is Choice D, which is arithmetically correct: $0.41 \\times 2{,}310 \\approx 947$, and that is more cross-district trips than Millgate's $0.36 \\times 1{,}655 \\approx 596$. But a count of trips is not a probability per trip. Harbour Row has more cross-district trips partly because it has more trips of every kind.\n\nCheck the difference this way: if Fenwick doubled in size overnight with its 22% unchanged, its *count* of cross-district trips could overtake Millgate's while a single Fenwick trip stayed less likely to leave the district. Counts move with size; rates do not.",
+  "distractorRationale": {
+    "d": "This compares total trip volume, not the chance that a trip leaves its district. A busier pair of districts could easily have the lower cross-district share, so this figure cannot support the claim.",
+    "b": "This reports the top district only, and pairs it with a fact about growth that the claim does not mention. One district's rate cannot establish a difference between two groups of districts.",
+    "c": "This converts a rate into a count, which reintroduces district size. The roughly 947 trips follow from 41% of 2,310; a district with more trips overall can lead on the count while a single trip there is no more likely to end elsewhere."
+  },
+  "estimatedSeconds": 105,
+  "stimulusRef": {
+    "id": "digital-sat-stim-bikeshare-table-032",
+    "version": 1
+  },
+  "accessibilityText": "Using the table of Alderport weekday bicycle-share trips, choose the description of the data that best supports the claim that in 2025 a trip beginning in a district with protected lanes was more likely to end outside that district than a trip beginning in a district without them.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "digital-sat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item. All four options are true readings of the table; the item turns on the rate-versus-count distinction."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "digital-sat-wave3-author",
+    "reviewer": "digital-sat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "digital-sat-wave3-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The claim is about likelihood, i.e. the share column: 41% and 36% for the lane districts versus 22% and 19% for the others, which is exactly option a."
+    },
+    "notes": "Author solved and checked uniqueness: the claim is about a per-trip likelihood, so only the percentage column supports it, and only A reports that column for both groups. Counts in option D verified: 0.41 x 2310 = 947.1, 0.36 x 1655 = 595.8, 0.22 x 1340 = 294.8, 0.19 x 1455 = 276.5. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "reading",
+    "command-of-evidence",
+    "quantitative",
+    "rate-vs-count"
+  ]
+}

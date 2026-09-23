@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-law-logic-bar-practice-areas-039",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-data-propositions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A survey of a bar association reports the following about its members:\n\n- 70 per cent practise civil law.\n- 40 per cent practise criminal law.\n- Every member practises at least one of the two.\n\nWhich of the following follows necessarily?",
+  "instructionsMd": "Use only the reported figures.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Exactly one member in ten practises both civil and criminal law."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "More than half of the members practise criminal law."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "No member practises both civil and criminal law."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Exactly three members in ten practise civil law only."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The two percentages add to $70 + 40 = 110$, which is more than 100. The excess is not an error: it is the overlap counted twice.\n\nBecause every member practises at least one of the two fields, the union of the two groups is the whole membership, 100 per cent. The inclusion–exclusion relation gives\n\n$$100 = 70 + 40 - \\text{both}$$\n$$\\text{both} = 110 - 100 = 10$$\n\nSo exactly 10 per cent — one member in ten — practise both, which is option B.\n\nThe full picture follows at once: civil only $= 70 - 10 = 60$ per cent, criminal only $= 40 - 10 = 30$ per cent, both $= 10$ per cent.\n\n**How to check.** Add the three disjoint groups: $60 + 30 + 10 = 100$ per cent, with nobody left over — which is what \"every member practises at least one\" requires. Then reread each option against those three figures rather than against the two headline percentages, since the headline figures each contain the overlap.",
+  "distractorRationale": {
+    "d": "Three in ten is 30 per cent, which is the share practising *criminal* law only; civil law only accounts for 60 per cent. This option attaches the smaller exclusive share to the larger field, which is easy to do if you subtract the overlap from the wrong headline figure.",
+    "b": "Criminal law is practised by 40 per cent, which is less than half. This option comes from adding the overlap to the criminal-law figure — treating 40 per cent as 'criminal only' and then inflating it — when the 40 per cent already includes everyone who practises criminal law.",
+    "c": "If no member practised both, the two exclusive groups would cover only 110 per cent of a 100 per cent membership, which is impossible; an overlap is forced precisely because the percentages sum above 100. This option ignores that arithmetic."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "A data propositions question. A bar association survey reports that 70 per cent of members practise civil law, 40 per cent practise criminal law, and every member practises at least one of the two. The question asks which of four statements follows necessarily.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original overlapping-sets item written to the published Bocconi Law syllabus entry 'data propositions'. All percentages are invented and chosen so the overlap is a round figure."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave3-author",
+    "reviewer": "bocconi-law-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "bocconi-law-wave3-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Inclusion-exclusion: 70 + 40 - 100 = 10 per cent practise both, i.e. exactly one in ten. B is false (criminal is 40%), C is false (overlap is 10%), D is false because civil-only is 70 - 10 = 60%, i.e. six in ten."
+    },
+    "notes": "Author's working: union is 100 per cent, so both = 70 + 40 - 100 = 10 per cent (option B). Civil only 60, criminal only 30. A misassigns the 30 per cent criminal-only share to civil law, C contradicts the stated 40 per cent, D is impossible because the headline shares sum above 100. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "data-propositions",
+    "overlapping-sets",
+    "percentages",
+    "no-calculator"
+  ]
+}

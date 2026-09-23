@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-fn-log-graph-transform-036",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-functions-graphs",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "The graph of $y = \\log_{2} x$ is **first** reflected in the $y$-axis and **then** translated 3 units to the left. Which equation describes the resulting curve, and on which set of $x$ is it defined?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$y = -\\log_{2}(x + 3)$, defined for $x > -3$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$y = \\log_{2}(x + 3)$, defined for $x > -3$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$y = \\log_{2}(3 - x)$, defined for $x < 3$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$y = \\log_{2}(-x - 3)$, defined for $x < -3$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Two rules govern everything here, and both act on the **input** $x$:\n\n- Reflection in the $y$-axis: replace $x$ by $-x$.\n- Translation $h$ units to the left: replace $x$ by $x + h$.\n\n(Reflection in the $x$-axis, by contrast, acts on the output: it puts a minus sign in front of the whole function.)\n\n**Step 1 — reflect in the $y$-axis.** Replace $x$ by $-x$:\n\n$$y = \\log_{2}(-x)$$\n\nThis curve lives where $-x > 0$, that is, $x < 0$: the original graph has been folded onto the negative side.\n\n**Step 2 — translate 3 units to the left.** Replace $x$ by $x + 3$ in the equation obtained in step 1:\n\n$$y = \\log_{2}\\big(-(x + 3)\\big) = \\log_{2}(-x - 3)$$\n\n**Step 3 — find the domain.** A logarithm needs a positive argument:\n\n$$-x - 3 > 0 \\;\\Longleftrightarrow\\; -x > 3 \\;\\Longleftrightarrow\\; x < -3$$\n\n(The last step divides by $-1$, so the inequality sign turns round.)\n\n**How to check the answer.** Track one specific point. The original graph passes through $(1, 0)$, because $\\log_{2} 1 = 0$. Reflecting in the $y$-axis moves it to $(-1, 0)$; shifting 3 to the left moves it to $(-4, 0)$. Test the candidate: $\\log_{2}(-(-4) - 3) = \\log_{2}(4 - 3) = \\log_{2} 1 = 0$. It passes through $(-4, 0)$, as required. Also check that the vertical asymptote lands where it should: $x = 0$ becomes $x = 0$ under reflection, then $x = -3$ after the shift, which matches the domain boundary.\n\n**Why the order matters.** Doing the translation first and the reflection second gives $\\log_{2}(3 - x)$, a different curve with a different asymptote. When both transformations act on the input, they do not commute, so the stated order has to be respected.",
+  "distractorRationale": {
+    "b": "This applies the translation and forgets the reflection entirely. Its domain, $x > -3$, sits on the opposite side of the asymptote from the true curve; the two graphs share no point at all. A reflection in the $y$-axis must send the curve into negative $x$ territory.",
+    "c": "This performs the two transformations in the reverse order: translating first gives $\\log_{2}(x + 3)$ and reflecting that in the $y$-axis gives $\\log_{2}(3 - x)$. Because both operations act on the input, they do not commute, and the stem fixes the order. Checking the tracked point confirms the difference: this curve passes through $(2, 0)$, not $(-4, 0)$.",
+    "a": "This reflects in the wrong axis. Putting a minus sign in front of the whole logarithm reflects the graph in the $x$-axis, flipping the curve upside down while leaving its domain $x > 0$ unchanged before the shift. Reflection in the $y$-axis requires replacing $x$ by $-x$ inside the function."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": null,
+  "accessibilityText": "The graph of y equals log base two of x is transformed in two steps: first it is reflected in the vertical y-axis, then it is translated three units to the left. The question asks for the equation of the resulting curve together with the set of x values on which it is defined. No figure is shown; each option gives an equation and a domain in words.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. The distractors isolate three separate misconceptions: omitting the reflection, applying the two input transformations in the wrong order, and confusing reflection in the y-axis with reflection in the x-axis. No figure is needed, which suits a no-calculator, text-only delivery."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-wave3-author",
+    "reviewer": "bocconi-undergraduate-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-wave3-reviewer",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Reflection in the y-axis: y = log2(-x), defined for x < 0. Then a 3-unit shift left replaces x by x+3: y = log2(-(x+3)) = log2(-x-3), defined where -x-3 > 0, i.e. x < -3. Option c would be reflection followed by a shift 3 to the RIGHT, so the stated order decides it."
+    },
+    "notes": "Author's uniqueness check: composing the two stated transformations in the stated order yields a single equation. The four options have domains x > -3, x < 3, x < -3 and x > -3 respectively, and only the third both contains the tracked image point (-4, 0) and has its asymptote at x = -3. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "graph-transformations",
+    "logarithmic-function",
+    "domain"
+  ]
+}

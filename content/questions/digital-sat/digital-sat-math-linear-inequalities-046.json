@@ -1,0 +1,77 @@
+{
+  "id": "digital-sat-math-linear-inequalities-046",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "algebra",
+  "skillSlug": "linear-inequalities",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A delivery van can carry a load of at most $900$ kilograms. It is loaded with $c$ crates weighing $34$ kilograms each and $p$ pallets weighing $120$ kilograms each, and it must carry at least $3$ pallets. Which system of inequalities represents this situation?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$34c + 120p \\le 900$ and $p \\ge 3$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$34c + 120p \\ge 900$ and $p \\ge 3$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$34c + 120p \\le 900$ and $p \\le 3$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$120c + 34p \\le 900$ and $p \\ge 3$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Translate one phrase at a time, and keep each variable attached to its own weight.\n\n**Total load.** Each crate weighs $34$ kg, so $c$ crates weigh $34c$; each pallet weighs $120$ kg, so $p$ pallets weigh $120p$. The load is the sum, $34c + 120p$. \"At most $900$\" means it may equal $900$ but not exceed it, so $34c + 120p \\le 900$.\n\n**Pallet count.** \"At least $3$ pallets\" means $3$ or more, so $p \\ge 3$.\n\nPutting them together gives Choice A.\n\nThe phrase-to-symbol dictionary is worth memorising: *at most* and *no more than* give $\\le$; *at least* and *no fewer than* give $\\ge$.\n\nCheck by testing a load you can judge by hand. Take $c = 10$ and $p = 4$: the weight is $340 + 480 = 820$ kg, under the limit, with $4$ pallets, which is at least $3$. This load is clearly allowed, and it satisfies both inequalities in Choice A. Now test $c = 20$, $p = 4$: the weight is $680 + 480 = 1{,}160$ kg, over the limit. Choice A correctly rejects it.",
+  "distractorRationale": {
+    "b": "This reverses the load inequality. Writing $\\ge 900$ says the van must carry *at least* $900$ kilograms, turning a capacity limit into a minimum requirement, so a safe $820$-kilogram load would be excluded.",
+    "c": "This reverses the pallet condition. Writing $p \\le 3$ caps the pallets at three, whereas \"at least 3\" sets three as the floor and allows any larger number.",
+    "d": "This attaches each weight to the wrong variable, charging $120$ kilograms per crate and $34$ per pallet. The subscripts must follow the item they describe, or the total weight computed is not the van's load at all."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": "A van carries at most 900 kilograms. It holds c crates of 34 kilograms each and p pallets of 120 kilograms each, and must carry at least 3 pallets. Choose the system of inequalities that represents the situation.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "digital-sat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item. Each distractor alters exactly one feature of the correct system: the direction of the capacity inequality, the direction of the count inequality, or the pairing of weights to variables."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "digital-sat-wave3-author",
+    "reviewer": "digital-sat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "digital-sat-wave3-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Total weight 34c + 120p is 'at most 900' so <= 900, and 'at least 3 pallets' gives p >= 3. Option d swaps the per-item weights."
+    },
+    "notes": "Author solved and checked uniqueness: 'at most 900' gives <= and 'at least 3 pallets' gives p >= 3, with 34 on crates and 120 on pallets; each other option breaks exactly one of those three requirements. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "algebra",
+    "inequalities",
+    "modelling"
+  ]
+}

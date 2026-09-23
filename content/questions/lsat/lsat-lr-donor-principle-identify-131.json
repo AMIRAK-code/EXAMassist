@@ -1,0 +1,83 @@
+{
+  "id": "lsat-lr-donor-principle-identify-131",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "lr1",
+  "domainSlug": "logical-reasoning",
+  "skillSlug": "lr-principles-and-rules",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Reviewer: The museum's new wing was paid for by a company that conceals its emissions data, and the museum knew this when it accepted the gift. The museum has for years urged the public to hold polluters to account. The wing itself is admirable and its programmes reach thousands of schoolchildren. Nevertheless, the museum was wrong to take the money.\n\nWhich one of the following principles, if valid, most helps to justify the reviewer's reasoning?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Once a gift has been put to good use, the donor's conduct becomes irrelevant to whether accepting the gift was proper."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "An institution should accept a gift only where accepting it will produce more good than harm."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "An institution acts wrongly when it knowingly accepts a benefit from a party whose conduct falls short of the standard the institution publicly urges on others, however much good the benefit does."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "An institution should disclose to the public the source of every gift it receives."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "An institution is answerable for the conduct of its donors from the moment a gift is accepted onward."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "On a justify-the-reasoning question, the winning principle has to license the exact conclusion from the exact premises the arguer relies on. So list them.\n\n- The donor conceals its emissions data.\n- The museum **knew** this when it accepted.\n- The museum publicly urges others to hold polluters to account.\n- The wing does real good.\n- Conclusion: accepting was **wrong**.\n\nA principle that justifies this must do two things. It must make the donor's conduct plus the museum's own public stance enough to condemn acceptance, and it must survive the concession that the wing does good — because the reviewer grants that and condemns the museum anyway. Choice (C) does both: the trigger is knowingly taking a benefit from a party falling short of the standard the institution urges on others, and the closing clause, \"however much good the benefit does\", neutralises the concession.\n\nThe check to run on every candidate is: *plug the passage's facts into the principle and see which verdict comes out.* (A) yields the opposite verdict here, since the wing's benefit to thousands of schoolchildren looks like more good than harm. (B) explicitly excuses the museum. (D) concerns responsibility going forward, not the propriety of accepting, so it never reaches the reviewer's conclusion. (E) issues a requirement about disclosure that the museum may have met in full; nothing in the passage says the source was hidden.\n\nAlso worth noticing is the shape of the reviewer's argument: a concession (\"the wing itself is admirable\") followed by a conclusion that overrides it. When an argument concedes a benefit and condemns anyway, the principle you need is one that makes the wrongness independent of consequences. Scan the choices for that feature first and the search narrows immediately.",
+  "distractorRationale": {
+    "b": "This is a consequentialist test, and on the passage's own facts the museum would pass it: a wing whose programmes reach thousands of schoolchildren plausibly produces more good than harm. A principle that would acquit the museum cannot justify the reviewer's verdict that the museum acted wrongly.",
+    "a": "This directly excuses the conduct the reviewer condemns, by declaring the donor's behaviour irrelevant once the gift is doing good. It is the principle the museum's defenders would invoke, and it is included to catch a reader who selects the choice that mentions the argument's key terms without checking which side it lands on.",
+    "e": "This assigns the museum ongoing responsibility for what its donors do after the gift, whereas the reviewer's charge concerns the single act of accepting. A principle about subsequent answerability leaves the propriety of acceptance untouched, so it cannot deliver the conclusion the argument reaches.",
+    "d": "This imposes a duty of disclosure, and the passage never suggests the museum hid where the money came from; the reviewer plainly knows. Satisfying a disclosure rule is compatible with having been wrong to accept, so this principle neither condemns nor excuses the conduct at issue."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": "A reviewer's argument. A museum knowingly accepted funding for a new wing from a company that conceals its emissions data, although the museum has long urged the public to hold polluters to account; the wing is admirable and serves thousands of schoolchildren; the reviewer concludes the museum was wrong to take the money. The question asks which principle most helps to justify that reasoning. Five answer choices, labelled A through E. No notation, tables or figures appear.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "lsat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original stimulus and choices. Identify-the-principle item built so that the key must both supply the trigger and override an explicit concession about consequences; no real museum, company or donation is referred to. Not derived from any published LSAT item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "lsat-wave3-author",
+    "reviewer": "lsat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "lsat-wave3-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The reviewer concedes the wing is admirable and reaches thousands of children yet still condemns acceptance, so the principle must condemn knowing acceptance regardless of benefit — exactly (c)'s \"however much good the benefit does\". (b) would license acceptance here since the good is stipulated; (a) and (e) point the wrong way; (d) is about disclosure, not acceptance."
+    },
+    "notes": "Author tested each principle by applying it to the passage's facts and reading off the verdict. A draft option 'No institution should accept money from a commercial company' was cut because, being broader, it would also have justified the conclusion and so created a second defensible answer. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logical-reasoning",
+    "identify-the-principle",
+    "ethics",
+    "concession-and-conclusion"
+  ]
+}

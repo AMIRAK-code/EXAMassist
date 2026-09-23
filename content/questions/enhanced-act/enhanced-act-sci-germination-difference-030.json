@@ -1,0 +1,80 @@
+{
+  "id": "enhanced-act-sci-germination-difference-030",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "science",
+  "domainSlug": "act-science-interpretation-of-data",
+  "skillSlug": "act-sci-iod-manipulate-and-analyse-data",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "According to Table 1, at a soil water content of 20%, the germination percentage of Variety S was greater than that of Variety R by how many percentage points?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$14$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$22$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$32$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$56$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Find the row for 20% soil water content, then read across to the two **germination** columns — not the root-length columns.\n\n- Variety R germination at 20%: $56\\%$\n- Variety S germination at 20%: $78\\%$\n\nThe question asks how much greater S was, so subtract R from S:\n\n$$78 - 56 = 22$$\n\nCheck the answer by adding it back: $56 + 22 = 78$, which is the Variety S figure in the table. A useful habit on a table question is to say out loud which row and which two columns you are using before you subtract — most errors here are reading errors, not arithmetic errors.",
+  "distractorRationale": {
+    "a": "This is the difference in the mean **root length** columns at 20% soil water: $38 - 24 = 14$ mm. It uses the correct row but the wrong pair of columns; the question asks about germination percentage.",
+    "c": "This is $88 - 56 = 32$, a comparison of Variety R with itself across two rows (30% water against 20% water). It compares the wrong pair of cells: the question fixes the water content and compares the two varieties.",
+    "d": "This is the Variety R germination figure at 20% copied straight out of the table. It is one of the two values needed, but no subtraction has been performed, so it is not a difference at all."
+  },
+  "estimatedSeconds": 40,
+  "stimulusRef": {
+    "id": "enhanced-act-stim-sci-germination-005",
+    "version": 1
+  },
+  "accessibilityText": "The question uses the row of Table 1 for 20 percent soil water content, where Variety R germinated 56 percent and Variety S germinated 78 percent, and asks for the difference in percentage points. The four choices are 14, 22, 32 and 56.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank against an original experiment description and invented data set. Not derived from, and not a paraphrase of, any ACT-published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "enhanced-act-wave3-author",
+    "reviewer": "enhanced-act-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "enhanced-act-wave3-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "At 20% soil water content Variety S germinated 78% and Variety R 56%; 78 - 56 = 22 percentage points."
+    },
+    "notes": "Author solved the item and attempted to defend each distractor before keying it. 78 - 56 = 22 is the only value in the option set that is a difference between the two germination figures in the 20% row; 14 is the root-length difference, 32 compares two Variety R rows, and 56 is an unsubtracted cell value. Awaiting an independent blind solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "science",
+    "data-representation",
+    "table-reading",
+    "subtraction"
+  ]
+}

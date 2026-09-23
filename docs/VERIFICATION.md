@@ -7,6 +7,24 @@ successes is not evidence of anything.
 Verification dates: exam facts **2026-09-18**, re-checked by the coordinating
 agent **2026-09-18/20**. Test runs **2026-09-23**.
 
+### The readiness assessment
+
+The readiness feature is the place where the temptation to fabricate is
+strongest, so its tests are mostly about what it must refuse to do. They assert
+that a learner with five answers is told there is not enough evidence however
+accurate they were; that the band is capped by evidence rather than accuracy;
+that no scaled score is offered for any exam whose conversion is unpublished;
+and that a target on the wrong scale (2400, the retired three-section SAT) is
+rejected rather than stored.
+
+For the Bocconi test, whose scoring IS published in full, the projection is
+tested as arithmetic: it must apply the published -0.2 penalty rather than
+counting correct answers, measure accuracy on attempted questions rather than
+over everything shown, compare against the published 17-point eligibility floor
+rather than an invented threshold, and reproduce the break-even the penalty
+implies — guessing is worth it above about 17% accuracy and not below, and
+getting that backwards would cost learners marks.
+
 ---
 
 ## 1. Exam facts, verified first-hand by the coordinating agent
@@ -116,6 +134,27 @@ content**:
   correction and the reason are written into the item's audit record rather than
   applied silently.
 
+A fourth round covered the 129 questions written to open sectional practice:
+
+```
+129 verdicts applied
+  published:   128
+  quarantined:   1
+```
+
+No key was disputed. The single quarantine came from the ambiguity flag rather
+than a disagreement: on `gre-verbal-rc-commonplace-registers-221` the reviewer's
+answer matched the key but they showed option B collides with the passage's own
+distinction between a borrowing record and evidence of reading, leaving a second
+answer defensible.
+
+Reviewers also raised two things that were not defects but were worth settling.
+One asked whether the engine actually grades a three-blank GRE Text Completion,
+which is carried by the two-part response type; it does, and there is now a test
+for it. Another noted that three reading questions hanging off one passage is a
+heavier concentration than the real exam's distribution — recorded in the
+editorial backlog rather than changed, since it is a selection-policy question.
+
 ### What review caught that agreement did not
 
 The valuable finding was structural, not an incorrect key. Correct answers
@@ -155,7 +194,7 @@ npm run verify     # typecheck + content validation + unit tests
 npm run e2e        # browser tests
 ```
 
-### Unit and integration — 170 passing
+### Unit and integration — 193 passing
 
 | Suite | Tests | Covers |
 | --- | --- | --- |
@@ -166,9 +205,10 @@ npm run e2e        # browser tests
 | `attempts.test.ts` | 27 | Full lifecycle against a real database |
 | `auth.test.ts` | 27 | Hashing, sessions, revocation, rate limiting |
 | `adaptive-routing.test.ts` | 10 | The routing rule, and a full SAT simulation routed end to end |
+| `readiness.test.ts` | 23 | What the readiness assessment must refuse to claim, and the Bocconi projection's arithmetic |
 
-**157 questions published across all seven exam configurations**, every one at
-or above the 20-item target; 2 quarantined.
+**285 questions published across all seven exam configurations**, every one well
+past the 20-item target; 3 quarantined for ambiguity.
 
 Tests that speak directly to the definition of done:
 
@@ -212,7 +252,7 @@ Tests that speak directly to the definition of done:
    and refuses to touch anything already published, which also moved it to its
    correct place in the pipeline: before review, not after.
 
-### Browser tests — 37 passing, 1 skipped
+### Browser tests — 41 passing, 1 skipped
 
 Desktop Chrome and emulated Pixel 7, against a production build and a freshly
 seeded database.
@@ -275,8 +315,9 @@ Stated plainly, because these are real gaps:
   mutations, rate limiting, hashed session tokens, and sanitised rendering.
 - **Full-length simulations have not been run**, because no exam yet has enough
   reviewed content to fill one.
-- **`npm run dev` does not start on this machine** — an Application Control
-  policy blocks Next.js's SWC binary. All verification used
-  `npm run build && npm start`.
+- Verification deliberately ran against a **production build**
+  (`npm run build && npm start`), not the dev server, since that is what a
+  deployment serves. `npm run dev` was separately confirmed to start, compile
+  and serve on 2026-09-23.
 - **Exam facts drift.** Everything here was true on the date recorded against
   it. `docs/research/README.md` has the refresh procedure.

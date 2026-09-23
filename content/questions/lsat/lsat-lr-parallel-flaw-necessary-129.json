@@ -1,0 +1,83 @@
+{
+  "id": "lsat-lr-parallel-flaw-necessary-129",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "lr1",
+  "domainSlug": "logical-reasoning",
+  "skillSlug": "lr-reasoning-patterns",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "To be hired as a translator at the agency, one must pass the agency's certification examination. Miguel has passed the agency's certification examination. Miguel will therefore be hired as a translator at the agency.\n\nThe flawed reasoning in the argument above is most closely paralleled in which one of the following?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The clinic's busiest day of the week is Monday. So most of the patients the clinic sees are seen on a Monday."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "If the ferry is cancelled, the coast road is closed. The coast road is not closed. So the ferry was not cancelled."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "No one may enter the reading room without a reader's card. Yusuf has a reader's card. So Yusuf may enter the reading room."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Cigarette sales have fallen every year since the tax was introduced. The tax must therefore have caused the fall."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Every essay that won the prize was written by a graduate student. So no essay written by an undergraduate was any good."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "First name the flaw in the original, then find the choice that makes the same mistake.\n\n\"To be hired, one must pass the examination\" states a **necessary** condition: hired $\\rightarrow$ passed. The argument then observes that Miguel passed and concludes that he will be hired, which requires the conditional to run the other way: passed $\\rightarrow$ hired. Passing may be one hurdle among several — interviews, references, a vacancy. Mistaking a necessary condition for a sufficient one is the error, and in conditional terms it is the same move as affirming the consequent.\n\nChoice (B) reproduces it exactly. \"No one may enter without a reader's card\" says: may enter $\\rightarrow$ has a card. The card is required, not enough on its own; the reading room may also demand an appointment or be closed on Sundays. From \"Yusuf has a card\" the argument concludes he may enter, reversing the conditional in precisely the original's way.\n\nCheck the others by naming each flaw and seeing that it is a **different** one:\n\n- (A) leaps from a fact about which essays won to an evaluative claim about quality, and slides from 'did not win' to 'was not any good'.\n- (C) confuses the day with the highest daily count with a majority of the weekly total — a part-versus-whole numerical error, no conditional in sight.\n- (D) infers causation from a temporal correlation.\n- (E) is a valid contrapositive and contains no flaw at all, which alone disqualifies it from paralleling a flawed argument.\n\nThe habit to carry forward: on parallel-flaw questions, put the flaw into a one-sentence description first — here, \"treats a requirement as a guarantee\" — and then test each choice against that sentence rather than against the original's wording. Watch particularly for phrasings that hide a necessary condition, such as *must*, *only*, *without*, *requires* and *unless*.",
+  "distractorRationale": {
+    "e": "The error here is a leap from winning to worth, plus the assumption that anything that did not win was bad. That is a different mistake from reversing a conditional: nothing in this argument states a requirement, so nothing is being treated as a guarantee. It attracts a reader who matches the surface pattern of a universal claim about a group.",
+    "a": "This confuses the largest single day's share with a majority of the whole week, a quantitative part-versus-whole error. Monday can be the busiest of six open days while accounting for only a fifth of patients. No necessary condition appears anywhere in the argument, so the flaw cannot be the one in the original.",
+    "d": "This infers a cause from the fact that one thing followed another, ignoring alternative explanations such as falling incomes or a separate advertising ban. The original contains no causal claim at all; it is a purely conditional error. Choosing this matches 'the argument is obviously flawed' rather than matching the specific flaw.",
+    "b": "This is a valid contrapositive: from 'cancelled implies road closed' and 'road not closed' it follows that the ferry was not cancelled. Since a parallel-flaw answer must reproduce a flaw, an argument with no flaw cannot be correct. It is tempting because it is the choice whose vocabulary of conditions most resembles the original's."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "A short flawed argument: passing a certification examination is required to be hired as a translator; Miguel has passed it; therefore he will be hired. The question asks which answer choice's flawed reasoning is most closely parallel. Five answer choices, labelled A through E, each a short argument. The explanation uses an arrow meaning 'if ... then'; no computation is involved.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "lsat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original stimulus and choices. Parallel-flaw item on the necessary-for-sufficient confusion, with the key expressed through 'without', a different surface marker of necessity from the stem's 'must'. Distractors carry four other flaws (evaluative leap, part-versus-whole, correlation-to-causation) plus one valid argument. Tagged to lr-reasoning-patterns per the exam config. Not derived from any published LSAT item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "lsat-wave3-author",
+    "reviewer": "lsat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "lsat-wave3-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The stimulus treats a necessary condition (passing the exam is required to be hired) as sufficient. (c) does the same: a reader's card is necessary to enter (\"No one may enter... without\"), and the argument concludes Yusuf may enter because he has one. (b) is a valid contrapositive, (d) is a causal flaw, (a) and (e) are different errors."
+    },
+    "notes": "Author abstracted every choice to conditional form first. Two earlier drafts of distractors ('only members may borrow, Dana is a member, so Dana may borrow' and 'every grant goes to a registered charity, the shelter is registered, so it will get a grant') reproduced the original flaw and were discarded; they are recorded here because this item type makes that duplication very easy. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logical-reasoning",
+    "parallel-flaw",
+    "necessary-versus-sufficient",
+    "conditional-reasoning"
+  ]
+}

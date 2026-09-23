@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-law-logic-moot-rounds-032",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-deductive-conditions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Four moot-court teams — Ferrara, Gallo, Lombardi and Marchetti — argue in four rounds numbered 1 to 4, one team per round. The draw satisfies all of the following conditions:\n\n- Gallo argues in an earlier round than Lombardi.\n- Marchetti argues in round 2 or in round 4.\n- Ferrara does not argue in round 1.\n\nWhich of the following must be true?",
+  "instructionsMd": "Exactly one of the four statements holds in every draw that satisfies the conditions.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Marchetti argues in round 2."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Gallo argues in round 1."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Ferrara argues in the round immediately before Marchetti."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Lombardi argues in round 4."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Rather than listing every draw, ask who is allowed to argue in **round 1** and eliminate.\n\n- Ferrara is excluded by the third condition.\n- Marchetti is excluded by the second, which confines Marchetti to round 2 or round 4.\n- Lombardi is excluded by the first: Gallo must argue earlier than Lombardi, so Lombardi cannot occupy the earliest round of all.\n\nThat leaves exactly one candidate, Gallo, so option A must be true.\n\nThe other three statements are merely *possible*. Both of these draws satisfy every condition:\n\n- Gallo 1, Marchetti 2, Ferrara 3, Lombardi 4\n- Gallo 1, Lombardi 2, Ferrara 3, Marchetti 4\n\n**How to check.** Confirm that at least one admissible draw exists (otherwise \"must be true\" would be vacuous), then confirm that each rejected option is false in at least one admissible draw. The first draw above kills C's rival readings and the second kills B, and neither has Ferrara immediately before Marchetti in the first draw, so D fails there too. A holds in both — as it must, since round 1 had only one possible occupant.",
+  "distractorRationale": {
+    "a": "Round 2 is only one of the two rounds the second condition allows Marchetti; round 4 works equally well, as the second draw above shows. This option treats the first branch of an either-or condition as if the condition had named it alone.",
+    "d": "Lombardi must be later than Gallo, but 'later' does not mean 'last'. In the second draw Lombardi argues in round 2, with Marchetti in round 4. Reading a relative-order condition as fixing an endpoint is the error here.",
+    "c": "This adjacency is possible but not required. It holds in the draw Gallo 1, Lombardi 2, Ferrara 3, Marchetti 4, and fails in the draw Gallo 1, Marchetti 2, Ferrara 3, Lombardi 4, where Ferrara comes after Marchetti. An arrangement found once is not a consequence of the conditions."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A deductive reasoning question. Four moot-court teams named Ferrara, Gallo, Lombardi and Marchetti argue one per round in rounds 1 to 4. Gallo argues earlier than Lombardi; Marchetti argues in round 2 or round 4; Ferrara does not argue in round 1. The question asks which of four statements must be true.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original ordering item written to the published Bocconi Law syllabus entry on deductive reasoning from initial conditions. Names and scenario are invented."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave3-author",
+    "reviewer": "bocconi-law-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "bocconi-law-wave3-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Round 1 cannot be Marchetti (round 2 or 4), cannot be Ferrara (excluded), and cannot be Lombardi (Gallo must be earlier), so Gallo argues in round 1. The draw Gallo 1, Ferrara 2, Lombardi 3, Marchetti 4 falsifies A and C, while Gallo 1, Marchetti 2, Ferrara 3, Lombardi 4 leaves D non-necessary once Gallo 1, Marchetti 2, Lombardi 3, Ferrara 4 is also allowed."
+    },
+    "notes": "Author's working: round 1 excludes Ferrara (condition 3), Marchetti (condition 2) and Lombardi (condition 1), forcing Gallo into round 1. Two admissible draws, G-M-F-L and G-L-F-M, jointly falsify options B, C and D. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "ordering",
+    "must-be-true",
+    "elimination",
+    "no-calculator"
+  ]
+}

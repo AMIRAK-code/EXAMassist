@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-law-verbal-permit-deducible-049",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-verbal-reasoning",
+  "skillSlug": "law-verbal-true-false-not-deducible",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "> The council resolved that a trading permit may be issued only to an applicant who has held a residence card for at least two years. Ms Rossi's application for a permit was refused. Mr Bianchi, who has held a residence card for six years, was issued a permit.\n\nWhich of the following can be deduced from this text?",
+  "instructionsMd": "A statement can be deduced only if the text leaves no possibility in which it is false.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Mr Bianchi was issued his permit because he had held a residence card for six years."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The text does not settle whether Ms Rossi has held a residence card for at least two years."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Ms Rossi has not held a residence card for at least two years."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Holding a residence card for at least two years guarantees the issue of a permit."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The resolution states a **necessary** condition, not a sufficient one: *permit issued $\\rightarrow$ residence card for at least two years.* The arrow runs one way only, and the text gives no other rule, so nothing about the grounds of a refusal has been supplied at all.\n\nMs Rossi was refused. A refusal is consistent with two quite different situations: she may have held her card for less than two years, or she may have held it for ten years and been refused on some other ground the text never mentions — an incomplete file, an unsuitable site, an unpaid fee. Both are possible; the text chooses between them nowhere. Option A says exactly that, and it is therefore the one statement that cannot fail to be true.\n\n**How to check.** Build two readings of the facts that both respect every sentence of the text. Reading 1: Rossi has held a card for eight months and is refused for that reason. Reading 2: Rossi has held a card for eight years and is refused because her premises are unsuitable. Every sentence of the text holds in both. Any option that comes out true in one reading and false in the other is not deducible — which disposes of B and D at once — while an option asserting that the text leaves the matter open is confirmed by the existence of the two readings themselves.",
+  "distractorRationale": {
+    "c": "This treats the necessary condition as if it were the only possible ground of refusal. The resolution says what an applicant must have, not that anyone who has it must succeed, so a refusal is compatible with Ms Rossi holding a card of any duration.",
+    "d": "This converts the necessary condition into a sufficient one. Mr Bianchi's success shows that the condition can be satisfied by someone who obtains a permit; it does not show that satisfying it is enough, since he may also have met other requirements the text does not list.",
+    "a": "This reads a cause into a coincidence of facts. The text reports that Mr Bianchi holds a long-standing card and that he received a permit; it never says the first produced the second, and under the resolution the card is only a precondition that had to be cleared."
+  },
+  "estimatedSeconds": 115,
+  "stimulusRef": null,
+  "accessibilityText": "A verbal reasoning question. A text states that a trading permit may be issued only to an applicant who has held a residence card for at least two years, that Ms Rossi's application was refused, and that Mr Bianchi, who has held a residence card for six years, was issued a permit. The question asks which of four statements can be deduced.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written to the published Bocconi Law syllabus entry on judging a statement true, false or not deducible from a brief argument. The resolution, the applicants and the facts are invented."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave3-author",
+    "reviewer": "bocconi-law-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "bocconi-law-wave3-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "'Only to an applicant who has held a card for two years' makes the card a necessary, not sufficient, condition, so a refusal is consistent both with Rossi lacking the card and with her holding it and failing on some other ground — the text genuinely leaves it open, which is B. C asserts one of those open branches, D converts the necessary condition, A asserts a causal 'because' that mere necessity cannot support."
+    },
+    "notes": "Author's working: the resolution supplies only a necessary condition, so a refusal is unexplained by the text and Ms Rossi's card duration is undetermined - option A. B mistakes necessity for the sole ground of refusal, C converts necessity into sufficiency, D reads causation into a bare conjunction of facts. Two consistent readings of Ms Rossi's situation confirm that only A survives both. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "verbal-reasoning",
+    "not-deducible",
+    "necessary-condition"
+  ]
+}

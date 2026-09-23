@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-law-logic-committee-selection-038",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-deductive-conditions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A disciplinary board must appoint exactly three of five candidates — Neri, Orsini, Pace, Quarta and Rizzo. The appointment satisfies all of the following conditions:\n\n- If Neri is appointed, Pace is not appointed.\n- Orsini is appointed only if Quarta is also appointed.\n- At least one of Pace and Rizzo is appointed.\n\nIf Neri is appointed, which of the following must be true?",
+  "instructionsMd": "Assume, for this question only, that Neri is appointed.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Quarta is appointed and Orsini is not."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Rizzo is appointed and Quarta is not."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Orsini and Quarta are both appointed."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Pace is appointed and Rizzo is not."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Work forward from the assumption, keeping the count of three in view at every step.\n\n**Step 1.** Neri is appointed, so by the first condition Pace is not.\n\n**Step 2.** The third condition requires at least one of Pace and Rizzo. Pace is out, so Rizzo is in. The board now has Neri and Rizzo, with **one place left** for Orsini or Quarta.\n\n**Step 3.** Could that last place go to Orsini? The second condition says Orsini may be appointed only if Quarta is too, so appointing Orsini would oblige the board to appoint Quarta as well — four members, one too many. Orsini is therefore out.\n\n**Step 4.** The last place must go to Quarta. The board is Neri, Quarta and Rizzo, and that is the only appointment consistent with the assumption. Option C states exactly this.\n\n**How to check.** Confirm the winning trio against all three conditions: Neri in with Pace out satisfies the first; Orsini out makes the second vacuously satisfied; Rizzo in satisfies the third. Then confirm that the count is exactly three. Because the outcome is fully determined, any option that leaves Quarta out or puts Pace or Orsini in can be rejected at a glance.",
+  "distractorRationale": {
+    "c": "Appointing Orsini drags Quarta in with him under the second condition, which with Neri and the compulsory Rizzo would make four appointees. This option applies the second condition correctly but ignores the fixed size of the board.",
+    "d": "Pace is excluded the moment Neri is appointed, by the first condition. This option keeps Pace as the way of satisfying 'at least one of Pace and Rizzo', which is exactly the route the first condition has just closed.",
+    "b": "Rizzo is indeed appointed, but the third seat cannot be left to Orsini, so it must be Quarta's. This option gets the forced part right and then assumes the remaining place is free, without testing Orsini against the second condition."
+  },
+  "estimatedSeconds": 125,
+  "stimulusRef": null,
+  "accessibilityText": "A deductive reasoning question. A board appoints exactly three of five candidates named Neri, Orsini, Pace, Quarta and Rizzo. If Neri is appointed then Pace is not; Orsini is appointed only if Quarta is also appointed; at least one of Pace and Rizzo is appointed. Assuming Neri is appointed, the question asks which of four statements must be true.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original grouping-and-selection item written to the published Bocconi Law syllabus entry on deductive reasoning from initial conditions. Names and scenario are invented."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave3-author",
+    "reviewer": "bocconi-law-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "bocconi-law-wave3-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Neri in forces Pace out, so 'at least one of Pace and Rizzo' forces Rizzo in. The third seat is Orsini or Quarta; Orsini would require Quarta too (two seats, only one left), so Orsini is out and Quarta is in. Unique board = Neri, Quarta, Rizzo, which makes A true and B, C, D false."
+    },
+    "notes": "Author's working: Neri in forces Pace out; the third condition then forces Rizzo in; Orsini would force Quarta in as well, giving four appointees, so Orsini is out and the third seat is Quarta's. The unique appointment is Neri, Quarta, Rizzo, so only option C holds. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "grouping",
+    "conditional-reasoning",
+    "must-be-true",
+    "no-calculator"
+  ]
+}

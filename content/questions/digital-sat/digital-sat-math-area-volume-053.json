@@ -1,0 +1,78 @@
+{
+  "id": "digital-sat-math-area-volume-053",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "geometry-and-trigonometry",
+  "skillSlug": "area-and-volume",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A right circular cylinder has a height of $12$ centimetres and a volume of $432\\pi$ cubic centimetres. A second right circular cylinder has the same volume as the first but half its radius. What is the height, in centimetres, of the second cylinder?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$6$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$12$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$24$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$48$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Find the first cylinder's radius, halve it, then solve for the height that keeps the volume the same.\n\nThe volume of a cylinder is $V = \\pi r^2 h$. For the first cylinder:\n\n$$\\pi r^2 (12) = 432\\pi$$\n\n$$r^2 = \\frac{432}{12} = 36 \\;\\Rightarrow\\; r = 6 \\text{ cm}$$\n\nThe second cylinder has radius $\\frac{6}{2} = 3$ cm, so $r^2 = 9$:\n\n$$\\pi (9) h = 432\\pi$$\n\n$$h = \\frac{432}{9} = 48 \\text{ cm}$$\n\nThe answer is $48$, Choice D.\n\nThe reasoning behind the number matters more than the arithmetic. Volume depends on the radius **squared**, so halving the radius cuts the circular cross-section to a quarter of its area. To hold the volume fixed, the height must grow by a factor of $4$: $12 \\times 4 = 48$. That shortcut gets you there without ever computing $r$.\n\nCheck both cylinders against the given volume. First: $\\pi (6)^2 (12) = 432\\pi$. Second: $\\pi (3)^2 (48) = \\pi (9)(48) = 432\\pi$. They match.",
+  "distractorRationale": {
+    "a": "This is the radius of the first cylinder, $6$ centimetres, reported as though it were the new height. It is an intermediate value, not the quantity the question asks for.",
+    "b": "This keeps the original height, treating the volume as unchanged by the change in radius. Halving the radius does change the cross-section, so the height cannot stay the same if the volume is to stay the same.",
+    "c": "This doubles the height, treating volume as proportional to the radius itself. Volume goes with $r^2$, so halving $r$ quarters the cross-section and the height must quadruple rather than double."
+  },
+  "estimatedSeconds": 115,
+  "stimulusRef": null,
+  "accessibilityText": "A right circular cylinder has height 12 centimetres and volume 432 pi cubic centimetres. A second cylinder has the same volume but half the radius. Find the height of the second cylinder in centimetres. The four options are 6, 12, 24 and 48.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "digital-sat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item. Values chosen so that the first radius is a whole number and each distractor corresponds to a specific misconception about how volume scales."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "digital-sat-wave3-author",
+    "reviewer": "digital-sat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "digital-sat-wave3-reviewer",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "pi r^2 (12) = 432pi gives r^2 = 36, r = 6. Second cylinder radius 3, so pi(9)h = 432pi and h = 48."
+    },
+    "notes": "Author solved and checked uniqueness: r^2 = 432/12 = 36 so r = 6; new radius 3 gives h = 432/9 = 48. Verified both volumes equal 432 pi. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "geometry",
+    "volume",
+    "cylinder",
+    "scaling"
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "id": "lsat-lr-netting-assumption-120",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "lr1",
+  "domainSlug": "logical-reasoning",
+  "skillSlug": "lr-assumptions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Before last season a vineyard installed reflective netting above half of its rows, leaving the other half uncovered. At harvest, grapes from the netted rows measured 15 percent higher in sugar than grapes from the uncovered rows. The netting, therefore, raised the sugar content of the grapes grown beneath it.\n\nThe argument depends on assuming which one of the following?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Reflective netting is the least expensive method available for raising the sugar content of wine grapes."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Even without the netting, the rows that were netted would not have produced grapes substantially higher in sugar than the uncovered rows."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Sugar content is the only measure of grape quality that matters to the vineyard's winemakers."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Reflective netting raises sugar content in every variety of grape grown commercially."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The uncovered rows received less water over the growing season than the netted rows did."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Separate the argument into its parts before hunting for the assumption.\n\n- Premise: netted rows produced grapes 15 percent higher in sugar than uncovered rows.\n- Conclusion: the netting **raised** the sugar content of the grapes beneath it.\n\nThis is a causal conclusion drawn from a comparison between two groups. Any such argument silently assumes that the two groups did not already differ in a way that would produce the same gap on its own. If the rows chosen for netting were the vineyard's sunniest, best-drained, oldest-vine rows, they might have come in 15 percent higher with no netting at all, and the comparison would show nothing about the netting.\n\nChoice (B) is exactly that assumption, and the **negation test** confirms it. Negate (B): \"Even without the netting, the netted rows *would* have produced grapes substantially higher in sugar.\" Then the observed gap is explained without the netting, and the conclusion collapses. A choice whose denial destroys the argument is a choice the argument needed.\n\nRun the same test on the others and nothing breaks. Negate (A) — some cheaper method exists — and the netting can still have caused the rise. Negate (D) — other quality measures also matter — and the causal claim about sugar is untouched. Negate (E) — the netting fails on some other variety — and the claim about *these* grapes stands.\n\nTwo checks worth carrying forward. First, whenever a conclusion says one thing caused another, ask what else could have produced the same evidence; the necessary assumption is usually \"not that.\" Second, a necessary assumption never has to be a strong or exciting claim — it only has to be something the argument cannot do without, which is why the modest-sounding (B) beats the sweeping (E).",
+  "distractorRationale": {
+    "a": "This treats a causal argument as though it were a recommendation. The conclusion says only that the netting worked, not that the vineyard chose well. Negate it — a cheaper method exists — and the netting can still have raised the sugar. Cost is the sort of consideration that feels relevant to a farming decision and is irrelevant to whether the stated cause operated.",
+    "e": "This states an alternative explanation of the gap rather than an assumption the argument makes. If it were true, the difference in sugar might be down to watering, which would weaken the argument, not support it. Selecting it confuses the kind of fact that could undermine a causal claim with the kind of fact the claim depends on.",
+    "c": "This substitutes a question about what the vineyard values for the argument's question about what the netting did. Negate it — tannin and acidity matter too — and the claim that the netting raised sugar is exactly as strong. The choice is tempting only because it mentions the same measurement the conclusion is about.",
+    "d": "This is far stronger than the argument requires. The conclusion concerns the grapes grown beneath this vineyard's netting, so an exception in some other variety leaves it untouched. Necessary assumptions are the weakest claims the argument cannot spare; a universal generalization is almost never one of them."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": "A short argument about a vineyard that installed reflective netting over half of its rows for one season. Grapes from the netted rows measured 15 percent higher in sugar than grapes from the uncovered rows, and the argument concludes that the netting raised the sugar content. The question asks which assumption the argument depends on. Five answer choices, labelled A through E. No notation, tables or figures appear.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "lsat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original stimulus and choices. Necessary-assumption item built on the standard no-alternative-difference gap in a two-group causal comparison. Not derived from any published LSAT item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "lsat-wave3-author",
+    "reviewer": "lsat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "lsat-wave3-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The causal conclusion from a netted-vs-uncovered comparison requires the two halves to have been comparable absent the netting; negating (b) — the netted rows would have been substantially sweeter anyway — destroys the inference, so (b) is assumed. (a), (c), (d) are irrelevant to whether the netting caused this rise, and (e) introduces a confound that the argument needs to deny rather than assume."
+    },
+    "notes": "Author solved the item, then attempted a defence of each other choice using the negation test; only (B) breaks the argument when denied. (C) was written deliberately in the direction that would weaken rather than support, so that it cannot be read as a second assumption. Awaiting blind independent solve and uniqueness check by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logical-reasoning",
+    "necessary-assumption",
+    "negation-test",
+    "causal-reasoning"
+  ]
+}

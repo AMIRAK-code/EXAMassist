@@ -1,0 +1,82 @@
+{
+  "id": "lsat-lr-recusal-principle-apply-130",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "lr1",
+  "domainSlug": "logical-reasoning",
+  "skillSlug": "lr-principles-and-rules",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Principle: A public official should withdraw from a decision whenever a reasonable observer who knew all the relevant facts would doubt that she could weigh the matter impartially — even if, as it happens, she is perfectly able to do so.\n\nThe principle above, if valid, most helps to justify which one of the following judgements?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Judge Oyelaran should be removed from the bench for having heard a case involving a company in which he held shares."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Inspector Awan was under no obligation to withdraw from the safety review of a factory owned by her former employer, since she bore that employer no ill will and in fact judged the case on its merits."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Director Feng's participation in awarding the contract to his neighbour's firm was proper, because no one objected to it at the time."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Commissioner Baptiste should withdraw from every decision touching the industry in which she worked before entering public service."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Councillor Idris should have withdrawn from the vote on the quarry licence: his sister is the quarry's largest customer, a connection well known in the town, though in fact he was indifferent to the outcome."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "A principle question is a matching exercise. Break the principle into its trigger and its instruction, then find the judgement whose facts satisfy the trigger and whose verdict matches the instruction.\n\n- **Trigger:** a fully informed reasonable observer would doubt the official's impartiality.\n- **Instruction:** she should withdraw from the decision.\n- **Explicit extension:** the instruction applies *even if the official really is impartial*. That clause is not decoration; it tells you that actual impartiality is no defence, and it is what several distractors are built to test.\n\nCheck (E) against both halves. A sibling who is the quarry's largest customer is a stake a reasonable observer would notice, and the passage says the connection was well known, so an informed observer would doubt Idris could weigh the licence impartially. Trigger satisfied. The verdict is that he should have withdrawn. Instruction matched. And the concluding clause — he was in fact indifferent — is exactly the circumstance the principle's \"even if\" provision covers, so it is no obstacle. (E) fits perfectly.\n\nHow to check: ask of each remaining choice whether the principle, as written, would deliver that verdict.\n\n(A) asks the principle to *excuse* participation on the ground of genuine impartiality, which is the one defence the principle expressly refuses. (B) asks for a penalty, removal from office, that the principle never mentions; a rule about what an official should do is not a rule about what should be done to her. (C) demands blanket withdrawal from a whole industry, whereas the principle is triggered decision by decision, only where the observer's doubt would actually arise. (D) substitutes whether anyone actually objected for whether a reasonable informed observer would doubt — a different test entirely.\n\nTwo habits: circle the principle's qualifying clauses before reading the choices, and be wary of any choice that reaches a verdict the principle does not authorise, even when the underlying conduct looks bad.",
+  "distractorRationale": {
+    "b": "This uses the official's genuine impartiality to excuse her from withdrawing, which is precisely what the principle's closing clause forbids: the duty applies even where the official is in fact able to judge fairly. The choice tempts by supplying a sympathetic fact pattern that the principle deliberately declares irrelevant.",
+    "a": "The principle prescribes withdrawal from a decision, not any sanction for having failed to withdraw. Removal from the bench is a penalty on a different scale that the principle says nothing about, so it cannot be justified by this principle even if the underlying failure to withdraw was real.",
+    "d": "This converts a decision-by-decision test into a blanket disqualification covering an entire industry for the rest of a career. The principle asks whether an informed observer would doubt impartiality in the particular matter, and many decisions touching a former industry would raise no such doubt. This overshoots the rule rather than applying it.",
+    "c": "This replaces the principle's standard, what a reasonable and fully informed observer would think, with a different one: whether anyone actually complained. Silence at the time is compatible with the observer's doubt, especially where the relevant facts were not yet widely known, so the principle does not deliver this verdict."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": "A stated principle: a public official should withdraw from a decision whenever a fully informed reasonable observer would doubt her impartiality, even if she is in fact impartial. The question asks which judgement the principle most helps to justify. Five answer choices, labelled A through E, each describing a named official and a verdict about withdrawal or sanction. No notation, tables or figures appear.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "lsat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original principle and choices. Apply-the-principle item in which the principle's 'even if she is in fact able to do so' clause is the discriminating feature; all names and fact patterns are invented. Not derived from any published LSAT item and not a statement of any real jurisdiction's recusal rule."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "lsat-wave3-author",
+    "reviewer": "lsat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "lsat-wave3-reviewer",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The principle requires withdrawal on appearance alone, \"even if... she is perfectly able\" to be impartial; (e) has a publicly known family-financial connection plus explicit actual indifference, so it matches both halves. (b) uses actual impartiality to excuse withdrawal (contradicting the principle); (a) prescribes removal, which the principle never licenses; (c) rests on absence of objection; (d) sweeps in every industry decision without any observer-doubt showing."
+    },
+    "notes": "Author checked each choice against the principle's trigger and its instruction separately. (A) fails the instruction, (B) proposes an unauthorised remedy, (C) over-generalises the trigger, (D) swaps the test. Only (E) satisfies both halves, and its 'though in fact he was indifferent' clause was written specifically to be covered by the principle's exception rather than to defeat it. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logical-reasoning",
+    "principle-application",
+    "conflict-of-interest"
+  ]
+}

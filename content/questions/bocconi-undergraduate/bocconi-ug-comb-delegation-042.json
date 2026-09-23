@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-comb-delegation-042",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-discrete-permutations-combinations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A student association must send a delegation of 4 people to a conference. It may choose from 6 women and 4 men, and the delegation must include **at least one man**. The order in which the delegates are named does not matter. In how many ways can the delegation be formed?",
+  "instructionsMd": "No calculator.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$15$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$80$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$170$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$195$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Whenever a condition says \"at least one\", counting the **complement** is almost always quicker than counting the cases.\n\n**Step 1 — count all delegations, ignoring the condition.** Choosing 4 people from $6 + 4 = 10$:\n\n$$\\binom{10}{4} = \\frac{10 \\times 9 \\times 8 \\times 7}{4 \\times 3 \\times 2 \\times 1} = \\frac{5040}{24} = 210$$\n\nBy hand, cancel before multiplying: $\\frac{10 \\times 9 \\times 8 \\times 7}{24}$, and $\\frac{8}{4 \\times 2} = 1$, $\\frac{9}{3} = 3$, leaving $10 \\times 3 \\times 7 = 210$.\n\n**Step 2 — count the delegations that violate the condition.** \"Not at least one man\" means \"no men at all\", so all 4 come from the 6 women:\n\n$$\\binom{6}{4} = \\binom{6}{2} = \\frac{6 \\times 5}{2} = 15$$\n\n(Using $\\binom{6}{4} = \\binom{6}{2}$ saves a line of arithmetic: choosing 4 to include is the same as choosing 2 to leave out.)\n\n**Step 3 — subtract.**\n\n$$210 - 15 = 195$$\n\n**How to check the answer.** Count the cases directly and see whether they add to the same total:\n\n$$\\underbrace{\\binom{4}{1}\\binom{6}{3}}_{\\text{1 man}} + \\underbrace{\\binom{4}{2}\\binom{6}{2}}_{\\text{2 men}} + \\underbrace{\\binom{4}{3}\\binom{6}{1}}_{\\text{3 men}} + \\underbrace{\\binom{4}{4}\\binom{6}{0}}_{\\text{4 men}}$$\n$$= 4 \\times 20 + 6 \\times 15 + 4 \\times 6 + 1 \\times 1 = 80 + 90 + 24 + 1 = 195$$\n\nThe two independent methods agree, which is strong confirmation.\n\n**The trap to avoid.** A tempting but wrong shortcut is \"pick one man first, then any 3 of the remaining 9\": $4 \\times \\binom{9}{3} = 4 \\times 84 = 336$. That **overcounts**, because a delegation with two men is produced twice, once for each man treated as the designated first pick. Choosing an unordered set never works this way; the complement method has no such hazard.",
+  "distractorRationale": {
+    "a": "This is $\\binom{6}{4} = 15$, the number of all-women delegations — precisely the group the condition excludes. It answers the complement rather than the event, and it is also the quantity you subtract in the correct method, so it is easy to leave on the page as a final answer.",
+    "b": "This is $\\binom{4}{1}\\binom{6}{3} = 4 \\times 20 = 80$, the number of delegations with **exactly** one man. \"At least one\" also admits delegations with two, three or four men, which add a further 90, 24 and 1.",
+    "c": "This is $80 + 90 = 170$, the delegations with exactly one or exactly two men. It is a case-by-case count that stops too early, omitting the 24 delegations with three men and the single all-male delegation. Counting cases works only if every case is listed."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "A student association forms a delegation of four people from a pool of six women and four men, and the delegation must include at least one man. Order does not matter. The question asks in how many ways this can be done. The four options are the numbers fifteen, eighty, one hundred and seventy, and one hundred and ninety-five.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Group sizes were chosen so that the binomial coefficients cancel to whole numbers that can be computed mentally. Each distractor is a recognisable partial count: the excluded complement, the exactly-one case, and a case list that stops early."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-wave3-author",
+    "reviewer": "bocconi-undergraduate-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-wave3-reviewer",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Complement method: C(10,4) = 210 total delegations, minus the all-women ones C(6,4) = 15, leaves 195. Direct count confirms: 4*20 + 6*15 + 4*6 + 1 = 80 + 90 + 24 + 1 = 195. Option b (80) is the exactly-one-man count, a (15) is the all-women count."
+    },
+    "notes": "Author's uniqueness check: the count was computed twice by independent routes, complement (210 - 15 = 195) and exhaustive case split (80 + 90 + 24 + 1 = 195), and both give 195. The other three options are 15, 80 and 170, all strictly smaller and all corresponding to incomplete counts, so exactly one option is defensible. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "combinations",
+    "complement-counting",
+    "at-least-one"
+  ]
+}

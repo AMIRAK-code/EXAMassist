@@ -1,0 +1,83 @@
+{
+  "id": "lsat-lr-flycatcher-weaken-124",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "lr1",
+  "domainSlug": "logical-reasoning",
+  "skillSlug": "lr-additional-evidence",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Ornithologist: Last spring we mounted 200 identical nest boxes in the reserve's oak woodland and 200 in its birch woodland, which is of roughly the same area. Pied flycatchers occupied three times as many of the oak boxes as of the birch boxes. Pied flycatchers therefore prefer oak woodland to birch woodland as a place to nest.\n\nWhich one of the following, if true, most weakens the ornithologist's argument?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Pied flycatchers that cannot find a nest site in oak woodland will readily nest in birch woodland instead."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The nest boxes in both woodlands were of identical design and were mounted at the same height above the ground."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Some of the nest boxes in the oak woodland were occupied by blue tits rather than by pied flycatchers."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Pied flycatchers feed their young chiefly on caterpillars, which are more abundant on oaks than on birches."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The birch woodland already contained many natural tree cavities suitable for pied flycatcher nests, whereas the oak woodland contained almost none."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Notice what the evidence measures and what the conclusion claims. The evidence is **box occupancy**. The conclusion is about **preference for a woodland type**. Those come apart whenever birds in one woodland have somewhere else to nest.\n\nChoice (C) supplies exactly that. If the birch woodland is already full of natural cavities and the oak woodland has almost none, then flycatchers nesting in birch had an alternative to the boxes while flycatchers nesting in oak did not. Birch boxes could sit empty in a woodland thick with flycatchers, simply because the birds preferred a real cavity to a wooden box. The occupancy gap is then an artefact of what else was on offer, and tells you nothing about which woodland the birds prefer. The argument is badly damaged.\n\nA useful way to test a weakener is to ask: *does this choice give me a way the premises could all be true while the conclusion is false?* Under (C), all 200 birch boxes could be ignored by a large and contented birch population — premises true, conclusion false. No other choice lets you build that story.\n\nRun the same test on the rest. Under (A) the birds still go to oak first, which is what preference means. (B) removes a confound and so helps the argument. (D) supplies a *reason* for the preference and helps as well. (E) mentions a competitor in the oak wood, which if anything means flycatchers took oak boxes despite competition — again not a weakener.\n\nCarry forward the general shape: when a study measures uptake of something researchers provided, always ask what the subjects would have done if the researchers had provided nothing.",
+  "distractorRationale": {
+    "a": "This is consistent with the conclusion rather than opposed to it. Saying flycatchers settle for birch when oak is unavailable is close to saying they prefer oak, which is precisely what the ornithologist claims. It is the trap for a reader who registers 'birch' in a positive sentence and reads any mention of the less-used habitat as damaging.",
+    "b": "This eliminates a confounding difference between the two sets of boxes and therefore strengthens the argument. A reader can be drawn to it because controls feel like the sort of methodological detail that turns up in an objection, but the direction of the effect here is plainly supportive.",
+    "d": "This offers a mechanism that would explain a genuine preference for oak, so it supports the conclusion rather than undermining it. It tempts anyone who selects the choice that introduces the most new biology without first asking which way the new fact cuts.",
+    "c": "Occupancy by another species in the oak wood means flycatchers secured three times as many oak boxes while competing for them, which does nothing to explain away the gap. The choice is attractive because it complicates the oak figure, but complicating a figure in the direction that makes the result harder to achieve cannot weaken the conclusion."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": "A short argument from an ornithologist. Two hundred identical nest boxes were placed in oak woodland and two hundred in birch woodland of roughly equal area; pied flycatchers occupied three times as many oak boxes as birch boxes; the ornithologist concludes that the birds prefer oak woodland for nesting. The question asks which statement, if true, most weakens the argument. Five answer choices, labelled A through E. No notation, tables or figures appear.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "lsat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original stimulus and choices. Weaken item in which the measured proxy (uptake of a resource supplied by the researchers) diverges from the conclusion's subject (habitat preference) because of an unmeasured alternative resource. Not derived from any published LSAT item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "lsat-wave3-author",
+    "reviewer": "lsat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "lsat-wave3-reviewer",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Box occupancy only measures preference if boxes are the only option in both woods; (e) says birch already had abundant natural cavities and oak had almost none, so flycatchers in birch could nest outside the boxes — the 3-to-1 box gap no longer shows a woodland preference. (d) strengthens by supplying a reason for oak preference; (b) strengthens by controlling design; (a) and (c) are near-neutral."
+    },
+    "notes": "Author solved the item and then tried to argue each other choice as a weakener; (A), (B), (D) and (E) are all neutral or supportive. 'Of roughly the same area' was added to the stimulus deliberately so that no choice about relative habitat extent could serve as a second weakener. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logical-reasoning",
+    "weaken",
+    "study-design",
+    "proxy-measures"
+  ]
+}

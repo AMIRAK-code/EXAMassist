@@ -1,0 +1,76 @@
+{
+  "id": "gre-quant-qc-percent-of-200",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-arithmetic",
+  "skillSlug": "arith-percent",
+  "subskillSlug": null,
+  "responseType": "quantitative_comparison",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "| Quantity A | Quantity B |\n| --- | --- |\n| $15\\%$ of $240$ | $25\\%$ of $140$ |",
+  "instructionsMd": "Compare Quantity A and Quantity B and select the one statement that is true for every value consistent with the information given.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Quantity A is greater."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Quantity B is greater."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The two quantities are equal."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The relationship cannot be determined from the information given."
+    }
+  ],
+  "answerKey": {
+    "type": "quantitative_comparison",
+    "choice": "A"
+  },
+  "explanationMd": "Both quantities are fully determined numbers, so there is nothing to compare structurally: just compute each one.\n\n**Quantity A.** A percent is a fraction with denominator $100$, so\n\n$$15\\% \\text{ of } 240 = \\frac{15}{100} \\times 240 = 0.15 \\times 240 = 36.$$\n\nA quicker route: $10\\%$ of $240$ is $24$ and $5\\%$ is half of that, $12$, and $24 + 12 = 36$.\n\n**Quantity B.**\n\n$$25\\% \\text{ of } 140 = \\frac{1}{4} \\times 140 = 35.$$\n\nSince $36 > 35$, **Quantity A is greater**, which is choice (A).\n\n**How to check.** Redo each side by a different method than the one you used first. For Quantity A, $0.15 \\times 240 = 15 \\times 2.4 = 36$. For Quantity B, a quarter of $140$ is $140 \\div 4 = 35$. Note that (D) can never be right on an item like this one: when both quantities are specific numbers with no variable anywhere, the relationship between them is always determinable.",
+  "distractorRationale": {
+    "b": "Chosen by comparing the percents rather than the results, reasoning that $25\\%$ beats $15\\%$. The base matters as much as the rate: a smaller share of a much larger base can be the larger amount, and here it is.",
+    "c": "Chosen by rounding both sides to the nearest ten and reading $36$ and $35$ as the same value. The quantities differ by exactly $1$, so rounding destroys the very difference the item is testing.",
+    "d": "Chosen out of habit on Quantitative Comparison. Both quantities here are fixed numbers with no variable, so the relationship is fully determined; (D) is only available when some quantity can take more than one value."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "Quantity A is 15 percent of 240. Quantity B is 25 percent of 140. Decide which quantity is greater, whether they are equal, or whether the relationship cannot be determined.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gre-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for the wave 3 top-up. Numbers chosen so the two sides differ by exactly 1, which rewards computing rather than eyeballing. Not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gre-wave3-author",
+    "reviewer": "gre-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "gre-wave3-reviewer",
+      "solvedAnswer": "A",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "0.15 * 240 = 36 and 0.25 * 140 = 35, so Quantity A is greater by 1."
+    },
+    "notes": "Author computed 0.15*240 = 36 and 0.25*140 = 35, so Quantity A is greater and the answer is A. No variables appear, so (D) is unavailable. Awaiting blind independent solve; the author must not publish own work."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "quantitative-comparison",
+    "percent",
+    "arithmetic"
+  ]
+}

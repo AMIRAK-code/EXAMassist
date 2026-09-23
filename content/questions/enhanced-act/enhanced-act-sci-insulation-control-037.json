@@ -1,0 +1,79 @@
+{
+  "id": "enhanced-act-sci-insulation-control-037",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "science",
+  "domainSlug": "act-science-scientific-investigation",
+  "skillSlug": "act-sci-sin-tools-procedures-design",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Why did the team include a fifth can that was left unwrapped?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "To confirm that the thermometer read exactly $90.0^{\\circ}\\text{C}$ at the start of each trial."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "To show that water cools faster when it is placed in a colder room."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "To provide a baseline cooling pattern, so that the effect of each wrap could be measured against a can with no wrap at all."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "To determine how thick a layer of insulation must be to keep water above $55^{\\circ}\\text{C}$."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The unwrapped can is the **control**. It is identical to the other four in every respect the team could hold fixed — same can, same lid, same starting temperature, same bench, same room — and differs in exactly one way: it has no wrap.\n\nThat is what makes it useful. The temperatures of the wrapped cans mean very little on their own; what the team needs is the *difference* a wrap makes. With the control in the table, that difference is a subtraction. At 60 minutes, for instance, polystyrene foam left the water $62.0 - 36.0 = 26.0^{\\circ}\\text{C}$ warmer than no wrap at all, and even the weakest wrap, the foil-lined air gap, left it $50.0 - 36.0 = 14.0^{\\circ}\\text{C}$ warmer.\n\nTo check whether a can really is a control, ask what single variable it isolates. Remove the unwrapped row and every one of those comparisons disappears — you would know the wrapped cans' temperatures but not whether any wrap helped.",
+  "distractorRationale": {
+    "b": "Describes an experiment the team never ran. Room temperature was held at $20.0^{\\circ}\\text{C}$ for all five cans, so nothing in Study 2 varies the room, and no can in the table can show what a colder room would do.",
+    "d": "Thickness was not a variable. Every wrap was applied in the same 2.0 cm layer, and the unwrapped can has no layer to compare thicknesses with, so no thickness conclusion can come from it.",
+    "a": "Confuses a control group with calibrating an instrument. Checking a thermometer would mean comparing it against a known standard, not filling an extra can; the unwrapped can was read with the same thermometer as all the others."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": {
+    "id": "enhanced-act-stim-sci-insulation-006",
+    "version": 1
+  },
+  "accessibilityText": "The question asks the purpose of the unwrapped fifth can in Study 2. That can started at 90.0 degrees Celsius like the others and read 62.0, 46.0 and 36.0 degrees at 20, 40 and 60 minutes, while the wrapped cans read between 50.0 and 62.0 degrees at 60 minutes. Room temperature was held at 20.0 degrees for every can, and every wrap was 2.0 centimetres thick.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank against an original engineering-and-design experiment and invented data set. Not derived from, and not a paraphrase of, any ACT-published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "enhanced-act-wave3-author",
+    "reviewer": "enhanced-act-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "enhanced-act-wave3-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The unwrapped can is the control: its 62/46/36 C curve is the no-wrap baseline against which each wrapped can's retention is judged. (a) is a calibration claim the can cannot test, (b) inverts the fixed 20.0 C room condition, and (d) would need several thicknesses, but only 2.0 cm was tested."
+    },
+    "notes": "Author solved the item and attempted to defend each distractor before keying it. Only the baseline answer survives: room temperature and wrap thickness were both held constant, so neither of those options describes anything the design could test, and calibration is a separate activity from running a control group. Awaiting an independent blind solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "science",
+    "experimental-design",
+    "control-group"
+  ]
+}

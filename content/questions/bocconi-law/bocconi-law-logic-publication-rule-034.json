@@ -1,0 +1,72 @@
+{
+  "id": "bocconi-law-logic-publication-rule-034",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-deductive-conditions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A tribunal's internal rule reads:\n\n> A judgment may be published on the tribunal's website only if it has been anonymised **and** the presiding judge has authorised publication.\n\nThe judgment of 12 March appears on the tribunal's website.\n\nWhich of the following must be true?",
+  "instructionsMd": "This question has only three answer options. On the real test a wrong answer to a three-option critical-thinking item costs 0.33 points instead of 0.2, so an unaided guess is worth less here than elsewhere.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The judgment was anonymised."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The presiding judge authorised publication, but the judgment was not anonymised."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Every anonymised judgment of this tribunal appears on its website."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The phrase **\"only if\"** marks a *necessary* condition, not a sufficient one. The rule therefore says: publication cannot happen unless both things are true — anonymisation and the presiding judge's authorisation. It does not say that satisfying both produces publication.\n\nSince the 12 March judgment *is* published, both necessary conditions must have been met. So it was anonymised, and the presiding judge authorised it. Option B states one of these two, and it must be true.\n\n**How to check.** Rewrite the rule as a conditional running in the direction the facts run: *published $\\Rightarrow$ (anonymised AND authorised)*. Feed in the given fact, \"published\", and read off what comes out. Anything the rule lets you conclude must appear on the right-hand side of that arrow; anything that would require reasoning back along the arrow, or adding a second arrow the rule never granted, is not available to you.",
+  "distractorRationale": {
+    "b": "The second half of this option contradicts the rule. Because publication requires anonymisation, a published judgment cannot be un-anonymised. The option is built by keeping one necessary condition and denying the other, which the word 'and' forbids.",
+    "c": "This reverses the rule into a sufficient condition and drops the second requirement as well. 'Publication requires anonymisation' does not mean 'anonymisation produces publication': an anonymised judgment that the presiding judge never authorised stays unpublished."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "A three-option deductive reasoning question. A tribunal rule states that a judgment may be published on its website only if it has been anonymised and the presiding judge has authorised publication. The judgment of 12 March appears on the website. The question asks which of three statements must be true.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original conditional-logic item written to the published Bocconi Law syllabus entry on deductive reasoning from initial conditions, authored with three options because Bocconi states that some critical-thinking items carry only three. Rule and tribunal are invented."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave3-author",
+    "reviewer": "bocconi-law-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "bocconi-law-wave3-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "'Only if anonymised and authorised' makes both conditions necessary for publication; the judgment was published, so it was anonymised. B contradicts that, and C wrongly converts the necessary condition into a sufficient one."
+    },
+    "notes": "Author's working: 'only if' gives published implies (anonymised and authorised). Given publication, anonymisation follows, so B holds. A denies a necessary condition of a fact that obtains, and C converts the necessary condition into a sufficient one. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "conditional-reasoning",
+    "necessary-condition",
+    "three-option",
+    "no-calculator"
+  ]
+}

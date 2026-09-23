@@ -1,0 +1,40 @@
+{
+  "id": "enhanced-act-stim-sci-germination-005",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "kind": "table",
+  "title": "Study 1: Soil water content and bean germination",
+  "bodyMd": "**Research summary.** Students investigated how the amount of water held in soil affects the germination of two bean varieties, *Variety R* and *Variety S*.\n\n**Procedure.** Forty identical trays were filled with the same sterilised potting mix. Each tray received 50 seeds of a single variety. All trays were held in one growth chamber at $22^{\\circ}\\text{C}$ with 16 hours of light per day. Each tray was weighed twice daily and water was added so that the tray stayed at one of four *soil water contents* — 10%, 20%, 30% or 40% of the soil mass. Five trays were used for each combination of variety and water content ($2 \\times 4 \\times 5 = 40$ trays).\n\nAfter 10 days the students recorded, for each tray, the percent of the 50 seeds that had germinated and the mean root length of the seedlings, in millimetres. Table 1 reports the mean of the five trays in each group.",
+  "data": {
+    "columns": [
+      { "key": "water", "label": "Soil water content (%)" },
+      { "key": "germR", "label": "Variety R germination (%)" },
+      { "key": "germS", "label": "Variety S germination (%)" },
+      { "key": "rootR", "label": "Variety R mean root length (mm)" },
+      { "key": "rootS", "label": "Variety S mean root length (mm)" }
+    ],
+    "rows": [
+      { "water": 10, "germR": 18, "germS": 42, "rootR": 9, "rootS": 21 },
+      { "water": 20, "germR": 56, "germS": 78, "rootR": 24, "rootS": 38 },
+      { "water": 30, "germR": 88, "germS": 74, "rootR": 41, "rootS": 33 },
+      { "water": 40, "germR": 62, "germS": 40, "rootR": 30, "rootS": 16 }
+    ],
+    "caption": "Table 1. Mean germination percentage and mean root length after 10 days, by variety and soil water content (five trays per group, 50 seeds per tray).",
+    "chart": {
+      "type": "line",
+      "xKey": "water",
+      "yKeys": ["germR", "germS"],
+      "xLabel": "Soil water content (%)",
+      "yLabel": "Germination (%)"
+    }
+  },
+  "accessibilityText": "A research summary describing a germination experiment, followed by Table 1, which has four rows and five columns. The columns are soil water content as a percent, Variety R germination percent, Variety S germination percent, Variety R mean root length in millimetres, and Variety S mean root length in millimetres. Row one, 10 percent soil water: Variety R germinated 18 percent with mean root length 9 millimetres; Variety S germinated 42 percent with mean root length 21 millimetres. Row two, 20 percent: Variety R 56 percent and 24 millimetres; Variety S 78 percent and 38 millimetres. Row three, 30 percent: Variety R 88 percent and 41 millimetres; Variety S 74 percent and 33 millimetres. Row four, 40 percent: Variety R 62 percent and 30 millimetres; Variety S 40 percent and 16 millimetres. Variety R reaches its highest germination at 30 percent soil water, and Variety S reaches its highest at 20 percent. The accompanying line graph plots the two germination columns against soil water content and contains no information beyond the table.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original experiment description and invented data set written for this bank. The two bean varieties, the procedure and every figure in Table 1 are fictional. Nothing here is drawn from, or modelled on, any ACT-published Science passage or any real published study."
+  },
+  "rightsStatus": "original-owned",
+  "state": "in_review"
+}

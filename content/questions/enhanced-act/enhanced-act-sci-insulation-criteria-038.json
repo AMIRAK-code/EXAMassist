@@ -1,0 +1,80 @@
+{
+  "id": "enhanced-act-sci-insulation-criteria-038",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "science",
+  "domainSlug": "act-science-evaluating-scientific-arguments-and-models",
+  "skillSlug": "act-sci-emi-conclusions-and-predictions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "The final tank design must satisfy **all three** of the following requirements:\n\n- the water must be **above** $55^{\\circ}\\text{C}$ 60 minutes after filling;\n- the wrap must cost no more than $\\$15$ per square metre;\n- the wrap must add no more than $60$ g to one can.\n\nBased on Table 2, which wrap meets every requirement?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Polystyrene foam"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Cork"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Sheep wool"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Foil-lined air gap"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "With three requirements and four candidates, work one requirement at a time and cross out as you go. A candidate is eliminated the moment it fails any single test.\n\n**Requirement 1 — above $55^{\\circ}\\text{C}$ at 60 min.** Foam $62.0$ ✓, wool $58.0$ ✓, cork $55.0$ ✗ (the requirement says *above* $55$, and $55.0$ is not above $55$), foil-lined air gap $50.0$ ✗.\n\n**Requirement 2 — at most $\\$15/\\text{m}^2$.** Of the survivors: foam $\\$6$ ✓, wool $\\$14$ ✓.\n\n**Requirement 3 — at most $60$ g.** Foam $40$ g ✓, wool $95$ g ✗.\n\nOnly polystyrene foam clears all three, so it is the design choice.\n\nCheck by running foam through the list once more in one pass: $62.0 > 55$ ✓, $\\$6 \\le \\$15$ ✓, $40\\text{ g} \\le 60\\text{ g}$ ✓. Note how much work the word *above* does — a boundary word like that is worth underlining before you start, because cork sits exactly on the line and passes only if the requirement had said \"at least\".",
+  "distractorRationale": {
+    "b": "Cork fails all three tests: its 60-minute temperature is $55.0^{\\circ}\\text{C}$, which is not above $55^{\\circ}\\text{C}$; at $\\$22$ per square metre it is over the price cap; and at 130 g it is more than twice the mass allowance.",
+    "c": "Sheep wool passes the temperature test ($58.0^{\\circ}\\text{C}$) and the price test ($\\$14$), which makes it tempting if you stop after two requirements — but it adds 95 g, well over the 60 g limit.",
+    "d": "The foil-lined air gap is the cheapest-by-mass option at 25 g and costs only $\\$9$, so it passes two requirements, but its water had fallen to $50.0^{\\circ}\\text{C}$ by 60 minutes, which fails the temperature requirement outright."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": {
+    "id": "enhanced-act-stim-sci-insulation-006",
+    "version": 1
+  },
+  "accessibilityText": "The question applies three design requirements to the four wraps in Table 2. At 60 minutes, polystyrene foam read 62.0 degrees Celsius, sheep wool 58.0, cork 55.0 and the foil-lined air gap 50.0. Costs per square metre were 6, 14, 22 and 9 dollars respectively. Masses added to one can were 40, 95, 130 and 25 grams respectively. The requirements are: above 55 degrees Celsius at 60 minutes, at most 15 dollars per square metre, and at most 60 grams.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank against an original engineering-and-design experiment and invented data set. Not derived from, and not a paraphrase of, any ACT-published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "enhanced-act-wave3-author",
+    "reviewer": "enhanced-act-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "enhanced-act-wave3-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Above 55 C at 60 min: foam 62 and wool 58 pass, cork 55 fails (not strictly above) and foil 50 fails. Of the two survivors, cost: foam $6 and wool $14 both pass; mass: foam 40 g passes but wool 95 g exceeds 60 g. Only polystyrene foam clears all three."
+    },
+    "notes": "Author solved the item and attempted to defend each distractor before keying it. Foam passes 62.0 > 55, $6 <= $15 and 40 g <= 60 g; wool fails on mass (95 g), the air gap fails on temperature (50.0), and cork fails all three, with 55.0 excluded by the strict inequality 'above'. Exactly one option survives. Awaiting an independent blind solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "science",
+    "engineering-design",
+    "multi-criteria",
+    "evaluating-evidence"
+  ]
+}

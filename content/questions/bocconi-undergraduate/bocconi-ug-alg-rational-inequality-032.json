@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-alg-rational-inequality-032",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-algebra-inequalities",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "For which real values of $x$ is\n\n$$\\frac{x-1}{x+2} \\ge 0 \\;?$$",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$x \\ge 1$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$x < -2$ or $x \\ge 1$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$x \\le -2$ or $x \\ge 1$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$-2 < x \\le 1$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "A quotient is $\\ge 0$ when numerator and denominator have the **same sign**, and the two critical values behave differently: the numerator may equal zero, the denominator may not.\n\n**Step 1 — critical values.** The numerator vanishes at $x = 1$; the denominator vanishes at $x = -2$, where the whole expression is undefined.\n\n**Step 2 — sign chart** on the three intervals those values create:\n\n| interval | $x - 1$ | $x + 2$ | quotient |\n|---|---|---|---|\n| $x < -2$ | negative | negative | **positive** |\n| $-2 < x < 1$ | negative | positive | negative |\n| $x > 1$ | positive | positive | **positive** |\n\n**Step 3 — handle the endpoints.** At $x = 1$ the quotient is $\\frac{0}{3} = 0$, and $0 \\ge 0$ is true, so $x = 1$ is **included**. At $x = -2$ the denominator is zero, so the expression does not exist there and $x = -2$ must be **excluded** no matter which way the inequality points.\n\nThe solution set is therefore\n\n$$x < -2 \\quad \\text{or} \\quad x \\ge 1$$\n\n**How to check the answer.** Test one value from each interval. At $x = -3$: $\\frac{-4}{-1} = 4 \\ge 0$, true. At $x = 0$: $\\frac{-1}{2} = -0.5$, false. At $x = 2$: $\\frac{1}{4} = 0.25 \\ge 0$, true. Then test the two endpoints separately, as above. Three interior points plus the endpoints decide the whole question.\n\n**The trap to name.** Do not multiply both sides by $x + 2$ to \"clear\" the fraction. Its sign is unknown, and multiplying by a negative quantity reverses the inequality. The sign chart avoids the issue entirely.",
+  "distractorRationale": {
+    "a": "This finds the interval to the right of the numerator's zero and stops, missing the branch below $-2$ where numerator and denominator are both negative and the quotient is therefore positive. Testing $x = -3$ gives $\\frac{-4}{-1} = 4$, which satisfies the inequality but is excluded by this answer.",
+    "d": "This is the interval where the quotient is negative, so it answers $\\frac{x-1}{x+2} \\le 0$ instead. It typically comes from multiplying both sides by $x + 2$ as if that factor were positive, which is illegitimate because its sign is exactly what the problem turns on. Testing $x = 0$ gives $-0.5$, which fails the stated inequality.",
+    "c": "The intervals are right but the endpoint $x = -2$ has been included, as if $\\ge$ always meant closed brackets. At $x = -2$ the denominator is zero and the expression is undefined, so that value can never belong to the solution set; only the numerator's zero, $x = 1$, may be included."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "Find all real numbers x for which the fraction with numerator x minus one and denominator x plus two is greater than or equal to zero.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. The distractors separate three distinct errors: losing the branch below the vertical asymptote, cross-multiplying by a factor of unknown sign, and closing the endpoint at the excluded zero of the denominator."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-wave3-author",
+    "reviewer": "bocconi-undergraduate-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-wave3-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Numerator zero at x=1 (allowed, quotient = 0), denominator zero at x=-2 (excluded). Sign chart: positive for x < -2, negative on (-2,1), positive for x > 1, so x < -2 or x >= 1. Option c is wrong only because it wrongly includes x=-2 where the expression is undefined."
+    },
+    "notes": "Author's uniqueness check: the sign chart gives exactly one solution set. Option A is a proper subset of it, option B is its complement on the negative side, and option D differs from it by the single undefined point x = -2, so no second option is defensible. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "rational-inequality",
+    "sign-chart",
+    "domain-restrictions"
+  ]
+}

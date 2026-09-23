@@ -1,0 +1,65 @@
+{
+  "id": "gre-quant-ne-successive-discount-204",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-arithmetic",
+  "skillSlug": "arith-percent",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A jacket is priced at $\\$80$. The store first reduces the price by $25$ percent, and one week later reduces the already reduced price by a further $20$ percent.\n\nWhat is the final price of the jacket, in dollars?",
+  "instructionsMd": "Enter your answer in the box. Equivalent forms of the same value are accepted; do not include a dollar sign.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 48
+      }
+    ],
+    "acceptedStrings": [
+      "48",
+      "48.0",
+      "48.00"
+    ]
+  },
+  "explanationMd": "Successive percent changes must be applied one after the other, each to the price that is actually in force at the time.\n\n**First reduction.** Taking $25$ percent off leaves $75$ percent of the original:\n\n$$80 \\times 0.75 = 60.$$\n\n**Second reduction.** The second cut is applied to $\\$60$, not to $\\$80$. Taking $20$ percent off leaves $80$ percent:\n\n$$60 \\times 0.80 = 48.$$\n\nThe final price is $\\$48$.\n\n**How to check.** Combine the two multipliers into one and confirm the same result: $0.75 \\times 0.80 = 0.60$, and $80 \\times 0.60 = 48$. That also shows what the overall change really was — a $40$ percent reduction, not the $45$ percent you get by adding $25$ and $20$. Percents only add when they are taken of the same base, and here the second base is smaller than the first.",
+  "distractorRationale": {
+    "trap-44-adding-the-percents": "A learner who adds the two rates to get a 45 percent discount computes $80 \\times 0.55 = 44$. The second cut applies to \\$60, not to \\$80, so the rates cannot be added.",
+    "trap-60-stopping-early": "Stopping after the first reduction gives \\$60. That is the intermediate price, not the answer to the question that was asked.",
+    "trap-32-subtracting-the-discounts": "Computing the two discounts as $20 + 16 = 36$ and then subtracting from a wrong base, or reading the answer as the total discount rather than the remaining price, yields a figure such as 32. The question asks for the price that remains."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "A jacket costs 80 dollars. The price is reduced by 25 percent, and then the reduced price is reduced by a further 20 percent. Type the final price in dollars into the answer box.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gre-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for the wave 3 top-up. The two rates were chosen so that both intermediate and final prices are whole dollars and so that the additive error produces a distinct wrong value. Not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gre-wave3-author",
+    "reviewer": "gre-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "gre-wave3-reviewer",
+      "solvedAnswer": "48",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "80 * 0.75 = 60, then 60 * 0.80 = 48. The successive discounts compound (net 40 percent off), not 45 percent off."
+    },
+    "notes": "Author solved 80 * 0.75 = 60, then 60 * 0.80 = 48; combined multiplier 0.60 confirms 48. Awaiting blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "numeric-entry",
+    "percent",
+    "successive-change"
+  ]
+}

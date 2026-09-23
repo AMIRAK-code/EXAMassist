@@ -1,0 +1,79 @@
+{
+  "id": "enhanced-act-sci-enzyme-trend-041",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "science",
+  "domainSlug": "act-science-interpretation-of-data",
+  "skillSlug": "act-sci-iod-trends-and-relationships",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which of the following best describes the volume of oxygen released by the unheated extract as pH increased from 4 to 8?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "It decreased to a minimum near pH 6 and then increased."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "It increased continuously over the whole range."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "It decreased continuously over the whole range."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "It increased to a maximum near pH 6 and then decreased."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Take the Experiment 1 column in order and note the direction of each step:\n\n$$6 \\;\\nearrow\\; 18 \\;\\nearrow\\; 31 \\;\\searrow\\; 24 \\;\\searrow\\; 9$$\n\nThe first two steps go up, the last two go down, and the turning point is the 31 mL reading at pH 6. That shape — up to a maximum and then down — is what the data show.\n\nCheck the description against the endpoints as well: the column begins at 6 mL and ends at 9 mL, both far below the 31 mL in the middle. A column whose middle value is much larger than either end cannot be described as continuously increasing or continuously decreasing, and it certainly does not have a minimum in the middle.\n\nA quick way to classify any column is to write the four arrows first, as above, and only then read the answer choices. Doing it in that order stops the wording of a choice from steering how you read the numbers.",
+  "distractorRationale": {
+    "b": "Describes only the first half of the column. Volume does rise from 6 to 18 to 31 mL, but it then falls to 24 and to 9 mL, so the increase does not continue over the whole range.",
+    "c": "Describes only the second half of the column, as though it had been read starting from pH 6. The first two steps, 6 to 18 to 31 mL, are increases, so the volume does not decrease over the whole range.",
+    "a": "Inverts the shape: it puts the turning point in the right place but calls it a minimum. The pH 6 value of 31 mL is the largest in the column, not the smallest — the smallest is the 6 mL at pH 4."
+  },
+  "estimatedSeconds": 45,
+  "stimulusRef": {
+    "id": "enhanced-act-stim-sci-enzyme-007",
+    "version": 1
+  },
+  "accessibilityText": "The question asks about the shape of the Experiment 1 column of Table 3 as pH rises from 4 to 8. The values are 6 millilitres at pH 4, 18 at pH 5, 31 at pH 6, 24 at pH 7 and 9 at pH 8, so the column rises to a maximum at pH 6 and then falls.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank against an original experiment description and invented data set. Not derived from, and not a paraphrase of, any ACT-published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "enhanced-act-wave3-author",
+    "reviewer": "enhanced-act-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "enhanced-act-wave3-reviewer",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Unheated values 6, 18, 31, 24, 9 mL rise from pH 4 to a maximum of 31 mL at pH 6 and then fall through pH 7 and 8, which is exactly (d); (a) inverts the shape and (b)/(c) claim monotonic change that the numbers contradict."
+    },
+    "notes": "Author solved the item and attempted to defend each distractor before keying it. The column is 6, 18, 31, 24, 9, which is strictly up then strictly down with a maximum at pH 6, so only one description fits. Awaiting an independent blind solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "science",
+    "trends",
+    "table-reading"
+  ]
+}

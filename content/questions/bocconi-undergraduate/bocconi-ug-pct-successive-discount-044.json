@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-pct-successive-discount-044",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-numbers-percentages",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A coat is listed at 250 euros. In a sale its price is reduced by 20 per cent, and at the till a further 10 per cent is taken off the already reduced price. What does the customer pay?",
+  "instructionsMd": "No calculator.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "225 euros"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "180 euros"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "200 euros"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "175 euros"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Successive percentage changes **multiply**; they do not add.\n\n**Step 1 — the sale reduction.** Taking 20 per cent off leaves 80 per cent:\n\n$$250 \\times 0.80 = 200 \\text{ euros}$$\n\n**Step 2 — the till reduction.** A further 10 per cent off *this* price leaves 90 per cent of it:\n\n$$200 \\times 0.90 = 180 \\text{ euros}$$\n\nSo the customer pays **180 euros**.\n\n**The one-line version.** Combine the two surviving fractions first:\n\n$$250 \\times 0.80 \\times 0.90 = 250 \\times 0.72 = 180$$\n\nThe overall effect is a single discount of $100\\% - 72\\% = 28$ per cent, not 30 per cent. The missing 2 per cent is the 10 per cent that is *not* charged on the 50 euros already knocked off.\n\n**How to check the answer.** Work the discounts as money rather than as multipliers. The first cut is $20\\%$ of 250, which is 50 euros, leaving 200. The second is $10\\%$ of 200, which is 20 euros, leaving 180. The two routes agree.\n\nA second check: the order of two successive percentage changes never matters, because multiplication commutes. Applying the 10 per cent first gives $250 \\times 0.9 = 225$, then $225 \\times 0.8 = 180$. Same answer, which confirms the working.\n\n**The trap to name.** Adding 20 and 10 to get a 30 per cent discount gives 175 euros and is always too low, because the second percentage is charged on a smaller base than the first.",
+  "distractorRationale": {
+    "d": "This adds the two percentages into a single 30 per cent discount: $250 \\times 0.70 = 175$. Successive discounts compound rather than add — the second 10 per cent applies to 200 euros, not to the original 250 — so the true combined discount is 28 per cent, and 175 euros is 5 euros too little.",
+    "c": "This applies only the first reduction and stops: $250 \\times 0.80 = 200$. It is the intermediate figure of step 1, and forgetting the second cut leaves it on the page as though it were the final price.",
+    "a": "This applies only the second reduction: $250 \\times 0.90 = 225$. It uses the smaller of the two percentages on the original list price and ignores the 20 per cent sale reduction entirely."
+  },
+  "estimatedSeconds": 65,
+  "stimulusRef": null,
+  "accessibilityText": "A coat listed at two hundred and fifty euros is reduced by twenty per cent in a sale, and then a further ten per cent is taken off the reduced price at the till. The question asks what the customer pays. The four options are one hundred and seventy-five, one hundred and eighty, two hundred, and two hundred and twenty-five euros.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Figures were chosen so every intermediate value is a whole number of euros. The distractors are the additive-discount error and the two single-discount-only errors, each of which is a number a candidate would actually write down mid-solution."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-wave3-author",
+    "reviewer": "bocconi-undergraduate-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-wave3-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "250 * 0.80 = 200, then 200 * 0.90 = 180 euros. Option c (200) stops after the first discount; option d (175) applies a single combined 30 per cent cut, the intended trap."
+    },
+    "notes": "Author's uniqueness check: the compounded price is 250 x 0.8 x 0.9 = 180, a single value, confirmed by reversing the order of the two discounts. The other options are 175, 200 and 225, all distinct from 180 and from each other. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "percentages",
+    "successive-change",
+    "compounding"
+  ]
+}

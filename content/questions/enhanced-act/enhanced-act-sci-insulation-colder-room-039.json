@@ -1,0 +1,80 @@
+{
+  "id": "enhanced-act-sci-insulation-colder-room-039",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "science",
+  "domainSlug": "act-science-scientific-investigation",
+  "skillSlug": "act-sci-sin-predict-modified-results",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Suppose Study 2 were repeated exactly as described except that the room was held at $10.0^{\\circ}\\text{C}$ instead of $20.0^{\\circ}\\text{C}$. Compared with the values in Table 2, the 60-minute temperatures would most likely be:",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "lower for every can, because a larger difference between the water temperature and the room temperature makes heat leave the water faster."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "lower for the unwrapped can only, because the wraps stop the room temperature from affecting the water."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "higher for every can, because insulating materials work better in a colder room."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "unchanged for every can, because the wrap rather than the room determines how fast the water cools."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Table 2 already tells you what drives the cooling rate, if you read the unwrapped row as a story about the shrinking gap to the room. Starting at $90.0^{\\circ}\\text{C}$ in a $20.0^{\\circ}\\text{C}$ room, the unwrapped can loses $28.0^{\\circ}\\text{C}$ in the first 20 minutes, then $16.0$, then $10.0$. The drops shrink as the water gets closer to the room temperature — bigger gap, faster loss.\n\nDropping the room to $10.0^{\\circ}\\text{C}$ makes that gap larger at every moment: $80.0^{\\circ}\\text{C}$ at the start instead of $70.0^{\\circ}\\text{C}$. Every can therefore loses heat faster than it did before, and every 60-minute reading comes out lower.\n\nThe wraps still matter — foam would still finish warmest, the unwrapped can coldest — but a wrap slows heat loss, it does not stop it, so no can is exempt.\n\nCheck the reasoning against the table rather than against intuition: the pattern of shrinking 20-minute drops in the unwrapped row is direct evidence, from this study, that the size of the temperature gap controls the rate. That is the only extra idea the prediction needs.",
+  "distractorRationale": {
+    "c": "Reverses the relationship. Nothing in Table 2 suggests a wrap performs better when the surroundings are colder, and the unwrapped row shows heat loss speeding up, not slowing, as the gap to the room widens.",
+    "d": "Treats the wrap as the only thing that matters. The unwrapped can proves the room matters: with no wrap at all it still settled toward $20.0^{\\circ}\\text{C}$, and the direction of every can's cooling is set by the room it stands in.",
+    "b": "Assumes the wraps completely block heat loss to the room. They do not: every wrapped can also cooled from $90.0^{\\circ}\\text{C}$ toward the room temperature over the hour, so a colder room would speed up all four of them as well."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": {
+    "id": "enhanced-act-stim-sci-insulation-006",
+    "version": 1
+  },
+  "accessibilityText": "The question asks what would happen to the 60-minute temperatures of Study 2 if the room were held at 10.0 degrees Celsius instead of 20.0. In the original study every can started at 90.0 degrees. The unwrapped can fell 28.0 degrees in the first 20 minutes, 16.0 in the second and 10.0 in the third, so its rate of cooling slowed as it approached room temperature. All four wrapped cans also cooled, ending between 50.0 and 62.0 degrees.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank against an original engineering-and-design experiment and invented data set. Not derived from, and not a paraphrase of, any ACT-published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "enhanced-act-wave3-author",
+    "reviewer": "enhanced-act-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "enhanced-act-wave3-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "A 10 C room raises the water-to-room temperature difference from 70 C to 80 C at the start, and heat flows faster the larger that difference, so every can - wrapped or not - is cooler at 60 minutes. (b) and (d) wrongly treat a wrap as isolating the water from the room, and (c) asserts an unsupported improvement in insulating performance."
+    },
+    "notes": "Author solved the item and attempted to defend each distractor before keying it. The shrinking successive drops in the unwrapped row are in-passage evidence that the rate depends on the gap to the room, which makes the 'lower for every can' answer the only defensible one; the others require heat loss to reverse, to be independent of the room, or to be entirely blocked by a wrap. Awaiting an independent blind solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "science",
+    "prediction",
+    "modified-experiment",
+    "heat-transfer"
+  ]
+}

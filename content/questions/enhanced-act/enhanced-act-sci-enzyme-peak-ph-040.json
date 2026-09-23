@@ -1,0 +1,79 @@
+{
+  "id": "enhanced-act-sci-enzyme-peak-ph-040",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "science",
+  "domainSlug": "act-science-interpretation-of-data",
+  "skillSlug": "act-sci-iod-manipulate-and-analyse-data",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "In Experiment 1, the unheated extract released the greatest volume of oxygen at which pH?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$5$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$6$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$7$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$8$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Scan the whole Experiment 1 column before choosing, because the values rise and then fall:\n\n| pH | O₂ released (mL) |\n|---|---|\n| 4 | 6 |\n| 5 | 18 |\n| 6 | **31** |\n| 7 | 24 |\n| 8 | 9 |\n\nThe largest value is $31$ mL, in the pH 6 row.\n\nCheck it by confirming the value is larger than the rows on *both* sides: $31 > 18$ at pH 5 and $31 > 24$ at pH 7. A single comparison is not enough when a column has a peak in the middle — you have to look in both directions, which is exactly the habit this question is training.",
+  "distractorRationale": {
+    "a": "At pH 5 the extract released 18 mL. That is larger than the 6 mL at pH 4, so it looks like an increase is underway, but the column keeps rising to 31 mL at pH 6; 18 mL is only the third-largest value.",
+    "c": "At pH 7 the extract released 24 mL, the second-largest value. It is chosen by a reader who assumes the peak must be at neutral pH rather than reading the numbers, and $24 < 31$.",
+    "d": "At pH 8 the extract released only 9 mL, the second-*smallest* value in the column. This is the answer given by a reader who reads the last row of a table as its endpoint or maximum."
+  },
+  "estimatedSeconds": 35,
+  "stimulusRef": {
+    "id": "enhanced-act-stim-sci-enzyme-007",
+    "version": 1
+  },
+  "accessibilityText": "The question uses the Experiment 1 column of Table 3, the oxygen released in 60 seconds by unheated extract: 6 millilitres at pH 4, 18 at pH 5, 31 at pH 6, 24 at pH 7 and 9 at pH 8. The four choices are pH 5, 6, 7 and 8.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank against an original experiment description and invented data set. Not derived from, and not a paraphrase of, any ACT-published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "enhanced-act-wave3-author",
+    "reviewer": "enhanced-act-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "enhanced-act-wave3-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Experiment 1 unheated column: pH 4 = 6, pH 5 = 18, pH 6 = 31, pH 7 = 24, pH 8 = 9 mL. The maximum, 31 mL, is at pH 6."
+    },
+    "notes": "Author solved the item and attempted to defend each distractor before keying it. 31 mL at pH 6 is strictly the largest value in the Experiment 1 column, so exactly one option is defensible. pH 4 is omitted from the option set because its 6 mL is the near-minimum and would add nothing. Awaiting an independent blind solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "science",
+    "table-reading",
+    "maximum"
+  ]
+}

@@ -264,6 +264,54 @@ describe('two part analysis', () => {
     ).toBe(false);
   });
 
+  it('handles more than two columns, which a three-blank text completion needs', () => {
+    // A GRE three-blank Text Completion is carried by the two_part type. A
+    // reviewer asked whether the engine actually grades three columns; it does,
+    // and all three must be right.
+    const threeBlank: AnswerKey = {
+      type: 'two_part',
+      selections: [
+        { columnId: 'blank1', optionId: 'blank1-b' },
+        { columnId: 'blank2', optionId: 'blank2-a' },
+        { columnId: 'blank3', optionId: 'blank3-c' },
+      ],
+    };
+
+    expect(
+      isResponseCorrect(threeBlank, {
+        type: 'two_part',
+        selections: [
+          { columnId: 'blank3', optionId: 'blank3-c' },
+          { columnId: 'blank1', optionId: 'blank1-b' },
+          { columnId: 'blank2', optionId: 'blank2-a' },
+        ],
+      }),
+    ).toBe(true);
+
+    // One blank wrong fails the whole item.
+    expect(
+      isResponseCorrect(threeBlank, {
+        type: 'two_part',
+        selections: [
+          { columnId: 'blank1', optionId: 'blank1-b' },
+          { columnId: 'blank2', optionId: 'blank2-a' },
+          { columnId: 'blank3', optionId: 'blank3-a' },
+        ],
+      }),
+    ).toBe(false);
+
+    // Answering only two of the three blanks is not a correct answer.
+    expect(
+      isResponseCorrect(threeBlank, {
+        type: 'two_part',
+        selections: [
+          { columnId: 'blank1', optionId: 'blank1-b' },
+          { columnId: 'blank2', optionId: 'blank2-a' },
+        ],
+      }),
+    ).toBe(false);
+  });
+
   it('rejects two answers for the same column', () => {
     expect(
       isResponseCorrect(key, {

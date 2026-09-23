@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-ug-alg-quadratic-root-pair-031",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-algebra-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The equation $x^{2} - kx + 12 = 0$ has two real roots, and one of them is $3$. What is the other root, and what is the value of $k$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The other root is $4$ and $k = 7$."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The other root is $4$ and $k = -7$."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The other root is $-4$ and $k = -1$."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The other root is $9$ and $k = 12$."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Use the relations between the coefficients and the roots. For $x^{2} + px + q = 0$ with roots $x_{1}$ and $x_{2}$,\n\n$$x_{1} + x_{2} = -p \\qquad x_{1}x_{2} = q$$\n\nHere $p = -k$ and $q = 12$, so\n\n$$x_{1} + x_{2} = k \\qquad x_{1}x_{2} = 12$$\n\n**Find the second root from the product,** because the product does not involve the unknown $k$:\n\n$$3 \\cdot x_{2} = 12 \\;\\Longrightarrow\\; x_{2} = 4$$\n\n**Then read $k$ off the sum:**\n\n$$k = 3 + 4 = 7$$\n\n**How to check the answer.** Put $k = 7$ back into the original equation and factor it:\n\n$$x^{2} - 7x + 12 = (x - 3)(x - 4)$$\n\nThe roots are 3 and 4, exactly as claimed, and the constant term 12 is $3 \\times 4$. A second check on the sign: substituting $x = 3$ into $x^{2} - kx + 12$ gives $9 - 3k + 12 = 21 - 3k$, which is zero only when $k = 7$. That single substitution settles $k$ on its own and rules out every option that names a different $k$.\n\n**The point to carry away.** In $x^{2} - kx + 12$ the coefficient of $x$ is $-k$, so the *sum* of the roots is $+k$, not $-k$. Reading the sign off the printed equation rather than off the standard form is where most errors on this type begin.",
+  "distractorRationale": {
+    "b": "The second root is right but the sign of $k$ has been taken straight from the printed equation: the coefficient of $x$ is $-k$, so the sum of the roots equals $+k$, not $-k$. Substituting $x = 3$ with $k = -7$ gives $9 + 21 + 12 = 42$, nowhere near zero.",
+    "c": "This uses a product of roots of $-12$ instead of $+12$, giving $3 \\cdot (-4) = -12$, and then a sum of $-1$. The constant term of $x^{2} - kx + 12$ is $+12$, so the product of the roots is $+12$; a negative second root would require a negative constant term.",
+    "d": "This treats the constant term 12 as the *sum* of the roots rather than their product, giving a second root of $12 - 3 = 9$ and then setting $k$ equal to 12 as well. Substituting $x = 9$ into the equation with $k = 12$ gives $81 - 108 + 12 = -15$, so 9 is not a root."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "The quadratic equation x squared minus k x plus twelve equals zero has two real roots, one of which is three. Find the other root and the value of k. Each answer option names a value for the other root and a value for k.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. The three distractors isolate three separate slips: the sign of the linear coefficient, the sign of the constant term, and confusing the sum with the product of the roots."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-wave3-author",
+    "reviewer": "bocconi-undergraduate-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-wave3-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Substituting x=3: 9 - 3k + 12 = 0 so k = 7; product of roots = 12 gives the other root 12/3 = 4, and 3+4 = 7 = k, consistent. b has the wrong sign of k, c and d fail the product/sum checks."
+    },
+    "notes": "Author's uniqueness check: substituting x = 3 into x^2 - kx + 12 gives 21 - 3k, which vanishes only at k = 7, so k is forced; with k = 7 the factorisation (x-3)(x-4) forces the second root to be 4. Exactly one option states both. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "quadratic-equations",
+    "sum-and-product-of-roots"
+  ]
+}

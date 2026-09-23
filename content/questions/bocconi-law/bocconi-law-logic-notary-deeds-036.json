@@ -1,0 +1,77 @@
+{
+  "id": "bocconi-law-logic-notary-deeds-036",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-data-propositions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A notary's log for one month records 60 authenticated deeds. Each deed is of exactly one of three kinds: property transfer, will, or company deed. The log shows 36 property transfers and 14 wills; the remaining deeds are company deeds.\n\nWhich of the following follows from these data?",
+  "instructionsMd": "Use only the data given.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Company deeds were the second most frequent kind of deed."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Property transfers outnumbered wills and company deeds taken together."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Fewer than half of the deeds were property transfers."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Exactly one quarter of the deeds were wills."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "First recover the missing figure. The three kinds are exclusive and exhaustive, so\n\n$$\\text{company deeds} = 60 - 36 - 14 = 10$$\n\nThe month therefore breaks down as 36 property transfers, 14 wills and 10 company deeds.\n\nNow test option A. Wills and company deeds together come to $14 + 10 = 24$, and $36 > 24$, so property transfers do outnumber the other two kinds combined. Option A follows.\n\n**How to check.** Confirm the three parts add back to the stated total: $36 + 14 + 10 = 60$. Then rank the kinds once — property transfers 36, wills 14, company deeds 10 — and read every option off that single ranking rather than recomputing each time. Two quick sanity figures fall out of it: wills are $\\tfrac{14}{60}$, a little under a quarter, and property transfers are $\\tfrac{36}{60} = 60\\%$, comfortably over half.",
+  "distractorRationale": {
+    "d": "A quarter of 60 is 15, and the log records 14 wills, not 15. This option comes from rounding 14 to the nearest convenient fraction of the total instead of checking the exact figure.",
+    "a": "Company deeds number 10 and wills number 14, so company deeds are the least frequent kind, not the second most frequent. The error is to assume that the kind you had to calculate, rather than read off, must be larger than the one already given.",
+    "c": "Property transfers are 36 out of 60, which is 60 per cent. This option treats 36 as a minority because it is smaller than the total of the other two categories' headline numbers before they are added — or simply compares 36 with 60 without halving."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": null,
+  "accessibilityText": "A data propositions question. A notary's monthly log records 60 authenticated deeds, each of exactly one kind: 36 property transfers, 14 wills, and the rest company deeds. The question asks which of four statements follows from the data.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item on the published Bocconi Law syllabus entry 'data propositions'. All figures are invented and chosen so the missing category and every comparison can be computed mentally."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave3-author",
+    "reviewer": "bocconi-law-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "bocconi-law-wave3-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Company deeds = 60 - 36 - 14 = 10. Property transfers (36) exceed wills plus company deeds (14 + 10 = 24), so B holds. A is false (wills 14 > company 10), C is false (36/60 = 60 per cent), D is false (a quarter would be 15, not 14)."
+    },
+    "notes": "Author's working: company deeds = 60 - 36 - 14 = 10. Then 36 > 14 + 10 = 24, so A holds. B fails because a quarter of 60 is 15, not 14; C fails because 10 < 14; D fails because 36 is 60 per cent of 60. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "data-propositions",
+    "arithmetic-reasoning",
+    "no-calculator"
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "id": "enhanced-act-sci-insulation-interval-036",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "science",
+  "domainSlug": "act-science-interpretation-of-data",
+  "skillSlug": "act-sci-iod-manipulate-and-analyse-data",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "During which 20-minute interval did the water in the **unwrapped** can lose the greatest amount of heat?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "From 0 to 20 minutes"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "From 20 to 40 minutes"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "From 40 to 60 minutes"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The temperature fell by the same amount in all three intervals."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The first interval starts at the filling temperature, which is given in the procedure rather than the table: every can was filled at $90.0^{\\circ}\\text{C}$. Using that starting value, take the three differences down the unwrapped row:\n\n- $0$ to $20$ min: $90.0 - 62.0 = 28.0^{\\circ}\\text{C}$\n- $20$ to $40$ min: $62.0 - 46.0 = 16.0^{\\circ}\\text{C}$\n- $40$ to $60$ min: $46.0 - 36.0 = 10.0^{\\circ}\\text{C}$\n\nThe largest drop, $28.0^{\\circ}\\text{C}$, is in the first interval.\n\nCheck the arithmetic by adding the three drops: $28.0 + 16.0 + 10.0 = 54.0$, and $90.0 - 54.0 = 36.0^{\\circ}\\text{C}$, the final reading in the table. The result also makes physical sense: the water is furthest above the $20.0^{\\circ}\\text{C}$ room temperature at the start, so that is when it loses heat fastest — and the intervals get smaller as the gap closes.",
+  "distractorRationale": {
+    "b": "The drop here is $62.0 - 46.0 = 16.0^{\\circ}\\text{C}$, which is smaller than the first interval's $28.0^{\\circ}\\text{C}$. This choice is reached by working only from the numbers printed in the table and never using the $90.0^{\\circ}\\text{C}$ starting temperature given in the procedure.",
+    "c": "The drop here is $46.0 - 36.0 = 10.0^{\\circ}\\text{C}$, the smallest of the three. It is picked by a reader who looks for the lowest temperature in the row rather than the largest change between readings.",
+    "d": "Asserts equal drops without subtracting. The three drops are 28.0, 16.0 and 10.0 degrees Celsius, so they are plainly unequal; a constant drop per interval would be linear cooling, which is not what an object approaching room temperature does."
+  },
+  "estimatedSeconds": 55,
+  "stimulusRef": {
+    "id": "enhanced-act-stim-sci-insulation-006",
+    "version": 1
+  },
+  "accessibilityText": "The question uses the unwrapped-can row of Table 2 together with the procedure's statement that every can was filled at 90.0 degrees Celsius. The unwrapped can read 62.0 degrees at 20 minutes, 46.0 at 40 minutes and 36.0 at 60 minutes, giving drops of 28.0, 16.0 and 10.0 degrees in the three successive 20-minute intervals.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank against an original engineering-and-design experiment and invented data set. Not derived from, and not a paraphrase of, any ACT-published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "enhanced-act-wave3-author",
+    "reviewer": "enhanced-act-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "enhanced-act-wave3-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Unwrapped can: 90 to 62 = 28 C in the first interval, 62 to 46 = 16 C in the second, 46 to 36 = 10 C in the third. The largest drop, and so the greatest heat loss for a fixed 1.0 L of water, is 0-20 minutes."
+    },
+    "notes": "Author solved the item and attempted to defend each distractor before keying it. The 90.0 degree starting temperature is stated in the stimulus procedure, so the first interval is computable and is strictly the largest drop at 28.0 degrees. Awaiting an independent blind solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "science",
+    "rate-of-change",
+    "table-reading"
+  ]
+}
