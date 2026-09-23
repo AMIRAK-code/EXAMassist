@@ -1,0 +1,41 @@
+{
+  "id": "bocconi-ug-stim-broadband-provinces-008",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "kind": "table",
+  "title": "Fibre broadband in five provinces, 2025",
+  "bodyMd": "A regional telecommunications regulator publishes the following figures for the five provinces it supervises. \"Households\" is the number of households in the province and \"Connected\" is the number of those households that had taken a fibre subscription by the end of 2025, both in thousands. \"Monthly price\" is the average price of a fibre subscription in the province, in euros per month. \"Complaints\" is the number of complaints received during 2025 for every 10,000 connected households.",
+  "data": {
+    "columns": [
+      { "key": "province", "label": "Province" },
+      { "key": "households", "label": "Households (thousands)" },
+      { "key": "connected", "label": "Connected (thousands)" },
+      { "key": "price", "label": "Monthly price (€)" },
+      { "key": "complaints", "label": "Complaints per 10,000 connected" }
+    ],
+    "rows": [
+      { "province": "Alba", "households": 400, "connected": 320, "price": 28, "complaints": 35 },
+      { "province": "Borgo", "households": 250, "connected": 150, "price": 20, "complaints": 48 },
+      { "province": "Cima", "households": 600, "connected": 270, "price": 34, "complaints": 20 },
+      { "province": "Dora", "households": 180, "connected": 153, "price": 22, "complaints": 60 },
+      { "province": "Este", "households": 320, "connected": 160, "price": 26, "complaints": 45 }
+    ],
+    "caption": "Fibre broadband in five provinces at the end of 2025: households, connected households, average monthly price and complaints per 10,000 connected households.",
+    "chart": {
+      "type": "bar",
+      "xKey": "province",
+      "yKeys": ["connected"],
+      "xLabel": "Province",
+      "yLabel": "Connected households (thousands)"
+    }
+  },
+  "accessibilityText": "A table of five rows and five columns. The columns are province, households in thousands, connected households in thousands, average monthly price in euros, and complaints received during 2025 for every 10,000 connected households. Alba: 400 households, 320 connected, 28 euros, 35 complaints per 10,000. Borgo: 250 households, 150 connected, 20 euros, 48 complaints per 10,000. Cima: 600 households, 270 connected, 34 euros, 20 complaints per 10,000. Dora: 180 households, 153 connected, 22 euros, 60 complaints per 10,000. Este: 320 households, 160 connected, 26 euros, 45 complaints per 10,000. Across the five provinces there are 1,750 thousand households of which 1,053 thousand are connected. An accompanying bar chart plots the connected column only, one bar per province, tallest for Alba at 320 thousand and shortest for Borgo at 150 thousand.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-wave3-author",
+    "aiAssisted": true,
+    "notes": "Invented data for a fictional regulator and five fictional provinces, written for this item set. The figures were chosen so that every ratio a question asks for is exact and hand-sized: each coverage share is a whole percentage, each revenue product is a two-digit multiplication, and each complaint total is a whole number. The ranking of provinces deliberately differs between coverage share, revenue and complaint totals so that no single column answers every question. Not derived from any real regulator, dataset or published test item."
+  },
+  "rightsStatus": "original-owned",
+  "state": "in_review"
+}

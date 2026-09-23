@@ -1,0 +1,79 @@
+{
+  "id": "enhanced-act-sci-enzyme-viewpoints-043",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "science",
+  "domainSlug": "act-science-evaluating-scientific-arguments-and-models",
+  "skillSlug": "act-sci-emi-compare-competing-models",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Two students disagree about what happens to the extract in acid.\n\n> **Student 1:** Holding the extract at pH 4 permanently destroys the substance that releases the oxygen.\n>\n> **Student 2:** The loss of activity at pH 4 is temporary; the substance recovers when the extract is returned to a near-neutral pH.\n\nWhich result best distinguishes between these two claims, and which claim does it support?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The 6 mL released at pH 4 in Experiment 1; it supports Student 1."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The 9 mL released at pH 8 in Experiment 1, which exceeds the 6 mL released at pH 4; it supports Student 2."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The 2 mL or less released by the heated extract at every pH in Experiment 2; it supports Student 1."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The 28 mL released in Experiment 3, close to the 31 mL released at pH 6 in Experiment 1; it supports Student 2."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The two students agree about everything except one thing: whether the damage done at pH 4 can be undone. So the result that settles the argument has to be one where extract was **exposed to pH 4 and then tested at a different pH**. Only Experiment 3 does that.\n\nIn Experiment 3, extract sat at pH 4 for 10 minutes, was buffered back to pH 6, and then released 28 mL of oxygen in 60 s. Compare that with the 31 mL that never-acidified extract released at pH 6 in Experiment 1. The recovery is nearly complete, which is exactly what Student 2 predicts and exactly what Student 1 rules out — permanent destruction would have left the pH 6 reading near zero, like the heated extract's.\n\nCheck by asking what each student would have to say about the 28 mL. Student 2 says \"as expected, it came back\". Student 1 has no account of it at all: if the substance were destroyed at pH 4, no change of buffer could restore 90% of its activity.\n\nThe general move here is to ignore results that both sides already agree on. Both students accept that activity is low *while* the extract sits at pH 4; quoting that low reading cannot separate them.",
+  "distractorRationale": {
+    "a": "This is a result both students predict. Student 2 agrees that activity is low while the extract is in acid — the disagreement is only about whether it comes back afterwards — so the pH 4 reading cannot distinguish the two claims.",
+    "c": "Reports genuine damage, but from the wrong cause. The near-zero readings in Experiment 2 follow from heating to $80^{\\circ}\\text{C}$, not from acid, so they say nothing about whether low pH does permanent harm.",
+    "b": "Compares two readings that were both taken while the extract sat in a fixed buffer, with no acid exposure followed by recovery. A higher value at pH 8 than at pH 4 simply reflects the shape of the pH curve and has no bearing on reversibility."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": {
+    "id": "enhanced-act-stim-sci-enzyme-007",
+    "version": 1
+  },
+  "accessibilityText": "The question presents two students' claims about whether exposure to pH 4 permanently or only temporarily destroys the active substance in the extract. The relevant results are: Experiment 1, in which unheated extract at a fixed pH released 6 millilitres at pH 4, 31 at pH 6 and 9 at pH 8; Experiment 2, in which extract heated to 80 degrees Celsius released 2 millilitres or less at every pH; and Experiment 3, in which extract held at pH 4 for 10 minutes and then buffered back to pH 6 released 28 millilitres.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank against an original experiment description and invented data set. The two student viewpoints are written for this item. Not derived from, and not a paraphrase of, any ACT-published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "enhanced-act-wave3-author",
+    "reviewer": "enhanced-act-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "enhanced-act-wave3-reviewer",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Only Experiment 3 exposes unheated extract to pH 4 and then returns it to pH 6; its 28 mL is close to the 31 mL of never-acidified extract at pH 6, showing the acid loss is reversible and supporting Student 2. (a) and (b) come from trials measured while still at the test pH, so they cannot separate permanent from temporary loss, and (c) concerns heat, not acid."
+    },
+    "notes": "Author solved the item and attempted to defend each distractor before keying it. Only Experiment 3 exposes extract to pH 4 and then tests it elsewhere, so it is the only result that can discriminate; 28 mL against 31 mL is near-complete recovery and supports the reversible claim. The three other results are each consistent with both viewpoints or concern heat rather than acid. Awaiting an independent blind solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "science",
+    "conflicting-viewpoints",
+    "evaluating-models"
+  ]
+}

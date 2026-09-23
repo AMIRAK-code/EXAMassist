@@ -1,0 +1,79 @@
+{
+  "id": "enhanced-act-sci-insulation-warmest-035",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "science",
+  "domainSlug": "act-science-interpretation-of-data",
+  "skillSlug": "act-sci-iod-manipulate-and-analyse-data",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "According to Table 2, which of the four wraps kept the water warmest 60 minutes after the cans were filled?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Cork"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Sheep wool"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Foil-lined air gap"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Polystyrene foam"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "\"Warmest\" means the **highest** temperature, so read down the 60-minute column and pick the largest value among the four wrapped cans:\n\n- Polystyrene foam: $62.0^{\\circ}\\text{C}$\n- Sheep wool: $58.0^{\\circ}\\text{C}$\n- Cork: $55.0^{\\circ}\\text{C}$\n- Foil-lined air gap: $50.0^{\\circ}\\text{C}$\n\n$62.0$ is the largest, so polystyrene foam kept the water warmest.\n\nCheck it a second way: the warmest can at 60 minutes is the one that *lost* the least heat from the starting $90.0^{\\circ}\\text{C}$. Foam lost $90.0 - 62.0 = 28.0^{\\circ}\\text{C}$, which is smaller than wool's $32.0$, cork's $35.0$ and the air gap's $40.0$. Both readings agree, which is a good sign you have used the right column.",
+  "distractorRationale": {
+    "a": "Cork ended at $55.0^{\\circ}\\text{C}$. It is chosen by a reader who confuses cork's high cost and mass with high performance; price and thickness were listed, but they are not what the 60-minute column measures.",
+    "c": "The foil-lined air gap ended at $50.0^{\\circ}\\text{C}$, the lowest of the four wraps. This is the answer produced by looking for the smallest number in the column, which would answer \"coolest\", not \"warmest\".",
+    "b": "Sheep wool ended at $58.0^{\\circ}\\text{C}$, second highest. It is picked by a reader who stops at the first respectable value in the column instead of comparing all four."
+  },
+  "estimatedSeconds": 35,
+  "stimulusRef": {
+    "id": "enhanced-act-stim-sci-insulation-006",
+    "version": 1
+  },
+  "accessibilityText": "The question uses the 60-minute column of Table 2. Polystyrene foam read 62.0 degrees Celsius, sheep wool 58.0, cork 55.0 and the foil-lined air gap 50.0. The unwrapped can read 36.0 but is not one of the choices. The four choices are cork, foil-lined air gap, polystyrene foam and sheep wool.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank against an original engineering-and-design experiment and invented data set. Not derived from, and not a paraphrase of, any ACT-published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "enhanced-act-wave3-author",
+    "reviewer": "enhanced-act-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "enhanced-act-wave3-reviewer",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "60-minute temperatures: polystyrene foam 62, sheep wool 58, cork 55, foil-lined air gap 50 C. Polystyrene foam is highest."
+    },
+    "notes": "Author solved the item and attempted to defend each distractor before keying it. 62.0 is strictly the largest 60-minute value among the four wraps, so exactly one option is defensible. Awaiting an independent blind solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "science",
+    "engineering-design",
+    "table-reading"
+  ]
+}

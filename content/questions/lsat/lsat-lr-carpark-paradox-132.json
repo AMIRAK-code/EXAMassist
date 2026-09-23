@@ -1,0 +1,82 @@
+{
+  "id": "lsat-lr-carpark-paradox-132",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "lr1",
+  "domainSlug": "logical-reasoning",
+  "skillSlug": "lr-explanations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "In the two years after the city installed bright lighting throughout its underground car parks, the number of thefts from cars reported to the police from those car parks rose sharply. Yet a careful study has established that the number of thefts actually committed in those car parks fell over the same two years.\n\nWhich one of the following, if true, most helps to explain the findings described above?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Under the brighter lighting, returning drivers noticed broken locks and missing possessions that in the old gloom they would have failed to see, and they reported what they noticed."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The city installed the lighting in response to a campaign by residents worried about crime in the car parks."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The new lighting was installed in only about half of the city's underground car parks."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Underground car parks that employ attendants have lower rates of theft than those that do not."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Thefts from cars parked on the street rose in the city over the same two-year period."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "State the puzzle precisely, because the whole item turns on one distinction.\n\n- Thefts **reported** in those car parks: up sharply.\n- Thefts **committed** in those car parks: down.\n\nThese are two different quantities, and the gap between them is the reporting rate — the fraction of real thefts that a victim notices and takes to the police. A good explanation must let the reporting rate rise by more than the theft rate falls, and it must be caused by, or at least consistent with, the lighting.\n\nChoice (A) does exactly that. A driver returning to a dim concrete bay may simply not see a prised lock or an empty glovebox and drive home none the wiser; under bright light the same damage is obvious. So the very change that deterred some thieves also converted unnoticed thefts into noticed and reported ones. Fewer crimes, more reports — no contradiction.\n\nSanity-check it with numbers. Suppose 1,000 thefts occurred in the first period and a quarter were noticed: 250 reports. Suppose the lighting cuts thefts to 800 but now four-fifths are noticed: 640 reports. Thefts down 20 percent, reports up more than twofold. The story holds together arithmetically, which is the test any candidate explanation should be made to pass.\n\nNow ask of each other choice: *does it touch the relationship between reports and real thefts?* (B) explains why the lights were installed, not why the two figures diverged. (C) concerns street parking, a different place entirely. (D) tells you some car parks were untreated, but the findings concern the lit ones. (E) compares staffed and unstaffed car parks, which the stimulus never distinguishes. Each adds information; none addresses the gap, and on a paradox question that is the only thing that counts.",
+  "distractorRationale": {
+    "b": "This explains the origin of the lighting programme, not the divergence between reports and actual thefts. Knowing that worried residents campaigned for the lights leaves both findings exactly as puzzling as before, since a campaign affects neither how many thefts occur nor how many are noticed.",
+    "e": "Street parking lies outside the scope of both findings, which concern the same underground car parks. A rise elsewhere in the city cannot reconcile a fall in one place with a rise in reports from that same place, and it may even invite the false inference that thieves simply moved outdoors, which does nothing about the reporting gap.",
+    "c": "The findings are stated about the car parks that received the lighting, so the existence of unlit car parks elsewhere is beside the point. This choice is attractive because it hints at an incomplete rollout, but an incomplete rollout would explain a smaller effect, not a rise in reports alongside a fall in crimes.",
+    "d": "Attendants are never mentioned in the stimulus, and a general comparison between staffed and unstaffed car parks says nothing about how the same car parks changed over two years. It offers an alternative crime-prevention factor where what is needed is an account of the gap between crimes committed and crimes reported."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": null,
+  "accessibilityText": "A short paradox. After bright lighting was installed in a city's underground car parks, thefts from cars reported to police from those car parks rose sharply, while a careful study found that thefts actually committed there fell. The question asks which statement most helps explain the findings. Five answer choices, labelled A through E. The explanation uses an illustrative arithmetic check with 1,000 thefts and 250 reports before, and 800 thefts and 640 reports after.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "lsat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original stimulus and choices. Resolve-the-discrepancy item whose resolution lies in a change to the detection and reporting rate rather than to the underlying rate. Not derived from any published LSAT item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "lsat-wave3-author",
+    "reviewer": "lsat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "lsat-wave3-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The paradox is reported thefts up while actual thefts down; (a) supplies a detection/reporting mechanism — brighter light let drivers see damage they previously missed — which raises reports without raising thefts. (b), (c), (d), (e) leave the reported-vs-actual gap untouched."
+    },
+    "notes": "Author solved the item and then tried to build an explanation out of each other choice; none bridges reported against actual thefts in the same car parks. The stimulus says 'a careful study has established' so that no choice can be read as casting doubt on the second figure and thereby dissolving the paradox a second way. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logical-reasoning",
+    "resolve-the-paradox",
+    "reporting-rates"
+  ]
+}

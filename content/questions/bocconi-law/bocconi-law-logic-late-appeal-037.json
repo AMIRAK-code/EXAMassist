@@ -1,0 +1,72 @@
+{
+  "id": "bocconi-law-logic-late-appeal-037",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-deductive-conditions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In a certain court both of the following rules are in force:\n\n- **Rule 1.** If an appeal is filed late, it is dismissed without a hearing.\n- **Rule 2.** An appeal is dismissed without a hearing only if the registrar has certified the file.\n\nOne appeal was **not** dismissed without a hearing, although the registrar had certified its file.\n\nWhich of the following must be true of that appeal?",
+  "instructionsMd": "This question has only three answer options. On the real test a wrong answer to a three-option critical-thinking item costs 0.33 points instead of 0.2, so an unaided guess is worth less here than elsewhere.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "It was filed late."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "It was not filed late."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The registrar did not certify its file."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Only Rule 1 does any work here; Rule 2 and the certification are supplied to see whether you will use them where they do not apply.\n\nRule 1 says: *late $\\Rightarrow$ dismissed without a hearing.* Its **contrapositive** is equally true: *not dismissed without a hearing $\\Rightarrow$ not late.* The appeal was not dismissed without a hearing, so it was not filed late. Option C follows.\n\nRule 2 runs the other way: it makes certification a *necessary* condition of dismissal without a hearing. Knowing that the file was certified therefore tells you nothing about whether dismissal followed — certification permits that outcome without producing it. The fact pattern is perfectly consistent: a timely appeal, a certified file, and a hearing.\n\n**How to check.** Write each rule as an arrow and see which one has the given fact on its tail. \"Not dismissed without a hearing\" sits on the tail of the contrapositive of Rule 1, so that rule fires. \"The registrar certified the file\" sits on the *head* of Rule 2's arrow, not its tail, so Rule 2 never fires at all. A fact that matches only the head of a conditional yields nothing.",
+  "distractorRationale": {
+    "a": "This affirms what Rule 1 rules out. If the appeal had been filed late, Rule 1 would have required dismissal without a hearing, and we are told the appeal was not so dismissed. The option comes from reading the contrapositive without reversing the negation.",
+    "c": "This contradicts a fact expressly given in the question, which states that the registrar had certified the file. It is produced by applying Rule 2 backwards — treating 'not dismissed' as grounds for denying the certification that Rule 2 makes merely necessary."
+  },
+  "estimatedSeconds": 95,
+  "stimulusRef": null,
+  "accessibilityText": "A three-option deductive reasoning question. Rule 1 states that an appeal filed late is dismissed without a hearing. Rule 2 states that an appeal is dismissed without a hearing only if the registrar has certified the file. One appeal was not dismissed without a hearing even though the registrar had certified its file. The question asks which of three statements must be true of that appeal.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original conditional-logic item written to the published Bocconi Law syllabus entry on deductive reasoning from initial conditions, authored with three options because Bocconi states that some critical-thinking items carry only three. Rules and court are invented."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave3-author",
+    "reviewer": "bocconi-law-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "bocconi-law-wave3-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Contrapositive of Rule 1: not dismissed without a hearing implies not filed late. The certification clause is a red herring since Rule 2 states a necessary, not a sufficient, condition; C is directly contradicted by the stem."
+    },
+    "notes": "Author's working: contrapositive of Rule 1 gives not-dismissed implies not-late, so C holds. A asserts the negation of C. B contradicts a stated fact. Rule 2 is inert because the given certification matches the consequent, not the antecedent, of its 'only if'. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "conditional-reasoning",
+    "contrapositive",
+    "three-option",
+    "no-calculator"
+  ]
+}

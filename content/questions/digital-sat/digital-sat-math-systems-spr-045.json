@@ -1,0 +1,60 @@
+{
+  "id": "digital-sat-math-systems-spr-045",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "algebra",
+  "skillSlug": "systems-of-two-linear-equations",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A shop sells loose tea in two sizes of tin: a small tin holding $50$ grams and a large tin holding $200$ grams. In one week the shop sold $34$ tins altogether, containing a total of $4{,}400$ grams of tea. How many large tins did the shop sell that week?",
+  "instructionsMd": "Student-produced response. Enter your answer in the box. Do not enter symbols such as a percent sign, comma, or dollar sign.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 18
+      }
+    ],
+    "acceptedStrings": [
+      "18"
+    ]
+  },
+  "explanationMd": "Name the two unknowns, write one equation for each total, then eliminate.\n\nLet $s$ be the number of small tins and $\\ell$ the number of large tins.\n\n- Tins: $s + \\ell = 34$\n- Grams: $50s + 200\\ell = 4{,}400$\n\nSubstitute $s = 34 - \\ell$ into the second equation:\n\n$$50(34 - \\ell) + 200\\ell = 4{,}400$$\n\n$$1{,}700 - 50\\ell + 200\\ell = 4{,}400$$\n\n$$150\\ell = 2{,}700$$\n\n$$\\ell = 18$$\n\nThe shop sold $18$ large tins.\n\nCheck both conditions, not just one. With $\\ell = 18$, the small tins number $34 - 18 = 16$, and the tea weighs $16 \\times 50 + 18 \\times 200 = 800 + 3{,}600 = 4{,}400$ grams. Both the count and the weight match.\n\nThere is a quicker route worth learning. If all $34$ tins were small, they would hold $34 \\times 50 = 1{,}700$ grams — that is $2{,}700$ grams short. Each swap of a small tin for a large one adds $200 - 50 = 150$ grams, so $2{,}700 \\div 150 = 18$ swaps are needed. The final answer is a count of tins, so it must be a whole number; a fractional result would tell you an arithmetic slip had crept in.",
+  "distractorRationale": {},
+  "estimatedSeconds": 110,
+  "stimulusRef": null,
+  "accessibilityText": "A shop sells tea in 50-gram small tins and 200-gram large tins. It sold 34 tins holding 4,400 grams in total. Find the number of large tins. Enter a number.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "digital-sat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item. Totals chosen so that both unknowns are whole numbers and the answer fits the five-character student-produced response box."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "digital-sat-wave3-author",
+    "reviewer": "digital-sat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "digital-sat-wave3-reviewer",
+      "solvedAnswer": "18",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "s + l = 34 and 50s + 200l = 4400; substituting s = 34 - l gives 1700 + 150l = 4400, so l = 18 large tins (and 16 small)."
+    },
+    "notes": "Author solved and checked uniqueness: 50s + 200L = 4400 with s + L = 34 gives 150L = 2700, L = 18, s = 16; the system is independent so the solution is unique. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "algebra",
+    "system-of-equations",
+    "student-produced-response"
+  ]
+}

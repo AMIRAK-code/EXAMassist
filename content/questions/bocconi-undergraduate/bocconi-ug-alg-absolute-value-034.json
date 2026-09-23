@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-ug-alg-absolute-value-034",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-algebra-absolute-values",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Solve the inequality\n\n$$|2x - 5| \\le 3$$",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$x \\le 4$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$1 \\le x \\le 4$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$1 < x < 4$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$-4 \\le x \\le -1$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "An inequality of the form $|E| \\le c$ with $c \\ge 0$ is equivalent to the **double inequality**\n\n$$-c \\le E \\le c$$\n\nBecause $|E|$ measures the distance of $E$ from zero, saying that distance is at most 3 means $E$ lies between $-3$ and $3$ inclusive.\n\n**Step 1 — write the double inequality:**\n\n$$-3 \\le 2x - 5 \\le 3$$\n\n**Step 2 — add 5 to all three parts:**\n\n$$2 \\le 2x \\le 8$$\n\n**Step 3 — divide all three parts by 2.** The divisor is positive, so no inequality sign turns round:\n\n$$1 \\le x \\le 4$$\n\nBoth endpoints are included because the original inequality is $\\le$, not $<$.\n\n**How to check the answer.** Test the two endpoints and one point outside. At $x = 1$: $|2 - 5| = |-3| = 3 \\le 3$, true, so 1 belongs. At $x = 4$: $|8 - 5| = 3 \\le 3$, true, so 4 belongs. At $x = 0$: $|-5| = 5 > 3$, false, so everything below 1 is out. At $x = 5$: $|5| = 5 > 3$, false, so everything above 4 is out.\n\n**A picture that makes it obvious.** Divide through by 2 first: $\\left|x - \\tfrac{5}{2}\\right| \\le \\tfrac{3}{2}$. Read directly: all points within $1.5$ of $2.5$, that is, from $1$ to $4$. Rewriting an absolute-value inequality as a distance around a centre turns it into something you can see rather than solve.",
+  "distractorRationale": {
+    "d": "This is the solution of $|2x + 5| \\le 3$, obtained by flipping the sign inside the bars. Substituting a value from it, say $x = -1$, into the actual expression gives $|-2 - 5| = 7$, far above 3, so the whole interval fails.",
+    "a": "This keeps only the right half of the double inequality, $2x - 5 \\le 3$, and drops the left half, $-3 \\le 2x - 5$. An absolute value bounds the expression from below as well as above. Testing $x = 0$ gives $|-5| = 5 > 3$, so values well below 1 do not belong even though this answer admits them.",
+    "c": "The interval is right but the endpoints have been made strict. The inequality is $\\le$, and at $x = 1$ and $x = 4$ the expression equals exactly 3, which does satisfy $\\le 3$. Open endpoints would be correct only for $|2x - 5| < 3$."
+  },
+  "estimatedSeconds": 65,
+  "stimulusRef": null,
+  "accessibilityText": "Solve the inequality: the absolute value of the quantity two x minus five is less than or equal to three.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. The three distractors correspond to a sign flip inside the bars, dropping the lower branch of the double inequality, and mishandling the non-strict endpoints."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-wave3-author",
+    "reviewer": "bocconi-undergraduate-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-wave3-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "|2x-5| <= 3 gives -3 <= 2x-5 <= 3, so 2 <= 2x <= 8 and 1 <= x <= 4. Option c is the strict version (endpoints do satisfy equality, so c is wrong); a drops the lower bound; d has the wrong sign."
+    },
+    "notes": "Author's uniqueness check: the double inequality has a single solution set, the closed interval from 1 to 4. Option C differs from it exactly at the two endpoints, where the expression equals 3 and the non-strict inequality holds, so C is genuinely wrong rather than an equivalent phrasing. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "absolute-value",
+    "double-inequality"
+  ]
+}

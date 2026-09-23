@@ -1,0 +1,77 @@
+{
+  "id": "digital-sat-math-ratios-rates-050",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "problem-solving-and-data-analysis",
+  "skillSlug": "ratios-rates-proportions-units",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A printing press produces $850$ pages every $5$ minutes. Working at this constant rate, how many pages does the press produce in $2$ hours?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$1,700$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$10,200$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$20,400$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$25,500$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Put both quantities in the same unit of time before you multiply. That single habit prevents every wrong answer offered here.\n\n$2$ hours $= 2 \\times 60 = 120$ minutes.\n\nNow work in pages per minute:\n\n$$\\frac{850 \\text{ pages}}{5 \\text{ minutes}} = 170 \\text{ pages per minute}$$\n\n$$170 \\times 120 = 20{,}400 \\text{ pages}$$\n\nThe answer is $20{,}400$, Choice C.\n\nA second route avoids the per-minute step: $120 \\div 5 = 24$ five-minute intervals, and $850 \\times 24 = 20{,}400$. Getting the same number two different ways is the cheapest check available.\n\nA third check is a rough estimate: $850$ pages per $5$ minutes is about $10{,}000$ pages an hour, so two hours should land near $20{,}000$. That estimate alone rules out three of the four options.",
+  "distractorRationale": {
+    "a": "This multiplies the five-minute output by $2$, treating \"$2$ hours\" as two intervals of five minutes. Two hours is $24$ such intervals, not $2$.",
+    "b": "This uses $12$ five-minute intervals, which is one hour's worth, and so gives the output for half the stated time.",
+    "d": "This multiplies the per-minute rate by $150$, mis-converting $2$ hours into $150$ minutes. Two hours is $120$ minutes; $150$ minutes would be two and a half hours."
+  },
+  "estimatedSeconds": 65,
+  "stimulusRef": null,
+  "accessibilityText": "A printing press produces 850 pages every 5 minutes. Find how many pages it produces in 2 hours at that constant rate. The four options are 1,700; 10,200; 20,400; and 25,500.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "digital-sat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item. Every distractor corresponds to a specific unit-conversion slip rather than to an arbitrary near-miss."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "digital-sat-wave3-author",
+    "reviewer": "digital-sat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "digital-sat-wave3-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "850/5 = 170 pages per minute; 2 hours = 120 minutes; 170 x 120 = 20,400."
+    },
+    "notes": "Author solved and checked uniqueness: 850/5 = 170 pages per minute; 170 x 120 = 20,400. Cross-checked as 850 x 24 = 20,400. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "problem-solving",
+    "rates",
+    "unit-conversion"
+  ]
+}

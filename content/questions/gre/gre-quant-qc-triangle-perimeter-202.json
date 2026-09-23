@@ -1,0 +1,76 @@
+{
+  "id": "gre-quant-qc-triangle-perimeter-202",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-geometry",
+  "skillSlug": "geom-triangles",
+  "subskillSlug": null,
+  "responseType": "quantitative_comparison",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Two of the three sides of a triangle have lengths $5$ and $9$.\n\n| Quantity A | Quantity B |\n| --- | --- |\n| The perimeter of the triangle | $20$ |",
+  "instructionsMd": "Compare Quantity A and Quantity B and select the one statement that is true for every value consistent with the information given.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Quantity A is greater."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Quantity B is greater."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The two quantities are equal."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The relationship cannot be determined from the information given."
+    }
+  ],
+  "answerKey": {
+    "type": "quantitative_comparison",
+    "choice": "D"
+  },
+  "explanationMd": "Nothing fixes the third side, so the right move is to find the full range it can occupy and see whether the comparison survives across that range.\n\n**Step 1 — bound the third side.** Call it $s$. The triangle inequality says each side must be shorter than the sum of the other two and longer than their difference:\n\n$$9 - 5 < s < 9 + 5, \\qquad \\text{that is} \\qquad 4 < s < 14.$$\n\n**Step 2 — turn that into a bound on the perimeter.** The perimeter is $P = 5 + 9 + s = 14 + s$, so adding $14$ throughout gives\n\n$$18 < P < 28.$$\n\n**Step 3 — test the comparison.** The threshold $20$ lies strictly inside that interval, so both outcomes are reachable. Take $s = 5$: the sides $5, 5, 9$ form a genuine triangle and $P = 19 < 20$. Take $s = 11$: the sides $5, 9, 11$ also form a genuine triangle and $P = 25 > 20$. Two admissible triangles give opposite answers, so **the relationship cannot be determined**, choice (D).\n\n**How to check.** Verify that each example really is a triangle before you trust it. For $5, 5, 9$: $5 + 5 = 10 > 9$. For $5, 9, 11$: $5 + 9 = 14 > 11$. Both pass. The general discipline on Quantitative Comparison is to hunt for two legal cases that disagree; if you find them, you are finished, and if the quantity is genuinely pinned down you will fail to find them.",
+  "distractorRationale": {
+    "a": "Chosen by assuming the third side must be the longest, or at least large, so that the perimeter comfortably exceeds $20$. Nothing forces that: $s$ may be as small as just over $4$, which puts the perimeter just over $18$.",
+    "b": "Chosen by assuming the third side must be the shortest, giving a perimeter below $20$. The third side can be anything up to just under $14$, so the perimeter can reach almost $28$.",
+    "c": "Chosen by picking one convenient third side, often $6$, computing a perimeter of $20$ and stopping there. A single consistent case only shows that one value is possible; equality has to hold for every admissible triangle before (C) is correct."
+  },
+  "estimatedSeconds": 115,
+  "stimulusRef": null,
+  "accessibilityText": "Two of the three sides of a triangle have lengths 5 and 9; the third side is not given. Quantity A is the perimeter of the triangle. Quantity B is the number 20. Decide which quantity is greater, whether they are equal, or whether the relationship cannot be determined.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gre-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for the wave 3 top-up. The threshold 20 was chosen deliberately to sit strictly inside the interval of possible perimeters, so the triangle inequality alone decides the item. Not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gre-wave3-author",
+    "reviewer": "gre-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "gre-wave3-reviewer",
+      "solvedAnswer": "D",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Triangle inequality puts the third side strictly between 4 and 14, so the perimeter lies strictly between 18 and 28. A third side of 4.5 gives perimeter 18.5 (< 20) while 9 gives 23 (> 20), so the relationship changes."
+    },
+    "notes": "Author derived 4 < s < 14 from the triangle inequality, hence 18 < P < 28. Counterexamples 5, 5, 9 (P = 19) and 5, 9, 11 (P = 25) straddle 20, so the answer is D. Awaiting blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "quantitative-comparison",
+    "triangle-inequality",
+    "geometry"
+  ]
+}

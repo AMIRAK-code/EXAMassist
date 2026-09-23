@@ -1,0 +1,82 @@
+{
+  "id": "lsat-lr-stadium-source-flaw-122",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "lr1",
+  "domainSlug": "logical-reasoning",
+  "skillSlug": "lr-argument-flaws",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Columnist: The mayor claims that the proposed stadium will create permanent jobs in this city. But the firm that would build the stadium is owned by the mayor's brother-in-law. We should conclude, then, that the stadium will create no permanent jobs.\n\nThe reasoning in the columnist's argument is most vulnerable to criticism on the grounds that it",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "confuses the claim that the stadium will create jobs with the claim that building the stadium would be a wise use of public funds"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "treats the absence of evidence for a claim as establishing that the claim is false"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "draws a conclusion about the city's economy as a whole from evidence concerning a single construction firm"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "overlooks the possibility that a project may create jobs that are seasonal rather than permanent"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "rejects a claim as false merely because of the interest that the person advancing it has in its being accepted"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Strip the argument to its bones.\n\n- Claim under discussion: the stadium will create permanent jobs (advanced by the mayor).\n- Evidence offered: the builder is the mayor's brother-in-law.\n- Conclusion: the claim is false — no permanent jobs at all.\n\nThe evidence is entirely about the *person making the claim* and his family's stake in the outcome. Nothing at all is said about construction, employment, or the stadium. The columnist has attacked the source instead of the claim, and then treated that attack as proof that the claim is false. That is the flaw named in (E).\n\nIt is worth being precise about why this is bad reasoning, because the columnist's suspicion is not silly. A conflict of interest is a legitimate reason to **scrutinise** a claim, to ask for independent evidence, or to withhold belief. It is not a reason to believe the **opposite**. A person with something to gain can still be telling the truth, and may even be telling the truth *because* he knows the project well. The distance between \"this claim is not to be taken on trust\" and \"this claim is false\" is the whole error.\n\nHow to check an answer on a flaw question: read the candidate flaw back onto the argument and ask whether the argument really does that. (A) requires a leap from one firm to the whole economy — but the conclusion is about the stadium's jobs, not the economy. (C) requires the argument to turn on a distinction between seasonal and permanent work, and it never mentions seasonal work. (D) requires the columnist to have said \"no one has shown that jobs will be created\" — he says something quite different. Only (E) describes a move the argument actually makes.",
+  "distractorRationale": {
+    "c": "The argument never generalizes from the one firm to the wider economy; the firm is mentioned only to establish the mayor's family connection, and the conclusion stays narrowly about the stadium's jobs. This choice is attractive to a reader who notices that exactly one firm is named and assumes that a sample-size error must be lurking.",
+    "a": "No such substitution occurs. The columnist addresses the job claim throughout and never shifts to the separate question of whether the stadium is a wise investment. The choice describes a real and common flaw — quietly swapping the claim under discussion for a related one — that this particular argument does not commit.",
+    "d": "Seasonal work is nowhere in the argument. If anything, this choice points at a concession that would help the columnist, since temporary construction jobs would not be permanent ones. It tempts a reader who has fixed on the word 'permanent' in the conclusion without checking whether the argument turns on it.",
+    "b": "The columnist does not appeal to missing evidence; he offers a positive piece of evidence, the family connection, and reasons from it. This choice names the appeal-to-ignorance flaw, which is genuinely close in spirit — both move illegitimately to 'therefore false' — but the premise that drives this argument is a fact about the speaker, not an absence of proof."
+  },
+  "estimatedSeconds": 65,
+  "stimulusRef": null,
+  "accessibilityText": "A short argument by a columnist. The mayor claims a proposed stadium will create permanent jobs; the columnist notes that the construction firm is owned by the mayor's brother-in-law and concludes the stadium will create no permanent jobs. The question asks what the reasoning is most vulnerable to criticism for. Five answer choices, labelled A through E. No notation, tables or figures appear.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "lsat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original stimulus and choices. Source-attack flaw item; the flaw description in the key deliberately names the move (rejecting a claim because of the advocate's interest) rather than using the label 'ad hominem'. Not derived from any published LSAT item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "lsat-wave3-author",
+    "reviewer": "lsat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "lsat-wave3-reviewer",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The only ground offered against the mayor's claim is his brother-in-law's ownership of the building firm — an attack on the speaker's interest, not on the claim, yet the conclusion is that the claim is false; that is (e). (b) misfits because a reason (the conflict of interest) is given rather than none; (a), (c), (d) describe errors the argument does not make."
+    },
+    "notes": "Author solved the item and then tried to defend each other choice against the text. An earlier draft had the mayor claim '900 permanent jobs' and added that he had exaggerated before; both were cut because the number created a second defensible flaw (moving from 'not 900' to 'none') and the exaggeration history turned the source attack into a partly legitimate reliability inference. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logical-reasoning",
+    "flaw",
+    "source-attack"
+  ]
+}

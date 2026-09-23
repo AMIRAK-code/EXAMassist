@@ -1,0 +1,39 @@
+{
+  "id": "enhanced-act-stim-sci-enzyme-007",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "kind": "table",
+  "title": "Study 3: pH and oxygen release from a plant extract",
+  "bodyMd": "**Research summary.** Hydrogen peroxide, $\\text{H}_2\\text{O}_2$, breaks down into water and oxygen gas. A student tested how the pH of the surrounding solution affects the speed of that breakdown when a plant extract is present.\n\n**Preparing the extract.** Fresh potato tissue was ground with water and filtered. The filtered liquid is called *the extract*.\n\n**Experiment 1.** For each trial, 5.0 mL of extract was added to 20.0 mL of 3% hydrogen peroxide solution held at $25^{\\circ}\\text{C}$ and buffered to one of five pH values. The oxygen released was collected in an inverted graduated cylinder and its volume was read 60 s after mixing. Each trial was run three times and the mean volume was recorded.\n\n**Experiment 2.** Experiment 1 was repeated exactly, except that the extract was first held at $80^{\\circ}\\text{C}$ for 10 minutes and then cooled back to $25^{\\circ}\\text{C}$ before it was added. Every trial in Experiment 2 was therefore run at the same $25^{\\circ}\\text{C}$ reaction temperature as Experiment 1.\n\n**Controls.** At each pH the student also ran a tube of buffered hydrogen peroxide with no extract, and a tube of extract and buffer with no hydrogen peroxide. Neither released more than 0.5 mL of gas in 60 s.\n\n**Experiment 3.** Unheated extract was held at pH 4 for 10 minutes, then buffered back to pH 6 and tested by the Experiment 1 procedure. It released 28 mL of oxygen in 60 s.",
+  "data": {
+    "columns": [
+      { "key": "ph", "label": "pH of solution" },
+      { "key": "unheated", "label": "Experiment 1: O₂ released in 60 s, unheated extract (mL)" },
+      { "key": "heated", "label": "Experiment 2: O₂ released in 60 s, heated extract (mL)" }
+    ],
+    "rows": [
+      { "ph": 4, "unheated": 6, "heated": 1 },
+      { "ph": 5, "unheated": 18, "heated": 1 },
+      { "ph": 6, "unheated": 31, "heated": 2 },
+      { "ph": 7, "unheated": 24, "heated": 1 },
+      { "ph": 8, "unheated": 9, "heated": 1 }
+    ],
+    "caption": "Table 3. Mean volume of oxygen released in 60 s at five pH values, for extract that was not heated (Experiment 1) and for extract heated to 80 °C and cooled before use (Experiment 2).",
+    "chart": {
+      "type": "line",
+      "xKey": "ph",
+      "yKeys": ["unheated", "heated"],
+      "xLabel": "pH of solution",
+      "yLabel": "O₂ released in 60 s (mL)"
+    }
+  },
+  "accessibilityText": "A research summary describing three experiments on the breakdown of hydrogen peroxide by a potato extract, followed by Table 3, which has five rows and three columns. The columns are pH of solution, oxygen released in 60 seconds by unheated extract in millilitres, and oxygen released in 60 seconds by heated extract in millilitres. At pH 4: 6 millilitres unheated, 1 millilitre heated. At pH 5: 18 unheated, 1 heated. At pH 6: 31 unheated, 2 heated. At pH 7: 24 unheated, 1 heated. At pH 8: 9 unheated, 1 heated. The unheated extract rises to its largest value at pH 6 and falls on either side, while the heated extract releases almost no oxygen at any pH. The text also reports that extract held at pH 4 and then returned to pH 6 released 28 millilitres, and that control tubes without extract, or without hydrogen peroxide, released no more than 0.5 millilitres. The accompanying line graph plots the two columns against pH and contains no information beyond the table.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original experiment description and invented data set written for this bank. The procedure and every figure in Table 3 are fictional; the qualitative pattern is ordinary school chemistry, but no value is taken from any published source. Nothing here is drawn from, or modelled on, any ACT-published Science passage."
+  },
+  "rightsStatus": "original-owned",
+  "state": "in_review"
+}

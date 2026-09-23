@@ -1,0 +1,76 @@
+{
+  "id": "gre-quant-qc-exponent-solve-201",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-algebra",
+  "skillSlug": "alg-exponent-operations",
+  "subskillSlug": null,
+  "responseType": "quantitative_comparison",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "$2^{x} = 32$ and $3^{y} = 81$.\n\n| Quantity A | Quantity B |\n| --- | --- |\n| $x - y$ | $\\dfrac{x + y}{3}$ |",
+  "instructionsMd": "Compare Quantity A and Quantity B and select the one statement that is true for every value consistent with the information given.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Quantity A is greater."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Quantity B is greater."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The two quantities are equal."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The relationship cannot be determined from the information given."
+    }
+  ],
+  "answerKey": {
+    "type": "quantitative_comparison",
+    "choice": "B"
+  },
+  "explanationMd": "Each equation pins down one variable exactly, so solve for both before comparing.\n\n**Find $x$.** Write $32$ as a power of $2$: $2^5 = 32$. Since the bases match, the exponents must match, so $x = 5$.\n\n**Find $y$.** Write $81$ as a power of $3$: $3^4 = 81$. So $y = 4$.\n\n**Compare.**\n\n$$\\text{Quantity A} = x - y = 5 - 4 = 1, \\qquad \\text{Quantity B} = \\frac{x + y}{3} = \\frac{5 + 4}{3} = \\frac{9}{3} = 3.$$\n\nSince $3 > 1$, **Quantity B is greater**, which is choice (B).\n\n**How to check.** Substitute back into the original equations: $2^5 = 32$ and $3^4 = 81$, both true, so the values of $x$ and $y$ are right. Then recompute each quantity once more. Because both equations have a unique solution, nothing here is free to vary, so (D) is not in play.",
+  "distractorRationale": {
+    "a": "Chosen by computing Quantity B as $x + \\frac{y}{3} = 5 + \\frac{4}{3} \\approx 6.3$ and then mis-ordering, or by treating $x - y$ as $9$ after confusing the difference with the sum. The fraction bar covers the whole expression $x + y$, so divide the sum by $3$.",
+    "c": "Chosen by solving $3^y = 81$ as $y = 3$ (reading the base as the answer) and then finding Quantity A $= 2$ and Quantity B $= 8/3 \\approx 2.67$, or by a rounding slip that makes both sides look like $3$. The exponent that turns $3$ into $81$ is $4$, not $3$.",
+    "d": "Chosen by assuming that because $x$ and $y$ appear as unknowns their values are not fixed. Each equation has exactly one solution, so both quantities are single numbers and the relationship is fully determined."
+  },
+  "estimatedSeconds": 95,
+  "stimulusRef": null,
+  "accessibilityText": "Given that 2 raised to the power x equals 32 and 3 raised to the power y equals 81. Quantity A is x minus y. Quantity B is the fraction with numerator x plus y and denominator 3. Decide which quantity is greater, whether they are equal, or whether the relationship cannot be determined.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gre-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for the wave 3 top-up. Exponent values chosen so both variables resolve to small integers and the two quantities differ clearly. Not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gre-wave3-author",
+    "reviewer": "gre-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "gre-wave3-reviewer",
+      "solvedAnswer": "B",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "2^x = 32 gives x = 5; 3^y = 81 gives y = 4. Quantity A = 5 - 4 = 1; Quantity B = (5+4)/3 = 3. Both are uniquely determined (the exponential functions are one-to-one over the reals), so B is greater and D is not available."
+    },
+    "notes": "Author solved x = 5 from 2^5 = 32 and y = 4 from 3^4 = 81, giving Quantity A = 1 and Quantity B = 3, so B is greater. Both equations have unique solutions, so (D) is unavailable. Awaiting blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "quantitative-comparison",
+    "exponents",
+    "algebra"
+  ]
+}

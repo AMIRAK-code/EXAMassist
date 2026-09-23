@@ -1,0 +1,98 @@
+{
+  "id": "gre-quant-ms-quadratic-inequality-208",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-algebra",
+  "skillSlug": "alg-linear-quadratic-solving",
+  "subskillSlug": null,
+  "responseType": "multi_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which of the following values of $x$ satisfy the inequality\n\n$$x^{2} - 5x + 6 < 0\\,?$$\n\nSelect **all** such values.",
+  "instructionsMd": "Select all that apply. There is no credit for a partially correct selection.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$1.5$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$2$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$2.25$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$2.5$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$2.9$"
+    },
+    {
+      "id": "f",
+      "label": "F",
+      "textMd": "$3$"
+    },
+    {
+      "id": "g",
+      "label": "G",
+      "textMd": "$3.5$"
+    }
+  ],
+  "answerKey": {
+    "type": "multi_select",
+    "optionIds": [
+      "c",
+      "d",
+      "e"
+    ],
+    "grading": "exact"
+  },
+  "explanationMd": "Solve the inequality once, in general, rather than testing seven numbers one at a time.\n\n**Step 1 — factor.** Look for two numbers that multiply to $6$ and add to $-5$: those are $-2$ and $-3$. So\n\n$$x^{2} - 5x + 6 = (x - 2)(x - 3).$$\n\n**Step 2 — reason about the sign of a product.** A product of two factors is negative exactly when the factors have opposite signs. The factors change sign at $x = 2$ and $x = 3$, which split the number line into three regions:\n\n- $x < 2$: both $x - 2$ and $x - 3$ are negative, so the product is positive.\n- $2 < x < 3$: $x - 2$ is positive and $x - 3$ is negative, so the product is negative.\n- $x > 3$: both factors are positive, so the product is positive.\n\nThe solution set is therefore the open interval\n\n$$2 < x < 3.$$\n\nThe endpoints are excluded because at $x = 2$ and $x = 3$ the expression equals $0$, and $0$ is not less than $0$.\n\n**Step 3 — read off the choices.** Of the seven values offered, exactly $2.25$, $2.5$ and $2.9$ lie strictly between $2$ and $3$. **The answer is $2.25$, $2.5$ and $2.9$.**\n\n**How to check.** Substitute one accepted and one rejected value directly. At $x = 2.5$: $6.25 - 12.5 + 6 = -0.25 < 0$, accepted correctly. At $x = 3$: $9 - 15 + 6 = 0$, which fails the strict inequality, so rejecting it is right. Because the item is scored all-or-nothing, it is worth spending the extra few seconds to test both boundary values explicitly.",
+  "distractorRationale": {
+    "a": "At $x = 1.5$ the expression is $2.25 - 7.5 + 6 = 0.75$, which is positive. This value sits to the left of the interval; it is chosen by solvers who read the roots as bounding everything below $3$ rather than the strip between the roots.",
+    "b": "At $x = 2$ the expression equals exactly $0$. Zero is not less than zero, so a root never satisfies a strict inequality. This choice comes from solving $x^2 - 5x + 6 \\le 0$ instead of the strict form printed in the stem.",
+    "f": "At $x = 3$ the expression is again exactly $0$, so the same boundary error applies at the upper root as at the lower one.",
+    "g": "At $x = 3.5$ the expression is $12.25 - 17.5 + 6 = 0.75$, positive. This value lies to the right of the interval and is chosen by solvers who take a large root to mean that everything beyond it qualifies."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": "Find every listed value of x that makes x squared minus 5x plus 6 less than zero. The seven choices are: A, 1.5. B, 2. C, 2.25. D, 2.5. E, 2.9. F, 3. G, 3.5. Select all values that satisfy the strict inequality. There is no credit for a partially correct selection.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gre-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for the wave 3 top-up. Both roots are offered as choices so that the strict-versus-inclusive boundary is tested directly, and one value is offered on each side of the interval. Choices are ordered by increasing value. Not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gre-wave3-author",
+    "reviewer": "gre-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "gre-wave3-reviewer",
+      "solvedAnswer": "c,d,e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "x^2 - 5x + 6 = (x-2)(x-3) < 0 holds exactly on the open interval 2 < x < 3. Of the choices, 2.25, 2.5 and 2.9 lie inside; 2 and 3 give 0 (not < 0) and 1.5 and 3.5 give positive values."
+    },
+    "notes": "Author factored to (x-2)(x-3) < 0, giving 2 < x < 3; of the offered values only 2.25, 2.5 and 2.9 lie inside. Endpoints 2 and 3 give 0, which fails the strict inequality. Awaiting blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "select-all",
+    "quadratic-inequality",
+    "algebra",
+    "boundary-values"
+  ]
+}

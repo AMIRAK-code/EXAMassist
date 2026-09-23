@@ -1,0 +1,82 @@
+{
+  "id": "gmat-ps-inequality-integer-count-205",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-elementary-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "How many integers $n$ satisfy $-3 < \\dfrac{2n - 5}{3} \\le 4$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$8$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$9$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$10$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$11$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$12$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Work on the whole double inequality at once, and carry the strict and non-strict signs along unchanged — every operation here is multiplication or addition by a **positive** quantity, so no inequality flips.\n\n**Step 1 — clear the denominator.** Multiply all three parts by $3$:\n\n$$-9 < 2n - 5 \\le 12.$$\n\n**Step 2 — isolate $2n$.** Add $5$ to all three parts:\n\n$$-4 < 2n \\le 17.$$\n\n**Step 3 — isolate $n$.** Divide all three parts by $2$:\n\n$$-2 < n \\le 8.5.$$\n\n**Step 4 — count the integers.** The left end is strict, so $n = -2$ is excluded and the smallest integer allowed is $-1$. The right end allows anything up to and including $8.5$, so the largest integer allowed is $8$. The integers are\n\n$$-1,\\; 0,\\; 1,\\; 2,\\; 3,\\; 4,\\; 5,\\; 6,\\; 7,\\; 8,$$\n\nand the count is $8 - (-1) + 1 = 10$.\n\n**How to check the answer.** Test the two endpoints and the two values just outside them in the original inequality.\n\n- $n = -1$: $\\dfrac{2(-1) - 5}{3} = \\dfrac{-7}{3} \\approx -2.33$, which is greater than $-3$ — included, as claimed.\n- $n = -2$: $\\dfrac{-9}{3} = -3$, which is **not** greater than $-3$ — excluded, as claimed.\n- $n = 8$: $\\dfrac{11}{3} \\approx 3.67 \\le 4$ — included.\n- $n = 9$: $\\dfrac{13}{3} \\approx 4.33 > 4$ — excluded.\n\nAll four checks agree with the range found, so the count of $10$ stands.\n\n**Two habits this item trains.** First, count integers with $\\text{largest} - \\text{smallest} + 1$, never by subtraction alone; the $+1$ is what stops the classic off-by-one. Second, do not let a range that starts below zero trick you into counting only the positive integers — $-1$ and $0$ are integers and both satisfy the inequality.",
+  "distractorRationale": {
+    "a": "This counts only the positive integers $1$ through $8$, silently discarding $n = -1$ and $n = 0$. Both satisfy the inequality: they give $-\\frac{7}{3}$ and $-\\frac{5}{3}$, each comfortably inside the required range.",
+    "b": "This is the classic off-by-one: the endpoints are $-1$ and $8$, and $8 - (-1) = 9$ is the number of *gaps* between consecutive integers, not the number of integers. Counting inclusively requires adding $1$.",
+    "d": "This treats the left inequality as though it read $-3 \\le \\frac{2n-5}{3}$ and admits $n = -2$. At $n = -2$ the expression equals exactly $-3$, and the stem's strict sign excludes equality.",
+    "e": "This makes both boundary errors at once, admitting $n = -2$ on the left and rounding $8.5$ up to admit $n = 9$ on the right. At $n = 9$ the expression is $\\frac{13}{3} \\approx 4.33$, which exceeds the upper bound of $4$."
+  },
+  "estimatedSeconds": 140,
+  "stimulusRef": null,
+  "accessibilityText": "The question asks how many integers n satisfy the double inequality: negative 3 is strictly less than the quantity two n minus 5 all over 3, which is less than or equal to 4. One end of the inequality is strict and the other is inclusive. Five numeric options are offered in ascending order: 8, 9, 10, 11 and 12.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item. The bounds were chosen so that the lower endpoint falls exactly on an integer (making the strict sign decisive) while the upper endpoint falls on a half-integer (making rounding the decisive error there), giving each boundary mistake its own distinct count."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-wave3-author",
+    "reviewer": "gmat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "gmat-wave3-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Multiply by 3: -9 < 2n - 5 <= 12; add 5: -4 < 2n <= 17; halve: -2 < n <= 8.5. Integers -1 through 8 inclusive = 10 values. Endpoints checked: n = -2 fails (strict), n = 8 gives 11/3 <= 4 and holds, n = 9 gives 13/3 > 4 and fails."
+    },
+    "notes": "Author reduced the inequality to minus 2 < n <= 8.5 and then verified all four boundary cases (n = -2, -1, 8, 9) by direct substitution into the original expression. The integer count is a single determined number, so only one option can be defended. Awaiting blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "inequalities",
+    "integers",
+    "counting"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "gmat-ps-committee-selection-207",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-logic-analytical-reasoning",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A project team of exactly $3$ people is to be formed from a pool of $5$ engineers and $4$ designers. The team must include at least one engineer and at least one designer. How many different teams can be formed?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$40$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$70$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$74$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$80$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$84$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "A team is an unordered group, so every count here is a combination, $\\binom{n}{k} = \\dfrac{n!}{k!\\,(n-k)!}$.\n\n**Route 1 — count the allowed cases directly.** With exactly $3$ members and at least one from each group, only two splits are possible.\n\n*One engineer and two designers:*\n\n$$\\binom{5}{1} \\times \\binom{4}{2} = 5 \\times 6 = 30.$$\n\n*Two engineers and one designer:*\n\n$$\\binom{5}{2} \\times \\binom{4}{1} = 10 \\times 4 = 40.$$\n\nThe two splits are mutually exclusive, so add them:\n\n$$30 + 40 = 70.$$\n\n**Route 2 — count everything, then subtract what breaks the rule.** All teams of $3$ from the $9$ people:\n\n$$\\binom{9}{3} = \\frac{9 \\times 8 \\times 7}{3 \\times 2 \\times 1} = 84.$$\n\nTeams that violate the rule are those with no designer or no engineer:\n\n$$\\binom{5}{3} = 10 \\text{ (all engineers)}, \\qquad \\binom{4}{3} = 4 \\text{ (all designers)}.$$\n\nNo team can be both, so nothing is double-subtracted:\n\n$$84 - 10 - 4 = 70.$$\n\n**How to check the answer.** The two routes are independent — one builds the allowed teams up, the other carves the forbidden ones away — and they agree on $70$, which is the check. A third confirmation: the four possible compositions of a three-person team are $3$–$0$, $2$–$1$, $1$–$2$ and $0$–$3$ engineers to designers, and their counts are $10 + 40 + 30 + 4 = 84$, the full $\\binom{9}{3}$. The two middle terms are the ones the rule allows.\n\n**The judgement call this item tests.** Complementary counting is usually the faster route when a constraint says \"at least one\", but only when the forbidden cases are few and do not overlap. Here they are two disjoint cases, so subtraction is clean. Had the team been larger — say $5$ people — no team could be all designers at all, and the direct enumeration would run to four cases; it pays to glance at both routes before committing.",
+  "distractorRationale": {
+    "a": "This is $\\binom{5}{2} \\times \\binom{4}{1} = 40$, the count of teams with two engineers and one designer. That is only one of the two permitted compositions; the $30$ teams with one engineer and two designers also satisfy the rule and must be added.",
+    "c": "This subtracts only the $10$ all-engineer teams from the $84$ unrestricted teams and forgets the $4$ all-designer teams, which break the rule just as clearly.",
+    "d": "This subtracts only the $4$ all-designer teams from $84$ and leaves the $10$ all-engineer teams in the count.",
+    "e": "This is $\\binom{9}{3} = 84$, the number of three-person teams that can be drawn from the nine people with no composition requirement at all. It ignores the constraint the stem imposes."
+  },
+  "estimatedSeconds": 165,
+  "stimulusRef": null,
+  "accessibilityText": "A three-person project team is formed from a pool of 5 engineers and 4 designers, and must contain at least one engineer and at least one designer. The question asks how many different teams are possible. Five numeric options are offered in ascending order: 40, 70, 74, 80 and 84.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item. Pool sizes of 5 and 4 with a team of 3 were chosen so that both forbidden cases exist and are disjoint, making the complementary count clean, and so that each partial count (one case only, one exclusion only, no exclusion) is a distinct integer."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-wave3-author",
+    "reviewer": "gmat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "gmat-wave3-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Total C(9,3) = 84, minus all-engineer C(5,3) = 10 and all-designer C(4,3) = 4, gives 84 - 14 = 70. Direct count confirms: 2E1D = C(5,2)C(4,1) = 40, 1E2D = C(5,1)C(4,2) = 30, total 70."
+    },
+    "notes": "Author counted the permitted teams directly (30 plus 40) and by complement (84 minus 10 minus 4), obtaining 70 both ways, and confirmed the full partition 10 + 40 + 30 + 4 = 84 accounts for every three-person team. The count is a single determined integer, so only one option is defensible. Awaiting blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "combinatorics",
+    "combinations",
+    "complementary-counting"
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "id": "enhanced-act-sci-germination-design-033",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "science",
+  "domainSlug": "act-science-scientific-investigation",
+  "skillSlug": "act-sci-sin-tools-procedures-design",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "In Study 1 the students used the same sterilised potting mix, the same growth chamber at $22^{\\circ}\\text{C}$, the same 16-hour light period and the same number of seeds in every tray. Which of the following best explains why the study was designed this way?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "It allowed the mean root length in each tray to be measured to the nearest millimetre."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "It ensured that the two varieties would reach their highest germination percentages at the same soil water content."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "It held every condition other than soil water content and seed variety constant, so that differences in germination could be attributed to those two variables."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "It guaranteed that every tray would reach a germination percentage of at least 50%."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Study 1 deliberately changes two things: the **soil water content** (10%, 20%, 30%, 40%) and the **seed variety** (R or S). Everything else — the potting mix, the temperature, the light period, the seed count, the growth chamber — is held fixed.\n\nThat is the logic of a controlled experiment. If the trays had also differed in temperature or in light, a difference in germination could have been caused by temperature or light instead, and the results would not tell you anything about water content. Holding the other conditions constant is what licenses the conclusion that the changes in germination come from the two variables the students chose to vary.\n\nYou can check a claim like this by asking what would break if the control were removed. Suppose the 40% trays had also sat under a brighter lamp: their germination figures would then be unusable, because two explanations would fit them equally well. That is exactly the ambiguity the fixed conditions are there to prevent.",
+  "distractorRationale": {
+    "d": "Confuses a control with a guaranteed outcome. Standardising conditions does not force any particular germination percentage, and Table 1 shows several groups well below 50% — Variety R reached only 18% at 10% water.",
+    "a": "Confuses controlled conditions with measurement precision. How finely root length can be read depends on the ruler and the technique used at day 10, not on whether every tray shared the same soil and light.",
+    "b": "States an outcome the data contradict and that no control could produce. The varieties peaked at different water contents — R at 30% and S at 20% — and a well-designed study does not force two varieties to behave alike; it makes an honest comparison possible."
+  },
+  "estimatedSeconds": 65,
+  "stimulusRef": {
+    "id": "enhanced-act-stim-sci-germination-005",
+    "version": 1
+  },
+  "accessibilityText": "The question asks why Study 1 used identical potting mix, a single growth chamber at 22 degrees Celsius, a 16-hour light period and 50 seeds in every tray, while varying only soil water content and seed variety. The choices offer a guaranteed germination level, improved measurement of root length, the isolation of the two intended variables, and forcing both varieties to peak together.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank against an original experiment description and invented data set. Not derived from, and not a paraphrase of, any ACT-published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "enhanced-act-wave3-author",
+    "reviewer": "enhanced-act-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "enhanced-act-wave3-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Identical mix, chamber temperature, light period and seed count are controlled variables, leaving soil water content and variety as the only things that differ, so any germination difference is attributable to them. (a) confuses control with measurement precision, and (b) and (d) assert outcomes that controls cannot guarantee (and that the data contradict: peaks at 30% for R and 20% for S)."
+    },
+    "notes": "Author solved the item and attempted to defend each distractor before keying it. Only the choice naming the isolation of the two independent variables describes what standardised conditions accomplish; the others confuse controls with a guaranteed result, with measurement precision, or with forcing the varieties to agree. Awaiting an independent blind solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "science",
+    "experimental-design",
+    "controlled-variables"
+  ]
+}

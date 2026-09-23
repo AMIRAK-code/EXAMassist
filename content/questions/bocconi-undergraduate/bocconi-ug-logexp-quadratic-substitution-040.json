@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-logexp-quadratic-substitution-040",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-logexp-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the **sum of all real solutions** of\n\n$$4^{x} - 6 \\cdot 2^{x} + 8 = 0 \\;?$$",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$1$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$2$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$3$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$6$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "**Step 1 — recognise the hidden quadratic.** The key observation is that $4^{x}$ is the square of $2^{x}$:\n\n$$4^{x} = (2^{2})^{x} = (2^{x})^{2}$$\n\nSo with the substitution $t = 2^{x}$ the equation becomes an ordinary quadratic:\n\n$$t^{2} - 6t + 8 = 0$$\n\n**Step 2 — solve it.** Factor:\n\n$$(t - 2)(t - 4) = 0 \\;\\Longrightarrow\\; t = 2 \\ \\text{ or } \\ t = 4$$\n\n**Step 3 — check admissibility.** Since $t = 2^{x}$ and an exponential is always strictly positive, only positive values of $t$ can be used. Both 2 and 4 are positive, so **both** survive. (This step is not a formality: had a root been zero or negative it would have to be discarded, and many versions of this problem are built exactly that way.)\n\n**Step 4 — convert back to $x$.**\n\n$$2^{x} = 2 \\;\\Longrightarrow\\; x = 1 \\qquad 2^{x} = 4 = 2^{2} \\;\\Longrightarrow\\; x = 2$$\n\n**Step 5 — answer the question actually asked.** The sum of the solutions is\n\n$$1 + 2 = 3$$\n\n**How to check the answer.** Substitute both values into the original equation.\n\n- $x = 1$: $4^{1} - 6 \\cdot 2^{1} + 8 = 4 - 12 + 8 = 0$. ✓\n- $x = 2$: $4^{2} - 6 \\cdot 2^{2} + 8 = 16 - 24 + 8 = 0$. ✓\n\nAnd there can be no others: $t = 2^{x}$ is strictly increasing, so each admissible $t$ corresponds to exactly one $x$, and the quadratic has exactly two roots.\n\n**The trap to name.** The substitution is a detour, and it is easy to hand back the value of $t$ instead of the value of $x$. Write \"$t = \\ldots$, therefore $x = \\ldots$\" explicitly before adding anything up.",
+  "distractorRationale": {
+    "a": "This stops after the first root: $t = 2$ gives $x = 1$, and the second root $t = 4$ is discarded on the mistaken ground that only one value of $t$ can be admissible. The admissibility test is whether $t > 0$, and both 2 and 4 pass it, so both yield a real $x$.",
+    "b": "This reports the larger single solution, $x = 2$, rather than the sum of the two solutions. The stem asks for the sum of **all** real solutions, which is $1 + 2$. Reading the final question again before answering catches this.",
+    "d": "This adds the roots of the auxiliary quadratic, $2 + 4 = 6$, and stops there. Those are values of $t = 2^{x}$, not values of $x$; converting first gives $x = 1$ and $x = 2$. Equivalently, it applies the sum-of-roots shortcut to the $t$-quadratic, where it gives 6, without noticing that the sum in $x$ is a different quantity."
+  },
+  "estimatedSeconds": 115,
+  "stimulusRef": null,
+  "accessibilityText": "Find the sum of all real solutions of the equation four to the power x, minus six times two to the power x, plus eight, equals zero. The four options are the numbers one, two, three and six.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Coefficients were chosen so that the auxiliary quadratic factors over the integers and both roots are exact powers of 2, so no logarithm table or calculator is needed. Asking for the sum rather than for the solutions themselves creates the distractor that returns the roots of the auxiliary quadratic."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-wave3-author",
+    "reviewer": "bocconi-undergraduate-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-wave3-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "With t = 2^x, 4^x = t^2, so t^2 - 6t + 8 = 0 gives t = 2 or t = 4, both positive and admissible, hence x = 1 and x = 2 and the sum is 3. Option d (6) is the sum of the t-values, not the x-values."
+    },
+    "notes": "Author's uniqueness check: t = 2^x is a strictly increasing bijection from the reals onto the positive reals, so the equation has exactly as many real solutions as the quadratic has positive roots, namely two, x = 1 and x = 2. Their sum is 3, a single value, and direct substitution verifies both roots. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "exponential-equation",
+    "substitution",
+    "hidden-quadratic"
+  ]
+}

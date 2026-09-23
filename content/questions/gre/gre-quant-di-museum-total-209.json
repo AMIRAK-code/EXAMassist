@@ -1,0 +1,85 @@
+{
+  "id": "gre-quant-di-museum-total-209",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-data-analysis",
+  "skillSlug": "data-tables-and-graphs",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "What was the total number of visitors to the museum in $2022$?",
+  "instructionsMd": "Select one answer choice.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$360$ thousand"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$240$ thousand"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$264$ thousand"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$408$ thousand"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$324$ thousand"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "The stimulus states that every visitor is counted under exactly one ticket type, which is what makes the three bars for a year addable. Without that sentence you could not rule out double counting, so it is worth noticing.\n\n**Read the 2022 row.** General admission $180$, student $60$, member $84$, all in thousands.\n\n**Add.**\n\n$$180 + 60 + 84 = 324.$$\n\nSo $324$ thousand visitors came in $2022$, which is choice (C).\n\n**How to check.** Re-add in a different order to catch a slip: $180 + 84 = 264$, and $264 + 60 = 324$. A second, cheaper check is a bound — the total must be larger than the largest single category ($180$) and smaller than three times it ($540$), and $324$ sits comfortably inside. Finally, make sure you read the correct year: the totals for the five years are $220$, $266$, $324$, $360$ and $408$, and three of those five appear among the choices precisely because reading the wrong column is the most common way to lose this point.",
+  "distractorRationale": {
+    "b": "This is general admission plus student only ($180 + 60$), leaving out the 84 thousand member visitors. All three ticket types are part of the total.",
+    "c": "This is general admission plus member only ($180 + 84$), leaving out the 60 thousand student visitors.",
+    "a": "This is the total for 2023, not 2022. The item is testing whether you track the year as carefully as the arithmetic.",
+    "d": "This is the total for 2024, the rightmost group of bars, chosen by reading the last year shown rather than the year named in the stem."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": {
+    "id": "gre-di-northgate-museum-200",
+    "version": 1
+  },
+  "accessibilityText": "Using the museum attendance chart, add the three ticket-type figures for the year 2022 to find that year's total attendance in thousands. The five choices are 240 thousand, 264 thousand, 324 thousand, 360 thousand and 408 thousand.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gre-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item in an original data interpretation set written for the wave 3 top-up. Two distractors omit one category each and two are the totals of neighbouring years. Choices are ordered by increasing value. Not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gre-wave3-author",
+    "reviewer": "gre-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "gre-wave3-reviewer",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "2022 row: 180 + 60 + 84 = 324 thousand. Distractors match other years' totals (2020 = 220, 2021 = 266, 2023 = 360, 2024 = 408) or partial sums, so only E fits."
+    },
+    "notes": "Author read the 2022 figures 180, 60 and 84 from the stimulus data and summed to 324 thousand, choice C. Cross-check: yearly totals are 220, 266, 324, 360, 408. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "data-interpretation",
+    "chart-reading",
+    "totals"
+  ]
+}

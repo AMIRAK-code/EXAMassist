@@ -1,0 +1,83 @@
+{
+  "id": "lsat-lr-library-strengthen-125",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "lr1",
+  "domainSlug": "logical-reasoning",
+  "skillSlug": "lr-additional-evidence",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Regional librarian: Across the region, the branch libraries that extended their opening hours into the evening lent 12 percent more items in the following year than they had in the year before. Extending opening hours into the evening therefore causes a library's lending to rise.\n\nWhich one of the following, if true, most strengthens the librarian's argument?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "In the year before the extensions, lending had been flat at the branches that later extended their hours and flat at comparable branches that never did."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The 12 percent figure was measured over the twelve months immediately following each branch's extension."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The branches that extended their evening hours held larger collections, on average, than the branches that did not."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Most items borrowed during the new evening hours were borrowed by people who had previously borrowed during the day."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The branches that extended their evening hours also enlarged their acquisitions budgets in the same year."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "A causal conclusion drawn from a before-and-after comparison is exposed on two flanks. The rise might reflect a trend already under way (the branches were growing anyway), and the branches that chose to extend might have been different from the rest in ways that explain the rise (selection). A strengthener is any fact that closes one of those flanks.\n\nChoice (E) closes both at once. \"Lending had been flat at the branches that later extended\" kills the pre-existing-trend story: these branches were not already climbing. \"Flat at comparable branches that never did\" supplies a control group: comparable libraries that made no change saw no rise, so whatever produced the 12 percent was not something happening to libraries generally that year. That is as close to a controlled comparison as an observational claim of this kind can get, and it is what makes (E) decisively the best answer.\n\nCheck your work by asking, for each choice, which way the argument moves once the fact is added.\n\n- (A) introduces a rival cause operating at exactly the same time — the argument gets *weaker*.\n- (B) suggests borrowing was merely rescheduled from daytime to evening, which is consistent with total lending not being driven up by the change at all — weaker again.\n- (C) is a definition of the measurement window. It tells you what was counted, not why it rose.\n- (D) says the extending branches differed systematically from the others, which is the selection problem itself, not a cure for it.\n\nThe habit worth keeping: on a strengthen question for a causal claim, look first for a choice that rules out an alternative explanation or supplies a comparison group, and be suspicious of any choice that adds a second thing that changed at the same time.",
+  "distractorRationale": {
+    "e": "A larger acquisitions budget is a rival explanation for the rise in lending, operating in the same branches in the same year. Adding it makes the causal conclusion harder to sustain, not easier. It is tempting because it names a plausible driver of library use, but a strengthener must remove competitors rather than introduce one.",
+    "d": "If the evening borrowers are mostly the same people who used to borrow in the daytime, the evening figures may represent lending moved rather than lending created, which puts pressure on the claim that the extension raised total lending. This is a weakener dressed in the vocabulary of the new evening hours.",
+    "b": "This merely specifies the measurement window and adds no evidence about causation. Every explanation of the rise, including a pre-existing trend or a region-wide surge, is equally compatible with the figure being measured over those twelve months. A fact that no rival hypothesis would contest cannot discriminate between hypotheses.",
+    "c": "This states that the two groups of branches differed before the change, which is the selection problem the argument most needs to escape. Larger collections are an obvious alternative source of higher lending, so the choice supplies a confound rather than eliminating one."
+  },
+  "estimatedSeconds": 95,
+  "stimulusRef": null,
+  "accessibilityText": "A short causal argument. Branch libraries that extended opening hours into the evening lent 12 percent more items in the following year than in the year before, and the librarian concludes that extending evening hours causes lending to rise. The question asks which statement, if true, most strengthens the argument. Five answer choices, labelled A through E. No notation, tables or figures appear.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "lsat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original stimulus and choices. Strengthen item on a before-and-after causal claim; the key supplies both a flat pre-trend and an untreated comparison group, while two distractors are weakeners and two are inert. Not derived from any published LSAT item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "lsat-wave3-author",
+    "reviewer": "lsat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "lsat-wave3-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The causal claim is threatened by a pre-existing upward trend or a region-wide rise; (a) removes both by showing lending was flat beforehand at the extending branches and flat at comparable non-extending branches, isolating the extension. (e) supplies a rival cause and (c) a confound, both weakening; (b) is a definitional restatement; (d) suggests mere shifting of borrowing rather than growth."
+    },
+    "notes": "Author solved the item and then tried to defend each other choice as a strengthener. An earlier draft of (D) read 'libraries that did not extend reported no change in visitor numbers', which was a genuine if weaker control-group strengthener and so a second defensible answer; it was replaced with a selection confound. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logical-reasoning",
+    "strengthen",
+    "causal-reasoning",
+    "control-group"
+  ]
+}

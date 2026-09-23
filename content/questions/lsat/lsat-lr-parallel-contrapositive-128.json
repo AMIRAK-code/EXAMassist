@@ -1,0 +1,83 @@
+{
+  "id": "lsat-lr-parallel-contrapositive-128",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "lr1",
+  "domainSlug": "logical-reasoning",
+  "skillSlug": "lr-reasoning-patterns",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Every proposal the board approved last year was submitted before the March deadline. The Fenwick proposal was not submitted before the March deadline. So the board did not approve the Fenwick proposal.\n\nThe pattern of reasoning in the argument above is most closely parallel to that in which one of the following?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Most of the museum's Roman coins were acquired before 1970. This coin was acquired in 1985. So this coin is probably not one of the museum's Roman coins."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "All of the paintings in the gallery's east wing are on loan from private collections. This landscape is on loan from a private collection. So this landscape hangs in the east wing."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Every member of the chamber choir can read music. Priya cannot read music. So Priya is not a member of the chamber choir."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "No bridge built in the county before 1950 carries heavy freight. The Marne bridge carries heavy freight. So the Marne bridge was built in the county before 1950."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "All of the firm's partners attended the retreat, and some people who attended the retreat are not partners. So not everyone at the retreat was a partner."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Abstract the original before reading any choice. Let $A$ be \"proposal the board approved last year\" and $B$ be \"submitted before the March deadline\".\n\n- Premise: All $A$ are $B$.\n- Premise: the Fenwick proposal is not $B$.\n- Conclusion: the Fenwick proposal is not $A$.\n\nThat is a valid contrapositive: from $A \\rightarrow B$ and not-$B$, infer not-$A$. Three features have to be matched — a **universal** premise (not \"most\"), a premise **denying** the consequent about a particular case, and a conclusion **denying** the antecedent. A correct parallel answer matches the structure; the subject matter is irrelevant.\n\nChoice (C) matches all three. All choir members can read music ($A \\rightarrow B$); Priya cannot read music (not-$B$); therefore Priya is not a choir member (not-$A$). Same quantifier, same direction, same validity.\n\nThe efficient way to check parallel-reasoning answers is to abstract each choice the same way and compare the skeletons, not the stories.\n\n- (A): All $A$ are $B$; this thing is $B$; so it is $A$. That affirms the consequent — invalid, and the original is valid. A parallel answer must match on validity.\n- (B): No $A$ is $B$; this is $B$; so this is $A$. Also invalid, and it starts from a negative universal rather than a positive one.\n- (D): Two premises about a group yield a conclusion about the same group; there is no conditional applied to a particular case at all.\n- (E): \"Most\" instead of \"every\", and a hedged conclusion, \"probably\". A probabilistic argument cannot be parallel to a deductively valid one.\n\nA reliable habit: write each argument as letters before comparing, and treat quantifier words (*all*, *no*, *most*, *some*) and the valid/invalid verdict as the two things that must match exactly.",
+  "distractorRationale": {
+    "b": "This affirms the consequent: it moves from a universal premise and the fact that an item has the consequent property to the conclusion that it has the antecedent property. The original moves in the opposite and valid direction, from the denial of the consequent to the denial of the antecedent, so the two differ precisely on validity.",
+    "d": "The premise here is a negative universal, 'no bridge built before 1950 carries heavy freight', and the conclusion asserts membership rather than denying it. From 'no A is B' and 'this is B' the only valid inference is that this is not A; concluding that it is A inverts the rule. Neither the quantifier nor the validity matches the original.",
+    "e": "No conditional is applied to an individual case. Both premises describe the retreat's attendees as a group, and the conclusion restates the second premise in other words. The original argument's whole engine is the application of a universal rule to one named item, which this choice never does.",
+    "a": "'Most' is not 'every', and 'probably not' is not 'not'. Weakening the premise to a majority claim means the conclusion can only be probabilistic, whereas the original is deductively airtight. This is the most attractive wrong choice because its surface shape, a general claim plus a particular that fails the test, mirrors the original closely."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "A short valid argument: every proposal the board approved was submitted before the March deadline; the Fenwick proposal was not submitted before that deadline; therefore the board did not approve it. The question asks which answer choice's pattern of reasoning is most closely parallel. Five answer choices, labelled A through E, each a three-sentence argument. The explanation uses the letters A and B and an arrow meaning 'if ... then'; no computation is involved.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "lsat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original stimulus and choices. Parallel-reasoning item on a valid contrapositive; distractors differ on validity (affirming the consequent, inverted negative universal), on structure (no rule applied to a particular) and on quantifier and modality ('most' plus 'probably'). Tagged to lr-reasoning-patterns, which is the exam config's slug for recognizing similarities and differences between patterns of reasoning. Not derived from any published LSAT item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "lsat-wave3-author",
+    "reviewer": "lsat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "lsat-wave3-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Form: all A are B; x is not B; so x is not A (valid contrapositive). (c) matches exactly — all choir members read music, Priya does not, so not a member. (a) weakens \"all\" to \"most\" and hedges with \"probably\"; (b) and (d) are invalid affirming-the-consequent/negation patterns; (e) is a different structure entirely."
+    },
+    "notes": "Author abstracted all six arguments to letters and compared skeletons; only (C) matches the original on quantifier, direction and validity together. Care was taken that no distractor accidentally reproduces the contrapositive form, which is easy to do when writing this item type. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logical-reasoning",
+    "parallel-reasoning",
+    "contrapositive",
+    "conditional-reasoning"
+  ]
+}

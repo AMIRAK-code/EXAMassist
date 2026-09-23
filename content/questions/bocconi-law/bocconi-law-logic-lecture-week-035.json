@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-law-logic-lecture-week-035",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-deductive-conditions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Five lectures — Contracts, Delicts, Evidence, Family and Guardianship — are delivered on the five weekdays from Monday to Friday, one lecture per day. The timetable satisfies all of the following conditions:\n\n- Evidence is delivered on a later day than Contracts.\n- Family is delivered on the day immediately before or immediately after Evidence.\n- Delicts is delivered on Monday or on Friday.\n- Guardianship is delivered on Wednesday.\n\nWhich of the following must be true?",
+  "instructionsMd": "Exactly one of the four statements holds in every timetable that satisfies the conditions.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Contracts is delivered on Tuesday."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Guardianship is delivered on the day immediately after Family."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Family is delivered on Friday."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Evidence is delivered on Thursday."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Guardianship is pinned to Wednesday, so Contracts, Delicts, Evidence and Family occupy Monday, Tuesday, Thursday and Friday. Test the two branches the Delicts condition allows.\n\n**Branch 1 — Delicts on Friday.** Contracts, Evidence and Family take Monday, Tuesday and Thursday. Evidence and Family must be on *adjacent* days, and among Monday, Tuesday and Thursday the only adjacent pair is Monday–Tuesday (Wednesday is occupied, so Tuesday and Thursday are not adjacent). That forces Contracts onto Thursday. But Evidence must come after Contracts, and Evidence would be on Monday or Tuesday. Contradiction, so this branch is empty.\n\n**Branch 2 — Delicts on Monday.** Contracts, Evidence and Family take Tuesday, Thursday and Friday. The only adjacent pair available is Thursday–Friday, so Evidence and Family occupy those two days and Contracts is left with Tuesday. Evidence after Contracts is then satisfied either way round, giving exactly two timetables:\n\n- Delicts, Contracts, Guardianship, Evidence, Family\n- Delicts, Contracts, Guardianship, Family, Evidence\n\nContracts is on Tuesday in both, so option D must be true.\n\n**How to check.** Verify that each rejected option fails somewhere: A fails in the second timetable, B fails in the first, and C fails in both, since Guardianship is on Wednesday while Family is on Thursday or Friday — always after it. Note also that \"Delicts is delivered on Monday\" would have been an equally correct answer; it is deliberately not offered, because two correct options would make the item unanswerable.",
+  "distractorRationale": {
+    "d": "True in the first timetable only. It comes from fixing the Evidence–Family pair in one of its two internal orders — the one that satisfies 'Evidence after Contracts' most obviously — without noticing that reversing the pair also satisfies every condition.",
+    "c": "True in the second timetable only, and it is the mirror image of the previous error: it fixes the pair the other way round. Whichever order you settle on first, the conditions never choose between them.",
+    "b": "False in both timetables. Guardianship is on Wednesday and Family is on Thursday or Friday, so Guardianship always comes before Family, never immediately after it. This option is produced by reading the adjacency condition as attaching to Guardianship, the other day-fixed lecture, rather than to Evidence."
+  },
+  "estimatedSeconds": 130,
+  "stimulusRef": null,
+  "accessibilityText": "A deductive reasoning question. Five lectures named Contracts, Delicts, Evidence, Family and Guardianship are delivered one per day from Monday to Friday. Evidence is later than Contracts; Family is on the day immediately before or immediately after Evidence; Delicts is on Monday or Friday; Guardianship is on Wednesday. The question asks which of four statements must be true.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original ordering item written to the published Bocconi Law syllabus entry on deductive reasoning from initial conditions. Lecture titles and timetable are invented."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave3-author",
+    "reviewer": "bocconi-law-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "bocconi-law-wave3-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Guardianship is Wednesday. If Delicts were Friday, Contracts/Evidence/Family fill Mon, Tue, Thu; the only adjacent pair there is Mon-Tue, forcing Evidence and Family into Mon-Tue and Contracts into Thursday, which breaks 'Evidence later than Contracts'. So Delicts is Monday, leaving Tue, Thu, Fri; the only adjacent pair is Thu-Fri, so Evidence and Family take those and Contracts is always Tuesday. B, C and D each fail in one surviving timetable."
+    },
+    "notes": "Author solved by branching on the Delicts condition. Delicts on Friday is impossible (the only adjacent pair left for Evidence and Family is Monday-Tuesday, forcing Contracts to Thursday and violating 'Evidence after Contracts'). Delicts on Monday yields exactly two timetables differing only in the order of the Evidence-Family pair on Thursday and Friday. Contracts is on Tuesday in both. 'Delicts on Monday' is also always true and was deliberately excluded from the options to preserve a single defensible answer. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "ordering",
+    "must-be-true",
+    "branching",
+    "no-calculator"
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "id": "digital-sat-rw-inferences-lichen-031",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "rw-module-1",
+  "domainSlug": "information-and-ideas",
+  "skillSlug": "inferences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Suppose Raman finds a boulder whose widest lichen is very nearly the same size as the widest lichens on boulders from a fall recorded 600 years ago. Based on the text, which choice is the most logical conclusion she can draw about this boulder?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The boulder was exposed several centuries ago, but its age cannot be narrowed to a particular century."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The boulder was exposed more recently than 300 years ago."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The lichen on the boulder began growing before the boulder's face was exposed."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The boulder was exposed roughly 600 years ago, give or take a few years."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "An inference question asks for the strongest claim the text will actually carry — no stronger.\n\nThe text gives two facts that bear on this boulder. First, lichen size is a minimum age, and a lichen as wide as those on a 600-year-old fall is a large lichen, so the boulder is old. Second, beyond about 300 years the lichens' growth has slowed so much that Raman's estimates \"bunched together, blurring events a century or more apart\". Both facts together give exactly Choice D: old, but not datable to a century.\n\nTo check an inference, try to state the sentence in the passage that would have to be false for your choice to be wrong. For Choice D nothing has to be false. For Choice A the blurring sentence has to be ignored, and that sentence is the text's whole point about old falls.",
+  "distractorRationale": {
+    "d": "This treats a blurred estimate as a precise one. The text says explicitly that past about 300 years the method cannot separate events a century or more apart, so matching a 600-year-old boulder does not pin this one to 600 years.",
+    "c": "This contradicts the premise of the method. The passage describes lichens as colonising a face that begins as bare stone, so growth starts after exposure, not before it.",
+    "b": "This reverses the reasoning. A very wide lichen indicates a long exposure; it is the small lichens that would indicate a recent fall."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": {
+    "id": "digital-sat-stim-lichen-clock-030",
+    "version": 1
+  },
+  "accessibilityText": "Using the lichen-dating passage, choose the most logical conclusion about a boulder whose widest lichen nearly matches the widest lichens on boulders from a rockfall recorded 600 years ago.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "digital-sat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item. The scenario in the stem is new and is not stated in the passage, so the item tests inference rather than retrieval."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "digital-sat-wave3-author",
+    "reviewer": "digital-sat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "digital-sat-wave3-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Past about 300 years the estimates 'bunched together, blurring events a century or more apart', so a lichen matching the 600-year boulders fixes only that the fall is several centuries old, not its century."
+    },
+    "notes": "Author solved and checked uniqueness: the passage supplies both an 'old' signal (wide lichen) and a precision ceiling (blurring past 300 years), and only D respects both. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "reading",
+    "inference",
+    "science-passage"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "gmat-ps-units-digit-cycles-204",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-arithmetic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the units digit of $7^{83} + 3^{45}$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$0$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$2$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$4$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$6$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$8$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The units digit of a power repeats on a short cycle, so you never have to compute the power itself.\n\n**Step 1 — the cycle for $7$.** Successive powers end in\n\n$$7^1 \\to 7, \\quad 7^2 \\to 9, \\quad 7^3 \\to 3, \\quad 7^4 \\to 1, \\quad 7^5 \\to 7, \\dots$$\n\nso the pattern $7, 9, 3, 1$ repeats with period $4$. Divide the exponent by $4$ and keep the remainder: $83 = 4 \\times 20 + 3$, remainder $3$, which points at the **third** entry of the cycle. So $7^{83}$ ends in $3$.\n\n**Step 2 — the cycle for $3$.** Successive powers end in\n\n$$3^1 \\to 3, \\quad 3^2 \\to 9, \\quad 3^3 \\to 7, \\quad 3^4 \\to 1, \\quad 3^5 \\to 3, \\dots$$\n\nagain period $4$. Here $45 = 4 \\times 11 + 1$, remainder $1$, which points at the **first** entry. So $3^{45}$ ends in $3$.\n\n**Step 3 — add the two units digits.**\n\n$$3 + 3 = 6,$$\n\nand $6$ is already a single digit, so the units digit of the sum is $6$.\n\n**How to check the answer.** Test the method on exponents small enough to verify directly. Take $7^3 + 3^5 = 343 + 243 = 586$, which ends in $6$. The exponents $3$ and $5$ leave remainders $3$ and $1$ on division by $4$ — exactly the remainders in this problem — so the method predicts the same units digit of $6$, and the explicit arithmetic confirms it.\n\n**The step that goes wrong most often.** A remainder of $0$ means the **fourth** entry of the cycle, not the first: $7^{80}$ ends in $1$, not $7$. Write the cycle out as a numbered list of four before you divide, and the off-by-one disappears.",
+  "distractorRationale": {
+    "a": "This adds the units digits of the bases themselves, $7 + 3 = 10$, and reports $0$. That is the answer only when both exponents leave remainder $1$ on division by $4$; here the first exponent leaves remainder $3$.",
+    "b": "This takes $7^{83}$ as ending in $9$, the second entry of the $7, 9, 3, 1$ cycle, giving $9 + 3 = 12$. The remainder of $83$ on division by $4$ is $3$, not $2$, so the third entry applies.",
+    "c": "This takes $7^{83}$ as ending in $1$, the entry that belongs to exponents divisible by $4$. Since $83$ is not a multiple of $4$, that entry does not apply, and $1 + 3 = 4$ follows from the wrong cycle position.",
+    "e": "This takes $3^{45}$ as ending in $1$, the fourth entry of the $3, 9, 7, 1$ cycle, giving $7 + 1 = 8$. The remainder of $45$ on division by $4$ is $1$, which points at the first entry, $3$."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "The question asks for the units digit of the sum of seven raised to the power 83 and three raised to the power 45. Five single-digit options are offered in ascending order: 0, 2, 4, 6 and 8.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item. Exponents 83 and 45 were chosen to leave different remainders (3 and 1) on division by 4, so that each cycle-position error produces a different units digit and no two options coincide."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-wave3-author",
+    "reviewer": "gmat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "gmat-wave3-reviewer",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "7 has units cycle 7,9,3,1 (period 4); 83 = 4x20 + 3 so units digit 3. 3 has cycle 3,9,7,1; 45 = 4x11 + 1 so units digit 3. Sum 3 + 3 = 6."
+    },
+    "notes": "Author derived both cycles from first principles, confirmed 83 mod 4 = 3 and 45 mod 4 = 1, and verified the method on the small case 7 cubed plus 3 to the fifth, which equals 586 and ends in 6. Since the units digit of a sum is a single determined value, exactly one option can be correct. Awaiting blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "number-properties",
+    "units-digit",
+    "cyclicity"
+  ]
+}

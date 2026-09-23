@@ -1,0 +1,61 @@
+{
+  "id": "digital-sat-math-nonlinear-equations-spr-048",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "advanced-math",
+  "skillSlug": "nonlinear-equations-and-systems",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "In the equation $x^2 - 14x + k = 0$, $k$ is a constant. The equation has exactly one distinct real solution. What is the value of $k$?",
+  "instructionsMd": "Student-produced response. Enter your answer in the box. Do not enter symbols such as a percent sign, comma, or dollar sign.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 49
+      }
+    ],
+    "acceptedStrings": [
+      "49"
+    ]
+  },
+  "explanationMd": "\"Exactly one distinct real solution\" is a statement about the discriminant, not about the solution itself.\n\nFor $ax^2 + bx + c = 0$, the discriminant is $b^2 - 4ac$, and the equation has exactly one distinct real solution when that value is zero. Here $a = 1$, $b = -14$ and $c = k$:\n\n$$(-14)^2 - 4(1)(k) = 0$$\n\n$$196 - 4k = 0$$\n\n$$k = \\frac{196}{4} = 49$$\n\nThere is a second route that explains *why* $49$ works. A quadratic with one repeated root is a perfect square. To make $x^2 - 14x + k$ a perfect square, halve the coefficient of $x$ and square it: $\\left(\\frac{-14}{2}\\right)^2 = (-7)^2 = 49$. Then $x^2 - 14x + 49 = (x - 7)^2$, whose only solution is $x = 7$.\n\nCheck the answer by factoring and solving: $(x - 7)^2 = 0$ gives $x = 7$ and nothing else, so there is indeed exactly one distinct real solution. It is also worth confirming the boundary behaves as expected: with $k = 48$ the discriminant is $196 - 192 = 4 > 0$, giving two solutions, and with $k = 50$ it is $196 - 200 = -4 < 0$, giving none. Only $k = 49$ sits on the boundary.",
+  "distractorRationale": {},
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "In the quadratic equation x squared minus 14 x plus k equals zero, where k is a constant, the equation has exactly one distinct real solution. Find k. Enter a number.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "digital-sat-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item. The coefficient was chosen so that the answer is a whole number reachable either by the discriminant or by completing the square."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "digital-sat-wave3-author",
+    "reviewer": "digital-sat-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "digital-sat-wave3-reviewer",
+      "solvedAnswer": "49",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Exactly one distinct real solution means discriminant zero: 196 - 4k = 0, so k = 49 (equivalently (x-7)^2 = 0)."
+    },
+    "notes": "Author solved and checked uniqueness: 196 - 4k = 0 has the single solution k = 49, and (x - 7)^2 confirms the repeated root. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "advanced-math",
+    "quadratic",
+    "discriminant",
+    "student-produced-response"
+  ]
+}

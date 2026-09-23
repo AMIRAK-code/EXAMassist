@@ -22,9 +22,11 @@ npm run db:seed
 npm run build && npm start    # http://localhost:3000
 ```
 
-`npm run dev` is the usual development command. On this machine it does not
-start, because an Application Control policy blocks Next.js's native SWC
-binary; `npm run build && npm start` works and is what the browser tests use.
+`npm run dev` is the usual development command and works normally.
+
+If dev fails with an `EINVAL ... readlink '.next/static/...'` error, delete the
+`.next` directory and start again: a production build left in place can trip the
+dev server on a synced filesystem such as OneDrive.
 
 ### Commands
 

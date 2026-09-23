@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-alg-ticket-system-033",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-algebra-systems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A concert hall sold exactly 180 tickets. Full-price tickets cost 25 euros each and reduced tickets cost 15 euros each, and the takings came to 3,500 euros in total. How many **reduced** tickets were sold?",
+  "instructionsMd": "No calculator.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$80$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$100$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$140$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$175$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Let $f$ be the number of full-price tickets and $r$ the number of reduced tickets. The two facts give two equations:\n\n$$f + r = 180 \\qquad 25f + 15r = 3500$$\n\n**Substitute** $f = 180 - r$ into the money equation:\n\n$$25(180 - r) + 15r = 3500$$\n$$4500 - 25r + 15r = 3500$$\n$$4500 - 10r = 3500$$\n$$10r = 1000 \\;\\Longrightarrow\\; r = 100$$\n\nSo **100 reduced tickets** were sold, and $f = 180 - 100 = 80$ full-price ones.\n\n**A faster route worth knowing.** Suppose every ticket had been full price: the takings would have been $180 \\times 25 = 4500$ euros. The actual takings fall short by $4500 - 3500 = 1000$ euros, and each reduced ticket costs $25 - 15 = 10$ euros less than a full one. So the number of reduced tickets is $1000 \\div 10 = 100$. This \"assume the expensive case, then count the shortfall\" method turns a two-equation system into one division, which matters when no calculator is allowed.\n\n**How to check the answer.** Multiply back: $80 \\times 25 = 2000$ and $100 \\times 15 = 1500$, and $2000 + 1500 = 3500$. The ticket count also checks: $80 + 100 = 180$. Both conditions hold, so the answer is confirmed.\n\n**The trap to name.** The system yields two numbers, 80 and 100. Before choosing, reread which one the stem asked for: here it is the *reduced* tickets, the cheaper ones, of which there are more.",
+  "distractorRationale": {
+    "a": "This is the number of full-price tickets, the other unknown in the same system. The arithmetic is right but the wrong quantity has been reported; the stem asks for the reduced tickets. It is also what you get if you swap the two prices in the money equation, so it is doubly tempting.",
+    "c": "This is $3500 \\div 25$, the number of tickets that 3,500 euros would buy at the full price alone. It ignores both the 180-ticket constraint and the existence of a reduced price; 140 tickets is not even consistent with the 180 actually sold.",
+    "d": "This is $3500 \\div 20$, using the arithmetic mean of 25 and 15 as though both ticket types had sold in equal numbers. The average price is only 20 euros when the split is even, and here it is not: 175 tickets already exceeds the 180 sold once any full-price tickets are added in."
+  },
+  "estimatedSeconds": 95,
+  "stimulusRef": null,
+  "accessibilityText": "A concert hall sold one hundred and eighty tickets in total. Full-price tickets cost twenty-five euros each, reduced tickets cost fifteen euros each, and total takings were three thousand five hundred euros. The question asks how many reduced tickets were sold. The four options are the numbers eighty, one hundred, one hundred and forty, and one hundred and seventy-five.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Numbers were chosen so the system solves in whole tickets and the shortfall method divides exactly, keeping it calculator-free. The distractors are the other unknown, a single-price division, and an average-price division."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-wave3-author",
+    "reviewer": "bocconi-undergraduate-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "bocconi-undergraduate-wave3-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "f + r = 180 and 25f + 15r = 3500. Substituting f = 180 - r: 4500 - 10r = 3500, so r = 100 reduced tickets (and 80 full price). Option a is the full-price count, the distractor for misreading which total is asked."
+    },
+    "notes": "Author's uniqueness check: the two linear equations have determinant 25 - 15 = 10, not zero, so the system has exactly one solution, f = 80 and r = 100. Only option B gives the reduced count. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "linear-system",
+    "word-problem",
+    "mixture"
+  ]
+}

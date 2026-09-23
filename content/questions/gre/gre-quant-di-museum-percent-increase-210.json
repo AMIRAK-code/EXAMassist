@@ -1,0 +1,69 @@
+{
+  "id": "gre-quant-di-museum-percent-increase-210",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-data-analysis",
+  "skillSlug": "data-tables-and-graphs",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "By what percent did the number of student-ticket visitors increase from $2021$ to $2024$?\n\nGive your answer to the nearest whole percent, and omit the percent sign.",
+  "instructionsMd": "Enter your answer in the box. Equivalent forms of the same value are accepted.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 80
+      }
+    ],
+    "acceptedStrings": [
+      "80",
+      "80.0",
+      "80%"
+    ]
+  },
+  "explanationMd": "Percent increase always compares the *change* with the *starting* value, never with the ending value and never with a total.\n\n**Step 1 — read the two figures.** Student-ticket visitors were $50$ thousand in $2021$ and $90$ thousand in $2024$.\n\n**Step 2 — find the change.**\n\n$$90 - 50 = 40 \\text{ thousand}.$$\n\n**Step 3 — divide by the starting value and convert to a percent.**\n\n$$\\frac{40}{50} = 0.8 = 80\\%.$$\n\nThe increase is $80$ percent.\n\n**How to check.** Run the percentage forward from the $2021$ figure and confirm you land on the $2024$ figure: an increase of $80$ percent multiplies by $1.8$, and $50 \\times 1.8 = 90$. That matches the chart. A second check is a rough bound: the figure clearly did not double, since doubling $50$ would give $100$, so the increase must be under $100$ percent, and it is visibly close to doubling, so a figure in the eighties is the right neighbourhood. Note that both figures are in thousands, and because the thousands cancel in the ratio, no unit conversion is needed.",
+  "distractorRationale": {
+    "trap-44-dividing-by-the-end-value": "Dividing the change by the 2024 figure gives $40/90 \\approx 44$ percent. Percent increase is measured against the value you started from, which is the 2021 figure of 50.",
+    "trap-180-reporting-the-ratio": "Computing $90/50 = 1.8$ and reporting 180 gives the new value as a percent of the old one, not the increase. Subtract 100 to convert that ratio into a percent change.",
+    "trap-40-reporting-the-raw-change": "Entering 40 reports the absolute rise in thousands of visitors rather than the percent rise the question asks for.",
+    "trap-125-swapping-the-years": "Treating 2024 as the starting year gives $40/90$ inverted or $50 \\to 90$ read backwards; running the comparison in the wrong direction produces a different base and a different percent."
+  },
+  "estimatedSeconds": 105,
+  "stimulusRef": {
+    "id": "gre-di-northgate-museum-200",
+    "version": 1
+  },
+  "accessibilityText": "Using the museum attendance chart, find the percent increase in student-ticket visitors from 2021, when there were 50 thousand, to 2024, when there were 90 thousand. Round to the nearest whole percent and type the number, without a percent sign, into the answer box.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gre-wave3-author",
+    "aiAssisted": true,
+    "notes": "Original item in an original data interpretation set written for the wave 3 top-up. The two student figures were chosen so the percent increase is a whole number and the common wrong bases give clearly different values. Not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gre-wave3-author",
+    "reviewer": "gre-wave3-reviewer",
+    "reviewedOn": "2026-09-23",
+    "independentSolve": {
+      "solvedBy": "gre-wave3-reviewer",
+      "solvedAnswer": "80",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Student column: 2021 = 50, 2024 = 90. Increase = (90 - 50)/50 = 40/50 = 0.80, i.e. 80 percent exactly, so no rounding is needed."
+    },
+    "notes": "Author read student tickets 50 (2021) and 90 (2024); change 40 over base 50 = 0.8 = 80 percent. Forward check: 50 * 1.8 = 90. Awaiting blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "data-interpretation",
+    "numeric-entry",
+    "percent-change"
+  ]
+}
