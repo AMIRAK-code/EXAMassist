@@ -1,6 +1,6 @@
 {
   "id": "bocconi-ug-num-bakery-revenue-per-staff-018",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-undergraduate",
   "sectionKey": "online-test",
   "domainSlug": "bocconi-ug-numerical-reasoning",
@@ -37,7 +37,7 @@
     "type": "single_select",
     "optionId": "c"
   },
-  "explanationMd": "\"Revenue per member of staff\" is revenue **divided by** staff. The shops column is not needed at all, so ignore it.\n\n$$\\text{Arno} = \\frac{960}{48} = 20 \\qquad \\text{Brenta} = \\frac{1200}{80} = 15$$\n\n$$\\text{Carso} = \\frac{720}{24} = 30 \\qquad \\text{Dorsa} = \\frac{600}{50} = 12$$\n\nAll four divide exactly, in thousands of euros per person. Carso's $30$ is the largest, so **Carso** is the answer.\n\n**Doing the division by hand.** Each one is a familiar multiple rather than long division: $48 \\times 20 = 960$; $8 \\times 15 = 120$, so $80 \\times 15 = 1200$; $24 \\times 30 = 720$; and $50 \\times 12 = 600$. Hunting for the multiplication that fits is faster than dividing.\n\n**How to check the answer.** Carso is the smallest city by staff yet not the smallest by revenue, so a high ratio is exactly what you should expect there. Dorsa is the reverse: almost as many staff as Brenta on half of Brenta's revenue, and it finishes last. A sanity check of that kind catches an arithmetic slip without repeating the division.\n\n**The trap to name.** Brenta leads on revenue and on shops, and Arno leads on revenue per shop. Neither is what was asked. Before comparing anything, fix which two columns the word \"per\" is joining.",
+  "explanationMd": "\"Revenue per member of staff\" is revenue **divided by** staff. The shops column is not needed at all, so ignore it.\n\n$$\\text{Arno} = \\frac{960}{48} = 20 \\qquad \\text{Brenta} = \\frac{1200}{80} = 15$$\n\n$$\\text{Carso} = \\frac{720}{24} = 30 \\qquad \\text{Dorsa} = \\frac{600}{50} = 12$$\n\nAll four divide exactly, in thousands of euros per person. Carso's $30$ is the largest, so **Carso** is the answer.\n\n**Doing the division by hand.** Each one is a familiar multiple rather than long division: $48 \\times 20 = 960$; $8 \\times 15 = 120$, so $80 \\times 15 = 1200$; $24 \\times 30 = 720$; and $50 \\times 12 = 600$. Hunting for the multiplication that fits is faster than dividing.\n\n**How to check the answer.** Carso is the smallest city by staff yet not the smallest by revenue, so a high ratio is exactly what you should expect there. Dorsa is the reverse: five-eighths of Brenta's staff (50 against 80) on half of Brenta's revenue, and it finishes last. A sanity check of that kind catches an arithmetic slip without repeating the division.\n\n**The trap to name.** Brenta leads on revenue and on shops, and Arno leads on revenue per shop. Neither is what was asked. Before comparing anything, fix which two columns the word \"per\" is joining.",
   "distractorRationale": {
     "a": "Arno leads on revenue per *shop*, $\\frac{960}{6} = 160$, the highest of the four. This uses the wrong denominator: the stem asks per member of staff, not per shop, and on staff Arno gives only $\\frac{960}{48} = 20$.",
     "b": "Brenta has the largest revenue in the table, 1200, and also the most shops. This reads the revenue column on its own and never divides at all. Brenta also carries by far the most staff, 80, so on the ratio actually asked for it is the second worst at 15.",
@@ -58,16 +58,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-undergraduate-topup-author",
-    "reviewer": "bocconi-undergraduate-round2-reviewer",
-    "reviewedOn": "2026-09-22",
+    "reviewer": "closeout2-blind-solver-t1",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-undergraduate-round2-reviewer",
+      "solvedBy": "closeout2-blind-solver-t1",
       "solvedAnswer": "c",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Revenue per staff (thousand euros): Arno 960/48 = 20, Brenta 1200/80 = 15, Carso 720/24 = 30, Dorsa 600/50 = 12. Carso is highest by a clear margin, so exactly one option is defensible."
+      "workingNotes": "Revenue per staff member, in thousands of euros: Arno 960/48 = 20, Brenta 1200/80 = 15, Carso 720/24 = 30, Dorsa 600/50 = 12. Carso is highest. (a), (b) and (d) are all lower, and Brenta leads only on total revenue."
     },
-    "notes": "Author checked uniqueness by computing all four ratios: 20, 15, 30 and 12 thousand euros per person. Only Carso attains the maximum and no two cities tie on it, so exactly one option is defensible. Awaiting blind independent solve before publication."
+    "notes": "Author checked uniqueness by computing all four ratios: 20, 15, 30 and 12 thousand euros per person. Only Carso attains the maximum and no two cities tie on it, so exactly one option is defensible. Awaiting blind independent solve before publication. v2 (2026-09-24): an independent check of what the explanation and notes claim about the options found false statements in the explanation, corrected here. Correction by the coordinating editor (an AI agent); a separate AI reviewer then re-checked every claim about the options, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

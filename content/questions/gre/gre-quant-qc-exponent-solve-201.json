@@ -1,6 +1,6 @@
 {
   "id": "gre-quant-qc-exponent-solve-201",
-  "version": 1,
+  "version": 2,
   "examKey": "gre",
   "sectionKey": "quant-1",
   "domainSlug": "quant-algebra",
@@ -39,8 +39,8 @@
   },
   "explanationMd": "Each equation pins down one variable exactly, so solve for both before comparing.\n\n**Find $x$.** Write $32$ as a power of $2$: $2^5 = 32$. Since the bases match, the exponents must match, so $x = 5$.\n\n**Find $y$.** Write $81$ as a power of $3$: $3^4 = 81$. So $y = 4$.\n\n**Compare.**\n\n$$\\text{Quantity A} = x - y = 5 - 4 = 1, \\qquad \\text{Quantity B} = \\frac{x + y}{3} = \\frac{5 + 4}{3} = \\frac{9}{3} = 3.$$\n\nSince $3 > 1$, **Quantity B is greater**, which is choice (B).\n\n**How to check.** Substitute back into the original equations: $2^5 = 32$ and $3^4 = 81$, both true, so the values of $x$ and $y$ are right. Then recompute each quantity once more. Because both equations have a unique solution, nothing here is free to vary, so (D) is not in play.",
   "distractorRationale": {
-    "a": "Chosen by computing Quantity B as $x + \\frac{y}{3} = 5 + \\frac{4}{3} \\approx 6.3$ and then mis-ordering, or by treating $x - y$ as $9$ after confusing the difference with the sum. The fraction bar covers the whole expression $x + y$, so divide the sum by $3$.",
-    "c": "Chosen by solving $3^y = 81$ as $y = 3$ (reading the base as the answer) and then finding Quantity A $= 2$ and Quantity B $= 8/3 \\approx 2.67$, or by a rounding slip that makes both sides look like $3$. The exponent that turns $3$ into $81$ is $4$, not $3$.",
+    "a": "Chosen by treating $x - y$ as $9$ after confusing the difference with the sum, which makes Quantity A larger than Quantity B's $3$. Quantity A is the difference, $5 - 4 = 1$.",
+    "c": "Chosen after a slip that makes the two quantities look equal. Solving carefully gives $x = 5$ and $y = 4$, so Quantity A is $1$ and Quantity B is $3$. Even misreading $3^y = 81$ as $y = 3$ gives $2$ and $\\tfrac{8}{3}$, which still favour Quantity B.",
     "d": "Chosen by assuming that because $x$ and $y$ appear as unknowns their values are not fixed. Each equation has exactly one solution, so both quantities are single numbers and the relationship is fully determined."
   },
   "estimatedSeconds": 95,
@@ -55,16 +55,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "gre-wave3-author",
-    "reviewer": "gre-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout2-blind-solver-t2",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "gre-wave3-reviewer",
-      "solvedAnswer": "B",
+      "solvedBy": "closeout2-blind-solver-t2",
+      "solvedAnswer": "b",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "2^x = 32 gives x = 5; 3^y = 81 gives y = 4. Quantity A = 5 - 4 = 1; Quantity B = (5+4)/3 = 3. Both are uniquely determined (the exponential functions are one-to-one over the reals), so B is greater and D is not available."
+      "workingNotes": "2^x = 32 gives x = 5 and 3^y = 81 gives y = 4 uniquely, so Quantity A = 1 and Quantity B = 9/3 = 3; B is greater (b). The values are fixed, so (a), (c) and (d) fail."
     },
-    "notes": "Author solved x = 5 from 2^5 = 32 and y = 4 from 3^4 = 81, giving Quantity A = 1 and Quantity B = 3, so B is greater. Both equations have unique solutions, so (D) is unavailable. Awaiting blind independent solve."
+    "notes": "Author solved x = 5 from 2^5 = 32 and y = 4 from 3^4 = 81, giving Quantity A = 1 and Quantity B = 3, so B is greater. Both equations have unique solutions, so (D) is unavailable. Awaiting blind independent solve. v2 (2026-09-24): an independent check of what the explanation and notes claim about the options found false statements in the note on option A and the note on option C, corrected here. Correction by the coordinating editor (an AI agent); a separate AI reviewer then re-checked every claim about the options, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

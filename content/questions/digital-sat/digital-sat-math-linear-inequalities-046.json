@@ -1,6 +1,6 @@
 {
   "id": "digital-sat-math-linear-inequalities-046",
-  "version": 1,
+  "version": 2,
   "examKey": "digital-sat",
   "sectionKey": "math-module-1",
   "domainSlug": "algebra",
@@ -41,7 +41,7 @@
   "distractorRationale": {
     "b": "This reverses the load inequality. Writing $\\ge 900$ says the van must carry *at least* $900$ kilograms, turning a capacity limit into a minimum requirement, so a safe $820$-kilogram load would be excluded.",
     "c": "This reverses the pallet condition. Writing $p \\le 3$ caps the pallets at three, whereas \"at least 3\" sets three as the floor and allows any larger number.",
-    "d": "This attaches each weight to the wrong variable, charging $120$ kilograms per crate and $34$ per pallet. The subscripts must follow the item they describe, or the total weight computed is not the van's load at all."
+    "d": "This attaches each weight to the wrong variable, charging $120$ kilograms per crate and $34$ per pallet. The coefficients must follow the item they describe, or the total weight computed is not the van's load at all."
   },
   "estimatedSeconds": 85,
   "stimulusRef": null,
@@ -55,16 +55,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "digital-sat-wave3-author",
-    "reviewer": "digital-sat-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout2-blind-solver-t1",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "digital-sat-wave3-reviewer",
+      "solvedBy": "closeout2-blind-solver-t1",
       "solvedAnswer": "a",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Total weight 34c + 120p is 'at most 900' so <= 900, and 'at least 3 pallets' gives p >= 3. Option d swaps the per-item weights."
+      "workingNotes": "The total weight 34c + 120p must be at most 900, and 'at least 3 pallets' means p >= 3. (b) reverses the weight inequality; (c) reverses the pallet condition; (d) swaps the weights of crates and pallets."
     },
-    "notes": "Author solved and checked uniqueness: 'at most 900' gives <= and 'at least 3 pallets' gives p >= 3, with 34 on crates and 120 on pallets; each other option breaks exactly one of those three requirements. Awaiting a blind independent solve before publication."
+    "notes": "Author solved and checked uniqueness: 'at most 900' gives <= and 'at least 3 pallets' gives p >= 3, with 34 on crates and 120 on pallets; each other option breaks exactly one of those three requirements. Awaiting a blind independent solve before publication. v2 (2026-09-24): an independent check of what the explanation and notes claim about the options found false statements in the note on option D, corrected here. Correction by the coordinating editor (an AI agent); a separate AI reviewer then re-checked every claim about the options, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,
