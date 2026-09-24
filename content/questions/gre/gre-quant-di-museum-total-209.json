@@ -1,6 +1,6 @@
 {
   "id": "gre-quant-di-museum-total-209",
-  "version": 1,
+  "version": 2,
   "examKey": "gre",
   "sectionKey": "quant-1",
   "domainSlug": "quant-data-analysis",
@@ -42,7 +42,7 @@
     "type": "single_select",
     "optionId": "e"
   },
-  "explanationMd": "The stimulus states that every visitor is counted under exactly one ticket type, which is what makes the three bars for a year addable. Without that sentence you could not rule out double counting, so it is worth noticing.\n\n**Read the 2022 row.** General admission $180$, student $60$, member $84$, all in thousands.\n\n**Add.**\n\n$$180 + 60 + 84 = 324.$$\n\nSo $324$ thousand visitors came in $2022$, which is choice (C).\n\n**How to check.** Re-add in a different order to catch a slip: $180 + 84 = 264$, and $264 + 60 = 324$. A second, cheaper check is a bound — the total must be larger than the largest single category ($180$) and smaller than three times it ($540$), and $324$ sits comfortably inside. Finally, make sure you read the correct year: the totals for the five years are $220$, $266$, $324$, $360$ and $408$, and three of those five appear among the choices precisely because reading the wrong column is the most common way to lose this point.",
+  "explanationMd": "The stimulus states that every visitor is counted under exactly one ticket type, which is what makes the three bars for a year addable. Without that sentence you could not rule out double counting, so it is worth noticing.\n\n**Read the 2022 row.** General admission $180$, student $60$, member $84$, all in thousands.\n\n**Add.**\n\n$$180 + 60 + 84 = 324.$$\n\nSo $324$ thousand visitors came in $2022$, which is choice (E).\n\n**How to check.** Re-add in a different order to catch a slip: $180 + 84 = 264$, and $264 + 60 = 324$. A second, cheaper check is a bound — the total must be larger than the largest single category ($180$) and smaller than three times it ($540$), and $324$ sits comfortably inside. Finally, make sure you read the correct year: the totals for the five years are $220$, $266$, $324$, $360$ and $408$, and three of those five appear among the choices precisely because reading the wrong column is the most common way to lose this point.",
   "distractorRationale": {
     "b": "This is general admission plus student only ($180 + 60$), leaving out the 84 thousand member visitors. All three ticket types are part of the total.",
     "c": "This is general admission plus member only ($180 + 84$), leaving out the 60 thousand student visitors.",
@@ -64,16 +64,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "gre-wave3-author",
-    "reviewer": "gre-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout-blind-solver-s7",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "gre-wave3-reviewer",
+      "solvedBy": "closeout-blind-solver-s7",
       "solvedAnswer": "e",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "2022 row: 180 + 60 + 84 = 324 thousand. Distractors match other years' totals (2020 = 220, 2021 = 266, 2023 = 360, 2024 = 408) or partial sums, so only E fits."
+      "workingNotes": "2022 total = 180 + 60 + 84 = 324 thousand, so (e). (a) 360 is the 2023 total, (b) 240 is general + student only, (c) 264 is general + member only, and (d) 408 is the 2024 total; none equals 324."
     },
-    "notes": "Author read the 2022 figures 180, 60 and 84 from the stimulus data and summed to 324 thousand, choice C. Cross-check: yearly totals are 220, 266, 324, 360, 408. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author read the 2022 figures 180, 60 and 84 from the stimulus data and summed to 324 thousand, choice C. Cross-check: yearly totals are 220, 266, 324, 360, 408. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 1 option reference in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

@@ -1,6 +1,6 @@
 {
   "id": "bocconi-law-logic-lecture-week-035",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-law",
   "sectionKey": "online-test-law",
   "domainSlug": "law-logic-and-critical-thinking",
@@ -25,7 +25,7 @@
     {
       "id": "c",
       "label": "C",
-      "textMd": "Family is delivered on Friday."
+      "textMd": "Family is delivered on Thursday."
     },
     {
       "id": "d",
@@ -37,10 +37,10 @@
     "type": "single_select",
     "optionId": "a"
   },
-  "explanationMd": "Guardianship is pinned to Wednesday, so Contracts, Delicts, Evidence and Family occupy Monday, Tuesday, Thursday and Friday. Test the two branches the Delicts condition allows.\n\n**Branch 1 — Delicts on Friday.** Contracts, Evidence and Family take Monday, Tuesday and Thursday. Evidence and Family must be on *adjacent* days, and among Monday, Tuesday and Thursday the only adjacent pair is Monday–Tuesday (Wednesday is occupied, so Tuesday and Thursday are not adjacent). That forces Contracts onto Thursday. But Evidence must come after Contracts, and Evidence would be on Monday or Tuesday. Contradiction, so this branch is empty.\n\n**Branch 2 — Delicts on Monday.** Contracts, Evidence and Family take Tuesday, Thursday and Friday. The only adjacent pair available is Thursday–Friday, so Evidence and Family occupy those two days and Contracts is left with Tuesday. Evidence after Contracts is then satisfied either way round, giving exactly two timetables:\n\n- Delicts, Contracts, Guardianship, Evidence, Family\n- Delicts, Contracts, Guardianship, Family, Evidence\n\nContracts is on Tuesday in both, so option D must be true.\n\n**How to check.** Verify that each rejected option fails somewhere: A fails in the second timetable, B fails in the first, and C fails in both, since Guardianship is on Wednesday while Family is on Thursday or Friday — always after it. Note also that \"Delicts is delivered on Monday\" would have been an equally correct answer; it is deliberately not offered, because two correct options would make the item unanswerable.",
+  "explanationMd": "Guardianship is pinned to Wednesday, so Contracts, Delicts, Evidence and Family occupy Monday, Tuesday, Thursday and Friday. Test the two branches the Delicts condition allows.\n\n**Branch 1 — Delicts on Friday.** Contracts, Evidence and Family take Monday, Tuesday and Thursday. Evidence and Family must be on *adjacent* days, and among Monday, Tuesday and Thursday the only adjacent pair is Monday–Tuesday (Wednesday is occupied, so Tuesday and Thursday are not adjacent). That forces Contracts onto Thursday. But Evidence must come after Contracts, and Evidence would be on Monday or Tuesday. Contradiction, so this branch is empty.\n\n**Branch 2 — Delicts on Monday.** Contracts, Evidence and Family take Tuesday, Thursday and Friday. The only adjacent pair available is Thursday–Friday, so Evidence and Family occupy those two days and Contracts is left with Tuesday. Evidence after Contracts is then satisfied either way round, giving exactly two timetables:\n\n- Delicts, Contracts, Guardianship, Evidence, Family\n- Delicts, Contracts, Guardianship, Family, Evidence\n\nContracts is on Tuesday in both, so option A must be true.\n\n**How to check.** Verify that each rejected option fails somewhere: D fails in the second timetable, C fails in the first, and B fails in both, since Guardianship is on Wednesday while Family is on Thursday or Friday — always after it. Note also that \"Delicts is delivered on Monday\" would have been an equally correct answer; it is deliberately not offered, because two correct options would make the item unanswerable.",
   "distractorRationale": {
     "d": "True in the first timetable only. It comes from fixing the Evidence–Family pair in one of its two internal orders — the one that satisfies 'Evidence after Contracts' most obviously — without noticing that reversing the pair also satisfies every condition.",
-    "c": "True in the second timetable only, and it is the mirror image of the previous error: it fixes the pair the other way round. Whichever order you settle on first, the conditions never choose between them.",
+    "c": "True in the second timetable only, and it is the mirror image of option D's error: it fixes the pair the other way round. Whichever order you settle on first, the conditions never choose between them.",
     "b": "False in both timetables. Guardianship is on Wednesday and Family is on Thursday or Friday, so Guardianship always comes before Family, never immediately after it. This option is produced by reading the adjacency condition as attaching to Guardianship, the other day-fixed lecture, rather than to Evidence."
   },
   "estimatedSeconds": 130,
@@ -55,16 +55,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-law-wave3-author",
-    "reviewer": "bocconi-law-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout-blind-solver-s1",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-law-wave3-reviewer",
+      "solvedBy": "closeout-blind-solver-s1",
       "solvedAnswer": "a",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Guardianship is Wednesday. If Delicts were Friday, Contracts/Evidence/Family fill Mon, Tue, Thu; the only adjacent pair there is Mon-Tue, forcing Evidence and Family into Mon-Tue and Contracts into Thursday, which breaks 'Evidence later than Contracts'. So Delicts is Monday, leaving Tue, Thu, Fri; the only adjacent pair is Thu-Fri, so Evidence and Family take those and Contracts is always Tuesday. B, C and D each fail in one surviving timetable."
+      "workingNotes": "Guardianship is Wed. If Delicts were Fri, Evidence/Family would need Mon-Tue and Contracts Thu, breaking Contracts before Evidence; so Delicts is Mon, Evidence/Family take Thu-Fri in either order and Contracts is Tue (a). (b) would need Family on Tue, impossible; (c) and (d) each fail in one of the two valid timetables."
     },
-    "notes": "Author solved by branching on the Delicts condition. Delicts on Friday is impossible (the only adjacent pair left for Evidence and Family is Monday-Tuesday, forcing Contracts to Thursday and violating 'Evidence after Contracts'). Delicts on Monday yields exactly two timetables differing only in the order of the Evidence-Family pair on Thursday and Friday. Contracts is on Tuesday in both. 'Delicts on Monday' is also always true and was deliberately excluded from the options to preserve a single defensible answer. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author solved by branching on the Delicts condition. Delicts on Friday is impossible (the only adjacent pair left for Evidence and Family is Monday-Tuesday, forcing Contracts to Thursday and violating 'Evidence after Contracts'). Delicts on Monday yields exactly two timetables differing only in the order of the Evidence-Family pair on Thursday and Friday. Contracts is on Tuesday in both. 'Delicts on Monday' is also always true and was deliberately excluded from the options to preserve a single defensible answer. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 5 option references in the explanation and the note on option C that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter); option C read \"Family is delivered on Friday\", which holds exactly when D does, so its rationale (\"true in the second timetable only\") and the explanation were false; C now reads \"Family is delivered on Thursday\", the mirror-image option the rationale describes. Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

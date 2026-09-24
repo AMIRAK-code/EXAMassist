@@ -142,7 +142,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
               <h1 className="display-xl">
                 Big ambitions.
                 <br />
-                A clearer <span className="highlight"><Accent>next step.</Accent></span>
+                A clearer <span className="highlight"><Accent>next&nbsp;step.</Accent></span>
               </h1>
               <p className="max-w-[30ch] text-[clamp(1.25rem,1.1rem+0.6vw,1.5rem)] leading-snug text-ink-muted">
                 Discover what needs work. Practise with purpose. Understand every answer.

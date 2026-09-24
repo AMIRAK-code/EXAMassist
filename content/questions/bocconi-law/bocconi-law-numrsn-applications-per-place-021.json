@@ -1,6 +1,6 @@
 {
   "id": "bocconi-law-numrsn-applications-per-place-021",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-law",
   "sectionKey": "online-test-law",
   "domainSlug": "law-numerical-reasoning",
@@ -37,11 +37,11 @@
     "type": "single_select",
     "optionId": "c"
   },
-  "explanationMd": "\"Applications for each place\" is the ratio $\\frac{\\text{applications}}{\\text{places}}$. Work it out once per cycle, choosing the easy division each time:\n\n- 2020: $\\frac{4800}{600} = 8$\n- 2021: $\\frac{5400}{600} = 9$\n- 2022: $\\frac{6000}{750} = 8$ (because $750 \\times 8 = 6000$)\n- 2023: $\\frac{6600}{750} = 8.8$ (since $6600 - 6000 = 600$ and $\\frac{600}{750} = 0.8$)\n- 2024: $\\frac{7200}{900} = 8$\n\nNow read the four consecutive pairs:\n\n- 2020 to 2021: 8 to 9 — a **rise** of 1\n- 2021 to 2022: 9 to 8 — a **fall of 1**\n- 2022 to 2023: 8 to 8.8 — a **rise** of 0.8\n- 2023 to 2024: 8.8 to 8 — a **fall** of 0.8\n\nOnly two pairs fall at all, and the larger fall is 1, from 2021 to 2022. That is option B.\n\n**How to check.** Redo it as a comparison of growth rates rather than a set of divisions. Applications rise by exactly 600 every cycle; places stay flat for two cycles and then step up. The ratio can only fall in a cycle where places step up, which is 2022 and 2024, so those are the only two candidates.\n\n- Into 2022: places grew $600 \\to 750$, by $\\frac{1}{4}$; applications grew $5400 \\to 6000$, by $\\frac{1}{9}$.\n- Into 2024: places grew $750 \\to 900$, by $\\frac{1}{5}$; applications grew $6600 \\to 7200$, by $\\frac{1}{11}$.\n\nIn 2022 the denominator outgrows the numerator by more ($\\frac{1}{4}$ against $\\frac{1}{9}$) than it does in 2024 ($\\frac{1}{5}$ against $\\frac{1}{11}$), so the ratio drops further into 2022 — the same answer the divisions gave.",
+  "explanationMd": "\"Applications for each place\" is the ratio $\\frac{\\text{applications}}{\\text{places}}$. Work it out once per cycle, choosing the easy division each time:\n\n- 2020: $\\frac{4800}{600} = 8$\n- 2021: $\\frac{5400}{600} = 9$\n- 2022: $\\frac{6000}{750} = 8$ (because $750 \\times 8 = 6000$)\n- 2023: $\\frac{6600}{750} = 8.8$ (since $6600 - 6000 = 600$ and $\\frac{600}{750} = 0.8$)\n- 2024: $\\frac{7200}{900} = 8$\n\nNow read the four consecutive pairs:\n\n- 2020 to 2021: 8 to 9 — a **rise** of 1\n- 2021 to 2022: 9 to 8 — a **fall of 1**\n- 2022 to 2023: 8 to 8.8 — a **rise** of 0.8\n- 2023 to 2024: 8.8 to 8 — a **fall** of 0.8\n\nOnly two pairs fall at all, and the larger fall is 1, from 2021 to 2022. That is option C.\n\n**How to check.** Redo it as a comparison of growth rates rather than a set of divisions. Applications rise by exactly 600 every cycle; places stay flat for two cycles and then step up. The ratio can only fall in a cycle where places step up, which is 2022 and 2024, so those are the only two candidates.\n\n- Into 2022: places grew $600 \\to 750$, by $\\frac{1}{4}$; applications grew $5400 \\to 6000$, by $\\frac{1}{9}$.\n- Into 2024: places grew $750 \\to 900$, by $\\frac{1}{5}$; applications grew $6600 \\to 7200$, by $\\frac{1}{11}$.\n\nIn 2022 the denominator outgrows the numerator by more ($\\frac{1}{4}$ against $\\frac{1}{9}$) than it does in 2024 ($\\frac{1}{5}$ against $\\frac{1}{11}$), so the ratio drops further into 2022 — the same answer the divisions gave.",
   "distractorRationale": {
     "a": "The ratio rises here, from 8 to 9, because applications grew by 600 while places stayed at 600. Choosing it comes from spotting that places did not increase and reading a flat line as the cause of a fall, when a flat denominator with a growing numerator produces a rise.",
     "d": "Also a rise, from 8 to 8.8: places stayed at 750 while applications went from 6,000 to 6,600. This is picked by tracking only the applications bars, which climb every year, rather than the ratio the question asks about.",
-    "b": "A genuine fall, but the smaller one — 8.8 down to 8, a fall of 0.8 against the 1.0 fall in 2021 to 2022. It is chosen by noticing that 2024 has the largest increase in places in absolute terms (150) and assuming the largest step in places must produce the largest fall in the ratio."
+    "b": "A genuine fall, but the smaller one — 8.8 down to 8, a fall of 0.8 against the 1.0 fall in 2021 to 2022. It is chosen by noticing that places rose by 150 into 2024 and stopping there, without checking that they also rose by 150 into 2022, where the rise is larger in proportion: a quarter against a fifth."
   },
   "estimatedSeconds": 130,
   "stimulusRef": {
@@ -58,16 +58,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-law-topup-author",
-    "reviewer": "bocconi-law-round2-reviewer",
-    "reviewedOn": "2026-09-22",
+    "reviewer": "closeout-blind-solver-s1",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-law-round2-reviewer",
+      "solvedBy": "closeout-blind-solver-s1",
       "solvedAnswer": "c",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Applications per place: 2020 8.0, 2021 9.0, 2022 8.0, 2023 8.8, 2024 8.0. Changes: +1.0, -1.0, +0.8, -0.8, so the largest fall is 2021 to 2022 (1.0), beating the only other fall, 2023 to 2024 (0.8)."
+      "workingNotes": "Applications per place: 2020 = 8, 2021 = 9, 2022 = 8, 2023 = 8.8, 2024 = 8. The only falls are 2021-2022 (-1) and 2023-2024 (-0.8), so the largest fall is (c). (a) and (d) are rises, and (b) is a smaller fall."
     },
-    "notes": "Author computed all five ratios (8, 9, 8, 8.8, 8) and all four consecutive differences (+1, -1, +0.8, -0.8). Exactly one pair produces the largest fall, and the two rising pairs cannot compete. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author computed all five ratios (8, 9, 8, 8.8, 8) and all four consecutive differences (+1, -1, +0.8, -0.8). Exactly one pair produces the largest fall, and the two rising pairs cannot compete. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): the note on option B said 2024 had the largest rise in places; 2022 and 2024 both rose by 150; corrected 1 option reference in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

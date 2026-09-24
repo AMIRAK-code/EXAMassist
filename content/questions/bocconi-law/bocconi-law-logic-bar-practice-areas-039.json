@@ -1,6 +1,6 @@
 {
   "id": "bocconi-law-logic-bar-practice-areas-039",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-law",
   "sectionKey": "online-test-law",
   "domainSlug": "law-logic-and-critical-thinking",
@@ -37,7 +37,7 @@
     "type": "single_select",
     "optionId": "a"
   },
-  "explanationMd": "The two percentages add to $70 + 40 = 110$, which is more than 100. The excess is not an error: it is the overlap counted twice.\n\nBecause every member practises at least one of the two fields, the union of the two groups is the whole membership, 100 per cent. The inclusion–exclusion relation gives\n\n$$100 = 70 + 40 - \\text{both}$$\n$$\\text{both} = 110 - 100 = 10$$\n\nSo exactly 10 per cent — one member in ten — practise both, which is option B.\n\nThe full picture follows at once: civil only $= 70 - 10 = 60$ per cent, criminal only $= 40 - 10 = 30$ per cent, both $= 10$ per cent.\n\n**How to check.** Add the three disjoint groups: $60 + 30 + 10 = 100$ per cent, with nobody left over — which is what \"every member practises at least one\" requires. Then reread each option against those three figures rather than against the two headline percentages, since the headline figures each contain the overlap.",
+  "explanationMd": "The two percentages add to $70 + 40 = 110$, which is more than 100. The excess is not an error: it is the overlap counted twice.\n\nBecause every member practises at least one of the two fields, the union of the two groups is the whole membership, 100 per cent. The inclusion–exclusion relation gives\n\n$$100 = 70 + 40 - \\text{both}$$\n$$\\text{both} = 110 - 100 = 10$$\n\nSo exactly 10 per cent — one member in ten — practise both, which is option A.\n\nThe full picture follows at once: civil only $= 70 - 10 = 60$ per cent, criminal only $= 40 - 10 = 30$ per cent, both $= 10$ per cent.\n\n**How to check.** Add the three disjoint groups: $60 + 30 + 10 = 100$ per cent, with nobody left over — which is what \"every member practises at least one\" requires. Then reread each option against those three figures rather than against the two headline percentages, since the headline figures each contain the overlap.",
   "distractorRationale": {
     "d": "Three in ten is 30 per cent, which is the share practising *criminal* law only; civil law only accounts for 60 per cent. This option attaches the smaller exclusive share to the larger field, which is easy to do if you subtract the overlap from the wrong headline figure.",
     "b": "Criminal law is practised by 40 per cent, which is less than half. This option comes from adding the overlap to the criminal-law figure — treating 40 per cent as 'criminal only' and then inflating it — when the 40 per cent already includes everyone who practises criminal law.",
@@ -55,16 +55,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-law-wave3-author",
-    "reviewer": "bocconi-law-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout-blind-solver-s1",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-law-wave3-reviewer",
+      "solvedBy": "closeout-blind-solver-s1",
       "solvedAnswer": "a",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Inclusion-exclusion: 70 + 40 - 100 = 10 per cent practise both, i.e. exactly one in ten. B is false (criminal is 40%), C is false (overlap is 10%), D is false because civil-only is 70 - 10 = 60%, i.e. six in ten."
+      "workingNotes": "With everyone in at least one group, both = 70% + 40% - 100% = 10%, so exactly one in ten practise both (a). (b) fails since 40% is not more than half; (c) contradicts the 10% overlap; (d) is wrong because civil only is 70% - 10% = 60%, not 30%."
     },
-    "notes": "Author's working: union is 100 per cent, so both = 70 + 40 - 100 = 10 per cent (option B). Civil only 60, criminal only 30. A misassigns the 30 per cent criminal-only share to civil law, C contradicts the stated 40 per cent, D is impossible because the headline shares sum above 100. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author's working: union is 100 per cent, so both = 70 + 40 - 100 = 10 per cent (option B). Civil only 60, criminal only 30. A misassigns the 30 per cent criminal-only share to civil law, C contradicts the stated 40 per cent, D is impossible because the headline shares sum above 100. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 1 option reference in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

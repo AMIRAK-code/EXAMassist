@@ -1,6 +1,6 @@
 {
   "id": "digital-sat-rw-evidence-quant-bikeshare-036",
-  "version": 1,
+  "version": 2,
   "examKey": "digital-sat",
   "sectionKey": "rw-module-1",
   "domainSlug": "information-and-ideas",
@@ -37,7 +37,7 @@
     "type": "single_select",
     "optionId": "a"
   },
-  "explanationMd": "The claim is about a *likelihood* — how likely a single trip is to end elsewhere. Likelihood is a rate, so the supporting data must be rates, and they must cover both groups.\n\nThe table's last column is exactly that rate. Lane districts: 41% and 36%. No-lane districts: 22% and 19%. The lowest lane figure (36%) is still well above the highest no-lane figure (22%), so the claim holds for every pairing. Choice A is the only option built from those rates.\n\nThe trap here is Choice D, which is arithmetically correct: $0.41 \\times 2{,}310 \\approx 947$, and that is more cross-district trips than Millgate's $0.36 \\times 1{,}655 \\approx 596$. But a count of trips is not a probability per trip. Harbour Row has more cross-district trips partly because it has more trips of every kind.\n\nCheck the difference this way: if Fenwick doubled in size overnight with its 22% unchanged, its *count* of cross-district trips could overtake Millgate's while a single Fenwick trip stayed less likely to leave the district. Counts move with size; rates do not.",
+  "explanationMd": "The claim is about a *likelihood* — how likely a single trip is to end elsewhere. Likelihood is a rate, so the supporting data must be rates, and they must cover both groups.\n\nThe table's last column is exactly that rate. Lane districts: 41% and 36%. No-lane districts: 22% and 19%. The lowest lane figure (36%) is still well above the highest no-lane figure (22%), so the claim holds for every pairing. Choice A is the only option built from those rates.\n\nThe trap here is Choice C, which is arithmetically correct: $0.41 \\times 2{,}310 \\approx 947$, and that is more cross-district trips than Millgate's $0.36 \\times 1{,}655 \\approx 596$. But a count of trips is not a probability per trip. Harbour Row has more cross-district trips partly because it has more trips of every kind.\n\nCheck the difference this way: if Fenwick tripled in size overnight with its 22% unchanged, its *count* of cross-district trips could overtake Millgate's while a single Fenwick trip stayed less likely to leave the district. Counts move with size; rates do not.",
   "distractorRationale": {
     "d": "This compares total trip volume, not the chance that a trip leaves its district. A busier pair of districts could easily have the lower cross-district share, so this figure cannot support the claim.",
     "b": "This reports the top district only, and pairs it with a fact about growth that the claim does not mention. One district's rate cannot establish a difference between two groups of districts.",
@@ -58,16 +58,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "digital-sat-wave3-author",
-    "reviewer": "digital-sat-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout-blind-solver-s5",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "digital-sat-wave3-reviewer",
+      "solvedBy": "closeout-blind-solver-s5",
       "solvedAnswer": "a",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "The claim is about likelihood, i.e. the share column: 41% and 36% for the lane districts versus 22% and 19% for the others, which is exactly option a."
+      "workingNotes": "The claim is about likelihood, so it calls for a comparison of cross-district shares between lane and non-lane districts: 41% and 36% against 22% and 19%, which is (a). (b) mentions only one district and brings in the unrelated trip increase. (c) gives an absolute count (2310 x 0.41, about 947), which reflects volume rather than likelihood. (d) compares total trips, not where trips end."
     },
-    "notes": "Author solved and checked uniqueness: the claim is about a per-trip likelihood, so only the percentage column supports it, and only A reports that column for both groups. Counts in option D verified: 0.41 x 2310 = 947.1, 0.36 x 1655 = 595.8, 0.22 x 1340 = 294.8, 0.19 x 1455 = 276.5. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author solved and checked uniqueness: the claim is about a per-trip likelihood, so only the percentage column supports it, and only A reports that column for both groups. Counts in option D verified: 0.41 x 2310 = 947.1, 0.36 x 1655 = 595.8, 0.22 x 1340 = 294.8, 0.19 x 1455 = 276.5. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 1 option reference in the explanation that still used the option order from before the options were reordered (wrong options were discussed under the wrong letters); the size example is corrected: doubling Fenwick gives about 590 cross-district trips, below Millgate’s 596, so it now says tripled (about 884). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

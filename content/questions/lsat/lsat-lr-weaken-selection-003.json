@@ -1,6 +1,6 @@
 {
   "id": "lsat-lr-weaken-selection-003",
-  "version": 1,
+  "version": 2,
   "examKey": "lsat",
   "sectionKey": "lr1",
   "domainSlug": "logical-reasoning",
@@ -42,7 +42,7 @@
     "type": "single_select",
     "optionId": "b"
   },
-  "explanationMd": "The managers move from a **correlation** to a **causal claim** and then to a **policy**:\n\n1. Leave-takers out-produce non-takers in the following quarter. (correlation)\n2. Therefore time away raises productivity. (cause)\n3. Therefore everyone should be made to take it. (policy)\n\nEach step is a place to attack, and the strongest weakener attacks both of the last two at once. Note the word **optional** in the first sentence: the leave-takers selected themselves. Whenever a group self-selects, the obvious rival explanation is that the group differed beforehand.\n\nThat is what (A) supplies. If the people who opt in are the ones who find their work most absorbing, and if such people were on a rising output trend anyway, then the productivity gap is explained by *who takes the leave* rather than by *the leave itself*. The correlation survives; the causal claim does not. And (A) damages the policy proposal independently: the employees who would be newly swept in by a mandate are precisely the ones who did **not** self-select, so there is no reason to expect them to show the same pattern.\n\nA good way to test a weakener is to ask whether it supplies a rival explanation of the very same data. (A) does. None of the others does: they raise costs, feelings, measurement stability and repeat usage, all of which leave the correlation-to-cause step exactly where it was.\n\nThe transferable lesson: when an argument rests on a comparison between a group that volunteered and a group that did not, look first for a pre-existing difference between the groups, and look again at whether a proposal to *compel* the behaviour is supported by evidence drawn only from volunteers.",
+  "explanationMd": "The managers move from a **correlation** to a **causal claim** and then to a **policy**:\n\n1. Leave-takers out-produce non-takers in the following quarter. (correlation)\n2. Therefore time away raises productivity. (cause)\n3. Therefore everyone should be made to take it. (policy)\n\nEach step is a place to attack, and the strongest weakener attacks both of the last two at once. Note the word **optional** in the first sentence: the leave-takers selected themselves. Whenever a group self-selects, the obvious rival explanation is that the group differed beforehand.\n\nThat is what (B) supplies. If the people who opt in are the ones who find their work most absorbing, and if such people were on a rising output trend anyway, then the productivity gap is explained by *who takes the leave* rather than by *the leave itself*. The correlation survives; the causal claim does not. And (B) damages the policy proposal independently: the employees who would be newly swept in by a mandate are precisely the ones who did **not** self-select, so there is no reason to expect them to show the same pattern.\n\nA good way to test a weakener is to ask whether it supplies a rival explanation of the very same data. (B) does. None of the others does: they raise costs, feelings, measurement stability and repeat usage, all of which leave the correlation-to-cause step exactly where it was.\n\nThe transferable lesson: when an argument rests on a comparison between a group that volunteered and a group that did not, look first for a pre-existing difference between the groups, and look again at whether a proposal to *compel* the behaviour is supported by evidence drawn only from volunteers.",
   "distractorRationale": {
     "a": "Cost tells against the proposal's *wisdom* but not against its *reasoning*. The managers' argument is that the leave raises productivity; that claim is untouched by how the leave's price compares with ordinary vacation. Picking this substitutes a budgeting objection for a logical one, which is the most common way to misread a weaken stem.",
     "d": "A report that some people found returning difficult is about how the leave felt, not about what it produced. The managers' evidence is measured output in the following quarter, and that measurement already incorporates whatever difficulty the return involved. Anecdotal discomfort alongside a measured gain does not undercut the gain.",
@@ -61,16 +61,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "lsat-author",
-    "reviewer": "lsat-independent-reviewer",
-    "reviewedOn": "2026-09-22",
+    "reviewer": "closeout-blind-solver-s4",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "lsat-independent-reviewer",
+      "solvedBy": "closeout-blind-solver-s4",
       "solvedAnswer": "b",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "The leave is optional, so A supplies the selection effect: takers are already the most absorbed employees whose output rises anyway, which both kills the causal inference and undermines mandating the leave for everyone. B attacks cost rather than the productivity inference, C is anecdotal and weak, D supports measurement consistency, and E is irrelevant."
+      "workingNotes": "The managers infer causation from a self-selected group. (b) shows the leave-takers are a distinct group whose output rises regardless, so the leave may not be the cause and forcing it on everyone would not reproduce the effect. (a) concerns cost, not whether the leave raises productivity; (c) is irrelevant; (d) reports subjective difficulty without undermining the output data; (e) if anything supports the consistency of the measurement."
     },
-    "notes": "Author checked that no second choice damages the causal inference: (B) and (C) are off-target, (D) runs the other way, (E) is inert. Only (A) offers a rival explanation of the observed gap. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author checked that no second choice damages the causal inference: (B) and (C) are off-target, (D) runs the other way, (E) is inert. Only (A) offers a rival explanation of the observed gap. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 3 option references in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

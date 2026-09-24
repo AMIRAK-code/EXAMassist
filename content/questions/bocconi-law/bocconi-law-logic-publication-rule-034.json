@@ -1,6 +1,6 @@
 {
   "id": "bocconi-law-logic-publication-rule-034",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-law",
   "sectionKey": "online-test-law",
   "domainSlug": "law-logic-and-critical-thinking",
@@ -32,7 +32,7 @@
     "type": "single_select",
     "optionId": "a"
   },
-  "explanationMd": "The phrase **\"only if\"** marks a *necessary* condition, not a sufficient one. The rule therefore says: publication cannot happen unless both things are true — anonymisation and the presiding judge's authorisation. It does not say that satisfying both produces publication.\n\nSince the 12 March judgment *is* published, both necessary conditions must have been met. So it was anonymised, and the presiding judge authorised it. Option B states one of these two, and it must be true.\n\n**How to check.** Rewrite the rule as a conditional running in the direction the facts run: *published $\\Rightarrow$ (anonymised AND authorised)*. Feed in the given fact, \"published\", and read off what comes out. Anything the rule lets you conclude must appear on the right-hand side of that arrow; anything that would require reasoning back along the arrow, or adding a second arrow the rule never granted, is not available to you.",
+  "explanationMd": "The phrase **\"only if\"** marks a *necessary* condition, not a sufficient one. The rule therefore says: publication cannot happen unless both things are true — anonymisation and the presiding judge's authorisation. It does not say that satisfying both produces publication.\n\nSince the 12 March judgment *is* published, both necessary conditions must have been met. So it was anonymised, and the presiding judge authorised it. Option A states one of these two, and it must be true.\n\n**How to check.** Rewrite the rule as a conditional running in the direction the facts run: *published $\\Rightarrow$ (anonymised AND authorised)*. Feed in the given fact, \"published\", and read off what comes out. Anything the rule lets you conclude must appear on the right-hand side of that arrow; anything that would require reasoning back along the arrow, or adding a second arrow the rule never granted, is not available to you.",
   "distractorRationale": {
     "b": "The second half of this option contradicts the rule. Because publication requires anonymisation, a published judgment cannot be un-anonymised. The option is built by keeping one necessary condition and denying the other, which the word 'and' forbids.",
     "c": "This reverses the rule into a sufficient condition and drops the second requirement as well. 'Publication requires anonymisation' does not mean 'anonymisation produces publication': an anonymised judgment that the presiding judge never authorised stays unpublished."
@@ -49,16 +49,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-law-wave3-author",
-    "reviewer": "bocconi-law-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout-blind-solver-s1",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-law-wave3-reviewer",
+      "solvedBy": "closeout-blind-solver-s1",
       "solvedAnswer": "a",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "'Only if anonymised and authorised' makes both conditions necessary for publication; the judgment was published, so it was anonymised. B contradicts that, and C wrongly converts the necessary condition into a sufficient one."
+      "workingNotes": "Publication requires both anonymisation and authorisation, so a judgment that appears on the website was anonymised (a). (b) contradicts the anonymisation requirement; (c) is the converse of a necessary-condition rule and does not follow."
     },
-    "notes": "Author's working: 'only if' gives published implies (anonymised and authorised). Given publication, anonymisation follows, so B holds. A denies a necessary condition of a fact that obtains, and C converts the necessary condition into a sufficient one. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author's working: 'only if' gives published implies (anonymised and authorised). Given publication, anonymisation follows, so B holds. A denies a necessary condition of a fact that obtains, and C converts the necessary condition into a sufficient one. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 1 option reference in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

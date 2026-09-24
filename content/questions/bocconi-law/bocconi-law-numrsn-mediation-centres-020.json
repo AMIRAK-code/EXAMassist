@@ -1,6 +1,6 @@
 {
   "id": "bocconi-law-numrsn-mediation-centres-020",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-law",
   "sectionKey": "online-test-law",
   "domainSlug": "law-numerical-reasoning",
@@ -37,7 +37,7 @@
     "type": "single_select",
     "optionId": "a"
   },
-  "explanationMd": "Take the options one at a time and read only the columns each one actually needs.\n\n**D — two columns, no arithmetic beyond a subtraction.** Cases received: Dora 1,500 against Arno 1,200, a difference of 300. Cases resolved: Dora 900 and Arno 900 — identical. Both halves hold, so D is supported.\n\n**A — mediators and average days.** Dora has the most mediators at 15. Its average time to resolution is 50 days, the *longest* of the four, not the shortest (Brenta's 25 days is the shortest). The statement fails.\n\n**B — resolved cases per mediator.** Chienti: $360 \\div 6 = 60$. Dora: $900 \\div 15 = 60$. Equal, not six times as many.\n\n**C — share of cases received that were resolved.** Brenta: $\\frac{600}{800} = \\frac{3}{4}$. Arno: $\\frac{900}{1200} = \\frac{3}{4}$. Equal, so neither share is larger.\n\n**How to check.** Notice that only D can be settled without dividing anything, and that the other three each fail on a comparison that turns out to be an equality or a reversal. Re-run those three: $900 \\div 15$ and $360 \\div 6$ both give 60, and both $\\frac{600}{800}$ and $\\frac{900}{1200}$ reduce to $\\frac{3}{4}$. Confirming the ties is what proves D is the only supported statement.",
+  "explanationMd": "Take the options one at a time and read only the columns each one actually needs.\n\n**A — two columns, no arithmetic beyond a subtraction.** Cases received: Dora 1,500 against Arno 1,200, a difference of 300. Cases resolved: Dora 900 and Arno 900 — identical. Both halves hold, so A is supported.\n\n**C — mediators and average days.** Dora has the most mediators at 15. Its average time to resolution is 50 days, the *longest* of the four, not the shortest (Brenta's 25 days is the shortest). The statement fails.\n\n**D — resolved cases per mediator.** Chienti: $360 \\div 6 = 60$. Dora: $900 \\div 15 = 60$. Equal, not six times as many.\n\n**B — share of cases received that were resolved.** Brenta: $\\frac{600}{800} = \\frac{3}{4}$. Arno: $\\frac{900}{1200} = \\frac{3}{4}$. Equal, so neither share is larger.\n\n**How to check.** Notice that only A can be settled without dividing anything, and that the other three each fail on a comparison that turns out to be an equality or a reversal. Re-run those three: $900 \\div 15$ and $360 \\div 6$ both give 60, and both $\\frac{600}{800}$ and $\\frac{900}{1200}$ reduce to $\\frac{3}{4}$. Confirming the ties is what proves A is the only supported statement.",
   "distractorRationale": {
     "c": "Assumes more mediators must mean faster resolution. The table says the opposite for Dora: 15 mediators, the largest staff, and 50 days, the longest average. Reading a plausible relationship into the data instead of checking the column is the error.",
     "d": "Compares the number of mediators (6 against 15) instead of the resolved cases per mediator. Chienti does have roughly a third of Dora's staff, but it also resolved roughly a third as many cases, so the per-mediator figures are both 60 and the ratio is 1, not 6.",
@@ -58,16 +58,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-law-topup-author",
-    "reviewer": "bocconi-law-round2-reviewer",
-    "reviewedOn": "2026-09-22",
+    "reviewer": "closeout-blind-solver-s2",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-law-round2-reviewer",
+      "solvedBy": "closeout-blind-solver-s2",
       "solvedAnswer": "a",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Dora 1500 received vs Arno 1200 is 300 more, and both resolved 900. (a) fails: most mediators is Dora (15) but shortest average is Brenta (25 days); (b) fails: 360/6=60 equals 900/15=60; (c) fails: 600/800 and 900/1200 are both 75%."
+      "workingNotes": "Dora received 1500 against Arno's 1200 (300 more) and both resolved 900, so (a) holds. (b) fails because Brenta 600/800 and Arno 900/1200 are both 75%, equal rather than larger. (c) fails because Dora has the most mediators (15) but the longest average time (50 days). (d) fails because Chienti 360/6 = 60 and Dora 900/15 = 60 cases per mediator, equal rather than six times."
     },
-    "notes": "Author checked all four statements against the table: A is reversed (Dora has the most mediators and the longest average), B and C are exact ties (60 resolved cases per mediator each; three quarters resolved each), and only D holds (1500 - 1200 = 300; 900 = 900). Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author checked all four statements against the table: A is reversed (Dora has the most mediators and the longest average), B and C are exact ties (60 resolved cases per mediator each; three quarters resolved each), and only D holds (1500 - 1200 = 300; 900 = 900). Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 7 option references in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

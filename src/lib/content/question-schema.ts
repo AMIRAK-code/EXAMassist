@@ -176,6 +176,28 @@ export function normaliseChoiceText(text: string): string {
 }
 
 /**
+ * Option letters an explanation explicitly presents as the answer: "the answer
+ * is C", "so option A must be true", "That is (D).", or a closing "Choice B."
+ * on its own. Letters inside maths are ignored. Deliberately narrow: a
+ * sentence about why a wrong option fails ("the error behind option B.") is
+ * not a claim that it is the answer.
+ */
+export function answerLettersNamed(explanationMd: string): string[] {
+  const text = explanationMd.replace(/\$\$[\s\S]*?\$\$/g, ' ').replace(/\$[^$\n]*\$/g, ' ');
+  const patterns = [
+    /\b[Aa]nswer is (?:[Cc]hoice |[Oo]ption )?\(?([A-H])\)?(?![A-Za-z0-9'’])/g,
+    /\b[Cc]orrect (?:[Cc]hoice|[Oo]ption) is \(?([A-H])\)?(?![A-Za-z0-9'’])/g,
+    /\b(?:[Cc]hoice|[Oo]ption) \(?([A-H])\)? (?:must be true|is (?:the )?correct|is the answer)\b/g,
+    /\(([A-H])\) (?:must be true|is (?:the )?correct|is the answer)\b/g,
+    /\b(?:That|This|which) is (?:exactly )?(?:[Cc]hoice |[Oo]ption )?\(?([A-H])\)?(?=[.!])/g,
+    /(?:^|[.!?]["”’']?[ \t]+)(?:[Cc]hoice|[Oo]ption) \(?([A-H])\)?\.[ \t]*$/gm,
+  ];
+  const found = new Set<string>();
+  for (const pattern of patterns) for (const match of text.matchAll(pattern)) found.add(match[1]);
+  return [...found];
+}
+
+/**
  * Editorial validation. Errors block publication; warnings are reported but do
  * not fail the build.
  */
@@ -306,6 +328,24 @@ export function validateQuestion(
       }
       if (new Set(key.selections.map((sel) => sel.columnId)).size !== columns.size) {
         err('two-part-key-coverage', 'The answer key must name exactly one option per column.');
+      }
+    }
+  }
+
+  // An explanation that names an option as the answer must name a correct one.
+  // Option order can change after an explanation is written, and nothing else
+  // ties the letters in prose to the stored order.
+  if (needsOptions) {
+    const correctIds = new Set<string>(
+      key.type === 'single_select' ? [key.optionId] : key.type === 'multi_select' ? key.optionIds : [],
+    );
+    const correctLabels = new Set(question.options.filter((o) => correctIds.has(o.id)).map((o) => o.label));
+    for (const label of answerLettersNamed(question.explanationMd)) {
+      if (!correctLabels.has(label)) {
+        err(
+          'explanation-names-wrong-answer',
+          `The explanation presents option ${label} as the answer, but the key is ${[...correctLabels].join(', ')}.`,
+        );
       }
     }
   }

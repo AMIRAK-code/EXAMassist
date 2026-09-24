@@ -1,6 +1,6 @@
 {
   "id": "bocconi-law-logic-mediation-agreements-031",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-law",
   "sectionKey": "online-test-law",
   "domainSlug": "law-logic-and-critical-thinking",
@@ -37,7 +37,7 @@
     "type": "single_select",
     "optionId": "d"
   },
-  "explanationMd": "The load-bearing datum is the last one: **every** case with a written mediation agreement was settled before trial. That means the cases with an agreement form a subset of the 120 settled cases — none of them can be hiding among the 80 cases that were not settled before trial.\n\nSo the total number of cases with an agreement equals the number of such cases inside the settled group, and that number is given: 45. Option B states exactly this.\n\nThe arithmetic of the four groups, once you have it, is:\n\n- settled with an agreement: $45$\n- settled without an agreement: $120 - 45 = 75$\n- not settled before trial (none of which can have an agreement): $200 - 120 = 80$\n- total with no agreement: $75 + 80 = 155$\n\n**How to check.** Add the parts back up: $45 + 75 + 80 = 200$, which matches the stated total, so no case has been counted twice or dropped. Then reread the fourth datum and confirm you have used it in the direction it is written — it constrains where agreement cases can be, not where settled cases must be.",
+  "explanationMd": "The load-bearing datum is the last one: **every** case with a written mediation agreement was settled before trial. That means the cases with an agreement form a subset of the 120 settled cases — none of them can be hiding among the 80 cases that were not settled before trial.\n\nSo the total number of cases with an agreement equals the number of such cases inside the settled group, and that number is given: 45. Option D states exactly this.\n\nThe arithmetic of the four groups, once you have it, is:\n\n- settled with an agreement: $45$\n- settled without an agreement: $120 - 45 = 75$\n- not settled before trial (none of which can have an agreement): $200 - 120 = 80$\n- total with no agreement: $75 + 80 = 155$\n\n**How to check.** Add the parts back up: $45 + 75 + 80 = 200$, which matches the stated total, so no case has been counted twice or dropped. Then reread the fourth datum and confirm you have used it in the direction it is written — it constrains where agreement cases can be, not where settled cases must be.",
   "distractorRationale": {
     "c": "45 out of 120 is 37.5 per cent, which is less than half. This option comes from reading '45' as a large share of the settled group without comparing it to 120, or from comparing 45 to the 80 unsettled cases instead.",
     "a": "80 is the number of cases not settled before trial. It is true that none of those 80 had an agreement, but 75 of the settled cases had none either, so the correct figure is 155. This option stops at the first group it finds with no agreements.",
@@ -55,16 +55,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-law-wave3-author",
-    "reviewer": "bocconi-law-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout-blind-solver-s1",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-law-wave3-reviewer",
+      "solvedBy": "closeout-blind-solver-s1",
       "solvedAnswer": "d",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Every written-agreement case was settled, and among the 120 settled exactly 45 had one, so the total number of written-agreement cases among the 200 is exactly 45. A is false (200 - 45 = 155, and 120 - 45 = 75, neither is 80), B is false, C is false since 45 of 120 is under a half."
+      "workingNotes": "Every mediation-agreement case was settled, so all such cases lie among the 120 settled cases, where there are exactly 45; hence exactly 45 of the 200 (d). (a) is wrong, since 155 cases had no agreement; (b) is contradicted by 75 settled cases without one; (c) fails as 45 is less than half of 120."
     },
-    "notes": "Author's working: agreement cases are a subset of the settled cases, so the total with an agreement is 45 (option B). A is false because 45/120 = 37.5 per cent; C is false because 155 cases had no agreement; D is the converse of the given conditional and is contradicted by the 75 settled cases without an agreement. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author's working: agreement cases are a subset of the settled cases, so the total with an agreement is 45 (option B). A is false because 45/120 = 37.5 per cent; C is false because 155 cases had no agreement; D is the converse of the given conditional and is contradicted by the 75 settled cases without an agreement. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 1 option reference in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

@@ -1,6 +1,6 @@
 {
   "id": "digital-sat-math-one-variable-data-051",
-  "version": 1,
+  "version": 2,
   "examKey": "digital-sat",
   "sectionKey": "math-module-1",
   "domainSlug": "problem-solving-and-data-analysis",
@@ -37,7 +37,7 @@
     "type": "single_select",
     "optionId": "d"
   },
-  "explanationMd": "Compute both measures from the frequency table, then read the shape of the distribution.\n\n**Median.** There are $25$ values, so the median is the $13$th when they are put in order. Running the frequencies as a cumulative count: $4$ members at $2$ hours (values 1-4), $7$ at $3$ hours (values 5-11), $6$ at $4$ hours (values 12-17). The $13$th value therefore falls in the $4$-hour group, so the median is $4$ hours.\n\n**Mean.** Multiply each value by its frequency and add:\n\n$$2(4) + 3(7) + 4(6) + 6(5) + 12(3) = 8 + 21 + 24 + 30 + 36 = 119$$\n\n$$\\text{mean} = \\frac{119}{25} = 4.76 \\text{ hours}$$\n\nSo the mean ($4.76$) exceeds the median ($4$), and the reason is visible in the table: most members are clustered at $2$, $3$ and $4$ hours, while three members recorded $12$ hours. Those three sit far above everyone else and drag the mean up without moving the middle value. Choice A states both the comparison and that reason.\n\nCheck the effect directly. If the three $12$-hour members had recorded $5$ hours instead, the total would fall to $119 - 21 = 98$ and the mean to $3.92$, below the median — while the median itself would not move at all. That is the defining behaviour of a right-skewed distribution: the mean follows the extreme values, the median does not.",
+  "explanationMd": "Compute both measures from the frequency table, then read the shape of the distribution.\n\n**Median.** There are $25$ values, so the median is the $13$th when they are put in order. Running the frequencies as a cumulative count: $4$ members at $2$ hours (values 1-4), $7$ at $3$ hours (values 5-11), $6$ at $4$ hours (values 12-17). The $13$th value therefore falls in the $4$-hour group, so the median is $4$ hours.\n\n**Mean.** Multiply each value by its frequency and add:\n\n$$2(4) + 3(7) + 4(6) + 6(5) + 12(3) = 8 + 21 + 24 + 30 + 36 = 119$$\n\n$$\\text{mean} = \\frac{119}{25} = 4.76 \\text{ hours}$$\n\nSo the mean ($4.76$) exceeds the median ($4$), and the reason is visible in the table: most members are clustered at $2$, $3$ and $4$ hours, while three members recorded $12$ hours. Those three sit far above everyone else and drag the mean up without moving the middle value. Choice D states both the comparison and that reason.\n\nCheck the effect directly. If the three $12$-hour members had recorded $5$ hours instead, the total would fall to $119 - 21 = 98$ and the mean to $3.92$, below the median — while the median itself would not move at all. That is the defining behaviour of a right-skewed distribution: the mean follows the extreme values, the median does not.",
   "distractorRationale": {
     "c": "The direction is backwards. The mean is $4.76$ and the median is $4$, so the mean is the larger of the two; the cluster of small values is exactly what the median already reflects.",
     "a": "The distribution is not symmetric. Values run from $2$ to $12$ with most of the members bunched at the low end and a tail of three members at $12$ hours, and the computed mean of $4.76$ differs from the median of $4$.",
@@ -58,16 +58,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "digital-sat-wave3-author",
-    "reviewer": "digital-sat-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout-blind-solver-s5",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "digital-sat-wave3-reviewer",
+      "solvedBy": "closeout-blind-solver-s5",
       "solvedAnswer": "d",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Sum = 2(4)+3(7)+4(6)+6(5)+12(3) = 8+21+24+30+36 = 119, mean = 119/25 = 4.76. Cumulative counts 4, 11, 17 put the 13th value at 4, so median = 4; the three 12-hour values pull the mean above the median."
+      "workingNotes": "Sum = 2*4 + 3*7 + 4*6 + 6*5 + 12*3 = 119, so the mean is 119/25 = 4.76. The 13th of the 25 ordered values falls in the 4-hour group (cumulative counts 4, 11, 17), so the median is 4. The mean is greater, pulled up by the three 12s, which is (d). (a) fails because the distribution is right-skewed and the two values differ. (b) fails because a frequency table is enough to find the median. (c) reverses the comparison, and it is also false that most members recorded fewer than 4 hours (only 11 of 25 did)."
     },
-    "notes": "Author solved and checked uniqueness: sum = 119 over 25 members gives a mean of 4.76; cumulative counts 4, 11, 17 put the 13th value at 4 hours. Mean > median, with the three 12-hour values as the cause. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author solved and checked uniqueness: sum = 119 over 25 members gives a mean of 4.76; cumulative counts 4, 11, 17 put the 13th value at 4 hours. Mean > median, with the three 12-hour values as the cause. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 1 option reference in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,
