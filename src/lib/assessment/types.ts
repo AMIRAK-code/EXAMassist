@@ -246,6 +246,12 @@ export const selectionConstraintSchema = z.object({
   domains: z.array(z.string()).default([]),
   skills: z.array(z.string()).default([]),
   responseTypes: z.array(responseTypeSchema).default([]),
+  /**
+   * A hard filter: only these difficulty bands are eligible at all. Used when a
+   * learner chooses one difficulty, so a thin band yields a shorter session
+   * rather than one quietly padded with other levels. Configs leave it unset.
+   */
+  difficulties: z.array(z.enum(['easy', 'medium', 'hard'])).optional(),
   /** Target counts per difficulty band. Unfilled slots fall back to any difficulty. */
   difficultyMix: z
     .object({ easy: z.number().int().nonnegative(), medium: z.number().int().nonnegative(), hard: z.number().int().nonnegative() })

@@ -14,7 +14,7 @@ import type { SessionRow, UserRow } from '@/lib/db/rows';
 
 export const SESSION_COOKIE = 'examer_session';
 const SESSION_TTL_DAYS = 30;
-const GUEST_TTL_DAYS = 7;
+export const GUEST_TTL_DAYS = 7;
 
 export interface AuthUser {
   id: string;

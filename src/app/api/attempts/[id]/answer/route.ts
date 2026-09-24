@@ -12,6 +12,11 @@ const bodySchema = z.object({
   /** null clears the answer, which is a real action: it makes the item omitted. */
   response: responseSchema.nullable(),
   elapsedMs: z.number().int().min(0).max(30 * 60 * 1000).optional(),
+  /**
+   * Untimed practice: submit this answer and release its explanation. The
+   * answer is locked from then on; the server refuses any later change.
+   */
+  reveal: z.boolean().optional(),
 });
 
 export async function POST(request: Request, { params }: { params: Promise<{ id: string }> }) {
@@ -36,6 +41,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
       position: body.position,
       response: body.response,
       elapsedMs: body.elapsedMs,
+      reveal: body.reveal,
     });
     return ok(result);
   } catch (error) {

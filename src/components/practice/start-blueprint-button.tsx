@@ -30,10 +30,12 @@ export function StartBlueprintButton({
     setBusy(true);
     setError(null);
 
-    await fetch('/api/auth/guest', {
+    const guest = await fetch('/api/auth/guest', {
       method: 'POST',
       headers: { 'X-Requested-With': 'examer' },
-    }).catch(() => null);
+    })
+      .then((r) => r.json())
+      .catch(() => null);
 
     const response = await fetch('/api/attempts', {
       method: 'POST',
@@ -52,7 +54,9 @@ export function StartBlueprintButton({
       setError(data?.error?.message ?? 'This session could not be started right now.');
       return;
     }
-    router.push(`/attempt/${data.attemptId}`);
+    // A brand-new guest session changes the header; see StartPracticeForm.
+    if (guest?.created) window.location.assign(`/attempt/${data.attemptId}`);
+    else router.push(`/attempt/${data.attemptId}`);
   }
 
   return (

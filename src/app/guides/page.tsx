@@ -39,7 +39,7 @@ export default function GuidesPage() {
               <p className="text-xs uppercase tracking-wide text-ink-subtle">
                 {hub?.name ?? 'General'} · {guide.readingMinutes} min read
               </p>
-              <h2 className="mt-1 font-serif text-xl font-semibold">
+              <h2 className="mt-1 font-heading text-xl font-semibold">
                 <Link href={`/guides/${guide.slug}`} className="no-underline hover:underline">
                   {guide.title}
                 </Link>

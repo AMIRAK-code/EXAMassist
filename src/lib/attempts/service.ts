@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto';
 import type { Db } from '@/lib/db';
-import type { AttemptItemRow, AttemptPartRow, AttemptRow } from '@/lib/db/rows';
+import type { AttemptItemRow, AttemptPartRow, AttemptRow, QuestionVersionRow } from '@/lib/db/rows';
 import {
   getPool,
   getQuestionVersions,
@@ -43,7 +43,8 @@ import {
   type Response,
   type SelectionConstraint,
 } from '@/lib/assessment/types';
-import { getBlueprint, getSection, labelsFor, requireExamConfig } from '@/lib/exams/registry';
+import { getBlueprint, getExamConfig, getSection, labelsFor, requireExamConfig } from '@/lib/exams/registry';
+import { eligiblePool } from './eligibility';
 
 /**
  * Attempt lifecycle.
@@ -132,14 +133,12 @@ export function resolveParts(
       sectionKey: overrides.sectionKey ?? ANY_SECTION,
       domains: overrides.domains?.length ? overrides.domains : part.selection.domains,
       skills: overrides.skills?.length ? overrides.skills : part.selection.skills,
-      difficultyMix:
-        overrides.difficulty && overrides.difficulty !== 'mixed'
-          ? {
-              easy: overrides.difficulty === 'easy' ? (overrides.length ?? part.itemCount) : 0,
-              medium: overrides.difficulty === 'medium' ? (overrides.length ?? part.itemCount) : 0,
-              hard: overrides.difficulty === 'hard' ? (overrides.length ?? part.itemCount) : 0,
-            }
-          : null,
+      // A chosen difficulty is a filter, not a preference: a band too thin to
+      // fill the session is reported as unavailable, never padded with other
+      // levels behind the learner's back.
+      difficulties:
+        overrides.difficulty && overrides.difficulty !== 'mixed' ? [overrides.difficulty] : undefined,
+      difficultyMix: null,
     };
     return { ...part, itemCount: overrides.length ?? part.itemCount, selection };
   });
@@ -216,7 +215,8 @@ export interface StartAttemptResult {
 
 export function startAttempt(db: Db, input: StartAttemptInput): StartAttemptResult {
   const now = input.now ?? new Date();
-  const config = requireExamConfig(input.examKey);
+  const config = getExamConfig(input.examKey);
+  if (!config) throw new AttemptError('unknown-exam', 'That exam is not offered.', 404);
   const blueprint = getBlueprint(config, input.blueprintId);
   if (!blueprint) throw new AttemptError('unknown-blueprint', 'That practice format does not exist.', 404);
 
@@ -239,7 +239,8 @@ export function startAttempt(db: Db, input: StartAttemptInput): StartAttemptResu
   }
 
   const parts = resolveParts(blueprint, input.overrides ?? {}, config);
-  const pool = getPool(db, input.examKey, input.userId);
+  // The same eligibility rule the practice screen uses to say what is open.
+  const pool = eligiblePool(getPool(db, input.examKey, input.userId), blueprint);
   const sufficiency = checkBlueprintSufficiency(pool, parts);
   if (!sufficiency.sufficient) {
     throw new AttemptError(
@@ -498,6 +499,8 @@ export interface AttemptItemState {
   flagged: boolean;
   response: Response | null;
   timeMs: number;
+  /** True once immediate feedback was shown; the response can no longer change. */
+  feedbackReleased: boolean;
   question: PresentedQuestion;
   /** Present only once the learner is entitled to see the answer. */
   review: {
@@ -578,10 +581,12 @@ export function getAttemptState(
         const version = versions.get(item.question_version_id);
         if (!version) throw new AttemptError('missing-question', 'A question in this attempt is missing.', 500);
 
-        // Answer keys are withheld while the attempt is live unless the
-        // blueprint is an untimed practice session and the item is answered.
-        const mayReview =
-          finished || (settings.immediateFeedback && item.response_status === 'answered');
+        // Answer keys are withheld while the attempt is live, except for an
+        // item whose feedback the learner has explicitly asked to see in
+        // untimed practice. Merely answering (a draft) releases nothing.
+        const released = settings.immediateFeedback && item.feedback_released_at !== null;
+        const mayReview = finished || released;
+        const response = item.response_json ? (JSON.parse(item.response_json) as Response) : null;
 
         return {
           position: item.position,
@@ -589,8 +594,9 @@ export function getAttemptState(
           questionVersionId: item.question_version_id,
           answered: item.response_status === 'answered',
           flagged: item.flagged === 1,
-          response: item.response_json ? (JSON.parse(item.response_json) as Response) : null,
+          response,
           timeMs: item.time_ms,
+          feedbackReleased: released,
           question: visible
             ? toPresented(db, version)
             : ({} as PresentedQuestion),
@@ -598,7 +604,15 @@ export function getAttemptState(
             ? (() => {
                 const reviewable = toReviewable(db, version);
                 return {
-                  correct: item.is_correct === null ? null : item.is_correct === 1,
+                  // Scored items carry their stored result. A released item in
+                  // a live attempt is not scored yet, so it is scored here the
+                  // same way finalisation will score it.
+                  correct:
+                    item.is_correct !== null
+                      ? item.is_correct === 1
+                      : response
+                        ? scoreResponse(reviewable.answerKey, response, config.scoring).status === 'correct'
+                        : null,
                   answerKey: reviewable.answerKey,
                   explanationMd: reviewable.explanationMd,
                   distractorRationale: reviewable.distractorRationale,
@@ -650,18 +664,159 @@ export interface RecordResponseInput {
   response: Response | null;
   /** Milliseconds spent since the last save for this item. */
   elapsedMs?: number;
+  /**
+   * Untimed practice only: submit this answer and release its key and worked
+   * explanation. The answer is locked from then on. Without it, a save is a
+   * draft that can still be changed.
+   */
+  reveal?: boolean;
   now?: Date;
+}
+
+export interface ItemFeedback {
+  correct: boolean;
+  explanationMd: string;
+  distractorRationale: Record<string, string>;
+  answerKey: unknown;
 }
 
 export interface RecordResponseResult {
   saved: boolean;
   answered: boolean;
-  feedback: {
-    correct: boolean;
-    explanationMd: string;
-    distractorRationale: Record<string, string>;
-    answerKey: unknown;
-  } | null;
+  /** True when feedback has been released for this item, by this call or an earlier one. */
+  locked: boolean;
+  /** True when the call repeated the stored, already-locked answer and changed nothing. */
+  duplicate: boolean;
+  feedback: ItemFeedback | null;
+}
+
+export const RESPONSE_LOCKED_MESSAGE =
+  'You have already seen the explanation for this question, so its answer is locked.';
+
+/** A stable form of a response for equality, ignoring the order of selections. */
+function canonicalResponse(response: Response | null): string {
+  if (!response) return 'null';
+  if (response.type === 'multi_select') {
+    return JSON.stringify({ ...response, optionIds: [...response.optionIds].sort() });
+  }
+  if (response.type === 'two_part') {
+    return JSON.stringify({
+      ...response,
+      selections: [...response.selections].sort((a, b) => a.columnId.localeCompare(b.columnId)),
+    });
+  }
+  return JSON.stringify(response);
+}
+
+function storedResponse(item: AttemptItemRow): Response | null {
+  if (!item.response_json) return null;
+  const parsed = responseSchema.safeParse(JSON.parse(item.response_json));
+  return parsed.success ? parsed.data : null;
+}
+
+function buildFeedback(
+  db: Db,
+  config: ExamConfig,
+  version: QuestionVersionRow,
+  response: Response,
+): ItemFeedback {
+  const reviewable = toReviewable(db, version);
+  const outcome = scoreResponse(reviewable.answerKey, response, config.scoring);
+  return {
+    correct: outcome.status === 'correct',
+    explanationMd: reviewable.explanationMd,
+    distractorRationale: reviewable.distractorRationale,
+    answerKey: reviewable.answerKey,
+  };
+}
+
+/**
+ * The only outcomes for an item whose feedback is already released: repeating
+ * the stored answer (a double click, a retried request, a second tab showing
+ * the same thing) succeeds without changing anything; any other answer is
+ * refused.
+ */
+function lockedOutcome(
+  db: Db,
+  config: ExamConfig,
+  version: QuestionVersionRow,
+  item: AttemptItemRow,
+  attempted: Response | null,
+): RecordResponseResult {
+  const stored = storedResponse(item);
+  if (stored && canonicalResponse(stored) === canonicalResponse(attempted)) {
+    return {
+      saved: true,
+      answered: true,
+      locked: true,
+      duplicate: true,
+      feedback: buildFeedback(db, config, version, stored),
+    };
+  }
+  throw new AttemptError('response-locked', RESPONSE_LOCKED_MESSAGE, 409);
+}
+
+export interface PersistResponseInput {
+  attemptId: string;
+  itemId: string;
+  partIndex: number;
+  position: number;
+  response: Response | null;
+  /** Whether the item held an answer when the caller read it. */
+  wasAnswered: boolean;
+  elapsedMs: number;
+  /** Release immediate feedback in the same write. */
+  release: boolean;
+  now: Date;
+}
+
+/**
+ * Writes one response.
+ *
+ * The UPDATE itself refuses to touch an item whose feedback has been released,
+ * so the lock holds even for a request that read the item before another tab
+ * released it, and even across processes: the check and the write are one
+ * statement inside an IMMEDIATE transaction. Returns `written: false` when the
+ * guard refused.
+ */
+export function persistResponse(db: Db, input: PersistResponseInput): { written: boolean } {
+  const iso = toIso(input.now);
+  const answered = input.response !== null;
+
+  const run = db.transaction((): boolean => {
+    const info = db
+      .prepare(
+        `UPDATE attempt_items
+           SET response_json = ?, response_status = ?, time_ms = time_ms + ?,
+               last_answered_at = ?, first_seen_at = COALESCE(first_seen_at, ?),
+               feedback_released_at = CASE WHEN ? = 1 THEN ? ELSE feedback_released_at END
+         WHERE id = ? AND feedback_released_at IS NULL`,
+      )
+      .run(
+        input.response ? JSON.stringify(input.response) : null,
+        answered ? 'answered' : 'unanswered',
+        Math.max(0, Math.min(input.elapsedMs, 30 * 60 * 1000)),
+        answered ? iso : null,
+        iso,
+        input.release ? 1 : 0,
+        iso,
+        input.itemId,
+      );
+    if (info.changes === 0) return false;
+
+    db.prepare('UPDATE attempts SET updated_at = ? WHERE id = ?').run(iso, input.attemptId);
+
+    const where = { partIndex: input.partIndex, position: input.position };
+    if (input.wasAnswered && answered) {
+      logEvent(db, input.attemptId, 'item.answer_changed', where, input.now);
+    } else {
+      logEvent(db, input.attemptId, 'item.answered', { ...where, answered }, input.now);
+    }
+    if (input.release) logEvent(db, input.attemptId, 'item.feedback_released', where, input.now);
+    return true;
+  });
+
+  return { written: run.immediate() };
 }
 
 export function recordResponse(db: Db, input: RecordResponseInput): RecordResponseResult {
@@ -710,53 +865,51 @@ export function recordResponse(db: Db, input: RecordResponseInput): RecordRespon
     parsed = result.data;
   }
 
-  const wasAnswered = item.response_status === 'answered';
-  const answered = parsed !== null;
-
-  const run = db.transaction(() => {
-    db.prepare(
-      `UPDATE attempt_items
-         SET response_json = ?, response_status = ?, time_ms = time_ms + ?,
-             last_answered_at = ?, first_seen_at = COALESCE(first_seen_at, ?)
-       WHERE id = ?`,
-    ).run(
-      parsed ? JSON.stringify(parsed) : null,
-      answered ? 'answered' : 'unanswered',
-      Math.max(0, Math.min(input.elapsedMs ?? 0, 30 * 60 * 1000)),
-      answered ? toIso(now) : null,
-      toIso(now),
-      item.id,
+  // Feedback exists only in untimed practice. Timed and diagnostic formats
+  // release nothing before submission, so a request to reveal is refused
+  // rather than quietly ignored.
+  if (input.reveal && !settings.immediateFeedback) {
+    throw new AttemptError(
+      'feedback-not-available',
+      'Answers and explanations for this format are shown after you submit.',
+      409,
     );
-    db.prepare('UPDATE attempts SET updated_at = ? WHERE id = ?').run(toIso(now), input.attemptId);
-
-    if (wasAnswered && answered) {
-      logEvent(db, input.attemptId, 'item.answer_changed', {
-        partIndex: input.partIndex,
-        position: input.position,
-      }, now);
-    } else {
-      logEvent(db, input.attemptId, 'item.answered', {
-        partIndex: input.partIndex,
-        position: input.position,
-        answered,
-      }, now);
-    }
-  });
-  run();
-
-  let feedback: RecordResponseResult['feedback'] = null;
-  if (settings.immediateFeedback && parsed) {
-    const reviewable = toReviewable(db, version);
-    const outcome = scoreResponse(reviewable.answerKey, parsed, config.scoring);
-    feedback = {
-      correct: outcome.status === 'correct',
-      explanationMd: reviewable.explanationMd,
-      distractorRationale: reviewable.distractorRationale,
-      answerKey: reviewable.answerKey,
-    };
+  }
+  if (input.reveal && parsed === null) {
+    throw new AttemptError('answer-required', 'Choose an answer before checking it.', 400);
   }
 
-  return { saved: true, answered, feedback };
+  if (settings.immediateFeedback && item.feedback_released_at !== null) {
+    return lockedOutcome(db, config, version, item, parsed);
+  }
+
+  const release = settings.immediateFeedback && input.reveal === true;
+  const { written } = persistResponse(db, {
+    attemptId: input.attemptId,
+    itemId: item.id,
+    partIndex: input.partIndex,
+    position: input.position,
+    response: parsed,
+    wasAnswered: item.response_status === 'answered',
+    elapsedMs: input.elapsedMs ?? 0,
+    release,
+    now,
+  });
+
+  if (!written) {
+    // Another request - a second tab, a retry - released feedback between our
+    // read and this write. Judge this request against what it did.
+    const fresh = db.prepare('SELECT * FROM attempt_items WHERE id = ?').get(item.id) as AttemptItemRow;
+    return lockedOutcome(db, config, version, fresh, parsed);
+  }
+
+  return {
+    saved: true,
+    answered: parsed !== null,
+    locked: release,
+    duplicate: false,
+    feedback: release && parsed ? buildFeedback(db, config, version, parsed) : null,
+  };
 }
 
 export function setFlag(
@@ -858,7 +1011,7 @@ function openNextPart(db: Db, attemptId: string, userId: string, fromIndex: numb
   const run = db.transaction(() => {
     if (routing && nextBlueprintPart) {
       const rerouted = applyRoute(nextBlueprintPart.selection, nextBlueprintPart.itemCount, routing.route);
-      const pool = getPool(db, attempt.exam_key, userId);
+      const pool = eligiblePool(getPool(db, attempt.exam_key, userId), blueprint);
       const used = new Set(items.map((i) => i.question_id));
       const rng = createRng(`${attempt.seed}:reroute:${nextIndex}`);
       const selection = selectItems(pool, rerouted, nextBlueprintPart.itemCount, rng, {

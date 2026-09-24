@@ -1,13 +1,17 @@
 import { expect, test, type Page } from '@playwright/test';
+import { resetRateLimits } from './helpers';
 
 /**
  * The learner journeys the release is defined by, exercised in a real browser
  * against a real server and a real seeded database.
  */
 
+/** The setup form names the session it will create, e.g. "Start 10-question session". */
+const START_SESSION = /^Start \d+-question session$/;
+
 async function startPracticeSession(page: Page, examKey = 'digital-sat'): Promise<string> {
   await page.goto(`/practice/${examKey}`);
-  await page.getByRole('button', { name: /start practising/i }).click();
+  await page.getByRole('button', { name: START_SESSION }).click();
   await page.waitForURL(/\/attempt\/[0-9a-f-]+$/);
   const match = /\/attempt\/([0-9a-f-]+)/.exec(page.url());
   if (!match) throw new Error(`Did not land on an attempt page: ${page.url()}`);
@@ -49,10 +53,13 @@ async function submitAttempt(page: Page, attemptId: string): Promise<{ status: n
   }, attemptId);
 }
 
+// Every test comes from one address; see helpers.ts.
+test.beforeEach(() => resetRateLimits());
+
 test.describe('discovery', () => {
   test('a visitor can reach an exam guide from the homepage', async ({ page }) => {
     await page.goto('/');
-    await expect(page.getByRole('heading', { level: 1 })).toContainText(/practice/i);
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Big ambitions');
 
     await page.getByRole('link', { name: 'Choose your exam' }).click();
     await expect(page).toHaveURL(/\/exams$/);
@@ -93,7 +100,8 @@ test.describe('practice', () => {
     await expect(page.getByRole('heading', { name: /^Question 1/ })).toBeVisible();
     await answerCurrentQuestion(page);
 
-    // Untimed practice reveals the explanation straight away.
+    // Untimed practice reveals the explanation once the learner checks the answer.
+    await page.getByRole('button', { name: 'Check answer' }).click();
     await expect(page.getByText(/^(Correct|Not correct)/).first()).toBeVisible();
 
     const submitted = await submitAttempt(page, attemptId);
@@ -310,7 +318,7 @@ test.describe('readiness', () => {
     expect(signUp).toBe(201);
 
     await page.goto('/practice/bocconi-undergraduate');
-    await page.getByRole('button', { name: /start practising/i }).click();
+    await page.getByRole('button', { name: START_SESSION }).click();
     await page.waitForURL(/\/attempt\/[0-9a-f-]+$/);
     const attemptId = /\/attempt\/([0-9a-f-]+)/.exec(page.url())![1];
 
@@ -354,7 +362,7 @@ test.describe('readiness', () => {
     }, email);
 
     await page.goto('/practice/digital-sat');
-    await page.getByRole('button', { name: /start practising/i }).click();
+    await page.getByRole('button', { name: START_SESSION }).click();
     await page.waitForURL(/\/attempt\/[0-9a-f-]+$/);
     const attemptId = /\/attempt\/([0-9a-f-]+)/.exec(page.url())![1];
     await answerCurrentQuestion(page);
