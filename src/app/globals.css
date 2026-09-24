@@ -235,6 +235,31 @@
     color: var(--color-ink-muted);
   }
 
+  /* --- Format status marks -------------------------------------------------
+   * Shape-coded, so they differ without colour: a filled disc (open), a half
+   * disc (not yet), a ring with a bar (not offered). Always paired with a word.
+   * Drawn in CSS because a table of them as inline SVG weighed kilobytes.
+   */
+  .status-mark {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 0.875rem;
+    height: 0.875rem;
+    border-radius: 999px;
+    box-sizing: border-box;
+  }
+  .status-open {
+    background: var(--color-accent);
+  }
+  .status-notyet {
+    border: 1.5px solid var(--color-ink-muted);
+    background: linear-gradient(90deg, transparent 50%, var(--color-ink-muted) 50%);
+  }
+  .status-notoffered {
+    border: 1.5px solid var(--color-ink-subtle);
+    background: linear-gradient(var(--color-ink-subtle), var(--color-ink-subtle)) center / 55% 1.5px no-repeat;
+  }
+
   /* --- Long-form editorial content -------------------------------------- */
   .prose-academic {
     color: var(--color-ink);

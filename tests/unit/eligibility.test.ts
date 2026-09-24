@@ -7,7 +7,7 @@ import { eligiblePool, isMeasurementFormat } from '@/lib/attempts/eligibility';
 import { defaultLength, eligibleCount, lengthOptions } from '@/lib/attempts/facets';
 import { AttemptError, getAttemptState, resolveParts, startAttempt } from '@/lib/attempts/service';
 import { loadContent } from '@/lib/content/loader';
-import { PUBLIC_SAMPLES, PUBLIC_SAMPLE_IDS, homepageSampleFor } from '@/lib/content/public-samples';
+import { PUBLIC_SAMPLES, PUBLIC_SAMPLE_IDS, WITHHELD_SAMPLES, homepageSampleFor } from '@/lib/content/public-samples';
 import { EXAM_CONFIGS, getBlueprint, getHubForConfig, listHubs, requireExamConfig } from '@/lib/exams/registry';
 import { attemptQuestionOrder, createTestDb, createUser, seedQuestions } from './helpers/test-db';
 
@@ -54,8 +54,21 @@ describe('the public sample set', () => {
     }
   });
 
-  it('gives every public exam hub one homepage sample', () => {
-    for (const hub of listHubs()) expect(homepageSampleFor(hub.slug), hub.slug).toBeDefined();
+  it('gives every public exam hub a homepage sample, or a stated reason for withholding one', () => {
+    for (const hub of listHubs()) {
+      if (WITHHELD_SAMPLES[hub.slug]) expect(homepageSampleFor(hub.slug), hub.slug).toBeUndefined();
+      else expect(homepageSampleFor(hub.slug), hub.slug).toBeDefined();
+    }
+  });
+
+  it('shows no option letters in its explanations or notes', () => {
+    // Options were reordered after review without the letters in the text being
+    // updated, so any letter a public sample names could point at the wrong option.
+    for (const sample of PUBLIC_SAMPLES) {
+      const q = questions.find(({ question }) => question.id === sample.questionId)!.question;
+      const text = [q.explanationMd, ...Object.values(q.distractorRationale)].join(' ').replace(/\$[^$]*\$/g, ' ');
+      expect(text, sample.questionId).not.toMatch(/\b(?:[Cc]hoice|[Oo]ption)s? \(?[A-E]\)?\b|\([A-E]\)|\b[A-E]\)/);
+    }
   });
 
   it('closes no format that is open without the exclusion', () => {
@@ -205,14 +218,9 @@ describe('session creation', () => {
 
   describe('with a public sample in the bank', () => {
     const SAMPLE = 'digital-sat-rw-words-in-context-cochineal-039';
-    const MATH_SAMPLE = 'digital-sat-math-equivalent-expressions-017';
-
     beforeEach(() => {
-      // Give two synthetic questions the ids of real public samples.
-      for (const [from, to] of [
-        ['craft-and-structure-q0', SAMPLE],
-        ['algebra-q0', MATH_SAMPLE],
-      ]) {
+      // Give a synthetic question the id of a real public sample.
+      for (const [from, to] of [['craft-and-structure-q0', SAMPLE]]) {
         db.prepare(
           `INSERT INTO questions (id, exam_key, current_version, state, created_at, updated_at)
            SELECT ?, exam_key, current_version, state, created_at, updated_at FROM questions WHERE id = ?`,
@@ -224,16 +232,14 @@ describe('session creation', () => {
 
     it('never places it in a new diagnostic or timed session', () => {
       for (let seed = 0; seed < 25; seed += 1) {
-        for (const blueprintId of ['diagnostic', 'timed-math-module-1']) {
+        for (const blueprintId of ['diagnostic']) {
           const { attemptId } = startAttempt(db, {
             userId: learner,
             examKey: SAT.examKey,
             blueprintId,
             seed: `seed-${blueprintId}-${seed}`,
           });
-          const ids = attemptQuestionOrder(db, attemptId);
-          expect(ids).not.toContain(SAMPLE);
-          expect(ids).not.toContain(MATH_SAMPLE);
+          expect(attemptQuestionOrder(db, attemptId)).not.toContain(SAMPLE);
         }
       }
     });

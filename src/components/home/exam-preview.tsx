@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useRef, useState, type ReactNode } from 'react';
+import { useRef, useState, useTransition, type ReactNode } from 'react';
 import type { ExamChoice } from '@/lib/home/home-data';
 import type { SampleView } from '@/lib/content/sample-view';
 import { StimulusView } from '@/components/stimulus-view';
@@ -45,7 +45,11 @@ export function ExamPreview({
   initialSample: Loaded;
   intro: ReactNode;
 }) {
+  // The chips and the destination follow `selectedHub` at once. The sample card
+  // follows `hub` in a transition, so the click paints before the heavier swap.
+  const [selectedHub, setSelectedHub] = useState(initialHub);
   const [hub, setHub] = useState(initialHub);
+  const [switching, startTransition] = useTransition();
   const [samples, setSamples] = useState<Record<string, Loaded>>({ [initialHub]: initialSample });
   const [failed, setFailed] = useState<Record<string, boolean>>({});
   const [picked, setPicked] = useState<string | null>(null);
@@ -53,7 +57,8 @@ export function ExamPreview({
   const verdictRef = useRef<HTMLParagraphElement>(null);
   const firstOptionRef = useRef<HTMLInputElement>(null);
 
-  const choice = choices.find((c) => c.hubSlug === hub) ?? choices[0];
+  const choice = choices.find((c) => c.hubSlug === selectedHub) ?? choices[0];
+  const shown = choices.find((c) => c.hubSlug === hub) ?? choices[0];
   const sample = samples[hub];
   const loading = sample === undefined && !failed[hub];
 
@@ -74,12 +79,17 @@ export function ExamPreview({
   }
 
   function choose(target: string) {
-    setHub(target);
-    setPicked(null);
-    setChecked(false);
-    // Keep the choice in the address, so a reload or a shared link opens it.
-    window.history.replaceState(null, '', `?exam=${encodeURIComponent(target)}`);
+    setSelectedHub(target);
+    startTransition(() => {
+      setHub(target);
+      setPicked(null);
+      setChecked(false);
+    });
     if (samples[target] === undefined) void load(target);
+    // Keep the choice in the address, so a reload or a shared link opens it.
+    // Deferred: the router syncs its state on replaceState, and that work does
+    // not belong between the click and its paint.
+    window.setTimeout(() => window.history.replaceState(null, '', `?exam=${encodeURIComponent(target)}`), 0);
   }
 
   function check() {
@@ -108,7 +118,7 @@ export function ExamPreview({
           <legend className="mb-3 text-sm font-semibold text-ink-muted">Which exam are you preparing for?</legend>
           <div className="grid grid-cols-3 gap-2 sm:flex sm:flex-wrap sm:gap-2.5">
             {choices.map((option) => {
-              const selected = option.hubSlug === hub;
+              const selected = option.hubSlug === selectedHub;
               return (
                 <label
                   key={option.hubSlug}
@@ -195,10 +205,13 @@ export function ExamPreview({
             ) : null}
           </div>
 
-          <div className="min-h-[26rem] px-4 py-5 sm:px-6 sm:py-6" aria-busy={loading || undefined}>
+          <div
+            className={cx('min-h-[26rem] px-4 py-5 transition-opacity sm:px-6 sm:py-6', switching && 'opacity-60')}
+            aria-busy={loading || switching || undefined}
+          >
             {loading ? (
               <div role="status" className="space-y-3">
-                <span className="sr-only">Loading the {choice.label} sample question</span>
+                <span className="sr-only">Loading the {shown.label} sample question</span>
                 <div className="h-4 w-11/12 rounded bg-surface-sunken" />
                 <div className="h-4 w-9/12 rounded bg-surface-sunken" />
                 <div className="h-4 w-10/12 rounded bg-surface-sunken" />
@@ -208,15 +221,15 @@ export function ExamPreview({
               </div>
             ) : failed[hub] ? (
               <div role="alert" className="space-y-4">
-                <p>We couldn’t load the {choice.label} sample. Check your connection and try again.</p>
+                <p>We couldn’t load the {shown.label} sample. Check your connection and try again.</p>
                 <Button variant="secondary" onClick={() => void load(hub)}>
                   Try again
                 </Button>
               </div>
             ) : !sample ? (
               <div className="space-y-4">
-                <p>No sample question is available for the {choice.label} right now.</p>
-                <Link href={choice.destinations[0].href}>Go to {choice.label} practice</Link>
+                <p>No sample question is available for the {shown.label} right now.</p>
+                <Link href={shown.destinations[0].href}>Go to {shown.label} practice</Link>
               </div>
             ) : (
               <div key={sample.questionId}>
@@ -372,8 +385,8 @@ export function ExamPreview({
                     </details>
 
                     <div className="flex flex-wrap items-center gap-3 border-t-[1.5px] border-ink pt-4">
-                      <Link href={choice.destinations[0].href} className={cx(buttonClass({ size: 'md' }), 'w-full sm:w-auto')}>
-                        Practise more {choice.label} questions
+                      <Link href={shown.destinations[0].href} className={cx(buttonClass({ size: 'md' }), 'w-full sm:w-auto')}>
+                        Practise more {shown.label} questions
                       </Link>
                       <Button variant="secondary" onClick={reset}>
                         Try it again
