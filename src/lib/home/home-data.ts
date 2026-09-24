@@ -1,11 +1,10 @@
 import type { Db } from '@/lib/db';
 import type { Blueprint, ExamConfig } from '@/lib/assessment/types';
 import { getPool } from '@/lib/content/repository';
-import { availabilityFromPool, facetsFromPool, type BlueprintAvailability } from '@/lib/attempts/availability';
-import { eligibleCount } from '@/lib/attempts/facets';
-import { homepageDemo, homepageSampleFor } from '@/lib/content/public-samples';
+import { availabilityFromPool, type BlueprintAvailability } from '@/lib/attempts/availability';
+import { homepageSampleFor } from '@/lib/content/public-samples';
 import { loadSampleView, type SampleView } from '@/lib/content/sample-view';
-import { getBlueprint, labelsFor, listHubs, requireExamConfig, type ExamHub } from '@/lib/exams/registry';
+import { listHubs, requireExamConfig, type ExamHub } from '@/lib/exams/registry';
 import type { FormatStatus } from '@/components/ui';
 
 /**
@@ -175,44 +174,6 @@ export function buildHomeData(db: Db, now = new Date()): HomeData {
 export function initialSample(db: Db, hubSlug: string): SampleView | null {
   const sample = homepageSampleFor(hubSlug);
   return sample ? loadSampleView(db, sample) : null;
-}
-
-export interface DemoData {
-  view: SampleView;
-  /** The option the illustration marks as a learner's wrong answer. */
-  chosenOptionId: string;
-  domainLabel: string;
-  practiceHref: string;
-  practiceCount: number;
-}
-
-/**
- * The mistake-notebook illustration: a real question, a real editorial note on
- * a wrong option, and a real follow-up with its actual size. The "chosen"
- * answer is illustrative and labelled as such.
- */
-export function buildDemo(db: Db): DemoData | null {
-  const sample = homepageDemo();
-  if (!sample) return null;
-  const view = loadSampleView(db, sample);
-  if (!view) return null;
-  const chosen = view.options.find((option) => option.id !== view.correctOptionId && option.rationaleHtml);
-  if (!chosen) return null;
-
-  const config = requireExamConfig(sample.examKey);
-  const pool = getPool(db, config.examKey, null);
-  const row = pool.find((item) => item.questionId === sample.questionId);
-  if (!row) return null;
-  const blueprint = getBlueprint(config, 'practice');
-  const count = blueprint ? eligibleCount(facetsFromPool(pool, config, blueprint), { domain: row.domainSlug }) : 0;
-
-  return {
-    view,
-    chosenOptionId: chosen.id,
-    domainLabel: labelsFor(config).domains[row.domainSlug] ?? row.domainSlug,
-    practiceHref: `/practice/${config.examKey}?domain=${encodeURIComponent(row.domainSlug)}`,
-    practiceCount: count,
-  };
 }
 
 export interface SourceExample {
