@@ -481,30 +481,10 @@ const STATUS_LABEL: Record<FormatStatus, string> = {
   notoffered: 'Not offered',
 };
 
-/** Shape-coded status marks: a filled tick, a half circle, a dash. */
+/** Shape-coded status marks: a filled disc, a half disc, a ring with a bar. */
 export function StatusIcon({ status }: { status: FormatStatus }) {
-  if (status === 'open') {
-    return (
-      <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" className="shrink-0 text-accent">
-        <circle cx="7" cy="7" r="6.25" fill="currentColor" />
-        <path d="M4 7.2l2 1.9L10 5" stroke="#fff" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    );
-  }
-  if (status === 'notyet') {
-    return (
-      <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" className="shrink-0 text-ink-muted">
-        <circle cx="7" cy="7" r="5.75" fill="none" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M7 1.25a5.75 5.75 0 0 1 0 11.5z" fill="currentColor" />
-      </svg>
-    );
-  }
-  return (
-    <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" className="shrink-0 text-ink-subtle">
-      <circle cx="7" cy="7" r="5.75" fill="none" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M4 7h6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-    </svg>
-  );
+  // Drawn by the .status-* classes in globals.css.
+  return <span aria-hidden="true" className={`status-mark status-${status}`} />;
 }
 
 /** Whether a format can be started, with a shape and a word, never colour alone. */
