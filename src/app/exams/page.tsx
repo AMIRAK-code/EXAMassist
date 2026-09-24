@@ -76,7 +76,7 @@ export default async function ExamsPage() {
 
         return (
           <section key={group.audience} className="mb-12" aria-labelledby={`group-${group.audience}`}>
-            <h2 id={`group-${group.audience}`} className="font-serif text-2xl font-semibold">
+            <h2 id={`group-${group.audience}`} className="font-heading text-2xl font-semibold">
               {group.label}
             </h2>
             <p className="mt-1 max-w-2xl text-ink-muted">{group.blurb}</p>
@@ -85,7 +85,7 @@ export default async function ExamsPage() {
               {groupHubs.map(({ hub, configs, items, domainsCovered, domainsTotal }) => (
                 <Card as="li" key={hub.slug} className="flex flex-col">
                   <div className="flex items-start justify-between gap-3">
-                    <h3 className="font-serif text-xl font-semibold">
+                    <h3 className="font-heading text-xl font-semibold">
                       <Link href={`/exams/${hub.slug}`} className="no-underline hover:underline">
                         {hub.name}
                       </Link>

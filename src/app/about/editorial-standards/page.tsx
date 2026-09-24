@@ -16,12 +16,17 @@ import { JsonLd, articleSchema, breadcrumbSchema } from '@/components/seo/json-l
 const PATH = '/about/editorial-standards';
 const TITLE = 'Editorial standards';
 const DESCRIPTION =
-  'How Examer writes, checks and publishes practice questions: original material only, AI-assisted drafting, a blind independent solve by a second reviewer, mechanical comparison against the answer key, and quarantine instead of quiet correction.';
+  'How Examer creates, checks and publishes practice questions: original, AI-assisted drafting, a blind solve by a separate AI reviewer, mechanical comparison against the answer key, and quarantine instead of quiet correction.';
 
-/** Real dates: this page was written on 2026-09-22 and has not been revised since. */
+/**
+ * Real dates: written on 2026-09-22; revised on 2026-09-24 to state plainly
+ * which checks are done by a model and that no per-question human review is
+ * recorded.
+ */
 const PUBLISHED = '2026-09-22';
-const UPDATED = '2026-09-22';
+const UPDATED = '2026-09-24';
 const PUBLISHED_LABEL = '22 September 2026';
+const UPDATED_LABEL = '24 September 2026';
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -56,7 +61,7 @@ const STATES: Array<{ term: string; value: string }> = [
   {
     term: 'quarantined',
     value:
-      'The reviewer disagreed with the answer key, or could not confirm that only one answer works. The question is withdrawn from the bank with the reason recorded, and stays out until a person resolves it.',
+      'The reviewer disagreed with the answer key, or could not confirm that only one answer works. The question is withdrawn from the bank with the reason recorded, and stays out until it is rewritten and passes a new blind solve.',
   },
   {
     term: 'retired',
@@ -75,6 +80,37 @@ const AUTOMATIC_CHECKS: string[] = [
   'A published question must name a reviewer, and the reviewer must not be the author.',
   'A published question must carry a review date and a complete independent-solve record in which the solver agreed with the key and confirmed answer uniqueness.',
   'Difficulty marked as empirically calibrated is flagged, because we do not hold validated response data to calibrate with.',
+];
+
+/** Who does each step today, as the question records show it. */
+const ROLES: Array<{ term: string; value: string }> = [
+  {
+    term: 'Drafting',
+    value:
+      'An AI model, working to the exam’s official taxonomy. Every published record says a model assisted and names the drafting role, not a person.',
+  },
+  {
+    term: 'Automatic checks',
+    value: 'Code: the content validator described in section 3, run over every question on every build.',
+  },
+  {
+    term: 'Blind solve',
+    value:
+      'A separate AI reviewer, given the question without its key, explanation or distractor notes. Its role is recorded on the question and is never the drafting role.',
+  },
+  {
+    term: 'Comparison with the key',
+    value: 'Code: the same scoring engine that marks learners’ answers.',
+  },
+  {
+    term: 'Human review of each question',
+    value:
+      'Not recorded today. No question record names a human reviewer, so we do not claim one. Explanations are not yet independently re-read for teaching quality either.',
+  },
+  {
+    term: 'Learner reports',
+    value: 'Triaged in a role-gated editor area by a signed-in editor account.',
+  },
 ];
 
 const REFUSALS: string[] = [
@@ -117,23 +153,24 @@ export default function EditorialStandardsPage() {
       <div className="rounded-card border-s-4 border-accent bg-accent-soft p-5">
         <h2 className="text-sm font-semibold uppercase tracking-wide text-accent-strong">In short</h2>
         <p className="mt-2 text-ink">
-          Every practice question on {SITE.name} is original material written by our editorial team.
-          AI assists the drafting, never the decision to publish: each question is solved from
-          scratch by a second reviewer who cannot see the proposed answer, and the comparison between
-          that solution and the author’s key is made by the same scoring code the app uses. When the
-          two disagree the question is quarantined — not quietly corrected. Difficulty labels are
-          editorial judgement, not calibrated statistics, and every claim we make about an exam’s
-          format is sourced to the test maker and dated.
+          Every practice question on {SITE.name} is original, AI-assisted material. Before it is
+          published, a separate AI reviewer solves it from scratch without seeing the proposed
+          answer, and the comparison between that solution and the key is made by the same scoring
+          code the app uses. When the two disagree the question is quarantined — not quietly
+          corrected. No per-question human review is recorded today, and we say so rather than imply
+          one. Difficulty labels are editorial judgement, not calibrated statistics, and every claim
+          we make about an exam’s format is sourced to the test maker and dated.
         </p>
       </div>
 
       <p className="mt-4 text-sm text-ink-subtle">
-        By {SITE.publisher} · Published <time dateTime={PUBLISHED}>{PUBLISHED_LABEL}</time>
+        By {SITE.publisher} · Published <time dateTime={PUBLISHED}>{PUBLISHED_LABEL}</time> · Updated{' '}
+        <time dateTime={UPDATED}>{UPDATED_LABEL}</time>
       </p>
 
       <div className="mt-10 space-y-12">
         <section aria-labelledby="original">
-          <h2 id="original" className="font-serif text-2xl font-semibold">
+          <h2 id="original" className="font-heading text-2xl font-semibold">
             1. All questions are original
           </h2>
           <div className="prose-academic">
@@ -144,16 +181,16 @@ export default function EditorialStandardsPage() {
               code path that would let a question of another provenance be published.
             </p>
             <p>
-              Every question record names the person who authored it, records whether a model
+              Every question record identifies the role that drafted it, records that a model
               assisted the drafting, and carries its rights status. Anything a model helped draft
-              enters the bank as a <code>draft</code>: AI can propose a question, but it cannot
-              shorten the route to publication by a single step.
+              enters the bank as a <code>draft</code>, and no question reaches learners without
+              passing every step below.
             </p>
           </div>
         </section>
 
         <section aria-labelledby="states">
-          <h2 id="states" className="font-serif text-2xl font-semibold">
+          <h2 id="states" className="font-heading text-2xl font-semibold">
             2. The five states a question can be in
           </h2>
           <div className="prose-academic">
@@ -168,14 +205,14 @@ export default function EditorialStandardsPage() {
         </section>
 
         <section aria-labelledby="automatic">
-          <h2 id="automatic" className="font-serif text-2xl font-semibold">
-            3. What a machine checks before a person does
+          <h2 id="automatic" className="font-heading text-2xl font-semibold">
+            3. What code checks before any review
           </h2>
           <div className="prose-academic">
             <p>
               A validator runs over every question in the repository as part of the build. These
-              checks are cheap, boring and absolute — they exist so that human review is spent on
-              whether the question is <em>right</em>, not on whether it is well formed.
+              checks are cheap, boring and absolute — they exist so that review is spent on whether
+              the question is <em>right</em>, not on whether it is well formed.
             </p>
             <ul>
               {AUTOMATIC_CHECKS.map((check) => (
@@ -187,14 +224,15 @@ export default function EditorialStandardsPage() {
         </section>
 
         <section aria-labelledby="blind-solve">
-          <h2 id="blind-solve" className="font-serif text-2xl font-semibold">
-            4. The blind independent solve
+          <h2 id="blind-solve" className="font-heading text-2xl font-semibold">
+            4. The blind solve by a separate AI reviewer
           </h2>
           <div className="prose-academic">
             <p>
               This is the control the whole process turns on, so it is worth being precise about how
-              it works. A reviewer who can see the proposed answer is not solving the question, they
-              are agreeing with it. So the reviewer never sees it.
+              it works. The reviewer is an AI model, separate from the one that drafted the question.
+              A reviewer that can see the proposed answer is not solving the question, it is agreeing
+              with it. So the reviewer never sees it.
             </p>
 
             <h3>The batch is stripped, then the stripping is checked</h3>
@@ -225,19 +263,33 @@ export default function EditorialStandardsPage() {
             <h3>Disagreement quarantines, it does not fix</h3>
             <p>
               If the solved answer matches the key <em>and</em> uniqueness was confirmed, the question
-              is published with the reviewer’s name, the date and the full solve record attached. In
+              is published with the reviewer’s role, the date and the full solve record attached. In
               every other case — a mismatch, or uniqueness left unconfirmed — the question moves to{' '}
               <code>quarantined</code>, with the reviewer’s answer and notes written into the reason,
               and it leaves the live bank. Nothing in that path infers what the author “meant”. A
-              disputed key is a question for a person, and until a person answers it, learners do not
-              see the question.
+              disputed question stays out until it is rewritten and passes a new blind solve.
             </p>
           </div>
         </section>
 
+        <section aria-labelledby="roles">
+          <h2 id="roles" className="font-heading text-2xl font-semibold">
+            5. Who does what, as the records show it
+          </h2>
+          <div className="prose-academic">
+            <p>
+              A check done by a model is not the same as a check done by a person, so here is the
+              list, step by step. It describes what the question records actually contain.
+            </p>
+          </div>
+          <Card className="mt-4">
+            <DefinitionList items={ROLES} />
+          </Card>
+        </section>
+
         <section aria-labelledby="limits">
-          <h2 id="limits" className="font-serif text-2xl font-semibold">
-            5. What review does not establish
+          <h2 id="limits" className="font-heading text-2xl font-semibold">
+            6. What review does not establish
           </h2>
           <div className="mt-3 flex flex-wrap gap-2">
             <Badge tone="caution">Difficulty labels are editorial</Badge>
@@ -262,8 +314,8 @@ export default function EditorialStandardsPage() {
         </section>
 
         <section aria-labelledby="exam-facts">
-          <h2 id="exam-facts" className="font-serif text-2xl font-semibold">
-            6. How exam facts are verified and dated
+          <h2 id="exam-facts" className="font-heading text-2xl font-semibold">
+            7. How exam facts are verified and dated
           </h2>
           <div className="prose-academic">
             <p>
@@ -295,18 +347,18 @@ export default function EditorialStandardsPage() {
         </section>
 
         <section aria-labelledby="corrections">
-          <h2 id="corrections" className="font-serif text-2xl font-semibold">
-            7. Corrections
+          <h2 id="corrections" className="font-heading text-2xl font-semibold">
+            8. Corrections
           </h2>
           <div className="prose-academic">
             <p>
               Controls catch a great deal and never everything. If a question looks wrong, ambiguous
-              or badly worded, tell us. The report goes into the same queue our editors work from,
-              with the question and the version you saw attached to it.
+              or badly worded, tell us. The report goes into the editor area’s review queue, with the
+              question and the version you saw attached to it.
             </p>
           </div>
           <Card className="mt-4">
-            <h3 className="font-serif text-lg font-semibold">Found a problem in a question?</h3>
+            <h3 className="font-heading text-lg font-semibold">Found a problem in a question?</h3>
             <p className="mt-1 text-sm text-ink-muted">
               No account needed. It takes about a minute, and it is the fastest way to get a bad
               question out of the bank.
@@ -318,8 +370,8 @@ export default function EditorialStandardsPage() {
         </section>
 
         <section aria-labelledby="never">
-          <h2 id="never" className="font-serif text-2xl font-semibold">
-            8. What we will not do
+          <h2 id="never" className="font-heading text-2xl font-semibold">
+            9. What we will not do
           </h2>
           <div className="prose-academic">
             <ul>

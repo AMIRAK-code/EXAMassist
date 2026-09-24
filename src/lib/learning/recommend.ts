@@ -243,7 +243,7 @@ export interface StudyPlanInput {
 export interface StudyPlanWeek {
   weekNumber: number;
   startsOn: string;
-  focusSkills: Array<{ slug: string; label: string; reason: string }>;
+  focusSkills: Array<{ slug: string; label: string; reason: string; kind: 'skill' | 'domain' }>;
   sessions: Array<{ label: string; minutes: number; href: string }>;
   totalMinutes: number;
 }
@@ -284,16 +284,20 @@ export function buildStudyPlan(input: StudyPlanInput): StudyPlan {
     .filter((skill) => skill.hasSignal)
     .sort((a, b) => a.accuracy - b.accuracy);
 
-  const queue: Array<{ slug: string; label: string; reason: string }> = [
+  // Weak skills and untouched domains share one queue, so each entry records
+  // which it is: a domain slug passed as ?skill= matches no question at all.
+  const queue: Array<{ slug: string; label: string; reason: string; kind: 'skill' | 'domain' }> = [
     ...ranked.map((skill) => ({
       slug: skill.skillSlug,
       label: skill.skillLabel,
       reason: `${Math.round(skill.accuracy * 100)}% correct so far`,
+      kind: 'skill' as const,
     })),
     ...input.untouchedDomains.map((domain) => ({
       slug: domain.slug,
       label: domain.name,
       reason: 'not attempted yet',
+      kind: 'domain' as const,
     })),
   ];
 
@@ -317,7 +321,7 @@ export function buildStudyPlan(input: StudyPlanInput): StudyPlan {
         label: target ? `Practise ${target.label}` : 'Mixed practice',
         minutes: SESSION_MINUTES,
         href: target
-          ? `/practice/${input.examKey}?skill=${encodeURIComponent(target.slug)}`
+          ? `/practice/${input.examKey}?${target.kind}=${encodeURIComponent(target.slug)}`
           : `/practice/${input.examKey}`,
       };
     });

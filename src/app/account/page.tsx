@@ -75,7 +75,7 @@ export default async function AccountPage() {
       ) : null}
 
       <section aria-labelledby="details-heading" className="mb-10">
-        <h2 id="details-heading" className="mb-4 font-serif text-2xl font-semibold">
+        <h2 id="details-heading" className="mb-4 font-heading text-2xl font-semibold">
           Your details
         </h2>
         <Card>
@@ -136,7 +136,7 @@ export default async function AccountPage() {
       </section>
 
       <section aria-labelledby="settings-heading" className="mb-10">
-        <h2 id="settings-heading" className="mb-4 font-serif text-2xl font-semibold">
+        <h2 id="settings-heading" className="mb-4 font-heading text-2xl font-semibold">
           Name and study target
         </h2>
         <Card>
@@ -150,11 +150,11 @@ export default async function AccountPage() {
       </section>
 
       <section aria-labelledby="data-heading" className="mb-10">
-        <h2 id="data-heading" className="mb-4 font-serif text-2xl font-semibold">
+        <h2 id="data-heading" className="mb-4 font-heading text-2xl font-semibold">
           Your data
         </h2>
         <Card>
-          <h3 className="font-serif text-lg font-semibold">Download a copy</h3>
+          <h3 className="font-heading text-lg font-semibold">Download a copy</h3>
           <p className="mt-2 text-sm text-ink-muted">
             One JSON file with your account details, every practice session and answer, your results,
             bookmarks, review queue and study plan. Nothing else is included, and nobody else&rsquo;s
@@ -164,7 +164,7 @@ export default async function AccountPage() {
             <ExportDataLink />
           </div>
 
-          <h3 className="mt-8 font-serif text-lg font-semibold">Sign out</h3>
+          <h3 className="mt-8 font-heading text-lg font-semibold">Sign out</h3>
           <p className="mt-2 text-sm text-ink-muted">
             Ends this session on this device. Your data stays exactly as it is.
           </p>
@@ -175,7 +175,7 @@ export default async function AccountPage() {
       </section>
 
       <section aria-labelledby="delete-heading" className="mb-10">
-        <h2 id="delete-heading" className="mb-4 font-serif text-2xl font-semibold">
+        <h2 id="delete-heading" className="mb-4 font-heading text-2xl font-semibold">
           Delete your account
         </h2>
         <Card>

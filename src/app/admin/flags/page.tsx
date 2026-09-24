@@ -178,7 +178,7 @@ export default async function AdminFlagsPage({
       </Alert>
 
       <section className="mt-8" aria-labelledby="filter-heading">
-        <h2 id="filter-heading" className="font-serif text-xl font-semibold">
+        <h2 id="filter-heading" className="font-heading text-xl font-semibold">
           Filter
         </h2>
         <form method="get" action="/admin/flags" className="mt-3">
@@ -219,7 +219,7 @@ export default async function AdminFlagsPage({
       </section>
 
       <section className="mt-10" aria-labelledby="reports-heading">
-        <h2 id="reports-heading" className="font-serif text-2xl font-semibold">
+        <h2 id="reports-heading" className="font-heading text-2xl font-semibold">
           {status ? `${STATUS_LABEL[status]} reports` : 'All reports'}
         </h2>
 
@@ -251,7 +251,7 @@ export default async function AdminFlagsPage({
                 <Card as="li" key={row.id} className={open ? 'border-line-strong' : undefined}>
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div className="min-w-0">
-                      <h3 className="font-serif text-lg font-semibold">
+                      <h3 className="font-heading text-lg font-semibold">
                         {REASON_LABEL[row.reason] ?? row.reason}
                       </h3>
                       <p className="mt-1 text-sm text-ink-muted">

@@ -154,7 +154,7 @@ export default function PrivacyPage() {
 
       <div className="mt-10 space-y-12">
         <section aria-labelledby="what-we-hold">
-          <h2 id="what-we-hold" className="font-serif text-2xl font-semibold">
+          <h2 id="what-we-hold" className="font-heading text-2xl font-semibold">
             1. What we hold
           </h2>
           <Card className="mt-4">
@@ -163,7 +163,7 @@ export default function PrivacyPage() {
         </section>
 
         <section aria-labelledby="what-we-dont">
-          <h2 id="what-we-dont" className="font-serif text-2xl font-semibold">
+          <h2 id="what-we-dont" className="font-heading text-2xl font-semibold">
             2. What we do not do
           </h2>
           <div className="prose-academic">
@@ -176,7 +176,7 @@ export default function PrivacyPage() {
         </section>
 
         <section aria-labelledby="why">
-          <h2 id="why" className="font-serif text-2xl font-semibold">
+          <h2 id="why" className="font-heading text-2xl font-semibold">
             3. Why we hold it
           </h2>
           <div className="prose-academic">
@@ -207,7 +207,7 @@ export default function PrivacyPage() {
         </section>
 
         <section aria-labelledby="security">
-          <h2 id="security" className="font-serif text-2xl font-semibold">
+          <h2 id="security" className="font-heading text-2xl font-semibold">
             4. How it is protected
           </h2>
           <div className="prose-academic">
@@ -234,7 +234,7 @@ export default function PrivacyPage() {
         </section>
 
         <section aria-labelledby="your-controls">
-          <h2 id="your-controls" className="font-serif text-2xl font-semibold">
+          <h2 id="your-controls" className="font-heading text-2xl font-semibold">
             5. What you can do
           </h2>
           <div className="prose-academic">
@@ -263,7 +263,7 @@ export default function PrivacyPage() {
         </section>
 
         <section aria-labelledby="open-questions">
-          <h2 id="open-questions" className="font-serif text-2xl font-semibold">
+          <h2 id="open-questions" className="font-heading text-2xl font-semibold">
             Open questions for legal review
           </h2>
           <div className="prose-academic">

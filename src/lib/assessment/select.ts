@@ -74,6 +74,7 @@ export function matchesConstraint(item: PoolItem, constraint: SelectionConstrain
   if (constraint.sectionKey !== ANY_SECTION && item.sectionKey !== constraint.sectionKey) return false;
   if (constraint.domains.length > 0 && !constraint.domains.includes(item.domainSlug)) return false;
   if (constraint.skills.length > 0 && !constraint.skills.includes(item.skillSlug)) return false;
+  if (constraint.difficulties?.length && !constraint.difficulties.includes(item.difficulty)) return false;
   if (constraint.responseTypes.length > 0 && !constraint.responseTypes.includes(item.responseType as never)) {
     return false;
   }

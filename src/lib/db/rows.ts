@@ -137,6 +137,8 @@ export interface AttemptItemRow {
   time_ms: number;
   first_seen_at: string | null;
   last_answered_at: string | null;
+  /** Set when immediate feedback was shown for this item; the answer is locked from then on. */
+  feedback_released_at: string | null;
 }
 
 export interface AttemptResultRow {

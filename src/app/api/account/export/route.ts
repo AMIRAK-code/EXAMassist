@@ -132,8 +132,8 @@ export async function GET() {
       exportedAt: new Date().toISOString(),
       notice:
         'This file contains the data held for one Examer account. Question text and explanations are ' +
-        'included so your practice makes sense on its own; that material is original work by the Examer ' +
-        'editorial team and is not licensed for republication. Answer keys are included only for ' +
+        'included so your practice makes sense on its own; that material is original, AI-assisted work ' +
+        'published by Examer and is not licensed for republication. Answer keys are included only for ' +
         'practice you have already submitted.',
       account: {
         id: account.id,

@@ -29,7 +29,7 @@ export default function TermsPage() {
       <JsonLd data={breadcrumbSchema(siteUrl(), trail)} />
       <Breadcrumbs trail={trail} />
 
-      <h1 className="font-serif text-3xl font-semibold sm:text-4xl">Terms of use</h1>
+      <h1 className="font-heading text-3xl font-semibold sm:text-4xl">Terms of use</h1>
 
       <Alert tone="caution" title="This is a draft, not a finished legal document" className="mt-6">
         <p>
@@ -127,7 +127,7 @@ export default function TermsPage() {
       </div>
 
       <Card className="mt-10 border-s-4 border-s-caution">
-        <h2 className="font-serif text-xl font-semibold">Open questions for legal review</h2>
+        <h2 className="font-heading text-xl font-semibold">Open questions for legal review</h2>
         <p className="mt-1 text-sm text-ink-muted">
           Deliberately unresolved. Each needs a decision before this draft becomes a real document.
         </p>

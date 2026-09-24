@@ -1,7 +1,10 @@
 import type { Db } from '@/lib/db';
 import { getPool } from '@/lib/content/repository';
-import { checkBlueprintSufficiency } from '@/lib/assessment/select';
+import { checkBlueprintSufficiency, matchesConstraint, type PoolItem } from '@/lib/assessment/select';
 import type { Blueprint, ExamConfig } from '@/lib/assessment/types';
+import { getBlueprint } from '@/lib/exams/registry';
+import { eligiblePool } from './eligibility';
+import type { PracticeFacet } from './facets';
 import { resolveParts } from './service';
 
 /**
@@ -30,9 +33,21 @@ export interface BlueprintAvailability {
 }
 
 export function blueprintAvailability(db: Db, config: ExamConfig): BlueprintAvailability[] {
-  const pool = getPool(db, config.examKey, null);
+  return availabilityFromPool(getPool(db, config.examKey, null), config);
+}
 
+/**
+ * Availability from an already-loaded pool. Each blueprint is judged against
+ * `eligiblePool`, the same rule session creation applies, so a format is shown
+ * as open exactly when starting it would succeed.
+ */
+export function availabilityFromPool(
+  rawPool: readonly PoolItem[],
+  config: ExamConfig,
+  publicSampleIds?: ReadonlySet<string>,
+): BlueprintAvailability[] {
   return config.blueprints.map((blueprint) => {
+    const pool = eligiblePool(rawPool, blueprint, publicSampleIds);
     if (blueprint.mode === 'simulation' && !config.capabilities.fullSimulation.available) {
       return {
         blueprint,
@@ -100,4 +115,29 @@ export function practisableDomains(db: Db, config: ExamConfig) {
       count: counts.get(domain.slug) ?? 0,
     }))
     .filter((domain) => domain.count > 0);
+}
+
+/**
+ * The practice pool grouped by domain, skill and difficulty, for the setup
+ * form's live counts. Built from the same eligible pool and the same base
+ * constraint that `startAttempt` validates a practice request against.
+ */
+export function practiceFacets(db: Db, config: ExamConfig, blueprintId = 'practice'): PracticeFacet[] {
+  const blueprint = getBlueprint(config, blueprintId);
+  if (!blueprint) return [];
+  return facetsFromPool(getPool(db, config.examKey, null), config, blueprint);
+}
+
+export function facetsFromPool(rawPool: readonly PoolItem[], config: ExamConfig, blueprint: Blueprint): PracticeFacet[] {
+  const [base] = resolveParts(blueprint, {}, config);
+  if (!base) return [];
+  const groups = new Map<string, PracticeFacet>();
+  for (const item of eligiblePool(rawPool, blueprint)) {
+    if (!matchesConstraint(item, base.selection)) continue;
+    const key = `${item.domainSlug}|${item.skillSlug}|${item.difficulty}`;
+    const group = groups.get(key);
+    if (group) group.count += 1;
+    else groups.set(key, { domainSlug: item.domainSlug, skillSlug: item.skillSlug, difficulty: item.difficulty, count: 1 });
+  }
+  return [...groups.values()];
 }

@@ -156,7 +156,7 @@ export default function HowScoringWorksPage() {
 
       <div className="mt-10 space-y-12">
         <section aria-labelledby="we-report">
-          <h2 id="we-report" className="font-serif text-2xl font-semibold">
+          <h2 id="we-report" className="font-heading text-2xl font-semibold">
             1. What a result contains
           </h2>
           <dl className="mt-4 space-y-4">
@@ -170,7 +170,7 @@ export default function HowScoringWorksPage() {
         </section>
 
         <section aria-labelledby="we-refuse">
-          <h2 id="we-refuse" className="font-serif text-2xl font-semibold">
+          <h2 id="we-refuse" className="font-heading text-2xl font-semibold">
             2. What a result never contains, and why
           </h2>
           <div className="prose-academic">
@@ -191,7 +191,7 @@ export default function HowScoringWorksPage() {
         </section>
 
         <section aria-labelledby="two-cases">
-          <h2 id="two-cases" className="font-serif text-2xl font-semibold">
+          <h2 id="two-cases" className="font-heading text-2xl font-semibold">
             3. Two exams that show why the rule is not one rule
           </h2>
           <div className="prose-academic">
@@ -204,7 +204,7 @@ export default function HowScoringWorksPage() {
 
           <Card className="mt-5">
             <div className="flex flex-wrap items-center gap-2">
-              <h3 className="font-serif text-lg font-semibold">
+              <h3 className="font-heading text-lg font-semibold">
                 Digital SAT — no penalty, but the scale is not arithmetic
               </h3>
               <Badge tone="neutral">No penalty for a wrong answer</Badge>
@@ -229,7 +229,7 @@ export default function HowScoringWorksPage() {
 
           <Card className="mt-5">
             <div className="flex flex-wrap items-center gap-2">
-              <h3 className="font-serif text-lg font-semibold">
+              <h3 className="font-heading text-lg font-semibold">
                 Online Bocconi Test — the penalty is real, and the raw total is the score
               </h3>
               <Badge tone="caution">Negative marking</Badge>
@@ -261,7 +261,7 @@ export default function HowScoringWorksPage() {
         </section>
 
         <section aria-labelledby="rules-table">
-          <h2 id="rules-table" className="font-serif text-2xl font-semibold">
+          <h2 id="rules-table" className="font-heading text-2xl font-semibold">
             4. The scoring rule for every exam we cover
           </h2>
           <div className="prose-academic">
@@ -276,7 +276,7 @@ export default function HowScoringWorksPage() {
             role="region"
             aria-labelledby="rules-table"
             tabIndex={0}
-            className="mt-4 overflow-x-auto rounded-card border border-line"
+            className="mt-4 relative overflow-x-auto rounded-card border border-line"
           >
             <table className="w-full min-w-[42rem] border-collapse bg-surface text-sm">
               <caption className="border-b border-line px-4 py-3 text-start text-sm text-ink-muted">
@@ -355,7 +355,7 @@ export default function HowScoringWorksPage() {
         </section>
 
         <section aria-labelledby="no-scaled">
-          <h2 id="no-scaled" className="font-serif text-2xl font-semibold">
+          <h2 id="no-scaled" className="font-heading text-2xl font-semibold">
             5. Why there is no scaled score, exam by exam
           </h2>
           <div className="prose-academic">
@@ -382,7 +382,7 @@ export default function HowScoringWorksPage() {
         </section>
 
         <section aria-labelledby="ours-not-theirs">
-          <h2 id="ours-not-theirs" className="font-serif text-2xl font-semibold">
+          <h2 id="ours-not-theirs" className="font-heading text-2xl font-semibold">
             6. The parts that are ours, labelled as ours
           </h2>
           <div className="prose-academic">
@@ -411,7 +411,7 @@ export default function HowScoringWorksPage() {
         </section>
 
         <section aria-labelledby="using-it">
-          <h2 id="using-it" className="font-serif text-2xl font-semibold">
+          <h2 id="using-it" className="font-heading text-2xl font-semibold">
             7. Getting something useful out of a result anyway
           </h2>
           <div className="prose-academic">

@@ -2,22 +2,30 @@
 @import 'katex/dist/katex.min.css';
 
 /*
- * Design system.
+ * Design system: "Academic Avant-Garde".
  *
- * Restrained academic: warm paper, deep ink, one accent, serif for reading and
- * a system sans for interface chrome. The constraint throughout is that a page
- * of dense exam content has to stay comfortable to read for an hour, so this
- * leans on rhythm and whitespace rather than colour or decoration.
+ * Warm ivory ground, midnight ink, one electric-blue action colour and an
+ * occasional highlighter-yellow mark. Public pages are allowed to be loud
+ * (oversized headings, the .display-* classes below); anything a learner reads
+ * for an hour stays calm: the same palette, no display type, generous measure.
  *
- * Token names are stable — components reference bg-surface, text-ink,
- * border-line and so on — so values can be retuned here without touching them.
+ * Token names are stable: components reference bg-surface, text-ink, border-line
+ * and so on, so values can be retuned here without touching them. Every text
+ * and control pairing below was measured against WCAG 2.2 (see
+ * docs/REDESIGN.md, "Colour"). The highlighter is 1.08:1 against ivory, so it
+ * never carries meaning on its own.
  */
 
 @theme {
   /* --- Type ------------------------------------------------------------- */
-  --font-serif: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  /* Headings and interface: Bricolage Grotesque, self-hosted (src/app/_fonts). */
   --font-sans:
-    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    var(--font-bricolage), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
+  --font-heading: var(--font-sans);
+  /* Long passages: the system reading serif. No download. */
+  --font-serif: ui-serif, Charter, 'Iowan Old Style', 'Palatino Linotype', Georgia, Cambria, serif;
+  /* A few words of emphasis in marketing headlines only: see .accent-italic. */
   --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
 
   /* A modular scale at roughly 1.2, so headings relate to each other. */
@@ -33,48 +41,59 @@
   --text-5xl: 2.875rem;
 
   /* --- Surfaces --------------------------------------------------------- */
-  --color-paper: #fcfbf8;
-  --color-surface: #ffffff;
-  --color-surface-sunken: #f5f2ec;
-  --color-surface-raised: #ffffff;
+  --color-paper: #f7f5ef; /* warm ivory: the page */
+  --color-surface: #fffdf8; /* raised paper: cards, inputs */
+  --color-surface-sunken: #eeebe2; /* wells, disabled fills */
+  --color-surface-raised: #fffdf8;
 
   /* --- Ink -------------------------------------------------------------- */
-  --color-ink: #1a1915;
-  --color-ink-muted: #56534a;
-  --color-ink-subtle: #837e70;
+  --color-ink: #151923; /* 16.1:1 on ivory */
+  --color-ink-muted: #454a57; /* 8.1:1 */
+  --color-ink-subtle: #5e6371; /* 5.5:1, 5.0:1 on sunken */
+  --color-ink-inverse: #f7f5ef;
+  /* On the ink ground (footer, dark bands): 10.0:1, 7.0:1 and 7.6:1. */
+  --color-ink-inverse-muted: #c9c6bc;
+  --color-ink-inverse-subtle: #a9a69c;
+  --color-accent-on-ink: #8fa6ff;
+  --color-rule-on-ink: #3a3f4b;
 
   /* --- Lines ------------------------------------------------------------ */
-  --color-line: #e6e1d6;
-  --color-line-strong: #cec6b4;
+  --color-line: #dad6cb; /* decorative hairlines only: 1.3:1 */
+  --color-line-strong: #8c897f; /* control borders: 3.2:1 */
+  --color-control: #8c897f;
 
-  /* --- Accent: a deep, unsaturated academic blue ------------------------ */
-  --color-accent: #14506a;
-  --color-accent-strong: #0e3a4e;
-  --color-accent-soft: #e7f0f4;
-  --color-accent-line: #b9d2dd;
+  /* --- Action: electric blue -------------------------------------------- */
+  --color-accent: #3155e7; /* 5.4:1 on ivory; white on it 5.9:1 */
+  --color-accent-strong: #2443c4; /* hover and pressed; white on it 7.9:1 */
+  --color-accent-ink: #1f3bb3; /* text on accent-soft: 7.6:1 */
+  --color-accent-soft: #e7ecfd;
+  --color-accent-line: #b7c4f7;
   --color-accent-contrast: #ffffff;
 
+  /* --- Highlighter: emphasis with ink text, never a signal alone -------- */
+  --color-highlight: #e5f58a;
+
   /* --- Semantic --------------------------------------------------------- */
-  --color-positive: #1b6244;
-  --color-positive-soft: #e6f2ec;
-  --color-positive-line: #b4d8c6;
-  --color-negative: #8f2f28;
-  --color-negative-soft: #fbeae8;
-  --color-negative-line: #e8c0ba;
-  --color-caution: #7a5407;
-  --color-caution-soft: #fbf2de;
-  --color-caution-line: #e3cd95;
+  --color-positive: #1d7349; /* 5.4:1; 5.1:1 on its soft fill */
+  --color-positive-soft: #e4f2ea;
+  --color-positive-line: #a9d3bc;
+  --color-negative: #b42318; /* 6.0:1; 5.7:1 on its soft fill */
+  --color-negative-soft: #fcebe8;
+  --color-negative-line: #edb8b1;
+  --color-caution: #7a4f00; /* 6.3:1 on its soft fill */
+  --color-caution-soft: #fbf0d3;
+  --color-caution-line: #e3c98a;
 
   /* --- Shape and depth -------------------------------------------------- */
-  --radius-card: 0.625rem;
+  /* Editorial surfaces are nearly square; things you touch are rounder. */
+  --radius-card: 0.25rem;
   --radius-sm: 0.375rem;
+  --radius-control: 0.625rem;
 
-  /*
-   * Elevation is deliberately faint. On paper-coloured surfaces a heavy shadow
-   * reads as a UI chrome artefact; these are closer to a printed card's edge.
-   */
-  --shadow-card: 0 1px 2px rgb(26 25 21 / 0.04), 0 1px 1px rgb(26 25 21 / 0.03);
-  --shadow-raised: 0 2px 4px rgb(26 25 21 / 0.05), 0 4px 12px rgb(26 25 21 / 0.05);
+  --shadow-card: 0 1px 0 rgb(21 25 35 / 0.04);
+  --shadow-raised: 0 1px 2px rgb(21 25 35 / 0.06), 0 10px 28px -14px rgb(21 25 35 / 0.22);
+  /* Reserved for the homepage sample card: one per page, at most. */
+  --shadow-offset: 8px 8px 0 #151923;
 }
 
 @layer base {
@@ -87,6 +106,8 @@
   html {
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
+    /* The header is sticky: keep focused elements and anchor targets clear of it. */
+    scroll-padding-top: 5rem;
   }
 
   body {
@@ -94,7 +115,7 @@
     color: var(--color-ink);
     font-family: var(--font-sans);
     font-size: var(--text-base);
-    line-height: 1.65;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-variant-numeric: normal;
@@ -104,12 +125,12 @@
   h2,
   h3,
   h4 {
-    font-family: var(--font-serif);
+    font-family: var(--font-heading);
     color: var(--color-ink);
     text-wrap: balance;
-    line-height: 1.2;
-    letter-spacing: -0.011em;
-    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-weight: 700;
   }
 
   p {
@@ -131,7 +152,7 @@
     color: var(--color-accent);
     text-decoration-color: var(--color-accent-line);
     text-underline-offset: 0.18em;
-    text-decoration-thickness: 1px;
+    text-decoration-thickness: 1.5px;
     transition: color 120ms ease, text-decoration-color 120ms ease;
   }
 
@@ -141,8 +162,8 @@
   }
 
   ::selection {
-    background: var(--color-accent-soft);
-    color: var(--color-accent-strong);
+    background: var(--color-highlight);
+    color: var(--color-ink);
   }
 
   [hidden] {
@@ -164,6 +185,56 @@
 }
 
 @layer components {
+  /* --- Marketing display type ---------------------------------------------
+   * Oversized headings for public, editorial pages only. Never used inside
+   * practice, results or any page a learner reads for long.
+   */
+  .display-xl {
+    font-family: var(--font-heading);
+    /* Capped so "Big ambitions." holds one line in the hero's seven columns. */
+    font-size: clamp(3rem, 1.2rem + 5.4vw, 5.75rem);
+    line-height: 0.92;
+    font-weight: 750;
+    letter-spacing: -0.05em;
+  }
+  .display-l {
+    font-family: var(--font-heading);
+    font-size: clamp(2.25rem, 1.35rem + 3.2vw, 4rem);
+    line-height: 0.98;
+    font-weight: 730;
+    letter-spacing: -0.04em;
+  }
+  /*
+   * Instrument Serif italic, for a few words inside a display heading. The
+   * variable is set on the page that loads the face, not on :root, so it has to
+   * be resolved here: a :root token built from it would already have failed.
+   */
+  .accent-italic {
+    font-family: var(--font-instrument, Georgia), Georgia, Cambria, serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  /* A highlighter stroke behind a word. Decoration: the words carry the meaning. */
+  .highlight {
+    background-image: linear-gradient(
+      transparent 56%,
+      var(--color-highlight) 56%,
+      var(--color-highlight) 92%,
+      transparent 92%
+    );
+    padding-inline: 0.05em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+  .eyebrow {
+    font-size: var(--text-xs);
+    font-weight: 650;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ink-muted);
+  }
+
   /* --- Long-form editorial content -------------------------------------- */
   .prose-academic {
     color: var(--color-ink);
@@ -263,7 +334,7 @@
     margin-block-end: 0;
   }
 
-  /* Passages are read at length: give them a comfortable measure. */
+  /* Passages are read at length: the reading serif and a comfortable measure. */
   .passage-body {
     font-family: var(--font-serif);
     font-size: var(--text-base);
@@ -277,11 +348,11 @@
     inset-inline-start: -9999px;
     top: 0;
     z-index: 100;
-    background: var(--color-accent);
-    color: var(--color-accent-contrast);
+    background: var(--color-ink);
+    color: var(--color-ink-inverse);
     padding: 0.75rem 1rem;
-    border-radius: 0 0 var(--radius-card) 0;
-    font-weight: 500;
+    border-radius: 0 0 var(--radius-control) 0;
+    font-weight: 600;
   }
   .skip-link:focus {
     inset-inline-start: 0;
