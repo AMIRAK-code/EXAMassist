@@ -18,10 +18,14 @@
 
 @theme {
   /* --- Type ------------------------------------------------------------- */
-  /* Headings and interface: Bricolage Grotesque, self-hosted (src/app/_fonts). */
-  --font-sans:
-    var(--font-bricolage), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
-    Arial, sans-serif;
+  /*
+   * Headings and interface: Bricolage Grotesque, self-hosted (src/app/_fonts).
+   * The fallback, shown only until the font arrives, is Arial on purpose: the
+   * first layout of a slow first visit runs on it, and a system-UI stack loads
+   * one file per weight (Segoe UI ships six), which measured as the largest
+   * part of the Phase 2 slowdown on phones. See docs/REDESIGN.md §12.
+   */
+  --font-sans: var(--font-bricolage), Arial, sans-serif;
   --font-heading: var(--font-sans);
   /* Long passages: the system reading serif. No download. */
   --font-serif: ui-serif, Charter, 'Iowan Old Style', 'Palatino Linotype', Georgia, Cambria, serif;

@@ -1,6 +1,6 @@
 {
   "id": "bocconi-ug-logexp-difference-041",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-undergraduate",
   "sectionKey": "online-test",
   "domainSlug": "bocconi-ug-mathematics",
@@ -37,7 +37,7 @@
     "type": "single_select",
     "optionId": "d"
   },
-  "explanationMd": "The relevant identity is the **quotient rule** for logarithms with the same base:\n\n$$\\log_{b} M - \\log_{b} N = \\log_{b}\\!\\left(\\frac{M}{N}\\right)$$\n\n**Step 1 — apply it.**\n\n$$\\log_{2} 40 - \\log_{2} 5 = \\log_{2}\\!\\left(\\frac{40}{5}\\right) = \\log_{2} 8$$\n\n**Step 2 — evaluate.** $\\log_{2} 8$ asks: to what power must 2 be raised to give 8? Since $2^{3} = 8$,\n\n$$\\log_{2} 8 = 3$$\n\n**How to check the answer.** Run the identity backwards. If the answer is 3, then $\\log_{2} 40$ should exceed $\\log_{2} 5$ by exactly 3, which means 40 should be $2^{3} = 8$ times 5. And indeed $5 \\times 8 = 40$. That one multiplication verifies the whole calculation.\n\nA second check uses the bracketing you can do in your head: $\\log_{2} 32 = 5$ and $\\log_{2} 64 = 6$, so $\\log_{2} 40$ lies between 5 and 6; $\\log_{2} 4 = 2$ and $\\log_{2} 8 = 3$, so $\\log_{2} 5$ lies between 2 and 3. The difference must therefore lie between $5 - 3 = 2$ and $6 - 2 = 4$. Only one option is a number in that range, and 8 is far outside it.\n\n**Why it matters.** Subtraction of logs becomes division of arguments, never subtraction of arguments and never division of logs. Those are the two errors the remaining options are built on.",
+  "explanationMd": "The relevant identity is the **quotient rule** for logarithms with the same base:\n\n$$\\log_{b} M - \\log_{b} N = \\log_{b}\\!\\left(\\frac{M}{N}\\right)$$\n\n**Step 1 — apply it.**\n\n$$\\log_{2} 40 - \\log_{2} 5 = \\log_{2}\\!\\left(\\frac{40}{5}\\right) = \\log_{2} 8$$\n\n**Step 2 — evaluate.** $\\log_{2} 8$ asks: to what power must 2 be raised to give 8? Since $2^{3} = 8$,\n\n$$\\log_{2} 8 = 3$$\n\n**How to check the answer.** Run the identity backwards. If the answer is 3, then $\\log_{2} 40$ should exceed $\\log_{2} 5$ by exactly 3, which means 40 should be $2^{3} = 8$ times 5. And indeed $5 \\times 8 = 40$. That one multiplication verifies the whole calculation.\n\nA second check uses the bracketing you can do in your head: $\\log_{2} 32 = 5$ and $\\log_{2} 64 = 6$, so $\\log_{2} 40$ lies between 5 and 6; $\\log_{2} 4 = 2$ and $\\log_{2} 8 = 3$, so $\\log_{2} 5$ lies between 2 and 3. The difference must therefore lie between $5 - 3 = 2$ and $6 - 2 = 4$. Of the two plain-number options only 3 is in that range, and 8 is far outside it. Option C, about 2.29, also lies in the range, so the estimate cannot rule it out; the identity does.\n\n**Why it matters.** Subtraction of logs becomes division of arguments, never subtraction of arguments and never division of logs. Those two errors produce options A and C; option B stops at $40 \\div 5 = 8$ and never takes the logarithm.",
   "distractorRationale": {
     "a": "This subtracts the arguments instead of dividing them, writing $\\log_{2} 40 - \\log_{2} 5$ as $\\log_{2}(40 - 5)$. The quotient rule turns a difference of logarithms into the logarithm of a *quotient*. Numerically the two differ: $\\log_{2} 35$ is a little above 5, while the true value is 3.",
     "b": "This computes $40 \\div 5 = 8$ correctly but then stops, forgetting that the result is the *argument* of the logarithm, not its value. One further step is needed: $\\log_{2} 8 = 3$, because $2^{3} = 8$.",
@@ -55,16 +55,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-undergraduate-wave3-author",
-    "reviewer": "bocconi-undergraduate-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout-blind-solver-s6",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-undergraduate-wave3-reviewer",
+      "solvedBy": "closeout-blind-solver-s6",
       "solvedAnswer": "d",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "log2 40 - log2 5 = log2 (40/5) = log2 8 = 3. Option a applies subtraction to the arguments, c confuses the quotient rule with a ratio of logs, b is log2 of the quotient mis-evaluated."
+      "workingNotes": "log2 40 - log2 5 = log2(40/5) = log2 8 = 3, which is (d). (a) subtracts the arguments instead of dividing them. (b) gives the argument 8 rather than its logarithm. (c) confuses a difference of logs with a quotient of logs."
     },
-    "notes": "Author's uniqueness check: the expression has the single value 3. Numerically the four options are about 5.13, 3, 8 and 2.29, all distinct, so no second option is defensible and no two options are numerically equivalent. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author's uniqueness check: the expression has the single value 3. Numerically the four options are about 5.13, 3, 8 and 2.29, all distinct, so no second option is defensible and no two options are numerically equivalent. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): the closing line now matches the options: two of the distractors come from the named errors and B from stopping early; the estimate check claimed only one option lay between 2 and 4, but option C (about 2.29) does too; the sentence now says so. Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

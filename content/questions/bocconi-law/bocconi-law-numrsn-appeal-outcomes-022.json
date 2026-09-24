@@ -1,6 +1,6 @@
 {
   "id": "bocconi-law-numrsn-appeal-outcomes-022",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-law",
   "sectionKey": "online-test-law",
   "domainSlug": "law-numerical-reasoning",
@@ -37,9 +37,9 @@
     "type": "single_select",
     "optionId": "a"
   },
-  "explanationMd": "Check each statement against the columns it actually needs.\n\n**C — two independent claims, both true.** Read down the \"overturned in full\" column: Civil 90, Criminal 80, Labour 30, Tax 50. Civil's 90 is the largest, so the first half holds. For the second half, Tax overturned 50 of the 200 appeals it decided, and $\\frac{50}{200} = \\frac{1}{4}$. Both halves hold, so C is supported.\n\n**A — a share, so the counts must be divided by the section's own total.** Labour overturned $60 + 30 = 90$ of 300, which is $\\frac{90}{300} = 30\\%$. Criminal overturned $120 + 80 = 200$ of 400, which is $50\\%$. Labour's share is the smaller, so the statement is reversed.\n\n**B — two claims, and the second fails.** Tax did decide the fewest appeals, 200. But it upheld only 80 and overturned $70 + 50 = 120$, so it overturned more than it upheld.\n\n**D — one counter-example is enough.** Tax upheld 80 of 200, which is $40\\%$, below half. The statement fails on the Tax row.\n\n**How to check.** Every share in this table is a round percentage, so verify by rebuilding the row rather than re-dividing: Tax's 200 appeals split 80 / 70 / 50, which is $40\\% / 35\\% / 25\\%$ and adds to 100%. That single line confirms both the quarter in C and the failure of B and D at once.",
+  "explanationMd": "Check each statement against the columns it actually needs.\n\n**A — two independent claims, both true.** Read down the \"overturned in full\" column: Civil 90, Criminal 80, Labour 30, Tax 50. Civil's 90 is the largest, so the first half holds. For the second half, Tax overturned 50 of the 200 appeals it decided, and $\\frac{50}{200} = \\frac{1}{4}$. Both halves hold, so A is supported.\n\n**D — a share, so the counts must be divided by the section's own total.** Labour overturned $60 + 30 = 90$ of 300, which is $\\frac{90}{300} = 30\\%$. Criminal overturned $120 + 80 = 200$ of 400, which is $50\\%$. Labour's share is the smaller, so the statement is reversed.\n\n**C — two claims, and the second fails.** Tax did decide the fewest appeals, 200. But it upheld only 80 and overturned $70 + 50 = 120$, so it overturned more than it upheld.\n\n**B — one counter-example is enough.** Tax upheld 80 of 200, which is $40\\%$, below half. The statement fails on the Tax row.\n\n**How to check.** Every share in this table is a round percentage, so verify by rebuilding the row rather than re-dividing: Tax's 200 appeals split 80 / 70 / 50, which is $40\\% / 35\\% / 25\\%$ and adds to 100%. That single line confirms both the quarter in A and the failure of C and B at once.",
   "distractorRationale": {
-    "d": "Compares the raw counts of overturned appeals — Labour's 90 against Criminal's 200 would be the right comparison for a question about numbers — and then attaches the word 'share' to it. Divided by each section's own total the order reverses: 30% for Labour against 50% for Criminal.",
+    "d": "Labour does lead on one share: it upheld 210 of its 300 appeals, 70%, against Criminal's 200 of 400, 50%. Reading that column instead of the two overturned columns produces this option. The overturned shares run the other way: 90 of 300, 30%, for Labour against 200 of 400, 50%, for Criminal.",
     "c": "The first half is correct, and the temptation is to stop there. Tax upheld 80 but overturned 70 in part and 50 in full, which is 120 in all, so it overturned more than it upheld. A compound statement is supported only if every part of it is.",
     "b": "True for Civil (360 of 600) and Labour (210 of 300), and exactly half for Criminal (200 of 400), which is why it looks safe. Tax breaks it: 80 of 200 is 40%. A claim about every row needs all four rows checked."
   },
@@ -58,16 +58,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-law-topup-author",
-    "reviewer": "bocconi-law-round2-reviewer",
-    "reviewedOn": "2026-09-22",
+    "reviewer": "closeout-blind-solver-s1",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-law-round2-reviewer",
+      "solvedBy": "closeout-blind-solver-s1",
       "solvedAnswer": "a",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Civil overturned 90 in full vs 80 (Criminal), 30 (Labour), 50 (Tax), and Tax's 50 of 200 decided is exactly a quarter. (a) fails: Labour 90/300=30% vs Criminal 200/400=50%; (b) fails: Tax upheld 80 but overturned 120; (d) fails on Tax, 80/200=40% (Criminal's 200/400 does satisfy 'at least half')."
+      "workingNotes": "Civil overturned 90 in full, more than Criminal 80, Labour 30, Tax 50; and Tax's 50 of 200 is exactly a quarter, so (a) holds. (b) fails since Tax upheld only 80 of 200 (40%); (c) fails because Tax upheld 80 but overturned 120 (70 in part + 50 in full); (d) fails because Labour overturned 90/300 = 30% versus Criminal 200/400 = 50%."
     },
-    "notes": "Author verified each statement: A reverses the shares (30% Labour against 50% Criminal), B fails on its second half (Tax upheld 80, overturned 120), D fails on the Tax row (40%), and both halves of C hold (Civil 90 is the largest in-full figure; Tax 50 of 200 is a quarter). Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author verified each statement: A reverses the shares (30% Labour against 50% Criminal), B fails on its second half (Tax upheld 80, overturned 120), D fails on the Tax row (40%), and both halves of C hold (Civil 90 is the largest in-full figure; Tax 50 of 200 is a quarter). Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): the note on option D described an error (comparing raw counts) that does not lead to D; it now names the column that does; corrected 7 option references in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

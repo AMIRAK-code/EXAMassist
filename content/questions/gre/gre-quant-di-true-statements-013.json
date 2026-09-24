@@ -1,6 +1,6 @@
 {
   "id": "gre-quant-di-true-statements-013",
-  "version": 1,
+  "version": 2,
   "examKey": "gre",
   "sectionKey": "quant-1",
   "domainSlug": "quant-data-analysis",
@@ -46,7 +46,7 @@
     ],
     "grading": "exact"
   },
-  "explanationMd": "Work out the yearly totals once, then test each statement against the chart. The totals are\n\n$$2022:\\; 48 + 32 + 12 + 28 = 120, \\qquad 2023:\\; 45 + 30 + 18 + 42 = 135, \\qquad 2024:\\; 42 + 27 + 27 + 54 = 150.$$\n\n**(A) True.** $120 < 135 < 150$, so the total rose in both year-to-year steps.\n\n**(B) False.** Print fiction went from $48$ to $42$, a fall of $6$. As a percent of the starting value that is $6/48 = 0.125 = 12.5\\%$, which is *less* than $15$ percent, not more.\n\n**(C) True.** In $2024$ both audiobooks and print nonfiction stand at $27$ thousand.\n\n**(D) False.** In $2023$, digital titles were $42$, while audiobooks plus print nonfiction were $18 + 30 = 48$. Since $42 < 48$, digital did not exceed the pair.\n\n**(E) False.** Print nonfiction fell from $32$ to $30$, a drop of $2$, and then from $30$ to $27$, a drop of $3$. The drops are not equal.\n\nThe correct selection is **A and C**.\n\n**How to check.** Each statement is a separate true-or-false question, and because the item is scored all-or-nothing, a single misread sinks the whole point. Compute the three totals before you start, write them down, and then read each statement twice: once to see which years it names and once to see which categories.",
+  "explanationMd": "Work out the yearly totals once, then test each statement against the chart. The totals are\n\n$$2022:\\; 48 + 32 + 12 + 28 = 120, \\qquad 2023:\\; 45 + 30 + 18 + 42 = 135, \\qquad 2024:\\; 42 + 27 + 27 + 54 = 150.$$\n\n**(C) True.** $120 < 135 < 150$, so the total rose in both year-to-year steps.\n\n**(A) False.** Print fiction went from $48$ to $42$, a fall of $6$. As a percent of the starting value that is $6/48 = 0.125 = 12.5\\%$, which is *less* than $15$ percent, not more.\n\n**(D) True.** In $2024$ both audiobooks and print nonfiction stand at $27$ thousand.\n\n**(E) False.** In $2023$, digital titles were $42$, while audiobooks plus print nonfiction were $18 + 30 = 48$. Since $42 < 48$, digital did not exceed the pair.\n\n**(B) False.** Print nonfiction fell from $32$ to $30$, a drop of $2$, and then from $30$ to $27$, a drop of $3$. The drops are not equal.\n\nThe correct selection is **C and D**.\n\n**How to check.** Each statement is a separate true-or-false question, and because the item is scored all-or-nothing, a single misread sinks the whole point. Compute the three totals before you start, write them down, and then read each statement twice: once to see which years it names and once to see which categories.",
   "distractorRationale": {
     "a": "Selected by comparing the raw drop of $6$ against the threshold, or by dividing by the wrong base: $6/42 \\approx 14.3\\%$ and $6/48 = 12.5\\%$ are both under $15$ percent, but a hurried reader who sees fiction falling in both years may assume the decline must be large. Percent change is computed against the starting value, and here it is only $12.5$ percent.",
     "e": "Selected by comparing the $2023$ digital figure of $42$ against just one of the two categories named — it does exceed audiobooks ($18$) and it does exceed print nonfiction ($30$) individually, but the statement asks about their combined total of $48$, which is larger. Read the statement to the end before judging it.",
@@ -67,16 +67,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "gre-author",
-    "reviewer": "gre-independent-reviewer",
-    "reviewedOn": "2026-09-22",
+    "reviewer": "closeout-blind-solver-s7",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "gre-independent-reviewer",
+      "solvedBy": "closeout-blind-solver-s7",
       "solvedAnswer": "c,d",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Totals 120/135/150 so (a) true; fiction fell 6/48 = 12.5 percent so (b) false; 2024 audiobooks 27 = nonfiction 27 so (c) true; 2023 digital 42 < 18+30 = 48 so (d) false; nonfiction fell 2 then 3 so (e) false."
+      "workingNotes": "Totals are 120 (2022), 135 (2023), 150 (2024), so (c) is true. (d) is true because both 2024 figures are 27. (a) is false: fiction fell 6/48 = 12.5%, not more than 15%. (b) is false: nonfiction fell by 2 and then by 3. (e) is false: in 2023, digital 42 < audiobooks + nonfiction 18 + 30 = 48."
     },
-    "notes": "Author evaluated all five statements arithmetically against the stimulus data; only A and C hold. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author evaluated all five statements arithmetically against the stimulus data; only A and C hold. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 6 option references in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

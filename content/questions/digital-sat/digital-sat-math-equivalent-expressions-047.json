@@ -1,6 +1,6 @@
 {
   "id": "digital-sat-math-equivalent-expressions-047",
-  "version": 1,
+  "version": 2,
   "examKey": "digital-sat",
   "sectionKey": "math-module-1",
   "domainSlug": "advanced-math",
@@ -37,10 +37,10 @@
     "type": "single_select",
     "optionId": "a"
   },
-  "explanationMd": "Multiply every term of the first factor by every term of the second, keeping the signs attached to the numbers they belong to.\n\n$$(3x)(2x) = 6x^2$$\n$$(3x)(-7) = -21x$$\n$$(5)(2x) = 10x$$\n$$(5)(-7) = -35$$\n\nNow combine the two middle terms:\n\n$$-21x + 10x = -11x$$\n\nSo $(3x + 5)(2x - 7) = 6x^2 - 11x - 35$, which is Choice D.\n\nTwo checks are worth building into your routine. First, the constant term of a product is always the product of the two constants: $5 \\times (-7) = -35$, so any option ending in $+35$ can be dismissed on sight. Second, substitute a convenient number. At $x = 1$ the original expression is $(3 + 5)(2 - 7) = 8 \\times (-5) = -40$, and Choice D gives $6 - 11 - 35 = -40$. A single substitution separates the correct expansion from all three distractors here.",
+  "explanationMd": "Multiply every term of the first factor by every term of the second, keeping the signs attached to the numbers they belong to.\n\n$$(3x)(2x) = 6x^2$$\n$$(3x)(-7) = -21x$$\n$$(5)(2x) = 10x$$\n$$(5)(-7) = -35$$\n\nNow combine the two middle terms:\n\n$$-21x + 10x = -11x$$\n\nSo $(3x + 5)(2x - 7) = 6x^2 - 11x - 35$, which is Choice A.\n\nTwo checks are worth building into your routine. First, the constant term of a product is always the product of the two constants: $5 \\times (-7) = -35$, so any option ending in $+35$ can be dismissed on sight. Second, substitute a convenient number. At $x = 1$ the original expression is $(3 + 5)(2 - 7) = 8 \\times (-5) = -40$, and Choice A gives $6 - 11 - 35 = -40$. A single substitution separates the correct expansion from all three distractors here.",
   "distractorRationale": {
     "d": "This multiplies only the first terms and the last terms, dropping the two cross products $(3x)(-7)$ and $(5)(2x)$ entirely. At $x = 1$ it gives $-29$ rather than $-40$.",
-    "c": "This adds the cross products as if both were positive: $21x + 10x$ instead of $-21x + 10x$. The $-7$ must keep its sign through the multiplication.",
+    "c": "This reverses the signs of both cross products, $+21x - 10x = +11x$ instead of $-21x + 10x = -11x$: it is the expansion of $(3x - 5)(2x + 7)$. The $-7$ must keep its sign through the multiplication.",
     "b": "This gets the middle term right but multiplies the constants as if both were positive, giving $+35$ instead of $5 \\times (-7) = -35$."
   },
   "estimatedSeconds": 60,
@@ -55,16 +55,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "digital-sat-wave3-author",
-    "reviewer": "digital-sat-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout-blind-solver-s5",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "digital-sat-wave3-reviewer",
+      "solvedBy": "closeout-blind-solver-s5",
       "solvedAnswer": "a",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "(3x+5)(2x-7) = 6x^2 - 21x + 10x - 35 = 6x^2 - 11x - 35."
+      "workingNotes": "FOIL: 6x^2 - 21x + 10x - 35 = 6x^2 - 11x - 35, which is (a). (b) has the wrong sign on the constant (5 times -7 is -35), (c) has the wrong sign on the x-term, and (d) leaves out the cross terms entirely."
     },
-    "notes": "Author solved and checked uniqueness: expansion gives 6x^2 - 21x + 10x - 35 = 6x^2 - 11x - 35. Verified by substitution at x = 1 (original -40; A -29, B -18, C 30, D -40). Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author solved and checked uniqueness: expansion gives 6x^2 - 21x + 10x - 35 = 6x^2 - 11x - 35. Verified by substitution at x = 1 (original -40; A -29, B -18, C 30, D -40). Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): the note on option C described an error that gives +31x; it now describes the sign reversal that gives +11x; corrected 2 option references in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

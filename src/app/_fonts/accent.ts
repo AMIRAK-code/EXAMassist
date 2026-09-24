@@ -6,6 +6,9 @@ import localFont from 'next/font/local';
  *
  * Kept in its own module so only the pages that import it preload it: a page
  * of exam content never pays for a display italic it does not use.
+ *
+ * No metric-adjusted `local()` fallback face, for the reason given in sans.ts:
+ * Chrome rebuilds such a face for every size it is used at.
  */
 export const accent = localFont({
   src: [{ path: './instrument-serif-latin-400-italic.woff2', weight: '400', style: 'italic' }],
@@ -13,5 +16,5 @@ export const accent = localFont({
   display: 'swap',
   preload: true,
   fallback: ['Georgia', 'Cambria', 'serif'],
-  adjustFontFallback: 'Times New Roman',
+  adjustFontFallback: false,
 });

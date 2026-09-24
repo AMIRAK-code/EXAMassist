@@ -1,6 +1,6 @@
 {
   "id": "bocconi-law-verbal-gazette-conclusion-017",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-law",
   "sectionKey": "online-test-law",
   "domainSlug": "law-verbal-reasoning",
@@ -37,7 +37,7 @@
     "type": "single_select",
     "optionId": "d"
   },
-  "explanationMd": "The first premise is a rule with a sharp shape: *enacted this session* $\\Rightarrow$ *published within thirty days of enactment*. The contrapositive is just as strong: anything not published within thirty days of its enactment was not enacted this session.\n\nThe trap is in the second premise. It does not say the rule went unpublished within thirty days of **enactment**; it says within thirty days of **the date it bears**. Those coincide only if the date a document bears is its date of enactment — and nothing in the premises says so.\n\nSo there are exactly two ways the second premise can be true while the first holds:\n\n- the rule was not enacted by the assembly this session, so the rule in premise 1 never applied to it; or\n- it was enacted this session, was published within thirty days of enactment, and the date it bears is simply not its enactment date.\n\nThe premises do not tell you which. What they do establish is that at least one of the two holds — the disjunction in option A.\n\n**How to check.** Write out one world for each branch and confirm both premises are true in each. Branch one: the rule came from a different body. Branch two: enacted on 1 March, published on 10 March, but bearing the date 1 January. Both worlds obey both premises, so any option that picks a single branch is too strong; only the statement covering both survives.",
+  "explanationMd": "The first premise is a rule with a sharp shape: *enacted this session* $\\Rightarrow$ *published within thirty days of enactment*. The contrapositive is just as strong: anything not published within thirty days of its enactment was not enacted this session.\n\nThe trap is in the second premise. It does not say the rule went unpublished within thirty days of **enactment**; it says within thirty days of **the date it bears**. Those coincide only if the date a document bears is its date of enactment — and nothing in the premises says so.\n\nSo there are exactly two ways the second premise can be true while the first holds:\n\n- the rule was not enacted by the assembly this session, so the rule in premise 1 never applied to it; or\n- it was enacted this session, was published within thirty days of enactment, and the date it bears is simply not its enactment date.\n\nThe premises do not tell you which. What they do establish is that at least one of the two holds — the disjunction in option D.\n\n**How to check.** Write out one world for each branch and confirm both premises are true in each. Branch one: the rule came from a different body. Branch two: enacted on 1 March, published on 10 March, but bearing the date 1 January. Both worlds obey both premises, so any option that picks a single branch is too strong; only the statement covering both survives.",
   "distractorRationale": {
     "c": "Picks one branch of the disjunction and asserts it alone. It is refuted by the world in which the rule was enacted on 1 March, published on 10 March and bears the date 1 January — both premises hold and the assembly did enact it. The error is treating the date a document bears as necessarily its enactment date.",
     "a": "Contradicts the first premise, which says every measure enacted this session was published in time. It comes from reading the second premise as a failure by the gazette rather than as a mismatch between two dates.",
@@ -55,16 +55,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-law-topup-author",
-    "reviewer": "bocconi-law-round2-reviewer",
-    "reviewedOn": "2026-09-22",
+    "reviewer": "closeout-blind-solver-s2",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-law-round2-reviewer",
+      "solvedBy": "closeout-blind-solver-s2",
       "solvedAnswer": "d",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Premise 1 keys the 30 days to the date of enactment while premise 2 keys them to the date the rule bears, so all that follows is the denial of the conjunction: either it was not enacted this session or the borne date is not the enactment date. (b) is the trap that silently equates the two dates, (c) contradicts premise 1, (d) goes beyond the 30-day window."
+      "workingNotes": "If the rule had been enacted in the present session and the date it bears were its enactment date, the first premise would put its publication within thirty days of that date, contradicting the second premise. So one of those two conditions fails, which is (d). (c) goes too far, because the date may simply differ from the enactment date. (a) contradicts the first premise. (b) is unsupported, since the rule may have been published later."
     },
-    "notes": "Author verified that the two premises leave exactly two open branches, that each of B, C and D is falsified by a world satisfying both premises, and that only the disjunction in A survives every such world. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author verified that the two premises leave exactly two open branches, that each of B, C and D is falsified by a world satisfying both premises, and that only the disjunction in A survives every such world. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 1 option reference in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

@@ -1,6 +1,6 @@
 {
   "id": "bocconi-ug-alg-power-quotient-030",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-undergraduate",
   "sectionKey": "online-test",
   "domainSlug": "bocconi-ug-mathematics",
@@ -37,7 +37,7 @@
     "type": "single_select",
     "optionId": "c"
   },
-  "explanationMd": "Work outwards from the bracket, then multiply, then divide.\n\n**Step 1 — clear the power of a product.** Every factor inside the bracket is raised to the power 2, the coefficient included:\n\n$$(2a^{3}b)^{2} = 2^{2} \\cdot a^{3 \\times 2} \\cdot b^{2} = 4a^{6}b^{2}$$\n\n**Step 2 — multiply the numerator.** Coefficients multiply, exponents of like bases add:\n\n$$4a^{6}b^{2} \\cdot 3ab^{4} = 12\\,a^{6+1}\\,b^{2+4} = 12a^{7}b^{6}$$\n\n**Step 3 — divide.** Coefficients divide, exponents of like bases subtract:\n\n$$\\frac{12a^{7}b^{6}}{6a^{4}b^{3}} = \\frac{12}{6}\\,a^{7-4}\\,b^{6-3} = 2a^{3}b^{3}$$\n\n**How to check it.** Substitute easy numbers. With $a = 1$ and $b = 2$ the original expression is\n\n$$\\frac{(2 \\cdot 1 \\cdot 2)^{2} \\cdot 3 \\cdot 1 \\cdot 16}{6 \\cdot 1 \\cdot 8} = \\frac{16 \\cdot 48}{48} = 16$$\n\nand $2a^{3}b^{3} = 2 \\cdot 1 \\cdot 8 = 16$. The two agree, and none of the other three options gives 16 at $a=1$, $b=2$: they give 8, 16... check the second carefully, $2a^{2}b^{3} = 2 \\cdot 1 \\cdot 8 = 16$ as well, because $a = 1$ hides any difference in the exponent of $a$. That is the lesson of the check: never test with $a = 1$ alone. Take $a = 2$, $b = 1$ instead and the original gives $\\frac{(2 \\cdot 8)^{2} \\cdot 6}{6 \\cdot 16} = \\frac{256 \\cdot 6}{96} = 16$, while $2a^{3}b^{3} = 16$ and $2a^{2}b^{3} = 8$. Use at least two substitutions, and avoid 0 and 1.",
+  "explanationMd": "Work outwards from the bracket, then multiply, then divide.\n\n**Step 1 — clear the power of a product.** Every factor inside the bracket is raised to the power 2, the coefficient included:\n\n$$(2a^{3}b)^{2} = 2^{2} \\cdot a^{3 \\times 2} \\cdot b^{2} = 4a^{6}b^{2}$$\n\n**Step 2 — multiply the numerator.** Coefficients multiply, exponents of like bases add:\n\n$$4a^{6}b^{2} \\cdot 3ab^{4} = 12\\,a^{6+1}\\,b^{2+4} = 12a^{7}b^{6}$$\n\n**Step 3 — divide.** Coefficients divide, exponents of like bases subtract:\n\n$$\\frac{12a^{7}b^{6}}{6a^{4}b^{3}} = \\frac{12}{6}\\,a^{7-4}\\,b^{6-3} = 2a^{3}b^{3}$$\n\n**How to check it.** Substitute easy numbers. With $a = 1$ and $b = 2$ the original expression is\n\n$$\\frac{(2 \\cdot 1 \\cdot 2)^{2} \\cdot 3 \\cdot 1 \\cdot 16}{6 \\cdot 1 \\cdot 8} = \\frac{16 \\cdot 48}{48} = 16$$\n\nand $2a^{3}b^{3} = 2 \\cdot 1 \\cdot 8 = 16$. The two agree. Of the other options, A gives 8 and B gives 128 at $a=1$, $b=2$, but check choice D carefully: $2a^{2}b^{3} = 2 \\cdot 1 \\cdot 8 = 16$ as well, because $a = 1$ hides any difference in the exponent of $a$. That is the lesson of the check: never test with $a = 1$ alone. Take $a = 2$, $b = 1$ instead and the original gives $\\frac{(2 \\cdot 8)^{2} \\cdot 6}{6 \\cdot 16} = \\frac{256 \\cdot 6}{96} = 16$, while $2a^{3}b^{3} = 16$ and $2a^{2}b^{3} = 8$. Use at least two substitutions, and avoid 0 and 1.",
   "distractorRationale": {
     "a": "This drops the squaring of the coefficient: it treats $(2a^{3}b)^{2}$ as $2a^{6}b^{2}$, squaring only the letters. The numerator then comes to $6a^{7}b^{6}$ and the quotient to $a^{3}b^{3}$. A power outside a bracket applies to every factor inside it, so the 2 must be squared as well.",
     "d": "This comes from adding the outer exponent to the inner one instead of multiplying them, writing $(a^{3})^{2} = a^{3+2} = a^{5}$. The numerator then reads $12a^{6}b^{6}$ and the quotient loses one power of $a$. The rule for a power of a power is $\\left(a^{m}\\right)^{n} = a^{mn}$, so $(a^{3})^{2} = a^{6}$.",
@@ -55,16 +55,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-undergraduate-wave3-author",
-    "reviewer": "bocconi-undergraduate-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout-blind-solver-s6",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-undergraduate-wave3-reviewer",
+      "solvedBy": "closeout-blind-solver-s6",
       "solvedAnswer": "c",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "(2a^3 b)^2 = 4a^6 b^2; times 3ab^4 gives 12a^7 b^6; divided by 6a^4 b^3 gives 2a^3 b^3. Only c matches; b forgets the division, d has the wrong a exponent, a drops the coefficient 2."
+      "workingNotes": "(2a^3b)^2 = 4a^6b^2; times 3ab^4 gives 12a^7b^6; divided by 6a^4b^3 gives 2a^3b^3, which is (c). (a) drops the coefficient 2, (b) is the numerator before dividing by a^4b^3 (with coefficient reduced), and (d) has the wrong exponent on a."
     },
-    "notes": "Author's uniqueness check: the expression has a single simplified form, 2a^3b^3. Option A differs in the coefficient, B in the exponent of a, D in both exponents, so no two options are equal for any admissible a and b. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author's uniqueness check: the expression has a single simplified form, 2a^3b^3. Option A differs in the coefficient, B in the exponent of a, D in both exponents, so no two options are equal for any admissible a and b. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): the substitution check now gives the right values for A (8) and B (128) instead of saying no other option gives 16; corrected 1 option reference in the explanation that still used the option order from before the options were reordered (wrong options were discussed under the wrong letters); the positional reference \"the second\" (now choice B) is replaced by the option it means, choice D. Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

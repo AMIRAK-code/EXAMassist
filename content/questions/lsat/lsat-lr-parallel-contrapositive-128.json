@@ -1,6 +1,6 @@
 {
   "id": "lsat-lr-parallel-contrapositive-128",
-  "version": 1,
+  "version": 2,
   "examKey": "lsat",
   "sectionKey": "lr1",
   "domainSlug": "logical-reasoning",
@@ -42,7 +42,7 @@
     "type": "single_select",
     "optionId": "c"
   },
-  "explanationMd": "Abstract the original before reading any choice. Let $A$ be \"proposal the board approved last year\" and $B$ be \"submitted before the March deadline\".\n\n- Premise: All $A$ are $B$.\n- Premise: the Fenwick proposal is not $B$.\n- Conclusion: the Fenwick proposal is not $A$.\n\nThat is a valid contrapositive: from $A \\rightarrow B$ and not-$B$, infer not-$A$. Three features have to be matched — a **universal** premise (not \"most\"), a premise **denying** the consequent about a particular case, and a conclusion **denying** the antecedent. A correct parallel answer matches the structure; the subject matter is irrelevant.\n\nChoice (C) matches all three. All choir members can read music ($A \\rightarrow B$); Priya cannot read music (not-$B$); therefore Priya is not a choir member (not-$A$). Same quantifier, same direction, same validity.\n\nThe efficient way to check parallel-reasoning answers is to abstract each choice the same way and compare the skeletons, not the stories.\n\n- (A): All $A$ are $B$; this thing is $B$; so it is $A$. That affirms the consequent — invalid, and the original is valid. A parallel answer must match on validity.\n- (B): No $A$ is $B$; this is $B$; so this is $A$. Also invalid, and it starts from a negative universal rather than a positive one.\n- (D): Two premises about a group yield a conclusion about the same group; there is no conditional applied to a particular case at all.\n- (E): \"Most\" instead of \"every\", and a hedged conclusion, \"probably\". A probabilistic argument cannot be parallel to a deductively valid one.\n\nA reliable habit: write each argument as letters before comparing, and treat quantifier words (*all*, *no*, *most*, *some*) and the valid/invalid verdict as the two things that must match exactly.",
+  "explanationMd": "Abstract the original before reading any choice. Let $A$ be \"proposal the board approved last year\" and $B$ be \"submitted before the March deadline\".\n\n- Premise: All $A$ are $B$.\n- Premise: the Fenwick proposal is not $B$.\n- Conclusion: the Fenwick proposal is not $A$.\n\nThat is a valid contrapositive: from $A \\rightarrow B$ and not-$B$, infer not-$A$. Three features have to be matched — a **universal** premise (not \"most\"), a premise **denying** the consequent about a particular case, and a conclusion **denying** the antecedent. A correct parallel answer matches the structure; the subject matter is irrelevant.\n\nChoice (C) matches all three. All choir members can read music ($A \\rightarrow B$); Priya cannot read music (not-$B$); therefore Priya is not a choir member (not-$A$). Same quantifier, same direction, same validity.\n\nThe efficient way to check parallel-reasoning answers is to abstract each choice the same way and compare the skeletons, not the stories.\n\n- (B): All $A$ are $B$; this thing is $B$; so it is $A$. That affirms the consequent — invalid, and the original is valid. A parallel answer must match on validity.\n- (D): No $A$ is $B$; this is $B$; so this is $A$. Also invalid, and it starts from a negative universal rather than a positive one.\n- (E): Two premises about a group yield a conclusion about the same group; there is no conditional applied to a particular case at all.\n- (A): \"Most\" instead of \"every\", and a hedged conclusion, \"probably\". A probabilistic argument cannot be parallel to a deductively valid one.\n\nA reliable habit: write each argument as letters before comparing, and treat quantifier words (*all*, *no*, *most*, *some*) and the valid/invalid verdict as the two things that must match exactly.",
   "distractorRationale": {
     "b": "This affirms the consequent: it moves from a universal premise and the fact that an item has the consequent property to the conclusion that it has the antecedent property. The original moves in the opposite and valid direction, from the denial of the consequent to the denial of the antecedent, so the two differ precisely on validity.",
     "d": "The premise here is a negative universal, 'no bridge built before 1950 carries heavy freight', and the conclusion asserts membership rather than denying it. From 'no A is B' and 'this is B' the only valid inference is that this is not A; concluding that it is A inverts the rule. Neither the quantifier nor the validity matches the original.",
@@ -61,16 +61,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "lsat-wave3-author",
-    "reviewer": "lsat-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout-blind-solver-s4",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "lsat-wave3-reviewer",
+      "solvedBy": "closeout-blind-solver-s4",
       "solvedAnswer": "c",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Form: all A are B; x is not B; so x is not A (valid contrapositive). (c) matches exactly — all choir members read music, Priya does not, so not a member. (a) weakens \"all\" to \"most\" and hedges with \"probably\"; (b) and (d) are invalid affirming-the-consequent/negation patterns; (e) is a different structure entirely."
+      "workingNotes": "Structure: all A are B; x is not B; so x is not A (valid contrapositive). (c) matches exactly: every choir member reads music, Priya does not, so she is not a member. (a) is probabilistic ('most'); (b) affirms the consequent; (d) draws the wrong conclusion from a 'no' statement (invalid); (e) has a different structure with no individual and no contrapositive."
     },
-    "notes": "Author abstracted all six arguments to letters and compared skeletons; only (C) matches the original on quantifier, direction and validity together. Care was taken that no distractor accidentally reproduces the contrapositive form, which is easy to do when writing this item type. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author abstracted all six arguments to letters and compared skeletons; only (C) matches the original on quantifier, direction and validity together. Care was taken that no distractor accidentally reproduces the contrapositive form, which is easy to do when writing this item type. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 4 option references in the explanation that still used the option order from before the options were reordered (wrong options were discussed under the wrong letters). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

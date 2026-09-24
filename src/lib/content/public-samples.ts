@@ -58,6 +58,15 @@ export const PUBLIC_SAMPLES: readonly PublicSample[] = [
     use: 'homepage-sample',
   },
   {
+    // Restored 24 September 2026: v2 corrects the option letters its
+    // explanation had kept from before the options were reordered, and passed
+    // a new blind solve and an option-reference check.
+    questionId: 'lsat-lr-compost-supported-127',
+    examKey: 'lsat',
+    hubSlug: 'lsat',
+    use: 'homepage-sample',
+  },
+  {
     questionId: 'digital-sat-rw-transitions-vanilla-010',
     examKey: 'digital-sat',
     hubSlug: 'digital-sat',
@@ -67,14 +76,9 @@ export const PUBLIC_SAMPLES: readonly PublicSample[] = [
 
 /**
  * Hubs with no public sample, and why. The homepage shows an honest empty
- * state for these rather than a question it cannot stand behind.
+ * state for these rather than a question it cannot stand behind. None today.
  */
-export const WITHHELD_SAMPLES: Readonly<Record<string, string>> = {
-  lsat:
-    'Every published LSAT explanation names option letters, and the options were reordered after ' +
-    'review without those letters being updated, so a sample would show the wrong letters. Withheld ' +
-    'until the explanations have a reviewed correction.',
-};
+export const WITHHELD_SAMPLES: Readonly<Record<string, string>> = {};
 
 export const PUBLIC_SAMPLE_IDS: ReadonlySet<string> = new Set(PUBLIC_SAMPLES.map((s) => s.questionId));
 

@@ -1,6 +1,6 @@
 {
   "id": "digital-sat-rw-evidence-quant-germination-007",
-  "version": 1,
+  "version": 2,
   "examKey": "digital-sat",
   "sectionKey": "rw-module-1",
   "domainSlug": "information-and-ideas",
@@ -37,7 +37,7 @@
     "type": "single_select",
     "optionId": "a"
   },
-  "explanationMd": "Turn the conclusion into a comparison before you look at the table. Berg is ranking two obstacles, so the supporting data must isolate one obstacle against the other.\n\nScarification removes the seed-coat barrier and nothing else: 48.0% emergence. Cold stratification removes the dormancy barrier and nothing else: 61.0% emergence. Removing dormancy alone produces the larger gain, so dormancy is the greater obstacle. That is choice C.\n\nCheck it by asking what each treatment controls for. Both rows start from the same untreated baseline of 17.0% and the same 200 seeds, so the only difference between them is which barrier was lifted — which is exactly what makes the comparison fair.",
+  "explanationMd": "Turn the conclusion into a comparison before you look at the table. Berg is ranking two obstacles, so the supporting data must isolate one obstacle against the other.\n\nScarification removes the seed-coat barrier and nothing else: 48.0% emergence. Cold stratification removes the dormancy barrier and nothing else: 61.0% emergence. Removing dormancy alone produces the larger gain, so dormancy is the greater obstacle. That is choice A.\n\nCheck it by asking what each treatment controls for. Both rows start from the same untreated baseline of 17.0% and the same 200 seeds, so the only difference between them is which barrier was lifted — which is exactly what makes the comparison fair.",
   "distractorRationale": {
     "d": "True but not relevant to the ranking. A low untreated baseline shows only that some treatment helps; it says nothing about which of the two barriers matters more, because no barrier was lifted in that row.",
     "c": "True but it compares the combined treatment with everything else. A row in which both barriers are removed at once cannot separate the effect of one barrier from the other, which is what the conclusion requires.",
@@ -58,16 +58,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "digital-sat-author",
-    "reviewer": "digital-sat-independent-reviewer",
-    "reviewedOn": "2026-09-22",
+    "reviewer": "closeout-blind-solver-s5",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "digital-sat-independent-reviewer",
+      "solvedBy": "closeout-blind-solver-s5",
       "solvedAnswer": "a",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Isolating each obstacle: cold stratification alone (removes chemical dormancy) gives 61.0% versus scarification alone (removes the coat barrier) at 48.0%, so the chemical obstacle is the larger one. A, B and D do not separate the two obstacles."
+      "workingNotes": "Removing chemical dormancy alone (cold stratification, 61%) helped more than removing the seed-coat barrier alone (scarification, 48%), so dormancy is the bigger obstacle, which is (a). (c) reports the combined treatment, which does not separate the two obstacles. (d) reports only the baseline. (b) is a design detail and not evidence."
     },
-    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 1 option reference in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

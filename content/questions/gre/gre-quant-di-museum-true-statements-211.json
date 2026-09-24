@@ -1,6 +1,6 @@
 {
   "id": "gre-quant-di-museum-true-statements-211",
-  "version": 1,
+  "version": 2,
   "examKey": "gre",
   "sectionKey": "quant-1",
   "domainSlug": "quant-data-analysis",
@@ -46,7 +46,7 @@
     ],
     "grading": "exact"
   },
-  "explanationMd": "Compute the five yearly totals once, write them down, and then test each statement against them. Doing the totals first turns five hard questions into five easy ones:\n\n$$2020:\\; 120 + 40 + 60 = 220, \\qquad 2021:\\; 150 + 50 + 66 = 266, \\qquad 2022:\\; 180 + 60 + 84 = 324,$$\n$$2023:\\; 198 + 72 + 90 = 360, \\qquad 2024:\\; 210 + 90 + 108 = 408.$$\n\n**(A) False.** Member tickets went from $60$ to $108$. Doubling would require $120$, and $108 < 120$, so the rise is a factor of $1.8$, not more than $2$.\n\n**(B) True.** $220 < 266 < 324 < 360 < 408$, so attendance rose at every step.\n\n**(C) False.** The year-over-year increases are $46$, $58$, $36$ and $48$. The largest is $58$, between $2021$ and $2022$, not the $48$ between $2023$ and $2024$.\n\n**(D) True.** Compare general admission with the other two added together: $120$ vs $100$; $150$ vs $116$; $180$ vs $144$; $198$ vs $162$; $210$ vs $198$. General admission wins in all five years, though only narrowly in $2024$.\n\n**(E) False.** In $2020$ the student share was $40/220 \\approx 18.2\\%$; in $2024$ it was $90/408 \\approx 22.1\\%$. The share rose rather than fell.\n\n**The correct selection is B and D.**\n\n**How to check.** Because the item is all-or-nothing, a single misread statement costs the whole point, so verify the two closest calls explicitly. For (A), test the doubling threshold by doubling the starting value ($60 \\times 2 = 120$) rather than by estimating a ratio. For (D), the tightest year is $2024$, so check that one first: $90 + 108 = 198$, and $210 > 198$, so the statement survives by $12$ thousand. A statement that is true in four years and false in one is false as written, and (D) was built to make you look.",
+  "explanationMd": "Compute the five yearly totals once, write them down, and then test each statement against them. Doing the totals first turns five hard questions into five easy ones:\n\n$$2020:\\; 120 + 40 + 60 = 220, \\qquad 2021:\\; 150 + 50 + 66 = 266, \\qquad 2022:\\; 180 + 60 + 84 = 324,$$\n$$2023:\\; 198 + 72 + 90 = 360, \\qquad 2024:\\; 210 + 90 + 108 = 408.$$\n\n**(C) False.** Member tickets went from $60$ to $108$. Doubling would require $120$, and $108 < 120$, so the rise is a factor of $1.8$, not more than $2$.\n\n**(D) True.** $220 < 266 < 324 < 360 < 408$, so attendance rose at every step.\n\n**(E) False.** The year-over-year increases are $46$, $58$, $36$ and $48$. The largest is $58$, between $2021$ and $2022$, not the $48$ between $2023$ and $2024$.\n\n**(A) True.** Compare general admission with the other two added together: $120$ vs $100$; $150$ vs $116$; $180$ vs $144$; $198$ vs $162$; $210$ vs $198$. General admission wins in all five years, though only narrowly in $2024$.\n\n**(B) False.** In $2020$ the student share was $40/220 \\approx 18.2\\%$; in $2024$ it was $90/408 \\approx 22.1\\%$. The share rose rather than fell.\n\n**The correct selection is D and A.**\n\n**How to check.** Because the item is all-or-nothing, a single misread statement costs the whole point, so verify the two closest calls explicitly. For (C), test the doubling threshold by doubling the starting value ($60 \\times 2 = 120$) rather than by estimating a ratio. For (A), the tightest year is $2024$, so check that one first: $90 + 108 = 198$, and $210 > 198$, so the statement survives by $12$ thousand. A statement that is true in four years and false in one is false as written, and (A) was built to make you look.",
   "distractorRationale": {
     "c": "Selected by seeing member tickets rise steeply and calling that \"more than doubled\" without testing the threshold. $60$ doubled is $120$, and the 2024 figure is $108$, so the rise falls short of doubling.",
     "e": "Selected by assuming the biggest jump must be the most recent one because the bars are tallest there. Absolute increases are $46$, $58$, $36$ and $48$; the largest is the 2021-to-2022 step, not the last one.",
@@ -67,16 +67,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "gre-wave3-author",
-    "reviewer": "gre-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout-blind-solver-s7",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "gre-wave3-reviewer",
+      "solvedBy": "closeout-blind-solver-s7",
       "solvedAnswer": "a,d",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Totals 220/266/324/360/408. A true (general vs student+member: 120>100, 150>116, 180>144, 198>162, 210>198). B false (40/220 = 18.2% < 90/408 = 22.1%). C false (60 to 108 is less than double). D true (totals strictly rise). E false (year-over-year rises 46, 58, 36, 48 — the largest is 2021-2022)."
+      "workingNotes": "Totals are 220, 266, 324, 360, 408. (a) is true: general exceeds student + member every year (120>100, 150>116, 180>144, 198>162, 210>198). (d) is true because totals rise every year. (b) is false: the student share is 40/220 = 18.2% in 2020 vs 90/408 = 22.1% in 2024. (c) is false: 60 to 108 is 1.8x, not more than double. (e) is false: the increases are 46, 58, 36, 48, so the largest is 2021-2022."
     },
-    "notes": "Author computed totals 220, 266, 324, 360, 408. (A) 60 to 108 is 1.8x, false. (B) strictly increasing, true. (C) increases 46, 58, 36, 48, largest is 2021-22, false. (D) 120>100, 150>116, 180>144, 198>162, 210>198, true. (E) 18.2 percent vs 22.1 percent, false. Key is B and D. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author computed totals 220, 266, 324, 360, 408. (A) 60 to 108 is 1.8x, false. (B) strictly increasing, true. (C) increases 46, 58, 36, 48, largest is 2021-22, false. (D) 120>100, 150>116, 180>144, 198>162, 210>198, true. (E) 18.2 percent vs 22.1 percent, false. Key is B and D. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 9 option references in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

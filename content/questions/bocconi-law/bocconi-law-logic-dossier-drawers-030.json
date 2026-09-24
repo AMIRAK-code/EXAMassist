@@ -1,6 +1,6 @@
 {
   "id": "bocconi-law-logic-dossier-drawers-030",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-law",
   "sectionKey": "online-test-law",
   "domainSlug": "law-logic-and-critical-thinking",
@@ -37,7 +37,7 @@
     "type": "single_select",
     "optionId": "d"
   },
-  "explanationMd": "Begin with the condition that removes the most possibilities. Amato is fixed in drawer 3, so the other four dossiers occupy drawers 1, 2, 4 and 5. Dini and Esposito must be **consecutively numbered**, and within $\\{1,2,4,5\\}$ the only consecutive pairs are $1$–$2$ and $4$–$5$, because drawer 3 is already taken.\n\n**Filing 1 — Dini and Esposito in drawers 1 and 2.** Bruni and Costa then take drawers 4 and 5. Costa must be higher than Bruni, so Bruni is in 4 and Costa is in 5.\n\n**Filing 2 — Dini and Esposito in drawers 4 and 5.** Bruni and Costa then take drawers 1 and 2. Costa higher than Bruni gives Bruni in 1 and Costa in 2.\n\nThose are the only two possibilities (each with Dini and Esposito in either order inside their pair, which the conditions never settle). In Filing 1, Bruni and Costa are in drawers 4 and 5; in Filing 2 they are in drawers 1 and 2. In both they are side by side, so option D must be true.\n\n**How to check.** A \"must be true\" statement is one that survives *every* admissible arrangement, so once you have the complete list, test each option against the whole list rather than against the first arrangement you found. Here A fails in Filing 2, C fails in Filing 1, B fails whenever Dini sits above Esposito inside its pair, and only D survives all of them — which is also the confirmation that the answer is unique.",
+  "explanationMd": "Begin with the condition that removes the most possibilities. Amato is fixed in drawer 3, so the other four dossiers occupy drawers 1, 2, 4 and 5. Dini and Esposito must be **consecutively numbered**, and within $\\{1,2,4,5\\}$ the only consecutive pairs are $1$–$2$ and $4$–$5$, because drawer 3 is already taken.\n\n**Filing 1 — Dini and Esposito in drawers 1 and 2.** Bruni and Costa then take drawers 4 and 5. Costa must be higher than Bruni, so Bruni is in 4 and Costa is in 5.\n\n**Filing 2 — Dini and Esposito in drawers 4 and 5.** Bruni and Costa then take drawers 1 and 2. Costa higher than Bruni gives Bruni in 1 and Costa in 2.\n\nThose are the only two possibilities (each with Dini and Esposito in either order inside their pair, which the conditions never settle). In Filing 1, Bruni and Costa are in drawers 4 and 5; in Filing 2 they are in drawers 1 and 2. In both they are side by side, so option D must be true.\n\n**How to check.** A \"must be true\" statement is one that survives *every* admissible arrangement, so once you have the complete list, test each option against the whole list rather than against the first arrangement you found. Here C fails in Filing 2, B fails in Filing 1, A fails whenever Dini sits above Esposito inside its pair, and only D survives all of them — which is also the confirmation that the answer is unique.",
   "distractorRationale": {
     "c": "True in Filing 1 only. This is what you get by stopping at the first arrangement that works — Dini and Esposito low, Bruni and Costa high — and treating it as the only one, instead of also testing the pair in drawers 4 and 5.",
     "a": "The conditions say Dini and Esposito are consecutive but never say which of the two comes first, so their relative order is left open in both filings. This option mistakes an unordered pairing for an ordered one.",
@@ -55,16 +55,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-law-wave3-author",
-    "reviewer": "bocconi-law-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout-blind-solver-s1",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-law-wave3-reviewer",
+      "solvedBy": "closeout-blind-solver-s1",
       "solvedAnswer": "d",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Amato fixes drawer 3, so the Dini/Esposito consecutive pair is {1,2} or {4,5}. If they take 1-2 then Bruni/Costa take 4-5 with Costa higher (B4, C5); if they take 4-5 then Bruni/Costa take 1-2 (B1, C2). Both worlds leave Bruni and Costa adjacent, so D holds; A, B and C each fail in one of the two worlds."
+      "workingNotes": "With Amato in 3, Dini/Esposito take 1-2 or 4-5; Bruni and Costa take the other pair with Bruni lower, giving B4/C5 or B1/C2, so they are always consecutive (d). (a) fails since D/E order is free; (b) fails in the B4/C5 filing; (c) fails in the B1/C2 filing."
     },
-    "notes": "Author solved by full enumeration. Amato fixed at 3 leaves {1,2,4,5}; the only consecutive pairs there are 1-2 and 4-5, giving exactly two filings up to the internal order of the Dini-Esposito pair. Bruni and Costa are adjacent in both, so only option D survives. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author solved by full enumeration. Amato fixed at 3 leaves {1,2,4,5}; the only consecutive pairs there are 1-2 and 4-5, giving exactly two filings up to the internal order of the Dini-Esposito pair. Bruni and Costa are adjacent in both, so only option D survives. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 3 option references in the explanation that still used the option order from before the options were reordered (wrong options were discussed under the wrong letters). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

@@ -1,6 +1,6 @@
 {
   "id": "bocconi-law-logic-hearing-order-009",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-law",
   "sectionKey": "online-test-law",
   "domainSlug": "law-logic-and-critical-thinking",
@@ -37,7 +37,7 @@
     "type": "single_select",
     "optionId": "c"
   },
-  "explanationMd": "Start with the condition that constrains the most: Ferri and Greco occupy two **adjacent** days in that order, so the pair sits on Mon–Tue, Tue–Wed or Wed–Thu. Ferri is not heard on Monday, which kills the first, so the pair is Tue–Wed or Wed–Thu.\n\n**Listing 1 — Ferri Tuesday, Greco Wednesday.** Baldi and Conti take the two days left, Monday and Thursday. Baldi must come before Conti, so Baldi is Monday and Conti is Thursday: *Baldi, Ferri, Greco, Conti.*\n\n**Listing 2 — Ferri Wednesday, Greco Thursday.** Baldi and Conti take Monday and Tuesday. Baldi before Conti gives Baldi Monday, Conti Tuesday: *Baldi, Conti, Ferri, Greco.*\n\nThose are the only two listings. Baldi is on Monday in both, so option B must be true.\n\n**How to check.** Once you have the full set of admissible listings, a \"must be true\" answer is simply a statement that survives every one of them. Test each option against both listings in turn; the moment an option fails in one listing it is out. Here A and D fail in listing 2, C fails in listing 1, and only B survives both — which is also the quickest confirmation that the answer is unique.",
+  "explanationMd": "Start with the condition that constrains the most: Ferri and Greco occupy two **adjacent** days in that order, so the pair sits on Mon–Tue, Tue–Wed or Wed–Thu. Ferri is not heard on Monday, which kills the first, so the pair is Tue–Wed or Wed–Thu.\n\n**Listing 1 — Ferri Tuesday, Greco Wednesday.** Baldi and Conti take the two days left, Monday and Thursday. Baldi must come before Conti, so Baldi is Monday and Conti is Thursday: *Baldi, Ferri, Greco, Conti.*\n\n**Listing 2 — Ferri Wednesday, Greco Thursday.** Baldi and Conti take Monday and Tuesday. Baldi before Conti gives Baldi Monday, Conti Tuesday: *Baldi, Conti, Ferri, Greco.*\n\nThose are the only two listings. Baldi is on Monday in both, so option C must be true.\n\n**How to check.** Once you have the full set of admissible listings, a \"must be true\" answer is simply a statement that survives every one of them. Test each option against both listings in turn; the moment an option fails in one listing it is out. Here B and D fail in listing 2, A fails in listing 1, and only C survives both — which is also the quickest confirmation that the answer is unique.",
   "distractorRationale": {
     "b": "True only in listing 1. This is what you get if you stop after finding the first arrangement that works and treat it as the only one, instead of also testing Ferri on Wednesday.",
     "a": "True only in listing 2. It comes from fixing the Ferri–Greco pair at the latest possible position without checking that Tuesday–Wednesday is equally admissible.",
@@ -55,16 +55,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-law-topup-author",
-    "reviewer": "bocconi-law-round2-reviewer",
-    "reviewedOn": "2026-09-22",
+    "reviewer": "closeout-blind-solver-s1",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-law-round2-reviewer",
+      "solvedBy": "closeout-blind-solver-s1",
       "solvedAnswer": "c",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Ferri must be Tue or Wed (Greco follows immediately, Ferri not Monday), giving exactly two listings: Baldi-Ferri-Greco-Conti and Baldi-Conti-Ferri-Greco. Baldi is Monday in both; (a),(c),(d) each hold in only one."
+      "workingNotes": "Ferri-Greco is Tue-Wed or Wed-Thu; the leftover two days go to Baldi then Conti, giving B Mon/C Thu or B Mon/C Tue, so Baldi is always Monday (c). (a) fails in the Tue-Wed listing; (b) fails in the Wed-Thu listing; (d) holds only in the Tue-Wed listing (Greco Wed, Conti Thu), not in the other."
     },
-    "notes": "Author solved the item by full enumeration: exactly two listings satisfy the conditions, and only 'Baldi is heard on Monday' holds in both. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author solved the item by full enumeration: exactly two listings satisfy the conditions, and only 'Baldi is heard on Monday' holds in both. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 4 option references in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

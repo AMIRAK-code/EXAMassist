@@ -1,6 +1,6 @@
 {
   "id": "bocconi-law-logic-bar-examination-013",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-law",
   "sectionKey": "online-test-law",
   "domainSlug": "law-logic-and-critical-thinking",
@@ -32,7 +32,7 @@
     "type": "single_select",
     "optionId": "a"
   },
-  "explanationMd": "The third record fixes a ceiling. The candidates who passed the oral are \"fewer than half\" of the 400 who passed the written, and half of 400 is 200, so the number who passed the oral is strictly below 200. That is option B, and it needs no other record.\n\nNotice what the data does **not** give you. It says who *passed* each examination; it never says how many candidates *sat* the oral examination. The second record only tells you that oral passers are drawn from written passers — it does not say the two groups have the same members, and it says nothing at all about anyone who sat the oral and failed.\n\n**How to check.** Ask, for each option, which of the three records would have to be rewritten to make it false. For B you would have to change \"fewer than half\" or the figure 400. For A and C you cannot point to any record at all, because both talk about *sitting* an examination, a quantity the data never reports — that absence is the tell.",
+  "explanationMd": "The third record fixes a ceiling. The candidates who passed the oral are \"fewer than half\" of the 400 who passed the written, and half of 400 is 200, so the number who passed the oral is strictly below 200. That is option A, and it needs no other record.\n\nNotice what the data does **not** give you. It says who *passed* each examination; it never says how many candidates *sat* the oral examination. The second record only tells you that oral passers are drawn from written passers — it does not say the two groups have the same members, and it says nothing at all about anyone who sat the oral and failed.\n\n**How to check.** Ask, for each option, which of the three records would have to be rewritten to make it false. For A you would have to change \"fewer than half\" or the figure 400. For B and C you cannot point to any record at all, because both talk about *sitting* an examination, a quantity the data never reports — that absence is the tell.",
   "distractorRationale": {
     "b": "Confuses passing the written examination with going on to sit the oral one. The data reports passes, not attendance; any number of the 400 written passers could have withdrawn, deferred or failed to appear, and every published record would still hold.",
     "c": "Assumes that all 400 written passers sat the oral examination and then subtracts. Both halves of that are unsupported: the data gives no figure for how many sat the oral, so no figure for how many failed it can be derived."
@@ -49,16 +49,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-law-topup-author",
-    "reviewer": "bocconi-law-round2-reviewer",
-    "reviewedOn": "2026-09-22",
+    "reviewer": "closeout-blind-solver-s1",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-law-round2-reviewer",
+      "solvedBy": "closeout-blind-solver-s1",
       "solvedAnswer": "a",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Oral passers are a subset of the 400 written passers, and fewer than half of those 400 passed the oral, so oral passers < 200. (a) and (c) need facts about who sat the oral, which the data never gives."
+      "workingNotes": "Fewer than half of the 400 written passers passed the oral, and every oral passer is a written passer, so fewer than 200 candidates passed the oral (a). (b) is not stated: some written passers may never have sat the oral. (c) fails for the same reason, since those who did not pass the oral may not have sat it at all."
     },
-    "notes": "Author verified that A and C both turn on the number of candidates who SAT the oral examination, a quantity the data never supplies, while B follows from 'fewer than half of 400' alone. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author verified that A and C both turn on the number of candidates who SAT the oral examination, a quantity the data never supplies, while B follows from 'fewer than half of 400' alone. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 3 option references in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,
