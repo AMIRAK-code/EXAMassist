@@ -1,6 +1,6 @@
 {
   "id": "gmat-ps-units-digit-cycles-204",
-  "version": 1,
+  "version": 2,
   "examKey": "gmat",
   "sectionKey": "quantitative-reasoning",
   "domainSlug": "quant-problem-solving",
@@ -44,10 +44,10 @@
   },
   "explanationMd": "The units digit of a power repeats on a short cycle, so you never have to compute the power itself.\n\n**Step 1 — the cycle for $7$.** Successive powers end in\n\n$$7^1 \\to 7, \\quad 7^2 \\to 9, \\quad 7^3 \\to 3, \\quad 7^4 \\to 1, \\quad 7^5 \\to 7, \\dots$$\n\nso the pattern $7, 9, 3, 1$ repeats with period $4$. Divide the exponent by $4$ and keep the remainder: $83 = 4 \\times 20 + 3$, remainder $3$, which points at the **third** entry of the cycle. So $7^{83}$ ends in $3$.\n\n**Step 2 — the cycle for $3$.** Successive powers end in\n\n$$3^1 \\to 3, \\quad 3^2 \\to 9, \\quad 3^3 \\to 7, \\quad 3^4 \\to 1, \\quad 3^5 \\to 3, \\dots$$\n\nagain period $4$. Here $45 = 4 \\times 11 + 1$, remainder $1$, which points at the **first** entry. So $3^{45}$ ends in $3$.\n\n**Step 3 — add the two units digits.**\n\n$$3 + 3 = 6,$$\n\nand $6$ is already a single digit, so the units digit of the sum is $6$.\n\n**How to check the answer.** Test the method on exponents small enough to verify directly. Take $7^3 + 3^5 = 343 + 243 = 586$, which ends in $6$. The exponents $3$ and $5$ leave remainders $3$ and $1$ on division by $4$ — exactly the remainders in this problem — so the method predicts the same units digit of $6$, and the explicit arithmetic confirms it.\n\n**The step that goes wrong most often.** A remainder of $0$ means the **fourth** entry of the cycle, not the first: $7^{80}$ ends in $1$, not $7$. Write the cycle out as a numbered list of four before you divide, and the off-by-one disappears.",
   "distractorRationale": {
-    "a": "This adds the units digits of the bases themselves, $7 + 3 = 10$, and reports $0$. That is the answer only when both exponents leave remainder $1$ on division by $4$; here the first exponent leaves remainder $3$.",
+    "a": "This adds the units digits of the bases themselves, $7 + 3 = 10$, and reports $0$. Using the bases' own units digits is valid only when both exponents leave remainder $1$ on division by $4$; here the first exponent leaves remainder $3$.",
     "b": "This takes $7^{83}$ as ending in $9$, the second entry of the $7, 9, 3, 1$ cycle, giving $9 + 3 = 12$. The remainder of $83$ on division by $4$ is $3$, not $2$, so the third entry applies.",
     "c": "This takes $7^{83}$ as ending in $1$, the entry that belongs to exponents divisible by $4$. Since $83$ is not a multiple of $4$, that entry does not apply, and $1 + 3 = 4$ follows from the wrong cycle position.",
-    "e": "This takes $3^{45}$ as ending in $1$, the fourth entry of the $3, 9, 7, 1$ cycle, giving $7 + 1 = 8$. The remainder of $45$ on division by $4$ is $1$, which points at the first entry, $3$."
+    "e": "This takes $7^{83}$ as ending in $7$ and $3^{45}$ as ending in $1$, giving $7 + 1 = 8$. The remainder of $83$ on division by $4$ is $3$, which points at the third entry of the $7, 9, 3, 1$ cycle, $3$; the remainder of $45$ is $1$, which points at the first entry of the $3, 9, 7, 1$ cycle, $3$."
   },
   "estimatedSeconds": 120,
   "stimulusRef": null,
@@ -61,16 +61,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "gmat-wave3-author",
-    "reviewer": "gmat-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout2-blind-solver-t2",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "gmat-wave3-reviewer",
+      "solvedBy": "closeout2-blind-solver-t2",
       "solvedAnswer": "d",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "7 has units cycle 7,9,3,1 (period 4); 83 = 4x20 + 3 so units digit 3. 3 has cycle 3,9,7,1; 45 = 4x11 + 1 so units digit 3. Sum 3 + 3 = 6."
+      "workingNotes": "Units digits of powers of 7 cycle 7, 9, 3, 1; 83 ≡ 3 (mod 4) gives 3. Powers of 3 cycle 3, 9, 7, 1; 45 ≡ 1 (mod 4) gives 3. Sum's units digit = 6 (d); 0, 2, 4 and 8 in (a), (b), (c), (e) come from misplacing a cycle position."
     },
-    "notes": "Author derived both cycles from first principles, confirmed 83 mod 4 = 3 and 45 mod 4 = 1, and verified the method on the small case 7 cubed plus 3 to the fifth, which equals 586 and ends in 6. Since the units digit of a sum is a single determined value, exactly one option can be correct. Awaiting blind independent solve before publication."
+    "notes": "Author derived both cycles from first principles, confirmed 83 mod 4 = 3 and 45 mod 4 = 1, and verified the method on the small case 7 cubed plus 3 to the fifth, which equals 586 and ends in 6. Since the units digit of a sum is a single determined value, exactly one option can be correct. Awaiting blind independent solve before publication. v2 (2026-09-24): an independent check of what the explanation and notes claim about the options found false statements in the note on option E and the note on option A, corrected here. Correction by the coordinating editor (an AI agent); a separate AI reviewer then re-checked every claim about the options, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

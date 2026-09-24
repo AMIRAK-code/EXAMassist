@@ -1,6 +1,6 @@
 {
   "id": "gmat-ps-average-removed-crate-202",
-  "version": 1,
+  "version": 2,
   "examKey": "gmat",
   "sectionKey": "quantitative-reasoning",
   "domainSlug": "quant-problem-solving",
@@ -42,7 +42,7 @@
     "type": "single_select",
     "optionId": "d"
   },
-  "explanationMd": "An average question is a total in disguise. Convert both averages into totals before doing anything else.\n\n**Step 1 — the two totals.**\n\n$$\\text{all } 11 \\text{ crates}: \\; 11 \\times 84 = 924 \\text{ kg}, \\qquad \\text{the } 10 \\text{ that remain}: \\; 10 \\times 82 = 820 \\text{ kg}.$$\n\n**Step 2 — the difference is the crate that left.**\n\n$$924 - 820 = 104 \\text{ kg}.$$\n\n**How to check the answer.** Reason about the shortfall instead. Removing the crate dropped the average of the survivors by $2$ kg each, and there are $10$ survivors, so the crate carried $10 \\times 2 = 20$ kg more than the original average of $84$:\n\n$$84 + 20 = 104 \\text{ kg}.$$\n\nThe two routes agree, which is the check. You can also confirm the direction of the answer before computing anything: the average fell when the crate left, so the crate must have been *heavier* than the original average of $84$ kg. That single observation eliminates the three options at or below $84$ immediately.\n\n**The habit worth building.** On any \"average changes when one item is added or removed\" question, write $\\text{total} = \\text{count} \\times \\text{mean}$ for both states and subtract. The arithmetic is short, and it never depends on remembering which count to multiply the change by — the mistake that produces most of the wrong answers here.",
+  "explanationMd": "An average question is a total in disguise. Convert both averages into totals before doing anything else.\n\n**Step 1 — the two totals.**\n\n$$\\text{all } 11 \\text{ crates}: \\; 11 \\times 84 = 924 \\text{ kg}, \\qquad \\text{the } 10 \\text{ that remain}: \\; 10 \\times 82 = 820 \\text{ kg}.$$\n\n**Step 2 — the difference is the crate that left.**\n\n$$924 - 820 = 104 \\text{ kg}.$$\n\n**How to check the answer.** Reason about the shortfall instead. Removing the crate dropped the average of the survivors by $2$ kg each, and there are $10$ survivors, so the crate carried $10 \\times 2 = 20$ kg more than the original average of $84$:\n\n$$84 + 20 = 104 \\text{ kg}.$$\n\nThe two routes agree, which is the check. You can also confirm the direction of the answer before computing anything: the average fell when the crate left, so the crate must have been *heavier* than the original average of $84$ kg. That single observation eliminates the two options at or below $84$ immediately.\n\n**The habit worth building.** On any \"average changes when one item is added or removed\" question, write $\\text{total} = \\text{count} \\times \\text{mean}$ for both states and subtract. The arithmetic is short, and it never depends on remembering which count to multiply the change by — the mistake that produces most of the wrong answers here.",
   "distractorRationale": {
     "a": "This is the new average of the remaining crates. If the removed crate had weighed $82$ kg, the total would be $924 - 82 = 842$ kg across $10$ crates, an average of $84.2$ kg, not $82$.",
     "b": "This assumes the removed crate weighed exactly the original average. Removing an average-weight item leaves the mean unchanged at $84$ kg, which contradicts the stated drop to $82$ kg.",
@@ -61,16 +61,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "gmat-wave3-author",
-    "reviewer": "gmat-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout2-blind-solver-t2",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "gmat-wave3-reviewer",
+      "solvedBy": "closeout2-blind-solver-t2",
       "solvedAnswer": "d",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Total before = 11 x 84 = 924; total after = 10 x 82 = 820; removed crate = 924 - 820 = 104. Unique value, so only option d works."
+      "workingNotes": "Total before = 11 x 84 = 924 kg; total after = 10 x 82 = 820 kg; removed crate = 104 kg (d). (a) and (b) are the averages, (c) and (e) come from mis-adding the 2 kg drop per crate."
     },
-    "notes": "Author solved the item by subtracting totals (924 minus 820) and again by the shortfall argument (84 plus 10 times 2), obtaining 104 both ways. Every other option was substituted back into the stem and each produces a remaining average other than 82, so only one option is defensible. Awaiting blind independent solve before publication."
+    "notes": "Author solved the item by subtracting totals (924 minus 820) and again by the shortfall argument (84 plus 10 times 2), obtaining 104 both ways. Every other option was substituted back into the stem and each produces a remaining average other than 82, so only one option is defensible. Awaiting blind independent solve before publication. v2 (2026-09-24): an independent check of what the explanation and notes claim about the options found false statements in the explanation, corrected here. Correction by the coordinating editor (an AI agent); a separate AI reviewer then re-checked every claim about the options, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

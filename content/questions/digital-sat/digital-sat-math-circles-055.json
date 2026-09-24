@@ -1,6 +1,6 @@
 {
   "id": "digital-sat-math-circles-055",
-  "version": 1,
+  "version": 2,
   "examKey": "digital-sat",
   "sectionKey": "math-module-1",
   "domainSlug": "geometry-and-trigonometry",
@@ -41,7 +41,7 @@
   "distractorRationale": {
     "a": "This takes a square root one time too many. $\\sqrt{16} = 4$ is already the radius; taking the root again gives $2$, which is the square root of the radius and has no geometric meaning here.",
     "c": "This reports $r^2$ rather than $r$. The standard form ends at $= 16$, and the final square root is still owed.",
-    "d": "This reads the constant of the unsimplified equation as $r^2$, ignoring the $-25$ and $-9$ that completing the square introduces. The right-hand side is $25 + 9 - 18 = 16$, not $18$."
+    "d": "This takes the constant of the unsimplified equation, $18$, as the radius, ignoring the $-25$ and $-9$ that completing the square introduces. The right-hand side is $25 + 9 - 18 = 16$, not $18$."
   },
   "estimatedSeconds": 120,
   "stimulusRef": null,
@@ -55,16 +55,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "digital-sat-wave3-author",
-    "reviewer": "digital-sat-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout2-blind-solver-t1",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "digital-sat-wave3-reviewer",
+      "solvedBy": "closeout2-blind-solver-t1",
       "solvedAnswer": "b",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Completing the square: (x-5)^2 - 25 + (y+3)^2 - 9 + 18 = 0, so (x-5)^2 + (y+3)^2 = 16 and the radius is 4. Option c (16) is the r^2 trap."
+      "workingNotes": "Completing the square gives (x - 5)^2 + (y + 3)^2 = 25 + 9 - 18 = 16, so the radius is 4. (c) is r^2, (d) is the constant term and (a) comes from wrongly halving 4."
     },
-    "notes": "Author solved and checked uniqueness: completing the square gives (x-5)^2 + (y+3)^2 = 16, so r = 4. Verified that (9, -3) satisfies the original equation. Awaiting a blind independent solve before publication."
+    "notes": "Author solved and checked uniqueness: completing the square gives (x-5)^2 + (y+3)^2 = 16, so r = 4. Verified that (9, -3) satisfies the original equation. Awaiting a blind independent solve before publication. v2 (2026-09-24): an independent check of what the explanation and notes claim about the options found false statements in the note on option D, corrected here. Correction by the coordinating editor (an AI agent); a separate AI reviewer then re-checked every claim about the options, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,
