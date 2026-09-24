@@ -8,7 +8,9 @@ numbering with the master brief, and section 11 reports what Phase 2 delivered,
 how it was checked, the before-and-after measurements and what is deferred.
 Section 12 is the Phase 2 closeout: the explanation correction, the actual
 cause of the mobile slowdown, the database state and the acceptance verdict.
-Where it corrects §11, §11 says so in place.
+Where it corrects §11, §11 says so in place. Section 13 is the closeout's
+second pass: the independent check of the remaining 180 explanations, the
+leaner homepage, the final measurements and the final acceptance verdict.
 
 The homepage concept (desktop, mobile and design-system artboards, with a
 working sample question per exam) is published as a private canvas:
@@ -358,8 +360,8 @@ as follows. Phase 2 combined brief stages 2 and 3.
 | Phase | Brief stage | Scope | Status |
 | --- | --- | --- | --- |
 | 1 | 1 | Inspect the product; direction, system, plan | Done |
-| 2 | 2 + 3 | Tokens, typography, shared components; header, footer, mobile navigation; homepage; plus the decisions in §9 | Done (§11), closed out in §12; the homepage's throttled-mobile LCP budget is still not met |
-| 3 | 4 | Dashboard: resume, one next action with its basis, domain-level skill landscape, all empty and error states | Next, after the homepage budget decision in §12.6 |
+| 2 | 2 + 3 | Tokens, typography, shared components; header, footer, mobile navigation; homepage; plus the decisions in §9 | Built (§11), closed out in §12 and §13. Content and function are done; the LCP and CLS budgets are not met (§13.7) |
+| 3 | 4 | Dashboard: resume, one next action with its basis, domain-level skill landscape, all empty and error states | Next, after the budget decision in §13.7 |
 | 4 | 5 | Results and mistake notebook: verdict first, evidence, review on its own page, retry flow, optional mistake labels | — |
 | 5 | 6 | Practice setup formats and the player: focus mode, split passage, visible save states, persisted offline queue, debounced input | — |
 | 6 | 7 | Remaining routes: hubs, guides, auth, account, study plan and readiness, admin | — |
@@ -607,7 +609,9 @@ It agreed with the key on 105 of 105, with uniqueness confirmed, so nothing was
 quarantined. The records carry solver ids `closeout-blind-solver-s1` to `s7`
 and a dated note saying what changed. After republication the bank is back to
 285 published questions, and every format's availability is exactly as it was
-before the closeout.
+before the closeout. *Second pass correction:* restoring the LSAT sample
+afterwards took one Logical Reasoning item out of timed formats, so LSAT timed
+LR 1 and LR 2 went from 1 to 2 questions short. Both were already closed.
 
 **Guards against a repeat:**
 
@@ -627,7 +631,8 @@ homepage sample. Excluding it from measurement formats closes no LSAT format.
 **Still open:**
 
 - The other 179 published explanations have had no independent check of
-  their claims about options. That check found six false claims in the 106
+  their claims about options. *Second pass: the figure is 180 (285 published
+  minus the 105 re-solved), and they were checked; see §13.* That check found six false claims in the 106
   corrected items, so the rest very likely contains some. This is the same
   gap the editorial page already states: explanations are not independently
   re-read.
@@ -665,7 +670,8 @@ interception.
 - Next's font manifest comes out empty on Windows, so Windows builds emit no
   font preload. `NextFontManifestPlugin` matches `'/next-font-loader/index.js?'`
   with forward slashes. Linux builds emit the preload, so both cases were
-  measured.
+  measured. *Second pass: the cause is now verified in a build (§13.4); that
+  Linux builds preload is inferred from the code, not observed.*
 
 **Fix** (`src/app/_fonts`, `globals.css`): no metric-adjusted fallback face,
 and Bricolage falls back to `Arial, sans-serif` rather than the system-UI
@@ -775,6 +781,8 @@ left for a decision (§12.6).
   interaction figure is §11's (128 ms throttled); the closeout did not change
   any script.
 
+*Superseded by §13.7, which reports the final state after the second pass.*
+
 **Not met:** throttled-mobile LCP on the homepage, 2.1 s against 1.5 s.
 Phase 2 is therefore **not fully complete**. The choices are:
 
@@ -787,3 +795,359 @@ Phase 2 is therefore **not fully complete**. The choices are:
 Phase 3 can start once that choice is made. The other open items, §11's
 deferred list and §12.1's "still open", belong to later phases or are recorded
 as known gaps; none of them blocks Phase 3.
+
+## 13. Phase 2 closeout, second pass (24 September 2026)
+
+Decisions given for this pass:
+
+- Make the homepage leaner without JavaScript-deferred content, keeping the
+  hero, exam selector and interactive sample.
+- Verify performance on the exact final build and on mains power.
+- Check the remaining explanations independently.
+- Fix the SAT chart.
+- Keep the ACT item quarantined.
+- Keep `FronDesign`'s history.
+- Leave the budgets unchanged.
+
+### 13.1 Question sets, reconciled
+
+Earlier sections used several counts. This is what each one refers to.
+
+| Set | Questions |
+| --- | --- |
+| The bank | 288: 285 published, 3 quarantined |
+| Reordered by `normalise-option-order.ts` after review | 189: 188 published, 1 quarantined |
+| First pass: letter audit, inspected | all 189 |
+| First pass: stale letters that pointed to a wrong answer, or walked through the answer under a wrong letter | 92: 91 published, 1 quarantined |
+| First pass: stale letters that only mislabelled wrong options | 13, all published |
+| First pass: new versions | 106: the 105 above, plus `logexp-difference-041` for a misleading check |
+| First pass: re-checked independently and blind-solved again | the 105 published of those 106 |
+| Second pass: checked independently for every claim about the options | 180, the rest of the published bank (285 − 105): 83 reordered but unchanged, 97 never reordered |
+| Second pass: corrected as new versions | 37 from that check, plus `digital-sat-math-two-variable-data-021` for its chart |
+| Second pass: re-checked and blind-solved again | those 38 |
+| Published questions with no independent check of their option claims | none |
+| Quarantined questions checked | none; the 3 are not served |
+
+Two counts in §11, "92 name option letters" and "15 name the wrong answer",
+came from text patterns and are superseded by the audit above. The "104
+published explanations" in §12 and on the editorial page are the 91 and 13 in
+the table. The "179" in §12.1 was an arithmetic slip for 180.
+
+The two checks were not identical:
+
+- **First pass (the 105):** looked at option references and at any false
+  statement about the options.
+- **Second pass (the 180):** also re-solved every item and redid every
+  computation.
+
+### 13.2 Content
+
+**The check.** Six reviewer agents took the 180 questions. They had not seen
+this work before, and each got every option and the key. They solved each
+item, then tested every claim the explanation and the distractor notes make
+about the options.
+
+**Result:**
+
+- Every key was confirmed correct, and no text pointed to a wrong option as
+  the answer.
+- 27 items made 31 false statements, for example:
+  - a note describing an error that does not produce its option;
+  - "the three options at or below 84" where there are two;
+  - "175 tickets already exceeds the 180 sold";
+  - the jetty placed in a sentence that never mentions it.
+- 22 findings were marked imprecise.
+
+I checked every finding against the stored question before editing: the
+arithmetic redone, the passage or table read. All 27 were confirmed. The 22
+"imprecise" findings split three ways:
+
+- 10, in 10 further items, were false on inspection and were corrected: for
+  example "subscripts" where there are none, "three words long" for four
+  words, and "the passage never says" where it does;
+- 6 sat in items already being corrected and were fixed with them;
+- 6 were loose but true and were left, as listed below.
+
+That gives 37 items and 47 edits.
+
+**Left unchanged, because the wording is loose but true:**
+
+- `lsat-cr-expert-instance-112`, the note on C;
+- `lsat-rc-language-inference-109`, the note on C;
+- `bocconi-ug-geo-trapezoid-area-037`: its 14 × 5 bound is valid, if not the
+  tightest;
+- `enhanced-act-read-slack-water-relationship-018`;
+- `enhanced-act-sci-germination-interpolate-032`: it rests on interpolation;
+- `gre-verbal-se-hedged-recommendations-022`.
+
+The re-check below added six more of the same kind, in items already
+corrected: `codification-implicit-005` note B, `bakery-018` note D,
+`word-meaning-017` note A, the explanations of `insulation-criteria-038` and
+`average-removed-crate-202`, and "spread by factors of two" in
+`estimation-006`.
+
+**The SAT chart.** `digital-sat-math-two-variable-data-021` defined w as
+"weeks since the first measurement", but its data labelled that measurement
+week 1. The line h = 7.2w + 4.8 was fitted to those labels, and option A's note
+relied on w = 0 being the first measurement.
+
+- The chart, now stimulus v2, counts weeks from 0.
+- The line is refitted by least squares: slope 7.2, intercept 12, which is the
+  measured height at w = 0. The fit was checked in code.
+- The explanation, the notes on A and B and the screen-reader description use
+  the new line.
+- Earlier versions keep stimulus v1.
+
+**Process.** The existing process was used:
+
+- Every fix is a new version, and earlier attempts keep their versions.
+- The 38 moved to `in_review`, and that state was also seeded into the dev
+  database, so they were withheld from new sessions.
+- A separate AI reviewer re-checked every claim in the corrected text: 38 of
+  38 correct, with 6 imprecise notes, listed above.
+- A new blind solve went through `export-review-batch.ts` (leak check passed)
+  and `apply-review.ts`: 38 of 38 agreed, uniqueness confirmed, none
+  quarantined.
+- The 38 were republished.
+
+**Availability:**
+
+- **While withheld:** SAT timed maths modules 1 and 2 and the Bocconi law
+  diagnostic closed, and the GMAT homepage sample (`units-digit-cycles-204`,
+  one of the 38) was hidden.
+- **Permanent change:** none. All 47 format entries match the committed state
+  from before the pass.
+
+**Still quarantined:** `enhanced-act-read-time-use-table-023`, for a second
+defensible answer. It needs a rewrite and a new review; its letters were fixed
+in the first pass.
+
+### 13.3 Homepage
+
+**Kept:** the hero with its display headline, the exam selector and the
+interactive sample, "How it works", the credibility section and the yellow
+closing band.
+
+**Consolidated:**
+
+- **The mistake-notebook demonstration.** It was a second worked question
+  directly after the hero's own. Its one unique line, that a distractor note
+  is written in advance and is not a claim about how the learner reasoned, now
+  appears under "Why X doesn't work" in the sample. "Retrying never changes the
+  original session's result" joins step 04.
+- **The seven-exam availability table.** It is now a per-exam summary: what is
+  open, what needs more questions, and what is not offered because its rules
+  are unverified. The summary keeps the limits note and links to the full
+  table, which moved to `/exams#formats`. Practice pages still state each
+  format's limits before a session starts.
+- **The illustrative progress table.** It moved to How scoring works, as "What
+  accuracy by topic looks like", beside the reporting rules it illustrates.
+  The four-answer threshold now comes from `MIN_ATTEMPTS_FOR_SIGNAL`, and the
+  page's updated date is 24 September 2026.
+
+**Result:**
+
+- Elements went from 622 to 338 (Phase 1: 217), and below the fold from 393
+  to 123.
+- Compressed HTML went from 32.3 to 18.7 KB.
+- There is no horizontal overflow at 360 px.
+- No content depends on script, and there is no `content-visibility`: Chrome
+  lays such content out on the first frame anyway (§12.2).
+- The demonstration item stays out of measurement formats, because its answer
+  has been public.
+
+### 13.4 Performance
+
+**Metrics:**
+
+- **LCP:** the `startTime` of the last `largest-contentful-paint` entry.
+- **FCP:** the `first-contentful-paint` entry.
+- **CLS:** the sum of layout-shift values without recent input, observed until
+  the fonts were ready plus 1.5 s.
+
+In this pass's measurements, LCP and FCP were identical in every reported
+statistic: the largest element is painted in the first frame.
+
+**Method:**
+
+- **Builds:** the exact final code (`5d32b0f`) and the committed Phase 1 code,
+  each run with `next start`, with no request interception.
+- **Browser:** Chrome 153.
+- **Loads:** a fresh context each time (cold HTTP cache), with the build order
+  alternating.
+- **Mobile:** 390 × 844 at DPR 2, 4× CPU, 1.6 Mbps down, 750 kbps up and 150 ms
+  RTT; 9 runs per route.
+- **Desktop:** 1440 × 900, unthrottled; 5 runs.
+- **Conditions:** mains power throughout. Nothing else was running except the
+  idle dev server and other desktop applications, at about 20–35% CPU.
+- **Sizes:** compressed bodies (`encodedBodySize`, gzip from `next start`),
+  headers excluded.
+
+**Throttled mobile, final batch:**
+
+| Route | LCP Phase 1, median (IQR) | LCP final, median (IQR, range) | CLS final, highest run |
+| --- | --- | --- | --- |
+| `/` | 1,400 (1,384–1,464) | 1,972 (1,904–2,024; 1,776–2,152) | 0.0008 |
+| `/exams/digital-sat` | 1,368 (1,352–1,376) | 1,644 (1,572–1,664; 1,496–1,672) | 0.0199 |
+| `/practice/digital-sat` | 1,496 (1,472–1,508) | 1,668 (1,612–1,676; 1,560–1,740) | 0.0004 |
+| `/exams/digital-sat/format` | 1,540 (1,452–1,572) | 1,672 (1,592–1,684; 1,556–1,712) | 0.0296 |
+
+The same effective build measured an hour earlier gave these differences over
+Phase 1: +388, +184, +264 and +184 ms. So the gap is +0.39–0.57 s on the
+homepage and +0.13–0.28 s elsewhere. Phase 1 CLS was 0 on every route.
+
+**Desktop, final batch, LCP median:**
+
+| Route | Phase 1 | Final | CLS final |
+| --- | --- | --- | --- |
+| `/` | 192 | 276 | 0.0122 |
+| `/exams/digital-sat` | 180 | 204 | 0.0005 |
+| `/practice/digital-sat` | 180 | 216 | 0.0562 |
+| `/exams/digital-sat/format` | 196 | 216 | 0.0028 |
+
+Sizes on the homepage: JavaScript 104 → 112.3 KB, CSS 10.6 → 13.4 KB, fonts
+0 → 62 KB. On the other pages, fonts are 40.4 KB.
+
+**Against the budgets:**
+
+- **Met:** JavaScript, +8.3 KB against the +12 KB budget. Fonts, 62 KB against
+  90 KB.
+- **Not met:** throttled-mobile LCP of 1.5 s, on all four routes. Phase 1
+  itself misses it on the format guide in this batch: this machine now
+  measures the Phase 1 code at 1.37–1.54 s, where Phase 1 measured
+  1.05–1.10 s.
+- **Not met:** CLS of 0.02, on the mobile format guide (0.0296) and the desktop
+  practice page (0.0562).
+
+**The font preload, verified.** A build probe printed the request string that
+Next's `NextFontManifestPlugin` tests:
+
+- The request reads `…\loaders\next-font-loader\index.js??ruleSet…`.
+- The plugin looks for `'/next-font-loader/index.js?'`.
+- With backslashes the test fails; with forward slashes it passes.
+
+So on Windows the font manifest is empty and nothing is preloaded, which is
+what the built pages deliver. Linux builds would preload; that is inferred
+from the code, not observed.
+
+A same-batch comparison then showed that the preload hurts here. The 41 KB
+font competes with the stylesheet on the slow link, and first paint moved from
+1,876 to 2,064 ms on the homepage and from 1,640 to 2,172 ms on the practice
+page. The preload did remove the mobile shift, but it did not fix the desktop
+one. Both fonts now set `preload: false`, so every build behaves as measured.
+An intermediate attempt that served Bricolage from `public/` with a manual
+preload was measured and reverted for the same reason.
+
+**The remaining layout shift, verified.** The cause is the web font swapping
+in about 70 ms after the first paint, once the main thread is past hydration.
+Text rewraps by a line: on the practice page, the long summary paragraph
+pushes the grid down 30 px. With the font request blocked, the shift is zero.
+Arial is within 1–5% of Bricolage's widths. Trebuchet MS is marginally closer
+(1–3%), not enough to stop the rewrap, and Verdana, Tahoma, Segoe UI and
+Calibri are further off. The trade-offs:
+
+1. **Metric-adjusted fallback (`adjustFontFallback`).** Removes most of the
+   swap shift. In §12, taking it out alone saved 0.36–0.55 s of mobile first
+   paint on Windows Chrome, so it costs roughly that.
+2. **Preload.** Removes the mobile shift and costs 0.19–0.53 s of mobile first
+   paint. It leaves the desktop shift.
+3. **`font-display: optional`.** No shift and no cost. But a slow first visit
+   keeps Arial for the whole session, because navigation stays in one
+   document.
+4. **Shorter opening paragraphs** on the practice and format pages. §11's
+   deferred item 8 already asks for this. It reduces what rewraps, without
+   touching the fonts.
+
+**The homepage's remaining 0.4–0.6 s.** Content below the hero is down to 123
+elements. What remains relative to Phase 1:
+
+- the hero itself (84 elements, with the exam selector and a full sample
+  question, which Phase 1's hero did not have);
+- a larger header;
+- two web fonts, their fallback files and the swap.
+
+Closing it needs a design change:
+
+- a lighter first view, for example a sample question that shows its options
+  only once an exam is chosen;
+- system fonts on the homepage, which gives up the identity typeface;
+- or a homepage budget that fits the agreed design.
+
+None was applied, as instructed.
+
+### 13.5 Repository
+
+- `FronDesign` keeps its history.
+- **Commits this pass:**
+  - `2ec2652` stops tracking `profile-redesign.zip` and
+    `profile-starchaser.zip`. They are GitHub profile README packages,
+    unrelated to Examer. The local copies are kept and listed in
+    `.git/info/exclude`, so they cannot be swept in again.
+  - `100efa1`: the content corrections, 38 questions and 1 stimulus.
+  - `9f79bdc`: the leaner homepage.
+  - `5d32b0f`: the font preload setting.
+  - A copy commit adding the second check to the editorial-standards
+    corrections note.
+  - A documentation commit with this section.
+- `phase2-closeout-split` is kept as a reference and not merged.
+- Nothing is pushed.
+
+### 13.6 Database and checks
+
+- **Backup:** `tmp/backups/examer-2026-09-24-before-closeout2-seed.db`, an
+  online backup with integrity ok and identical counts.
+- **Seeding:** the dev database was seeded twice, first with the 38 withheld,
+  then with them published.
+- **Now:** 433 version rows and 285 published. All 38 corrected items are
+  current and match their files, and their previous versions are intact. The
+  1 user's 81 attempt items and 3 results are identical before and after, and
+  all still point at v1.
+- `npm run verify`: typecheck clean, content 0 errors and 0 warnings, 231
+  tests.
+- **Playwright** on the final build: 71 passed, 1 skipped (the existing
+  desktop-only keyboard test). The new test covers the homepage summary and
+  its link to the full table.
+- **Site sweep:** 23 routes at 360 and 1440 px, as a visitor and as a guest.
+  No overflow, no console errors, no error statuses.
+
+### 13.7 Acceptance
+
+**Completed:**
+
+- Every published question has had an independent check of its claims about
+  the options.
+- Every confirmed defect is corrected, re-checked, blind-solved and
+  republished through versioning. Historical attempts are untouched, and there
+  is no permanent change to availability.
+- The SAT chart is fixed and the LSAT sample restored.
+- The homepage is consolidated with its identity intact, and the detail moved
+  to `/exams` and the scoring page.
+- The preload behaviour is verified and made consistent.
+- The repository is cleaned up and the database backed up.
+
+**Deferred features, unchanged:**
+
+- remembered exam, and switching exams without JavaScript;
+- the player's save status and a persisted offline queue;
+- study-plan persistence, repetition and recovery;
+- guest-history merge on sign-in;
+- the practice page's long opening paragraph;
+- a rewrite of the quarantined ACT item;
+- the 12 loose-but-true wordings in §13.2.
+
+**Unresolved acceptance criteria:**
+
+- **Throttled-mobile LCP ≤ 1.5 s:** missed on all four routes. The homepage
+  is at about 2.0 s.
+- **CLS ≤ 0.02:** missed on the mobile format guide (0.0296) and the desktop
+  practice page (0.0562).
+
+**Recommendation.** Close Phase 2's content and functional work. Keep only the
+two budgets open, and decide them before Phase 3.
+
+- **CLS:** the least costly fix that keeps the design is trade-off 4, shorter
+  opening paragraphs, pulled forward from Phase 5, then a re-measure.
+- **LCP:** the absolute 1.5 s is out of reach on this machine even for the
+  Phase 1 code on one route. Either choose one of the design changes in §13.4,
+  or restate the budget relative to Phase 1 measured in the same batch. The
+  current gap is +0.4–0.6 s on the homepage and +0.13–0.28 s elsewhere.
