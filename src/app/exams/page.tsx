@@ -3,6 +3,8 @@ import type { Metadata } from 'next';
 import { getDb } from '@/lib/db';
 import { listHubs, requireExamConfig } from '@/lib/exams/registry';
 import { examCoverage } from '@/lib/attempts/availability';
+import { buildHomeData } from '@/lib/home/home-data';
+import { FormatAvailabilityTable } from '@/components/exams/format-availability';
 import { SITE, absoluteUrl, siteUrl } from '@/lib/site';
 import { Badge, Breadcrumbs, ButtonLink, Card, Container, PageHeader } from '@/components/ui';
 import { JsonLd, breadcrumbSchema } from '@/components/seo/json-ld';
@@ -47,6 +49,8 @@ export default async function ExamsPage() {
       blurb: 'Tests taken after a first degree, for master’s and MBA programmes.',
     },
   ];
+
+  const { matrix, asOf } = buildHomeData(db);
 
   const hubs = listHubs().map((hub) => {
     const configs = hub.configKeys.map(requireExamConfig);
@@ -142,6 +146,17 @@ export default async function ExamsPage() {
           </section>
         );
       })}
+
+      <section id="formats" aria-labelledby="formats-heading" className="mb-12">
+        <h2 id="formats-heading" className="font-heading text-2xl font-semibold">
+          Formats and availability
+        </h2>
+        <p className="mt-1 max-w-2xl text-ink-muted">
+          A format opens only when the exam’s rules are verified and the reviewed bank can fill it
+          without repeating a question. These counts come from the live bank.
+        </p>
+        <FormatAvailabilityTable matrix={matrix} asOf={asOf} />
+      </section>
     </Container>
   );
 }

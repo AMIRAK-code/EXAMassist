@@ -15,7 +15,7 @@
  * weaker rule.
  */
 
-export type PublicSampleUse = 'homepage-sample' | 'homepage-demo';
+export type PublicSampleUse = 'homepage-sample' | 'formerly-public';
 
 export interface PublicSample {
   questionId: string;
@@ -67,10 +67,13 @@ export const PUBLIC_SAMPLES: readonly PublicSample[] = [
     use: 'homepage-sample',
   },
   {
+    // Shown with its key and explanation in the homepage's mistake-notebook
+    // demonstration until that section was removed on 24 September 2026. Its
+    // answer has been public, so it stays out of measurement formats.
     questionId: 'digital-sat-rw-transitions-vanilla-010',
     examKey: 'digital-sat',
     hubSlug: 'digital-sat',
-    use: 'homepage-demo',
+    use: 'formerly-public',
   },
 ];
 
@@ -84,8 +87,4 @@ export const PUBLIC_SAMPLE_IDS: ReadonlySet<string> = new Set(PUBLIC_SAMPLES.map
 
 export function homepageSampleFor(hubSlug: string): PublicSample | undefined {
   return PUBLIC_SAMPLES.find((s) => s.hubSlug === hubSlug && s.use === 'homepage-sample');
-}
-
-export function homepageDemo(): PublicSample | undefined {
-  return PUBLIC_SAMPLES.find((s) => s.use === 'homepage-demo');
 }
