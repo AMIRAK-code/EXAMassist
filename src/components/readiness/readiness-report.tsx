@@ -156,7 +156,7 @@ export function ReadinessReport({
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <p className="text-sm font-medium text-ink-muted">{signal.label}</p>
-                  <p className="mt-1 font-serif text-2xl font-semibold">{signal.display}</p>
+                  <p className="mt-1 font-heading text-2xl font-semibold">{signal.display}</p>
                 </div>
                 <BandPill band={signal.band} />
               </div>
@@ -181,7 +181,7 @@ export function ReadinessReport({
             title="Where the ground is weakest"
             description="Ordered by what would move your result most: topics you have never attempted first, then your lowest accuracy."
           />
-          <div className="overflow-x-auto rounded-card border border-line bg-surface shadow-card">
+          <div className="relative overflow-x-auto rounded-card border border-line bg-surface shadow-card">
             <table className="w-full border-collapse text-sm">
               <caption className="sr-only">
                 Your accuracy by topic for the {assessment.examName}, weakest first.

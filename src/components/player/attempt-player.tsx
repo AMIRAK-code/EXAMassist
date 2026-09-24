@@ -57,6 +57,12 @@ export function AttemptPlayer({ model }: { model: PlayerModel }) {
   const [remaining, setRemaining] = useState<number | null>(part?.remainingSeconds ?? null);
   const [submitting, setSubmitting] = useState(false);
   const [showReviewScreen, setShowReviewScreen] = useState(false);
+  // Items whose explanation has been shown. The server is the authority; this
+  // mirrors it so the controls lock at once rather than after a refresh.
+  const [locked, setLocked] = useState<Record<number, boolean>>(() =>
+    Object.fromEntries(part?.items.map((item) => [item.position, item.locked]) ?? []),
+  );
+  const [checking, setChecking] = useState(false);
 
   const itemEnteredAt = useRef<number>(Date.now());
   const pending = useRef<Map<number, Response | null>>(new Map());
@@ -122,9 +128,13 @@ export function AttemptPlayer({ model }: { model: PlayerModel }) {
       }).catch(() => ({ ok: false, status: 0, data: null }));
 
       if (result.status === 0) {
-        // Network failure: keep the answer queued and say so honestly.
+        // Network failure. The answer is held in this page's memory only and
+        // retried every few seconds; it is not written to the device, so a
+        // reload or a closed tab before the retry succeeds loses it.
         setSaveState('offline');
-        setMessage('You appear to be offline. Your answer is saved on this device and will be sent when the connection returns.');
+        setMessage(
+          'You appear to be offline. Your latest answer is held on this page and will be sent when the connection returns. It is not stored on your device, so keep this page open until it is saved.',
+        );
         return;
       }
 
@@ -133,7 +143,13 @@ export function AttemptPlayer({ model }: { model: PlayerModel }) {
       if (!result.ok) {
         setSaveState('rejected');
         setMessage(result.data?.error?.message ?? 'That answer could not be saved.');
-        if (result.data?.error?.code === 'time-expired' || result.data?.error?.code === 'attempt-closed') {
+        const code = result.data?.error?.code;
+        if (code === 'response-locked') {
+          // Checked already, perhaps in another tab: show what the server holds.
+          setLocked((current) => ({ ...current, [targetPosition]: true }));
+          router.refresh();
+        }
+        if (code === 'time-expired' || code === 'attempt-closed') {
           router.refresh();
         }
         return;
@@ -141,23 +157,65 @@ export function AttemptPlayer({ model }: { model: PlayerModel }) {
 
       setSaveState('saved');
       setMessage(null);
-      if (result.data?.feedback) {
-        setFeedback((current) => ({
-          ...current,
-          [targetPosition]: {
-            correct: result.data.feedback.correct,
-            explanationHtml: '',
-            distractorHtml: {},
-            correctSummary: '',
-            difficultyBasis: 'editorial',
-          },
-        }));
-        // Immediate-feedback mode needs the server-rendered explanation.
-        router.refresh();
-      }
     },
     [model.attemptId, part, router],
   );
+
+  /**
+   * Untimed practice: submit the current answer and release its explanation.
+   * The server persists both in one write and refuses any later change, so
+   * the controls lock here too.
+   */
+  const checkAnswer = async () => {
+    if (!part || !item || checking) return;
+    const response = responses[item.position] ?? null;
+    if (!response) return;
+    setChecking(true);
+    const target = item.position;
+
+    const result = await postJson(`/api/attempts/${model.attemptId}/answer`, {
+      partIndex: part.partIndex,
+      position: target,
+      response,
+      elapsedMs: Math.max(0, Date.now() - itemEnteredAt.current),
+      reveal: true,
+    }).catch(() => ({ ok: false, status: 0, data: null }));
+    setChecking(false);
+
+    if (result.status === 0) {
+      setMessage(
+        'We could not check your answer because the connection dropped. Your answer is still selected here; try again when you are back online.',
+      );
+      return;
+    }
+    if (!result.ok) {
+      setMessage(result.data?.error?.message ?? 'That answer could not be checked.');
+      if (result.data?.error?.code === 'response-locked') {
+        setLocked((current) => ({ ...current, [target]: true }));
+        router.refresh();
+      }
+      return;
+    }
+
+    pending.current.delete(target);
+    setMessage(null);
+    setSaveState('saved');
+    setLocked((current) => ({ ...current, [target]: true }));
+    if (result.data?.feedback) {
+      setFeedback((current) => ({
+        ...current,
+        [target]: {
+          correct: result.data.feedback.correct,
+          explanationHtml: '',
+          distractorHtml: {},
+          correctSummary: '',
+          difficultyBasis: 'editorial',
+        },
+      }));
+    }
+    // The explanation is rendered on the server.
+    router.refresh();
+  };
 
   // Retry anything queued while offline.
   useEffect(() => {
@@ -243,6 +301,7 @@ export function AttemptPlayer({ model }: { model: PlayerModel }) {
   const isLastOnPage = position >= pageStart + pageItems.length - 1;
   const isLastItem = position === part.items.length - 1;
   const itemFeedback = model.immediateFeedback ? (feedback[item.position] ?? item.review) : null;
+  const isLocked = model.immediateFeedback && (locked[item.position] || item.locked);
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6">
@@ -339,7 +398,7 @@ export function AttemptPlayer({ model }: { model: PlayerModel }) {
         <h1
           ref={headingRef}
           tabIndex={-1}
-          className="mb-4 font-serif text-lg font-semibold outline-none"
+          className="mb-4 font-heading text-lg font-semibold outline-none"
         >
           Question {position + 1}
           <span className="sr-only"> of {part.items.length}</span>
@@ -367,9 +426,35 @@ export function AttemptPlayer({ model }: { model: PlayerModel }) {
 
         <ResponseInput
           item={{ ...item, response: responses[item.position] ?? null }}
-          disabled={part.status !== 'in_progress'}
+          disabled={part.status !== 'in_progress' || isLocked}
           onChange={handleChange}
         />
+
+        {model.immediateFeedback && part.status === 'in_progress' ? (
+          isLocked ? (
+            <p className="mt-4 flex items-center gap-2 text-sm text-ink-muted">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <rect x="3" y="7" width="10" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.6" />
+                <path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" stroke="currentColor" strokeWidth="1.6" />
+              </svg>
+              Answer locked: you have seen the explanation for this question.
+            </p>
+          ) : (
+            <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2">
+              <Button
+                onClick={() => void checkAnswer()}
+                disabled={responses[item.position] == null}
+                loading={checking}
+              >
+                Check answer
+              </Button>
+              <span className="text-sm text-ink-muted">
+                You can change your answer until you check it. Checking shows the explanation and locks
+                the answer.
+              </span>
+            </div>
+          )
+        ) : null}
 
         {itemFeedback && item.review ? (
           <div
@@ -425,7 +510,7 @@ export function AttemptPlayer({ model }: { model: PlayerModel }) {
       {/* End-of-section review screen */}
       {showReviewScreen ? (
         <section aria-labelledby="review-heading" className="mt-6 rounded-card border border-line bg-surface p-5">
-          <h2 id="review-heading" className="font-serif text-lg font-semibold">
+          <h2 id="review-heading" className="font-heading text-lg font-semibold">
             Review before finishing
           </h2>
           <p className="mt-1 text-sm text-ink-muted">

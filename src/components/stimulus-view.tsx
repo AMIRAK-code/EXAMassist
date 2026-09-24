@@ -200,7 +200,7 @@ export function StimulusView({ stimulus }: { stimulus: StimulusViewModel }) {
       className="rounded-card border border-line bg-surface-sunken p-5"
     >
       {stimulus.title ? (
-        <h2 className="mb-3 font-serif text-lg font-semibold">{stimulus.title}</h2>
+        <h2 className="mb-3 font-heading text-lg font-semibold">{stimulus.title}</h2>
       ) : null}
 
       {stimulus.bodyHtml ? (
@@ -213,11 +213,11 @@ export function StimulusView({ stimulus }: { stimulus: StimulusViewModel }) {
       {stimulus.data ? (
         <div className={stimulus.bodyHtml ? 'mt-4' : ''}>
           {stimulus.data.chart ? (
-            <div className="mb-4 overflow-x-auto rounded border border-line bg-surface p-3">
+            <div className="mb-4 relative overflow-x-auto rounded border border-line bg-surface p-3">
               <Chart data={stimulus.data} chart={stimulus.data.chart} />
             </div>
           ) : null}
-          <div className="overflow-x-auto">
+          <div className="relative overflow-x-auto">
             <DataTable data={stimulus.data} />
           </div>
         </div>

@@ -38,6 +38,8 @@ export interface PlayerItem {
   answered: boolean;
   flagged: boolean;
   response: Response | null;
+  /** Feedback has been shown, so the server will refuse any change to the answer. */
+  locked: boolean;
   review: PlayerReview | null;
 }
 
@@ -158,6 +160,7 @@ export function toPlayerModel(state: AttemptState): PlayerModel {
           answered: item.answered,
           flagged: item.flagged,
           response: item.response,
+          locked: item.feedbackReleased,
           review: item.review
             ? {
                 correct: item.review.correct,

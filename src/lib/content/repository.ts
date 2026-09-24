@@ -106,6 +106,17 @@ export function getQuestionVersion(db: Db, questionVersionId: string): QuestionV
     | undefined;
 }
 
+/** The version of a question currently being served, if it is published. */
+export function getPublishedVersion(db: Db, questionId: string): QuestionVersionRow | undefined {
+  return db
+    .prepare(
+      `SELECT qv.* FROM question_versions qv
+       JOIN questions q ON q.id = qv.question_id AND q.current_version = qv.version
+       WHERE q.id = ? AND q.state = 'published' AND qv.state = 'published'`,
+    )
+    .get(questionId) as QuestionVersionRow | undefined;
+}
+
 export function getQuestionVersions(db: Db, ids: readonly string[]): Map<string, QuestionVersionRow> {
   if (ids.length === 0) return new Map();
   const placeholders = ids.map(() => '?').join(',');

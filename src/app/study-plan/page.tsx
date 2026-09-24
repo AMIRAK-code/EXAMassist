@@ -172,7 +172,7 @@ export default async function StudyPlanPage() {
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_20rem]">
         <div>
           <section aria-labelledby="weeks-heading">
-            <h2 id="weeks-heading" className="mb-4 font-serif text-2xl font-semibold">
+            <h2 id="weeks-heading" className="mb-4 font-heading text-2xl font-semibold">
               Week by week
             </h2>
 
@@ -191,7 +191,7 @@ export default async function StudyPlanPage() {
                 {plan.weeks.map((week) => (
                   <Card as="li" key={week.weekNumber}>
                     <div className="flex flex-wrap items-baseline justify-between gap-2">
-                      <h3 className="font-serif text-lg font-semibold">Week {week.weekNumber}</h3>
+                      <h3 className="font-heading text-lg font-semibold">Week {week.weekNumber}</h3>
                       <p className="text-sm text-ink-muted">
                         from {formatWeekStart(week.startsOn)} · {week.totalMinutes} minutes
                       </p>
@@ -249,7 +249,7 @@ export default async function StudyPlanPage() {
 
         <aside className="space-y-6">
           <Card>
-            <h2 className="font-serif text-lg font-semibold">Your inputs</h2>
+            <h2 className="font-heading text-lg font-semibold">Your inputs</h2>
             <p className="mt-1 text-sm text-ink-muted">
               These two numbers are the only things the plan cannot work out for itself.
             </p>
@@ -263,7 +263,7 @@ export default async function StudyPlanPage() {
           </Card>
 
           <Card>
-            <h2 className="font-serif text-lg font-semibold">This plan at a glance</h2>
+            <h2 className="font-heading text-lg font-semibold">This plan at a glance</h2>
             <div className="mt-3">
               <DefinitionList
                 items={[
@@ -288,7 +288,7 @@ export default async function StudyPlanPage() {
           </Card>
 
           <Card>
-            <h2 className="font-serif text-lg font-semibold">Where the order comes from</h2>
+            <h2 className="font-heading text-lg font-semibold">Where the order comes from</h2>
             <p className="mt-2 text-sm text-ink-muted">
               Skills you have answered least accurately come first, then topics you have never
               attempted. Skills with too few answers to read anything into are not used to order the

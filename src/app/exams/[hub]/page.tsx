@@ -102,7 +102,7 @@ export default async function ExamHubPage({ params }: { params: Promise<{ hub: s
             className="mb-12"
           >
             {configs.length > 1 ? (
-              <h2 id={`config-${config.examKey}`} className="mb-3 font-serif text-2xl font-semibold">
+              <h2 id={`config-${config.examKey}`} className="mb-3 font-heading text-2xl font-semibold">
                 {config.name}
               </h2>
             ) : (
@@ -149,8 +149,8 @@ export default async function ExamHubPage({ params }: { params: Promise<{ hub: s
             </Card>
 
             {/* Structure table */}
-            <h3 className="mb-3 font-serif text-xl font-semibold">Structure</h3>
-            <div className="mb-6 overflow-x-auto rounded-card border border-line bg-surface">
+            <h3 className="mb-3 font-heading text-xl font-semibold">Structure</h3>
+            <div className="mb-6 relative overflow-x-auto rounded-card border border-line bg-surface">
               <table className="w-full border-collapse text-sm">
                 <caption className="sr-only">
                   Sections of the {config.name}, with question counts, time limits and calculator
@@ -206,11 +206,12 @@ export default async function ExamHubPage({ params }: { params: Promise<{ hub: s
             </p>
 
             {/* Practice */}
-            <h3 className="mb-3 font-serif text-xl font-semibold">Practise this exam</h3>
+            <h3 className="mb-3 font-heading text-xl font-semibold">Practise this exam</h3>
             <p className="mb-4 text-ink-muted">
               {coverage.publishedItems} reviewed questions across {coverage.domainsCovered} of{' '}
-              {coverage.domainsTotal} topics. Every question is original, and a second reviewer solved
-              each one independently before it was published.
+              {coverage.domainsTotal} topics. The questions are original and AI-assisted; each was
+              solved blind by a separate AI reviewer before publication.{' '}
+              <Link href="/about/editorial-standards">How questions are checked</Link>
             </p>
 
             {offered.length === 0 ? (
@@ -222,7 +223,7 @@ export default async function ExamHubPage({ params }: { params: Promise<{ hub: s
               <ul className="grid gap-3 sm:grid-cols-2">
                 {offered.map((entry) => (
                   <Card as="li" key={entry.blueprint.id}>
-                    <h4 className="font-serif text-lg font-semibold">{entry.blueprint.label}</h4>
+                    <h4 className="font-heading text-lg font-semibold">{entry.blueprint.label}</h4>
                     <p className="mt-1 text-sm text-ink-muted">{entry.blueprint.description}</p>
                     <div className="mt-3">
                       <FidelityBadge fidelity={entry.blueprint.fidelity} />

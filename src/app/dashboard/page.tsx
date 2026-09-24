@@ -114,7 +114,7 @@ export default async function DashboardPage() {
         <ul className="grid gap-4 md:grid-cols-2">
           {listHubs().map((hub) => (
             <Card as="li" key={hub.slug}>
-              <h2 className="font-serif text-xl font-semibold">{hub.name}</h2>
+              <h2 className="font-heading text-xl font-semibold">{hub.name}</h2>
               <p className="mt-1 text-xs uppercase tracking-wide text-ink-subtle">{hub.publisher}</p>
               <p className="mt-2 text-sm text-ink-muted">{hub.tagline}</p>
               <div className="mt-4 flex flex-wrap gap-2">
@@ -222,7 +222,7 @@ export default async function DashboardPage() {
       {/* Unfinished session, offered before anything else. */}
       {inProgress ? (
         <Card className="mb-8 border-s-4 border-s-accent">
-          <h2 className="font-serif text-xl font-semibold">You have a session in progress</h2>
+          <h2 className="font-heading text-xl font-semibold">You have a session in progress</h2>
           <p className="mt-1 text-sm text-ink-muted">
             {config.blueprints.find((b) => b.id === inProgress.blueprintId)?.label ??
               inProgress.blueprintId}{' '}
@@ -251,14 +251,14 @@ export default async function DashboardPage() {
           <div className="mb-8 grid gap-4 sm:grid-cols-3">
             <Card>
               <p className="text-sm text-ink-muted">Questions scored</p>
-              <p className="font-serif text-3xl font-semibold tabular-nums">{totalScored}</p>
+              <p className="font-heading text-3xl font-semibold tabular-nums">{totalScored}</p>
               <p className="mt-1 text-xs text-ink-subtle">
                 across {finished.length} finished session{finished.length === 1 ? '' : 's'}
               </p>
             </Card>
             <Card>
               <p className="text-sm text-ink-muted">Answered correctly</p>
-              <p className="font-serif text-3xl font-semibold tabular-nums">
+              <p className="font-heading text-3xl font-semibold tabular-nums">
                 {totalCorrect}
                 <span className="text-lg font-normal text-ink-subtle"> / {totalScored}</span>
               </p>
@@ -270,7 +270,7 @@ export default async function DashboardPage() {
             </Card>
             <Card>
               <p className="text-sm text-ink-muted">Waiting in your mistake notebook</p>
-              <p className="font-serif text-3xl font-semibold tabular-nums">{dueRow.n}</p>
+              <p className="font-heading text-3xl font-semibold tabular-nums">{dueRow.n}</p>
               <p className="mt-1 text-xs text-ink-subtle">
                 questions you missed that are due to come back
               </p>
@@ -279,7 +279,7 @@ export default async function DashboardPage() {
 
           {/* Recommendations, each with the reason it was produced. */}
           <section aria-labelledby="next-heading" className="mb-10">
-            <h2 id="next-heading" className="mb-4 font-serif text-2xl font-semibold">
+            <h2 id="next-heading" className="mb-4 font-heading text-2xl font-semibold">
               What to do next
             </h2>
             {recommendations.length > 0 ? (
@@ -288,7 +288,7 @@ export default async function DashboardPage() {
                   <Card as="li" key={`${recommendation.kind}-${recommendation.title}`}>
                     <div className="flex flex-wrap items-start justify-between gap-3">
                       <div className="min-w-0">
-                        <h3 className="font-serif text-lg font-semibold">{recommendation.title}</h3>
+                        <h3 className="font-heading text-lg font-semibold">{recommendation.title}</h3>
                         <p className="mt-1 text-sm text-ink-muted">
                           <span className="font-medium text-ink">Why: </span>
                           {recommendation.because}
@@ -323,7 +323,7 @@ export default async function DashboardPage() {
 
           {/* Accuracy by skill. */}
           <section aria-labelledby="skills-heading" className="mb-10">
-            <h2 id="skills-heading" className="mb-2 font-serif text-2xl font-semibold">
+            <h2 id="skills-heading" className="mb-2 font-heading text-2xl font-semibold">
               Accuracy by skill
             </h2>
             <p className="mb-4 max-w-2xl text-sm text-ink-muted">
@@ -333,7 +333,7 @@ export default async function DashboardPage() {
             </p>
 
             {performance.length > 0 ? (
-              <div className="overflow-x-auto rounded-card border border-line bg-surface">
+              <div className="relative overflow-x-auto rounded-card border border-line bg-surface">
                 <table className="w-full border-collapse text-sm">
                   <caption className="px-4 pt-4 text-start text-sm text-ink-muted">
                     Your answers for {config.shortName}, grouped by the skill each question is tagged
@@ -401,7 +401,7 @@ export default async function DashboardPage() {
 
           {/* Recent sessions. */}
           <section aria-labelledby="attempts-heading" className="mb-10">
-            <h2 id="attempts-heading" className="mb-4 font-serif text-2xl font-semibold">
+            <h2 id="attempts-heading" className="mb-4 font-heading text-2xl font-semibold">
               Recent sessions
             </h2>
             {finished.length > 0 ? (
@@ -414,7 +414,7 @@ export default async function DashboardPage() {
                     <Card as="li" key={attempt.id}>
                       <div className="flex flex-wrap items-start justify-between gap-3">
                         <div className="min-w-0">
-                          <h3 className="font-serif text-lg font-semibold">
+                          <h3 className="font-heading text-lg font-semibold">
                             {blueprint?.label ?? attempt.blueprintId}
                           </h3>
                           <p className="mt-1 text-sm text-ink-muted">
@@ -481,7 +481,7 @@ export default async function DashboardPage() {
 
       {otherExams.length > 0 ? (
         <section aria-labelledby="other-exams-heading">
-          <h2 id="other-exams-heading" className="mb-2 font-serif text-lg font-semibold">
+          <h2 id="other-exams-heading" className="mb-2 font-heading text-lg font-semibold">
             Practising something else?
           </h2>
           <p className="mb-3 text-sm text-ink-muted">
