@@ -68,6 +68,10 @@ function RowName({ row }: { row: MatrixRow }) {
   );
 }
 
+/** Below md each cell shows its column name above it, from data-label. */
+const CELL_LABEL =
+  'max-md:p-0 max-md:before:mb-1 max-md:before:block max-md:before:text-xs max-md:before:font-bold max-md:before:uppercase max-md:before:tracking-[0.08em] max-md:before:text-ink-subtle max-md:before:content-[attr(data-label)]';
+
 const COLUMNS: Array<{ key: 'practice' | 'diagnostic' | 'timed' | 'simulation'; label: string }> = [
   { key: 'practice', label: 'Topic practice' },
   { key: 'diagnostic', label: 'Diagnostic' },
@@ -316,64 +320,48 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
             </ul>
           </div>
 
-          {/* Wide screens: a real table. */}
-          <div className="mt-12 hidden md:block">
-            <table className="w-full border-collapse">
-              <caption className="sr-only">
-                Practice formats by exam: reviewed questions and whether each format can be started
-              </caption>
-              <thead>
-                <tr className="border-b-[1.5px] border-ink text-left">
-                  <th scope="col" className="py-3 pe-4 text-xs font-bold uppercase tracking-[0.08em] text-ink-muted">Exam</th>
-                  <th scope="col" className="px-4 py-3 text-xs font-bold uppercase tracking-[0.08em] text-ink-muted">Reviewed questions</th>
+          {/*
+           * One table at every width. Below md it reflows into a card per exam,
+           * each cell labelled from its column; the explicit roles keep the
+           * table semantics that a display change would otherwise drop.
+           */}
+          <table role="table" className="mt-10 w-full border-collapse max-md:block md:mt-12">
+            <caption className="sr-only">
+              Practice formats by exam: reviewed questions and whether each format can be started
+            </caption>
+            <thead role="rowgroup" className="max-md:sr-only">
+              <tr role="row" className="border-b-[1.5px] border-ink text-left">
+                <th role="columnheader" scope="col" className="py-3 pe-4 text-xs font-bold uppercase tracking-[0.08em] text-ink-muted">Exam</th>
+                <th role="columnheader" scope="col" className="px-4 py-3 text-xs font-bold uppercase tracking-[0.08em] text-ink-muted">Reviewed questions</th>
+                {COLUMNS.map((column) => (
+                  <th role="columnheader" key={column.key} scope="col" className="px-4 py-3 text-xs font-bold uppercase tracking-[0.08em] text-ink-muted">
+                    {column.label}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody role="rowgroup" className="max-md:block">
+              {home.matrix.map((row) => (
+                <tr
+                  role="row"
+                  key={row.examKey}
+                  className="border-b border-line align-top max-md:grid max-md:grid-cols-2 max-md:gap-x-4 max-md:gap-y-3 max-md:border-b-0 max-md:border-t-[1.5px] max-md:border-ink max-md:py-5"
+                >
+                  <th role="rowheader" scope="row" className="py-4 pe-4 text-left font-normal max-md:col-span-2 max-md:p-0">
+                    <RowName row={row} />
+                  </th>
+                  <td role="cell" data-label="Reviewed questions" className={`px-4 py-4 text-lg font-semibold tabular-nums ${CELL_LABEL}`}>
+                    {row.questions}
+                  </td>
                   {COLUMNS.map((column) => (
-                    <th key={column.key} scope="col" className="px-4 py-3 text-xs font-bold uppercase tracking-[0.08em] text-ink-muted">
-                      {column.label}
-                    </th>
+                    <td role="cell" key={column.key} data-label={column.label} className={`px-4 py-4 ${CELL_LABEL}`}>
+                      <Cell cell={row[column.key]} />
+                    </td>
                   ))}
                 </tr>
-              </thead>
-              <tbody>
-                {home.matrix.map((row) => (
-                  <tr key={row.examKey} className="border-b border-line align-top">
-                    <th scope="row" className="py-4 pe-4 text-left font-normal">
-                      <RowName row={row} />
-                    </th>
-                    <td className="px-4 py-4 text-lg font-semibold tabular-nums">{row.questions}</td>
-                    {COLUMNS.map((column) => (
-                      <td key={column.key} className="px-4 py-4">
-                        <Cell cell={row[column.key]} />
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          {/* Narrow screens: the same facts as a list per exam. */}
-          <ul className="mt-10 md:hidden">
-            {home.matrix.map((row) => (
-              <li key={row.examKey} className="border-t-[1.5px] border-ink py-5">
-                <div className="mb-3 flex items-baseline justify-between gap-3">
-                  <div>
-                    <RowName row={row} />
-                  </div>
-                  <span className="shrink-0 text-sm text-ink-muted">{row.questions} questions</span>
-                </div>
-                <dl className="grid grid-cols-2 gap-x-4 gap-y-3">
-                  {COLUMNS.map((column) => (
-                    <div key={column.key}>
-                      <dt className="mb-1 text-xs font-bold uppercase tracking-[0.08em] text-ink-subtle">{column.label}</dt>
-                      <dd>
-                        <Cell cell={row[column.key]} />
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-              </li>
-            ))}
-          </ul>
+              ))}
+            </tbody>
+          </table>
 
           <p className="mt-6 text-sm text-ink-subtle">
             Counts as of {asOf}. Essay tasks are not listed: we do not author or score essays. Every
@@ -427,7 +415,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
                   return (
                     <tbody key={section.key}>
                       <tr>
-                        <th colSpan={3} scope="colgroup" className="border-b-[1.5px] border-ink pb-2 pt-5 text-left text-xs font-bold uppercase tracking-[0.1em] text-ink-muted">
+                        <th colSpan={2} scope="colgroup" className="border-b-[1.5px] border-ink pb-2 pt-5 text-left text-xs font-bold uppercase tracking-[0.1em] text-ink-muted">
                           {group}
                         </th>
                       </tr>
@@ -439,17 +427,13 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
                           <tr key={domain.slug} className="border-b border-line">
                             <th scope="row" className="py-3 pe-3 text-left font-medium">
                               {domain.name}
-                              {/* On a phone the marks sit under the name rather than in a column of their own. */}
                               {scored > 0 ? (
-                                <span className="mt-1.5 block sm:hidden">
+                                <span className="mt-1.5 block">
                                   <Tally marks={marks} />
                                 </span>
                               ) : null}
                             </th>
-                            <td className="hidden px-2 py-3 sm:table-cell">
-                              {scored > 0 ? <Tally marks={marks} /> : <span aria-hidden="true" className="text-ink-subtle">—</span>}
-                            </td>
-                            <td className="py-3 text-right tabular-nums sm:whitespace-nowrap">
+                            <td className="py-3 text-right align-top tabular-nums sm:whitespace-nowrap">
                               {scored === 0 ? (
                                 <span className="text-ink-subtle">Not attempted</span>
                               ) : scored < 4 ? (

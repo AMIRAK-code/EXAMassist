@@ -46,12 +46,6 @@ export const PUBLIC_SAMPLES: readonly PublicSample[] = [
     use: 'homepage-sample',
   },
   {
-    questionId: 'lsat-lr-recusal-principle-apply-130',
-    examKey: 'lsat',
-    hubSlug: 'lsat',
-    use: 'homepage-sample',
-  },
-  {
     questionId: 'gmat-ps-units-digit-cycles-204',
     examKey: 'gmat',
     hubSlug: 'gmat',
@@ -64,12 +58,23 @@ export const PUBLIC_SAMPLES: readonly PublicSample[] = [
     use: 'homepage-sample',
   },
   {
-    questionId: 'digital-sat-math-equivalent-expressions-017',
+    questionId: 'digital-sat-rw-transitions-vanilla-010',
     examKey: 'digital-sat',
     hubSlug: 'digital-sat',
     use: 'homepage-demo',
   },
 ];
+
+/**
+ * Hubs with no public sample, and why. The homepage shows an honest empty
+ * state for these rather than a question it cannot stand behind.
+ */
+export const WITHHELD_SAMPLES: Readonly<Record<string, string>> = {
+  lsat:
+    'Every published LSAT explanation names option letters, and the options were reordered after ' +
+    'review without those letters being updated, so a sample would show the wrong letters. Withheld ' +
+    'until the explanations have a reviewed correction.',
+};
 
 export const PUBLIC_SAMPLE_IDS: ReadonlySet<string> = new Set(PUBLIC_SAMPLES.map((s) => s.questionId));
 
