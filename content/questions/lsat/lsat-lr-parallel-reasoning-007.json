@@ -1,6 +1,6 @@
 {
   "id": "lsat-lr-parallel-reasoning-007",
-  "version": 1,
+  "version": 2,
   "examKey": "lsat",
   "sectionKey": "lr1",
   "domainSlug": "logical-reasoning",
@@ -42,7 +42,7 @@
     "type": "single_select",
     "optionId": "c"
   },
-  "explanationMd": "Parallel-reasoning questions are about **form**, not subject matter. Strip the content down to letters before you read the choices.\n\nLet $F$ = club members who finished the route, $G$ = trained at altitude, $H$ = finished in under four hours. The argument is:\n\n- Premise: All $F$ are $G$.\n- Premise: No $G$ are $H$.\n- Conclusion: No $F$ are $H$.\n\nThis is **valid**, and you should register that as part of the pattern: a correct parallel answer must be valid too. To see the validity, suppose some club member did finish in under four hours. Being a finisher, they trained at altitude; having trained at altitude, they did not finish in under four hours. Contradiction, so no such member exists.\n\nNow (C): let $F$ = cheeses at the stall, $G$ = made from unpasteurised milk, $H$ = may be shipped abroad. All $F$ are $G$; no $G$ are $H$; therefore no $F$ are $H$. Identical form, identical validity, same two universal premises and the same universal negative conclusion. That is the match.\n\nThe efficient way to eliminate is to check **quantifiers and validity** before anything else:\n\n- (A) and (D) both run a *some* premise into a conclusion stronger than it supports, so they are invalid and cannot match a valid argument.\n- (E) is invalid in a different way: it takes a fact about every member of one group and converts it into a claim about everyone in a larger group.\n- (B) has premises of the right shape, but its conclusion is a recommendation, not a statement of fact.\n\nThe habit to build: note the conclusion's *kind* (fact or recommendation), its *quantifier* (all, some, none), and the argument's *validity*. A choice that differs on any one of those three is out, usually in a few seconds each.",
+  "explanationMd": "Parallel-reasoning questions are about **form**, not subject matter. Strip the content down to letters before you read the choices.\n\nLet $F$ = club members who finished the route, $G$ = trained at altitude, $H$ = finished in under four hours. The argument is:\n\n- Premise: All $F$ are $G$.\n- Premise: No $G$ are $H$.\n- Conclusion: No $F$ are $H$.\n\nThis is **valid**, and you should register that as part of the pattern: a correct parallel answer must be valid too. To see the validity, suppose some club member did finish in under four hours. Being a finisher, they trained at altitude; having trained at altitude, they did not finish in under four hours. Contradiction, so no such member exists.\n\nNow (C): let $F$ = cheeses at the stall, $G$ = made from unpasteurised milk, $H$ = may be shipped abroad. All $F$ are $G$; no $G$ are $H$; therefore no $F$ are $H$. Identical form, identical validity, same two universal premises and the same universal negative conclusion. That is the match.\n\nThe efficient way to eliminate is to check **quantifiers and validity** before anything else:\n\n- (E) and (B) both run a *some* premise into a conclusion stronger than it supports, so they are invalid and cannot match a valid argument.\n- (A) is invalid in a different way: it takes a fact about every member of one group and converts it into a claim about everyone in a larger group.\n- (D) has premises of the right shape, but its conclusion is a recommendation, not a statement of fact.\n\nThe habit to build: note the conclusion's *kind* (fact or recommendation), its *quantifier* (all, some, none), and the argument's *validity*. A choice that differs on any one of those three is out, usually in a few seconds each.",
   "distractorRationale": {
     "e": "The second premise here is a 'some' statement, where the original's is a universal 'no.' That makes this argument invalid — shortlisted novels could all be among the last year's books that sold well — whereas the original is valid. A parallel-reasoning answer must reproduce the original's validity, not merely borrow its vocabulary of groups.",
     "d": "This is the strongest trap, because its two premises really do have the original's shape: all bridges are pre-1950, no pre-1950 bridge meets the code. But the conclusion switches from a factual claim to a prescription about what the county 'should' do, introducing a recommendation that has no counterpart in the original's purely descriptive conclusion.",
@@ -61,16 +61,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "lsat-author",
-    "reviewer": "lsat-independent-reviewer",
-    "reviewedOn": "2026-09-22",
+    "reviewer": "closeout-blind-solver-s4",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "lsat-independent-reviewer",
+      "solvedBy": "closeout-blind-solver-s4",
       "solvedAnswer": "c",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Abstract form: all A are B; no B is C; therefore no A is C. Option C matches exactly (all stall cheeses are unpasteurised; no unpasteurised cheese may be shipped; so no stall cheese may be shipped). E reverses the order and concludes about the wrong term, A and D are invalid 'some' inferences, and B adds a prescriptive conclusion absent from the original."
+      "workingNotes": "Structure: all A are B; no B is C; so no A is C (valid chain). (c) matches: all stall cheeses are unpasteurised, no unpasteurised cheese may be shipped, so no stall cheese may be shipped. (a) reverses the terms invalidly (no R is I does not follow); (b) moves from 'some' to 'most'; (d) ends in a recommendation rather than a categorical conclusion; (e) is an invalid 'some' inference."
     },
-    "notes": "Author formalised all five choices to confirm a unique match. An earlier version of (B) read 'no student who missed the lab could sit the exam; every seminar student sat the exam; so no seminar student missed the lab' — that is logically equivalent to the stimulus form, since 'no G are H' and 'no H are G' convert, and it was replaced to avoid a second defensible answer. The replacement keeps the premise shape but changes the conclusion to a prescription. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author formalised all five choices to confirm a unique match. An earlier version of (B) read 'no student who missed the lab could sit the exam; every seminar student sat the exam; so no seminar student missed the lab' — that is logically equivalent to the stimulus form, since 'no G are H' and 'no H are G' convert, and it was replaced to avoid a second defensible answer. The replacement keeps the premise shape but changes the conclusion to a prescription. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 3 option references in the explanation that still used the option order from before the options were reordered (wrong options were discussed under the wrong letters). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

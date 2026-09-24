@@ -1,6 +1,6 @@
 {
   "id": "bocconi-law-logic-notary-deeds-036",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-law",
   "sectionKey": "online-test-law",
   "domainSlug": "law-logic-and-critical-thinking",
@@ -37,7 +37,7 @@
     "type": "single_select",
     "optionId": "b"
   },
-  "explanationMd": "First recover the missing figure. The three kinds are exclusive and exhaustive, so\n\n$$\\text{company deeds} = 60 - 36 - 14 = 10$$\n\nThe month therefore breaks down as 36 property transfers, 14 wills and 10 company deeds.\n\nNow test option A. Wills and company deeds together come to $14 + 10 = 24$, and $36 > 24$, so property transfers do outnumber the other two kinds combined. Option A follows.\n\n**How to check.** Confirm the three parts add back to the stated total: $36 + 14 + 10 = 60$. Then rank the kinds once — property transfers 36, wills 14, company deeds 10 — and read every option off that single ranking rather than recomputing each time. Two quick sanity figures fall out of it: wills are $\\tfrac{14}{60}$, a little under a quarter, and property transfers are $\\tfrac{36}{60} = 60\\%$, comfortably over half.",
+  "explanationMd": "First recover the missing figure. The three kinds are exclusive and exhaustive, so\n\n$$\\text{company deeds} = 60 - 36 - 14 = 10$$\n\nThe month therefore breaks down as 36 property transfers, 14 wills and 10 company deeds.\n\nNow test option B. Wills and company deeds together come to $14 + 10 = 24$, and $36 > 24$, so property transfers do outnumber the other two kinds combined. Option B follows.\n\n**How to check.** Confirm the three parts add back to the stated total: $36 + 14 + 10 = 60$. Then rank the kinds once — property transfers 36, wills 14, company deeds 10 — and read every option off that single ranking rather than recomputing each time. Two quick sanity figures fall out of it: wills are $\\tfrac{14}{60}$, a little under a quarter, and property transfers are $\\tfrac{36}{60} = 60\\%$, comfortably over half.",
   "distractorRationale": {
     "d": "A quarter of 60 is 15, and the log records 14 wills, not 15. This option comes from rounding 14 to the nearest convenient fraction of the total instead of checking the exact figure.",
     "a": "Company deeds number 10 and wills number 14, so company deeds are the least frequent kind, not the second most frequent. The error is to assume that the kind you had to calculate, rather than read off, must be larger than the one already given.",
@@ -55,16 +55,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-law-wave3-author",
-    "reviewer": "bocconi-law-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout-blind-solver-s1",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-law-wave3-reviewer",
+      "solvedBy": "closeout-blind-solver-s1",
       "solvedAnswer": "b",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Company deeds = 60 - 36 - 14 = 10. Property transfers (36) exceed wills plus company deeds (14 + 10 = 24), so B holds. A is false (wills 14 > company 10), C is false (36/60 = 60 per cent), D is false (a quarter would be 15, not 14)."
+      "workingNotes": "Company deeds = 60 - 36 - 14 = 10. Property transfers (36) exceed wills plus company deeds (24), so (b). (a) fails since wills (14) outnumber company deeds (10); (c) fails because 36 is 60% of 60; (d) fails because a quarter would be 15, not 14."
     },
-    "notes": "Author's working: company deeds = 60 - 36 - 14 = 10. Then 36 > 14 + 10 = 24, so A holds. B fails because a quarter of 60 is 15, not 14; C fails because 10 < 14; D fails because 36 is 60 per cent of 60. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author's working: company deeds = 60 - 36 - 14 = 10. Then 36 > 14 + 10 = 24, so A holds. B fails because a quarter of 60 is 15, not 14; C fails because 10 < 14; D fails because 36 is 60 per cent of 60. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 2 option references in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

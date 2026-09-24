@@ -1,6 +1,6 @@
 {
   "id": "lsat-lr-necessary-assumption-001",
-  "version": 1,
+  "version": 2,
   "examKey": "lsat",
   "sectionKey": "lr1",
   "domainSlug": "logical-reasoning",
@@ -42,7 +42,7 @@
     "type": "single_select",
     "optionId": "b"
   },
-  "explanationMd": "Sort the argument into its parts first.\n\n- Premise: average commute time is unchanged (the gain to bus riders and the loss to drivers offset exactly).\n- Premise: the lanes are expensive to maintain.\n- Conclusion: the city has got **nothing** for its money.\n\nThe premises are entirely about one quantity, commute time. The conclusion is about **value received overall**. That jump only works if commute time is the whole of the value at stake. So the argument must be assuming that nothing else the conversion might have produced — cleaner air, fewer collisions, a more reliable timetable, less wear on the roadway — counts as getting something for the money. That is exactly (B).\n\nUse the **negation test**, which is the reliable way to check a necessary assumption. Negate a choice; if the argument falls apart, the choice was necessary.\n\nNegate (B): \"A reduction in average commute time is *not* the only benefit the conversion could have produced.\" Then the conversion may well have delivered some other benefit, and the claim that the city got *nothing* collapses. (B) is necessary.\n\nNegate (A): \"Bus-only lanes cost no more than ordinary lanes.\" The lanes are still stated to be expensive, money was still spent, and the conclusion stands. Not necessary — and the same style of check disposes of (C), (D) and (E).\n\nTwo habits worth carrying forward. First, watch for a conclusion whose subject matter is broader than the premises' — here, \"value\" versus \"commute time\"; the assumption almost always lives in that gap. Second, when a choice restates something the passage already gives you as fact, it cannot be an assumption the argument *makes*; that disposes of (C) immediately.",
+  "explanationMd": "Sort the argument into its parts first.\n\n- Premise: average commute time is unchanged (the gain to bus riders and the loss to drivers offset exactly).\n- Premise: the lanes are expensive to maintain.\n- Conclusion: the city has got **nothing** for its money.\n\nThe premises are entirely about one quantity, commute time. The conclusion is about **value received overall**. That jump only works if commute time is the whole of the value at stake. So the argument must be assuming that nothing else the conversion might have produced — cleaner air, fewer collisions, a more reliable timetable, less wear on the roadway — counts as getting something for the money. That is exactly (B).\n\nUse the **negation test**, which is the reliable way to check a necessary assumption. Negate a choice; if the argument falls apart, the choice was necessary.\n\nNegate (B): \"A reduction in average commute time is *not* the only benefit the conversion could have produced.\" Then the conversion may well have delivered some other benefit, and the claim that the city got *nothing* collapses. (B) is necessary.\n\nNegate (A): \"Bus-only lanes cost no more than ordinary lanes.\" The lanes are still stated to be expensive, money was still spent, and the conclusion stands. Not necessary — and the same style of check disposes of (C), (D) and (E).\n\nTwo habits worth carrying forward. First, watch for a conclusion whose subject matter is broader than the premises' — here, \"value\" versus \"commute time\"; the assumption almost always lives in that gap. Second, when a choice restates something the passage already gives you as fact, it cannot be an assumption the argument *makes*; that disposes of (E) immediately.",
   "distractorRationale": {
     "a": "This is a comparison the argument never needs. The stimulus already grants that the lanes are expensive, so the conclusion that money was spent does not depend on how that cost compares with an ordinary lane's. Negate it — the lanes cost the same as ordinary lanes — and the reasoning is untouched. Picking this confuses a detail that sounds relevant to cost with a premise the argument actually rests on.",
     "e": "This is stated in the stimulus as a fact ('its number of daily commuters have held steady throughout'), and an argument does not need to assume what it has already been given. This choice is the trap for a reader who spots the genuine worry it gestures at — holding commute time steady while demand grows would itself be a benefit — without noticing that the passage has already closed that door.",
@@ -61,16 +61,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "lsat-author",
-    "reviewer": "lsat-independent-reviewer",
-    "reviewedOn": "2026-09-22",
+    "reviewer": "closeout-blind-solver-s4",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "lsat-independent-reviewer",
+      "solvedBy": "closeout-blind-solver-s4",
       "solvedAnswer": "b",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "The argument moves from 'average commute time unchanged' to 'nothing for its money', so it must assume no other benefit (emissions, equity, rider comfort) counts; negating B gives a possible benefit and the conclusion collapses. C is stated in the stimulus as a premise rather than assumed, A is not required because the stimulus already grants the lanes are expensive, and D and E are irrelevant to whether a benefit exists."
+      "workingNotes": "The conclusion 'nothing for its money' rests only on unchanged average commute time, so the argument must assume commute-time reduction was the only benefit at stake (b); if other benefits (emissions, reliability) were possible, the conclusion fails. (b) is phrased a little more strongly ('could have produced') than strictly necessary, but it is clearly the intended gap. (a) compares with ordinary lanes, which is irrelevant since the lanes are stated to be expensive; (c) and (d) are not needed; (e) is already stated as a premise, not an unstated assumption."
     },
-    "notes": "Author checked uniqueness with the negation test on all five choices; only (B) breaks the argument when negated. The sentence fixing commuter numbers as constant was added deliberately so that (C) states a given fact rather than a second necessary assumption. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author checked uniqueness with the negation test on all five choices; only (B) breaks the argument when negated. The sentence fixing commuter numbers as constant was added deliberately so that (C) states a given fact rather than a second necessary assumption. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 1 option reference in the explanation that still used the option order from before the options were reordered (wrong options were discussed under the wrong letters). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

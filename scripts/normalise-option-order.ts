@@ -56,6 +56,7 @@ function main(): void {
   let reordered = 0;
   let sorted = 0;
   let skipped = 0;
+  const namesLetters: string[] = [];
 
   for (const entry of questions) {
     const question = entry.question;
@@ -71,6 +72,19 @@ function main(): void {
 
     if (!SHUFFLEABLE.has(question.responseType) || question.options.length < 2) {
       skipped += 1;
+      continue;
+    }
+
+    // Letters written in prose are not remapped, and a stale "Choice B." sends
+    // a learner to the wrong option. This happened to 104 published items, so
+    // an item whose explanation or distractor notes name option letters is
+    // left in its order and reported, to be reordered and re-lettered by hand.
+    const prose = [question.explanationMd, ...Object.values(question.distractorRationale)]
+      .join('\n')
+      .replace(/\$\$[\s\S]*?\$\$/g, ' ')
+      .replace(/\$[^$\n]*\$/g, ' ');
+    if (/\b(?:[Cc]hoices?|[Oo]ptions?) \(?[A-H]\)?(?![A-Za-z])|\([A-H]\)/.test(prose)) {
+      namesLetters.push(question.id);
       continue;
     }
 
@@ -142,6 +156,10 @@ function main(): void {
   console.log(`  numeric sets sorted ascending: ${sorted}`);
   console.log(`  other sets shuffled:           ${reordered}`);
   console.log(`  unchanged or not applicable:   ${skipped}`);
+  if (namesLetters.length > 0) {
+    console.log(`  left alone, prose names option letters: ${namesLetters.length}`);
+    for (const id of namesLetters) console.log(`    ${id}`);
+  }
 }
 
 main();

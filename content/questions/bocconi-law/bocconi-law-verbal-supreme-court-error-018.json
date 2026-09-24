@@ -1,6 +1,6 @@
 {
   "id": "bocconi-law-verbal-supreme-court-error-018",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-law",
   "sectionKey": "online-test-law",
   "domainSlug": "law-verbal-reasoning",
@@ -37,7 +37,7 @@
     "type": "single_select",
     "optionId": "b"
   },
-  "explanationMd": "Write the first premise as an arrow and watch which way it points:\n\n$$\\text{argued before the supreme court} \\Rightarrow \\text{at least fifteen years of practice}$$\n\nFifteen years is therefore a **necessary** condition for having argued there — a gate everyone must pass. The argument then finds that Dr Merlo has passed the gate and concludes she is inside. That runs the arrow backwards: it treats the necessary condition as though it were **sufficient**, which is option D.\n\nThe premise is perfectly compatible with a profession in which thousands of lawyers have twenty-two years of practice and only a handful have ever appeared before the supreme court. Nothing in it says that long practice produces such an appearance.\n\n**How to check.** Build a counter-model — a world where both premises are true and the conclusion is false. Take a bar in which every supreme-court advocate has twenty-five years of practice, and Dr Merlo, with her twenty-two years, has spent her career in tax tribunals. Premise 1 holds, premise 2 holds, the conclusion fails. A valid argument admits no such world, so the argument is invalid, and the option naming the direction of the error is the answer.",
+  "explanationMd": "Write the first premise as an arrow and watch which way it points:\n\n$$\\text{argued before the supreme court} \\Rightarrow \\text{at least fifteen years of practice}$$\n\nFifteen years is therefore a **necessary** condition for having argued there — a gate everyone must pass. The argument then finds that Dr Merlo has passed the gate and concludes she is inside. That runs the arrow backwards: it treats the necessary condition as though it were **sufficient**, which is option B.\n\nThe premise is perfectly compatible with a profession in which thousands of lawyers have twenty-two years of practice and only a handful have ever appeared before the supreme court. Nothing in it says that long practice produces such an appearance.\n\n**How to check.** Build a counter-model — a world where both premises are true and the conclusion is false. Take a bar in which every supreme-court advocate has twenty-five years of practice, and Dr Merlo, with her twenty-two years, has spent her career in tax tribunals. Premise 1 holds, premise 2 holds, the conclusion fails. A valid argument admits no such world, so the argument is invalid, and the option naming the direction of the error is the answer.",
   "distractorRationale": {
     "c": "No average appears anywhere. The first premise is a universal claim — *every* such lawyer has at least fifteen years — not a claim about a typical or mean figure, so the familiar average-to-individual fallacy is not what is going wrong here.",
     "a": "The argument says nothing about quality of advocacy; both premises and the conclusion are about years of practice and about whether an appearance occurred. Reading a quality claim into it imports a concern the argument never raises.",
@@ -55,16 +55,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-law-topup-author",
-    "reviewer": "bocconi-law-round2-reviewer",
-    "reviewedOn": "2026-09-22",
+    "reviewer": "closeout-blind-solver-s2",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-law-round2-reviewer",
+      "solvedBy": "closeout-blind-solver-s2",
       "solvedAnswer": "b",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Fifteen years of practice is stated as necessary for having argued before the supreme court; the argument reads it as sufficient and affirms the consequent from Merlo's twenty-two years. No average (a), no quality claim (b) and no sampling claim (c) is involved."
+      "workingNotes": "The premise makes fifteen years' practice necessary for having argued before the supreme court. The argument treats it as sufficient, which is (b). (a) is wrong because the quality of practice plays no part. (c) is wrong because no group average is involved; the premise is a universal claim. (d) is wrong because the rule is taken as true, so sample size is beside the point."
     },
-    "notes": "Author confirmed a counter-model in which both premises hold and the conclusion fails, and checked that A, B and C each name a fault the argument does not commit (no average, no quality claim, no inductive step). Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author confirmed a counter-model in which both premises hold and the conclusion fails, and checked that A, B and C each name a fault the argument does not commit (no average, no quality claim, no inductive step). Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 1 option reference in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

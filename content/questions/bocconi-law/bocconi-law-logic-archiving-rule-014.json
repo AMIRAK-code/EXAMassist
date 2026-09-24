@@ -1,6 +1,6 @@
 {
   "id": "bocconi-law-logic-archiving-rule-014",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-law",
   "sectionKey": "online-test-law",
   "domainSlug": "law-logic-and-critical-thinking",
@@ -37,7 +37,7 @@
     "type": "single_select",
     "optionId": "d"
   },
-  "explanationMd": "Take the two rules in order.\n\n**Rule 1** is an \"only if\": archiving requires partner sign-off. File 7 has been archived, so File 7 was signed off by a partner. That is a legitimate step — with \"A only if B\", knowing A does give you B.\n\n**Rule 2** then applies to File 7, because File 7 is now known to be a file signed off by a partner. The rule forbids archiving such a file *before* the client has been notified. File 7 was archived, so that archiving was not before notification: the client had already been notified when it happened. That is option D.\n\nWhat you cannot get is the order of sign-off and notification relative to *each other*. Rule 2 constrains archiving against notification; it never mentions when sign-off occurs. Both orders remain possible.\n\n**How to check.** Build two timelines that both obey the rules — one with sign-off first, then notification, then archiving; one with notification first, then sign-off, then archiving. Notification precedes archiving in both, which confirms D. Options B and C each fail in one of the two timelines, which confirms they are not forced.",
+  "explanationMd": "Take the two rules in order.\n\n**Rule 1** is an \"only if\": archiving requires partner sign-off. File 7 has been archived, so File 7 was signed off by a partner. That is a legitimate step — with \"A only if B\", knowing A does give you B.\n\n**Rule 2** then applies to File 7, because File 7 is now known to be a file signed off by a partner. The rule forbids archiving such a file *before* the client has been notified. File 7 was archived, so that archiving was not before notification: the client had already been notified when it happened. That is option D.\n\nWhat you cannot get is the order of sign-off and notification relative to *each other*. Rule 2 constrains archiving against notification; it never mentions when sign-off occurs. Both orders remain possible.\n\n**How to check.** Build two timelines that both obey the rules — one with sign-off first, then notification, then archiving; one with notification first, then sign-off, then archiving. Notification precedes archiving in both, which confirms D. Options B and A each fail in one of the two timelines, which confirms they are not forced.",
   "distractorRationale": {
     "c": "Reverses rule 1. \"Archived only if signed off\" makes sign-off necessary for archiving, not sufficient for it; a signed-off file may sit in the cabinet for ever. Treating a necessary condition as a guarantee is the error.",
     "b": "Imposes an order between sign-off and notification that neither rule states. It is consistent with the rules — a timeline of notification, sign-off, archiving obeys both — but so is the opposite order, so it is not forced.",
@@ -55,16 +55,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-law-topup-author",
-    "reviewer": "bocconi-law-round2-reviewer",
-    "reviewedOn": "2026-09-22",
+    "reviewer": "closeout-blind-solver-s1",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-law-round2-reviewer",
+      "solvedBy": "closeout-blind-solver-s1",
       "solvedAnswer": "d",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "File 7 archived; rule 1 (archived only if signed off) gives sign-off, then rule 2 forbids archiving a signed-off file before notification, so notification was not later than archiving. (b)/(c) order sign-off against notification, which neither rule constrains; (a) is the converse of rule 1."
+      "workingNotes": "File 7 archived implies (rule 1) it was signed off by a partner; then rule 2 says it cannot have been archived before the client was notified, so the client had been notified by the time of archiving (d). (a) and (b) both assert an order between sign-off and notification that the rules never fix. (c) is the converse of rule 1 and does not follow."
     },
-    "notes": "Author checked uniqueness with two admissible timelines (sign-off before notification, and notification before sign-off). Notification precedes archiving in both, so only D is forced; B and C each fail in one timeline and A reverses rule 1. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author checked uniqueness with two admissible timelines (sign-off before notification, and notification before sign-off). Notification precedes archiving in both, so only D is forced; B and C each fail in one timeline and A reverses rule 1. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 1 option reference in the explanation that still used the option order from before the options were reordered (wrong options were discussed under the wrong letters). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

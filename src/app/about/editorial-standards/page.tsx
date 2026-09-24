@@ -21,7 +21,7 @@ const DESCRIPTION =
 /**
  * Real dates: written on 2026-09-22; revised on 2026-09-24 to state plainly
  * which checks are done by a model and that no per-question human review is
- * recorded.
+ * recorded, and again that day to record the option-letter correction.
  */
 const PUBLISHED = '2026-09-22';
 const UPDATED = '2026-09-24';
@@ -76,6 +76,7 @@ const AUTOMATIC_CHECKS: string[] = [
   'Numeric answers must be coherent: no range whose minimum exceeds its maximum, and no negative tolerance.',
   'Every wrong choice needs a written reason it is wrong. A missing or throwaway distractor rationale blocks publication.',
   'Explanations have to explain: an explanation shorter than 40 characters is not accepted at all.',
+  'An explanation that names an option as the answer — “the answer is C”, “so option A must be true” — must name the keyed option. The check reads explicit statements only, so it is a safety net, not a proof that every letter is right.',
   'A question that refers to a passage, chart or table must refer to one that exists.',
   'A published question must name a reviewer, and the reviewer must not be the author.',
   'A published question must carry a review date and a complete independent-solve record in which the solver agreed with the key and confirmed answer uniqueness.',
@@ -355,6 +356,15 @@ export default function EditorialStandardsPage() {
               Controls catch a great deal and never everything. If a question looks wrong, ambiguous
               or badly worded, tell us. The report goes into the editor area’s review queue, with the
               question and the version you saw attached to it.
+            </p>
+            <p>
+              Corrections are made as new versions, never by editing what a learner already saw. In
+              September 2026 an audit found that reordering answer options had left 104 published
+              explanations referring to options by their old letters, 91 of them in a way that pointed
+              to a wrong option as the answer. Each was corrected as a new version, withdrawn from new
+              sessions until a separate AI reviewer had re-checked its option references and a new
+              blind solve had passed, and then restored. Earlier attempts keep the version they were
+              shown.
             </p>
           </div>
           <Card className="mt-4">

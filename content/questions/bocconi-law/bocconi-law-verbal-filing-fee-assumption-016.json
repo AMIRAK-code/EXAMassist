@@ -1,6 +1,6 @@
 {
   "id": "bocconi-law-verbal-filing-fee-assumption-016",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-law",
   "sectionKey": "online-test-law",
   "domainSlug": "law-verbal-reasoning",
@@ -37,7 +37,7 @@
     "type": "single_select",
     "optionId": "b"
   },
-  "explanationMd": "Set the argument out in two steps:\n\n1. *Stated premise:* the backlog exists because too many claims are filed.\n2. *Conclusion:* tripling the filing fee will shrink the backlog.\n\nThere is a hole between them. Step 1 links the backlog to the **number of claims**; step 2 talks about the **price of filing**. Nothing said so far connects price to quantity. The argument silently supplies that link — it takes for granted that a higher price means fewer claims. That is option C.\n\n**How to check — the negation test.** Deny the candidate assumption and see whether the argument still stands. Deny C: tripling the fee does *not* reduce the number of claims filed. Then the same number of claims arrives, the stated cause of the backlog is untouched, and the conclusion collapses. An assumption whose denial destroys the argument is a genuine assumption. Run the same test on the others and the argument survives each denial, which is how you know they are not assumptions.",
+  "explanationMd": "Set the argument out in two steps:\n\n1. *Stated premise:* the backlog exists because too many claims are filed.\n2. *Conclusion:* tripling the filing fee will shrink the backlog.\n\nThere is a hole between them. Step 1 links the backlog to the **number of claims**; step 2 talks about the **price of filing**. Nothing said so far connects price to quantity. The argument silently supplies that link — it takes for granted that a higher price means fewer claims. That is option B.\n\n**How to check — the negation test.** Deny the candidate assumption and see whether the argument still stands. Deny B: tripling the fee does *not* reduce the number of claims filed. Then the same number of claims arrives, the stated cause of the backlog is untouched, and the conclusion collapses. An assumption whose denial destroys the argument is a genuine assumption. Run the same test on the others and the argument survives each denial, which is how you know they are not assumptions.",
   "distractorRationale": {
     "a": "Comparison with neighbouring districts is background colour. Deny it — the fee is already the highest in the region — and the argument is untouched, because it never claims the fee is low, only that raising it will deter filings.",
     "d": "A claim about the backlog's history, not about the proposal's mechanism. Deny it — the backlog appeared suddenly last year — and the council's reasoning works exactly as before, since it rests on the current volume of claims, not on a trend.",
@@ -55,16 +55,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-law-topup-author",
-    "reviewer": "bocconi-law-round2-reviewer",
-    "reviewedOn": "2026-09-22",
+    "reviewer": "closeout-blind-solver-s2",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-law-round2-reviewer",
+      "solvedBy": "closeout-blind-solver-s2",
       "solvedAnswer": "b",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "The argument moves from 'too many claims are filed' to 'a higher fee will shrink the backlog', which requires that the higher fee actually deters filings; negating (c) destroys the argument. (a), (b) and (d) are merely consistent background."
+      "workingNotes": "The argument runs from 'too many claims cause the backlog' to 'a higher fee will shrink it', which needs the fee rise to cut the number of filings. That is (b); negated, the argument collapses. (a) is a comparison with other districts the argument does not need. (c) is about case quality, which is not needed. (d) is about the backlog's history, which is not needed."
     },
-    "notes": "Author applied the negation test to all four options; only the denial of C breaks the inference from 'too many claims cause the backlog' to 'a higher fee shrinks it'. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author applied the negation test to all four options; only the denial of C breaks the inference from 'too many claims cause the backlog' to 'a higher fee shrinks it'. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 2 option references in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

@@ -1,6 +1,6 @@
 {
   "id": "lsat-lr-idling-sufficient-121",
-  "version": 1,
+  "version": 2,
   "examKey": "lsat",
   "sectionKey": "lr1",
   "domainSlug": "logical-reasoning",
@@ -42,7 +42,7 @@
     "type": "single_select",
     "optionId": "a"
   },
-  "explanationMd": "This stem — \"the conclusion follows logically if which one of the following is assumed\" — asks for a **sufficient** assumption. The answer must be strong enough to make the conclusion follow with certainty, not merely plausible. Diagram before choosing.\n\nWrite $R$ for \"reduces asthma emergency-room visits in the district\", $S$ for \"saves the district money\", $P$ for \"the ordinance reduced particulate levels near schools\", and $O$ for \"the ordinance saves the district money\".\n\n- Premise 1: $R \\rightarrow S$ (any measure that does $R$ does $S$).\n- Premise 2: $P$ (the ordinance did reduce particulates).\n- Conclusion: $O$, i.e. the ordinance does $S$.\n\nTo reach $S$ through premise 1, you need the ordinance to do $R$. Nothing given says it does. The missing link is precisely $P \\rightarrow R$ for this ordinance — and that is (D). With (D) in hand the chain closes: $P$, and $P \\rightarrow R$, so $R$; and $R \\rightarrow S$, so $S$. The conclusion follows with no gap left.\n\nHow to check your own answer on a sufficient-assumption item: plug the choice in and see whether you can still construct a world in which every premise plus the choice is true and the conclusion false. With (D) you cannot. With (B) you can at once — let this ordinance be one of the minority of particulate-reducing measures that does *not* cut asthma visits, and the conclusion fails even though \"most\" remains true. Quantifier words like *most*, *usually* and *often* can never close a gap that a valid conclusion has to cross.\n\nA second habit: watch the direction of every conditional. (A) and (E) both connect the right ideas, but backwards, and a reversed conditional carries none of the force of the original.",
+  "explanationMd": "This stem — \"the conclusion follows logically if which one of the following is assumed\" — asks for a **sufficient** assumption. The answer must be strong enough to make the conclusion follow with certainty, not merely plausible. Diagram before choosing.\n\nWrite $R$ for \"reduces asthma emergency-room visits in the district\", $S$ for \"saves the district money\", $P$ for \"the ordinance reduced particulate levels near schools\", and $O$ for \"the ordinance saves the district money\".\n\n- Premise 1: $R \\rightarrow S$ (any measure that does $R$ does $S$).\n- Premise 2: $P$ (the ordinance did reduce particulates).\n- Conclusion: $O$, i.e. the ordinance does $S$.\n\nTo reach $S$ through premise 1, you need the ordinance to do $R$. Nothing given says it does. The missing link is precisely $P \\rightarrow R$ for this ordinance — and that is (A). With (A) in hand the chain closes: $P$, and $P \\rightarrow R$, so $R$; and $R \\rightarrow S$, so $S$. The conclusion follows with no gap left.\n\nHow to check your own answer on a sufficient-assumption item: plug the choice in and see whether you can still construct a world in which every premise plus the choice is true and the conclusion false. With (A) you cannot. With (D) you can at once — let this ordinance be one of the minority of particulate-reducing measures that does *not* cut asthma visits, and the conclusion fails even though \"most\" remains true. Quantifier words like *most*, *usually* and *often* can never close a gap that a valid conclusion has to cross.\n\nA second habit: watch the direction of every conditional. (B) and (E) both connect the right ideas, but backwards, and a reversed conditional carries none of the force of the original.",
   "distractorRationale": {
     "b": "This makes reducing school-area particulates a necessary condition for cutting asthma visits, when the argument needs it to be a sufficient one. Written out, it says $R \\rightarrow P$: anything that cuts asthma visits must have worked through school particulates. That leaves it entirely open whether this ordinance cut asthma visits at all, so the conclusion still does not follow.",
     "d": "This substitutes a statistical tendency for the guarantee a valid argument requires. Grant that most such measures cut asthma visits; this ordinance may be one of the exceptions, in which case premise 1 never fires and the conclusion is false while the assumption is true. A sufficient assumption must leave no such gap.",
@@ -61,16 +61,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "lsat-wave3-author",
-    "reviewer": "lsat-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout-blind-solver-s3",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "lsat-wave3-reviewer",
+      "solvedBy": "closeout-blind-solver-s3",
       "solvedAnswer": "a",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Given \"reduces ER asthma visits -> saves money\" and \"ordinance reduced particulates\", the missing link is \"reduced particulates -> reduced ER visits\", which (a) supplies and makes the conclusion follow. (b)'s \"only way\" and (c) run the conditional backwards; (d)'s \"most\" is too weak for a conclusion that must follow logically; (e) reverses the first premise."
+      "workingNotes": "The chain needs this link: the ordinance reduced particulates, therefore it reduced asthma ER visits. Combined with the premise that reducing visits saves money, (a) makes the argument valid. (b) makes particulate reduction necessary, not sufficient, for fewer visits, and (c) is irrelevant. (d) says only 'most', which does not guarantee the conclusion, and (e) reverses the given conditional."
     },
-    "notes": "Author checked each choice by trying to build a counter-model in which premises plus the choice hold and the conclusion fails. Only (D) admits none. An earlier draft of (B) read 'Any measure that reduces particulate levels near schools saves the district money', which would itself have been sufficient; it was rewritten to a 'most' claim to remove the second defensible answer. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author checked each choice by trying to build a counter-model in which premises plus the choice hold and the conclusion fails. Only (D) admits none. An earlier draft of (B) read 'Any measure that reduces particulate levels near schools saves the district money', which would itself have been sufficient; it was rewritten to a 'most' claim to remove the second defensible answer. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 5 option references in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

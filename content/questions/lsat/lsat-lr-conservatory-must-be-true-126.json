@@ -1,6 +1,6 @@
 {
   "id": "lsat-lr-conservatory-must-be-true-126",
-  "version": 1,
+  "version": 2,
   "examKey": "lsat",
   "sectionKey": "lr1",
   "domainSlug": "logical-reasoning",
@@ -42,7 +42,7 @@
     "type": "single_select",
     "optionId": "c"
   },
-  "explanationMd": "Write the rules down before touching the choices.\n\n1. Applicant $\\rightarrow$ (recorded performance **or** written score).\n2. Recorded performance $\\rightarrow$ interviewed by performance faculty.\n3. Written score $\\rightarrow$ interviewed by theory faculty.\n4. No applicant is interviewed by both faculties.\n5. Rana is an applicant, and Rana was **not** interviewed by the theory faculty.\n\nChain the facts about Rana:\n\n- From 5 and the contrapositive of 3: if Rana had submitted a written score she would have been interviewed by the theory faculty. She was not. So Rana did **not** submit a written score.\n- From 1: Rana submitted one of the two. Having ruled out the score, Rana submitted a **recorded performance**.\n- From 2: Rana was therefore interviewed by the **performance faculty**. That is (D).\n\nNotice how rule 4 does its work. Without it, an applicant could submit both a recording and a score, and rule 3 would then have put Rana in front of the theory faculty — contradicting 5 — so rule 4 plus rule 5 is also what makes (E) impossible. Every rule in a formal set is there for a reason; if you can delete one without changing anything, reread it.\n\nTo check a must-be-true answer, do the opposite of proving it: try to build a consistent world in which the choice is **false**. For (D) you cannot — the chain above forces it. For (B) you can at once, since the rules say nothing whatever about admission; a world where every applicant is rejected satisfies all five statements. For (C), rules 1 through 3 guarantee every applicant is interviewed by at least one faculty, so (C) is not merely unsupported but false. A choice that the rules forbid, and a choice the rules simply leave open, both fail the same test.",
+  "explanationMd": "Write the rules down before touching the choices.\n\n1. Applicant $\\rightarrow$ (recorded performance **or** written score).\n2. Recorded performance $\\rightarrow$ interviewed by performance faculty.\n3. Written score $\\rightarrow$ interviewed by theory faculty.\n4. No applicant is interviewed by both faculties.\n5. Rana is an applicant, and Rana was **not** interviewed by the theory faculty.\n\nChain the facts about Rana:\n\n- From 5 and the contrapositive of 3: if Rana had submitted a written score she would have been interviewed by the theory faculty. She was not. So Rana did **not** submit a written score.\n- From 1: Rana submitted one of the two. Having ruled out the score, Rana submitted a **recorded performance**.\n- From 2: Rana was therefore interviewed by the **performance faculty**. That is (C).\n\nNotice how rule 4 does its work. Without it, an applicant could submit both a recording and a score, and rule 3 would then have put Rana in front of the theory faculty — contradicting 5 — so rule 4 plus rule 5 is also what makes (E) impossible. Every rule in a formal set is there for a reason; if you can delete one without changing anything, reread it.\n\nTo check a must-be-true answer, do the opposite of proving it: try to build a consistent world in which the choice is **false**. For (C) you cannot — the chain above forces it. For (D) you can at once, since the rules say nothing whatever about admission; a world where every applicant is rejected satisfies all five statements. For (B), rules 1 through 3 guarantee every applicant is interviewed by at least one faculty, so (B) is not merely unsupported but false. A choice that the rules forbid, and a choice the rules simply leave open, both fail the same test.",
   "distractorRationale": {
     "a": "This is the opposite of what the rules force. If Rana had submitted a written score, rule 3 would have sent her to the theory faculty, and the stimulus says she was not interviewed by it. Choosing this reverses a contrapositive: the rule runs from score to theory interview, so the absence of the interview rules the score out rather than in.",
     "d": "Nothing in the five statements concerns admission at all; they govern only what an applicant submits and who interviews her. A world in which every applicant is interviewed exactly as the rules require and every applicant is then rejected satisfies all of them, so this cannot be something that must be true.",
@@ -61,16 +61,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "lsat-wave3-author",
-    "reviewer": "lsat-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout-blind-solver-s3",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "lsat-wave3-reviewer",
+      "solvedBy": "closeout-blind-solver-s3",
       "solvedAnswer": "c",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Rana applied, so she submitted a recording or a score; a score would have meant a theory interview, which she did not have, so she submitted a recording, and \"every applicant who submits a recorded performance is interviewed by the performance faculty\" gives the performance interview. (a) and (e) are ruled out by the same step; (b) contradicts the rules; (d) adds an admissions claim never made."
+      "workingNotes": "A written score would have meant a theory-faculty interview. Rana had no such interview, so she submitted no written score. She therefore submitted a recorded performance and was interviewed by the performance faculty (c). (a) and (e) contradict this deduction. (b) does not follow, since every applicant submits something and so gets an interview, and admission (d) is never mentioned."
     },
-    "notes": "Author solved the item and tested each choice by trying to construct a consistent model in which it is false. A draft option reading 'Every applicant interviewed by the performance faculty submitted a recorded performance' was cut because it is also forced by the rules and would have been a second defensible answer. The remaining distractors are one contradicted claim, one contrapositive reversal, one impossibility and one wholly unaddressed subject. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author solved the item and tested each choice by trying to construct a consistent model in which it is false. A draft option reading 'Every applicant interviewed by the performance faculty submitted a recorded performance' was cut because it is also forced by the rules and would have been a second defensible answer. The remaining distractors are one contradicted claim, one contrapositive reversal, one impossibility and one wholly unaddressed subject. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 5 option references in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

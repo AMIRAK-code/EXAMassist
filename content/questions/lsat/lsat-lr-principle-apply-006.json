@@ -1,6 +1,6 @@
 {
   "id": "lsat-lr-principle-apply-006",
-  "version": 1,
+  "version": 2,
   "examKey": "lsat",
   "sectionKey": "lr1",
   "domainSlug": "logical-reasoning",
@@ -42,7 +42,7 @@
     "type": "single_select",
     "optionId": "b"
   },
-  "explanationMd": "Principle questions are matching exercises. Extract the rules first, in a form you can test a case against.\n\n1. **Financial interest, substantial** $\\rightarrow$ decline.\n2. **Financial interest, trivial** $\\rightarrow$ disclosure is sufficient (declining is not required).\n3. **Taste or admiration** $\\rightarrow$ not a ground for declining at all; interest compromises judgment, taste does not.\n\nNow test each judgment. A judgment is justified only if some rule actually reaches its facts and delivers its verdict.\n\nTake (A). Tomas owns a *large stake* in the house whose profits depend on the book: that is a financial interest, and a substantial one. Rule 1 applies and its verdict is *decline*, which is exactly what (A) says he should do. The clause about impartiality is a deliberate distraction — rule 1 is triggered by the interest itself, not by any finding that the reviewer's judgment has in fact been corrupted. So (A) is justified.\n\nEvery other judgment either applies a rule that does not reach the facts, or reaches a verdict the rules do not give. Two of them are outright contradicted: (B) requires declining for admiration, which rule 3 rejects, and (C) requires declining for a trivial interest, which rule 2 says need only be disclosed.\n\nThe technique to reuse: before reading the choices, write each principle as a conditional with its trigger on the left and its verdict on the right. Then ask two questions of every choice — *is the trigger met?* and *is the verdict the one the rule gives?* A choice that fails either question is out, and that is usually four of the five.",
+  "explanationMd": "Principle questions are matching exercises. Extract the rules first, in a form you can test a case against.\n\n1. **Financial interest, substantial** $\\rightarrow$ decline.\n2. **Financial interest, trivial** $\\rightarrow$ disclosure is sufficient (declining is not required).\n3. **Taste or admiration** $\\rightarrow$ not a ground for declining at all; interest compromises judgment, taste does not.\n\nNow test each judgment. A judgment is justified only if some rule actually reaches its facts and delivers its verdict.\n\nTake (B). Tomas owns a *large stake* in the house whose profits depend on the book: that is a financial interest, and a substantial one. Rule 1 applies and its verdict is *decline*, which is exactly what (B) says he should do. The clause about impartiality is a deliberate distraction — rule 1 is triggered by the interest itself, not by any finding that the reviewer's judgment has in fact been corrupted. So (B) is justified.\n\nEvery other judgment either applies a rule that does not reach the facts, or reaches a verdict the rules do not give. Two of them are outright contradicted: (E) requires declining for admiration, which rule 3 rejects, and (D) requires declining for a trivial interest, which rule 2 says need only be disclosed.\n\nThe technique to reuse: before reading the choices, write each principle as a conditional with its trigger on the left and its verdict on the right. Then ask two questions of every choice — *is the trigger met?* and *is the verdict the one the rule gives?* A choice that fails either question is out, and that is usually four of the five.",
   "distractorRationale": {
     "e": "This is directly contradicted by the principles, which say that admiration however strong is not a ground for declining because taste does not compromise critical judgment. Choosing it means treating any strong feeling about an author as a conflict of interest, which is the precise distinction the passage draws in order to reject.",
     "d": "This applies the wrong verdict to a trivial interest. A small fee received years ago for copyediting is the paradigm of a minor financial interest, and the principles say disclosure suffices in that case. The choice upgrades 'should disclose' into 'must decline,' which the rules do not license.",
@@ -61,16 +61,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "lsat-author",
-    "reviewer": "lsat-independent-reviewer",
-    "reviewedOn": "2026-09-22",
+    "reviewer": "closeout-blind-solver-s4",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "lsat-independent-reviewer",
+      "solvedBy": "closeout-blind-solver-s4",
       "solvedAnswer": "b",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "A large stake in a publisher whose profits depend on the novel's sales is a substantial financial interest, and the principle says substantial interest requires declining, with 'judgment is compromised by interest, not by taste' rebutting Tomas's confidence in his own impartiality. B and D concern taste, which the principle expressly exempts; C is a past fee, not a stake in this book's success, and even a trivial interest would need only disclosure; E involves a familial rather than a financial interest, which the principles do not license."
+      "workingNotes": "The principles say a substantial financial interest in a book's success requires declining, regardless of taste or self-assessed impartiality; (b) Tomas's large stake in the publisher fits exactly. (a) and (e) concern taste (dislike, admiration), which the principles say does not compromise judgment, so neither disclosure nor declining is required. (c) concerns a family tie the principles do not address. (d) involves a past, small fee with no stake in the new book's success, and at most a trivial interest would call for disclosure, not declining."
     },
-    "notes": "Author checked that exactly one choice has both a satisfied trigger and the verdict the rule supplies. (E) was rewritten from an earlier 'no stake at all' version, which risked being weakly defensible, to a familial relationship the principles plainly do not address. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author checked that exactly one choice has both a satisfied trigger and the verdict the rule supplies. (E) was rewritten from an earlier 'no stake at all' version, which risked being weakly defensible, to a familial relationship the principles plainly do not address. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 5 option references in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

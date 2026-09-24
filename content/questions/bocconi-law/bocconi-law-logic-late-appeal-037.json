@@ -1,6 +1,6 @@
 {
   "id": "bocconi-law-logic-late-appeal-037",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-law",
   "sectionKey": "online-test-law",
   "domainSlug": "law-logic-and-critical-thinking",
@@ -32,7 +32,7 @@
     "type": "single_select",
     "optionId": "b"
   },
-  "explanationMd": "Only Rule 1 does any work here; Rule 2 and the certification are supplied to see whether you will use them where they do not apply.\n\nRule 1 says: *late $\\Rightarrow$ dismissed without a hearing.* Its **contrapositive** is equally true: *not dismissed without a hearing $\\Rightarrow$ not late.* The appeal was not dismissed without a hearing, so it was not filed late. Option C follows.\n\nRule 2 runs the other way: it makes certification a *necessary* condition of dismissal without a hearing. Knowing that the file was certified therefore tells you nothing about whether dismissal followed — certification permits that outcome without producing it. The fact pattern is perfectly consistent: a timely appeal, a certified file, and a hearing.\n\n**How to check.** Write each rule as an arrow and see which one has the given fact on its tail. \"Not dismissed without a hearing\" sits on the tail of the contrapositive of Rule 1, so that rule fires. \"The registrar certified the file\" sits on the *head* of Rule 2's arrow, not its tail, so Rule 2 never fires at all. A fact that matches only the head of a conditional yields nothing.",
+  "explanationMd": "Only Rule 1 does any work here; Rule 2 and the certification are supplied to see whether you will use them where they do not apply.\n\nRule 1 says: *late $\\Rightarrow$ dismissed without a hearing.* Its **contrapositive** is equally true: *not dismissed without a hearing $\\Rightarrow$ not late.* The appeal was not dismissed without a hearing, so it was not filed late. Option B follows.\n\nRule 2 runs the other way: it makes certification a *necessary* condition of dismissal without a hearing. Knowing that the file was certified therefore tells you nothing about whether dismissal followed — certification permits that outcome without producing it. The fact pattern is perfectly consistent: a timely appeal, a certified file, and a hearing.\n\n**How to check.** Write each rule as an arrow and see which one has the given fact on its tail. \"Not dismissed without a hearing\" sits on the tail of the contrapositive of Rule 1, so that rule fires. \"The registrar certified the file\" sits on the *head* of Rule 2's arrow, not its tail, so Rule 2 never fires at all. A fact that matches only the head of a conditional yields nothing.",
   "distractorRationale": {
     "a": "This affirms what Rule 1 rules out. If the appeal had been filed late, Rule 1 would have required dismissal without a hearing, and we are told the appeal was not so dismissed. The option comes from reading the contrapositive without reversing the negation.",
     "c": "This contradicts a fact expressly given in the question, which states that the registrar had certified the file. It is produced by applying Rule 2 backwards — treating 'not dismissed' as grounds for denying the certification that Rule 2 makes merely necessary."
@@ -49,16 +49,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-law-wave3-author",
-    "reviewer": "bocconi-law-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout-blind-solver-s1",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-law-wave3-reviewer",
+      "solvedBy": "closeout-blind-solver-s1",
       "solvedAnswer": "b",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Contrapositive of Rule 1: not dismissed without a hearing implies not filed late. The certification clause is a red herring since Rule 2 states a necessary, not a sufficient, condition; C is directly contradicted by the stem."
+      "workingNotes": "Rule 1 (late implies dismissed without hearing) plus 'not dismissed without a hearing' gives, by modus tollens, not filed late (b). (a) contradicts that; (c) contradicts the stem, which says the registrar did certify the file. Rule 2 is a distractor here."
     },
-    "notes": "Author's working: contrapositive of Rule 1 gives not-dismissed implies not-late, so C holds. A asserts the negation of C. B contradicts a stated fact. Rule 2 is inert because the given certification matches the consequent, not the antecedent, of its 'only if'. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author's working: contrapositive of Rule 1 gives not-dismissed implies not-late, so C holds. A asserts the negation of C. B contradicts a stated fact. Rule 2 is inert because the given certification matches the consequent, not the antecedent, of its 'only if'. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 1 option reference in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

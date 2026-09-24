@@ -1,6 +1,6 @@
 {
   "id": "bocconi-law-logic-shelf-order-010",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-law",
   "sectionKey": "online-test-law",
   "domainSlug": "law-logic-and-critical-thinking",
@@ -32,7 +32,7 @@
     "type": "single_select",
     "optionId": "a"
   },
-  "explanationMd": "Treat Ephemeris–Corpus as a single block **EC** two positions wide, because Corpus is immediately to the right of Ephemeris. The block can sit at positions 1–2, 2–3 or 3–4, and Digest and Forum fill whatever is left, with Digest to the left of Forum.\n\n- Block at 1–2: E, C, then Digest and Forum in 3 and 4 — *Ephemeris, Corpus, Digest, Forum.*\n- Block at 2–3: Digest and Forum take 1 and 4 — *Digest, Ephemeris, Corpus, Forum.*\n- Block at 3–4: Digest and Forum take 1 and 2 — *Digest, Forum, Ephemeris, Corpus.*\n\nThe extra condition in the question — Ephemeris is not in position 1 — rules out the first arrangement only. Two arrangements survive, and Digest is in position 1 in both. So option C must be true.\n\n**How to check.** Confirm that each surviving arrangement really obeys both original conditions (Digest left of Forum; Corpus immediately right of Ephemeris) and the added one, then read each option off both arrangements. Anything true in only one of the two is a distractor, not an answer.",
+  "explanationMd": "Treat Ephemeris–Corpus as a single block **EC** two positions wide, because Corpus is immediately to the right of Ephemeris. The block can sit at positions 1–2, 2–3 or 3–4, and Digest and Forum fill whatever is left, with Digest to the left of Forum.\n\n- Block at 1–2: E, C, then Digest and Forum in 3 and 4 — *Ephemeris, Corpus, Digest, Forum.*\n- Block at 2–3: Digest and Forum take 1 and 4 — *Digest, Ephemeris, Corpus, Forum.*\n- Block at 3–4: Digest and Forum take 1 and 2 — *Digest, Forum, Ephemeris, Corpus.*\n\nThe extra condition in the question — Ephemeris is not in position 1 — rules out the first arrangement only. Two arrangements survive, and Digest is in position 1 in both. So option A must be true.\n\n**How to check.** Confirm that each surviving arrangement really obeys both original conditions (Digest left of Forum; Corpus immediately right of Ephemeris) and the added one, then read each option off both arrangements. Anything true in only one of the two is a distractor, not an answer.",
   "distractorRationale": {
     "c": "True in the arrangement Digest, Forum, Ephemeris, Corpus but false in Digest, Ephemeris, Corpus, Forum, where Forum is last. This is the error of pushing the Ephemeris–Corpus block as far right as it will go and treating that single arrangement as forced.",
     "b": "True in the arrangement Digest, Ephemeris, Corpus, Forum but false in Digest, Forum, Ephemeris, Corpus. It reads the condition about Corpus and Ephemeris as though it also fixed what stands to the left of Ephemeris, which the conditions never say."
@@ -49,16 +49,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-law-topup-author",
-    "reviewer": "bocconi-law-round2-reviewer",
-    "reviewedOn": "2026-09-22",
+    "reviewer": "closeout-blind-solver-s1",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-law-round2-reviewer",
+      "solvedBy": "closeout-blind-solver-s1",
       "solvedAnswer": "a",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "With Ephemeris not in position 1, the EC block sits at 2-3 or 3-4, leaving D-E-C-F and D-F-E-C. Digest is position 1 in both; Corpus is 4 only in the first arrangement and E follows D immediately only in the first."
+      "workingNotes": "Ephemeris-Corpus occupy 2-3 or 3-4; in both cases Digest and Forum fill the remaining spots with Digest leftmost, i.e. D1 E2 C3 F4 or D1 F2 E3 C4, so Digest is in position 1 (a). (b) fails in the second arrangement; (c) fails in the first."
     },
-    "notes": "Author solved by enumerating the three block positions; the added condition leaves two arrangements and only 'Digest stands in position 1' holds in both. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author solved by enumerating the three block positions; the added condition leaves two arrangements and only 'Digest stands in position 1' holds in both. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 1 option reference in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,
