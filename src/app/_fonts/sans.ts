@@ -19,15 +19,19 @@ import localFont from 'next/font/local';
  *   design uses 300 to 800, so on the same page the system stack loaded seven
  *   font files before the first paint, where the Arial stack loads three.
  *
- * Next.js emits the preload on Linux builds. On Windows its font manifest
- * comes out empty (a path-separator bug in NextFontManifestPlugin), so local
- * Windows builds do not preload this file.
+ * - No preload. On the lab's slow mobile link a preload made the first paint
+ *   0.19 to 0.53 s later, because the 41 KB font competed with the stylesheet
+ *   (docs/REDESIGN.md §13). It is off explicitly so every build behaves the
+ *   same: with `preload: true`, Linux builds would emit one and Windows builds
+ *   would not, since NextFontManifestPlugin looks for
+ *   '/next-font-loader/index.js?' in module requests and Windows requests use
+ *   backslashes.
  */
 export const sans = localFont({
   src: [{ path: './bricolage-grotesque-latin-wght-normal.woff2', weight: '200 800', style: 'normal' }],
   variable: '--font-bricolage',
   display: 'swap',
-  preload: true,
+  preload: false,
   fallback: ['Arial', 'sans-serif'],
   adjustFontFallback: false,
 });
