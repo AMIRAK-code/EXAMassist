@@ -1,6 +1,6 @@
 {
   "id": "bocconi-law-logic-reading-rooms-012",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-law",
   "sectionKey": "online-test-law",
   "domainSlug": "law-logic-and-critical-thinking",
@@ -37,7 +37,7 @@
     "type": "single_select",
     "optionId": "c"
   },
-  "explanationMd": "Chain the conditions rather than guessing. Neri is in South, and Ilari must not share a room with Neri, so **Ilari is in North**. Nothing else can move that, which already settles option A.\n\nTo confirm that nothing else is settled, split on Ostuni:\n\n- **Ostuni in North.** The conditional then forces Pavan into South. Assignment: North = Ilari, Ostuni; South = Neri, Pavan.\n- **Ostuni in South.** The conditional's antecedent is false, so it imposes nothing and Pavan is free. Assignment 2: North = Ilari; South = Neri, Ostuni, Pavan. Assignment 3: North = Ilari, Pavan; South = Neri, Ostuni.\n\nAll three satisfy the \"at least one clerk per room\" rule. Ilari is in North in every one; each of the other three statements fails in at least one.\n\n**How to check.** A conditional only bites when its antecedent is true. Whenever you see \"if P then Q\", test both P true and P false — if the P-false branch produces a second valid assignment, then Q is not forced, and any option asserting Q is a distractor.",
+  "explanationMd": "Chain the conditions rather than guessing. Neri is in South, and Ilari must not share a room with Neri, so **Ilari is in North**. Nothing else can move that, which already settles option C.\n\nTo confirm that nothing else is settled, split on Ostuni:\n\n- **Ostuni in North.** The conditional then forces Pavan into South. Assignment: North = Ilari, Ostuni; South = Neri, Pavan.\n- **Ostuni in South.** The conditional's antecedent is false, so it imposes nothing and Pavan is free. Assignment 2: North = Ilari; South = Neri, Ostuni, Pavan. Assignment 3: North = Ilari, Pavan; South = Neri, Ostuni.\n\nAll three satisfy the \"at least one clerk per room\" rule. Ilari is in North in every one; each of the other three statements fails in at least one.\n\n**How to check.** A conditional only bites when its antecedent is true. Whenever you see \"if P then Q\", test both P true and P false — if the P-false branch produces a second valid assignment, then Q is not forced, and any option asserting Q is a distractor.",
   "distractorRationale": {
     "d": "Fails in the assignment North = Ilari, Ostuni; South = Neri, Pavan. The conditional says what follows *if* Ostuni is in North; it does not forbid Ostuni from being there. Reading a conditional as a prohibition is the error.",
     "b": "Fails in the assignment North = Ilari, Pavan; South = Neri, Ostuni. Pavan is forced into South only on the branch where Ostuni is in North. Applying the consequent of a conditional whose antecedent is false is the error.",
@@ -55,16 +55,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-law-topup-author",
-    "reviewer": "bocconi-law-round2-reviewer",
-    "reviewedOn": "2026-09-22",
+    "reviewer": "closeout-blind-solver-s1",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-law-round2-reviewer",
+      "solvedBy": "closeout-blind-solver-s1",
       "solvedAnswer": "c",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Neri is South, so Ilari is North in every assignment. Ostuni/Pavan admit three combinations (O-North/P-South, O-South/P-North, O-South/P-South), which falsify (b), (c) and (d) respectively."
+      "workingNotes": "Neri is South and Ilari must differ, so Ilari is North (c); Ostuni/Pavan can be N/S, S/N or S/S (not N/N). (a) fails in the S/S case (only Ilari in North); (b) fails in the O-South/P-North case; (d) fails in the O-North/P-South case."
     },
-    "notes": "Author enumerated all three admissible assignments and named the one that falsifies each distractor. Only 'Ilari is assigned to North' survives all three. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author enumerated all three admissible assignments and named the one that falsifies each distractor. Only 'Ilari is assigned to North' survives all three. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 1 option reference in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

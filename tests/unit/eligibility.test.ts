@@ -7,6 +7,7 @@ import { eligiblePool, isMeasurementFormat } from '@/lib/attempts/eligibility';
 import { defaultLength, eligibleCount, lengthOptions } from '@/lib/attempts/facets';
 import { AttemptError, getAttemptState, resolveParts, startAttempt } from '@/lib/attempts/service';
 import { loadContent } from '@/lib/content/loader';
+import { answerLettersNamed } from '@/lib/content/question-schema';
 import { PUBLIC_SAMPLES, PUBLIC_SAMPLE_IDS, WITHHELD_SAMPLES, homepageSampleFor } from '@/lib/content/public-samples';
 import { EXAM_CONFIGS, getBlueprint, getHubForConfig, listHubs, requireExamConfig } from '@/lib/exams/registry';
 import { attemptQuestionOrder, createTestDb, createUser, seedQuestions } from './helpers/test-db';
@@ -61,13 +62,24 @@ describe('the public sample set', () => {
     }
   });
 
-  it('shows no option letters in its explanations or notes', () => {
+  it('names option letters only when they were checked against the current order', () => {
     // Options were reordered after review without the letters in the text being
-    // updated, so any letter a public sample names could point at the wrong option.
+    // updated. A sample may name letters only if they exist, only if the one it
+    // calls the answer is the key, and, for a reordered item, only after the
+    // audited correction.
     for (const sample of PUBLIC_SAMPLES) {
       const q = questions.find(({ question }) => question.id === sample.questionId)!.question;
       const text = [q.explanationMd, ...Object.values(q.distractorRationale)].join(' ').replace(/\$[^$]*\$/g, ' ');
-      expect(text, sample.questionId).not.toMatch(/\b(?:[Cc]hoice|[Oo]ption)s? \(?[A-E]\)?\b|\([A-E]\)|\b[A-E]\)/);
+      const named = [...text.matchAll(/\b(?:[Cc]hoices?|[Oo]ptions?) \(?([A-H])\)?(?![A-Za-z])|\(([A-H])\)/g)].map((m) => m[1] ?? m[2]);
+      if (named.length === 0) continue;
+      const labels = q.options.map((o) => o.label);
+      const key = q.answerKey.type === 'single_select' ? q.answerKey.optionId : '';
+      const keyLabel = q.options.find((o) => o.id === key)?.label;
+      expect(named.filter((l) => !labels.includes(l)), sample.questionId).toEqual([]);
+      expect(answerLettersNamed(q.explanationMd).filter((l) => l !== keyLabel), sample.questionId).toEqual([]);
+      if (q.review.notes.includes('Options were reordered after review')) {
+        expect(q.review.notes, sample.questionId).toContain('re-checked every option reference');
+      }
     }
   });
 

@@ -1,6 +1,6 @@
 {
   "id": "lsat-lr-netting-assumption-120",
-  "version": 1,
+  "version": 2,
   "examKey": "lsat",
   "sectionKey": "lr1",
   "domainSlug": "logical-reasoning",
@@ -42,7 +42,7 @@
     "type": "single_select",
     "optionId": "b"
   },
-  "explanationMd": "Separate the argument into its parts before hunting for the assumption.\n\n- Premise: netted rows produced grapes 15 percent higher in sugar than uncovered rows.\n- Conclusion: the netting **raised** the sugar content of the grapes beneath it.\n\nThis is a causal conclusion drawn from a comparison between two groups. Any such argument silently assumes that the two groups did not already differ in a way that would produce the same gap on its own. If the rows chosen for netting were the vineyard's sunniest, best-drained, oldest-vine rows, they might have come in 15 percent higher with no netting at all, and the comparison would show nothing about the netting.\n\nChoice (B) is exactly that assumption, and the **negation test** confirms it. Negate (B): \"Even without the netting, the netted rows *would* have produced grapes substantially higher in sugar.\" Then the observed gap is explained without the netting, and the conclusion collapses. A choice whose denial destroys the argument is a choice the argument needed.\n\nRun the same test on the others and nothing breaks. Negate (A) — some cheaper method exists — and the netting can still have caused the rise. Negate (D) — other quality measures also matter — and the causal claim about sugar is untouched. Negate (E) — the netting fails on some other variety — and the claim about *these* grapes stands.\n\nTwo checks worth carrying forward. First, whenever a conclusion says one thing caused another, ask what else could have produced the same evidence; the necessary assumption is usually \"not that.\" Second, a necessary assumption never has to be a strong or exciting claim — it only has to be something the argument cannot do without, which is why the modest-sounding (B) beats the sweeping (E).",
+  "explanationMd": "Separate the argument into its parts before hunting for the assumption.\n\n- Premise: netted rows produced grapes 15 percent higher in sugar than uncovered rows.\n- Conclusion: the netting **raised** the sugar content of the grapes beneath it.\n\nThis is a causal conclusion drawn from a comparison between two groups. Any such argument silently assumes that the two groups did not already differ in a way that would produce the same gap on its own. If the rows chosen for netting were the vineyard's sunniest, best-drained, oldest-vine rows, they might have come in 15 percent higher with no netting at all, and the comparison would show nothing about the netting.\n\nChoice (B) is exactly that assumption, and the **negation test** confirms it. Negate (B): \"Even without the netting, the netted rows *would* have produced grapes substantially higher in sugar.\" Then the observed gap is explained without the netting, and the conclusion collapses. A choice whose denial destroys the argument is a choice the argument needed.\n\nRun the same test on the others and nothing breaks. Negate (A) — some cheaper method exists — and the netting can still have caused the rise. Negate (C) — other quality measures also matter — and the causal claim about sugar is untouched. Negate (D) — the netting fails on some other variety — and the claim about *these* grapes stands.\n\nTwo checks worth carrying forward. First, whenever a conclusion says one thing caused another, ask what else could have produced the same evidence; the necessary assumption is usually \"not that.\" Second, a necessary assumption never has to be a strong or exciting claim — it only has to be something the argument cannot do without, which is why the modest-sounding (B) beats the sweeping (D).",
   "distractorRationale": {
     "a": "This treats a causal argument as though it were a recommendation. The conclusion says only that the netting worked, not that the vineyard chose well. Negate it — a cheaper method exists — and the netting can still have raised the sugar. Cost is the sort of consideration that feels relevant to a farming decision and is irrelevant to whether the stated cause operated.",
     "e": "This states an alternative explanation of the gap rather than an assumption the argument makes. If it were true, the difference in sugar might be down to watering, which would weaken the argument, not support it. Selecting it confuses the kind of fact that could undermine a causal claim with the kind of fact the claim depends on.",
@@ -61,16 +61,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "lsat-wave3-author",
-    "reviewer": "lsat-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout-blind-solver-s4",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "lsat-wave3-reviewer",
+      "solvedBy": "closeout-blind-solver-s4",
       "solvedAnswer": "b",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "The causal conclusion from a netted-vs-uncovered comparison requires the two halves to have been comparable absent the netting; negating (b) — the netted rows would have been substantially sweeter anyway — destroys the inference, so (b) is assumed. (a), (c), (d) are irrelevant to whether the netting caused this rise, and (e) introduces a confound that the argument needs to deny rather than assume."
+      "workingNotes": "Causal conclusion from a comparison of netted and uncovered rows; it must assume the netted rows would not have been sweeter anyway (b). Negating (b) destroys the argument. (a), (c) and (d) go beyond this vineyard's causal claim and are not required; (e) introduces an alternative cause (differential water), which would weaken rather than be assumed."
     },
-    "notes": "Author solved the item, then attempted a defence of each other choice using the negation test; only (B) breaks the argument when denied. (C) was written deliberately in the direction that would weaken rather than support, so that it cannot be read as a second assumption. Awaiting blind independent solve and uniqueness check by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author solved the item, then attempted a defence of each other choice using the negation test; only (B) breaks the argument when denied. (C) was written deliberately in the direction that would weaken rather than support, so that it cannot be read as a second assumption. Awaiting blind independent solve and uniqueness check by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 3 option references in the explanation that still used the option order from before the options were reordered (wrong options were discussed under the wrong letters). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

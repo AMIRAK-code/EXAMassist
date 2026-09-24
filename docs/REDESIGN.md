@@ -1,9 +1,11 @@
-# Redesign — Phase 1: assessment, direction and plan
+# Redesign — Phases 1 and 2: assessment, direction, plan and delivery
 
-Phase 1 of the "Academic Avant-Garde" redesign. Nothing in the application has
-changed yet. This file records what the product does today (measured, not
-assumed), the proposed visual direction and design system, which proposed
-features already have backend support, and the staged plan.
+The "Academic Avant-Garde" redesign. Sections 1–8 are the Phase 1 assessment
+and proposal, written before anything changed; where Phase 2 built something
+differently, the text says so in place ("as built", "as shipped"). Section 9
+records the decisions agreed for Phase 2, section 10 reconciles the phase
+numbering with the master brief, and section 11 reports what Phase 2 delivered,
+how it was checked, the before-and-after measurements and what is deferred.
 
 The homepage concept (desktop, mobile and design-system artboards, with a
 working sample question per exam) is published as a private canvas:
@@ -145,7 +147,10 @@ Severity: **H** breaks a journey or misreports; **M** slows or confuses;
 - **M** The player carries the full marketing header and footer. Its controls
   sit below the content, so they move with explanation length.
 - **L** KaTeX renders thousands separators as "1, 700": `$1,700$` needs
-  `1{,}700`. There are 10 occurrences in SAT and GMAT content.
+  `1{,}700`. *Corrected in Phase 2:* a precise scan found one affected
+  question (the four options of `digital-sat-math-ratios-rates-050`), not the
+  10 occurrences first reported; that count came from a regex matching across
+  neighbouring maths spans.
 - **Trust copy vs provenance.** The site says questions are "written by our
   editorial team" and that each record "names the person who authored it".
   All 288 records have `aiAssisted: true`, and the author and reviewer fields
@@ -222,9 +227,11 @@ change only when they are restyled on purpose.
 
 ### Type
 
-- **Display and interface: Bricolage Grotesque**, variable (opsz, wdth, wght),
-  OFL. Display sizes use 84–86% width and weights 700–740. Interface text uses
-  the text optical size.
+- **Display and interface: Bricolage Grotesque**, OFL. *As shipped:* the
+  weight axis only (41 KB Latin woff2). The optical-size and width axes would
+  each have roughly doubled the file (77–78 KB, or 132 KB for all axes) and
+  broken the 90 KB budget, so the condensed 84% width in the concept is gone;
+  display sizes get their character from weight 730–750 and tight tracking.
 - **Accent: Instrument Serif Italic**, OFL. A few words per headline only.
 - **Reading passages: the system serif** (Charter, Iowan Old Style, Georgia,
   Cambria). 0 KB and already proven comfortable in the product.
@@ -267,16 +274,16 @@ Alert (four tones), Tally, annotation primitives, EmptyState.
 
 - **Public:** Exams · Guides · How scoring works | Sign in | **Start
   practising**. On mobile: wordmark, Start and a Menu disclosure.
-- **Learner (registered, or a guest with a session):** Home (the dashboard) ·
-  Practice · Mistakes · Plan, plus an exam switcher and Account, or "Keep your
-  progress" for guests. Readiness becomes a section of Plan rather than a
-  fifth top-level item. On mobile: the same disclosure pattern.
+- **Learner (registered, or a guest with a session):** *as built in Phase 2:*
+  Dashboard · Exams · Mistake notebook · Study plan · Readiness, plus Account,
+  or "Keep your progress" (to sign-up, which converts the guest in place) and
+  "Sign in" for guests. Readiness stays a top-level item until the plan and
+  readiness pages are merged (Phase 6). On mobile: one Menu disclosure.
 - **In a session:** a minimal bar with exam and section, timer, save status
   and Exit. Timed sections say plainly that leaving does not stop the clock.
-- **Exam context:** the chosen exam is stored in a first-party, non-sensitive
-  cookie. It is read on the server by the header, homepage and dashboard, so
-  nothing flickers. Pages that read it are already dynamic and are never
-  shared-cached.
+- **Exam context:** *not built.* A persistent preference cookie raises
+  consent questions a strictly necessary session cookie does not, so the
+  homepage keeps the choice in the address (`?exam=`) only. Deferred.
 - `aria-current="page"` on active items everywhere.
 
 ## 8. Homepage concept (see the canvas)
@@ -295,46 +302,227 @@ How the sample question works:
 - The selected exam's sample is server-rendered with the product's own
   Markdown/KaTeX pipeline, including its key and explanation. It is public
   content, and it never touches attempts or assessment endpoints.
-- Switching exams fetches `GET /api/samples/[exam]`. The route is public and
+- Switching exams fetches `GET /api/samples/[hub]`. The route is public and
   read-only, serves only the curated ids, and is cacheable because it holds no
-  personal data. Without JavaScript the selector falls back to `/?exam=gre`
-  links. The card reserves height so switching does not move the page, and
-  focus stays on the selector.
+  personal data. *As built:* `?exam=` deep links are server-rendered, but there
+  is no JavaScript-free way to switch exams on the page itself. The card has a
+  minimum height, and focus stays on the selector.
 - Checking the answer is client-side against the sample's own key and is never
-  stored.
-- The six sample items are **excluded from diagnostic and timed selection**,
-  and a test asserts that no currently open format closes as a result. SAT
-  Reading and Writing (26/27), LSAT Logical Reasoning (23/24) and the GRE
-  diagnostic (16/17) are each one question short, so samples are chosen from
-  domains with slack.
-- First visit defaults to SAT (a verbal item readable without maths). Later
-  visits use the remembered exam.
+  stored; no session is created.
+- *As built:* five hub samples plus one demonstration item
+  (`src/lib/content/public-samples.ts`), all excluded from diagnostic, timed
+  and simulation selection. The LSAT sample is **withheld**: see §11.
+- First visit defaults to SAT (a verbal item readable without maths).
 
 **Phase 2 budgets (lab, same method as §2):** homepage JS ≤ 118 KB transfer
 (+12 KB), fonts ≤ 90 KB, throttled-mobile LCP ≤ 1.5 s, CLS ≤ 0.02.
 
-## 9. Decisions needed from the owner
+## 9. Decisions (agreed 24 September 2026)
 
-1. **Describing the question pipeline.** Should the trust copy describe an
-   AI-drafted, AI-blind-solved and mechanically compared pipeline as such, or
-   is there human review that the records don't show? Until then the
-   homepage uses neutral wording that is true either way: "Written for Examer,
-   AI-assisted in drafting, and solved blind — without the answer key — before
-   publication."
-2. **Answer changes after feedback.** Recommended: lock an item once its key
-   has been shown (a server rule in `canAnswerAt`, enforced in the API). The
-   alternative is to keep changes but score the first answer. Either changes
-   assessment behaviour and its tests.
-3. **Sample items and pools.** Confirm excluding the six homepage samples from
-   diagnostic and timed selection (recommended), or allow them everywhere.
+1. **Editorial wording.** Public copy says: "AI-assisted practice questions
+   with worked explanations. See our editorial standards for how questions are
+   created and checked." Blind-review claims appear only because the records
+   support them. All 285 published questions have an independent-solve record
+   from a reviewer id distinct from the author, agreeing with the key and
+   uniqueness-checked, and `scripts/export-review-batch.ts` strips keys,
+   explanations and distractor notes and checks for leaks. The records name
+   agent roles only; no human reviewer appears, so the copy says the blind
+   solve is done by a separate AI reviewer and that no per-question human
+   review is recorded.
+2. **Answer locking.** Answers can change freely until the learner checks
+   them. Checking persists the answer and the release of feedback in one
+   guarded write, and the server refuses any later change. Timed and
+   diagnostic editing rules are unchanged. Historical results are untouched.
+3. **Public samples.** A fixed set, excluded from newly created diagnostic,
+   timed and simulation sessions. Existing assignments are kept, and
+   availability and session creation share one eligibility rule. A sample
+   that would close an open format must be replaced, never accommodated by
+   weakening a rule.
+4. **Practice setup.** Counts combine exam, topic, skill and difficulty.
+   Short drills are allowed when that is all the bank holds, a preset skill is
+   shown, length adjustments are explained, and broader practice is an
+   explicit choice. Server validation is retained.
+5. **Guests and offline.** "Keep your progress" goes to sign-up, which keeps
+   guest history. Sign-in is not promised to merge it. The offline message
+   describes the in-memory queue as it is.
 
-## 10. Staged plan
+## 10. Phase plan, reconciled
 
-| Phase | Scope | Backend work |
-| --- | --- | --- |
-| **2** | Tokens and fonts; shared components; public and learner header and footer (mobile menu, active states, exam-context cookie, guest "keep your progress"); the homepage; the display-name layer; a favicon; and four small defects on the homepage-to-practice path: header overflow, preset skill shown with length clamped to what's available, the study-plan `?domain=` fix, and the KaTeX separators | Sample map and public sample route |
-| 3 | Dashboard answering "what next, and why": resume across exams with expiry and last position, one primary recommendation with its basis, a domain-level skill landscape with tally evidence and a table equivalent, and every empty and error state | Resume query; evidence-capped signals |
-| 4 | Results (verdict, where you struggled, evidence, next step, review on its own page) and the mistake notebook (your answer → why it's wrong → worked explanation → retry or related practice) | Integrity rule (§9.2); retry kind; optional mistake labels (migration); strict unseen filter |
-| 5 | Practice setup (clear format kinds, visible configuration, no silent changes) and the player (focus mode, split passage at ≥ 1024 px, fixed controls, visible save states, persisted offline queue, debounced text input, 44 px navigator) | Queue persistence; debounce |
-| 6 | Remaining routes: hubs, format guides, guides, auth, account, study plan and readiness restyle, admin | Plan persistence and missed-session recovery (if approved) |
-| 7 | Validation: axe-core in CI, keyboard and screen-reader passes, performance budgets, full journeys at 390 / 768 / 1440 and 200% zoom | — |
+The master brief lists eight implementation stages. Phases here map onto them
+as follows. Phase 2 combined brief stages 2 and 3.
+
+| Phase | Brief stage | Scope | Status |
+| --- | --- | --- | --- |
+| 1 | 1 | Inspect the product; direction, system, plan | Done |
+| 2 | 2 + 3 | Tokens, typography, shared components; header, footer, mobile navigation; homepage; plus the decisions in §9 | Done (see §11) |
+| 3 | 4 | Dashboard: resume, one next action with its basis, domain-level skill landscape, all empty and error states | Next |
+| 4 | 5 | Results and mistake notebook: verdict first, evidence, review on its own page, retry flow, optional mistake labels | — |
+| 5 | 6 | Practice setup formats and the player: focus mode, split passage, visible save states, persisted offline queue, debounced input | — |
+| 6 | 7 | Remaining routes: hubs, guides, auth, account, study plan and readiness, admin | — |
+| 7 | 8 | Validation: axe-core in CI, screen-reader pass, performance budgets, 200% zoom | — |
+
+## 11. Phase 2: what was delivered
+
+### Assessment integrity (behaviour changes)
+
+- **Answer lock after feedback.** Migration `003_feedback_release.sql` adds
+  `attempt_items.feedback_released_at`. `recordResponse` takes an explicit
+  `reveal`, and `persistResponse` writes the answer and the release in one
+  `UPDATE … WHERE feedback_released_at IS NULL` inside an IMMEDIATE
+  transaction. A stale request, another tab or another process cannot
+  overwrite a checked answer; the refusal is 409 `response-locked`. Repeating
+  the stored answer is an idempotent success. Reveals are refused (409) in
+  formats without feedback. Draft answers no longer release the key; the old
+  rule released it on any saved answer. Reloaded feedback now shows
+  correct/incorrect properly; before, it read `is_correct`, which is null
+  until scoring. The migration backfills a release time only for answered
+  items in in-progress immediate-feedback attempts, which had already shown
+  their keys. Submitted attempts and `attempt_results` are untouched.
+- **Public samples out of measurement formats.** `src/lib/attempts/eligibility.ts`
+  is used by `startAttempt`, the adaptive reroute, `blueprintAvailability`
+  and the content report.
+- **Strict difficulty.** A learner's chosen level is a filter
+  (`SelectionConstraint.difficulties`), no longer a mix padded with other
+  levels. Configs are unchanged.
+- **Unknown exam** in `POST /api/attempts` now returns 404 rather than a 500.
+
+### Content and copy
+
+- `digital-sat-math-ratios-rates-050` is now v2 (options `$1{,}700$` and so on).
+  Seeding adds a new version row, and existing attempts stay pinned to v1
+  (verified on a database with such an attempt).
+- Editorial standards now describe who does what, updated 24 September 2026.
+  Copy was also corrected in the independence notice, publisher name
+  ("Examer"), hub page, practice page, account export and admin wording.
+
+### Practice and study plan
+
+- `src/lib/attempts/facets.ts`: eligible counts for any filter combination,
+  tested equal to the server's check for every combination in the real bank.
+- The setup form shows a preset skill, per-level counts, lengths down to one
+  question, an explained adjustment and explicit "broaden" buttons. Legacy
+  `?skill=<domain>` links open that topic, and unknown filters are ignored
+  with a notice.
+- The notebook sizes "Practise these again" from the same counts and states
+  the length. Its copy no longer promises different questions.
+- Study-plan untouched topics now link with `?domain=`. **This fixes the
+  links only:** the plan still repeats sessions, is not stored and has no
+  missed-session recovery.
+
+### Visual system and public experience
+
+- Tokens retuned in place, with semantic additions. Bricolage Grotesque
+  (weight axis, 41 KB) and Instrument Serif Italic (22 KB) are self-hosted
+  under `src/app/_fonts` with their OFL texts. The accent italic is scoped to
+  the homepage. Tabular figures are verified in Bricolage.
+- Shared components: buttons (with loading), badges, tone-iconed alerts,
+  shape-coded status marks, cards, page headers, spinner.
+- Header and footer: public and learner navigation, a mobile Menu disclosure
+  (Escape returns focus), active states, and guest messaging tied to the real
+  7-day session length (a test enforces it). Includes a favicon, and scroll
+  padding so focus is never hidden under the sticky header.
+- Homepage: hero with exam selector and a working sample; how it works; a
+  mistake-notebook demonstration on a real verbal SAT item; a live
+  availability table (one table that reflows on phones); an illustrative
+  progress preview; credibility; final call to action.
+
+### Checks run
+
+- `npm run verify`: typecheck clean, content 0 errors and 0 warnings, 227
+  unit and integration tests (193 before; new: `feedback-lock`,
+  `eligibility`, `study-plan`, `copy-claims`).
+- Playwright, both device projects, against a production build on system
+  Chrome: 69 passed and 1 skipped (the existing desktop-only keyboard test).
+  New `tests/e2e/phase-2.spec.ts` covers:
+  - the homepage exam selector, focus and URL;
+  - the sample reveal with no session created;
+  - the sample endpoint;
+  - phone-width overflow;
+  - guest navigation, active state, the Escape key and the favicon;
+  - preset skills, broadening and legacy links;
+  - answer locking in the UI and through the API.
+- `tests/e2e/helpers.ts` clears rate-limit counters in the disposable e2e
+  database between tests. A full two-project run otherwise exceeds the
+  production guest limit from 127.0.0.1. The limit itself is unchanged.
+- Site sweep of 23 routes at 360 and 1440 px, as visitor and as a guest with a
+  finished session: no horizontal overflow, no console errors, no error
+  statuses. It found and fixed one real bug: visually hidden text inside a
+  non-positioned scroll wrapper widened `/readiness` on phones, so every
+  `overflow-x-auto` wrapper is now `relative`.
+
+### Measurements (lab only; no field data exists)
+
+Method as in §2: local production servers, cold cache; desktop 1440 px
+unthrottled; mobile 390 px with 4× CPU, 1.6 Mbps and 150 ms RTT. Both builds
+were served side by side and measured interleaved, 5 runs each, medians shown.
+The baseline is the committed Phase 1 code built today. Transfer figures are
+compressed response bodies (`encodedBodySize`; gzip from `next start`),
+headers excluded.
+
+| Route | LCP desktop (before → after) | LCP throttled mobile | JS | Fonts at load | HTML | CLS |
+| --- | --- | --- | --- | --- | --- | --- |
+| `/` | 212 → 656 ms | 1,328 → 2,524 ms | 104 → 112 KB | 0 → 62 KB | 14.6 → 32.2 KB | 0 → 0.004–0.007 |
+| `/exams/digital-sat` | 160 → 276 ms | 1,176 → 1,964 ms | 104 → 108 KB | 0 → 40 KB | 12.2 → 14.2 KB | 0 → 0.006 |
+| `/practice/digital-sat` | 168 → 268 ms | 1,388 → 2,152 ms | 107 → 111 KB | 0 → 40 KB | 14.6 → 17.7 KB | 0 → 0.003 |
+| `/exams/digital-sat/format` | 232 → 296 ms | 1,492 → 2,040 ms | 104 → 108 KB | 0 → 40 KB | 22.3 → 24.4 KB | 0 → 0.005 |
+
+Switching exams on the homepage: 56 ms desktop, 128 ms throttled (longest
+event duration; a lab proxy for INP).
+
+Against the proposed budgets:
+
+- **Met:** homepage JavaScript +8.3 KB (budget +12 KB); fonts 62 KB at load
+  (budget 90 KB); CLS at most 0.007; interaction under 200 ms.
+- **Not met:** throttled-mobile LCP. The homepage is at 2.5 s (budget 1.5 s),
+  and other pages are 0.55–0.8 s slower than before. This run of the baseline
+  itself measured 1.2–1.5 s, and 1.1 s in Phase 1.
+
+Diagnosis so far:
+
+- First paint equals LCP everywhere, so first paint itself is late.
+- Traces show the extra time is main-thread layout before first paint:
+  - **Homepage:** about 1.7 s of layout, against 0.7 s for the baseline. It
+    has about 630 elements against 220 and a hydration payload that repeats
+    the server markup. This was reduced from 300 KB and about 2,100 elements
+    by moving the demonstration to a non-maths item, drawing status marks in
+    CSS and rendering the availability table once.
+  - **Other pages:** layout takes about 1.0–1.1 s against 0.4–0.55 s on a
+    similar element count.
+- Blocking the web fonts, forcing the old system font stack, disabling
+  `text-wrap` balancing and making the header static each left that unchanged.
+  `content-visibility: auto` on later sections did not help either.
+- The per-page layout cost is **not yet explained**. It needs a DevTools
+  layout profile, which is listed below.
+
+### Deferred, with reasons
+
+1. **Throttled-mobile LCP over budget**, as above. Next step: a DevTools
+   layout profile of `/exams/digital-sat`, before and after; then reduce the
+   homepage's below-the-fold content or hydration payload.
+2. **Stale option letters in explanations.** `normalise-option-order.ts`
+   reordered 188 of 285 published questions after review. It remapped keys
+   and rationale ids but not letters written in explanation or rationale
+   text. 92 of those name option letters. Fifteen explicitly name the wrong
+   answer letter; for example, `digital-sat-rw-boundaries-infrared-011`
+   ends "Choice B." while the key is C. This needs a reviewed, versioned
+   correction pass. Until then the **LSAT homepage sample is withheld**
+   (`WITHHELD_SAMPLES`): every LSAT explanation names letters, and the
+   candidates checked were wrong. A test keeps any public sample from
+   naming letters.
+3. **Sample exclusion costs:** formats that were already closed move further
+   from opening. SAT Reading and Writing modules go from 1 short to 3 (two
+   public items are Reading and Writing), the SAT simulation from 48 to 50
+   short, and GMAT Quantitative from 5 to 6. LSAT is unaffected while its
+   sample is withheld. No open format closed (`tests/unit/eligibility.test.ts`).
+4. Remembered exam across visits (needs a consent decision); switching exams
+   without JavaScript.
+5. The player's visible save status, a persisted offline queue and debounced
+   typing (Phase 5). The offline message is accurate now; the behaviour is
+   unchanged.
+6. The study plan's repetition, persistence and missed-session recovery;
+   readiness per-signal evidence caps; the notebook's due-versus-missed
+   wording (Phases 3, 4 and 6).
+7. Signing in to an existing account does not merge guest history. The copy
+   says so; merging would be new backend work.
+8. The practice page still opens with the exam's long summary paragraph
+   (Phase 5).

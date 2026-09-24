@@ -1,6 +1,6 @@
 {
   "id": "bocconi-law-verbal-dissent-error-050",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-law",
   "sectionKey": "online-test-law",
   "domainSlug": "law-verbal-reasoning",
@@ -37,7 +37,7 @@
     "type": "single_select",
     "optionId": "d"
   },
-  "explanationMd": "Write the premise as an arrow: *served more than ten years $\\rightarrow$ has written at least one dissent.* Long service is the tail; dissents are the head.\n\nThe argument then observes a fact about the **head** — Judge Marchesi has written dissents — and concludes the **tail**. That is travelling backwards along an arrow the premise only licensed in one direction. Dissents are a consequence of long service, not a proof of it; a judge appointed two years ago may perfectly well have dissented three times. Option C names precisely this move.\n\nThe only conclusions the premise supports are the forward one (if a judge has served more than ten years, expect a dissent) and its contrapositive (a judge who has never dissented has not served more than ten years).\n\n**How to check.** Look for a counterexample that satisfies every premise and defeats the conclusion. A court on which all the long-serving judges have dissented — premise satisfied — and on which Judge Marchesi, appointed two years ago, has also dissented three times, makes every premise true and the conclusion false. An argument admitting such a case is invalid, and the description that identifies where the reversal happened is the correct diagnosis.",
+  "explanationMd": "Write the premise as an arrow: *served more than ten years $\\rightarrow$ has written at least one dissent.* Long service is the tail; dissents are the head.\n\nThe argument then observes a fact about the **head** — Judge Marchesi has written dissents — and concludes the **tail**. That is travelling backwards along an arrow the premise only licensed in one direction. Dissents are a consequence of long service, not a proof of it; a judge appointed two years ago may perfectly well have dissented three times. Option D names precisely this move.\n\nThe only conclusions the premise supports are the forward one (if a judge has served more than ten years, expect a dissent) and its contrapositive (a judge who has never dissented has not served more than ten years).\n\n**How to check.** Look for a counterexample that satisfies every premise and defeats the conclusion. A court on which all the long-serving judges have dissented — premise satisfied — and on which Judge Marchesi, appointed two years ago, has also dissented three times, makes every premise true and the conclusion false. An argument admitting such a case is invalid, and the description that identifies where the reversal happened is the correct diagnosis.",
   "distractorRationale": {
     "a": "The argument reasons from a general rule about the court to a claim about one judge, which is the opposite direction from the one this option describes. No feature of the court is inferred from Judge Marchesi's record.",
     "c": "This describes the fallacy of division or composition, which needs a claim about a group taken as a whole. Here the premise is explicitly distributive — 'every judge who...' — so it already applies to members one by one, and no collective property is involved.",
@@ -55,16 +55,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-law-wave3-author",
-    "reviewer": "bocconi-law-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout-blind-solver-s2",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-law-wave3-reviewer",
+      "solvedBy": "closeout-blind-solver-s2",
       "solvedAnswer": "d",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "The premise gives long service as sufficient for writing a dissent; the argument runs it backwards from dissents to long service (affirming the consequent), which is what D describes. A misdescribes the direction of the inference, B has no appeal to authority, C is a composition/division error not present here."
+      "workingNotes": "The premise makes more than ten years' service sufficient for having written a dissent. The argument then reverses this, inferring long service from dissents, which is affirming the consequent and matches (d). (a) is wrong because the argument does not generalise from one judge to the court. (b) is wrong because no authority is cited. (c) is wrong because no collective/individual confusion is involved. The phrase 'which long service brings about' in (d) reads the conditional a little causally, but it is still clearly the best description."
     },
-    "notes": "Author's working: the argument affirms the consequent of 'more than ten years implies at least one dissent', which option C describes. A reverses the direction of the inference actually made, B requires a collective-to-member confusion that a distributive 'every' rules out, D requires an appeal to authority that never occurs. A two-year judge with three dissents is an explicit counterexample. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author's working: the argument affirms the consequent of 'more than ten years implies at least one dissent', which option C describes. A reverses the direction of the inference actually made, B requires a collective-to-member confusion that a distributive 'every' rules out, D requires an appeal to authority that never occurs. A two-year judge with three dissents is an explicit counterexample. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 1 option reference in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

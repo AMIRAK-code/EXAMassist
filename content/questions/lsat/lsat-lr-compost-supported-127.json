@@ -1,6 +1,6 @@
 {
   "id": "lsat-lr-compost-supported-127",
-  "version": 1,
+  "version": 2,
   "examKey": "lsat",
   "sectionKey": "lr1",
   "domainSlug": "logical-reasoning",
@@ -42,7 +42,7 @@
     "type": "single_select",
     "optionId": "d"
   },
-  "explanationMd": "Do the arithmetic the stimulus is inviting you to do.\n\nThe audit is reliable and representative, and a composting household leaves **no** kitchen waste in its rubbish. So every household whose rubbish contained kitchen waste is a household that does not compost. That is 45 percent of households.\n\n$$100\\% - 45\\% = 55\\%$$\n\nAt most 55 percent of households compost — \"at most\", because among the remaining 55 percent there may be households that neither compost nor happened to throw out kitchen waste in the sampled period. Meanwhile 70 percent told the survey they compost. Since $70 > 55$, the survey figure cannot be right: it is too high. That is (A).\n\nThis is the everyday pattern behind the item — self-reported behaviour on a socially approved activity tends to exceed measured behaviour — but you do not need the sociology. The two numbers simply cannot both be accurate, and the stimulus tells you which one to trust by stipulating that the audit is reliable and representative.\n\nHow to check the answer: fix the largest composting rate the audit allows, 55 percent, and ask which choices survive. (A) survives, since 70 exceeds 55. (B) does not: at 55 percent composting, *most* households do compost, so (B) may well be false. Watch that boundary — had the audit found kitchen waste in 62 percent of households, (B) would have been forced too, and the item would have had two answers. On \"most strongly supported\" questions, always test a choice against the *extreme* case the evidence still permits, not against the case you find most likely.",
+  "explanationMd": "Do the arithmetic the stimulus is inviting you to do.\n\nThe audit is reliable and representative, and a composting household leaves **no** kitchen waste in its rubbish. So every household whose rubbish contained kitchen waste is a household that does not compost. That is 45 percent of households.\n\n$$100\\% - 45\\% = 55\\%$$\n\nAt most 55 percent of households compost — \"at most\", because among the remaining 55 percent there may be households that neither compost nor happened to throw out kitchen waste in the sampled period. Meanwhile 70 percent told the survey they compost. Since $70 > 55$, the survey figure cannot be right: it is too high. That is (D).\n\nThis is the everyday pattern behind the item — self-reported behaviour on a socially approved activity tends to exceed measured behaviour — but you do not need the sociology. The two numbers simply cannot both be accurate, and the stimulus tells you which one to trust by stipulating that the audit is reliable and representative.\n\nHow to check the answer: fix the largest composting rate the audit allows, 55 percent, and ask which choices survive. (D) survives, since 70 exceeds 55. (C) does not: at 55 percent composting, *most* households do compost, so (C) may well be false. Watch that boundary — had the audit found kitchen waste in 62 percent of households, (C) would have been forced too, and the item would have had two answers. On \"most strongly supported\" questions, always test a choice against the *extreme* case the evidence still permits, not against the case you find most likely.",
   "distractorRationale": {
     "c": "The evidence caps composting at 55 percent of households but does not push it below half, so a world in which 55 percent compost is fully consistent with everything stated and makes this choice false. It is the natural overshoot for a reader who correctly sees that the survey is inflated and then assumes the truth must lie on the other side of a majority.",
     "b": "The stimulus stipulates that the audit's method is reliable and its sample representative, so blaming the audit contradicts a given. It is the mirror image of the supported conclusion: the two figures disagree, and this choice resolves the disagreement against the source the passage tells you to trust.",
@@ -61,16 +61,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "lsat-wave3-author",
-    "reviewer": "lsat-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout-blind-solver-s3",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "lsat-wave3-reviewer",
+      "solvedBy": "closeout-blind-solver-s3",
       "solvedAnswer": "d",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "A composting household puts out no kitchen waste, so the 45 percent whose rubbish contained kitchen waste do not compost; therefore at most 55 percent compost, while the survey reported 70 percent — the survey figure must overstate. (c) fails because 55 percent composting is consistent with the audit, so \"most do not compost\" is not forced."
+      "workingNotes": "Households that compost put out no kitchen waste, and the audit is reliable and representative, so at least 45% of households do not compost and at most 55% do. That is below the survey's 70%, so (d). (c) needs more than 50% non-composters, but only at least 45% is established. Nothing supports a change over time (a). The audit is stipulated to be reliable (b), and total rubbish volume is never discussed (e)."
     },
-    "notes": "Author solved the item and attempted a defence of each other choice. The audit figure was set at 45 percent rather than the 62 percent of an earlier draft precisely so that option (B), 'most households do not compost', is no longer forced; at 62 percent it would have been a second defensible answer. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author solved the item and attempted a defence of each other choice. The audit figure was set at 45 percent rather than the 62 percent of an earlier draft precisely so that option (B), 'most households do not compost', is no longer forced; at 62 percent it would have been a second defensible answer. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 5 option references in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

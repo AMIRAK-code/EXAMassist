@@ -1,6 +1,6 @@
 {
   "id": "enhanced-act-read-time-use-table-023",
-  "version": 1,
+  "version": 2,
   "examKey": "enhanced-act",
   "sectionKey": "reading",
   "domainSlug": "act-reading-integration-of-knowledge-and-ideas",
@@ -37,7 +37,7 @@
     "type": "single_select",
     "optionId": "c"
   },
-  "explanationMd": "The hidden childcare in each region is the amount the secondary column adds, so compute that difference for all three rows before judging the claim:\n\n- Northern: $21.9 - 11.2 = 10.7$ hours\n- Coastal: $26.4 - 13.5 = 12.9$ hours\n- Interior: $20.6 - 9.8 = 10.8$ hours\n\nNow test the claim's two halves. The region with the least childcare recorded under the old rule is Interior, at 9.8 hours — that half is right. But the region where the most was hidden is Coastal, at 12.9 hours, and Coastal had the *highest* primary-column figure, 13.5. The two halves point at different regions, so the claim fails, and choice B gives precisely that reason with the figures.\n\nCheck the arithmetic by adding each gain back: $9.8 + 10.8 = 20.6$ and $13.5 + 12.9 = 26.4$, which match the table. A useful habit on a question like this is to reject any \"yes/no\" option whose reason is false even when its yes or no happens to be right — here C says no for a reason the table contradicts.",
+  "explanationMd": "The hidden childcare in each region is the amount the secondary column adds, so compute that difference for all three rows before judging the claim:\n\n- Northern: $21.9 - 11.2 = 10.7$ hours\n- Coastal: $26.4 - 13.5 = 12.9$ hours\n- Interior: $20.6 - 9.8 = 10.8$ hours\n\nNow test the claim's two halves. The region with the least childcare recorded under the old rule is Interior, at 9.8 hours — that half is right. But the region where the most was hidden is Coastal, at 12.9 hours, and Coastal had the *highest* primary-column figure, 13.5. The two halves point at different regions, so the claim fails, and choice C gives precisely that reason with the figures.\n\nCheck the arithmetic by adding each gain back: $9.8 + 10.8 = 20.6$ and $13.5 + 12.9 = 26.4$, which match the table. A useful habit on a question like this is to reject any \"yes/no\" option whose reason is false even when its yes or no happens to be right — here B says no for a reason the table contradicts.",
   "distractorRationale": {
     "d": "Gets Interior's primary-column rank right but its gain wrong. Interior gained 10.8 hours; Coastal gained 12.9, which is larger, so Interior is not the region where the most was hidden.",
     "b": "Asserts equal gains without subtracting. The three gains are 10.7, 12.9 and 10.8 hours, which are not equal, so the reason is false even though the verdict \"no\" happens to be correct.",
@@ -67,7 +67,7 @@
       "uniquenessChecked": true,
       "workingNotes": "Gains computed from the table: Northern 21.9-11.2=10.7; Coastal 26.4-13.5=12.9; Interior 20.6-9.8=10.8. Interior does have the fewest primary-column hours (9.8), but the largest gain is Coastal's 12.9, so the claim fails and B states both figures correctly. A asserts Interior 'gained the most hours', which is numerically false (10.8 < 12.9); C is false (gains differ: 10.7, 12.9, 10.8); D both answers 'Yes' on a false premise and misreads 'roughly doubled' as identical amounts."
     },
-    "notes": "Author solved the item and tried to defend each distractor. Gains are Northern 10.7, Coastal 12.9, Interior 10.8, so the largest gain belongs to the region with the largest primary-column figure and the claim fails. A misstates Interior's gain, C asserts equal gains that the subtraction refutes, D confuses a ratio with an absolute amount. Awaiting an independent blind solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author solved the item and tried to defend each distractor. Gains are Northern 10.7, Coastal 12.9, Interior 10.8, so the largest gain belongs to the region with the largest primary-column figure and the claim fails. A misstates Interior's gain, C asserts equal gains that the subtraction refutes, D confuses a ratio with an absolute amount. Awaiting an independent blind solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 2 option references in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; The item stays quarantined for the reason recorded."
   },
   "state": "quarantined",
   "quarantine": {

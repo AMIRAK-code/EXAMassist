@@ -1,6 +1,6 @@
 {
   "id": "bocconi-ug-crit-colloquium-deduction-021",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-undergraduate",
   "sectionKey": "online-test",
   "domainSlug": "bocconi-ug-critical-thinking",
@@ -32,7 +32,7 @@
     "type": "single_select",
     "optionId": "a"
   },
-  "explanationMd": "Take a single student and follow the two rules through.\n\nSuppose a student missed more than two sessions. Rule 2 says that student was **not** invited to the colloquium.\n\nNow look at rule 1 the other way round. Rule 1 says submitting the essay guarantees an invitation. So anyone who was *not* invited cannot have submitted the essay, otherwise rule 1 would have been broken. That reversed form is the **contrapositive**, and it is always as true as the rule itself.\n\nPutting the two together: missed more than two sessions, therefore not invited, therefore did not submit the essay. That is exactly option C.\n\n**How to check the answer.** Try to build a counter-example. To break option C you would need a student who missed more than two sessions *and* submitted the essay. Rule 1 would then have invited that student, and rule 2 would have refused the invitation. The two rules would contradict each other, so no such student can exist. When an attempted counter-example forces a contradiction, the conclusion is genuinely forced.\n\n**The technique.** Write each rule as an arrow between groups: essay $\\rightarrow$ invited, and missed more than two $\\rightarrow$ not invited. A valid chain has to link arrows head to tail, reversing one of them if necessary by flipping both ends. An arrow can never simply be read backwards without flipping both ends, which is the error behind option A.",
+  "explanationMd": "Take a single student and follow the two rules through.\n\nSuppose a student missed more than two sessions. Rule 2 says that student was **not** invited to the colloquium.\n\nNow look at rule 1 the other way round. Rule 1 says submitting the essay guarantees an invitation. So anyone who was *not* invited cannot have submitted the essay, otherwise rule 1 would have been broken. That reversed form is the **contrapositive**, and it is always as true as the rule itself.\n\nPutting the two together: missed more than two sessions, therefore not invited, therefore did not submit the essay. That is exactly option A.\n\n**How to check the answer.** Try to build a counter-example. To break option A you would need a student who missed more than two sessions *and* submitted the essay. Rule 1 would then have invited that student, and rule 2 would have refused the invitation. The two rules would contradict each other, so no such student can exist. When an attempted counter-example forces a contradiction, the conclusion is genuinely forced.\n\n**The technique.** Write each rule as an arrow between groups: essay $\\rightarrow$ invited, and missed more than two $\\rightarrow$ not invited. A valid chain has to link arrows head to tail, reversing one of them if necessary by flipping both ends. An arrow can never simply be read backwards without flipping both ends, which is the error behind option B.",
   "distractorRationale": {
     "b": "This reads rule 1 backwards without flipping both ends. Rule 1 says essay submitters were all invited; it does not say they were the only ones invited. The registrar may have invited prize-winners or exchange students as well, and nothing in the two statements rules that out.",
     "c": "This flatly contradicts rule 2, which says that no such student was invited. A statement that denies one of the givens cannot be deduced from them; a candidate who picks it has read rule 2 as a general tendency rather than as the exceptionless rule the stem says it is."
@@ -49,16 +49,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-undergraduate-topup-author",
-    "reviewer": "bocconi-undergraduate-round2-reviewer",
-    "reviewedOn": "2026-09-22",
+    "reviewer": "closeout-blind-solver-s6",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-undergraduate-round2-reviewer",
+      "solvedBy": "closeout-blind-solver-s6",
       "solvedAnswer": "a",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Essay -> invited (rule 1); missed>2 -> not invited (rule 2), contrapositive invited -> not missed>2. Chaining: essay -> not missed>2, equivalently missed>2 -> no essay, which is C. A is the converse of rule 1 (invited students need not have submitted). B directly contradicts rule 2."
+      "workingNotes": "Rule 1 gives essay -> invited, so its contrapositive is not invited -> no essay; rule 2 gives missed >2 -> not invited, so missed >2 -> no essay, which is (a). (b) is the converse of rule 1 and does not follow. (c) directly contradicts rule 2."
     },
-    "notes": "Author checked uniqueness by model: let S be essay submitters, I invitees, M students missing more than two sessions. Given S is a subset of I and M and I are disjoint, it follows that M and S are disjoint, which is option C. A model in which I is strictly larger than S falsifies option A, and option B contradicts the second given outright, so exactly one option is defensible. Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author checked uniqueness by model: let S be essay submitters, I invitees, M students missing more than two sessions. Given S is a subset of I and M and I are disjoint, it follows that M and S are disjoint, which is option C. A model in which I is strictly larger than S falsifies option A, and option B contradicts the second given outright, so exactly one option is defensible. Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 3 option references in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

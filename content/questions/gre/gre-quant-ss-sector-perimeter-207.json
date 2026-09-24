@@ -1,6 +1,6 @@
 {
   "id": "gre-quant-ss-sector-perimeter-207",
-  "version": 1,
+  "version": 2,
   "examKey": "gre",
   "sectionKey": "quant-1",
   "domainSlug": "quant-geometry",
@@ -42,7 +42,7 @@
     "type": "single_select",
     "optionId": "a"
   },
-  "explanationMd": "A sector is bounded by three pieces: two straight radii and one curved arc. Handle the straight part and the curved part separately, then add.\n\n**The two radii.** Each has length $6$, so together they contribute\n\n$$2 \\times 6 = 12.$$\n\n**The arc.** A central angle of $120^\\circ$ is $\\frac{120}{360} = \\frac{1}{3}$ of the full turn, so the arc is one third of the circumference:\n\n$$\\text{arc} = \\frac{1}{3} \\times 2\\pi r = \\frac{1}{3} \\times 2\\pi (6) = \\frac{12\\pi}{3} = 4\\pi.$$\n\n**Add.** The perimeter is $12 + 4\\pi$, which is choice (C).\n\n**How to check.** Estimate numerically: $4\\pi \\approx 12.6$, so the perimeter is about $24.6$. That is a reasonable size — it must exceed $12$ (the two radii alone) and must be less than the whole circumference plus two radii, $12\\pi + 12 \\approx 49.7$. It is. Notice also the structural check on units of the expression: the radii contribute a term with no $\\pi$ and the arc contributes a term with $\\pi$, so any answer missing one of the two kinds of term is describing the wrong figure.",
+  "explanationMd": "A sector is bounded by three pieces: two straight radii and one curved arc. Handle the straight part and the curved part separately, then add.\n\n**The two radii.** Each has length $6$, so together they contribute\n\n$$2 \\times 6 = 12.$$\n\n**The arc.** A central angle of $120^\\circ$ is $\\frac{120}{360} = \\frac{1}{3}$ of the full turn, so the arc is one third of the circumference:\n\n$$\\text{arc} = \\frac{1}{3} \\times 2\\pi r = \\frac{1}{3} \\times 2\\pi (6) = \\frac{12\\pi}{3} = 4\\pi.$$\n\n**Add.** The perimeter is $12 + 4\\pi$, which is choice (A).\n\n**How to check.** Estimate numerically: $4\\pi \\approx 12.6$, so the perimeter is about $24.6$. That is a reasonable size — it must exceed $12$ (the two radii alone) and must be less than the whole circumference plus two radii, $12\\pi + 12 \\approx 49.7$. It is. Notice also the structural check on units of the expression: the radii contribute a term with no $\\pi$ and the arc contributes a term with $\\pi$, so any answer missing one of the two kinds of term is describing the wrong figure.",
   "distractorRationale": {
     "c": "This is the arc alone. It forgets that the perimeter of a sector also includes the two straight radii that bound it, which is exactly what the stem spells out.",
     "e": "This uses a full circumference of $2\\pi \\times 6$ but takes one sixth of it rather than one third, the error of reading $120^\\circ$ as $\\frac{120}{720}$ or of halving once too often. $120^\\circ$ is a third of $360^\\circ$.",
@@ -61,16 +61,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "gre-wave3-author",
-    "reviewer": "gre-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout-blind-solver-s7",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "gre-wave3-reviewer",
+      "solvedBy": "closeout-blind-solver-s7",
       "solvedAnswer": "a",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Arc = (120/360) * 2*pi*6 = (1/3)(12pi) = 4pi; two radii contribute 6 + 6 = 12. Perimeter = 12 + 4pi."
+      "workingNotes": "Arc = (120/360)(2 pi x 6) = 4 pi, and the two radii add 12, so the perimeter is 12 + 4 pi, which is (a). (b) uses the full circumference, (c) omits the radii, (d) counts the radii twice, and (e) uses a 60-degree arc; none matches."
     },
-    "notes": "Author solved: two radii give 12; arc = (120/360)(2 pi * 6) = 4 pi; total 12 + 4 pi, choice C. Numerical check 24.6, between 12 and 49.7. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author solved: two radii give 12; arc = (120/360)(2 pi * 6) = 4 pi; total 12 + 4 pi, choice C. Numerical check 24.6, between 12 and 49.7. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 1 option reference in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

@@ -1,6 +1,6 @@
 {
   "id": "bocconi-law-logic-moot-rounds-032",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-law",
   "sectionKey": "online-test-law",
   "domainSlug": "law-logic-and-critical-thinking",
@@ -37,7 +37,7 @@
     "type": "single_select",
     "optionId": "b"
   },
-  "explanationMd": "Rather than listing every draw, ask who is allowed to argue in **round 1** and eliminate.\n\n- Ferrara is excluded by the third condition.\n- Marchetti is excluded by the second, which confines Marchetti to round 2 or round 4.\n- Lombardi is excluded by the first: Gallo must argue earlier than Lombardi, so Lombardi cannot occupy the earliest round of all.\n\nThat leaves exactly one candidate, Gallo, so option A must be true.\n\nThe other three statements are merely *possible*. Both of these draws satisfy every condition:\n\n- Gallo 1, Marchetti 2, Ferrara 3, Lombardi 4\n- Gallo 1, Lombardi 2, Ferrara 3, Marchetti 4\n\n**How to check.** Confirm that at least one admissible draw exists (otherwise \"must be true\" would be vacuous), then confirm that each rejected option is false in at least one admissible draw. The first draw above kills C's rival readings and the second kills B, and neither has Ferrara immediately before Marchetti in the first draw, so D fails there too. A holds in both — as it must, since round 1 had only one possible occupant.",
+  "explanationMd": "Rather than listing every draw, ask who is allowed to argue in **round 1** and eliminate.\n\n- Ferrara is excluded by the third condition.\n- Marchetti is excluded by the second, which confines Marchetti to round 2 or round 4.\n- Lombardi is excluded by the first: Gallo must argue earlier than Lombardi, so Lombardi cannot occupy the earliest round of all.\n\nThat leaves exactly one candidate, Gallo, so option B must be true.\n\nThe other three statements are merely *possible*. Both of these draws satisfy every condition:\n\n- Gallo 1, Marchetti 2, Ferrara 3, Lombardi 4\n- Gallo 1, Lombardi 2, Ferrara 3, Marchetti 4\n\n**How to check.** Confirm that at least one admissible draw exists (otherwise \"must be true\" would be vacuous), then confirm that each rejected option is false in at least one admissible draw. The second draw above rules out A and D, because Marchetti argues in round 4 and Lombardi in round 2, and the first draw rules out C, because Ferrara argues after Marchetti there. B holds in both — as it must, since round 1 had only one possible occupant.",
   "distractorRationale": {
     "a": "Round 2 is only one of the two rounds the second condition allows Marchetti; round 4 works equally well, as the second draw above shows. This option treats the first branch of an either-or condition as if the condition had named it alone.",
     "d": "Lombardi must be later than Gallo, but 'later' does not mean 'last'. In the second draw Lombardi argues in round 2, with Marchetti in round 4. Reading a relative-order condition as fixing an endpoint is the error here.",
@@ -55,16 +55,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-law-wave3-author",
-    "reviewer": "bocconi-law-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout-blind-solver-s1",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-law-wave3-reviewer",
+      "solvedBy": "closeout-blind-solver-s1",
       "solvedAnswer": "b",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Round 1 cannot be Marchetti (round 2 or 4), cannot be Ferrara (excluded), and cannot be Lombardi (Gallo must be earlier), so Gallo argues in round 1. The draw Gallo 1, Ferrara 2, Lombardi 3, Marchetti 4 falsifies A and C, while Gallo 1, Marchetti 2, Ferrara 3, Lombardi 4 leaves D non-necessary once Gallo 1, Marchetti 2, Lombardi 3, Ferrara 4 is also allowed."
+      "workingNotes": "Round 1 cannot be Marchetti (2 or 4), Ferrara (excluded) or Lombardi (Gallo must precede it), so Gallo argues in round 1 (b). (a) fails as Marchetti can be in 4; (c) fails when Marchetti is in 2 (Ferrara cannot be in 1) and is optional when Marchetti is in 4; (d) fails in draws such as G1 M2 L3 F4."
     },
-    "notes": "Author's working: round 1 excludes Ferrara (condition 3), Marchetti (condition 2) and Lombardi (condition 1), forcing Gallo into round 1. Two admissible draws, G-M-F-L and G-L-F-M, jointly falsify options B, C and D. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author's working: round 1 excludes Ferrara (condition 3), Marchetti (condition 2) and Lombardi (condition 1), forcing Gallo into round 1. Two admissible draws, G-M-F-L and G-L-F-M, jointly falsify options B, C and D. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 2 option references in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter); the sentence saying which draw rules out which option was wrong under any lettering and is rewritten to match the two draws. Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

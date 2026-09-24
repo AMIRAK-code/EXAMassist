@@ -1,6 +1,6 @@
 {
   "id": "bocconi-ug-crit-cycling-injuries-023",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-undergraduate",
   "sectionKey": "online-test",
   "domainSlug": "bocconi-ug-critical-thinking",
@@ -37,7 +37,7 @@
     "type": "single_select",
     "optionId": "b"
   },
-  "explanationMd": "Both quantities went **up**, so the question is not which one rose but which rose faster. Compare the two growth factors.\n\nTake the 2020 figures as 100 each, which is legitimate because the bulletin gives only percentage changes.\n\n$$\\text{journeys: } 100 \\rightarrow 135 \\qquad \\text{injuries: } 100 \\rightarrow 112$$\n\nInjuries per journey in 2020 were $\\frac{100}{100} = 1$. In 2025 they were\n\n$$\\frac{112}{135} < 1$$\n\nbecause 112 is smaller than 135. So the injury rate per journey fell, which is option D. Notice that no actual injury counts were needed: a ratio of two indices settles it.\n\n**How to check the answer.** Put in any real starting numbers and see whether the conclusion survives. Say 2020 had 1,000,000 journeys and 500 injuries, a rate of 1 injury per 2,000 journeys. Then 2025 has 1,350,000 journeys and 560 injuries, a rate of 1 per about 2,410 journeys. Fewer injuries per journey, as predicted. Because the starting values cancel out of the comparison, any other pair of starting numbers gives the same verdict.\n\n**The distinction being tested.** A **count** rising and a **rate** falling are perfectly compatible, and here both happen at once. Whenever a total and its base both change, ask which grew faster before describing the direction of travel; the headline number on its own decides nothing.",
+  "explanationMd": "Both quantities went **up**, so the question is not which one rose but which rose faster. Compare the two growth factors.\n\nTake the 2020 figures as 100 each, which is legitimate because the bulletin gives only percentage changes.\n\n$$\\text{journeys: } 100 \\rightarrow 135 \\qquad \\text{injuries: } 100 \\rightarrow 112$$\n\nInjuries per journey in 2020 were $\\frac{100}{100} = 1$. In 2025 they were\n\n$$\\frac{112}{135} < 1$$\n\nbecause 112 is smaller than 135. So the injury rate per journey fell, which is option B. Notice that no actual injury counts were needed: a ratio of two indices settles it.\n\n**How to check the answer.** Put in any real starting numbers and see whether the conclusion survives. Say 2020 had 1,000,000 journeys and 500 injuries, a rate of 1 injury per 2,000 journeys. Then 2025 has 1,350,000 journeys and 560 injuries, a rate of 1 per about 2,410 journeys. Fewer injuries per journey, as predicted. Because the starting values cancel out of the comparison, any other pair of starting numbers gives the same verdict.\n\n**The distinction being tested.** A **count** rising and a **rate** falling are perfectly compatible, and here both happen at once. Whenever a total and its base both change, ask which grew faster before describing the direction of travel; the headline number on its own decides nothing.",
   "distractorRationale": {
     "d": "This reverses the direction of the reported change. Injuries rose by 12 per cent between 2020 and 2025, so more were reported in 2025 than in 2020, not fewer. It probably comes from assuming that a falling injury rate must mean a falling injury count, when the rate falls only because journeys grew faster.",
     "c": "The bulletin gives figures for Riolo alone across two dates. It contains no data on any other city, so no comparison between cities can be drawn from it however favourable Riolo's own trend looks. A change over time never establishes a ranking against places that were never measured.",
@@ -55,16 +55,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-undergraduate-topup-author",
-    "reviewer": "bocconi-undergraduate-round2-reviewer",
-    "reviewedOn": "2026-09-22",
+    "reviewer": "closeout-blind-solver-s6",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-undergraduate-round2-reviewer",
+      "solvedBy": "closeout-blind-solver-s6",
       "solvedAnswer": "b",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Injuries per journey scales as 1.12/1.35 = 0.83 of the 2020 rate, so the rate fell: D follows arithmetically. A is false (injuries rose 12 per cent). B needs data on other cities, none given. C asserts causation from co-movement only."
+      "workingNotes": "Injuries per journey changes by a factor of 1.12/1.35 < 1, so the rate fell, which is (b). (a) is a causal claim the figures cannot establish. (c) needs data on other cities, which the bulletin says is not given. (d) is false because injuries rose 12 per cent."
     },
-    "notes": "Author checked uniqueness: with journeys at 1.35 times and injuries at 1.12 times their 2020 levels, the ratio of injuries to journeys is multiplied by 1.12/1.35, which is below 1 for every possible pair of starting values, so option D holds unconditionally. Option A contradicts a given, and options B and C require information the bulletin explicitly says is unavailable. Exactly one option is defensible. Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author checked uniqueness: with journeys at 1.35 times and injuries at 1.12 times their 2020 levels, the ratio of injuries to journeys is multiplied by 1.12/1.35, which is below 1 for every possible pair of starting values, so option D holds unconditionally. Option A contradicts a given, and options B and C require information the bulletin explicitly says is unavailable. Exactly one option is defensible. Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 1 option reference in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,
