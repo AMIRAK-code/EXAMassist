@@ -6,6 +6,9 @@ differently, the text says so in place ("as built", "as shipped"). Section 9
 records the decisions agreed for Phase 2, section 10 reconciles the phase
 numbering with the master brief, and section 11 reports what Phase 2 delivered,
 how it was checked, the before-and-after measurements and what is deferred.
+Section 12 is the Phase 2 closeout: the explanation correction, the actual
+cause of the mobile slowdown, the database state and the acceptance verdict.
+Where it corrects §11, §11 says so in place.
 
 The homepage concept (desktop, mobile and design-system artboards, with a
 working sample question per exam) is published as a private canvas:
@@ -311,7 +314,8 @@ How the sample question works:
   stored; no session is created.
 - *As built:* five hub samples plus one demonstration item
   (`src/lib/content/public-samples.ts`), all excluded from diagnostic, timed
-  and simulation selection. The LSAT sample is **withheld**: see §11.
+  and simulation selection. The LSAT sample was withheld in §11 and restored
+  in the closeout once its explanation had a reviewed correction (§12.1).
 - First visit defaults to SAT (a verbal item readable without maths).
 
 **Phase 2 budgets (lab, same method as §2):** homepage JS ≤ 118 KB transfer
@@ -354,8 +358,8 @@ as follows. Phase 2 combined brief stages 2 and 3.
 | Phase | Brief stage | Scope | Status |
 | --- | --- | --- | --- |
 | 1 | 1 | Inspect the product; direction, system, plan | Done |
-| 2 | 2 + 3 | Tokens, typography, shared components; header, footer, mobile navigation; homepage; plus the decisions in §9 | Done (see §11) |
-| 3 | 4 | Dashboard: resume, one next action with its basis, domain-level skill landscape, all empty and error states | Next |
+| 2 | 2 + 3 | Tokens, typography, shared components; header, footer, mobile navigation; homepage; plus the decisions in §9 | Done (§11), closed out in §12; the homepage's throttled-mobile LCP budget is still not met |
+| 3 | 4 | Dashboard: resume, one next action with its basis, domain-level skill landscape, all empty and error states | Next, after the homepage budget decision in §12.6 |
 | 4 | 5 | Results and mistake notebook: verdict first, evidence, review on its own page, retry flow, optional mistake labels | — |
 | 5 | 6 | Practice setup formats and the player: focus mode, split passage, visible save states, persisted offline queue, debounced input | — |
 | 6 | 7 | Remaining routes: hubs, guides, auth, account, study plan and readiness, admin | — |
@@ -491,15 +495,21 @@ Diagnosis so far:
 - Blocking the web fonts, forcing the old system font stack, disabling
   `text-wrap` balancing and making the header static each left that unchanged.
   `content-visibility: auto` on later sections did not help either.
+  *Closeout correction:* these stylesheet experiments were invalid. The
+  injected `<style>` was added before the parser built the document and was
+  discarded, so none of them applied. See §12.2 for the real cause.
 - The per-page layout cost is **not yet explained**. It needs a DevTools
-  layout profile, which is listed below.
+  layout profile, which is listed below. *Explained in §12.2.*
 
 ### Deferred, with reasons
 
 1. **Throttled-mobile LCP over budget**, as above. Next step: a DevTools
    layout profile of `/exams/digital-sat`, before and after; then reduce the
-   homepage's below-the-fold content or hydration payload.
-2. **Stale option letters in explanations.** `normalise-option-order.ts`
+   homepage's below-the-fold content or hydration payload. *Closeout: cause
+   found and fixed for the exam pages; the homepage is still over budget
+   (§12.2).*
+2. *Closeout: resolved, see §12.1. The counts below were an undercount.*
+   **Stale option letters in explanations.** `normalise-option-order.ts`
    reordered 188 of 285 published questions after review. It remapped keys
    and rationale ids but not letters written in explanation or rationale
    text. 92 of those name option letters. Fifteen explicitly name the wrong
@@ -514,6 +524,7 @@ Diagnosis so far:
    public items are Reading and Writing), the SAT simulation from 48 to 50
    short, and GMAT Quantitative from 5 to 6. LSAT is unaffected while its
    sample is withheld. No open format closed (`tests/unit/eligibility.test.ts`).
+   *Closeout: the restored LSAT sample closes no LSAT format either.*
 4. Remembered exam across visits (needs a consent decision); switching exams
    without JavaScript.
 5. The player's visible save status, a persisted offline queue and debounced
@@ -526,3 +537,253 @@ Diagnosis so far:
    says so; merging would be new backend work.
 8. The practice page still opens with the exam's long summary paragraph
    (Phase 5).
+
+## 12. Phase 2 closeout (24 September 2026)
+
+Three things were open at the end of §11: stale option letters in
+explanations, the throttled-mobile LCP regression, and the database and commit
+state. This section reports what was checked, what changed and what is still
+not met.
+
+### 12.1 Content: stale option letters (resolved)
+
+**What was checked.** All 189 questions that `normalise-option-order.ts` had
+reordered (188 published, 1 quarantined), not only the 92 that the §11 pattern
+caught. Five audit agents matched every letter or positional reference in
+explanations and distractor notes to the option whose content it describes,
+and inferred each item's old order. A script then checked their work:
+
+- every edit changes only letters, or a listed phrase;
+- every changed letter follows the item's inferred old-to-new mapping;
+- the mapping agrees with an independent signal. Distractor notes were written
+  in option order and the reorder kept their key order, so they record the old
+  order of the wrong options. All 115 items where both could be compared
+  agreed; none disagreed.
+
+Not every letter was wrong: in 10 items the letters happened to be right.
+
+| Finding | Items |
+| --- | --- |
+| The explanation pointed to a wrong option as the answer, or walked through the answer under a wrong letter | 91 published, 1 quarantined |
+| Only wrong options were mislabelled | 13 |
+| Letters already correct, or no option references | 84 |
+
+Along the way, 11 false statements about options in 10 items were found and
+fixed: five by the auditors and six by the reference check described below.
+They were not letter problems:
+
+- `bocconi-law-logic-lecture-week-035`: option C read "Family is delivered on
+  Friday", which holds exactly when D does, so its note and the explanation
+  were false. C now reads "Family is delivered on Thursday", the mirror-image
+  option the note describes.
+- `moot-rounds-032`: the sentence saying which draw rules out which option was
+  wrong under any lettering.
+- `permit-deducible-049`, `course-enrolment-033`, `appeal-outcomes-022`,
+  `applications-per-place-021`, `bikeshare-036` ("doubled" should be
+  "tripled"), `power-quotient-030`, `logexp-difference-041` and
+  `equivalent-expressions-047`: a wrong pair, figure or described error.
+
+**How it was corrected.** Every fix is a new version; v1 stays attached to
+earlier attempts. The 105 published items moved to `in_review`, which removes
+them from new sessions. While they were withheld, nine open formats closed:
+
+- the SAT diagnostic and both timed maths modules;
+- the ACT, LSAT and Bocconi law diagnostics;
+- Bocconi law practice;
+- GRE timed verbal 2.
+
+Two checks followed. A separate AI reviewer, given the corrected text,
+re-checked every option reference against the option text. Every reference in
+all 106 items pointed at the right option, but six items made false claims
+about options, and those were fixed before publication.
+
+Then came a new blind solve through the existing pipeline:
+
+- `export-review-batch.ts`, whose leak check passed;
+- seven fresh solver agents, which saw no key, explanation or note;
+- `apply-review.ts`.
+
+It agreed with the key on 105 of 105, with uniqueness confirmed, so nothing was
+quarantined. The records carry solver ids `closeout-blind-solver-s1` to `s7`
+and a dated note saying what changed. After republication the bank is back to
+285 published questions, and every format's availability is exactly as it was
+before the closeout.
+
+**Guards against a repeat:**
+
+- The validator now rejects an explanation that explicitly presents a non-key
+  option as the answer (`explanation-names-wrong-answer`). It reads explicit
+  statements only. On the old bank it flags 35 of the 91 published answer
+  defects; on the corrected bank it flags none.
+- `normalise-option-order.ts` leaves alone any item whose prose names option
+  letters, and lists it for hand editing.
+- `tests/unit/explanation-letters.test.ts` covers the rule. The public-sample
+  test now requires audited letters rather than forbidding letters outright.
+- The editorial standards page lists the check and records the correction.
+
+**LSAT sample restored.** `lsat-lr-compost-supported-127` v2 is the LSAT
+homepage sample. Excluding it from measurement formats closes no LSAT format.
+
+**Still open:**
+
+- The other 179 published explanations have had no independent check of
+  their claims about options. That check found six false claims in the 106
+  corrected items, so the rest very likely contains some. This is the same
+  gap the editorial page already states: explanations are not independently
+  re-read.
+- One solver concern did not affect the answer.
+  `digital-sat-math-two-variable-data-021` says "weeks since the first
+  measurement" but labels the weeks 1 to 6.
+- `enhanced-act-read-time-use-table-023` stays quarantined for its second
+  defensible answer; its letters are fixed.
+
+### 12.2 Performance: what the regression was
+
+**Two flaws in the §11 method, found and removed:**
+
+- The stylesheet experiments in §11 appended a `<style>` to the document
+  before the parser replaced it, so none of them applied.
+- Requests served through Playwright's route interception skip Chrome's
+  network emulation, so timings from such runs are not comparable. They are
+  used below only for counts and CPU time.
+
+Every comparison below uses real builds served side by side, with no
+interception.
+
+**Cause.** A trace with Chrome's font categories, of one throttled load of
+`/exams/digital-sat`:
+
+- First paint waits for a single layout pass: 509 ms in Phase 1 and 1,064 ms in
+  Phase 2, for about the same 250 objects.
+- Inside that pass, Chrome created 19 typefaces, against 4 in Phase 1, and 15
+  of them were re-parses of the 1 MB Arial file. That file backs the
+  `local("Arial")` face that next/font generates for `adjustFontFallback`,
+  which Chrome rebuilds for every size and weight.
+- Removing that face alone left 12 typefaces from 7 files. The system-UI stack
+  behind it loads one Segoe UI file per weight, and the design uses weights
+  300 to 800.
+- Next's font manifest comes out empty on Windows, so Windows builds emit no
+  font preload. `NextFontManifestPlugin` matches `'/next-font-loader/index.js?'`
+  with forward slashes. Linux builds emit the preload, so both cases were
+  measured.
+
+**Fix** (`src/app/_fonts`, `globals.css`): no metric-adjusted fallback face,
+and Bricolage falls back to `Arial, sans-serif` rather than the system-UI
+stack. On the exam page the first layout now creates 6 typefaces from 3
+files, and its CPU time fell from 784 ms (system stack) to 506 ms, about
+Phase 1's level. The design is unchanged once the web font arrives; only the
+brief fallback differs.
+
+**Results.** Lab only, on mains power, fresh context per load, 390 px, 4× CPU,
+1.6 Mbps and 150 ms RTT. The builds were interleaved, 7 runs each, and medians
+are shown. The two closeout columns are the fixed font configuration as a
+Windows build emits it (no preload) and as a Linux build does (with preload).
+They differ from the final code only in the question text and in where the font
+is declared. A rerun of the final build itself was interrupted when the laptop
+switched to battery, which made every build, the baseline included, about 2.5×
+slower; those numbers are discarded.
+
+| Throttled-mobile LCP | Phase 1 | Phase 2 as committed | Closeout, no preload | Closeout, with preload |
+| --- | --- | --- | --- | --- |
+| `/` | 1,444 ms | 2,740 ms | 2,116 ms | 2,256 ms |
+| `/exams/digital-sat` | 1,168 ms | 1,888 ms | 1,436 ms | 1,456 ms |
+| CLS, highest run (`/`, exam page) | 0, 0 | 0.0008, 0.0001 | 0.0008, 0.0199 | 0, 0 |
+
+JavaScript (112 KB on the homepage), fonts (62 KB) and CSS (13 KB) are
+unchanged. The exam-page CLS maximum of 0.0199 was one run in seven, when the
+font swapped after the first paint; the median was 0. That is within the 0.02
+budget, but only just, and only for builds without the preload.
+
+This laptop's speed drifts between batches: the same Phase 1 homepage
+measured between 1.1 and 1.6 s across today's batches. Compare columns within
+a row, not against other sections.
+
+The final build itself was then checked on battery, for the ratio only. Every
+build ran about 2.5× slower, so the absolute figures are not comparable.
+Interleaved with the baseline on the exam page, LCP was 1.05× Phase 1's
+(1.09× with the preload), and CLS again peaked at 0.0199 in one run without
+the preload and at 0 with it.
+
+**Against the budget (1.5 s):** the exam page now meets it in this batch,
+0.27 s slower than Phase 1 instead of 0.72 s. **The homepage does not: 2.1 s.**
+The practice and format pages were not re-measured on mains power. They share
+the exam page's font setup and element count, so the same fix applies, but no
+closeout figure exists for them.
+
+**Why the homepage is still slow.** Hiding everything below the hero
+(diagnostic only) brings the homepage to 1.27–1.44 s, Phase 1's level. The
+cause is layout of the below-the-fold content: 393 of its 622 elements, plus
+the footer, all laid out before the first paint. No single section dominates.
+`content-visibility: auto` recovers only 0.1–0.2 s, because Chrome lays such
+elements out on the first frame, before it knows they are off-screen. The
+remaining options change the design or the rendering approach, so they are
+left for a decision (§12.6).
+
+### 12.3 Database
+
+- **Backups** (git-ignored `tmp/backups/`; `npm run db:reset` does not touch
+  them, `git clean -x` would):
+  - `examer-2026-09-24-before-closeout-seed.db`: an online SQLite backup taken
+    while the dev server was running. Integrity check ok, and its row counts
+    are identical to the source.
+  - `examer-2026-09-24-before-migration-003.db`: moved there from the
+    temporary scratch location where §11 left it.
+- **Seed.** Adds the 106 corrected versions and the Phase 2 maths v2: 395
+  version rows, 285 published. The dev database holds 1 user, 9 attempts, 81
+  attempt items and 3 results. All 81 items and 3 results are identical before
+  and after, and all stay on v1, including the 20 corrected questions that
+  appear in those attempts.
+
+### 12.4 Checks run in the closeout
+
+- `npm run verify`: typecheck clean, content 0 errors and 0 warnings, 231
+  tests (4 new).
+- Playwright, both device projects, against a production build of the final
+  code with its own disposable database: 69 passed, 1 skipped (the existing
+  desktop-only keyboard test), none failed.
+- Site sweep of the same 23 routes as §11, at 360 and 1440 px, as a visitor and
+  as a guest: no horizontal overflow, no console errors, no error statuses.
+- The restored LSAT sample answered wrongly and revealed, on the final build:
+  the verdict names D, and the explanation now says "That is (D)."
+- Content: the letter audit, the mechanical cross-check, the reference check
+  and the blind solve, as in §12.1.
+
+### 12.5 Commits
+
+- `a4c87ae` (committed by the user during the closeout) contains all the
+  closeout content and performance changes together. Its message,
+  "feat(dashboard): …", does not describe them. It also contains two
+  unrelated archives, `profile-redesign.zip` and `profile-starchaser.zip`,
+  and an empty `trace-detail.mjs` that a failed command of mine created.
+- On `FronDesign`, a documentation commit on top of `a4c87ae` adds this
+  section and removes the empty file.
+- Branch `phase2-closeout-split`, from `2c58e82`, holds the same changes as
+  separate commits: `1c09712` content corrections, `bce92a5` the LSAT sample,
+  `e9efe67` the font fix, then documentation and the homepage line break. It
+  leaves out the archives and the empty file. Nothing has been rewritten or
+  pushed; adopting it is the user's choice.
+
+### 12.6 Acceptance
+
+**Met:**
+
+- Content defects: the confirmed misleading explanations are corrected,
+  re-reviewed and republished through the versioning process.
+- Historical attempts are untouched, and the LSAT sample is restored.
+- Assessment behaviour is unchanged.
+- Budgets for JavaScript, fonts and CLS, and LCP on the exam hub page. The
+  interaction figure is §11's (128 ms throttled); the closeout did not change
+  any script.
+
+**Not met:** throttled-mobile LCP on the homepage, 2.1 s against 1.5 s.
+Phase 2 is therefore **not fully complete**. The choices are:
+
+1. Trim the homepage's below-the-fold content. This is a design change.
+2. Defer rendering of the below-the-fold sections until after the first paint.
+   This relies on script, and costs a frame of hidden content and some
+   anchor-link care.
+3. Keep the design and set a homepage budget that matches it.
+
+Phase 3 can start once that choice is made. The other open items, §11's
+deferred list and §12.1's "still open", belong to later phases or are recorded
+as known gaps; none of them blocks Phase 3.
