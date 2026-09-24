@@ -356,6 +356,10 @@ export function ExamPreview({
                           className="prose-academic text-[0.9375rem]"
                           dangerouslySetInnerHTML={{ __html: chosen.rationaleHtml }}
                         />
+                        <p className="mt-2 text-sm text-ink-muted">
+                          Written for this option in advance: a common route to it, not a claim about how
+                          you reasoned.
+                        </p>
                       </div>
                     ) : null}
 
