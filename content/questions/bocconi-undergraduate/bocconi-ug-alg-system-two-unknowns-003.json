@@ -1,6 +1,6 @@
 {
   "id": "bocconi-ug-alg-system-two-unknowns-003",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-undergraduate",
   "sectionKey": "online-test",
   "domainSlug": "bocconi-ug-mathematics",
@@ -37,7 +37,7 @@
     "type": "single_select",
     "optionId": "d"
   },
-  "explanationMd": "Use the second equation to express $x$ in terms of $y$. From $x - y = 1$ we get\n\n$$x = y + 1$$\n\nSubstitute into the first equation:\n\n$$2(y + 1) + 3y = 12$$\n$$2y + 2 + 3y = 12$$\n$$5y = 10 \\quad\\Rightarrow\\quad y = 2$$\n\nThen $x = y + 1 = 3$, so\n\n$$x + y = 3 + 2 = 5$$\n\nCheck both original equations before committing: $2(3) + 3(2) = 6 + 6 = 12$ and $3 - 2 = 1$. Both hold, so the solution is $(x, y) = (3, 2)$ and the requested sum is $5$.\n\nA faster route if you spot it: add the two equations after multiplying the second by $2$, or simply note that the question asks for $x + y$, not for $x$ or $y$ separately — a very common way to lose a mark under time pressure is to solve correctly and then report the wrong quantity.",
+  "explanationMd": "Use the second equation to express $x$ in terms of $y$. From $x - y = 1$ we get\n\n$$x = y + 1$$\n\nSubstitute into the first equation:\n\n$$2(y + 1) + 3y = 12$$\n$$2y + 2 + 3y = 12$$\n$$5y = 10 \\quad\\Rightarrow\\quad y = 2$$\n\nThen $x = y + 1 = 3$, so\n\n$$x + y = 3 + 2 = 5$$\n\nCheck both original equations before committing: $2(3) + 3(2) = 6 + 6 = 12$ and $3 - 2 = 1$. Both hold, so the solution is $(x, y) = (3, 2)$ and the requested sum is $5$.\n\nA faster route if you spot it: subtract twice the second equation from the first, which gives $5y = 10$ at once, or simply note that the question asks for $x + y$, not for $x$ or $y$ separately — a very common way to lose a mark under time pressure is to solve correctly and then report the wrong quantity.",
   "distractorRationale": {
     "a": "This comes from rearranging $x - y = 1$ into $x = 1 - y$ instead of $x = 1 + y$. That sign slip gives $2(1-y) + 3y = 12$, so $y = 10$ and $x = -9$, whose sum is $1$. Substituting $x = -9$, $y = 10$ into $x - y = 1$ gives $-19$, so the check fails immediately.",
     "b": "This is the value of $y$ alone. The system was solved correctly but the answer reported is one unknown rather than the sum $x + y$ that the question asks for.",
@@ -55,16 +55,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-undergraduate-author",
-    "reviewer": "bocconi-undergraduate-independent-reviewer",
-    "reviewedOn": "2026-09-22",
+    "reviewer": "closeout2-blind-solver-t1",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-undergraduate-independent-reviewer",
+      "solvedBy": "closeout2-blind-solver-t1",
       "solvedAnswer": "d",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "From x=y+1, 2(y+1)+3y=12 gives 5y=10, y=2, x=3, so x+y=5. The system has a unique solution so no other option is defensible."
+      "workingNotes": "From x = y + 1, 2(y + 1) + 3y = 12 gives y = 2 and x = 3, so x + y = 5. Check: 6 + 6 = 12 and 3 - 2 = 1. (a) is x - y, (b) is y and (c) is x, so none of them is the sum."
     },
-    "notes": "Awaiting blind independent solve before publication."
+    "notes": "Awaiting blind independent solve before publication. v2 (2026-09-24): an independent check of what the explanation and notes claim about the options found false statements in the explanation, corrected here. Correction by the coordinating editor (an AI agent); a separate AI reviewer then re-checked every claim about the options, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

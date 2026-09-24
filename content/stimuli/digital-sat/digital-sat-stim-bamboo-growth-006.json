@@ -1,15 +1,15 @@
 {
   "id": "digital-sat-stim-bamboo-growth-006",
-  "version": 1,
+  "version": 2,
   "examKey": "digital-sat",
   "kind": "chart",
   "title": "Height of a bamboo shoot over six weeks",
-  "bodyMd": "A gardener measured the height of a single bamboo shoot once a week for six weeks. The scatterplot shows the six measurements, and a line of best fit for the data has the equation $h = 7.2w + 4.8$, where $h$ is the height in centimetres and $w$ is the number of weeks since the first measurement.",
+  "bodyMd": "A gardener measured the height of a single bamboo shoot once a week for six weeks. The scatterplot shows the six measurements, and a line of best fit for the data has the equation $h = 7.2w + 12$, where $h$ is the height in centimetres and $w$ is the number of weeks since the first measurement.",
   "data": {
     "columns": [
       {
         "key": "week",
-        "label": "Week (w)"
+        "label": "Weeks since the first measurement (w)"
       },
       {
         "key": "height",
@@ -18,47 +18,47 @@
     ],
     "rows": [
       {
-        "week": 1,
+        "week": 0,
         "height": 12
       },
       {
-        "week": 2,
+        "week": 1,
         "height": 19
       },
       {
-        "week": 3,
+        "week": 2,
         "height": 27
       },
       {
-        "week": 4,
+        "week": 3,
         "height": 33
       },
       {
-        "week": 5,
+        "week": 4,
         "height": 41
       },
       {
-        "week": 6,
+        "week": 5,
         "height": 48
       }
     ],
-    "caption": "Weekly height of one bamboo shoot, with line of best fit h = 7.2w + 4.8.",
+    "caption": "Weekly height of one bamboo shoot, with line of best fit h = 7.2w + 12.",
     "chart": {
       "type": "scatter",
       "xKey": "week",
       "yKeys": [
         "height"
       ],
-      "xLabel": "Week (w)",
+      "xLabel": "Weeks since the first measurement (w)",
       "yLabel": "Height (cm)"
     }
   },
-  "accessibilityText": "A scatterplot of bamboo shoot height against week, with six plotted points and a rising straight line of best fit. The horizontal axis is the week number from 1 to 6 and the vertical axis is height in centimetres from 0 to 50. The six points are: week 1, 12 centimetres; week 2, 19 centimetres; week 3, 27 centimetres; week 4, 33 centimetres; week 5, 41 centimetres; week 6, 48 centimetres. The line of best fit has equation h equals 7.2 times w plus 4.8.",
+  "accessibilityText": "A scatterplot of bamboo shoot height against weeks since the first measurement, with six plotted points and a rising straight line of best fit. The horizontal axis is weeks since the first measurement, from 0 to 5, and the vertical axis is height in centimetres from 0 to 50. The six points are: 0 weeks, 12 centimetres; 1 week, 19 centimetres; 2 weeks, 27 centimetres; 3 weeks, 33 centimetres; 4 weeks, 41 centimetres; 5 weeks, 48 centimetres. The line of best fit has equation h equals 7.2 times w plus 12.",
   "provenance": {
     "origin": "original",
     "authoredBy": "digital-sat-author",
     "aiAssisted": true,
-    "notes": "Original data written for this item bank. The line of best fit was computed by least squares from these six invented points, so the stated equation genuinely matches the data."
+    "notes": "Original data written for this item bank. The line of best fit was computed by least squares from these six invented points, so the stated equation genuinely matches the data. v2 (2026-09-24): the weeks are counted from 0, as the text defines w; v1 labelled the first measurement week 1. The line was refitted to the relabelled data by least squares: the slope is unchanged at 7.2 and the intercept is 12."
   },
   "rightsStatus": "original-owned",
   "state": "in_review"

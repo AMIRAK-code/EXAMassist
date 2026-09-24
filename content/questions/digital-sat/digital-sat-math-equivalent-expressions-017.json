@@ -1,6 +1,6 @@
 {
   "id": "digital-sat-math-equivalent-expressions-017",
-  "version": 1,
+  "version": 2,
   "examKey": "digital-sat",
   "sectionKey": "math-module-1",
   "domainSlug": "advanced-math",
@@ -41,7 +41,7 @@
   "distractorRationale": {
     "b": "This is a sign error in the factorisation. $(3x - 1)(2x - 7) = 6x^2 - 23x + 7$, whose middle and constant terms do not match the numerator; substituting $x = 1$ gives $-5$ rather than $9$.",
     "c": "This comes from copying the leading coefficient of the denominator into the quotient. Dividing $6x^2$ by $3x$ gives $2x$, not $3x$; substituting $x = 1$ gives $10$ rather than $9$.",
-    "d": "This comes from cancelling only the $3$ in $3x - 1$ against the $6$ in $6x^2$, leaving $6x$ behind. A factor can be cancelled only when it divides the whole numerator, not one term of it."
+    "d": "This comes from cancelling the $x$ of $3x - 1$ against one factor of $x$ in $6x^2$, leaving $6x$ behind, and dividing $-7$ by $-1$. A factor can be cancelled only when it divides the whole numerator, not one term of it."
   },
   "estimatedSeconds": 95,
   "stimulusRef": null,
@@ -55,16 +55,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "digital-sat-author",
-    "reviewer": "digital-sat-independent-reviewer",
-    "reviewedOn": "2026-09-22",
+    "reviewer": "closeout2-blind-solver-t1",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "digital-sat-independent-reviewer",
+      "solvedBy": "closeout2-blind-solver-t1",
       "solvedAnswer": "a",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "6x^2 + 19x - 7 factors as (3x - 1)(2x + 7) (check: 21x - 2x = 19x, -1*7 = -7), so dividing by (3x-1) leaves 2x + 7. Substituting x=1 gives 18/2 = 9 = 2(1)+7, which no other option matches."
+      "workingNotes": "(3x - 1)(2x + 7) = 6x^2 + 21x - 2x - 7 = 6x^2 + 19x - 7, so the quotient is 2x + 7. (b) gives 6x^2 - 23x + 7; (c) and (d) give leading coefficients of 9 and 18, not 6."
     },
-    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): an independent check of what the explanation and notes claim about the options found false statements in the note on option D, corrected here. Correction by the coordinating editor (an AI agent); a separate AI reviewer then re-checked every claim about the options, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,
