@@ -364,7 +364,11 @@ export default function EditorialStandardsPage() {
               to a wrong option as the answer. Each was corrected as a new version, withdrawn from new
               sessions until a separate AI reviewer had re-checked its option references and a new
               blind solve had passed, and then restored. Earlier attempts keep the version they were
-              shown.
+              shown. A second check the same month had a separate AI reviewer test every claim the
+              remaining 180 published explanations and distractor notes make about the options. It
+              confirmed every answer key and found false statements in 37 questions, such as a note
+              describing an error that does not lead to its option. Those were corrected and reviewed
+              the same way, together with one chart whose week labels did not match its text.
             </p>
           </div>
           <Card className="mt-4">
