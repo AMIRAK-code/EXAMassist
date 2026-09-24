@@ -1,6 +1,6 @@
 {
   "id": "gmat-ds-stationery-prices-104",
-  "version": 1,
+  "version": 2,
   "examKey": "gmat",
   "sectionKey": "data-insights",
   "domainSlug": "di-data-sufficiency",
@@ -42,7 +42,7 @@
     "type": "data_sufficiency",
     "choice": "D"
   },
-  "explanationMd": "The stem itself carries an equation. Let $n$ be the notebook price and $p$ the pen price:\n\n$$20n + 30p = 190 \\quad\\Longrightarrow\\quad 2n + 3p = 19.$$\n\nThis one equation leaves infinitely many $(n, p)$ pairs, so each statement only has to supply a *second independent* equation.\n\n**Statement (1): $n = p + 2$.** Substituting,\n\n$$2(p + 2) + 3p = 19 \\;\\Longrightarrow\\; 5p + 4 = 19 \\;\\Longrightarrow\\; p = 3, \\; n = 5.$$\n\nA unique notebook price. Sufficient.\n\n**Statement (2): $3n + 2p = 21$.** Pair it with $2n + 3p = 19$. The two are independent because the coefficient ratios differ ($2:3$ against $3:2$; formally the determinant $2 \\cdot 2 - 3 \\cdot 3 = -5 \\neq 0$). Solving:\n\n$$3 \\times (2n + 3p) = 6n + 9p = 57, \\qquad 2 \\times (3n + 2p) = 6n + 4p = 42,$$\n\nand subtracting gives $5p = 15$, so $p = 3$ and $n = 5$. Sufficient.\n\nEach statement alone settles the question, so the answer is **D**.\n\n**How to check this.** Substitute $n = 5$ and $p = 3$ back into all three equations: $20(5) + 30(3) = 100 + 90 = 190$; $5 = 3 + 2$; $3(5) + 2(3) = 21$. All hold, which also confirms the statements are mutually consistent. The habit worth building here is to test *independence* rather than counting equations: a second equation that is a multiple of the first — say $4n + 6p = 38$ — would add nothing, and the answer would have been E. Check the determinant, not the number of lines.",
+  "explanationMd": "The stem itself carries an equation. Let $n$ be the notebook price and $p$ the pen price:\n\n$$20n + 30p = 190 \\quad\\Longrightarrow\\quad 2n + 3p = 19.$$\n\nThis one equation leaves infinitely many $(n, p)$ pairs, so each statement only has to supply a *second independent* equation.\n\n**Statement (1): $n = p + 2$.** Substituting,\n\n$$2(p + 2) + 3p = 19 \\;\\Longrightarrow\\; 5p + 4 = 19 \\;\\Longrightarrow\\; p = 3, \\; n = 5.$$\n\nA unique notebook price. Sufficient.\n\n**Statement (2): $3n + 2p = 21$.** Pair it with $2n + 3p = 19$. The two are independent because the coefficient ratios differ ($2:3$ against $3:2$; formally the determinant $2 \\cdot 2 - 3 \\cdot 3 = -5 \\neq 0$). Solving:\n\n$$3 \\times (2n + 3p) = 6n + 9p = 57, \\qquad 2 \\times (3n + 2p) = 6n + 4p = 42,$$\n\nand subtracting gives $5p = 15$, so $p = 3$ and $n = 5$. Sufficient.\n\nEach statement alone settles the question, so the answer is **D**.\n\n**How to check this.** Substitute $n = 5$ and $p = 3$ back into all three equations: $20(5) + 30(3) = 100 + 90 = 190$; $5 = 3 + 2$; $3(5) + 2(3) = 21$. All hold, which also confirms the statements are mutually consistent. The habit worth building here is to test *independence* rather than counting equations: a second equation that is a multiple of the first — say $4n + 6p = 38$ — would add nothing, and the answer would have been A, because statement (1) would still be sufficient on its own. Check the determinant, not the number of lines.",
   "distractorRationale": {
     "a": "This overlooks that the stem already contains one equation. Statement (2) supplies a second independent equation and therefore also fixes the notebook price on its own.",
     "b": "This overlooks the same thing in the other direction. Statement (1) gives n = p + 2, which combined with the stem yields p = 3 and n = 5.",
@@ -61,16 +61,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "gmat-topup-author",
-    "reviewer": "gmat-round2-reviewer",
-    "reviewedOn": "2026-09-22",
+    "reviewer": "closeout2-blind-solver-t2",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "gmat-round2-reviewer",
-      "solvedAnswer": "D",
+      "solvedBy": "closeout2-blind-solver-t2",
+      "solvedAnswer": "d",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Stem gives 20n + 30p = 190, i.e. 2n + 3p = 19. (1) n = p + 2 gives 5p = 15, p = 3, n = 5. (2) 3n + 2p = 21 with 2n + 3p = 19 has determinant 9 - 4 = 5 (non-zero), giving n = (63-38)/5 = 5, p = 3. Each alone is sufficient, so D."
+      "workingNotes": "The stem gives 20n + 30p = 190, i.e. 2n + 3p = 19. (1) n = p + 2 gives 5p + 4 = 19, p = 3, n = 5: sufficient. (2) 3n + 2p = 21 is independent of 2n + 3p = 19 and solves to n = 5, p = 3: sufficient. Each alone works, so (d); (a), (b), (c) and (e) all understate sufficiency."
     },
-    "notes": "Author solved each statement separately against the stem equation and checked the 2x2 determinant for statement (2) to confirm independence. Awaiting blind independent solve before publication."
+    "notes": "Author solved each statement separately against the stem equation and checked the 2x2 determinant for statement (2) to confirm independence. Awaiting blind independent solve before publication. v2 (2026-09-24): an independent check of what the explanation and notes claim about the options found false statements in the explanation, corrected here. Correction by the coordinating editor (an AI agent); a separate AI reviewer then re-checked every claim about the options, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

@@ -1,6 +1,6 @@
 {
   "id": "bocconi-ug-prob-union-newspaper-043",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-undergraduate",
   "sectionKey": "online-test",
   "domainSlug": "bocconi-ug-mathematics",
@@ -37,9 +37,9 @@
     "type": "single_select",
     "optionId": "a"
   },
-  "explanationMd": "**Step 1 — recover the overlap** from the addition rule\n\n$$P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$$\n\nRearranged:\n\n$$P(A \\cap B) = P(A) + P(B) - P(A \\cup B) = 0.6 + 0.5 - 0.8 = 0.3$$\n\nThe rule subtracts the overlap because the students who do both have been counted once in $P(A)$ and again in $P(B)$.\n\n**Step 2 — split $A$ into its two parts.** Every newspaper reader either does or does not listen to the podcast, and the two possibilities are disjoint:\n\n$$P(A) = P(A \\cap B) + P(A \\cap B^{c})$$\n$$P(A \\cap B^{c}) = P(A) - P(A \\cap B) = 0.6 - 0.3 = 0.3$$\n\nSo the answer is $0.3$.\n\n**How to check the answer: fill in the whole table.** Take 100 students. From the four probabilities every cell is forced:\n\n| | podcast | no podcast | total |\n|---|---|---|---|\n| **newspaper** | 30 | **30** | 60 |\n| **no newspaper** | 20 | 20 | 40 |\n| **total** | 50 | 50 | 100 |\n\nEvery row and column adds up correctly, and the union is $30 + 30 + 20 = 80$, matching $P(A \\cup B) = 0.8$. The cell the question asks for is the 30 in the top-right corner, so the probability is $0.3$.\n\nBuilding this 2-by-2 table is the most reliable way to handle any two-event problem: it makes all four cells visible at once and turns \"but not\" questions into simply reading the right box.\n\n**Note on independence.** Do not assume it. If $A$ and $B$ were independent the overlap would be $0.6 \\times 0.5 = 0.3$ — which here happens to coincide, but that is a numerical accident, not something you were entitled to assume. The addition rule gives the overlap without any such assumption.",
+  "explanationMd": "**Step 1 — recover the overlap** from the addition rule\n\n$$P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$$\n\nRearranged:\n\n$$P(A \\cap B) = P(A) + P(B) - P(A \\cup B) = 0.6 + 0.5 - 0.8 = 0.3$$\n\nThe rule subtracts the overlap because the students who do both have been counted once in $P(A)$ and again in $P(B)$.\n\n**Step 2 — split $A$ into its two parts.** Every newspaper reader either does or does not listen to the podcast, and the two possibilities are disjoint:\n\n$$P(A) = P(A \\cap B) + P(A \\cap B^{c})$$\n$$P(A \\cap B^{c}) = P(A) - P(A \\cap B) = 0.6 - 0.3 = 0.3$$\n\nSo the answer is $0.3$.\n\n**How to check the answer: fill in the whole table.** Take 100 students. From the four probabilities every cell is forced:\n\n| | podcast | no podcast | total |\n|---|---|---|---|\n| **newspaper** | 30 | **30** | 60 |\n| **no newspaper** | 20 | 20 | 40 |\n| **total** | 50 | 50 | 100 |\n\nEvery row and column adds up correctly, and the union is $30 + 30 + 20 = 80$, matching $P(A \\cup B) = 0.8$. The cell the question asks for is the bold 30, newspaper and no podcast, so the probability is $0.3$.\n\nBuilding this 2-by-2 table is the most reliable way to handle any two-event problem: it makes all four cells visible at once and turns \"but not\" questions into simply reading the right box.\n\n**Note on independence.** Do not assume it. If $A$ and $B$ were independent the overlap would be $0.6 \\times 0.5 = 0.3$ — which here happens to coincide, but that is a numerical accident, not something you were entitled to assume. The addition rule gives the overlap without any such assumption.",
   "distractorRationale": {
-    "b": "This is $P(B^{c}) = 1 - 0.5 = 0.5$, the probability that a student does not listen to a podcast at all. It drops the first condition: the question also requires the student to read a newspaper. In the table this is the whole right-hand column, 50 students, not the top-right cell of 30.",
+    "b": "This is $P(B^{c}) = 1 - 0.5 = 0.5$, the probability that a student does not listen to a podcast at all. It drops the first condition: the question also requires the student to read a newspaper. In the table this is the whole \"no podcast\" column, 50 students, not just its newspaper cell of 30.",
     "c": "This is $P(A) = 0.6$ itself, ignoring the restriction \"does not listen to a podcast\". It counts the 30 students in every 100 who do both, and those are exactly the ones the question excludes.",
     "d": "This is $1 - P(A \\cap B) = 1 - 0.3 = 0.7$, the probability that a student does **not** do both things. That set includes the 20 who only listen to the podcast and the 20 who do neither, neither of which belongs to the event asked about."
   },
@@ -55,16 +55,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-undergraduate-wave3-author",
-    "reviewer": "bocconi-undergraduate-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout2-blind-solver-t1",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-undergraduate-wave3-reviewer",
+      "solvedBy": "closeout2-blind-solver-t1",
       "solvedAnswer": "a",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "P(A and B) = P(A) + P(B) - P(A or B) = 0.6 + 0.5 - 0.8 = 0.3, so P(A and not B) = P(A) - P(A and B) = 0.6 - 0.3 = 0.3. Option d (0.7) is 1 - P(B) if independence is wrongly assumed via complement reasoning."
+      "workingNotes": "P(A and B) = 0.6 + 0.5 - 0.8 = 0.3, so P(A and not B) = 0.6 - 0.3 = 0.3. (b) is P(B), (c) is P(A) and (d) matches no correct calculation."
     },
-    "notes": "Author's uniqueness check: the three given probabilities determine all four cells of the contingency table uniquely, so P(A and not B) has the single value 0.3. The other options equal P(not B), P(A) and 1 - P(A and B), which are 0.5, 0.6 and 0.7, all distinct from 0.3 and from each other. Awaiting a blind independent solve before publication."
+    "notes": "Author's uniqueness check: the three given probabilities determine all four cells of the contingency table uniquely, so P(A and not B) has the single value 0.3. The other options equal P(not B), P(A) and 1 - P(A and B), which are 0.5, 0.6 and 0.7, all distinct from 0.3 and from each other. Awaiting a blind independent solve before publication. v2 (2026-09-24): an independent check of what the explanation and notes claim about the options found false statements in the explanation and the note on option B, corrected here. Correction by the coordinating editor (an AI agent); a separate AI reviewer then re-checked every claim about the options, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

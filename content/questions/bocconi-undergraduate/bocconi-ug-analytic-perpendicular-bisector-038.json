@@ -1,6 +1,6 @@
 {
   "id": "bocconi-ug-analytic-perpendicular-bisector-038",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-undergraduate",
   "sectionKey": "online-test",
   "domainSlug": "bocconi-ug-mathematics",
@@ -40,7 +40,7 @@
   "explanationMd": "This is the **perpendicular bisector** of $AB$, and it needs two ingredients: a point and a slope.\n\n**Step 1 — the midpoint.** Average the coordinates:\n\n$$M = \\left(\\frac{-2 + 4}{2},\\; \\frac{5 + (-7)}{2}\\right) = (1,\\, -1)$$\n\n**Step 2 — the slope of $AB$.**\n\n$$m_{AB} = \\frac{-7 - 5}{4 - (-2)} = \\frac{-12}{6} = -2$$\n\n**Step 3 — the perpendicular slope.** Two lines are perpendicular when the product of their slopes is $-1$:\n\n$$m_{s} = -\\frac{1}{m_{AB}} = -\\frac{1}{-2} = \\frac{1}{2}$$\n\nNote the two sign changes here: you take the reciprocal **and** change the sign, and since $m_{AB}$ is already negative the result comes out positive.\n\n**Step 4 — write the line through $M$ with that slope.**\n\n$$y - (-1) = \\tfrac{1}{2}(x - 1) \\;\\Longrightarrow\\; y + 1 = \\tfrac{1}{2}x - \\tfrac{1}{2} \\;\\Longrightarrow\\; y = \\tfrac{1}{2}x - \\tfrac{3}{2}$$\n\n**How to check the answer.** Two independent tests.\n\n1. *Does it pass through the midpoint?* Put $x = 1$: $y = \\tfrac{1}{2} - \\tfrac{3}{2} = -1$. Yes, $(1,-1)$ lies on it.\n2. *Is it perpendicular?* Multiply the slopes: $(-2) \\times \\tfrac{1}{2} = -1$. Yes.\n\nOnly one of the four options passes **both** tests. All four happen to pass through the midpoint, so test 1 alone decides nothing — the slope test is what separates them.\n\n**A third check worth knowing.** Every point on the perpendicular bisector is equidistant from $A$ and $B$. Take $x = 3$ on our line: $y = \\tfrac{3}{2} - \\tfrac{3}{2} = 0$, so $(3,0)$ should be equally far from both. Distance to $A$: $\\sqrt{5^{2} + 5^{2}} = \\sqrt{50}$. Distance to $B$: $\\sqrt{1^{2} + 7^{2}} = \\sqrt{50}$. Equal, as required.",
   "distractorRationale": {
     "d": "This reuses the slope of $AB$ itself, $-2$, instead of the perpendicular slope. It is the line through the midpoint **parallel** to $AB$ — in fact it is the line $AB$ itself, since $AB$ already passes through its own midpoint. The slope product is $(-2)\\times(-2) = 4$, not $-1$.",
-    "b": "This takes the reciprocal of $-2$ but forgets to change the sign, giving $-\\tfrac{1}{2}$ instead of $+\\tfrac{1}{2}$. The slope product is $(-2) \\times \\left(-\\tfrac{1}{2}\\right) = +1$, not $-1$, so the two lines are not perpendicular; they are reflections of each other in the horizontal.",
+    "b": "This takes the reciprocal of $-2$ but forgets to change the sign, giving $-\\tfrac{1}{2}$ instead of $+\\tfrac{1}{2}$. The slope product is $(-2) \\times \\left(-\\tfrac{1}{2}\\right) = +1$, not $-1$, so the two lines are not perpendicular.",
     "a": "This changes the sign of $-2$ but forgets the reciprocal, giving slope $2$. The slope product is $(-2)\\times 2 = -4$, not $-1$. Perpendicularity needs both operations: negate **and** invert."
   },
   "estimatedSeconds": 105,
@@ -55,16 +55,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-undergraduate-wave3-author",
-    "reviewer": "bocconi-undergraduate-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout2-blind-solver-t1",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-undergraduate-wave3-reviewer",
+      "solvedBy": "closeout2-blind-solver-t1",
       "solvedAnswer": "c",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Midpoint of A(-2,5) and B(4,-7) is (1,-1); slope AB = (-7-5)/(4-(-2)) = -2, so the perpendicular slope is 1/2. y + 1 = (1/2)(x - 1) gives y = x/2 - 3/2, which passes through (1,-1). Only c satisfies both conditions."
+      "workingNotes": "The midpoint is (1, -1) and AB has slope -12/6 = -2, so the perpendicular slope is 1/2, giving y = x/2 - 3/2, which passes through (1, -1). (a) has slope 2 and (b) has slope -1/2, and neither is perpendicular to AB. (d) is line AB itself, since it passes through A, B and the midpoint."
     },
-    "notes": "Author's uniqueness check: a point and a slope determine a line uniquely, so the perpendicular bisector is unique. Slope products against m_AB = -2 are 4, 1, -4 and -1 for options A, B, C and D respectively, so only D is perpendicular. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author's uniqueness check: a point and a slope determine a line uniquely, so the perpendicular bisector is unique. Slope products against m_AB = -2 are 4, 1, -4 and -1 for options A, B, C and D respectively, so only D is perpendicular. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): an independent check of what the explanation and notes claim about the options found false statements in the note on option B, corrected here. Correction by the coordinating editor (an AI agent); a separate AI reviewer then re-checked every claim about the options, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

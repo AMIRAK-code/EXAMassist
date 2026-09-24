@@ -1,6 +1,6 @@
 {
   "id": "digital-sat-math-two-variable-data-021",
-  "version": 2,
+  "version": 3,
   "examKey": "digital-sat",
   "sectionKey": "math-module-1",
   "domainSlug": "problem-solving-and-data-analysis",
@@ -37,18 +37,18 @@
     "type": "single_select",
     "optionId": "d"
   },
-  "explanationMd": "The line of best fit is $h = 7.2w + 4.8$, which is in the form $y = mx + b$. The number $7.2$ is the slope, $m$.\n\nSlope is always a rate: the change in the $y$-variable per one-unit change in the $x$-variable. Here $h$ is measured in centimetres and $w$ in weeks, so the slope has units of centimetres per week. The model therefore estimates that the shoot gains about $7.2$ centimetres for every extra week. That is choice D.\n\nCheck it against the model directly. At $w = 2$, $h = 7.2(2) + 4.8 = 19.2$; at $w = 3$, $h = 7.2(3) + 4.8 = 26.4$. The difference is $26.4 - 19.2 = 7.2$ centimetres, exactly the slope, and the measured data ($19$ cm then $27$ cm) change by a similar amount.\n\nThe habit to build: in $y = mx + b$, $m$ answers \"per unit, how much?\" and $b$ answers \"how much at the start?\"",
+  "explanationMd": "The line of best fit is $h = 7.2w + 12$, which is in the form $y = mx + b$. The number $7.2$ is the slope, $m$.\n\nSlope is always a rate: the change in the $y$-variable per one-unit change in the $x$-variable. Here $h$ is measured in centimetres and $w$ in weeks, so the slope has units of centimetres per week. The model therefore estimates that the shoot gains about $7.2$ centimetres for every extra week. That is choice D.\n\nCheck it against the model directly. At $w = 1$, $h = 7.2(1) + 12 = 19.2$; at $w = 2$, $h = 7.2(2) + 12 = 26.4$. The difference is $26.4 - 19.2 = 7.2$ centimetres, exactly the slope, and the measured data ($19$ cm then $27$ cm) change by a similar amount.\n\nThe habit to build: in $y = mx + b$, $m$ answers \"per unit, how much?\" and $b$ answers \"how much at the start?\"",
   "distractorRationale": {
-    "a": "This describes the $y$-intercept, which is $4.8$, not the slope. The initial height is the value of $h$ when $w = 0$, and it is the other constant in the equation.",
-    "b": "This confuses the slope with a predicted value. Substituting $w = 1$ gives $h = 7.2(1) + 4.8 = 12$ centimetres, not $7.2$ centimetres.",
+    "a": "This describes the $y$-intercept, which is $12$, not the slope. The initial height is the value of $h$ when $w = 0$, and it is the other constant in the equation.",
+    "b": "This confuses the slope with a predicted value. Substituting $w = 1$ gives $h = 7.2(1) + 12 = 19.2$ centimetres, not $7.2$ centimetres.",
     "c": "This inverts the rate. Weeks per centimetre would be $\\frac{1}{7.2} \\approx 0.14$ weeks; $7.2$ is centimetres per week, the other way round."
   },
   "estimatedSeconds": 85,
   "stimulusRef": {
     "id": "digital-sat-stim-bamboo-growth-006",
-    "version": 1
+    "version": 2
   },
-  "accessibilityText": "Using the scatterplot of bamboo height against week and its line of best fit h equals 7.2 w plus 4.8, choose the best interpretation of the number 7.2.",
+  "accessibilityText": "Using the scatterplot of bamboo height against weeks since the first measurement and its line of best fit h equals 7.2 w plus 12, choose the best interpretation of the number 7.2.",
   "provenance": {
     "origin": "original",
     "authoredBy": "digital-sat-author",
@@ -58,16 +58,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "digital-sat-author",
-    "reviewer": "closeout-blind-solver-s5",
+    "reviewer": "closeout2-blind-solver-t1",
     "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "closeout-blind-solver-s5",
+      "solvedBy": "closeout2-blind-solver-t1",
       "solvedAnswer": "d",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "7.2 is the slope of h = 7.2w + 4.8, so it is the estimated increase in height, in centimetres, per additional week, which is (d). (a) describes the intercept 4.8. (b) describes h at w = 1, which is 12. (c) describes the reciprocal of the slope."
+      "workingNotes": "In h = 7.2w + 12, 7.2 is the slope, meaning the estimated height gain in centimetres per additional week. (a) describes the intercept 12; (b) would be 19.2 cm; (c) inverts the rate, which would be weeks per centimetre."
     },
-    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 1 option reference in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 1 option reference in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts. v3 (2026-09-24): the chart (stimulus v2) now counts weeks from 0, as its text defines w; v1 labelled the first measurement week 1, so option A's note (\"the value of h when w = 0\") did not match the data. The intercept is now 12, the height at the first measurement, and the explanation and the notes on A and B use it. A separate AI reviewer then re-checked every claim about the options, and the item passed a new blind solve on 2026-09-24."
   },
   "state": "published",
   "quarantine": null,

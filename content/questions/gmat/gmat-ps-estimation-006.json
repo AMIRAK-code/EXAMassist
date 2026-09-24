@@ -1,6 +1,6 @@
 {
   "id": "gmat-ps-estimation-006",
-  "version": 1,
+  "version": 2,
   "examKey": "gmat",
   "sectionKey": "quantitative-reasoning",
   "domainSlug": "quant-problem-solving",
@@ -42,11 +42,11 @@
     "type": "single_select",
     "optionId": "d"
   },
-  "explanationMd": "The answer choices are spread by factors of two, so a rough estimate is enough — there is no need for exact arithmetic.\n\nRound each quantity to something easy:\n\n$$4.02 \\approx 4, \\qquad 19.7 \\approx 20, \\qquad 0.499 \\approx 0.5 = \\tfrac{1}{2}.$$\n\nThen\n\n$$\\frac{4^3 \\times 20}{0.5} = \\frac{64 \\times 20}{0.5} = \\frac{1280}{0.5} = 1280 \\times 2 = 2560.$$\n\nDividing by one half **doubles** a quantity; it does not halve it. That single step separates the correct answer from its nearest neighbour.\n\nCheck how good the estimate is. Each rounding was tiny: $4.02$ was rounded down by $0.5\\%$, $19.7$ up by $1.5\\%$, $0.499$ up by $0.2\\%$. The true value is about $2{,}564$, well within $1\\%$ of $2{,}560$, and every other choice is at least a factor of two away. When answer choices differ by factors of two or more, round aggressively and spend the saved time checking the direction of each operation.",
+  "explanationMd": "The answer choices are spread by factors of two, so a rough estimate is enough — there is no need for exact arithmetic.\n\nRound each quantity to something easy:\n\n$$4.02 \\approx 4, \\qquad 19.7 \\approx 20, \\qquad 0.499 \\approx 0.5 = \\tfrac{1}{2}.$$\n\nThen\n\n$$\\frac{4^3 \\times 20}{0.5} = \\frac{64 \\times 20}{0.5} = \\frac{1280}{0.5} = 1280 \\times 2 = 2560.$$\n\nDividing by one half **doubles** a quantity; it does not halve it. Leaving that step out gives $1{,}280$, the nearest neighbour of the correct answer.\n\nCheck how good the estimate is. Each rounding was tiny: $4.02$ was rounded down by $0.5\\%$, $19.7$ up by $1.5\\%$, $0.499$ up by $0.2\\%$. The true value is about $2{,}564$, well within $1\\%$ of $2{,}560$, and every other choice is at least a factor of two away. When answer choices differ by factors of two or more, round aggressively and spend the saved time checking the direction of each operation.",
   "distractorRationale": {
     "a": "This comes from a place-value slip: estimating $\\frac{19.7}{0.499}$ as about $4$ instead of about $40$, giving $64 \\times 4 = 256$. Dividing $19.7$ by roughly one half gives roughly $40$.",
     "b": "This uses $(4.02)^2 = 16$ instead of $(4.02)^3 = 64$: $16 \\times 20 \\div 0.5 = 640$. The exponent in the numerator is $3$.",
-    "c": "This is $64 \\times 20 = 1280$ with the division by $0.499$ treated as a division by $2$, or simply left out. Dividing by about one half doubles the result, so $1{,}280$ is exactly half the correct value.",
+    "c": "This is $64 \\times 20 = 1280$ with the division by $0.499$ simply left out. Dividing by about one half doubles the result, so $1{,}280$ is exactly half the correct value.",
     "e": "This rounds $0.499$ to $0.25$ rather than $0.5$, giving $1280 \\div 0.25 = 5120$. The stated denominator is just under one half, so the multiplier is about $2$, not $4$."
   },
   "estimatedSeconds": 95,
@@ -61,16 +61,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "gmat-author",
-    "reviewer": "gmat-independent-reviewer",
-    "reviewedOn": "2026-09-22",
+    "reviewer": "closeout2-blind-solver-t2",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "gmat-independent-reviewer",
+      "solvedBy": "closeout2-blind-solver-t2",
       "solvedAnswer": "d",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Round to (4)^3 x 20 / 0.5 = 64 x 20 x 2 = 2560; exact value is 2564.74, and the next-nearest options (1280, 5120) are off by a factor of 2, so only D is close."
+      "workingNotes": "Approximate 4.02^3 ≈ 64, 19.7 ≈ 20 and dividing by 0.499 ≈ doubling: 64 x 20 x 2 = 2,560 (a more exact estimate is about 2,565), so (d). The others are off by factors of 2 or more: (c) 1,280 omits the doubling, (e) 5,120 doubles twice, (a) and (b) are far smaller."
     },
-    "notes": "Author computed the true value as approximately 2564.5, confirming a single closest choice. Awaiting blind independent solve."
+    "notes": "Author computed the true value as approximately 2564.5, confirming a single closest choice. Awaiting blind independent solve. v2 (2026-09-24): an independent check of what the explanation and notes claim about the options found false statements in the note on option C and the explanation, corrected here. Correction by the coordinating editor (an AI agent); a separate AI reviewer then re-checked every claim about the options, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

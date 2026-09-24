@@ -1,6 +1,6 @@
 {
   "id": "bocconi-law-math-percentages-successive-003",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-law",
   "sectionKey": "online-test-law",
   "domainSlug": "law-mathematics",
@@ -39,7 +39,7 @@
   },
   "explanationMd": "Successive percentage changes must be applied one after the other, each to the price that is current at the time — they cannot be added together.\n\n**January increase of $20\\%$:**\n\n$$250 \\times 1.20 = 300$$\n\n**July reduction of $15\\%$, applied to €300:**\n\n$$300 \\times 0.85 = 255$$\n\nSo the firm pays €255.00 per month.\n\nIf mental arithmetic is easier in parts: $10\\%$ of $300$ is $30$, so $5\\%$ is $15$, so $15\\%$ is $30 + 15 = 45$, and $300 - 45 = 255$.\n\n**How to check.** Combine the two multipliers in one step: $1.20 \\times 0.85 = 1.02$, and $250 \\times 1.02 = 255$. The net effect is a $2\\%$ increase, not the $5\\%$ you would get by subtracting the percentages — that is exactly the trap. A useful general fact to carry into the exam: a rise of $x\\%$ followed by a fall of $x\\%$ never returns you to the starting price, because the fall is taken from a larger base.",
   "distractorRationale": {
-    "b": "This is what you get by treating the percentages as additive, $+20\\% - 15\\% = +5\\%$, giving $250 \\times 1.05 = 262.50$. The same figure arises from applying the $15\\%$ reduction to the original €250 rather than to the January price. Percentage changes apply to the current base, so they multiply rather than add.",
+    "b": "This is what you get by treating the percentages as additive, $+20\\% - 15\\% = +5\\%$, giving $250 \\times 1.05 = 262.50$. The same figure arises from taking $15\\%$ of the original €250, which is €37.50, off the January price of €300. Percentage changes apply to the current base, so they multiply rather than add.",
     "d": "This comes from applying the $15\\%$ reduction only to the €50 increase rather than to the whole January price: $300 - 0.15 \\times 50 = 292.50$. The July reduction was announced as a reduction of the January price, so the base is €300.",
     "a": "This is the January price, obtained by applying the increase and then stopping. The July reduction has not been applied at all."
   },
@@ -55,16 +55,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-law-author",
-    "reviewer": "bocconi-law-independent-reviewer",
-    "reviewedOn": "2026-09-22",
+    "reviewer": "closeout2-blind-solver-t1",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-law-independent-reviewer",
+      "solvedBy": "closeout2-blind-solver-t1",
       "solvedAnswer": "c",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "250 x 1.20 = 300 (January price), then 300 x 0.85 = 255 after the July cut. The stem fixes the base of the reduction explicitly ('reduced the January price by 15%'), so 262.50 (15% off 250 x 1.05) and 292.50 are not reachable on any reasonable reading."
+      "workingNotes": "250 x 1.20 = 300 (January price), then 300 x 0.85 = 255. (a) is the January price before the cut; (b) applies a net +5% to 250, which wrongly adds percentages; (d) is not produced by any valid combination of the two changes."
     },
-    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): an independent check of what the explanation and notes claim about the options found false statements in the note on option B, corrected here. Correction by the coordinating editor (an AI agent); a separate AI reviewer then re-checked every claim about the options, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

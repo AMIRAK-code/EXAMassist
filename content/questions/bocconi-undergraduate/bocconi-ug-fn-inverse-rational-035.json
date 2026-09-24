@@ -1,6 +1,6 @@
 {
   "id": "bocconi-ug-fn-inverse-rational-035",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-undergraduate",
   "sectionKey": "online-test",
   "domainSlug": "bocconi-ug-mathematics",
@@ -37,9 +37,9 @@
     "type": "single_select",
     "optionId": "b"
   },
-  "explanationMd": "To invert a function, set $y = f(x)$, solve for $x$ in terms of $y$, then rename the variable.\n\n**Step 1 — clear the fraction.**\n\n$$y = \\frac{3x - 1}{x + 2} \\;\\Longrightarrow\\; y(x + 2) = 3x - 1 \\;\\Longrightarrow\\; xy + 2y = 3x - 1$$\n\n**Step 2 — collect every term containing $x$ on one side.**\n\n$$xy - 3x = -1 - 2y$$\n\n**Step 3 — factor out $x$ and divide.**\n\n$$x(y - 3) = -(2y + 1) \\;\\Longrightarrow\\; x = \\frac{-(2y + 1)}{y - 3} = \\frac{2y + 1}{3 - y}$$\n\nMultiplying numerator and denominator by $-1$ in the last step is what turns $y - 3$ into $3 - y$ and removes the leading minus sign. Renaming $y$ as $x$:\n\n$$f^{-1}(x) = \\frac{2x + 1}{3 - x}$$\n\n**How to check the answer.** Pick any convenient input and run it through both functions. Take $x = 1$:\n\n$$f(1) = \\frac{3 - 1}{1 + 2} = \\frac{2}{3}$$\n\nNow feed $\\tfrac{2}{3}$ to the proposed inverse:\n\n$$f^{-1}\\!\\left(\\tfrac{2}{3}\\right) = \\frac{2 \\cdot \\tfrac{2}{3} + 1}{3 - \\tfrac{2}{3}} = \\frac{\\tfrac{7}{3}}{\\tfrac{7}{3}} = 1$$\n\nThe original input comes back, which is exactly what $f^{-1}(f(x)) = x$ requires. Doing this single numerical round trip on each candidate eliminates the other three in under a minute — faster and safer than re-deriving.\n\n**A structural check.** $f$ is undefined at $x = -2$ and never takes the value 3 (its horizontal asymptote), so $f^{-1}$ must be undefined at $x = 3$ and must never output $-2$. Only the correct answer has its excluded value at $x = 3$ with the right sign arrangement.",
+  "explanationMd": "To invert a function, set $y = f(x)$, solve for $x$ in terms of $y$, then rename the variable.\n\n**Step 1 — clear the fraction.**\n\n$$y = \\frac{3x - 1}{x + 2} \\;\\Longrightarrow\\; y(x + 2) = 3x - 1 \\;\\Longrightarrow\\; xy + 2y = 3x - 1$$\n\n**Step 2 — collect every term containing $x$ on one side.**\n\n$$xy - 3x = -1 - 2y$$\n\n**Step 3 — factor out $x$ and divide.**\n\n$$x(y - 3) = -(2y + 1) \\;\\Longrightarrow\\; x = \\frac{-(2y + 1)}{y - 3} = \\frac{2y + 1}{3 - y}$$\n\nMultiplying numerator and denominator by $-1$ in the last step is what turns $y - 3$ into $3 - y$ and removes the leading minus sign. Renaming $y$ as $x$:\n\n$$f^{-1}(x) = \\frac{2x + 1}{3 - x}$$\n\n**How to check the answer.** Pick any convenient input and run it through both functions. Take $x = 1$:\n\n$$f(1) = \\frac{3 - 1}{1 + 2} = \\frac{2}{3}$$\n\nNow feed $\\tfrac{2}{3}$ to the proposed inverse:\n\n$$f^{-1}\\!\\left(\\tfrac{2}{3}\\right) = \\frac{2 \\cdot \\tfrac{2}{3} + 1}{3 - \\tfrac{2}{3}} = \\frac{\\tfrac{7}{3}}{\\tfrac{7}{3}} = 1$$\n\nThe original input comes back, which is exactly what $f^{-1}(f(x)) = x$ requires. Doing this single numerical round trip on each candidate eliminates the other three in under a minute — faster and safer than re-deriving.\n\n**A structural check.** $f$ is undefined at $x = -2$ and never takes the value 3 (its horizontal asymptote), so $f^{-1}$ must be undefined at $x = 3$ and must never output $-2$. This rules out C, which outputs $-2$ at $x = \\tfrac{5}{4}$, and D, which is undefined at $x = \\tfrac{1}{3}$ instead. A and B both pass, so the round trip is still needed to separate them.",
   "distractorRationale": {
-    "a": "A sign slip when the constant crosses the equals sign: the $-1$ in $3x - 1$ was carried over unchanged instead of becoming $-1 - 2y$ together with the other constant. Running the round trip fails: $f(1) = \\tfrac{2}{3}$, but this formula sends $\\tfrac{2}{3}$ to $\\frac{4/3 - 1}{7/3} = \\tfrac{1}{7}$, not back to 1.",
+    "a": "A sign slip on the constant: the $-1$ in $3x - 1$ changed sign, giving $x(y - 3) = 1 - 2y$ instead of $-1 - 2y$. Running the round trip fails: $f(1) = \\tfrac{2}{3}$, but this formula sends $\\tfrac{2}{3}$ to $\\frac{4/3 - 1}{7/3} = \\tfrac{1}{7}$, not back to 1.",
     "c": "This forgets to multiply numerator and denominator by $-1$ after factoring, keeping $x = \\frac{-(2y+1)}{y-3}$ but dropping the leading minus sign. The result is the negative of the true inverse: it sends $\\tfrac{2}{3}$ to $-1$ rather than $+1$.",
     "d": "This is the reciprocal $\\dfrac{1}{f(x)}$, not the inverse function. The notation $f^{-1}$ means the function that undoes $f$, not $f$ raised to the power $-1$. The reciprocal sends $\\tfrac{2}{3}$ to $\\frac{2/3 + 2}{2 - 1} = \\tfrac{8}{3}$, which is not the original input."
   },
@@ -55,16 +55,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-undergraduate-wave3-author",
-    "reviewer": "bocconi-undergraduate-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout2-blind-solver-t1",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-undergraduate-wave3-reviewer",
+      "solvedBy": "closeout2-blind-solver-t1",
       "solvedAnswer": "b",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Set y = (3x-1)/(x+2): yx + 2y = 3x - 1, so x(y-3) = -2y - 1 and x = (2y+1)/(3-y). Hence f^-1(x) = (2x+1)/(3-x). Check: f(0) = -1/2 and f^-1(-1/2) = (0)/(3.5) = 0. Option c is the negative of b, a has the wrong numerator sign."
+      "workingNotes": "Solve y = (3x - 1)/(x + 2): xy + 2y = 3x - 1, so x(3 - y) = 2y + 1 and x = (2y + 1)/(3 - y). Check: f(0) = -1/2 and (b) at -1/2 gives 0. (c) is the negative of (b) and gives the wrong sign; (a) has the wrong numerator sign (at -1/2 it gives -4/7, not 0); (d) is the reciprocal of f, not its inverse."
     },
-    "notes": "Author's uniqueness check: an invertible function has exactly one inverse. Composing each option with f at x = 1 returns 1 only for option A; options B, C and D return 1/7, -1 and 8/3 respectively, so no second option is defensible. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author's uniqueness check: an invertible function has exactly one inverse. Composing each option with f at x = 1 returns 1 only for option A; options B, C and D return 1/7, -1 and 8/3 respectively, so no second option is defensible. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): an independent check of what the explanation and notes claim about the options found false statements in the explanation and the note on option A, corrected here. Correction by the coordinating editor (an AI agent); a separate AI reviewer then re-checked every claim about the options, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

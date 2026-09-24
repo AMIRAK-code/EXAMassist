@@ -1,6 +1,6 @@
 {
   "id": "bocconi-ug-alg-ticket-system-033",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-undergraduate",
   "sectionKey": "online-test",
   "domainSlug": "bocconi-ug-mathematics",
@@ -41,7 +41,7 @@
   "distractorRationale": {
     "a": "This is the number of full-price tickets, the other unknown in the same system. The arithmetic is right but the wrong quantity has been reported; the stem asks for the reduced tickets. It is also what you get if you swap the two prices in the money equation, so it is doubly tempting.",
     "c": "This is $3500 \\div 25$, the number of tickets that 3,500 euros would buy at the full price alone. It ignores both the 180-ticket constraint and the existence of a reduced price; 140 tickets is not even consistent with the 180 actually sold.",
-    "d": "This is $3500 \\div 20$, using the arithmetic mean of 25 and 15 as though both ticket types had sold in equal numbers. The average price is only 20 euros when the split is even, and here it is not: 175 tickets already exceeds the 180 sold once any full-price tickets are added in."
+    "d": "This is $3500 \\div 20$, using the arithmetic mean of 25 and 15 as though both ticket types had sold in equal numbers. The average price is only 20 euros when the split is even, and here it is not: 175 reduced tickets would leave only 5 full-price ones, and $175 \\times 15 + 5 \\times 25 = 2750$ euros, far short of 3,500."
   },
   "estimatedSeconds": 95,
   "stimulusRef": null,
@@ -55,16 +55,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-undergraduate-wave3-author",
-    "reviewer": "bocconi-undergraduate-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "closeout2-blind-solver-t1",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "bocconi-undergraduate-wave3-reviewer",
+      "solvedBy": "closeout2-blind-solver-t1",
       "solvedAnswer": "b",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "f + r = 180 and 25f + 15r = 3500. Substituting f = 180 - r: 4500 - 10r = 3500, so r = 100 reduced tickets (and 80 full price). Option a is the full-price count, the distractor for misreading which total is asked."
+      "workingNotes": "Let r be the number of reduced tickets: 25(180 - r) + 15r = 3500, so 4500 - 10r = 3500 and r = 100. Check: 80 x 25 + 100 x 15 = 2000 + 1500 = 3500. (a) is the full-price count; (c) and (d) do not satisfy the total."
     },
-    "notes": "Author's uniqueness check: the two linear equations have determinant 25 - 15 = 10, not zero, so the system has exactly one solution, f = 80 and r = 100. Only option B gives the reduced count. Awaiting a blind independent solve before publication."
+    "notes": "Author's uniqueness check: the two linear equations have determinant 25 - 15 = 10, not zero, so the system has exactly one solution, f = 80 and r = 100. Only option B gives the reduced count. Awaiting a blind independent solve before publication. v2 (2026-09-24): an independent check of what the explanation and notes claim about the options found false statements in the note on option D, corrected here. Correction by the coordinating editor (an AI agent); a separate AI reviewer then re-checked every claim about the options, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,

@@ -1,6 +1,6 @@
 {
   "id": "lsat-lr-must-be-true-004",
-  "version": 1,
+  "version": 2,
   "examKey": "lsat",
   "sectionKey": "lr1",
   "domainSlug": "logical-reasoning",
@@ -45,7 +45,7 @@
   "explanationMd": "On a *must be true* question, do not hunt for the most plausible statement. Chain the given facts and take only what they force.\n\nWrite the three statements as conditionals:\n\n1. Verrick $\\rightarrow$ cleaned, and Verrick $\\rightarrow$ hung.\n2. Cleaned by contractor $\\rightarrow$ not hung in the east gallery.\n3. At least one Verrick painting was cleaned by the contractor.\n\nNow follow that one painting. Call it $P$.\n\n- By (3), $P$ is in the bequest and the contractor cleaned it.\n- By (2), $P$ was **not** hung in the east gallery.\n- By (1), $P$ **was** hung.\n\nA painting that was hung, but not in the east gallery, was hung somewhere else. And $P$ is from the bequest. So at least one painting hung outside the east gallery came from the Verrick bequest — choice (A). Notice that (A) claims only \"at least one,\" which is precisely the strength that statement (3) supports.\n\nTo check the rest, look for the scope limit that each one violates. Statements (1) and (3) speak **only about paintings in the bequest**. The museum certainly holds other paintings, and the passage says nothing about how, or whether, those were cleaned. Any choice that makes a claim about *all* east-gallery paintings, or about *all* conservator-cleaned paintings, reaches beyond the bequest and so beyond the evidence.\n\nThe method to carry forward: identify which group each premise quantifies over, then reject any answer whose subject is a larger group than the premises ever discuss. Here, three of the four wrong answers fail for exactly that reason.",
   "distractorRationale": {
     "b": "This confuses 'not cleaned by the contractor' with 'cleaned by the conservators.' Statement (2) does establish that east-gallery paintings were not contractor-cleaned, but the two-cleaner split in statement (3) applies only within the Verrick bequest. An east-gallery painting from some other source might have been cleaned by a third party, or not cleaned at all.",
-    "c": "This negates the wrong term. Statement (2) rules out contractor-cleaned paintings from the east gallery; it says nothing that excludes conservator-cleaned ones. Indeed the gallery has to be hung with something, and conservator-cleaned paintings are the likeliest candidates, so this choice is close to the opposite of what the premises suggest.",
+    "c": "This negates the wrong term. Statement (2) rules out contractor-cleaned paintings from the east gallery; it says nothing that excludes conservator-cleaned ones. The premises are simply silent on whether any conservator-cleaned painting hung there, so this choice is not forced.",
     "e": "Nothing connects the east gallery to the bequest in this direction. The premises constrain where Verrick paintings can go; they place no restriction at all on where east-gallery paintings must come from. This reverses the direction of the only link the passage provides.",
     "d": "Statement (1) says every painting in the bequest was hung. It does not say that everything the conservators touched was hung — the conservators may well have cleaned paintings from outside the bequest, and the passage never says what became of those. This choice takes a claim true of a subset and asserts it of a larger set."
   },
@@ -61,16 +61,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "lsat-author",
-    "reviewer": "lsat-independent-reviewer",
-    "reviewedOn": "2026-09-22",
+    "reviewer": "closeout2-blind-solver-t2",
+    "reviewedOn": "2026-09-24",
     "independentSolve": {
-      "solvedBy": "lsat-independent-reviewer",
+      "solvedBy": "closeout2-blind-solver-t2",
       "solvedAnswer": "a",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "At least one Verrick painting was cleaned by the outside contractor; every Verrick painting was hung; no contractor-cleaned painting was hung in the east gallery - so that painting was hung outside the east gallery and came from the bequest. B fails because a painting in the east gallery need not have been cleaned at all (the own-conservators/contractor split is stated only for Verrick paintings); C, D and E are unsupported."
+      "workingNotes": "Some Verrick painting was cleaned by the contractor; every Verrick painting was hung; no contractor-cleaned painting hung in the east gallery, so that painting hung somewhere other than the east gallery (a). (b) fails because east-gallery paintings could come from outside the bequest or be cleaned by someone else; (c) is not implied (conservator-cleaned paintings may hang there); (d) and (e) overreach beyond the bequest."
     },
-    "notes": "Author verified (A) follows on the given wording, in particular that 'cleaned and then hung' asserts the hanging rather than presupposing it, which is what makes the inference valid. Each wrong answer was checked against a counter-model in which the premises hold and the choice fails. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author verified (A) follows on the given wording, in particular that 'cleaned and then hung' asserts the hanging rather than presupposing it, which is what makes the inference valid. Each wrong answer was checked against a counter-model in which the premises hold and the choice fails. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): an independent check of what the explanation and notes claim about the options found false statements in the note on option C, corrected here. Correction by the coordinating editor (an AI agent); a separate AI reviewer then re-checked every claim about the options, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
   },
   "state": "published",
   "quarantine": null,
