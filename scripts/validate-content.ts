@@ -2,6 +2,7 @@ import { loadContent, summariseCoverage } from '../src/lib/content/loader';
 import { EXAM_CONFIGS } from '../src/lib/exams/registry';
 import { checkBlueprintSufficiency, type PoolItem } from '../src/lib/assessment/select';
 import { resolveParts } from '../src/lib/attempts/service';
+import { eligiblePool, isMeasurementFormat } from '../src/lib/attempts/eligibility';
 
 /**
  * Validates the question bank and reports honestly on what it can and cannot
@@ -67,9 +68,11 @@ function main(): void {
     console.log(`\n  ${config.examKey}  (${pool.length} published items)`);
     for (const blueprint of config.blueprints) {
       const parts = resolveParts(blueprint, {}, config);
-      const check = checkBlueprintSufficiency(pool, parts);
+      // The app's own rule: public samples never fill a measurement format (*).
+      const check = checkBlueprintSufficiency(eligiblePool(pool, blueprint), parts);
       const status = check.sufficient ? 'available' : `SHORT by ${check.shortfall}`;
-      console.log(`    ${blueprint.id.padEnd(28)} ${blueprint.mode.padEnd(11)} ${status}`);
+      const mark = isMeasurementFormat(blueprint) ? '*' : ' ';
+      console.log(`    ${blueprint.id.padEnd(28)} ${blueprint.mode.padEnd(11)}${mark} ${status}`);
     }
   }
 

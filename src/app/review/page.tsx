@@ -8,6 +8,8 @@ import { UnauthorizedError, requireUser, type AuthUser } from '@/lib/auth/sessio
 import { getExamConfig, labelsFor } from '@/lib/exams/registry';
 import { checkRateLimit } from '@/lib/auth/rate-limit';
 import { startAttempt } from '@/lib/attempts/service';
+import { practiceFacets } from '@/lib/attempts/availability';
+import { eligibleCount } from '@/lib/attempts/facets';
 import { getQuestionVersions, toReviewable, type ReviewableQuestion } from '@/lib/content/repository';
 import { responseSchema, type AnswerKey, type Response } from '@/lib/assessment/types';
 import { Markdown, Stimulus } from '@/components/content';
@@ -28,7 +30,7 @@ import {
  *
  * Every row here comes from the acting user's own attempts: the question as it
  * was shown, what they answered, what the key says, and the explanation the
- * editorial team wrote. Nothing is inferred and nothing is scored again.
+ * question's author wrote. Nothing is inferred and nothing is scored again.
  */
 
 export const dynamic = 'force-dynamic';
@@ -222,12 +224,25 @@ async function practiseAgainAction(formData: FormData): Promise<void> {
     .filter((slug) => slug.length > 0 && known.has(slug))
     .slice(0, 20);
 
+  // Size the session from what the bank actually holds for these skills, by
+  // the same count the practice screen uses, so a thin set of skills gives a
+  // short session instead of a refusal.
+  const facets = practiceFacets(db, config);
+  const eligible =
+    skills.length > 0
+      ? skills.reduce((total, skill) => total + eligibleCount(facets, { skill }), 0)
+      : eligibleCount(facets, {});
   const requested = Number(formData.get('length') ?? 10);
-  const length = Number.isFinite(requested) ? Math.max(5, Math.min(20, Math.round(requested))) : 10;
+  const length = Math.min(
+    eligible,
+    Number.isFinite(requested) ? Math.max(1, Math.min(20, Math.round(requested))) : 10,
+  );
 
   const fallback = `/practice/${examKey}${
     skills[0] ? `?skill=${encodeURIComponent(skills[0])}` : ''
   }`;
+  // Nothing left to practise for these skills: the setup screen says what is.
+  if (length < 1) redirect(`/practice/${examKey}`);
 
   const limit = checkRateLimit(db, 'attemptStart', `user:${user.id}`);
   if (!limit.allowed) redirect(fallback);
@@ -439,32 +454,41 @@ export default async function ReviewPage({
         <>
           {/* Practise the same skills again. */}
           <Card className="mb-8">
-            <h2 className="font-serif text-xl font-semibold">Practise these again</h2>
+            <h2 className="font-heading text-xl font-semibold">Practise these again</h2>
             <p className="mt-1 text-sm text-ink-muted">
-              Starts a new untimed practice session drawn from the skills in this view. Different
-              questions, same skills.
+              Starts a new untimed practice session drawn from the skills in this view. Questions
+              you have not seen in the last 30 days come first; the reviewed bank is small, so some
+              questions may repeat.
             </p>
             <div className="mt-4 flex flex-wrap gap-3">
               {[...byExam.entries()].map(([examKey, bucket]) => {
                 const config = getExamConfig(examKey);
                 if (!config) return null;
+                const facets = practiceFacets(db, config);
+                const eligible = [...bucket.skills.keys()].reduce(
+                  (total, skill) => total + eligibleCount(facets, { skill }),
+                  0,
+                );
+                const length = Math.min(10, eligible);
+                if (length < 1) return null;
                 return (
                   <form key={examKey} action={practiseAgainAction}>
                     <input type="hidden" name="examKey" value={examKey} />
                     <input type="hidden" name="skills" value={[...bucket.skills.keys()].join(',')} />
-                    <input type="hidden" name="length" value={Math.min(10, Math.max(5, bucket.count))} />
+                    <input type="hidden" name="length" value={length} />
                     <Button type="submit">
                       {byExam.size > 1
                         ? `Practise these ${config.shortName} skills again`
-                        : 'Practise these skills again'}
+                        : 'Practise these skills again'}{' '}
+                      · {length} {length === 1 ? 'question' : 'questions'}
                     </Button>
                   </form>
                 );
               })}
             </div>
             <p className="mt-3 text-xs text-ink-subtle">
-              If the reviewed bank does not hold enough questions for that combination, you are taken
-              to the practice setup screen, which says what is available.
+              The length is set by how many reviewed questions these skills hold, so a small set of
+              skills gives a short session.
             </p>
           </Card>
 
@@ -557,7 +581,7 @@ export default async function ReviewPage({
                     </dl>
 
                     <div className="rounded-card bg-surface-sunken p-4">
-                      <h3 className="mb-1 font-serif text-base font-semibold">Explanation</h3>
+                      <h3 className="mb-1 font-heading text-base font-semibold">Explanation</h3>
                       <Markdown
                         source={question.explanationMd}
                         className="prose-academic text-sm"

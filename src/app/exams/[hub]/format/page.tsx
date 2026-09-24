@@ -81,7 +81,7 @@ export default async function FormatGuidePage({ params }: { params: Promise<{ hu
       />
       <Breadcrumbs trail={trail} />
 
-      <h1 className="font-serif text-3xl font-semibold sm:text-4xl">
+      <h1 className="font-heading text-3xl font-semibold sm:text-4xl">
         {hub.name}: format and scoring
       </h1>
 
@@ -107,7 +107,7 @@ export default async function FormatGuidePage({ params }: { params: Promise<{ hu
 
       {configs.map((config) => (
         <section key={config.examKey} className="mt-10" aria-labelledby={`fmt-${config.examKey}`}>
-          <h2 id={`fmt-${config.examKey}`} className="font-serif text-2xl font-semibold">
+          <h2 id={`fmt-${config.examKey}`} className="font-heading text-2xl font-semibold">
             {config.name}
           </h2>
           <p className="mt-1 text-sm text-ink-subtle">
@@ -116,8 +116,8 @@ export default async function FormatGuidePage({ params }: { params: Promise<{ hu
           <p className="mt-3 text-ink">{config.summary}</p>
 
           {/* Structure */}
-          <h3 className="mt-8 font-serif text-xl font-semibold">Sections and timing</h3>
-          <div className="mt-3 overflow-x-auto rounded-card border border-line bg-surface">
+          <h3 className="mt-8 font-heading text-xl font-semibold">Sections and timing</h3>
+          <div className="mt-3 relative overflow-x-auto rounded-card border border-line bg-surface">
             <table className="w-full border-collapse text-sm">
               <caption className="sr-only">
                 Sections of the {config.name} with question counts, time limits and calculator policy.
@@ -153,7 +153,7 @@ export default async function FormatGuidePage({ params }: { params: Promise<{ hu
           </div>
 
           {/* Navigation */}
-          <h3 className="mt-8 font-serif text-xl font-semibold">Navigation rules</h3>
+          <h3 className="mt-8 font-heading text-xl font-semibold">Navigation rules</h3>
           <p className="mt-2 text-ink-muted">
             What you may and may not do once a section has started. Our timed practice enforces these
             on the server, not just in the interface.
@@ -165,7 +165,7 @@ export default async function FormatGuidePage({ params }: { params: Promise<{ hu
           </ul>
 
           {/* Scoring */}
-          <h3 className="mt-8 font-serif text-xl font-semibold">Scoring</h3>
+          <h3 className="mt-8 font-heading text-xl font-semibold">Scoring</h3>
           <dl className="mt-3 grid gap-x-6 gap-y-2 sm:grid-cols-[12rem_1fr]">
             <dt className="text-sm font-medium text-ink-muted">Correct answer</dt>
             <dd className="text-sm">{config.scoring.pointsCorrect} point(s)</dd>
@@ -206,7 +206,7 @@ export default async function FormatGuidePage({ params }: { params: Promise<{ hu
           </Alert>
 
           {/* Taxonomy */}
-          <h3 className="mt-8 font-serif text-xl font-semibold">What is tested</h3>
+          <h3 className="mt-8 font-heading text-xl font-semibold">What is tested</h3>
           <p className="mt-2 text-ink-muted">
             {config.publisher}&rsquo;s own content domains. Our question bank is tagged against these,
             so a results page names the same skills the test maker does.
@@ -235,7 +235,7 @@ export default async function FormatGuidePage({ params }: { params: Promise<{ hu
           {/* Unverified */}
           {config.unverified.length > 0 ? (
             <>
-              <h3 className="mt-8 font-serif text-xl font-semibold">
+              <h3 className="mt-8 font-heading text-xl font-semibold">
                 What {config.publisher} does not publish
               </h3>
               <p className="mt-2 text-ink-muted">
@@ -251,7 +251,7 @@ export default async function FormatGuidePage({ params }: { params: Promise<{ hu
           ) : null}
 
           {/* Sources */}
-          <h3 className="mt-8 font-serif text-xl font-semibold">Sources</h3>
+          <h3 className="mt-8 font-heading text-xl font-semibold">Sources</h3>
           <ol className="mt-3 space-y-2 text-sm">
             {config.sources.map((source, index) => (
               <li key={`${source.url}-${index}`}>
@@ -270,7 +270,7 @@ export default async function FormatGuidePage({ params }: { params: Promise<{ hu
 
       {guides.length > 0 ? (
         <Card className="mt-10">
-          <h2 className="font-serif text-lg font-semibold">Related guides</h2>
+          <h2 className="font-heading text-lg font-semibold">Related guides</h2>
           <ul className="mt-3 space-y-2">
             {guides.map((guide) => (
               <li key={guide.slug}>

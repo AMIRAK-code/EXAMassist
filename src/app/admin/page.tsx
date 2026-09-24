@@ -31,7 +31,7 @@ const PIPELINE = [
   {
     state: 'in_review',
     label: 'In review',
-    blurb: 'With a second editor for an independent solve and a uniqueness check.',
+    blurb: 'Waiting for a blind solve by a separate reviewer and a uniqueness check.',
   },
   {
     state: 'published',
@@ -160,7 +160,7 @@ export default async function AdminOverviewPage() {
       </Alert>
 
       <section className="mt-10" aria-labelledby="pipeline-heading">
-        <h2 id="pipeline-heading" className="font-serif text-2xl font-semibold">
+        <h2 id="pipeline-heading" className="font-heading text-2xl font-semibold">
           Editorial pipeline
         </h2>
         <p className="mt-1 max-w-3xl text-ink-muted">
@@ -182,7 +182,7 @@ export default async function AdminOverviewPage() {
                 <p className="text-xs uppercase tracking-wide text-ink-subtle">
                   Stage {index + 1} of {PIPELINE.length}
                 </p>
-                <h3 className="mt-1 font-serif text-lg font-semibold">{stage.label}</h3>
+                <h3 className="mt-1 font-heading text-lg font-semibold">{stage.label}</h3>
                 <p className="mt-2 text-3xl font-semibold tabular-nums">{count}</p>
                 <p className="mt-1 text-sm text-ink-muted">
                   {count === 1 ? 'question' : 'questions'} &middot; {versionCount(stage.state)} version
@@ -202,13 +202,13 @@ export default async function AdminOverviewPage() {
       </section>
 
       <section className="mt-12" aria-labelledby="attention-heading">
-        <h2 id="attention-heading" className="font-serif text-2xl font-semibold">
+        <h2 id="attention-heading" className="font-heading text-2xl font-semibold">
           Waiting on someone
         </h2>
 
         <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Card>
-            <h3 className="font-serif text-lg font-semibold">Open content reports</h3>
+            <h3 className="font-heading text-lg font-semibold">Open content reports</h3>
             <p className="mt-2 text-3xl font-semibold tabular-nums">{openFlags}</p>
             <p className="mt-1 text-sm text-ink-muted">
               {flagCount('accepted')} accepted, {flagCount('rejected')} rejected so far.
@@ -221,7 +221,7 @@ export default async function AdminOverviewPage() {
           </Card>
 
           <Card>
-            <h3 className="font-serif text-lg font-semibold">Quarantined</h3>
+            <h3 className="font-heading text-lg font-semibold">Quarantined</h3>
             <p className="mt-2 text-3xl font-semibold tabular-nums">{quarantined}</p>
             <p className="mt-1 text-sm text-ink-muted">
               Held back rather than repaired by guesswork. Each one records why.
@@ -238,10 +238,10 @@ export default async function AdminOverviewPage() {
           </Card>
 
           <Card>
-            <h3 className="font-serif text-lg font-semibold">In review</h3>
+            <h3 className="font-heading text-lg font-semibold">In review</h3>
             <p className="mt-2 text-3xl font-semibold tabular-nums">{questionCount('in_review')}</p>
             <p className="mt-1 text-sm text-ink-muted">
-              Awaiting a second editor&rsquo;s independent solve before publication.
+              Awaiting a blind solve by a separate reviewer before publication.
             </p>
             <div className="mt-4">
               <ButtonLink href="/admin/questions?state=in_review" size="sm" variant="secondary">
@@ -251,7 +251,7 @@ export default async function AdminOverviewPage() {
           </Card>
 
           <Card>
-            <h3 className="font-serif text-lg font-semibold">Attempts, last 7 days</h3>
+            <h3 className="font-heading text-lg font-semibold">Attempts, last 7 days</h3>
             <p className="mt-2 text-3xl font-semibold tabular-nums">{recentAttempts}</p>
             <p className="mt-1 text-sm text-ink-muted">
               {submittedRecently} submitted. {totalAttempts} attempts recorded in total.
@@ -264,7 +264,7 @@ export default async function AdminOverviewPage() {
       </section>
 
       <section className="mt-12" aria-labelledby="coverage-heading">
-        <h2 id="coverage-heading" className="font-serif text-2xl font-semibold">
+        <h2 id="coverage-heading" className="font-heading text-2xl font-semibold">
           Coverage by exam
         </h2>
         <p className="mt-1 max-w-3xl text-ink-muted">
@@ -277,7 +277,7 @@ export default async function AdminOverviewPage() {
           role="region"
           aria-labelledby="coverage-heading"
           tabIndex={0}
-          className="mt-5 overflow-x-auto rounded-card border border-line bg-surface"
+          className="mt-5 relative overflow-x-auto rounded-card border border-line bg-surface"
         >
           <table className="w-full min-w-[46rem] border-collapse text-sm">
             <caption className="px-4 pt-4 text-start text-sm text-ink-muted">

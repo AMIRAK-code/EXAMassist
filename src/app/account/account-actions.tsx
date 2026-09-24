@@ -279,7 +279,7 @@ export function DeleteAccountForm({ email, isGuest }: { email: string | null; is
 
   return (
     <form onSubmit={handleSubmit}>
-      <h3 className="font-serif text-lg font-semibold">This cannot be undone</h3>
+      <h3 className="font-heading text-lg font-semibold">This cannot be undone</h3>
       <p className="mt-2 text-sm text-ink-muted">Deleting {isGuest ? 'this guest session' : 'your account'} removes:</p>
       <ul className="mt-2 list-disc space-y-1 ps-5 text-sm text-ink-muted">
         <li>your account record{email ? ', including your email address' : ''}</li>

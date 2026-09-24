@@ -33,6 +33,13 @@ export interface ExamHub {
   slug: string;
   name: string;
   shortName: string;
+  /** The shortest unambiguous name, for selectors and chips: "Bocconi", "SAT". */
+  label: string;
+  /**
+   * How to tell this hub's tests apart when it has more than one. Display only:
+   * config names are part of the versioned config and are not edited for copy.
+   */
+  variantLabels?: Record<string, string>;
   publisher: string;
   /** One sentence, used on cards and as the meta description seed. */
   tagline: string;
@@ -47,6 +54,8 @@ export const EXAM_HUBS: readonly ExamHub[] = [
     slug: 'bocconi-online-test',
     name: 'Bocconi Online Test',
     shortName: 'Bocconi Test',
+    label: 'Bocconi',
+    variantLabels: { 'bocconi-undergraduate': 'Undergraduate', 'bocconi-law': 'Law' },
     publisher: 'Università Bocconi',
     tagline:
       'The online admission test for Bocconi bachelor and law programmes: 50 questions in 75 minutes, with negative marking and strictly forward-only navigation.',
@@ -58,6 +67,7 @@ export const EXAM_HUBS: readonly ExamHub[] = [
     slug: 'digital-sat',
     name: 'Digital SAT',
     shortName: 'SAT',
+    label: 'SAT',
     publisher: 'College Board',
     tagline:
       'The two-stage adaptive digital SAT: two Reading and Writing modules and two Math modules, 2 hours 14 minutes of testing.',
@@ -69,6 +79,7 @@ export const EXAM_HUBS: readonly ExamHub[] = [
     slug: 'enhanced-act',
     name: 'Enhanced ACT',
     shortName: 'ACT',
+    label: 'ACT',
     publisher: 'ACT',
     tagline:
       'The shorter enhanced ACT: English, Mathematics and Reading as the core test, with Science and Writing optional.',
@@ -80,6 +91,7 @@ export const EXAM_HUBS: readonly ExamHub[] = [
     slug: 'lsat',
     name: 'LSAT',
     shortName: 'LSAT',
+    label: 'LSAT',
     publisher: 'LSAC',
     tagline:
       'The current LSAT: four 35-minute sections of Logical Reasoning and Reading Comprehension. Analytical Reasoning was removed in August 2024.',
@@ -91,6 +103,7 @@ export const EXAM_HUBS: readonly ExamHub[] = [
     slug: 'gmat',
     name: 'GMAT',
     shortName: 'GMAT',
+    label: 'GMAT',
     publisher: 'GMAC',
     tagline:
       'The current GMAT, previously branded the Focus Edition: Quantitative Reasoning, Verbal Reasoning and Data Insights, 64 questions in 2 hours 15 minutes.',
@@ -102,6 +115,7 @@ export const EXAM_HUBS: readonly ExamHub[] = [
     slug: 'gre',
     name: 'GRE General Test',
     shortName: 'GRE',
+    label: 'GRE',
     publisher: 'ETS',
     tagline:
       'The shorter GRE General Test: one Analytical Writing task plus two Verbal and two Quantitative sections, about 1 hour 58 minutes.',

@@ -77,7 +77,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
       <article>
         <header className="mb-8">
           <p className="text-sm uppercase tracking-wide text-ink-subtle">{hub?.name ?? 'General'}</p>
-          <h1 className="mt-2 font-serif text-3xl font-semibold sm:text-4xl">{guide.title}</h1>
+          <h1 className="mt-2 font-heading text-3xl font-semibold sm:text-4xl">{guide.title}</h1>
 
           {/*
             The direct answer, before the body: what a reader needs in one
@@ -107,7 +107,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         <Markdown source={guide.bodyMd} className="prose-academic" />
 
         <section aria-labelledby="sources-heading" className="mt-10">
-          <h2 id="sources-heading" className="font-serif text-xl font-semibold">
+          <h2 id="sources-heading" className="font-heading text-xl font-semibold">
             Sources
           </h2>
           <ol className="mt-3 space-y-2 text-sm">
@@ -126,7 +126,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
 
       {hub ? (
         <Card className="mt-10">
-          <h2 className="font-serif text-lg font-semibold">Practise this exam</h2>
+          <h2 className="font-heading text-lg font-semibold">Practise this exam</h2>
           <p className="mt-1 text-sm text-ink-muted">
             Original questions with worked explanations, free and without an account.
           </p>

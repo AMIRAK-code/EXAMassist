@@ -36,7 +36,7 @@ export function SkillBreakdown({ rows }: { rows: SkillRow[] }) {
   const sorted = [...rows].sort((a, b) => a.accuracy - b.accuracy);
 
   return (
-    <div className="overflow-x-auto rounded-card border border-line bg-surface">
+    <div className="relative overflow-x-auto rounded-card border border-line bg-surface">
       <table className="w-full border-collapse text-sm">
         <caption className="sr-only">
           Your accuracy and median time per question, by skill, for this session.

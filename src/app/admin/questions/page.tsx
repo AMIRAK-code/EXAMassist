@@ -186,7 +186,7 @@ export default async function AdminQuestionsPage({
       <PageHeader
         eyebrow="Internal"
         title="Question inventory"
-        lead="Every question at its current version, with who wrote it, who reviewed it, and whether a second editor solved it independently before publication."
+        lead="Every question at its current version, with who wrote it, who reviewed it, and whether a separate reviewer solved it blind before publication."
       />
 
       <Alert tone="info" title="Read-only by design">
@@ -200,7 +200,7 @@ export default async function AdminQuestionsPage({
       </Alert>
 
       <section className="mt-8" aria-labelledby="filters-heading">
-        <h2 id="filters-heading" className="font-serif text-xl font-semibold">
+        <h2 id="filters-heading" className="font-heading text-xl font-semibold">
           Filter
         </h2>
         <form method="get" action="/admin/questions" className="mt-3">
@@ -282,7 +282,7 @@ export default async function AdminQuestionsPage({
 
       {quarantinedRows.length > 0 ? (
         <section className="mt-10" aria-labelledby="quarantine-heading">
-          <h2 id="quarantine-heading" className="font-serif text-2xl font-semibold text-negative">
+          <h2 id="quarantine-heading" className="font-heading text-2xl font-semibold text-negative">
             Quarantined — needs a human decision
           </h2>
           <p className="mt-1 max-w-3xl text-ink-muted">
@@ -334,7 +334,7 @@ export default async function AdminQuestionsPage({
       ) : null}
 
       <section className="mt-12" aria-labelledby="inventory-heading">
-        <h2 id="inventory-heading" className="font-serif text-2xl font-semibold">
+        <h2 id="inventory-heading" className="font-heading text-2xl font-semibold">
           Inventory
         </h2>
 
@@ -369,7 +369,7 @@ export default async function AdminQuestionsPage({
               role="region"
               aria-labelledby="inventory-heading"
               tabIndex={0}
-              className="mt-5 overflow-x-auto rounded-card border border-line bg-surface"
+              className="mt-5 relative overflow-x-auto rounded-card border border-line bg-surface"
             >
               <table className="w-full min-w-[68rem] border-collapse text-sm">
                 <caption className="px-4 pt-4 text-start text-sm text-ink-muted">

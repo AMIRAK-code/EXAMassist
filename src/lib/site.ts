@@ -13,8 +13,12 @@ export const SITE = {
   description:
     'Free practice questions, exam format guides and timed practice for the Bocconi Online Test, Digital SAT, Enhanced ACT, LSAT, GMAT and GRE. Every format claim is sourced to the test maker.',
   locale: 'en',
-  /** Editorial identity shown on public content and in structured data. */
-  publisher: 'Examer Editorial',
+  /**
+   * Publisher identity shown on public content and in structured data. Not
+   * "Examer Editorial": no record names a human editorial team, so the byline
+   * does not imply one.
+   */
+  publisher: 'Examer',
 } as const;
 
 /** Absolute base URL, without a trailing slash. */
@@ -46,5 +50,5 @@ export function indexingEnabled(): boolean {
 export const INDEPENDENCE_NOTICE =
   'Examer is an independent study resource. It is not affiliated with, endorsed by, or accredited by ' +
   'College Board, ACT, LSAC, GMAC, ETS or Università Bocconi. SAT is a trademark of College Board; ACT ' +
-  'of ACT; LSAT of LSAC; GMAT of GMAC; GRE of ETS. All practice questions on this site are original ' +
-  'material written by our editorial team.';
+  'of ACT; LSAT of LSAC; GMAT of GMAC; GRE of ETS. The practice questions are original, AI-assisted ' +
+  'material; see our editorial standards for how they are created and checked.';

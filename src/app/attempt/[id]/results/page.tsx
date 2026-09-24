@@ -90,14 +90,14 @@ export default async function ResultsPage({ params }: { params: Promise<{ id: st
       <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Card>
           <p className="text-sm text-ink-muted">Correct</p>
-          <p className="font-serif text-3xl font-semibold tabular-nums">
+          <p className="font-heading text-3xl font-semibold tabular-nums">
             {totals.correct}
             <span className="text-lg font-normal text-ink-subtle"> / {totals.correct + totals.incorrect + totals.omitted}</span>
           </p>
         </Card>
         <Card>
           <p className="text-sm text-ink-muted">Accuracy on answered questions</p>
-          <p className="font-serif text-3xl font-semibold tabular-nums">
+          <p className="font-heading text-3xl font-semibold tabular-nums">
             {answered > 0 ? `${Math.round((totals.correct / answered) * 100)}%` : '—'}
           </p>
         </Card>
@@ -106,14 +106,14 @@ export default async function ResultsPage({ params }: { params: Promise<{ id: st
             Raw points
             {config.scoring.pointsIncorrect !== 0 ? ' (penalties applied)' : ''}
           </p>
-          <p className="font-serif text-3xl font-semibold tabular-nums">
+          <p className="font-heading text-3xl font-semibold tabular-nums">
             {Math.round(totals.pointsEarned * 100) / 100}
             <span className="text-lg font-normal text-ink-subtle"> / {totals.pointsPossible}</span>
           </p>
         </Card>
         <Card>
           <p className="text-sm text-ink-muted">Time spent</p>
-          <p className="font-serif text-3xl font-semibold tabular-nums">
+          <p className="font-heading text-3xl font-semibold tabular-nums">
             {formatDuration(totals.totalTimeMs)}
           </p>
         </Card>
@@ -142,7 +142,7 @@ export default async function ResultsPage({ params }: { params: Promise<{ id: st
 
       {/* What this score is and is not */}
       <Card className="mb-8 border-s-4 border-s-accent">
-        <h2 className="font-serif text-xl font-semibold">How to read this</h2>
+        <h2 className="font-heading text-xl font-semibold">How to read this</h2>
         <div className="mt-3 grid gap-5 md:grid-cols-3">
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wide text-ink-subtle">
@@ -181,7 +181,7 @@ export default async function ResultsPage({ params }: { params: Promise<{ id: st
 
       {/* Skill breakdown */}
       <section aria-labelledby="skills-heading" className="mb-8">
-        <h2 id="skills-heading" className="mb-4 font-serif text-2xl font-semibold">
+        <h2 id="skills-heading" className="mb-4 font-heading text-2xl font-semibold">
           Performance by skill
         </h2>
         {skills.length > 0 ? (
@@ -194,7 +194,7 @@ export default async function ResultsPage({ params }: { params: Promise<{ id: st
       {/* Next steps */}
       {weakest.length > 0 ? (
         <Card className="mb-8">
-          <h2 className="font-serif text-xl font-semibold">What to work on next</h2>
+          <h2 className="font-heading text-xl font-semibold">What to work on next</h2>
           <p className="mt-1 text-sm text-ink-muted">
             Based on accuracy in this session alone. One session is a small sample, so treat it as a
             pointer rather than a diagnosis.
@@ -223,7 +223,7 @@ export default async function ResultsPage({ params }: { params: Promise<{ id: st
 
       {/* Question-by-question review */}
       <section aria-labelledby="review-heading">
-        <h2 id="review-heading" className="mb-4 font-serif text-2xl font-semibold">
+        <h2 id="review-heading" className="mb-4 font-heading text-2xl font-semibold">
           Question review
         </h2>
         <ol className="space-y-6">
@@ -236,7 +236,7 @@ export default async function ResultsPage({ params }: { params: Promise<{ id: st
                 <li key={`${part.partIndex}-${item.position}`}>
                   <Card>
                     <div className="mb-3 flex flex-wrap items-center gap-3">
-                      <h3 className="font-serif text-lg font-semibold">
+                      <h3 className="font-heading text-lg font-semibold">
                         {model.parts.length > 1 ? `${part.label} · ` : ''}Question {item.position + 1}
                       </h3>
                       <Badge tone={tone}>

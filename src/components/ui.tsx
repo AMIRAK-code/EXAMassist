@@ -7,9 +7,12 @@ import type { ComponentProps, ReactNode } from 'react';
  * Deliberately plain: no component library, no runtime theming, and every
  * interactive element stays a real <button> or <a> so keyboard behaviour and
  * screen reader semantics are the browser's rather than ours to re-implement.
+ *
+ * Shape follows role: editorial surfaces (cards, alerts) are nearly square,
+ * things you press (buttons, inputs, chips) are rounder.
  */
 
-function cx(...parts: Array<string | false | null | undefined>): string {
+export function cx(...parts: Array<string | false | null | undefined>): string {
   return parts.filter(Boolean).join(' ');
 }
 
@@ -18,21 +21,23 @@ function cx(...parts: Array<string | false | null | undefined>): string {
 // ---------------------------------------------------------------------------
 
 const BUTTON_BASE =
-  'inline-flex items-center justify-center gap-2 rounded-sm font-medium no-underline ' +
-  'transition-[background-color,border-color,color,box-shadow] duration-150 ' +
-  'disabled:cursor-not-allowed disabled:opacity-50';
+  'inline-flex items-center justify-center gap-2 rounded-control border font-semibold no-underline ' +
+  'transition-[background-color,border-color,color,box-shadow,transform] duration-150 active:translate-y-px ' +
+  'disabled:cursor-not-allowed disabled:border-line-strong disabled:bg-surface-sunken disabled:text-ink-subtle ' +
+  'disabled:active:translate-y-0 aria-disabled:cursor-not-allowed';
 
 const BUTTON_VARIANTS = {
-  primary: 'bg-accent text-accent-contrast shadow-card hover:bg-accent-strong',
-  secondary: 'border border-line-strong bg-surface text-ink hover:border-ink-subtle hover:bg-surface-sunken',
-  quiet: 'text-accent hover:bg-accent-soft',
-  danger: 'border border-negative-line bg-negative-soft text-negative hover:border-negative',
+  primary: 'border-transparent bg-accent text-accent-contrast hover:bg-accent-strong hover:text-accent-contrast',
+  ink: 'border-transparent bg-ink text-ink-inverse hover:bg-black hover:text-ink-inverse',
+  secondary: 'border-line-strong bg-surface text-ink hover:border-ink hover:bg-surface hover:text-ink',
+  quiet: 'border-transparent text-accent hover:bg-accent-soft hover:text-accent-ink',
+  danger: 'border-negative-line bg-negative-soft text-negative hover:border-negative hover:text-negative',
 } as const;
 
 const BUTTON_SIZES = {
-  sm: 'px-3 py-1.5 text-sm min-h-9',
-  md: 'px-4 py-2.5 text-[0.9375rem] min-h-11',
-  lg: 'px-6 py-3 text-base min-h-12',
+  sm: 'min-h-10 px-3.5 text-sm',
+  md: 'min-h-11 px-5 text-[0.9375rem]',
+  lg: 'min-h-13 px-6 text-base',
 } as const;
 
 export interface ButtonStyleProps {
@@ -45,14 +50,42 @@ export function buttonClass({ variant = 'primary', size = 'md', full }: ButtonSt
   return cx(BUTTON_BASE, BUTTON_VARIANTS[variant], BUTTON_SIZES[size], full && 'w-full');
 }
 
+/** A small indeterminate spinner. Motion is disabled under reduced-motion. */
+export function Spinner({ className }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 20 20"
+      className={cx('size-4 animate-spin motion-reduce:animate-none', className)}
+      fill="none"
+    >
+      <circle cx="10" cy="10" r="7.5" stroke="currentColor" strokeOpacity="0.3" strokeWidth="2" />
+      <path d="M10 2.5a7.5 7.5 0 0 1 7.5 7.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export function Button({
   variant,
   size,
   full,
+  loading,
   className,
+  children,
+  disabled,
   ...props
-}: ComponentProps<'button'> & ButtonStyleProps) {
-  return <button {...props} className={cx(buttonClass({ variant, size, full }), className)} />;
+}: ComponentProps<'button'> & ButtonStyleProps & { loading?: boolean }) {
+  return (
+    <button
+      {...props}
+      disabled={disabled || loading}
+      aria-busy={loading || undefined}
+      className={cx(buttonClass({ variant, size, full }), className)}
+    >
+      {loading ? <Spinner /> : null}
+      {children}
+    </button>
+  );
 }
 
 export function ButtonLink({
@@ -81,19 +114,16 @@ export function Card({
   padding?: 'sm' | 'md' | 'lg' | 'none';
 }) {
   const pad = padding === 'none' ? '' : padding === 'sm' ? 'p-4' : padding === 'lg' ? 'p-6 sm:p-8' : 'p-5';
-  return (
-    <Tag className={cx('rounded-card border border-line bg-surface shadow-card', pad, className)}>
-      {children}
-    </Tag>
-  );
+  return <Tag className={cx('rounded-card border border-line bg-surface', pad, className)}>{children}</Tag>;
 }
 
 const BADGE_TONES = {
-  neutral: 'bg-surface-sunken text-ink-muted border-line',
-  accent: 'bg-accent-soft text-accent-strong border-accent-line',
+  neutral: 'bg-surface text-ink-muted border-line-strong',
+  accent: 'bg-accent-soft text-accent-ink border-accent-line',
   positive: 'bg-positive-soft text-positive border-positive-line',
   caution: 'bg-caution-soft text-caution border-caution-line',
   negative: 'bg-negative-soft text-negative border-negative-line',
+  highlight: 'bg-highlight text-ink border-highlight',
 } as const;
 
 export function Badge({
@@ -108,7 +138,7 @@ export function Badge({
   return (
     <span
       className={cx(
-        'inline-flex items-center rounded-sm border px-2 py-0.5 text-xs font-medium',
+        'inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-semibold',
         BADGE_TONES[tone],
         className,
       )}
@@ -118,11 +148,48 @@ export function Badge({
   );
 }
 
+/** Tone glyphs, so an alert's meaning never rests on its colour alone. */
+function ToneIcon({ tone }: { tone: 'info' | 'positive' | 'caution' | 'negative' }) {
+  const common = { width: 18, height: 18, viewBox: '0 0 18 18', fill: 'none', 'aria-hidden': true } as const;
+  if (tone === 'positive') {
+    return (
+      <svg {...common}>
+        <circle cx="9" cy="9" r="8" fill="currentColor" />
+        <path d="M5.2 9.3l2.4 2.3 5-5" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+  if (tone === 'negative') {
+    return (
+      <svg {...common}>
+        <circle cx="9" cy="9" r="8" fill="currentColor" />
+        <path d="M6 6l6 6M12 6l-6 6" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" />
+      </svg>
+    );
+  }
+  if (tone === 'caution') {
+    return (
+      <svg {...common}>
+        <path d="M9 1.5l8 14.5H1z" fill="currentColor" />
+        <path d="M9 7v4" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" />
+        <circle cx="9" cy="13.4" r="1" fill="#fff" />
+      </svg>
+    );
+  }
+  return (
+    <svg {...common}>
+      <circle cx="9" cy="9" r="8" fill="currentColor" />
+      <path d="M9 8v5" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" />
+      <circle cx="9" cy="5.3" r="1" fill="#fff" />
+    </svg>
+  );
+}
+
 const ALERT_TONES = {
-  info: { box: 'border-s-accent bg-accent-soft/60 border-accent-line', title: 'text-accent-strong' },
-  positive: { box: 'border-s-positive bg-positive-soft/70 border-positive-line', title: 'text-positive' },
-  caution: { box: 'border-s-caution bg-caution-soft/70 border-caution-line', title: 'text-caution' },
-  negative: { box: 'border-s-negative bg-negative-soft/70 border-negative-line', title: 'text-negative' },
+  info: { box: 'border-accent-line bg-accent-soft/70', icon: 'text-accent', title: 'text-accent-ink' },
+  positive: { box: 'border-positive-line bg-positive-soft/80', icon: 'text-positive', title: 'text-positive' },
+  caution: { box: 'border-caution-line bg-caution-soft/80', icon: 'text-caution', title: 'text-caution' },
+  negative: { box: 'border-negative-line bg-negative-soft/80', icon: 'text-negative', title: 'text-negative' },
 } as const;
 
 export function Alert({
@@ -140,11 +207,16 @@ export function Alert({
 }) {
   const styles = ALERT_TONES[tone];
   return (
-    <div role={role} className={cx('rounded-card border border-s-4 p-4', styles.box, className)}>
-      {title ? <p className={cx('font-semibold', styles.title)}>{title}</p> : null}
-      {children ? (
-        <div className={cx('text-sm leading-relaxed text-ink', title && 'mt-1')}>{children}</div>
-      ) : null}
+    <div role={role} className={cx('flex gap-3 rounded-card border p-4', styles.box, className)}>
+      <span className={cx('mt-0.5 shrink-0', styles.icon)}>
+        <ToneIcon tone={tone} />
+      </span>
+      <div className="min-w-0 flex-1">
+        {title ? <p className={cx('font-semibold', styles.title)}>{title}</p> : null}
+        {children ? (
+          <div className={cx('text-sm leading-relaxed text-ink', title && 'mt-1')}>{children}</div>
+        ) : null}
+      </div>
     </div>
   );
 }
@@ -166,6 +238,10 @@ export function Container({
   return <div className={cx('mx-auto px-4 py-10 sm:px-6 sm:py-12', width, className)}>{children}</div>;
 }
 
+export function Eyebrow({ children, className }: { children: ReactNode; className?: string }) {
+  return <p className={cx('eyebrow', className)}>{children}</p>;
+}
+
 export function PageHeader({
   eyebrow,
   title,
@@ -179,13 +255,9 @@ export function PageHeader({
 }) {
   return (
     <div className="mb-8 max-w-3xl">
-      {eyebrow ? (
-        <p className="mb-2.5 text-xs font-semibold uppercase tracking-[0.08em] text-ink-subtle">
-          {eyebrow}
-        </p>
-      ) : null}
-      <h1 className="text-3xl sm:text-4xl">{title}</h1>
-      {lead ? <p className="mt-3.5 text-lg leading-relaxed text-ink-muted">{lead}</p> : null}
+      {eyebrow ? <Eyebrow className="mb-3">{eyebrow}</Eyebrow> : null}
+      <h1 className="text-[clamp(2rem,1.6rem+1.4vw,2.75rem)] leading-[1.05] tracking-[-0.03em]">{title}</h1>
+      {lead ? <p className="mt-4 text-lg leading-relaxed text-ink-muted">{lead}</p> : null}
       {children ? <div className="mt-5">{children}</div> : null}
     </div>
   );
@@ -228,7 +300,7 @@ export function Breadcrumbs({ trail }: { trail: Array<{ href?: string; label: st
               </span>
             ) : null}
             {crumb.href ? (
-              <Link href={crumb.href} className="no-underline hover:underline">
+              <Link href={crumb.href} className="text-ink-muted no-underline hover:text-ink hover:underline">
                 {crumb.label}
               </Link>
             ) : (
@@ -292,7 +364,7 @@ export function Stat({
   return (
     <div>
       <p className="text-sm text-ink-muted">{label}</p>
-      <p className={cx('mt-1 font-serif text-3xl font-semibold tabular-nums', valueTone)}>
+      <p className={cx('mt-1 font-heading text-3xl font-bold tabular-nums tracking-tight', valueTone)}>
         {value}
         {of !== undefined ? (
           <span className="text-lg font-normal text-ink-subtle"> / {of}</span>
@@ -399,4 +471,48 @@ export function FidelityBadge({
     return <Badge tone="caution">Close approximation</Badge>;
   }
   return <Badge tone="neutral">Study practice, not a simulation</Badge>;
+}
+
+export type FormatStatus = 'open' | 'notyet' | 'notoffered';
+
+const STATUS_LABEL: Record<FormatStatus, string> = {
+  open: 'Open',
+  notyet: 'Not yet',
+  notoffered: 'Not offered',
+};
+
+/** Shape-coded status marks: a filled tick, a half circle, a dash. */
+export function StatusIcon({ status }: { status: FormatStatus }) {
+  if (status === 'open') {
+    return (
+      <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" className="shrink-0 text-accent">
+        <circle cx="7" cy="7" r="6.25" fill="currentColor" />
+        <path d="M4 7.2l2 1.9L10 5" stroke="#fff" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+  if (status === 'notyet') {
+    return (
+      <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" className="shrink-0 text-ink-muted">
+        <circle cx="7" cy="7" r="5.75" fill="none" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M7 1.25a5.75 5.75 0 0 1 0 11.5z" fill="currentColor" />
+      </svg>
+    );
+  }
+  return (
+    <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" className="shrink-0 text-ink-subtle">
+      <circle cx="7" cy="7" r="5.75" fill="none" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M4 7h6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+/** Whether a format can be started, with a shape and a word, never colour alone. */
+export function StatusBadge({ status, children }: { status: FormatStatus; children?: ReactNode }) {
+  return (
+    <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink">
+      <StatusIcon status={status} />
+      {children ?? STATUS_LABEL[status]}
+    </span>
+  );
 }

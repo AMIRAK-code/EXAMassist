@@ -29,7 +29,7 @@ export default async function ReportQuestionPage({
       </Card>
 
       <Card className="mt-6">
-        <h2 className="font-serif text-lg font-semibold">What happens to your report</h2>
+        <h2 className="font-heading text-lg font-semibold">What happens to your report</h2>
         <ol className="mt-3 list-decimal space-y-2 ps-5 text-sm text-ink-muted">
           <li>An editor re-solves the question independently, without looking at the stored key.</li>
           <li>
