@@ -78,6 +78,17 @@ test.describe('homepage sample question', () => {
     expect(await page.locator('h1').count()).toBe(1);
     expect(await horizontalOverflow(page)).toBeLessThanOrEqual(1);
   });
+
+  test('the homepage summarises what each exam can start and links to every format', async ({ page }) => {
+    await page.goto('/');
+    const formats = page.locator('section#formats');
+    // One entry per exam configuration, each naming what is open now.
+    await expect(formats.getByRole('listitem')).toHaveCount(7);
+    await expect(formats.getByRole('listitem').first()).toContainText('Open:');
+    await formats.getByRole('link', { name: 'Every format, and what each still needs' }).click();
+    await expect(page).toHaveURL(/\/exams#formats$/);
+    await expect(page.getByRole('table', { name: /Practice formats by exam/ })).toBeVisible();
+  });
 });
 
 test.describe('navigation', () => {

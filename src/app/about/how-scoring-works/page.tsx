@@ -4,6 +4,8 @@ import { EXAM_CONFIGS, getHubForConfig } from '@/lib/exams/registry';
 import { SITE, absoluteUrl, siteUrl } from '@/lib/site';
 import { Alert, Badge, Breadcrumbs, Card, Container, PageHeader } from '@/components/ui';
 import { JsonLd, articleSchema, breadcrumbSchema } from '@/components/seo/json-ld';
+import { TopicAccuracyExample } from '@/components/scoring/topic-accuracy-example';
+import { MIN_ATTEMPTS_FOR_SIGNAL } from '@/lib/learning/recommend';
 
 /**
  * How scoring works.
@@ -17,10 +19,11 @@ const TITLE = 'How our scoring works';
 const DESCRIPTION =
   'What Examer reports after a practice session — raw marks, accuracy by topic and pacing — and why it reports no scaled score, no percentile and no admission estimate for any exam, with the per-exam rules for correct, wrong and omitted answers.';
 
-/** Real dates: this page was written on 2026-09-22 and has not been revised since. */
+/** Real dates: written on 2026-09-22; revised on 2026-09-24 to add the accuracy-by-topic illustration. */
 const PUBLISHED = '2026-09-22';
-const UPDATED = '2026-09-22';
+const UPDATED = '2026-09-24';
 const PUBLISHED_LABEL = '22 September 2026';
+const UPDATED_LABEL = '24 September 2026';
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -151,7 +154,8 @@ export default function HowScoringWorksPage() {
       </div>
 
       <p className="mt-4 text-sm text-ink-subtle">
-        By {SITE.publisher} · Published <time dateTime={PUBLISHED}>{PUBLISHED_LABEL}</time>
+        By {SITE.publisher} · Published <time dateTime={PUBLISHED}>{PUBLISHED_LABEL}</time> · Updated{' '}
+        <time dateTime={UPDATED}>{UPDATED_LABEL}</time>
       </p>
 
       <div className="mt-10 space-y-12">
@@ -167,6 +171,16 @@ export default function HowScoringWorksPage() {
               </div>
             ))}
           </dl>
+
+          <h3 className="mt-8 font-heading text-lg font-semibold">What accuracy by topic looks like</h3>
+          <div className="prose-academic">
+            <p>
+              Every figure comes with the number of questions behind it. With fewer than{' '}
+              {MIN_ATTEMPTS_FOR_SIGNAL} answers in a topic, the dashboard says so instead of printing a
+              percentage.
+            </p>
+          </div>
+          <TopicAccuracyExample className="mt-4" />
         </section>
 
         <section aria-labelledby="we-refuse">
