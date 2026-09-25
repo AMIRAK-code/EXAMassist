@@ -47,6 +47,10 @@ const CALCULATOR_LABEL: Record<string, string> = {
   unverified: 'Not verified',
 };
 
+function formatDate(iso: string): string {
+  return new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+
 export default async function FormatGuidePage({ params }: { params: Promise<{ hub: string }> }) {
   const { hub: slug } = await params;
   const hub = getHub(slug);
@@ -85,35 +89,39 @@ export default async function FormatGuidePage({ params }: { params: Promise<{ hu
         {hub.name}: format and scoring
       </h1>
 
+      {/*
+        The opening is kept to lines that cannot jump when the web font
+        arrives: the date starts its line and the rest of the sentence is one
+        text run. The version and cycle details follow each summary, and the
+        provenance note sits with the sources it describes (docs/REDESIGN.md §14).
+      */}
+      <p className="mt-2 text-sm text-ink-subtle">
+        Verified{' '}
+        <time dateTime={verifiedOn}>{verifiedOn ? formatDate(verifiedOn) : '—'}</time>
+        {` from ${hub.publisher}’s published pages.`}
+      </p>
+
       <div className="mt-6 rounded-card border-s-4 border-accent bg-accent-soft p-5">
         <h2 className="text-sm font-semibold uppercase tracking-wide text-accent-strong">In short</h2>
         <p className="mt-2 text-ink">{hub.tagline}</p>
       </div>
-
-      <p className="mt-4 text-sm text-ink-subtle">
-        Compiled by {SITE.publisher} from {hub.publisher}&rsquo;s published pages. Every fact below is
-        followed by the source it came from. Verified{' '}
-        <time dateTime={verifiedOn}>
-          {verifiedOn
-            ? new Date(verifiedOn).toLocaleDateString('en-GB', {
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric',
-              })
-            : '—'}
-        </time>
-        .
-      </p>
 
       {configs.map((config) => (
         <section key={config.examKey} className="mt-10" aria-labelledby={`fmt-${config.examKey}`}>
           <h2 id={`fmt-${config.examKey}`} className="font-heading text-2xl font-semibold">
             {config.name}
           </h2>
-          <p className="mt-1 text-sm text-ink-subtle">
-            {config.versionLabel} · {config.admissionsCycle}
-          </p>
           <p className="mt-3 text-ink">{config.summary}</p>
+          <dl className="mt-4 space-y-2 text-sm">
+            <div>
+              <dt className="font-medium text-ink-muted">Version described</dt>
+              <dd className="text-ink-subtle">{config.versionLabel}</dd>
+            </div>
+            <div>
+              <dt className="font-medium text-ink-muted">Admissions cycle</dt>
+              <dd className="text-ink-subtle">{config.admissionsCycle}</dd>
+            </div>
+          </dl>
 
           {/* Structure */}
           <h3 className="mt-8 font-heading text-xl font-semibold">Sections and timing</h3>
@@ -252,6 +260,9 @@ export default async function FormatGuidePage({ params }: { params: Promise<{ hu
 
           {/* Sources */}
           <h3 className="mt-8 font-heading text-xl font-semibold">Sources</h3>
+          <p className="mt-2 text-sm text-ink-muted">
+            {`Compiled by ${SITE.publisher} from ${hub.publisher}’s published pages. Each source shows the date it was checked.`}
+          </p>
           <ol className="mt-3 space-y-2 text-sm">
             {config.sources.map((source, index) => (
               <li key={`${source.url}-${index}`}>
