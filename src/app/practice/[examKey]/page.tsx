@@ -105,10 +105,16 @@ export default async function PracticeSetupPage({
         ]}
       />
 
+      {/*
+        A short lead, so the choices are on the first screen. The exam's full
+        summary is at the end of the main column, after the formats. The
+        summary used to be the lead; when the web font arrived it rewrapped
+        and pushed everything below it (docs/REDESIGN.md §14).
+      */}
       <PageHeader
         eyebrow={config.publisher}
         title={`Practise ${config.name}`}
-        lead={config.summary}
+        lead="Practise by topic, untimed, or choose another format below."
       />
 
       {totalItems === 0 ? (
@@ -135,8 +141,7 @@ export default async function PracticeSetupPage({
               </p>
               {ignoredFilter ? (
                 <Alert tone="caution" className="mt-4">
-                  The link you followed named a topic or skill the {config.shortName} does not have, so no
-                  filter has been applied.
+                  {`The link named a topic or skill the ${config.shortName} does not have, so no filter has been applied.`}
                 </Alert>
               ) : null}
               <div className="mt-5">
@@ -206,20 +211,37 @@ export default async function PracticeSetupPage({
                 </Card>
               ))}
             </ul>
+
+            <section aria-labelledby="about-exam-heading" className="mt-10">
+              <h2 id="about-exam-heading" className="font-heading text-xl font-semibold">
+                About this exam
+              </h2>
+              <p className="mt-2 text-ink-muted">{config.summary}</p>
+              {hub ? (
+                <p className="mt-3">
+                  <a href={`/exams/${hub.slug}/format`}>Format, timing and scoring, with sources</a>
+                </p>
+              ) : null}
+            </section>
           </div>
 
+          {/*
+            Links sit on lines of their own and counts are one text run: a link
+            at the end of a wrapped sentence jumped to the next line when the
+            web font arrived, the largest single move on this page.
+          */}
           <aside className="space-y-5">
             <Card>
               <h2 className="font-heading text-lg font-semibold">Question bank</h2>
               <p className="mt-2 text-3xl font-semibold tabular-nums">{totalItems}</p>
               <p className="text-sm text-ink-muted">
-                reviewed questions across{' '}
-                {config.domains.filter((d) => eligibleCount(facets, { domain: d.slug }) > 0).length} of{' '}
-                {config.domains.length} topics
+                {`reviewed questions across ${config.domains.filter((d) => eligibleCount(facets, { domain: d.slug }) > 0).length} of ${config.domains.length} topics`}
               </p>
               <p className="mt-3 text-sm text-ink-muted">
                 This is a starter library, not a complete course. The questions are original and
-                AI-assisted; each was solved blind by a separate AI reviewer before publication.{' '}
+                AI-assisted; each was solved blind by a separate AI reviewer before publication.
+              </p>
+              <p className="mt-2 text-sm">
                 <a href="/about/editorial-standards">How questions are checked</a>
               </p>
             </Card>

@@ -288,28 +288,42 @@ export function SectionHeading({
   );
 }
 
+/**
+ * Always one line: the last crumb is cut short with an ellipsis rather than
+ * wrapping. A trail that fits on one line in the fallback font can wrap once
+ * Bricolage arrives, which moved everything below it down a line on narrow
+ * screens (docs/REDESIGN.md §14). The page's heading repeats the last label,
+ * and screen readers still read it in full. The padding, cancelled by the
+ * negative margin, keeps focus outlines clear of the clipping edge.
+ */
 export function Breadcrumbs({ trail }: { trail: Array<{ href?: string; label: string }> }) {
   return (
     <nav aria-label="Breadcrumb" className="mb-6 text-sm">
-      <ol className="flex flex-wrap items-center gap-1 text-ink-muted">
-        {trail.map((crumb, index) => (
-          <li key={`${crumb.label}-${index}`} className="flex items-center gap-1">
-            {index > 0 ? (
-              <span aria-hidden="true" className="px-1 text-ink-subtle">
-                /
-              </span>
-            ) : null}
-            {crumb.href ? (
-              <Link href={crumb.href} className="text-ink-muted no-underline hover:text-ink hover:underline">
-                {crumb.label}
-              </Link>
-            ) : (
-              <span aria-current="page" className="text-ink">
-                {crumb.label}
-              </span>
-            )}
-          </li>
-        ))}
+      <ol className="-m-1 flex items-center gap-1 overflow-hidden whitespace-nowrap p-1 text-ink-muted">
+        {trail.map((crumb, index) => {
+          const last = index === trail.length - 1;
+          return (
+            <li key={`${crumb.label}-${index}`} className={cx('flex items-center gap-1', last ? 'min-w-0' : 'shrink-0')}>
+              {index > 0 ? (
+                <span aria-hidden="true" className="px-1 text-ink-subtle">
+                  /
+                </span>
+              ) : null}
+              {crumb.href ? (
+                <Link
+                  href={crumb.href}
+                  className={cx('text-ink-muted no-underline hover:text-ink hover:underline', last && 'truncate')}
+                >
+                  {crumb.label}
+                </Link>
+              ) : (
+                <span aria-current="page" className="truncate text-ink">
+                  {crumb.label}
+                </span>
+              )}
+            </li>
+          );
+        })}
       </ol>
     </nav>
   );
