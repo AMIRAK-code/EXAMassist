@@ -322,10 +322,9 @@ export function StartPracticeForm({
         <p className="text-sm text-ink-muted">
           {eligible > 0 ? (
             <>
-              <span className="font-semibold text-ink">{plural(length, 'question', 'questions')}</span> from{' '}
-              {scopeLabel} · {difficulty === 'mixed' ? 'mixed difficulty' : `${difficulty} only`} · untimed ·
-              check each answer to see its worked explanation · {total} reviewed {examLabel} questions in
-              the bank
+              <span className="font-semibold text-ink">{plural(length, 'question', 'questions')}</span>
+              {/* One text run: separate pieces jumped between lines when the web font arrived. */}
+              {` from ${scopeLabel} · ${difficulty === 'mixed' ? 'mixed difficulty' : `${difficulty} only`} · untimed · check each answer to see its worked explanation · ${total} reviewed ${examLabel} questions in the bank`}
             </>
           ) : (
             'Nothing to start with these settings.'
