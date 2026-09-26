@@ -67,16 +67,20 @@ describe('choosing where an attempt reopens', () => {
   });
 
   it('ignores a position stored for a section that is no longer open', () => {
-    const state = partState({ partIndex: 1, answeredPositions: new Set([0, 1]) });
+    const state = partState({ partIndex: 1, furthestPosition: 0 });
     expect(resolveResume(FREE, state, { partIndex: 0, position: 7 })).toEqual({
       partIndex: 1,
-      position: 2,
-      reason: 'first-unanswered',
+      position: 0,
+      reason: 'frontier',
     });
   });
 
   it('ignores a position outside the section', () => {
-    expect(resolveResume(FREE, partState(), { partIndex: 0, position: 10 }).reason).toBe('first-unanswered');
+    expect(resolveResume(FREE, partState({ furthestPosition: 3 }), { partIndex: 0, position: 10 })).toEqual({
+      partIndex: 0,
+      position: 3,
+      reason: 'frontier',
+    });
   });
 
   it('never reopens a committed screen on a forward-only section', () => {
@@ -91,14 +95,14 @@ describe('choosing where an attempt reopens', () => {
     expect(resolveResume(SCREENS_OF_THREE, state, { partIndex: 0, position: 6 }).reason).toBe('stored');
   });
 
-  it('lands on the frontier of a restricted section and the first gap of a free one', () => {
-    const answered = new Set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
-    expect(resolveResume(FREE, partState({ furthestPosition: 9, answeredPositions: answered }), { partIndex: null, position: null })).toEqual({
+  it('with nothing stored, reopens at the furthest question reached, where a learner who never moved still is', () => {
+    // Answered the first question without moving: still on it.
+    expect(resolveResume(FREE, partState({ answeredPositions: new Set([0]) }), { partIndex: null, position: null })).toEqual({
       partIndex: 0,
-      position: 9,
+      position: 0,
       reason: 'frontier',
     });
-    expect(resolveResume(FREE, partState({ answeredPositions: new Set([0, 2]) }), { partIndex: null, position: null }).position).toBe(1);
+    expect(resolveResume(FREE, partState({ furthestPosition: 9 }), { partIndex: null, position: null }).position).toBe(9);
   });
 });
 
@@ -230,7 +234,7 @@ describe('expiry', () => {
     expect(state.parts[0].status).toBe('expired');
     expect(state.resume?.partIndex).toBe(state.currentPartIndex);
     expect(state.resume?.partIndex).toBeGreaterThan(0);
-    expect(state.resume?.reason).toBe('first-unanswered');
+    expect(state.resume).toEqual({ partIndex: state.currentPartIndex, position: 0, reason: 'frontier' });
   });
 
   it('closes an expired attempt before listing, so it is never offered to continue', () => {
@@ -261,7 +265,7 @@ describe('listing unfinished attempts', () => {
     const list = listUnfinishedAttempts(db, alice, new Date(t0.getTime() + 6000));
     expect(list.map((a) => a.id)).toEqual([sat, gmat]);
     expect(list[0]).toMatchObject({ examKey: 'digital-sat', resumeQuestion: 5, questionCount: 10, resumeReason: 'stored' });
-    expect(list[1]).toMatchObject({ examKey: 'gmat', resumeQuestion: 1, resumeReason: 'first-unanswered' });
+    expect(list[1]).toMatchObject({ examKey: 'gmat', resumeQuestion: 1, resumeReason: 'frontier' });
     expect(listUnfinishedAttempts(db, bob).every((a) => a.examKey === 'digital-sat')).toBe(true);
   });
 });
