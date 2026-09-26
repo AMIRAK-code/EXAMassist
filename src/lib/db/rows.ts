@@ -144,6 +144,8 @@ export interface AttemptItemRow {
   last_answered_at: string | null;
   /** Set when immediate feedback was shown for this item; the answer is locked from then on. */
   feedback_released_at: string | null;
+  /** The order of the stored answer among writes to it (migration 006); NULL before its first ordered write. */
+  response_clock: number | null;
 }
 
 export interface AttemptResultRow {
