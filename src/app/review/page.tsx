@@ -3,7 +3,16 @@ import { redirect } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getDb } from '@/lib/db';
 import { UnauthorizedError, requireUser, type AuthUser } from '@/lib/auth/session';
-import { NOTEBOOK_VIEWS, buildNotebook, parseView, type NotebookEntry, type NotebookView } from '@/lib/learning/notebook';
+import {
+  NOTEBOOK_PAGE,
+  NOTEBOOK_VIEWS,
+  buildNotebook,
+  parsePage,
+  parseView,
+  type NotebookData,
+  type NotebookEntry,
+  type NotebookView,
+} from '@/lib/learning/notebook';
 import { labelText } from '@/lib/learning/mistakes';
 import { startRetryAction, toggleBookmarkAction } from '@/app/actions/learning';
 import { LearningNotice } from '@/components/learning-notice';
@@ -22,12 +31,19 @@ import { Badge, Breadcrumbs, ButtonLink, Card, Container, EmptyState, PageHeader
 
 export const dynamic = 'force-dynamic';
 
-export const metadata: Metadata = {
-  title: 'Mistake notebook',
-  description: 'Questions you got wrong or left blank: what is due to revisit now, what comes back later, and why.',
-  // Private page. Authorization is the protection; this is only an indexing hint.
-  robots: { index: false, follow: false },
-};
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string | string[] }>;
+}): Promise<Metadata> {
+  const page = parsePage((await searchParams).page);
+  return {
+    title: page > 1 ? `Mistake notebook, page ${page}` : 'Mistake notebook',
+    description: 'Questions you got wrong or left blank: what is due to revisit now, what comes back later, and why.',
+    // Private page. Authorization is the protection; this is only an indexing hint.
+    robots: { index: false, follow: false },
+  };
+}
 
 async function requireLearner(nextPath: string): Promise<AuthUser> {
   try {
@@ -52,6 +68,11 @@ const DESCRIPTIONS: Record<NotebookView, string> = {
   bookmarked: 'Questions you bookmarked, whether you got them right or not.',
 };
 
+/** A notebook view's page; the first page has no page parameter. */
+function pageHref(view: NotebookView, page: number): string {
+  return `/review?filter=${view}${page > 1 ? `&page=${page}` : ''}`;
+}
+
 function schedule(entry: NotebookEntry, now: number): string | null {
   if (!entry.dueAt) return null;
   return new Date(entry.dueAt).getTime() <= now ? 'Due now' : `Back on ${formatDate(entry.dueAt)}`;
@@ -60,13 +81,19 @@ function schedule(entry: NotebookEntry, now: number): string | null {
 export default async function ReviewPage({
   searchParams,
 }: {
-  searchParams: Promise<{ filter?: string | string[]; notice?: string | string[] }>;
+  searchParams: Promise<{ filter?: string | string[]; page?: string | string[]; notice?: string | string[] }>;
 }) {
   const user = await requireLearner('/review');
   const query = await searchParams;
   const view = parseView(query.filter);
-  const data = buildNotebook(getDb(), user.id, view);
-  const here = `/review?filter=${view}`;
+  const requested = parsePage(query.page);
+  const data = buildNotebook(getDb(), user.id, view, new Date(), requested);
+  // A page past the end (the view has shrunk since the link was made) opens the last one.
+  if (requested !== data.page) {
+    const notice = typeof query.notice === 'string' ? `&notice=${encodeURIComponent(query.notice)}` : '';
+    redirect(`${pageHref(view, data.page)}${notice}`);
+  }
+  const here = pageHref(view, data.page);
   const now = Date.now();
   const trail = [
     { href: '/', label: 'Home' },
@@ -118,7 +145,7 @@ export default async function ReviewPage({
             <Card className="mb-8">
               <h2 className="font-heading text-lg font-semibold">Answer them again</h2>
               <p className="mt-1 text-sm text-ink-muted">
-                A retry asks these same questions in a separate session. It never changes your earlier results and is
+                {data.pageCount > 1 ? 'A retry asks the questions on this page again in a separate session.' : 'A retry asks these same questions in a separate session.'} It never changes your earlier results and is
                 not counted in your accuracy by topic; answering a question correctly moves it further out in the schedule.
               </p>
               <div className="mt-4 flex flex-wrap gap-3">
@@ -190,9 +217,7 @@ export default async function ReviewPage({
               );
             })}
           </ol>
-          {data.total > data.entries.length ? (
-            <p className="mt-4 text-sm text-ink-muted">{`Showing the first ${data.entries.length} of ${data.total}.`}</p>
-          ) : null}
+          {data.pageCount > 1 ? <Pagination data={data} /> : null}
         </>
       )}
 
@@ -246,5 +271,50 @@ function EmptyView({
     <EmptyState title={copy[view].title} action={<ButtonLink href="/dashboard">Back to dashboard</ButtonLink>}>
       <p>{copy[view].body}</p>
     </EmptyState>
+  );
+}
+
+/** Previous, every page by number, and next; each a plain link that keeps the view. */
+function Pagination({ data }: { data: NotebookData }) {
+  const last = Math.min(data.firstIndex + NOTEBOOK_PAGE - 1, data.total);
+  const pages = Array.from({ length: data.pageCount }, (_, index) => index + 1);
+  const control =
+    'inline-flex min-h-11 min-w-11 items-center justify-center rounded-control border-[1.5px] px-3 text-sm font-semibold no-underline';
+  const idle = 'border-line-strong bg-surface text-ink hover:border-ink hover:text-ink';
+  return (
+    <nav aria-label="Notebook pages" className="mt-8 border-t border-line pt-6">
+      <p className="mb-3 text-sm text-ink-muted">{`Showing ${data.firstIndex}–${last} of ${data.total}`}</p>
+      <ul className="flex flex-wrap items-center gap-2">
+        {data.page > 1 ? (
+          <li>
+            <Link href={pageHref(data.view, data.page - 1)} rel="prev" className={cx(control, idle)}>
+              Previous<span className="sr-only"> page</span>
+            </Link>
+          </li>
+        ) : null}
+        {pages.map((page) => {
+          const current = page === data.page;
+          return (
+            <li key={page}>
+              <Link
+                href={pageHref(data.view, page)}
+                aria-current={current ? 'page' : undefined}
+                className={cx(control, current ? 'border-ink bg-ink text-ink-inverse hover:text-ink-inverse' : idle)}
+              >
+                <span className="sr-only">Page </span>
+                {page}
+              </Link>
+            </li>
+          );
+        })}
+        {data.page < data.pageCount ? (
+          <li>
+            <Link href={pageHref(data.view, data.page + 1)} rel="next" className={cx(control, idle)}>
+              Next<span className="sr-only"> page</span>
+            </Link>
+          </li>
+        ) : null}
+      </ul>
+    </nav>
   );
 }
