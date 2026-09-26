@@ -11,4 +11,7 @@ export default defineConfig({
   resolve: {
     alias: { '@': path.resolve(process.cwd(), 'src') },
   },
+  // tsconfig keeps JSX for Next.js to compile; tests that render a component
+  // need the automatic runtime instead.
+  esbuild: { jsx: 'automatic' },
 });
