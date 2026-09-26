@@ -1,154 +1,41 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { revalidatePath } from 'next/cache';
 import type { Metadata } from 'next';
 import { getDb } from '@/lib/db';
-import type { QuestionVersionRow } from '@/lib/db/rows';
 import { UnauthorizedError, requireUser, type AuthUser } from '@/lib/auth/session';
-import { getExamConfig, labelsFor } from '@/lib/exams/registry';
-import { checkRateLimit } from '@/lib/auth/rate-limit';
-import { startAttempt } from '@/lib/attempts/service';
-import { practiceFacets } from '@/lib/attempts/availability';
-import { eligibleCount } from '@/lib/attempts/facets';
-import { getQuestionVersions, toReviewable, type ReviewableQuestion } from '@/lib/content/repository';
-import { responseSchema, type AnswerKey, type Response } from '@/lib/assessment/types';
-import { Markdown, Stimulus } from '@/components/content';
-import {
-  Alert,
-  Badge,
-  Breadcrumbs,
-  Button,
-  ButtonLink,
-  Card,
-  Container,
-  EmptyState,
-  PageHeader,
-} from '@/components/ui';
+import { NOTEBOOK_VIEWS, buildNotebook, parseView, type NotebookEntry, type NotebookView } from '@/lib/learning/notebook';
+import { labelText } from '@/lib/learning/mistakes';
+import { startRetryAction, toggleBookmarkAction } from '@/app/actions/learning';
+import { LearningNotice } from '@/components/learning-notice';
+import { OutcomeBadge } from '@/components/results/results-sections';
+import { SubmitButton } from '@/components/submit-button';
+import { Badge, Breadcrumbs, ButtonLink, Card, Container, EmptyState, PageHeader, cx } from '@/components/ui';
 
 /**
  * The mistake notebook.
  *
- * Every row here comes from the acting user's own attempts: the question as it
- * was shown, what they answered, what the key says, and the explanation the
- * question's author wrote. Nothing is inferred and nothing is scored again.
+ * Due now and coming back later come from the review schedule; all mistakes
+ * and bookmarks are the rest. Each entry is the latest missed encounter of a
+ * question, from the learner's own finished sessions, and opens on the
+ * question's review page. Nothing is inferred and nothing is scored again.
  */
 
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Mistake notebook',
-  description: 'Every question you got wrong or left blank, with the answer and the explanation.',
+  description: 'Questions you got wrong or left blank: what is due to revisit now, what comes back later, and why.',
   // Private page. Authorization is the protection; this is only an indexing hint.
   robots: { index: false, follow: false },
 };
-
-const FILTERS = [
-  { key: 'incorrect', label: 'Wrong or blank' },
-  { key: 'bookmarked', label: 'Bookmarked' },
-  { key: 'due', label: 'Due to revisit' },
-] as const;
-
-type FilterKey = (typeof FILTERS)[number]['key'];
-
-const MAX_ROWS = 40;
 
 async function requireLearner(nextPath: string): Promise<AuthUser> {
   try {
     return await requireUser();
   } catch (error) {
-    if (error instanceof UnauthorizedError) {
-      redirect(`/sign-in?next=${encodeURIComponent(nextPath)}`);
-    }
+    if (error instanceof UnauthorizedError) redirect(`/sign-in?next=${encodeURIComponent(nextPath)}`);
     throw error;
   }
-}
-
-function parseFilter(value: string | undefined): FilterKey {
-  return FILTERS.some((filter) => filter.key === value) ? (value as FilterKey) : 'incorrect';
-}
-
-interface ItemRow {
-  questionId: string;
-  questionVersionId: string;
-  responseJson: string | null;
-  responseStatus: 'unanswered' | 'answered';
-  isCorrect: 0 | 1 | null;
-  seenAt: string | null;
-  attemptId: string;
-  examKey: string;
-  bookmarked: number | null;
-}
-
-function parseResponse(json: string | null): Response | null {
-  if (!json) return null;
-  try {
-    const parsed = responseSchema.safeParse(JSON.parse(json));
-    return parsed.success ? parsed.data : null;
-  } catch {
-    return null;
-  }
-}
-
-function describeResponse(
-  response: Response | null,
-  options: Array<{ id: string; label: string }>,
-): string {
-  if (!response) return 'Left blank';
-  const labelFor = (id: string) => options.find((option) => option.id === id)?.label ?? id;
-
-  switch (response.type) {
-    case 'single_select':
-      return `Option ${labelFor(response.optionId)}`;
-    case 'multi_select':
-      return response.optionIds.length > 0
-        ? `Options ${response.optionIds.map(labelFor).join(', ')}`
-        : 'Left blank';
-    case 'numeric_entry':
-      return response.raw.trim().length > 0 ? response.raw : 'Left blank';
-    case 'quantitative_comparison':
-    case 'data_sufficiency':
-      return `Option ${response.choice}`;
-    case 'two_part':
-      return response.selections.length > 0
-        ? response.selections.map((s) => `${s.columnId}: ${labelFor(s.optionId)}`).join('; ')
-        : 'Left blank';
-    case 'essay':
-      return response.text.trim().length > 0
-        ? 'You wrote a response — it is kept with that session’s results.'
-        : 'Left blank';
-  }
-}
-
-function describeAnswerKey(key: AnswerKey, options: Array<{ id: string; label: string }>): string {
-  const labelFor = (id: string) => options.find((option) => option.id === id)?.label ?? id;
-
-  switch (key.type) {
-    case 'single_select':
-      return `Option ${labelFor(key.optionId)}`;
-    case 'multi_select':
-      return `Options ${key.optionIds.map(labelFor).join(' and ')}`;
-    case 'quantitative_comparison':
-    case 'data_sufficiency':
-      return `Option ${key.choice}`;
-    case 'numeric_entry': {
-      const first = key.accepted[0];
-      if (!first) return '—';
-      if (first.kind === 'range') return `Any value from ${first.min} to ${first.max}`;
-      if (first.kind === 'tolerance') return `${first.value} (± ${first.tolerance})`;
-      return String(first.value);
-    }
-    case 'two_part':
-      return key.selections.map((s) => `${s.columnId}: ${labelFor(s.optionId)}`).join('; ');
-    case 'essay':
-      return 'Essays are not automatically scored. Compare what you wrote with the rubric.';
-  }
-}
-
-function correctOptionIds(key: AnswerKey): string[] {
-  if (key.type === 'single_select') return [key.optionId];
-  if (key.type === 'multi_select') return key.optionIds;
-  if (key.type === 'two_part') return key.selections.map((selection) => selection.optionId);
-  return [];
 }
 
 function formatDate(iso: string | null): string {
@@ -158,468 +45,154 @@ function formatDate(iso: string | null): string {
   return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 }
 
-// ---------------------------------------------------------------------------
-// Server actions
-// ---------------------------------------------------------------------------
+const DESCRIPTIONS: Record<NotebookView, string> = {
+  due: 'Missed questions whose time to come back has arrived, oldest first.',
+  later: 'Missed questions scheduled to come back, soonest first. A miss returns the day after; you can revisit one early.',
+  all: 'Every question you have got wrong or left blank in a finished session, most recent first.',
+  bookmarked: 'Questions you bookmarked, whether you got them right or not.',
+};
 
-/**
- * Adds or removes a bookmark. The question must be one this user has actually
- * been shown: an id posted from anywhere else is ignored rather than trusted.
- */
-async function toggleBookmarkAction(formData: FormData): Promise<void> {
-  'use server';
-  const user = await requireUser();
-  const db = getDb();
-
-  const questionId = String(formData.get('questionId') ?? '');
-  const filter = parseFilter(String(formData.get('filter') ?? ''));
-  if (!questionId) return;
-
-  const owned = db
-    .prepare(
-      `SELECT a.exam_key AS examKey
-         FROM attempt_items ai
-         JOIN attempts a ON a.id = ai.attempt_id
-        WHERE a.user_id = ? AND ai.question_id = ?
-        LIMIT 1`,
-    )
-    .get(user.id, questionId) as { examKey: string } | undefined;
-  if (!owned) return;
-
-  const existing = db
-    .prepare('SELECT 1 AS present FROM bookmarks WHERE user_id = ? AND question_id = ?')
-    .get(user.id, questionId) as { present: number } | undefined;
-
-  if (existing) {
-    db.prepare('DELETE FROM bookmarks WHERE user_id = ? AND question_id = ?').run(
-      user.id,
-      questionId,
-    );
-  } else {
-    db.prepare(
-      `INSERT INTO bookmarks (user_id, question_id, exam_key, note, created_at)
-       VALUES (?, ?, ?, NULL, ?)
-       ON CONFLICT(user_id, question_id) DO NOTHING`,
-    ).run(user.id, questionId, owned.examKey, new Date().toISOString());
-  }
-
-  revalidatePath('/review');
-  redirect(`/review?filter=${filter}`);
+function schedule(entry: NotebookEntry, now: number): string | null {
+  if (!entry.dueAt) return null;
+  return new Date(entry.dueAt).getTime() <= now ? 'Due now' : `Back on ${formatDate(entry.dueAt)}`;
 }
-
-/** Starts a fresh untimed practice session on the skills in the current view. */
-async function practiseAgainAction(formData: FormData): Promise<void> {
-  'use server';
-  const user = await requireUser();
-  const db = getDb();
-
-  const examKey = String(formData.get('examKey') ?? '');
-  const config = getExamConfig(examKey);
-  if (!config) redirect('/review');
-
-  const known = new Set(config.domains.flatMap((domain) => domain.skills.map((skill) => skill.slug)));
-  const skills = String(formData.get('skills') ?? '')
-    .split(',')
-    .map((slug) => slug.trim())
-    .filter((slug) => slug.length > 0 && known.has(slug))
-    .slice(0, 20);
-
-  // Size the session from what the bank actually holds for these skills, by
-  // the same count the practice screen uses, so a thin set of skills gives a
-  // short session instead of a refusal.
-  const facets = practiceFacets(db, config);
-  const eligible =
-    skills.length > 0
-      ? skills.reduce((total, skill) => total + eligibleCount(facets, { skill }), 0)
-      : eligibleCount(facets, {});
-  const requested = Number(formData.get('length') ?? 10);
-  const length = Math.min(
-    eligible,
-    Number.isFinite(requested) ? Math.max(1, Math.min(20, Math.round(requested))) : 10,
-  );
-
-  const fallback = `/practice/${examKey}${
-    skills[0] ? `?skill=${encodeURIComponent(skills[0])}` : ''
-  }`;
-  // Nothing left to practise for these skills: the setup screen says what is.
-  if (length < 1) redirect(`/practice/${examKey}`);
-
-  const limit = checkRateLimit(db, 'attemptStart', `user:${user.id}`);
-  if (!limit.allowed) redirect(fallback);
-
-  let attemptId: string | null = null;
-  try {
-    const result = startAttempt(db, {
-      userId: user.id,
-      examKey,
-      blueprintId: 'practice',
-      overrides: { skills: skills.length > 0 ? skills : undefined, difficulty: 'mixed', length },
-    });
-    attemptId = result.attemptId;
-  } catch {
-    // Not enough reviewed questions for that narrow a request, or the format is
-    // not offered: send the learner to the setup screen, which explains why.
-    attemptId = null;
-  }
-
-  redirect(attemptId ? `/attempt/${attemptId}` : fallback);
-}
-
-// ---------------------------------------------------------------------------
 
 export default async function ReviewPage({
   searchParams,
 }: {
-  searchParams: Promise<{ filter?: string }>;
+  searchParams: Promise<{ filter?: string | string[]; notice?: string | string[] }>;
 }) {
   const user = await requireLearner('/review');
   const query = await searchParams;
-  const filter = parseFilter(query.filter);
-  const db = getDb();
-  const nowIso = new Date().toISOString();
-
-  const counts = {
-    incorrect: (
-      db
-        .prepare(
-          `SELECT COUNT(DISTINCT ai.question_id) AS n
-             FROM attempt_items ai
-             JOIN attempts a ON a.id = ai.attempt_id
-            WHERE a.user_id = ? AND a.status IN ('submitted', 'expired')
-              AND (ai.is_correct = 0 OR ai.response_status = 'unanswered')`,
-        )
-        .get(user.id) as { n: number }
-    ).n,
-    bookmarked: (
-      db.prepare('SELECT COUNT(*) AS n FROM bookmarks WHERE user_id = ?').get(user.id) as {
-        n: number;
-      }
-    ).n,
-    due: (
-      db
-        .prepare(
-          `SELECT COUNT(*) AS n
-             FROM review_queue
-            WHERE user_id = ? AND last_result <> 'correct' AND due_at <= ?`,
-        )
-        .get(user.id, nowIso) as { n: number }
-    ).n,
-  } satisfies Record<FilterKey, number>;
-
-  const params: unknown[] = [user.id, user.id];
-  let clause = '';
-  if (filter === 'incorrect') {
-    clause = `AND (ai.is_correct = 0 OR ai.response_status = 'unanswered')`;
-  } else if (filter === 'bookmarked') {
-    clause = `AND EXISTS (SELECT 1 FROM bookmarks b WHERE b.user_id = ? AND b.question_id = ai.question_id)`;
-    params.push(user.id);
-  } else {
-    clause =
-      `AND EXISTS (SELECT 1 FROM review_queue rq
-                    WHERE rq.user_id = ? AND rq.question_id = ai.question_id
-                      AND rq.last_result <> 'correct' AND rq.due_at <= ?)`;
-    params.push(user.id, nowIso);
-  }
-
-  const rows = db
-    .prepare(
-      `SELECT
-         ai.question_id         AS questionId,
-         ai.question_version_id AS questionVersionId,
-         ai.response_json       AS responseJson,
-         ai.response_status     AS responseStatus,
-         ai.is_correct          AS isCorrect,
-         COALESCE(ai.last_answered_at, a.submitted_at, a.created_at) AS seenAt,
-         a.id                   AS attemptId,
-         a.exam_key             AS examKey,
-         (SELECT 1 FROM bookmarks b WHERE b.user_id = ? AND b.question_id = ai.question_id) AS bookmarked
-       FROM attempt_items ai
-       JOIN attempts a ON a.id = ai.attempt_id
-       WHERE a.user_id = ? AND a.status IN ('submitted', 'expired')
-       ${clause}
-       ORDER BY COALESCE(ai.last_answered_at, a.submitted_at, a.created_at) DESC
-       LIMIT 400`,
-    )
-    .all(...params) as ItemRow[];
-
-  // One entry per question, keeping the most recent encounter.
-  const seen = new Set<string>();
-  const unique: ItemRow[] = [];
-  for (const row of rows) {
-    if (seen.has(row.questionId)) continue;
-    seen.add(row.questionId);
-    unique.push(row);
-  }
-  const visible = unique.slice(0, MAX_ROWS);
-
-  const versions = getQuestionVersions(
-    db,
-    visible.map((row) => row.questionVersionId),
-  );
-
-  interface Entry {
-    row: ItemRow;
-    question: ReviewableQuestion;
-    version: QuestionVersionRow;
-  }
-
-  const entries: Entry[] = [];
-  for (const row of visible) {
-    const version = versions.get(row.questionVersionId);
-    if (!version) continue;
-    try {
-      entries.push({ row, question: toReviewable(db, version), version });
-    } catch {
-      // A question whose stored answer key no longer parses is skipped rather
-      // than rendered half-built; it stays visible in that session's results.
-      continue;
-    }
-  }
-
-  // Skills present in this view, per exam, for the "practise these again" form.
-  const byExam = new Map<string, { skills: Map<string, string>; count: number }>();
-  for (const entry of entries) {
-    const config = getExamConfig(entry.row.examKey);
-    if (!config) continue;
-    const labels = labelsFor(config);
-    const bucket = byExam.get(entry.row.examKey) ?? { skills: new Map<string, string>(), count: 0 };
-    bucket.skills.set(entry.question.skillSlug, labels.skills[entry.question.skillSlug] ?? entry.question.skillSlug);
-    bucket.count += 1;
-    byExam.set(entry.row.examKey, bucket);
-  }
-
+  const view = parseView(query.filter);
+  const data = buildNotebook(getDb(), user.id, view);
+  const here = `/review?filter=${view}`;
+  const now = Date.now();
   const trail = [
     { href: '/', label: 'Home' },
     { href: '/dashboard', label: 'Dashboard' },
     { label: 'Mistake notebook' },
   ];
 
-  const emptyCopy: Record<FilterKey, { title: string; body: string }> = {
-    incorrect: {
-      title: 'Nothing wrong to review',
-      body: 'Questions you get wrong or leave blank in a finished session appear here, with the answer and the full explanation.',
-    },
-    bookmarked: {
-      title: 'No bookmarks yet',
-      body: 'Bookmark a question from this page and it will be kept here, whether you answered it correctly or not.',
-    },
-    due: {
-      title: 'Nothing due right now',
-      body: 'A question you miss comes back after a short interval. When one is due, it appears here.',
-    },
-  };
-
   return (
     <Container>
       <Breadcrumbs trail={trail} />
-
       <PageHeader
         title="Mistake notebook"
-        lead="Every question you got wrong or left blank, most recent first, with your answer, the correct answer and the explanation."
+        lead="A missed question comes back the day after, and again at growing intervals once you answer it correctly."
       />
 
-      <nav aria-label="Filter your notebook" className="mb-6">
+      <LearningNotice code={query.notice} className="mb-6" />
+
+      <nav aria-label="Notebook views" className="mb-3">
         <ul className="flex flex-wrap gap-2">
-          {FILTERS.map((option) => {
-            const active = option.key === filter;
+          {NOTEBOOK_VIEWS.map((option) => {
+            const active = option.key === view;
             return (
               <li key={option.key}>
                 <Link
                   href={`/review?filter=${option.key}`}
                   aria-current={active ? 'page' : undefined}
-                  className={`inline-flex min-h-11 items-center gap-2 rounded border px-3 py-2 text-sm no-underline ${
-                    active
-                      ? 'border-accent bg-accent-soft font-semibold text-accent-strong'
-                      : 'border-line bg-surface text-ink hover:bg-surface-sunken'
-                  }`}
+                  className={cx(
+                    'inline-flex min-h-11 items-center gap-2 rounded-full border-[1.5px] px-4 text-sm font-semibold no-underline',
+                    active ? 'border-ink bg-ink text-ink-inverse hover:text-ink-inverse' : 'border-line-strong bg-surface text-ink hover:border-ink hover:text-ink',
+                  )}
                 >
                   {option.label}
-                  <span className="tabular-nums text-ink-muted">({counts[option.key]})</span>
-                  {active ? <span className="sr-only">(current view)</span> : null}
+                  <span className={cx('tabular-nums font-normal', active ? 'text-ink-inverse-muted' : 'text-ink-subtle')}>
+                    {data.counts[option.key]}
+                  </span>
                 </Link>
               </li>
             );
           })}
         </ul>
       </nav>
+      <p className="mb-8 max-w-2xl text-sm text-ink-muted">{DESCRIPTIONS[view]}</p>
 
-      {entries.length === 0 ? (
-        <EmptyState
-          title={emptyCopy[filter].title}
-          action={<ButtonLink href="/dashboard">Back to dashboard</ButtonLink>}
-        >
-          <p>{emptyCopy[filter].body}</p>
-        </EmptyState>
+      {data.entries.length === 0 ? (
+        <EmptyView view={view} counts={data.counts} nextDueAt={data.nextDueAt} />
       ) : (
         <>
-          {/* Practise the same skills again. */}
-          <Card className="mb-8">
-            <h2 className="font-heading text-xl font-semibold">Practise these again</h2>
-            <p className="mt-1 text-sm text-ink-muted">
-              Starts a new untimed practice session drawn from the skills in this view. Questions
-              you have not seen in the last 30 days come first; the reviewed bank is small, so some
-              questions may repeat.
-            </p>
-            <div className="mt-4 flex flex-wrap gap-3">
-              {[...byExam.entries()].map(([examKey, bucket]) => {
-                const config = getExamConfig(examKey);
-                if (!config) return null;
-                const facets = practiceFacets(db, config);
-                const eligible = [...bucket.skills.keys()].reduce(
-                  (total, skill) => total + eligibleCount(facets, { skill }),
-                  0,
-                );
-                const length = Math.min(10, eligible);
-                if (length < 1) return null;
-                return (
-                  <form key={examKey} action={practiseAgainAction}>
-                    <input type="hidden" name="examKey" value={examKey} />
-                    <input type="hidden" name="skills" value={[...bucket.skills.keys()].join(',')} />
-                    <input type="hidden" name="length" value={length} />
-                    <Button type="submit">
-                      {byExam.size > 1
-                        ? `Practise these ${config.shortName} skills again`
-                        : 'Practise these skills again'}{' '}
-                      · {length} {length === 1 ? 'question' : 'questions'}
-                    </Button>
-                  </form>
-                );
-              })}
-            </div>
-            <p className="mt-3 text-xs text-ink-subtle">
-              The length is set by how many reviewed questions these skills hold, so a small set of
-              skills gives a short session.
-            </p>
-          </Card>
-
-          {unique.length > visible.length ? (
-            <Alert tone="info" className="mb-6">
-              Showing the {MAX_ROWS} most recent of {unique.length} questions in this view.
-            </Alert>
+          {data.retryGroups.length > 0 ? (
+            <Card className="mb-8">
+              <h2 className="font-heading text-lg font-semibold">Answer them again</h2>
+              <p className="mt-1 text-sm text-ink-muted">
+                A retry asks these same questions in a separate session. It never changes your earlier results and is
+                not counted in your accuracy by topic; answering a question correctly moves it further out in the schedule.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-3">
+                {data.retryGroups.map((group) =>
+                  group.questionIds.length > 0 ? (
+                    <form key={group.examKey} action={startRetryAction}>
+                      <input type="hidden" name="examKey" value={group.examKey} />
+                      <input type="hidden" name="questionIds" value={group.questionIds.join(',')} />
+                      <input type="hidden" name="returnTo" value={here} />
+                      <SubmitButton pendingLabel="Starting the retry…">
+                        {`Retry ${group.questionIds.length} ${data.retryGroups.length > 1 ? `${group.examLabel} ` : ''}question${group.questionIds.length === 1 ? '' : 's'}`}
+                      </SubmitButton>
+                    </form>
+                  ) : null,
+                )}
+              </div>
+              {data.retryGroups.some((group) => group.unavailable > 0) ? (
+                <p className="mt-3 text-sm text-ink-muted">
+                  {`${data.retryGroups.reduce((n, group) => n + group.unavailable, 0)} of these ${data.retryGroups.reduce((n, group) => n + group.unavailable, 0) === 1 ? 'is' : 'are'} being revised and not offered again for now.`}
+                </p>
+              ) : null}
+            </Card>
           ) : null}
 
-          <ol className="space-y-6">
-            {entries.map(({ row, question }) => {
-              const response = parseResponse(row.responseJson);
-              const answered = row.responseStatus === 'answered';
-              const correct = row.isCorrect === 1;
-              const config = getExamConfig(row.examKey);
-              const keyOptionIds = correctOptionIds(question.answerKey);
+          {data.labelSummary.length > 0 ? (
+            <p className="mb-6 text-sm text-ink-muted">
+              {`Your labels so far: ${data.labelSummary.map((label) => `${label.text} (${label.count})`).join(' · ')}`}
+            </p>
+          ) : null}
 
+          <ol className="space-y-3">
+            {data.entries.map((entry) => {
+              const when = schedule(entry, now);
+              const notes = [
+                entry.missCount > 1 ? `missed ${entry.missCount} times` : null,
+                `last seen ${formatDate(entry.seenAt)}`,
+                entry.correction === 'corrected' ? 'corrected since' : null,
+                entry.correction === 'unavailable' ? 'being revised' : null,
+              ].filter(Boolean);
               return (
-                <li key={`${row.attemptId}-${row.questionId}`}>
-                  <Card>
-                    <div className="mb-3 flex flex-wrap items-center gap-2">
-                      <Badge tone={correct ? 'positive' : answered ? 'negative' : 'neutral'}>
-                        {correct ? 'Correct' : answered ? 'Incorrect' : 'Left blank'}
-                      </Badge>
-                      {config ? <Badge tone="neutral">{config.shortName}</Badge> : null}
-                      {row.bookmarked ? <Badge tone="accent">Bookmarked</Badge> : null}
-                      <span className="text-sm text-ink-muted">
-                        Last seen {formatDate(row.seenAt)}
-                      </span>
+                <Card as="li" key={entry.attemptItemId} padding="sm" className="sm:flex sm:items-start sm:gap-6">
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <OutcomeBadge outcome={entry.outcome} />
+                      <Badge tone="neutral">{entry.examLabel}</Badge>
+                      {when ? <Badge tone={when === 'Due now' ? 'caution' : 'neutral'}>{when}</Badge> : null}
+                      {entry.bookmarked ? <Badge tone="accent">Bookmarked</Badge> : null}
                     </div>
-
-                    <h2 className="sr-only">Question from {formatDate(row.seenAt)}</h2>
-
-                    {question.stimulus ? (
-                      <div className="mb-4">
-                        <Stimulus stimulus={question.stimulus} />
-                      </div>
+                    <h2 className="mt-2 font-medium">{`${entry.topicName} · ${entry.skillName}`}</h2>
+                    {entry.preview ? <p className="mt-1 text-sm text-ink-muted">{entry.preview}</p> : null}
+                    <p className="mt-1 text-xs text-ink-subtle">{notes.join(' · ')}</p>
+                    {entry.labels.length > 0 ? (
+                      <p className="mt-2 text-sm">{`Your label${entry.labels.length === 1 ? '' : 's'}: ${entry.labels.map(labelText).join(', ')}`}</p>
                     ) : null}
-
-                    {question.instructionsMd ? (
-                      <Markdown
-                        source={question.instructionsMd}
-                        className="prose-academic mb-2 text-sm text-ink-muted"
-                      />
-                    ) : null}
-
-                    <Markdown source={question.stemMd} className="prose-academic question-body mb-4" />
-
-                    {question.options.length > 0 ? (
-                      <ul className="mb-4 space-y-1.5 text-sm">
-                        {question.options.map((option) => {
-                          const chosen =
-                            response?.type === 'single_select'
-                              ? response.optionId === option.id
-                              : response?.type === 'multi_select'
-                                ? response.optionIds.includes(option.id)
-                                : response?.type === 'two_part'
-                                  ? response.selections.some((s) => s.optionId === option.id)
-                                  : false;
-                          const isKey = keyOptionIds.includes(option.id);
-                          const rationale = question.distractorRationale[option.id];
-
-                          return (
-                            <li key={option.id} className="rounded border border-line p-2.5">
-                              <div className="flex flex-wrap items-baseline gap-2">
-                                <span className="font-semibold text-ink-muted">{option.label}.</span>
-                                <Markdown source={option.textMd} className="min-w-0 flex-1" />
-                                {chosen ? <Badge tone="accent">Your answer</Badge> : null}
-                                {isKey ? <Badge tone="positive">Correct answer</Badge> : null}
-                              </div>
-                              {rationale ? (
-                                <Markdown
-                                  source={rationale}
-                                  className="mt-1.5 ps-6 text-ink-muted"
-                                />
-                              ) : null}
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    ) : null}
-
-                    <dl className="mb-4 grid gap-x-6 gap-y-2 text-sm sm:grid-cols-[minmax(8rem,auto)_1fr]">
-                      <dt className="font-medium text-ink-muted">Your answer</dt>
-                      <dd className="text-ink">{describeResponse(response, question.options)}</dd>
-                      <dt className="font-medium text-ink-muted">Correct answer</dt>
-                      <dd className="text-ink">
-                        {describeAnswerKey(question.answerKey, question.options)}
-                      </dd>
-                    </dl>
-
-                    <div className="rounded-card bg-surface-sunken p-4">
-                      <h3 className="mb-1 font-heading text-base font-semibold">Explanation</h3>
-                      <Markdown
-                        source={question.explanationMd}
-                        className="prose-academic text-sm"
-                      />
-                      <p className="mt-3 text-xs text-ink-subtle">
-                        Difficulty label: {question.difficultyBasis} judgement, not calibrated
-                        against response data.
-                      </p>
-                    </div>
-
-                    <div className="mt-4 flex flex-wrap items-center gap-3">
-                      <form action={toggleBookmarkAction}>
-                        <input type="hidden" name="questionId" value={row.questionId} />
-                        <input type="hidden" name="filter" value={filter} />
-                        <Button type="submit" variant="secondary" size="sm">
-                          {row.bookmarked ? 'Remove bookmark' : 'Bookmark this question'}
-                        </Button>
-                      </form>
-                      <Link
-                        href={`/attempt/${row.attemptId}/results`}
-                        className="text-sm no-underline hover:underline"
-                      >
-                        See the session this came from
-                      </Link>
-                      {config ? (
-                        <Link
-                          href={`/practice/${row.examKey}?skill=${encodeURIComponent(question.skillSlug)}`}
-                          className="text-sm no-underline hover:underline"
-                        >
-                          Practise this skill
-                        </Link>
-                      ) : null}
-                    </div>
-                  </Card>
-                </li>
+                  </div>
+                  <div className="mt-3 flex shrink-0 flex-wrap items-center gap-3 sm:mt-0 sm:flex-col sm:items-end">
+                    <ButtonLink href={`/attempt/${entry.attemptId}/results/${entry.ordinal}`} size="sm" variant="secondary">
+                      Review answer and explanation
+                    </ButtonLink>
+                    <form action={toggleBookmarkAction}>
+                      <input type="hidden" name="questionId" value={entry.questionId} />
+                      <input type="hidden" name="returnTo" value={here} />
+                      <SubmitButton size="sm" variant="quiet">
+                        {entry.bookmarked ? 'Remove bookmark' : 'Bookmark'}
+                      </SubmitButton>
+                    </form>
+                  </div>
+                </Card>
               );
             })}
           </ol>
+          {data.total > data.entries.length ? (
+            <p className="mt-4 text-sm text-ink-muted">{`Showing the first ${data.entries.length} of ${data.total}.`}</p>
+          ) : null}
         </>
       )}
 
@@ -632,5 +205,46 @@ export default async function ReviewPage({
         </ButtonLink>
       </div>
     </Container>
+  );
+}
+
+function EmptyView({
+  view,
+  counts,
+  nextDueAt,
+}: {
+  view: NotebookView;
+  counts: Record<NotebookView, number>;
+  nextDueAt: string | null;
+}) {
+  if (view === 'due') {
+    return (
+      <EmptyState
+        title="Nothing is due right now"
+        action={
+          counts.later > 0 ? (
+            <ButtonLink href="/review?filter=later">See what comes back later</ButtonLink>
+          ) : (
+            <ButtonLink href="/dashboard">Back to dashboard</ButtonLink>
+          )
+        }
+      >
+        <p>
+          {counts.later > 0
+            ? `${counts.later} missed question${counts.later === 1 ? ' comes' : 's come'} back later${nextDueAt ? `, the next on ${formatDate(nextDueAt)}` : ''}.`
+            : 'When you miss a question in a finished session, it comes back here the day after.'}
+        </p>
+      </EmptyState>
+    );
+  }
+  const copy: Record<Exclude<NotebookView, 'due'>, { title: string; body: string }> = {
+    later: { title: 'Nothing is scheduled', body: 'Questions you miss are scheduled to come back here.' },
+    all: { title: 'No mistakes yet', body: 'Questions you get wrong or leave blank in a finished session appear here, with the answer and the full explanation.' },
+    bookmarked: { title: 'No bookmarks yet', body: 'Bookmark a question from its review page and it is kept here, whether you answered it correctly or not.' },
+  };
+  return (
+    <EmptyState title={copy[view].title} action={<ButtonLink href="/dashboard">Back to dashboard</ButtonLink>}>
+      <p>{copy[view].body}</p>
+    </EmptyState>
   );
 }
