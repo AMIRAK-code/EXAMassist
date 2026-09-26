@@ -1,8 +1,9 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getDb } from '@/lib/db';
-import { EXAM_CONFIGS, getExamConfig, getHubForConfig } from '@/lib/exams/registry';
-import { blueprintAvailability, practiceFacets } from '@/lib/attempts/availability';
+import { EXAM_CONFIGS, getBlueprint, getExamConfig, getHubForConfig } from '@/lib/exams/registry';
+import { blueprintAvailability, facetsFromPool, practiceFacets } from '@/lib/attempts/availability';
+import { getPool } from '@/lib/content/repository';
 import { eligibleCount } from '@/lib/attempts/facets';
 import { getCurrentUser } from '@/lib/auth/session';
 import { StartPracticeForm, type PresetSkill } from '@/components/practice/start-practice-form';
@@ -66,6 +67,16 @@ export default async function PracticeSetupPage({
 
   const others = availability.filter((a) => a.blueprint.id !== 'practice');
   const totalItems = eligibleCount(facets, {});
+
+  // The questions this learner has never been shown, counted by the rule
+  // session creation enforces for "new questions only". Offered only once
+  // some have been shown: before that, every question is new.
+  const practiceBlueprint = getBlueprint(config, 'practice');
+  const unseenFacets =
+    user && practiceBlueprint
+      ? facetsFromPool(getPool(db, config.examKey, user.id).filter((item) => item.lastSeenAt === null), config, practiceBlueprint)
+      : null;
+  const offerUnseen = unseenFacets && eligibleCount(unseenFacets, {}) < totalItems ? unseenFacets : null;
   const domainChoices = config.domains.map((domain) => ({
     slug: domain.slug,
     name: domain.name,
@@ -153,6 +164,7 @@ export default async function PracticeSetupPage({
                   domains={domainChoices}
                   presetDomain={presetDomain}
                   presetSkill={presetSkill}
+                  unseenFacets={offerUnseen}
                   guestNote={user && !user.isGuest ? null : GUEST_NOTE_SHORT}
                 />
               </div>
