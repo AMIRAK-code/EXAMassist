@@ -9,6 +9,9 @@ import { EditorialLine } from '@/components/site/editorial-line';
 import { formatSummary } from '@/components/exams/format-availability';
 import { buttonClass, cx } from '@/components/ui';
 import { JsonLd, organizationSchema, webSiteSchema } from '@/components/seo/json-ld';
+import { getCurrentUser } from '@/lib/auth/session';
+import { continueStudying } from '@/lib/learning/continue';
+import { ContinueStrip } from '@/components/home/continue-strip';
 import { accent } from './_fonts/accent';
 
 export const dynamic = 'force-dynamic';
@@ -59,6 +62,12 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
   const source = sourceExample();
   const asOf = new Date(home.asOf).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
+  // A returning learner's way back in. Rendered here, per request, for the
+  // learner the cookie names; the page is dynamic and sent as private and
+  // uncacheable, so it can never be served to anyone else.
+  const user = await getCurrentUser();
+  const strip = user ? continueStudying(db, user.id) : null;
+
   return (
     <div className={accent.variable}>
       <JsonLd
@@ -67,6 +76,8 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
           webSiteSchema(siteUrl(), SITE.name),
         ]}
       />
+
+      {strip ? <ContinueStrip strip={strip} /> : null}
 
       {/* --- 1. Hero: headline, exam selector, a real sample question ------ */}
       <section id="top" className="mx-auto max-w-6xl scroll-mt-20 px-4 pb-20 pt-10 sm:px-6 sm:pt-14 lg:pb-24">
