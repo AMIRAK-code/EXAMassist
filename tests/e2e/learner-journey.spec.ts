@@ -109,7 +109,7 @@ test.describe('practice', () => {
 
     await page.goto(`/attempt/${attemptId}/results`);
     await expect(page.getByRole('heading', { level: 1 })).toContainText('Your results');
-    await expect(page.getByRole('heading', { name: 'Performance by skill' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Where you lost marks' })).toBeVisible();
   });
 
   test('answers and question order survive a reload', async ({ page }) => {
