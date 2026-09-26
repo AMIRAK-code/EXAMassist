@@ -34,6 +34,12 @@ function renderMath(tex: string, displayMode: boolean): string {
   }
 }
 
+/** Whether rendering this source produces any KaTeX output (the same delimiters extractMath uses). */
+export function containsMath(source: string | null | undefined): boolean {
+  if (!source) return false;
+  return /\$\$[\s\S]+?\$\$/.test(source) || /(^|[^\\])\$[^$\n]+?\$/.test(source);
+}
+
 function extractMath(source: string): { text: string; tokens: MathToken[] } {
   const tokens: MathToken[] = [];
   let index = 0;
