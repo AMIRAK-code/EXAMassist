@@ -9,7 +9,9 @@ export async function POST(request: Request) {
     const store = await cookies();
     destroySession(getDb(), store.get(SESSION_COOKIE)?.value);
     store.delete(SESSION_COOKIE);
-    return ok({ signedOut: true });
+    // Answers the player kept on this device, waiting for the server, belong
+    // to the account signing out: nothing of theirs stays behind.
+    return ok({ signedOut: true }, { headers: { 'Clear-Site-Data': '"storage"' } });
   } catch (error) {
     return toErrorResponse(error);
   }

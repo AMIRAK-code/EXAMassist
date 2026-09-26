@@ -22,7 +22,7 @@ export function SiteHeader({ account }: { account: AccountState }) {
   const primary = learner ? LEARNER_NAV : PUBLIC_NAV;
 
   return (
-    <header className="sticky top-0 z-40 border-b-[1.5px] border-ink bg-paper">
+    <header data-site-chrome className="sticky top-0 z-40 border-b-[1.5px] border-ink bg-paper">
       <div className="relative mx-auto flex h-16 max-w-6xl items-center gap-4 px-4 sm:px-6">
         <Link
           href="/"

@@ -3,6 +3,7 @@
 import { useId, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Alert, Button, buttonClass } from '@/components/ui';
+import { clearAllPending } from '@/lib/player/pending';
 
 /**
  * The interactive parts of the account page: editing the profile, taking a copy
@@ -210,6 +211,13 @@ export function SignOutButton() {
       return;
     }
 
+    // The response also asks the browser to clear this site's storage; this
+    // covers a browser that ignores that. Nothing of this account's waits here.
+    try {
+      clearAllPending(window.localStorage);
+    } catch {
+      /* storage unavailable: nothing was kept */
+    }
     router.replace('/');
     router.refresh();
   }
