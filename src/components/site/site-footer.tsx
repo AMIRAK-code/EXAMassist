@@ -37,7 +37,7 @@ function Column({ id, title, items }: { id: string; title: string; items: Array<
 export function SiteFooter() {
   const exams = listHubs().map((hub) => ({ href: `/exams/${hub.slug}`, label: hub.name }));
   return (
-    <footer className="mt-auto bg-ink text-ink-inverse">
+    <footer data-site-chrome className="mt-auto bg-ink text-ink-inverse">
       <div className="mx-auto max-w-6xl px-4 py-14 text-sm sm:px-6">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
