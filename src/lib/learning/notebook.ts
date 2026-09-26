@@ -32,6 +32,12 @@ export function parseView(value: string | string[] | undefined): NotebookView {
   return NOTEBOOK_VIEWS.some((view) => view.key === raw) ? (raw as NotebookView) : 'due';
 }
 
+/** A page number from the query string: a positive integer, else the first page. */
+export function parsePage(value: string | string[] | undefined): number {
+  const raw = Array.isArray(value) ? value[0] : value;
+  return raw && /^\d{1,4}$/.test(raw) && Number(raw) >= 1 ? Number(raw) : 1;
+}
+
 export interface NotebookEntry {
   questionId: string;
   examKey: string;
@@ -62,7 +68,13 @@ export interface NotebookData {
   view: NotebookView;
   counts: Record<NotebookView, number>;
   entries: NotebookEntry[];
+  /** Entries in the whole view, across every page. */
   total: number;
+  /** The page shown (1-based), kept within 1..pageCount. */
+  page: number;
+  pageCount: number;
+  /** The 1-based position in the view of this page's first entry. */
+  firstIndex: number;
   nextDueAt: string | null;
   retryGroups: RetryGroup[];
   labelSummary: Array<{ key: MistakeLabel; text: string; count: number }>;
@@ -92,10 +104,10 @@ interface Located {
 const LATEST_MISS = `(SELECT ai.id FROM attempt_items ai JOIN attempts a ON a.id = ai.attempt_id
     WHERE a.user_id = ? AND ai.question_id = %Q AND a.status IN ('submitted', 'expired')
       AND (ai.is_correct = 0 OR ai.response_status = 'unanswered')
-    ORDER BY COALESCE(ai.last_answered_at, a.submitted_at, a.created_at) DESC LIMIT 1)`;
+    ORDER BY COALESCE(ai.last_answered_at, a.submitted_at, a.created_at) DESC, ai.id DESC LIMIT 1)`;
 const LATEST_ANY = `(SELECT ai.id FROM attempt_items ai JOIN attempts a ON a.id = ai.attempt_id
     WHERE a.user_id = ? AND ai.question_id = %Q AND a.status IN ('submitted', 'expired')
-    ORDER BY COALESCE(ai.last_answered_at, a.submitted_at, a.created_at) DESC LIMIT 1)`;
+    ORDER BY COALESCE(ai.last_answered_at, a.submitted_at, a.created_at) DESC, ai.id DESC LIMIT 1)`;
 
 function locate(db: Db, userId: string, view: NotebookView, nowIso: string): Located[] {
   if (view === 'due' || view === 'later') {
@@ -105,7 +117,7 @@ function locate(db: Db, userId: string, view: NotebookView, nowIso: string): Loc
                 rq.miss_count AS missCount, rq.due_at AS dueAt
            FROM review_queue rq
           WHERE rq.user_id = ? AND rq.last_result <> 'correct' AND rq.due_at ${view === 'due' ? '<=' : '>'} ?
-          ORDER BY rq.due_at ${view === 'due' ? 'ASC' : 'ASC'}`,
+          ORDER BY rq.due_at ASC, rq.question_id ASC`,
       )
       .all(userId, userId, nowIso) as Located[];
   }
@@ -120,7 +132,7 @@ function locate(db: Db, userId: string, view: NotebookView, nowIso: string): Loc
                     AND (ai.is_correct = 0 OR ai.response_status = 'unanswered')
                   GROUP BY ai.question_id) m
            LEFT JOIN review_queue rq ON rq.user_id = ? AND rq.question_id = m.questionId
-          ORDER BY m.lastMiss DESC`,
+          ORDER BY m.lastMiss DESC, m.questionId ASC`,
       )
       .all(userId, userId, userId) as Located[];
   }
@@ -131,7 +143,7 @@ function locate(db: Db, userId: string, view: NotebookView, nowIso: string): Loc
          FROM bookmarks b
          LEFT JOIN review_queue rq ON rq.user_id = b.user_id AND rq.question_id = b.question_id
         WHERE b.user_id = ?
-        ORDER BY b.created_at DESC`,
+        ORDER BY b.created_at DESC, b.question_id ASC`,
     )
     .all(userId, userId) as Located[];
 }
@@ -200,10 +212,18 @@ function details(db: Db, userId: string, itemIds: string[]): Map<string, DetailR
   return new Map(rows.map((row) => [row.itemId, row]));
 }
 
-export function buildNotebook(db: Db, userId: string, view: NotebookView, now = new Date()): NotebookData {
+/**
+ * One page of a view. Every view is ordered on a unique key (its date, then
+ * the question id), so an unchanged notebook pages without repeating or
+ * skipping an entry. A page past the end shows the last page.
+ */
+export function buildNotebook(db: Db, userId: string, view: NotebookView, now = new Date(), requestedPage = 1): NotebookData {
   const nowIso = now.toISOString();
   const located = locate(db, userId, view, nowIso).filter((row) => row.itemId);
-  const visible = located.slice(0, NOTEBOOK_PAGE);
+  const pageCount = Math.max(1, Math.ceil(located.length / NOTEBOOK_PAGE));
+  const page = Math.min(Math.max(1, Math.floor(requestedPage) || 1), pageCount);
+  const offset = (page - 1) * NOTEBOOK_PAGE;
+  const visible = located.slice(offset, offset + NOTEBOOK_PAGE);
   const detailById = details(db, userId, visible.map((row) => row.itemId));
   const itemLabels = labelsForItems(db, userId, visible.map((row) => row.itemId));
 
@@ -240,7 +260,7 @@ export function buildNotebook(db: Db, userId: string, view: NotebookView, now = 
     });
   }
 
-  // A retry per exam for the misses in this view that can be asked again.
+  // A retry per exam for the misses on this page that can be asked again.
   const retryGroups: RetryGroup[] = [];
   if (view !== 'bookmarked') {
     const byExam = new Map<string, string[]>();
@@ -271,6 +291,9 @@ export function buildNotebook(db: Db, userId: string, view: NotebookView, now = 
     counts: counts(db, userId, nowIso),
     entries,
     total: located.length,
+    page,
+    pageCount,
+    firstIndex: offset + 1,
     nextDueAt: next.nextDueAt,
     retryGroups,
     labelSummary: labelSummary(db, userId),

@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import type { Db } from '@/lib/db';
 import { getResult, recordResponse, startAttempt, startRetry, submitAttempt } from '@/lib/attempts/service';
 import { requireExamConfig } from '@/lib/exams/registry';
-import { buildNotebook, parseView, stemPreview } from '@/lib/learning/notebook';
+import { NOTEBOOK_PAGE, buildNotebook, parsePage, parseView, stemPreview } from '@/lib/learning/notebook';
 import { labelSummary, labelsForItems, setMistakeLabels } from '@/lib/learning/mistakes';
 import { getResultsSummary, getReviewItem } from '@/lib/learning/results';
 import { createTestDb, createUser, seedQuestions } from './helpers/test-db';
@@ -92,6 +92,103 @@ describe('views', () => {
   it('previews a stem as plain text, without maths or Markdown', () => {
     expect(stemPreview('If $x^2 = 4$, what is **x**?')).toBe('If …, what is x?');
     expect(stemPreview('a'.repeat(300)).length).toBe(140);
+  });
+});
+
+describe('pages', () => {
+  // A notebook of three pages: sixteen sessions left entirely blank, on sixteen
+  // different days, over a bank of 112 questions. Blank answers in one session
+  // share a timestamp, so ordering ties are the normal case here.
+  const t0 = new Date('2026-09-01T09:00:00.000Z');
+  const later = new Date(t0.getTime() + 30 * DAY);
+  const everything = Array.from({ length: 30 }, (_, index) => index);
+
+  function bigNotebook() {
+    db = createTestDb();
+    alice = createUser(db);
+    bob = createUser(db);
+    seedQuestions(db, SAT, { perDomain: 14 });
+    for (let day = 0; day < 16; day += 1) finish(alice, [], everything, new Date(t0.getTime() + day * DAY));
+    const missed = db
+      .prepare(
+        `SELECT DISTINCT ai.question_id AS id FROM attempt_items ai JOIN attempts a ON a.id = ai.attempt_id
+          WHERE a.user_id = ? AND ai.response_status = 'unanswered'`,
+      )
+      .all(alice) as Array<{ id: string }>;
+    return missed.map((row) => row.id);
+  }
+
+  function walk(view: 'due' | 'all' | 'bookmarked', userId = alice) {
+    const first = buildNotebook(db, userId, view, later, 1);
+    const pages = [first];
+    for (let page = 2; page <= first.pageCount; page += 1) pages.push(buildNotebook(db, userId, view, later, page));
+    return { first, pages, ids: pages.flatMap((data) => data.entries.map((entry) => entry.questionId)) };
+  }
+
+  it('reaches every entry exactly once across pages, in the same order each time', () => {
+    const missed = bigNotebook();
+    expect(missed.length).toBeGreaterThan(2 * NOTEBOOK_PAGE);
+
+    for (const view of ['all', 'due'] as const) {
+      const { first, pages, ids } = walk(view);
+      expect(first.total).toBe(missed.length);
+      expect(first.pageCount).toBe(Math.ceil(missed.length / NOTEBOOK_PAGE));
+      expect(ids).toHaveLength(missed.length);
+      expect(new Set(ids).size).toBe(ids.length);
+      expect([...ids].sort()).toEqual([...missed].sort());
+      pages.forEach((data, index) => {
+        expect(data.page).toBe(index + 1);
+        expect(data.firstIndex).toBe(index * NOTEBOOK_PAGE + 1);
+        expect(data.entries.length).toBe(Math.min(NOTEBOOK_PAGE, missed.length - index * NOTEBOOK_PAGE));
+      });
+      // Unchanged data, walked again: identical pages.
+      expect(walk(view).ids).toEqual(ids);
+    }
+  });
+
+  it('breaks ties on the question id, so the order is total', () => {
+    bigNotebook();
+    const all = walk('all').pages.flatMap((data) => data.entries);
+    for (let index = 1; index < all.length; index += 1) {
+      const [a, b] = [all[index - 1], all[index]];
+      // Most recent first; within one session's blanks (the same moment), by question id.
+      if (a.seenAt === b.seenAt) expect(a.questionId < b.questionId).toBe(true);
+      else expect(a.seenAt! > b.seenAt!).toBe(true);
+    }
+    const due = walk('due').pages.flatMap((data) => data.entries);
+    for (let index = 1; index < due.length; index += 1) {
+      const [a, b] = [due[index - 1], due[index]];
+      if (a.dueAt === b.dueAt) expect(a.questionId < b.questionId).toBe(true);
+      else expect(a.dueAt! < b.dueAt!).toBe(true);
+    }
+  });
+
+  it('pages bookmarks made at the same moment without repeating one', () => {
+    const missed = bigNotebook();
+    const insert = db.prepare('INSERT INTO bookmarks (user_id, question_id, exam_key, created_at) VALUES (?, ?, ?, ?)');
+    for (const id of missed) insert.run(alice, id, SAT.examKey, t0.toISOString());
+    const { first, ids } = walk('bookmarked');
+    expect(first.pageCount).toBeGreaterThan(1);
+    expect(ids).toEqual([...missed].sort());
+  });
+
+  it('keeps a page within range and never shows another learner’s entries', () => {
+    const missed = bigNotebook();
+    const last = Math.ceil(missed.length / NOTEBOOK_PAGE);
+    expect(buildNotebook(db, alice, 'all', later, 99).page).toBe(last);
+    expect(buildNotebook(db, alice, 'all', later, 0).page).toBe(1);
+    expect(buildNotebook(db, alice, 'all', later, Number.NaN).page).toBe(1);
+
+    const other = buildNotebook(db, bob, 'all', later, 2);
+    expect(other).toMatchObject({ total: 0, page: 1, pageCount: 1, entries: [] });
+    finish(bob, [0]);
+    expect(walk('all', bob).ids).toHaveLength(1);
+  });
+
+  it('reads the page number from the query string', () => {
+    expect(parsePage('3')).toBe(3);
+    expect(parsePage(['2', '5'])).toBe(2);
+    for (const bad of [undefined, '', '0', '-1', '1.5', 'two', '99999']) expect(parsePage(bad)).toBe(1);
   });
 });
 
