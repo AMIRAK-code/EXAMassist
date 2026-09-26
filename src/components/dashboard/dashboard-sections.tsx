@@ -307,6 +307,7 @@ export function RecentSessions({ exam }: { exam: ExamDashboard }) {
                   <p className="mt-1 text-sm text-ink-muted">{`${formatDate(session.finishedAt)} · ${outcome}`}</p>
                 </div>
                 <div className="flex shrink-0 items-center gap-3">
+                  {session.isRetry ? <Badge tone="accent">Retry</Badge> : null}
                   <Badge tone={session.status === 'expired' ? 'caution' : 'neutral'}>{statusLabel(session.status)}</Badge>
                   {session.correct !== null ? (
                     <ButtonLink href={`/attempt/${session.id}/results`} size="sm" variant="secondary">

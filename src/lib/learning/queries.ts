@@ -36,6 +36,8 @@ export function domainPerformance(db: Db, userId: string, examKey: string): Map<
        JOIN attempts a           ON a.id = ai.attempt_id
        JOIN question_versions qv ON qv.id = ai.question_version_id
        WHERE a.user_id = ? AND a.exam_key = ? AND a.status IN ('submitted', 'expired')
+         -- Retries ask questions already answered: practice, not new evidence (attempts/retry.ts).
+         AND a.mode <> 'review'
        GROUP BY qv.domain_slug`,
     )
     .all(userId, examKey) as Array<{
@@ -53,7 +55,7 @@ export function domainPerformance(db: Db, userId: string, examKey: string): Map<
        JOIN attempts a           ON a.id = ai.attempt_id
        JOIN question_versions qv ON qv.id = ai.question_version_id
        WHERE a.user_id = ? AND a.exam_key = ? AND ai.time_ms > 0
-         AND a.status IN ('submitted', 'expired')`,
+         AND a.status IN ('submitted', 'expired') AND a.mode <> 'review'`,
     )
     .all(userId, examKey) as Array<{ domainSlug: string; timeMs: number }>;
 
@@ -97,7 +99,7 @@ export function recentAttemptAccuracies(
       `SELECT r.accuracy AS accuracy
        FROM attempt_results r
        JOIN attempts a ON a.id = r.attempt_id
-       WHERE a.user_id = ? AND a.exam_key = ?
+       WHERE a.user_id = ? AND a.exam_key = ? AND a.mode <> 'review'
        ORDER BY r.computed_at DESC
        LIMIT ?`,
     )
