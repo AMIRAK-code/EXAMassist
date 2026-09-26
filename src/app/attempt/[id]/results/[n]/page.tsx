@@ -7,6 +7,7 @@ import { getReviewItem, isMiss } from '@/lib/learning/results';
 import { MISTAKE_LABELS } from '@/lib/learning/mistakes';
 import { chosenOptionIds, describeAnswerKey, describeResponse, keyOptionIds } from '@/lib/learning/answers';
 import { saveLabelsAction, startRetryAction, toggleBookmarkAction } from '@/app/actions/learning';
+import { preloadKatexFonts } from '@/lib/content/katex-fonts';
 import { Markdown, Stimulus } from '@/components/content';
 import { LearningNotice } from '@/components/learning-notice';
 import { OutcomeBadge } from '@/components/results/results-sections';
@@ -45,6 +46,14 @@ export default async function QuestionReviewPage({
 
   const { item, question, response } = review;
   const here = `/attempt/${id}/results/${ordinal}`;
+  preloadKatexFonts([
+    question.stimulus?.bodyMd,
+    question.instructionsMd,
+    question.stemMd,
+    question.explanationMd,
+    ...question.options.map((option) => option.textMd),
+    ...Object.values(question.distractorRationale),
+  ]);
   const missed = isMiss(item.outcome);
   const keyIds = keyOptionIds(question.answerKey);
   const chosen = chosenOptionIds(response);
