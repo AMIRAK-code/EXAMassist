@@ -193,14 +193,19 @@ export function DataTable({ data }: { data: StimulusData }) {
   );
 }
 
-export function StimulusView({ stimulus }: { stimulus: StimulusViewModel }) {
+/**
+ * `reading` sets the title in the reading serif with the passage, where a
+ * question is read (the player, question review): an interface-font title
+ * that wrapped differently once its font arrived would move the passage.
+ */
+export function StimulusView({ stimulus, reading = false }: { stimulus: StimulusViewModel; reading?: boolean }) {
   return (
     <section
       aria-label={stimulus.title ?? 'Source material'}
       className="rounded-card border border-line bg-surface-sunken p-5"
     >
       {stimulus.title ? (
-        <h2 className="mb-3 font-heading text-lg font-semibold">{stimulus.title}</h2>
+        <h2 className={`mb-3 text-lg font-semibold ${reading ? 'question-text' : 'font-heading'}`}>{stimulus.title}</h2>
       ) : null}
 
       {stimulus.bodyHtml ? (

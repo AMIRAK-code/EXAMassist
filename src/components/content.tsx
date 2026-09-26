@@ -36,6 +36,6 @@ export function toStimulusViewModel(stimulus: StimulusPayload) {
   };
 }
 
-export function Stimulus({ stimulus }: { stimulus: StimulusPayload }) {
-  return <StimulusView stimulus={toStimulusViewModel(stimulus)} />;
+export function Stimulus({ stimulus, reading = false }: { stimulus: StimulusPayload; reading?: boolean }) {
+  return <StimulusView stimulus={toStimulusViewModel(stimulus)} reading={reading} />;
 }

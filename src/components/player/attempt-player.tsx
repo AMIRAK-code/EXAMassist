@@ -442,12 +442,13 @@ export function AttemptPlayer({ model, owner }: { model: PlayerModel; owner: str
     <div data-focus-mode className="flex min-h-dvh flex-col">
       {/* Study header: what this is, the clock, and the save status */}
       <header className="sticky top-0 z-30 border-b border-line bg-paper/95 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-4 gap-y-2 px-4 py-2.5 sm:px-6">
+        {/* One row that never wraps: the label truncates, so the interface font arriving cannot add a line. */}
+        <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-2.5 sm:gap-4 sm:px-6">
           <div className="min-w-0 flex-1">
             <p className="truncate text-sm font-medium">{model.blueprintLabel}</p>
             <p className="truncate text-xs text-ink-muted">{`${model.examName} · ${part.label}`}</p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
             <SaveIndicator status={saves.status} timed={timed} onRetry={saves.retryNow} />
             {remaining !== null ? (
               <div
@@ -466,7 +467,7 @@ export function AttemptPlayer({ model, owner }: { model: PlayerModel; owner: str
             )}
             <Link
               href={`/dashboard?exam=${model.examKey}`}
-              className="hidden text-sm font-medium sm:inline"
+              className="text-sm font-medium"
               title={timed ? 'The timer keeps running while you are away.' : 'You can come back to this session later.'}
             >
               Leave
@@ -509,7 +510,7 @@ export function AttemptPlayer({ model, owner }: { model: PlayerModel; owner: str
         <div className={cx('mt-4', split && 'lg:grid lg:grid-cols-2 lg:items-start lg:gap-8')}>
           {item.stimulus ? (
             <div className="question-text mb-5 lg:sticky lg:top-20 lg:mb-0 lg:max-h-[calc(100dvh-11rem)] lg:overflow-y-auto">
-              <StimulusView stimulus={item.stimulus} />
+              <StimulusView stimulus={item.stimulus} reading />
             </div>
           ) : null}
 
