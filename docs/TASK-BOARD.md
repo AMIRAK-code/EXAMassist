@@ -95,3 +95,16 @@ Evidence commands are runnable from the repository root.
 4. `/admin/questions` reads the content JSON files at request time to show
    independent-solve evidence, which is not in the database. A migration adding
    `question_versions.independent_solve_json` would be cleaner.
+5. **C-ACT-023, a content correction tracked on its own** (added 25 September
+   2026, outside Phase 2's acceptance). `enhanced-act-read-time-use-table-023`
+   stays quarantined and is not served. The stem's "hid the most childcare"
+   can be read as an absolute or a proportional measure; under the
+   proportional reading no option is correct, so the item has a second
+   defensible outcome. Its option letters were fixed in the Phase 2 closeout
+   (docs/REDESIGN.md §12.1).
+   - **To close:** reword the stem so it names the measure, as a new version;
+     re-check every claim the explanation and notes make about the options;
+     pass a new blind solve; then publish through `apply-review.ts` and
+     `db:seed`.
+   - **Availability:** no format waits on it. It is a Reading item, and ACT
+     timed Reading is 29 questions short either way.
