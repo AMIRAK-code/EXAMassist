@@ -1,4 +1,4 @@
-# Redesign — Phases 1 to 3: assessment, direction, plan and delivery
+# Redesign — Phases 1 to 4: assessment, direction, plan and delivery
 
 The "Academic Avant-Garde" redesign. Sections 1–8 are the Phase 1 assessment
 and proposal, written before anything changed; where Phase 2 built something
@@ -15,6 +15,8 @@ Section 14 records the revised budgets and the layout-stability pass, gives
 the final measurements and acceptance, and proposes the scope of Phase 3.
 Section 15 reports Phase 3: resume, the dashboard and the homepage's way back
 in for returning learners, with its tests, measurements and acceptance.
+Section 16 reports Phase 4: results, a question on its own page, the mistake
+notebook, labels, retries and new-question practice.
 
 The homepage concept (desktop, mobile and design-system artboards, with a
 working sample question per exam) is published as a private canvas:
@@ -370,8 +372,8 @@ as follows. Phase 2 combined brief stages 2 and 3.
 | 1 | 1 | Inspect the product; direction, system, plan | Done |
 | 2 | 2 + 3 | Tokens, typography, shared components; header, footer, mobile navigation; homepage; plus the decisions in §9 | **Complete** (26 September 2026). Built in §11, closed out in §12–§14, and accepted against the revised budgets (§14.8) |
 | 3 | 4 | Dashboard: resume, one next action with its basis, domain-level skill landscape, all empty and error states | **Complete** (26 September 2026, §15), with learner navigation back in from the homepage |
-| 4 | 5 | Results and mistake notebook: verdict first, evidence, review on its own page, retry flow, optional mistake labels | Next; not started |
-| 5 | 6 | Practice setup formats and the player: focus mode, split passage, visible save states, persisted offline queue, debounced input | — |
+| 4 | 5 | Results and mistake notebook: verdict first, evidence, review on its own page, retry flow, optional mistake labels | **Complete** (26 September 2026, §16), with one open decision on maths question pages (§16.8) |
+| 5 | 6 | Practice setup formats and the player: focus mode, split passage, visible save states, persisted offline queue, debounced input | Next; not started |
 | 6 | 7 | Remaining routes: hubs, guides, auth, account, study plan and readiness, admin | — |
 | 7 | 8 | Validation: axe-core in CI, screen-reader pass, performance budgets, 200% zoom | — |
 
@@ -1837,4 +1839,458 @@ run.
 - **Tests:** 265 unit tests and 99 browser tests pass; the site sweep is
   clean.
 
-Phase 4 (results and the mistake notebook) has not been started.
+*Phase 4 followed; see §16.*
+
+## 16. Phase 4: results and the mistake notebook (26 September 2026)
+
+**Decisions given:**
+
+1. **The journey:** build the whole path from a session's results to
+   understanding a mistake, to reviewing its explanation, to choosing useful
+   follow-up practice.
+2. **Results:** the outcome first, then where attention is needed, the
+   evidence and the next action. Fewer repeated figures, and no page that
+   renders every long explanation. Missing evidence must read differently
+   from weak performance. Keep the evidence threshold and every restriction
+   on scores, percentiles and readiness claims.
+3. **The notebook:** keep "due now" apart from "later", show the original
+   answer, the key and the explanation, and add optional labels chosen by
+   the learner. Never infer a learner's reasoning from their answer.
+4. **Retries:** separate records for retrying exact questions. Never
+   overwrite original answers, scores or results. Keep repeated-question
+   practice apart from new evidence, and keep it out of progress figures.
+   Use only reviewed, eligible content: a corrected question keeps its
+   history but new practice uses the current version, and nothing
+   quarantined or withdrawn is offered.
+5. **Follow-up practice:** show real availability, keep broader topic
+   practice an explicit choice, and do not promise unseen questions unless
+   that is enforced.
+6. **Quality:** keep the design system, assessment rules, account isolation
+   and private-data caching. Design the mobile, keyboard, empty, loading and
+   error states. Take baselines before editing, and keep the Phase 2 and
+   Phase 3 budgets unchanged.
+7. **Out of scope:** durable resume recovery and the player's save and
+   offline work (Phase 5), exam-hub layout (Phase 6), and merging guest
+   history.
+
+### 16.1 Baselines, taken before any change
+
+The Phase 3 build (`cc583fe`) and its database were frozen into a scratch
+copy, used both as this baseline and as the comparison in §16.9.
+
+- **The learner:** §15.5's seeded learner, with 4 finished sessions and 2
+  unfinished ones.
+- **Conditions:** on AC and charging (98%). The clock was never below 121%
+  of base in the mobile runs, and idle utilisation was 4–9%.
+- **Method:** §14.1's.
+
+| Page | Throttled mobile LCP, median (IQR) | Desktop LCP | CLS, highest run (mobile / desktop) | HTML, compressed | Elements |
+| --- | --- | --- | --- | --- | --- |
+| Results, 15 questions | 1,996 (1,936–2,004) | 444 | 0.0001 / 0.0102 | 98.1 KB | 4,997 |
+| Results, 10 questions | 1,856 (1,796–1,880) | 404 | 0.0001 / 0.0102 | 75.0 KB | 5,128 |
+| Mistake notebook | 2,700 (2,612–2,776) | 704 | 0.0111 / 0.0643 | 282.6 KB | 17,824 |
+
+- **The cause:** both pages rendered every question with its stimulus,
+  options, rationales and worked explanation. The notebook's 40 entries were
+  2.0 MB of uncompressed HTML.
+- **Targets proposed for Phase 4:**
+  - each of these pages, and the new question page, at throttled-mobile
+    median LCP ≤ 1.8 s (the learner-page budget of §14.1);
+  - CLS ≤ 0.02.
+- **Other budgets:** the Phase 2 and Phase 3 budgets are unchanged.
+
+### 16.2 Results (`/attempt/:id/results`)
+
+In order:
+
+1. **The outcome,** in one card: "7 of 10 correct", the correct, wrong and
+   blank counts, accuracy on the questions answered, raw points with
+   penalties where the exam has them (Bocconi), and time spent answering.
+   Time is counted from saved answers, and the page says so. This replaces
+   seven stat cards, three of which repeated the others. When some questions
+   had been shown in an earlier session, the card says how many.
+2. **Where you lost marks,** by topic, then by skill with its misses.
+   - Accuracy appears only where a topic had at least
+     `MIN_ATTEMPTS_FOR_SIGNAL` (4) questions in the session; "needs
+     attention" appears only below 60% at that level.
+   - Below the threshold a topic reads "Missed 2 of 3 · too few to judge".
+     Missing evidence therefore never looks like weakness.
+   - The old table labelled 1 of 1 "strong" (§3). That table is gone.
+3. **What to do next:**
+   - review the first mistake;
+   - retry the missed questions (§16.6);
+   - practise the skill with the most misses with new questions, with the
+     real count ("2 new Rhetorical Synthesis questions"), and the whole topic
+     as a separate, secondary button with its own count;
+   - when every reviewed question in the skill has been shown, the page says
+     so and does not offer the drill;
+   - links to set up a session, the dashboard and the notebook.
+4. **Every question,** a compact list: number, outcome, skill, topic, the
+   learner's labels, and notes ("you marked it", "seen before", "corrected
+   since", "being revised"). Each links to its own page.
+5. **How to read this:** the official facts, our approximation and what we do
+   not provide (no scaled score, no percentiles), with "This page makes no
+   readiness or admission judgement." The rules we could not verify sit in a
+   disclosure.
+
+A retry's results open with "A retry of questions you had missed", say it
+changed nothing about the original and is not counted in accuracy by topic,
+and link to the original.
+
+### 16.3 A question on its own page (`/attempt/:id/results/:n`)
+
+- **Content:**
+  - the question exactly as it was shown;
+  - the learner's answer and the key, stated in words;
+  - each option with "Your answer" and "Correct answer" badges and its
+    rationale;
+  - the worked explanation, and the difficulty basis.
+- **Version notices:**
+  - **Corrected since you answered it:** shown as it was, the result stands,
+    and new practice and retries use the corrected, reviewed version.
+  - **Being revised:** shown as it was, and not offered for practice or
+    retries.
+- **Actions:**
+  - optional labels, on a miss only (§16.5);
+  - retry this question, when it can be asked again;
+  - bookmark;
+  - report a problem;
+  - previous question, next question, next mistake, and back to results.
+
+### 16.4 The mistake notebook (`/review`)
+
+**Four views, each with its count:**
+
+- **Due now:** from the review schedule, oldest first. This is the
+  default.
+- **Coming back later:** soonest first, each with its date.
+- **All mistakes:** every question missed in a finished session.
+- **Bookmarked.**
+
+**How it reads:**
+
+- Each entry is the latest missed encounter of a question: outcome, exam,
+  when it is due, topic and skill, a plain-text start of the stem, times
+  missed, last seen, and any correction or revision. It links to the
+  question's own page instead of inlining 40 explanations.
+- An empty "due now" says how many come back later and when the next one
+  does.
+- A retry per exam covers the misses in view. The learner's own label counts
+  are shown.
+
+**Compatibility:** the Phase 2 `?filter=incorrect` still opens the
+all-mistakes view.
+
+### 16.5 Mistake labels (migration 005)
+
+- **The labels:**
+  - "I did not know how to do it";
+  - "I misread the question";
+  - "A slip or a calculation error";
+  - "I rushed or ran out of time";
+  - "I guessed".
+- **Rules:**
+  - Optional and editable, set only by the learner on one missed question in
+    one finished session.
+  - Nothing is ever filled in for the learner.
+  - Labels change no score, result or review schedule.
+  - They are included in the account export.
+- **Storage:** `mistake_labels`, keyed by the attempt item, cascading with
+  it and with the user. The development database was backed up first, to
+  `tmp/backups/examer-2026-09-26-before-migration-005.db` (integrity ok,
+  identical counts).
+- **The form:** a fieldset of checkboxes, usable with the keyboard, that
+  posts without JavaScript and confirms "Labels saved".
+
+### 16.6 Retries and new-question practice
+
+**A retry** (`src/lib/attempts/retry.ts`) is its own attempt in the reserved
+`review` mode. No existing format uses that mode.
+
+- **What it accepts:** only questions this learner missed (wrong or blank)
+  in a finished session of that exam. Anything else in the request is
+  ignored. The source session must be the learner's own.
+- **Which version:** each question is asked in its current published version.
+  One withdrawn, quarantined or back under review is left out, and the page
+  says how many.
+- **History:** the source session, its answers and its result are never
+  written.
+- **Where it counts:**
+  - **Excluded from progress figures:** skill and topic performance (and the
+    median time with it), readiness's recent accuracies, the study plan's
+    covered topics, and the dashboard's count of finished sessions. The
+    dashboard lists a retry under recent sessions with a "Retry" badge.
+  - **The review schedule does count it:** bringing missed questions back
+    is what the schedule is for. Answered correctly, a question moves out.
+- **In the player:** it is untimed with the explanation after each answer,
+  like topic practice, and is labelled "Retry of questions you missed".
+
+**New questions only** is a practice option (`unseenOnly`), enforced when
+the session is built.
+
+- **The rule:** only questions this learner has never been shown are used.
+  If too few are left, the session is refused rather than topped up.
+- **Where it applies:** timed and diagnostic formats ignore it.
+- **What the button says:** a count only when the pool holds that many new
+  questions; the form's session is built from them.
+
+### 16.7 States
+
+- **Mobile:** every page was checked at 360–1440 px with no overflow. On the
+  phone, the notebook entries and the question page stack.
+- **Keyboard:** everything is a link, a button or a checkbox. A browser test
+  sets a label with the keyboard.
+- **Empty:**
+  - no mistakes;
+  - nothing due, saying when the next one is;
+  - nothing scheduled;
+  - no bookmarks;
+  - no misses in a session ("Nothing: every question you were asked was
+    answered correctly").
+- **Loading:** every form's button shows "Starting the retry…",
+  "Preparing your session…" or "Saving…" while it posts, and cannot be
+  pressed twice. Pages render in one server response. No route
+  loading-skeleton was added: on a first load it would stream a
+  placeholder that the content then replaces.
+- **Error:** results and the notebook have their own error pages. Each says
+  the page could not be loaded and offers a retry; neither shows a partial
+  result or an empty notebook.
+- **Form outcomes:** a status message after the redirect. For example, a
+  retry of questions being revised says so; hitting the rate limit says to
+  try again later.
+
+### 16.8 The maths-font shift, found and partly fixed (`ee05c07`)
+
+**What the worst-case check found.** §14.4's check flagged the new question
+page at 0.05–0.31, but only on questions with maths.
+
+- **Maths question, lab loads:** 0.106 on the phone and 0.131 on desktop.
+- **Same page without maths:** 0 and 0.0007.
+
+**The cause:**
+
+- KaTeX declares its 20 fonts `font-display: block`.
+- The browser requests them only once maths is being laid out, so they
+  arrived after the first paint.
+- The formulas then reflowed the stem and pushed the options down.
+- Blocking `.woff2` did not hide this, because KaTeX falls back to `.woff`.
+
+**The fix.** On a question page that shows maths, React emits a `Link:
+rel=preload` header for KaTeX_Main-Regular and KaTeX_Math-Italic.
+
+- **Detection:** by the renderer's own delimiter rules, tested against it.
+- **The files:** the ones the build emitted for the stylesheet, found by
+  name. If they cannot be found, nothing is preloaded.
+
+**Measured:**
+
+- **Phone:** the shift is 0 in every run. First paint was 0.25–0.35 s later
+  than the same batch's page without maths, because the 42 KB of fonts now
+  download before the first paint.
+- **Desktop:** the shift remains (0.109). The math fonts arrive at about
+  115 ms. Bricolage, not preloaded since §13, arrives just after the first
+  paint. The stem rewraps, and its inline formulas jump between lines with
+  it (§14.2's mechanism, with the formulas as the fragments).
+
+**Options for the desktop shift, left for a decision:**
+
+1. **Preload Bricolage on question pages.** On the lab's slow link, §13
+   measured this at 0.19–0.53 s of first paint.
+2. **Set question stems in the reading serif.** This is a design change, and
+   it would also reach the player.
+3. **Accept it.**
+
+The practice player renders the same stems, so it has the same exposure. It
+is a Phase 5 decision.
+
+### 16.9 Tests
+
+- **Unit: 293, up from 265.**
+  - **Retries, 8:**
+    - a separate attempt, with the original untouched;
+    - missed-only, and isolation;
+    - a corrected question in its current version;
+    - withdrawn and quarantined questions not offered;
+    - excluded from every progress figure, while the schedule counts it;
+    - new-only built from unseen questions only, refused rather than topped
+      up, and ignored by timed formats.
+  - **Notebook, labels and results, 13:**
+    - due kept apart from later;
+    - an entry opening its own review page;
+    - isolation;
+    - retry groups;
+    - the Phase 2 view name;
+    - stem previews;
+    - labels: learner-only, replaced, changing nothing;
+    - labels only on the learner's own misses in finished sessions;
+    - evidence thresholds;
+    - "seen before";
+    - retry framing;
+    - no access for another learner or to an unfinished session;
+    - the failed-load renders.
+  - **Maths detection, 7,** against the renderer.
+- **Browser: 115 passed and 1 skipped, up from 99.** `tests/e2e/phase-4.spec.ts`
+  runs 8 tests in both device projects:
+  - results leading with the outcome and evidence, on a private, uncacheable
+    response;
+  - a question's own page;
+  - labels with the keyboard, and changed;
+  - a retry leaving the original result as it was;
+  - new-question practice with no question seen before;
+  - corrected and withdrawn notices, with a withdrawn question not offered;
+  - another learner getting a 404;
+  - the notebook keeping due apart from later;
+  - a retry from the notebook.
+
+  The one existing expectation that changed on purpose: the results heading
+  is now "Where you lost marks".
+- **Site sweep:** 40 routes, adding results, both question-page types and
+  every notebook view as a guest with history. No overflow, no console errors
+  and no error statuses.
+
+### 16.10 Measurements
+
+**Method:** the Phase 4 build against the frozen Phase 3 build of §16.1, run
+interleaved under §14.1's method. On both builds the loads come as the same
+seeded learner, whose data is identical in the two databases. The question
+pages and the "later" view exist only in Phase 4, so they were measured on
+that build alone.
+
+**Conditions** (26 September 2026, 20:41–21:06):
+
+- **Power:** on AC and fully charged.
+- **Processor:** before the run, a one-thread load held 176–184% of base
+  clock. In the mobile runs the median was 164–168%, with one reading of 87%
+  at 13% utilisation. The low desktop readings were all at 12–25%
+  utilisation, which is idle downclocking.
+
+**Throttled mobile, 9 runs per route.** LCP and FCP were identical in every
+run.
+
+| Page | Phase 3 | Phase 4, median (IQR) | Target | CLS, highest run | HTML, compressed | Elements |
+| --- | --- | --- | --- | --- | --- | --- |
+| Results, 15 questions | 2,820 | 1,512 (1,484–1,564) | ≤ 1,800: met | 0.0026 | 98.1 → 26.6 KB | 4,997 → 449 |
+| Results, 10 questions | 2,684 | 1,520 (1,492–1,552) | ≤ 1,800: met | 0.0026 | 75.0 → 22.1 KB | 5,128 → 363 |
+| Notebook, all mistakes | 4,092 | 1,452 (1,404–1,488) | ≤ 1,800: met | 0.0002 | 282.7 → 48.9 KB | 17,824 → 785 |
+| Notebook, default view | 4,360 | 1,228 (1,164–1,236) | ≤ 1,800: met | 0.0002 | 282.6 → 10.7 KB | 17,824 → 175 |
+| Notebook, coming back later | — | 1,488 (1,480–1,492) | ≤ 1,800: met | 0.0091 | 47.7 KB | 767 |
+| Question page, no maths | — | 1,476 (1,424–1,492) | ≤ 1,800: met | 0.0012 | 17.7 KB | 290 |
+| Question page, maths | — | 1,804 (1,776–1,844) | ≤ 1,800: 4 ms over | 0 | 21.9 KB | 1,004 |
+
+- **The baseline was slower here than in §16.1.** The Phase 3 figures in
+  this table are slower than when measured alone (1,996 for the 15-question
+  results). The interleaved comparison is what counts.
+- **The default notebook view** was "due now", which was empty for this
+  learner that evening. In Phase 3 the default was every mistake, with its
+  explanation.
+- **Question page with maths:** the preload of §16.8 costs about 0.33 s
+  against the page without maths in the same batch, and it holds the
+  phone's shift at 0.
+
+**Budgets from earlier phases,** in the same batch:
+
+| Route | Phase 3 | Phase 4 | Budget | CLS, highest run |
+| --- | --- | --- | --- | --- |
+| `/`, first-time visitor | 1,780 | 1,800 | ≤ 2,200: met | 0.0008 |
+| `/`, returning learner | 1,820 | 1,856 | ≤ 2,200: met | 0.0009 |
+| `/dashboard`, seeded learner | 1,504 | 1,544 | ≤ 1,800: met | 0.0001 |
+| `/exams/digital-sat` | 1,424 | 1,492 | ≤ 1,800: met | 0.0199 |
+| `/practice/digital-sat` | 1,576 | 1,572 | ≤ 1,800: met | 0.0006 |
+| `/exams/digital-sat/format` | 1,544 | 1,472 | ≤ 1,800: met | 0.0148 |
+
+**Desktop, 5 runs:**
+
+| Route | Phase 3 → Phase 4 LCP | CLS, highest run |
+| --- | --- | --- |
+| Results, 15 questions | 456 → 228 | 0.0102 → 0.0011 |
+| Results, 10 questions | 396 → 216 | 0.0102 → 0.0012 |
+| Notebook, all mistakes | 684 → 236 | 0.0643 → 0.0002 |
+| Question page, no maths | 204 | 0.0007 |
+| Question page, maths | 264 | **0.1086**, see §16.8 |
+| Earlier phases' routes | within 16 ms of Phase 3 | unchanged |
+
+**Sizes:**
+
+- Homepage JavaScript is still 112.5 KB, within the 118 KB budget.
+- Learner pages carry 1 KB more JavaScript (the pending-state button) and
+  0.2 KB more CSS.
+- Web fonts: 40.4 KB, plus 41.7 KB of KaTeX on maths pages only.
+
+**Worst-case font swap** (§14.4's check at 8 widths):
+
+| Page | Worst case |
+| --- | --- |
+| Results | 0.0026 |
+| Question page without maths | 0.0145 |
+| Notebook, due | 0.0007 |
+| Notebook, later | 0.0163 |
+| Notebook, all mistakes | 0.0088 |
+| Question page with maths | 0.052–0.305, the §16.8 mechanism |
+
+### 16.11 Commits (on `FronDesign`, not pushed)
+
+- `c19aee1`: the data layer, for retries, new-question practice, mistake
+  labels (migration 005), results and notebook data, and the form actions,
+  with unit tests. It also deleted the old skill table, which the Phase 3
+  results page still imported, so this commit builds only together with
+  the next.
+- `ecf3779`: the results, question review and notebook pages, and their
+  error states.
+- `24af0c2`: the Phase 4 browser tests, and the failed-load render tests.
+- `ee05c07`: the KaTeX preload on question pages with maths.
+- A documentation commit with this section.
+
+### 16.12 What remains
+
+- **The maths question page on desktop** shifts by about 0.11, and its phone
+  median is 1,804 ms against 1.8 s. §16.8 lists the options. The player
+  shares the exposure, so this is a Phase 5 decision.
+- **The immediate-reload gap from §15.7 still stands.** A position save in
+  flight when the page is reloaded can be lost, and the learner lands one
+  move back. Durable recovery is Phase 5, with the player's save status and
+  offline queue.
+- **Repeats in ordinary practice:** only retries are kept out of progress
+  figures. Ordinary practice prefers questions not seen for 30 days but can
+  repeat them, and those answers still count. Results now say how many
+  questions in a session had been shown before, and "new questions only" is
+  the enforced alternative.
+- **Offered only after a session:** "new questions only" appears on results
+  and in the notebook's follow-ups, not on the practice setup page, which is
+  Phase 5's.
+- **No "mark as reviewed" action:** a retry is how a question is reviewed and
+  rescheduled.
+- **The notebook shows the first 40 entries** of a view, and says so. There
+  is no paging.
+- **Labels** are counted in the notebook, but views cannot be filtered by
+  label.
+- **Unchanged here:** exam-hub layout (Phase 6), merging guest history (out
+  of scope), and one machine, with local budgets.
+- **The development database** now has migrations 004 and 005, each with a
+  backup (§15.1, §16.5).
+
+### 16.13 Acceptance
+
+**Phase 4 is complete** (26 September 2026), with one open decision.
+
+- **The journey works end to end in the browser:**
+  1. results;
+  2. a question on its own page;
+  3. the learner's labels;
+  4. a retry that leaves the original as it was;
+  5. new-question practice with no repeated questions;
+  6. the notebook, with due now kept apart from later.
+- **Historical records are preserved.** Retries are separate records and are
+  kept out of progress figures. A corrected question keeps its history; a
+  withdrawn one is not offered. Missing evidence reads differently from
+  weakness, and the restrictions on scores, percentiles and readiness hold.
+- **Performance:**
+  - results and the notebook went from 1.86–4.36 s to 1.23–1.52 s on the
+    throttled phone, and their shift fell to 0.0091 or less;
+  - every Phase 2 and Phase 3 budget still passes.
+- **Tests:** 293 unit tests and 115 browser tests pass (1 skipped as
+  before), and the sweep is clean.
+- **Open decision:** the maths question page's desktop shift, and its
+  phone median 4 ms over the proposed 1.8 s (§16.8, §16.12).
+
+Phase 5 has not been started.
+
