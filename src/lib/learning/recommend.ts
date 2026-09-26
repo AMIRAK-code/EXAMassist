@@ -46,6 +46,8 @@ export function skillPerformance(db: Db, userId: string, examKey: string): Skill
        JOIN attempts a          ON a.id = ai.attempt_id
        JOIN question_versions qv ON qv.id = ai.question_version_id
        WHERE a.user_id = ? AND a.exam_key = ? AND a.status IN ('submitted', 'expired')
+         -- Retries ask questions already answered: practice, not new evidence (attempts/retry.ts).
+         AND a.mode <> 'review'
        GROUP BY qv.skill_slug, qv.domain_slug`,
     )
     .all(userId, examKey) as Array<{
@@ -65,7 +67,8 @@ export function skillPerformance(db: Db, userId: string, examKey: string): Skill
        FROM attempt_items ai
        JOIN attempts a           ON a.id = ai.attempt_id
        JOIN question_versions qv ON qv.id = ai.question_version_id
-       WHERE a.user_id = ? AND a.exam_key = ? AND a.status IN ('submitted', 'expired') AND ai.time_ms > 0`,
+       WHERE a.user_id = ? AND a.exam_key = ? AND a.status IN ('submitted', 'expired') AND a.mode <> 'review'
+         AND ai.time_ms > 0`,
     )
     .all(userId, examKey) as Array<{ skillSlug: string; timeMs: number }>;
 

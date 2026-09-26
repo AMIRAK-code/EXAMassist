@@ -4,6 +4,7 @@ import { EXAM_CONFIGS, getExamConfig, getHubForConfig, requireExamConfig } from 
 import { practiceFacets, practisableDomains } from '@/lib/attempts/availability';
 import { eligibleCount } from '@/lib/attempts/facets';
 import { listUnfinishedAttempts, type UnfinishedAttempt } from '@/lib/attempts/service';
+import { blueprintForAttempt, isRetryAttempt } from '@/lib/attempts/retry';
 import {
   MIN_ATTEMPTS_FOR_SIGNAL,
   buildRecommendations,
@@ -75,6 +76,8 @@ export interface FinishedSession {
   correct: number | null;
   incorrect: number | null;
   omitted: number | null;
+  /** A retry of missed questions: listed, but not counted as a finished session. */
+  isRetry: boolean;
 }
 
 export interface ExamDashboard {
@@ -191,7 +194,7 @@ function buildExamDashboard(
 
   const finishedRows = db
     .prepare(
-      `SELECT a.id, a.blueprint_id AS blueprintId, a.status, a.started_at AS startedAt,
+      `SELECT a.id, a.blueprint_id AS blueprintId, a.mode, a.status, a.started_at AS startedAt,
               a.submitted_at AS submittedAt, r.raw_correct AS correct, r.raw_incorrect AS incorrect,
               r.raw_omitted AS omitted
          FROM attempts a
@@ -202,6 +205,7 @@ function buildExamDashboard(
     .all(userId, examKey) as Array<{
     id: string;
     blueprintId: string;
+    mode: string;
     status: FinishedSession['status'];
     startedAt: string;
     submittedAt: string | null;
@@ -279,7 +283,7 @@ function buildExamDashboard(
     };
   });
 
-  const blueprintLabel = (id: string) => config.blueprints.find((b) => b.id === id)?.label ?? id;
+  const blueprintLabel = (id: string) => blueprintForAttempt(config, id)?.label ?? id;
 
   return {
     examKey,
@@ -289,7 +293,8 @@ function buildExamDashboard(
     source,
     formatGuideHref: hub ? `/exams/${hub.slug}/format` : null,
     bankSize,
-    finishedCount: finishedRows.length,
+    // Retries ask questions already answered, so they are not counted as sessions of evidence.
+    finishedCount: finishedRows.filter((row) => !isRetryAttempt(row)).length,
     totalScored,
     totalCorrect,
     review,
@@ -304,6 +309,7 @@ function buildExamDashboard(
       correct: row.correct,
       incorrect: row.incorrect,
       omitted: row.omitted,
+      isRetry: isRetryAttempt(row),
     })),
     unfinishedHere: unfinished.filter((attempt) => attempt.examKey === examKey),
   };

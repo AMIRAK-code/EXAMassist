@@ -15,6 +15,8 @@ const bodySchema = z.object({
       skills: z.array(z.string().max(80)).max(40).optional(),
       difficulty: z.enum(['easy', 'medium', 'hard', 'mixed']).optional(),
       length: z.number().int().min(1).max(100).optional(),
+      /** Only questions this learner has never been shown; refused if too few are left. */
+      unseenOnly: z.boolean().optional(),
     })
     .optional(),
   /**

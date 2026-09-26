@@ -46,6 +46,7 @@ import {
 import { getBlueprint, getExamConfig, getSection, labelsFor, requireExamConfig } from '@/lib/exams/registry';
 import { eligiblePool } from './eligibility';
 import { resolveResume, type ResumeDestination, type ResumeReason } from './resume';
+import { MAX_RETRY_QUESTIONS, RETRY_BLUEPRINT_ID, blueprintForAttempt, retryBlueprint } from './retry';
 
 /**
  * Attempt lifecycle.
@@ -83,12 +84,20 @@ export interface PracticeOverrides {
   difficulty?: 'easy' | 'medium' | 'hard' | 'mixed';
   length?: number;
   sectionKey?: string;
+  /**
+   * Only questions this learner has never been shown. Enforced on the server
+   * when the session is built: if too few are left, the session is refused
+   * rather than topped up with seen ones.
+   */
+  unseenOnly?: boolean;
 }
 
 export interface AttemptSettings {
   overrides: PracticeOverrides;
   /** Explanations shown immediately after each answer. Practice only. */
   immediateFeedback: boolean;
+  /** Set on a retry: where it came from and which questions it asks again. */
+  retry?: { sourceAttemptId: string | null; questionIds: string[] };
 }
 
 /** Immediate feedback is a study aid, never offered inside a timed simulation. */
@@ -241,7 +250,10 @@ export function startAttempt(db: Db, input: StartAttemptInput): StartAttemptResu
 
   const parts = resolveParts(blueprint, input.overrides ?? {}, config);
   // The same eligibility rule the practice screen uses to say what is open.
-  const pool = eligiblePool(getPool(db, input.examKey, input.userId), blueprint);
+  const eligible = eligiblePool(getPool(db, input.examKey, input.userId), blueprint);
+  const customisable = blueprint.mode === 'practice' && blueprint.timing === 'untimed';
+  const pool =
+    customisable && input.overrides?.unseenOnly ? eligible.filter((item) => item.lastSeenAt === null) : eligible;
   const sufficiency = checkBlueprintSufficiency(pool, parts);
   if (!sufficiency.sufficient) {
     throw new AttemptError(
@@ -364,6 +376,163 @@ export function startAttempt(db: Db, input: StartAttemptInput): StartAttemptResu
 }
 
 // ---------------------------------------------------------------------------
+// Retrying missed questions (see retry.ts)
+// ---------------------------------------------------------------------------
+
+export interface RetryCandidates {
+  /** Missed questions that can be asked again, in their current reviewed version. */
+  available: PoolItem[];
+  /** Missed questions that cannot: withdrawn, quarantined or back under review. */
+  unavailable: string[];
+}
+
+/**
+ * Of `questionIds`, the ones this learner missed (wrong or blank) in a
+ * finished session of this exam, split by whether a current reviewed version
+ * exists to ask again. Anything else in the list is ignored.
+ */
+export function retryCandidates(db: Db, userId: string, examKey: string, questionIds: readonly string[]): RetryCandidates {
+  const requested = [...new Set(questionIds)].slice(0, 200);
+  if (requested.length === 0) return { available: [], unavailable: [] };
+  const placeholders = requested.map(() => '?').join(',');
+  const missed = new Set(
+    (
+      db
+        .prepare(
+          `SELECT DISTINCT ai.question_id AS questionId
+             FROM attempt_items ai
+             JOIN attempts a ON a.id = ai.attempt_id
+            WHERE a.user_id = ? AND a.exam_key = ? AND a.status IN ('submitted', 'expired')
+              AND (ai.is_correct = 0 OR ai.response_status = 'unanswered')
+              AND ai.question_id IN (${placeholders})`,
+        )
+        .all(userId, examKey, ...requested) as Array<{ questionId: string }>
+    ).map((row) => row.questionId),
+  );
+  // Only the current, published version of a question is ever asked again.
+  const pool = new Map(getPool(db, examKey, userId).map((item) => [item.questionId, item]));
+  const available: PoolItem[] = [];
+  const unavailable: string[] = [];
+  for (const id of requested) {
+    if (!missed.has(id)) continue;
+    const item = pool.get(id);
+    if (item) available.push(item);
+    else unavailable.push(id);
+  }
+  return { available, unavailable };
+}
+
+export interface StartRetryInput {
+  userId: string;
+  examKey: string;
+  /** Questions to ask again, in this order. */
+  questionIds: string[];
+  /** The session the retry was started from, if any. Recorded, never modified. */
+  sourceAttemptId?: string | null;
+  now?: Date;
+}
+
+export interface StartRetryResult {
+  attemptId: string;
+  questionIds: string[];
+  unavailable: string[];
+}
+
+/**
+ * Starts a retry: a new attempt that asks missed questions again. The
+ * original sessions, their answers and their results are not touched.
+ */
+export function startRetry(db: Db, input: StartRetryInput): StartRetryResult {
+  const now = input.now ?? new Date();
+  const config = getExamConfig(input.examKey);
+  if (!config) throw new AttemptError('unknown-exam', 'That exam is not offered.', 404);
+
+  if (input.sourceAttemptId) {
+    const owned = db
+      .prepare('SELECT id FROM attempts WHERE id = ? AND user_id = ? AND exam_key = ?')
+      .get(input.sourceAttemptId, input.userId, input.examKey);
+    if (!owned) throw notFound();
+  }
+
+  const { available, unavailable } = retryCandidates(db, input.userId, input.examKey, input.questionIds);
+  const chosen = available.slice(0, MAX_RETRY_QUESTIONS);
+  if (chosen.length === 0) {
+    throw new AttemptError(
+      'nothing-to-retry',
+      unavailable.length > 0
+        ? 'Those questions are being revised, so they cannot be asked again yet.'
+        : 'There are no missed questions to retry here.',
+      409,
+      { unavailable },
+    );
+  }
+
+  const blueprint = retryBlueprint(config);
+  const [part] = resolveParts(blueprint, {}, config);
+  const policy = policyFor(config, part);
+  const attemptId = randomUUID();
+  const settings: AttemptSettings = {
+    overrides: {},
+    immediateFeedback: true,
+    retry: { sourceAttemptId: input.sourceAttemptId ?? null, questionIds: chosen.map((item) => item.questionId) },
+  };
+
+  const insert = db.transaction(() => {
+    db.prepare(
+      `INSERT INTO attempts (
+         id, user_id, exam_key, exam_config_version, blueprint_id, mode, status, seed,
+         settings_json, started_at, deadline_at, submitted_at, current_part_index,
+         idempotency_key, created_at, updated_at
+       ) VALUES (?, ?, ?, ?, ?, 'review', 'in_progress', ?, ?, ?, NULL, NULL, 0, NULL, ?, ?)`,
+    ).run(
+      attemptId,
+      input.userId,
+      config.examKey,
+      config.version,
+      RETRY_BLUEPRINT_ID,
+      randomUUID(),
+      JSON.stringify(settings),
+      toIso(now),
+      toIso(now),
+      toIso(now),
+    );
+    db.prepare(
+      `INSERT INTO attempt_parts (
+         id, attempt_id, part_index, part_key, section_key, label, time_limit_seconds,
+         started_at, deadline_at, submitted_at, status, navigation_json, routing_json
+       ) VALUES (?, ?, 0, 'retry', ?, 'Retry', NULL, ?, NULL, NULL, 'in_progress', ?, NULL)`,
+    ).run(randomUUID(), attemptId, part.sectionKey, toIso(now), JSON.stringify(policy));
+    chosen.forEach((item, position) => {
+      db.prepare(
+        `INSERT INTO attempt_items (
+           id, attempt_id, part_index, position, question_id, question_version_id,
+           response_json, response_status, is_correct, points_earned, points_possible,
+           flagged, time_ms, first_seen_at, last_answered_at
+         ) VALUES (?, ?, 0, ?, ?, ?, NULL, 'unanswered', NULL, NULL, ?, 0, 0, ?, NULL)`,
+      ).run(
+        randomUUID(),
+        attemptId,
+        position,
+        item.questionId,
+        item.questionVersionId,
+        config.scoring.pointsCorrect,
+        position === 0 ? toIso(now) : null,
+      );
+    });
+    logEvent(db, attemptId, 'attempt.started', {
+      blueprintId: RETRY_BLUEPRINT_ID,
+      configVersion: config.version,
+      retry: settings.retry,
+      unavailable,
+      itemCount: chosen.length,
+    }, now);
+  });
+  insert();
+
+  return { attemptId, questionIds: settings.retry!.questionIds, unavailable };
+}
+
+// ---------------------------------------------------------------------------
 // Loading
 // ---------------------------------------------------------------------------
 
@@ -394,7 +563,7 @@ function load(db: Db, attemptId: string, userId: string): LoadedAttempt {
   if (!attempt) throw notFound();
 
   const config = requireExamConfig(attempt.exam_key);
-  const blueprint = getBlueprint(config, attempt.blueprint_id);
+  const blueprint = blueprintForAttempt(config, attempt.blueprint_id);
   if (!blueprint) throw new AttemptError('bad-config', 'Blueprint missing from configuration.', 500);
 
   return {

@@ -107,6 +107,15 @@ export async function GET() {
       .prepare('SELECT * FROM review_queue WHERE user_id = ? ORDER BY due_at')
       .all(user.id) as ReviewQueueRow[];
 
+    // The learner's own labels on their mistakes (migration 005).
+    const mistakeLabels = db
+      .prepare(
+        `SELECT ml.label, ml.created_at AS createdAt, ai.attempt_id AS attemptId, ai.question_id AS questionId
+           FROM mistake_labels ml JOIN attempt_items ai ON ai.id = ml.attempt_item_id
+          WHERE ml.user_id = ? ORDER BY ml.created_at`,
+      )
+      .all(user.id) as Array<{ label: string; createdAt: string; attemptId: string; questionId: string }>;
+
     const studyPlans = db
       .prepare('SELECT * FROM study_plans WHERE user_id = ? ORDER BY generated_at')
       .all(user.id) as StudyPlanRow[];
@@ -233,6 +242,7 @@ export async function GET() {
         note: row.note,
         createdAt: row.created_at,
       })),
+      mistakeLabels,
       reviewQueue: reviewQueue.map((row) => ({
         questionId: row.question_id,
         examKey: row.exam_key,
