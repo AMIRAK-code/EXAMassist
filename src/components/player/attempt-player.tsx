@@ -23,11 +23,16 @@ import { ResponseInput } from './response-input';
 
 type SaveState = 'idle' | 'saving' | 'saved' | 'offline' | 'rejected';
 
-async function postJson(url: string, body: unknown): Promise<{ ok: boolean; status: number; data: any }> {
+async function postJson(
+  url: string,
+  body: unknown,
+  options: { keepalive?: boolean } = {},
+): Promise<{ ok: boolean; status: number; data: any }> {
   const response = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'examer' },
     body: JSON.stringify(body),
+    keepalive: options.keepalive,
   });
   let data: unknown = null;
   try {
@@ -42,7 +47,12 @@ export function AttemptPlayer({ model }: { model: PlayerModel }) {
   const router = useRouter();
   const part = model.parts[model.currentPartIndex];
 
-  const [position, setPosition] = useState(0);
+  // Reopen where the learner was. The server has already checked the stored
+  // position against this section's rules and replaced it if it is no longer
+  // allowed (a committed screen, a section that has closed).
+  const [position, setPosition] = useState(() =>
+    model.resume && model.resume.partIndex === model.currentPartIndex ? model.resume.position : 0,
+  );
   const [responses, setResponses] = useState<Record<number, Response | null>>(() =>
     Object.fromEntries(part?.items.map((item) => [item.position, item.response]) ?? []),
   );
@@ -67,6 +77,22 @@ export function AttemptPlayer({ model }: { model: PlayerModel }) {
   const itemEnteredAt = useRef<number>(Date.now());
   const pending = useRef<Map<number, Response | null>>(new Map());
   const headingRef = useRef<HTMLHeadingElement>(null);
+
+  // Navigation clock: the server's time at render plus the time elapsed here,
+  // so moves are ordered on one clock across tabs and devices even when this
+  // device's clock is wrong. The server stores a move as the resume position
+  // only if its clock is ahead of the stored one.
+  const clockOffset = useRef<number | null>(null);
+  const lastClock = useRef(0);
+  // Anchored once, when the player first mounts.
+  useEffect(() => {
+    clockOffset.current = model.serverNowMs - Date.now();
+  }, []);
+  const nextClock = () => {
+    const now = Date.now() + (clockOffset.current ?? model.serverNowMs - Date.now());
+    lastClock.current = Math.max(Math.round(now), lastClock.current + 1);
+    return lastClock.current;
+  };
 
   const item = part?.items[position];
   const policy = part?.navigation;
@@ -237,13 +263,38 @@ export function AttemptPlayer({ model }: { model: PlayerModel }) {
 
   const go = async (target: number) => {
     if (!part || target < 0 || target >= part.items.length) return;
-    const result = await postJson(`/api/attempts/${model.attemptId}/visit`, {
-      partIndex: part.partIndex,
-      position: target,
-    }).catch(() => ({ ok: false, status: 0, data: null }));
+    const body = { partIndex: part.partIndex, position: target, clock: nextClock() };
+
+    // A move the rules always allow (anywhere in a free section, or within the
+    // current screen) happens at once, and the position is saved behind it.
+    // `keepalive` lets the save finish even if the learner leaves the page.
+    const free = part.navigation.allowBackWithinPart || Math.floor(target / pageSize) === currentPage;
+    if (free) {
+      setMessage(null);
+      setPosition(target);
+      void postJson(`/api/attempts/${model.attemptId}/visit`, body, { keepalive: true })
+        .then((result) => {
+          // Refused only if the section closed underneath us: show what the server holds.
+          if (!result.ok && result.status !== 0) router.refresh();
+        })
+        .catch(() => {
+          /* Offline: only the resume hint is lost; the next move saves it again. */
+        });
+      return;
+    }
+
+    // Moving to another screen on a section that restricts navigation commits
+    // the current one, so the server decides before the screen changes.
+    const result = await postJson(`/api/attempts/${model.attemptId}/visit`, body).catch(() => ({
+      ok: false,
+      status: 0,
+      data: null,
+    }));
 
     if (!result.ok && result.status !== 0) {
       setMessage(result.data?.error?.message ?? 'You cannot move there on this exam.');
+      const code = result.data?.error?.code;
+      if (code === 'attempt-closed' || code === 'wrong-part' || code === 'part-expired') router.refresh();
       return;
     }
     setMessage(null);
