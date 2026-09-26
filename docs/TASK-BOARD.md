@@ -114,8 +114,11 @@ Evidence commands are runnable from the repository root.
    1,880–2,104 ms, with the Phase 4 build at 1,812–2,024 in the same batch
    (docs/REDESIGN.md §17.12). Every other Phase 5 criterion, and every
    earlier budget, is met.
-   - **Next:** try deferring the layout of the worked explanation and the
-     option rationales (`content-visibility` with a size estimate), measured
-     in two separate interleaved batches against Phase 4 and `22d9f74`. Accept
-     only if both meet 1.8 s. Anything beyond that changes the design and is
-     a decision first (§17.12).
+   - **Tried (§17.13):** deferring the explanation with `content-visibility`
+     helped only the page whose explanation starts beyond ~2,100 px (−216 ms),
+     because Chrome renders anything nearer before the first paint. Maths-heavy
+     and short maths stay 196 and 44 ms over. Not committed.
+   - **Awaiting a decision:** the smallest design change, the worked explanation
+     closed by default on phones (previewed, not made). Its measured saving,
+     200–256 ms, is an upper bound and may not clear the table page in a slow
+     batch.
