@@ -456,20 +456,20 @@ export function AttemptPlayer({ model }: { model: PlayerModel }) {
         </h1>
 
         {item.stimulus ? (
-          <div className="mb-5">
+          <div className="question-text mb-5">
             <StimulusView stimulus={item.stimulus} />
           </div>
         ) : null}
 
         {item.instructionsHtml ? (
           <div
-            className="prose-academic question-body mb-3 text-sm text-ink-muted"
+            className="prose-academic question-body question-text mb-3 text-sm text-ink-muted"
             dangerouslySetInnerHTML={{ __html: item.instructionsHtml }}
           />
         ) : null}
 
         <div
-          className="prose-academic question-body mb-5"
+          className="prose-academic question-body question-text mb-5"
           dangerouslySetInnerHTML={{ __html: item.stemHtml }}
         />
 
@@ -523,7 +523,7 @@ export function AttemptPlayer({ model }: { model: PlayerModel }) {
             </p>
             {item.review.explanationHtml ? (
               <div
-                className="prose-academic mt-2 text-sm"
+                className="prose-academic question-text mt-2 text-sm"
                 dangerouslySetInnerHTML={{ __html: item.review.explanationHtml }}
               />
             ) : null}

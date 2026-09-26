@@ -102,14 +102,14 @@ export default async function QuestionReviewPage({
       <article aria-labelledby="question-heading" className="mt-8">
         <h2 id="question-heading" className="sr-only">The question</h2>
         {question.stimulus ? (
-          <div className="mb-5">
+          <div className="question-text mb-5">
             <Stimulus stimulus={question.stimulus} />
           </div>
         ) : null}
         {question.instructionsMd ? (
-          <Markdown source={question.instructionsMd} className="prose-academic mb-3 text-sm text-ink-muted" />
+          <Markdown source={question.instructionsMd} className="prose-academic question-text mb-3 text-sm text-ink-muted" />
         ) : null}
-        <Markdown source={question.stemMd} className="prose-academic question-body mb-5" />
+        <Markdown source={question.stemMd} className="prose-academic question-body question-text mb-5" />
 
         {question.options.length > 0 ? (
           <ul className="mb-6 space-y-2 text-sm">
@@ -123,8 +123,8 @@ export default async function QuestionReviewPage({
                   className={`rounded-card border p-3 ${isKey ? 'border-positive-line bg-positive-soft/50' : isChosen ? 'border-negative-line bg-negative-soft/40' : 'border-line bg-surface'}`}
                 >
                   <div className="flex flex-wrap items-baseline gap-2">
-                    <span className="font-semibold text-ink-muted">{`${option.label}.`}</span>
-                    <Markdown source={option.textMd} className="min-w-0 flex-1" />
+                    <span className="w-5 shrink-0 font-semibold text-ink-muted">{`${option.label}.`}</span>
+                    <Markdown source={option.textMd} className="question-text min-w-0 flex-1" />
                   </div>
                   {isChosen || isKey ? (
                     <div className="mt-2 flex flex-wrap gap-2">
@@ -132,7 +132,7 @@ export default async function QuestionReviewPage({
                       {isKey ? <Badge tone="positive">Correct answer</Badge> : null}
                     </div>
                   ) : null}
-                  {rationale ? <Markdown source={rationale} className="mt-2 text-ink-muted" /> : null}
+                  {rationale ? <Markdown source={rationale} className="question-text mt-2 text-ink-muted" /> : null}
                 </li>
               );
             })}
@@ -143,7 +143,7 @@ export default async function QuestionReviewPage({
           <h2 id="explanation-heading" className="mb-2 font-heading text-lg font-semibold">
             Worked explanation
           </h2>
-          <Markdown source={question.explanationMd} className="prose-academic text-sm" />
+          <Markdown source={question.explanationMd} className="prose-academic question-text text-sm" />
           <p className="mt-3 text-xs text-ink-subtle">
             {`Difficulty label: ${question.difficultyBasis} judgement, not calibrated against response data.`}
           </p>

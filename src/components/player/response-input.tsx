@@ -77,13 +77,13 @@ function ChoiceList({
                   className="mt-1 size-4 shrink-0 accent-[#1d4e6e]"
                 />
                 <span className="flex min-w-0 gap-2">
-                  <span className="font-semibold tabular-nums text-ink-muted" aria-hidden="true">
+                  <span className="w-5 shrink-0 font-semibold tabular-nums text-ink-muted" aria-hidden="true">
                     {choice.label}.
                   </span>
                   {choice.html ? (
-                    <span className="min-w-0" dangerouslySetInnerHTML={{ __html: choice.html }} />
+                    <span className="question-text min-w-0" dangerouslySetInnerHTML={{ __html: choice.html }} />
                   ) : (
-                    <span className="min-w-0">{choice.text}</span>
+                    <span className="question-text min-w-0">{choice.text}</span>
                   )}
                 </span>
               </label>
