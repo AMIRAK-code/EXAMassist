@@ -27,6 +27,12 @@ export interface AuthUser {
   targetDate: string | null;
   weeklyMinutes: number | null;
   isMinor: boolean;
+  /**
+   * When the session that resolved this user ends. For a guest this is when
+   * this browser loses access to their practice, because a guest cannot sign
+   * back in. Set only when the user came from a session.
+   */
+  sessionExpiresAt?: string;
 }
 
 function hashToken(token: string): string {
@@ -88,7 +94,7 @@ export function resolveSession(db: Db, token: string | undefined, now = new Date
     db.prepare('UPDATE sessions SET last_seen_at = ? WHERE id = ?').run(now.toISOString(), session.id);
   }
 
-  return toAuthUser(user);
+  return { ...toAuthUser(user), sessionExpiresAt: session.expires_at };
 }
 
 export function destroySession(db: Db, token: string | undefined): void {
@@ -183,5 +189,5 @@ export async function getOrCreateGuest(): Promise<{ user: AuthUser; setCookie: I
   const db = getDb();
   const row = createGuestUser(db);
   const issued = createSession(db, row.id, true);
-  return { user: toAuthUser(row), setCookie: issued };
+  return { user: { ...toAuthUser(row), sessionExpiresAt: issued.expiresAt.toISOString() }, setCookie: issued };
 }

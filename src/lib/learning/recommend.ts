@@ -65,7 +65,7 @@ export function skillPerformance(db: Db, userId: string, examKey: string): Skill
        FROM attempt_items ai
        JOIN attempts a           ON a.id = ai.attempt_id
        JOIN question_versions qv ON qv.id = ai.question_version_id
-       WHERE a.user_id = ? AND a.exam_key = ? AND ai.time_ms > 0`,
+       WHERE a.user_id = ? AND a.exam_key = ? AND a.status IN ('submitted', 'expired') AND ai.time_ms > 0`,
     )
     .all(userId, examKey) as Array<{ skillSlug: string; timeMs: number }>;
 
@@ -121,6 +121,9 @@ export interface Recommendation {
   href: string;
   actionLabel: string;
   priority: number;
+  /** The skill or topic a drill targets, so callers need not parse the link. */
+  skillSlug?: string;
+  domainSlug?: string;
 }
 
 export interface RecommendationInput {
@@ -177,6 +180,8 @@ export function buildRecommendations(input: RecommendationInput): Recommendation
       href: `/practice/${examKey}?skill=${encodeURIComponent(skill.skillSlug)}`,
       actionLabel: 'Practise this skill',
       priority: 2 + index,
+      skillSlug: skill.skillSlug,
+      domainSlug: skill.domainSlug,
     });
   }
 
@@ -196,6 +201,8 @@ export function buildRecommendations(input: RecommendationInput): Recommendation
       href: `/practice/${examKey}?skill=${encodeURIComponent(skill.skillSlug)}`,
       actionLabel: 'Practise under time',
       priority: 6,
+      skillSlug: skill.skillSlug,
+      domainSlug: skill.domainSlug,
     });
   }
 
@@ -208,6 +215,7 @@ export function buildRecommendations(input: RecommendationInput): Recommendation
       href: `/practice/${examKey}?domain=${encodeURIComponent(domain.slug)}`,
       actionLabel: 'Practise this topic',
       priority: 7 + index,
+      domainSlug: domain.slug,
     });
   }
 
