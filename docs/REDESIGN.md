@@ -2865,6 +2865,13 @@ commit, `ecf3779` (§16.11). The history was not rewritten.
 - **One Phase 4 browser test depends on the data** (new-question practice
   from results). It skips when the weakest skill has no unseen questions;
   the Phase 5 setup test covers the same rule deterministically.
+- **Not yet seen on a real phone:** the sticky player header and control
+  bar. In headless phone emulation, one screenshot taken just after a move
+  (the heading taking focus, the page scrolling) showed both about 30 px
+  out of place. Hit-testing at that moment found both in place, a plain
+  scroll renders correctly, and the browser test that pins the bar to the
+  viewport's bottom passes on the phone project. So it looks like a capture
+  artifact, but it is unconfirmed on a device.
 - **Unchanged:** label filtering in the notebook (deferred), exam hubs
   (Phase 6), merging guest history (out of scope), and one machine with
   local budgets.
