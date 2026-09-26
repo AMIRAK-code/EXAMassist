@@ -13,12 +13,13 @@ import type { NavigationPolicy } from '@/lib/assessment/types';
  * - on a section that does not allow going back, it is on the screen the
  *   learner has reached, because every earlier screen is committed.
  *
- * Otherwise the learner lands on the nearest permitted place: the screen they
- * had reached where movement is restricted, or the first unanswered question
- * where it is free.
+ * Otherwise the attempt reopens at the furthest question the learner reached
+ * in the open section. That is also where a learner who never moved was
+ * standing: the question a section opens on is marked as reached, and so is
+ * every question the learner moved to.
  */
 
-export type ResumeReason = 'stored' | 'frontier' | 'first-unanswered';
+export type ResumeReason = 'stored' | 'frontier';
 
 export interface ResumeDestination {
   partIndex: number;
@@ -55,12 +56,6 @@ export function resolveResume(
     return { partIndex, position: stored.position, reason: 'stored' };
   }
 
-  if (!policy.allowBackWithinPart) {
-    return { partIndex, position: Math.min(state.furthestPosition, Math.max(0, state.itemCount - 1)), reason: 'frontier' };
-  }
-
-  for (let position = 0; position < state.itemCount; position += 1) {
-    if (!state.answeredPositions.has(position)) return { partIndex, position, reason: 'first-unanswered' };
-  }
-  return { partIndex, position: Math.min(state.furthestPosition, Math.max(0, state.itemCount - 1)), reason: 'frontier' };
+  const frontier = Math.min(Math.max(0, state.furthestPosition), Math.max(0, state.itemCount - 1));
+  return { partIndex, position: frontier, reason: 'frontier' };
 }
