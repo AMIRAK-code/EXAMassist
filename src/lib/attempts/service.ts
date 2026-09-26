@@ -45,6 +45,7 @@ import {
 } from '@/lib/assessment/types';
 import { getBlueprint, getExamConfig, getSection, labelsFor, requireExamConfig } from '@/lib/exams/registry';
 import { eligiblePool } from './eligibility';
+import { resolveResume, type ResumeDestination, type ResumeReason } from './resume';
 
 /**
  * Attempt lifecycle.
@@ -546,6 +547,10 @@ export interface AttemptState {
   immediateFeedback: boolean;
   pauseBehaviour: Blueprint['pauseBehaviour'];
   parts: AttemptPartState[];
+  /** Where the open section reopens; null once the attempt is finished. */
+  resume: ResumeDestination | null;
+  /** The server's clock when this state was read, for ordering navigation writes. */
+  serverNowMs: number;
 }
 
 export function getAttemptState(
@@ -649,6 +654,8 @@ export function getAttemptState(
     immediateFeedback: settings.immediateFeedback,
     pauseBehaviour: blueprint.pauseBehaviour,
     parts: partStates,
+    resume: resumeFrom(attempt, parts, items),
+    serverNowMs: now.getTime(),
   };
 }
 
@@ -942,15 +949,55 @@ export function setFlag(
   logEvent(db, input.attemptId, 'item.flagged', { ...input, now: undefined }, now);
 }
 
-/** Records that the learner moved to a question, enforcing navigation rules. */
-export function visitPosition(
-  db: Db,
-  input: { attemptId: string; userId: string; partIndex: number; position: number; now?: Date },
-): void {
+/**
+ * How far ahead of the server's clock a navigation clock may run. The player
+ * anchors its clock to the server's when the page is rendered, so a clock far
+ * ahead was not produced by the player; the move still counts, but it is not
+ * stored as the resume position.
+ */
+export const RESUME_CLOCK_TOLERANCE_MS = 2 * 60 * 1000;
+
+export interface VisitInput {
+  attemptId: string;
+  userId: string;
+  partIndex: number;
+  position: number;
+  /**
+   * Orders resume writes: milliseconds on the server-anchored clock the player
+   * keeps. Omitted, the server's own clock is used.
+   */
+  clock?: number;
+  now?: Date;
+}
+
+export interface VisitResult {
+  position: number;
+  /** False when a newer position was already stored, or the clock was unusable. */
+  recorded: boolean;
+}
+
+/**
+ * Records that the learner moved to a question, enforcing navigation rules,
+ * and stores it as the attempt's resume position.
+ *
+ * The move is checked against ownership, the attempt's status, the section
+ * that is currently open and the section's navigation rules before anything
+ * is written. The resume write is conditional on its clock being ahead of the
+ * stored one, in the same statement, so a late request cannot overwrite a
+ * newer position however the requests interleave.
+ */
+export function visitPosition(db: Db, input: VisitInput): VisitResult {
   const now = input.now ?? new Date();
   expireIfDue(db, input.attemptId, input.userId, now);
   const { attempt, parts, items } = load(db, input.attemptId, input.userId);
-  if (attempt.status !== 'in_progress') return;
+  if (attempt.status !== 'in_progress') {
+    throw new AttemptError('attempt-closed', 'This attempt has already been submitted.', 409);
+  }
+  // Only the open section can be navigated. A pending section has not started
+  // and a finished one is closed for good.
+  if (input.partIndex !== attempt.current_part_index) {
+    throw new AttemptError('wrong-part', 'That section is not currently open.', 409);
+  }
 
   const part = parts.find((p) => p.part_index === input.partIndex);
   if (!part) throw notFound();
@@ -961,10 +1008,109 @@ export function visitPosition(
   const decision = canNavigateTo(policy, state, input.position);
   if (!decision.allowed) throw new AttemptError(decision.code, decision.reason, 409);
 
-  db.prepare(
-    `UPDATE attempt_items SET first_seen_at = COALESCE(first_seen_at, ?)
-     WHERE attempt_id = ? AND part_index = ? AND position <= ?`,
-  ).run(toIso(now), input.attemptId, input.partIndex, input.position);
+  const clock = input.clock ?? now.getTime();
+  const clockUsable =
+    Number.isSafeInteger(clock) && clock >= 0 && clock <= now.getTime() + RESUME_CLOCK_TOLERANCE_MS;
+  const iso = toIso(now);
+
+  const run = db.transaction((): boolean => {
+    db.prepare(
+      `UPDATE attempt_items SET first_seen_at = COALESCE(first_seen_at, ?)
+       WHERE attempt_id = ? AND part_index = ? AND position <= ?`,
+    ).run(iso, input.attemptId, input.partIndex, input.position);
+
+    if (!clockUsable) return false;
+    const info = db
+      .prepare(
+        `UPDATE attempts
+            SET resume_part_index = ?, resume_position = ?, resume_clock = ?, resume_saved_at = ?
+          WHERE id = ? AND user_id = ? AND status = 'in_progress' AND current_part_index = ?
+            AND (resume_clock IS NULL OR resume_clock < ?)`,
+      )
+      .run(input.partIndex, input.position, clock, iso, input.attemptId, input.userId, input.partIndex, clock);
+    return info.changes > 0;
+  });
+
+  return { position: input.position, recorded: run.immediate() };
+}
+
+/** Where this attempt reopens, re-validated against its current state. */
+function resumeFrom(attempt: AttemptRow, parts: AttemptPartRow[], items: AttemptItemRow[]): ResumeDestination | null {
+  if (attempt.status !== 'in_progress') return null;
+  const part = parts.find((p) => p.part_index === attempt.current_part_index);
+  if (!part || part.status !== 'in_progress') return null;
+  const policy = JSON.parse(part.navigation_json) as NavigationPolicy;
+  const partItems = items.filter((i) => i.part_index === part.part_index);
+  return resolveResume(policy, partStateFrom(policy, part, partItems, 0), {
+    partIndex: attempt.resume_part_index,
+    position: attempt.resume_position,
+  });
+}
+
+export interface UnfinishedAttempt {
+  id: string;
+  examKey: string;
+  examName: string;
+  blueprintLabel: string;
+  mode: AttemptRow['mode'];
+  startedAt: string;
+  lastActiveAt: string;
+  partLabel: string;
+  partCount: number;
+  partNumber: number;
+  /** 1-based question number the attempt reopens at, and the section's size. */
+  resumeQuestion: number;
+  questionCount: number;
+  answeredInPart: number;
+  /** Seconds left on the clock that applies now, or null when untimed. */
+  remainingSeconds: number | null;
+  resumeReason: ResumeReason;
+}
+
+/**
+ * Every unfinished attempt this learner has, across exams, newest activity
+ * first. Anything whose clock has run out is closed first, exactly as opening
+ * it would close it, so a session past its deadline is never offered as one
+ * to continue.
+ */
+export function listUnfinishedAttempts(db: Db, userId: string, now = new Date()): UnfinishedAttempt[] {
+  // An exam withdrawn from the registry cannot be run, so it is not offered.
+  const ids = (
+    db
+      .prepare("SELECT id, exam_key AS examKey FROM attempts WHERE user_id = ? AND status = 'in_progress'")
+      .all(userId) as Array<{ id: string; examKey: string }>
+  )
+    .filter((row) => getExamConfig(row.examKey))
+    .map((row) => row.id);
+
+  const unfinished: UnfinishedAttempt[] = [];
+  for (const id of ids) {
+    expireIfDue(db, id, userId, now);
+    const { attempt, parts, items, config, blueprint } = load(db, id, userId);
+    const resume = resumeFrom(attempt, parts, items);
+    if (!resume) continue;
+    const part = parts.find((p) => p.part_index === resume.partIndex)!;
+    const partItems = items.filter((i) => i.part_index === part.part_index);
+    const deadline = effectiveDeadline(attempt.deadline_at, part.deadline_at);
+    unfinished.push({
+      id,
+      examKey: attempt.exam_key,
+      examName: config.name,
+      blueprintLabel: blueprint.label,
+      mode: attempt.mode,
+      startedAt: attempt.started_at,
+      lastActiveAt: [attempt.updated_at, attempt.resume_saved_at].filter(Boolean).sort().at(-1)!,
+      partLabel: part.label,
+      partCount: parts.length,
+      partNumber: part.part_index + 1,
+      resumeQuestion: resume.position + 1,
+      questionCount: partItems.length,
+      answeredInPart: partItems.filter((i) => i.response_status === 'answered').length,
+      remainingSeconds: remainingSeconds(deadline, now),
+      resumeReason: resume.reason,
+    });
+  }
+  return unfinished.sort((a, b) => b.lastActiveAt.localeCompare(a.lastActiveAt));
 }
 
 // ---------------------------------------------------------------------------

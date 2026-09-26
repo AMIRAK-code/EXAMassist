@@ -30,5 +30,8 @@ export default async function AttemptPage({ params }: { params: Promise<{ id: st
   // A finished attempt belongs on the results page.
   if (state.status !== 'in_progress') redirect(`/attempt/${id}/results`);
 
-  return <AttemptPlayer model={toPlayerModel(state)} />;
+  // Keyed by section: when a section ends (submitted, or its clock ran out) the
+  // player starts afresh for the next one, from that section's own answers and
+  // resume position, instead of carrying the previous section's state over.
+  return <AttemptPlayer key={`${state.id}:${state.currentPartIndex}`} model={toPlayerModel(state)} />;
 }
