@@ -12,6 +12,8 @@ const bodySchema = z.object({
   /** null clears the answer, which is a real action: it makes the item omitted. */
   response: responseSchema.nullable(),
   elapsedMs: z.number().int().min(0).max(30 * 60 * 1000).optional(),
+  /** Orders writes to this answer; see recordResponse. */
+  clock: z.number().int().min(0).optional(),
   /**
    * Untimed practice: submit this answer and release its explanation. The
    * answer is locked from then on; the server refuses any later change.
@@ -42,6 +44,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
       response: body.response,
       elapsedMs: body.elapsedMs,
       reveal: body.reveal,
+      clock: body.clock,
     });
     return ok(result);
   } catch (error) {
