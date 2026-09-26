@@ -71,6 +71,10 @@ export interface PlayerModel {
   deadlineAt: string | null;
   remainingSeconds: number | null;
   parts: PlayerPart[];
+  /** Where the open section reopens, already checked against its rules. */
+  resume: AttemptState['resume'];
+  /** The server's clock at render; the player anchors its navigation clock to it. */
+  serverNowMs: number;
 }
 
 /** Plain-language statement of the correct answer, for the review panel. */
@@ -121,6 +125,8 @@ export function toPlayerModel(state: AttemptState): PlayerModel {
     currentPartIndex: state.currentPartIndex,
     deadlineAt: state.deadlineAt,
     remainingSeconds: state.remainingSeconds,
+    resume: state.resume,
+    serverNowMs: state.serverNowMs,
     parts: state.parts.map((part) => ({
       partIndex: part.partIndex,
       label: part.label,

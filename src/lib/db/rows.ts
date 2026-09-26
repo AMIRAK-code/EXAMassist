@@ -103,6 +103,11 @@ export interface AttemptRow {
   idempotency_key: string | null;
   created_at: string;
   updated_at: string;
+  /** Where the learner last was (migration 004). A hint, re-validated on every read. */
+  resume_part_index: number | null;
+  resume_position: number | null;
+  resume_clock: number | null;
+  resume_saved_at: string | null;
 }
 
 export interface AttemptPartRow {
