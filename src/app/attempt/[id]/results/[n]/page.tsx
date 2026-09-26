@@ -103,7 +103,7 @@ export default async function QuestionReviewPage({
         <h2 id="question-heading" className="sr-only">The question</h2>
         {question.stimulus ? (
           <div className="question-text mb-5">
-            <Stimulus stimulus={question.stimulus} />
+            <Stimulus stimulus={question.stimulus} reading />
           </div>
         ) : null}
         {question.instructionsMd ? (
