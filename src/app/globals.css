@@ -374,6 +374,15 @@
     font-family: var(--font-serif);
   }
 
+  /*
+   * Focus mode: inside a session the player has its own header and control
+   * bar, so the site's header and footer are not rendered. Done in CSS, from
+   * a marker in the server-rendered player, so they are never painted.
+   */
+  body:has([data-focus-mode]) [data-site-chrome] {
+    display: none;
+  }
+
   /* Passages are read at length: the reading serif and a comfortable measure. */
   .passage-body {
     font-family: var(--font-serif);

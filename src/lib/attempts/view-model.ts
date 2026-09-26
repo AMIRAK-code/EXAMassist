@@ -40,6 +40,8 @@ export interface PlayerItem {
   response: Response | null;
   /** Feedback has been shown, so the server will refuse any change to the answer. */
   locked: boolean;
+  /** The stored answer's clock, for sorting answers kept on the device against it. */
+  responseClock: number | null;
   review: PlayerReview | null;
 }
 
@@ -73,6 +75,8 @@ export interface PlayerModel {
   parts: PlayerPart[];
   /** Where the open section reopens, already checked against its rules. */
   resume: AttemptState['resume'];
+  /** The clock of the stored resume position, for a move kept on the device. */
+  resumeClock: number | null;
   /** The server's clock at render; the player anchors its navigation clock to it. */
   serverNowMs: number;
 }
@@ -126,6 +130,7 @@ export function toPlayerModel(state: AttemptState): PlayerModel {
     deadlineAt: state.deadlineAt,
     remainingSeconds: state.remainingSeconds,
     resume: state.resume,
+    resumeClock: state.resumeClock,
     serverNowMs: state.serverNowMs,
     parts: state.parts.map((part) => ({
       partIndex: part.partIndex,
@@ -167,6 +172,7 @@ export function toPlayerModel(state: AttemptState): PlayerModel {
           flagged: item.flagged,
           response: item.response,
           locked: item.feedbackReleased,
+          responseClock: item.responseClock,
           review: item.review
             ? {
                 correct: item.review.correct,

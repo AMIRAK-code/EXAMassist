@@ -5,6 +5,7 @@ import { getCurrentUser } from '@/lib/auth/session';
 import { AttemptError, getAttemptState } from '@/lib/attempts/service';
 import { toPlayerModel } from '@/lib/attempts/view-model';
 import { preloadKatexFonts } from '@/lib/content/katex-fonts';
+import { pendingOwner } from '@/lib/player/owner';
 import { AttemptPlayer } from '@/components/player/attempt-player';
 
 // A live attempt is personal state: never cached, never indexed.
@@ -49,5 +50,11 @@ export default async function AttemptPage({ params }: { params: Promise<{ id: st
   // Keyed by section: when a section ends (submitted, or its clock ran out) the
   // player starts afresh for the next one, from that section's own answers and
   // resume position, instead of carrying the previous section's state over.
-  return <AttemptPlayer key={`${state.id}:${state.currentPartIndex}`} model={toPlayerModel(state)} />;
+  return (
+    <AttemptPlayer
+      key={`${state.id}:${state.currentPartIndex}`}
+      model={toPlayerModel(state)}
+      owner={pendingOwner(user.id)}
+    />
+  );
 }

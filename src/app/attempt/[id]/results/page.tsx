@@ -6,7 +6,9 @@ import { getCurrentUser } from '@/lib/auth/session';
 import { expireIfDue, AttemptError } from '@/lib/attempts/service';
 import { getResultsSummary } from '@/lib/learning/results';
 import { examLabel } from '@/lib/learning/dashboard';
+import { pendingOwner } from '@/lib/player/owner';
 import { LearningNotice } from '@/components/learning-notice';
+import { UnsentAnswersNotice } from '@/components/player/unsent-answers-notice';
 import { HowToRead, NextSteps, QuestionList, Verdict, WhereMarksWentLost } from '@/components/results/results-sections';
 import { Alert, Breadcrumbs, Container, PageHeader } from '@/components/ui';
 
@@ -64,6 +66,7 @@ export default async function ResultsPage({
       <PageHeader eyebrow={examLabel(summary.examKey)} title="Your results" lead={`${summary.blueprintLabel} · finished ${finished}`} />
 
       <LearningNotice code={query.notice} className="mb-6" />
+      <UnsentAnswersNotice attemptId={id} owner={pendingOwner(user.id)} />
 
       {summary.status === 'expired' ? (
         <Alert tone="caution" title="This session ran out of time" className="mb-6">
