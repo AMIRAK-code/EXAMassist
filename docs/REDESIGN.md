@@ -1,4 +1,4 @@
-# Redesign — Phases 1 and 2: assessment, direction, plan and delivery
+# Redesign — Phases 1 to 3: assessment, direction, plan and delivery
 
 The "Academic Avant-Garde" redesign. Sections 1–8 are the Phase 1 assessment
 and proposal, written before anything changed; where Phase 2 built something
@@ -13,6 +13,8 @@ second pass: the independent check of the remaining 180 explanations, the
 leaner homepage, the final measurements and the final acceptance verdict.
 Section 14 records the revised budgets and the layout-stability pass, gives
 the final measurements and acceptance, and proposes the scope of Phase 3.
+Section 15 reports Phase 3: resume, the dashboard and the homepage's way back
+in for returning learners, with its tests, measurements and acceptance.
 
 The homepage concept (desktop, mobile and design-system artboards, with a
 working sample question per exam) is published as a private canvas:
@@ -367,8 +369,8 @@ as follows. Phase 2 combined brief stages 2 and 3.
 | --- | --- | --- | --- |
 | 1 | 1 | Inspect the product; direction, system, plan | Done |
 | 2 | 2 + 3 | Tokens, typography, shared components; header, footer, mobile navigation; homepage; plus the decisions in §9 | **Complete** (26 September 2026). Built in §11, closed out in §12–§14, and accepted against the revised budgets (§14.8) |
-| 3 | 4 | Dashboard: resume, one next action with its basis, domain-level skill landscape, all empty and error states | Next. Scope proposed in §14.9, with three decisions needed first; not started |
-| 4 | 5 | Results and mistake notebook: verdict first, evidence, review on its own page, retry flow, optional mistake labels | — |
+| 3 | 4 | Dashboard: resume, one next action with its basis, domain-level skill landscape, all empty and error states | **Complete** (26 September 2026, §15), with learner navigation back in from the homepage |
+| 4 | 5 | Results and mistake notebook: verdict first, evidence, review on its own page, retry flow, optional mistake labels | Next; not started |
 | 5 | 6 | Practice setup formats and the player: focus mode, split passage, visible save states, persisted offline queue, debounced input | — |
 | 6 | 7 | Remaining routes: hubs, guides, auth, account, study plan and readiness, admin | — |
 | 7 | 8 | Validation: axe-core in CI, screen-reader pass, performance budgets, 200% zoom | — |
@@ -1497,3 +1499,342 @@ and §10 and from the current `src/app/dashboard/page.tsx`.
    as the learner's target.
 3. **Homepage for learners:** a slim "continue" strip above the hero, or only
    a changed wordmark destination. The hero stays either way.
+
+*Decided on 26 September 2026 and built in §15: store the position, keep exam
+choice in the address, and add the strip.*
+
+## 15. Phase 3: dashboard and learner navigation (26 September 2026)
+
+**Decisions given:**
+
+1. **Store the resume position** through a migration. Validate every update
+   and every resume destination against ownership, the attempt's status and
+   the exam's navigation rules. Never reopen a locked screen or an expired
+   section, and fall back to a permitted place when the stored one is no
+   longer valid. A stale request must not overwrite a newer position, and
+   saving must not hold up navigation.
+2. **Keep the dashboard's exam in the address.** Validate it, scope every
+   figure to the learner, and handle an invalid or empty value gracefully.
+   Viewing an exam must not change the target. Never widen a skill drill
+   silently; offer topic practice explicitly.
+3. **A "Continue studying" line above the homepage hero**, rendered on the
+   server, only for a learner with history or an unfinished attempt. The
+   first-time visitor's homepage stays as it is, and nothing personal may
+   reach another user through a shared cache.
+4. **Budgets:** the returning-learner homepage at median LCP ≤ 2.2 s, and the
+   dashboard with a representative seeded learner at ≤ 1.8 s. Both at
+   CLS ≤ 0.02, under §14.1's conditions.
+
+Exam-hub layout stays in Phase 6 unless this phase made it worse, and it did
+not (§15.5).
+
+### 15.1 Resume
+
+**Storage.** Migration 004 adds `resume_part_index`, `resume_position`,
+`resume_clock` and `resume_saved_at` to `attempts`. It only adds columns. The
+development database was backed up first, to
+`tmp/backups/examer-2026-09-26-before-migration-004.db` (integrity ok,
+identical counts), and every row was unchanged afterwards.
+
+**Writing a position.** Only the navigation endpoint (`POST
+/api/attempts/:id/visit`) writes one, and only after the move itself passes
+these checks:
+
+- **Ownership:** another learner's attempt is a 404, as if it did not exist.
+- **Status:** a finished attempt is refused with `attempt-closed`.
+- **The open section:** a section that is not open is refused with
+  `wrong-part`. A pending section was not refused before.
+- **The section's rules:** `canNavigateTo`, as before, so a move back to a
+  committed screen is refused.
+
+**Ordering.** The write is conditional on its clock being ahead of the stored
+one, in the same `UPDATE`, so a late request never overwrites a newer
+position, whatever the interleaving (slow network, retry, second tab or
+device). The clock is the player's: the server's time when the page was
+rendered, plus the time elapsed in the browser. So a wrong device clock
+cannot reorder moves. A clock more than two minutes ahead of the server's
+still counts as a move but is not stored.
+
+**Reading a position.** `resolveResume` checks the stored position again on
+every read. It is used only if it is in the open section, inside it and,
+where going back is not allowed, on the screen the learner has reached.
+Otherwise the attempt reopens at the furthest question reached in the open
+section. When a section's clock has run out, the next section is open, so the
+resume point moves there.
+
+**The player:**
+
+- It opens at the resolved position.
+- Where the rules always allow a move (anywhere in a free section, or within
+  the current screen), it moves at once and saves behind the move with
+  `keepalive`. A move with the save delayed by 3 s still renders within
+  1.5 s.
+- It still waits for the server when a move commits a screen, because that
+  is the exam's rule and not a save.
+
+**Two defects found and fixed:**
+
+- **The player carried state across sections.** When a section ended,
+  the next one opened with the previous section's selections. Removing the
+  fix in a scratch copy reproduced it: section 2 opened with question 1
+  marked "answered" and an option checked. The player is now keyed by
+  section.
+- **The first fallback was wrong.** It was the first unanswered question.
+  The existing reload test caught that it sent a learner who had answered
+  their question without moving one question on. It is now the furthest
+  question reached (`18dc2a8`).
+
+### 15.2 Dashboard
+
+Built by `src/lib/learning/dashboard.ts`. Every query filters on the learner,
+and the page renders these states:
+
+- **Pick up where you left off:** every unfinished session, across exams,
+  newest activity first. Each shows the exam, the format, where it reopens
+  ("Section 2 of 4 · Question 5 of 10 · 3 answered · 12 min left") and a
+  Continue link. Anything past its deadline is closed first, so it is never
+  offered.
+- **The exam in view:** from `?exam=` when it names an offered exam, else the
+  target, else the latest practice. An unknown value is ignored and the page
+  says so, without repeating it. An empty or repeated value falls back
+  quietly.
+- **Exam switcher:** the exams practised or targeted, with `aria-current`.
+  Every other exam opens its own view, not practice setup. None of this
+  writes the target.
+- **Your next step:** one recommendation with its reason and the count it
+  rests on, then "Also worth doing". A skill drill the bank can fill only
+  with fewer than 5 questions keeps its skill link; the whole topic is
+  offered beside it as an explicit button, with both counts.
+- **Counts:** questions scored, answered correctly, and mistakes due now,
+  kept apart from those "coming back later" with the next date. A session
+  with misses no longer reads as "0 waiting".
+- **Accuracy by topic:** every topic, practised or not. Each topic's skills,
+  with bank, scored and correct counts, sit in a native disclosure. There is
+  no percentage below 4 scored questions.
+- **Recent sessions,** and "What this page does not do", as before.
+
+**States:**
+
+- nothing chosen (a chooser);
+- no finished session for this exam (start, or continue the unfinished
+  one);
+- only an unfinished session;
+- an exam whose bank holds no reviewed questions;
+- a guest in the last two days of the session that holds their practice
+  (the date, and "Keep your progress");
+- a failed load (`error.tsx`: says so and offers a retry; never an empty
+  dashboard).
+
+**Also fixed:**
+
+- The median-time query counted unfinished attempts (§4).
+- Exams are named by their hub ("Bocconi Online Test: Law"), not by their
+  versioned config names.
+
+### 15.3 Homepage for returning learners
+
+- **When it shows:** `continueStudying` returns a line only when there is an
+  unfinished attempt or a finished session. It offers the latest unfinished
+  attempt at the question it reopens on, or else the latest exam's dashboard.
+  An empty guest session gets nothing, so that homepage is the first-time
+  visitor's.
+- **Where it renders:** on the server, per request, for the learner the
+  session cookie names.
+- **Caching:** the page is dynamic and is sent with `Cache-Control: private,
+  no-cache, no-store, max-age=0, must-revalidate`, with or without a session.
+  A test asserts `private` and `no-store` on the learner's response.
+- **Layout:** a fixed height and one truncated line, so the font swap cannot
+  change its height. On a phone the "Continue studying" label is read out but
+  not shown, leaving the line for the details.
+
+### 15.4 Tests
+
+**Unit: 265, up from 231:**
+
+- **Resume, 16:**
+  - the resolver's rules;
+  - stale, equal and far-future clocks;
+  - another learner's attempt, a finished attempt, a section not yet open;
+  - committed Bocconi screens, both the move and a stored value;
+  - section expiry and attempt expiry;
+  - the cross-exam listing.
+- **Dashboard, 14:**
+  - exam choice;
+  - isolation;
+  - the target left unchanged;
+  - the short-drill option;
+  - priority;
+  - due and later counts;
+  - every topic and skill;
+  - the empty bank, only-unfinished and guest states;
+  - the failed-load render.
+- **Continue line, 4.**
+
+**Browser: 99 passed and 1 skipped (the existing desktop-only keyboard test),
+up from 77.** `tests/e2e/phase-3.spec.ts` runs 11 tests in both device
+projects:
+
+- cross-exam resume through the dashboard;
+- navigation not waiting for the save;
+- a late update;
+- a forward-only section: no reopening of a committed screen, and the move
+  refused;
+- an expired session closed and not offered;
+- a new section starting clean;
+- isolation between learners;
+- the address choosing the exam without touching the target, and an unknown
+  exam;
+- only-unfinished and guest-expiry states;
+- the homepage line and its caching.
+
+**States set in the database.** Some states cannot be reached in a browser in
+reasonable time: an expired clock, a guest's last days, a forward-only
+section. Those are set in the e2e database (`withE2eDb`, which refuses any
+other file) and then exercised through the UI. No open format uses
+forward-only rules yet, so that test pins Bocconi's screens-of-three policy
+onto a live section. That is where the server reads the rules from.
+
+**Covered by unit tests only:** the empty bank and the failed load. The
+current bank cannot produce the first, and forcing the second would need a
+test hook in production code.
+
+### 15.5 Measurements
+
+**Method.** §14.1's, with the two budgeted pages loaded as a returning learner.
+The learner is seeded over HTTP on each build (the Phase 1 build included) by
+the same script:
+
+- 3 finished SAT sessions and 1 finished GMAT session;
+- an unfinished GMAT session and an unfinished SAT session, the SAT one moved
+  to question 5;
+- answers chosen deterministically, not correctly, so the history mixes
+  right, wrong and blank.
+
+Each load adds that build's own session cookie to a fresh context. The Phase
+1 build has no strip and its older dashboard, which is the comparison the
+budget is relative to.
+
+**Conditions** (26 September 2026, 19:11–19:22):
+
+- **Power:** on AC and charging (94% to 97%).
+- **Processor:** before the run, a one-thread load held 177–182% of base
+  clock. During the mobile runs the clock never fell below 120% of base
+  (median 166%).
+- **Background load:** 11–19% idle utilisation.
+- **The low readings:** these fell only in the desktop runs, at 15–23%
+  utilisation. That is idle downclocking between short loads, as in §14.5.
+- **Nothing else ran.**
+
+**Throttled mobile, 9 runs per route.** LCP and FCP were identical in every
+run.
+
+| Route | Phase 1, median (IQR) | Final, median (IQR; range) | Budget | CLS final, highest run |
+| --- | --- | --- | --- | --- |
+| `/`, returning learner | 1,396 (1,376–1,424) | 1,892 (1,804–1,956; 1,728–2,160) | ≤ 2,200: met | 0.0005 |
+| `/dashboard`, seeded learner | 1,388 (1,352–1,408) | 1,548 (1,520–1,556; 1,396–1,688) | ≤ 1,800: met | 0.0001 |
+| `/`, first-time visitor | 1,376 (1,352–1,380) | 1,804 (1,788–1,836; 1,744–1,876) | ≤ 2,200: met | 0.0008 |
+| `/exams/digital-sat` | 1,328 (1,320–1,352) | 1,476 (1,464–1,520; 1,412–1,556) | ≤ 1,800: met | 0.0199 |
+| `/practice/digital-sat` | 1,412 (1,348–1,416) | 1,616 (1,520–1,632; 1,472–1,740) | ≤ 1,800: met | 0.0006 |
+| `/exams/digital-sat/format` | 1,500 (1,484–1,520) | 1,648 (1,596–1,672; 1,488–1,960) | ≤ 1,800: met | 0.0148 |
+
+- **Every run of the two new budgets is inside them.** The slowest were
+  2,160 ms on the learner's homepage and 1,688 ms on the dashboard.
+- **The format guide's slowest run** was 1,960 ms. The Phase 1 build's
+  slowest on the same route in the same batch was 2,360 ms. The budget is
+  the median.
+- **The strip's cost:** about 90 ms of mobile first paint (1,892 ms against
+  1,804 ms for the visitor's homepage in the same batch).
+
+**Desktop, 5 runs:**
+
+| Route | LCP, Phase 1 → final | CLS final, highest run |
+| --- | --- | --- |
+| `/`, returning learner | 196 → 276 | 0.0110 |
+| `/dashboard`, seeded learner | 196 → 228 | 0.0002 |
+| `/`, first-time visitor | 192 → 276 | 0.0122 |
+| `/exams/digital-sat` | 188 → 212 | 0.0005 |
+| `/practice/digital-sat` | 192 → 232 | 0.0006 |
+| `/exams/digital-sat/format` | 204 → 212 | 0.0004 |
+
+**Sizes:**
+
+- **Homepage JavaScript:** 112.5 KB as a learner or a visitor, within the
+  118 KB budget.
+- **Web fonts:** 62 KB on the homepage, within the 90 KB budget.
+- **The dashboard:** 108.6 KB of JavaScript, 22.6 KB of HTML and 562
+  elements; Phase 1's had 383.
+
+**Worst-case font swap** (§14.4's reproduction, at the same 8 widths):
+
+- **The dashboard:** at most 0.0004.
+- **The returning learner's homepage:** at most 0.0171 (768 px).
+- **The first-time visitor's homepage,** not in §14.4: at most 0.0189
+  (768 px).
+- **The practice setup, both format guides measured and the SAT hub:**
+  identical to the end of Phase 2 in every cell, so Phase 3 introduced no
+  regression.
+
+### 15.6 Commits (on `FronDesign`, not pushed)
+
+- `d4ca804`: persist and validate the resume position (migration 004, the
+  resolver, the endpoint's checks, the player).
+- `3ac3d2c`: the dashboard.
+- `067513c`: the homepage's "Continue studying" line.
+- `18dc2a8`: the resume fallback (furthest question reached).
+- `9e29c14`: the Phase 3 browser tests.
+- A documentation commit with this section.
+
+### 15.7 What remains
+
+- **A save still in flight when the page is reloaded can be lost**, and the
+  learner lands one move back. `keepalive` covers leaving the page, not a
+  reload that wins the race.
+- **Moves made while offline do not store a position.** Answers keep their
+  own retry queue; only the resume hint is lost.
+- **Ordering across devices** is only as accurate as the time between a
+  page's render and its first interaction. A clock more than two minutes
+  ahead of the server's is not stored.
+- **The hubs** keep their worst case of 0.0199, with no margin (§14.7).
+  Unchanged, so it stays in Phase 6.
+- **The first-time visitor's homepage** has a worst case of 0.0189 at 768
+  px. That is outside the lab's widths and unchanged by this phase.
+- **Tested only in unit tests:** the empty-bank and failed-load states
+  (§15.4).
+- **Still deferred:** guest history is not merged on signing in to an
+  existing account. The player's save status and offline queue are Phase 5.
+  The study plan and readiness pages are Phase 6.
+- **The development database** now has migration 004. Its backup is named in
+  §15.1.
+- **One machine:** every number is from the same Windows laptop, and the
+  budgets are local.
+
+### 15.8 Acceptance
+
+**Phase 3 is complete** (26 September 2026).
+
+- **Resume:**
+  - persisted and validated on every write and read;
+  - ordered against late requests;
+  - never reopens a committed screen or an expired section;
+  - does not hold up free navigation.
+- **Dashboard:**
+  - exam choice in the address;
+  - scoped to the learner;
+  - the target never changed;
+  - one next step with its basis;
+  - the short-drill option offered explicitly;
+  - every documented state present.
+- **The homepage line:**
+  - server-rendered;
+  - only for a learner with something to continue;
+  - never cacheable;
+  - the visitor's homepage unchanged.
+- **Budgets:**
+  - returning-learner homepage 1,892 ms against 2.2 s;
+  - dashboard 1,548 ms against 1.8 s;
+  - CLS at most 0.0005 on both;
+  - the Phase 2 routes still inside theirs.
+- **Tests:** 265 unit tests and 99 browser tests pass; the site sweep is
+  clean.
+
+Phase 4 (results and the mistake notebook) has not been started.
