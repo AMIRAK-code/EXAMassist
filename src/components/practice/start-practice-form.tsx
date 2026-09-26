@@ -19,6 +19,11 @@ import {
  * created. Nothing is changed behind the learner's back: a preset skill is
  * shown and can be removed, a shortened session says why, and broader
  * practice is offered as a button, never applied as a fallback.
+ *
+ * "New questions only" counts from the learner's own unseen pool, which the
+ * server enforces: such a session is never topped up with questions the
+ * learner has been shown, and the form says how many matching questions
+ * are repeats when it is off.
  */
 
 export interface DomainChoice {
@@ -47,6 +52,7 @@ export function StartPracticeForm({
   domains,
   presetDomain,
   presetSkill,
+  unseenFacets,
   guestNote,
 }: {
   examKey: string;
@@ -56,6 +62,8 @@ export function StartPracticeForm({
   domains: DomainChoice[];
   presetDomain?: string | null;
   presetSkill?: PresetSkill | null;
+  /** This learner's never-seen questions, when they have been shown some; null offers no choice. */
+  unseenFacets?: PracticeFacet[] | null;
   /** Shown to visitors and guests; registered learners keep their history anyway. */
   guestNote?: string | null;
 }) {
@@ -64,11 +72,16 @@ export function StartPracticeForm({
   const [domain, setDomain] = useState(presetSkill ? presetSkill.domainSlug : (presetDomain ?? ''));
   const [difficulty, setDifficulty] = useState<DifficultyChoice>('mixed');
   const [requested, setRequested] = useState(10);
+  const [newOnly, setNewOnly] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const filters = { domain: skill ? null : domain || null, skill: skill?.slug ?? null };
-  const eligible = eligibleCount(facets, { ...filters, difficulty });
+  // Every count on the form comes from the pool the session will draw from.
+  const pool = newOnly && unseenFacets ? unseenFacets : facets;
+  const eligible = eligibleCount(pool, { ...filters, difficulty });
+  const matching = eligibleCount(facets, { ...filters, difficulty });
+  const unseenMatching = unseenFacets ? eligibleCount(unseenFacets, { ...filters, difficulty }) : matching;
   const options = lengthOptions(eligible);
   const length = useMemo(() => {
     if (options.includes(requested)) return requested;
@@ -83,9 +96,12 @@ export function StartPracticeForm({
 
   // Explicit ways to get a longer session, shown only when the current one is short.
   const broader: Array<{ label: string; apply: () => void }> = [];
+  if (newOnly && matching > eligible && eligible < Math.max(5, requested)) {
+    broader.push({ label: `Include questions you have seen (${matching})`, apply: () => setNewOnly(false) });
+  }
   if (eligible < 5) {
     if (skill) {
-      const inDomain = eligibleCount(facets, { domain: skill.domainSlug, difficulty });
+      const inDomain = eligibleCount(pool, { domain: skill.domainSlug, difficulty });
       if (inDomain > eligible) {
         broader.push({
           label: `Practise all of ${skill.domainName} (${inDomain})`,
@@ -97,12 +113,12 @@ export function StartPracticeForm({
       }
     }
     if (difficulty !== 'mixed') {
-      const mixed = eligibleCount(facets, { ...filters, difficulty: 'mixed' });
+      const mixed = eligibleCount(pool, { ...filters, difficulty: 'mixed' });
       if (mixed > eligible) broader.push({ label: `Use mixed difficulty (${mixed})`, apply: () => setDifficulty('mixed') });
     }
     if (skill || domain) {
       broader.push({
-        label: `Practise every ${examLabel} topic (${eligibleCount(facets, { difficulty })})`,
+        label: `Practise every ${examLabel} topic (${eligibleCount(pool, { difficulty })})`,
         apply: () => {
           setSkill(null);
           setDomain('');
@@ -139,6 +155,7 @@ export function StartPracticeForm({
           skills: filters.skill ? [filters.skill] : undefined,
           difficulty,
           length,
+          unseenOnly: newOnly || undefined,
         },
       }),
     }).catch(() => null);
@@ -217,9 +234,9 @@ export function StartPracticeForm({
             onChange={(event) => setDomain(event.target.value)}
             className="min-h-12 w-full rounded-control border-[1.5px] border-line-strong bg-surface px-3 text-base"
           >
-            <option value="">Every topic ({eligibleCount(facets, { difficulty })})</option>
+            <option value="">Every topic ({eligibleCount(pool, { difficulty })})</option>
             {domains.map((option) => {
-              const count = eligibleCount(facets, { domain: option.slug, difficulty });
+              const count = eligibleCount(pool, { domain: option.slug, difficulty });
               return (
                 <option key={option.slug} value={option.slug} disabled={count === 0}>
                   {option.name} ({count})
@@ -237,7 +254,7 @@ export function StartPracticeForm({
         <legend className="mb-1.5 text-sm font-semibold">Difficulty</legend>
         <div className="flex flex-wrap gap-2">
           {DIFFICULTIES.map((value) => {
-            const count = eligibleCount(facets, { ...filters, difficulty: value });
+            const count = eligibleCount(pool, { ...filters, difficulty: value });
             const selected = difficulty === value;
             return (
               <label
@@ -270,6 +287,29 @@ export function StartPracticeForm({
         </p>
       </fieldset>
 
+      {unseenFacets ? (
+        <div>
+          <label className="inline-flex min-h-11 cursor-pointer items-center gap-3 text-sm has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent">
+            <input
+              type="checkbox"
+              checked={newOnly}
+              onChange={(event) => setNewOnly(event.target.checked)}
+              aria-describedby="practice-new-note"
+              className="size-5 shrink-0 accent-[var(--color-accent)]"
+            />
+            <span>
+              <span className="font-semibold">New questions only</span>
+              <span className="text-ink-subtle">{` (${unseenMatching} of ${matching} are new to you)`}</span>
+            </span>
+          </label>
+          <p id="practice-new-note" className="mt-1 text-sm text-ink-muted">
+            {newOnly
+              ? 'Only questions you have never been shown. A session is never topped up with ones you have seen; if too few are left, it is shorter, or cannot start.'
+              : `${matching - unseenMatching} of the ${matching} matching questions are ones you have been shown before. Those not seen recently are chosen first, but a repeat can be included; tick this to rule repeats out.`}
+          </p>
+        </div>
+      ) : null}
+
       <div>
         <label htmlFor="practice-length" className="mb-1.5 block text-sm font-semibold">
           Number of questions
@@ -294,15 +334,21 @@ export function StartPracticeForm({
           {eligible === 0
             ? null
             : shortened
-              ? `Only ${plural(eligible, 'reviewed question matches', 'reviewed questions match')} these settings, so this session has ${length}.`
+              ? `Only ${plural(eligible, newOnly ? 'new reviewed question matches' : 'reviewed question matches', newOnly ? 'new reviewed questions match' : 'reviewed questions match')} these settings, so this session has ${length}.`
               : null}
         </p>
       </div>
 
       {eligible === 0 ? (
-        <Alert tone="caution" title="No reviewed questions match these settings">
-          <p>Choose a broader option below, or change the topic or difficulty.</p>
-        </Alert>
+        newOnly && matching > 0 ? (
+          <Alert tone="caution" title="You have been shown every question that matches">
+            <p>There is nothing new here. Include questions you have seen, or choose a broader option below.</p>
+          </Alert>
+        ) : (
+          <Alert tone="caution" title="No reviewed questions match these settings">
+            <p>Choose a broader option below, or change the topic or difficulty.</p>
+          </Alert>
+        )
       ) : null}
 
       {broader.length > 0 ? (
@@ -324,7 +370,7 @@ export function StartPracticeForm({
             <>
               <span className="font-semibold text-ink">{plural(length, 'question', 'questions')}</span>
               {/* One text run: separate pieces jumped between lines when the web font arrived. */}
-              {` from ${scopeLabel} · ${difficulty === 'mixed' ? 'mixed difficulty' : `${difficulty} only`} · untimed · check each answer to see its worked explanation · ${total} reviewed ${examLabel} questions in the bank`}
+              {` from ${scopeLabel} · ${difficulty === 'mixed' ? 'mixed difficulty' : `${difficulty} only`}${newOnly ? ' · new to you only' : ''} · untimed · check each answer to see its worked explanation · ${total} reviewed ${examLabel} questions in the bank`}
             </>
           ) : (
             'Nothing to start with these settings.'

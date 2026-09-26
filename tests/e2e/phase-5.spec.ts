@@ -434,3 +434,57 @@ test.describe('player layout', () => {
     expect(fonts.heading).not.toMatch(/Palatino|Georgia/);
   });
 });
+
+test.describe('practice setup', () => {
+  /** An LSAT session with its first five questions answered, so they count as seen. */
+  async function someHistory(page: Page): Promise<void> {
+    const id = await startSession(page);
+    const state = (await api(page, 'GET', `/api/attempts/${id}`)).data;
+    for (const item of state.parts[0].items.slice(0, 5)) {
+      await api(page, 'POST', `/api/attempts/${id}/answer`, {
+        partIndex: 0,
+        position: item.position,
+        response: { type: 'single_select', optionId: item.question.options[0].id },
+      });
+    }
+    expect((await api(page, 'POST', `/api/attempts/${id}/submit`)).status).toBe(200);
+  }
+
+  test('offers new questions only, with honest counts, and the session has no repeats', async ({ page }) => {
+    await asGuest(page);
+    await someHistory(page);
+    await page.goto('/practice/lsat');
+
+    const newOnly = page.getByRole('checkbox', { name: /New questions only/ });
+    await expect(newOnly).toBeVisible();
+    const label = (await page.getByText(/are new to you\)$/).textContent())!;
+    const [, unseen, all] = label.match(/\((\d+) of (\d+) are new to you\)/)!.map(Number);
+    expect(all - unseen).toBe(5);
+    await expect(page.getByText(`5 of the ${all} matching questions are ones you have been shown before`)).toBeVisible();
+
+    await newOnly.check();
+    await expect(page.getByText(/new to you only/)).toBeVisible();
+    await expect(page.getByText(/never topped up with ones you have seen/)).toBeVisible();
+
+    await page.getByRole('button', { name: /^Start \d+-question session$/ }).click();
+    await page.waitForURL(/\/attempt\/[0-9a-f-]+$/);
+    const practiceId = /\/attempt\/([0-9a-f-]+)$/.exec(page.url())![1];
+    const repeated = withE2eDb(
+      (db) =>
+        db
+          .prepare(
+            `SELECT COUNT(*) AS n FROM attempt_items ai WHERE ai.attempt_id = ? AND ai.question_id IN (
+               SELECT x.question_id FROM attempt_items x JOIN attempts a ON a.id = x.attempt_id
+                WHERE a.user_id = (SELECT user_id FROM attempts WHERE id = ?) AND a.id <> ? AND x.first_seen_at IS NOT NULL)`,
+          )
+          .get(practiceId, practiceId, practiceId) as { n: number },
+    );
+    expect(repeated.n).toBe(0);
+  });
+
+  test('is not offered to someone who has seen nothing, since every question is new', async ({ page }) => {
+    await page.goto('/practice/lsat');
+    await expect(page.getByRole('button', { name: /^Start \d+-question session$/ })).toBeVisible();
+    await expect(page.getByRole('checkbox', { name: /New questions only/ })).toHaveCount(0);
+  });
+});
