@@ -671,6 +671,8 @@ export interface AttemptItemState {
   timeMs: number;
   /** True once immediate feedback was shown; the response can no longer change. */
   feedbackReleased: boolean;
+  /** The stored answer's clock (migration 006), for ordering answers kept on a device. */
+  responseClock: number | null;
   question: PresentedQuestion;
   /** Present only once the learner is entitled to see the answer. */
   review: {
@@ -718,6 +720,8 @@ export interface AttemptState {
   parts: AttemptPartState[];
   /** Where the open section reopens; null once the attempt is finished. */
   resume: ResumeDestination | null;
+  /** The clock of the stored resume position, whether or not it is still allowed. */
+  resumeClock: number | null;
   /** The server's clock when this state was read, for ordering navigation writes. */
   serverNowMs: number;
 }
@@ -771,6 +775,7 @@ export function getAttemptState(
           response,
           timeMs: item.time_ms,
           feedbackReleased: released,
+          responseClock: item.response_clock,
           question: visible
             ? toPresented(db, version)
             : ({} as PresentedQuestion),
@@ -824,6 +829,7 @@ export function getAttemptState(
     pauseBehaviour: blueprint.pauseBehaviour,
     parts: partStates,
     resume: resumeFrom(attempt, parts, items),
+    resumeClock: attempt.resume_clock,
     serverNowMs: now.getTime(),
   };
 }
@@ -846,6 +852,14 @@ export interface RecordResponseInput {
    * draft that can still be changed.
    */
   reveal?: boolean;
+  /**
+   * Orders writes to this item: milliseconds on the server-anchored clock the
+   * player keeps (as for navigation, see visitPosition). An answer is stored
+   * only if its clock is ahead of the stored answer's, so a resent or delayed
+   * request cannot replace a newer answer. Omitted (or unusable), the write
+   * is treated as the newest, as every write was before ordering existed.
+   */
+  clock?: number;
   now?: Date;
 }
 
@@ -861,8 +875,18 @@ export interface RecordResponseResult {
   answered: boolean;
   /** True when feedback has been released for this item, by this call or an earlier one. */
   locked: boolean;
-  /** True when the call repeated the stored, already-locked answer and changed nothing. */
+  /** True when the call repeated the stored answer and changed nothing. */
   duplicate: boolean;
+  /**
+   * True when a newer answer was already stored (from another tab, another
+   * device, or a later request that arrived first): nothing was written, and
+   * `current` is the answer the server holds.
+   */
+  stale: boolean;
+  /** The answer stored for this item after the call. */
+  current: Response | null;
+  /** The stored answer's clock after the call. */
+  clock: number | null;
   feedback: ItemFeedback | null;
 }
 
@@ -926,10 +950,47 @@ function lockedOutcome(
       answered: true,
       locked: true,
       duplicate: true,
+      stale: false,
+      current: stored,
+      clock: item.response_clock,
       feedback: buildFeedback(db, config, version, stored),
     };
   }
   throw new AttemptError('response-locked', RESPONSE_LOCKED_MESSAGE, 409);
+}
+
+/**
+ * An answer whose clock is not ahead of the stored answer's: a request sent
+ * again after its reply was lost, or an older answer arriving after a newer
+ * one. A repeat of the stored answer succeeds without writing (so its time is
+ * not counted twice); anything else is stale and changes nothing.
+ */
+function notNewerOutcome(
+  db: Db,
+  config: ExamConfig,
+  version: QuestionVersionRow,
+  item: AttemptItemRow,
+  attempted: Response | null,
+  immediateFeedback: boolean,
+): RecordResponseResult {
+  const stored = storedResponse(item);
+  const locked = immediateFeedback && item.feedback_released_at !== null;
+  const same = canonicalResponse(stored) === canonicalResponse(attempted);
+  return {
+    saved: same,
+    answered: stored !== null,
+    locked,
+    duplicate: same,
+    stale: !same,
+    current: stored,
+    clock: item.response_clock,
+    feedback: same && locked && stored ? buildFeedback(db, config, version, stored) : null,
+  };
+}
+
+/** Whether a player's clock can order a write: a non-negative integer not implausibly ahead of the server. */
+function usableClock(clock: number | undefined, now: Date): clock is number {
+  return clock !== undefined && Number.isSafeInteger(clock) && clock >= 0 && clock <= now.getTime() + RESUME_CLOCK_TOLERANCE_MS;
 }
 
 export interface PersistResponseInput {
@@ -943,6 +1004,13 @@ export interface PersistResponseInput {
   elapsedMs: number;
   /** Release immediate feedback in the same write. */
   release: boolean;
+  /**
+   * The write's order (see RecordResponseInput.clock). With a clock, the row
+   * is written only if the stored clock is behind it. Without one, the write
+   * is the newest: it always applies and moves the stored clock past any
+   * earlier one.
+   */
+  clock?: number;
   now: Date;
 }
 
@@ -950,25 +1018,29 @@ export interface PersistResponseInput {
  * Writes one response.
  *
  * The UPDATE itself refuses to touch an item whose feedback has been released,
- * so the lock holds even for a request that read the item before another tab
- * released it, and even across processes: the check and the write are one
- * statement inside an IMMEDIATE transaction. Returns `written: false` when the
- * guard refused.
+ * or whose stored answer is newer than this one, so the lock and the order
+ * hold even for a request that read the item before another tab wrote it, and
+ * even across processes: the checks and the write are one statement inside
+ * an IMMEDIATE transaction. Returns `written: false` when a guard refused.
  */
-export function persistResponse(db: Db, input: PersistResponseInput): { written: boolean } {
+export function persistResponse(db: Db, input: PersistResponseInput): { written: boolean; clock: number | null } {
   const iso = toIso(input.now);
   const answered = input.response !== null;
+  const ordered = input.clock !== undefined;
 
-  const run = db.transaction((): boolean => {
-    const info = db
+  const run = db.transaction((): { written: boolean; clock: number | null } => {
+    const row = db
       .prepare(
         `UPDATE attempt_items
            SET response_json = ?, response_status = ?, time_ms = time_ms + ?,
                last_answered_at = ?, first_seen_at = COALESCE(first_seen_at, ?),
-               feedback_released_at = CASE WHEN ? = 1 THEN ? ELSE feedback_released_at END
-         WHERE id = ? AND feedback_released_at IS NULL`,
+               feedback_released_at = CASE WHEN ? = 1 THEN ? ELSE feedback_released_at END,
+               response_clock = CASE WHEN ? = 1 THEN ? ELSE MAX(COALESCE(response_clock, 0) + 1, ?) END
+         WHERE id = ? AND feedback_released_at IS NULL
+           AND (? = 0 OR response_clock IS NULL OR response_clock < ?)
+         RETURNING response_clock AS clock`,
       )
-      .run(
+      .get(
         input.response ? JSON.stringify(input.response) : null,
         answered ? 'answered' : 'unanswered',
         Math.max(0, Math.min(input.elapsedMs, 30 * 60 * 1000)),
@@ -976,9 +1048,14 @@ export function persistResponse(db: Db, input: PersistResponseInput): { written:
         iso,
         input.release ? 1 : 0,
         iso,
+        ordered ? 1 : 0,
+        input.clock ?? null,
+        input.now.getTime(),
         input.itemId,
-      );
-    if (info.changes === 0) return false;
+        ordered ? 1 : 0,
+        input.clock ?? null,
+      ) as { clock: number } | undefined;
+    if (!row) return { written: false, clock: null };
 
     db.prepare('UPDATE attempts SET updated_at = ? WHERE id = ?').run(iso, input.attemptId);
 
@@ -989,10 +1066,10 @@ export function persistResponse(db: Db, input: PersistResponseInput): { written:
       logEvent(db, input.attemptId, 'item.answered', { ...where, answered }, input.now);
     }
     if (input.release) logEvent(db, input.attemptId, 'item.feedback_released', where, input.now);
-    return true;
+    return { written: true, clock: row.clock };
   });
 
-  return { written: run.immediate() };
+  return run.immediate();
 }
 
 export function recordResponse(db: Db, input: RecordResponseInput): RecordResponseResult {
@@ -1055,12 +1132,20 @@ export function recordResponse(db: Db, input: RecordResponseInput): RecordRespon
     throw new AttemptError('answer-required', 'Choose an answer before checking it.', 400);
   }
 
+  // Order first: a request no newer than the stored answer is a resend or a
+  // late arrival, and is judged against what is stored (even on a locked
+  // item, where an old draft arriving late is stale, not a violation).
+  const clock = usableClock(input.clock, now) ? input.clock : undefined;
+  if (clock !== undefined && item.response_clock !== null && clock <= item.response_clock) {
+    return notNewerOutcome(db, config, version, item, parsed, settings.immediateFeedback);
+  }
+
   if (settings.immediateFeedback && item.feedback_released_at !== null) {
     return lockedOutcome(db, config, version, item, parsed);
   }
 
   const release = settings.immediateFeedback && input.reveal === true;
-  const { written } = persistResponse(db, {
+  const written = persistResponse(db, {
     attemptId: input.attemptId,
     itemId: item.id,
     partIndex: input.partIndex,
@@ -1069,14 +1154,19 @@ export function recordResponse(db: Db, input: RecordResponseInput): RecordRespon
     wasAnswered: item.response_status === 'answered',
     elapsedMs: input.elapsedMs ?? 0,
     release,
+    clock,
     now,
   });
 
-  if (!written) {
-    // Another request - a second tab, a retry - released feedback between our
-    // read and this write. Judge this request against what it did.
+  if (!written.written) {
+    // Another request (a second tab, a resend) wrote between our read and
+    // this write: it released feedback, or stored a newer answer. Judge this
+    // request against what it did.
     const fresh = db.prepare('SELECT * FROM attempt_items WHERE id = ?').get(item.id) as AttemptItemRow;
-    return lockedOutcome(db, config, version, fresh, parsed);
+    if (settings.immediateFeedback && fresh.feedback_released_at !== null && (clock === undefined || fresh.response_clock === null || clock > fresh.response_clock)) {
+      return lockedOutcome(db, config, version, fresh, parsed);
+    }
+    return notNewerOutcome(db, config, version, fresh, parsed, settings.immediateFeedback);
   }
 
   return {
@@ -1084,6 +1174,9 @@ export function recordResponse(db: Db, input: RecordResponseInput): RecordRespon
     answered: parsed !== null,
     locked: release,
     duplicate: false,
+    stale: false,
+    current: parsed,
+    clock: written.clock,
     feedback: release && parsed ? buildFeedback(db, config, version, parsed) : null,
   };
 }
