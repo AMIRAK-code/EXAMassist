@@ -2879,6 +2879,7 @@ commit, `ecf3779` (§16.11). The history was not rewritten.
 ### 17.12 Acceptance
 
 **Phase 5 is implemented. Its acceptance is pending,** on one criterion.
+The closeout that followed (§17.13) did not change that.
 
 **Met, in the acceptance batch:**
 
@@ -2909,7 +2910,7 @@ with maths.
 - **The budget is unchanged.** The faster diagnostic batch, in which all
   three pass (1,548–1,668), is not used for the verdict.
 
-**Recommended focused fix, not yet made:** defer the layout of the worked
+**Recommended focused fix, since tried (§17.13, insufficient):** defer the layout of the worked
 explanation and the option rationales on question review pages until they
 approach the viewport. That is `content-visibility: auto` with a size
 estimate on the explanation section and the rationale blocks.
@@ -2935,3 +2936,178 @@ estimate on the explanation section and the rationale blocks.
   - render less maths markup (KaTeX's MathML copy is what screen readers
     use);
   - drop the serif from the explanation only.
+
+### 17.13 The performance closeout: deferring the worked explanation (27 September 2026)
+
+**Decision given:** try `content-visibility` on the below-the-fold worked
+explanations and option rationales of question review pages. Keep the
+reading serif, the design, the content and the budgets. Treat the §17.8
+diagnostic saving as an upper bound, not an expectation, and start with a
+small interleaved comparison on the three failing pages.
+
+**What was tried.** On the question review page only:
+
+- **The rule:** the worked explanation and each option rationale got
+  `content-visibility: auto`, with an estimated block size that `auto`
+  replaces with the real size once rendered.
+  - Explanation: 900 px on phones, 700 px from 640 px up.
+  - Rationale: 110 px and 60 px.
+  - The estimates came from the fixture pages' real heights: explanations
+    837–1,393 px on a phone and 495–976 on desktop; rationales 60–160 and
+    40–80.
+- **Printing** would have rendered everything (`content-visibility:
+  visible`).
+- **Nothing else changed.** The content stayed in the server-rendered page.
+
+It was built as a separate candidate (a third build, beside the frozen
+Phase 4 build and `22d9f74`).
+
+**The small comparison** (27 September, 01:00–01:07; phone, 7 runs,
+interleaved). Conditions: AC and fully charged; clock median 173% of base,
+163% when busy; the development server idle; nothing else running.
+
+| Page | Phase 4 | Phase 5 (`22d9f74`) | Candidate (IQR) | Candidate vs Phase 5 | Worst CLS, candidate |
+| --- | --- | --- | --- | --- | --- |
+| Maths-heavy | 1,904 | 2,000 | 1,996 (1,946–2,080) | −4 | 0.0002 |
+| Maths with a table | 1,972 | 1,928 | 1,712 (1,694–1,740) | −216 | 0 |
+| Short maths | 1,732 | 1,872 | 1,844 (1,780–1,872) | −28 | 0 |
+
+**Why it helps only one page.** Chrome's `contentvisibilityautostatechange`
+event, recorded on the candidate at 390 × 844, shows which blocks it
+skipped at the first render. It skipped a block only when the block started
+beyond about 2,100 px, roughly one and a half screens below the fold.
+
+| Page | Where the explanation starts | Skipped at first render |
+| --- | --- | --- |
+| Maths with a table | 2,304 px | Yes |
+| Maths-heavy | 1,350 px | No |
+| Short maths | 1,197 px | No |
+
+- **The margin is Chrome's own** and cannot be set from CSS. On the two
+  pages that miss, the explanation is inside it and is laid out before the
+  first paint whatever the CSS says.
+- **The candidate is therefore insufficient:** two of the three pages
+  would still miss. It was not taken further. The two acceptance batches
+  were not run, and nothing was committed. The change is kept as a patch in
+  the scratch copy and is fully described above.
+
+**Where the cost is: explanation or rationales** (01:09–01:15; phone, 7
+runs, on `22d9f74`, with stylesheets inserted at document start, as in
+§17.8; conditions as above, clock median 172%, 157% when busy). An upper
+bound for each part:
+
+| Page | Phase 5 | Explanation hidden | Rationales hidden | Both hidden |
+| --- | --- | --- | --- | --- |
+| Maths-heavy | 1,824 | 1,568 (−256) | 1,744 (−80) | 1,484 (−340) |
+| Short maths | 1,708 | 1,468 (−240) | 1,716 (+8) | 1,460 (−248) |
+| Maths with a table | 1,812 | 1,612 (−200) | 1,828 (+16) | 1,588 (−224) |
+
+The worked explanation is the cost. The rationales barely matter.
+
+**The remaining gap.**
+
+- **With the candidate** (small comparison): maths-heavy 196 ms over and
+  short maths 44 ms over. Maths with a table is within the budget.
+- **Without it** (the acceptance batch of §17.8): 300, 304 and 80 ms over.
+- **Even the upper bound may not close it in a slow batch.** Take the
+  acceptance batch's figures and the explanation's upper bound. Maths with a
+  table would still come to 1,872–1,904 ms (proportional or absolute
+  saving) and maths-heavy to 1,805–1,844. Only short maths would clearly
+  pass. In batches as fast as the split diagnostic, all three would pass
+  (1,468–1,612).
+
+**The smallest design change, previewed only (not made).**
+
+- **What changes:** on phones, the worked explanation starts closed, as a
+  native disclosure. Its heading is the control, with "Show" and a chevron.
+- **What stays:** the answer summary, each option with its rationale, the
+  labels and the actions stay where they are. Opened, the explanation is
+  exactly today's content.
+- **The preview:** a phone preview (390 px) of now, closed and opened was
+  made on the Phase 5 build by rearranging the page in a headless browser.
+  It was delivered with this report. A final design would turn the chevron
+  up when open.
+- **What a native disclosure gives:**
+  - it works without JavaScript;
+  - it is a focusable control that Enter and Space toggle;
+  - its open or closed state is announced;
+  - Chrome opens it for a find-in-page match and for a link to something
+    inside it. Other browsers vary, and that needs checking.
+- **What it needs:** a print rule or a `beforeprint` handler, since a
+  closed disclosure prints nothing.
+- **To leave desktop as it is,** the server-rendered page would start
+  closed (the server cannot know the width), and a small script would open
+  it from 640 px up once loaded. The explanation is below the fold on
+  desktop, so that cannot shift anything in view.
+- **Before any decision:**
+  - it changes what a learner sees first on a phone;
+  - its measured saving is an upper bound;
+  - by that bound it may still leave the table page over 1.8 s in a batch
+    as slow as the acceptance batch.
+
+  It is left for a decision.
+
+**Phase 5 acceptance remains pending.** No budget, typography, maths
+rendering or explanation was changed.
+
+### 17.14 Offline: what needs the connection, and where waiting answers are kept
+
+**Works offline,** within a session already open:
+
+- choosing and changing answers, including typing;
+- moving between questions in a section that allows it, or within the
+  current screen;
+- reading the question on screen.
+
+Each change is kept on the device and sent when the connection returns. The
+clock keeps running throughout.
+
+**Needs the connection:**
+
+- **saving to the server:** nothing is counted until the server confirms
+  it;
+- **checking an answer** and seeing its explanation;
+- **moving to a screen that commits the current one,** where a section
+  locks each screen;
+- **submitting a section or the session;**
+- **marking a question for review;**
+- **opening anything new:** a session, a question review page, results,
+  the notebook.
+
+Offline, the player says so for each of its own actions and changes
+nothing. A page that is not open cannot load at all.
+
+**Where waiting answers are kept:**
+
+- **The key:** the browser's `localStorage`, one record per account and
+  attempt, under `examer.pending.v1.<owner>.<attemptId>`. `<owner>` is the
+  first 22 characters of a base64url SHA-256 of the account id with a fixed
+  prefix, so the key holds no account id.
+- **The contents:** plain JSON. It is **not encrypted**. It holds:
+  - each waiting answer, with its section, position, ordering clock and
+    unreported time;
+  - the latest unconfirmed move.
+
+  Anyone who can use that browser profile can read it until it is cleared.
+- **When storage cannot be written,** as in some private windows or a full
+  device, waiting answers are held only in the page. The status says so,
+  and leaving the page asks first.
+
+**When they are cleared:**
+
+- a waiting answer or move, as soon as the server confirms it, or holds
+  something newer;
+- a change the server refuses for good (the answer is locked, or a rule
+  forbids it): at once, and the learner is told;
+- changes whose section closed before they reached the server: once the
+  next section's player or the results page has told the learner how many
+  did not count;
+- every other account's records, when any account opens a player on the
+  device;
+- everything, on signing out. The response sends `Clear-Site-Data:
+  "storage"`, and the page also deletes the records itself;
+- any record older than 30 days, unread, the next time a player or
+  results page opens.
+
+**Still pending:** the sticky player header and control bar have not been
+checked on a real phone (§17.11).
