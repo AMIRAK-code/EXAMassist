@@ -11,6 +11,8 @@ cause of the mobile slowdown, the database state and the acceptance verdict.
 Where it corrects §11, §11 says so in place. Section 13 is the closeout's
 second pass: the independent check of the remaining 180 explanations, the
 leaner homepage, the final measurements and the final acceptance verdict.
+Section 14 records the revised budgets and the layout-stability pass, gives
+the final measurements and acceptance, and proposes the scope of Phase 3.
 
 The homepage concept (desktop, mobile and design-system artboards, with a
 working sample question per exam) is published as a private canvas:
@@ -322,6 +324,10 @@ How the sample question works:
 
 **Phase 2 budgets (lab, same method as §2):** homepage JS ≤ 118 KB transfer
 (+12 KB), fonts ≤ 90 KB, throttled-mobile LCP ≤ 1.5 s, CLS ≤ 0.02.
+*Revised on 25 September 2026 (§14.1):* the throttled-mobile median LCP
+budget is ≤ 2.2 s on the homepage and ≤ 1.8 s on the exam hub, practice
+setup and format guide. These are local regression budgets. The others are
+unchanged.
 
 ## 9. Decisions (agreed 24 September 2026)
 
@@ -360,8 +366,8 @@ as follows. Phase 2 combined brief stages 2 and 3.
 | Phase | Brief stage | Scope | Status |
 | --- | --- | --- | --- |
 | 1 | 1 | Inspect the product; direction, system, plan | Done |
-| 2 | 2 + 3 | Tokens, typography, shared components; header, footer, mobile navigation; homepage; plus the decisions in §9 | Built (§11), closed out in §12 and §13. Content and function are done; the LCP and CLS budgets are not met (§13.7) |
-| 3 | 4 | Dashboard: resume, one next action with its basis, domain-level skill landscape, all empty and error states | Next, after the budget decision in §13.7 |
+| 2 | 2 + 3 | Tokens, typography, shared components; header, footer, mobile navigation; homepage; plus the decisions in §9 | **Complete** (26 September 2026). Built in §11, closed out in §12–§14, and accepted against the revised budgets (§14.8) |
+| 3 | 4 | Dashboard: resume, one next action with its basis, domain-level skill landscape, all empty and error states | Next. Scope proposed in §14.9, with three decisions needed first; not started |
 | 4 | 5 | Results and mistake notebook: verdict first, evidence, review on its own page, retry flow, optional mistake labels | — |
 | 5 | 6 | Practice setup formats and the player: focus mode, split passage, visible save states, persisted offline queue, debounced input | — |
 | 6 | 7 | Remaining routes: hubs, guides, auth, account, study plan and readiness, admin | — |
@@ -538,7 +544,8 @@ Diagnosis so far:
 7. Signing in to an existing account does not merge guest history. The copy
    says so; merging would be new backend work.
 8. The practice page still opens with the exam's long summary paragraph
-   (Phase 5).
+   (Phase 5). *Resolved in §14: a one-line lead, with the summary after the
+   formats.*
 
 ## 12. Phase 2 closeout (24 September 2026)
 
@@ -1151,3 +1158,342 @@ two budgets open, and decide them before Phase 3.
   Phase 1 code on one route. Either choose one of the design changes in §13.4,
   or restate the budget relative to Phase 1 measured in the same batch. The
   current gap is +0.4–0.6 s on the homepage and +0.13–0.28 s elsewhere.
+
+*Decided in §14: the design and its measured cost are accepted, the LCP
+budgets are revised, and the CLS pass is done.*
+
+## 14. Layout-stability pass and revised budgets (25–26 September 2026)
+
+Decisions given after §13:
+
+- Keep the visual identity, the branded fonts, the exam selector and the
+  interactive homepage sample. The measured design and performance trade-off
+  in §13.4 is accepted.
+- Revise the LCP budgets (§14.1). Keep the JavaScript and font budgets.
+- Do one focused layout-stability pass on the practice setup and the format
+  guide, keeping CLS at 0.02. Inspect what actually moves, and do not assume
+  shorter copy alone fixes it. No broad font or homepage change.
+- Keep the ACT item quarantined and track its correction separately. It is now
+  open item 5 in `docs/TASK-BOARD.md`.
+- Do not start Phase 3; present its scope.
+
+### 14.1 Budgets, as revised
+
+| Metric | Budget | Statistic |
+| --- | --- | --- |
+| Throttled-mobile LCP, homepage | ≤ 2.2 s | median of 9 runs |
+| Throttled-mobile LCP, exam hub, practice setup, format guide | ≤ 1.8 s | median of 9 runs |
+| CLS, each measured route, mobile and desktop | ≤ 0.02 | highest run |
+| Homepage JavaScript | ≤ 118 KB (Phase 1 plus 12 KB) | compressed transfer |
+| Web fonts on the homepage | ≤ 90 KB | compressed transfer |
+
+The conditions are §13.4's, unchanged:
+
+- the exact final build and the committed Phase 1 build, both under
+  `next start`;
+- Chrome 153, a cold context for every load, and the two builds interleaved;
+- throttled mobile at 390 × 844, DPR 2, 4× CPU, 1.6 Mbps down, 750 kbps up
+  and 150 ms RTT, 9 runs per route;
+- desktop at 1440 × 900, unthrottled, 5 runs;
+- mains power.
+
+These are **local regression budgets** for this machine and method. They are
+not claims about field performance, for which no data exists.
+
+### 14.2 What was moving
+
+This was measured, not assumed, in three ways:
+
+- **Chrome's trace.** The `LayoutShift` events give each shift's score and
+  the farthest distance anything moved.
+- **Blocked font.** With the web-font request failing, the shift is zero on
+  every route, so the only cause is the font swap.
+- **A deterministic reproduction.** The page loads with the font blocked, so
+  it lays out in Arial as on a slow first visit. Bricolage is then added
+  through the FontFace API under the page's own family name, and every
+  element and text line is compared before and after. This reproduced the
+  lab's scores exactly: 0.0562, 0.0296, 0.0199, 0.0004 and 0.0028.
+
+**How a shift is scored**, which decides the fix: the area of everything that
+moved, multiplied by the farthest any one thing moved, as a fraction of the
+viewport's longer side. Moves under 3 px are ignored. A small fragment that
+jumps a long way therefore multiplies an ordinary one-line push of a whole
+block.
+
+| Page and width | Before | What moved |
+| --- | --- | --- |
+| Practice setup, 1440 | 0.0562 | The lead, which was the exam's whole summary, gained a line and pushed the card grid down 30 px. The "How questions are checked" link at the end of a wrapped sentence jumped 250 px to the next line, and that jump set the distance. |
+| Format guide, 390 | 0.0296 | "In short" gained a line, a 25 px push. The date in "…Verified 18 September 2026." jumped 45 px. |
+| Format guides at other widths | up to 0.3053 (GRE, 414) | The breadcrumb trail fitted on one line in Arial and wrapped in Bricolage: the last crumb jumped 237 px and the page moved down 24 px. The date jumped up to 333 px, and the "· 2026–27" after the version label up to 325 px. |
+| The header, every page | about 0.0004 on its own | The wordmark gets narrower, so the navigation moves 4–11 px. |
+
+The lab measures two widths. The same reproduction was therefore run for
+every exam's practice setup, format guide and hub at 360, 375, 390, 414, 768,
+1024, 1280 and 1440 px. It found **29 page and width combinations over 0.02**,
+not two.
+
+**Shorter copy alone made some cases worse.** With only the lead shortened,
+the form came into view. The session summary above the Start button is about
+ten separate text fragments, and when it rewrapped, one of them (the bank
+count) jumped 679 px at 1440 px. The practice pages rose to 0.042 at 768 px.
+
+### 14.3 What changed (`2913262`)
+
+**Practice setup:**
+
+- The lead is now "Practise by topic, untimed, or choose another format
+  below."
+- The exam's summary is kept in full in a new "About this exam" section after
+  the formats, with a link to the format guide.
+- The "Topic practice" instructions are unchanged, word for word.
+- The editorial-standards link has a line of its own. The bank count and the
+  session summary are each one text run.
+- The unknown-filter notice is shorter: "The link named a topic or skill the
+  SAT does not have, so no filter has been applied."
+
+**Format guide:**
+
+- Under the heading: "Verified 18 September 2026 from College Board’s
+  published pages." The date starts the line, and the rest is one text run.
+- The version and admissions cycle are a two-item list after each summary,
+  not a line joined with "·" under the heading.
+- The provenance note moved to each Sources list: "Compiled by Examer from
+  College Board’s published pages. Each source shows the date it was checked."
+- The note replaced says "Every fact below is followed by the source it came
+  from". That was not true: the sources are listed at the end of each section,
+  not after each fact.
+- "In short" is unchanged.
+
+**Every page:** breadcrumbs stay on one line. Where the current page's label
+does not fit, it is cut short with an ellipsis. The heading repeats the label,
+screen readers read it in full, and focus outlines stay clear of the clip.
+
+**Not changed:** the fonts and how they load, the homepage, colours, spacing
+and the hub pages.
+
+### 14.4 Worst-case swap shift, before and after
+
+The highest score in each group at each width, from the reproduction above.
+This is the worst case. In a real load the font often arrives before the
+first paint, and then nothing moves at all.
+
+| Group | 360 | 375 | 390 | 414 | 768 | 1024 | 1280 | 1440 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Practice setup, 7 exams, before | 0.0007 | 0.0006 | 0.0006 | 0.0038 | 0.0223 | 0.0774 | 0.0590 | 0.0562 |
+| Practice setup, after | 0.0007 | 0.0007 | 0.0006 | 0.0026 | 0.0102 | 0.0007 | 0.0006 | 0.0007 |
+| Format guides, 6 hubs, before | 0.1139 | 0.1137 | 0.2060 | 0.3053 | 0.2127 | 0.0817 | 0.0564 | 0.0654 |
+| Format guides, after | 0.0148 | 0.0162 | 0.0182 | 0.0168 | 0.0154 | 0.0063 | 0.0047 | 0.0048 |
+| Exam hubs, 6, unchanged | 0.0189 | 0.0189 | 0.0199 | 0.0195 | 0.0150 | 0.0072 | 0.0057 | 0.0055 |
+
+- **Over 0.02:** 29 combinations before, none after.
+- **Other practice states:** the preset-skill view peaks at 0.0184 (414 px),
+  and the unknown-filter view at 0.0109.
+
+`tests/e2e/layout-stability.spec.ts` performs the same swap on the SAT
+practice setup and the SAT and GRE format guides, at 390 and 1440 px, and
+fails above 0.02.
+
+### 14.5 Lab measurements
+
+**Builds:** `2913262` against the committed Phase 1 build, each route warmed
+with one request first. The method is §14.1's. LCP and FCP were identical in
+every run, so only LCP is shown.
+
+**Conditions of the acceptance batch** (26 September 2026, 17:39–17:46):
+
+- **Power:** on AC and charging, with the battery going from 20% to 24%.
+  Windows reported power online, and the plan was HP Optimized.
+- **Processor:** an Intel Core i5-10210U, base 1.6 GHz. Before the run, a
+  one-thread load held 175–188% of base clock, so the processor was boosting,
+  not held back.
+- **Background load:** 12–29% total CPU at idle, from desktop applications.
+  That includes an extension process in the user's own Chrome, at about half a
+  core. §13.4 recorded 20–35%. No builds, tests or other measurements ran.
+- **During the run:** a sampler logged the clock every 10 s. In the mobile
+  batch it never fell below 121% of base, with a median of 167%. In the
+  desktop batch, five samples read 41–53%, each at 15–18% utilisation. That is
+  idle downclocking between the short unthrottled loads, and the desktop
+  figures match §13.4's to within 16 ms.
+
+**Throttled mobile, 9 runs per route:**
+
+| Route | Phase 1, median (IQR) | Final, median (IQR; range) | Budget | CLS final, highest run |
+| --- | --- | --- | --- | --- |
+| `/` | 1,308 (1,276–1,396) | 1,840 (1,804–1,880; 1,584–1,952) | ≤ 2,200: met | 0.0008 |
+| `/exams/digital-sat` | 1,328 (1,296–1,340) | 1,528 (1,520–1,552; 1,428–1,620) | ≤ 1,800: met | 0.0199 |
+| `/practice/digital-sat` | 1,368 (1,328–1,388) | 1,588 (1,552–1,652; 1,488–1,696) | ≤ 1,800: met | 0.0006 |
+| `/exams/digital-sat/format` | 1,484 (1,448–1,536) | 1,636 (1,560–1,696; 1,488–1,744) | ≤ 1,800: met | 0.0148 |
+
+- **Every run is inside its budget,** not only the medians. The slowest were
+  1,952 ms on the homepage and 1,744 ms on the format guide.
+- **The gap over Phase 1** is +532, +200, +220 and +152 ms. §13.4's two
+  batches gave +388 to +572, +184 to +276, +172 to +264 and +132 to +184 ms,
+  so the layout changes cost nothing measurable.
+
+**Desktop, 5 runs:**
+
+| Route | LCP, Phase 1 → final | CLS final, highest run |
+| --- | --- | --- |
+| `/` | 188 → 268 | 0.0114 |
+| `/exams/digital-sat` | 172 → 208 | 0.0005 |
+| `/practice/digital-sat` | 188 → 208 | 0.0006, down from 0.0562 in §13.4 |
+| `/exams/digital-sat/format` | 200 → 232 | 0.0004 |
+
+**Sizes:**
+
+- Homepage JavaScript: 112.3 KB, within the 118 KB budget.
+- Homepage CSS: 13.4 KB.
+- Web fonts: 62 KB on the homepage, within the 90 KB budget, and 40.4 KB
+  elsewhere.
+
+**Batch 1, not used for acceptance** (26 September, about 17:19–17:27). It
+ran minutes after the laptop was plugged in, at 4% charge.
+
+| Route | Phase 1, median (IQR) | Final, median (IQR; range) |
+| --- | --- | --- |
+| `/` | 1,500 (1,412–1,620) | 2,160 (1,976–2,296; 1,844–2,848) |
+| `/exams/digital-sat` | 1,484 (1,396–1,652) | 1,744 (1,736–1,788; 1,452–2,440) |
+| `/practice/digital-sat` | 1,760 (1,512–1,892) | 2,052 (1,832–2,260; 1,612–2,360) |
+| `/exams/digital-sat/format` | 1,696 (1,676–1,752) | 1,768 (1,744–1,924; 1,612–2,036) |
+
+- **Why it was set aside:** the Phase 1 code itself measured 1,484–1,760 ms,
+  with interquartile ranges up to 380 ms. In batch 2 it measured
+  1,308–1,484 ms, with none wider than 120 ms.
+- **The clock readings do not prove it:** the readings taken just after
+  batch 1 (48–85% of base) were at about 15% utilisation, and idle cores
+  downclock too. The evidence is the unstable baseline. That is why batch 2
+  also checked the clock under load and logged it throughout.
+- **Its practice-setup median** of 2,052 ms would miss 1.8 s. It is recorded
+  here and not used.
+
+### 14.6 Checks
+
+- `npm run verify`: typecheck clean, content 0 errors and 0 warnings, 231
+  tests.
+- **Playwright** on the final build: 77 passed, 1 skipped (the existing
+  desktop-only keyboard test). This includes the new layout-stability spec,
+  6 tests across the two device projects, which measured 0.0004–0.0182.
+- **Site sweep:** 34 routes at 360 and 1440 px, as a visitor and as a guest
+  with a finished session. It adds every exam's practice setup and format
+  guide to §13's list. No overflow, no console errors and no error statuses.
+- **Swap matrix** on the final build: 21 routes at 8 widths, identical to the
+  run on the build before the last wording change, and none over 0.02.
+
+### 14.7 What remains
+
+- **Hubs** are unchanged and outside this pass. Their worst case is
+  0.0189–0.0199 at phone widths, where the tagline lead can gain a line. That
+  is within the budget, with no margin. The practice page's treatment would
+  apply if it is ever needed.
+- **"In short"** on the format guide can still gain a line on phones, which
+  scores 0.015–0.018 in the worst case.
+- **A swap that moves nothing** would need a fallback matched to Bricolage's
+  metrics. That is the typography trade-off in §13.4, which cost 0.36–0.55 s
+  of mobile first paint on Windows Chrome. The budget does not need it.
+- **One machine.** Every number here is from one Windows laptop.
+
+### 14.8 Acceptance
+
+**Phase 2 is complete** (26 September 2026).
+
+**Met:**
+
+- **Throttled-mobile LCP:** the homepage's median is 1,840 ms against 2.2 s;
+  the hub, practice setup and format guide are at 1,528–1,636 ms against
+  1.8 s.
+- **CLS ≤ 0.02:** on every measured route, mobile and desktop, in every run.
+  The highest is 0.0199, on the mobile hub.
+- **JavaScript and fonts:** 112.3 KB against 118 KB, and 62 KB against 90 KB.
+- **Content and function:** as §13.7 records.
+- **The layout pass:** no page or width in the worst-case matrix is over
+  0.02.
+
+**Carried forward** (none is a Phase 2 acceptance criterion):
+
+- **C-ACT-023:** `enhanced-act-read-time-use-table-023` stays quarantined.
+  Its correction is tracked as open item 5 in `docs/TASK-BOARD.md`.
+- **Deferred features** from §13.7:
+  - the remembered exam, and switching exams without JavaScript;
+  - the player's save status and offline queue;
+  - study-plan storage and recovery;
+  - merging guest history on sign-in;
+  - the 12 loose-but-true wordings.
+- **The hubs:** their worst-case shift has no margin (§14.7).
+
+### 14.9 Phase 3: dashboard and learner navigation, proposed scope
+
+Not started. The goal: a returning learner lands on one screen that says
+where they are, what to do next and on what evidence, and can move between
+their exams and learner pages without detours. The items come from §3, §4
+and §10 and from the current `src/app/dashboard/page.tsx`.
+
+**1. Resume**
+
+- List every unfinished session the learner has, across exams. Today the
+  dashboard looks only at the last ten attempts of the exam in focus.
+- Expire overdue timed sessions when listing them. Expiry is lazy today, so a
+  session past its deadline shows as "in progress" until it is opened.
+- Reopen at the question the learner was on, not question 1.
+
+**2. One next action, with its basis**
+
+- One primary recommendation at the top of the page, with its reason and the
+  count it rests on, from `buildRecommendations`. The others follow it.
+- A skill link falls back to its topic when the skill holds too few reviewed
+  questions for a session. Skills hold a median of 1–2.
+- The mistake notebook's count separates "due now" from "coming back later",
+  so a session with misses never reads as "0 waiting".
+
+**3. A topic-level skill landscape**
+
+- Skills grouped under their topic, including skills never practised, each
+  with its count.
+- A percentage only at or above `MIN_ATTEMPTS_FOR_SIGNAL`, as now.
+- Untouched topics shown in place, not in a closing sentence.
+- Fix the median-time query that ignores attempt status (§4).
+
+**4. Moving between exams and pages**
+
+- Switch the dashboard between the exams the learner has practised or
+  targeted. Today "Practising something else?" links to practice setup. The
+  default is unchanged: the stated target, else the most recent exam.
+- A learner who opens the homepage or the wordmark gets a way back to their
+  dashboard and any unfinished session. Today only the header's Dashboard
+  link leads there.
+- The learner navigation (Dashboard, Exams, Mistake notebook, Study plan,
+  Readiness) keeps `aria-current` and the 360 px mobile menu, and gains the
+  exam switcher.
+
+**5. Every state**
+
+- no exam chosen;
+- an exam with no finished session;
+- only an unfinished session;
+- an exam whose bank cannot fill a session;
+- a guest near the end of the seven days;
+- a failed load.
+
+**6. Checks**
+
+- End-to-end tests for each state and for the switcher.
+- The layout-stability test and the site sweep extended to the dashboard.
+- The dashboard added to the lab set, measured with a seeded learner, under
+  the 1.8 s and 0.02 budgets.
+
+**Out of scope:**
+
+- results and the mistake notebook (Phase 4);
+- the player and its save states (Phase 5);
+- storing the study plan, and merging plan and readiness (Phase 6);
+- a remembered-exam cookie, which needs a consent decision;
+- merging guest history on sign-in, which is backend work;
+- any score prediction.
+
+**Decisions needed before it starts:**
+
+1. **Resume position:** derive it from the saved responses, with no
+   migration, or store it, with a migration.
+2. **Exam switching:** keep the choice in the address only, or also save it
+   as the learner's target.
+3. **Homepage for learners:** a slim "continue" strip above the hero, or only
+   a changed wordmark destination. The hero stays either way.
