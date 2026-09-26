@@ -128,7 +128,7 @@ export default async function StudyPlanPage() {
              FROM attempt_items ai
              JOIN attempts a           ON a.id = ai.attempt_id
              JOIN question_versions qv ON qv.id = ai.question_version_id
-            WHERE a.user_id = ? AND a.exam_key = ?`,
+            WHERE a.user_id = ? AND a.exam_key = ? AND a.mode <> 'review'`,
         )
         .all(user.id, examKey) as Array<{ domainSlug: string }>
     ).map((row) => row.domainSlug),
