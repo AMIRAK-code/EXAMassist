@@ -1,4 +1,4 @@
-# Redesign — Phases 1 to 4: assessment, direction, plan and delivery
+# Redesign — Phases 1 to 5: assessment, direction, plan and delivery
 
 The "Academic Avant-Garde" redesign. Sections 1–8 are the Phase 1 assessment
 and proposal, written before anything changed; where Phase 2 built something
@@ -16,7 +16,10 @@ the final measurements and acceptance, and proposes the scope of Phase 3.
 Section 15 reports Phase 3: resume, the dashboard and the homepage's way back
 in for returning learners, with its tests, measurements and acceptance.
 Section 16 reports Phase 4: results, a question on its own page, the mistake
-notebook, labels, retries and new-question practice.
+notebook, labels, retries and new-question practice. Section 17 reports
+Phase 5: the notebook's pages, question typography, saving and recovery in
+the player, focus mode, and new questions only in setup, with the
+measurements and an acceptance that is still pending on one criterion.
 
 The homepage concept (desktop, mobile and design-system artboards, with a
 working sample question per exam) is published as a private canvas:
@@ -372,8 +375,8 @@ as follows. Phase 2 combined brief stages 2 and 3.
 | 1 | 1 | Inspect the product; direction, system, plan | Done |
 | 2 | 2 + 3 | Tokens, typography, shared components; header, footer, mobile navigation; homepage; plus the decisions in §9 | **Complete** (26 September 2026). Built in §11, closed out in §12–§14, and accepted against the revised budgets (§14.8) |
 | 3 | 4 | Dashboard: resume, one next action with its basis, domain-level skill landscape, all empty and error states | **Complete** (26 September 2026, §15), with learner navigation back in from the homepage |
-| 4 | 5 | Results and mistake notebook: verdict first, evidence, review on its own page, retry flow, optional mistake labels | **Complete** (26 September 2026, §16), with one open decision on maths question pages (§16.8) |
-| 5 | 6 | Practice setup formats and the player: focus mode, split passage, visible save states, persisted offline queue, debounced input | Next; not started |
+| 4 | 5 | Results and mistake notebook: verdict first, evidence, review on its own page, retry flow, optional mistake labels | **Complete** (26 September 2026, §16), accepted functionally; its open issues are recorded in §17.1 |
+| 5 | 6 | Practice setup formats and the player: focus mode, split passage, visible save states, persisted offline queue, debounced input | **Implemented** (26–27 September 2026, §17). Acceptance pending: maths question review pages miss the phone LCP budget (§17.12) |
 | 6 | 7 | Remaining routes: hubs, guides, auth, account, study plan and readiness, admin | — |
 | 7 | 8 | Validation: axe-core in CI, screen-reader pass, performance budgets, 200% zoom | — |
 
@@ -2294,3 +2297,634 @@ run.
 
 Phase 5 has not been started.
 
+---
+
+## 17. Phase 5: question typography, reliable saving and the practice player (26–27 September 2026)
+
+**Decisions given:**
+
+1. **Phase 4 is accepted functionally**, with its open acceptance issues
+   recorded explicitly (§17.1). A short closeout first: server-backed,
+   accessible notebook pages on a stable order, with the view and account
+   isolation kept; label filtering may wait. Commit history is kept as it is,
+   and `c19aee1`'s dependence on `ecf3779` documented.
+2. **Question typography:** the system reading serif for question content,
+   on review pages and in the player; branded fonts stay for interface
+   headings and controls; maths is unchanged. Start from the conditional
+   maths-font preload and measure the combination across short, long,
+   maths-heavy and non-maths questions on desktop and phone. Keep the 1.8 s
+   median LCP and 0.02 CLS targets for question pages, report variability,
+   and do not change the budget over Phase 4's 4 ms miss.
+3. **Saving and resume:** visible, accurate saving, saved, offline and
+   failed states; durable recovery of pending answers and resume positions;
+   sensible retries. Keep server-authoritative timing, locked screens,
+   feedback-release rules and answer immutability. Never replay queued
+   changes into expired, completed, locked or unauthorised attempts; keep
+   locally pending changes apart from server-confirmed saves; never show
+   queued data under another account. Do not imply that offline use pauses
+   a clock. Test immediate reload, interrupted connections, reconnecting,
+   expiry while offline, duplicate requests, stale updates and account
+   changes.
+4. **The practice experience:** continue the documented player work (§10:
+   focus mode, split passage, save states, persisted queue, debounced input)
+   and expose the enforced "new questions only" in setup, with honest
+   availability and empty states. Broader practice stays an explicit choice.
+   Ordinary-practice repeats stay distinguishable from unseen-question
+   evidence, and no historical metric is rewritten.
+5. Back up the development database before migrations; focused commits;
+   test the complete journeys; check for performance regressions. Phase 6,
+   pushing and deploying are out of scope.
+
+### 17.1 Phase 4's acceptance, as recorded
+
+Phase 4's functional work is accepted. Its open acceptance issues, and where
+each stands after this phase:
+
+| Phase 4 issue (§16.12) | Status |
+| --- | --- |
+| Maths question page shifted 0.109 on desktop | Resolved: §17.3 |
+| Maths question page's phone median 4 ms over 1.8 s | Still over in the acceptance batch, on both builds: §17.12. The budget is unchanged |
+| The notebook showed only the first 40 entries | Resolved: pages, below |
+| Views cannot be filtered by label | Deferred, as agreed |
+| `c19aee1` builds only together with `ecf3779` | Documented; history kept (§16.11, §17.10) |
+| A position save racing a reload could be lost | Resolved: §17.4 |
+| "New questions only" offered only after a session | Resolved: §17.6 |
+| No "mark as reviewed" action | Unchanged: a retry is the review |
+| Ordinary-practice repeats count towards progress | Unchanged, by the rule not to rewrite history; setup now says how many matching questions are repeats (§17.6) |
+
+**Notebook pages (`07bf9ad`).**
+
+- **Pages:** every view is served 40 entries a page. Previous, numbered and
+  next links are plain links that keep the view. The current page carries
+  `aria-current`, the page number is in the title, and returning from a
+  bookmark keeps the page.
+- **Order:** each view orders on a unique key, its date and then the
+  question id. Due and later go by due date, all mistakes by the latest
+  miss, bookmarks by the date bookmarked. The latest missed encounter is
+  chosen with a tie-breaker too. An unchanged notebook therefore pages
+  without repeating or skipping an entry.
+- **Out of range:** a page past the end (the view shrank since the link was
+  made) redirects to the last page, keeping any notice.
+- **Scope:** everything is still scoped to the learner. Another learner's
+  page 2 is an empty page 1.
+- **Retries** on a page offer that page's questions, and say so.
+
+### 17.2 Baselines, taken before any change
+
+- **The build:** Phase 4 (`982d690`) was built from a clean copy and frozen
+  with a copy of the development database. It served both as this baseline
+  and as the comparison in §17.8.
+- **The fixtures:** measuring question pages needs the same questions on
+  both builds, and selection is random. One learner's sessions were created
+  over HTTP by the Phase 4 build, with six chosen questions swapped into
+  known positions before any answer was saved. That database was then
+  copied to the Phase 5 build.
+  - **Maths-heavy:** a GMAT problem with 66 formulas, 3 of them display
+    maths.
+  - **Maths with a table:** a GMAT table-analysis question with a stimulus.
+  - **Short maths:** a Bocconi algebra question with a 40-character stem.
+  - **Short plain:** a GRE text-completion question.
+  - **Long plain stem:** a 649-character LSAT logical-reasoning stem.
+  - **Long passage:** a 2,257-character LSAT reading passage.
+
+  Each was measured on its review page (answered wrongly) and at the front
+  of an unanswered session in the player.
+
+**Before any change:** see the Phase 4 columns of §17.8, which come from the
+same interleaved batch. The worst-case swap check found 15 of 96 cells over
+0.02:
+
+- the maths-heavy review page at every width, up to 0.1766;
+- the short-maths review page at three;
+- the maths-heavy player at three, up to 0.1201;
+- the maths-with-a-table player at one.
+
+### 17.3 Question typography (`b6aeb62`, `22d9f74`)
+
+- **What is set in the serif:** on question review pages and in the player,
+  stems, passages and their titles, instructions, options, rationales and
+  worked explanations use the system reading serif, `--font-serif`
+  (Charter, Iowan Old Style, Palatino Linotype, Georgia, Cambria).
+  - It needs no download, so a question is laid out once, in its final
+    font, and never reflows when the interface font arrives.
+  - Interface headings ("Question 3 of 10", "Worked explanation"), labels,
+    badges, buttons and the navigator keep Bricolage.
+  - Maths is unchanged: KaTeX sizes itself against the surrounding text.
+- **Option letters** get a fixed width. Otherwise the interface font
+  arriving beside an option changed the width left for its text and
+  rewrapped it.
+- **Passage titles** were the last source of movement. In the interface
+  font, a title that took a second line once the font arrived pushed the
+  passage down by 0.0207 at 375 px. It is part of the question, so where a
+  question is read it is now set with the passage.
+- **Unchanged:** the homepage sample keeps its own typography, as agreed in
+  Phase 2.
+- **The maths-font preload** now also runs in the player. The two main
+  KaTeX faces are preloaded when anything in the open section shows maths.
+  The whole section counts, because the player moves between questions
+  without a page load, and a formula shown after a move would otherwise wait
+  for its fonts and reflow.
+
+### 17.4 Saving and resume (`7622c03`, `005f50b`)
+
+**On the server: ordered answer writes (migration 006).**
+
+- **The clock:** `attempt_items.response_clock` holds the stored answer's
+  place among writes to it. It uses the server-anchored clock the player
+  already keeps for navigation (§15.1).
+- **The rule:** an answer is written only if its clock is ahead of the
+  stored one, checked in the same guarded `UPDATE` as the write (inside an
+  IMMEDIATE transaction, as for the lock after checking).
+  - **A repeat of the stored answer** succeeds without writing, so a
+    resent request never counts its time twice.
+  - **An older answer arriving after a newer one** changes nothing. The
+    reply says it is stale and carries the answer the server holds.
+  - **An old draft arriving after the answer was checked** is stale, not a
+    violation. A newer, different answer to a checked question is refused
+    as before.
+- **What still comes first:** ownership, the attempt's status, the open
+  section, its clock and navigation rules, and the lock. A clock is never
+  evidence of when an answer was made: one made before the deadline but
+  delivered after it (plus the existing 3 s grace for requests in flight)
+  is refused.
+- **Writes without a clock** (older pages, direct API use) are treated as
+  the newest, as every write was before, and move the stored clock forward.
+  A clock implausibly far ahead of the server's is treated the same way, so
+  it cannot freeze the order.
+- **Reported back:** attempt state now includes each answer's clock and the
+  stored resume position's.
+
+**On the device: nothing is lost before the server confirms it.**
+
+- **Written before sent:** every answer change and every move goes to the
+  device's storage (`localStorage`) before its request, and stays there
+  until a reply confirms it (`src/lib/player/pending.ts`). A reload, a
+  dropped connection or a closed tab therefore loses nothing the server
+  would still accept.
+- **One record per account and attempt.** It is named by an opaque
+  per-account key (a hash of the account id, never the id itself). Two tabs
+  of one attempt share it, and the newest change to a question wins, as it
+  does on the server.
+- **When the player opens,** it sorts what the device kept against the
+  server's state:
+  - changes newer than the server's are shown as the learner's and sent
+    again;
+  - changes the server already holds, or has something newer for, are
+    forgotten;
+  - a move newer than the stored resume position reopens the player there,
+    if the rules allow the move from where the server placed the learner.
+    The server checks it again.
+  - This closes §15.7's immediate-reload gap, and offline moves now keep
+    their position too.
+- **Never replayed:**
+  - into a section that has closed;
+  - into a question checked since with a different answer;
+  - into another account's attempt.
+
+  What could not be saved is counted and the learner told: in the next
+  section's player, or on the results page, which then deletes it from the
+  device.
+- **Accounts on one device:**
+  - When any player opens, every other account's records are deleted, so a
+    shared device does not hold one learner's waiting answers while another
+    is signed in.
+  - Signing out clears them. The response sends `Clear-Site-Data:
+    "storage"`, and the page also deletes them itself.
+  - A record older than 30 days is deleted unread.
+- **Sending:**
+  - One request at a time, oldest change first.
+  - Typing (numeric and essay answers) is sent once it pauses for 800 ms,
+    and at once on leaving the question, submitting or leaving the page.
+  - With no reply, the player retries after 2, 4, 8 and 16 s, then every
+    30 s. It tries at once on reconnecting or returning to the tab, and a
+    server that is busy or failing is retried the same way.
+  - A reply that the section closed, that the answer is locked, or that the
+    account changed ends that change for good.
+  - Leaving the page sends what is waiting with `keepalive`. A resend is
+    recognised by the server and ignored.
+- **Waiting on the server:**
+  - Checking an answer, moving to a screen that commits the current one,
+    and submitting a section all wait until every answer is saved, and need
+    the connection.
+  - A move that commits a screen no longer goes ahead offline. Before, it
+    moved the learner on in the page while the server still held them on
+    the old screen.
+- **When device storage is unavailable** (some private windows, or a full
+  device), waiting answers are held only in the page. The status says so,
+  and leaving the page asks first.
+
+**Visible states.** The player's header shows one status:
+
+| State | Shown | Meaning |
+| --- | --- | --- |
+| Before any answer | Saves as you go | Nothing waiting |
+| Saving | Saving… | A change is on its way, or typing will be sent when it pauses |
+| Saved | ✓ Saved | The server has confirmed every answer |
+| Offline | ○ Offline · 2 waiting | No reply. The detail (read to screen readers, and as a tooltip) says the two answers are kept on this device, or on this page only, and in a timed section that the timer keeps running |
+| Failed | ! 2 not saved · Retry | The server could not take them yet; retrying, with a button to try now |
+
+- **"Saved"** appears only once the server has confirmed every answer. A
+  change kept on the device is never called saved.
+- **In the navigator,** a question answered here but not yet confirmed has
+  a dotted bar instead of a solid one, a legend while any exist, and
+  "not yet saved" in its accessible name.
+- **Announcements:** state changes are announced politely, except "Saving",
+  which would chatter on every keystroke.
+- **The clock:** nothing says or implies that the clock pauses. Offline, a
+  timed section's status says it keeps running, and the section's rules say
+  that an answer reaching the server after time runs out does not count.
+  When the clock reaches zero offline, the player waits for the connection
+  before asking the server, rather than showing the browser's offline page.
+
+### 17.5 The player (`005f50b`, `22d9f74`)
+
+- **Focus mode:** inside a session the site header and footer are not
+  rendered. This is done in CSS, from a marker in the server-rendered
+  player, so they are never painted.
+  - **The player's own header** is one row that never wraps: the session's
+    name (truncated), the save status, the clock or "Untimed", and "Leave",
+    which goes to the exam's dashboard.
+  - It removes Phase 1's finding that the player carried the marketing
+    header, which also did not update after a guest session was created.
+- **Controls** sit in a bar fixed to the bottom of the viewport: Previous,
+  Mark, and Next (or Next screen, Review answers, Finish section). They no
+  longer move with the question's or the explanation's length. A browser
+  test checks the bar's position before and after an explanation appears.
+- **Split passage:** from 1024 px a passage sits beside its question and
+  scrolls on its own. Below that, it sits above the question.
+- **Measure:** a question without a passage keeps a 68-character measure.
+- **Navigator:**
+  - Targets are 44 px (they were 36).
+  - Each state has its own shape as well as colour:
+    - unanswered: an outline;
+    - answered: filled, with a bar under the number (dotted while not yet
+      saved);
+    - marked: a corner;
+    - current: a heavy ring.
+  - On a phone it scrolls sideways in one row rather than stacking.
+- **Unchanged:** the rules, the clock display, the end-of-section review
+  screen, the check-then-lock flow, and the explanation after checking.
+  Focus still moves to the question's heading on each move.
+
+### 17.6 Practice setup: new questions only (`2c1e196`)
+
+- **Who sees it:** a learner who has been shown some of an exam's
+  questions gets a "New questions only" checkbox on the setup page. Someone
+  who has seen nothing is not offered it, since every question is new to
+  them.
+- **The counts** come from the questions this learner has never been
+  shown, by the rule session creation enforces (`unseenOnly`, §16.6):
+  - the label reads, for example, "30 of 37 are new to you";
+  - with the box ticked, every count on the form (topics, difficulty
+    levels, lengths) is the new-question count.
+- **No top-up with repeats.** A new-questions session is shorter when too
+  few are left, or cannot start, and says so:
+  - "You have been shown every question that matches" when there are none;
+  - "Include questions you have seen (37)" is an explicit choice, alongside
+    the existing broader options.
+- **Unticked,** the form says how many of the matching questions are
+  repeats, and that questions seen recently are only avoided, not excluded.
+  That keeps ordinary practice honest about its repeats, and no historical
+  figure changes.
+
+### 17.7 Tests
+
+- **Unit: 327 pass** (293 before).
+  - **Ordered writes** (13): newer stored, older refused as stale, a resend
+    saved once with its time counted once, clearing ordered too, unclocked
+    writes applied as the newest, an implausible clock unable to fix the
+    order, per-question order, the lock (a newer different answer refused,
+    an older draft stale, a resent check returning its feedback), and
+    refusals that come before order: another learner's attempt, a submitted
+    attempt, and an answer made in time but delivered after the deadline.
+  - **The device store** (16): the newest change kept, unreported time
+    carried only when asked, settling only once the server holds it or
+    newer, one record shared by two tabs, a full device reported,
+    per-account keys and deletion of other accounts' records, age limits,
+    unreadable records, what the player replays, forgets or reports as lost
+    when it opens (a closed section, a locked answer), moves newer than the
+    stored position, reply classification and back-off.
+  - **Notebook pages** (5): every entry exactly once across three pages, in
+    the same order each time; ties broken on the question id; bookmarks
+    made at the same moment; page bounds; another learner's pages empty;
+    parsing the page number.
+- **Browser: 149 pass, 1 skipped** (115 before; the skip is the same
+  mobile keyboard test as before). That run was on the build before
+  `22d9f74`. After it, the specs that commit touches (Phase 4, Phase 5 and
+  the learner journey, 92 tests) were run again on the measured build: 91
+  pass and the same 1 is skipped. There are 17 new tests, each run on the
+  desktop and mobile projects:
+  - **Notebook:** every mistake reached once across pages from the
+    keyboard, the view and the page kept; another learner's pages empty.
+  - **Saving:**
+    - saved only once the server has it, in focus mode;
+    - an answer and a move made just before a reload, both kept and saved
+      after it;
+    - offline: held on the device, said, marked in the navigator, and sent
+      on reconnecting;
+    - a tab closed offline, its answer sent when the session is reopened;
+    - an answer made offline in a timed section, refused once time has run
+      out, with the results saying so;
+    - a repeated request recognised, its time counted once;
+    - an older answer from another device never replacing a newer one;
+    - a checked answer never changed from either device;
+    - nothing sent into a session submitted elsewhere, with one refused
+      request and then nothing;
+    - another account never shown, and never left with, the first
+      account's waiting answers;
+    - signing out asking the browser to clear storage.
+  - **Layout:** the control bar unmoved when an explanation appears; a
+    passage beside its question at 1280 px and above it at phone width, in
+    the reading serif.
+  - **Setup:** new questions only with honest counts, and a session with
+    no question the learner had been shown; not offered to someone who has
+    seen nothing.
+- **Sweep:** 34 routes at 360 and 1440 px, as a visitor and as a guest,
+  including a live session, setup with the new option and a notebook page
+  past the end, on the measured build. No horizontal overflow, console
+  errors or failed statuses.
+- **Typecheck:** clean, including each of this phase's commits checked out
+  on its own (so none depends on a later commit, as `c19aee1` does on
+  `ecf3779`).
+
+### 17.8 Measurements
+
+**Method:** §14.1's lab method.
+
+- **The comparison:** the final Phase 5 build against the frozen Phase 4
+  build of §17.2, run interleaved in alternating order, with every load in a
+  cold context. Phone: 390 × 844 at DPR 2, 4× CPU, 1.6 Mbps down / 750 kbps
+  up, 150 ms RTT. Desktop: 1440 × 900, unthrottled.
+- **The data:** question pages come from the six fixtures, and learner
+  pages load as the fixture learner. Both builds serve identical copies of
+  one database; only the Phase 5 copy has migration 006, which the Phase 4
+  code does not read.
+- **Build provenance:** the Phase 5 build was made at 23:27 from source
+  identical to `22d9f74` (the working tree was clean). The Phase 4 build was
+  made at 21:47 from a clean copy of `982d690`, and has no `question-text`.
+
+**Acceptance batch** (26–27 September, 23:36–00:10):
+
+- **Power:** on AC and fully charged throughout.
+- **Processor:** 203 readings. Clock median 166% of base, 10th percentile
+  126% (idle readings), 90th percentile 184%. One reading under load fell
+  below 120% (118% at 78% utilisation, at 23:46). A one-thread check before
+  the batch held 165–182%. Median utilisation 25%.
+- **No competing work:** no builds, tests or repository edits during the
+  batch. The development server on port 3000 was idle (0 s of CPU over 10 s,
+  checked before the start).
+
+**Phone, question pages, 9 runs.** LCP and FCP were equal in every run. The
+targets are §17's: median LCP ≤ 1,800 ms and CLS ≤ 0.02 for question review
+pages. The player has no LCP budget of its own and is reported for
+regression.
+
+| Page | Phase 4 median (IQR) | Phase 5 median (IQR, range) | Change | Target | Worst CLS, Phase 4 → 5 |
+| --- | --- | --- | --- | --- | --- |
+| Review, maths-heavy | 1,928 (1,872–2,128) | 2,100 (1,964–2,136; 1,852–2,356) | +172 | ≤ 1,800: **missed by 300** | 0 → 0 |
+| Review, maths with a table | 2,024 (1,896–2,044) | 2,104 (2,012–2,216; 1,880–2,376) | +80 | ≤ 1,800: **missed by 304** | 0 → 0 |
+| Review, short maths | 1,812 (1,780–1,860) | 1,880 (1,840–1,916; 1,788–2,044) | +68 | ≤ 1,800: **missed by 80** | 0 → 0 |
+| Review, short, no maths | 1,396 (1,372–1,428) | 1,484 (1,436–1,532; 1,360–1,544) | +88 | ≤ 1,800: met | 0.0002 → 0.0002 |
+| Review, long stem, no maths | 1,416 (1,396–1,460) | 1,456 (1,448–1,540; 1,412–1,620) | +40 | ≤ 1,800: met | 0.0016 → 0.0002 |
+| Review, long passage, no maths | 1,480 (1,380–1,508) | 1,528 (1,512–1,584; 1,448–1,636) | +48 | ≤ 1,800: met | 0.0002 → 0.0002 |
+| Player, maths-heavy | 1,600 (1,304–1,696) | 1,584 (1,420–1,620; 1,264–1,968) | −16 | — | **0.0254 → 0.0001** |
+| Player, maths with a table | 1,264 (1,256–1,284) | 1,384 (1,372–1,396; 1,360–1,444) | +120 | — | 0.0014 → 0 |
+| Player, short maths | 1,252 (1,204–1,304) | 1,284 (1,252–1,360; 1,240–1,472) | +32 | — | 0.0010 → 0 |
+| Player, short, no maths (maths in its section) | 1,056 (1,024–1,112) | 1,164 (1,136–1,192; 1,128–1,228) | +108 | — | 0 → 0.0001 |
+| Player, long stem, no maths | 1,104 (1,072–1,144) | 1,044 (1,028–1,064; 988–1,128) | −60 | — | 0 → 0 |
+| Player, long passage, no maths | 1,372 (1,320–1,404) | 1,344 (1,276–1,440; 1,012–1,548) | −28 | — | 0.0005 → 0.0001 |
+
+**Phone, the budgets of earlier phases, 7 runs, same batch:**
+
+| Page | Phase 4 | Phase 5 (IQR) | Budget | Worst CLS, Phase 4 → 5 |
+| --- | --- | --- | --- | --- |
+| `/`, first-time visitor | 1,720 | 1,752 (1,728–1,790) | ≤ 2,200: met | 0.0011 → 0.0008 |
+| `/`, returning learner | 1,684 | 1,708 (1,674–1,718) | ≤ 2,200: met | 0.0005 → 0.0009 |
+| `/exams/digital-sat` | 1,428 | 1,488 (1,412–1,518) | ≤ 1,800: met | 0.0199 → 0 |
+| `/practice/digital-sat` | 1,452 | 1,448 (1,402–1,488) | ≤ 1,800: met | 0 → 0.0006 |
+| `/exams/digital-sat/format` | 1,492 | 1,520 (1,500–1,540) | ≤ 1,800: met | 0.0148 → 0.0148 |
+| `/dashboard` | 1,440 | 1,432 (1,388–1,468) | ≤ 1,800: met | 0 → 0.0001 |
+| Results, a finished session | 1,448 | 1,488 (1,430–1,516) | ≤ 1,800: met | 0.0033 → 0.0033 |
+| Notebook, all mistakes | 1,460 | 1,428 (1,418–1,484) | ≤ 1,800: met | 0 → 0 |
+| `/practice/lsat`, learner with history (new option shown) | 1,456 | 1,532 (1,462–1,572) | ≤ 1,800: met | 0.0002 → 0.0002 |
+
+**Desktop, 5 runs, same batch:**
+
+- **Review pages:** 200–260 ms median LCP on Phase 5, against 200–304 on
+  Phase 4.
+- **Player pages:** 168–216 against 188–276.
+- **Worst CLS:**
+  - maths-heavy review page: 0.0575 → 0.0006;
+  - short maths review page: 0.0463 → 0.0002;
+  - player pages: from up to 0.0177 to 0;
+  - every other page: 0.0006 or less.
+
+**Worst-case font swap** (§14.4's check, eight widths, 360–1440 px, final
+build):
+
+- **Before (Phase 4):** 15 of 96 cells over 0.02, from 0.0249 to 0.1766.
+- **After:** 0 of 112 cells over 0.02 (the 96 plus the learner homepage and
+  the learner setup page).
+  - Question and player pages: 0.0029 at most.
+  - Learner homepage: 0.0171 at most (768 px).
+  - Setup with the new option: 0.0106 at most.
+
+**Sizes (Phase 5):**
+
+- **The player** carries 5.9 KB more JavaScript (125.8 KB against 119.9 KB),
+  which is the saving hook and the device store.
+- **The results page** carries 1.8 KB more, for the notice about answers
+  that never reached the server. Every other route is within 0.4 KB of
+  Phase 4.
+- **CSS:** 0.6 KB more everywhere (focus mode and `question-text`).
+- **The homepage** is at 112.4 KB of JavaScript, within the 118 KB budget,
+  with fonts unchanged.
+- **Fonts on the player:** a section with maths now loads KaTeX's two faces
+  (41.7 KB) at the start, including for its questions without maths.
+
+**What the misses consist of: a diagnostic batch** (00:13–00:21, 7 runs,
+phone, interleaved; conditions as above, clock median 172%).
+
+- **What it compared:** the Phase 4 build, the Phase 5 build, and the same
+  Phase 5 build twice more with a stylesheet inserted at document start.
+  One variant takes the serif out; the other hides the worked explanation
+  and the option rationales. Every Phase 5 variant carried the same inserted
+  script, so the script's own cost is shared.
+- **What it is for:** it decides nothing about acceptance. It shows where
+  the time goes.
+
+| Page | Phase 4 | Phase 5 | Phase 5, no serif | Phase 5, explanation and rationales hidden |
+| --- | --- | --- | --- | --- |
+| Review, maths-heavy | 1,564 (1,518–1,614) | 1,596 (1,578–1,608) | 1,548 (1,534–1,568) | 1,332 (1,296–1,350) |
+| Review, maths with a table | 1,584 (1,566–1,624) | 1,668 (1,600–1,676) | 1,536 (1,528–1,568) | 1,404 (1,382–1,440) |
+| Review, short maths | 1,464 (1,454–1,788) | 1,548 (1,520–1,678) | 1,544 (1,502–1,556) | 1,352 (1,324–1,410) |
+| Review, short, no maths | 1,120 (1,104–1,168) | 1,196 (1,170–1,234) | 1,148 (1,108–1,180) | 1,096 (1,092–1,110) |
+
+- **The serif** costs 4–132 ms on these pages (48 ms on two of the four).
+  It is part of what removed the desktop shift.
+- **Laying out the worked explanation and the rationales** before the first
+  paint costs 196–264 ms on a maths page and 100 ms without maths. On a
+  phone that content is entirely below the fold, but Chrome lays it out
+  before painting, as §12.2 found for the homepage. This is the largest
+  single part of a maths review page's first paint that the page itself
+  controls.
+- **The same pages ran 20–25% faster in this batch** than in the acceptance
+  batch half an hour earlier, on both builds (Phase 4's maths-heavy page:
+  1,928 then 1,564). The processor readings in the two windows were the
+  same:
+  - clock median 172% in both;
+  - 159% and 161% at load.
+
+  So they do not explain the difference. This is §14.1's batch-to-batch
+  drift, at a larger size than seen before. It is larger than the margin on
+  every maths review page, which is why the acceptance batch's result
+  stands. The faster batch is not a substitute for it, because choosing the
+  batch that passes is exactly what the method rules out.
+
+**Batches not used for acceptance, and why** (kept in the scratch copy with
+their processor logs):
+
+1. **Phase 4 alone, before any change** (21:52–22:10): the "before" record
+   of §17.2. The notebook files were being edited during it, so the user's
+   development server may have recompiled while it ran. It is used only as
+   a record of the state before any change, never in a comparison.
+2. **Typography diagnostic, desktop and one phone route** (22:17–22:31):
+   invalid. Code was being edited in the repository, and the development
+   server recompiled on every save, at more than one core (7.3 s of CPU in
+   6 s). The phone part was stopped.
+3. **Focused phone diagnostic, four routes** (22:32–22:41): no repository
+   edits, but long drafts were being written in the Claude app on the same
+   machine. The Phase 4 build read 1,596–2,432 ms, against 1,052–1,876 in
+   the before record. Kept as a diagnostic only. Its interleaved
+   differences were of the same order as the acceptance batch's (+80 to
+   +132 ms, against −16 to +108 there).
+4. **First acceptance attempt** (23:31–23:36): stopped after one route,
+   because the same drafting load was running. It was restarted with the
+   machine left alone.
+
+### 17.9 Database
+
+- **The development database** (`tmp/examer.db`) has migration 006,
+  applied after an online backup to
+  `tmp/backups/examer-2026-09-26-before-migration-006.db` (integrity check
+  ok, 81 attempt items, the same as the source). Existing rows are
+  unchanged: `response_clock` is NULL until an answer's next write.
+- **The end-to-end and scratch databases** are disposable copies. The
+  frozen Phase 4 copy has no migration 006.
+
+### 17.10 Commits (on `FronDesign`, not pushed)
+
+- `07bf9ad`: notebook pages, on a stable order (the Phase 4 closeout).
+- `7622c03`: ordered answer writes (migration 006), with unit tests.
+- `b6aeb62`: question text in the reading serif; the maths-font preload in
+  the player.
+- `005f50b`: answers kept on the device until confirmed; save states;
+  recovery; focus mode, the split passage and the navigator; the Phase 5
+  browser tests for saving and layout.
+- `2c1e196`: new questions only in practice setup, with its browser tests.
+- `22d9f74`: passage titles in the reading serif; a header that cannot wrap;
+  Leave at every width.
+- A documentation commit with this section.
+
+Each of these was checked out on its own and typechecks. The Phase 4 pair
+stays as it was: `c19aee1` deleted the old skill table while the Phase 3
+results page still imported it, so it builds only together with the next
+commit, `ecf3779` (§16.11). The history was not rewritten.
+
+### 17.11 What remains
+
+- **The maths review pages' phone budget** (§17.12).
+- **Time on a question still counts only when an answer is saved.** A
+  skipped question counts 0 s (§3).
+- **Marking a question for review needs the connection.** It is not kept
+  on the device; offline, the player says so and leaves it unmarked.
+- **Checking an answer, committing a screen and submitting need the
+  connection.** By design, since the server decides each; offline, the
+  player says so, and the answers stay on the device.
+- **Waiting answers are stored unencrypted in the browser's storage** until
+  confirmed. They are deleted on confirmation, when another account opens a
+  player, on signing out, and after 30 days. Anyone using the same browser
+  profile before then could read them.
+- **`Clear-Site-Data: "storage"`** on signing out also clears any other
+  storage the site may use in future. Today it holds nothing else.
+- **A move replayed after a reload** opens the page at the server's
+  position and moves once the page's script starts: a visible jump, only in
+  that case.
+- **Ordering across devices** is as accurate as the time between a page's
+  render and its first interaction (§15.7). A device clock is used only
+  through the server-anchored offset.
+- **The player's maths-font preload** covers the whole section, so a
+  question without maths in a section with maths pays for it (+108 ms on
+  the phone, measured).
+- **"New questions only"** is for untimed topic practice, where session
+  creation enforces it. Timed and diagnostic formats keep their fixed
+  selection.
+- **Ordinary practice can still repeat questions,** and those answers count
+  towards progress, as before (no historical figure was rewritten). Setup
+  now says how many matching questions are repeats.
+- **One Phase 4 browser test depends on the data** (new-question practice
+  from results). It skips when the weakest skill has no unseen questions;
+  the Phase 5 setup test covers the same rule deterministically.
+- **Unchanged:** label filtering in the notebook (deferred), exam hubs
+  (Phase 6), merging guest history (out of scope), and one machine with
+  local budgets.
+
+### 17.12 Acceptance
+
+**Phase 5 is implemented. Its acceptance is pending,** on one criterion.
+
+**Met, in the acceptance batch:**
+
+- **CLS:** 0.02 or less on every measured page, phone and desktop, review
+  and player, maths and not. The worst-case swap check has no cell over
+  0.02.
+- **The maths question page's desktop shift** (Phase 4's open issue) is
+  0.0006. The maths player's phone shift is 0.0001, from 0.0254.
+- **Non-maths review pages:** 1,456–1,528 ms on the phone, against the
+  1.8 s target.
+- **Every earlier budget holds:** the homepage for visitors and learners,
+  hub, setup, format guide, dashboard, results and notebook.
+- **The journeys work in a real browser,** on desktop and mobile. Saving,
+  recovery and every refusal of §17.4 are covered in §17.7.
+
+**Not met:** median LCP ≤ 1,800 ms on the phone for question review pages
+with maths.
+
+| Page | Phase 4, same batch | Phase 5 | Over by |
+| --- | --- | --- | --- |
+| Maths-heavy (`gmat-ps-remainder-structure-209`) | 1,928 | 2,100 | 300 |
+| Maths with a table (`gmat-ta-store-refit-108`) | 2,024 | 2,104 | 304 |
+| Short maths (`bocconi-ug-alg-absolute-value-034`) | 1,812 | 1,880 | 80 |
+
+- **Phase 4 misses on all three pages in the same batch too.** Phase 5 adds
+  68–172 ms on them, of which the diagnostic attributes 4–132 ms to the
+  serif.
+- **The budget is unchanged.** The faster diagnostic batch, in which all
+  three pass (1,548–1,668), is not used for the verdict.
+
+**Recommended focused fix, not yet made:** defer the layout of the worked
+explanation and the option rationales on question review pages until they
+approach the viewport. That is `content-visibility: auto` with a size
+estimate on the explanation section and the rationale blocks.
+
+- **What stays the same:** nothing on the page changes in content or
+  design, and nothing is hidden. The serif stays, because it is what fixed
+  the shifts.
+- **Upper bound:** hiding that content altogether saved 196–264 ms on the
+  maths pages. Phase 2 found `content-visibility` recovered only part of
+  such a saving on the homepage (§12.2). So it may bring the short-maths
+  page within the budget in a slow batch, and it may not be enough for the
+  other two.
+- **To accept it:**
+  - build it as a variant;
+  - measure it interleaved against Phase 4 and this build in two separate
+    batches, with the machine left alone, reporting both;
+  - accept only if both batches meet 1.8 s;
+  - check that the worst-case swap and CLS stay at or below 0.02 when
+    scrolling into the deferred content.
+- **If that is not enough,** the remaining levers change the design or the
+  rendering, and each is a decision to make first:
+  - collapse the explanation on phones;
+  - render less maths markup (KaTeX's MathML copy is what screen readers
+    use);
+  - drop the serif from the explanation only.

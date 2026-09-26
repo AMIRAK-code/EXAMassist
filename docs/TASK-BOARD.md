@@ -108,3 +108,14 @@ Evidence commands are runnable from the repository root.
      `db:seed`.
    - **Availability:** no format waits on it. It is a Reading item, and ACT
      timed Reading is 29 questions short either way.
+6. **Phase 5 acceptance: maths question review pages on the phone** (added
+   27 September 2026). The one criterion Phase 5 has not met: median LCP
+   ≤ 1.8 s on question review pages with maths. The acceptance batch had
+   1,880–2,104 ms, with the Phase 4 build at 1,812–2,024 in the same batch
+   (docs/REDESIGN.md §17.12). Every other Phase 5 criterion, and every
+   earlier budget, is met.
+   - **Next:** try deferring the layout of the worked explanation and the
+     option rationales (`content-visibility` with a size estimate), measured
+     in two separate interleaved batches against Phase 4 and `22d9f74`. Accept
+     only if both meet 1.8 s. Anything beyond that changes the design and is
+     a decision first (§17.12).
