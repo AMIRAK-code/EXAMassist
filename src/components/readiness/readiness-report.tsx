@@ -9,7 +9,8 @@ import { Alert, Badge, Card, Meter, SectionHeading, Stat } from '@/components/ui
  * Its job is to answer "am I on track for my target?" as far as the evidence
  * honestly reaches, and to be unmistakable about where that stops. The layout
  * follows that: what we measured, then what it does and does not say about the
- * target, then what to do next.
+ * target. Suggestions of what to do next are not part of it: the page shows
+ * them apart, as suggestions (see suggestions.ts).
  */
 
 const BAND_TONE: Record<Band, 'neutral' | 'negative' | 'caution' | 'accent' | 'positive'> = {
@@ -206,7 +207,7 @@ export function ReadinessReport({
                 </tr>
               </thead>
               <tbody>
-                {assessment.gaps.map((gap) => (
+                {assessment.gaps.slice(0, 5).map((gap) => (
                   <tr key={gap.domainSlug} className="border-b border-line last:border-0">
                     <th scope="row" className="px-4 py-3 text-left font-normal">
                       {gap.label}
@@ -239,36 +240,6 @@ export function ReadinessReport({
               </tbody>
             </table>
           </div>
-        </section>
-      ) : null}
-
-      {/* --- Next --------------------------------------------------------- */}
-      {assessment.nextActions.length > 0 ? (
-        <section aria-labelledby="next-heading">
-          <SectionHeading id="next-heading" title="What to do next" />
-          <ol className="space-y-3">
-            {assessment.nextActions.map((action, index) => (
-              <Card as="li" key={action.label}>
-                <div className="flex flex-wrap items-start justify-between gap-3">
-                  <div className="max-w-2xl">
-                    <p className="font-medium">
-                      <span className="me-2 font-mono text-sm text-ink-subtle">
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
-                      {action.label}
-                    </p>
-                    <p className="mt-1 text-sm leading-relaxed text-ink-muted">{action.why}</p>
-                  </div>
-                  <Link
-                    href={action.href}
-                    className="shrink-0 text-sm no-underline hover:underline"
-                  >
-                    Start →
-                  </Link>
-                </div>
-              </Card>
-            ))}
-          </ol>
         </section>
       ) : null}
 

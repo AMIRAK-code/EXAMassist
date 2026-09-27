@@ -17,15 +17,16 @@ import { requireExamConfig } from '@/lib/exams/registry';
 const SAT = requireExamConfig('digital-sat');
 const BOCCONI = requireExamConfig('bocconi-undergraduate');
 const LSAT = requireExamConfig('lsat');
+const NO_TIMES = { timesMs: [], inUntimed: 0, missing: 0 };
 
 function domainRows(
   config: typeof SAT,
-  perDomain: { correct: number; answered: number; omitted: number; medianTimeMs?: number },
+  perDomain: { correct: number; answered: number; omitted: number },
   domainCount = config.domains.length,
 ) {
-  const map = new Map<string, { correct: number; answered: number; omitted: number; medianTimeMs: number }>();
+  const map = new Map<string, { correct: number; answered: number; omitted: number }>();
   for (const domain of config.domains.slice(0, domainCount)) {
-    map.set(domain.slug, { medianTimeMs: 60_000, ...perDomain });
+    map.set(domain.slug, { ...perDomain });
   }
   return map;
 }
@@ -36,7 +37,8 @@ function input(overrides: Partial<ReadinessInput> = {}): ReadinessInput {
     performance: [],
     byDomain: domainRows(SAT, { correct: 7, answered: 10, omitted: 0 }),
     targetScore: null,
-    recentAccuracies: [],
+    recentSessions: [],
+    timing: NO_TIMES,
     ...overrides,
   };
 }
@@ -118,10 +120,11 @@ describe('Bocconi, the one exam whose scoring is fully published', () => {
       performance: [],
       byDomain: domainRows(
         BOCCONI,
-        { correct: Math.round(answered * accuracy), answered, omitted, medianTimeMs: 80_000 },
+        { correct: Math.round(answered * accuracy), answered, omitted },
       ),
       targetScore: target,
-      recentAccuracies: [],
+      recentSessions: [],
+    timing: NO_TIMES,
     };
   };
 
@@ -191,14 +194,52 @@ describe('Bocconi, the one exam whose scoring is fully published', () => {
   });
 });
 
-describe('signals', () => {
-  it('measures pace against the exam’s own published pace', () => {
-    const slow = assessReadiness(
-      input({ byDomain: domainRows(SAT, { correct: 7, answered: 10, omitted: 0, medianTimeMs: 200_000 }) }),
-    );
-    const pace = slow.signals.find((s) => s.key === 'pace')!;
-    expect(pace.display).toContain('×');
-    expect(['early', 'developing']).toContain(pace.band);
+describe('signals, each with its own evidence threshold', () => {
+  const times = (n: number, ms: number, inUntimed = 0, missing = 0) => ({ timesMs: Array(n).fill(ms), inUntimed, missing });
+  const signal = (result: ReturnType<typeof assessReadiness>, key: string) => result.signals.find((s) => s.key === key)!;
+
+  it('shows accuracy as a count, not a percentage, below the threshold', () => {
+    const accuracy = signal(assessReadiness(input({ byDomain: domainRows(SAT, { correct: 5, answered: 5, omitted: 0 }, 1) })), 'accuracy');
+    expect(accuracy.band).toBe('insufficient');
+    expect(accuracy.display).toBe('5 of 5 correct');
+  });
+
+  it('caps accuracy at Consistent below a usable sample, however high', () => {
+    // Every topic at 7 answers, all correct: under 80 answers in total.
+    const byDomain = domainRows(SAT, { correct: 7, answered: 7, omitted: 0 });
+    expect(SAT.domains.length * 7).toBeLessThan(80);
+    const accuracy = signal(assessReadiness(input({ byDomain })), 'accuracy');
+    expect(accuracy.display).toBe('100%');
+    expect(accuracy.band).toBe('consistent');
+  });
+
+  it('measures pace against the exam’s own published pace, over individual answers', () => {
+    const slow = signal(assessReadiness(input({ timing: times(40, 200_000) })), 'pace');
+    expect(slow.display).toContain('×');
+    expect(['early', 'developing']).toContain(slow.band);
+    expect(slow.basis).toContain('40 timed answers');
+  });
+
+  it('needs 25 timed answers before it reads pace at all', () => {
+    const result = assessReadiness(input({ timing: times(24, 40_000) }));
+    expect(signal(result, 'pace').band).toBe('insufficient');
+    expect(signal(result, 'pace').display).toBe('24 timed answers');
+    expect(result.paceRatio).toBeNull();
+  });
+
+  it('treats a median under five seconds as unreliable timing, never as strong pace', () => {
+    const result = assessReadiness(input({ timing: times(60, 2_000) }));
+    expect(signal(result, 'pace').display).toBe('Timing unreliable');
+    expect(signal(result, 'pace').band).toBe('insufficient');
+    expect(result.paceRatio).toBeNull();
+  });
+
+  it('says when pace comes from untimed practice, and what had no time recorded', () => {
+    const pace = signal(assessReadiness(input({ timing: times(30, 60_000, 30, 4) })), 'pace');
+    expect(pace.basis).toContain('All of these were answered in untimed practice');
+    expect(pace.basis).toContain('4 answers had no time recorded');
+    // 30 timed answers: fast enough for "Strong", capped at "Consistent".
+    expect(pace.band).toBe('consistent');
   });
 
   it('says pace is not measurable when the exam does not publish item counts', () => {
@@ -207,44 +248,27 @@ describe('signals', () => {
       performance: [],
       byDomain: domainRows(LSAT, { correct: 7, answered: 10, omitted: 0 }),
       targetScore: null,
-      recentAccuracies: [],
+      recentSessions: [],
+      timing: times(50, 60_000),
     });
-    const pace = result.signals.find((s) => s.key === 'pace')!;
-    expect(pace.display).toBe('Not measurable');
-    expect(pace.basis).toContain('does not publish');
+    expect(signal(result, 'pace').display).toBe('Not measurable');
+    expect(signal(result, 'pace').basis).toContain('does not publish');
   });
 
-  it('reports coverage against the exam’s own domain list', () => {
-    const result = assessReadiness(
-      input({ byDomain: domainRows(SAT, { correct: 3, answered: 5, omitted: 0 }, 2) }),
-    );
-    const coverage = result.signals.find((s) => s.key === 'coverage')!;
-    expect(coverage.display).toBe(`2 of ${SAT.domains.length} topics`);
+  it('counts a topic as covered only from four answers', () => {
+    const byDomain = domainRows(SAT, { correct: 8, answered: 10, omitted: 0 }, SAT.domains.length - 1);
+    byDomain.set(SAT.domains[SAT.domains.length - 1].slug, { correct: 3, answered: 3, omitted: 0 });
+    const coverage = signal(assessReadiness(input({ byDomain })), 'coverage');
+    expect(coverage.display).toBe(`${SAT.domains.length - 1} of ${SAT.domains.length} topics`);
+    expect(coverage.basis).toContain('1 more topic has fewer answers');
   });
 
-  it('adds a consistency signal only once there are several sessions', () => {
-    expect(assessReadiness(input()).signals.some((s) => s.key === 'consistency')).toBe(false);
-    const withSessions = assessReadiness(input({ recentAccuracies: [0.5, 0.8, 0.55, 0.85] }));
-    const consistency = withSessions.signals.find((s) => s.key === 'consistency')!;
-    expect(consistency).toBeDefined();
-    expect(['early', 'developing']).toContain(consistency.band);
-  });
-});
+  it('reads consistency only from three sessions of five or more answers', () => {
+    const short = assessReadiness(input({ recentSessions: [0.5, 0.8, 0.55, 0.85].map((accuracy) => ({ accuracy, scored: 4 })) }));
+    expect(signal(short, 'consistency').band).toBe('insufficient');
+    expect(signal(short, 'consistency').display).toBe('0 of 3 sessions');
 
-describe('next actions', () => {
-  it('leads with an untouched topic, because it is a blind spot', () => {
-    const partial = domainRows(SAT, { correct: 8, answered: 10, omitted: 0 }, 3);
-    const result = assessReadiness(input({ byDomain: partial }));
-    expect(result.nextActions.length).toBeGreaterThan(0);
-    expect(result.nextActions[0].why.length).toBeGreaterThan(20);
-    expect(result.nextActions[0].href).toContain(`/practice/${SAT.examKey}`);
-  });
-
-  it('tells a learner with too little data to answer more, first', () => {
-    const result = assessReadiness(
-      input({ byDomain: domainRows(SAT, { correct: 2, answered: 3, omitted: 0 }, 1) }),
-    );
-    expect(result.nextActions[0].label).toBe('Answer more questions');
-    expect(result.nextActions[0].why).toContain(String(MIN_ANSWERS_FOR_SIGNAL - 3));
+    const long = assessReadiness(input({ recentSessions: [0.5, 0.8, 0.55, 0.85].map((accuracy) => ({ accuracy, scored: 10 })) }));
+    expect(['early', 'developing']).toContain(signal(long, 'consistency').band);
   });
 });
