@@ -20,7 +20,11 @@ notebook, labels, retries and new-question practice. Section 17 reports
 Phase 5: the notebook's pages, question typography, saving and recovery in
 the player, focus mode, and new questions only in setup, with the
 measurements, the performance closeout, the revised budget for maths review
-pages and the final acceptance (§17.15).
+pages and the final acceptance (§17.15). Section 18 reports Phase 6: the
+remaining pages on the design system, one Study plan destination, stored
+plans with dated sessions and a previewed adjustment, one exam date per exam
+(migration 007), and an evidence threshold on every readiness signal, with
+its tests, measurements and limitations.
 
 The homepage concept (desktop, mobile and design-system artboards, with a
 working sample question per exam) is published as a private canvas:
@@ -378,7 +382,7 @@ as follows. Phase 2 combined brief stages 2 and 3.
 | 3 | 4 | Dashboard: resume, one next action with its basis, domain-level skill landscape, all empty and error states | **Complete** (26 September 2026, §15), with learner navigation back in from the homepage |
 | 4 | 5 | Results and mistake notebook: verdict first, evidence, review on its own page, retry flow, optional mistake labels | **Complete** (26 September 2026, §16), accepted functionally; its open issues are recorded in §17.1 |
 | 5 | 6 | Practice setup formats and the player: focus mode, split passage, visible save states, persisted offline queue, debounced input | **Complete** (27 September 2026, §17), accepted against the revised budgets of §17.15. Outstanding release check: the player's sticky bars on a real phone |
-| 6 | 7 | Remaining routes: hubs, guides, auth, account, study plan and readiness, admin | In progress (27 September 2026): scope, baselines and targets in §18 |
+| 6 | 7 | Remaining routes: hubs, guides, auth, account, study plan and readiness, admin | **Delivered** (27 September 2026, §18): both stages, meeting the targets of §18.3; awaiting acceptance. Outstanding release check: the player's sticky bars on a real phone |
 | 7 | 8 | Validation: axe-core in CI, screen-reader pass, performance budgets, 200% zoom | — |
 
 ## 11. Phase 2: what was delivered
@@ -3596,3 +3600,399 @@ Two of these also break the budget in real lab loads:
   changed pages at phone and desktop widths;
 - the sweep, the worst-case swap check, and the lab comparison against
   §18.3.
+
+### 18.6 Stage A: what was done
+
+As planned in §18.4, with these specifics:
+
+- **One field style,** `fieldClass()` in `src/components/ui.tsx`: 48 px,
+  control radius, 1.5 px border, and a negative border from
+  `aria-invalid`. It is used by sign-in, sign-up, account, the goal form,
+  the plan's inputs and admin.
+- **Sign-in and sign-up:**
+  - a 44 px "Show password" toggle with `aria-pressed` and `aria-controls`;
+  - errors tied to both fields (`aria-invalid`, `aria-describedby`);
+  - a 44 px consent label;
+  - no lead above the form. The explanation and links sit below the card,
+    each link on its own line.
+- **Guide articles:** `PageHeader`, a shared `Callout` for "In short", and
+  the body in the reading serif (`--font-serif`, no download). Sources
+  that open a new tab say so to screen readers, with an icon.
+- **Format guides:** the opening is the verification date alone, and
+  "In short" is a `Callout` at the smaller size.
+  - **Added in Stage B:** each exam's summary in the reading serif, as
+    the guides are (§18.9).
+- **Hubs:** no lead. The open formats and details sit side by side from
+  768 px. A "Not open yet" box names the formats that are not open, and
+  why: `formatSummary`'s count of reviewed questions still needed, or the
+  unverified rule. It links to the setup page's reasons and the full table
+  on `/exams`.
+- **`/exams` and `/guides`:** no lead above the first card. Hub cards wrap
+  their badges under the title.
+- **Account:** breadcrumbs. The deletion error is tied to its field.
+- **Admin:**
+  - `Stat` for the figures, with an `h3` label;
+  - flag decisions without a note shown as an alert tied to the note;
+  - flags in the same container width as the other admin pages.
+- **Navigation:**
+  - **Study plan** replaces Readiness in the learner bar and the menu. It
+    is also marked current on `/readiness`.
+  - **Two views:** `/study-plan` (Plan) and `/study-plan/progress`
+    (Progress & readiness), switched by labelled pills with
+    `aria-current`.
+  - **`/readiness`** gives a 308 to `/study-plan/progress`, keeping the
+    query.
+
+### 18.7 Stage B: what was built
+
+**Migration 007** (`db/migrations/007_study_plans.sql`):
+
+- **Backup and application:** the development database was backed up
+  first, to `tmp/backups/examer-2026-09-27-before-migration-007.db`
+  (integrity `ok`, row counts identical to the source). Migration 007
+  was then applied at 09:56 UTC (11:56 local).
+  - **Before and after:** 1 user, 9 attempts, 81 answers, 288 questions,
+    no goals.
+  - **The planner fixture's copy** exercised the date rule. Its
+    `users.target_date` of 6 December 2026 moved to a new Digital SAT
+    goal, the exam of its most recent session; its Bocconi goal already
+    had its own date and kept it.
+- **`plans`:** one active plan per learner and exam (a unique partial
+  index); ended plans are kept. Each plan records its weekly minutes,
+  start and end, the exam date it was built for, when it was created,
+  adjusted and ended, and a version.
+- **`plan_sessions`:** each session records:
+  - its day and sequence;
+  - its kind: new, revision, review or mixed;
+  - its topic or skill, question count and minutes;
+  - the reason it was chosen;
+  - its state, and the attempt linked to it, with `ON DELETE SET NULL`;
+  - when its state was set.
+- **One exam date:** `exam_targets.target_date`, per exam, beside the goal.
+  `users.target_date` is no longer written. **Correction to §18.1:** it
+  had a third writer, the account form, which now shows each exam's date
+  instead and links to where it is set.
+- **The migration rule** (unit-tested, `tests/unit/migration-007.test.ts`).
+  A `users.target_date` goes to the exam the old page showed it for: the
+  target exam, else the most recent session's exam.
+  - **No goal row:** one is created, with no score.
+  - **A row with no date:** the date is set, and the score kept.
+  - **A different date:** the goal's date stays, and the plan's is kept in
+    `legacy_plan_date`. Both views show "Which is your … date?" until the
+    learner chooses. Saving the goal settles it only when the date
+    actually changes.
+  - **No exam to attach it to:** it stays in `users.target_date`. The
+    plan's setup offers it, saying where it came from, and it is cleared
+    once a plan is created.
+- **Export and deletion:** the account export gains the goals, including
+  any kept earlier date, and every plan with its sessions. Deleting an
+  account removes them by cascade.
+
+**States, as the code defines them** (`src/lib/learning/plan.ts`):
+
+- **Planned:** scheduled, and its day is not over.
+- **Missed:** its day is over, from 12:00 UTC the next day, since the time
+  zone is unknown.
+  - **Until the learner adjusts:** it stays stored as planned, so a late
+    session can still complete it.
+  - **When they adjust:** it is recorded as missed, for good, and its
+    topic is carried forward.
+- **Completed:** satisfied by a finished session.
+  - **The session:** submitted or ended by its clock, after the plan was
+    made, for the same exam, with at least min(5, planned count) answers.
+  - **A match:** the same skill, or practice restricted to the topic (a
+    skill in it counts) for a new or revision session. A retry for a
+    review. Any practice for mixed practice or mixed revision. A
+    diagnostic or simulation satisfies nothing.
+  - **Started from the plan:** a session started there satisfies the one
+    it was started from, or none. Any other satisfies the earliest open
+    session it fits that was not started from the plan. Each finished
+    session satisfies at most one.
+  - **Not enough:** opening a session, or finishing one nearly blank.
+  - **Whether its questions were new** is not checked. The plan says
+    which it intends, and starting from the plan enforces it.
+- **Skipped:** chosen by the learner. Nothing satisfies it afterwards.
+- **History:** completed, skipped and recorded-missed sessions are never
+  changed again.
+- **A visit** records completions and nothing else, and never changes the
+  schedule.
+
+**Building a plan** from reviewed questions available now:
+
+- **Its length:** until the day before the exam, 8 weeks at most, or 6
+  weeks with no date.
+- **Sessions:** round(weekly minutes ÷ 25) a week, spread over the week.
+  Minutes follow the question count: 25 for 10, 8 for 3.
+- **The order:**
+  1. topics carried from missed sessions;
+  2. weak skills, under 60% with signal, weakest first;
+  3. topics never attempted;
+  4. topics with too few answers to judge;
+  5. the stronger skills.
+
+  A skill with fewer than 5 reviewed questions is planned as its topic,
+  and the plan says so.
+- **New or revision:**
+  - **New** while at least 5 unseen questions are left in the focus (or
+    all it has), counting down as sessions are planned.
+  - **Revision** after that, saying how many questions are still new.
+  - **A limit found with real data:** a focus is revised at most once a
+    week. With the planner's small Bocconi bank, the first version filled
+    every slot with the same 21 questions. Now a slot that could only
+    repeat more is left free, and the preview says "34 of the 48 sessions
+    your time allows are planned".
+- **Review:** first in a week, one a week, for as many weeks as it takes to
+  ask each missed question once. The questions come from the review queue:
+  missed and not answered correctly since, with a current reviewed version.
+- **Starting a session** uses exactly its settings: new questions only
+  (enforced) for new and mixed sessions, a retry for a review. A session
+  whose new questions have run out since it was planned is refused with a
+  notice, not topped up with seen questions.
+
+**Adjusting** (`/study-plan/adjust`):
+
+- **How it is reached:** "Adjust my remaining plan". It is the primary
+  action when sessions are missed or the exam date has changed.
+- **The preview** shows every change before anything is saved:
+  - sessions recorded as missed, and the topics carried forward;
+  - sessions moved (a removed and an added session of the same kind and
+    focus), added and removed;
+  - sessions unchanged, and history kept.
+
+  The weekly time and exam date can be changed there, still as a preview.
+- **Applying it** works the adjustment out again inside an immediate
+  transaction, and stores it only if its digest matches the preview. The
+  digest covers the plan, its version, the inputs and every change. If the
+  plan, the practice or the day has moved on, nothing is stored and the
+  preview is shown again as it now is. A session already started is kept.
+
+**Readiness** (`src/lib/learning/readiness.ts`), every signal with a
+threshold:
+
+- **Below 25 scored answers:** "Not enough evidence yet". Below 80, no
+  better than Consistent.
+- **Accuracy:** shown as a count ("5 of 5 correct") below the threshold,
+  never as a percentage.
+- **Pace:**
+  - the median over individual timed answers, needing 25;
+  - a median under 5 s reads "Timing unreliable", never fast;
+  - says how many answers came from untimed practice, and how many had no
+    time recorded, which are left out rather than counted as zero.
+- **Coverage:** a topic counts from 4 scored answers.
+- **Consistency:** sessions of 5+ answers, needing 3. It now always shows,
+  as insufficient when short.
+- **Suggestions** (`src/lib/learning/suggestions.ts`) have their own
+  section, "Suggestions … not measurements", after the evidence. Each says
+  which kind it is:
+  - new questions (enforced when started), or revision, saying how many
+    questions are still new;
+  - a review of missed questions, "asked again on purpose";
+  - timed practice, only from a reliable pace and an open timed format.
+
+  None is offered where nothing can be practised.
+
+**Pages:** the Plan view, the adjustment preview and Progress &
+readiness, as in the screenshots below.
+
+- **Both views** choose the exam as the dashboard does, through `?exam=`,
+  the target exam or the most recent. Each has an exam switcher.
+- **Replaced:** the old computed plan (`buildStudyPlan`), its form and
+  `/api/study-plan` are removed.
+
+### 18.8 Tests
+
+- **Unit** (Vitest): 363 passed, 23 files. New:
+  - the migration rule (7 tests);
+  - plans (22): shape, day boundary, satisfaction, one completion per
+    session, started-from-plan linking, skip rules, the repetition limit,
+    thin skills, reviews, a preview that stores nothing, a stale digest
+    refused, history kept, recorded-missed staying missed, and date
+    conflicts;
+  - readiness thresholds (9 new);
+  - suggestions (6).
+- **Browser** (Playwright, system Chrome, desktop and Pixel 7 projects, on
+  the final build): **183 passed, 1 skipped** (the mobile keyboard test,
+  as before). New in `tests/e2e/phase-6.spec.ts`:
+  - **Creating a plan:** preview without saving, then save.
+  - **A new session:** it starts with "new questions only". It stays
+    planned while unfinished, offered as Continue, and is completed only
+    once it is submitted with its answers.
+  - **Skipping:** the session stays skipped.
+  - **Missed sessions:** two weeks later they show as missed and are not
+    stored as missed. The adjustment preview stores nothing. A preview
+    made stale by a version change is refused. Applying records the
+    missed sessions and leaves nothing planned before today.
+  - **Progress:** ten answers leave every signal insufficient. Suggestions
+    sit apart from the evidence. The date chooser settles a kept date and
+    keeps the score.
+- **Sweep** (every public and learner route, 360 and 1440 px, visitor and
+  guest, with `/study-plan/progress` and `/study-plan/adjust` added): no
+  overflow, no console errors, no bad statuses.
+- **Typecheck:** clean.
+
+### 18.9 Measurements
+
+**Worst-case font swap**, eight widths, on the final build:
+
+| Page | Phase 5 build | Final |
+| --- | --- | --- |
+| `/exams` | 0.0296 | 0.0077 |
+| Hubs (6) | 0.0189–0.0199 | ≤ 0.0125 (target ≤ 0.015: **met**) |
+| Format guides (6) | 0.0148–0.0182 | ≤ 0.0142 (target ≤ 0.015: **met**) |
+| `/guides` | 0.0353 | 0.0080 |
+| Guide articles (3) | 0.0391–0.1305 | 0.0011 |
+| Practice setup (7) | — | ≤ 0.0102 |
+| Sign-in | 0.1932 | 0.0038 |
+| Sign-up | 0.0202 | 0.0148 |
+| Plan view (stored plan) | 0.0231 (old plan); Stage A 0.0609 | 0.0022 |
+| Plan view (setup and preview) | — | 0.0049 |
+| Adjustment preview | — | 0.0004 |
+| Progress & readiness (Bocconi, SAT) | 0.0188 | 0.0058, 0.0129 |
+| Account, dashboard | 0.0004, 0.0109 | 0.0004, 0.0109 |
+
+- **The format guides** met the target only after Stage B. At the end of
+  Stage A the ACT guide read 0.0160 at 768 px: its summary gained a line
+  and pushed the section table down 46 px. The summary is now set in the
+  reading serif (commit `d735bb5`), and the guide reads 0.0062 there.
+
+**Lab comparison:**
+
+- **The method:** §17.8's, interleaved.
+  - **The builds:** Phase 5 (frozen, from `695ca57`) against the final
+    build, whose source matches HEAD.
+  - **Learner pages** load as the planner fixture, which has a stored
+    Bocconi plan in the final build. The Phase 5 build ignores `?exam=`
+    on `/study-plan`, so its row is its computed plan for the planner.
+    Readiness is `/readiness` there and `/study-plan/progress` in the
+    final build.
+- **Conditions:** 27 September, 13:00–13:22.
+  - **Power:** AC, 100%.
+  - **Before the start:** a one-thread check read 177–182% of base, and
+    the development server used 0 s of CPU over 10 s.
+  - **During the batch:** 129 processor readings, clock median 160%.
+    Under load (80 readings), median 163%, 10th percentile 130%, lowest
+    122%.
+  - **No other work** ran during the batch.
+
+**Phone, 9 runs** (median LCP and IQR, ms; worst CLS):
+
+| Page | Phase 5 | Final | Budget | Worst CLS |
+| --- | --- | --- | --- | --- |
+| `/exams` | 1,364 (1,336–1,452) | 1,416 (1,372–1,420) | ≤ 1,800 | 0 → 0.0003 |
+| Hub (Digital SAT) | 1,380 (1,348–1,396) | 1,336 (1,312–1,396) | ≤ 1,800 | 0.0199 → 0.0025 |
+| Format guide (Digital SAT) | 1,556 (1,220–1,744) | 1,324 (1,316–1,900) | ≤ 1,800 | 0.0148 → 0.0007 |
+| `/guides` | 1,048 (1,020–1,080) | 1,040 (1,024–1,060) | ≤ 1,800 | 0 → 0 |
+| Guide article | 1,136 (1,120–1,152) | 1,200 (1,164–1,252) | ≤ 1,800 | 0 → 0 |
+| Sign-in | 1,012 (1,004–1,032) | 1,020 (984–1,048) | ≤ 1,800 | 0 → 0 |
+| Sign-up | 1,056 (1,020–1,096) | 1,056 (1,048–1,080) | ≤ 1,800 | 0 → 0 |
+| Plan view | 1,212 (1,208–1,232) | 1,216 (1,172–1,292) | ≤ 1,800 | 0 → 0 |
+| Progress & readiness | 1,320 (1,308–1,352) | 1,272 (1,240–1,292) | ≤ 1,800 | 0 → 0 |
+| Account | 1,148 (1,124–1,152) | 1,132 (1,100–1,156) | ≤ 1,800 | 0 → 0 |
+| Dashboard | 1,180 (1,164–1,184) | 1,168 (1,152–1,204) | ≤ 1,800 | 0 → 0 |
+| Adjustment preview (final only) | — | 1,080 (1,068–1,144) | ≤ 1,800 | 0 |
+| Plan setup and preview (final only) | — | 1,196 (1,176–1,216) | ≤ 1,800 | 0 |
+
+**Desktop, 5 runs:** every page 152–236 ms in both builds.
+
+- **Worst CLS in the final build:** 0.0051 (the hub, as in the swap check).
+- **Phase 5's lab failures, now fixed:**
+  - the guide article: 0.0401 in every run, now 0.0003;
+  - `/exams`: 0.0106, now 0.0002.
+
+**The format guide varied in both builds** in this batch. Its first four
+pairs were slow (1.7–2.2 s) and the rest fast (1.15–1.32 s), so the final
+build's median met the budget with a 75th percentile of 1,900 ms.
+
+- **A second interleaved phone batch,** 13:23–13:27 (clock median under
+  load 177%, lowest 130%), checked it rather than selecting runs. Phase 5
+  → final:
+  - Digital SAT format guide: 1,180 (1,144–1,204) → 1,284 (1,268–1,296);
+  - ACT format guide: 1,236 (1,216–1,244) → 1,208 (1,188–1,244);
+  - hub: 1,200 (1,192–1,248) → 1,188 (1,164–1,232);
+  - CLS 0 throughout.
+- **What this shows:** the budget is met in both batches.
+- **What it does not show:** the Digital SAT guide read about 100 ms slower
+  in the final build in the second batch, and faster in the first. The ACT
+  guide shows no difference. Page weight is identical: 24.6 against
+  24.7 KB of HTML, the same JavaScript, CSS and font. The cause is not
+  established. It is about 500 ms inside the budget, and is left to
+  watch.
+
+**Lab CLS and the swap check:** sign-in's 0.1932 in the §18.2 baseline did
+not recur for either build here. The interface font arrived before first
+paint in this batch. That is why the worst-case swap check, which does not
+depend on font timing, is the measure these fixes are judged by.
+
+**Against §18.3:**
+
+- existing budgets met;
+- planning views ≤ 1.8 s and CLS ≤ 0.02: met;
+- the pages brought into the system: met, in the lab and the swap check;
+- hubs and format guides ≤ 0.015 in the swap check: met;
+- admin: covered by the functional and accessibility checks.
+
+**Screenshots**, from the final build, in the scratch copy's `shots-p6/`,
+at phone (390 px) and desktop (1440 px) sizes, first screen and full
+page:
+
+- **Plan view:** stored, setup and preview, and with missed sessions and a
+  date to choose;
+- **the adjustment preview;**
+- **Progress & readiness:** thin evidence, and the suggestions;
+- **account,** with its exam dates.
+
+### 18.10 Commits
+
+**Stage A:**
+
+- `7b57129` one field style; accessible sign-in, sign-up and account forms
+- `fe0658f` openings that hold still on hubs, format guides, guides and
+  `/exams`
+- `9683ef0` admin pages on the design system
+- `23ee98f` one Study plan destination, with Plan and Progress & readiness
+  views
+- `09dbf32` browser tests for Stage A
+
+**Stage B:**
+
+- `02dd2c5` migration 007
+- `b0c3379` stored plans, sessions and their states
+- `9dff4f1` the shared weak-accuracy threshold. `b0c3379` imports it, and
+  the two belong together.
+- `cd1e8dc` an evidence threshold on every readiness signal; suggestions
+  apart
+- `c455563` exam dates per exam on the account page; goals and plans in the
+  export
+- `8b0595e` limits on repetition, and session minutes sized to their
+  questions
+- `8665f21` the Plan view, the adjustment preview and the Progress view
+- `9e5e22c` browser tests for Stage B
+- `d735bb5` format guide summaries in the reading serif
+
+### 18.11 Remaining limitations
+
+- **Release check, outstanding:** the player's sticky header and control
+  bar on a real phone (TASK-BOARD item 6). It was not performed in this
+  phase.
+- **Time zones:** the day boundary is 12:00 UTC the next day, because the
+  learner's time zone is not known. A session can show as missed up to a
+  day later than the learner would expect, never earlier.
+- **Unseen counts in a plan are estimates.** A skill and its topic share
+  questions, so a planned new session can find fewer new questions when
+  started. It is refused with a notice rather than topped up with seen
+  questions, and adjusting replans it.
+- **Satisfaction does not check** that a session's questions were new.
+  Practice the learner starts outside the plan counts by kind and focus.
+- **Small banks mean a thin plan.** Where the reviewed questions are few
+  (Bocconi's development bank), the plan is mostly revision and leaves
+  slots free. It says so, but it cannot create content.
+- **Out of scope, as decided:** guest-history merging and remembered-exam
+  cookies. A guest's plan belongs to the guest account and expires with
+  it.
+- **Not dropped:** `users.target_date` and the old `study_plans` table.
+  The column keeps dates that could not be tied to an exam, and neither is
+  written any more.
+- **The format guide's second-batch difference** (§18.9) is unexplained,
+  and within budget.
+- **Phase 7** (axe-core in CI, a screen-reader pass, 200% zoom) has not
+  been started.
