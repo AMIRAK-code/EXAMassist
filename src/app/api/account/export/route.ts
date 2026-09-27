@@ -120,6 +120,17 @@ export async function GET() {
       .prepare('SELECT * FROM study_plans WHERE user_id = ? ORDER BY generated_at')
       .all(user.id) as StudyPlanRow[];
 
+    // Goals and the one exam date per exam (002, 007), and stored plans with their sessions (007).
+    const examTargets = db
+      .prepare('SELECT exam_key, target_score, target_date, legacy_plan_date, created_at, updated_at FROM exam_targets WHERE user_id = ? ORDER BY exam_key')
+      .all(user.id) as Array<{ exam_key: string; target_score: number | null; target_date: string | null; legacy_plan_date: string | null; created_at: string; updated_at: string }>;
+    const plans = db
+      .prepare('SELECT * FROM plans WHERE user_id = ? ORDER BY created_at')
+      .all(user.id) as Array<Record<string, string | number | null>>;
+    const planSessionRows = db
+      .prepare('SELECT * FROM plan_sessions WHERE user_id = ? ORDER BY plan_id, scheduled_on, sequence')
+      .all(user.id) as Array<Record<string, string | number | null>>;
+
     const partsByAttempt = new Map<string, AttemptPartRow[]>();
     for (const part of parts) {
       const list = partsByAttempt.get(part.attempt_id) ?? [];
@@ -152,6 +163,7 @@ export async function GET() {
         isGuest: account.is_guest === 1,
         locale: account.locale,
         targetExamKey: account.target_exam_key,
+        // The old study plan's date, kept only where it could not be tied to an exam (migration 007).
         targetDate: account.target_date,
         weeklyMinutes: account.weekly_minutes,
         declaredUnder16: account.is_minor === 1,
@@ -261,6 +273,43 @@ export async function GET() {
         weeklyMinutes: row.weekly_minutes,
         plan: parseJson(row.plan_json),
         generatedAt: row.generated_at,
+      })),
+      examTargets: examTargets.map((row) => ({
+        examKey: row.exam_key,
+        targetScore: row.target_score,
+        examDate: row.target_date,
+        // A date from the old study plan kept for you to choose between (migration 007).
+        earlierPlanDate: row.legacy_plan_date,
+        createdAt: row.created_at,
+        updatedAt: row.updated_at,
+      })),
+      plans: plans.map((plan) => ({
+        id: plan.id,
+        examKey: plan.exam_key,
+        status: plan.status,
+        weeklyMinutes: plan.weekly_minutes,
+        sessionMinutes: plan.session_minutes,
+        startsOn: plan.starts_on,
+        endsOn: plan.ends_on,
+        examDate: plan.exam_date,
+        createdAt: plan.created_at,
+        adjustedAt: plan.adjusted_at,
+        endedAt: plan.ended_at,
+        sessions: planSessionRows
+          .filter((row) => row.plan_id === plan.id)
+          .map((row) => ({
+            scheduledOn: row.scheduled_on,
+            sequence: row.sequence,
+            kind: row.kind,
+            domain: row.domain_slug,
+            skill: row.skill_slug,
+            questionCount: row.question_count,
+            minutes: row.minutes,
+            reason: row.reason,
+            status: row.status,
+            attemptId: row.attempt_id,
+            statusAt: row.status_at,
+          })),
       })),
     };
 
