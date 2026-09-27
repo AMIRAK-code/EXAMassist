@@ -238,6 +238,45 @@ export function Container({
   return <div className={cx('mx-auto px-4 py-10 sm:px-6 sm:py-12', width, className)}>{children}</div>;
 }
 
+/**
+ * The one field style, for text inputs, selects and textareas in every form:
+ * the practice setup's 48 px control with the control radius and a 1.5 px
+ * border. A field marked `aria-invalid` takes the negative border, so an
+ * error is never shown by the message alone.
+ */
+export function fieldClass(extra?: string): string {
+  return cx(
+    'min-h-12 w-full rounded-control border-[1.5px] border-line-strong bg-surface px-3 text-base text-ink',
+    'placeholder:text-ink-subtle disabled:cursor-not-allowed disabled:bg-surface-sunken aria-[invalid=true]:border-negative',
+    extra,
+  );
+}
+
+/**
+ * A direct answer set apart at the top of an editorial page ("In short").
+ * Its text is one run in a paragraph, so a font swap reflows it without
+ * moving its start.
+ */
+export function Callout({
+  title,
+  children,
+  className,
+  textClassName,
+}: {
+  title: string;
+  children: ReactNode;
+  className?: string;
+  /** Classes for the answer paragraph, e.g. its size or face. */
+  textClassName?: string;
+}) {
+  return (
+    <div className={cx('rounded-card border-s-4 border-accent bg-accent-soft p-5', className)}>
+      <h2 className="eyebrow text-accent-ink">{title}</h2>
+      <p className={cx('mt-2 text-ink', textClassName)}>{children}</p>
+    </div>
+  );
+}
+
 export function Eyebrow({ children, className }: { children: ReactNode; className?: string }) {
   return <p className={cx('eyebrow', className)}>{children}</p>;
 }
@@ -333,14 +372,18 @@ export function EmptyState({
   title,
   children,
   action,
+  headingLevel = 2,
 }: {
   title: string;
   children?: ReactNode;
   action?: ReactNode;
+  /** 3 inside a section that already has its own h2. */
+  headingLevel?: 2 | 3;
 }) {
+  const Heading = headingLevel === 3 ? 'h3' : 'h2';
   return (
     <div className="rounded-card border border-dashed border-line-strong bg-surface px-6 py-10 text-center">
-      <h2 className="text-lg">{title}</h2>
+      <Heading className="text-lg">{title}</Heading>
       {children ? (
         <div className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-ink-muted">{children}</div>
       ) : null}
@@ -360,13 +403,17 @@ export function Stat({
   of,
   hint,
   tone = 'neutral',
+  labelAs = 'p',
 }: {
   label: string;
   value: ReactNode;
   of?: ReactNode;
   hint?: string;
   tone?: 'neutral' | 'positive' | 'negative' | 'accent';
+  /** 'h3' where the figure heads its own card. */
+  labelAs?: 'p' | 'h3';
 }) {
+  const Label = labelAs;
   const valueTone =
     tone === 'positive'
       ? 'text-positive'
@@ -377,7 +424,7 @@ export function Stat({
           : 'text-ink';
   return (
     <div>
-      <p className="text-sm text-ink-muted">{label}</p>
+      <Label className={labelAs === 'h3' ? 'font-heading text-lg font-semibold' : 'text-sm text-ink-muted'}>{label}</Label>
       <p className={cx('mt-1 font-heading text-3xl font-bold tabular-nums tracking-tight', valueTone)}>
         {value}
         {of !== undefined ? (

@@ -2,7 +2,7 @@
 
 import { useId, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Alert, Button, buttonClass } from '@/components/ui';
+import { Alert, Button, buttonClass, fieldClass } from '@/components/ui';
 import { clearAllPending } from '@/lib/player/pending';
 
 /**
@@ -17,8 +17,7 @@ interface ApiErrorBody {
   error?: { code?: string; message?: string };
 }
 
-const FIELD_CLASS =
-  'w-full rounded border border-line-strong bg-surface px-3 py-2.5 text-base text-ink';
+const FIELD_CLASS = fieldClass();
 
 async function readError(response: Response, fallback: string): Promise<string> {
   const body: ApiErrorBody | null = await response.json().catch(() => null);
@@ -305,7 +304,7 @@ export function DeleteAccountForm({ email, isGuest }: { email: string | null; is
       <div aria-live="assertive" aria-atomic="true">
         {error ? (
           <Alert tone="negative" role="alert" title="Not deleted" className="mt-4">
-            <p>{error}</p>
+            <p id={`${id}-confirm-error`}>{error}</p>
           </Alert>
         ) : null}
       </div>
@@ -323,7 +322,8 @@ export function DeleteAccountForm({ email, isGuest }: { email: string | null; is
           spellCheck={false}
           value={confirm}
           onChange={(event) => setConfirm(event.target.value)}
-          aria-describedby={`${id}-confirm-hint`}
+          aria-invalid={error ? true : undefined}
+          aria-describedby={error ? `${id}-confirm-error ${id}-confirm-hint` : `${id}-confirm-hint`}
           className={FIELD_CLASS}
         />
         <p id={`${id}-confirm-hint`} className="mt-1.5 text-sm text-ink-muted">

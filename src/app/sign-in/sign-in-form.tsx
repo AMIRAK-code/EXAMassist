@@ -2,7 +2,7 @@
 
 import { useId, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Alert, Button } from '@/components/ui';
+import { Alert, Button, buttonClass, cx, fieldClass } from '@/components/ui';
 
 /**
  * Email and password sign-in.
@@ -16,9 +16,6 @@ interface ApiErrorBody {
   error?: { code?: string; message?: string; detail?: { retryAfterSeconds?: number } };
 }
 
-const FIELD_CLASS =
-  'w-full rounded border border-line-strong bg-surface px-3 py-2.5 text-base text-ink';
-
 export function SignInForm({ next }: { next: string | null }) {
   const router = useRouter();
   const id = useId();
@@ -27,6 +24,10 @@ export function SignInForm({ next }: { next: string | null }) {
   const [showPassword, setShowPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  // Which fields the error is about: wrong credentials concern both; a network
+  // failure or a rate limit concerns neither.
+  const [fieldsInvalid, setFieldsInvalid] = useState(false);
+  const errorId = `${id}-error`;
 
   // `next` is validated on the server before it reaches this component; this is
   // the same rule restated so a relative path is the only thing we can navigate
@@ -39,6 +40,7 @@ export function SignInForm({ next }: { next: string | null }) {
 
     setSubmitting(true);
     setError(null);
+    setFieldsInvalid(false);
 
     const response = await fetch('/api/auth/sign-in', {
       method: 'POST',
@@ -66,6 +68,7 @@ export function SignInForm({ next }: { next: string | null }) {
         return;
       }
       setError(body?.error?.message ?? 'We could not sign you in. Please try again.');
+      setFieldsInvalid(code === 'invalid-credentials' || response.status === 400);
       return;
     }
 
@@ -78,7 +81,7 @@ export function SignInForm({ next }: { next: string | null }) {
       <div aria-live="assertive" aria-atomic="true">
         {error ? (
           <Alert tone="negative" role="alert" title="Sign-in failed">
-            <p>{error}</p>
+            <p id={errorId}>{error}</p>
           </Alert>
         ) : null}
       </div>
@@ -98,21 +101,25 @@ export function SignInForm({ next }: { next: string | null }) {
           required
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          className={FIELD_CLASS}
+          aria-invalid={fieldsInvalid || undefined}
+          aria-describedby={fieldsInvalid ? errorId : undefined}
+          className={fieldClass()}
         />
       </div>
 
       <div>
-        <div className="mb-1.5 flex flex-wrap items-baseline justify-between gap-2">
+        <div className="mb-1 flex flex-wrap items-center justify-between gap-2">
           <label htmlFor={`${id}-password`} className="text-sm font-medium">
             Password
           </label>
           <button
             type="button"
             onClick={() => setShowPassword((value) => !value)}
-            className="rounded px-1 text-sm text-accent underline"
+            aria-pressed={showPassword}
+            aria-controls={`${id}-password`}
+            className={cx(buttonClass({ variant: 'quiet', size: 'sm' }), 'min-h-11 -me-3')}
           >
-            {showPassword ? 'Hide password' : 'Show password'}
+            Show password
           </button>
         </div>
         <input
@@ -123,12 +130,14 @@ export function SignInForm({ next }: { next: string | null }) {
           required
           value={password}
           onChange={(event) => setPassword(event.target.value)}
-          className={FIELD_CLASS}
+          aria-invalid={fieldsInvalid || undefined}
+          aria-describedby={fieldsInvalid ? errorId : undefined}
+          className={fieldClass()}
         />
       </div>
 
-      <Button type="submit" size="lg" full disabled={submitting}>
-        {submitting ? 'Signing in…' : 'Sign in'}
+      <Button type="submit" size="lg" full loading={submitting}>
+        Sign in
       </Button>
 
       <p role="status" aria-live="polite" className="text-sm text-ink-muted">
