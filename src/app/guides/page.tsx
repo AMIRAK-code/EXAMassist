@@ -29,16 +29,18 @@ export default function GuidesPage() {
     <Container>
       <JsonLd data={breadcrumbSchema(siteUrl(), trail)} />
       <Breadcrumbs trail={trail} />
-      <PageHeader title={TITLE} lead={DESCRIPTION} />
+      {/*
+        The description follows the list: as a lead it gained a line when the
+        interface font arrived and pushed every guide down (docs/REDESIGN.md §18).
+      */}
+      <PageHeader title={TITLE} />
 
       <ul className="space-y-4">
         {guides.map((guide) => {
           const hub = getHub(guide.hubSlug);
           return (
             <Card as="li" key={guide.slug}>
-              <p className="text-xs uppercase tracking-wide text-ink-subtle">
-                {hub?.name ?? 'General'} · {guide.readingMinutes} min read
-              </p>
+              <p className="eyebrow">{`${hub?.name ?? 'General'} · ${guide.readingMinutes} min read`}</p>
               <h2 className="mt-1 font-heading text-xl font-semibold">
                 <Link href={`/guides/${guide.slug}`} className="no-underline hover:underline">
                   {guide.title}
@@ -59,6 +61,8 @@ export default function GuidesPage() {
           );
         })}
       </ul>
+
+      <p className="mt-8 max-w-2xl text-ink-muted">{DESCRIPTION}</p>
     </Container>
   );
 }

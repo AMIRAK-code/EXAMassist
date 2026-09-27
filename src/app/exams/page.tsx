@@ -69,10 +69,12 @@ export default async function ExamsPage() {
       <JsonLd data={breadcrumbSchema(siteUrl(), trail)} />
       <Breadcrumbs trail={trail} />
 
-      <PageHeader
-        title={TITLE}
-        lead="Each guide records what the test maker actually publishes: sections, question counts, timing, navigation rules, calculator policy and scoring, with the source and the date we checked it."
-      />
+      {/*
+        What the guides record is said after the exams: as a lead it gained a
+        line when the interface font arrived and pushed the first exams down
+        (docs/REDESIGN.md §18).
+      */}
+      <PageHeader title={TITLE} />
 
       {groups.map((group) => {
         const groupHubs = hubs.filter((entry) => entry.hub.audiences.includes(group.audience as never));
@@ -88,13 +90,14 @@ export default async function ExamsPage() {
             <ul className="mt-5 grid gap-4 md:grid-cols-2">
               {groupHubs.map(({ hub, configs, items, domainsCovered, domainsTotal }) => (
                 <Card as="li" key={hub.slug} className="flex flex-col">
-                  <div className="flex items-start justify-between gap-3">
-                    <h3 className="font-heading text-xl font-semibold">
+                  {/* The audience badges wrap under the title rather than squeeze it on a phone. */}
+                  <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-2">
+                    <h3 className="min-w-0 font-heading text-xl font-semibold">
                       <Link href={`/exams/${hub.slug}`} className="no-underline hover:underline">
                         {hub.name}
                       </Link>
                     </h3>
-                    <div className="flex shrink-0 flex-wrap justify-end gap-1">
+                    <div className="flex flex-wrap gap-1">
                       {hub.audiences.map((audience) => (
                         <Badge key={audience} tone="neutral">
                           {AUDIENCE_LABEL[audience]}
@@ -103,7 +106,7 @@ export default async function ExamsPage() {
                     </div>
                   </div>
 
-                  <p className="mt-1 text-xs uppercase tracking-wide text-ink-subtle">{hub.publisher}</p>
+                  <p className="eyebrow mt-1">{hub.publisher}</p>
                   <p className="mt-3 flex-1 text-sm text-ink-muted">{hub.tagline}</p>
 
                   <dl className="mt-4 grid grid-cols-2 gap-3 border-t border-line pt-4 text-sm">
@@ -146,6 +149,11 @@ export default async function ExamsPage() {
           </section>
         );
       })}
+
+      <p className="mb-12 max-w-2xl text-ink-muted">
+        Each guide records what the test maker actually publishes: sections, question counts, timing,
+        navigation rules, calculator policy and scoring, with the source and the date we checked it.
+      </p>
 
       <section id="formats" aria-labelledby="formats-heading" className="mb-12">
         <h2 id="formats-heading" className="font-heading text-2xl font-semibold">

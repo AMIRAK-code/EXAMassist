@@ -5,7 +5,7 @@ import { EXAM_HUBS, getConfigsForHub, getHub } from '@/lib/exams/registry';
 import { describePolicy } from '@/lib/assessment/navigation';
 import { SITE, absoluteUrl, siteUrl } from '@/lib/site';
 import { guidesForHub } from '@/lib/content/guides';
-import { Alert, Breadcrumbs, ButtonLink, Card, Container } from '@/components/ui';
+import { Callout, Alert, Breadcrumbs, ButtonLink, Card, Container } from '@/components/ui';
 import { JsonLd, articleSchema, breadcrumbSchema } from '@/components/seo/json-ld';
 
 export function generateStaticParams() {
@@ -91,20 +91,19 @@ export default async function FormatGuidePage({ params }: { params: Promise<{ hu
 
       {/*
         The opening is kept to lines that cannot jump when the web font
-        arrives: the date starts its line and the rest of the sentence is one
-        text run. The version and cycle details follow each summary, and the
-        provenance note sits with the sources it describes (docs/REDESIGN.md §14).
+        arrives. It is the date alone: "from <publisher>'s published pages"
+        still took a second line on some phones (docs/REDESIGN.md §18), and
+        the provenance note sits with the sources it describes. The version
+        and cycle details follow each summary (§14).
       */}
       <p className="mt-2 text-sm text-ink-subtle">
-        Verified{' '}
-        <time dateTime={verifiedOn}>{verifiedOn ? formatDate(verifiedOn) : '—'}</time>
-        {` from ${hub.publisher}’s published pages.`}
+        Verified <time dateTime={verifiedOn}>{verifiedOn ? formatDate(verifiedOn) : '—'}</time>
       </p>
 
-      <div className="mt-6 rounded-card border-s-4 border-accent bg-accent-soft p-5">
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-accent-strong">In short</h2>
-        <p className="mt-2 text-ink">{hub.tagline}</p>
-      </div>
+      {/* At the smaller size a line gained on a font swap moves the page less (§18). */}
+      <Callout title="In short" className="mt-6" textClassName="text-sm">
+        {hub.tagline}
+      </Callout>
 
       {configs.map((config) => (
         <section key={config.examKey} className="mt-10" aria-labelledby={`fmt-${config.examKey}`}>
