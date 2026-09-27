@@ -4291,3 +4291,35 @@ anyway.
   320 px
 - `328d5af` the Phase 7 checks (axe-core, keyboard, focus, reflow and zoom)
 - this documentation
+
+### 19.7 Release-readiness closeout (27 September 2026)
+
+The release checklist is `docs/RELEASE-CHECKLIST.md`. It keeps
+automated, browser-verified and manual evidence apart, and has a
+recording table for each manual check.
+
+- **Actual 200% browser zoom** (Chrome 153): verified separately from the
+  320 px reflow check.
+  - **The setting:** Chrome's own default page zoom, in a real 1280 × 800
+    window with no viewport emulation. The page reported
+    devicePixelRatio 2 and a 631 × 352 CSS px viewport.
+  - **The result:** 16 pages, no sideways scrolling, no clipped text, no
+    axe violations, and 442 focus stops all visible and uncovered.
+  - **A trap:** Playwright's `page.screenshot()` under real zoom captures
+    only part of the window (CSS-pixel dimensions of device pixels). The
+    evidence screenshots are whole-window captures over the DevTools
+    protocol.
+- **Firefox and WebKit:** not run. Playwright's builds are not installed
+  (181 MB to download). Playwright WebKit on Windows is not Safari; Safari
+  on iPhone is covered by the manual phone check.
+- **The PostCSS advisories:**
+  - **The copy they affect:** they are in Next 15's pinned postcss 8.4.31,
+    used only at build time on the project's own stylesheets. The running
+    server resolves the patched top-level 8.5.28.
+  - **Upstream:** no Next 15 release fixes them; 15.5.26 still pins
+    8.4.31, and Next 16.3.6 pins 8.5.23.
+  - **An npm override** within Next 15 clears the audit. It was verified
+    in an isolated copy with byte-identical CSS output, and not applied.
+- **Manual checks pending:** the real-phone check and a real screen-reader
+  pass, with steps and the local network address in the checklist.
+  Accessibility-tree inspection is not counted as a screen-reader pass.
