@@ -13,6 +13,14 @@ const nextConfig: NextConfig = {
    * directory) makes it choose that instead, which breaks output file tracing.
    */
   outputFileTracingRoot: process.cwd(),
+  /*
+   * Readiness is now a view of the study plan (docs/REDESIGN.md §18). Old
+   * links and bookmarks keep working: a permanent redirect, which carries the
+   * query string (?exam=) across unchanged.
+   */
+  async redirects() {
+    return [{ source: '/readiness', destination: '/study-plan/progress', permanent: true }];
+  },
   async headers() {
     return [
       {
