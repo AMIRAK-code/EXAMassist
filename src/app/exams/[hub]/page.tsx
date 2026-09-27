@@ -15,6 +15,7 @@ import {
   DefinitionList,
   FidelityBadge,
   PageHeader,
+  StatusBadge,
 } from '@/components/ui';
 import { JsonLd, articleSchema, breadcrumbSchema } from '@/components/seo/json-ld';
 
@@ -87,13 +88,20 @@ export default async function ExamHubPage({ params }: { params: Promise<{ hub: s
       />
       <Breadcrumbs trail={trail} />
 
-      <PageHeader eyebrow={hub.publisher} title={hub.name} lead={hub.tagline} />
+      {/*
+        No lead: the tagline repeated the summary below it, and gained a line
+        when the interface font arrived, pushing the page down (0.0199 in the
+        worst case, docs/REDESIGN.md §18). It stays the page's description, and
+        the format guide's "In short".
+      */}
+      <PageHeader eyebrow={hub.publisher} title={hub.name} />
 
       {/* The direct answer, first: what this exam is, in one block. */}
       {configs.map((config) => {
         const coverage = examCoverage(db, config);
         const availability = blueprintAvailability(db, config);
         const offered = availability.filter((a) => a.available);
+        const unavailable = availability.filter((a) => !a.available);
 
         return (
           <section
@@ -111,9 +119,13 @@ export default async function ExamHubPage({ params }: { params: Promise<{ hub: s
               </h2>
             )}
 
-            <Card className="mb-6">
+            {/*
+              From 768 px the summary and its details sit side by side, so the
+              summary reflowing on a font swap has nothing beneath it in view.
+            */}
+            <Card className="mb-6 md:grid md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] md:gap-x-6">
               <p className="text-ink">{config.summary}</p>
-              <div className="mt-4">
+              <div className="mt-4 md:mt-0">
                 <DefinitionList
                   items={[
                     { term: 'Version covered', value: config.versionLabel },
@@ -232,6 +244,30 @@ export default async function ExamHubPage({ params }: { params: Promise<{ hub: s
                 ))}
               </ul>
             )}
+
+            {offered.length > 0 && unavailable.length > 0 ? (
+              <div className="mt-4 rounded-card border border-line bg-surface-sunken p-4">
+                <h4 className="text-sm font-semibold">Not open yet</h4>
+                <ul className="mt-2 space-y-2 text-sm">
+                  {unavailable.map((entry) => (
+                    <li key={entry.blueprint.id} className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                      <StatusBadge status={entry.blockedBy === 'rules' ? 'notoffered' : 'notyet'} />
+                      <span className="font-medium">{entry.blueprint.label}</span>
+                      <span className="text-ink-muted">
+                        {entry.blockedBy === 'rules'
+                          ? 'the rules it needs are not verified'
+                          : `needs ${entry.shortfall} more reviewed question${entry.shortfall === 1 ? '' : 's'}`}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-3 text-sm">
+                  <Link href={`/practice/${config.examKey}`}>Why each format is or is not open</Link>
+                  {' · '}
+                  <Link href="/exams#formats">Every exam’s formats</Link>
+                </p>
+              </div>
+            ) : null}
 
             <div className="mt-5 flex flex-wrap gap-3">
               <ButtonLink href={`/practice/${config.examKey}`}>

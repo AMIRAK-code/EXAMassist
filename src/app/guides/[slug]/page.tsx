@@ -1,11 +1,10 @@
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getGuide, listGuides } from '@/lib/content/guides';
 import { getHub } from '@/lib/exams/registry';
 import { SITE, absoluteUrl, siteUrl } from '@/lib/site';
 import { Markdown } from '@/components/content';
-import { Breadcrumbs, ButtonLink, Card, Container } from '@/components/ui';
+import { Breadcrumbs, ButtonLink, Callout, Card, Container, PageHeader } from '@/components/ui';
 import { JsonLd, articleSchema, breadcrumbSchema } from '@/components/seo/json-ld';
 
 export function generateStaticParams() {
@@ -74,22 +73,26 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
       />
       <Breadcrumbs trail={trail} />
 
+      {/*
+        A guide is read at length, so its answer and body are set in the
+        design system's reading serif (§6), like passages and questions. In
+        the interface font, every paragraph above the fold reflowed when the
+        font arrived: 0.04 on desktop in every lab load, and up to 0.13 in the
+        worst case (docs/REDESIGN.md §18.1). The title and labels keep the
+        interface face.
+      */}
       <article>
         <header className="mb-8">
-          <p className="text-sm uppercase tracking-wide text-ink-subtle">{hub?.name ?? 'General'}</p>
-          <h1 className="mt-2 font-heading text-3xl font-semibold sm:text-4xl">{guide.title}</h1>
+          <PageHeader eyebrow={hub?.name ?? 'General'} title={guide.title} />
 
           {/*
             The direct answer, before the body: what a reader needs in one
             paragraph, and the passage most likely to be quoted if this page is
             cited elsewhere.
           */}
-          <div className="mt-6 rounded-card border-s-4 border-accent bg-accent-soft p-5">
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-accent-strong">
-              In short
-            </h2>
-            <p className="mt-2 text-ink">{guide.answer}</p>
-          </div>
+          <Callout title="In short" className="-mt-2" textClassName="font-serif">
+            {guide.answer}
+          </Callout>
 
           <p className="mt-4 text-sm text-ink-subtle">
             By {SITE.publisher} · Published{' '}
@@ -104,7 +107,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
           </p>
         </header>
 
-        <Markdown source={guide.bodyMd} className="prose-academic" />
+        <Markdown source={guide.bodyMd} className="prose-academic font-serif" />
 
         <section aria-labelledby="sources-heading" className="mt-10">
           <h2 id="sources-heading" className="font-heading text-xl font-semibold">
@@ -116,6 +119,10 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
                 <span className="text-ink-subtle">[{index + 1}]</span>{' '}
                 <a href={source.url} rel="noopener noreferrer" target="_blank">
                   {source.label}
+                  <span className="sr-only"> (opens in a new tab)</span>
+                  <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" className="ms-1 inline-block align-baseline">
+                    <path d="M5 2H2.5v7.5H10V7M7 2h3v3M10 2 5.5 6.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                 </a>{' '}
                 <span className="text-ink-muted">— {source.publisher}</span>
               </li>
@@ -139,9 +146,11 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         </Card>
       ) : null}
 
-      <p className="mt-8 text-sm">
-        <Link href="/guides">← All guides</Link>
-      </p>
+      <div className="mt-8">
+        <ButtonLink href="/guides" variant="secondary" size="sm">
+          All guides
+        </ButtonLink>
+      </div>
     </Container>
   );
 }
