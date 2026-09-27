@@ -13,6 +13,7 @@ import {
   Container,
   EmptyState,
   PageHeader,
+  fieldClass,
 } from '@/components/ui';
 import { Markdown } from '@/components/content';
 import { FlagActions } from './flag-actions';
@@ -159,7 +160,7 @@ export default async function AdminFlagsPage({
   ];
 
   return (
-    <Container>
+    <Container size="wide">
       <Breadcrumbs trail={trail} />
 
       <PageHeader
@@ -191,7 +192,7 @@ export default async function AdminFlagsPage({
                 id="filter-status"
                 name="status"
                 defaultValue={status}
-                className="min-h-11 w-full rounded border border-line-strong bg-surface px-3 py-2 text-ink sm:w-56"
+                className={fieldClass('sm:w-56')}
               >
                 <option value="">All reports ({totalFlags})</option>
                 {STATUSES.map((option) => (
@@ -315,7 +316,7 @@ export default async function AdminFlagsPage({
 
                     {row.explanationMd ? (
                       <details className="mt-3">
-                        <summary className="cursor-pointer text-sm font-medium">
+                        <summary className="flex min-h-11 cursor-pointer items-center text-sm font-medium">
                           Show the published explanation
                         </summary>
                         <Markdown source={row.explanationMd} className="mt-2 text-sm" />
