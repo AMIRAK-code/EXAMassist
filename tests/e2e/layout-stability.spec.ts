@@ -12,7 +12,18 @@ import { expect, test, type Page } from '@playwright/test';
  */
 
 const BUDGET = 0.02;
-const ROUTES = ['/practice/digital-sat', '/exams/digital-sat/format', '/exams/gre/format'];
+const ROUTES = [
+  '/practice/digital-sat',
+  '/exams/digital-sat/format',
+  '/exams/gre/format',
+  // Phase 6 (docs/REDESIGN.md §18): pages whose openings moved on a font swap.
+  '/exams',
+  '/exams/digital-sat',
+  '/guides',
+  '/guides/lsat-without-logic-games',
+  '/sign-in',
+  '/sign-up',
+];
 
 async function swapInWebFont(page: Page): Promise<{ shift: number; textWidthChange: number }> {
   const face = await page.evaluate(() => {
