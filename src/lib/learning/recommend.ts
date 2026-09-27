@@ -13,6 +13,9 @@ import { requireExamConfig, labelsFor } from '@/lib/exams/registry';
 /** Below this many answered questions, a skill figure is noise, and we say so. */
 export const MIN_ATTEMPTS_FOR_SIGNAL = 4;
 
+/** A skill with signal and a smaller share correct than this is suggested for drilling. */
+export const WEAK_ACCURACY = 0.6;
+
 export interface SkillPerformance {
   skillSlug: string;
   skillLabel: string;
@@ -169,7 +172,7 @@ export function buildRecommendations(input: RecommendationInput): Recommendation
 
   // Weakest skills that actually carry signal.
   const weak = input.performance
-    .filter((skill) => skill.hasSignal && skill.accuracy < 0.6)
+    .filter((skill) => skill.hasSignal && skill.accuracy < WEAK_ACCURACY)
     .sort((a, b) => a.accuracy - b.accuracy)
     .slice(0, 3);
 
