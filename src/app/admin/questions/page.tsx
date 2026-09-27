@@ -15,6 +15,7 @@ import {
   Container,
   EmptyState,
   PageHeader,
+  fieldClass,
 } from '@/components/ui';
 import { InlineMarkdown } from '@/components/content';
 
@@ -213,7 +214,7 @@ export default async function AdminQuestionsPage({
                 id="filter-exam"
                 name="exam"
                 defaultValue={exam}
-                className="min-h-11 w-full rounded border border-line-strong bg-surface px-3 py-2 text-ink sm:w-64"
+                className={fieldClass('sm:w-64')}
               >
                 <option value="">All exams</option>
                 {EXAM_CONFIGS.map((config) => (
@@ -232,7 +233,7 @@ export default async function AdminQuestionsPage({
                 id="filter-state"
                 name="state"
                 defaultValue={state}
-                className="min-h-11 w-full rounded border border-line-strong bg-surface px-3 py-2 text-ink sm:w-56"
+                className={fieldClass('sm:w-56')}
               >
                 <option value="">All states</option>
                 {STATES.map((option) => (
@@ -341,6 +342,7 @@ export default async function AdminQuestionsPage({
         {rows.length === 0 ? (
           <div className="mt-5">
             <EmptyState
+              headingLevel={3}
               title={filtered ? 'No questions match this filter' : 'No questions have been loaded'}
               action={
                 filtered ? (

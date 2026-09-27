@@ -4,7 +4,7 @@ import { getDb } from '@/lib/db';
 import { requireEditorial } from '@/lib/auth/guards';
 import { EXAM_CONFIGS, getHubForConfig } from '@/lib/exams/registry';
 import { examCoverage } from '@/lib/attempts/availability';
-import { Alert, Badge, Breadcrumbs, ButtonLink, Card, Container, PageHeader } from '@/components/ui';
+import { Alert, Badge, Breadcrumbs, ButtonLink, Card, Container, PageHeader, Stat } from '@/components/ui';
 
 /**
  * Content administration overview.
@@ -179,11 +179,10 @@ export default async function AdminOverviewPage() {
                 key={stage.state}
                 className={needsAttention ? 'border-negative bg-negative-soft' : undefined}
               >
-                <p className="text-xs uppercase tracking-wide text-ink-subtle">
-                  Stage {index + 1} of {PIPELINE.length}
-                </p>
-                <h3 className="mt-1 font-heading text-lg font-semibold">{stage.label}</h3>
-                <p className="mt-2 text-3xl font-semibold tabular-nums">{count}</p>
+                <p className="eyebrow">{`Stage ${index + 1} of ${PIPELINE.length}`}</p>
+                <div className="mt-1">
+                  <Stat labelAs="h3" label={stage.label} value={count} />
+                </div>
                 <p className="mt-1 text-sm text-ink-muted">
                   {count === 1 ? 'question' : 'questions'} &middot; {versionCount(stage.state)} version
                   {versionCount(stage.state) === 1 ? '' : 's'}
@@ -208,8 +207,7 @@ export default async function AdminOverviewPage() {
 
         <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Card>
-            <h3 className="font-heading text-lg font-semibold">Open content reports</h3>
-            <p className="mt-2 text-3xl font-semibold tabular-nums">{openFlags}</p>
+            <Stat labelAs="h3" label="Open content reports" value={openFlags} />
             <p className="mt-1 text-sm text-ink-muted">
               {flagCount('accepted')} accepted, {flagCount('rejected')} rejected so far.
             </p>
@@ -221,8 +219,7 @@ export default async function AdminOverviewPage() {
           </Card>
 
           <Card>
-            <h3 className="font-heading text-lg font-semibold">Quarantined</h3>
-            <p className="mt-2 text-3xl font-semibold tabular-nums">{quarantined}</p>
+            <Stat labelAs="h3" label="Quarantined" value={quarantined} />
             <p className="mt-1 text-sm text-ink-muted">
               Held back rather than repaired by guesswork. Each one records why.
             </p>
@@ -238,8 +235,7 @@ export default async function AdminOverviewPage() {
           </Card>
 
           <Card>
-            <h3 className="font-heading text-lg font-semibold">In review</h3>
-            <p className="mt-2 text-3xl font-semibold tabular-nums">{questionCount('in_review')}</p>
+            <Stat labelAs="h3" label="In review" value={questionCount('in_review')} />
             <p className="mt-1 text-sm text-ink-muted">
               Awaiting a blind solve by a separate reviewer before publication.
             </p>
@@ -251,8 +247,7 @@ export default async function AdminOverviewPage() {
           </Card>
 
           <Card>
-            <h3 className="font-heading text-lg font-semibold">Attempts, last 7 days</h3>
-            <p className="mt-2 text-3xl font-semibold tabular-nums">{recentAttempts}</p>
+            <Stat labelAs="h3" label="Attempts, last 7 days" value={recentAttempts} />
             <p className="mt-1 text-sm text-ink-muted">
               {submittedRecently} submitted. {totalAttempts} attempts recorded in total.
             </p>

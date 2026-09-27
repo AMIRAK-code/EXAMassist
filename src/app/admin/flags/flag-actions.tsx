@@ -2,7 +2,7 @@
 
 import { useId, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button } from '@/components/ui';
+import { Button, fieldClass, Alert } from '@/components/ui';
 
 /**
  * Resolves one content report.
@@ -85,10 +85,11 @@ export function FlagActions({ flagId }: { flagId: string }) {
         maxLength={MAX_NOTE}
         required
         disabled={done}
-        aria-describedby={`${fieldId}-hint`}
+        aria-invalid={status?.tone === 'error' ? true : undefined}
+        aria-describedby={status?.tone === 'error' ? `${fieldId}-error ${fieldId}-hint` : `${fieldId}-hint`}
         value={note}
         onChange={(event) => setNote(event.target.value)}
-        className="mt-2 w-full rounded border border-line-strong bg-surface px-3 py-2 text-ink disabled:opacity-55"
+        className={fieldClass('mt-2 py-2.5')}
       />
 
       <div className="mt-3 flex flex-wrap gap-3">
@@ -109,14 +110,16 @@ export function FlagActions({ flagId }: { flagId: string }) {
         </Button>
       </div>
 
-      <p
-        role="status"
-        aria-live="polite"
-        className={`mt-3 text-sm ${
-          status?.tone === 'error' ? 'text-negative' : status ? 'text-positive' : 'text-ink-muted'
-        }`}
-      >
-        {status ? `${status.tone === 'error' ? 'Not saved: ' : 'Saved: '}${status.text}` : ''}
+      {/* A refusal is an alert, tied to the note; a saved decision is announced politely. */}
+      <div aria-live="assertive" aria-atomic="true">
+        {status?.tone === 'error' ? (
+          <Alert tone="negative" role="alert" title="Not saved" className="mt-3">
+            <p id={`${fieldId}-error`}>{status.text}</p>
+          </Alert>
+        ) : null}
+      </div>
+      <p role="status" aria-live="polite" className="mt-3 text-sm text-positive">
+        {status?.tone === 'success' ? `Saved: ${status.text}` : ''}
       </p>
     </div>
   );
