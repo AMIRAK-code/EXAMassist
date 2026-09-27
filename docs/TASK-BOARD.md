@@ -117,3 +117,12 @@ Evidence commands are runnable from the repository root.
    check an answer: the header and the control bar must stay in place.
    **Still outstanding after Phase 6** (docs/REDESIGN.md §18.11): not
    performed.
+7. **Time-zone-aware study-plan scheduling** (added 27 September 2026). The
+   plan counts days in UTC and shows a session as missed from 12:00 UTC the
+   next day, when its date has ended everywhere (docs/REDESIGN.md §18.12).
+   Where the learner is, that can be up to 26 hours after their own
+   midnight, never earlier.
+   - **To close:** store the learner's time zone, with consent and a
+     default. Date the plan and the missed boundary in that zone. Say which
+     zone is used.
+   - **Keep:** completed and skipped history must not move.
