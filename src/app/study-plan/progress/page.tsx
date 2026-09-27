@@ -7,11 +7,12 @@ import { buildReadiness, getExamTarget } from '@/lib/learning/queries';
 import { ReadinessReport } from '@/components/readiness/readiness-report';
 import { TargetForm } from '@/components/readiness/target-form';
 import { Breadcrumbs, Card, Container, EmptyState, ButtonLink, PageHeader } from '@/components/ui';
+import { PlanningViews } from '@/components/planning/planning-views';
 
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: 'Are you ready?',
+  title: 'Progress and readiness',
   description: 'How your practice measures against the exam you are preparing for.',
   robots: { index: false, follow: false },
 };
@@ -35,7 +36,7 @@ export default async function ReadinessPage({
 }: {
   searchParams: Promise<{ exam?: string }>;
 }) {
-  const user = await requireSignedIn('/readiness');
+  const user = await requireSignedIn('/study-plan/progress');
   const { exam } = await searchParams;
   const db = getDb();
 
@@ -45,22 +46,22 @@ export default async function ReadinessPage({
   const trail = [
     { href: '/', label: 'Home' },
     { href: '/dashboard', label: 'Dashboard' },
-    { label: 'Readiness' },
+    { href: '/study-plan', label: 'Study plan' },
+    { label: 'Progress & readiness' },
   ];
 
   if (!config) {
     return (
       <Container size="narrow">
         <Breadcrumbs trail={trail} />
-        <PageHeader
-          title="Are you ready?"
-          lead="Choose the exam you are preparing for, and this page will measure your practice against it."
-        />
+        <PageHeader title="Study plan" />
+        <PlanningViews current="progress" examKey={null} />
+        <p className="mb-6 text-ink-muted">Choose the exam you are preparing for, and this view measures your practice against it.</p>
         <ul className="grid gap-3 sm:grid-cols-2">
           {EXAM_CONFIGS.map((option) => (
             <Card as="li" key={option.examKey}>
               <h2 className="text-lg">
-                <Link href={`/readiness?exam=${option.examKey}`} className="no-underline hover:underline">
+                <Link href={`/study-plan/progress?exam=${option.examKey}`} className="no-underline hover:underline">
                   {option.name}
                 </Link>
               </h2>
@@ -80,11 +81,9 @@ export default async function ReadinessPage({
     <Container>
       <Breadcrumbs trail={trail} />
 
-      <PageHeader
-        eyebrow={config.publisher}
-        title="Are you ready?"
-        lead={`Everything below is measured from your own answers for ${config.shortName}. It describes your preparation, not a predicted exam score.`}
-      />
+      <PageHeader eyebrow={config.publisher} title="Study plan" />
+      <PlanningViews current="progress" examKey={config.examKey} />
+      {/* That this describes preparation, not a predicted score, is stated in the report itself (headline and limits). */}
 
       {/* Switching exams */}
       {EXAM_CONFIGS.length > 1 ? (
@@ -94,7 +93,7 @@ export default async function ReadinessPage({
             return (
               <Link
                 key={option.examKey}
-                href={`/readiness?exam=${option.examKey}`}
+                href={`/study-plan/progress?exam=${option.examKey}`}
                 aria-current={active ? 'page' : undefined}
                 className={`rounded-sm border px-3 py-1.5 text-sm no-underline ${
                   active

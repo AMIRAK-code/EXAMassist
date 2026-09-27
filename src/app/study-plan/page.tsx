@@ -17,6 +17,7 @@ import {
   PageHeader,
 } from '@/components/ui';
 import { PlanForm } from './plan-form';
+import { PlanningViews } from '@/components/planning/planning-views';
 
 /**
  * The study plan.
@@ -90,10 +91,8 @@ export default async function StudyPlanPage() {
     return (
       <Container>
         <Breadcrumbs trail={trail} />
-        <PageHeader
-          title="Your study plan"
-          lead="A plan needs an exam to plan for. Start practising one and the plan is built from what you answer."
-        />
+        <PageHeader title="Study plan" />
+        <PlanningViews current="plan" examKey={null} />
         <EmptyState
           title="No exam chosen yet"
           action={<ButtonLink href="/exams">Choose an exam</ButtonLink>}
@@ -154,11 +153,8 @@ export default async function StudyPlanPage() {
     <Container>
       <Breadcrumbs trail={trail} />
 
-      <PageHeader
-        eyebrow={config.publisher}
-        title="Your study plan"
-        lead={`A schedule for ${config.name}, built by dividing the time you say you have into practice sessions and ordering topics by your own accuracy so far.`}
-      />
+      <PageHeader eyebrow={config.publisher} title="Study plan" />
+      <PlanningViews current="plan" examKey={config.examKey} />
 
       {/* The caveats belong where they will be read. */}
       <Alert tone="caution" title="What this plan is, and is not" className="mb-8">

@@ -335,8 +335,11 @@ test.describe('readiness', () => {
     });
     expect(saved).toBe(200);
 
+    // The old address redirects to the study plan's Progress & readiness view, keeping the exam.
     await page.goto('/readiness?exam=bocconi-undergraduate');
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('Are you ready?');
+    await expect(page).toHaveURL(/\/study-plan\/progress\?exam=bocconi-undergraduate$/);
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Study plan');
+    await expect(page.getByRole('link', { name: 'Progress & readiness' })).toHaveAttribute('aria-current', 'page');
 
     // Bocconi publishes its raw scoring in full, so the target IS quantified,
     // and the official floor is named as a requirement rather than a goal.
