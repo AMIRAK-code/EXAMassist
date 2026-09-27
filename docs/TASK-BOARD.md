@@ -115,3 +115,5 @@ Evidence commands are runnable from the repository root.
    headless phone emulation, where one capture looked out of place (§17.11).
    Open a session on a real phone, scroll a long question, move with Next and
    check an answer: the header and the control bar must stay in place.
+   **Still outstanding after Phase 6** (docs/REDESIGN.md §18.11): not
+   performed.
