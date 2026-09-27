@@ -108,17 +108,10 @@ Evidence commands are runnable from the repository root.
      `db:seed`.
    - **Availability:** no format waits on it. It is a Reading item, and ACT
      timed Reading is 29 questions short either way.
-6. **Phase 5 acceptance: maths question review pages on the phone** (added
-   27 September 2026). The one criterion Phase 5 has not met: median LCP
-   ≤ 1.8 s on question review pages with maths. The acceptance batch had
-   1,880–2,104 ms, with the Phase 4 build at 1,812–2,024 in the same batch
-   (docs/REDESIGN.md §17.12). Every other Phase 5 criterion, and every
-   earlier budget, is met.
-   - **Tried (§17.13):** deferring the explanation with `content-visibility`
-     helped only the page whose explanation starts beyond ~2,100 px (−216 ms),
-     because Chrome renders anything nearer before the first paint. Maths-heavy
-     and short maths stay 196 and 44 ms over. Not committed.
-   - **Awaiting a decision:** the smallest design change, the worked explanation
-     closed by default on phones (previewed, not made). Its measured saving,
-     200–256 ms, is an upper bound and may not clear the table page in a slow
-     batch.
+6. **Release check: the player's sticky header and control bar on a real phone**
+   (added 27 September 2026). Phase 5 is accepted against the revised budgets
+   of docs/REDESIGN.md §17.15 (maths review pages ≤ 2.2 s, non-maths review
+   pages ≤ 1.8 s, CLS ≤ 0.02). The sticky bars have been checked only in
+   headless phone emulation, where one capture looked out of place (§17.11).
+   Open a session on a real phone, scroll a long question, move with Next and
+   check an answer: the header and the control bar must stay in place.
