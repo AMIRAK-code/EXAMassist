@@ -2,7 +2,10 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { getCurrentUser, requireUser } from '@/lib/auth/session';
+import { getDb } from '@/lib/db';
 import { EXAM_CONFIGS, getExamConfig } from '@/lib/exams/registry';
+import { listExamTargets } from '@/lib/learning/queries';
+import { examLabel } from '@/lib/learning/dashboard';
 import { Breadcrumbs, Alert, Badge, Card, Container, DefinitionList, PageHeader } from '@/components/ui';
 import {
   AccountSettingsForm,
@@ -49,7 +52,10 @@ export default async function AccountPage() {
   const user = await requireUser();
 
   const targetConfig = user.targetExamKey ? getExamConfig(user.targetExamKey) : undefined;
-  const targetDate = formatDate(user.targetDate);
+  // The one exam date per exam (migration 007), beside each goal.
+  const examDates = listExamTargets(getDb(), user.id)
+    .filter((target) => target.targetDate && getExamConfig(target.examKey))
+    .map((target) => ({ examKey: target.examKey, label: examLabel(target.examKey), date: formatDate(target.targetDate)! }));
 
   const examOptions = EXAM_CONFIGS.map((config) => ({
     examKey: config.examKey,
@@ -113,8 +119,19 @@ export default async function AccountPage() {
                 ),
               },
               {
-                term: 'Test date',
-                value: targetDate ?? <span className="text-ink-muted">Not set</span>,
+                term: 'Exam dates',
+                value:
+                  examDates.length > 0 ? (
+                    <ul className="space-y-1">
+                      {examDates.map((entry) => (
+                        <li key={entry.examKey}>
+                          {entry.label}: {entry.date}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <span className="text-ink-muted">Not set</span>
+                  ),
               },
               ...(user.isMinor
                 ? [
@@ -145,7 +162,6 @@ export default async function AccountPage() {
             examOptions={examOptions}
             initialDisplayName={user.displayName ?? ''}
             initialTargetExamKey={user.targetExamKey ?? ''}
-            initialTargetDate={user.targetDate ?? ''}
           />
         </Card>
       </section>
@@ -158,7 +174,7 @@ export default async function AccountPage() {
           <h3 className="font-heading text-lg font-semibold">Download a copy</h3>
           <p className="mt-2 text-sm text-ink-muted">
             One JSON file with your account details, every practice session and answer, your results,
-            bookmarks, review queue and study plan. Nothing else is included, and nobody else&rsquo;s
+            bookmarks, review queue, goals and study plans. Nothing else is included, and nobody else&rsquo;s
             data can appear in it.
           </p>
           <div className="mt-4">
