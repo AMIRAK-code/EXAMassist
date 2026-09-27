@@ -26,6 +26,7 @@ import {
   stateOf,
   PlanError,
   type FinishedAttempt,
+  type PlannedSession,
   type PlanSessionRow,
 } from '@/lib/learning/plan';
 import { createTestDb, createUser, seedQuestions } from './helpers/test-db';
@@ -67,6 +68,7 @@ function attempt(overrides: Partial<FinishedAttempt> = {}): FinishedAttempt {
     answered: 10,
     domains: [DOMAIN.slug],
     skills: [],
+    newQuestionsOnly: true,
     ...overrides,
   };
 }
@@ -107,6 +109,16 @@ describe('satisfying a planned session', () => {
     expect(satisfies(attempt({ domains: [] }), session({ kind: 'mixed', domainSlug: null }))).toBe(true);
     // A diagnostic is not practice.
     expect(satisfies(attempt({ blueprintId: 'diagnostic', mode: 'diagnostic', domains: [] }), session({ kind: 'mixed', domainSlug: null }))).toBe(false);
+  });
+
+  it('completes a new-questions activity only with a session recorded as built from new questions', () => {
+    const ordinary = attempt({ newQuestionsOnly: false });
+    expect(satisfies(ordinary, session({ kind: 'new' }))).toBe(false);
+    expect(satisfies(ordinary, session({ kind: 'mixed', domainSlug: null }))).toBe(false);
+    // Revision may repeat questions, so either kind of session completes it.
+    expect(satisfies(ordinary, session({ kind: 'revision' }))).toBe(true);
+    expect(satisfies(attempt(), session({ kind: 'revision' }))).toBe(true);
+    expect(satisfies(attempt(), session({ kind: 'new' }))).toBe(true);
   });
 
   it('lets each finished session satisfy one planned session, the earliest it fits', () => {
@@ -236,7 +248,7 @@ describe('a stored plan', () => {
     expect(first.domainSlug).not.toBeNull();
 
     // Opened and answered, but not finished.
-    const open = startAttempt(db, { userId: learner, examKey: SAT.examKey, blueprintId: 'practice', overrides: { domains: [first.domainSlug!], length: 10 } });
+    const open = startAttempt(db, { userId: learner, examKey: SAT.examKey, blueprintId: 'practice', overrides: { domains: [first.domainSlug!], length: 10, unseenOnly: true } });
     for (let position = 0; position < 10; position += 1) {
       recordResponse(db, { attemptId: open.attemptId, userId: learner, partIndex: 0, position, response: { type: 'single_select', optionId: 'a' } });
     }
@@ -254,7 +266,7 @@ describe('a stored plan', () => {
   it('links a session started from it, so that session completes it', () => {
     const plan = create();
     const target = planSessions(db, learner, plan.id)[2];
-    const attemptId = practise({ ...(target.domainSlug ? { domains: [target.domainSlug] } : {}), length: 10 });
+    const attemptId = practise({ ...(target.domainSlug ? { domains: [target.domainSlug] } : {}), length: 10, unseenOnly: true });
     // Pretend it was started from the plan: link, then record.
     db.prepare("UPDATE attempts SET submitted_at = ? WHERE id = ?").run(new Date().toISOString(), attemptId);
     linkStartedSession(db, learner, target.id, attemptId);
@@ -267,13 +279,135 @@ describe('a stored plan', () => {
     const [first, second] = planSessions(db, learner, plan.id);
     skipSession(db, learner, second.id);
     expect(planSessions(db, learner, plan.id).find((s) => s.id === second.id)!.status).toBe('skipped');
-    practise({ domains: [first.domainSlug!], length: 10 });
+    practise({ domains: [first.domainSlug!], length: 10, unseenOnly: true });
     recordCompletions(db, learner, activePlan(db, learner, SAT.examKey)!);
     expect(() => skipSession(db, learner, first.id)).toThrowError(PlanError);
     // Another learner cannot skip it.
     const other = createUser(db);
     const [third] = planSessions(db, learner, plan.id).filter((s) => s.status === 'planned');
     expect(() => skipSession(db, other, third.id)).toThrowError(PlanError);
+  });
+});
+
+describe('what completes an activity', () => {
+  /** A plan with exactly the given open activities, dated today. */
+  function planWith(activities: Array<{ kind: PlannedSession['kind']; domainSlug?: string | null; questionCount?: number }>) {
+    const plan = createPlan(db, { userId: learner, examKey: SAT.examKey, weeklyMinutes: 150, examDate: null, now: new Date() });
+    db.prepare('DELETE FROM plan_sessions WHERE plan_id = ?').run(plan.id);
+    const today = isoDay(new Date());
+    const insert = db.prepare(
+      `INSERT INTO plan_sessions (id, plan_id, user_id, scheduled_on, sequence, kind, domain_slug, skill_slug, question_count, minutes, reason, status, created_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, NULL, ?, 25, 'test', 'planned', ?)`,
+    );
+    const ids = activities.map((a, index) => {
+      const id = `act-${index}`;
+      insert.run(id, plan.id, learner, today, index + 1, a.kind, a.domainSlug === undefined ? DOMAIN.slug : a.domainSlug, a.questionCount ?? 10, new Date().toISOString());
+      return id;
+    });
+    return { plan, ids };
+  }
+  const statusOf = (id: string) => (db.prepare('SELECT status, attempt_id AS attemptId FROM plan_sessions WHERE id = ?').get(id) as { status: string; attemptId: string | null });
+  const record = () => recordCompletions(db, learner, activePlan(db, learner, SAT.examKey)!);
+
+  /** A practice session of the topic with `answered` questions answered and the rest left blank, finished as `status`. */
+  function finishWith(overrides: Record<string, unknown>, answered: number, status: 'submitted' | 'expired' | 'abandoned' = 'submitted'): string {
+    const { attemptId } = startAttempt(db, { userId: learner, examKey: SAT.examKey, blueprintId: 'practice', overrides: { domains: [DOMAIN.slug], ...overrides } });
+    const items = db.prepare('SELECT position FROM attempt_items WHERE attempt_id = ? ORDER BY position').all(attemptId) as Array<{ position: number }>;
+    for (const { position } of items.slice(0, answered)) {
+      recordResponse(db, { attemptId, userId: learner, partIndex: 0, position, response: { type: 'single_select', optionId: 'a' } });
+    }
+    submitAttempt(db, { attemptId, userId: learner });
+    // Practice has no clock, so "closed by its clock" and "abandoned" are set directly.
+    if (status !== 'submitted') db.prepare('UPDATE attempts SET status = ? WHERE id = ?').run(status, attemptId);
+    return attemptId;
+  }
+
+  it('records "new questions only" on a session only when it was enforced as it was built', () => {
+    const settings = (id: string) => JSON.parse((db.prepare('SELECT settings_json AS s FROM attempts WHERE id = ?').get(id) as { s: string }).s);
+    expect(settings(finishWith({ length: 10, unseenOnly: true }, 10)).newQuestionsOnly).toBe(true);
+    expect(settings(finishWith({ length: 10 }, 10)).newQuestionsOnly).toBeUndefined();
+  });
+
+  it('completes a new-questions activity with a genuinely new-question session', () => {
+    const { ids } = planWith([{ kind: 'new' }]);
+    const attemptId = finishWith({ length: 10, unseenOnly: true }, 10);
+    expect(record()).toBe(1);
+    expect(statusOf(ids[0])).toEqual({ status: 'completed', attemptId });
+  });
+
+  it('does not let an ordinary session, repeats included, complete a new-questions activity', () => {
+    // Seen before the plan: the next ordinary session of this 12-question topic must repeat some.
+    finishWith({ length: 10 }, 10);
+    const { ids } = planWith([{ kind: 'new' }, { kind: 'mixed', domainSlug: null }, { kind: 'revision' }]);
+    const ordinary = finishWith({ length: 10 }, 10);
+    const repeated = db
+      .prepare(
+        `SELECT COUNT(*) AS n FROM attempt_items ai WHERE ai.attempt_id = ? AND EXISTS (
+           SELECT 1 FROM attempt_items prior JOIN attempts a ON a.id = prior.attempt_id
+            WHERE prior.question_id = ai.question_id AND a.user_id = ? AND a.id <> ai.attempt_id)`,
+      )
+      .get(ordinary, learner) as { n: number };
+    expect(repeated.n).toBeGreaterThan(0);
+    record();
+    expect(statusOf(ids[0]).status).toBe('planned');
+    expect(statusOf(ids[1]).status).toBe('planned');
+    // It is revision, which may repeat: that one it completes.
+    expect(statusOf(ids[2])).toEqual({ status: 'completed', attemptId: ordinary });
+  });
+
+  it('counts answers, not questions shown: blanks do not count, and 5 answers complete a 10-question activity', () => {
+    const { ids } = planWith([{ kind: 'new' }]);
+    finishWith({ length: 10, unseenOnly: true }, 4);
+    expect(record()).toBe(0);
+    // The threshold, not every planned question: 5 answered of the 10 planned.
+    finishWith({ length: 5, unseenOnly: true }, 5);
+    expect(record()).toBe(1);
+    expect(statusOf(ids[0]).status).toBe('completed');
+  });
+
+  it('completes a short activity when every planned question is answered, and not with one left blank', () => {
+    const { ids } = planWith([{ kind: 'revision', questionCount: 3 }]);
+    finishWith({ length: 3 }, 2);
+    expect(record()).toBe(0);
+    finishWith({ length: 3 }, 3);
+    expect(record()).toBe(1);
+    expect(statusOf(ids[0]).status).toBe('completed');
+  });
+
+  it('treats a session closed by its clock as finished, and an abandoned one as not', () => {
+    const { ids } = planWith([{ kind: 'new' }, { kind: 'new' }]);
+    finishWith({ length: 5, unseenOnly: true }, 5, 'abandoned');
+    expect(record()).toBe(0);
+    finishWith({ length: 5, unseenOnly: true }, 5, 'expired');
+    expect(record()).toBe(1);
+    expect([statusOf(ids[0]).status, statusOf(ids[1]).status]).toEqual(['completed', 'planned']);
+  });
+
+  it('lets one session complete at most one activity, and opening one completes nothing', () => {
+    const { ids } = planWith([{ kind: 'new' }, { kind: 'new' }]);
+    const open = startAttempt(db, { userId: learner, examKey: SAT.examKey, blueprintId: 'practice', overrides: { domains: [DOMAIN.slug], length: 10, unseenOnly: true } });
+    linkStartedSession(db, learner, ids[0], open.attemptId);
+    expect(record()).toBe(0);
+    expect(statusOf(ids[0])).toEqual({ status: 'planned', attemptId: open.attemptId });
+    for (let position = 0; position < 10; position += 1) {
+      recordResponse(db, { attemptId: open.attemptId, userId: learner, partIndex: 0, position, response: { type: 'single_select', optionId: 'a' } });
+    }
+    submitAttempt(db, { attemptId: open.attemptId, userId: learner });
+    expect(record()).toBe(1);
+    expect([statusOf(ids[0]).status, statusOf(ids[1]).status]).toEqual(['completed', 'planned']);
+    expect(record()).toBe(0);
+  });
+
+  it('never re-judges history: completed and skipped activities stay as they were', () => {
+    const { ids } = planWith([{ kind: 'new' }, { kind: 'new' }]);
+    const earlier = finishWith({ length: 10 }, 10);
+    // Completed before this rule, by an ordinary session; and one skipped.
+    db.prepare("UPDATE plan_sessions SET status = 'completed', attempt_id = ?, status_at = ? WHERE id = ?").run(earlier, new Date().toISOString(), ids[0]);
+    skipSession(db, learner, ids[1]);
+    finishWith({ length: 2, unseenOnly: true }, 2);
+    record();
+    expect(statusOf(ids[0])).toEqual({ status: 'completed', attemptId: earlier });
+    expect(statusOf(ids[1]).status).toBe('skipped');
   });
 });
 

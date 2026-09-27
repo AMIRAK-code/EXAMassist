@@ -228,6 +228,8 @@ test.describe('persisted study plan', () => {
     expect((await api(page, 'POST', `/api/attempts/${attemptId}/submit`)).status).toBe(200);
     await page.goto('/study-plan?exam=digital-sat');
     await expect(first.getByText('Completed', { exact: true })).toBeVisible();
+    // Completing needs 5 answers; the plan says how many there were rather than implying all.
+    await expect(first.getByText(/^Completed with \d+ questions? answered( of the \d+ planned)?\.$/)).toBeVisible();
     await expect(first.getByRole('link', { name: 'See results' })).toHaveAttribute('href', `/attempt/${attemptId}/results`);
 
     // Skipping is kept as skipped, and offers nothing more.
