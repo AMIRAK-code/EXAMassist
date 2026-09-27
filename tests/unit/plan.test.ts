@@ -20,6 +20,7 @@ import {
   resolveDateConflict,
   retryableMissed,
   satisfies,
+  sessionMinutes,
   setExamDate,
   skipSession,
   stateOf,
@@ -171,6 +172,27 @@ describe('building sessions from what is available', () => {
     expect(topic[1].reason).toContain('revises ones you have');
   });
 
+  it('revises a topic at most once a week, leaving time unfilled rather than repeating more', () => {
+    const inputs = planInputs(db, learner, SAT, { startsOn: '2026-10-01', examDate: null, weeklyMinutes: 420 });
+    const sessions = buildSessions(inputs);
+    const shape = planShape('2026-10-01', null, 420);
+    const perWeek = new Map<string, number>();
+    for (const s of sessions.filter((s) => s.kind === 'revision')) {
+      const week = Math.floor((Date.parse(s.scheduledOn) - Date.parse('2026-10-01')) / (7 * 86_400_000));
+      const key = `${week}|${s.domainSlug}|${s.skillSlug}`;
+      perWeek.set(key, (perWeek.get(key) ?? 0) + 1);
+    }
+    expect(Math.max(...perWeek.values())).toBe(1);
+    // 8 topics can fill 8 of the 17 slots a week once their new questions run out.
+    expect(sessions.length).toBeLessThan(shape.weeks * shape.sessionsPerWeek);
+  });
+
+  it('sizes a session’s minutes to its questions', () => {
+    expect(sessionMinutes(10)).toBe(25);
+    expect(sessionMinutes(3)).toBe(8);
+    expect(sessionMinutes(1)).toBe(5);
+  });
+
   it('plans a thin skill as its topic, saying so', () => {
     // A weak skill with signal (4 answers, 1 right), but only a few reviewed questions of its own.
     const skill = DOMAIN.skills[0].slug;
@@ -189,7 +211,7 @@ describe('building sessions from what is available', () => {
     const reviews = buildSessions(planInputs(db, learner, SAT, { startsOn: '2026-10-01', examDate: null, weeklyMinutes: 150 })).filter((s) => s.kind === 'review');
     expect(reviews).toHaveLength(1);
     expect(reviews[0]).toMatchObject({ questionCount: 3, scheduledOn: '2026-10-01' });
-    expect(reviews[0].reason).toContain('repeats questions on purpose');
+    expect(reviews[0].reason).toContain('This repeats them on purpose');
   });
 });
 
@@ -290,7 +312,7 @@ describe('adjusting the remaining plan', () => {
     expect(upcoming.length).toBe(preview.kept + preview.added.length);
     // The first new session carries a missed topic forward.
     const carried = upcoming.filter((s) => s.kind !== 'review').sort((a, b) => a.scheduledOn.localeCompare(b.scheduledOn) || a.sequence - b.sequence)[0];
-    expect(carried.reason).toContain('carried from a missed session');
+    expect(carried.reason).toContain('Carried from a missed session');
 
     // Applying the same preview twice is refused: the plan moved on.
     expect(() => applyAdjustment(db, learner, plan.id, digest, { weeklyMinutes: 150, examDate: null, now })).toThrowError(

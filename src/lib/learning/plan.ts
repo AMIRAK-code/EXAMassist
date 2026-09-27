@@ -37,6 +37,8 @@ export const SESSION_MINUTES = 25;
 export const SESSION_QUESTIONS = 10;
 /** A finished session counts only with at least this many answers (or the planned number, if smaller). */
 export const MIN_ANSWERS_TO_COUNT = 5;
+/** A session of new questions is planned with at least this many (or all the focus has). */
+export const MIN_NEW_SESSION = 5;
 /** A skill with fewer reviewed questions than this is planned as its topic. */
 export const THIN_SKILL_BELOW = 5;
 const MAX_PLAN_WEEKS = 8;
@@ -229,48 +231,73 @@ function dayOffsets(sessionsPerWeek: number): number[] {
   return Array.from({ length: sessionsPerWeek }, (_, i) => Math.round((i * 7) / sessionsPerWeek));
 }
 
+/** How many session slots the learner's weekly time gives over the plan. */
+export function planSlots(shape: PlanShape): number {
+  let slots = 0;
+  for (let week = 0; week < shape.weeks; week += 1) {
+    for (const offset of dayOffsets(shape.sessionsPerWeek)) if (addDays(shape.startsOn, week * 7 + offset) <= shape.endsOn) slots += 1;
+  }
+  return slots;
+}
+
+/** Minutes for a session of `count` questions, at the plan's 25 minutes for 10. */
+export function sessionMinutes(count: number): number {
+  return Math.max(5, Math.round((count * SESSION_MINUTES) / SESSION_QUESTIONS));
+}
+
 /**
  * The sessions of a plan, in date order. Pure: the same inputs give the same
  * plan, so a preview is exactly what creating or adjusting would store.
+ *
+ * Repetition is limited as well as labelled: a topic or skill is revised at
+ * most once a week. When the bank is too small to fill the learner's time
+ * without revising a topic twice in a week, the slot is left empty rather
+ * than filled with the same questions again, and the plan is shorter than
+ * the time allows (`planShape` says how many slots there were).
+ *
+ * Unseen questions are counted per topic or skill as sessions are planned.
+ * A skill and its topic share questions, so the count is an estimate; the
+ * session is built with "new questions only" enforced when it starts.
  */
 export function buildSessions(input: PlanInputs): PlannedSession[] {
   const shape = planShape(input.startsOn, input.examDate, input.weeklyMinutes);
   const queue = focusQueue(input);
+  const keyOf = (focus: { domainSlug: string | null; skillSlug: string | null }) => `${focus.domainSlug}|${focus.skillSlug}`;
   // Unseen questions left per focus, spent as new sessions are planned.
   const unseenLeft = new Map<string, number>();
   const unseenFor = (focus: Focus) => {
-    const key = `${focus.domainSlug}|${focus.skillSlug}`;
+    const key = keyOf(focus);
     if (!unseenLeft.has(key)) unseenLeft.set(key, focusCount(input.unseenFacets, focus));
-    return key;
+    return unseenLeft.get(key)!;
   };
+  const revisedInWeek = new Map<string, number>();
   let mixedUnseen = eligibleCount(input.unseenFacets, {});
   const mixedTotal = eligibleCount(input.allFacets, {});
 
   const sessions: PlannedSession[] = [];
-  let sequence = 0;
+  const push = (session: Omit<PlannedSession, 'sequence' | 'minutes'>) =>
+    sessions.push({ ...session, sequence: sessions.length + 1, minutes: sessionMinutes(session.questionCount) });
   let turn = 0;
   let reviewLeft = input.retryable;
   const offsets = dayOffsets(shape.sessionsPerWeek);
+
   for (let week = 0; week < shape.weeks; week += 1) {
     for (const [index, offset] of offsets.entries()) {
       const scheduledOn = addDays(shape.startsOn, week * 7 + offset);
       if (scheduledOn > shape.endsOn) continue;
-      sequence += 1;
 
       // Missed questions come back first in a week, one review a week, for
       // as many weeks as it takes to ask each of them once.
       if (index === 0 && reviewLeft > 0) {
         const count = Math.min(reviewLeft, MAX_RETRY_QUESTIONS, SESSION_QUESTIONS);
         reviewLeft -= count;
-        sessions.push({
+        push({
           scheduledOn,
-          sequence,
           kind: 'review',
           domainSlug: null,
           skillSlug: null,
           questionCount: count,
-          minutes: SESSION_MINUTES,
-          reason: `${input.retryable} question${input.retryable === 1 ? '' : 's'} you missed can be asked again; this repeats questions on purpose`,
+          reason: `${input.retryable} question${input.retryable === 1 ? '' : 's'} you missed can be asked again. This repeats them on purpose.`,
         });
         continue;
       }
@@ -278,45 +305,50 @@ export function buildSessions(input: PlanInputs): PlannedSession[] {
       if (queue.length === 0) {
         if (mixedTotal === 0) continue;
         const count = Math.min(SESSION_QUESTIONS, mixedTotal);
-        const fresh = mixedUnseen >= count;
-        if (fresh) mixedUnseen -= count;
-        sessions.push({
-          scheduledOn,
-          sequence,
-          kind: fresh ? 'mixed' : 'revision',
-          domainSlug: null,
-          skillSlug: null,
-          questionCount: count,
-          minutes: SESSION_MINUTES,
-          reason: fresh
-            ? 'not enough of your own answers yet to single out a topic'
-            : 'you have been shown most of these questions; this revises them',
-        });
+        const fresh = Math.min(SESSION_QUESTIONS, mixedUnseen);
+        if (fresh > 0 && fresh >= Math.min(MIN_NEW_SESSION, count)) {
+          mixedUnseen -= fresh;
+          push({ scheduledOn, kind: 'mixed', domainSlug: null, skillSlug: null, questionCount: fresh, reason: 'Not enough of your own answers yet to single out a topic.' });
+        } else if (revisedInWeek.get('mixed') !== week) {
+          revisedInWeek.set('mixed', week);
+          push({ scheduledOn, kind: 'revision', domainSlug: null, skillSlug: null, questionCount: count, reason: 'You have been shown most of these questions, so this revises them.' });
+        }
         continue;
       }
 
-      const focus = queue[turn % queue.length];
-      turn += 1;
-      const available = focusCount(input.allFacets, focus);
-      const count = Math.min(SESSION_QUESTIONS, available);
-      const key = unseenFor(focus);
-      const left = unseenLeft.get(key)!;
-      const fresh = left >= count;
-      if (fresh) unseenLeft.set(key, left - count);
-      sessions.push({
-        scheduledOn,
-        sequence,
-        kind: fresh ? 'new' : 'revision',
-        domainSlug: focus.domainSlug,
-        skillSlug: focus.skillSlug,
-        questionCount: count,
-        minutes: SESSION_MINUTES,
-        reason: fresh ? focus.reason : `${focus.reason}; too few questions you have not seen are left, so this revises ones you have`,
-      });
+      // The next focus in turn that can take a session this week: new
+      // questions while enough are unseen, otherwise one revision a week.
+      for (let tried = 0; tried < queue.length; tried += 1) {
+        const focus = queue[turn % queue.length];
+        turn += 1;
+        const count = Math.min(SESSION_QUESTIONS, focusCount(input.allFacets, focus));
+        const left = unseenFor(focus);
+        // A shorter session of new questions beats revising, down to MIN_NEW_SESSION.
+        const fresh = Math.min(SESSION_QUESTIONS, left);
+        if (fresh > 0 && fresh >= Math.min(MIN_NEW_SESSION, count)) {
+          unseenLeft.set(keyOf(focus), left - fresh);
+          push({ scheduledOn, kind: 'new', domainSlug: focus.domainSlug, skillSlug: focus.skillSlug, questionCount: fresh, reason: `${sentence(focus.reason)}.` });
+          break;
+        }
+        if (revisedInWeek.get(keyOf(focus)) !== week) {
+          revisedInWeek.set(keyOf(focus), week);
+          push({
+            scheduledOn,
+            kind: 'revision',
+            domainSlug: focus.domainSlug,
+            skillSlug: focus.skillSlug,
+            questionCount: count,
+            reason: `${sentence(focus.reason)}. ${left === 0 ? 'You have seen every question here' : `Only ${left} question${left === 1 ? ' here is' : 's here are'} new to you`}, so this revises ones you have seen.`,
+          });
+          break;
+        }
+      }
     }
   }
   return sessions;
 }
+
+const sentence = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
 
 /** A session's label, from its kind and topic. */
 export function sessionLabel(config: ExamConfig, session: Pick<PlannedSession, 'kind' | 'domainSlug' | 'skillSlug'>): string {
