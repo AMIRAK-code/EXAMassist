@@ -246,19 +246,19 @@ export function TopicLandscape({ exam }: { exam: ExamDashboard }) {
                   <caption className="sr-only">{`Skills in ${topic.name}`}</caption>
                   <thead>
                     <tr className="border-b border-line text-ink-muted">
-                      <th scope="col" className="py-2 pe-3 text-start font-medium">Skill</th>
-                      <th scope="col" className="px-3 py-2 text-end font-medium">In the bank</th>
-                      <th scope="col" className="px-3 py-2 text-end font-medium">Scored</th>
-                      <th scope="col" className="py-2 ps-3 text-end font-medium">Correct</th>
+                      <th scope="col" className="py-2 pe-2 text-start font-medium sm:pe-3">Skill</th>
+                      <th scope="col" className="px-2 py-2 text-end font-medium sm:px-3">In the bank</th>
+                      <th scope="col" className="px-2 py-2 text-end font-medium sm:px-3">Scored</th>
+                      <th scope="col" className="py-2 ps-2 text-end font-medium sm:ps-3">Correct</th>
                     </tr>
                   </thead>
                   <tbody>
                     {topic.skills.map((skill) => (
                       <tr key={skill.slug} className="border-b border-line last:border-b-0">
-                        <th scope="row" className="py-2 pe-3 text-start font-normal">{skill.name}</th>
-                        <td className="px-3 py-2 text-end tabular-nums">{skill.reviewed}</td>
-                        <td className="px-3 py-2 text-end tabular-nums">{skill.scored}</td>
-                        <td className="py-2 ps-3 text-end tabular-nums">
+                        <th scope="row" className="py-2 pe-2 text-start font-normal sm:pe-3">{skill.name}</th>
+                        <td className="px-2 py-2 text-end tabular-nums sm:px-3">{skill.reviewed}</td>
+                        <td className="px-2 py-2 text-end tabular-nums sm:px-3">{skill.scored}</td>
+                        <td className="py-2 ps-2 text-end tabular-nums sm:ps-3">
                           {skill.hasSignal ? `${skill.correct} (${percent(skill.accuracy)})` : skill.correct}
                         </td>
                       </tr>

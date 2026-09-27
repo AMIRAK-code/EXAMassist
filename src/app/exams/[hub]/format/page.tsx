@@ -129,7 +129,13 @@ export default async function FormatGuidePage({ params }: { params: Promise<{ hu
 
           {/* Structure */}
           <h3 className="mt-8 font-heading text-xl font-semibold">Sections and timing</h3>
-          <div className="mt-3 relative overflow-x-auto rounded-card border border-line bg-surface">
+          {/* Focusable, so the table can be scrolled sideways from the keyboard on a narrow screen. */}
+          <div
+            role="region"
+            aria-label={`Sections and timing of the ${config.name}`}
+            tabIndex={0}
+            className="mt-3 relative overflow-x-auto rounded-card border border-line bg-surface"
+          >
             <table className="w-full border-collapse text-sm">
               <caption className="sr-only">
                 Sections of the {config.name} with question counts, time limits and calculator policy.

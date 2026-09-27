@@ -509,7 +509,13 @@ export function AttemptPlayer({ model, owner }: { model: PlayerModel; owner: str
 
         <div className={cx('mt-4', split && 'lg:grid lg:grid-cols-2 lg:items-start lg:gap-8')}>
           {item.stimulus ? (
-            <div className="question-text mb-5 lg:sticky lg:top-20 lg:mb-0 lg:max-h-[calc(100dvh-11rem)] lg:overflow-y-auto">
+            // Beside the question on a wide screen the passage scrolls on its own, so it takes focus there.
+            <div
+              role="region"
+              aria-label="Passage"
+              tabIndex={split ? 0 : undefined}
+              className="question-text mb-5 lg:sticky lg:top-20 lg:mb-0 lg:max-h-[calc(100dvh-11rem)] lg:overflow-y-auto"
+            >
               <StimulusView stimulus={item.stimulus} reading />
             </div>
           ) : null}

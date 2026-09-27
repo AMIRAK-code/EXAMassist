@@ -152,8 +152,15 @@
     border-radius: var(--radius-sm);
   }
 
+  /*
+   * Links are underlined, so a link in running text never rests on colour
+   * alone (WCAG 1.4.1). Tailwind's preflight sets 'text-decoration: inherit',
+   * which had removed the line this rule was styling (docs/REDESIGN.md §19).
+   * Navigation, buttons and cards opt out with no-underline.
+   */
   a {
     color: var(--color-accent);
+    text-decoration-line: underline;
     text-decoration-color: var(--color-accent-line);
     text-underline-offset: 0.18em;
     text-decoration-thickness: 1.5px;
@@ -163,6 +170,11 @@
   a:hover {
     color: var(--color-accent-strong);
     text-decoration-color: currentColor;
+  }
+
+  /* A long path or identifier wraps rather than widening a narrow screen (WCAG 1.4.10). */
+  code {
+    overflow-wrap: anywhere;
   }
 
   ::selection {

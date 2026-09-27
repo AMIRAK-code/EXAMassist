@@ -162,7 +162,13 @@ export default async function ExamHubPage({ params }: { params: Promise<{ hub: s
 
             {/* Structure table */}
             <h3 className="mb-3 font-heading text-xl font-semibold">Structure</h3>
-            <div className="mb-6 relative overflow-x-auto rounded-card border border-line bg-surface">
+            {/* Focusable, so the table can be scrolled sideways from the keyboard on a narrow screen. */}
+            <div
+              role="region"
+              aria-label={`Structure of the ${config.name}`}
+              tabIndex={0}
+              className="mb-6 relative overflow-x-auto rounded-card border border-line bg-surface"
+            >
               <table className="w-full border-collapse text-sm">
                 <caption className="sr-only">
                   Sections of the {config.name}, with question counts, time limits and calculator
