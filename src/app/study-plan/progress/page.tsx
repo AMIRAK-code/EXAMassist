@@ -2,12 +2,19 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getDb } from '@/lib/db';
 import { requireSignedIn } from '@/lib/auth/guards';
-import { EXAM_CONFIGS, getExamConfig, getHubForConfig } from '@/lib/exams/registry';
+import { EXAM_CONFIGS, getBlueprint, getHubForConfig, requireExamConfig } from '@/lib/exams/registry';
+import { blueprintAvailability, facetsFromPool, practiceFacets } from '@/lib/attempts/availability';
+import { getPool } from '@/lib/content/repository';
 import { buildReadiness, getExamTarget } from '@/lib/learning/queries';
+import { examDateFor, retryableMissed } from '@/lib/learning/plan';
+import { planningExam, planningHref } from '@/lib/learning/planning';
+import { buildSuggestions } from '@/lib/learning/suggestions';
 import { ReadinessReport } from '@/components/readiness/readiness-report';
+import { SuggestionsList } from '@/components/readiness/suggestions-list';
 import { TargetForm } from '@/components/readiness/target-form';
 import { Breadcrumbs, Card, Container, EmptyState, ButtonLink, PageHeader } from '@/components/ui';
-import { PlanningViews } from '@/components/planning/planning-views';
+import { PlanningExamSwitcher, PlanningNotice, PlanningViews } from '@/components/planning/planning-views';
+import { DateConflictCard } from '@/components/planning/plan-parts';
 
 export const dynamic = 'force-dynamic';
 
@@ -17,40 +24,22 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-/** The exam this learner has actually been working on. */
-function inferExamKey(db: ReturnType<typeof getDb>, userId: string): string | null {
-  const row = db
-    .prepare(
-      `SELECT exam_key AS examKey
-       FROM attempts
-       WHERE user_id = ?
-       ORDER BY created_at DESC
-       LIMIT 1`,
-    )
-    .get(userId) as { examKey: string } | undefined;
-  return row?.examKey ?? null;
-}
+type Query = { exam?: string | string[]; notice?: string | string[] };
 
-export default async function ReadinessPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ exam?: string }>;
-}) {
+export default async function ReadinessPage({ searchParams }: { searchParams: Promise<Query> }) {
   const user = await requireSignedIn('/study-plan/progress');
-  const { exam } = await searchParams;
+  const query = await searchParams;
   const db = getDb();
-
-  const examKey = exam ?? user.targetExamKey ?? inferExamKey(db, user.id);
-  const config = examKey ? getExamConfig(examKey) : undefined;
+  const { examKey, choices } = planningExam(db, user, query.exam, 'progress');
 
   const trail = [
     { href: '/', label: 'Home' },
     { href: '/dashboard', label: 'Dashboard' },
-    { href: '/study-plan', label: 'Study plan' },
+    { href: planningHref('plan', examKey), label: 'Study plan' },
     { label: 'Progress & readiness' },
   ];
 
-  if (!config) {
+  if (!examKey) {
     return (
       <Container size="narrow">
         <Breadcrumbs trail={trail} />
@@ -61,7 +50,7 @@ export default async function ReadinessPage({
           {EXAM_CONFIGS.map((option) => (
             <Card as="li" key={option.examKey}>
               <h2 className="text-lg">
-                <Link href={`/study-plan/progress?exam=${option.examKey}`} className="no-underline hover:underline">
+                <Link href={planningHref('progress', option.examKey)} className="no-underline hover:underline">
                   {option.name}
                 </Link>
               </h2>
@@ -73,9 +62,32 @@ export default async function ReadinessPage({
     );
   }
 
+  const config = requireExamConfig(examKey);
   const target = getExamTarget(db, user.id, config.examKey);
+  const dates = examDateFor(db, user.id, config.examKey);
   const assessment = buildReadiness(db, user.id, config, target?.targetScore ?? null);
   const hub = getHubForConfig(config.examKey);
+
+  // Suggestions are built from what can be practised now.
+  const practice = getBlueprint(config, 'practice');
+  const timed = blueprintAvailability(db, config).find((a) => a.available && a.blueprint.timing !== 'untimed' && a.blueprint.mode !== 'review');
+  const suggestions = buildSuggestions({
+    config,
+    assessment,
+    allFacets: practiceFacets(db, config),
+    unseenFacets: practice ? facetsFromPool(getPool(db, config.examKey, user.id).filter((item) => item.lastSeenAt === null), config, practice) : [],
+    retryable: retryableMissed(db, user.id, config.examKey).length,
+    timedFormat: timed ? { label: timed.blueprint.label } : null,
+  });
+
+  const targetForm = (
+    <TargetForm
+      examKey={config.examKey}
+      scale={config.scoring.officialScale}
+      currentScore={target?.targetScore ?? null}
+      currentDate={target?.targetDate ?? null}
+    />
+  );
 
   return (
     <Container>
@@ -83,33 +95,15 @@ export default async function ReadinessPage({
 
       <PageHeader eyebrow={config.publisher} title="Study plan" />
       <PlanningViews current="progress" examKey={config.examKey} />
+      <PlanningExamSwitcher choices={choices} />
+      <PlanningNotice code={query.notice} className="mb-6" />
+      {dates.examDate && dates.conflicting ? (
+        <DateConflictCard examKey={config.examKey} examName={config.shortName} current={dates.examDate} earlier={dates.conflicting} returnTo="progress" />
+      ) : null}
       {/* That this describes preparation, not a predicted score, is stated in the report itself (headline and limits). */}
 
-      {/* Switching exams */}
-      {EXAM_CONFIGS.length > 1 ? (
-        <nav aria-label="Choose an exam" className="mb-8 flex flex-wrap gap-2">
-          {EXAM_CONFIGS.map((option) => {
-            const active = option.examKey === config.examKey;
-            return (
-              <Link
-                key={option.examKey}
-                href={`/study-plan/progress?exam=${option.examKey}`}
-                aria-current={active ? 'page' : undefined}
-                className={`rounded-sm border px-3 py-1.5 text-sm no-underline ${
-                  active
-                    ? 'border-accent bg-accent-soft font-medium text-accent-strong'
-                    : 'border-line bg-surface text-ink-muted hover:border-line-strong hover:text-ink'
-                }`}
-              >
-                {option.shortName}
-              </Link>
-            );
-          })}
-        </nav>
-      ) : null}
-
       {assessment.answeredTotal === 0 ? (
-        <div className="space-y-8">
+        <div className="space-y-10">
           <EmptyState
             title={`No answers yet for ${config.shortName}`}
             action={<ButtonLink href={`/practice/${config.examKey}`}>Start practising</ButtonLink>}
@@ -119,42 +113,19 @@ export default async function ReadinessPage({
               and it becomes meaningful — there is nothing useful we could tell you before that.
             </p>
           </EmptyState>
-
-          <TargetForm
-            examKey={config.examKey}
-            scale={config.scoring.officialScale}
-            currentScore={target?.targetScore ?? null}
-            currentDate={target?.targetDate ?? null}
-          />
+          {targetForm}
         </div>
       ) : (
         <div className="space-y-10">
           <ReadinessReport assessment={assessment} config={config} />
+          <SuggestionsList examKey={config.examKey} suggestions={suggestions} planHref={planningHref('plan', config.examKey)} />
+          {targetForm}
 
-          <TargetForm
-            examKey={config.examKey}
-            scale={config.scoring.officialScale}
-            currentScore={target?.targetScore ?? null}
-            currentDate={target?.targetDate ?? null}
-          />
-
-          <Card>
-            <h2 className="text-lg">Keep going</h2>
-            <div className="mt-4 flex flex-wrap gap-3">
-              <ButtonLink href={`/practice/${config.examKey}`}>Practise {config.shortName}</ButtonLink>
-              <ButtonLink href="/study-plan" variant="secondary">
-                Study plan
-              </ButtonLink>
-              <ButtonLink href="/review" variant="secondary">
-                Mistake notebook
-              </ButtonLink>
-              {hub ? (
-                <ButtonLink href={`/exams/${hub.slug}/format`} variant="secondary">
-                  What the exam actually looks like
-                </ButtonLink>
-              ) : null}
-            </div>
-          </Card>
+          {hub ? (
+            <p className="text-sm">
+              <Link href={`/exams/${hub.slug}/format`}>What the {config.shortName} actually looks like</Link>
+            </p>
+          ) : null}
         </div>
       )}
     </Container>
