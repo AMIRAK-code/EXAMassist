@@ -41,6 +41,8 @@ export interface SessionView extends PlannedSession {
   status?: StoredStatus;
   state?: SessionState;
   attemptId?: string | null;
+  /** For a completed session: questions answered in the session that completed it. */
+  answered?: number;
 }
 
 /** One session: its day, what it is, why, and (on the Plan view) what can be done with it. */
@@ -74,6 +76,12 @@ export function SessionCard({
           {session.questionCount} questions · {session.minutes} min
         </span>
       </div>
+      {session.state === 'completed' && session.answered !== undefined ? (
+        <p className="mt-2 text-sm text-ink-muted">
+          Completed with {session.answered} question{session.answered === 1 ? '' : 's'} answered
+          {session.answered < session.questionCount ? ` of the ${session.questionCount} planned` : ''}.
+        </p>
+      ) : null}
       {actions ? <div className="mt-3 flex flex-wrap items-center gap-2">{actions}</div> : null}
       <p className="mt-3 border-t border-line pt-3 text-sm text-ink-subtle">Why: {session.reason}</p>
     </li>
@@ -113,8 +121,14 @@ export function WeekHeading({ week, from, to, minutes }: { week: number; from: s
 export function StatesExplained() {
   const items: Array<[SessionState, string]> = [
     ['planned', 'Scheduled, and its day is not over yet.'],
-    ['completed', 'You finished a matching session with at least 5 answers (or all of a shorter one). Opening one is not enough.'],
-    ['missed', 'Its day is over (from noon UTC the next day). You can still do it until you adjust your plan, which records it as missed.'],
+    [
+      'completed',
+      'You finished a matching session and answered at least 5 of its questions, or all of them if fewer are planned. That is the bar for completing it, not a sign that every question was answered: each one shows how many you did. Opening a session is not enough, and a new-questions session counts only if it was started with new questions only, as Start does.',
+    ],
+    [
+      'missed',
+      'Its date has ended in every time zone: from 12:00 UTC the next day (13:00 in Italy in winter, 14:00 in summer). Where you are, that is between the midnight after its date and about a day later, never earlier. You can still do it until you adjust your plan, which records it as missed.',
+    ],
     ['skipped', 'You chose to skip it. It stays in your plan as skipped.'],
   ];
   return (

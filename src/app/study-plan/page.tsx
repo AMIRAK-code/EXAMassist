@@ -257,7 +257,26 @@ function StoredPlan({
 }) {
   const config = requireExamConfig(configKey);
   const now = new Date();
-  const states = sessions.map((s) => ({ ...s, state: stateOf(s, now) }));
+  // How many questions the session that completed each one answered: completing needs 5 (or all of
+  // a shorter one), so the plan shows the count rather than implying every question was answered.
+  const completedBy = sessions.filter((s) => s.status === 'completed' && s.attemptId).map((s) => s.attemptId!);
+  const answeredIn = new Map(
+    completedBy.length === 0
+      ? []
+      : (
+          getDb()
+            .prepare(
+              `SELECT a.id, (SELECT COUNT(*) FROM attempt_items ai WHERE ai.attempt_id = a.id AND ai.response_status = 'answered') AS answered
+                 FROM attempts a WHERE a.user_id = ? AND a.id IN (${completedBy.map(() => '?').join(',')})`,
+            )
+            .all(plan.userId, ...completedBy) as Array<{ id: string; answered: number }>
+        ).map((row) => [row.id, row.answered] as const),
+  );
+  const states = sessions.map((s) => ({
+    ...s,
+    state: stateOf(s, now),
+    answered: s.status === 'completed' && s.attemptId ? answeredIn.get(s.attemptId) : undefined,
+  }));
   const count = (state: SessionState) => states.filter((s) => s.state === state).length;
   const missed = count('missed');
   const unrecordedMissed = states.filter((s) => s.state === 'missed' && s.status === 'planned').length;
