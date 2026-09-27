@@ -90,7 +90,8 @@ export interface ReadinessAssessment {
   gaps: DomainGap[];
   target: TargetAnalysis | null;
   limitations: string[];
-  nextActions: Array<{ label: string; href: string; why: string }>;
+  /** Median time against the exam's pace, only when it was measured reliably. */
+  paceRatio: number | null;
 }
 
 // ---------------------------------------------------------------------------
@@ -218,15 +219,55 @@ function bocconiProjection(
   };
 }
 
+/** Pace is read from at least this many answers with a recorded time. */
+export const MIN_TIMED_ANSWERS = 25;
+/** A median under this is faster than a question can be read: unreliable timing, not speed. */
+export const MIN_RELIABLE_MEDIAN_MS = 5_000;
+/** A topic counts as covered with at least this many scored answers. */
+export const COVERAGE_MIN_ANSWERS = 4;
+/** A session counts towards consistency with at least this many scored answers. */
+export const CONSISTENCY_MIN_SESSION_ANSWERS = 5;
+/** Consistency needs at least this many such sessions. */
+export const CONSISTENCY_MIN_SESSIONS = 3;
+
+/**
+ * The best band a signal can show from `count` pieces of evidence: none
+ * below MIN_ANSWERS_FOR_SIGNAL, and no better than "Consistent" below
+ * ANSWERS_FOR_USABLE_SIGNAL, as the overall band.
+ */
+export function evidenceCap(count: number): Band {
+  if (count < MIN_ANSWERS_FOR_SIGNAL) return 'insufficient';
+  if (count < ANSWERS_FOR_USABLE_SIGNAL) return 'consistent';
+  return 'strong';
+}
+
+function median(values: number[]): number {
+  if (values.length === 0) return 0;
+  const sorted = [...values].sort((a, b) => a - b);
+  const middle = Math.floor(sorted.length / 2);
+  return sorted.length % 2 === 0 ? (sorted[middle - 1] + sorted[middle]) / 2 : sorted[middle];
+}
+
+const plural = (n: number, one: string, many = `${one}s`) => `${n} ${n === 1 ? one : many}`;
+
 export interface ReadinessInput {
   config: ExamConfig;
   performance: SkillPerformance[];
   /** Domain-level rollup: slug -> { correct, answered, omitted }. */
-  byDomain: Map<string, { correct: number; answered: number; omitted: number; medianTimeMs: number }>;
+  byDomain: Map<string, { correct: number; answered: number; omitted: number }>;
   /** The learner's goal, on the exam's own reported scale. */
   targetScore: number | null;
-  /** Sessions completed, used only to judge consistency. */
-  recentAccuracies: number[];
+  /** Finished sessions, oldest first: accuracy and scored answers of each. */
+  recentSessions: Array<{ accuracy: number; scored: number }>;
+  /** Time on each answered question, from finished sessions (retries excluded). */
+  timing: {
+    /** Recorded times, in milliseconds; answers with no time are not here. */
+    timesMs: number[];
+    /** How many of those were answered in untimed practice. */
+    inUntimed: number;
+    /** Answers with no time recorded. */
+    missing: number;
+  };
 }
 
 export function assessReadiness(input: ReadinessInput): ReadinessAssessment {
@@ -241,6 +282,7 @@ export function assessReadiness(input: ReadinessInput): ReadinessAssessment {
     omitted += row.omitted;
   }
   const scored = answered + omitted;
+  const cap = evidenceCap(scored);
 
   const evidenceStrength =
     scored < MIN_ANSWERS_FOR_SIGNAL
@@ -274,59 +316,90 @@ export function assessReadiness(input: ReadinessInput): ReadinessAssessment {
         `for that topic, over the ${Math.round(weightSum * 100)}% of the exam you have practised.`;
     }
   }
+  const accuracyEnough = scored >= MIN_ANSWERS_FOR_SIGNAL;
+  const accuracySignal: ReadinessSignal = {
+    key: 'accuracy',
+    label: 'Accuracy',
+    // Below the threshold a percentage is noise: show the count it would come from.
+    display: scored === 0 ? '—' : accuracyEnough ? `${Math.round(weightedAccuracy * 100)}%` : `${correct} of ${scored} correct`,
+    band: accuracyEnough ? lowerOf(bandForAccuracy(weightedAccuracy), cap) : 'insufficient',
+    basis: accuracyEnough
+      ? `${accuracyBasis}${cap === 'consistent' ? ` Under ${ANSWERS_FOR_USABLE_SIGNAL} answers this reads no better than Consistent.` : ''}`
+      : `A percentage means something from ${MIN_ANSWERS_FOR_SIGNAL} answers; you have ${scored}.`,
+  };
 
-  // --- Pace against the exam's own published pace.
+  // --- Pace: the median over individual timed answers, against the exam's published pace.
   const pace = examPaceSeconds(config);
-  const medianTimes = [...byDomain.values()].map((r) => r.medianTimeMs).filter((t) => t > 0).sort((a, b) => a - b);
-  const learnerMedianMs = medianTimes.length > 0 ? medianTimes[Math.floor(medianTimes.length / 2)] : 0;
-  const paceRatio = pace && learnerMedianMs > 0 ? learnerMedianMs / 1000 / pace : null;
-
-  const signals: ReadinessSignal[] = [
-    {
-      key: 'accuracy',
-      label: 'Accuracy',
-      display: scored > 0 ? `${Math.round(weightedAccuracy * 100)}%` : '—',
-      band: scored === 0 ? 'insufficient' : bandForAccuracy(weightedAccuracy),
-      basis: accuracyBasis,
-    },
-    {
+  const times = input.timing.timesMs.filter((t) => t > 0);
+  const learnerMedianMs = median(times);
+  const timingNotes = [
+    input.timing.inUntimed > 0
+      ? `${input.timing.inUntimed === times.length ? 'All' : `${input.timing.inUntimed} of ${times.length}`} of these were answered in untimed practice, with no clock to keep to.`
+      : null,
+    input.timing.missing > 0 ? `${plural(input.timing.missing, 'answer')} had no time recorded and ${input.timing.missing === 1 ? 'is' : 'are'} left out.` : null,
+  ]
+    .filter(Boolean)
+    .join(' ');
+  let paceSignal: ReadinessSignal;
+  let paceRatio: number | null = null;
+  if (pace === null) {
+    paceSignal = {
       key: 'pace',
       label: 'Pace',
-      display:
-        paceRatio === null
-          ? 'Not measurable'
-          : `${paceRatio.toFixed(2)}× the exam's pace`,
-      band:
-        paceRatio === null
-          ? 'insufficient'
-          : paceRatio <= 1.0
-            ? 'strong'
-            : paceRatio <= 1.25
-              ? 'consistent'
-              : paceRatio <= 1.6
-                ? 'developing'
-                : 'early',
-      basis:
-        pace === null
-          ? `${config.publisher} does not publish enough for a per-question pace on this exam, so we cannot compare.`
-          : `The exam allows about ${pace} seconds a question. Your median is ${Math.round(learnerMedianMs / 1000)} seconds.`,
-    },
-    {
-      key: 'coverage',
-      label: 'Topic coverage',
-      display: `${byDomain.size} of ${config.domains.length} topics`,
-      band:
-        byDomain.size === 0
-          ? 'insufficient'
-          : byDomain.size >= config.domains.length
-            ? 'strong'
-            : byDomain.size >= config.domains.length * 0.7
-              ? 'consistent'
-              : byDomain.size >= config.domains.length * 0.4
-                ? 'developing'
-                : 'early',
-      basis: 'How many of the exam’s own content domains you have answered at least one question in.',
-    },
+      display: 'Not measurable',
+      band: 'insufficient',
+      basis: `${config.publisher} does not publish enough for a per-question pace on this exam, so we cannot compare.`,
+    };
+  } else if (times.length < MIN_TIMED_ANSWERS) {
+    paceSignal = {
+      key: 'pace',
+      label: 'Pace',
+      display: plural(times.length, 'timed answer'),
+      band: 'insufficient',
+      basis: `Pace is read from at least ${MIN_TIMED_ANSWERS} answers with a recorded time; you have ${times.length}.${timingNotes ? ` ${timingNotes}` : ''}`,
+    };
+  } else if (learnerMedianMs < MIN_RELIABLE_MEDIAN_MS) {
+    paceSignal = {
+      key: 'pace',
+      label: 'Pace',
+      display: 'Timing unreliable',
+      band: 'insufficient',
+      basis: `Your median time is under ${MIN_RELIABLE_MEDIAN_MS / 1000} seconds a question, faster than a question can be read, so it is treated as unreliable timing rather than as speed.${timingNotes ? ` ${timingNotes}` : ''}`,
+    };
+  } else {
+    const ratio = learnerMedianMs / 1000 / pace;
+    paceRatio = ratio;
+    const band: Band = ratio <= 1.0 ? 'strong' : ratio <= 1.25 ? 'consistent' : ratio <= 1.6 ? 'developing' : 'early';
+    paceSignal = {
+      key: 'pace',
+      label: 'Pace',
+      display: `${ratio.toFixed(2)}× the exam's pace`,
+      band: lowerOf(band, evidenceCap(times.length)),
+      basis: `The exam allows about ${pace} seconds a question. Your median over ${times.length} timed answers is ${Math.round(learnerMedianMs / 1000)} seconds.${timingNotes ? ` ${timingNotes}` : ''}`,
+    };
+  }
+
+  // --- Coverage: topics with enough answers to count.
+  const rowsScored = [...byDomain.values()].map((row) => row.answered + row.omitted);
+  const covered = rowsScored.filter((n) => n >= COVERAGE_MIN_ANSWERS).length;
+  const touchedOnly = rowsScored.filter((n) => n > 0 && n < COVERAGE_MIN_ANSWERS).length;
+  const total = config.domains.length;
+  const coverageBand: Band =
+    covered >= total ? 'strong' : covered >= total * 0.7 ? 'consistent' : covered >= total * 0.4 ? 'developing' : 'early';
+  const coverageSignal: ReadinessSignal = {
+    key: 'coverage',
+    label: 'Topic coverage',
+    display: `${covered} of ${total} topics`,
+    band: accuracyEnough ? lowerOf(coverageBand, cap) : 'insufficient',
+    basis:
+      `Topics of the exam’s own list in which you have answered at least ${COVERAGE_MIN_ANSWERS} questions.` +
+      (touchedOnly > 0 ? ` ${plural(touchedOnly, 'more topic has', 'more topics have')} fewer answers than that.` : ''),
+  };
+
+  const signals: ReadinessSignal[] = [
+    accuracySignal,
+    paceSignal,
+    coverageSignal,
     {
       key: 'volume',
       label: 'Evidence',
@@ -341,28 +414,32 @@ export function assessReadiness(input: ReadinessInput): ReadinessAssessment {
     },
   ];
 
-  if (input.recentAccuracies.length >= 3) {
-    const values = input.recentAccuracies.slice(-6);
+  // --- Consistency, from sessions long enough to mean something.
+  const sessions = input.recentSessions.filter((s) => s.scored >= CONSISTENCY_MIN_SESSION_ANSWERS).slice(-6);
+  if (sessions.length < CONSISTENCY_MIN_SESSIONS) {
+    signals.push({
+      key: 'consistency',
+      label: 'Consistency',
+      display: `${sessions.length} of ${CONSISTENCY_MIN_SESSIONS} sessions`,
+      band: 'insufficient',
+      basis: `Consistency compares at least ${CONSISTENCY_MIN_SESSIONS} sessions of ${CONSISTENCY_MIN_SESSION_ANSWERS} or more answers; you have ${sessions.length}.`,
+    });
+  } else {
+    const values = sessions.map((s) => s.accuracy);
     const mean = values.reduce((a, b) => a + b, 0) / values.length;
     const spread = Math.sqrt(values.reduce((sum, v) => sum + (v - mean) ** 2, 0) / values.length);
+    const band: Band = spread <= 0.07 ? 'strong' : spread <= 0.12 ? 'consistent' : spread <= 0.2 ? 'developing' : 'early';
     signals.push({
       key: 'consistency',
       label: 'Consistency',
       display: `±${Math.round(spread * 100)} points between sessions`,
-      band: spread <= 0.07 ? 'strong' : spread <= 0.12 ? 'consistent' : spread <= 0.2 ? 'developing' : 'early',
-      basis: `How much your accuracy moves between your last ${values.length} sessions. A wide spread usually means the topic mix is driving the result, not your level.`,
+      band: lowerOf(band, evidenceCap(sessions.reduce((n, s) => n + s.scored, 0))),
+      basis: `How much your accuracy moves between your last ${values.length} sessions of ${CONSISTENCY_MIN_SESSION_ANSWERS} or more answers. A wide spread usually means the topic mix is driving the result, not your level.`,
     });
   }
 
   // --- Overall band. Never better than the evidence supports.
-  const accuracyBand = signals[0].band;
-  const evidenceCap: Band =
-    evidenceStrength === 'insufficient'
-      ? 'insufficient'
-      : evidenceStrength === 'indicative'
-        ? 'consistent'
-        : 'strong';
-  const overall = lowerOf(accuracyBand, evidenceCap);
+  const overall = lowerOf(accuracySignal.band, cap);
 
   const overallStatement =
     overall === 'insufficient'
@@ -371,7 +448,7 @@ export function assessReadiness(input: ReadinessInput): ReadinessAssessment {
           weights.size > 0 ? ", weighted the way the exam itself weights its topics" : ''
         }. This describes your work on our questions, not a predicted exam score.`;
 
-  // --- Gaps, worst first, only where there is enough evidence to mean anything.
+  // --- Every topic, worst first: never attempted, then lowest accuracy.
   const gaps: DomainGap[] = config.domains
     .map((domain) => {
       const row = byDomain.get(domain.slug);
@@ -382,15 +459,14 @@ export function assessReadiness(input: ReadinessInput): ReadinessAssessment {
         accuracy: rowScored > 0 ? row!.correct / rowScored : 0,
         answered: rowScored,
         officialShare: domain.officialShare,
-        hasSignal: rowScored >= 4,
+        hasSignal: rowScored >= COVERAGE_MIN_ANSWERS,
       };
     })
     .sort((a, b) => {
       if (a.answered === 0 && b.answered > 0) return -1;
       if (b.answered === 0 && a.answered > 0) return 1;
       return a.accuracy - b.accuracy;
-    })
-    .slice(0, 5);
+    });
 
   // --- Target.
   let target: TargetAnalysis | null = null;
@@ -448,39 +524,6 @@ export function assessReadiness(input: ReadinessInput): ReadinessAssessment {
     );
   }
 
-  // --- Next actions, driven by the weakest signal.
-  const nextActions: Array<{ label: string; href: string; why: string }> = [];
-  const untouched = gaps.find((gap) => gap.answered === 0);
-  if (untouched) {
-    nextActions.push({
-      label: `Practise ${untouched.label}`,
-      href: `/practice/${config.examKey}?domain=${encodeURIComponent(untouched.domainSlug)}`,
-      why: 'You have not answered anything in this topic, so it is a blind spot in everything above.',
-    });
-  }
-  const weakest = gaps.find((gap) => gap.hasSignal && gap.accuracy < 0.6);
-  if (weakest) {
-    nextActions.push({
-      label: `Drill ${weakest.label}`,
-      href: `/practice/${config.examKey}?domain=${encodeURIComponent(weakest.domainSlug)}`,
-      why: `Your weakest topic with enough answers to be worth acting on: ${Math.round(weakest.accuracy * 100)}% of ${weakest.answered}.`,
-    });
-  }
-  if (paceRatio !== null && paceRatio > 1.25) {
-    nextActions.push({
-      label: 'Practise against the clock',
-      href: `/practice/${config.examKey}`,
-      why: `You are working at ${paceRatio.toFixed(2)}× the exam's pace. Accuracy that does not survive the clock will not survive test day.`,
-    });
-  }
-  if (evidenceStrength === 'insufficient') {
-    nextActions.unshift({
-      label: 'Answer more questions',
-      href: `/practice/${config.examKey}`,
-      why: `Another ${Math.max(0, MIN_ANSWERS_FOR_SIGNAL - scored)} answers and this assessment starts to mean something.`,
-    });
-  }
-
   return {
     examKey: config.examKey,
     examName: config.name,
@@ -492,6 +535,6 @@ export function assessReadiness(input: ReadinessInput): ReadinessAssessment {
     gaps,
     target,
     limitations,
-    nextActions,
+    paceRatio,
   };
 }
