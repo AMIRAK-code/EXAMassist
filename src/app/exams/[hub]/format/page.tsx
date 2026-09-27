@@ -110,7 +110,12 @@ export default async function FormatGuidePage({ params }: { params: Promise<{ hu
           <h2 id={`fmt-${config.examKey}`} className="font-heading text-2xl font-semibold">
             {config.name}
           </h2>
-          <p className="mt-3 text-ink">{config.summary}</p>
+          {/*
+            Editorial prose, set in the reading serif as the guides are: it needs
+            no download, so it cannot gain a line when the interface font
+            arrives and push the tables below it (0.016 at 768 px, §18).
+          */}
+          <p className="mt-3 font-serif text-ink">{config.summary}</p>
           <dl className="mt-4 space-y-2 text-sm">
             <div>
               <dt className="font-medium text-ink-muted">Version described</dt>
