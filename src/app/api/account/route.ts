@@ -28,25 +28,12 @@ const patchSchema = z.object({
   locale: z.enum(SUPPORTED_LOCALES).optional(),
   /** null clears the target exam. */
   targetExamKey: z.string().max(64).nullable().optional(),
-  /** ISO calendar date, or null to clear. */
-  targetDate: z.string().max(10).nullable().optional(),
+  // No exam date here: each exam has one, beside its goal (exam_targets, migration 007).
 });
 
 const deleteSchema = z.object({
   confirm: z.string().max(254),
 });
-
-function isPlausibleTargetDate(value: string): boolean {
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
-  const parsed = new Date(`${value}T00:00:00Z`);
-  if (Number.isNaN(parsed.getTime())) return false;
-  // Round-trip so 2025-02-31 is rejected rather than rolled forward.
-  if (parsed.toISOString().slice(0, 10) !== value) return false;
-
-  const year = parsed.getUTCFullYear();
-  const thisYear = new Date().getUTCFullYear();
-  return year >= thisYear - 1 && year <= thisYear + 10;
-}
 
 export async function PATCH(request: Request) {
   try {
@@ -82,24 +69,6 @@ export async function PATCH(request: Request) {
       }
     }
 
-    if ('targetDate' in body) {
-      const date = body.targetDate?.trim();
-      if (date) {
-        if (!isPlausibleTargetDate(date)) {
-          return fail(
-            'invalid-date',
-            'Enter your test date as a real calendar date within the next ten years.',
-            400,
-          );
-        }
-        fields.push('target_date = ?');
-        values.push(date);
-      } else {
-        fields.push('target_date = ?');
-        values.push(null);
-      }
-    }
-
     if (fields.length === 0) {
       return fail('no-changes', 'There was nothing to change.', 400);
     }
@@ -130,8 +99,8 @@ export async function PATCH(request: Request) {
  * Deletes the account for real.
  *
  * The user row goes, and ON DELETE CASCADE takes sessions, attempts, attempt
- * parts, items, events, results, bookmarks, the review queue and study plans
- * with it. Content reports are kept for the editorial record but are unlinked
+ * parts, items, events, results, bookmarks, the review queue, goals, and study
+ * plans with their sessions, with it. Content reports are kept for the editorial record but are unlinked
  * from the person who filed them.
  */
 export async function DELETE(request: Request) {

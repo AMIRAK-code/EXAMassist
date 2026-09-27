@@ -30,18 +30,15 @@ export function AccountSettingsForm({
   examOptions,
   initialDisplayName,
   initialTargetExamKey,
-  initialTargetDate,
 }: {
   examOptions: Array<{ examKey: string; name: string }>;
   initialDisplayName: string;
   initialTargetExamKey: string;
-  initialTargetDate: string;
 }) {
   const router = useRouter();
   const id = useId();
   const [displayName, setDisplayName] = useState(initialDisplayName);
   const [targetExamKey, setTargetExamKey] = useState(initialTargetExamKey);
-  const [targetDate, setTargetDate] = useState(initialTargetDate);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
@@ -60,7 +57,6 @@ export function AccountSettingsForm({
       body: JSON.stringify({
         displayName: displayName.trim() || null,
         targetExamKey: targetExamKey || null,
-        targetDate: targetDate || null,
       }),
     }).catch(() => null);
 
@@ -133,24 +129,10 @@ export function AccountSettingsForm({
         </p>
       </div>
 
-      <div>
-        <label htmlFor={`${id}-date`} className="mb-1.5 block text-sm font-medium">
-          Test date
-        </label>
-        <input
-          id={`${id}-date`}
-          name="targetDate"
-          type="date"
-          value={targetDate}
-          onChange={(event) => setTargetDate(event.target.value)}
-          aria-describedby={`${id}-date-hint`}
-          className={FIELD_CLASS}
-        />
-        <p id={`${id}-date-hint`} className="mt-1.5 text-sm text-ink-muted">
-          The date you are sitting the exam, if you have booked one. It only spaces out your study
-          plan; clear it if your plans change.
-        </p>
-      </div>
+      <p className="text-sm text-ink-muted">
+        Each exam has its own date, beside your goal for it. Set it in{' '}
+        <a href="/study-plan/progress">Progress &amp; readiness</a>.
+      </p>
 
       <div className="flex flex-wrap items-center gap-4">
         <Button type="submit" disabled={saving}>
