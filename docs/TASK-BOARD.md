@@ -89,6 +89,9 @@ Evidence commands are runnable from the repository root.
    every major domain is covered, then re-run the blind review over the new
    items.
 2. **P5-06** — an axe-core pass and a screen-reader walkthrough of the player.
+   **The axe-core pass is done** (Phase 7, docs/REDESIGN.md §19): no WCAG A
+   or AA violations after the fixes, kept as tests (`npm run e2e:a11y`). **The
+   screen-reader walkthrough is still pending:** see item 8.
 3. Adaptive routing is implemented and unit-covered but has **not** been
    exercised end to end, because no GRE blueprint has enough content to reach
    the second stage.
@@ -115,8 +118,8 @@ Evidence commands are runnable from the repository root.
    headless phone emulation, where one capture looked out of place (§17.11).
    Open a session on a real phone, scroll a long question, move with Next and
    check an answer: the header and the control bar must stay in place.
-   **Still outstanding after Phase 6** (docs/REDESIGN.md §18.11): not
-   performed.
+   **Still outstanding after Phase 7** (docs/REDESIGN.md §19.4, with steps):
+   not performed, and not replaced by emulation.
 7. **Time-zone-aware study-plan scheduling** (added 27 September 2026). The
    plan counts days in UTC and shows a session as missed from 12:00 UTC the
    next day, when its date has ended everywhere (docs/REDESIGN.md §18.12).
@@ -126,3 +129,9 @@ Evidence commands are runnable from the repository root.
      default. Date the plan and the missed boundary in that zone. Say which
      zone is used.
    - **Keep:** completed and skipped history must not move.
+8. **Release check: a screen-reader pass** (added 27 September 2026). Only
+   Windows Narrator was available, and its speech could not be checked, so no
+   real screen reader has been used. Run NVDA with Chrome, or VoiceOver with
+   Safari, through the steps in docs/REDESIGN.md §19.4: navigation, sign-in
+   errors, a practice session with feedback, results and review pages with
+   maths, and the study plan.
