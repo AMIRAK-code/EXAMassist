@@ -218,11 +218,11 @@ export function StimulusView({ stimulus, reading = false }: { stimulus: Stimulus
       {stimulus.data ? (
         <div className={stimulus.bodyHtml ? 'mt-4' : ''}>
           {stimulus.data.chart ? (
-            <div className="mb-4 relative overflow-x-auto rounded border border-line bg-surface p-3">
+            <div role="region" aria-label="Chart" tabIndex={0} className="mb-4 relative overflow-x-auto rounded border border-line bg-surface p-3">
               <Chart data={stimulus.data} chart={stimulus.data.chart} />
             </div>
           ) : null}
-          <div className="relative overflow-x-auto">
+          <div role="region" aria-label="Data table" tabIndex={0} className="relative overflow-x-auto">
             <DataTable data={stimulus.data} />
           </div>
         </div>
