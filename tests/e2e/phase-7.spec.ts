@@ -102,6 +102,8 @@ const PUBLIC = [
 
 test.describe('automated accessibility checks (axe-core, WCAG A and AA)', () => {
   test('public pages', async ({ page }) => {
+    // Seventeen full scans: allowed longer than the default, as slower engines (WebKit) need.
+    test.slow();
     for (const path of PUBLIC) {
       await page.goto(path);
       await expectNoViolations(page, path);
@@ -109,6 +111,7 @@ test.describe('automated accessibility checks (axe-core, WCAG A and AA)', () => 
   });
 
   test('learner pages, in their main states', async ({ page }) => {
+    test.slow();
     const { finished, open } = await learner(page, 'p7-axe');
     await page.goto('/study-plan?exam=digital-sat');
     await expectNoViolations(page, 'plan setup and preview');

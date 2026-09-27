@@ -1,6 +1,6 @@
 # Release checklist
 
-Status at 27 September 2026, commit `11d0b77` and later (docs/REDESIGN.md §19).
+Status at 27 September 2026, commit `f222ac7` and later (docs/REDESIGN.md §19).
 
 **Evidence classes.** Every row says which kind of evidence it rests on:
 
@@ -28,6 +28,8 @@ screen-reader pass, and they do not establish full WCAG conformance.
 | **Actual 200% browser zoom, Chrome** (§3) | browser-verified | 16 pages: no sideways scrolling, no clipped text, 0 axe violations, 442 focus stops all visible and uncovered |
 | Layout stability (font-swap tests), performance budgets | automated, lab | unchanged since the Phase 6 acceptance batch; no layout above the fold changed since |
 | Planning integrity: what completes an activity | automated | pass (§18.12) |
+| WebKit 26.6 (Playwright build), desktop and iPhone sizes: journeys and axe (§3) | automated | pass; keyboard traversal not tested in WebKit |
+| Dependency audit, production dependencies (§5) | automated | 0 vulnerabilities after the override |
 | Typecheck | automated | clean |
 
 ## 2. Defects found and fixed
@@ -65,14 +67,33 @@ No defect is open from the automated checks.
 
 ### Firefox and WebKit
 
-**Not yet run.** Only Chromium browsers (Chrome, Edge) are installed on
-this machine, and Playwright's Firefox and WebKit builds are not.
+Playwright's WebKit build was downloaded (with your approval) and run. Its
+Firefox build could not be installed.
 
-- **To run them, these downloads are needed** (Playwright CDN,
-  cdn.playwright.dev):
-  - `firefox-win64.zip`, Firefox 155, 122 MB;
-  - `webkit-win64.zip`, WebKit 26.6, 59 MB;
-  - `ffmpeg-win64.zip`, 1.4 MB, and `winldd-win64.zip`, 0.1 MB.
+- **WebKit 26.6** (Playwright's build on Windows): the Phase 7 checks and
+  the main learner journeys, at Desktop Safari (1280 × 720) and iPhone 14
+  sizes. **47 passed, 1 skipped** (the mobile keyboard test).
+  - **The two multi-page axe tests timed out** at 60 seconds on desktop
+    WebKit, which scans more slowly. Re-run with a longer limit, **both
+    passed**, with 0 axe violations. They are now marked `test.slow()`.
+  - **Served over HTTPS,** through a scratch-only local proxy with a
+    self-signed certificate. Over plain `http://127.0.0.1`, WebKit does not
+    send the app's `Secure` session cookie, which Chrome does for
+    127.0.0.1, so every signed-in journey failed with 401. Production is
+    served over HTTPS; this is a test-environment difference, not a
+    defect.
+  - **Keyboard traversal was not tested in WebKit.** By default WebKit,
+    like Safari, moves Tab only between form fields, not links or buttons;
+    it reached nothing from the top of a page. That is Safari's "Press Tab
+    to highlight each item" setting (or Option-Tab), not the site. The
+    manual screen-reader and phone checks cover real Safari.
+- **Firefox: blocked on this machine.** The download (122 MB) completed and
+  the archive was intact, but `firefox.exe` was deleted as soon as it was
+  written, by Playwright's installer and by a plain `unzip` alike, while
+  WebKit's executables were left alone. That points to a security control
+  on this machine acting on that file. It was not worked around, and the
+  partial files were removed. **Firefox remains pending:** run §4.2 with
+  NVDA and Firefox on another machine, or allow the file and re-run.
 - **Playwright WebKit is not Safari.** It is the WebKit engine on Windows,
   without Safari's shell, iOS behaviour, VoiceOver or iOS keyboard
   handling. Safari on an iPhone is covered only by the manual phone check
@@ -82,8 +103,8 @@ this machine, and Playwright's Firefox and WebKit builds are not.
 | --- | --- | --- |
 | Chrome 153 (desktop, Pixel 7 emulation) | automated | pass |
 | Edge | not run separately (same engine as Chrome) | — |
-| Firefox (Playwright build) | automated, if downloaded | **pending** |
-| WebKit (Playwright build) | automated, if downloaded | **pending** |
+| WebKit 26.6 (Playwright build; desktop and iPhone 14 sizes; HTTPS) | automated | pass (except keyboard traversal, not tested: WebKit's Tab default) |
+| Firefox (Playwright build) | automated | **pending:** the executable is blocked on this machine |
 | Safari on iPhone | manual | **pending** (§4.1) |
 
 ## 4. Pending manual checks
@@ -222,9 +243,10 @@ Not at runtime:
 - **To remove the vulnerable version: no.** An npm override inside the
   Next 15 line does it.
 
-### The smallest remediation, verified but not applied
+### The remediation applied: an npm override (commit `f222ac7`)
 
-Add to `package.json`, then reinstall:
+With your approval, the smallest remediation was applied, rather than the
+major upgrade. In `package.json`:
 
 ```json
 "overrides": {
@@ -232,42 +254,53 @@ Add to `package.json`, then reinstall:
 }
 ```
 
-npm keeps the old nested version recorded in the lockfile. Remove the
-`node_modules/next/node_modules/postcss` entry from `package-lock.json`,
-then run `npm install --ignore-scripts`.
+npm keeps the old nested version recorded in the lockfile, so its
+`node_modules/next/node_modules/postcss` entry was removed from
+`package-lock.json`, and `npm install --ignore-scripts` was run. That entry
+is the only lockfile change.
 
-**Tested in an isolated copy** with its own `node_modules`, so the repo was
-not touched:
+**Verified:**
 
-- `npm ls postcss` shows Next deduped onto `postcss@8.5.28`;
-- `npm audit --omit=dev` reports 0 vulnerabilities;
-- `next build` succeeds;
-- **the emitted CSS is byte-identical** to the same folder built with
-  8.4.31 (both stylesheets compared).
+- **In an isolated copy first,** with its own `node_modules`: the same
+  folder was built with 8.4.31 and then with 8.5.28, and the emitted CSS
+  was byte-identical.
+- **Then in the repo:**
+  - `npm ls postcss`: Next is deduped onto `postcss@8.5.28`;
+  - `npm audit --omit=dev`: **0 vulnerabilities**;
+  - the production build succeeds, and **both stylesheets are
+    byte-identical** to the build before the override;
+  - unit tests: 372 passed;
+  - learner-journey, Phase 7 and layout-stability browser tests in Chrome:
+    73 passed, 7 skipped (desktop-only checks on the phone project);
+  - the same journeys and axe checks in WebKit, over HTTPS (§3).
 
-**Caveat:** Next.js does not officially support a different PostCSS than
-it pins. The override works for this build and makes no difference to its
-output; it is not a Next-sanctioned fix.
+**Caveats:**
 
-**Options, smallest first:**
-
-1. **Accept for this release,** with the justification above, and upgrade
-   to Next 16 in a planned change.
-2. **Apply the override now:** one `package.json` entry and one lockfile
-   entry; verified as above.
-3. **Upgrade to Next 16.3.6:** the supported fix, but a major upgrade,
-   needing its own migration and a full re-verification, including a
-   performance batch.
-
-**Not applied,** pending your choice.
+- **Not a Next-sanctioned fix.** Next.js does not officially support a
+  different PostCSS than it pins. The override clears the audit and makes
+  no difference to the build output.
+- **The supported fix** is Next 16.3.6, a major upgrade, left for a planned
+  change: it needs its own migration and a full re-verification, including
+  a performance batch.
+- **Remove the override** when upgrading to a Next.js release that pins a
+  patched PostCSS itself.
 
 ## 6. Known limitations
 
 - **Accessibility:** automated checks cover part of WCAG only. Full
   conformance is not claimed.
-- **Browsers:** Firefox and WebKit have not been tested (§3). Safari and
-  iOS are covered only by the pending phone check. Keyboard checks ran in
-  Chrome only.
+- **Browsers:**
+  - **Firefox:** not tested; its executable is blocked on this machine
+    (§3).
+  - **WebKit:** tested with Playwright's build on Windows, which is not
+    Safari; keyboard traversal was not tested there.
+  - **Safari and iOS:** covered only by the pending phone check.
+  - **Keyboard traversal** was automated in Chrome only.
+- **Dependencies:**
+  - **The override is not a Next-sanctioned fix** (§5). Next 16 is the
+    supported route, as a later, separate change.
+  - **Security-advisory data** reflects the npm registry on 27 September
+    2026.
 - **No CI pipeline:** run `npm run e2e`, or `npm run e2e:a11y` for the
   accessibility checks alone.
 - **Study plans:**
@@ -279,29 +312,39 @@ output; it is not a Next-sanctioned fix.
   - budgets are local lab budgets on one machine, not field data;
   - the SAT format guide read about 100 ms slower in one Phase 6 batch,
     within budget (docs/REDESIGN.md §18.9).
+  - **No batch was re-run for this closeout:** the build's CSS is
+    byte-identical and no layout changed.
 - **Historical data:** assessment data, scores and completed or skipped
   plan history are preserved. No migration has run since 007.
 
 ## 7. Release recommendation
 
-**Ready for release once the two manual checks pass: not before.**
+**Do not release yet. Release once the two manual checks below pass.**
 
-- **Everything that can be checked automatically passes,** and no known
-  defect is open.
+- **Everything that can be checked here passes:**
+  - unit tests;
+  - Chrome at phone and desktop sizes, including real 200% zoom;
+  - WebKit's engine, over HTTPS;
+  - axe on every page tested;
+  - keyboard and focus in Chrome;
+  - reflow;
+  - the dependency audit.
+- **No known defect is open.**
 - **The phone check is outstanding.** The sticky player bars on a real
-  phone are the one piece of behaviour that emulation could not settle.
-- **The screen-reader check is outstanding.** No spoken pass has been
-  done.
-
-**The dependency advisory** does not affect the running site and does not
-block release. Choose one of the options in §5.
+  phone are the behaviour emulation cannot settle.
+- **The screen-reader check is outstanding.** No spoken pass has been done,
+  and accessibility-tree inspection is not one.
+- **Firefox** is untested here. It is not a blocker on its own, but a
+  screen-reader run with NVDA and Firefox (§4.2) would cover it.
 
 **Your actions:**
 
-1. Run §4.1 on at least one real phone, ideally an iPhone and an Android
-   phone, and record the results.
-2. Run §4.2 with at least one screen reader, and record the results.
-3. Choose a dependency option from §5.
-4. Decide whether Firefox and WebKit should be tested with Playwright's
-   builds (181 MB of downloads, §3).
-5. Report any defect found, for a focused fix and re-test before release.
+1. **Phone check (§4.1):** at least one real phone, ideally an iPhone with
+   Safari and an Android phone with Chrome. Record device, OS, browser,
+   result and any defect.
+2. **Screen-reader check (§4.2):** at least one real screen reader
+   (NVDA with Firefox or Chrome, VoiceOver with Safari, or TalkBack),
+   recorded the same way.
+3. **Report any defect** from either, for a focused fix and a re-test of
+   the affected journeys before release.
+4. **Plan Next 16** as a separate change, then remove the override.

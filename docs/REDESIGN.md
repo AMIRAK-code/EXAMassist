@@ -4309,17 +4309,31 @@ recording table for each manual check.
     only part of the window (CSS-pixel dimensions of device pixels). The
     evidence screenshots are whole-window captures over the DevTools
     protocol.
-- **Firefox and WebKit:** not run. Playwright's builds are not installed
-  (181 MB to download). Playwright WebKit on Windows is not Safari; Safari
-  on iPhone is covered by the manual phone check.
+- **WebKit 26.6** (Playwright's build, downloaded with approval): the Phase 7
+  checks and the main learner journeys pass at Desktop Safari and iPhone 14
+  sizes, over a scratch HTTPS proxy.
+  - **Why HTTPS:** WebKit does not send the app's Secure cookie over plain
+    http://127.0.0.1, where Chrome does.
+  - **Two slow multi-page axe tests** needed a longer limit and are now
+    marked `test.slow()`.
+  - **Keyboard traversal** was not tested in WebKit: its Tab default skips
+    links and buttons, as Safari's does.
+  - **Not Safari:** Playwright WebKit on Windows is not Safari; Safari on
+    iPhone is covered by the manual phone check.
+- **Firefox: blocked on this machine.** Its downloaded executable was
+  deleted as soon as it was written, by a security control acting on that
+  file. It was not worked around, and it remains pending.
 - **The PostCSS advisories:**
   - **The copy they affect:** they are in Next 15's pinned postcss 8.4.31,
     used only at build time on the project's own stylesheets. The running
     server resolves the patched top-level 8.5.28.
   - **Upstream:** no Next 15 release fixes them; 15.5.26 still pins
     8.4.31, and Next 16.3.6 pins 8.5.23.
-  - **An npm override** within Next 15 clears the audit. It was verified
-    in an isolated copy with byte-identical CSS output, and not applied.
+  - **An npm override** within Next 15 clears the audit. It was verified in
+    an isolated copy and then **applied with approval** (`f222ac7`).
+    The production build's CSS stayed byte-identical, and the audit
+    reports 0 vulnerabilities. Next 16, the supported fix, is left for a
+    planned change.
 - **Manual checks pending:** the real-phone check and a real screen-reader
   pass, with steps and the local network address in the checklist.
   Accessibility-tree inspection is not counted as a screen-reader pass.
