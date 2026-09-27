@@ -153,7 +153,7 @@ export function examLabel(examKey: string): string {
   return hub?.label ?? requireExamConfig(examKey).shortName;
 }
 
-function examsPractised(db: Db, userId: string): string[] {
+export function examsPractised(db: Db, userId: string): string[] {
   return (
     db
       .prepare(
