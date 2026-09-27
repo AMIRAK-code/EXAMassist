@@ -19,7 +19,8 @@ Section 16 reports Phase 4: results, a question on its own page, the mistake
 notebook, labels, retries and new-question practice. Section 17 reports
 Phase 5: the notebook's pages, question typography, saving and recovery in
 the player, focus mode, and new questions only in setup, with the
-measurements and an acceptance that is still pending on one criterion.
+measurements, the performance closeout, the revised budget for maths review
+pages and the final acceptance (§17.15).
 
 The homepage concept (desktop, mobile and design-system artboards, with a
 working sample question per exam) is published as a private canvas:
@@ -376,7 +377,7 @@ as follows. Phase 2 combined brief stages 2 and 3.
 | 2 | 2 + 3 | Tokens, typography, shared components; header, footer, mobile navigation; homepage; plus the decisions in §9 | **Complete** (26 September 2026). Built in §11, closed out in §12–§14, and accepted against the revised budgets (§14.8) |
 | 3 | 4 | Dashboard: resume, one next action with its basis, domain-level skill landscape, all empty and error states | **Complete** (26 September 2026, §15), with learner navigation back in from the homepage |
 | 4 | 5 | Results and mistake notebook: verdict first, evidence, review on its own page, retry flow, optional mistake labels | **Complete** (26 September 2026, §16), accepted functionally; its open issues are recorded in §17.1 |
-| 5 | 6 | Practice setup formats and the player: focus mode, split passage, visible save states, persisted offline queue, debounced input | **Implemented** (26–27 September 2026, §17). Acceptance pending: maths question review pages miss the phone LCP budget (§17.12) |
+| 5 | 6 | Practice setup formats and the player: focus mode, split passage, visible save states, persisted offline queue, debounced input | **Complete** (27 September 2026, §17), accepted against the revised budgets of §17.15. Outstanding release check: the player's sticky bars on a real phone |
 | 6 | 7 | Remaining routes: hubs, guides, auth, account, study plan and readiness, admin | — |
 | 7 | 8 | Validation: axe-core in CI, screen-reader pass, performance budgets, 200% zoom | — |
 
@@ -1190,6 +1191,8 @@ Decisions given after §13:
 | --- | --- | --- |
 | Throttled-mobile LCP, homepage | ≤ 2.2 s | median of 9 runs |
 | Throttled-mobile LCP, exam hub, practice setup, format guide | ≤ 1.8 s | median of 9 runs |
+| Throttled-mobile LCP, question review pages without maths *(proposed in Phase 4, §16.10; kept in Phase 5, §17)* | ≤ 1.8 s | median of 9 runs |
+| Throttled-mobile LCP, question review pages with maths *(revised 27 September 2026, §17.15: accepts the cost of showing maths explanations in full; they failed 1.8 s)* | ≤ 2.2 s | median of 9 runs |
 | CLS, each measured route, mobile and desktop | ≤ 0.02 | highest run |
 | Homepage JavaScript | ≤ 118 KB (Phase 1 plus 12 KB) | compressed transfer |
 | Web fonts on the homepage | ≤ 90 KB | compressed transfer |
@@ -2879,7 +2882,9 @@ commit, `ecf3779` (§16.11). The history was not rewritten.
 ### 17.12 Acceptance
 
 **Phase 5 is implemented. Its acceptance is pending,** on one criterion.
-The closeout that followed (§17.13) did not change that.
+The closeout that followed (§17.13) did not change that. *Superseded by
+§17.15: accepted against revised budgets, with these failures kept on
+record.*
 
 **Met, in the acceptance batch:**
 
@@ -3111,3 +3116,140 @@ nothing. A page that is not open cannot load at all.
 
 **Still pending:** the sticky player header and control bar have not been
 checked on a real phone (§17.11).
+
+### 17.15 Revised budgets for question review pages, and acceptance (27 September 2026)
+
+**Decision given:**
+
+- **Budgets:**
+  - Question review pages that show maths: local median LCP ≤ 2.2 s on the
+    phone.
+  - Question review pages without maths: ≤ 1.8 s, unchanged.
+  - CLS ≤ 0.02 everywhere, unchanged.
+  - Every other budget unchanged.
+- **Unchanged:** worked explanations stay visible. The mobile disclosure is
+  not built, and the `content-visibility` experiment is not restored.
+
+**What this revision is.** It explicitly accepts the rendering cost of
+showing mathematical explanations in full on a phone. It makes no page
+faster.
+
+- **The earlier results stand:** against 1.8 s, the three maths review
+  pages failed in the acceptance batch (§17.8, §17.12), and deferring the
+  explanation did not fix two of them (§17.13).
+- **Why 2.2 s:** it is the homepage's budget (§14.1), and it applies here
+  only to question review pages with maths.
+- **What it is not:** like every budget here, it is a local regression
+  budget for this machine and method, not a field-performance claim.
+
+**The final verification.** One bounded batch on the unchanged committed
+application.
+
+- **The builds:** Phase 5 was measured on the build made at 23:27 on 26
+  September from source identical to `22d9f74`. That source differs from
+  HEAD only in line endings; everything after it is documentation. The
+  baseline is the frozen Phase 4 build of §17.2.
+- **The method:** §17.8's, interleaved, as the fixture learner:
+  - the three maths review pages that failed, and the short non-maths
+    review page as the representative without maths;
+  - on the phone, 9 runs; on desktop, 5 runs.
+- **Conditions** (27 September, 10:04–10:12):
+  - **Power:** AC and fully charged throughout.
+  - **Before the start:** the development server idle (0.03 s of CPU over
+    10 s), and a one-thread check held 150–157% of base clock.
+  - **Processor during the batch:** 46 readings. Clock median 155%. Under
+    load, median 150%, 10th percentile 129%, lowest 123%. No reading under
+    load fell below 120%. Median utilisation 35%.
+  - **No competing work,** apart from one progress check that read a few
+    files.
+- **A first start was stopped after about 70 seconds** (10:02:54–10:04:05)
+  and restarted. Its completion watcher had fired at once on the previous
+  batch's stop file, and the progress checks that followed ran during its
+  first loads. It was stopped for that reason, not for any result: none had
+  been produced. Its partial processor log is kept.
+
+**Phone, 9 runs** (medians, IQR and range, ms; every run below):
+
+| Page | Phase 4 | Phase 5 | Budget | Worst CLS, Phase 4 → 5 |
+| --- | --- | --- | --- | --- |
+| Maths-heavy | 1,664 (1,596–1,736; 1,496–1,920) | 1,984 (1,808–2,028; 1,448–2,288) | ≤ 2,200: **met** | 0 → 0 |
+| Maths with a table | 1,968 (1,868–2,068; 1,688–2,212) | 1,928 (1,848–2,112; 1,752–2,336) | ≤ 2,200: **met** | 0 → 0 |
+| Short maths | 1,940 (1,904–2,220; 1,480–3,060) | 1,820 (1,688–1,964; 1,508–2,576) | ≤ 2,200: **met** | 0.0358 → 0 |
+| Short, no maths | 1,324 (1,244–1,356; 1,156–1,516) | 1,336 (1,312–1,372; 1,192–1,768) | ≤ 1,800: **met** | 0.0002 → 0 |
+
+Every run (LCP, ms):
+
+| Page | Build | Runs |
+| --- | --- | --- |
+| Maths-heavy | Phase 4 | 1,920 · 1,496 · 1,596 · 1,712 · 1,664 · 1,736 · 1,792 · 1,576 · 1,664 |
+| Maths-heavy | Phase 5 | 1,724 · 1,448 · 2,024 · 1,984 · 1,808 · 1,964 · 2,288 · 2,028 · 2,224 |
+| Maths with a table | Phase 4 | 2,076 · 1,748 · 1,908 · 2,068 · 1,976 · 1,868 · 1,688 · 2,212 · 1,968 |
+| Maths with a table | Phase 5 | 2,204 · 1,892 · 2,336 · 2,112 · 1,804 · 2,000 · 1,848 · 1,928 · 1,752 |
+| Short maths | Phase 4 | 1,808 · 1,908 · 1,940 · 2,132 · 2,220 · 3,060 · 2,380 · 1,480 · 1,904 |
+| Short maths | Phase 5 | 1,688 · 1,844 · 2,576 · 1,820 · 1,712 · 1,556 · 1,508 · 1,964 · 2,276 |
+| Short, no maths | Phase 4 | 1,512 · 1,156 · 1,244 · 1,516 · 1,220 · 1,324 · 1,352 · 1,356 · 1,272 |
+| Short, no maths | Phase 5 | 1,768 · 1,372 · 1,328 · 1,312 · 1,212 · 1,192 · 1,528 · 1,336 · 1,348 |
+
+- **LCP and FCP were equal in every run.**
+- **CLS:** 0 in every Phase 5 phone run. The Phase 4 build's 0.0358 was a
+  single run of the short-maths page, which showed no shift in any of its 32
+  earlier phone runs.
+
+**Desktop, 5 runs:**
+
+| Page | Phase 4 LCP → Phase 5 | Worst CLS, Phase 4 → 5 |
+| --- | --- | --- |
+| Maths-heavy | 240 → 260 | 0.0575 → 0.0006 |
+| Maths with a table | 248 → 272 | 0.0002 → 0.0002 |
+| Short maths | 236 → 240 | 0.0463 → 0.0002 |
+| Short, no maths | 200 → 200 | 0.0011 → 0.0004 |
+
+**Validity.**
+
+- **The criteria:** the batch meets the method's criteria: mains power, no
+  competing work, and no low clock under load.
+- **The noise:** it is noisier than the acceptance batch of §17.8, and a
+  lower clock is not taken to make it conservative or comparable.
+  - **Processor:** clock median 150% under load, against 159% while the
+    acceptance batch measured the same pages; median utilisation 35%,
+    against 25%.
+  - **The baseline's own spread:** on the short-maths page, 316 ms against
+    80 ms, with one run at 3,060 ms.
+  - **The order of builds:** on two maths pages Phase 5 came out faster
+    than Phase 4, the reverse of every earlier batch. So this batch alone
+    does not measure what Phase 5 costs against Phase 4. §17.8 and §17.13
+    do (+68 to +172 ms on these pages).
+- **Why the verdict stands anyway:**
+  - The Phase 5 medians are 216–380 ms under 2.2 s. On each page the
+    margin is larger than half its interquartile range (110–138 ms), and
+    each page's third quartile is also under 2.2 s (1,964–2,112).
+  - The same verdict holds in every valid Phase 5 batch. The maths review
+    pages' Phase 5 medians came to:
+    - 1,880–2,104 in the acceptance batch (§17.8), the slowest;
+    - 1,872–2,000 in the small comparison (§17.13);
+    - 1,708–1,824 and 1,548–1,668 in the two diagnostic batches;
+    - 1,820–1,984 here.
+
+    The non-maths review pages' medians came to 1,196–1,528.
+
+  The result is therefore taken as valid, with its variability reported as
+  above. It does not depend on choosing a batch.
+
+**Checks.** No application code has changed since the checks of §17.7, so
+the suites were not run again. This section adds only documentation.
+
+**Acceptance: Phase 5 is complete** (27 September 2026), **accepted against
+the revised budgets** above.
+
+- **Met:**
+  - maths review pages ≤ 2.2 s median LCP on the phone;
+  - non-maths review pages ≤ 1.8 s;
+  - CLS ≤ 0.02 on every measured page, phone and desktop;
+  - every other budget, as measured in §17.8.
+- **Earlier results kept:** the 1.8 s failures of §17.8 and §17.12 are
+  recorded as they were.
+- **Outstanding release check:** the player's sticky header and control bar
+  have not been checked on a real phone (§17.11). No such check has been
+  made.
+- **Unchanged and accurate:** the offline behaviour, and plain,
+  unencrypted local storage of waiting answers (§17.14).
