@@ -47,6 +47,14 @@ export async function POST(request: Request) {
       }
     }
 
+    // A real calendar date: 2026-02-31 is refused, not rolled forward.
+    if (body.targetDate !== null) {
+      const time = Date.parse(`${body.targetDate}T00:00:00Z`);
+      if (Number.isNaN(time) || new Date(time).toISOString().slice(0, 10) !== body.targetDate) {
+        return fail('invalid-date', 'That is not a real calendar date.', 400);
+      }
+    }
+
     setExamTarget(getDb(), user.id, body.examKey, body.targetScore, body.targetDate);
     return ok({ examKey: body.examKey, targetScore: body.targetScore, targetDate: body.targetDate });
   } catch (error) {
