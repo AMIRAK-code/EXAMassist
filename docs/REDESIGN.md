@@ -1,4 +1,4 @@
-# Redesign — Phases 1 to 6: assessment, direction, plan and delivery
+# Redesign — Phases 1 to 7: assessment, direction, plan, delivery and validation
 
 The "Academic Avant-Garde" redesign. Sections 1–8 are the Phase 1 assessment
 and proposal, written before anything changed; where Phase 2 built something
@@ -24,7 +24,10 @@ pages and the final acceptance (§17.15). Section 18 reports Phase 6: the
 remaining pages on the design system, one Study plan destination, stored
 plans with dated sessions and a previewed adjustment, one exam date per exam
 (migration 007), and an evidence threshold on every readiness signal, with
-its tests, measurements and limitations.
+its tests, measurements and limitations; §18.12 is its planning-integrity
+closeout. Section 19 reports Phase 7: final validation (automated
+accessibility, keyboard, focus, reflow and zoom), the defects fixed, the
+manual checks still pending and the release-readiness position.
 
 The homepage concept (desktop, mobile and design-system artboards, with a
 working sample question per exam) is published as a private canvas:
@@ -382,8 +385,8 @@ as follows. Phase 2 combined brief stages 2 and 3.
 | 3 | 4 | Dashboard: resume, one next action with its basis, domain-level skill landscape, all empty and error states | **Complete** (26 September 2026, §15), with learner navigation back in from the homepage |
 | 4 | 5 | Results and mistake notebook: verdict first, evidence, review on its own page, retry flow, optional mistake labels | **Complete** (26 September 2026, §16), accepted functionally; its open issues are recorded in §17.1 |
 | 5 | 6 | Practice setup formats and the player: focus mode, split passage, visible save states, persisted offline queue, debounced input | **Complete** (27 September 2026, §17), accepted against the revised budgets of §17.15. Outstanding release check: the player's sticky bars on a real phone |
-| 6 | 7 | Remaining routes: hubs, guides, auth, account, study plan and readiness, admin | **Delivered** (27 September 2026, §18): both stages, meeting the targets of §18.3; awaiting acceptance. Outstanding release check: the player's sticky bars on a real phone |
-| 7 | 8 | Validation: axe-core in CI, screen-reader pass, performance budgets, 200% zoom | — |
+| 6 | 7 | Remaining routes: hubs, guides, auth, account, study plan and readiness, admin | **Complete** (27 September 2026, §18), accepted, with the planning-integrity closeout of §18.12. Outstanding release check: the player's sticky bars on a real phone |
+| 7 | 8 | Validation: axe-core in CI, screen-reader pass, performance budgets, 200% zoom | **Delivered** (27 September 2026, §19): automated accessibility, keyboard, focus, reflow and zoom checks pass after four fixes. Pending manual checks: the real-phone sticky bars and a screen-reader pass. No CI pipeline exists; the checks run with `npm run e2e` |
 
 ## 11. Phase 2: what was delivered
 
@@ -4082,3 +4085,209 @@ anyway.
 - **History:** a completed and a skipped activity stay as they were.
 - **The browser test** for the plan also checks the "Completed with …
   answered" line.
+
+## 19. Phase 7: final validation and release readiness (27 September 2026)
+
+**Brief:**
+
+- **In scope:** validation of the existing product:
+  - automated accessibility checks;
+  - keyboard navigation;
+  - a real screen-reader pass where tooling permits;
+  - 200% zoom and narrow-screen reflow;
+  - the main learner journeys.
+- **Fixing:** concrete defects, with regression checks, and no new
+  features.
+- **Budgets:** unchanged. No full performance batch unless changes justify
+  one.
+- **The real-phone check** stays explicit, and pending if not performed on
+  hardware.
+
+### 19.1 Method
+
+- **The build:** a production build of HEAD in the scratch copy, served by
+  `next start`. The browser suite starts its own server on a fresh,
+  seeded database.
+- **Automated accessibility:** axe-core 4.13 through
+  `@axe-core/playwright`, added as a dev dependency. It runs the WCAG 2.0,
+  2.1 and 2.2 A and AA rules at phone (Pixel 7) and desktop (1440 × 900)
+  sizes.
+  - **Public pages:** 17, including the 404.
+  - **Learner pages:**
+    - dashboard, notebook, results and question review pages;
+    - the practice player, including after an answer is checked;
+    - all three plan views, and account.
+  - **Admin pages:** 3.
+  - **States:** a sign-in error, and the open mobile menu.
+  - **Before any fix,** a wider inventory scan ran over 33 routes and four
+    viewports (`a11y-scan.mjs` in the scratch copy).
+- **Keyboard:**
+  - **The skip link** on four kinds of page.
+  - **Keyboard only:** answering and checking a practice question, and
+    previewing and saving a study plan.
+  - **Every focus stop** on the home page, a format guide and the player,
+    at 1440 × 900 and at 200% zoom (640 × 450). Each stop must show a
+    visible indicator and must not be entirely covered by the sticky
+    header or the player's bars (WCAG 2.4.7, 2.4.11).
+  - **The probe** (`focus-probe.mjs`) covered 576 stops on 10 pages with
+    reduced motion, then 193 with smooth scrolling and a longer settle
+    time. The test keeps three pages.
+- **Reflow and zoom:**
+  - 320 px (WCAG 1.4.10) and 640 × 450 (1280 × 900 at 200%), on every
+    public and learner page;
+  - nothing may be wider than the screen unless it sits in its own scroll
+    box;
+  - at 200% zoom, the player's pinned bars must leave most of the screen to
+    the question.
+- **Journeys:** the whole browser suite, phases 2 to 7:
+  - guest and account sign-up and sign-in;
+  - practice, saving, offline recovery, submitting and results;
+  - review pages, the notebook, retries and new-question practice;
+  - the dashboard, plan, readiness, account, deletion and admin;
+  - layout stability.
+- **The accessibility tree:** Chrome's tree, as Playwright's aria snapshot,
+  was read for the player before and after an answer, and for the Plan
+  view. This is a proxy for a screen reader, not a substitute (§19.4).
+
+### 19.2 Defects found and fixed
+
+1. **Links in running text were distinguished by colour alone**
+   (WCAG 1.4.1).
+   - **Where:** axe `link-in-text-block`, serious: 38 links on 19 page
+     views, with contrast against the surrounding text of 1.02–2.99:1.
+   - **The cause:** the base link rule styled an underline (colour, offset,
+     thickness), but Tailwind v4's preflight sets
+     `text-decoration: inherit`, so no line was ever drawn.
+   - **The fix:** `text-decoration-line: underline` in the base rule.
+     Navigation, buttons, cards and pills already opt out with
+     `no-underline`. The newly underlined links were reviewed
+     (`underline-audit.mjs`): all are text links, such as "read the full
+     guide" links, table-header links and link lists.
+2. **Scrollable regions unreachable from the keyboard** (WCAG 2.1.1).
+   - **Where:** axe `scrollable-region-focusable`, serious. The structure
+     table on hubs, the sections table on format guides, a wide displayed
+     formula on a review page, and the reading passage beside the question
+     on a wide screen.
+   - **The fix:** the pattern the scoring and admin tables already used:
+     `role="region"`, a name and `tabIndex={0}`. It is now also on
+     readiness's topic table and a question's chart and data table. The
+     passage pane takes focus only when it scrolls on its own, beside the
+     question.
+   - **Displayed formulas** (`katex-display`) are now focusable, so one
+     wider than the screen can be scrolled from the keyboard.
+3. **Reflow at 320 px** (WCAG 1.4.10):
+   - **The dashboard's skills table,** inside a topic's details, was 6 px
+     wider than the screen. Its cell padding is smaller below 640 px.
+   - **A long file path in `<code>`** widened admin questions by 7 px. Code
+     text now wraps anywhere.
+4. **Planning integrity** (before this phase, §18.12): a new-questions
+   activity could be completed by an ordinary session with repeats.
+
+**Regression checks for these fixes:**
+
+- **Axe:** no violations anywhere axe was run (§19.1).
+- **Keyboard and focus:** every check passes.
+- **The full browser suite:** passes (§19.3).
+- **The test would catch a regression:** the Phase 7 axe test, run against
+  the frozen Phase 5 build, fails on the home page with
+  `link-in-text-block`.
+- **Performance:** no batch was repeated. The fixes change no layout
+  above the fold: an underline, attributes, and table padding inside a
+  collapsed disclosure. Layout stability is covered by the browser suite's
+  font-swap tests, which pass.
+
+### 19.3 Verified passes
+
+| Check | Result |
+| --- | --- |
+| axe-core, WCAG 2.0/2.1/2.2 A and AA, phone and desktop | 0 violations on 17 public, 12 learner (with states) and 3 admin page views each |
+| Skip link | the first stop, and moves focus into `main`, on the four kinds of page tested |
+| Keyboard only | a question answered and checked; a plan previewed and saved |
+| Focus visible and not obscured | 576 stops (reduced motion) and 193 (smooth scrolling) in the probe; the test's three pages at 1440 × 900 and 200% |
+| Mobile menu | opens from the keyboard; Escape closes it and returns focus (phase-2 spec) |
+| Reflow, 320 px | no horizontal scrolling on 24 routes (16 public, 8 learner), outside tables in their own scroll box |
+| 200% zoom (640 × 450) | the same routes; the player's pinned bars take under half the screen |
+| Browser suite | 197 passed, 7 skipped (the existing mobile keyboard test, and six Phase 7 checks that set their own viewport or are desktop-only) |
+| Unit tests | 372 passed |
+| Typecheck | clean |
+
+### 19.4 Pending manual checks
+
+**1. The player's sticky header and control bar on a real phone**
+(TASK-BOARD item 6).
+
+- **Status:** not performed. Only headless emulation has been used, and
+  it is not a substitute.
+- **Steps:**
+  1. **Open it on the phone.** On the laptop, run the development server
+     (`npm run dev`), which also listens on the local network. Open the
+     "Network" address it prints on the phone, on the same Wi-Fi. Allow it
+     through the Windows firewall if asked.
+  2. **Start a long practice session** as a guest: Practice → LSAT, a
+     reading passage, or SAT for a maths grid-in.
+  3. **Scroll to the bottom of a long question.** The header and the
+     control bar (Previous, Mark for review, Next) must stay pinned, with
+     no jump, gap or overlap.
+  4. **Answer, then check it.** Tap an answer and Check answer; move with
+     Next and Previous. The bars stay in place, and the explanation is not
+     hidden behind the control bar.
+  5. **Type an answer.** In a typed answer, open the on-screen keyboard:
+     the field stays visible above it.
+  6. **Repeat** in landscape, and on both iOS Safari and Android Chrome if
+     available. Note the device, browser and result for each step.
+
+**2. A screen-reader pass.**
+
+- **Status:** not performed. Only Windows Narrator is installed; its
+  speech cannot be checked from this session, and no NVDA, JAWS or
+  VoiceOver was available.
+- **Steps,** with NVDA and Chrome on Windows, or VoiceOver and Safari on
+  iOS or macOS:
+  1. **Home and navigation:** skip to main content; move by headings and
+     landmarks.
+  2. **Sign-in:** a wrong password is announced, and each field reads its
+     error.
+  3. **A practice session:** the question, choices and "Saved" status are
+     read. After Check answer, the result and explanation are reachable.
+     The navigator reads each question's state. Also check the passage
+     region, and whether each question's description reads as useful or
+     as too much ("no figures, tables or mathematical notation").
+  4. **A results page and a question review page,** including a displayed
+     formula (KaTeX's MathML).
+  5. **The study plan:** each session's day, kind, state and reason; Start
+     and Skip; the date chooser.
+  6. **Record** anything unannounced, misread or out of order.
+
+### 19.5 Known limitations
+
+- **Dependency audit:** `npm audit` reports advisories in PostCSS 8.4.31,
+  bundled inside Next 15.5.
+  - **The fix** needs Next 16, a breaking upgrade, outside this phase.
+  - **The risk here:** PostCSS processes only this project's own
+    stylesheets at build time.
+- **No CI pipeline** in the repository.
+  - **The checks run locally:** `npm run e2e`, and `npm run e2e:a11y` for
+    the Phase 7 checks alone.
+  - **Wiring them** into a pipeline is a release task.
+- **axe covers only part of WCAG.** Colour contrast of text over images,
+  reading order, meaningful sequence and the quality of names still need
+  the manual pass above.
+- **Carried over from earlier phases:**
+  - time-zone-aware plan scheduling (TASK-BOARD item 7);
+  - guest-history merging and remembered-exam cookies, out of scope;
+  - the thin Bocconi bank;
+  - the format guide's unexplained ~100 ms reading (§18.9);
+  - the budgets are local lab budgets, not field data.
+- **Keyboard checks** run on desktop Chrome only, and zoom is emulated by
+  viewport size. Browser text-only zoom and other engines (Safari,
+  Firefox) are not covered.
+
+### 19.6 Commits
+
+- `6227127` a new-questions activity needs a session recorded as built
+  from new questions (§18.12)
+- `0a7f361` the planning-integrity closeout in these docs
+- `294305a` underlined links, keyboard-reachable scroll regions, reflow at
+  320 px
+- `328d5af` the Phase 7 checks (axe-core, keyboard, focus, reflow and zoom)
+- this documentation
