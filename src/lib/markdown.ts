@@ -21,12 +21,15 @@ interface MathToken {
 
 function renderMath(tex: string, displayMode: boolean): string {
   try {
-    return katex.renderToString(tex, {
+    const html = katex.renderToString(tex, {
       displayMode,
       throwOnError: false,
       strict: false,
       output: 'htmlAndMathml',
     });
+    // A displayed formula scrolls sideways when it is wider than the screen;
+    // focusable, so that works from the keyboard too (WCAG 2.1.1).
+    return displayMode ? html.replace('<span class="katex-display">', '<span class="katex-display" tabindex="0">') : html;
   } catch {
     // Never break a page over a malformed formula: show the source instead.
     const escaped = tex.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');

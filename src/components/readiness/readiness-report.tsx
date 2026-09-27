@@ -182,7 +182,7 @@ export function ReadinessReport({
             title="Where the ground is weakest"
             description="Ordered by what would move your result most: topics you have never attempted first, then your lowest accuracy."
           />
-          <div className="relative overflow-x-auto rounded-card border border-line bg-surface shadow-card">
+          <div role="region" aria-labelledby="gaps-heading" tabIndex={0} className="relative overflow-x-auto rounded-card border border-line bg-surface shadow-card">
             <table className="w-full border-collapse text-sm">
               <caption className="sr-only">
                 Your accuracy by topic for the {assessment.examName}, weakest first.
