@@ -98,6 +98,14 @@ export interface AttemptSettings {
   immediateFeedback: boolean;
   /** Set on a retry: where it came from and which questions it asks again. */
   retry?: { sourceAttemptId: string | null; questionIds: string[] };
+  /**
+   * Recorded when the session was built only from questions this learner
+   * had never been shown ("new questions only", enforced in startAttempt),
+   * and never otherwise: `overrides` keeps what was asked for, this what was
+   * done. It is the evidence a study plan's new-questions activity requires
+   * (learning/plan.ts), fixed when the session is created.
+   */
+  newQuestionsOnly?: true;
 }
 
 /** Immediate feedback is a study aid, never offered inside a timed simulation. */
@@ -252,8 +260,8 @@ export function startAttempt(db: Db, input: StartAttemptInput): StartAttemptResu
   // The same eligibility rule the practice screen uses to say what is open.
   const eligible = eligiblePool(getPool(db, input.examKey, input.userId), blueprint);
   const customisable = blueprint.mode === 'practice' && blueprint.timing === 'untimed';
-  const pool =
-    customisable && input.overrides?.unseenOnly ? eligible.filter((item) => item.lastSeenAt === null) : eligible;
+  const newQuestionsOnly = customisable && input.overrides?.unseenOnly === true;
+  const pool = newQuestionsOnly ? eligible.filter((item) => item.lastSeenAt === null) : eligible;
   const sufficiency = checkBlueprintSufficiency(pool, parts);
   if (!sufficiency.sufficient) {
     throw new AttemptError(
@@ -275,6 +283,7 @@ export function startAttempt(db: Db, input: StartAttemptInput): StartAttemptResu
   const settings: AttemptSettings = {
     overrides: input.overrides ?? {},
     immediateFeedback: allowsImmediateFeedback(blueprint),
+    ...(newQuestionsOnly ? { newQuestionsOnly: true as const } : {}),
   };
 
   const usedQuestionIds = new Set<string>();

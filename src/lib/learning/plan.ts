@@ -103,7 +103,13 @@ export function addDays(day: string, days: number): string {
   return isoDay(new Date(Date.parse(`${day}T00:00:00Z`) + days * DAY_MS));
 }
 
-/** From 12:00 UTC the day after its date, a day is over everywhere on Earth. */
+/**
+ * A calendar date is over everywhere from 12:00 UTC the next day: that is
+ * midnight at its end in the last time zone (UTC−12). The learner's own zone
+ * is not known, so where they are this falls between the midnight that ends
+ * the date and 26 hours after it (UTC+14): never early, possibly late. In
+ * Italy it is 13:00 the next day in winter and 14:00 in summer.
+ */
 export function dayIsOver(day: string, now: Date): boolean {
   return now.getTime() >= Date.parse(`${day}T12:00:00Z`) + DAY_MS;
 }
@@ -379,29 +385,43 @@ export interface FinishedAttempt {
   blueprintId: string;
   mode: string;
   submittedAt: string;
+  /** Questions answered; one left blank is not an answer. */
   answered: number;
   domains: string[];
   skills: string[];
+  /** Built only from questions the learner had never been shown, as recorded when it was created. */
+  newQuestionsOnly: boolean;
 }
+
+/** New-question activities: only a session built from unseen questions completes one. */
+export const needsNewQuestions = (kind: SessionKind) => kind === 'new' || kind === 'mixed';
 
 /**
  * Whether a finished session satisfies a planned one:
- * - it was finished (submitted, or ended by its time limit), after the plan
- *   was made, with at least MIN_ANSWERS_TO_COUNT answers (or the planned
- *   number, if smaller). Opening a session, or leaving it unfinished or
- *   nearly blank, satisfies nothing;
+ * - it was finished: submitted, or closed by its clock (the formats that
+ *   can satisfy a session are untimed, so in practice it was submitted),
+ *   after the plan was made. Unfinished or abandoned sessions satisfy
+ *   nothing;
+ * - at least MIN_ANSWERS_TO_COUNT questions were answered, or every
+ *   planned question when fewer are planned. Blank questions do not count.
+ *   This is the threshold for completing it, not a claim that every
+ *   planned question was answered: the plan shows how many were;
  * - a review is satisfied by a retry of missed questions; anything else by
  *   a practice session (not a retry, diagnostic or simulation) of the same
  *   skill, or restricted to the same topic (a skill in it counts). Mixed
- *   practice or mixed revision is satisfied by any practice session.
- * Whether the questions were new to the learner is not checked: the plan
- * says which it intends, and the session setup lets the learner choose.
+ *   practice or mixed revision takes any practice session;
+ * - a new-questions activity (new, or mixed practice) needs a session that
+ *   was built only from questions the learner had never been shown, as
+ *   recorded when it was created (AttemptSettings.newQuestionsOnly). An
+ *   ordinary session, which may repeat questions, does not satisfy it,
+ *   whatever it turned out to contain. Revision takes either.
  */
 export function satisfies(attempt: FinishedAttempt, session: Pick<PlanSessionRow, 'kind' | 'domainSlug' | 'skillSlug' | 'questionCount'>): boolean {
   if (attempt.answered < Math.min(MIN_ANSWERS_TO_COUNT, session.questionCount)) return false;
   const isRetry = attempt.blueprintId === 'retry' || attempt.mode === 'review';
   if (session.kind === 'review') return isRetry;
   if (isRetry || attempt.blueprintId !== 'practice') return false;
+  if (needsNewQuestions(session.kind) && !attempt.newQuestionsOnly) return false;
   if (session.skillSlug) return attempt.skills.includes(session.skillSlug);
   if (session.domainSlug) return attempt.domains.includes(session.domainSlug);
   return true;
@@ -696,10 +716,14 @@ function finishedSince(db: Db, userId: string, config: ExamConfig, since: string
   const domainOfSkill = new Map(config.domains.flatMap((domain) => domain.skills.map((skill) => [skill.slug, domain.slug] as const)));
   return rows.map((row) => {
     let overrides: { domains?: string[]; skills?: string[] } = {};
+    let newQuestionsOnly = false;
     try {
-      overrides = (JSON.parse(row.settings) as { overrides?: typeof overrides }).overrides ?? {};
+      const settings = JSON.parse(row.settings) as { overrides?: typeof overrides; newQuestionsOnly?: unknown };
+      overrides = settings.overrides ?? {};
+      // Only the record made when the session was built counts, never what was asked for.
+      newQuestionsOnly = settings.newQuestionsOnly === true;
     } catch {
-      /* unreadable settings: no filters */
+      /* unreadable settings: no filters, and no evidence of new questions */
     }
     const skills = overrides.skills ?? [];
     const domains = new Set(overrides.domains ?? []);
@@ -715,6 +739,7 @@ function finishedSince(db: Db, userId: string, config: ExamConfig, since: string
       answered: row.answered,
       domains: [...domains],
       skills,
+      newQuestionsOnly,
     };
   });
 }
