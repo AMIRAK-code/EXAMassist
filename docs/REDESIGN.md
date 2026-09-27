@@ -3692,7 +3692,7 @@ As planned in §18.4, with these specifics:
 
 - **Planned:** scheduled, and its day is not over.
 - **Missed:** its day is over, from 12:00 UTC the next day, since the time
-  zone is unknown.
+  zone is unknown (exactly when, in §18.12).
   - **Until the learner adjusts:** it stays stored as planned, so a late
     session can still complete it.
   - **When they adjust:** it is recorded as missed, for good, and its
@@ -3700,6 +3700,8 @@ As planned in §18.4, with these specifics:
 - **Completed:** satisfied by a finished session.
   - **The session:** submitted or ended by its clock, after the plan was
     made, for the same exam, with at least min(5, planned count) answers.
+    That is the threshold for completing it, not a claim that every
+    planned question was answered (§18.12).
   - **A match:** the same skill, or practice restricted to the topic (a
     skill in it counts) for a new or revision session. A retry for a
     review. Any practice for mixed practice or mixed revision. A
@@ -3709,8 +3711,9 @@ As planned in §18.4, with these specifics:
     session it fits that was not started from the plan. Each finished
     session satisfies at most one.
   - **Not enough:** opening a session, or finishing one nearly blank.
-  - **Whether its questions were new** is not checked. The plan says
-    which it intends, and starting from the plan enforces it.
+  - **New questions:** *corrected in §18.12.* As first built, this was not
+    checked; a new-questions activity now needs a session recorded, when
+    it was created, as built from new questions only.
 - **Skipped:** chosen by the learner. Nothing satisfies it afterwards.
 - **History:** completed, skipped and recorded-missed sessions are never
   changed again.
@@ -3975,14 +3978,14 @@ page:
   bar on a real phone (TASK-BOARD item 6). It was not performed in this
   phase.
 - **Time zones:** the day boundary is 12:00 UTC the next day, because the
-  learner's time zone is not known. A session can show as missed up to a
-  day later than the learner would expect, never earlier.
+  learner's time zone is not known. A session can show as missed up to 26
+  hours after its date ends where the learner is, never earlier (§18.12).
+  Time-zone-aware scheduling is tracked separately (TASK-BOARD item 7).
 - **Unseen counts in a plan are estimates.** A skill and its topic share
   questions, so a planned new session can find fewer new questions when
   started. It is refused with a notice rather than topped up with seen
   questions, and adjusting replans it.
-- **Satisfaction does not check** that a session's questions were new.
-  Practice the learner starts outside the plan counts by kind and focus.
+- **Satisfaction and new questions:** resolved in §18.12.
 - **Small banks mean a thin plan.** Where the reviewed questions are few
   (Bocconi's development bank), the plan is mostly revision and leaves
   slots free. It says so, but it cannot create content.
@@ -3996,3 +3999,86 @@ page:
   and within budget.
 - **Phase 7** (axe-core in CI, a screen-reader pass, 200% zoom) has not
   been started.
+
+### 18.12 Planning-integrity closeout (27 September 2026)
+
+**The defect.** The completion logic as first built (`satisfies` in
+`src/lib/learning/plan.ts`) checked kind, focus and answer count, not
+whether a session's questions were new. An ordinary practice session of the
+right topic, repeats included, completed a "new questions only" activity.
+That included any session started outside the plan.
+
+The attempt's stored `overrides.unseenOnly` could not serve as evidence:
+it records what was asked for, and a format that cannot honour it stores it
+anyway.
+
+**The fix:**
+
+- **Recorded when a session is built:** `startAttempt` now writes
+  `settings.newQuestionsOnly: true` only when it actually built the
+  session from questions the learner had never been shown. That is untimed
+  practice with "new questions only", whose pool is filtered to unseen
+  questions, and the session is refused rather than topped up when too
+  few are left.
+  - **Neither inferred nor recomputed:** the flag is not inferred from the
+    question bank's current state, nor recomputed later. Setup's "New
+    questions only" and the plan's Start both set it.
+- **Required by new-questions activities:** a new activity, or mixed
+  practice, needs that flag. An ordinary session does not satisfy it,
+  whatever it turned out to contain.
+  - **Revision** takes either kind of session.
+  - **Review** still needs a retry.
+- **History is not re-judged.** Completion only ever touches sessions
+  still stored as planned. Completed, skipped and recorded-missed sessions
+  keep their state, and no score or result is changed.
+  - **Sessions from before the flag existed** carry no flag, so they no
+    longer complete new-questions activities. No plan existed outside the
+    scratch copies before this change.
+
+**The rule, stated in the interface and here:**
+
+- **When an activity counts as completed:** a finished matching session
+  with at least 5 questions answered, or every planned question when
+  fewer than 5 are planned. A blank question is not an answer.
+- **What completion does not mean:** that every planned question was
+  answered. A completed session shows "Completed with 7 questions answered
+  of the 10 planned".
+- **Where it is explained:** in "How the plan works" on the Plan view.
+
+**Finished sessions:**
+
+- A submitted session counts.
+- A session closed by its clock counts on the same terms. The formats that
+  can satisfy an activity are untimed, so in practice this means
+  submitted.
+- An abandoned or unfinished session never counts.
+
+**Missed, exactly:**
+
+- **When it starts:** 12:00 UTC on the day after the session's date. That
+  is the midnight that ends the date in the last time zone, UTC−12.
+- **Where the learner is:** between the midnight after the date and 26
+  hours later (UTC+14). Never early, possibly late. In Italy that is 13:00
+  the next day in winter, 14:00 in summer.
+- **Unchanged:** plan dates are calendar dates counted in UTC.
+- **Tracked separately:** time-zone-aware scheduling is TASK-BOARD item 7.
+
+**Verified** (unit tests, real database, `tests/unit/plan.test.ts`,
+"what completes an activity"):
+
+- **Evidence:** "new questions only" is recorded only when it was enforced.
+- **A genuine new-question session** completes a new activity.
+- **An ordinary session containing repeats** leaves a new activity and a
+  mixed one planned, and completes a revision activity of the same topic.
+- **Answers, not questions shown:**
+  - 4 answered and 6 blank completes nothing;
+  - 5 answered completes a 10-question activity;
+  - a 3-question activity needs all 3 answered, and 2 of 3 is not enough.
+- **Finished:** a clock-closed session counts, and an abandoned one does
+  not.
+- **One activity per session:** opening a session started from the plan
+  completes nothing, and once finished it completes one activity of two.
+  Recording again changes nothing.
+- **History:** a completed and a skipped activity stay as they were.
+- **The browser test** for the plan also checks the "Completed with …
+  answered" line.
