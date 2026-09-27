@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { getCurrentUser, requireUser } from '@/lib/auth/session';
 import { EXAM_CONFIGS, getExamConfig } from '@/lib/exams/registry';
-import { Alert, Badge, Card, Container, DefinitionList, PageHeader } from '@/components/ui';
+import { Breadcrumbs, Alert, Badge, Card, Container, DefinitionList, PageHeader } from '@/components/ui';
 import {
   AccountSettingsForm,
   DeleteAccountForm,
@@ -58,6 +58,7 @@ export default async function AccountPage() {
 
   return (
     <Container size="narrow">
+      <Breadcrumbs trail={[{ href: '/', label: 'Home' }, { href: '/dashboard', label: 'Dashboard' }, { label: 'Account' }]} />
       <PageHeader
         eyebrow="Your account"
         title={user.displayName ? `Hello, ${user.displayName}` : 'Your account'}

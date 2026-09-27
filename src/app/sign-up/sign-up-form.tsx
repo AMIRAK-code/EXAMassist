@@ -2,7 +2,7 @@
 
 import { useId, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Alert, Button } from '@/components/ui';
+import { Alert, Button, buttonClass, cx, fieldClass } from '@/components/ui';
 
 /**
  * Account creation.
@@ -18,9 +18,6 @@ interface ApiErrorBody {
 
 /** Codes the password policy returns; these belong next to the password box. */
 const PASSWORD_CODES = new Set(['too-short', 'too-long', 'contains-email', 'too-common', 'repeated']);
-
-const FIELD_CLASS =
-  'w-full rounded border border-line-strong bg-surface px-3 py-2.5 text-base text-ink';
 
 export function SignUpForm({
   next,
@@ -38,6 +35,9 @@ export function SignUpForm({
   const [showPassword, setShowPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  // Set when the server's refusal is about the email address itself.
+  const [emailInvalid, setEmailInvalid] = useState(false);
+  const errorId = `${id}-error`;
   const [passwordError, setPasswordError] = useState<string | null>(null);
 
   const destination = next && next.startsWith('/') && !next.startsWith('//') ? next : '/account';
@@ -100,6 +100,7 @@ export function SignUpForm({
       }
       if (code === 'invalid-request') {
         setError('Check the email address — that one does not look like a valid address.');
+        setEmailInvalid(true);
         return;
       }
       setError(message);
@@ -115,7 +116,7 @@ export function SignUpForm({
       <div aria-live="assertive" aria-atomic="true">
         {error ? (
           <Alert tone="negative" role="alert" title="Account not created">
-            <p>{error}</p>
+            <p id={errorId}>{error}</p>
           </Alert>
         ) : null}
       </div>
@@ -134,9 +135,13 @@ export function SignUpForm({
           spellCheck={false}
           required
           value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          aria-describedby={`${id}-email-hint`}
-          className={FIELD_CLASS}
+          onChange={(event) => {
+            setEmail(event.target.value);
+            setEmailInvalid(false);
+          }}
+          aria-invalid={emailInvalid || undefined}
+          aria-describedby={emailInvalid ? `${errorId} ${id}-email-hint` : `${id}-email-hint`}
+          className={fieldClass()}
         />
         <p id={`${id}-email-hint`} className="mt-1.5 text-sm text-ink-muted">
           Used to sign in and nothing else. We send no marketing email.
@@ -144,16 +149,18 @@ export function SignUpForm({
       </div>
 
       <div>
-        <div className="mb-1.5 flex flex-wrap items-baseline justify-between gap-2">
+        <div className="mb-1 flex flex-wrap items-center justify-between gap-2">
           <label htmlFor={`${id}-password`} className="text-sm font-medium">
             Password
           </label>
           <button
             type="button"
             onClick={() => setShowPassword((value) => !value)}
-            className="rounded px-1 text-sm text-accent underline"
+            aria-pressed={showPassword}
+            aria-controls={`${id}-password`}
+            className={cx(buttonClass({ variant: 'quiet', size: 'sm' }), 'min-h-11 -me-3')}
           >
-            {showPassword ? 'Hide password' : 'Show password'}
+            Show password
           </button>
         </div>
         <input
@@ -167,7 +174,7 @@ export function SignUpForm({
           onChange={(event) => setPassword(event.target.value)}
           aria-describedby={`${id}-password-hint ${id}-password-state`}
           aria-invalid={passwordError ? true : undefined}
-          className={FIELD_CLASS}
+          className={fieldClass()}
         />
         <p id={`${id}-password-hint`} className="mt-1.5 text-sm text-ink-muted">
           At least {minPasswordLength} characters. Length matters more than symbols, so a short
@@ -202,7 +209,7 @@ export function SignUpForm({
           value={displayName}
           onChange={(event) => setDisplayName(event.target.value)}
           aria-describedby={`${id}-name-hint`}
-          className={FIELD_CLASS}
+          className={fieldClass()}
         />
         <p id={`${id}-name-hint`} className="mt-1.5 text-sm text-ink-muted">
           What we call you on your own pages. A first name or a nickname is plenty.
@@ -210,7 +217,8 @@ export function SignUpForm({
       </div>
 
       <div className="rounded-card border border-line bg-surface-sunken p-4">
-        <div className="flex items-start gap-3">
+        {/* The whole label row is the target, 44 px tall, not just the box. */}
+        <label htmlFor={`${id}-minor`} className="flex min-h-11 cursor-pointer items-center gap-3 text-sm font-medium">
           <input
             id={`${id}-minor`}
             name="isMinor"
@@ -218,12 +226,12 @@ export function SignUpForm({
             checked={isMinor}
             onChange={(event) => setIsMinor(event.target.checked)}
             aria-describedby={`${id}-minor-hint`}
-            className="mt-1 h-5 w-5 shrink-0"
+            className="size-5 shrink-0 accent-[var(--color-accent)]"
           />
+          I am under 16 (optional)
+        </label>
+        <div className="ps-8">
           <div>
-            <label htmlFor={`${id}-minor`} className="text-sm font-medium">
-              I am under 16 (optional)
-            </label>
             <p id={`${id}-minor-hint`} className="mt-1 text-sm text-ink-muted">
               Ticking this only switches off optional data collection for your account; we never ask
               for a date of birth, and it changes nothing about the practice you get.
@@ -232,8 +240,8 @@ export function SignUpForm({
         </div>
       </div>
 
-      <Button type="submit" size="lg" full disabled={submitting}>
-        {submitting ? 'Creating your account…' : 'Create account'}
+      <Button type="submit" size="lg" full loading={submitting}>
+        Create account
       </Button>
 
       <p role="status" aria-live="polite" className="text-sm text-ink-muted">
