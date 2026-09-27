@@ -22,8 +22,8 @@ export const LEARNER_NAV: NavItem[] = [
   { href: '/dashboard', label: 'Dashboard' },
   { href: '/exams', label: 'Exams', match: ['/practice'] },
   { href: '/review', label: 'Mistake notebook' },
-  { href: '/study-plan', label: 'Study plan' },
-  { href: '/readiness', label: 'Readiness' },
+  // One planning destination, with Plan and Progress & readiness views.
+  { href: '/study-plan', label: 'Study plan', match: ['/readiness'] },
 ];
 
 /** Reference pages a learner still needs, kept out of the main bar. */
