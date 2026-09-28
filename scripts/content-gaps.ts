@@ -8,7 +8,10 @@ import { resolveParts } from '../src/lib/attempts/service';
  * rather than guessing from a total. `validate-content.ts` reports whether a
  * format is available; this reports why it is not.
  *
- *   npx tsx scripts/content-gaps.ts [examKey]
+ *   npx tsx scripts/content-gaps.ts [examKey] [--include-review]
+ *
+ * --include-review counts items still in review as if they were published,
+ * to plan the next authoring wave while a review is in flight.
  */
 
 interface Need {
@@ -23,9 +26,12 @@ interface Need {
 }
 
 function main(): void {
-  const only = process.argv[2];
+  const includeReview = process.argv.includes('--include-review');
+  const only = process.argv.slice(2).find((arg) => !arg.startsWith('--'));
   const { questions } = loadContent();
-  const published = questions.filter((q) => q.question.state === 'published');
+  const published = questions.filter(
+    (q) => q.question.state === 'published' || (includeReview && q.question.state === 'in_review'),
+  );
 
   const configs = only ? EXAM_CONFIGS.filter((c) => c.examKey === only) : EXAM_CONFIGS;
   const needs = new Map<string, Need>();

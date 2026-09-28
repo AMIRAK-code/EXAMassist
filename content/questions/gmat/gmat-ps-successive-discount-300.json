@@ -12,13 +12,36 @@
   "stemMd": "A retailer lists a jacket at $80$ euros. In a clearance sale the listed price is first reduced by $25$ percent, and the resulting price is then reduced by a further $20$ percent. What is the final price of the jacket, in euros?",
   "instructionsMd": "Select the single best answer.",
   "options": [
-    { "id": "a", "label": "A", "textMd": "$36$" },
-    { "id": "b", "label": "B", "textMd": "$44$" },
-    { "id": "c", "label": "C", "textMd": "$48$" },
-    { "id": "d", "label": "D", "textMd": "$60$" },
-    { "id": "e", "label": "E", "textMd": "$64$" }
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$36$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$44$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$48$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$60$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$64$"
+    }
   ],
-  "answerKey": { "type": "single_select", "optionId": "c" },
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
   "explanationMd": "A percent reduction is a multiplication by what is **left**, so work in surviving fractions rather than in the discounts themselves.\n\n**Step 1 — the first reduction.** Taking $25$ percent off leaves $75$ percent:\n\n$$80 \\times 0.75 = 60.$$\n\n**Step 2 — the second reduction.** The second cut applies to the $60$ euros, not to the original $80$. Taking $20$ percent off leaves $80$ percent:\n\n$$60 \\times 0.80 = 48.$$\n\nThe final price is $48$ euros.\n\n**The one-step route.** Successive percent changes multiply:\n\n$$80 \\times 0.75 \\times 0.80 = 80 \\times 0.60 = 48.$$\n\nSo the pair of cuts is equivalent to a single $40$ percent reduction — not the $25 + 20 = 45$ percent that adding them would suggest. The five missing percentage points are the part of the second discount that would have applied to money already removed by the first.\n\n**How to check the answer.** Reverse the process and see whether you get back to $80$. Undo the $20$ percent cut: $48 \\div 0.80 = 60$. Undo the $25$ percent cut: $60 \\div 0.75 = 80$. You land exactly on the list price, so $48$ is right.\n\n**A second check that takes five seconds.** Because the order of two multiplications does not matter, applying the discounts the other way round must give the same figure: $80 \\times 0.80 = 64$, then $64 \\times 0.75 = 48$. Same answer, so the arithmetic is sound.",
   "distractorRationale": {
     "a": "This computes $0.45 \\times 80 = 36$, taking $45$ percent of the price rather than removing it. It makes two errors at once: it adds the discounts instead of compounding them, and it then keeps the discounted share rather than the surviving share.",
@@ -38,12 +61,22 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "gmat-wave4-author",
-    "reviewer": null,
-    "reviewedOn": null,
-    "independentSolve": null,
+    "reviewer": "blind-reviewer-wave5-B",
+    "reviewedOn": "2026-09-28",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave5-B",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "80 x 0.75 = 60, then 60 x 0.80 = 48. 44 is the additive-45% trap; 60 is only the first step; 64 is only the 20% step; 36 is not produced by any single error that fits."
+    },
     "notes": "Author solved the item forwards (80 -> 60 -> 48), in the reverse discount order (80 -> 64 -> 48) and by reversing the process from 48 back to 80, obtaining the same figure each time. Each of the other four values was traced to a specific named error and none of them equals 48, so exactly one option is defensible. Numeric options are ordered ascending as on the real exam. Awaiting blind independent solve before publication."
   },
-  "state": "in_review",
+  "state": "published",
   "quarantine": null,
-  "tags": ["percent", "successive-discount", "arithmetic"]
+  "tags": [
+    "percent",
+    "successive-discount",
+    "arithmetic"
+  ]
 }

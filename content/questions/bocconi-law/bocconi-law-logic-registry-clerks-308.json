@@ -55,12 +55,18 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-law-wave4-author",
-    "reviewer": null,
-    "reviewedOn": null,
-    "independentSolve": null,
+    "reviewer": "blind-reviewer-wave5-A",
+    "reviewedOn": "2026-09-28",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave5-A",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "C=D and E opposite them. If C=D=Civil, Bo cannot be Civil, so Civil{C,D}/Criminal{B,E}. If C=D=Criminal, Bo is free: Civil{B,E}/Criminal{C,D} or Civil{E}/Criminal{B,C,D}. Three admissible assignments; Criminal has 2,2,3 clerks, so B always holds. A fails in the third (Civil has only E); C fails in the third (Bo Criminal, Elsa Civil); D fails in the third (Chiara Criminal, Bo Criminal)."
+    },
     "notes": "Author solved by full enumeration. Chiara equals Dario and Elsa is opposite them, giving two shapes. With Chiara and Dario in Civil, the conditional forces Bo into Criminal (W1: Civil = Chiara, Dario; Criminal = Bo, Elsa). With Chiara and Dario in Criminal, the conditional is already satisfied and Bo is free, giving W2 (Civil = Bo, Elsa; Criminal = Chiara, Dario) and W3 (Civil = Elsa; Criminal = Bo, Chiara, Dario). Criminal holds 2, 2 and 3 clerks respectively, so option C holds in all three. Uniqueness checked: A, B and D each fail in W3 - Bo and Elsa are split, Civil holds only Elsa, and Chiara is in Criminal while Bo is not in Civil. Each registry is non-empty in all three assignments, so none is excluded by that requirement. Awaiting a blind independent solve before publication. Option-letter references in the explanation were rewritten to name choice content; the key was re-derived independently and is unchanged. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
-  "state": "in_review",
+  "state": "published",
   "quarantine": null,
   "tags": [
     "logic",

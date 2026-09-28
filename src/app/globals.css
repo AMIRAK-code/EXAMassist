@@ -114,6 +114,13 @@
     scroll-padding-top: 5rem;
   }
 
+  /* The player's question controls are sticky at the bottom too. Without this,
+     a control just below the fold (the AI tutor's hint button, say) scrolls
+     into view on focus only as far as the bottom edge, under the bar. */
+  html:has(nav[aria-label='Question controls']) {
+    scroll-padding-bottom: 6rem;
+  }
+
   body {
     background-color: var(--color-paper);
     color: var(--color-ink);

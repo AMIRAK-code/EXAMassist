@@ -348,3 +348,72 @@ is the only lockfile change.
 3. **Report any defect** from either, for a focused fix and a re-test of
    the affected journeys before release.
 4. **Plan Next 16** as a separate change, then remove the override.
+
+---
+
+## 8. After the merge with the tutor and content line (28 September 2026)
+
+Two lines of work that forked from the same snapshot were joined: this
+redesign, and a line that added the optional AI tutor, blind-reviewed
+questions and a content-integrity repair. The redesign is the base; the
+other line's two commits were replayed on top of it, so this history is
+intact and nothing was force-pushed.
+
+### 8.1 Verified after the merge
+
+| Check | Evidence | Result |
+| --- | --- | --- |
+| Unit tests | automated | 415 passed (372 before, plus the tutor, content-rule, spoken-maths and address tests) |
+| Browser suite, Chrome desktop and Pixel 7 emulation | automated | 203 passed, 7 skipped (the same desktop-only skips as §1), 0 failed |
+| axe-core, every page in §1, with the tutor switched on so its controls render | automated | 0 violations |
+| Focus never hidden behind sticky chrome, including the tutor's controls | automated | pass, after the fix in 8.2 |
+| Content validation | automated | 0 errors, 0 warnings; 347 published, 4 quarantined |
+| Production build, typecheck, production dependency audit | automated | clean; 0 vulnerabilities |
+
+### 8.2 Defects found by the merge and fixed
+
+1. **The tutor's "Get a hint" button could be focused behind the sticky
+   question controls.** Found by the focus test in `phase-7.spec.ts`.
+   The page reserved room for the sticky header but not for the bottom
+   bar; `html:has(nav[aria-label='Question controls'])` now sets
+   `scroll-padding-bottom`, which protects any control placed below a
+   question, not only the tutor's.
+2. **Both lines had repaired the same stale option letters** in the same
+   questions, one by correcting the letter and re-reviewing at version 2,
+   the other by rewriting the prose to name each choice's content. They
+   were merged field by field: where this line's edit was letter-only, the
+   content-based wording is used at version 3; where it was a substantive
+   correction (19 questions: a completed counterexample, the corrected SAT
+   chart, "tripled" for "doubled" and others), the correction is kept and
+   carried into the new wording by hand. No key or choice changed.
+3. **24 published questions had been edited without a version bump;**
+   they are bumped, so earlier attempts keep the text they showed.
+4. **Two explanations still named choices by letter** after the redesign's
+   edits, and one named a choice by position ("the first choice"). All
+   reworded; the validator now also warns on positions written as words.
+
+### 8.3 The AI tutor: what is and is not verified
+
+- **Off by default.** It runs only when `ANTHROPIC_API_KEY` is set on the
+  server (`.env.example`); core practice never depends on it.
+- **Verified here, automatically:** it is refused in timed sections,
+  diagnostics and simulations, and for answers not yet checked; it
+  appears only in learning sessions and on finished sessions; it fails
+  gracefully when the provider is unreachable; hints that leak the answer
+  and guides that forecast a score are withheld; nothing identifying is
+  sent to the provider; responses can be reported and withdrawn; daily
+  limits hold. The browser suite runs it against an unreachable address,
+  so **no real model response has been reviewed in this build.**
+- **Pending (manual):** with a real key, read a sample of hints,
+  deeper explanations and after-test guides across the seven exams, and
+  record any that mislead. Until then, leave the key unset in production.
+- **Legal:** the provider questions are listed in the privacy draft and
+  are not settled.
+
+### 8.4 Known issue carried forward
+
+- Some exam configurations say the official essay rubrics "are shown for
+  self-assessment". They are not shown: essay items carry our own
+  self-assessment guide instead. The learner-facing copy has been
+  corrected; the configuration text should be corrected with a
+  configuration version bump in a separate change.

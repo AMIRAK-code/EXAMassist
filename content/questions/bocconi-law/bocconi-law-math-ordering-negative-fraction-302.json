@@ -55,12 +55,18 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-law-wave4-author",
-    "reviewer": null,
-    "reviewedOn": null,
-    "independentSolve": null,
+    "reviewer": "blind-reviewer-wave5-A",
+    "reviewedOn": "2026-09-28",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave5-A",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "For -1<x<0: 1/x < -1 < x; x^3 - x = x(x-1)(x+1) > 0 so x < x^3; x^3 < 0 < x^2. Chain 1/x < x < x^3 < x^2 holds on the whole interval (check x=-0.5: -2 < -0.5 < -0.125 < 0.25). B needs x^3<x (false), C needs x^3<1/x (false), D needs x<1/x (false) for every x in the interval."
+    },
     "notes": "Author's solve: on the open interval from -1 to 0, x squared is the only positive quantity and is therefore the largest; x cubed equals x times x squared with 0 < x squared < 1, so x cubed lies between x and 0; and the reciprocal has absolute value above 1 and is negative, so it is the smallest. Order: 1/x < x < x^3 < x^2. Uniqueness checked: options B, C and D are each refuted by the single test value x = -1/2 (they assert -1/2 < -2, -1/8 < -1/2 and -1/8 < -2 respectively), and the argument for the key uses only the sign of x and |x| < 1, so it holds on the whole interval rather than at one point. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
-  "state": "in_review",
+  "state": "published",
   "quarantine": null,
   "tags": [
     "mathematics",

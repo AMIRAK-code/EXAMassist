@@ -12,13 +12,36 @@
   "stemMd": "A firm has $200$ employees. Of these, $120$ use the company gym, $85$ use the company pool, and $30$ use neither facility. How many employees use both the gym and the pool?",
   "instructionsMd": "Select the single best answer.",
   "options": [
-    { "id": "a", "label": "A", "textMd": "$5$" },
-    { "id": "b", "label": "B", "textMd": "$35$" },
-    { "id": "c", "label": "C", "textMd": "$50$" },
-    { "id": "d", "label": "D", "textMd": "$85$" },
-    { "id": "e", "label": "E", "textMd": "$120$" }
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$5$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$35$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$50$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$85$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$120$"
+    }
   ],
-  "answerKey": { "type": "single_select", "optionId": "b" },
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
   "explanationMd": "Two overlapping groups plus a group outside both is the standard two-set count. Handle the outsiders first, because the overlap formula applies only to the people inside at least one set.\n\n**Step 1 — how many use at least one facility?** Remove the ones who use neither:\n\n$$200 - 30 = 170.$$\n\n**Step 2 — apply the two-set rule.** For any two sets,\n\n$$|G \\cup P| = |G| + |P| - |G \\cap P|.$$\n\nCounting the gym users and the pool users separately counts anyone who uses both **twice**, so the double count is exactly the overlap. Substituting the numbers:\n\n$$170 = 120 + 85 - |G \\cap P| \\;\\Longrightarrow\\; |G \\cap P| = 205 - 170 = 35.$$\n\nSo $35$ employees use both.\n\n**How to check the answer.** Rebuild the whole workforce out of four disjoint groups and see whether it comes to $200$:\n\n- gym only: $120 - 35 = 85$\n- pool only: $85 - 35 = 50$\n- both: $35$\n- neither: $30$\n\nThen $85 + 50 + 35 + 30 = 200$. Every employee is counted exactly once, so the split is consistent.\n\n**Why the four-group table is worth drawing.** It makes each wrong answer visible as a cell you have read off the wrong line: $50$ is the pool-only cell, $85$ is the gym-only cell as well as the pool total, and $30$ is the neither cell. Once the four numbers are written down, only one of them can be the answer to the question actually asked.",
   "distractorRationale": {
     "a": "This computes $120 + 85 - 200 = 5$, subtracting the entire workforce instead of the $170$ who use at least one facility. It quietly assumes nobody uses neither, which contradicts the stated $30$.",
@@ -38,12 +61,22 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "gmat-wave4-author",
-    "reviewer": null,
-    "reviewedOn": null,
-    "independentSolve": null,
+    "reviewer": "blind-reviewer-wave5-B",
+    "reviewedOn": "2026-09-28",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave5-B",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "At least one facility: 200 - 30 = 170. Using inclusion-exclusion, 120 + 85 - both = 170, so both = 35. Consistency check: gym only 85, pool only 50, both 35, neither 30, total 200."
+    },
     "notes": "Author solved the item with the inclusion-exclusion rule and verified the result by rebuilding the workforce from the four disjoint cells: 85 + 50 + 35 + 30 = 200. The overlap is algebraically forced, so no second value is defensible; each other option was traced to a specific cell of the table or to omitting the 30 who use neither. Numeric options are ordered ascending as on the real exam. Awaiting blind independent solve before publication."
   },
-  "state": "in_review",
+  "state": "published",
   "quarantine": null,
-  "tags": ["sets", "inclusion-exclusion", "counting"]
+  "tags": [
+    "sets",
+    "inclusion-exclusion",
+    "counting"
+  ]
 }

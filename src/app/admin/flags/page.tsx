@@ -292,7 +292,7 @@ export default async function AdminFlagsPage({
                   )}
 
                   {row.tutorResponseId ? (
-                    <div className="mt-5 rounded-card border border-dashed border-accent-line bg-surface p-4">
+                    <div className="mt-5 rounded-card border border-accent-line bg-surface p-4">
                       <h4 className="text-sm font-semibold uppercase tracking-wide text-ink-subtle">
                         The AI response reported
                       </h4>
