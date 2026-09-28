@@ -74,10 +74,16 @@ function toResponse(
         return responseSchema.parse({
           type: 'two_part',
           selections: value
-            .split(';')
+            // Pairs may be separated by ";" or by ",". A bare full option id
+            // ("blank1-b") already names its column, so it needs no colon.
+            .split(/[;,]/)
             .map((pair) => pair.trim())
             .filter(Boolean)
             .map((pair) => {
+              const whole = optionIds.find((id) => id.toLowerCase() === pair.toLowerCase());
+              if (whole && !pair.includes(':')) {
+                return { columnId: whole.slice(0, whole.indexOf('-')), optionId: whole };
+              }
               // Reviewers are asked for "columnId:optionId", but option ids are
               // stored as "columnId-optionId". Resolve whatever they wrote
               // against the item's real ids rather than failing the item on a

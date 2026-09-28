@@ -1,5 +1,6 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
+import { resetRateLimits } from './helpers';
 
 /**
  * The optional AI tutor, in a real browser.
@@ -11,25 +12,46 @@ import { expect, test, type Page } from '@playwright/test';
  * core practice works regardless.
  */
 
-async function startLearningSession(page: Page): Promise<string> {
-  await page.goto('/practice/digital-sat');
-  await page.getByRole('button', { name: /start practising/i }).click();
-  await page.waitForURL(/\/attempt\/[0-9a-f-]+$/);
-  return /\/attempt\/([0-9a-f-]+)/.exec(page.url())![1];
+test.beforeEach(() => resetRateLimits());
+
+const TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'];
+
+async function api(page: Page, method: string, url: string, body?: unknown): Promise<{ status: number; data: any }> {
+  return page.evaluate(
+    async ({ method, url, body }) => {
+      const response = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'examer' },
+        body: body === undefined ? undefined : JSON.stringify(body),
+      });
+      let data: unknown = null;
+      try {
+        data = await response.json();
+      } catch {
+        /* no body */
+      }
+      return { status: response.status, data };
+    },
+    { method, url, body },
+  );
 }
 
-async function answerCurrentQuestion(page: Page): Promise<void> {
-  const radio = page.getByRole('radio').first();
-  const checkbox = page.getByRole('checkbox').first();
-  if (await radio.count()) await radio.check();
-  else if (await checkbox.count()) await checkbox.check();
-  else await page.getByRole('textbox').first().fill('12');
-  await expect(page.getByText('1 of 10 answered')).toBeVisible();
+/** A signed-in learner with one open session of the given blueprint. */
+async function openSession(page: Page, blueprintId = 'practice', examKey = 'lsat'): Promise<string> {
+  await page.goto('/about/terms');
+  const email = `tutor-${Date.now()}-${Math.random().toString(36).slice(2, 7)}@example.invalid`;
+  expect((await api(page, 'POST', '/api/auth/sign-up', { email, password: 'a quiet harbour at dawn' })).status).toBe(201);
+  const started = await api(page, 'POST', '/api/attempts', { examKey, blueprintId });
+  expect([200, 201]).toContain(started.status);
+  const attemptId = started.data.attemptId as string;
+  await page.goto(`/attempt/${attemptId}`);
+  await expect(page.getByRole('heading', { name: /^Question 1/ })).toBeVisible();
+  return attemptId;
 }
 
 test.describe('the AI tutor', () => {
-  test('offers a hint in a learning session and fails gracefully when the model is unreachable', async ({ page }) => {
-    await startLearningSession(page);
+  test('offers hints until the answer is checked, fails gracefully, and never blocks practice', async ({ page }) => {
+    await openSession(page);
 
     const hint = page.getByRole('button', { name: 'Get a hint' });
     await expect(hint).toBeVisible();
@@ -38,47 +60,32 @@ test.describe('the AI tutor', () => {
     // The failure is reported plainly, in words a learner can act on...
     await expect(page.getByText(/The AI tutor could not be reached/)).toBeVisible();
 
-    // ...and nothing about practising is affected.
-    await answerCurrentQuestion(page);
+    // ...and nothing about practising is affected. Choosing an answer keeps
+    // the hint on offer, because the answer can still be changed.
+    await page.getByRole('radio').first().check();
+    await expect(page.getByRole('button', { name: 'Get a hint' })).toBeVisible();
+
+    // Checking the answer reveals the reviewed explanation and swaps the hint
+    // for the optional deeper explanation.
+    await page.getByRole('button', { name: 'Check answer' }).click();
+    await expect(page.getByText(/^(Correct|Not correct)/).first()).toBeVisible();
     await expect(page.getByRole('button', { name: 'Get a hint' })).toHaveCount(0);
     await expect(page.getByRole('button', { name: 'Explain this in more depth' })).toBeVisible();
   });
 
-  test('never appears in a timed section', async ({ page }) => {
-    // A learning session first, which also gives this browser a guest session.
-    await startLearningSession(page);
-    const started = await page.evaluate(async () => {
-      const response = await fetch('/api/attempts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'examer' },
-        body: JSON.stringify({ examKey: 'digital-sat', blueprintId: 'timed-math-module-1' }),
-      });
-      return { status: response.status, body: (await response.json()) as { attemptId?: string } };
-    });
-    expect([200, 201]).toContain(started.status);
-
-    await page.goto(`/attempt/${started.body.attemptId}`);
-    await expect(page.getByRole('heading', { name: /^Question 1/ })).toBeVisible();
+  test('never appears in a timed section, and the server refuses a forged request', async ({ page }) => {
+    const attemptId = await openSession(page, 'timed-math-module-1', 'digital-sat');
     await expect(page.getByRole('button', { name: /hint|explain this/i })).toHaveCount(0);
 
-    // And the server refuses even if the button were forged.
-    const forged = await page.evaluate(async (attemptId) => {
-      const response = await fetch('/api/tutor/help', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'examer' },
-        body: JSON.stringify({ attemptId, partIndex: 0, position: 0, kind: 'hint' }),
-      });
-      return response.status;
-    }, started.body.attemptId);
-    expect(forged).toBe(403);
+    const forged = await api(page, 'POST', '/api/tutor/help', { attemptId, partIndex: 0, position: 0, kind: 'hint' });
+    expect(forged.status).toBe(403);
   });
 
   test('is labelled, and its controls pass an automated accessibility scan', async ({ page }) => {
-    await startLearningSession(page);
+    await openSession(page);
     await expect(page.getByRole('button', { name: 'Get a hint' })).toBeVisible();
-    const results = await new AxeBuilder({ page })
-      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
-      .analyze();
-    expect(results.violations.map((v) => `${v.id}: ${v.nodes.map((n) => n.html).join(' | ')}`)).toEqual([]);
+    await expect(page.getByText(/Optional AI help/)).toBeVisible();
+    const results = await new AxeBuilder({ page }).withTags(TAGS).analyze();
+    expect(results.violations.map((v) => `${v.id}: ${v.nodes.map((n) => n.target.join(' ')).join(' | ')}`)).toEqual([]);
   });
 });
