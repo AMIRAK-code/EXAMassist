@@ -6,6 +6,9 @@ import { enhancedActConfig } from './configs/enhanced-act';
 import { gmatConfig } from './configs/gmat';
 import { greConfig } from './configs/gre';
 import { lsatConfig } from './configs/lsat';
+import { politoTilAConfig } from './configs/polito-til-a';
+import { politoTilIConfig } from './configs/polito-til-i';
+import { tolcEConfig } from './configs/tolc-e';
 
 /**
  * The exam registry.
@@ -27,7 +30,28 @@ export const EXAM_CONFIGS: readonly ExamConfig[] = [
   bocconiLawConfig,
 ];
 
+/**
+ * Configs that are written but not yet verified first-hand against their
+ * official sources. Content validation knows them, so questions can be
+ * authored and blind-reviewed against their taxonomy, but nothing else does:
+ * they are never seeded, listed, practised or shown. A config moves to
+ * `EXAM_CONFIGS` only once every fact in it has a research record under
+ * docs/research/ and its `unverified` list holds only what the official
+ * sources genuinely leave open.
+ */
+export const DRAFT_EXAM_CONFIGS: readonly ExamConfig[] = [tolcEConfig, politoTilIConfig, politoTilAConfig];
+
 export type Audience = 'undergraduate' | 'law' | 'graduate';
+
+/** An admission route a hub points to that another hub's config serves. */
+export interface HubRoute {
+  /** The programme or programme family, as the institution names it. */
+  programme: string;
+  audience: Audience;
+  /** The config that serves this route, or null where no test applies. */
+  configKey: string | null;
+  note: string;
+}
 
 export interface ExamHub {
   slug: string;
@@ -46,6 +70,8 @@ export interface ExamHub {
   audiences: Audience[];
   /** Config keys served by this hub, in display order. */
   configKeys: string[];
+  /** Routes into the same institution that another hub's config serves. */
+  otherRoutes?: HubRoute[];
   order: number;
 }
 
@@ -125,7 +151,41 @@ export const EXAM_HUBS: readonly ExamHub[] = [
   },
 ];
 
+/**
+ * Hubs waiting on draft configs. Not listed, not routed, not in the sitemap:
+ * kept here so the institution's routes are written down in one place.
+ */
+export const DRAFT_EXAM_HUBS: readonly ExamHub[] = [
+  {
+    slug: 'saa-turin',
+    name: 'SAA School of Management, University of Turin',
+    shortName: 'SAA Turin',
+    label: 'SAA',
+    publisher: 'Università degli Studi di Torino',
+    tagline:
+      'Admission to the University of Turin’s SAA School of Management: the TOLC-E for the Italian-taught business bachelor’s programmes, the SAT for the English-taught Business & Management, and SAA’s own selection for its MBA programmes.',
+    audiences: ['undergraduate', 'graduate'],
+    configKeys: ['tolc-e'],
+    otherRoutes: [
+      {
+        programme: 'Business & Management (English-taught bachelor’s)',
+        audience: 'undergraduate',
+        configKey: 'digital-sat',
+        note: 'Reported to admit through the SAT rather than the TOLC-E for 2026/27, ranked on the latest SAT result. Unverified: to be confirmed against the University of Turin’s 2026/27 call.',
+      },
+      {
+        programme: 'SAA MBA programmes',
+        audience: 'graduate',
+        configKey: null,
+        note: 'SAA appears to run its own selection for its MBA programmes. Whether it asks for or accepts a GMAT or GRE score is unverified; until SAA’s own pages are read, no test is linked here.',
+      },
+    ],
+    order: 7,
+  },
+];
+
 const configByKey = new Map(EXAM_CONFIGS.map((c) => [c.examKey, c]));
+const draftConfigByKey = new Map(DRAFT_EXAM_CONFIGS.map((c) => [c.examKey, c]));
 const hubBySlug = new Map(EXAM_HUBS.map((h) => [h.slug, h]));
 const hubByConfigKey = new Map<string, ExamHub>();
 for (const hub of EXAM_HUBS) {
@@ -134,6 +194,11 @@ for (const hub of EXAM_HUBS) {
 
 export function getExamConfig(examKey: string): ExamConfig | undefined {
   return configByKey.get(examKey);
+}
+
+/** A draft config, for content validation only. Never use this to serve learners. */
+export function getDraftExamConfig(examKey: string): ExamConfig | undefined {
+  return draftConfigByKey.get(examKey);
 }
 
 /** Throws rather than returning undefined, for call sites that cannot continue. */
