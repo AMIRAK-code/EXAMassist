@@ -135,3 +135,9 @@ Evidence commands are runnable from the repository root.
    Safari, through the steps in docs/REDESIGN.md §19.4: navigation, sign-in
    errors, a practice session with feedback, results and review pages with
    maths, and the study plan.
+9. **Draft exams waiting on first-hand verification** (added 21 October 2026).
+   The SAA School of Management (University of Turin) hub with a new TOLC-E
+   config, and the PoliTo TIL-I and TIL-A configs, are written but unverified:
+   every official host was unreachable from the build environment. They are
+   validated but never served. Checklist and go-live steps:
+   docs/DRAFT-EXAMS.md.

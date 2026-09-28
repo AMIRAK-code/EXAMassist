@@ -183,6 +183,39 @@ export const scoringPolicySchema = z.object({
     }),
   ]),
   notes: z.array(z.string()).default([]),
+  /**
+   * Set only when the exam publishes its raw scoring in full: a fixed number of
+   * equally weighted items, a published penalty, and a published conversion to
+   * the reported scale. Readiness then turns a learner's target into
+   * arithmetic on their own accuracy, and compares it with any thresholds the
+   * exam's owner publishes. Leave it unset whenever any of that is not
+   * published: an estimate built on a guess is worse than none.
+   */
+  rawProjection: z
+    .object({
+      /** Items on the published form that carry this scoring (separately scored sections excluded). */
+      scoredItems: z.number().int().positive(),
+      /** Reported score = raw x this factor, e.g. 100 / 42 when a /42 raw is reported out of 100. */
+      reportFactor: z.number().positive(),
+      /** Published thresholds on the REPORTED scale, each with what it means. */
+      thresholds: z
+        .array(
+          z.object({
+            value: z.number(),
+            label: z.string().min(1),
+            meaning: z.string().min(1),
+            source: z.string().url(),
+          }),
+        )
+        .default([]),
+      /** Why no universal threshold exists, when none is published. Shown to the learner. */
+      noThresholdReason: z.string().nullable().default(null),
+      /** Test-day conditions the projection assumes, in one clause: "90 minutes in four timed sections, no calculator". */
+      conditions: z.string().min(1),
+      /** Exam-specific caveats added to the standard assumptions. */
+      caveats: z.array(z.string()).default([]),
+    })
+    .optional(),
 });
 export type ScoringPolicy = z.infer<typeof scoringPolicySchema>;
 

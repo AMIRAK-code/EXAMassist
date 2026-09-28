@@ -83,7 +83,7 @@ export function ReadinessReport({
 
               <div className="mt-6 grid gap-6 sm:grid-cols-3">
                 <Stat
-                  label="Projected raw score"
+                  label={target.projection.scoreLabel ?? 'Projected raw score'}
                   value={target.projection.projectedRaw}
                   of={target.projection.maxRaw}
                   tone={target.projection.meetsTarget ? 'positive' : 'neutral'}
@@ -96,6 +96,15 @@ export function ReadinessReport({
                     hint="Published by the university as a minimum to be considered — not a competitive score."
                   />
                 ) : null}
+                {(target.projection.thresholds ?? []).map((threshold) => (
+                  <Stat
+                    key={threshold.label}
+                    label={threshold.label}
+                    value={threshold.value}
+                    of={target.projection!.maxRaw}
+                    hint={threshold.meaning}
+                  />
+                ))}
               </div>
 
               <div className="mt-6 space-y-3">
@@ -104,6 +113,20 @@ export function ReadinessReport({
                     ? `On this projection you are at or above your target of ${target.projection.targetRaw}.`
                     : `On this projection you are ${Math.round((target.projection.targetRaw - target.projection.projectedRaw) * 10) / 10} points short of your target of ${target.projection.targetRaw}.`}
                 </Alert>
+
+                {(target.projection.thresholds ?? [])
+                  .filter((threshold) => !threshold.met)
+                  .map((threshold) => (
+                    <Alert key={threshold.label} tone="caution" role="status" title={`Below the published ${threshold.label.toLowerCase()}`}>
+                      On this projection you are below {threshold.value}. {threshold.meaning}
+                    </Alert>
+                  ))}
+
+                {target.projection.noThresholdReason ? (
+                  <Alert tone="info" role="note" title="No single pass mark">
+                    {target.projection.noThresholdReason}
+                  </Alert>
+                ) : null}
 
                 {target.projection.meetsOfficialFloor === false ? (
                   <Alert tone="negative" role="status" title="Below the published eligibility floor">

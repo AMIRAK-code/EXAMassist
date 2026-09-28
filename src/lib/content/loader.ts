@@ -9,7 +9,7 @@ import {
   type Question,
   type Stimulus,
 } from './question-schema';
-import { EXAM_CONFIGS, getExamConfig } from '@/lib/exams/registry';
+import { DRAFT_EXAM_CONFIGS, EXAM_CONFIGS, getDraftExamConfig, getExamConfig } from '@/lib/exams/registry';
 
 /**
  * Loads and validates the file-based question bank.
@@ -128,7 +128,9 @@ export function loadContent(): LoadResult {
     }
 
     // Taxonomy must exist in the exam configuration.
-    const config = getExamConfig(question.examKey);
+    // Draft configs count here, so their questions can be authored and
+    // blind-reviewed before the config's facts are verified and it goes live.
+    const config = getExamConfig(question.examKey) ?? getDraftExamConfig(question.examKey);
     if (!config) {
       issues.push({
         file: rel,
@@ -224,10 +226,12 @@ export interface CoverageSummary {
   domainsCovered: number;
   domainsTotal: number;
   missingDomains: string[];
+  /** True for a config in DRAFT_EXAM_CONFIGS: authored content, never served. */
+  draftConfig: boolean;
 }
 
 export function summariseCoverage(questions: LoadedQuestion[]): CoverageSummary[] {
-  return EXAM_CONFIGS.map((config) => {
+  return [...EXAM_CONFIGS, ...DRAFT_EXAM_CONFIGS].map((config) => {
     const mine = questions.filter((q) => q.question.examKey === config.examKey);
     const published = mine.filter((q) => q.question.state === 'published');
     const covered = new Set(published.map((q) => q.question.domainSlug));
@@ -242,6 +246,7 @@ export function summariseCoverage(questions: LoadedQuestion[]): CoverageSummary[
       domainsCovered: covered.size,
       domainsTotal: allDomains.length,
       missingDomains: allDomains.filter((d) => !covered.has(d)),
+      draftConfig: !getExamConfig(config.examKey),
     };
   });
 }
