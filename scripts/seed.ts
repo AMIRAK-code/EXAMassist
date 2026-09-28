@@ -2,7 +2,7 @@ import { randomUUID } from 'node:crypto';
 import { getDb } from '../src/lib/db';
 import { migrate } from '../src/lib/db/migrate';
 import { contentHash, loadContent, summariseCoverage } from '../src/lib/content/loader';
-import { EXAM_CONFIGS } from '../src/lib/exams/registry';
+import { EXAM_CONFIGS, getExamConfig } from '../src/lib/exams/registry';
 import { hashPassword } from '../src/lib/auth/password';
 
 /**
@@ -49,7 +49,15 @@ async function main(): Promise<void> {
   console.log(`exam configurations: ${configsWritten} written, ${EXAM_CONFIGS.length} total`);
 
   // --- Content -------------------------------------------------------------
-  const { questions, stimuli, issues } = loadContent();
+  const loaded = loadContent();
+  const { issues } = loaded;
+  // Content for a draft config (DRAFT_EXAM_CONFIGS) is validated but never
+  // seeded: its exam is not live, so nothing may serve it.
+  const live = (examKey: string) => getExamConfig(examKey) !== undefined;
+  const questions = loaded.questions.filter((q) => live(q.question.examKey));
+  const stimuli = loaded.stimuli.filter((s) => live(s.stimulus.examKey));
+  const heldBack = loaded.questions.length - questions.length;
+  if (heldBack > 0) console.log(`draft-exam questions held back from seeding: ${heldBack}`);
   const errors = issues.filter((i) => i.level === 'error');
   if (errors.length > 0) {
     console.error(`\nRefusing to seed: ${errors.length} content error(s).`);
@@ -197,7 +205,7 @@ async function main(): Promise<void> {
   // --- Coverage ------------------------------------------------------------
   console.log('\nContent coverage by exam');
   console.log('exam                      published  draft  review  quarantined  domains');
-  for (const row of summariseCoverage(questions)) {
+  for (const row of summariseCoverage(questions).filter((r) => !r.draftConfig)) {
     console.log(
       `  ${row.examKey.padEnd(24)}${String(row.published).padStart(6)}` +
         `${String(row.draft).padStart(8)}${String(row.inReview).padStart(8)}` +
