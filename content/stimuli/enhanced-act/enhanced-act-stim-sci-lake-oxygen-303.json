@@ -1,0 +1,43 @@
+{
+  "id": "enhanced-act-stim-sci-lake-oxygen-303",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "kind": "table",
+  "title": "Study 7: Conflicting viewpoints on the summer oxygen loss in Bell Lake",
+  "bodyMd": "**Conflicting viewpoints.** Bell Lake is a small freshwater lake $10$ m deep. Oxygen dissolves into lake water from the air at the surface. Bacteria living in the mud and in the water consume dissolved oxygen as they break down dead material. Warm water is less dense than cold water.\n\nOn the same date each month a team measured, at a depth of $1$ m and again at a depth of $9$ m, the water temperature and the concentration of dissolved oxygen (DO). At $1$ m they also measured a *chlorophyll index*, a number that rises as the amount of algae in the water rises. Table 7 gives the measurements.\n\n**Researcher 1.** The oxygen loss is caused by the lake ceasing to mix. From May onward the sun warms the top few metres while the deep water stays cold. Warm water floats on cold, so by midsummer the two layers no longer exchange water, and the deep layer is sealed off from the air. Bacteria in the mud keep consuming oxygen, and nothing replaces it, so DO at $9$ m falls steadily. DO at $1$ m stays high because the surface is still in contact with the air. In autumn the surface cools until the two layers are close in temperature, the lake mixes from top to bottom, and deep DO recovers. On this account the amount of algae is a side issue: any lake that stays layered through a warm summer will lose deep oxygen.\n\n**Researcher 2.** The oxygen loss is caused by the amount of dead material reaching the bottom. Algae multiply rapidly in early summer, die, and sink. Bacteria consume oxygen as they decay this material, and the more algae there were, the more oxygen is consumed. That is why deep DO falls sharply after the algae are most abundant, not before. Layering alone consumes no oxygen; it merely fails to replace it. If a summer passed with little algal growth, deep DO would remain high even though the lake was layered exactly as usual.",
+  "data": {
+    "columns": [
+      { "key": "month", "label": "Month" },
+      { "key": "temp1", "label": "Temperature at 1 m (°C)" },
+      { "key": "temp9", "label": "Temperature at 9 m (°C)" },
+      { "key": "do1", "label": "DO at 1 m (mg/L)" },
+      { "key": "do9", "label": "DO at 9 m (mg/L)" },
+      { "key": "chl", "label": "Chlorophyll index at 1 m" }
+    ],
+    "rows": [
+      { "month": "May", "temp1": 14.0, "temp9": 11.5, "do1": 9.8, "do9": 9.1, "chl": 6 },
+      { "month": "June", "temp1": 20.5, "temp9": 12.0, "do1": 8.9, "do9": 6.4, "chl": 11 },
+      { "month": "July", "temp1": 24.0, "temp9": 12.2, "do1": 8.4, "do9": 3.2, "chl": 28 },
+      { "month": "August", "temp1": 23.5, "temp9": 12.4, "do1": 8.3, "do9": 1.1, "chl": 19 },
+      { "month": "September", "temp1": 17.0, "temp9": 13.8, "do1": 9.1, "do9": 5.6, "chl": 8 },
+      { "month": "October", "temp1": 11.5, "temp9": 11.4, "do1": 10.2, "do9": 9.6, "chl": 5 }
+    ],
+    "caption": "Table 7. Monthly measurements in Bell Lake at depths of 1 m and 9 m: water temperature, dissolved oxygen (DO) and, at 1 m only, the chlorophyll index.",
+    "chart": {
+      "type": "line",
+      "xKey": "month",
+      "yKeys": ["do1", "do9"],
+      "xLabel": "Month",
+      "yLabel": "Dissolved oxygen (mg/L)"
+    }
+  },
+  "accessibilityText": "A conflicting viewpoints passage about Bell Lake, a freshwater lake 10 metres deep, followed by two researchers' explanations and Table 7. Researcher 1 holds that warm surface water floating on cold deep water seals the deep layer off from the air, so bacteria there use up oxygen that is never replaced, and that the amount of algae is a side issue. Researcher 2 holds that algae multiply, die, sink and are decayed by bacteria that consume oxygen, so the amount of algae controls the oxygen loss, and that a summer with little algal growth would leave deep oxygen high even if the lake were layered as usual. Table 7 has six rows and six columns: month, temperature at 1 metre, temperature at 9 metres, dissolved oxygen at 1 metre, dissolved oxygen at 9 metres, and chlorophyll index at 1 metre. May: 14.0 and 11.5 degrees Celsius; 9.8 and 9.1 milligrams per litre; chlorophyll index 6. June: 20.5 and 12.0 degrees; 8.9 and 6.4 milligrams per litre; index 11. July: 24.0 and 12.2 degrees; 8.4 and 3.2 milligrams per litre; index 28. August: 23.5 and 12.4 degrees; 8.3 and 1.1 milligrams per litre; index 19. September: 17.0 and 13.8 degrees; 9.1 and 5.6 milligrams per litre; index 8. October: 11.5 and 11.4 degrees; 10.2 and 9.6 milligrams per litre; index 5. Oxygen at 1 metre stays between 8.3 and 10.2 all year, while oxygen at 9 metres falls to 1.1 in August and recovers by October. The accompanying line graph plots the two dissolved oxygen columns against month and contains no information beyond the table.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original conflicting-viewpoints passage with an invented data set. Bell Lake, the two researchers and every figure in Table 7 are fictional. Thermal layering and the decay of algae are standard textbook ideas, but no wording, argument or number is taken from any published source, and nothing here is drawn from or modelled on any ACT-published Science passage."
+  },
+  "rightsStatus": "original-owned",
+  "state": "in_review"
+}

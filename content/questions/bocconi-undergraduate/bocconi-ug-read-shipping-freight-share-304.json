@@ -1,0 +1,72 @@
+{
+  "id": "bocconi-ug-read-shipping-freight-share-304",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-reading-comprehension",
+  "skillSlug": "reading-explicit-information",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "According to the passage, freight typically accounts for what share of the retail price of most manufactured goods?",
+  "instructionsMd": "Answer on the basis of the passage only.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "A low single-digit percentage"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "About one tenth"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "About four fifths"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "About one fifth"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The third paragraph states it directly: \"Freight is a modest share of the retail price of most manufactured goods, typically low single digits\". That is a low single-digit percentage.\n\n**Why the passage bothers to say it.** The sentence continues: \"so even a tripling of container rates moves shelf prices by much less than the rate chart implies\". If freight is 3 per cent of the price, tripling the freight rate takes it to 9 per cent, a rise of about 6 percentage points in the price — dramatic on the rate chart, small on the shelf. The share is the reason the two look so different.\n\n**How to check the answer.** The passage contains three other proportions, and each is attached to a different quantity. Match each figure to its own noun before choosing:\n\n- four fifths — the share of world merchandise trade **by volume** that moves by sea;\n- a fifth — the share of **delivered cost** that transport can reach for bulky, low-value items;\n- low single digits — the share of the **retail price** of most manufactured goods, which is what was asked.\n\n**Technique.** On explicit-detail questions the wrong options are usually real figures from the passage attached to the wrong quantity. Reading the stem for the exact noun — here \"retail price of most manufactured goods\" — and then searching for that noun, rather than for a number, is faster and safer than scanning for percentages.",
+  "distractorRationale": {
+    "b": "One tenth appears nowhere in the passage. It is the answer of a reader who remembers only that the share is small and rounds \"low single digits\" up to the nearest familiar fraction, which more than triples the figure the passage gives.",
+    "d": "A fifth is in the passage, but it is the share that transport can reach of the **delivered cost of bulky, low-value items**, which the paragraph presents as the exception to the rule. The stem asks about most manufactured goods, so this attaches the exception's figure to the general case.",
+    "c": "Four fifths comes from the first sentence of the passage, where it is the share of world merchandise **trade by volume** that moves by sea. It is a statistic about how goods travel, not about what transport costs, and it is not a share of any price."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": {
+    "id": "bocconi-ug-stim-container-shipping-007",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying prose passage on container shipping. It asks what share of the retail price of most manufactured goods is accounted for by freight. The four options are proportions listed from smallest to largest: a low single-digit percentage, about one tenth, about one fifth, about four fifths.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original item written against the existing original passage bocconi-ug-stim-container-shipping-007. Two of the three distractors are genuine figures from the passage attached to the wrong quantity, which is the error this item is designed to catch. Options are ordered from smallest proportion to largest, as a numeric choice set would be."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's uniqueness check: the passage states 'typically low single digits' for exactly the quantity named in the stem, so A alone is defensible. One fifth and four fifths are stated in the passage but for the delivered cost of bulky low-value items and for the share of trade by volume moving by sea respectively; one tenth is stated nowhere. Awaiting blind independent solve before publication. Option-letter references in the explanation were rewritten to name choice content; the key was re-derived independently and is unchanged. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "passage-container-shipping",
+    "explicit-detail"
+  ]
+}

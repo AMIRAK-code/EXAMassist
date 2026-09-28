@@ -1,0 +1,73 @@
+{
+  "id": "bocconi-ug-read-congestion-revenue-301",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-reading-comprehension",
+  "skillSlug": "reading-economic-data-passages",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "According to the passage, how much of the first full year's charge revenue went to something other than the tram extensions?",
+  "instructionsMd": "Answer on the basis of the passage only. No calculator.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "61 million euros"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "17 million euros"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "8 million euros"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "44 million euros"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The second paragraph gives both figures you need: \"of the 61 million euros collected in the first full year, 44 million went to extending two tram lines and the remainder funded an exemption scheme\".\n\nThe word **remainder** is the instruction. Everything collected either went to the trams or did not, so subtract:\n\n$$61 - 44 = 17$$\n\nSo 17 million euros went elsewhere, to the residents' exemption scheme.\n\n**How to check the answer.** Add the two parts back and see whether they rebuild the total: $44 + 17 = 61$. They do, and the passage names only two uses of the money, so nothing is left over and nothing is counted twice.\n\n**Technique.** Passages of this kind mix several numbers of different kinds — a price per day, a percentage change, two speeds, a population, a year. Before subtracting, check that the two numbers you are combining carry the same unit. Here both are millions of euros of annual revenue; the 8 in the passage is euros per day per vehicle and belongs to a different quantity entirely.",
+  "distractorRationale": {
+    "c": "This lifts the 8 from \"a daily charge of 8 euros for entering its inner ring\". That is a price paid per vehicle per day, not a sum of annual revenue, and the passage never gives it in millions. It is the trap of grabbing the first number in the passage that has no obvious job in the calculation.",
+    "d": "44 million is the amount that DID go to the tram extensions. The question asks for the part that went to something other than the trams, so this answers the opposite question and skips the subtraction entirely.",
+    "a": "61 million is the whole of the revenue collected in the first full year, before any of it is allocated. Choosing it treats the total as though none of it had been spent on the trams, which contradicts the same sentence."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": {
+    "id": "bocconi-ug-stim-congestion-charge-006",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying prose passage on Valdera's congestion charge. It asks how much of the first full year's revenue was spent on something other than the tram extensions. The four options are amounts of money in millions of euros, listed in increasing order: 8, 17, 44, 61.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original item written against the existing original passage bocconi-ug-stim-congestion-charge-006. Every wrong option is a number that actually appears in the passage, so the item rewards reading the sentence rather than recognising a figure. Options are ordered ascending as the real exam does with numeric choice sets."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's uniqueness check: the passage allocates the 61 million to exactly two uses, 44 million and a remainder, so the remainder is fixed at 17 million and no other option can be defended. 8 is a daily charge per vehicle, 44 is the tram share and 61 is the undivided total. Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "passage-congestion-charge",
+    "explicit-detail",
+    "arithmetic-in-prose"
+  ]
+}

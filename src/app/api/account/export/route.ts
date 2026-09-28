@@ -130,6 +130,19 @@ export async function GET() {
     const planSessionRows = db
       .prepare('SELECT * FROM plan_sessions WHERE user_id = ? ORDER BY plan_id, scheduled_on, sequence')
       .all(user.id) as Array<Record<string, string | number | null>>;
+    // AI after-test guides are personal and belong in the export. Shared hints
+    // and explanations are not stored against anyone, so they are not here.
+    const tutorDebriefs = db
+      .prepare(
+        `SELECT id, attempt_id, model, body_md, created_at, withdrawn_at
+         FROM tutor_responses WHERE user_id = ? AND kind = 'debrief' ORDER BY created_at`,
+      )
+      .all(user.id);
+    const tutorUsage = db
+      .prepare(
+        `SELECT kind, cache_hit, outcome, created_at FROM tutor_usage WHERE user_id = ? ORDER BY created_at`,
+      )
+      .all(user.id);
 
     const partsByAttempt = new Map<string, AttemptPartRow[]>();
     for (const part of parts) {
@@ -311,6 +324,13 @@ export async function GET() {
             statusAt: row.status_at,
           })),
       })),
+      aiTutor: {
+        note:
+          'AI after-test guides generated for you, and a log of your AI tutor requests. Shared hints and ' +
+          'explanations are about questions rather than people and are not stored against your account.',
+        debriefs: tutorDebriefs,
+        requests: tutorUsage,
+      },
     };
 
     const filename = `examer-export-${new Date().toISOString().slice(0, 10)}.json`;

@@ -3,6 +3,7 @@ import { getDb } from '@/lib/db';
 import { assertSameOrigin, fail, ok, readJson, toErrorResponse } from '@/lib/api/http';
 import { requireRole } from '@/lib/auth/session';
 import type { ContentFlagRow } from '@/lib/db/rows';
+import { withdrawResponse } from '@/lib/tutor/service';
 
 /**
  * Resolve a content report.
@@ -56,6 +57,11 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
 
       if (info.changes === 0) return false;
 
+      // An accepted report about an AI response withdraws that response, so
+      // no other learner is shown the text an editor has agreed is wrong.
+      const tutorResponseId = (flag as ContentFlagRow & { tutor_response_id?: string | null }).tutor_response_id ?? null;
+      const withdrew = body.status === 'accepted' && tutorResponseId ? withdrawResponse(db, tutorResponseId, new Date(now)) : false;
+
       db.prepare(
         `INSERT INTO audit_log (actor_user_id, action, entity_type, entity_id, payload_json, created_at)
          VALUES (?, ?, ?, ?, ?, ?)`,
@@ -69,6 +75,7 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
           questionVersionId: flag.question_version_id,
           reason: flag.reason,
           resolution: body.resolution,
+          ...(withdrew ? { withdrewTutorResponse: tutorResponseId } : {}),
         }),
         now,
       );

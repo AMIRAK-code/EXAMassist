@@ -58,6 +58,7 @@ const REASON_LABEL: Record<string, string> = {
   typo: 'Typo or formatting',
   explanation: 'Explanation is unclear or wrong',
   offensive: 'Inappropriate content',
+  ai_response: 'AI tutor response is wrong or unhelpful',
   other: 'Other',
 };
 
@@ -81,6 +82,11 @@ interface FlagListRow {
   difficulty: string | null;
   versionNumber: number | null;
   isCurrentVersion: number | null;
+  tutorResponseId: string | null;
+  aiKind: string | null;
+  aiModel: string | null;
+  aiBodyMd: string | null;
+  aiWithdrawnAt: string | null;
 }
 
 function timestamp(value: string | null): string {
@@ -139,8 +145,14 @@ export default async function AdminFlagsPage({
          COALESCE(fv.difficulty, cv.difficulty)       AS difficulty,
          COALESCE(fv.version, cv.version)             AS versionNumber,
          CASE WHEN fv.id IS NULL OR fv.version = q.current_version THEN 1 ELSE 0 END
-                                                      AS isCurrentVersion
+                                                      AS isCurrentVersion,
+         f.tutor_response_id   AS tutorResponseId,
+         tr.kind               AS aiKind,
+         tr.model              AS aiModel,
+         tr.body_md            AS aiBodyMd,
+         tr.withdrawn_at       AS aiWithdrawnAt
        FROM content_flags f
+       LEFT JOIN tutor_responses tr ON tr.id = f.tutor_response_id
        LEFT JOIN questions q ON q.id = f.question_id
        LEFT JOIN question_versions fv ON fv.id = f.question_version_id
        LEFT JOIN question_versions cv
@@ -279,9 +291,37 @@ export default async function AdminFlagsPage({
                     </p>
                   )}
 
+                  {row.tutorResponseId ? (
+                    <div className="mt-5 rounded-card border border-dashed border-accent-line bg-surface p-4">
+                      <h4 className="text-sm font-semibold uppercase tracking-wide text-ink-subtle">
+                        The AI response reported
+                      </h4>
+                      <p className="mt-2 text-sm text-ink-muted">
+                        {row.aiKind ?? 'response'} · {row.aiModel ?? 'unknown model'} ·{' '}
+                        <code>{row.tutorResponseId.slice(0, 8)}</code>
+                        {row.aiWithdrawnAt ? ` · withdrawn ${timestamp(row.aiWithdrawnAt)}` : ' · still being served'}
+                      </p>
+                      {row.aiBodyMd ? (
+                        // Shown as plain text: this is untrusted model output, and the
+                        // editor needs to see exactly what the learner saw.
+                        <pre className="mt-3 whitespace-pre-wrap break-words font-sans text-sm leading-relaxed">
+                          {row.aiBodyMd}
+                        </pre>
+                      ) : (
+                        <p className="mt-3 text-sm text-negative">The response text is no longer stored.</p>
+                      )}
+                      {open ? (
+                        <p className="mt-3 text-xs text-ink-subtle">
+                          Accepting this report withdraws the response: it will not be served again, and the next
+                          learner to ask gets a newly generated one.
+                        </p>
+                      ) : null}
+                    </div>
+                  ) : null}
+
                   <div className="mt-5 rounded-card border border-line bg-surface-sunken p-4">
                     <h4 className="text-sm font-semibold uppercase tracking-wide text-ink-subtle">
-                      The question reported
+                      {row.tutorResponseId ? 'The question it was about' : 'The question reported'}
                     </h4>
                     <p className="mt-2 text-sm text-ink-muted">
                       <code>{row.questionId}</code>

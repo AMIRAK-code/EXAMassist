@@ -1,0 +1,72 @@
+{
+  "id": "bocconi-law-math-units-floor-tiles-301",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-mathematics",
+  "skillSlug": "law-math-units-conversion",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The floor of a courtroom is a rectangle $12$ m long and $8$ m wide. It is to be covered completely with square tiles of side $20$ cm, laid edge to edge with no gaps and with no tile cut. How many tiles are needed?",
+  "instructionsMd": "No calculator is permitted.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "24"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "240"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "480"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "2400"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The safest route avoids areas altogether: put both lengths into the **same unit** and count tiles along each side.\n\n**Convert the room to centimetres.** $12$ m $= 1200$ cm and $8$ m $= 800$ cm.\n\n**Count along each side.**\n\n$$\\frac{1200}{20} = 60 \\text{ tiles along the length}, \\qquad \\frac{800}{20} = 40 \\text{ tiles along the width}$$\n\nBoth divisions come out whole, which confirms that no tile has to be cut.\n\n**Multiply.**\n\n$$60 \\times 40 = 2400 \\text{ tiles}$$\n\n**How to check — the area route.** The room is $12 \\times 8 = 96$ m². One tile is $0.2$ m by $0.2$ m, so its area is $0.2 \\times 0.2 = 0.04$ m². Then\n\n$$\\frac{96}{0.04} = \\frac{9600}{4} = 2400$$\n\nThe two independent methods agree. If you prefer centimetres throughout, remember the conversion factor for **areas** is squared: $1 \\text{ m}^2 = 100 \\times 100 = 10\\,000 \\text{ cm}^2$, so $96$ m² $= 960\\,000$ cm², and $960\\,000 \\div 400 = 2400$.",
+  "distractorRationale": {
+    "a": "This comes from converting the area with the length factor: treating $96$ m² as $96 \\times 100 = 9600$ cm² and dividing by the tile's $400$ cm². Areas scale with the square of the length factor, so $1$ m² is $10\\,000$ cm², not $100$ cm², and the count is 100 times larger.",
+    "b": "This comes from taking the tile's area as $0.2 + 0.2 = 0.4$ m², adding the sides instead of multiplying them, and then computing $96 \\div 0.4 = 240$. A $20$ cm square tile covers $0.04$ m², a tenth of that.",
+    "c": "This comes from dividing the room's area by the tile's *side* rather than by its area: $96 \\div 0.2 = 480$. That mixes a quantity in m² with a quantity in m, so the result is not a count of tiles at all."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A rectangular courtroom floor measures 12 metres by 8 metres. It is to be covered with square tiles whose side is 20 centimetres, laid edge to edge with no gaps and no tile cut. The question asks how many tiles are needed. The four answer options are the whole numbers 24, 240, 480 and 2400.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original item on the 'units of measure and conversions between them' entry of the published Bocconi Law mathematics syllabus. Dimensions were chosen so that both side counts are whole numbers and every step is a division by 2 or by a power of ten, keeping the arithmetic hand-sized as no calculator is permitted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's solve: 1200 cm / 20 cm = 60 and 800 cm / 20 cm = 40, so 60 x 40 = 2400 tiles; cross-checked by area, 96 m2 / 0.04 m2 = 2400. Uniqueness checked: the three distractors are the values produced by the squared-conversion-factor error (24), by adding the tile's sides instead of multiplying them (240) and by dividing an area by a length (480); none of them is a correct tile count under any reading of the stem. Awaiting a blind independent solve before publication."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "mathematics",
+    "units-of-measure",
+    "conversion",
+    "area",
+    "no-calculator"
+  ]
+}

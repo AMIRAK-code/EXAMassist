@@ -1,0 +1,73 @@
+{
+  "id": "bocconi-ug-num-broadband-complaint-total-307",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-numerical-reasoning",
+  "skillSlug": "numerical-reasoning-data-analysis",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which of these provinces received the largest total number of complaints during 2025?",
+  "instructionsMd": "Use only the figures in the table. No calculator.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Dora"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Este"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Cima"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Alba"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The last column is a **rate**, not a count: complaints for every 10,000 **connected** households. To turn a rate into a total, multiply it by how many lots of 10,000 connected households the province has.\n\nConnected households are given in thousands, so a province with $c$ thousand connected households contains $\\frac{c}{10}$ lots of 10,000. The total is therefore\n\n$$\\text{complaints} = \\frac{c}{10} \\times r$$\n\nwhere $r$ is the rate. Province by province:\n\n$$\\text{Alba} = \\frac{320}{10} \\times 35 = 32 \\times 35 = 1120$$\n\n$$\\text{Cima} = \\frac{270}{10} \\times 20 = 27 \\times 20 = 540$$\n\n$$\\text{Dora} = \\frac{153}{10} \\times 60 = 15.3 \\times 60 = 918$$\n\n$$\\text{Este} = \\frac{160}{10} \\times 45 = 16 \\times 45 = 720$$\n\nAlba's 1,120 is the largest, so **Alba** is the answer.\n\n**Doing the multiplications by hand.** Split each one:\n\n- $32 \\times 35 = 32 \\times 30 + 32 \\times 5 = 960 + 160 = 1120$.\n- $15.3 \\times 60 = 15.3 \\times 6 \\times 10 = 91.8 \\times 10 = 918$.\n- $16 \\times 45 = 16 \\times 40 + 16 \\times 5 = 640 + 80 = 720$.\n\n**How to check the answer.** Compare the two plausible leaders directly instead of trusting four separate products. Alba has about twice Dora's connected households ($320$ against $153$) and a little over half Dora's rate ($35$ against $60$). Doubling and then more than halving leaves Alba ahead, which agrees with $1120 > 918$. If a rough comparison and the arithmetic disagree, one of them is wrong.\n\n**Why this item is hard.** No column of the table can be read off. The province with the worst rate is not the one with the most complaints, and the province with the most connected households is. The answer only appears once the rate and the exposure are combined.",
+  "distractorRationale": {
+    "c": "Cima has the lowest complaint rate in the table, 20 per 10,000, and also the fewest complaints in total, 540. It is chosen by reading the wrong end of the complaints column, or by assuming the province with the most households must generate the most complaints regardless of the rate.",
+    "a": "Dora has by far the highest complaint rate, 60 per 10,000, so it is the answer given by reading the rate column alone and never multiplying. Dora is also the smallest province, with only 153 thousand connected households, so the high rate applies to a small base: $15.3 \\times 60 = 918$, short of Alba's 1,120.",
+    "b": "Este is the answer produced by multiplying each rate by the province's TOTAL households instead of its CONNECTED households. That gives Alba $40 \\times 35 = 1400$, Cima $60 \\times 20 = 1200$, Dora $18 \\times 60 = 1080$ and Este $32 \\times 45 = 1440$, which makes Este the apparent leader. But the column is defined per 10,000 connected households, so Este's correct multiplier is its 160 thousand connected households, giving 720."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "bocconi-ug-stim-broadband-provinces-008",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying table of fibre broadband in five provinces. It asks which province received the largest total number of complaints during 2025, given that the table reports complaints as a rate per 10,000 connected households. The four answer options are province names: Alba, Cima, Dora, Este.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original item written against the existing original table bocconi-ug-stim-broadband-provinces-008. The table's figures were already chosen so every rate-times-base product is a whole number. The Este distractor is the exact answer produced by using the households column rather than the connected column as the base, which is the single most likely error on a per-10,000 rate."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's uniqueness check: complaint totals across all five provinces are Alba 1,120, Borgo 720, Cima 540, Dora 918, Este 720. Alba is the unique maximum; the only tie in the table is Borgo with Este at 720 and neither is the key. Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "table-broadband-provinces",
+    "rate-versus-total",
+    "hand-calculation"
+  ]
+}

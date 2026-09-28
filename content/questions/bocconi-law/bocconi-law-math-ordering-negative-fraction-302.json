@@ -1,0 +1,73 @@
+{
+  "id": "bocconi-law-math-ordering-negative-fraction-302",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-mathematics",
+  "skillSlug": "law-math-real-number-ordering",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Let $x$ be a real number with $-1 < x < 0$. Which of the following chains of inequalities holds for **every** such $x$?",
+  "instructionsMd": "Exactly one chain is correct for the whole interval, not merely for one convenient value of $x$.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\frac{1}{x} < x < x^3 < x^2$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\frac{1}{x} < x^3 < x < x^2$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$x^3 < \\frac{1}{x} < x < x^2$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$x < \\frac{1}{x} < x^3 < x^2$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Settle the four quantities one comparison at a time, using only the two facts that define the interval: $x$ is **negative** and $|x| < 1$.\n\n**$x^2$ is the largest.** Squaring a non-zero real gives a positive number, while $x$, $x^3$ and $\\frac{1}{x}$ are all negative (an odd power of a negative number is negative, and so is its reciprocal). So $x^2$ sits above all three.\n\n**$x^3$ beats $x$.** Write $x^3 = x \\cdot x^2$. Here $0 < x^2 < 1$, so multiplying the negative number $x$ by $x^2$ shrinks its magnitude: $|x^3| < |x|$. Two negatives compare by magnitude in reverse, so $x < x^3$.\n\n**$\\frac{1}{x}$ is the smallest.** Since $0 < |x| < 1$, the reciprocal has magnitude $\\left|\\frac{1}{x}\\right| > 1 > |x|$, and it is negative, so it lies further to the left than $x$: $\\frac{1}{x} < x$.\n\nPutting the three results together:\n\n$$\\frac{1}{x} < x < x^3 < x^2$$\n\n**How to check.** Substitute one value from the interval and, separately, ask whether that value is representative. Take $x = -\\frac{1}{2}$:\n\n$$\\frac{1}{x} = -2, \\qquad x = -\\frac{1}{2}, \\qquad x^3 = -\\frac{1}{8}, \\qquad x^2 = \\frac{1}{4}$$\n\nwhich is indeed $-2 < -\\frac{1}{2} < -\\frac{1}{8} < \\frac{1}{4}$, and it kills the other three chains at once. The chain is stable across the interval because none of the three arguments above used the particular value $\\tfrac12$ — only the sign of $x$ and the fact that $|x| < 1$. Testing a second value such as $x = -\\frac{9}{10}$, which is close to the left-hand end, gives $-\\frac{10}{9} < -\\frac{9}{10} < -\\frac{729}{1000} < \\frac{81}{100}$ and confirms it.",
+  "distractorRationale": {
+    "d": "This places the reciprocal between $x$ and $x^3$, which comes from expecting a small number to have a small reciprocal. The opposite holds: when $0 < |x| < 1$ the reciprocal has magnitude greater than 1, so for negative $x$ it lies below $x$, not above. At $x = -\\frac{1}{2}$ the chain claims $-\\frac{1}{2} < -2$, which is false.",
+    "b": "This swaps $x$ and $x^3$. It is the correct order for $x < -1$, where cubing pushes a negative number further from zero — which is presumably where the habit comes from — but inside $-1 < x < 0$ the factor $x^2$ is less than 1, so cubing moves $x$ towards zero and $x^3 > x$. At $x = -\\frac{1}{2}$ the chain claims $-\\frac{1}{8} < -\\frac{1}{2}$, which is false.",
+    "c": "This puts $x^3$ at the bottom of the chain, treating the cube as the most extreme negative quantity. Again that is the behaviour outside the interval, for $x < -1$; on $-1 < x < 0$ the cube is the negative quantity *closest* to zero, and the reciprocal is the one furthest from it. At $x = -\\frac{1}{2}$ the chain claims $-\\frac{1}{8} < -2$, which is false."
+  },
+  "estimatedSeconds": 115,
+  "stimulusRef": null,
+  "accessibilityText": "A real number x satisfies minus one is less than x, and x is less than zero. The question asks which chain of inequalities among four quantities holds for every such x. The four quantities are: one over x; x itself; x cubed; and x squared. Each answer option arranges those four quantities in a different increasing order.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original item on the 'ordering properties of the real numbers with respect to the fundamental operations' entry of the published Bocconi Law mathematics syllabus. No calculation is needed: the item turns entirely on the sign of x and on the fact that the absolute value of x is less than 1, so it is solvable without a calculator."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's solve: on the open interval from -1 to 0, x squared is the only positive quantity and is therefore the largest; x cubed equals x times x squared with 0 < x squared < 1, so x cubed lies between x and 0; and the reciprocal has absolute value above 1 and is negative, so it is the smallest. Order: 1/x < x < x^3 < x^2. Uniqueness checked: options B, C and D are each refuted by the single test value x = -1/2 (they assert -1/2 < -2, -1/8 < -1/2 and -1/8 < -2 respectively), and the argument for the key uses only the sign of x and |x| < 1, so it holds on the whole interval rather than at one point. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "mathematics",
+    "ordering-of-reals",
+    "inequalities",
+    "powers",
+    "reciprocals",
+    "no-calculator"
+  ]
+}

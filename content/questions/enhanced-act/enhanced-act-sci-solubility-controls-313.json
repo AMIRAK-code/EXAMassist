@@ -1,0 +1,73 @@
+{
+  "id": "enhanced-act-sci-solubility-controls-313",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "science",
+  "domainSlug": "act-science-scientific-investigation",
+  "skillSlug": "act-sci-sin-tools-procedures-design",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "In every trial the student used distilled water, stirred at the same fixed rate, and stopped adding salt only when a portion failed to dissolve after 5 minutes. Keeping these three features the same in every trial was done mainly to:",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "remove the need to measure the mass of water used in each trial."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "make it likely that any difference in the mass dissolved was due to the water temperature or to which salt was used."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "allow all five temperatures to be tested in a single beaker at the same time."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "increase the total mass of salt that could dissolve at each temperature."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "An experiment can only attribute a difference in its results to the things it deliberately changed if everything else is held fixed. Here the student deliberately changed exactly two things: the **water temperature** and the **identity of the salt**. Everything named in the stem is one of the things held constant:\n\n- *distilled water* — tap water carries dissolved minerals that vary from day to day and could change how much salt dissolves;\n- *the same stirring rate* — stirring affects how quickly a portion dissolves, so a faster stir in one trial could make the student stop adding salt too late;\n- *the same 5-minute rule* — this fixes what counts as \"saturated\", so the endpoint means the same thing in every trial.\n\nWith those three fixed, a difference between two numbers in Table 4 can be traced back to temperature or to the salt, which is exactly what the study set out to compare.\n\nCheck the answer by imagining the control removed. Suppose the student had stirred the $70\\;^{\\circ}\\text{C}$ trials harder than the $10\\;^{\\circ}\\text{C}$ trials. Salt P's rise from $21.0$ g to $138.0$ g would then have two possible causes — the heat and the stirring — and the table could not tell them apart. That is precisely the confusion the controls prevent.",
+  "distractorRationale": {
+    "d": "Confuses the rate of dissolving with the amount that can dissolve. Stirring makes a portion dissolve faster, but the saturation mass is a property of the salt and the temperature; stirring harder does not let a saturated solution hold more. In any case a feature held *constant* across trials cannot explain differences between them.",
+    "c": "Contradicts the procedure. The study used a water bath to hold each beaker at one of five temperatures; a single beaker cannot be at five temperatures at once, and Table 4 reports a separate saturation mass for each temperature.",
+    "a": "Contradicts the procedure and misunderstands the units. The student weighed out $100.0$ g of water for every trial, and the whole table is reported *per $100.0$ g of water* — without that measurement the numbers could not be compared at all."
+  },
+  "estimatedSeconds": 50,
+  "stimulusRef": {
+    "id": "enhanced-act-stim-sci-solubility-300",
+    "version": 1
+  },
+  "accessibilityText": "The question concerns the procedure described before Table 4, not the numbers in it. In every trial the student weighed out 100.0 grams of distilled water, held it at one of five temperatures in a water bath, added salt in 0.5 gram portions while stirring at a fixed rate, and stopped when a portion failed to dissolve after 5 minutes of stirring.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank against an original experiment description. Not derived from, and not a paraphrase of, any ACT-published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "enhanced-act-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved the item and then tried to defend each distractor. Only D states the function of a control variable; A is refuted both by the distinction between rate and saturation and by the fact that a constant cannot explain a difference, and B and C each contradict an explicit sentence of the procedure. Exactly one option survives. Awaiting an independent blind solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "science",
+    "experimental-design",
+    "controls"
+  ]
+}

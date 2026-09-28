@@ -11,6 +11,8 @@ import { LearningNotice } from '@/components/learning-notice';
 import { UnsentAnswersNotice } from '@/components/player/unsent-answers-notice';
 import { HowToRead, NextSteps, QuestionList, Verdict, WhereMarksWentLost } from '@/components/results/results-sections';
 import { Alert, Breadcrumbs, Container, PageHeader } from '@/components/ui';
+import { DebriefTutor } from '@/components/tutor/tutor-panel';
+import { tutorEnabled } from '@/lib/tutor/config';
 
 /**
  * A finished session's results: the outcome, where marks were lost (with the
@@ -91,6 +93,12 @@ export default async function ResultsPage({
       <Verdict summary={summary} />
       <WhereMarksWentLost summary={summary} />
       <NextSteps summary={summary} />
+      {/* Optional AI after-test guide: only when the operator has switched the tutor on. */}
+      {tutorEnabled() ? (
+        <section aria-label="After-test guide" className="mb-10">
+          <DebriefTutor attemptId={id} />
+        </section>
+      ) : null}
       <QuestionList summary={summary} />
       <HowToRead summary={summary} />
     </Container>

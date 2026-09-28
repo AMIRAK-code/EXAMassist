@@ -147,6 +147,30 @@ const CHOICE_RESPONSE_TYPES = new Set(['single_select', 'multi_select']);
 const FIXED_CHOICE_RESPONSE_TYPES = new Set(['quantitative_comparison', 'data_sufficiency']);
 
 /**
+ * Every option letter a piece of prose refers to, in any of the forms authors
+ * actually use: "(C)", "option C", "choice C", "answer C", "**C**", "is C.".
+ * Returned upper-case, deduplicated, in order of first appearance. Shared by
+ * the validator and by `normalise-option-order.ts`, which refuses to reorder
+ * choices that prose refers to by position.
+ */
+export function citedOptionLetters(text: string): string[] {
+  const patterns = [
+    /(?<![\w$])\(([A-E])\)/g,
+    /\b(?:[Oo]ptions?|[Cc]hoices?|[Aa]nswers?)\s+\*{0,2}\(?([A-E])\)?(?![\w'’])/g,
+    /\*\*\(?([A-E])\)?\*\*/g,
+    /\b(?:is|are)\s+([A-E])(?=[.,;:])/g,
+  ];
+  const found: Array<{ index: number; letter: string }> = [];
+  for (const pattern of patterns) {
+    for (const match of text.matchAll(pattern)) {
+      found.push({ index: match.index ?? 0, letter: match[1].toUpperCase() });
+    }
+  }
+  found.sort((a, b) => a.index - b.index);
+  return [...new Set(found.map((f) => f.letter))];
+}
+
+/**
  * Normalises option text so numerically equal choices collide as duplicates:
  * "0.50", ".5" and "1/2" are the same answer offered twice.
  *
@@ -352,6 +376,89 @@ export function validateQuestion(
 
   if (question.stimulusRef && context.stimulusIds && !context.stimulusIds.has(question.stimulusRef.id)) {
     err('missing-stimulus', `Stimulus "${question.stimulusRef.id}" does not exist.`);
+  }
+
+  // Option letters cited in prose.
+  //
+  // `normalise-option-order.ts` renumbers choices to remove answer-position
+  // bias and remaps the key, the distractor notes and the solve record with
+  // them — but it cannot rewrite English. An explanation that says "the answer
+  // is (C)" becomes a lie the moment the choices move, and the learner sees the
+  // contradiction before we do. Prose should name what a choice *says*, not
+  // where it sits. These rules make a desynchronised letter a build failure
+  // instead of a support ticket.
+  // Quantitative comparison and data sufficiency are exempt: their letters
+  // carry fixed meanings set by the exam, and they are never reordered.
+  if (question.options.length > 1 && !FIXED_CHOICE_RESPONSE_TYPES.has(question.responseType)) {
+    const labelOf = new Map(question.options.map((o) => [o.id, o.label] as const));
+    const knownLabels = new Set(question.options.map((o) => o.label.toUpperCase()));
+    const keyLabel =
+      question.answerKey.type === 'single_select'
+        ? labelOf.get(question.answerKey.optionId)?.toUpperCase()
+        : undefined;
+
+    const citedLetters = (text: string): string[] =>
+      citedOptionLetters(text).filter((letter) => knownLabels.has(letter));
+
+    // A sentence that asserts an answer: "the answer is (C)", "that is (C)".
+    if (keyLabel) {
+      const asserted = [
+        ...new Set(
+          [...question.explanationMd.matchAll(/\b(?:[Ii]s|[Aa]re|[Aa]nswer|[Ss]o|[Tt]herefore|[Hh]ence|[Ll]eaves|[Gg]ives)\s+(?:precisely\s+|exactly\s+|just\s+|only\s+)?(?:[Oo]ption\s+|[Cc]hoice\s+)?(?:\*\*)?\(?([A-E])\)?(?:\*\*)?(?=[\s.,;:)]|$)/g)]
+            .map((m) => m[1].toUpperCase())
+            .filter((letter) => knownLabels.has(letter)),
+        ),
+      ].filter((letter) => letter !== keyLabel);
+      if (asserted.length > 0) {
+        err(
+          'stale-option-letter',
+          `The explanation asserts the answer is (${asserted.join(') or (')}) but the key is (${keyLabel}). ` +
+            'Option letters in prose go stale whenever choices are reordered; describe the choice instead.',
+        );
+      }
+    }
+
+    // A distractor note keyed to one option that names a different one.
+    for (const [optionId, note] of Object.entries(question.distractorRationale ?? {})) {
+      const own = labelOf.get(optionId)?.toUpperCase();
+      if (!own) continue;
+      const cited = citedLetters(String(note));
+      if (cited.length === 1 && cited[0] !== own) {
+        err(
+          'stale-option-letter',
+          `The note for option ${optionId} (${own}) discusses (${cited[0]}). ` +
+            'Distractor notes are keyed to an option id; a letter that disagrees with it means the notes were remapped and the prose was not.',
+        );
+      }
+    }
+
+    if (question.accessibilityText && citedLetters(question.accessibilityText).length > 0 && question.state !== 'published') {
+      warn(
+        'accessibility-cites-letters',
+        'The screen-reader description names choices by letter, so option order cannot be normalised. List what each choice says without its letter; the player already announces the letters.',
+      );
+    }
+
+    const prose = [question.explanationMd, ...Object.values(question.distractorRationale ?? {}).map(String)].join(' ');
+    if (citedLetters(prose).length > 0) {
+      warn(
+        'explanation-cites-letters',
+        'The explanation refers to choices by letter. Letters move when options are reordered; naming what the choice says survives that.',
+      );
+    }
+
+    // The same fault spelled out: "the first choice", "eliminates the fourth".
+    // A position written as a word moves with the choices just as a letter does.
+    if (
+      /\b(?:first|second|third|fourth|fifth|last)\s+(?:option|choice)s?\b|\b(?:eliminates|rules out)\s+the\s+(?:first|second|third|fourth|fifth)\b(?!\s+(?:arrangement|draw|timetable|case|statement|sentence|paragraph))/i.test(
+        prose,
+      )
+    ) {
+      warn(
+        'explanation-cites-position',
+        'The explanation refers to a choice by its position ("the first choice"). Positions move when options are reordered; name what the choice says instead.',
+      );
+    }
   }
 
   // Publication gates.

@@ -1,0 +1,73 @@
+{
+  "id": "enhanced-act-sci-runoff-largest-increase-316",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "science",
+  "domainSlug": "act-science-interpretation-of-data",
+  "skillSlug": "act-sci-iod-manipulate-and-analyse-data",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "For which surface cover was the increase in runoff from Experiment 1 to Experiment 2 the **greatest number of millilitres**?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Gravel"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Leaf mulch"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Bare soil"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Cut grass"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The stem asks for a number of millilitres, so subtract the Experiment 1 value from the Experiment 2 value in each row — do not compare the raw runoff figures, and do not compare percentages.\n\n- Bare soil: $1480 - 1120 = 360$ mL\n- Gravel: $1010 - 780 = 230$ mL\n- Cut grass: $640 - 410 = 230$ mL\n- Leaf mulch: $505 - 300 = 205$ mL\n\nThe largest of these four increases is $360$ mL, for bare soil.\n\nCheck the arithmetic by adding each increase back onto the $10^{\\circ}$ value: $1120 + 360 = 1480$ and $300 + 205 = 505$, which match the table.\n\nIt is worth seeing why the stem says *greatest number of millilitres*. Measured as a **percentage** of the $10^{\\circ}$ runoff, the ranking is different: leaf mulch grew by $205/300 \\approx 68\\%$ and bare soil by only $360/1120 \\approx 32\\%$. Both are real facts about the same table, so a question of this kind is only answerable once it names which measure it wants — and this one asks for millilitres.",
+  "distractorRationale": {
+    "a": "Gravel's runoff rose by $1010 - 780 = 230$ mL, tied with cut grass and well short of bare soil's $360$ mL. It is picked by a reader who stops at the first sizeable increase in the table.",
+    "d": "Cut grass also rose by $640 - 410 = 230$ mL. A reader can arrive here by noticing that cut grass grew by more than half again on a proportional reading ($56\\%$), but the stem asks for millilitres, and $230 < 360$.",
+    "b": "Leaf mulch rose by only $505 - 300 = 205$ mL, the smallest increase of the four. It is the answer to the *proportional* version of the question — a $68\\%$ rise, the largest in the table — which is exactly why the stem specifies the number of millilitres."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": {
+    "id": "enhanced-act-stim-sci-runoff-301",
+    "version": 1
+  },
+  "accessibilityText": "The question compares the two runoff columns of Table 5, in millilitres. Bare soil: 1120 at 10 degrees and 1480 at 20 degrees. Gravel: 780 and 1010. Cut grass: 410 and 640. Leaf mulch: 300 and 505. The four choices are the four covers: gravel, cut grass, leaf mulch and bare soil.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank against an original experiment description and an invented data set. Not derived from, and not a paraphrase of, any ACT-published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "enhanced-act-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved the item and then tried to defend each distractor. This table supports two rival readings of 'greatest increase': absolute (bare soil, 360 mL) and proportional (leaf mulch, 68 per cent). The stem therefore names the measure explicitly - 'greatest number of millilitres' - which leaves bare soil as the only defensible answer, and the proportional answer is offered as a distractor with its error named. The 230 mL tie between gravel and cut grass is among distractors only and does not affect uniqueness. Awaiting an independent blind solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "science",
+    "research-summary",
+    "computed-difference"
+  ]
+}

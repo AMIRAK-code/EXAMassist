@@ -1,0 +1,70 @@
+{
+  "id": "bocconi-ug-crit-breakfast-programme-311",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-critical-thinking",
+  "skillSlug": "critical-thinking-exclude-implications",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A regional health agency reports:\n\n> \"In the three years after Vallera introduced free breakfast in twelve of its primary schools, average mathematics scores in those twelve schools rose by 6 points, while scores in the region's other primary schools rose by 1 point. The free breakfast programme therefore raises attainment.\"\n\nWhich one of the following, if true, most weakens the agency's conclusion?",
+  "instructionsMd": "Assume each option is true and judge its effect on the agency's conclusion.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Some parents reported that their children ate less at home once the programme began."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "In the twelve schools the rise in scores was largest in the third year of the programme."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The programme cost more per pupil than the agency had forecast."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The same twelve schools each received two additional teachers during those three years, and no other school did."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The agency's argument has a definite shape. Twelve schools got the breakfast programme and gained 6 points; the rest did not and gained 1 point; therefore the breakfast caused the extra 5 points. That inference only works if the breakfast is the **one thing** that differed between the two groups.\n\nThe choice reporting that the same twelve schools, and no others, also gained two additional teachers each over exactly the same period says it was not. Extra teachers are an obvious cause of higher mathematics scores, so the 5-point gap now has two candidate explanations and the data cannot separate them. That is the weakness, and it is the classic one: a **confounding variable** that moves with the treatment.\n\n**How to check the answer.** Ask of each option: *if this were true, could the 6-point rise still be explained entirely by the breakfast?*\n\n- The extra-teachers option: no. The teachers might account for all of it, or some of it, and nothing in the report distinguishes the two.\n- The cost-overrun, eating-less-at-home, and largest-rise-in-year-three options: yes. None of them offers any rival explanation for why the twelve schools improved more than the others.\n\nAn option that leaves the causal story intact does not weaken it, however negative it sounds.\n\n**Why the comparison group matters.** The agency did something sensible by reporting the other schools' 1-point rise: it rules out a region-wide trend such as an easier test. The extra-teachers option attacks what is left, which is whether the twelve schools were treated identically to the others in every other respect. When an argument compares two groups, the strongest weakener is almost always a second difference between those same groups.",
+  "distractorRationale": {
+    "c": "A cost overrun is an argument about whether the programme is worth funding, not about whether it works. The agency's conclusion is that the programme raises attainment; a programme can raise attainment and still be poor value. This option changes the subject from effectiveness to affordability.",
+    "a": "Eating less at home is a side effect, and it is not even clearly a harmful one for attainment. It offers no alternative explanation of why the twelve schools gained 5 points more than the rest, so the agency's inference survives it untouched. It sounds critical without bearing on the causal claim.",
+    "b": "A rise that builds over three years is what a real effect of a sustained programme would tend to look like, so if anything this supports the agency rather than weakening it. At best it is neutral: it describes the shape of the improvement without saying anything about its cause."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A critical thinking question quoting a regional health agency. It reports that in the three years after free breakfast was introduced in twelve primary schools, average mathematics scores in those schools rose by 6 points while scores in the region's other primary schools rose by 1 point, and concludes that the programme raises attainment. The question asks which of four statements, if true, most weakens that conclusion. There is no figure, table or notation.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original item. The report deliberately includes a comparison group so that a simple 'scores rose everywhere' objection is already answered, forcing the candidate to look for a second difference between the same two groups. The distractors are, in order, an irrelevant cost objection, an irrelevant side effect, and a fact that mildly supports the conclusion."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's uniqueness check: only B introduces an alternative cause that varies with the treatment across exactly the same two groups. A concerns cost rather than effect, C names a side effect with no bearing on scores, and D is consistent with, and mildly supportive of, a genuine programme effect. No second option weakens the causal inference at all. Awaiting blind independent solve before publication. Option-letter references in the explanation were rewritten to name choice content; the key was re-derived independently and is unchanged. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "causation-versus-correlation",
+    "confounding",
+    "weaken"
+  ]
+}

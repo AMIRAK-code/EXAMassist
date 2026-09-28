@@ -1,0 +1,73 @@
+{
+  "id": "bocconi-ug-num-broadband-coverage-share-306",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-numerical-reasoning",
+  "skillSlug": "numerical-reasoning-charts-tables",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "In which of these provinces had the largest share of households taken a fibre subscription by the end of 2025?",
+  "instructionsMd": "Use only the figures in the table. No calculator.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Cima"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Dora"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Alba"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Borgo"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "\"Share of households\" means connected **divided by** households. The price and complaints columns play no part, so cover them up.\n\n$$\\text{Alba} = \\frac{320}{400} = 0.80 \\qquad \\text{Borgo} = \\frac{150}{250} = 0.60$$\n\n$$\\text{Cima} = \\frac{270}{600} = 0.45 \\qquad \\text{Dora} = \\frac{153}{180} = 0.85$$\n\nDora's 85 per cent is the largest, so **Dora** is the answer.\n\n**Doing the divisions by hand.** None of them needs long division:\n\n- $\\frac{320}{400}$: divide both by 40 to get $\\frac{8}{10} = 80\\%$.\n- $\\frac{150}{250}$: divide both by 50 to get $\\frac{3}{5} = 60\\%$.\n- $\\frac{270}{600}$: divide both by 30 to get $\\frac{9}{20} = 45\\%$.\n- $\\frac{153}{180}$: divide both by 9 to get $\\frac{17}{20} = 85\\%$.\n\n**How to check the answer.** Multiply back. $180 \\times 0.85 = 153$, and $400 \\times 0.80 = 320$. Both reproduce the table, so the two leading figures are right and 85 beats 80.\n\n**The trap to name.** Dora is the smallest province in the table by a wide margin — 180 thousand households against Cima's 600 — so it never looks impressive in the connected column and its bar in the accompanying chart is one of the shortest. A share is a ratio, and the size of the numerator on its own tells you nothing about it.",
+  "distractorRationale": {
+    "c": "Alba has the largest number of connected households, 320 thousand, and the tallest bar in the accompanying chart. This reads the connected column on its own without dividing. Alba's share is $\\frac{320}{400} = 80$ per cent, genuinely high but still five percentage points behind Dora.",
+    "d": "Borgo has the lowest monthly price in the table, 20 euros, which is the column a reader reaches for if they assume the cheapest province must have the most take-up. Price is not what the stem asks about, and Borgo's share is $\\frac{150}{250} = 60$ per cent.",
+    "a": "Cima has the most households of any province, 600 thousand, so it is the answer produced by reading the households column instead of the ratio. In fact Cima has the lowest share of the five, $\\frac{270}{600} = 45$ per cent, so the biggest province is the worst connected one."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": {
+    "id": "bocconi-ug-stim-broadband-provinces-008",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying table of fibre broadband in five provinces. It asks which province had the largest share of its households connected by the end of 2025. The four answer options are province names: Alba, Borgo, Cima, Dora.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original item written against the existing original table bocconi-ug-stim-broadband-provinces-008, which had no questions attached to it. Each wrong province leads one specific column of the table — connected households, price, or total households — so each distractor names a different misreading rather than a different arithmetic slip."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's uniqueness check: coverage shares for the five provinces are Alba 80 per cent, Borgo 60, Cima 45, Dora 85, Este 50. Dora is the unique maximum among all five, so it remains unique among the four offered and no two options tie. Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "table-broadband-provinces",
+    "ratios",
+    "share-of-total"
+  ]
+}

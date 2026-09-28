@@ -1,0 +1,49 @@
+{
+  "id": "gmat-ps-consecutive-odd-sum-301",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-elementary-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "The sum of five consecutive odd integers is $135$. What is the greatest of the five integers?",
+  "instructionsMd": "Select the single best answer.",
+  "options": [
+    { "id": "a", "label": "A", "textMd": "$25$" },
+    { "id": "b", "label": "B", "textMd": "$27$" },
+    { "id": "c", "label": "C", "textMd": "$29$" },
+    { "id": "d", "label": "D", "textMd": "$31$" },
+    { "id": "e", "label": "E", "textMd": "$33$" }
+  ],
+  "answerKey": { "type": "single_select", "optionId": "d" },
+  "explanationMd": "Five consecutive odd integers are **evenly spaced**, with a gap of $2$ between neighbours. For any evenly spaced list with an odd number of terms, the mean equals the middle term, which turns a sum into a single number instantly.\n\n**Step 1 — find the middle term.**\n\n$$\\text{middle term} = \\frac{135}{5} = 27.$$\n\n**Step 2 — step up to the greatest term.** The greatest term is two places above the middle, and each place is a gap of $2$:\n\n$$27 + 2 + 2 = 31.$$\n\nThe five integers are $23,\\; 25,\\; 27,\\; 29,\\; 31$.\n\n**The algebraic route, if you prefer it.** Let the smallest be $n$. The five are $n,\\, n+2,\\, n+4,\\, n+6,\\, n+8$, and\n\n$$5n + 20 = 135 \\;\\Longrightarrow\\; 5n = 115 \\;\\Longrightarrow\\; n = 23,$$\n\nso the greatest is $n + 8 = 31$. Same answer.\n\n**How to check it.** Add the five integers directly: $23 + 25 = 48$, $48 + 27 = 75$, $75 + 29 = 104$, $104 + 31 = 135$. The sum is exactly $135$, and every term is odd, so the list satisfies both conditions the question imposes.\n\n**The idea worth carrying forward.** Dividing the sum by the number of terms lands you on the middle term, not on the answer. Almost every wrong answer to a question of this shape comes from stopping at that middle term or from miscounting how many gaps separate it from the term actually asked for. Write the list out — five short numbers cost nothing and remove the guesswork entirely.",
+  "distractorRationale": {
+    "a": "This subtracts one gap from the mean instead of adding two, giving $27 - 2 = 25$, which is the second-smallest of the five integers rather than the greatest.",
+    "b": "This is $135 \\div 5 = 27$, the mean. In an evenly spaced list with an odd number of terms the mean is the middle term, so it sits two places below the greatest.",
+    "c": "This treats the five as consecutive integers rather than consecutive odd integers, taking the gap as $1$ and giving $27 + 1 + 1 = 29$. Consecutive odd integers differ by $2$.",
+    "e": "This counts three gaps above the middle term, $27 + 6 = 33$, as though the mean were the second term of the list. With five terms the mean is the third, so only two gaps separate it from the greatest."
+  },
+  "estimatedSeconds": 95,
+  "stimulusRef": null,
+  "accessibilityText": "The sum of five consecutive odd integers is 135, and the question asks for the greatest of the five. Five numeric options are offered in ascending order: 25, 27, 29, 31 and 33.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original item. The sum 135 was chosen so the middle term is the whole odd number 27 and all five integers are positive two-digit numbers. Each distractor is a different miscount of gaps away from the mean, or the mean itself, so no two coincide."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved the item by the mean-equals-middle-term shortcut and again by setting the smallest term to n and solving 5n + 20 = 135, obtaining 31 both ways, then added 23 + 25 + 27 + 29 + 31 and confirmed the total is exactly 135. Substituting any other option as the greatest term produces a list whose sum is not 135 (25 gives 105, 27 gives 115, 29 gives 125, 33 gives 145), so exactly one option is defensible. Numeric options are ordered ascending as on the real exam. Awaiting blind independent solve before publication."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": ["evenly-spaced-sets", "consecutive-integers", "averages"]
+}

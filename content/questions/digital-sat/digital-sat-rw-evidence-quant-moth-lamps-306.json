@@ -1,0 +1,75 @@
+{
+  "id": "digital-sat-rw-evidence-quant-moth-lamps-306",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "rw-module-1",
+  "domainSlug": "information-and-ideas",
+  "skillSlug": "command-of-evidence-quantitative",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Sandoval warns that ranking the four lamp types by total moths captured would give a misleading picture of how strongly each type attracts moths. Which choice from the table most directly supports that warning?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Mercury-vapour lamps recorded 23 moth species, more than any other lamp type recorded."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Cool white LEDs produced the largest total catch, 1,100 moths, yet mercury-vapour lamps drew far more moths per night, 90 against 55."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Low-pressure sodium lamps were surveyed on 25 nights, more than any other lamp type."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Warm white LEDs drew 640 moths in total and 32 per night, the second-lowest figure on each of those two measures."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Sandoval's warning is that one ranking misleads about another. Supporting it therefore takes a case where the two rankings actually disagree: something at or near the top by total that is not at the top by rate, or the reverse.\n\nRank by total: cool white LED 1,100, mercury vapour 900, warm white LED 640, low-pressure sodium 500. Now rank by rate: mercury vapour $\\frac{900}{10} = 90$, cool white LED $\\frac{1{,}100}{20} = 55$, warm white LED $\\frac{640}{20} = 32$, low-pressure sodium $\\frac{500}{25} = 20$. The top two swap places, and they swap because mercury vapour was trapped for half as many nights. The option that sets cool white's 1,100-moth total beside mercury vapour's 90 per night reports exactly that swap, which is the warning in miniature.\n\nCheck by testing the remaining options against the same requirement. The option about warm white LEDs is arithmetically correct, but those lamps sit third of four on both rankings, so it is a case where the two measures *agree* and it therefore argues against the warning rather than for it.",
+  "distractorRationale": {
+    "c": "Unequal survey lengths are the reason totals can mislead, but this figure shows no ranking actually shifting: low-pressure sodium comes last both by total, 500 moths, and by rate, 20 per night, so its unusually long survey left its position exactly where it was.",
+    "a": "Species richness is a third measure that Sandoval's warning does not concern. It says nothing about whether totals misrepresent how strongly a lamp attracts moths.",
+    "d": "Both figures are correct, but they point the wrong way. Warm white LEDs place third of four by total and third of four by rate, so this is a case where the two measures agree, which undercuts the warning instead of supporting it."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": {
+    "id": "digital-sat-stim-moth-lamps-302",
+    "version": 1
+  },
+  "accessibilityText": "Using the table of moths recorded at four street-lamp types, choose the data that best support the warning that ranking the lamps by total catch would mislead. Totals are 500 for low-pressure sodium over 25 nights, 640 for warm white LED over 20 nights, 900 for mercury vapour over 10 nights and 1,100 for cool white LED over 20 nights; the corresponding per-night rates are 20, 32, 90 and 55.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "digital-sat-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original item. The strongest distractor is a true pair of figures whose two rankings agree, so it is evidence against the claim rather than for it."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "digital-sat-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's own solve and uniqueness check: Supporting 'totals mislead' requires a disagreement between the two rankings. Totals: 1100, 900, 640, 500; rates: 90, 55, 32, 20. Only the top two swap, and only C reports that swap. D is true but shows agreement (warm white is third on both), A is a lone denominator, B is a different variable. Unique. Not published: awaiting a blind independent solve by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "reading",
+    "command-of-evidence",
+    "quantitative",
+    "table",
+    "rates"
+  ]
+}

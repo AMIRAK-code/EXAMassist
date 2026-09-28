@@ -22,6 +22,8 @@ export const RATE_LIMITS = {
   attemptStart: { windowSeconds: 3600, max: 60 },
   answerWrite: { windowSeconds: 60, max: 240 },
   contentFlag: { windowSeconds: 3600, max: 20 },
+  // Bursts only; the daily AI allowance is counted separately from real model calls.
+  tutorRequest: { windowSeconds: 60, max: 12 },
 } as const satisfies Record<string, RateLimitRule>;
 
 export interface RateLimitResult {
@@ -77,7 +79,29 @@ export function purgeRateLimits(db: Db, now = new Date()): number {
  */
 export function callerKey(request: Request, userId?: string | null): string {
   if (userId) return `user:${userId}`;
-  const forwarded = request.headers.get('x-forwarded-for');
-  const ip = forwarded?.split(',')[0]?.trim() || request.headers.get('x-real-ip') || 'unknown';
-  return `ip:${ip}`;
+  return `ip:${clientAddress(request.headers)}`;
+}
+
+/**
+ * The caller's address, as reported by the proxy in front of us.
+ *
+ * X-Forwarded-For is a list that every hop APPENDS to, so its first entry is
+ * whatever the client chose to send - trusting it lets anyone dodge a per-IP
+ * limit by inventing a new address per request. The trustworthy entry is the
+ * one added by our own nearest proxy: the last one, or, behind N proxies we
+ * operate, the Nth from the end (TRUSTED_PROXY_HOPS, default 1).
+ *
+ * Next.js fills the header with the socket address only when the client sent
+ * none, so a deployment that exposes `next start` directly, with no proxy in
+ * front, cannot tell a forged header from a real one. Deploy behind a proxy
+ * that sets or appends X-Forwarded-For; see docs/HANDOFF.md.
+ */
+export function clientAddress(headers: Headers, env: Record<string, string | undefined> = process.env): string {
+  const hops = Math.max(1, Number.parseInt(env.TRUSTED_PROXY_HOPS ?? '1', 10) || 1);
+  const chain = (headers.get('x-forwarded-for') ?? '')
+    .split(',')
+    .map((entry) => entry.trim())
+    .filter(Boolean);
+  if (chain.length > 0) return chain[Math.max(0, chain.length - hops)];
+  return headers.get('x-real-ip')?.trim() || 'unknown';
 }

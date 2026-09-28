@@ -1,0 +1,73 @@
+{
+  "id": "enhanced-act-sci-solubility-counterexample-314",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "science",
+  "domainSlug": "act-science-evaluating-scientific-arguments-and-models",
+  "skillSlug": "act-sci-emi-conclusions-and-predictions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A classmate reads Table 4 and concludes: *\"Heating water always increases the mass of a solid that will dissolve in it.\"* Which of the following results in Table 4 contradicts that conclusion?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Salt Q dissolved $35.7$ g at $10\\;^{\\circ}\\text{C}$ and $37.5$ g at $70\\;^{\\circ}\\text{C}$, a change of less than $2$ g."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Salt P dissolved more than twice as much at $40\\;^{\\circ}\\text{C}$ as it did at $10\\;^{\\circ}\\text{C}$."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Salt P dissolved $21.0$ g at $10\\;^{\\circ}\\text{C}$, the smallest mass recorded for Salt P."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Salt R dissolved $12.6$ g at $10\\;^{\\circ}\\text{C}$ but only $7.0$ g at $70\\;^{\\circ}\\text{C}$."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The classmate's claim has the form \"*always* increases\". A claim of that shape is contradicted by one thing only: a case where heating the water **decreased** the mass dissolved. So the task is not to find the most surprising number, it is to find a decrease.\n\nGo through the table for that one feature. Salt P rises at every step ($21.0 \\to 38.0 \\to 64.0 \\to 96.0 \\to 138.0$). Salt Q rises at every step ($35.7 \\to 36.0 \\to 36.4 \\to 36.9 \\to 37.5$). Salt R **falls** at every step ($12.6 \\to 10.9 \\to 9.4 \\to 8.1 \\to 7.0$). Salt R is the only counterexample in the table, and the choice reporting that fall states it: hotter water held $5.6$ g *less* of Salt R.\n\nCheck the answer by testing each of the other statements against the claim rather than against your sense of what is interesting. Ask of each one: could the classmate's sentence still be true if this result held? For the other three choices the answer is yes — each describes an increase, or no change of direction at all — so none of them can contradict the claim. Only the Salt R result forces the word *always* to be false. That test, \"could the claim survive this result?\", is the one to apply whenever a question asks what contradicts, undermines or weakens a conclusion.",
+  "distractorRationale": {
+    "a": "Describes a *small* increase, not a decrease. $37.5 > 35.7$, so Salt Q obeys the classmate's rule; being nearly flat is not the same as running the other way, and the claim says nothing about how large the increase must be.",
+    "c": "Restates the claim rather than contradicting it. Salt P's smallest mass occurring at its lowest temperature is exactly what \"heating increases the mass dissolved\" predicts.",
+    "b": "Is the strongest *support* for the claim in the table: $64.0$ g is more than double $21.0$ g, so heating produced a large increase. A reader who picks this has matched on the striking size of the change instead of on its direction."
+  },
+  "estimatedSeconds": 65,
+  "stimulusRef": {
+    "id": "enhanced-act-stim-sci-solubility-300",
+    "version": 1
+  },
+  "accessibilityText": "The question tests a claim that heating water always increases the mass of solid that dissolves, against Table 4. Salt P per 100.0 grams of water: 21.0, 38.0, 64.0, 96.0 and 138.0 grams at 10, 25, 40, 55 and 70 degrees Celsius. Salt Q: 35.7, 36.0, 36.4, 36.9 and 37.5 grams. Salt R: 12.6, 10.9, 9.4, 8.1 and 7.0 grams. Salt P and Salt Q rise as temperature rises; Salt R falls.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank against an original experiment description and an invented data set. Not derived from, and not a paraphrase of, any ACT-published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "enhanced-act-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved the item and then tried to defend each distractor. A universal claim is contradicted only by a counterexample, and Salt R is the table's only decreasing column, so the Salt R choice is the only defensible answer. The Salt Q and Salt P choices each describe increases, which are consistent with the claim; the other Salt P choice restates it. Deliberately avoided any wording such as 'best shows' that could invite a second reading - the stem asks which result contradicts the conclusion, and exactly one does. Awaiting an independent blind solve before publication. Option-letter references in the explanation were rewritten to name choice content; the key was re-derived independently and is unchanged. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "science",
+    "evaluating-evidence",
+    "counterexample"
+  ]
+}

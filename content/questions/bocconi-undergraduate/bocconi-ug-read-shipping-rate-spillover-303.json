@@ -1,0 +1,72 @@
+{
+  "id": "bocconi-ug-read-shipping-rate-spillover-303",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-reading-comprehension",
+  "skillSlug": "reading-information-processing",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "According to the passage, freight rates rise on routes that were never disrupted because",
+  "instructionsMd": "Answer on the basis of the passage only.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "importers on those routes bring their orders forward, pushing up the demand for space."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "shipping lines raise their rates everywhere in order to recover the cost of the longer voyage."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "ships are bid away from those routes to keep the lengthened loop running weekly, at a time when the fleet is almost fully employed."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "fuel becomes more expensive worldwide whenever a chokepoint is disrupted."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The second paragraph builds the mechanism in four steps, and the answer is the chain, not any single sentence.\n\n1. \"A shipping line runs a fixed loop: eight or nine vessels spaced so that one arrives at each port every week.\" The weekly service is the thing that must be preserved.\n2. \"Lengthen the loop by ten days and the same weekly service now needs an extra ship, or two.\" A longer round trip needs more ships to keep the same frequency.\n3. \"Because the world's container fleet is close to fully employed in a strong market, the extra ships have to be bid away from other routes.\" There is no idle tonnage, so the ships must come from somewhere.\n4. \"and freight rates rise on routes that were never disrupted at all.\" Those other routes lose capacity, so their rates rise.\n\nThat is the mechanism describing ships being bid away from those routes to keep the lengthened loop running weekly, at a time when the fleet is almost fully employed: a capacity mechanism, not a cost mechanism.\n\n**How to check the answer.** Test the chain by breaking a link. If the fleet were NOT close to fully employed, idle ships could be used and no route would lose capacity — and the passage says exactly this by making full employment the reason the ships \"have to be bid away\". An explanation that survives when you remove a condition the passage insists on is not the passage's explanation.\n\n**Technique.** The passage opens the paragraph with \"The cost of that detour is not simply extra fuel\", which is a warning label. When an author tells you which explanation is too simple, expect the real explanation to be about something other than direct costs — here, about scarce capacity.",
+  "distractorRationale": {
+    "a": "Forward ordering by importers appears nowhere in the passage. The third paragraph discusses importers, but its point is the opposite in spirit: they \"feel the effect with a lag\", with goods already afloat arriving at the old contracted rate. This option invents a demand-side story where the passage gives a supply-side one.",
+    "d": "The paragraph opens by ruling this out: \"The cost of that detour is not simply extra fuel.\" The passage never claims that a disruption changes the world price of fuel, and a worldwide fuel rise would not explain why the effect works through ships being reallocated between routes.",
+    "b": "This is the plausible commercial story, and it is the one the passage declines to tell. The rise on undisrupted routes is attributed to those routes losing ships to the lengthened loop in a fully employed market, not to a line choosing to spread a cost across its network. Note also that the rates rise on routes the disrupted line may not even serve."
+  },
+  "estimatedSeconds": 95,
+  "stimulusRef": {
+    "id": "bocconi-ug-stim-container-shipping-007",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying prose passage on container shipping and sea chokepoints. It asks why freight rates rise on routes that were not themselves disrupted. There is no figure, table or mathematical notation; the options complete the sentence stem.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original item written against the existing original passage bocconi-ug-stim-container-shipping-007, which had no questions attached to it. The key requires chaining four sentences of the second paragraph; each distractor is a self-standing economic explanation that the passage either never makes or explicitly sets aside."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's uniqueness check: only B reproduces the causal chain the second paragraph states. A is absent from the passage and cuts against the lag described in paragraph three, C is ruled out by the paragraph's opening sentence, and D substitutes cost recovery for the capacity reallocation the passage names. Awaiting blind independent solve before publication. Option-letter references in the explanation were rewritten to name choice content; the key was re-derived independently and is unchanged. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "passage-container-shipping",
+    "causal-mechanism"
+  ]
+}

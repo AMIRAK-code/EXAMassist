@@ -1,0 +1,39 @@
+{
+  "id": "enhanced-act-stim-sci-propeller-302",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "kind": "table",
+  "title": "Study 6: Choosing a propeller for a survey drone",
+  "bodyMd": "**Engineering and design.** A student team had to choose one propeller for a small survey drone. The drone must lift its camera, stay within the current its motor controller can safely pass, and be quiet enough to fly near livestock.\n\n**Design requirements.** The chosen propeller must\n\n- produce a thrust of **at least** $620$ g at full throttle;\n- draw **no more than** $18.0$ A at full throttle;\n- produce a sound level of **no more than** $78$ dB measured $1$ m away.\n\n**Procedure.** Four propellers were tested. All four had the same diameter and were made of the same plastic; they differed only in *pitch*, the distance a blade would advance in one turn. Each propeller in turn was fitted to the same motor on the same frame, clamped in the same indoor test rig, and run at full throttle from a power supply held at the same voltage. For each propeller the team measured the thrust with a bench scale, the current with the same ammeter, and the sound level with the same meter placed $1$ m from the rig. The room and the rig were unchanged between tests.\n\nTable 6 gives the results.",
+  "data": {
+    "columns": [
+      { "key": "pitch", "label": "Propeller pitch (cm)" },
+      { "key": "thrust", "label": "Thrust at full throttle (g)" },
+      { "key": "current", "label": "Current at full throttle (A)" },
+      { "key": "sound", "label": "Sound level at 1 m (dB)" }
+    ],
+    "rows": [
+      { "pitch": 10, "thrust": 470, "current": 12.4, "sound": 71 },
+      { "pitch": 12, "thrust": 590, "current": 15.1, "sound": 74 },
+      { "pitch": 14, "thrust": 655, "current": 17.2, "sound": 77 },
+      { "pitch": 16, "thrust": 710, "current": 19.8, "sound": 82 }
+    ],
+    "caption": "Table 6. Thrust, current and sound level measured at full throttle for four propellers of equal diameter and different pitch.",
+    "chart": {
+      "type": "line",
+      "xKey": "pitch",
+      "yKeys": ["thrust", "current", "sound"],
+      "xLabel": "Propeller pitch (cm)",
+      "yLabel": "Measured value"
+    }
+  },
+  "accessibilityText": "An engineering and design passage stating three requirements, followed by Table 6, which has four rows and four columns. The requirements are: thrust at least 620 grams, current no more than 18.0 amperes, and sound level no more than 78 decibels at 1 metre. The columns of Table 6 are propeller pitch in centimetres, thrust at full throttle in grams, current at full throttle in amperes, and sound level at 1 metre in decibels. Pitch 10: 470 grams, 12.4 amperes, 71 decibels. Pitch 12: 590 grams, 15.1 amperes, 74 decibels. Pitch 14: 655 grams, 17.2 amperes, 77 decibels. Pitch 16: 710 grams, 19.8 amperes, 82 decibels. All three measured quantities rise as pitch rises. The accompanying line graph plots thrust, current and sound level against pitch and contains no information beyond the table.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original engineering-and-design passage with an invented data set. The student team, the test rig, the requirement thresholds and every figure in Table 6 are fictional. Nothing here is drawn from, or modelled on, any ACT-published Science passage or any manufacturer's published data."
+  },
+  "rightsStatus": "original-owned",
+  "state": "in_review"
+}

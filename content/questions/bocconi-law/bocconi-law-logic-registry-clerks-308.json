@@ -1,0 +1,72 @@
+{
+  "id": "bocconi-law-logic-registry-clerks-308",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-deductive-conditions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Four clerks — Bo, Chiara, Dario and Elsa — are each assigned to exactly one of a court's two registries, Civil and Criminal. Each registry receives at least one clerk. The assignment satisfies all of the following conditions:\n\n- If Bo is assigned to Civil, then Chiara is assigned to Criminal.\n- Dario and Elsa are assigned to different registries.\n- Chiara and Dario are assigned to the same registry.\n\nWhich of the following must be true?",
+  "instructionsMd": "Exactly one of the four statements holds in every assignment that satisfies the conditions.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "At least two clerks are assigned to the Civil registry."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "At least two clerks are assigned to the Criminal registry."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Bo and Elsa are assigned to the same registry."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "If Chiara is assigned to Criminal, then Bo is assigned to Civil."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Chain the two unconditional conditions first; the conditional one is cheapest to apply last.\n\n**Fix the Chiara–Dario–Elsa group.** Chiara and Dario are together, and Dario and Elsa are apart, so Elsa is always opposite the Chiara–Dario pair. That gives two shapes, and only Bo is still free.\n\n**Shape 1 — Chiara and Dario in Civil, Elsa in Criminal.** Now apply the conditional: if Bo were in Civil, Chiara would have to be in Criminal, which she is not. So Bo must be in Criminal.\n\n> **W1** — Civil: Chiara, Dario. Criminal: Bo, Elsa.\n\n**Shape 2 — Chiara and Dario in Criminal, Elsa in Civil.** The conditional's consequent (Chiara in Criminal) is already satisfied, so the conditional imposes nothing and Bo may go either way. Both options leave each registry non-empty:\n\n> **W2** — Civil: Bo, Elsa. Criminal: Chiara, Dario.\n>\n> **W3** — Civil: Elsa. Criminal: Bo, Chiara, Dario.\n\nThose three assignments are the complete list.\n\n**Count the Criminal registry in each.** W1 has two clerks there, W2 has two, W3 has three. It never drops below two, so the claim that at least two clerks are assigned to the Criminal registry must be true. (The reason is structural: the Chiara–Dario pair is together in Criminal in W2 and W3, and in W1 it is Bo and Elsa who end up there.)\n\n**How to check.** For a \"must be true\" item, the confirmation is that every other option fails somewhere. All three fail in the same place, W3 — the assignment people miss, because it is the only unbalanced one. In W3 Bo is in Criminal while Elsa is in Civil (so the claim that Bo and Elsa share a registry fails), Civil holds only Elsa (so the claim that Civil gets at least two clerks fails), and Chiara is in Criminal while Bo is *not* in Civil (so the claim that Chiara in Criminal forces Bo into Civil fails). Finding W3 is the whole item; once you have it, the answer is forced.",
+  "distractorRationale": {
+    "c": "True in W1 and W2, where Bo and Elsa happen to fill the registry the Chiara–Dario pair has left. It fails in W3, where Bo joins Chiara and Dario in Criminal and Elsa sits alone in Civil. The conditional constrains Bo only when Chiara is in Civil, so once Chiara is in Criminal, Bo is not tied to Elsa at all.",
+    "a": "The mirror image of the key, and it fails for the reason the key holds: the registry that is guaranteed two clerks is Criminal, not Civil. In W3 the Civil registry contains Elsa alone — which satisfies the 'at least one clerk per registry' requirement, so nothing rules it out. Choosing this option usually means assuming the four clerks must split two and two.",
+    "d": "This treats the stated conditional as if it worked in both directions. The rule given is 'Bo in Civil $\\Rightarrow$ Chiara in Criminal'; this option asserts 'Chiara in Criminal $\\Rightarrow$ Bo in Civil', which is its converse and is not implied. W3 is the counter-example: Chiara is in Criminal and Bo is in Criminal too."
+  },
+  "estimatedSeconds": 135,
+  "stimulusRef": null,
+  "accessibilityText": "A deductive reasoning question. Four clerks named Bo, Chiara, Dario and Elsa are each assigned to exactly one of two registries, Civil and Criminal, and each registry receives at least one clerk. If Bo is assigned to Civil then Chiara is assigned to Criminal; Dario and Elsa are assigned to different registries; Chiara and Dario are assigned to the same registry. The question asks which of four statements must be true.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original grouping item written to the published Bocconi Law syllabus entry 'a series of initial conditions followed by a question to be answered by deductive reasoning'. Clerks, court and registries are invented. The conditions were chosen so that exactly one of the three admissible assignments is unbalanced (three clerks against one); every distractor is true in the two balanced assignments and false only in the unbalanced one, so the item rewards completing the enumeration rather than stopping at a symmetric answer."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved by full enumeration. Chiara equals Dario and Elsa is opposite them, giving two shapes. With Chiara and Dario in Civil, the conditional forces Bo into Criminal (W1: Civil = Chiara, Dario; Criminal = Bo, Elsa). With Chiara and Dario in Criminal, the conditional is already satisfied and Bo is free, giving W2 (Civil = Bo, Elsa; Criminal = Chiara, Dario) and W3 (Civil = Elsa; Criminal = Bo, Chiara, Dario). Criminal holds 2, 2 and 3 clerks respectively, so option C holds in all three. Uniqueness checked: A, B and D each fail in W3 - Bo and Elsa are split, Civil holds only Elsa, and Chiara is in Criminal while Bo is not in Civil. Each registry is non-empty in all three assignments, so none is excluded by that requirement. Awaiting a blind independent solve before publication. Option-letter references in the explanation were rewritten to name choice content; the key was re-derived independently and is unchanged. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "grouping",
+    "conditional-reasoning",
+    "must-be-true",
+    "no-calculator"
+  ]
+}

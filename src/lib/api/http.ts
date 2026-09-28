@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { ZodError } from 'zod';
 import { AttemptError } from '@/lib/attempts/service';
 import { ForbiddenError, UnauthorizedError } from '@/lib/auth/session';
+import { TutorError } from '@/lib/tutor/service';
 
 /**
  * Shared HTTP helpers for route handlers: one error shape, one CSRF check,
@@ -30,6 +31,9 @@ export function fail(code: string, message: string, status = 400, detail?: unkno
  */
 export function toErrorResponse(error: unknown): NextResponse {
   if (error instanceof AttemptError) {
+    return fail(error.code, error.message, error.status, error.detail);
+  }
+  if (error instanceof TutorError) {
     return fail(error.code, error.message, error.status, error.detail);
   }
   if (error instanceof UnauthorizedError) {

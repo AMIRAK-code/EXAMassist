@@ -1,6 +1,6 @@
 {
   "id": "digital-sat-math-linear-inequalities-046",
-  "version": 2,
+  "version": 3,
   "examKey": "digital-sat",
   "sectionKey": "math-module-1",
   "domainSlug": "algebra",
@@ -37,7 +37,7 @@
     "type": "single_select",
     "optionId": "a"
   },
-  "explanationMd": "Translate one phrase at a time, and keep each variable attached to its own weight.\n\n**Total load.** Each crate weighs $34$ kg, so $c$ crates weigh $34c$; each pallet weighs $120$ kg, so $p$ pallets weigh $120p$. The load is the sum, $34c + 120p$. \"At most $900$\" means it may equal $900$ but not exceed it, so $34c + 120p \\le 900$.\n\n**Pallet count.** \"At least $3$ pallets\" means $3$ or more, so $p \\ge 3$.\n\nPutting them together gives Choice A.\n\nThe phrase-to-symbol dictionary is worth memorising: *at most* and *no more than* give $\\le$; *at least* and *no fewer than* give $\\ge$.\n\nCheck by testing a load you can judge by hand. Take $c = 10$ and $p = 4$: the weight is $340 + 480 = 820$ kg, under the limit, with $4$ pallets, which is at least $3$. This load is clearly allowed, and it satisfies both inequalities in Choice A. Now test $c = 20$, $p = 4$: the weight is $680 + 480 = 1{,}160$ kg, over the limit. Choice A correctly rejects it.",
+  "explanationMd": "Translate one phrase at a time, and keep each variable attached to its own weight.\n\n**Total load.** Each crate weighs $34$ kg, so $c$ crates weigh $34c$; each pallet weighs $120$ kg, so $p$ pallets weigh $120p$. The load is the sum, $34c + 120p$. \"At most $900$\" means it may equal $900$ but not exceed it, so $34c + 120p \\le 900$.\n\n**Pallet count.** \"At least $3$ pallets\" means $3$ or more, so $p \\ge 3$.\n\nPutting them together gives the system $34c + 120p \\le 900$ and $p \\ge 3$.\n\nThe phrase-to-symbol dictionary is worth memorising: *at most* and *no more than* give $\\le$; *at least* and *no fewer than* give $\\ge$.\n\nCheck by testing a load you can judge by hand. Take $c = 10$ and $p = 4$: the weight is $340 + 480 = 820$ kg, under the limit, with $4$ pallets, which is at least $3$. This load is clearly allowed, and it satisfies both inequalities in that system. Now test $c = 20$, $p = 4$: the weight is $680 + 480 = 1{,}160$ kg, over the limit. That same system correctly rejects it, since $34c + 120p$ then exceeds $900$.",
   "distractorRationale": {
     "b": "This reverses the load inequality. Writing $\\ge 900$ says the van must carry *at least* $900$ kilograms, turning a capacity limit into a minimum requirement, so a safe $820$-kilogram load would be excluded.",
     "c": "This reverses the pallet condition. Writing $p \\le 3$ caps the pallets at three, whereas \"at least 3\" sets three as the floor and allows any larger number.",
@@ -64,7 +64,7 @@
       "uniquenessChecked": true,
       "workingNotes": "The total weight 34c + 120p must be at most 900, and 'at least 3 pallets' means p >= 3. (b) reverses the weight inequality; (c) reverses the pallet condition; (d) swaps the weights of crates and pallets."
     },
-    "notes": "Author solved and checked uniqueness: 'at most 900' gives <= and 'at least 3 pallets' gives p >= 3, with 34 on crates and 120 on pallets; each other option breaks exactly one of those three requirements. Awaiting a blind independent solve before publication. v2 (2026-09-24): an independent check of what the explanation and notes claim about the options found false statements in the note on option D, corrected here. Correction by the coordinating editor (an AI agent); a separate AI reviewer then re-checked every claim about the options, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
+    "notes": "Author solved and checked uniqueness: 'at most 900' gives <= and 'at least 3 pallets' gives p >= 3, with 34 on crates and 120 on pallets; each other option breaks exactly one of those three requirements. Awaiting a blind independent solve before publication. v2 (2026-09-24): an independent check of what the explanation and notes claim about the options found false statements in the note on option D, corrected here. Correction by the coordinating editor (an AI agent); a separate AI reviewer then re-checked every claim about the options, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts. Option-letter references in the explanation were rewritten to name choice content; the key was re-derived independently and is unchanged. Version 3 merges the letter-free wording of the choices with version 2's review; the key and the choices are unchanged."
   },
   "state": "published",
   "quarantine": null,

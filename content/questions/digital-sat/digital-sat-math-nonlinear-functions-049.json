@@ -1,6 +1,6 @@
 {
   "id": "digital-sat-math-nonlinear-functions-049",
-  "version": 1,
+  "version": 2,
   "examKey": "digital-sat",
   "sectionKey": "math-module-1",
   "domainSlug": "advanced-math",
@@ -37,7 +37,7 @@
     "type": "single_select",
     "optionId": "b"
   },
-  "explanationMd": "The leading coefficient $2$ is positive, so the parabola opens upward and its minimum value is the $y$-coordinate of the vertex.\n\nFind the $x$-coordinate of the vertex first:\n\n$$x = -\\frac{b}{2a} = -\\frac{-12}{2(2)} = \\frac{12}{4} = 3$$\n\nNow evaluate the function there — this is the step where the question is actually answered:\n\n$$f(3) = 2(3)^2 - 12(3) + 23 = 18 - 36 + 23 = 5$$\n\nThe minimum value is $5$, Choice B.\n\nCompleting the square shows the same thing in one line and is worth practising: $2x^2 - 12x + 23 = 2(x^2 - 6x) + 23 = 2\\big((x - 3)^2 - 9\\big) + 23 = 2(x - 3)^2 + 5$. Since $2(x-3)^2$ is never negative, the smallest possible value of $f$ is $5$, reached at $x = 3$.\n\nCheck by testing points on either side of the vertex: $f(2) = 8 - 24 + 23 = 7$ and $f(4) = 32 - 48 + 23 = 7$. Both exceed $5$, and their equality confirms that $x = 3$ is the axis of symmetry.",
+  "explanationMd": "The leading coefficient $2$ is positive, so the parabola opens upward and its minimum value is the $y$-coordinate of the vertex.\n\nFind the $x$-coordinate of the vertex first:\n\n$$x = -\\frac{b}{2a} = -\\frac{-12}{2(2)} = \\frac{12}{4} = 3$$\n\nNow evaluate the function there — this is the step where the question is actually answered:\n\n$$f(3) = 2(3)^2 - 12(3) + 23 = 18 - 36 + 23 = 5$$\n\nThe minimum value is $5$.\n\nCompleting the square shows the same thing in one line and is worth practising: $2x^2 - 12x + 23 = 2(x^2 - 6x) + 23 = 2\\big((x - 3)^2 - 9\\big) + 23 = 2(x - 3)^2 + 5$. Since $2(x-3)^2$ is never negative, the smallest possible value of $f$ is $5$, reached at $x = 3$.\n\nCheck by testing points on either side of the vertex: $f(2) = 8 - 24 + 23 = 7$ and $f(4) = 32 - 48 + 23 = 7$. Both exceed $5$, and their equality confirms that $x = 3$ is the axis of symmetry.",
   "distractorRationale": {
     "a": "This reports the $x$-coordinate of the vertex rather than the minimum value of the function. The vertex is at $(3, 5)$; the question asks for the output, not the input.",
     "c": "This evaluates only the first term at $x = 3$, giving $2(3)^2 = 18$, and stops before subtracting $12(3)$ and adding $23$.",
@@ -64,7 +64,7 @@
       "uniquenessChecked": true,
       "workingNotes": "Vertex at x = 12/(2*2) = 3; f(3) = 18 - 36 + 23 = 5. Option a (3) is the x-coordinate trap."
     },
-    "notes": "Author solved and checked uniqueness: vertex at x = -(-12)/(2*2) = 3, f(3) = 18 - 36 + 23 = 5; completing the square gives 2(x-3)^2 + 5. Awaiting a blind independent solve before publication."
+    "notes": "Author solved and checked uniqueness: vertex at x = -(-12)/(2*2) = 3, f(3) = 18 - 36 + 23 = 5; completing the square gives 2(x-3)^2 + 5. Awaiting a blind independent solve before publication. Option-letter references in the explanation were rewritten to name choice content; the key was re-derived independently and is unchanged. Version 2: the wording changed after version 1 was published (letter references replaced with the content of each choice), so the version was incremented to keep earlier attempts pinned to the text they showed."
   },
   "state": "published",
   "quarantine": null,
