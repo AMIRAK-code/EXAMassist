@@ -1,0 +1,64 @@
+{
+  "id": "bocconi-ug-crit-recycled-paper-deducible-309",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-critical-thinking",
+  "skillSlug": "critical-thinking-deducibility",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Three statements about Meridiana Publishing are known to be true.\n\n> 1. All of Meridiana's textbooks are printed on recycled paper.\n>\n> 2. Some of Meridiana's textbooks are printed abroad.\n>\n> 3. None of the books printed abroad is sold at a discount.\n\nConsider the following assertion.\n\n> **Some books printed on recycled paper are not sold at a discount.**\n\nOn the basis of the three statements alone, the assertion is",
+  "instructionsMd": "This item has three answer options and carries the heavier penalty for a wrong answer, so answer only if you can justify your choice from the three statements alone.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "false."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "impossible to determine from the information given."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "true."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Build the chain around the group that statement 2 guarantees exists.\n\n1. Statement 2 says **some** of Meridiana's textbooks are printed abroad. \"Some\" asserts existence: there is at least one such textbook. Call one of them $T$.\n2. $T$ is a Meridiana textbook, so by statement 1 it is printed on recycled paper.\n3. $T$ is printed abroad, so by statement 3 it is not sold at a discount.\n\nSo $T$ is a book that is printed on recycled paper and is not sold at a discount. One such book is all the assertion needs, because the assertion only claims **some**. The assertion is therefore **true**.\n\n**How to check the answer.** Try to build a situation in which all three statements hold and the assertion fails. For the assertion to fail, every recycled-paper book would have to be sold at a discount. But statement 2 forces at least one abroad-printed textbook to exist, statement 1 puts it on recycled paper, and statement 3 forbids it from being discounted. The situation cannot be built, and an assertion whose denial is impossible is true.\n\n**The quantifier that does the work.** Change statement 2 to \"Meridiana **may** print some textbooks abroad\" and the answer becomes C, because the group might be empty and nothing would follow. Statements of the form \"some X are Y\" are not hedges; they are existence claims, and they are usually the sentence that turns a possibility into a deduction.\n\n**A diagram check.** Draw a circle for recycled-paper books. Inside it sits the whole set of Meridiana textbooks, by statement 1. Overlapping that set, and non-empty by statement 2, is the group printed abroad. Statement 3 places that whole overlap outside the discount circle. The overlap is inside \"recycled\" and outside \"discounted\", which is exactly what the assertion claims.",
+  "distractorRationale": {
+    "a": "Calling the assertion false means claiming that every book printed on recycled paper IS sold at a discount. Nothing in the three statements says that any recycled-paper book is discounted, and statement 3 supplies a group that certainly is not: the abroad-printed textbooks, which statement 1 puts on recycled paper. This option confuses 'not established' with 'established to be untrue'.",
+    "b": "This reads statement 2 as a possibility rather than a fact. It is given as true, so at least one Meridiana textbook really is printed abroad, and that single book satisfies the assertion. The undetermined verdict would be correct only if the abroad-printed group could be empty, which statement 2 rules out."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "A critical thinking question with three answer options. Three statements are given: all of Meridiana Publishing's textbooks are printed on recycled paper; some of Meridiana's textbooks are printed abroad; none of the books printed abroad is sold at a discount. The assertion to evaluate is: some books printed on recycled paper are not sold at a discount. The three options are true, false, and impossible to determine from the information given.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original item written with three options to match the Bocconi three-option critical thinking format that carries the heavier penalty. It uses the true / false / not deducible frame named in the syllabus. The premises were chosen so the deduction turns on the existential force of 'some', which is the distinction the 'impossible to determine' option is designed to catch."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's uniqueness check: statement 2 guarantees a non-empty set of abroad-printed textbooks; statement 1 puts them on recycled paper; statement 3 excludes them from the discounted books. So a recycled-paper, non-discounted book provably exists and the assertion is true, making B and C both indefensible. Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "three-option",
+    "quantifiers",
+    "deducibility"
+  ]
+}

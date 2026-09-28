@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-law-numrsn-legal-aid-brenta-refused-304",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-numerical-reasoning",
+  "skillSlug": "law-numrsn-charts-and-tables",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "How many of the legal-aid applications received in Brenta in 2024 were refused?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "120"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "180"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "420"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "720"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The table gives applications **received** and applications **granted**, not applications refused, so the figure has to be constructed.\n\n**Read the licence to subtract.** The stimulus states that every application received in 2024 was either granted or refused within that year. There is no third outcome and nothing is carried over, so for any district\n\n$$\\text{refused} = \\text{received} - \\text{granted}$$\n\n**Apply it to the Brenta row only.** Brenta received $900$ applications and granted $720$:\n\n$$900 - 720 = 180$$\n\n**How to check.** Run the subtraction backwards: $720 + 180 = 900$, which is Brenta's \"applications received\" figure, so the two outcomes account for exactly the applications the district received and nothing more. As a second check, $180$ out of $900$ is $\\frac{180}{900} = \\frac{1}{5} = 20\\%$, the complement of Brenta's grant rate $\\frac{720}{900} = 80\\%$; the two shares add to $100\\%$, as they must when there are only two outcomes.",
+  "distractorRationale": {
+    "a": "This is $900 - 780$: Brenta's applications received minus **Arno's** applications granted. The subtraction is the right one but the two numbers come from different rows, which is the standard slip when reading across a four-row table.",
+    "c": "This is Arno's refusals, $1200 - 780 = 420$ — the right calculation carried out on the wrong row. Arno is the row above the one the question asks about.",
+    "d": "This is Brenta's applications **granted**, read straight off the table. The question asks for the refusals, which the table never states directly; they have to be obtained as received minus granted."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": {
+    "id": "bocconi-law-table-legal-aid-032",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying table of legal-aid applications in the districts of Arno, Brenta, Cesano and Dora during 2024, which gives for each district the applications received, the applications granted and the average days taken to decide, and states that every application received in 2024 was either granted or refused within that year. The question asks how many applications received in Brenta were refused. The four answer options are the whole numbers 120, 180, 420 and 720.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original item written against the existing original table stimulus bocconi-law-table-legal-aid-032, which had no questions attached to it. Deliberately an entry-level item for the domain: one subtraction on one row, with distractors built from the two commonest table-reading slips (wrong row, wrong column). The stimulus states that every application was granted or refused within the year, so the subtraction is licensed rather than assumed."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's solve: Brenta received 900 and granted 720, and the stimulus states every application was granted or refused within 2024, so refusals = 900 - 720 = 180. Uniqueness checked: 120 mixes Brenta's received with Arno's granted, 420 is Arno's refusals and 720 is Brenta's granted column read directly, so no other option is defensible for the Brenta row. Awaiting a blind independent solve before publication."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "numerical-reasoning",
+    "tables",
+    "subtraction",
+    "row-reading",
+    "no-calculator"
+  ]
+}

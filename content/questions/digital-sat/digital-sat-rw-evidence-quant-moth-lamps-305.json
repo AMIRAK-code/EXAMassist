@@ -1,0 +1,74 @@
+{
+  "id": "digital-sat-rw-evidence-quant-moth-lamps-305",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "rw-module-1",
+  "domainSlug": "information-and-ideas",
+  "skillSlug": "command-of-evidence-quantitative",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Sandoval claims that of the four lamp types she surveyed, mercury-vapour lamps drew moths at the highest rate. Which choice best describes data from the table that support Sandoval's claim?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Mercury-vapour lamps drew 900 moths in total, more than the 640 drawn by warm white LEDs."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Mercury-vapour lamps drew 90 moths per night, more than the 55, 32 and 20 per night recorded at the other three lamp types."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Mercury-vapour lamps recorded 23 moth species, more than any other lamp type."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Mercury-vapour lamps were surveyed on 10 nights, fewer than any other lamp type."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The claim names a *rate*: moths per night. So the supporting data must be the per-night column, and it must cover all four lamp types, because the claim is that mercury vapour beats every one of them.\n\nRead down that column: $20$ for low-pressure sodium, $32$ for warm white LED, $90$ for mercury vapour, $55$ for cool white LED. Mercury vapour is the largest, and the option that sets 90 per night against 55, 32 and 20 reports all four figures, so it settles the comparison on its own.\n\nCheck the answer by confirming the rates against the other columns: $\\frac{500}{25} = 20$, $\\frac{640}{20} = 32$, $\\frac{900}{10} = 90$ and $\\frac{1{,}100}{20} = 55$. Then check the trap: the largest total belongs to cool white LED at 1,100 moths, not to mercury vapour, so totals could never have supported this claim.",
+  "distractorRationale": {
+    "a": "This uses totals rather than a rate, and it compares only two of the four lamp types. Cool white LEDs recorded a larger total, 1,100 moths, so the totals column does not support the claim at all.",
+    "d": "The number of nights surveyed is the denominator of the rate, not evidence of it. A short survey says nothing on its own about how strongly a lamp attracted moths on each of those nights.",
+    "c": "Species counts measure variety, not rate. A lamp could attract many different species while drawing few moths a night, so this figure leaves the claim about rate unsupported."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": {
+    "id": "digital-sat-stim-moth-lamps-302",
+    "version": 1
+  },
+  "accessibilityText": "Using the table of moths recorded at four street-lamp types, choose the description of the data that supports the claim that mercury-vapour lamps drew moths at the highest rate. The per-night rates in the table are 20 for low-pressure sodium, 32 for warm white LED, 90 for mercury vapour and 55 for cool white LED.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "digital-sat-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original item. Every option is a true reading of the table; only one reports the column the claim is about, across all four lamp types."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "digital-sat-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's own solve and uniqueness check: Claim is about rate, so only the per-night column can support it: 90 beats 55, 32 and 20, and A reports all four. B uses totals, where cool white's 1,100 is highest, so it cannot support the claim; C reports the denominator; D reports species. Unique. Not published: awaiting a blind independent solve by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "reading",
+    "command-of-evidence",
+    "quantitative",
+    "table"
+  ]
+}

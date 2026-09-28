@@ -20,7 +20,7 @@ const DESCRIPTION =
 
 /** Real dates: this draft was written on 2026-09-22 and has not been revised since. */
 const PUBLISHED = '2026-09-22';
-const UPDATED = '2026-09-22';
+const UPDATED = '2026-09-25';
 const PUBLISHED_LABEL = '22 September 2026';
 
 export const metadata: Metadata = {
@@ -69,6 +69,11 @@ const WHAT_WE_HOLD: Array<{ term: string; value: string }> = [
       'The question you reported, the reason you chose, whatever you typed in the details box, and your user id if you were signed in when you sent it.',
   },
   {
+    term: 'AI tutor requests (only if you use it)',
+    value:
+      'When you press a button asking the optional AI tutor for a hint, a deeper explanation or an after-test guide, we log that you asked, when, and whether it worked, so the daily allowance can be enforced. After-test guides are stored against your account so you can see them again; hints and explanations are about a question rather than about you and are stored without your id.',
+  },
+  {
     term: 'Rate-limit counters',
     value:
       'To stop abuse we count requests per caller in fixed windows. The counter key is a SHA-256 hash of an identifier, so a raw IP address is never written to the database.',
@@ -81,6 +86,7 @@ const WHAT_WE_DO_NOT: string[] = [
   'No payments. There is no checkout, no card handling and no payment processor, because nothing here is sold.',
   'No cookies other than the session cookie. Nothing is stored for advertising, measurement or personalisation.',
   'No selling, renting or sharing of personal data with third parties for their own purposes.',
+  'No AI unless you ask for it. The optional AI tutor sends nothing until you press one of its buttons, and it is never needed to practise: every question has its own reviewed explanation.',
   'No email marketing. We hold your address to let you sign in, not to send you campaigns.',
 ];
 
@@ -90,7 +96,8 @@ const OPEN_QUESTIONS: string[] = [
   'Retention periods. Today nothing expires except sessions (30 days, or 7 for a guest) and rate-limit windows (purged after 24 hours). How long an inactive guest account, a practice history and a resolved question report should be kept needs a decision and then an implementation.',
   'Whether deletion should be a hard delete or the soft delete currently implemented. Today deletion marks the account deleted so it stops resolving and stops appearing anywhere; what happens to the underlying attempt rows, and after how long, is an open decision.',
   'Whether users under 16 need verifiable parental consent in each jurisdiction we serve, and whether a self-declared flag is defensible at all. The age flag exists in the code and is self-declared; we do not verify it and we do not currently ask for consent.',
-  'Where the data is hosted, whether any international transfer occurs, and what the transfer mechanism and sub-processor list should say. The application itself uses one database and no third-party services.',
+  'Where the data is hosted, whether any international transfer occurs, and what the transfer mechanism and sub-processor list should say. The application uses one database. The one third-party service is the optional AI tutor, described in the next point.',
+  'The AI tutor. When a learner presses a tutor button, the server sends the question, its choices, our reviewed explanation, which choice the learner picked and - for an after-test guide - the session’s aggregate results to the model provider (Anthropic) through its API. No name, email address, account id or free text typed by the learner is sent. What needs settling: the provider’s status as a processor and the data-processing terms under which the API key is issued; the provider’s retention and use of request content under those terms, which we have not verified and so do not describe here; the international-transfer mechanism, if the provider processes outside the learner’s jurisdiction; whether performance data counts as personal data once separated from the account; and whether learners under 16 may use the tutor without parental consent. Until these are settled, an operator can leave the tutor switched off, and the site works fully without it.',
   'Whether the session cookie qualifies as strictly necessary in every jurisdiction served — our view is that it does, which is why no consent banner is shown — and confirmation that nothing else on the site would trigger consent requirements.',
   'The process and deadlines for handling access, rectification, portability, objection and erasure requests, and who is accountable for meeting them.',
   'Breach notification: the threshold, the internal process and the notification timetable.',
@@ -192,6 +199,11 @@ export default function PrivacyPage() {
               <li>
                 <strong>To fix bad questions.</strong> A report tells our editors which question and
                 which version to look at.
+              </li>
+              <li>
+                <strong>To answer an AI tutor request you made.</strong> Only when you press the
+                button, and only with the question content and performance figures described in
+                the open questions below.
               </li>
               <li>
                 <strong>To stop abuse.</strong> Sign-in attempts, sign-ups, guest creation, attempt

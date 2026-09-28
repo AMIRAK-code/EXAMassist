@@ -1,0 +1,80 @@
+{
+  "id": "gre-verbal-rc-marsh-feedback-failure-304",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "verbal-1",
+  "domainSlug": "verbal-reading-comprehension",
+  "skillSlug": "rc-draw-conclusions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The passage indicates that the mineral half of the self-correcting process described in the first paragraph fails to operate when",
+  "instructionsMd": "Select one answer choice.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "a marsh has fallen low relative to the level of the tide"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "an estuary's suspended load is measured at the head of tide rather than on the marsh"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "the water flooding a marsh carries little mineral sediment"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "the litter of marsh grasses decomposes faster than it accumulates"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "dams on the rivers feeding an estuary are removed"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The question asks when a mechanism *breaks*, so first state plainly what the mechanism needs in order to work.\n\n**Step 1 — write out the chain.** Paragraph 1: a marsh falls low relative to the tide → it floods more deeply and for longer → more suspended sediment reaches its surface → it gains elevation. Every arrow but the last is about water; the last one is about *material*. Deeper flooding only helps if the extra water is carrying something.\n\n**Step 2 — find where the passage breaks that chain.** Paragraph 2 does it explicitly: \"Where the flooding water carries little sediment, a low marsh receives more water but not more material.\" That is the failure condition, named in the passage's own words.\n\n**Step 3 — match.** One choice is that sentence: the mineral half fails **when the water flooding a marsh carries little mineral sediment**. That is the answer.\n\n**How to check.** Test your choice by asking whether the mechanism would still run if the condition were reversed. Reverse this one — let the flooding water be rich in sediment — and the chain closes: more water carries more material and the marsh climbs. That is the signature of a genuine failure condition. Now run the same test on the choice about a marsh having fallen low relative to the tide: reverse it, so the marsh is *not* low, and the process does not run either, because there is nothing for it to correct. A condition whose reversal also stops the mechanism is a trigger, not a point of failure, and that is exactly how the \"fallen low\" choice is built to catch you.",
+  "distractorRationale": {
+    "a": "This is the mechanism's starting condition, not its failure. The first paragraph says a marsh that has fallen low relative to the tide floods more deeply and therefore gains sediment; being low is what sets the self-correction going, which is why the passage calls falling behind the means of catching up.",
+    "e": "This reverses the passage's causal claim. Dams are described as holding back material that once reached the coast, so removing them would restore the sediment supply the feedback needs rather than take it away.",
+    "b": "This confuses a way of measuring with a physical condition. The head-of-tide measurement is the critics' complaint about Vogel's evidence, not something that happens to a marsh; where a gauge is placed cannot change whether a marsh gains elevation.",
+    "d": "Decomposition is never mentioned in the passage, and in any case litter belongs to the organic half of accretion, whereas the question asks about the mineral half that depends on suspended sediment."
+  },
+  "estimatedSeconds": 95,
+  "stimulusRef": {
+    "id": "gre-rc-marsh-accretion-300",
+    "version": 1
+  },
+  "accessibilityText": "Question about the passage on salt-marsh accretion and the sediment budget: identify the condition under which the mineral half of the self-correcting process described in the first paragraph fails to operate. The five choices are that dams on the rivers feeding an estuary are removed, that a marsh has fallen low relative to the level of the tide, that an estuary's suspended load is measured at the head of tide rather than on the marsh, that the litter of marsh grasses decomposes faster than it accumulates, and that the water flooding a marsh carries little mineral sediment. Select one answer choice.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gre-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original Reading Comprehension item on the original passage gre-rc-marsh-accretion-300, written for the wave 4 top-up. The stem names the mineral half explicitly so that the organic-stress clause at the end of paragraph two cannot be read as a second defensible failure condition. Not adapted from any ETS item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gre-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved as E on 'Where the flooding water carries little sediment, a low marsh receives more water but not more material'. Uniqueness: B is the mechanism's trigger rather than its failure; A reverses the dam claim; C names a measurement choice, not a physical condition; D introduces decomposition, which the passage never mentions, and concerns the organic half that the stem excludes. The stem was deliberately restricted to the mineral half so that the grass-stress clause cannot support a second answer. Awaiting blind independent solve; the author must not publish own work. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "reading-comprehension",
+    "inference",
+    "causal-mechanism",
+    "science"
+  ]
+}

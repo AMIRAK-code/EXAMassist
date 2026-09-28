@@ -1,0 +1,73 @@
+{
+  "id": "enhanced-act-sci-solubility-interpolate-311",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "science",
+  "domainSlug": "act-science-interpretation-of-data",
+  "skillSlug": "act-sci-iod-interpolate-and-extrapolate",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Suppose the student had run one more trial with Salt P at a water temperature of $48\\;^{\\circ}\\text{C}$. Based on Table 4, the mass of Salt P that would have dissolved in $100.0$ g of water would most likely have been closest to:",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$105$ g"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$81$ g"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$38$ g"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$62$ g"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "First bracket the unknown temperature. $48\\;^{\\circ}\\text{C}$ lies between the tabulated $40\\;^{\\circ}\\text{C}$ and $55\\;^{\\circ}\\text{C}$, and Salt P dissolves more as the water gets hotter. So the answer must be **greater than the $40\\;^{\\circ}\\text{C}$ value of $64$ g and less than the $55\\;^{\\circ}\\text{C}$ value of $96$ g**. Only one choice, $81$ g, sits in that window, which settles the question on its own.\n\nTo see that $81$ g is also the sensible estimate, interpolate. Across the $15\\;^{\\circ}\\text{C}$ from $40$ to $55$, the mass rises by $96 - 64 = 32$ g, which is\n\n$$\\frac{32\\text{ g}}{15\\;^{\\circ}\\text{C}} \\approx 2.1\\ \\text{g per }^{\\circ}\\text{C}.$$\n\nFrom $40\\;^{\\circ}\\text{C}$ to $48\\;^{\\circ}\\text{C}$ is $8\\;^{\\circ}\\text{C}$, so the extra mass is about $8 \\times 2.1 \\approx 17$ g, giving $64 + 17 = 81$ g.\n\nCheck it from the other end: from $48\\;^{\\circ}\\text{C}$ up to $55\\;^{\\circ}\\text{C}$ is $7\\;^{\\circ}\\text{C}$, worth about $7 \\times 2.1 \\approx 15$ g, and $96 - 15 = 81$ g. The two routes agree. Bracketing first is the habit worth keeping: on an interpolation question it usually eliminates every wrong choice before any arithmetic is needed.",
+  "distractorRationale": {
+    "c": "$38$ g is the tabulated value for Salt P at $25\\;^{\\circ}\\text{C}$. It comes from reading the wrong row — and it is impossible, because $48\\;^{\\circ}\\text{C}$ is hotter than $40\\;^{\\circ}\\text{C}$, where $64$ g already dissolved.",
+    "d": "$62$ g is slightly *below* the $64$ g measured at $40\\;^{\\circ}\\text{C}$. It comes from assuming that the mass barely changes between tabulated temperatures, which is the behaviour of Salt Q, not of Salt P.",
+    "a": "$105$ g is above the $96$ g measured at $55\\;^{\\circ}\\text{C}$. It comes from extrapolating upward past $55\\;^{\\circ}\\text{C}$ instead of interpolating between $40$ and $55$, i.e. from treating $48$ as though it were above the bracketing pair rather than inside it."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": {
+    "id": "enhanced-act-stim-sci-solubility-300",
+    "version": 1
+  },
+  "accessibilityText": "The question uses the Salt P column of Table 4: 21.0 grams at 10 degrees Celsius, 38.0 grams at 25 degrees, 64.0 grams at 40 degrees, 96.0 grams at 55 degrees and 138.0 grams at 70 degrees, each per 100.0 grams of water. It asks for the mass expected at 48 degrees Celsius, a temperature not in the table. The four choices are 38 grams, 62 grams, 81 grams and 105 grams.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank against an original experiment description and an invented data set. Not derived from, and not a paraphrase of, any ACT-published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "enhanced-act-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved the item and then tried to defend each distractor. Uniqueness is structural rather than a matter of estimation: Salt P increases monotonically with temperature, so any value at 48 C must lie strictly between the 40 C figure of 64 g and the 55 C figure of 96 g. Of the four choices only 81 g falls in that interval, so 38, 62 and 105 are excluded no matter which interpolation rule a solver uses. Distractor values were chosen so that none of them lands inside the bracket. Awaiting an independent blind solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "science",
+    "data-representation",
+    "interpolation"
+  ]
+}

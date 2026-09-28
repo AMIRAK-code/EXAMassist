@@ -1,0 +1,67 @@
+{
+  "id": "bocconi-law-logic-urgent-case-307",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-deductive-conditions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A tribunal's listing rule, which the tribunal has always followed, reads:\n\n> If a case is classified as urgent, it is heard within thirty days of being filed.\n\nThe Ferri case was not heard within thirty days of being filed.\n\nWhich of the following must be true?",
+  "instructionsMd": "This question has only three answer options. On the real test a wrong answer to a three-option critical-thinking item costs 0.33 points instead of 0.2, so an unaided guess is worth less here than elsewhere.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The Ferri case was not classified as urgent."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Every case heard within thirty days of being filed is classified as urgent."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The Ferri case was classified as urgent and the rule was not applied to it."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The rule is a conditional running in one direction only: **urgent $\\Rightarrow$ heard within thirty days**. The fact you are given is the *denial of the consequent*: the Ferri case was not heard within thirty days.\n\nIf the Ferri case had been classified as urgent, the rule — which the tribunal has always followed — would have guaranteed a hearing within thirty days. No such hearing took place. So the case cannot have been classified as urgent — the conclusion that the Ferri case was not classified as urgent.\n\nThis pattern is the one valid inference you can draw from a conditional plus a negative fact: from \"if $P$ then $Q$\" and \"not $Q$\", conclude \"not $P$\".\n\n**How to check.** Draw the arrow and see which way your fact travels along it:\n\n$$\\text{urgent} \\;\\longrightarrow\\; \\text{heard within thirty days}$$\n\nA fact about the *left* end lets you move forwards along the arrow. A *negative* fact about the right end lets you move backwards and negate. Anything else — a positive fact about the right end, or a claim that some case escaped the rule — is not something the arrow licenses. A concrete test also works: imagine a non-urgent case heard on day forty. It breaks nothing in the rule, and it is exactly the Ferri case.",
+  "distractorRationale": {
+    "b": "This is the converse of the rule: it turns 'urgent cases are heard within thirty days' into 'cases heard within thirty days are urgent'. The rule sets urgency as a sufficient condition for a quick hearing, not a necessary one, so nothing stops the tribunal from hearing an ordinary case quickly. The statement is also about other cases entirely, and says nothing that follows from the single fact given about Ferri.",
+    "c": "This keeps the classification and sacrifices the rule instead. But the stem states that the tribunal has always followed the rule, so an exception is ruled out by the premises rather than merely unlikely. Given the rule holds, an urgent case heard after thirty days is impossible, so this option contradicts what you were told."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": null,
+  "accessibilityText": "A three-option deductive reasoning question. A tribunal rule, always followed, states that if a case is classified as urgent it is heard within thirty days of being filed. The Ferri case was not heard within thirty days of being filed. The question asks which of three statements must be true. The explanation shows an arrow diagram from the word urgent to the phrase heard within thirty days.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original conditional-logic item authored with three options because Bocconi states that some critical-thinking items carry only three, and tagged 'three-option' so the -0.33 penalty can be applied as per-item data. Deliberately a different inference pattern from the existing three-option item bocconi-law-logic-publication-rule-034, which turns on 'only if' as a necessary condition: this one is denial of the consequent. Rule, tribunal and case name are invented. The stem states that the rule has always been followed so that option C is excluded by the premises rather than by plausibility."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's solve: the rule is 'urgent implies heard within thirty days' and the given fact denies the consequent, so by modus tollens the Ferri case was not classified as urgent. Uniqueness checked: option B is the converse, which a sufficient condition does not license and which in any case concerns other cases rather than Ferri; option C denies that the rule was applied, which the stem's statement that the tribunal has always followed the rule rules out. Awaiting a blind independent solve before publication. Option-letter references in the explanation were rewritten to name choice content; the key was re-derived independently and is unchanged."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "conditional-reasoning",
+    "modus-tollens",
+    "must-be-true",
+    "three-option",
+    "no-calculator"
+  ]
+}

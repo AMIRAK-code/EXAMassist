@@ -7,6 +7,7 @@ import { toPlayerModel } from '@/lib/attempts/view-model';
 import { preloadKatexFonts } from '@/lib/content/katex-fonts';
 import { pendingOwner } from '@/lib/player/owner';
 import { AttemptPlayer } from '@/components/player/attempt-player';
+import { tutorEnabled } from '@/lib/tutor/config';
 
 // A live attempt is personal state: never cached, never indexed.
 export const dynamic = 'force-dynamic';
@@ -55,6 +56,7 @@ export default async function AttemptPage({ params }: { params: Promise<{ id: st
       key={`${state.id}:${state.currentPartIndex}`}
       model={toPlayerModel(state)}
       owner={pendingOwner(user.id)}
+      tutorEnabled={tutorEnabled()}
     />
   );
 }

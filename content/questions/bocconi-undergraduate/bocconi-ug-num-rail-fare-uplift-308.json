@@ -1,0 +1,73 @@
+{
+  "id": "bocconi-ug-num-rail-fare-uplift-308",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-numerical-reasoning",
+  "skillSlug": "numerical-reasoning-hand-calculation",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Suppose Bora Rail had carried exactly the same number of journeys in 2025 but had taken the same average passenger revenue per journey as Cedro Linee. How much **more** passenger revenue would Bora Rail have earned?",
+  "instructionsMd": "Use only the figures in the table. No calculator.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "€225 million"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "€75 million"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "€50 million"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "€24 million"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Work in euros per journey first, then scale up. Revenue is in millions of euros and journeys are in millions, so dividing one by the other gives plain euros per journey.\n\n$$\\text{Cedro Linee} = \\frac{72}{8} = 9 \\text{ euros per journey}$$\n\n$$\\text{Bora Rail} = \\frac{150}{25} = 6 \\text{ euros per journey}$$\n\nThe gap is $9 - 6 = 3$ euros on every journey Bora Rail carries, and it carries 25 million of them:\n\n$$3 \\times 25 = 75 \\text{ million euros}$$\n\n**The shortcut, and why it works.** You can either compute the new total and subtract the old one, or multiply the gap by the journeys. Both must agree:\n\n$$25 \\times 9 = 225 \\qquad 225 - 150 = 75$$\n\nThey do. Multiplying the gap is faster and avoids a large subtraction, but the longer route is the natural check.\n\n**How to check the answer.** Sanity-check the size. Bora Rail's fare would rise by half again, from 6 to 9 euros, so its revenue should rise by half of 150, which is 75. A change of one half applied to a revenue of 150 cannot plausibly produce 24 or 225.\n\n**Read the stem twice.** The word \"more\" is the whole difficulty of this item. The question asks for the increase, not for the revenue Bora Rail would have taken, and the two differ by the 150 million it already earns. Note also that the punctuality column and the other two operators' rows are not needed at all.",
+  "distractorRationale": {
+    "d": "€24 million is $3 \\times 8$: the correct 3-euro gap per journey applied to **Cedro Linee's** 8 million journeys instead of Bora Rail's 25 million. The hypothetical changes Bora Rail's fare, not its traffic, so the multiplier must be Bora Rail's journey count.",
+    "c": "€50 million uses Alba Regionale's fare rather than Cedro Linee's. Alba Regionale takes $\\frac{96}{12} = 8$ euros per journey, giving a gap of $8 - 6 = 2$ euros and $2 \\times 25 = 50$. It is the answer to the same question asked about the wrong operator, easy to land on because Alba Regionale is the first row of the table.",
+    "a": "€225 million is $25 \\times 9$, the total revenue Bora Rail would have taken at Cedro Linee's fare. That is a real quantity, but the stem asks how much **more** it would have earned, so the 150 million it actually earned must be subtracted: $225 - 150 = 75$."
+  },
+  "estimatedSeconds": 105,
+  "stimulusRef": {
+    "id": "bocconi-ug-stim-rail-operators-003",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying table of four regional rail operators in 2025. It asks how much extra passenger revenue Bora Rail would have earned on its existing 25 million journeys if it had taken the same average revenue per journey as Cedro Linee. The four options are amounts in millions of euros, listed in increasing order: 24, 50, 75, 225.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original item written against the existing original table bocconi-ug-stim-rail-operators-003, which had no questions attached to it. Each distractor is the exact output of one nameable error: the right gap on the wrong journey count, the right method on the wrong comparison operator, and the new total reported instead of the increase. Options are ordered ascending."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's uniqueness check: revenue per journey is Alba Regionale 8, Bora Rail 6, Cedro Linee 9, Dora Ferrovie 6. Cedro Linee's 9 is unambiguous, the gap is exactly 3 and the increase is exactly 75 million, so only one option is defensible. The alternative route, 25 x 9 - 150, gives the same 75. Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "table-rail-operators",
+    "per-unit-comparison",
+    "hand-calculation"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "gmat-chart-line-rejects-300",
+  "version": 1,
+  "examKey": "gmat",
+  "kind": "chart",
+  "title": "Units produced and units rejected, by production line",
+  "bodyMd": "The bar chart shows, for each of the five production lines at a factory during one month, the number of units the line produced and the number of those units that were rejected by final inspection. Both series are in thousands of units. Every unit produced was inspected exactly once, and a rejected unit is counted in both series.",
+  "data": {
+    "columns": [
+      { "key": "line", "label": "Production line" },
+      { "key": "producedThousands", "label": "Units produced (thousands)" },
+      { "key": "rejectedThousands", "label": "Units rejected (thousands)" }
+    ],
+    "rows": [
+      { "line": "Line 1", "producedThousands": 120, "rejectedThousands": 3.6 },
+      { "line": "Line 2", "producedThousands": 85, "rejectedThousands": 3.4 },
+      { "line": "Line 3", "producedThousands": 150, "rejectedThousands": 3.0 },
+      { "line": "Line 4", "producedThousands": 60, "rejectedThousands": 3.9 },
+      { "line": "Line 5", "producedThousands": 95, "rejectedThousands": 4.75 }
+    ],
+    "caption": "Units produced and units rejected by final inspection, in thousands, for five production lines in one month.",
+    "chart": {
+      "type": "bar",
+      "xKey": "line",
+      "yKeys": ["producedThousands", "rejectedThousands"],
+      "xLabel": "Production line",
+      "yLabel": "Units (thousands)"
+    }
+  },
+  "accessibilityText": "A grouped bar chart with two series for five production lines, both in thousands of units. Units produced: Line 1 is 120, Line 2 is 85, Line 3 is 150, Line 4 is 60, Line 5 is 95. Units rejected by final inspection: Line 1 is 3.6, Line 2 is 3.4, Line 3 is 3.0, Line 4 is 3.9, Line 5 is 4.75. Line 3 produced the most units and Line 4 the fewest; Line 5 had the largest number of rejected units and Line 3 the smallest. Every unit produced was inspected exactly once and a rejected unit is counted in both series.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original chart data. The five pairs were constructed so that the line with the highest rejection rate (Line 4, 6.5 percent) is neither the line with the most rejected units (Line 5) nor the line with the largest output (Line 3), and so that the second-highest rate, 5.0 percent, is far enough below 6.5 percent for the ranking to be unambiguous."
+  },
+  "rightsStatus": "original-owned",
+  "state": "in_review"
+}

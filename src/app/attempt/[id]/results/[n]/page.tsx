@@ -13,6 +13,8 @@ import { LearningNotice } from '@/components/learning-notice';
 import { OutcomeBadge } from '@/components/results/results-sections';
 import { SubmitButton } from '@/components/submit-button';
 import { Alert, Badge, Breadcrumbs, ButtonLink, Container } from '@/components/ui';
+import { QuestionTutor } from '@/components/tutor/tutor-panel';
+import { tutorEnabled } from '@/lib/tutor/config';
 
 /**
  * One question from a finished session, reviewed on its own page: the question
@@ -148,6 +150,11 @@ export default async function QuestionReviewPage({
             {`Difficulty label: ${question.difficultyBasis} judgement, not calibrated against response data.`}
           </p>
         </section>
+
+        {/* Optional AI tutor: a second, labelled explanation built on the reviewed one above. */}
+        {tutorEnabled() ? (
+          <QuestionTutor attemptId={id} partIndex={item.partIndex} position={item.position} canHint={false} canExplain />
+        ) : null}
       </article>
 
       {missed ? (

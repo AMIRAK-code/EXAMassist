@@ -37,7 +37,7 @@ function ChoiceList({
 }: {
   name: string;
   type: 'radio' | 'checkbox';
-  choices: Array<{ id: string; label: string; html?: string; text?: string }>;
+  choices: Array<{ id: string; label: string; html?: string; text?: string; spoken?: string | null }>;
   selected: string[];
   disabled: boolean;
   onToggle: (id: string) => void;
@@ -74,6 +74,10 @@ function ChoiceList({
                   onChange={() => onToggle(choice.id)}
                   disabled={disabled}
                   aria-describedby={hint ? `${name}-hint` : undefined}
+                  // Maths-only choices need an explicit name: not every screen
+                  // reader can build one from MathML. The letter is included
+                  // because an aria-label replaces the visible label entirely.
+                  aria-label={choice.spoken ? `${choice.label}. ${choice.spoken}` : undefined}
                   className="mt-1 size-4 shrink-0 accent-[#1d4e6e]"
                 />
                 <span className="flex min-w-0 gap-2">
@@ -161,7 +165,7 @@ export function ResponseInput({ item, disabled, onChange }: Props) {
           name={name}
           type="radio"
           legend="Select the statement that describes the sufficiency of the data"
-          choices={item.options.map((o) => ({ id: o.label, label: o.label, html: o.html }))}
+          choices={item.options.map((o) => ({ id: o.label, label: o.label, html: o.html, spoken: o.spoken }))}
           selected={selected}
           disabled={disabled}
           onToggle={(id) =>
@@ -222,6 +226,7 @@ export function ResponseInput({ item, disabled, onChange }: Props) {
                   id: o.id,
                   label: o.label,
                   html: o.html,
+                  spoken: o.spoken,
                 }))}
                 selected={current ? [current.optionId] : []}
                 disabled={disabled}

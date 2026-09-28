@@ -1,3 +1,4 @@
+import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
 import { resetRateLimits } from './helpers';
 
@@ -351,6 +352,15 @@ test.describe('readiness', () => {
     // The limitations section is always rendered open, never behind a details.
     await expect(page.getByRole('heading', { name: 'What this assessment is not' })).toBeVisible();
     await expect(page.getByText(/Every figure here comes from your answers/i)).toBeVisible();
+
+    // The account page needs a real account, and this test already has one,
+    // so it is scanned here rather than spending another sign-up on it.
+    await page.goto('/account');
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    const accountScan = await new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
+      .analyze();
+    expect(accountScan.violations.map((v) => `${v.id}: ${v.nodes[0]?.html ?? ''}`)).toEqual([]);
   });
 
   test('refuses to project a score for an exam that does not publish its conversion', async ({ page }) => {

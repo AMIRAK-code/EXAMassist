@@ -1,0 +1,73 @@
+{
+  "id": "digital-sat-rw-inferences-fog-nets-301",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "rw-module-1",
+  "domainSlug": "information-and-ideas",
+  "skillSlug": "inferences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Based on the text, which statement about fog-collecting nets is most strongly supported?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Fog collection will work anywhere that mornings are humid."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "A net woven from the finest available thread will collect no water at all."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Tripling the surface area of a net will roughly triple the water it collects each day."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "How much water a net collects depends not only on how much fog reaches it but also on how much of that fog passes through it."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "An inference question asks for the claim the text forces on you, not the claim it merely leaves room for. Work from the explanation the passage actually gives.\n\nThe fine nets failed, the passage says, because air could not pass through them, so the fog went around the net and took its droplets with it. That single sentence links a net's yield to the volume of fog that gets through the mesh, not just to the volume of fog that arrives at the ridge. The option about how much of the arriving fog passes through the mesh states exactly that link, and the coarse net's result confirms it: slowing the air without blocking it produced nearly three times as much water from the same fog.\n\nCheck an inference by asking what would have to be added to the text to make each option true. The other three each need a fact the passage never supplies: a yield of exactly zero, a rule connecting area to output, or evidence from some site other than Cerro Alto.",
+  "distractorRationale": {
+    "b": "This turns 'performed worst of all' into 'collected nothing'. Ranking last is not the same as producing zero, and the passage gives no figure for the fine nets at all.",
+    "c": "The threefold increase in the passage came from changing the weave, not from changing the size of the net. The text never mentions surface area, so this transfers a number to a variable it was not measured for.",
+    "a": "Everything reported here happens at one ridge above Cerro Alto, where thick fog arrives most mornings. Humid air is not the same as dense fog, and one site cannot establish that the method works anywhere."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": {
+    "id": "digital-sat-stim-fog-nets-300",
+    "version": 1
+  },
+  "accessibilityText": "Using the passage about Nadia Belmont's fog-collecting nets, choose the statement about such nets that the passage most strongly supports.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "digital-sat-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original item. The three distractors are each an overreach from a single sentence of the passage rather than contradictions of it."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "digital-sat-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's own solve and uniqueness check: Only A restates the causal mechanism the passage gives (air must pass through the mesh or the fog carries its droplets past). B overstates 'worst' as zero, C moves the 3x result onto an unmeasured variable (area), D generalises from one site and swaps fog for humidity. No second option survives. Not published: awaiting a blind independent solve by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "reading",
+    "inferences",
+    "science-passage"
+  ]
+}
