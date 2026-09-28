@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-law-numrsn-civil-duration-largest-fall-305",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-numerical-reasoning",
+  "skillSlug": "law-numrsn-reasoning-over-calculation",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In which year did the average duration fall by the largest **percentage** compared with the previous year?",
+  "instructionsMd": "No calculator is permitted. The chart's first year, 2019, has no previous year in the chart and is therefore not among the options; 2020 is not either, because the duration rose that year.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "2021"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "2022"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "2023"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "2024"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "A percentage fall is the size of the drop **measured against the year it started from**, so both numbers matter — the drop and the base.\n\n**Write out the four drops with their bases.**\n\n| Year | From | To | Drop | Fraction |\n|---|---|---|---|---|\n| 2021 | 36 | 33 | 3 | $\\frac{3}{36} = \\frac{1}{12}$ |\n| 2022 | 33 | 27 | 6 | $\\frac{6}{33} = \\frac{2}{11}$ |\n| 2023 | 27 | 24 | 3 | $\\frac{3}{27} = \\frac{1}{9}$ |\n| 2024 | 24 | 18 | 6 | $\\frac{6}{24} = \\frac{1}{4}$ |\n\n**Compare without dividing.** The two six-month drops, 2022 and 2024, are the only candidates, because each of them beats both three-month drops outright: a drop of 6 from a base of 33 or less is more than a drop of 3 from a base of 36 or 27. Between the two, the numerator is the *same*, so the one with the **smaller base** is the larger fraction:\n\n$$\\frac{6}{24} > \\frac{6}{33}$$\n\nSo 2024 is the answer, at $\\frac{1}{4} = 25\\%$ against 2022's $\\frac{2}{11} \\approx 18\\%$.\n\n**How to check.** Turn the percentages back into durations. A $25\\%$ fall from 24 months means losing a quarter of 24, which is 6, leaving 18 — exactly what the chart shows for 2024. Do the same for 2022: a quarter of 33 would be $8.25$, which would have taken the duration down to under $25$ months, whereas the chart shows $27$. That confirms 2022's fall is the smaller one in percentage terms even though it is the same six months in absolute terms.",
+  "distractorRationale": {
+    "a": "2021 is the first year in which the duration falls — the turning point after the 2020 peak. The question asks for the largest fall, not the first one. In fact 2021 is the *smallest* of the four falls: three months from the highest base in the whole chart, $\\frac{3}{36} = 8\\frac{1}{3}\\%$.",
+    "b": "2022's drop of six months is the largest fall in the chart in absolute terms — but it is tied on that measure with 2024, which also drops six months. Choosing 2022 means settling the tie by the size of the numbers rather than by the percentage the question asks for. With the same drop of 6, the bigger base gives the smaller fraction: $\\frac{6}{33} \\approx 18\\%$ against $\\frac{6}{24} = 25\\%$.",
+    "c": "2023 ends at the chart's second-lowest value, which makes it look like a decisive year, but the drop itself is only three months from a base of 27: $\\frac{3}{27} = \\frac{1}{9} \\approx 11\\%$, well under half of 2024's 25%. This option confuses how low a bar ends up with how far it fell."
+  },
+  "estimatedSeconds": 105,
+  "stimulusRef": {
+    "id": "bocconi-law-chart-civil-duration-033",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying bar chart of the average duration in months of a first-instance civil proceeding in the Valmarina district, one bar per year: 2019, 30 months; 2020, 36 months; 2021, 33 months; 2022, 27 months; 2023, 24 months; 2024, 18 months. The question asks in which year the average duration fell by the largest percentage compared with the previous year. The four answer options are the years 2021, 2022, 2023 and 2024. The explanation uses fractions such as three over thirty-six and six over twenty-four.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original item written against the existing original chart stimulus bocconi-law-chart-civil-duration-033, which had no questions attached to it. Targets the syllabus entry on solving problems primarily through reasoning on given data: the two candidate years share an identical absolute drop of six months, so the item is settled by comparing two fractions with the same numerator rather than by computing any percentage. The stem names 2019 and 2020 as excluded so that the option list cannot be read as incomplete."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's solve: year-on-year falls are 2021, 3/36 = 8.33%; 2022, 6/33 = 18.18%; 2023, 3/27 = 11.11%; 2024, 6/24 = 25%. Largest is 2024. Uniqueness checked: 2022 is the trap for anyone comparing absolute drops, but its six-month drop only ties 2024's and comes from the larger base, so it cannot win on percentage; 2021 and 2023 both drop only three months. 2019 has no predecessor in the chart and 2020 rose from 30 to 36, so neither could be a defensible answer and both are named as excluded in the instructions. Awaiting a blind independent solve before publication."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "numerical-reasoning",
+    "charts",
+    "percentage-change",
+    "base-effect",
+    "reasoning-over-calculation",
+    "no-calculator"
+  ]
+}

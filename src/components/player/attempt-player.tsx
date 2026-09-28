@@ -9,6 +9,7 @@ import { formatRemaining } from '@/lib/assessment/timing';
 import type { ServerItem } from '@/lib/player/pending';
 import { StimulusView } from '@/components/stimulus-view';
 import { Alert, Badge, Button, FidelityBadge, cx } from '@/components/ui';
+import { QuestionTutor } from '@/components/tutor/tutor-panel';
 import { ResponseInput } from './response-input';
 import { SaveIndicator } from './save-indicator';
 import { postJson, usePendingSaves } from './use-pending-saves';
@@ -40,7 +41,16 @@ const TYPING: ReadonlySet<PlayerItem['responseType']> = new Set(['numeric_entry'
 /** Typing is sent once it pauses for this long (and at once on leaving the question). */
 const TYPING_DEBOUNCE_MS = 800;
 
-export function AttemptPlayer({ model, owner }: { model: PlayerModel; owner: string }) {
+export function AttemptPlayer({
+  model,
+  owner,
+  tutorEnabled = false,
+}: {
+  model: PlayerModel;
+  owner: string;
+  /** The optional AI tutor is configured on the server. See lib/tutor/config.ts. */
+  tutorEnabled?: boolean;
+}) {
   const router = useRouter();
   const part = model.parts[model.currentPartIndex];
 
@@ -584,6 +594,20 @@ export function AttemptPlayer({ model, owner }: { model: PlayerModel; owner: str
                   />
                 ) : null}
               </div>
+            ) : null}
+
+            {/* Optional AI help, in untimed learning sessions only - the server
+                refuses it anywhere else. Hints until the answer is checked;
+                a deeper explanation once the reviewed one is showing. */}
+            {tutorEnabled && model.immediateFeedback && part.status === 'in_progress' ? (
+              <QuestionTutor
+                key={`${part.partIndex}-${item.position}`}
+                attemptId={model.attemptId}
+                partIndex={part.partIndex}
+                position={item.position}
+                canHint={!isLocked}
+                canExplain={Boolean(showFeedback)}
+              />
             ) : null}
           </article>
         </div>

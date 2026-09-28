@@ -1,0 +1,72 @@
+{
+  "id": "bocconi-law-logic-seminar-week-306",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-deductive-conditions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A law faculty schedules four seminars — Constitutional, Evidence, Property and Roman — on Monday, Tuesday, Wednesday and Thursday of a single week, exactly one seminar per day. The timetable satisfies all of the following conditions:\n\n- Evidence is scheduled on an earlier day than Property.\n- Roman is not scheduled on Monday.\n- Constitutional is scheduled on the day immediately before, or the day immediately after, Roman.\n\nWhich of the following must be true?",
+  "instructionsMd": "Exactly one of the four statements holds in every timetable that satisfies the conditions.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Property is scheduled on Tuesday or on Thursday."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Roman is scheduled on Tuesday or on Wednesday."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Evidence is scheduled on Monday."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Constitutional is scheduled on an earlier day than Property."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Start from the condition that ties two seminars together, because it constrains the most: Constitutional and Roman occupy **adjacent days**, and Roman is not on Monday.\n\n**Enumerate the Constitutional–Roman block.** Numbering the days $1$ (Monday) to $4$ (Thursday), the adjacent pairs with Roman off day 1 are: Roman on 2 with Constitutional on 1 or 3; Roman on 3 with Constitutional on 2 or 4; Roman on 4 with Constitutional on 3. That is five placements, and in each case the two remaining days go to Evidence and Property, with Evidence first.\n\n| | Mon | Tue | Wed | Thu |\n|---|---|---|---|---|\n| **T1** | Constitutional | Roman | Evidence | Property |\n| **T2** | Evidence | Roman | Constitutional | Property |\n| **T3** | Evidence | Constitutional | Roman | Property |\n| **T4** | Evidence | Property | Roman | Constitutional |\n| **T5** | Evidence | Property | Constitutional | Roman |\n\nThose five are the complete list.\n\n**Test the statements against the whole list.** Property falls on Thursday in T1, T2 and T3, and on Tuesday in T4 and T5. It is never on Monday (Evidence must come before it) and never on Wednesday (in every timetable Wednesday is taken by one of the other three). So the claim that Property is scheduled on Tuesday or on Thursday holds in all five timetables and must be true.\n\n**How to check.** A \"must be true\" claim has to survive *every* admissible arrangement, so the test is: for each of the other options, find one timetable that breaks it. The claim that Evidence is scheduled on Monday breaks in T1, the claim that Roman is scheduled on Tuesday or Wednesday breaks in T5, and the claim that Constitutional is scheduled earlier than Property breaks in T4 — one counter-example each. Since only the Tuesday-or-Thursday claim about Property is left standing across all five, the answer is unique. The quickest structural confirmation is the Wednesday column: reading down it gives Evidence, Constitutional, Roman, Roman, Constitutional, and Property never appears.",
+  "distractorRationale": {
+    "c": "True in four of the five timetables, which is exactly what makes it tempting — Evidence must precede Property, so it is pushed early. But \"early\" is not \"first\": in T1 the Constitutional–Roman block takes Monday and Tuesday, and Evidence sits on Wednesday with Property on Thursday. One counter-example is enough to sink a must-be-true claim.",
+    "b": "True in four of the five timetables. It comes from applying only the second condition — Roman is not on Monday — and then assuming Roman must also stay clear of the far end of the week. Nothing forbids Thursday: in T5 the block is Constitutional on Wednesday and Roman on Thursday, with Evidence and Property on Monday and Tuesday.",
+    "d": "This reads the first condition, Evidence before Property, and quietly extends the same precedence to Constitutional. No condition relates Constitutional to Property at all. In T4 Property is on Tuesday and Constitutional on Thursday, so the order is the reverse of what this option claims."
+  },
+  "estimatedSeconds": 125,
+  "stimulusRef": null,
+  "accessibilityText": "A deductive reasoning question. Four seminars named Constitutional, Evidence, Property and Roman are scheduled one per day on Monday, Tuesday, Wednesday and Thursday of one week. Evidence is on an earlier day than Property; Roman is not on Monday; Constitutional is on the day immediately before or immediately after Roman. The question asks which of four statements must be true. The explanation includes a table listing the five possible timetables, one row per timetable and one column per weekday.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original ordering item written to the published Bocconi Law syllabus entry 'a series of initial conditions followed by a question to be answered by deductive reasoning'. Seminars and faculty are invented. The conditions were chosen to leave five admissible timetables so that each distractor is true in four of them and false in exactly one, which makes the item a genuine test of complete enumeration rather than of finding a single arrangement."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved by full enumeration. The Constitutional-Roman adjacent block with Roman off Monday allows five placements, and Evidence-before-Property fixes the remaining two days in each, giving exactly five timetables: (C,R,E,P), (E,R,C,P), (E,C,R,P), (E,P,R,C), (E,P,C,R). Property lands on Thursday in the first three and on Tuesday in the last two, so option C holds throughout. Uniqueness checked: A fails in the first timetable (Evidence on Wednesday), B fails in the fifth (Roman on Thursday) and D fails in the fourth (Property Tuesday, Constitutional Thursday). Awaiting a blind independent solve before publication. Option-letter references in the explanation were rewritten to name choice content; the key was re-derived independently and is unchanged. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "ordering",
+    "scheduling",
+    "must-be-true",
+    "no-calculator"
+  ]
+}

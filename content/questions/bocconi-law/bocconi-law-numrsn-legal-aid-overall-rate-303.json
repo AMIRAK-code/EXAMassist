@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-law-numrsn-legal-aid-overall-rate-303",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-numerical-reasoning",
+  "skillSlug": "law-numrsn-relevant-vs-superfluous",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Taking the four districts together, what percentage of the legal-aid applications received in 2024 was granted?",
+  "instructionsMd": "No calculator is permitted. Not every column of the table is needed.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "60%"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "65%"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "67.5%"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "70%"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "A question about the four districts *together* is a question about one combined pool, so add before you divide.\n\n**Add the two relevant columns.** The \"average days to decide\" column says nothing about outcomes and is superfluous here.\n\n$$\\text{received} = 1200 + 900 + 1500 + 400 = 4000$$\n\n$$\\text{granted} = 780 + 720 + 900 + 300 = 2700$$\n\n**Divide once.**\n\n$$\\frac{2700}{4000} = \\frac{27}{40} = \\frac{67.5}{100} = 67.5\\%$$\n\n(If the fraction $\\frac{27}{40}$ is awkward, scale it: $\\frac{27}{40} = \\frac{270}{400} = \\frac{135}{200} = \\frac{67.5}{100}$.)\n\n**How to check — bracket the answer before computing it.** The four district rates are $\\frac{780}{1200} = 65\\%$, $\\frac{720}{900} = 80\\%$, $\\frac{900}{1500} = 60\\%$ and $\\frac{300}{400} = 75\\%$. A combined rate must lie between the lowest and the highest, so it is somewhere between $60\\%$ and $80\\%$ — which already rules out nothing here, so go one step further. The two *largest* districts, Arno and Cesano, hold $2700$ of the $4000$ applications between them and have the two *lowest* rates, so the combined figure must sit below the midpoint of the four rates. That is why $67.5\\%$ and not $70\\%$ is right: the combined rate is pulled down towards the big, low-rate districts.",
+  "distractorRationale": {
+    "a": "This is Cesano's own grant rate, $\\frac{900}{1500} = 60\\%$. It comes from treating the largest district as if it stood for the whole set. Cesano holds $1500$ of the $4000$ applications — a large share, but well short of a majority, so its rate is not the combined rate.",
+    "b": "This is Arno's own grant rate, $\\frac{780}{1200} = 65\\%$ — the rate of the district that heads the table, read off instead of the combined figure.",
+    "d": "This is the unweighted mean of the four district rates: $\\frac{65 + 80 + 60 + 75}{4} = \\frac{280}{4} = 70\\%$. Averaging rates treats Dora's 400 applications as counting for as much as Cesano's 1500. The two biggest districts happen to have the two lowest rates, so ignoring size pushes the figure too high."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": {
+    "id": "bocconi-law-table-legal-aid-032",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying table of legal-aid applications in the districts of Arno, Brenta, Cesano and Dora during 2024, which gives for each district the applications received, the applications granted and the average days taken to decide. The question asks what percentage of all applications received across the four districts was granted. The four answer options are the percentages 60, 65, 67.5 and 70.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original item written against the existing original table stimulus bocconi-law-table-legal-aid-032, which had no questions attached to it. Targets the syllabus entry on distinguishing information critical to the problem from superfluous information: the 'average days to decide' column is a decoy, and the principal trap is averaging the four district rates instead of pooling the counts. All arithmetic reduces to adding round hundreds and simplifying 27/40, so no calculator is needed."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's solve: received 1200+900+1500+400 = 4000; granted 780+720+900+300 = 2700; 2700/4000 = 27/40 = 67.5%. Uniqueness checked: 60% is Cesano's rate, 65% is Arno's rate and 70% is the unweighted mean of the four rates (65, 80, 60, 75), so no other option is a defensible reading of 'the four districts together'. Awaiting a blind independent solve before publication."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "numerical-reasoning",
+    "tables",
+    "percentages",
+    "weighted-vs-unweighted-average",
+    "superfluous-information",
+    "no-calculator"
+  ]
+}

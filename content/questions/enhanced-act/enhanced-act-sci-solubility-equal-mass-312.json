@@ -1,0 +1,73 @@
+{
+  "id": "enhanced-act-sci-solubility-equal-mass-312",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "science",
+  "domainSlug": "act-science-interpretation-of-data",
+  "skillSlug": "act-sci-iod-manipulate-and-analyse-data",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "According to Table 4, at which of the following water temperatures did Salt P and Salt Q dissolve in most nearly equal masses?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$25\\;^{\\circ}\\text{C}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$40\\;^{\\circ}\\text{C}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$55\\;^{\\circ}\\text{C}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$10\\;^{\\circ}\\text{C}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "\"Most nearly equal\" means the smallest gap between the two columns, so take the difference row by row and compare the sizes:\n\n- $10\\;^{\\circ}\\text{C}$: $35.7 - 21.0 = 14.7$ g\n- $25\\;^{\\circ}\\text{C}$: $38.0 - 36.0 = 2.0$ g\n- $40\\;^{\\circ}\\text{C}$: $64.0 - 36.4 = 27.6$ g\n- $55\\;^{\\circ}\\text{C}$: $96.0 - 36.9 = 59.1$ g\n\nThe smallest gap by a wide margin is $2.0$ g, at $25\\;^{\\circ}\\text{C}$.\n\nCheck it without arithmetic. Salt P climbs steeply while Salt Q is almost flat near $36$ g, so the two columns can only be close where Salt P's value passes through the mid-thirties — and that happens at $25\\;^{\\circ}\\text{C}$, where Salt P reads $38.0$ g. Below that row Salt P is well under Salt Q; above it, well over. A crossing like that happens once, which is why exactly one row can be the answer. Note also that the gap is worth measuring as a size, not a signed value: at $10\\;^{\\circ}\\text{C}$ Salt P is the smaller of the two, and at every hotter temperature it is the larger.",
+  "distractorRationale": {
+    "d": "At $10\\;^{\\circ}\\text{C}$ the two masses are $21.0$ g and $35.7$ g, a gap of $14.7$ g. This is the row picked by a reader who looks for the smallest numbers in the table rather than the smallest difference between the two columns.",
+    "b": "At $40\\;^{\\circ}\\text{C}$ the masses are $64.0$ g and $36.4$ g, a gap of $27.6$ g. The $36.4$ g looks close to the $38.0$ g one row above it, so this row is chosen by a reader who compares Salt Q with the wrong row of Salt P instead of comparing the two columns within a single row.",
+    "c": "At $55\\;^{\\circ}\\text{C}$ the masses are $96.0$ g and $36.9$ g, a gap of $59.1$ g — the largest of the four rows offered. It is chosen by a reader who assumes the columns must converge as the temperature rises, without subtracting."
+  },
+  "estimatedSeconds": 45,
+  "stimulusRef": {
+    "id": "enhanced-act-stim-sci-solubility-300",
+    "version": 1
+  },
+  "accessibilityText": "The question compares the Salt P and Salt Q columns of Table 4 row by row. At 10 degrees Celsius, Salt P 21.0 grams and Salt Q 35.7 grams. At 25 degrees, Salt P 38.0 and Salt Q 36.0. At 40 degrees, Salt P 64.0 and Salt Q 36.4. At 55 degrees, Salt P 96.0 and Salt Q 36.9. All masses are per 100.0 grams of water. The four choices are the temperatures 10, 25, 40 and 55 degrees Celsius.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank against an original experiment description and an invented data set. Not derived from, and not a paraphrase of, any ACT-published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "enhanced-act-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved the item and then tried to defend each distractor. The four gaps are 14.7, 2.0, 27.6 and 59.1 g, so 25 C is the unique minimum and the nearest rival is more than seven times larger; the result is the same whether the gap is read as a difference or as a ratio (P/Q = 0.59, 1.06, 1.76, 2.60), so there is no absolute-versus-proportional ambiguity here. Awaiting an independent blind solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "science",
+    "data-representation",
+    "table-reading"
+  ]
+}

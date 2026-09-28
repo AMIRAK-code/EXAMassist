@@ -1,0 +1,49 @@
+{
+  "id": "gmat-ps-successive-discount-300",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-arithmetic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A retailer lists a jacket at $80$ euros. In a clearance sale the listed price is first reduced by $25$ percent, and the resulting price is then reduced by a further $20$ percent. What is the final price of the jacket, in euros?",
+  "instructionsMd": "Select the single best answer.",
+  "options": [
+    { "id": "a", "label": "A", "textMd": "$36$" },
+    { "id": "b", "label": "B", "textMd": "$44$" },
+    { "id": "c", "label": "C", "textMd": "$48$" },
+    { "id": "d", "label": "D", "textMd": "$60$" },
+    { "id": "e", "label": "E", "textMd": "$64$" }
+  ],
+  "answerKey": { "type": "single_select", "optionId": "c" },
+  "explanationMd": "A percent reduction is a multiplication by what is **left**, so work in surviving fractions rather than in the discounts themselves.\n\n**Step 1 — the first reduction.** Taking $25$ percent off leaves $75$ percent:\n\n$$80 \\times 0.75 = 60.$$\n\n**Step 2 — the second reduction.** The second cut applies to the $60$ euros, not to the original $80$. Taking $20$ percent off leaves $80$ percent:\n\n$$60 \\times 0.80 = 48.$$\n\nThe final price is $48$ euros.\n\n**The one-step route.** Successive percent changes multiply:\n\n$$80 \\times 0.75 \\times 0.80 = 80 \\times 0.60 = 48.$$\n\nSo the pair of cuts is equivalent to a single $40$ percent reduction — not the $25 + 20 = 45$ percent that adding them would suggest. The five missing percentage points are the part of the second discount that would have applied to money already removed by the first.\n\n**How to check the answer.** Reverse the process and see whether you get back to $80$. Undo the $20$ percent cut: $48 \\div 0.80 = 60$. Undo the $25$ percent cut: $60 \\div 0.75 = 80$. You land exactly on the list price, so $48$ is right.\n\n**A second check that takes five seconds.** Because the order of two multiplications does not matter, applying the discounts the other way round must give the same figure: $80 \\times 0.80 = 64$, then $64 \\times 0.75 = 48$. Same answer, so the arithmetic is sound.",
+  "distractorRationale": {
+    "a": "This computes $0.45 \\times 80 = 36$, taking $45$ percent of the price rather than removing it. It makes two errors at once: it adds the discounts instead of compounding them, and it then keeps the discounted share rather than the surviving share.",
+    "b": "This adds the two discounts to $45$ percent and removes that in one step: $80 - 0.45 \\times 80 = 44$. Successive discounts compound as $0.75 \\times 0.80 = 0.60$, a single $40$ percent cut, because the second discount applies only to what the first one left.",
+    "d": "This is $80 \\times 0.75$, the price after the first reduction only. The second reduction of $20$ percent has not been applied.",
+    "e": "This is $80 \\times 0.80$, the price after the second reduction only. The first reduction of $25$ percent has not been applied."
+  },
+  "estimatedSeconds": 105,
+  "stimulusRef": null,
+  "accessibilityText": "A jacket is listed at 80 euros. The price is reduced by 25 percent, and the resulting price is then reduced by a further 20 percent. The question asks for the final price in euros. Five numeric options are offered in ascending order: 36, 44, 48, 60 and 64.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original item. The 25 and 20 percent pair was chosen because 0.75 times 0.80 is exactly 0.60, so the compound result is a round number while the additive error (45 percent) lands on a clearly different value, and each single-discount price is also a distinct option."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved the item forwards (80 -> 60 -> 48), in the reverse discount order (80 -> 64 -> 48) and by reversing the process from 48 back to 80, obtaining the same figure each time. Each of the other four values was traced to a specific named error and none of them equals 48, so exactly one option is defensible. Numeric options are ordered ascending as on the real exam. Awaiting blind independent solve before publication."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": ["percent", "successive-discount", "arithmetic"]
+}

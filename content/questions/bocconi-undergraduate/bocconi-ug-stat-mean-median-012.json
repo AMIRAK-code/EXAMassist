@@ -1,6 +1,6 @@
 {
   "id": "bocconi-ug-stat-mean-median-012",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-undergraduate",
   "sectionKey": "online-test",
   "domainSlug": "bocconi-ug-mathematics",
@@ -40,7 +40,7 @@
   "explanationMd": "**Mean.** Add the six values and divide by how many there are:\n\n$$4 + 7 + 7 + 9 + 13 + 20 = 60$$\n$$\\bar{x} = \\frac{60}{6} = 10$$\n\n**Median.** The values are already in increasing order. With an **even** number of observations there is no single middle value, so the median is the average of the two middle ones — here the third and fourth, $7$ and $9$:\n\n$$\\text{median} = \\frac{7 + 9}{2} = 8$$\n\n**Difference.**\n\n$$10 - 8 = 2$$\n\n**Why the mean is the larger of the two here.** The value $20$ is far above the rest. The mean uses the size of every observation, so a single large value pulls it upwards; the median only uses position, so it barely moves. Whenever a data set has a long right tail you should expect mean $>$ median, which is a useful check on the sign of your answer before you look at the options.\n\n**Position check:** with $n = 6$ the two middle positions are $\\frac{n}{2} = 3$ and $\\frac{n}{2} + 1 = 4$.",
   "distractorRationale": {
     "a": "This takes the median to be $9$, the fourth value, treating it as 'the middle one'. With six observations there is no single middle value: the median is the mean of the third and fourth values, $\\frac{7+9}{2} = 8$, which gives a difference of $2$ rather than $1$.",
-    "c": "This takes the median to be $7$, the third value. As with option A, it picks one of the two middle observations instead of averaging them. It may also come from confusing the median with the mode, which is $7$ here.",
+    "c": "This takes the median to be $7$, the third value. Like the option that takes the fourth value, $9$, as the sole middle number, it picks one of the two middle observations instead of averaging them. It may also come from confusing the median with the mode, which is $7$ here.",
     "d": "This comes from dividing the total by $5$ instead of $6$, giving a mean of $12$ and a difference of $12 - 8 = 4$. There are six observations, even though only five of the values are distinct; the repeated $7$ must be counted twice."
   },
   "estimatedSeconds": 80,
@@ -64,7 +64,7 @@
       "uniquenessChecked": true,
       "workingNotes": "Sum 4+7+7+9+13+20=60, mean=10; with six sorted values the median is (7+9)/2=8; 10-8=2. Taking 7 or 9 as a single median would give 3 or 1, but with an even count the average of the two middle values is the standard definition."
     },
-    "notes": "Awaiting blind independent solve before publication."
+    "notes": "Awaiting blind independent solve before publication. Option-letter references in the explanation were rewritten to name choice content; the key was re-derived independently and is unchanged. Version 2: the wording changed after version 1 was published (letter references replaced with the content of each choice), so the version was incremented to keep earlier attempts pinned to the text they showed."
   },
   "state": "published",
   "quarantine": null,

@@ -1,4 +1,5 @@
 import { renderInlineMarkdown, renderMarkdown } from '@/lib/markdown';
+import { spokenLabel } from '@/lib/speech';
 import type { StimulusData, StimulusViewModel } from '@/components/stimulus-view';
 import type { AttemptState } from './service';
 import type { NavigationPolicy, Response, ResponseType } from '@/lib/assessment/types';
@@ -15,6 +16,8 @@ export interface PlayerOption {
   id: string;
   label: string;
   html: string;
+  /** Plain speakable text when the choice contains maths; see lib/speech.ts. */
+  spoken: string | null;
 }
 
 export interface PlayerReview {
@@ -148,6 +151,7 @@ export function toPlayerModel(state: AttemptState): PlayerModel {
           id: option.id,
           label: option.label,
           html: renderInlineMarkdown(option.textMd),
+          spoken: spokenLabel(option.textMd),
         }));
 
         return {

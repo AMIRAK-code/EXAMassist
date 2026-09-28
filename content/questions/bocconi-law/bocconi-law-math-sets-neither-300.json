@@ -1,0 +1,73 @@
+{
+  "id": "bocconi-law-math-sets-neither-300",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-mathematics",
+  "skillSlug": "law-math-sets",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Let $U = \\{1,\\,2,\\,3,\\,\\dots,\\,12\\}$ and let\n\n$$A = \\{x \\in U : x \\text{ is a multiple of } 3\\}, \\qquad B = \\{x \\in U : x \\text{ is even}\\}.$$\n\nHow many elements of $U$ belong neither to $A$ nor to $B$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "2"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "4"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "6"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "8"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "\"Neither $A$ nor $B$\" is the complement of the **union**, so build the union first.\n\n**List the two sets.**\n\n$$A = \\{3,\\,6,\\,9,\\,12\\} \\quad (|A| = 4), \\qquad B = \\{2,\\,4,\\,6,\\,8,\\,10,\\,12\\} \\quad (|B| = 6)$$\n\n**Count the union.** The two sets overlap: $A \\cap B = \\{6,\\,12\\}$, the multiples of 6, so $|A \\cap B| = 2$. By inclusion–exclusion,\n\n$$|A \\cup B| = |A| + |B| - |A \\cap B| = 4 + 6 - 2 = 8$$\n\n**Take the complement.** $U$ has 12 elements, so\n\n$$|U \\setminus (A \\cup B)| = 12 - 8 = 4$$\n\n**How to check.** With only twelve elements you can simply name them. Cross out every even number and every multiple of 3 from $1$ to $12$; what survives is $\\{1,\\,5,\\,7,\\,11\\}$ — four numbers, and every one of them is odd and not divisible by 3, exactly as required. Writing the survivors out is also the fastest guard against the inclusion–exclusion slip, because it never asks you to subtract an overlap at all.",
+  "distractorRationale": {
+    "a": "This is $12 - (|A| + |B|) = 12 - (4 + 6) = 2$: the union was counted by simply adding the two sizes. That double-counts the elements lying in both sets, 6 and 12, so it overstates the union by 2 and understates the answer by 2.",
+    "c": "This is the number of elements outside $B$ alone, namely $\\{1,\\,3,\\,5,\\,7,\\,9,\\,11\\}$ — the odd numbers. It forgets that 3 and 9 also belong to $A$ and so must be excluded too.",
+    "d": "This is the number of elements outside $A$ alone, namely $\\{1,\\,2,\\,4,\\,5,\\,7,\\,8,\\,10,\\,11\\}$. It forgets to exclude the even numbers. (It is also, by coincidence, the size of $A \\cup B$ itself, which is the count you subtract from 12 rather than the answer.)"
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "The universal set U is the set of whole numbers from 1 to 12 inclusive. A is the set of elements of U that are multiples of 3. B is the set of elements of U that are even. The question asks how many elements of U belong to neither A nor B. The four answer options are the whole numbers 2, 4, 6 and 8.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original item on the 'sets' entry of the published Bocconi Law mathematics syllabus (inclusion, union, intersection, complement). The universe is kept to twelve elements so the item can be solved by direct enumeration without a calculator, and the overlap of the two sets is non-empty so that inclusion-exclusion is genuinely required."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's solve: A = {3,6,9,12}, B = {2,4,6,8,10,12}, A and B intersect in {6,12}, so |A union B| = 4 + 6 - 2 = 8 and 12 - 8 = 4. Uniqueness checked by enumeration: the elements in neither set are exactly {1,5,7,11}, so no other option count is defensible. 2 arises from omitting the inclusion-exclusion correction, 6 from complementing B only and 8 from complementing A only. Awaiting a blind independent solve before publication."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "mathematics",
+    "sets",
+    "union",
+    "complement",
+    "inclusion-exclusion",
+    "no-calculator"
+  ]
+}

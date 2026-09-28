@@ -1,0 +1,73 @@
+{
+  "id": "enhanced-act-sci-runoff-least-315",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "science",
+  "domainSlug": "act-science-interpretation-of-data",
+  "skillSlug": "act-sci-iod-manipulate-and-analyse-data",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "According to Table 5, in Experiment 1 (slope $10^{\\circ}$), which surface cover produced the least runoff?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Gravel"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Bare soil"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Cut grass"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Leaf mulch"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "\"Least runoff\" means the **smallest** volume, so read down the Experiment 1 column — the one headed $10^{\\circ}$ — and find the smallest number:\n\n- Bare soil: $1120$ mL\n- Gravel: $780$ mL\n- Cut grass: $410$ mL\n- Leaf mulch: $300$ mL\n\n$300$ mL is the smallest, so leaf mulch produced the least runoff.\n\nCheck it a second way, using the fact that every tray received the same $2.0$ L $= 2000$ mL of water. Whatever did not run off soaked into the soil or stayed on the surface, so the tray with the least runoff is the tray that *kept* the most water: leaf mulch kept $2000 - 300 = 1700$ mL, more than cut grass ($1590$ mL), gravel ($1220$ mL) or bare soil ($880$ mL). Both readings pick out the same tray, which is a good sign you have used the right column. Be careful to stay inside the $10^{\\circ}$ column — the $20^{\\circ}$ column beside it holds larger values for every cover.",
+  "distractorRationale": {
+    "b": "Bare soil produced $1120$ mL, the *largest* value in the Experiment 1 column. It is chosen by a reader who looks for the biggest number, which would answer \"greatest\" rather than \"least\".",
+    "a": "Gravel produced $780$ mL. It is picked by a reader who reasons that stones must block water best, instead of reading the column; gravel in fact let through more than twice as much runoff as leaf mulch.",
+    "c": "Cut grass produced $410$ mL, the second smallest. It is chosen by a reader who stops at the first small-looking number in the column rather than comparing all four rows."
+  },
+  "estimatedSeconds": 30,
+  "stimulusRef": {
+    "id": "enhanced-act-stim-sci-runoff-301",
+    "version": 1
+  },
+  "accessibilityText": "The question uses the Experiment 1 column of Table 5, the runoff in millilitres at a 10 degree slope. Bare soil 1120 millilitres, gravel 780, cut grass 410, leaf mulch 300. Every tray received 2.0 litres, which is 2000 millilitres, of water. The four choices are the four covers: bare soil, gravel, cut grass and leaf mulch.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank against an original experiment description and an invented data set. Not derived from, and not a paraphrase of, any ACT-published question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "enhanced-act-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved the item and then tried to defend each distractor. 300 mL is strictly the smallest of the four Experiment 1 values, so exactly one option is defensible; the stem names the experiment and the slope explicitly so the 20 degree column cannot be read by mistake. Awaiting an independent blind solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "science",
+    "research-summary",
+    "table-reading"
+  ]
+}

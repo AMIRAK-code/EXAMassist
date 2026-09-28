@@ -14,7 +14,7 @@ import {
   purgeExpiredSessions,
   resolveSession,
 } from '@/lib/auth/session';
-import { RATE_LIMITS, callerKey, checkRateLimit } from '@/lib/auth/rate-limit';
+import { RATE_LIMITS, callerKey, checkRateLimit, clientAddress } from '@/lib/auth/rate-limit';
 import { createTestDb, createUser } from './helpers/test-db';
 
 let db: Db;
@@ -229,5 +229,30 @@ describe('rate limiting', () => {
     });
     expect(callerKey(request, 'user-123')).toBe('user:user-123');
     expect(callerKey(request, null)).toBe('ip:198.51.100.7');
+  });
+});
+
+describe('clientAddress', () => {
+  const headers = (xff?: string, realIp?: string) => {
+    const h = new Headers();
+    if (xff) h.set('x-forwarded-for', xff);
+    if (realIp) h.set('x-real-ip', realIp);
+    return h;
+  };
+
+  it('ignores the client-written start of X-Forwarded-For and uses the entry our proxy added', () => {
+    // The client sent "6.6.6.6"; our proxy appended the real address.
+    expect(clientAddress(headers('6.6.6.6, 203.0.113.9'), {})).toBe('203.0.113.9');
+    // Rotating the forged part does not change the bucket.
+    expect(clientAddress(headers('7.7.7.7, 203.0.113.9'), {})).toBe('203.0.113.9');
+  });
+
+  it('counts back the configured number of trusted proxies', () => {
+    expect(clientAddress(headers('6.6.6.6, 203.0.113.9, 10.0.0.2'), { TRUSTED_PROXY_HOPS: '2' })).toBe('203.0.113.9');
+  });
+
+  it('falls back to X-Real-IP, then to a shared bucket', () => {
+    expect(clientAddress(headers(undefined, '198.51.100.4'), {})).toBe('198.51.100.4');
+    expect(clientAddress(headers(), {})).toBe('unknown');
   });
 });

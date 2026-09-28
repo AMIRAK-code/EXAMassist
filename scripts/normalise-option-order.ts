@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { loadContent } from '../src/lib/content/loader';
+import { citedOptionLetters } from '../src/lib/content/question-schema';
 import { createRng, shuffle } from '../src/lib/assessment/select';
 
 /**
@@ -79,11 +80,19 @@ function main(): void {
     // a learner to the wrong option. This happened to 104 published items, so
     // an item whose explanation or distractor notes name option letters is
     // left in its order and reported, to be reordered and re-lettered by hand.
-    const prose = [question.explanationMd, ...Object.values(question.distractorRationale)]
+    // The screen-reader description counts too: it often lists the choices,
+    // and a stale list misleads exactly the learners who cannot check it
+    // against the screen. Detection is shared with validateQuestion, so the
+    // validator and this script agree on what a letter reference is.
+    const prose = [
+      question.explanationMd,
+      question.accessibilityText ?? '',
+      ...Object.values(question.distractorRationale),
+    ]
       .join('\n')
       .replace(/\$\$[\s\S]*?\$\$/g, ' ')
       .replace(/\$[^$\n]*\$/g, ' ');
-    if (/\b(?:[Cc]hoices?|[Oo]ptions?) \(?[A-H]\)?(?![A-Za-z])|\([A-H]\)/.test(prose)) {
+    if (citedOptionLetters(prose).length > 0) {
       namesLetters.push(question.id);
       continue;
     }

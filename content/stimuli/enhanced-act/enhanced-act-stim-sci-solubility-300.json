@@ -1,0 +1,40 @@
+{
+  "id": "enhanced-act-stim-sci-solubility-300",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "kind": "table",
+  "title": "Study 4: How much solid dissolves in water at five temperatures",
+  "bodyMd": "**Data representation.** A student measured how much of each of three laboratory salts — labelled *Salt P*, *Salt Q* and *Salt R* — would dissolve in water at five temperatures.\n\n**Procedure.** For each trial the student weighed out $100.0$ g of distilled water into a beaker, brought it to one of five temperatures ($10$, $25$, $40$, $55$ or $70\\;^{\\circ}\\text{C}$) in a water bath, and held it there. One salt was then added in $0.5$ g portions while the beaker was stirred at a fixed rate by a magnetic stirrer. Addition stopped when a portion failed to dissolve after 5 minutes of stirring; the solution was then said to be *saturated*. The total mass of salt that had dissolved was recorded.\n\nEach salt was tested at every temperature. Every trial used distilled water, the same stirring rate and the same 5-minute waiting rule. Table 4 gives the results.",
+  "data": {
+    "columns": [
+      { "key": "temp", "label": "Water temperature (°C)" },
+      { "key": "saltP", "label": "Salt P dissolved per 100.0 g water (g)" },
+      { "key": "saltQ", "label": "Salt Q dissolved per 100.0 g water (g)" },
+      { "key": "saltR", "label": "Salt R dissolved per 100.0 g water (g)" }
+    ],
+    "rows": [
+      { "temp": 10, "saltP": 21.0, "saltQ": 35.7, "saltR": 12.6 },
+      { "temp": 25, "saltP": 38.0, "saltQ": 36.0, "saltR": 10.9 },
+      { "temp": 40, "saltP": 64.0, "saltQ": 36.4, "saltR": 9.4 },
+      { "temp": 55, "saltP": 96.0, "saltQ": 36.9, "saltR": 8.1 },
+      { "temp": 70, "saltP": 138.0, "saltQ": 37.5, "saltR": 7.0 }
+    ],
+    "caption": "Table 4. Mass of each salt that dissolved in 100.0 g of distilled water at saturation, at five water temperatures.",
+    "chart": {
+      "type": "line",
+      "xKey": "temp",
+      "yKeys": ["saltP", "saltQ", "saltR"],
+      "xLabel": "Water temperature (°C)",
+      "yLabel": "Mass dissolved per 100.0 g water (g)"
+    }
+  },
+  "accessibilityText": "A data representation passage describing a saturation experiment, followed by Table 4, which has five rows and four columns. The columns are water temperature in degrees Celsius, and the mass in grams of Salt P, Salt Q and Salt R that dissolved in 100.0 grams of distilled water at saturation. At 10 degrees: Salt P 21.0, Salt Q 35.7, Salt R 12.6. At 25 degrees: Salt P 38.0, Salt Q 36.0, Salt R 10.9. At 40 degrees: Salt P 64.0, Salt Q 36.4, Salt R 9.4. At 55 degrees: Salt P 96.0, Salt Q 36.9, Salt R 8.1. At 70 degrees: Salt P 138.0, Salt Q 37.5, Salt R 7.0. Salt P rises steeply as temperature rises, Salt Q rises only slightly, and Salt R falls steadily. The accompanying line graph plots the three salt columns against temperature and contains no information beyond the table.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "enhanced-act-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original experiment description with an invented data set. Salt P, Salt Q and Salt R are fictional laboratory labels and every figure in Table 4 was made up for this bank. The general idea that solubility can rise or fall with temperature is ordinary school chemistry, but no value is taken from any published table, and nothing here is drawn from or modelled on any ACT-published Science passage."
+  },
+  "rightsStatus": "original-owned",
+  "state": "in_review"
+}

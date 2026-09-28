@@ -1,0 +1,73 @@
+{
+  "id": "bocconi-ug-read-shipping-household-impact-305",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-reading-comprehension",
+  "skillSlug": "reading-implicit-meaning",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "The passage suggests that a household is most likely to see the cost of a long detour show up in the price it pays when it buys",
+  "instructionsMd": "Answer on the basis of the passage only.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "a bulky item that is not worth very much."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "goods that were already at sea when the disruption began."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "an item from a retailer with a long order book, because such retailers repriced first."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "an expensive manufactured item, because a large rise in container rates is passed on in full."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The last two sentences of the passage do the whole job, and they work by contrast.\n\n1. The general case: \"Freight is a modest share of the retail price of most manufactured goods, typically low single digits, so even a tripling of container rates moves shelf prices by much less than the rate chart implies.\" For most goods, the effect is small.\n2. The exception: \"The exceptions are bulky, low-value items, where transport can reach a fifth of the delivered cost, and it is there that a long detour shows up in the price a household actually pays.\"\n\nThe passage names its own exception and says explicitly that this is where a household feels it. That is the option naming a bulky item that is not worth very much.\n\n**Why the share is what matters.** A price effect is the rate change multiplied by freight's share of the price. If freight is 3 per cent of the price, doubling the freight rate adds about 3 per cent to the price. If freight is 20 per cent of the delivered cost, doubling it adds about 20 per cent. What decides the size of the effect is not how expensive the item is but how large a slice of its price transport already takes — and bulky, cheap goods are precisely the goods where that slice is large.\n\n**How to check the answer.** Test the option against the passage's own arithmetic logic. For an expensive manufactured item, freight is low single digits of the price, so the passage predicts a small effect — which rules out the option pointing to an expensive manufactured item, rather than supporting it. For a bulky, low-value item, freight is up to a fifth, so the effect is large. The two options point in opposite directions, and the passage backs only one.\n\n**Technique.** \"Expensive\" and \"low-value\" feel like they should behave the same way, because both are about price. They do not. What the passage tracks is a **ratio**, transport cost divided by delivered cost, and a large ratio comes from a low denominator, not a high one.",
+  "distractorRationale": {
+    "d": "This inverts the passage's own conclusion. For most manufactured goods freight is \"typically low single digits\" of the retail price, which is exactly why the passage says shelf prices move \"much less than the rate chart implies\". Nothing in the passage says any rate rise is passed on in full, and a high price makes the freight share smaller, not larger.",
+    "b": "The passage rules these out explicitly: \"Goods already afloat arrive late but at the rate contracted before the disruption\". Those goods carry the old price, so a household buying them sees no price effect at all. Their problem is that they arrive late, which is a different consequence from a higher price.",
+    "c": "This reverses the passage's claim about order books. It says \"Retailers with short order books therefore absorb the shock later, and more visibly, than the headlines suggest\" — the word in the passage is short, not long. The option also invents the idea that some retailers repriced first, which the passage never says."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": {
+    "id": "bocconi-ug-stim-container-shipping-007",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying prose passage on container shipping. It asks what kind of purchase would most clearly show a household the cost of a long shipping detour. There is no figure, table or mathematical notation; the options complete the sentence stem.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-undergraduate-wave4-author",
+    "aiAssisted": true,
+    "notes": "Original item written against the existing original passage bocconi-ug-stim-container-shipping-007. The distractors are built from the passage's own exclusions: goods afloat at the old rate, the inverted order-book claim, and the general low-share case that the passage uses to argue for a SMALL effect."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-undergraduate-wave4-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's uniqueness check: the final sentence names bulky, low-value items as the case where 'a long detour shows up in the price a household actually pays', so D is stated. A is contradicted by the low-single-digit share, B is contradicted by goods afloat carrying the pre-disruption rate, and C reverses the passage's 'short order books'. Awaiting blind independent solve before publication. Option-letter references in the explanation were rewritten to name choice content; the key was re-derived independently and is unchanged. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "passage-container-shipping",
+    "inference",
+    "proportional-reasoning"
+  ]
+}

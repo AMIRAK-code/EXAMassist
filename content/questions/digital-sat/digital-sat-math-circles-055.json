@@ -1,6 +1,6 @@
 {
   "id": "digital-sat-math-circles-055",
-  "version": 2,
+  "version": 3,
   "examKey": "digital-sat",
   "sectionKey": "math-module-1",
   "domainSlug": "geometry-and-trigonometry",
@@ -37,7 +37,7 @@
     "type": "single_select",
     "optionId": "b"
   },
-  "explanationMd": "The radius is only readable once the equation is in standard form, $(x - h)^2 + (y - k)^2 = r^2$. Get there by completing the square in $x$ and in $y$ separately.\n\nGroup the terms:\n\n$$(x^2 - 10x) + (y^2 + 6y) + 18 = 0$$\n\nFor $x$: half of $-10$ is $-5$, and $(-5)^2 = 25$, so $x^2 - 10x = (x - 5)^2 - 25$.\n\nFor $y$: half of $6$ is $3$, and $3^2 = 9$, so $y^2 + 6y = (y + 3)^2 - 9$.\n\nSubstitute both:\n\n$$(x - 5)^2 - 25 + (y + 3)^2 - 9 + 18 = 0$$\n\n$$(x - 5)^2 + (y + 3)^2 = 25 + 9 - 18 = 16$$\n\nSo $r^2 = 16$ and $r = \\sqrt{16} = 4$, Choice B. The centre, as a bonus, is $(5, -3)$.\n\nCheck by testing a point that must lie on the circle. Moving $4$ units right from the centre gives $(9, -3)$. Substituting: $81 + 9 - 90 - 18 + 18 = 0$. The point satisfies the equation, so the radius is indeed $4$.\n\nThe step learners most often lose is the sign bookkeeping: completing the square *adds* $25$ and $9$ to the left side, so both must be subtracted back before combining with the original constant $18$.",
+  "explanationMd": "The radius is only readable once the equation is in standard form, $(x - h)^2 + (y - k)^2 = r^2$. Get there by completing the square in $x$ and in $y$ separately.\n\nGroup the terms:\n\n$$(x^2 - 10x) + (y^2 + 6y) + 18 = 0$$\n\nFor $x$: half of $-10$ is $-5$, and $(-5)^2 = 25$, so $x^2 - 10x = (x - 5)^2 - 25$.\n\nFor $y$: half of $6$ is $3$, and $3^2 = 9$, so $y^2 + 6y = (y + 3)^2 - 9$.\n\nSubstitute both:\n\n$$(x - 5)^2 - 25 + (y + 3)^2 - 9 + 18 = 0$$\n\n$$(x - 5)^2 + (y + 3)^2 = 25 + 9 - 18 = 16$$\n\nSo $r^2 = 16$ and $r = \\sqrt{16} = 4$. The centre, as a bonus, is $(5, -3)$.\n\nCheck by testing a point that must lie on the circle. Moving $4$ units right from the centre gives $(9, -3)$. Substituting: $81 + 9 - 90 - 18 + 18 = 0$. The point satisfies the equation, so the radius is indeed $4$.\n\nThe step learners most often lose is the sign bookkeeping: completing the square *adds* $25$ and $9$ to the left side, so both must be subtracted back before combining with the original constant $18$.",
   "distractorRationale": {
     "a": "This takes a square root one time too many. $\\sqrt{16} = 4$ is already the radius; taking the root again gives $2$, which is the square root of the radius and has no geometric meaning here.",
     "c": "This reports $r^2$ rather than $r$. The standard form ends at $= 16$, and the final square root is still owed.",
@@ -64,7 +64,7 @@
       "uniquenessChecked": true,
       "workingNotes": "Completing the square gives (x - 5)^2 + (y + 3)^2 = 25 + 9 - 18 = 16, so the radius is 4. (c) is r^2, (d) is the constant term and (a) comes from wrongly halving 4."
     },
-    "notes": "Author solved and checked uniqueness: completing the square gives (x-5)^2 + (y+3)^2 = 16, so r = 4. Verified that (9, -3) satisfies the original equation. Awaiting a blind independent solve before publication. v2 (2026-09-24): an independent check of what the explanation and notes claim about the options found false statements in the note on option D, corrected here. Correction by the coordinating editor (an AI agent); a separate AI reviewer then re-checked every claim about the options, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts."
+    "notes": "Author solved and checked uniqueness: completing the square gives (x-5)^2 + (y+3)^2 = 16, so r = 4. Verified that (9, -3) satisfies the original equation. Awaiting a blind independent solve before publication. v2 (2026-09-24): an independent check of what the explanation and notes claim about the options found false statements in the note on option D, corrected here. Correction by the coordinating editor (an AI agent); a separate AI reviewer then re-checked every claim about the options, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts. Option-letter references in the explanation were rewritten to name choice content; the key was re-derived independently and is unchanged. Version 3 merges the letter-free wording of the choices with version 2's review; the key and the choices are unchanged."
   },
   "state": "published",
   "quarantine": null,
