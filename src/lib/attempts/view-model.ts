@@ -111,7 +111,7 @@ function describeAnswerKey(key: unknown, options: PlayerOption[]): string {
         .map((s) => `${s.columnId}: ${labelFor(s.optionId)}`)
         .join('; ');
     case 'essay':
-      return 'Essays are not automatically scored. Compare your response with the rubric.';
+      return 'Essays are not scored automatically. Check your response against the self-assessment guide in the explanation.';
     default:
       return '';
   }

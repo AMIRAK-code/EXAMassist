@@ -261,8 +261,9 @@ export function ResponseInput({ item, disabled, onChange }: Props) {
           />
           <p id={`${name}-help`} className="mt-1.5 text-sm text-ink-muted">
             {text.trim() ? `${text.trim().split(/\s+/).length} words. ` : ''}
-            Essays are not scored automatically. After you submit, compare your response with the
-            official rubric shown on the results page.
+            Essays are not scored automatically. After you submit, the results page shows a
+            self-assessment guide: what a strong response to this prompt does, so you can check yours
+            against it.
           </p>
         </div>
       );

@@ -12,13 +12,36 @@
   "stemMd": "A workshop's costs in a month are $4{,}800$ euros of fixed costs plus $8$ euros for every unit it produces. Each unit sells for $20$ euros, and every unit produced in the month is sold in that month. How many units must the workshop produce in a month for its profit — revenue minus total cost — to be exactly $1{,}200$ euros?",
   "instructionsMd": "Select the single best answer.",
   "options": [
-    { "id": "a", "label": "A", "textMd": "$100$" },
-    { "id": "b", "label": "B", "textMd": "$300$" },
-    { "id": "c", "label": "C", "textMd": "$400$" },
-    { "id": "d", "label": "D", "textMd": "$500$" },
-    { "id": "e", "label": "E", "textMd": "$750$" }
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$100$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$300$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$400$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$500$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$750$"
+    }
   ],
-  "answerKey": { "type": "single_select", "optionId": "d" },
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
   "explanationMd": "Write the profit as a function of the number of units and solve. Let $u$ be the number of units.\n\n$$\\text{revenue} = 20u, \\qquad \\text{total cost} = 4{,}800 + 8u.$$\n\n$$\\text{profit} = 20u - (4{,}800 + 8u) = 12u - 4{,}800.$$\n\nSet that equal to the target:\n\n$$12u - 4{,}800 = 1{,}200 \\;\\Longrightarrow\\; 12u = 6{,}000 \\;\\Longrightarrow\\; u = 500.$$\n\n**What the $12$ is, and why it is the only number to divide by.** Each unit brings in $20$ euros and costs $8$ euros to make, so each unit leaves\n\n$$20 - 8 = 12$$\n\neuros to put towards the fixed costs and then towards profit. This is the **contribution margin per unit**. The fixed $4{,}800$ euros does not shrink as output rises, so it is not spread across units; it is simply a lump the margins must cover before any profit exists. The total the margins have to generate is\n\n$$4{,}800 + 1{,}200 = 6{,}000, \\qquad \\text{and} \\qquad \\frac{6{,}000}{12} = 500.$$\n\n**How to check the answer.** Put $500$ back into the original quantities rather than into the rearranged equation, so an algebra slip cannot survive the check:\n\n- revenue $= 500 \\times 20 = 10{,}000$\n- variable cost $= 500 \\times 8 = 4{,}000$\n- total cost $= 4{,}000 + 4{,}800 = 8{,}800$\n- profit $= 10{,}000 - 8{,}800 = 1{,}200$ ✓\n\n**A structural check worth thirty seconds.** Profit rises by exactly $12$ euros per extra unit, so there is one and only one production level at which it equals $1{,}200$ euros. Break-even sits at $4{,}800 \\div 12 = 400$ units, and the target needs $1{,}200 \\div 12 = 100$ units more, giving $500$. Any option below $400$ produces a loss and can be discarded on sight.",
   "distractorRationale": {
     "a": "This is $1{,}200 \\div 12 = 100$, the units needed to generate the profit target alone. It forgets that the first $4{,}800$ euros of contribution goes to covering fixed costs, so at $100$ units the workshop is still losing $3{,}600$ euros.",
@@ -38,12 +61,22 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "gmat-wave4-author",
-    "reviewer": null,
-    "reviewedOn": null,
-    "independentSolve": null,
+    "reviewer": "blind-reviewer-wave5-B",
+    "reviewedOn": "2026-09-28",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave5-B",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Profit = 20x - (4800 + 8x) = 12x - 4800 = 1200, so 12x = 6000 and x = 500. Check: revenue 10,000 minus cost 8,800 = 1,200. 400 is break-even and 300 would be 4800/(20-4); no other choice gives 1,200."
+    },
     "notes": "Author solved the item algebraically (12u - 4,800 = 1,200) and again by the contribution-margin route (6,000 / 12), obtaining 500 both ways, then substituted 500 back into the original revenue and cost expressions to confirm a profit of exactly 1,200 euros. Profit is strictly increasing in u, so exactly one production level gives 1,200 euros and no second option is defensible; the other four values were each checked and give profits of -3,600, -1,200, 0 and 4,200 euros. Numeric options are ordered ascending as on the real exam. Awaiting blind independent solve before publication."
   },
-  "state": "in_review",
+  "state": "published",
   "quarantine": null,
-  "tags": ["profit", "contribution-margin", "linear-equations"]
+  "tags": [
+    "profit",
+    "contribution-margin",
+    "linear-equations"
+  ]
 }

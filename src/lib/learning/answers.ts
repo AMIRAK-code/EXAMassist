@@ -50,7 +50,7 @@ export function describeAnswerKey(key: AnswerKey, options: Option[]): string {
     case 'two_part':
       return key.selections.map((s) => `${s.columnId}: ${labelFor(s.optionId)}`).join('; ');
     case 'essay':
-      return 'Essays are not automatically scored. Compare what you wrote with the rubric.';
+      return 'Essays are not scored automatically. Check what you wrote against the self-assessment guide in the explanation.';
   }
 }
 
