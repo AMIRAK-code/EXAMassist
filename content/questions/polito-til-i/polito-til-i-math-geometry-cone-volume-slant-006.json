@@ -1,0 +1,82 @@
+{
+  "id": "polito-til-i-math-geometry-cone-volume-slant-006",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tili-mathematics",
+  "skillSlug": "tili-math-euclidean-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A heap of gravel at a quarry near Turin is modelled as a cone. Its base has radius 6 m, and its slant height (the distance from the apex to the edge of the base, measured along the surface) is 10 m. What is its volume, in cubic metres?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$48\\pi$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$96\\pi$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$120\\pi$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$288\\pi$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$360\\pi$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "**What to notice first.** The volume of a cone uses the perpendicular height $h$, not the slant height. The radius, the height and the slant height form a right triangle with the slant height as hypotenuse.\n\n$$h=\\sqrt{10^{2}-6^{2}}=\\sqrt{64}=8\\text{ m}.$$\n\n$$V=\\frac{1}{3}\\pi r^{2}h=\\frac{1}{3}\\pi\\cdot36\\cdot8=96\\pi\\ \\text{m}^{3}.$$\n\n**Check.** The triangle with sides 6, 8, 10 is twice the 3, 4, 5 triangle, so the height 8 is right. And $36\\cdot8=288$, which divided by 3 gives 96.",
+  "distractorRationale": {
+    "a": "This takes the height to be $10-6=4$ m, subtracting the radius from the slant height. The slant height, radius and height are the sides of a right triangle, so they are related by Pythagoras, not by subtraction.",
+    "c": "This uses the slant height 10 as if it were the height: $\\frac{1}{3}\\pi\\cdot36\\cdot10$. The height of the cone is the perpendicular distance from the apex to the base, which is shorter than the slant height.",
+    "d": "This finds the correct height 8 m but forgets the factor $\\frac{1}{3}$ in the volume of a cone, computing $\\pi\\cdot36\\cdot8$, which would be the volume of a cylinder with the same base and height.",
+    "e": "This combines two slips: using the slant height 10 as the height and forgetting the factor $\\frac{1}{3}$, giving $\\pi\\cdot 36\\cdot10$."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "A cone has a base radius of six metres and a slant height of ten metres, the slant height being measured along the surface from the apex to the edge of the base. Find its volume in cubic metres.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-mathematics-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item using the 6-8-10 triple so that the height is a whole number. Distractors: wrong height relation, slant used as height, missing one third."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-mathematics-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tili-math-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-math-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Height = sqrt(100-36) = 8, so V = (1/3)*pi*36*8 = 96pi. D (288pi) leaves out the 1/3, and C (120pi) uses the slant height as the height. A candidate who knows the formula cannot defend either one. [A second, separate blind solve (blind-reviewer-wave6-tili-math-run7) reached the same answer: h = sqrt(10^2-6^2) = 8, so V = (1/3)pi*36*8 = 96pi. Using the slant height as the height gives 120pi (C), and leaving out the 1/3 gives 288pi (D). Only B is correct.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "solid-geometry",
+    "cone",
+    "pythagoras"
+  ]
+}

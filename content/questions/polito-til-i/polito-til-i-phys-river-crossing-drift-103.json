@@ -1,0 +1,82 @@
+{
+  "id": "polito-til-i-phys-river-crossing-drift-103",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "physics",
+  "domainSlug": "tili-physics",
+  "skillSlug": "tili-phys-kinematics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A ferry crosses a river 60 m wide. Its engine drives it at 4 m/s relative to the water, always pointing straight across, at right angles to the banks. The current flows parallel to the banks at 3 m/s. How far downstream from the point directly opposite its starting point does the ferry land?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "60 m"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "80 m"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "45 m"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "75 m"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "20 m"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Split the motion into two independent parts: across the river and along it. The current does not change how fast the ferry moves across, and the engine does not change how fast the ferry is carried downstream.\n\n**Crossing time.** Only the across-river speed matters: $t = 60\\ \\text{m} \\div 4\\ \\text{m/s} = 15\\ \\text{s}$.\n\n**Drift.** During that time the current carries the ferry along the bank: $3\\ \\text{m/s}\\times 15\\ \\text{s} = 45\\ \\text{m}$.\n\n**Check.** Relative to the bank the ferry moves at $\\sqrt{4^{2}+3^{2}} = 5$ m/s, so its path is $5\\times15 = 75$ m long. The landing triangle has sides 60 m, 45 m and 75 m, which is the 3-4-5 triangle scaled by 15, and the ratio of drift to width, $45/60 = 3/4$, equals the ratio of the current to the ferry's speed across.",
+  "distractorRationale": {
+    "e": "Divides the width by the current speed, $60/3 = 20$. That pairs the across-river distance with the along-river speed, and the result is a time in seconds, not a distance. The crossing time is set by the speed across the river (4 m/s), and the drift is the current speed multiplied by that time.",
+    "a": "Gives the width of the river as the drift. The width is the distance crossed; the current carries the ferry sideways as well, so the drift is a different length.",
+    "d": "Gives the length of the ferry's path relative to the bank ($5\\times15$ m), which is the diagonal. The question asks for the sideways offset along the bank.",
+    "b": "Turns the ratio upside down and uses drift = width × (ferry speed ÷ current speed) = $60\\times4/3$. The drift must be smaller than the width because the current is slower than the ferry."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "A kinematics question in two dimensions. A ferry crosses a river 60 metres wide. It moves at 4 metres per second relative to the water and always points straight across, at right angles to the banks. The current flows parallel to the banks at 3 metres per second. The distance downstream from the point directly opposite the start to the landing point is wanted. The choices are 20, 45, 60, 75 and 80 metres.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-wave6-physics-technical-author",
+    "aiAssisted": true,
+    "notes": "Original item. A 3-4-5 triangle scaled by 15 keeps the arithmetic exact. Wrong choices: a time reported as a distance, the river width, the diagonal path, and an inverted ratio."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-wave6-physics-technical-author",
+    "reviewer": "blind-reviewer-wave6-tili-phys-tech-run8",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-phys-tech-run8",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Crossing time = 60/4 = 15 s; drift = 3*15 = 45 m. 75 m is the length of the resultant path and 80 m comes from using the speeds the wrong way round. [A second, separate blind solve (blind-reviewer-wave6-tili-phys-tech-run9) reached the same answer: Crossing time 60/4=15 s; drift 3*15=45 m. 75 m is the total path length, 80 m uses 60*4/3, 60 and 20 are other slips; question clearly asks downstream distance.]"
+    },
+    "notes": "Awaiting a blind independent solve. The author recomputed every option and checked the key a second way before saving (see the explanation). Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "relative-motion",
+    "independent-components",
+    "two-dimensional-motion"
+  ]
+}

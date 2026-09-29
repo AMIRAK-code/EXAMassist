@@ -1,0 +1,82 @@
+{
+  "id": "polito-til-i-logic-language-school-222",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "reading-logic",
+  "domainSlug": "tili-logic",
+  "skillSlug": "tili-logic-quantifiers",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "At a language school, every student of German also studies French, no student of Latin studies French, and some students of Spanish study French.\n\nWhich one of the following must be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "No student of German studies Latin."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Some student of Spanish studies German."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "No student of Spanish studies Latin."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Every student of French studies German."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Some student of Spanish studies Latin."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Translate each premise into a picture. Every student of German is inside the group of French students. The Latin group is completely outside the French group. Some of the Spanish group overlaps with French.\n\nGerman lies inside French, and Latin lies wholly outside French, so German and Latin cannot overlap: no student of German studies Latin. That is the choice that must be true.\n\nThe others fail because each can be broken while the premises still hold. Reversing \"every student of German studies French\" is a classic error: the French students need not all study German. \"Some\" statements guarantee only that the overlap exists, so nothing forces the Spanish students to study German, or forces them to avoid Latin. It is also not forced that any Spanish student studies Latin.\n\n**Check:** build a school in which the premises hold but a suspect choice fails. Let there be one student who studies German and French, one who studies only French, and one who studies Spanish and French. The reversal (every student of French studies German) fails there, and so does the claim that some student of Spanish studies German. Add a student who studies Spanish and Latin and the claim that no student of Spanish studies Latin fails; leave that student out and the claim that some student of Spanish studies Latin fails.",
+  "distractorRationale": {
+    "d": "This reverses \"every student of German studies French\". German students are among the French students, but nothing says all French students study German.",
+    "b": "The Spanish students who study French might all be outside German. \"Some\" gives existence, not a link to German.",
+    "c": "Only some Spanish students are known to study French. Spanish students who do not study French are free to study Latin, so nothing rules Latin out for them.",
+    "e": "Nothing requires it. The Spanish students known to study French cannot study Latin, and the others are simply not mentioned."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "A logic question about three statements on the students of a language school: every student of German also studies French, no student of Latin studies French, and some students of Spanish study French. The question asks which of five statements about these groups must be true. No notation or figures.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-wave6-til-i-reading-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item; the situation, names and wording are invented. Needs no knowledge beyond reasoning."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-wave6-til-i-reading-logic-author",
+    "reviewer": "blind-reviewer-wave6-tili-reading-logic-run4",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-reading-logic-run4",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Every German student studies French and no Latin student studies French, so no German student can study Latin. B and E are possible but not forced. C fails because a Spanish student who does not take French could take Latin. D reverses the inclusion. [A second, separate blind solve (blind-reviewer-wave6-tili-reading-logic-run6) reached the same answer: Every German student also takes French, and no Latin student takes French, so no German student takes Latin. B and E are possible but not required. C fails because Spanish students who don't take French could take Latin. D reverses the inclusion.]"
+    },
+    "notes": "Quantifier item. Checked by enumerating every model over the eight possible subject combinations: the German-Latin statement holds in all models; each other choice is false in at least one model that satisfies the premises. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "quantifiers",
+    "syllogism"
+  ]
+}

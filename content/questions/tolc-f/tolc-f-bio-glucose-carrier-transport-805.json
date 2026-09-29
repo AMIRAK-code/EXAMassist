@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-bio-glucose-carrier-transport-805",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "biology",
+  "domainSlug": "tolcf-biology",
+  "skillSlug": "tolcf-bio-cell",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Glucose enters a red blood cell through a specific carrier protein in the plasma membrane. It moves from the plasma, where its concentration is higher, into the cell, and the cell spends no ATP on the process. What is this process called?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Simple diffusion through the lipid bilayer"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Primary active transport"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Endocytosis"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Osmosis"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Facilitated diffusion"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Classify the movement with three questions.\n\n1. Direction: glucose moves from high to low concentration, down its gradient.\n2. Energy: no ATP is used, so the process is passive.\n3. Route: it passes through a specific carrier protein, not directly through the lipid.\n\nPassive movement down a gradient through a membrane protein is facilitated diffusion. Simple diffusion has no protein, active transport works against the gradient with ATP, osmosis moves water, and endocytosis uses vesicles.",
+  "distractorRationale": {
+    "a": "Simple diffusion needs no protein and suits small non-polar molecules. Glucose is polar and too large to cross the bilayer unaided, and here a carrier is involved.",
+    "d": "Osmosis is the movement of water across a membrane. The substance moving here is glucose.",
+    "b": "Active transport moves a substance against its gradient using ATP. The stem says the movement runs down the gradient and uses no ATP.",
+    "c": "Endocytosis brings material in inside vesicles and uses energy. A carrier protein in the membrane is not a vesicle."
+  },
+  "estimatedSeconds": 55,
+  "stimulusRef": null,
+  "accessibilityText": "A short text question with no figure. Glucose moves down its concentration gradient into a red blood cell through a specific carrier protein, without ATP use, and the question asks the name of the process. The five choices are: simple diffusion through the lipid bilayer; primary active transport; endocytosis; osmosis; facilitated diffusion.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item. Each wrong option fails on exactly one of three features given in the stem (protein present, no ATP, solute not water)."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-bio-run17",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-bio-run17",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Movement through a carrier protein (GLUT1), down the gradient and with no ATP, is facilitated diffusion. Simple diffusion is excluded because a carrier is used, primary active transport because no ATP is spent, osmosis because it concerns water, and endocytosis because it involves vesicles. [A second, separate blind solve (blind-reviewer-wave6-tolcf-bio-run19) reached the same answer: Movement down the gradient, through a specific carrier protein, with no ATP spent, is facilitated diffusion (GLUT1). Simple diffusion is ruled out because a carrier is used. Active transport needs ATP. Endocytosis and osmosis do not fit.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "membrane-transport",
+    "facilitated-diffusion"
+  ]
+}

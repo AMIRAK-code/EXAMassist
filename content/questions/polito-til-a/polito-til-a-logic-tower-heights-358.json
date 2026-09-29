@@ -1,0 +1,83 @@
+{
+  "id": "polito-til-a-logic-tower-heights-358",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "logical-reasoning",
+  "domainSlug": "tila-logic",
+  "skillSlug": "tila-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A student's model of an imaginary city has five towers - Alba, Borea, Cirro, Delta and Eolo - no two of the same height. We know that:\n\n- Borea is taller than Delta.\n- Alba is shorter than Delta.\n- Eolo is taller than Borea.\n- Cirro is shorter than Alba.\n\nHow many of the towers are taller than Alba?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "It cannot be determined from the information given."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "3"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "2"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "4"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "1"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "**What to notice first.** \"Taller than\" carries along a chain: if one tower is taller than a second, and the second is taller than a third, the first is taller than the third. So the four facts may link into one ordering even though Alba is compared directly with only two towers.\n\n**The step that settles it.** Rewrite every fact as \"taller, then shorter\" and join them where they share a tower:\n\n- Eolo, then Borea (third fact);\n- Borea, then Delta (first fact);\n- Delta, then Alba (second fact);\n- Alba, then Cirro (fourth fact).\n\nFrom tallest to shortest the towers are Eolo, Borea, Delta, Alba, Cirro. Three towers, Eolo, Borea and Delta, are taller than Alba.\n\n**How to check it.** Count from the other end. Only Cirro is shorter than Alba, and there are five towers in all, so the number taller than Alba is 5 − 1 − 1 = 3 (all the towers, less Cirro, less Alba itself).",
+  "distractorRationale": {
+    "e": "Counts only Delta, the one tower the facts state directly to be taller than Alba. Borea is taller than Delta, so it is taller than Alba as well.",
+    "c": "Follows the chain one step, to Delta and then Borea, but stops before Eolo, which is taller than Borea and therefore taller than Alba too.",
+    "d": "Counts every other tower, Cirro included. The fourth fact says Cirro is shorter than Alba, so it must be left out.",
+    "a": "Treats towers never compared with Alba directly as unknowns. The four facts link into a single chain, Eolo, Borea, Delta, Alba, Cirro, which settles every comparison."
+  },
+  "estimatedSeconds": 45,
+  "stimulusRef": null,
+  "accessibilityText": "An ordering question about five towers, Alba, Borea, Cirro, Delta and Eolo, no two of the same height. Facts: Borea is taller than Delta; Alba is shorter than Delta; Eolo is taller than Borea; Cirro is shorter than Alba. The question asks how many towers are taller than Alba. The five choices are: it cannot be determined from the information given; 3; 2; 4; and 1.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-polito-til-a-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank for the TIL-A Logical reasoning section. The towers and city are invented. The facts are given out of order and in mixed 'taller' and 'shorter' form, so the item tests joining comparisons into a chain rather than reading one line."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-polito-til-a-logic-author",
+    "reviewer": "blind-reviewer-wave7-tila-logic-drawing-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-tila-logic-drawing-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The clues give a single chain, Eolo > Borea > Delta > Alba > Cirro. Three towers are taller than Alba. [A second, separate blind solve (blind-reviewer-wave7-tila-logic-drawing-run1) reached the same answer: The clues chain into a full order: Eolo > Borea > Delta > Alba > Cirro. Delta, Borea and Eolo are taller than Alba, so the answer is 3. The order is complete, so A does not apply.]"
+    },
+    "notes": "Author's uniqueness check: by script, all 120 orderings of the five towers were tested against the four facts; exactly one survives, Eolo, Borea, Delta, Alba, Cirro from tallest to shortest, with three towers above Alba. Because the ordering is unique, the count is determined and the 'cannot be determined' choice is wrong. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "ordering",
+    "transitivity",
+    "no-calculator"
+  ]
+}

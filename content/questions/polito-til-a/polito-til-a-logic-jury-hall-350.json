@@ -1,0 +1,83 @@
+{
+  "id": "polito-til-a-logic-jury-hall-350",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "logical-reasoning",
+  "domainSlug": "tila-logic",
+  "skillSlug": "tila-logic-verbal",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "At the end-of-year exhibition of an architecture school, one rule was applied without exception:\n\n> Every scale model that the jury accepted was displayed in the main hall.\n\nMarta's model was **not** displayed in the main hall. Which of the following statements must be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The jury did not accept Marta's model."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "None of the models made by Marta's classmates was displayed in the main hall."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Every model displayed in the main hall had been accepted by the jury."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The jury turned down Marta's model because its scale was wrong."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Marta did not submit her model to the jury."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "**What to notice first.** The rule runs one way only: *accepted* leads to *displayed*. It says nothing about models that were not accepted.\n\n**The step that settles it.** Suppose the jury had accepted Marta's model. The rule would then have put it in the main hall. It is not in the main hall, so the supposition is impossible: the jury did not accept it. This is the contrapositive of the rule, *not displayed* leads to *not accepted*, and it is the only conclusion the facts force.\n\n**How to check it.** For each other statement, picture a situation that obeys the rule and the fact about Marta but makes the statement false:\n\n- Marta submitted her model and the jury turned it down for its materials. The statement about a wrong scale is then false, and so is the statement that she never submitted it.\n- The organisers also put a guest model in the hall without a jury decision. The rule is not broken, but the claim that every displayed model was accepted is now false.\n- A classmate's model was accepted and displayed. Nothing is broken, and the claim about the classmates is false.\n\nOnly the statement that the jury did not accept Marta's model survives every such situation.",
+  "distractorRationale": {
+    "d": "Adds a reason the premises never give. The rule tells us the model was not accepted, not why: it may have been turned down for its materials or its finish, or never submitted at all.",
+    "c": "Reverses the rule. From 'accepted, therefore displayed' it does not follow that 'displayed, therefore accepted'; a model could reach the hall another way, as a guest piece, without breaking the rule.",
+    "e": "Possible, but not forced. A model that was submitted and then turned down is also 'not accepted', so the facts fit just as well with Marta having submitted it.",
+    "b": "Moves from Marta to her classmates, about whom the premises say nothing. Their models may well have been accepted and displayed."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "A verbal reasoning question. Rule applied without exception: every scale model the jury accepted was displayed in the main hall. Fact: Marta's model was not displayed in the main hall. The question asks which statement must be true. The five statements are: the jury did not accept Marta's model; none of her classmates' models was displayed in the main hall; every model in the main hall had been accepted by the jury; the jury turned it down because its scale was wrong; Marta did not submit her model.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-polito-til-a-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank for the TIL-A Logical reasoning section. School, exhibition and student are invented. Each distractor is one named reasoning error: adding a reason, converting the conditional, confusing 'not accepted' with 'not submitted', and drawing a conclusion about people outside the premises."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-polito-til-a-logic-author",
+    "reviewer": "blind-reviewer-wave7-tila-logic-drawing-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-tila-logic-drawing-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The rule says accepted implies displayed. Marta's model was not displayed, so by contraposition it was not accepted. [A second, separate blind solve (blind-reviewer-wave7-tila-logic-drawing-run1) reached the same answer: Accepted implies displayed, so by contraposition 'not displayed' implies 'not accepted'. E is one possible reason but is not forced, and D (the reason for refusal) is not forced either. C is the converse, and B is irrelevant.]"
+    },
+    "notes": "Author's uniqueness check: model-checked by script over every world of three models (submitted, accepted, displayed; accepted implies submitted) that obeys the rule with Marta's model not displayed. 'Not accepted' holds in every such world; the converse rule, 'did not submit' and the claim about classmates each fail in at least one world, and the stated reason (wrong scale) is never entailed. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "conditional",
+    "contrapositive",
+    "no-calculator"
+  ]
+}

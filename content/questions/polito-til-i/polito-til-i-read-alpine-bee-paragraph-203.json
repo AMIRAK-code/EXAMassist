@@ -1,0 +1,86 @@
+{
+  "id": "polito-til-i-read-alpine-bee-paragraph-203",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "reading-logic",
+  "domainSlug": "tili-reading-comprehension",
+  "skillSlug": "tili-reading-purpose",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the main function of the final paragraph of the excerpt?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "To report the outcome of a follow-up study of bumblebee queens."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "To suggest a possible consequence of the finding for other living things, while making clear that it has not been tested."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "To weaken the team's finding by admitting that the plants were poorly recorded."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "To argue that the lowland rule remains correct for insects and so should be kept for plants."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "To show that bumblebee queens, like alpine flowers, respond to the date of the snow melt."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "A purpose question asks what a part does for the whole, not merely what it says. Summarise the paragraph first: it moves from the main finding to a possible knock-on effect on bumblebees, then closes by saying the team measured only the plants, so the mismatch is \"a hypothesis awaiting a test and not a result\".\n\nSo the paragraph's job is to offer a further consequence and flag it as untested. That is the choice describing a possible consequence for other living things, with the caution that it has not been tested.\n\nThe wrong choices each misread part of the paragraph. A follow-up bee study is ruled out by \"measured only the plants\". Queens responding to the melt date contradicts \"in response to air temperature, not to the state of the snow\". Admitting poor recording confuses a limit on the bee claim with a flaw in the plant data. Defending the lowland rule mistakes a contrast (bees follow temperature, flowers follow the melt) for support.\n\n**Check:** hedges at the end of a passage (\"may\", \"might\", \"a hypothesis\") usually signal that the paragraph offers a possibility, not a result. Ask what the excerpt would lose if the paragraph were deleted: here, the finding's wider significance, but not the finding itself.",
+  "distractorRationale": {
+    "a": "The paragraph says the opposite: the team \"measured only the plants, not the bees\". There is no bee study to report, only a possibility.",
+    "c": "The team's caution is about the bee claim, not its plant results. Saying it measured only the plants limits what the paragraph can claim; it does not undermine the finding about flowers.",
+    "e": "The paragraph says queens respond to air temperature, \"not to the state of the snow\". That contrast is exactly what creates the possible mismatch.",
+    "d": "The paragraph does not defend the lowland rule for plants. The whole excerpt argues the rule fails for alpine flowers; the bees are mentioned only because they follow air temperature, which is a different point."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "polito-til-i-passage-alpine-flowering-200",
+    "version": 1
+  },
+  "accessibilityText": "A reading question about the accompanying excerpt on alpine flowers and snow melt. It asks what role the final paragraph plays in the excerpt as a whole; that paragraph raises a possible effect on bumblebees and says the team measured only plants. Five answer choices; none uses notation or figures.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-wave6-til-i-reading-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item written against an original excerpt authored alongside it. The answer is deducible from the excerpt alone; no outside knowledge is needed or used."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-wave6-til-i-reading-logic-author",
+    "reviewer": "blind-reviewer-wave6-tili-reading-logic-run4",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-reading-logic-run4",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The final paragraph raises a possible mismatch for bumblebees and ends by calling it 'a hypothesis awaiting a test and not a result'. A is wrong because no follow-up study was done. C is wrong because the team measured bees not at all, which is different from recording plants poorly. D is not argued anywhere. E contradicts the paragraph, which says queens respond to air temperature, not to the snow. [A second, separate blind solve (blind-reviewer-wave6-tili-reading-logic-run6) reached the same answer: The final paragraph suggests the plants' timing may not match the bees' ('may matter for the insects'), and says this is 'a hypothesis awaiting a test and not a result'. That matches B. A is wrong because no follow-up bee study was done. E contradicts the text, since queens respond to air temperature. C and D are unsupported.]"
+    },
+    "notes": "Purpose item on paragraph function. Distractors are drawn from partial misreadings of the same paragraph (result vs hypothesis; temperature vs melt; limit on one claim vs flaw in another). Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "reading",
+    "purpose",
+    "science",
+    "excerpt-1"
+  ]
+}

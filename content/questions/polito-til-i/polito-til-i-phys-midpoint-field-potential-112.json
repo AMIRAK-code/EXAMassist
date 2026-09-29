@@ -1,0 +1,83 @@
+{
+  "id": "polito-til-i-phys-midpoint-field-potential-112",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "physics",
+  "domainSlug": "tili-physics",
+  "skillSlug": "tili-phys-electricity",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Two small, identical point charges, each of $+2\\ \\mu\\text{C}$, are fixed 60 cm apart in air. Take $k = 9\\times10^{9}\\ \\text{N·m}^2/\\text{C}^2$. What are the electric field $E$ and the electric potential $V$ (zero at infinity) at the midpoint between the charges?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$E = 0$ and $V = 6\\times10^{4}\\ \\text{V}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$E = 4\\times10^{5}\\ \\text{V/m}$ and $V = 1.2\\times10^{5}\\ \\text{V}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$E = 0$ and $V = 0$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$E = 0$ and $V = 1.2\\times10^{5}\\ \\text{V}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$E = 4\\times10^{5}\\ \\text{V/m}$ and $V = 0$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The field is a vector and the potential is a scalar, so they combine differently.\n\n**The midpoint is 30 cm = 0.3 m from each charge.**\n\n**Field.** Each charge produces a field of size $kq/r^{2}$ at the midpoint, and because both charges are positive, the two fields point in opposite directions (each away from its own charge). Equal sizes and opposite directions cancel, so $E = 0$.\n\n**Potential.** Potentials are scalars and simply add. Each charge gives\n$$V_1 = \\frac{kq}{r} = \\frac{9\\times10^{9}\\times2\\times10^{-6}}{0.3} = \\frac{18\\,000}{0.3} = 6\\times10^{4}\\ \\text{V},$$\nso the two together give $V = 2\\times6\\times10^{4} = 1.2\\times10^{5}\\ \\text{V}$.\n\n**Check.** A test charge released at the midpoint feels no force ($E=0$), but the potential there is not zero: it takes work to bring a positive charge in from infinity against the repulsion of both charges. $E = 0$ tells you the potential is at a *stationary* value, not that it is zero. (For opposite charges the roles would flip: the fields would add to $4\\times10^{5}\\ \\text{V/m}$ and the potentials would cancel.)",
+  "distractorRationale": {
+    "c": "Assumes that because the field cancels by symmetry the potential must cancel as well. Potential is a scalar: the two positive contributions add, they do not cancel.",
+    "a": "Gets the field right but counts the potential of only one charge ($6\\times10^{4}$ V). Both charges contribute to the potential, so the two values must be added.",
+    "e": "Treats the pair as opposite charges. For unlike charges the fields would point the same way and add to $4\\times10^{5}$ V/m while the potentials cancelled, but both charges here are positive.",
+    "b": "Adds the two field strengths as if they were scalars, ignoring that they point in opposite directions and cancel. The potential value is right, but the field is not."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": "An electrostatics question. Two identical small point charges, each plus 2 microcoulombs, are fixed 60 centimetres apart in air, with k equal to 9 times 10 to the 9 newton metre squared per coulomb squared. The electric field E and the electric potential V, taken as zero at infinity, are wanted at the midpoint between the charges. The choices pair a field with a potential: field zero and potential zero; field zero and potential 6 times 10 to the 4 volts; field zero and potential 1.2 times 10 to the 5 volts; field 4 times 10 to the 5 volts per metre and potential zero; field 4 times 10 to the 5 volts per metre and potential 1.2 times 10 to the 5 volts.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-wave6-physics-technical-author",
+    "aiAssisted": true,
+    "notes": "Original item. Numbers make kq/r = 60 000 V and kq/r squared = 200 000 V/m exactly. Wrong choices cover potential wrongly cancelled, one charge only, the opposite-charge case, and fields added as scalars."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-wave6-physics-technical-author",
+    "reviewer": "blind-reviewer-wave6-tili-phys-tech-run8",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-phys-tech-run8",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "By symmetry the fields cancel, so E = 0. The potentials add: 2*(9e9*2e-6/0.3) = 2*6e4 = 1.2e5 V. Option A (6e4 V) counts only one charge, and the options with nonzero E ignore that the fields point in opposite directions. [A second, separate blind solve (blind-reviewer-wave6-tili-phys-tech-run9) reached the same answer: At midpoint r=0.3 m; fields of equal like charges cancel, E=0. Potentials add as scalars: 2*9e9*2e-6/0.3 = 2*6e4 = 1.2e5 V. Option A counts only one charge; B/E give single-charge field 2e5? (actually 4e5 is double) nonzero, wrong.]"
+    },
+    "notes": "Awaiting a blind independent solve. The author recomputed every option and checked the key a second way before saving (see the explanation). Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "electric-field",
+    "electric-potential",
+    "superposition",
+    "vector-versus-scalar"
+  ]
+}

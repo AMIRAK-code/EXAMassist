@@ -1,0 +1,82 @@
+{
+  "id": "polito-til-i-math-polynomials-cubic-third-root-008",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tili-mathematics",
+  "skillSlug": "tili-math-polynomials",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "The polynomial $p(x)=x^{3}+ax^{2}+bx-6$ is divisible by $x-1$ and by $x+2$. What is the third root of $p(x)$, that is, the root other than $1$ and $-2$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "-6"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "-3"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "3"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "6"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "7"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "**What to notice first.** Divisibility by $x-1$ and by $x+2$ means that $1$ and $-2$ are roots of $p$. A cubic has three roots, so write $p(x)=(x-1)(x+2)(x-r)$ with $r$ the missing root.\n\n**Compare constant terms.** Setting $x=0$ in the product gives $(-1)(2)(-r)=2r$, and in $p$ the constant term is $-6$. So $2r=-6$ and $r=-3$. (This is the same as Vieta's relation: for a monic cubic, the product of the roots is minus the constant term, $1\\cdot(-2)\\cdot r=6$.)\n\n**Check by finding $a$ and $b$.** Expanding $(x-1)(x+2)(x+3)=(x^{2}+x-2)(x+3)=x^{3}+4x^{2}+x-6$ gives $a=4$ and $b=1$. Then $p(1)=1+4+1-6=0$, $p(-2)=-8+16-2-6=0$ and $p(-3)=-27+36-3-6=0$.",
+  "distractorRationale": {
+    "a": "This reads off the constant term as the missing root. The constant term is related to the *product* of all three roots, not equal to any one of them.",
+    "c": "This takes the product of the three roots to be $-6$, the constant term with its sign unchanged, so $1\\cdot(-2)\\cdot r=-6$ gives $r=3$. For a monic cubic the product of the roots is *minus* the constant term, which is $+6$ here.",
+    "d": "This applies \"the product of the roots is 6\" to the third root alone, as if the roots 1 and $-2$ were not part of the product. The equation should be $1\\cdot(-2)\\cdot r=6$.",
+    "e": "This uses the constant term in the relation for the *sum* of the roots, solving $1+(-2)+r=6$. The sum of the roots is minus the coefficient of $x^{2}$, which is unknown here; the constant term goes with the product."
+  },
+  "estimatedSeconds": 130,
+  "stimulusRef": null,
+  "accessibilityText": "The polynomial p of x equals x cubed plus a times x squared plus b times x minus six. It is divisible by x minus one and by x plus two. Find its third root, the root that is different from one and from minus two.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-mathematics-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item. It can be solved fully by solving for a and b, or in one line by comparing constant terms; the distractors are sign and relation errors in the Vieta shortcut."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-mathematics-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tili-math-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-math-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "p(1)=0 gives a+b=5 and p(-2)=0 gives 2a-b=7, so a=4 and b=1. The product of the roots is 6, so 1*(-2)*r = 6 and r = -3. Check with the sum of the roots, 1-2-3 = -4 = -a. C (3) is the sign error. [A second, separate blind solve (blind-reviewer-wave6-tili-math-run7) reached the same answer: p(1)=0 gives a+b=5, and p(-2)=0 gives 2a-b=7, so a=4 and b=1: p = x^3+4x^2+x-6. The product of the roots is 6, so 1*(-2)*r = 6 and r = -3. The sum of the roots, -4 = -a, confirms it. Option C (3) is the sign slip.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "factor-theorem",
+    "vieta",
+    "cubic"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "polito-til-i-math-log-equation-domain-check-016",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tili-mathematics",
+  "skillSlug": "tili-math-transcendental-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the solution of $\\log_{3}(x+2)+\\log_{3}(x-4)=3$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "-5"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "4"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "5"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "7"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "29/2"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "**What to notice first.** Both logarithms need positive arguments, so $x+2>0$ and $x-4>0$, that is $x>4$. Any root that fails this is not a solution.\n\n**Combine.** A sum of logarithms with the same base is the logarithm of the product: $\\log_{3}\\big[(x+2)(x-4)\\big]=3$. By the definition of a logarithm, $(x+2)(x-4)=3^{3}=27$.\n\n**Solve.** $x^{2}-2x-8=27$, so $x^{2}-2x-35=0$, that is $(x-7)(x+5)=0$. The roots are $7$ and $-5$. Only $x=7$ is greater than 4.\n\n**Check.** $\\log_{3}9+\\log_{3}3=2+1=3$.",
+  "distractorRationale": {
+    "a": "This is the other root of the quadratic $x^{2}-2x-35=0$. At $x=-5$ both $x+2=-3$ and $x-4=-9$ are negative, so neither logarithm is defined. Roots must be checked against the domain $x>4$.",
+    "b": "This comes from $x^{2}-2x-8=0$, which forgets to bring the 27 across. It also fails the domain: at $x=4$ the second argument is zero, and $\\log_{3}0$ does not exist.",
+    "c": "This expands $(x+2)(x-4)$ as $x^{2}+2x-8$, a sign slip, giving $x^{2}+2x-35=0$ with root $5$. But at $x=5$ the left side is $\\log_{3}7+\\log_{3}1=\\log_{3}7$, which is not 3.",
+    "e": "This adds the arguments instead of multiplying them, writing $(x+2)+(x-4)=27$. The rule is that a sum of logarithms is the logarithm of a *product*."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "Solve the equation: the logarithm base three of the quantity x plus two, plus the logarithm base three of the quantity x minus four, equals three. Find its solution.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-mathematics-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item. A domain trap plus four distinct algebra slips: an extraneous root, a lost term, an expansion sign error, and adding rather than multiplying arguments."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-mathematics-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tili-math-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-math-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "(x+2)(x-4) = 27 gives x^2-2x-35 = 0, so x = 7 or x = -5. The domain needs x>4, so only 7 is valid. -5 makes both arguments negative. 5 gives 7*1 = 7, not 27. [A second, separate blind solve (blind-reviewer-wave6-tili-math-run7) reached the same answer: (x+2)(x-4) = 27 gives x^2-2x-35 = 0, so x = 7 or x = -5. The domain needs x > 4, so only 7 remains. Option A is the extraneous root, and B and C are not solutions.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logarithmic-equation",
+    "domain",
+    "extraneous-root"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-chem-ammonia-mass-909",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "chemistry",
+  "domainSlug": "tolcf-chemistry",
+  "skillSlug": "tolcf-chem-stoichiometry-redox",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Ammonia is made by the reaction\n\n$$\\mathrm{N_2} + 3\\,\\mathrm{H_2} \\rightarrow 2\\,\\mathrm{NH_3}$$\n\nMolar masses: $\\mathrm{H_2} = 2\\ \\mathrm{g/mol}$ and $\\mathrm{NH_3} = 17\\ \\mathrm{g/mol}$. What mass of ammonia is formed when 6 g of hydrogen reacts completely with an excess of nitrogen?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "51 g"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "34 g"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "17 g"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "102 g"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "68 g"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Always go through moles: grams, then moles, then the equation's ratio, then grams again.\n\n1. **Moles of hydrogen:** $6\\ \\mathrm{g} \\div 2\\ \\mathrm{g/mol} = 3\\ \\mathrm{mol}$.\n2. **Use the coefficients.** The equation gives 3 mol $\\mathrm{H_2}$ for 2 mol $\\mathrm{NH_3}$. With exactly 3 mol of hydrogen, 2 mol of ammonia form.\n3. **Convert to mass:** $2\\ \\mathrm{mol} \\times 17\\ \\mathrm{g/mol} = 34\\ \\mathrm{g}$.\n\n**Check by conservation of mass.** Producing 2 mol of $\\mathrm{NH_3}$ uses 1 mol of $\\mathrm{N_2}$, which is 28 g (using $\\mathrm{N_2} = 28\\ \\mathrm{g/mol}$). Reactants: $28\\ \\mathrm{g} + 6\\ \\mathrm{g} = 34\\ \\mathrm{g}$, equal to the product.",
+  "distractorRationale": {
+    "c": "This gets the 3 mol of hydrogen right, but then reads the equation as three hydrogen for one ammonia, ignoring the coefficient 2. That gives 1 mol of ammonia, which is 17 g.",
+    "a": "This treats the ratio as one mole of ammonia per mole of hydrogen, ignoring the coefficients. That gives 3 mol of ammonia, or 51 g. The equation says 3 mol of hydrogen make only 2 mol of ammonia.",
+    "e": "This treats 6 g of hydrogen as 6 mol, skipping the conversion by the molar mass. Six moles of hydrogen would give 4 mol of ammonia, which is 68 g.",
+    "d": "This makes both slips at once: it treats 6 g as 6 mol and the ratio as one to one, giving 6 mol of ammonia. The mass in grams must be divided by 2 g/mol first, and the coefficients used second."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "The balanced equation is one N subscript 2 plus three H subscript 2 gives two N H subscript 3. Molar masses are 2 grams per mole for H subscript 2 and 17 grams per mole for N H subscript 3. The question asks what mass of ammonia forms from 6 grams of hydrogen with an excess of nitrogen. The choices are masses in grams.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-chemistry-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank (Wave 6, TOLC-F chemistry). Each wrong choice comes from one named misconception, recorded in distractorRationale. Numbers chosen for hand calculation with no calculator; every key was recomputed a second way in the build script."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-chemistry-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-chem-run15",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-chem-run15",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "6 g of H2 is 3 mol, which gives 2 mol of NH3 (3:2 ratio). 2 x 17 = 34 g. 51 g comes from wrongly using a 1:1 ratio, 17 g from 1 mol, 102 g from 6 mol. [A second, separate blind solve (blind-reviewer-wave6-tolcf-chem-run18) reached the same answer: 6 g of H2 is 3 mol. By the 3:2 ratio that gives 2 mol NH3, and 2 x 17 = 34 g. 51 g comes from a 1:1 ratio, 17 g from 1 mol, and 102 g from 6 x 17.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication. Key check: 6 g / 2 = 3 mol H2 -> 2 mol NH3 -> 34 g; mass balance with N2 28 g: 28 + 6 = 34. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "mole",
+    "stoichiometry",
+    "mass-mole-conversion"
+  ]
+}

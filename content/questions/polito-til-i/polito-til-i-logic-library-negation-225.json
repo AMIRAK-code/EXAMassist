@@ -1,0 +1,83 @@
+{
+  "id": "polito-til-i-logic-library-negation-225",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "reading-logic",
+  "domainSlug": "tili-logic",
+  "skillSlug": "tili-logic-negation",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which one of the following is the negation of the statement \"In every district of the city there is at least one library that opens on Sundays\"?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "There is at least one district of the city in which some library does not open on Sundays."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "There is at least one district of the city in which no library opens on Sundays."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "In some district of the city there is exactly one library that opens on Sundays."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "In no district of the city is there a library that opens on Sundays."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "In every district of the city there is at least one library that does not open on Sundays."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "A negation must be true exactly when the original is false. Take the statement apart: for every district, there exists a library, and that library opens on Sundays.\n\nNegate from the outside in. \"Every district has one\" is false when some district does not have one. And \"has at least one library that opens on Sundays\" is false when *no* library in that district opens on Sundays. Putting the two together: there is at least one district in which no library opens on Sundays.\n\nThe quick rule is to flip each quantifier (\"every\" becomes \"at least one\", \"at least one\" becomes \"none\") and negate the property last.\n\n**Check:** a statement and its negation can never both be true. Imagine a city where every district has one Sunday library and one library that closes on Sundays. The original is true there. The wrong choices that would still be true in that city cannot be its negation. That eliminates the choice about a closed library, the choice keeping \"every district\", and the choice about exactly one library. The remaining wrong choice, \"in no district\", is false in a city where only one district lacks a Sunday library, yet the original is also false there, so the negation must be true there.",
+  "distractorRationale": {
+    "d": "This is too strong. The original fails as soon as one district has no Sunday library; it does not need every district to have none.",
+    "e": "This changes only the last part and keeps \"every district\". It can be true together with the original, for example when each district has both an open and a closed library.",
+    "a": "This mixes up \"some library is closed\" with \"no library is open\". It can be true together with the original, since one district may have a Sunday library and also a library that closes.",
+    "c": "This adds a number the original never mentions. It can be true together with the original, so it cannot be the negation."
+  },
+  "estimatedSeconds": 55,
+  "stimulusRef": null,
+  "accessibilityText": "A logic question asking for the negation of the statement that in every district of a city there is at least one library that opens on Sundays. Five answer choices, each a statement about districts and libraries. No notation or figures.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-wave6-til-i-reading-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item; the situation, names and wording are invented. Needs no knowledge beyond reasoning."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-wave6-til-i-reading-logic-author",
+    "reviewer": "blind-reviewer-wave6-tili-reading-logic-run4",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-reading-logic-run4",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The negation of 'for every district there exists a Sunday library' is 'there exists a district with no Sunday library'. A is compatible with the original statement. C is compatible with it too. D is a stronger statement (a contrary, not the negation), and E negates only the inner predicate. [A second, separate blind solve (blind-reviewer-wave6-tili-reading-logic-run6) reached the same answer: The statement has the form: for every district there is at least one library that opens on Sundays. Its negation: some district has no library that opens on Sundays, which is B. A negates the wrong part. C, D and E are either too strong or unrelated to the negation.]"
+    },
+    "notes": "Negation of a nested quantified statement (every ... at least one ...). Distractors are the over-negation, the partial negation that keeps \"every\", the \"some closed\" confusion, and an introduced count. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "negation",
+    "quantifiers",
+    "nested"
+  ]
+}

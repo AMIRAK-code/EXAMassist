@@ -1,0 +1,83 @@
+{
+  "id": "polito-til-a-logic-shape-equations-355",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "logical-reasoning",
+  "domainSlug": "tila-logic",
+  "skillSlug": "tila-logic-symbolic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Each symbol stands for a whole number, and the same symbol always stands for the same number.\n\n- ■ + ■ = 12\n- ■ + ▲ = 10\n- ▲ + ● = 9\n\nWhat is ● × ■ ?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "20"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "24"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "30"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "36"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "54"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "**What to notice first.** Look for the line with only one kind of symbol. The first line has two squares and nothing else, so it fixes the square straight away.\n\n**The step that settles it.** Work down the lines, each time using the symbol you have just found.\n\n1. ■ + ■ = 12, so the square is 6.\n2. ■ + ▲ = 10, so the triangle is 10 − 6 = 4.\n3. ▲ + ● = 9, so the circle is 9 − 4 = 5.\n\nThe question asks for the circle times the square: 5 × 6 = 30.\n\n**How to check it.** Put the three values back into every line: 6 + 6 = 12, 6 + 4 = 10 and 4 + 5 = 9. All three hold, so the values are right, and only then is it worth checking that the product uses the circle and the square, not the triangle.",
+  "distractorRationale": {
+    "a": "Multiplies the circle by the triangle, 5 × 4. The values are right but the pair is wrong: the question asks for the circle times the square.",
+    "b": "Multiplies the triangle by the square, 4 × 6. The values are right, but the triangle has taken the place of the circle.",
+    "d": "Multiplies the square by itself, 6 × 6, as if the first line's symbol were wanted twice.",
+    "e": "Reads the last line as if it gave the circle alone, taking the circle to be 9, then multiplies 9 × 6. The 9 is the triangle and the circle together."
+  },
+  "estimatedSeconds": 40,
+  "stimulusRef": null,
+  "accessibilityText": "A question with symbols standing for whole numbers; the same symbol always stands for the same number. Line one: square plus square equals 12. Line two: square plus triangle equals 10. Line three: triangle plus circle equals 9. The question asks for circle times square. The five choices are 20, 24, 30, 36 and 54.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-polito-til-a-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank for the TIL-A Logical reasoning section, on premises in symbolic form. The system is solved by substitution in three steps; three of the distractors are products of the right values taken in the wrong pair, and one comes from misreading the last line."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-polito-til-a-logic-author",
+    "reviewer": "blind-reviewer-wave7-tila-logic-drawing-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-tila-logic-drawing-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The square is 6, so the triangle is 4 and the circle is 5. The product circle times square is 30. [A second, separate blind solve (blind-reviewer-wave7-tila-logic-drawing-run1) reached the same answer: The square is 6, so the triangle is 4 and the circle is 5, and circle x square = 30. The solution is unique.]"
+    },
+    "notes": "Author's uniqueness check: brute force over whole numbers 0 to 20 for all three symbols finds one solution, square 6, triangle 4, circle 5 (the system is linear with a unique solution in any case). Circle times square is 30; triangle times square 24, circle times triangle 20, square squared 36 and 9 times 6 is 54, all different. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "symbolic",
+    "substitution",
+    "no-calculator"
+  ]
+}
