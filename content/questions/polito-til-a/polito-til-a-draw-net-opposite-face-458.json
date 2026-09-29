@@ -1,0 +1,85 @@
+{
+  "id": "polito-til-a-draw-net-opposite-face-458",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "drawing-representation",
+  "domainSlug": "tila-drawing",
+  "skillSlug": "tila-draw-graphs-diagrams",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "The table shows the net of a cube. Its six faces are labelled P, Q, R, S, T and U; blank cells are not part of the net. The net is folded along the edges shared by neighbouring faces to make a closed cube.\n\nWhich face of the cube is opposite face P?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Face U"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Face T"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Face S"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Face Q"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Face R"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "**What to notice first.** The row of four faces, Q, R, S and T, folds into a ring that wraps round four sides of the cube. The two remaining faces, P and U, close the ring at the top and the bottom.\n\n**The step that settles it.** Keep R as the front face. Then Q folds round to the left, S to the right and T to the back. P is joined to the top edge of R, so it folds over to become the **top**. U is joined to the bottom edge of T, and every face of the ring has its bottom edge along the bottom of the cube, so U folds under to become the **bottom**. Top and bottom are opposite: face U is opposite P.\n\n**How to check it.** A face is opposite P only if it shares no edge with P. P touches R directly, and as the top face it also meets each of the other side faces Q, S and T along an edge. That leaves U alone. In the ring, two faces with one face between them are opposite too: Q with S, and R with T.",
+  "distractorRationale": {
+    "d": "Q touches P only at a corner in the flat net, but when the net is folded that corner closes up and the two faces meet along an edge: Q is a side face and P the top. Q is opposite S.",
+    "e": "P is joined to R along an edge in the net, and faces joined in the net stay joined in the cube, so they are neighbours, not opposites. R is opposite T.",
+    "c": "Like Q, S touches P at a corner of the net and meets it along an edge once folded; S is the side face opposite Q.",
+    "b": "T sits at the far end of the row, but the row wraps into a ring and T becomes the back face, which meets the top along an edge. T is opposite R, the face two squares away from it in the row."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": {
+    "id": "polito-til-a-table-net-cross-482",
+    "version": 1
+  },
+  "accessibilityText": "A spatial question posed through a table, with no drawing. The table is the net of a cube on a grid of three rows and four columns. The middle row is a strip of four faces in a line: Q, R, S and T, from left to right. Face P is in the top row directly above R, joined to R's top edge. Face U is in the bottom row directly below T, joined to T's bottom edge. The other cells are blank. The question asks which face is opposite face P when the net is folded into a cube. The choices are faces U, T, S, Q and R.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-polito-til-a-drawing-author",
+    "aiAssisted": true,
+    "notes": "Original item. A folding script that assigns each face an outward normal confirmed the opposite pairs P and U, Q and S, R and T. Face letters run from P to U so they cannot be confused with the answer labels."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-polito-til-a-drawing-author",
+    "reviewer": "blind-reviewer-wave7-tila-logic-drawing-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-tila-logic-drawing-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The strip Q-R-S-T wraps around to form four side faces, with Q opposite S and R opposite T. P is attached above R and U below T, so they close the two ends of the strip. P is therefore opposite U. [A second, separate blind solve (blind-reviewer-wave7-tila-logic-drawing-run1) reached the same answer: The strip Q-R-S-T wraps round as four side faces, which makes Q-S and R-T opposite pairs. P is joined to the top edge of R and U to the bottom edge of T, so they close opposite ends of the band. P is therefore opposite U.]"
+    },
+    "notes": "Author's uniqueness check: a cube face has exactly one opposite face, and the folding script found it to be U; the four other choices each share an edge with P. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "cube-net",
+    "opposite-faces",
+    "folding"
+  ]
+}

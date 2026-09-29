@@ -1,0 +1,84 @@
+{
+  "id": "tolc-e-logic-only-if-rota-602",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Two rules govern a small museum.\n\n- The museum opens on a Sunday only if at least four guides are on duty that day.\n- On any Sunday for which the volunteers' rota has been published, at least four guides are on duty.\n\nLast Sunday the museum was open. Which of the following must be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "At least four guides were on duty last Sunday."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The museum is closed on every Sunday for which no rota has been published."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The museum opens on every Sunday on which at least four guides are on duty."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Exactly four guides were on duty last Sunday."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The volunteers' rota for last Sunday had been published."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Translate each rule into \"if ... then ...\", paying attention to which part is the condition.\n\n\"P only if Q\" means \"if P, then Q\": the thing after \"only if\" is necessary for the thing before it. Here P is \"the museum opens on a Sunday\" and Q is \"at least four guides are on duty\". The museum was open last Sunday, so P is true, and therefore Q is true: **at least four guides were on duty**.\n\nThe second rule points the other way: rota published implies four guides. Knowing that the guides were there tells you nothing certain about the rota, because guides can be on duty for other reasons. Each wrong choice makes one of three mistakes: it runs a rule backwards, it denies a rule's condition and assumes the opposite follows, or it reads \"at least four\" as \"exactly four\". Check by inventing situations that obey both rules. Last Sunday could have had six guides and no published rota; the museum could still open, and that one Sunday defeats the choices about the rota having been published, about exactly four guides, and about the museum being closed whenever no rota is published. Some other Sunday could have had a full team while the museum stayed closed, which defeats the choice claiming that four guides always mean the museum opens.\n\nThe habit to keep: \"only if\" introduces a necessary condition, never a sufficient one.",
+  "distractorRationale": {
+    "e": "This runs the second rule backwards. The rule says that a published rota guarantees four guides, not that four guides are found only when a rota has been published; guides may have been on duty without one. It affirms the consequent.",
+    "c": "This reverses the first rule. \"Opens only if four guides are on duty\" makes four guides necessary for opening; it does not make them sufficient. The museum could stay closed for some other reason even with a full team.",
+    "d": "It reads \"at least four\" as \"exactly four\". The rule sets a minimum, not a fixed number. Five or six guides would satisfy both rules just as well, so the number is not fixed.",
+    "b": "This denies the condition of the second rule and assumes the opposite follows. Without a rota the second rule says nothing about how many guides are present, so neither rule can say the museum is closed; four or more guides may turn up anyway and the museum may open."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "A deduction question about two museum rules. The first rule says the museum opens on a Sunday only if at least four guides are on duty. The second says that on any Sunday for which the volunteers' rota has been published, at least four guides are on duty. Last Sunday the museum was open. The question asks which of five statements must be true: the rota was published; the museum opens on every Sunday with at least four guides; exactly four guides were on duty; at least four guides were on duty; the museum is closed on every Sunday with no published rota.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-e-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Scenario, names and figures are invented; no published TOLC or other test item was used or adapted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-e-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolce-logic-run3",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolce-logic-run3",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "'Opens only if at least four guides' means open implies at least four guides, so A follows. E affirms the consequent of the second rule. B and C are converse or inverse errors. D is not determined. [A second, separate blind solve (blind-reviewer-wave6-tolce-logic-run5) reached the same answer: 'Opens only if at least four guides' means open implies four or more guides, so last Sunday had at least four. E affirms the consequent of the rota rule. B, C and D do not follow: C is the converse, B denies the antecedent, and D is too precise.]"
+    },
+    "notes": "Uniqueness check: \"opens only if\" gives open implies at least four guides. Each other choice is refuted by a Sunday with six guides, no published rota, or a full team but a closed museum. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "deduction",
+    "conditions",
+    "only-if",
+    "no-calculator"
+  ]
+}

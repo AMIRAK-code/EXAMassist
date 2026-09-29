@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-math-log-change-base-003",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tili-mathematics",
+  "skillSlug": "tili-math-analytic-exp-log",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the value of $\\log_{4}32+\\log_{8}16$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "23/20"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "9/5"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "23/6"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "9"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "10"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "**What to notice first.** Every number involved is a power of 2: $4=2^{2}$, $8=2^{3}$, $16=2^{4}$, $32=2^{5}$. That suggests changing both logarithms to base 2 with $\\log_{b}a=\\dfrac{\\log_{2}a}{\\log_{2}b}$.\n\n$$\\log_{4}32=\\frac{\\log_{2}32}{\\log_{2}4}=\\frac{5}{2},\\qquad \\log_{8}16=\\frac{\\log_{2}16}{\\log_{2}8}=\\frac{4}{3}.$$\n\n**Add.** $\\dfrac{5}{2}+\\dfrac{4}{3}=\\dfrac{15}{6}+\\dfrac{8}{6}=\\dfrac{23}{6}$.\n\n**Check with the definition.** $4^{5/2}=\\left(2^{2}\\right)^{5/2}=2^{5}=32$ and $8^{4/3}=\\left(2^{3}\\right)^{4/3}=2^{4}=16$, so the two logarithms really are $\\frac52$ and $\\frac43$.",
+  "distractorRationale": {
+    "a": "This inverts each logarithm, using $\\log_{4}32=\\frac{\\log_2 4}{\\log_2 32}=\\frac{2}{5}$ and $\\log_{8}16=\\frac{3}{4}$. In a change of base the logarithm of the argument goes on top: $\\log_b a=\\frac{\\log_2 a}{\\log_2 b}$.",
+    "b": "This adds the two fractions $\\frac{5}{2}$ and $\\frac{4}{3}$ by adding numerators and adding denominators, $\\frac{5+4}{2+3}$. Fractions need a common denominator before their numerators are added.",
+    "d": "This reads off the exponents of 2 ($32=2^{5}$ and $16=2^{4}$) and adds them, ignoring the bases 4 and 8. Each exponent has to be divided by the exponent of 2 in its own base.",
+    "e": "This treats a logarithm as a quotient of its two numbers: $32\\div4=8$ and $16\\div8=2$. A logarithm asks \"which power of the base gives this number\", not \"how many times does the base fit into it\"."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "Find the value of the sum of two logarithms: the logarithm of thirty-two in base four, plus the logarithm of sixteen in base eight.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-mathematics-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item on change of base. Distractors: inverted quotient, adding tops and bottoms, exponents without bases, and division mistaken for logarithm."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-mathematics-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tili-math-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-math-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "log4 32 = 5/2 and log8 16 = 4/3. Their sum is 15/6 + 8/6 = 23/6. The other options come from inverted ratios (for example 2/5 + 3/4 = 23/20) or from adding the arguments. [A second, separate blind solve (blind-reviewer-wave6-tili-math-run7) reached the same answer: log4 32 = 5/2 and log8 16 = 4/3, so the sum is 15/6+8/6 = 23/6. The other options (23/20, 9/5, 9, 10) come from inverted or wrong change-of-base working.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logarithms",
+    "change-of-base"
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "id": "tolc-e-num-percent-rise-700",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-numbers",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A café raises the price of its espresso from €1.20 to €1.50. By what percentage has the price increased?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "20%"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "25%"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "30%"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "80%"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "125%"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Work out the change first, then compare it with the **starting** value.\n\n**Step 1 — the change.** $1.50 - 1.20 = 0.30$ euros, that is 30 cents.\n\n**Step 2 — divide by the old price.** $\\dfrac{0.30}{1.20} = \\dfrac{30}{120} = \\dfrac{1}{4} = 25\\%$.\n\nThe habit to build: the denominator of a percentage *change* is always what you started from, never what you ended with.\n\n**How to check it.** Take 25% of the old price: a quarter of 120 cents is 30 cents, and $120 + 30 = 150$ cents, which is the new price.",
+  "distractorRationale": {
+    "a": "Divides the 30-cent rise by the new price of €1.50 (0.30 ÷ 1.50 = 0.20). A percentage change is always measured against the starting value, so the base must be €1.20.",
+    "c": "Reads the rise of 30 cents as if it were 30 per cent. The rise is a difference in euros; it becomes a percentage only after it is divided by the old price.",
+    "d": "Divides the old price by the new price (1.20 ÷ 1.50 = 0.8). That ratio says the old price is 80% of the new one; it is not the size of the increase.",
+    "e": "Divides the new price by the old one (1.50 ÷ 1.20 = 1.25) and reports the whole ratio as the increase. The new price is 125% of the old, so the increase is only the 25% above 100%."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "A café raises the price of an espresso from one euro twenty to one euro fifty. The question asks for the percentage increase. The five choices are the percentages twenty, twenty-five, thirty, eighty and one hundred twenty-five.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-tolc-e-mathematics-author",
+    "aiAssisted": true,
+    "notes": "Original item. Each wrong choice comes from one specific slip: wrong base for the percentage, cents read as percent, or an old/new ratio reported as the increase."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-tolc-e-mathematics-author",
+    "reviewer": "blind-reviewer-wave6-tolce-math-run12",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolce-math-run12",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The increase is 0.30 on a base of 1.20, which is 25%. 20% uses the new price as the base (0.30/1.50). 80% and 125% are the price ratios. 30% confuses cents with percent. [A second, separate blind solve (blind-reviewer-wave6-tolce-math-run13) reached the same answer: The rise is 0.30 on a base of 1.20, which is 25%. A uses the new price as the base (0.30/1.50), C uses the cents value 30, and D and E are ratios, not increases.]"
+    },
+    "notes": "Author check: the key was computed and then confirmed a second way (see the check in the explanation); each wrong choice was tried against the stem and fails for the reason given in its distractor note. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "percentage-change"
+  ]
+}

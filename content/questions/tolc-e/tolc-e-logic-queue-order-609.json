@@ -1,0 +1,83 @@
+{
+  "id": "tolc-e-logic-queue-order-609",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Five friends - Giulia, Marco, Nadia, Paolo and Rita - stand in a single queue at a ticket office. The following is known.\n\n- Rita is at the back of the queue.\n- Marco stands immediately in front of Nadia, with nobody between them.\n- Giulia is somewhere in front of Marco, but she is not at the front of the queue.\n\nWho is third in the queue, counting from the front?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Paolo"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Nadia"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Rita"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Marco"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Giulia"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Number the places 1 to 5 from the front and place the most restrictive clues first.\n\nRita is at the back, so she takes place 5. That leaves places 1 to 4 for the other four. Marco and Nadia travel as a linked pair, Marco immediately in front of Nadia, so they occupy two neighbouring places among 1 to 4. Giulia is in front of Marco, so the pair cannot start at place 1, and it cannot start at place 2 either, because then only place 1 would be left for Giulia, who is not allowed to be first. So Marco and Nadia occupy places 3 and 4, Giulia has place 2, and Paolo has place 1.\n\nThe queue is Paolo, Giulia, Marco, Nadia, Rita. **Marco** is third.\n\nCheck against each clue: Rita last, Marco directly before Nadia, Giulia before Marco and not first. All hold.",
+  "distractorRationale": {
+    "e": "Giulia stands second, not third. Choosing her comes from placing her before the Marco-Nadia pair has been fixed; once the pair is forced into third and fourth, Giulia, who may not be first, fills the place just ahead of them.",
+    "b": "Nadia stands fourth, directly behind Marco. Picking her means putting the linked pair one place too early, in second and third, which would leave only the front place for Giulia, and the third clue forbids that.",
+    "a": "Paolo stands first. He is the one friend no clue mentions, so it is tempting to drop him into the middle, but Giulia may not be first and Marco and Nadia cannot be at the front because Giulia must be ahead of Marco, so the front place is left for Paolo.",
+    "c": "Rita stands fifth, at the back, by the first clue. Choosing her means losing track of the one clue that fixes a place outright."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "A logic problem about ordering. Five friends, Giulia, Marco, Nadia, Paolo and Rita, stand in a single queue. Rita is at the back; Marco stands immediately in front of Nadia; Giulia is somewhere in front of Marco but is not at the front. The question asks who is third from the front. The five choices are the five friends' names.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-e-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Scenario, names and figures are invented; no published TOLC or other test item was used or adapted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-e-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolce-logic-run3",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolce-logic-run3",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Rita is 5th. Giulia is at least 2nd and in front of Marco, and Nadia (Marco + 1) must be at most 4th. That forces Marco = 3, Nadia = 4, Giulia = 2 and Paolo = 1. The order is unique, so third is Marco. [A second, separate blind solve (blind-reviewer-wave6-tolce-logic-run5) reached the same answer: Rita is 5th. Giulia is at least 2nd and ahead of Marco, and Nadia comes right after Marco at 4th or earlier. This forces Giulia 2, Marco 3, Nadia 4, Paolo 1. So the third person is Marco, and this is the only valid arrangement.]"
+    },
+    "notes": "Uniqueness check: enumerated all placements; the only order satisfying the three clues is Paolo, Giulia, Marco, Nadia, Rita. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "arrangements",
+    "ordering",
+    "no-calculator"
+  ]
+}

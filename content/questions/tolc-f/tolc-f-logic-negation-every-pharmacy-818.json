@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-logic-negation-every-pharmacy-818",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "logic",
+  "domainSlug": "tolcf-logic",
+  "skillSlug": "tolcf-logic-propositions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A newspaper in Genoa prints the claim: \"Every pharmacy on Via Garibaldi is open on Sundays.\" A reader proves that the claim is false. Which statement must then be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Some pharmacies on Via Garibaldi are open on Sundays."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Exactly one pharmacy on Via Garibaldi is closed on Sundays."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "No pharmacy on Via Garibaldi is open on Sundays."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Most pharmacies on Via Garibaldi are closed on Sundays."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "At least one pharmacy on Via Garibaldi is not open on Sundays."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "A universal claim, \"every pharmacy is open\", is false exactly when there is at least one counterexample: one pharmacy that is not open. So the negation of \"every ... is\" is \"at least one ... is not\". It is not \"none ... is\", which is a much stronger statement.\n\nTest each choice on two simple scenarios in which the claim fails. If nine of ten pharmacies are open, the claim is false, yet \"none is open\" and \"most are closed\" are false. If all ten are closed, the claim is false again, yet \"some are open\" and \"exactly one is closed\" are false. Only \"at least one is not open\" holds in both, and in every other scenario where the claim fails. A statement that can be false while the claim is false cannot be the one that \"must\" be true.",
+  "distractorRationale": {
+    "c": "This is far stronger than needed. If nine pharmacies out of ten are open, the claim is false but this statement is false too.",
+    "b": "The claim fails if one pharmacy is closed, but it also fails if two or more are closed. Nothing fixes the number at exactly one.",
+    "a": "The claim can be false even if no pharmacy is open on Sundays, so this is not forced.",
+    "d": "A single closed pharmacy is enough to make the claim false. There is nothing to say most of them are closed."
+  },
+  "estimatedSeconds": 50,
+  "stimulusRef": null,
+  "accessibilityText": "A short text question with no figure. A newspaper claims that every pharmacy on Via Garibaldi is open on Sundays, and the claim is shown to be false. The five choices are: no pharmacy is open on Sundays; exactly one is closed; at least one is not open; some are open; most are closed.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item on the negation of a universal statement. Each distractor is a stronger, weaker or unrelated statement."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-logic-run10",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-logic-run10",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The negation of 'every X is open' is 'at least one X is not open'. A fails if no pharmacy is open. B, C and D are stronger claims that do not follow. [A second, separate blind solve (blind-reviewer-wave6-tolcf-logic-run11) reached the same answer: The negation of 'every pharmacy is open on Sundays' is 'at least one pharmacy is not open on Sundays'.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "negation",
+    "quantifiers"
+  ]
+}

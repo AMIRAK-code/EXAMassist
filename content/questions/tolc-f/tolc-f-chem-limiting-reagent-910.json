@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-chem-limiting-reagent-910",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "chemistry",
+  "domainSlug": "tolcf-chemistry",
+  "skillSlug": "tolcf-chem-stoichiometry-redox",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Hydrogen and oxygen react according to\n\n$$2\\,\\mathrm{H_2} + \\mathrm{O_2} \\rightarrow 2\\,\\mathrm{H_2O}$$\n\nMolar masses: $\\mathrm{H_2} = 2\\ \\mathrm{g/mol}$, $\\mathrm{O_2} = 32\\ \\mathrm{g/mol}$, $\\mathrm{H_2O} = 18\\ \\mathrm{g/mol}$. A vessel holds 6 g of hydrogen and 32 g of oxygen, and the reaction goes to completion. What mass of water forms, and what is left over?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "54 g of water, with some oxygen left over"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "18 g of water, with 4 g of hydrogen left over"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "36 g of water, with 4 g of hydrogen left over"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "38 g of water, with nothing left over"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "36 g of water, with 2 g of hydrogen left over"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "When two reactant amounts are given, convert both to moles, then compare with the ratio in the equation. Do not compare grams.\n\n- Hydrogen: $6 \\div 2 = 3$ mol.\n- Oxygen: $32 \\div 32 = 1$ mol.\n\nThe equation needs 2 mol of hydrogen for every 1 mol of oxygen. The 1 mol of oxygen can use only 2 mol of hydrogen, and 3 mol are present, so **oxygen is the limiting reagent** and hydrogen is in excess. (Hydrogen has the smaller mass but the larger number of moles, which is why comparing grams misleads.)\n\n- **Water:** 1 mol of $\\mathrm{O_2}$ gives 2 mol of $\\mathrm{H_2O}$, so $2 \\times 18 = 36$ g.\n- **Hydrogen left:** $3 - 2 = 1$ mol, which is $1 \\times 2 = 2$ g.\n\n**Check by conservation of mass.** Water plus leftover hydrogen: $36 + 2 = 38$ g, the same as the $6 + 32 = 38$ g put in. Any answer whose water and leftovers do not add up to 38 g can be rejected in seconds.",
+  "distractorRationale": {
+    "a": "This picks hydrogen as the limiting reagent because it has the smaller mass. Limits are set by moles and coefficients, not grams. Then 3 mol of hydrogen would need 1.5 mol of oxygen (48 g), more than the 32 g present. Also, 54 g of water exceeds the 38 g total mass of the reactants.",
+    "b": "Oxygen is correctly seen as limiting, but 1 mol of oxygen is taken to make only 1 mol of water, dropping the coefficient 2 on the product; 1 mol of water uses 1 mol (2 g) of hydrogen, leaving 4 g. The equation gives 2 mol of water per mole of oxygen, and the masses here ($18 + 4 = 22$ g) do not add up to the 38 g at the start.",
+    "d": "This adds the two starting masses, $6 + 32 = 38$, as though everything reacted. Mass is conserved, but the reagents are not in the 2:1 mole ratio the equation needs, so one of them is left over.",
+    "c": "The water is right, but the leftover is not. Making 2 mol of water uses 2 mol of hydrogen, which is $2 \\times 2 = 4$ g, so $6 - 4 = 2$ g remains. This choice confuses the 2 mol of hydrogen used with 2 g, and subtracts $6 - 2 = 4$ g. The mass check catches it: $36 + 4 = 40$ g is not the 38 g put in."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "The balanced equation is two H subscript 2 plus one O subscript 2 gives two H subscript 2 O. Molar masses are 2, 32 and 18 grams per mole for hydrogen, oxygen and water. The vessel holds 6 grams of hydrogen and 32 grams of oxygen, and the reaction goes to completion. The question asks for the mass of water formed and what is left over. Each choice gives a mass of water and a statement of what remains.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-chemistry-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank (Wave 6, TOLC-F chemistry). Each wrong choice comes from one named misconception, recorded in distractorRationale. Numbers chosen for hand calculation with no calculator; every key was recomputed a second way in the build script."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-chemistry-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-chem-run15",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-chem-run15",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "3 mol H2 and 1 mol O2. O2 is limiting and uses 2 mol H2, giving 2 mol H2O = 36 g and leaving 1 mol H2 = 2 g. C has the right water mass but the wrong excess (4 g). D wrongly assumes all 38 g react. A treats H2 as limiting. [A second, separate blind solve (blind-reviewer-wave6-tolcf-chem-run18) reached the same answer: There are 3 mol H2 and 1 mol O2. O2 is limiting and uses 2 mol H2, giving 2 mol H2O = 36 g, with 1 mol (2 g) of H2 left over. Option C has the right water mass but the wrong leftover (it treats 4 g as the leftover when that is the mass used). D ignores the limiting reagent. A assumes H2 is limiting.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication. Key check: 3 mol H2, 1 mol O2; O2 limiting; 2 mol H2O = 36 g; 1 mol H2 left = 2 g; mass balance 36 + 2 = 38 = 6 + 32. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "limiting-reagent",
+    "stoichiometry",
+    "conservation-of-mass"
+  ]
+}

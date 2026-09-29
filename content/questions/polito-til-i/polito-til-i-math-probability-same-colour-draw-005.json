@@ -1,0 +1,82 @@
+{
+  "id": "polito-til-i-math-probability-same-colour-draw-005",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tili-mathematics",
+  "skillSlug": "tili-math-statistics-probability",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A box holds 4 red, 5 white and 3 green counters, identical apart from colour. Two counters are drawn at random, one after the other, and the first is not put back. What is the probability that the two counters have the same colour?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "8/33"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "19/72"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "19/66"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "1/3"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "25/72"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "**What to notice first.** The draw is without replacement, so the second factor in each product is one smaller, for both the number of counters of that colour and the number in the box.\n\n**Ordered pairs.** There are $12\\cdot 11=132$ equally likely ordered pairs. Those with matching colours: red-red $4\\cdot3=12$, white-white $5\\cdot4=20$, green-green $3\\cdot2=6$. In total $12+20+6=38$ pairs.\n\n$$P=\\frac{38}{132}=\\frac{19}{66}.$$\n\n**Check by counting unordered pairs.** There are $\\binom{12}{2}=66$ pairs. Matching pairs: $\\binom{4}{2}+\\binom{5}{2}+\\binom{3}{2}=6+10+3=19$. Again $\\frac{19}{66}$.",
+  "distractorRationale": {
+    "a": "This counts only red-red and white-white, giving $\\frac{12+20}{132}=\\frac{8}{33}$, and leaves out the green pair. All three colours can match.",
+    "b": "This uses the right count of matching ordered pairs, 38, but divides by $12\\cdot12=144$ as if the first counter were put back. Without replacement the second draw is from 11 counters, so the total is $12\\cdot11=132$.",
+    "d": "This argues that there are three colours, so the chance of matching is one in three. The colours are not equally represented, so the colour groups of 4, 5 and 3 counters do not contribute equally.",
+    "e": "This is the answer for drawing *with* replacement: $\\frac{4^{2}+5^{2}+3^{2}}{12^{2}}=\\frac{50}{144}=\\frac{25}{72}$. Here the first counter stays out, so the second factor in each product drops by one."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "A box has four red, five white and three green counters. Two counters are drawn one after the other without replacement. Find the probability that both counters are the same colour.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-mathematics-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item. Distractors: omitting a colour, mixing with-replacement and without-replacement denominators, equal-colour heuristic, and the with-replacement answer."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-mathematics-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tili-math-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-math-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Without replacement: (4*3 + 5*4 + 3*2)/(12*11) = 38/132 = 19/66. E (25/72) is the with-replacement answer, which the stem clearly rules out. The other options are mixed-up denominators. [A second, separate blind solve (blind-reviewer-wave6-tili-math-run7) reached the same answer: Without replacement: (4*3+5*4+3*2)/(12*11) = 38/132 = 19/66. With replacement it would be 50/144 = 25/72 (E), but the stem clearly says the first counter is not put back. 19/72 (B) mixes the two denominators.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "probability",
+    "without-replacement",
+    "multi-step"
+  ]
+}

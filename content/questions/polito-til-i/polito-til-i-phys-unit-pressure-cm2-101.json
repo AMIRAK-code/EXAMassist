@@ -1,0 +1,82 @@
+{
+  "id": "polito-til-i-phys-unit-pressure-cm2-101",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "physics",
+  "domainSlug": "tili-physics",
+  "skillSlug": "tili-phys-vectors-units",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A force of 600 N is spread evenly over a rectangular plate whose area is $20\\,\\text{cm}^2$. What is the pressure on the plate, in pascals (1 Pa = 1 N/m²)?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$3.0\\times10^{6}\\ \\text{Pa}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$30\\ \\text{Pa}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$3.0\\times10^{5}\\ \\text{Pa}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$3.0\\times10^{3}\\ \\text{Pa}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$3.0\\times10^{4}\\ \\text{Pa}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Pressure is force divided by area, $p = F/A$, and a pascal needs the area in square metres, so convert first.\n\n**Convert the area.** One centimetre is $10^{-2}\\ \\text{m}$, so one square centimetre is $(10^{-2})^{2} = 10^{-4}\\ \\text{m}^2$. Therefore $20\\ \\text{cm}^2 = 20\\times10^{-4}\\ \\text{m}^2 = 2\\times10^{-3}\\ \\text{m}^2$.\n\n**Divide.** $p = \\dfrac{600}{2\\times10^{-3}} = 300\\times10^{3} = 3\\times10^{5}\\ \\text{Pa}$.\n\n**Check it a second way.** The force is 30 N on every square centimetre. A square metre holds $100\\times100 = 10^{4}$ square centimetres, so $30\\times10^{4} = 3\\times10^{5}$ N on each square metre. Whenever a unit is squared, its conversion factor must be squared too.",
+  "distractorRationale": {
+    "b": "Divides 600 by 20 without converting the area, which gives 30 newtons per square centimetre, not per square metre. The pascal is defined with square metres.",
+    "d": "Applies the length factor $10^{-2}$ once to an area, turning 20 cm² into 0.2 m². A conversion between lengths must be squared when it is used for areas.",
+    "e": "Writes 20 cm² correctly as $20\\times10^{-4}$ m² but then misplaces the decimal point and reads it as $2\\times10^{-2}$ m², ten times too large an area and so ten times too small a pressure.",
+    "a": "Drops the tens digit when converting, using $2\\times10^{-4}$ m² instead of $2\\times10^{-3}$ m² for the area, which makes the pressure ten times too large."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "A unit-conversion question about pressure. A force of 600 newtons is spread evenly over a rectangular plate of area 20 square centimetres, and the pressure is wanted in pascals, where one pascal is one newton per square metre. The choices are 30 pascals and four values in scientific notation: 3.0 times 10 to the 3, 3.0 times 10 to the 4, 3.0 times 10 to the 5, and 3.0 times 10 to the 6 pascals.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-wave6-physics-technical-author",
+    "aiAssisted": true,
+    "notes": "Original item. Invented numbers. Each wrong choice is one conversion slip: no conversion, a length factor used once for an area, a decimal-point slip, and a dropped tens digit."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-wave6-physics-technical-author",
+    "reviewer": "blind-reviewer-wave7-resolve-held-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-resolve-held-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "20 cm² = 2.0×10^-3 m², so p = 600 / 2.0×10^-3 = 3.0×10^5 Pa. The other options are powers-of-ten slips in the cm²-to-m² conversion (30 Pa uses cm² directly), so none is defensible. [A second, separate blind solve (blind-reviewer-wave7-resolve-held-run1) reached the same answer: 20 cm² = 2.0×10^-3 m², so p = 600 / 2.0×10^-3 = 3.0×10^5 Pa. The other options are powers-of-ten slips, such as treating 1 cm² as 10^-2 m² (3.0×10^4) or leaving the area in cm² (30).]"
+    },
+    "notes": "Awaiting a blind independent solve. The author recomputed every option and checked the key a second way before saving (see the explanation). Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "unit-conversion",
+    "pressure",
+    "area-units"
+  ]
+}

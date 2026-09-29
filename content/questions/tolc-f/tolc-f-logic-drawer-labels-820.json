@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-logic-drawer-labels-820",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "logic",
+  "domainSlug": "tolcf-logic",
+  "skillSlug": "tolcf-logic-propositions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A pharmacist hides a sample vial in one of three drawers and puts a label on each drawer.\n\n- Drawer 1: \"The vial is in this drawer.\"\n- Drawer 2: \"The vial is not in this drawer.\"\n- Drawer 3: \"The vial is not in drawer 1.\"\n\nExactly one of the three labels is true. In which drawer is the vial?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "It is impossible to decide between drawer 1 and drawer 3."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Drawer 2"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "No drawer is possible, because the labels contradict each other."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Drawer 1"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Drawer 3"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Look for the pair of labels that cannot both be true or both be false. The label on drawer 1 says the vial is in drawer 1, and the label on drawer 3 says it is not in drawer 1. These are contradictory, so exactly one of them is true, whatever the truth is.\n\nThe puzzle says exactly one label is true overall, so the label on drawer 2 must be false. That label says \"the vial is not in this drawer\", so it is false only if the vial is in drawer 2.\n\nCheck by trying drawer 2: the label on drawer 1 is false, the label on drawer 2 is false, the label on drawer 3 is true. Exactly one is true. Drawers 1 and 3 each give two true labels, so they fail.",
+  "distractorRationale": {
+    "d": "If the vial were in drawer 1, the label on drawer 1 would be true and so would the label on drawer 2, giving two true labels.",
+    "e": "If the vial were in drawer 3, the label on drawer 2 and the label on drawer 3 would both be true, giving two true labels.",
+    "a": "Both drawers 1 and 3 give two true labels, so both are ruled out at once. Only one drawer is left.",
+    "c": "Two labels contradict each other, but that is exactly what makes the puzzle solvable. Drawer 2 gives exactly one true label."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A short text question with no figure. A vial is hidden in one of three drawers. The label on drawer 1 says the vial is in this drawer. The label on drawer 2 says the vial is not in this drawer. The label on drawer 3 says the vial is not in drawer 1. Exactly one label is true. The five choices are: drawer 1; drawer 3; drawer 2; it is impossible to decide between drawer 1 and drawer 3; no drawer is possible.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original puzzle. Working through the three cases confirms drawer 2 is the only arrangement with exactly one true label."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-logic-run10",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-logic-run10",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Vial in 1: labels 1 and 2 are true, so two are true. Vial in 2: label 1 false, label 2 false, label 3 true, so exactly one. Vial in 3: labels 2 and 3 are true, so two. Only drawer 2 works, which rules out options A, C, D and E. [A second, separate blind solve (blind-reviewer-wave6-tolcf-logic-run11) reached the same answer: Vial in drawer 1: labels 1 and 2 are true (2 true). Vial in drawer 2: label 1 false, label 2 false, label 3 true (exactly 1 true). Vial in drawer 3: labels 2 and 3 are true (2 true). Only drawer 2 fits.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "truth-values",
+    "case-analysis",
+    "contradiction"
+  ]
+}

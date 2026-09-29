@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-eq-fractional-inequality-708",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Find all real $x$ such that $\\dfrac{2x-1}{x+3} \\le 1$.",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$-3 \\le x \\le 4$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$-3 < x \\le 4$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$-3 < x < 4$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$x \\le 4$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$x < -3$ or $x \\ge 4$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The sign of $x+3$ changes at $x=-3$, so do not multiply through by it. Bring everything to one side and study the sign of a single fraction.\n\n**Step 1 — one fraction.** $\\dfrac{2x-1}{x+3} - 1 = \\dfrac{2x-1-(x+3)}{x+3} = \\dfrac{x-4}{x+3} \\le 0.$\n\n**Step 2 — sign chart.** The numerator is zero at $x=4$ and the denominator is zero at $x=-3$. The quotient is positive for $x<-3$, negative for $-3<x<4$ and positive for $x>4$. We want it negative or zero.\n\n**Step 3 — endpoints.** $x=4$ makes the quotient zero, so it is included. $x=-3$ is excluded because the fraction is undefined there. The solution is $-3 < x \\le 4$.\n\n**How to check it.** Test one value in each region and each special point: $x=0$ gives $-\\tfrac13\\le 1$ ✓; $x=4$ gives $1\\le 1$ ✓; $x=5$ gives $\\tfrac98>1$ ✗; $x=-4$ gives $9>1$ ✗.",
+  "distractorRationale": {
+    "a": "Gets the interval right but includes $x=-3$, where the denominator is zero and the expression is undefined.",
+    "c": "Treats the inequality as strict. At $x=4$ the fraction equals $\\dfrac{7}{7}=1$, which satisfies \"less than or equal to\", so 4 belongs to the solution.",
+    "d": "Multiplies both sides by $x+3$ as if it were positive, giving $2x-1 \\le x+3$. When $x < -3$ the factor is negative and the inequality would reverse; for example $x=-4$ gives 9, which is not at most 1.",
+    "e": "Reads the sign of $\\dfrac{x-4}{x+3}$ the wrong way round, choosing the region where it is positive. At $x=5$ the original fraction is $\\dfrac{9}{8}$, which is more than 1."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": "Find all real x such that the fraction with numerator 2 x minus 1 and denominator x plus 3 is less than or equal to 1. The five choices are: negative 3 less than or equal to x less than or equal to 4; negative 3 less than x less than 4; negative 3 less than x less than or equal to 4; x less than or equal to 4; and x less than negative 3 or x greater than or equal to 4.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-tolc-e-mathematics-author",
+    "aiAssisted": true,
+    "notes": "Original item. Tests three things at once: not multiplying by an expression of unknown sign, the pole at x = -3, and the included zero at x = 4."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-tolc-e-mathematics-author",
+    "reviewer": "blind-reviewer-wave6-tolce-math-run12",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolce-math-run12",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Moving 1 across gives (x-4)/(x+3) <= 0, so -3 < x <= 4. x=-3 is excluded because the denominator is zero there, which rules out A. C drops the equality at x=4. D comes from multiplying through without a sign check, and E is the complement. [A second, separate blind solve (blind-reviewer-wave6-tolce-math-run13) reached the same answer: (2x-1)/(x+3)-1=(x-4)/(x+3)<=0 holds for -3<x<=4. The expression is undefined at x=-3, so A is out; x=4 gives equality, so C is out. D ignores the sign of the denominator and E is the complement.]"
+    },
+    "notes": "Author check: the key was computed and then confirmed a second way (see the check in the explanation); each wrong choice was tried against the stem and fails for the reason given in its distractor note. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "fractional-inequality",
+    "sign-chart"
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "id": "tolc-f-chem-phosphate-salt-906",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "chemistry",
+  "domainSlug": "tolcf-chemistry",
+  "skillSlug": "tolcf-chem-inorganic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Phosphoric acid, $\\mathrm{H_3PO_4}$, has three hydrogen atoms that can be replaced by sodium. A solution containing 0.50 mol of $\\mathrm{H_3PO_4}$ reacts completely with 1.0 mol of $\\mathrm{NaOH}$, with no reagent left over. Which salt is formed?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\mathrm{Na_2PO_4}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\mathrm{NaHPO_4}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\mathrm{NaH_2PO_4}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\mathrm{Na_2HPO_4}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\mathrm{Na_3PO_4}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Sodium hydroxide replaces the hydrogens of the acid one at a time, so the mole ratio of base to acid tells you how many hydrogens have been replaced.\n\n$$\\mathrm{H_3PO_4 + NaOH \\rightarrow NaH_2PO_4 + H_2O}\\qquad (1:1)$$\n$$\\mathrm{H_3PO_4 + 2\\,NaOH \\rightarrow Na_2HPO_4 + 2\\,H_2O}\\qquad (1:2)$$\n$$\\mathrm{H_3PO_4 + 3\\,NaOH \\rightarrow Na_3PO_4 + 3\\,H_2O}\\qquad (1:3)$$\n\nThe amounts are 1.0 mol of base for 0.50 mol of acid, a ratio of $1.0 \\div 0.50 = 2$. Two hydrogens are replaced and one remains, giving $\\mathrm{Na_2HPO_4}$ (disodium hydrogen phosphate).\n\n**Check the charges:** two $\\mathrm{Na^+}$ give $+2$, and the anion $\\mathrm{HPO_4^{2-}}$ gives $-2$, so the salt is neutral. Check the atoms too: 1 P, 4 O, 1 H remain in the salt, and the 2 H removed leave with the 2 OH as 2 $\\mathrm{H_2O}$.",
+  "distractorRationale": {
+    "c": "This replaces only one hydrogen, which needs one mole of $\\mathrm{NaOH}$ per mole of acid. Here the ratio is 1.0 mol : 0.50 mol, that is two moles of base per mole of acid.",
+    "e": "This replaces all three hydrogens, which would need three moles of $\\mathrm{NaOH}$ per mole of acid, or 1.5 mol of base here. Only 1.0 mol is available.",
+    "a": "This is not a charge-balanced formula, so no such neutral salt exists. It puts in the right two sodiums but also strips off the remaining hydrogen, leaving the phosphate ion: $2\\times(+1)$ from sodium and $-3$ from $\\mathrm{PO_4^{3-}}$ give a net charge of $-1$. Two sodiums replace two hydrogens, so one hydrogen must stay, giving $\\mathrm{Na_2HPO_4}$.",
+    "b": "This is not a charge-balanced formula either, so no such neutral salt exists. It keeps the right anion for two replaced hydrogens, $\\mathrm{HPO_4^{2-}}$, but pairs it with only one $\\mathrm{Na^+}$, leaving a net charge of $-1$. Counting sodium atoms instead of charges misleads here: the anion $\\mathrm{HPO_4^{2-}}$ needs two $\\mathrm{Na^+}$."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": "Phosphoric acid, H subscript 3 P O subscript 4, is neutralised by sodium hydroxide. The amounts are 0.50 mole of the acid and 1.0 mole of sodium hydroxide, reacting completely with nothing left over. The question asks which salt forms. The choices are five formulas: Na subscript 2 P O subscript 4; Na H P O subscript 4; Na H subscript 2 P O subscript 4; Na subscript 2 H P O subscript 4; and Na subscript 3 P O subscript 4.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-chemistry-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank (Wave 6, TOLC-F chemistry). Each wrong choice comes from one named misconception, recorded in distractorRationale. Numbers chosen for hand calculation with no calculator; every key was recomputed a second way in the build script."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-chemistry-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-chem-run15",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-chem-run15",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The mole ratio NaOH:H3PO4 is 2:1, so two H are replaced, giving Na2HPO4 (H3PO4 + 2NaOH -> Na2HPO4 + 2H2O). NaH2PO4 needs a 1:1 ratio and Na3PO4 needs 3:1. [A second, separate blind solve (blind-reviewer-wave6-tolcf-chem-run18) reached the same answer: A 1:2 acid-to-NaOH ratio replaces two hydrogens and gives Na2HPO4. NaH2PO4 would need a 1:1 ratio, and Na3PO4 a 1:3 ratio. Na2PO4 and NaHPO4 are not charge-balanced formulas.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication. Key check: base:acid = 1.0/0.50 = 2, so two H replaced: H3PO4 + 2 NaOH -> Na2HPO4 + 2 H2O. Charges: 2(+1) + (-2) = 0. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "neutralisation",
+    "acid-salts",
+    "phosphates",
+    "mole-ratio"
+  ]
+}

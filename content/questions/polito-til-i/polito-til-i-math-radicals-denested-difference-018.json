@@ -1,0 +1,82 @@
+{
+  "id": "polito-til-i-math-radicals-denested-difference-018",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tili-mathematics",
+  "skillSlug": "tili-math-reals-radicals",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the value of $\\sqrt{7+4\\sqrt3}-\\sqrt{7-4\\sqrt3}$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\sqrt{8\\sqrt{3}}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$2\\sqrt{3}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "0"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "4"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$8\\sqrt{3}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "**What to notice first.** Radicals like $\\sqrt{7+4\\sqrt3}$ are often perfect squares of a simple sum. Try $(a+b\\sqrt3)^{2}=a^{2}+3b^{2}+2ab\\sqrt3$. Matching $7+4\\sqrt3$ needs $a^{2}+3b^{2}=7$ and $ab=2$, and $a=2$, $b=1$ works.\n\n**Denest.** $7+4\\sqrt3=(2+\\sqrt3)^{2}$ and $7-4\\sqrt3=(2-\\sqrt3)^{2}$. Since $2>\\sqrt3$, both brackets are positive, so $\\sqrt{7\\pm4\\sqrt3}=2\\pm\\sqrt3$.\n\n**Subtract.** $(2+\\sqrt3)-(2-\\sqrt3)=2\\sqrt3$.\n\n**Check by squaring.** Call the expression $E$. It is positive, and $E^{2}=(7+4\\sqrt3)+(7-4\\sqrt3)-2\\sqrt{(7+4\\sqrt3)(7-4\\sqrt3)}=14-2\\sqrt{49-48}=12$. So $E=\\sqrt{12}=2\\sqrt3$, the same value.",
+  "distractorRationale": {
+    "c": "This denests correctly to $(2+\\sqrt3)-(2-\\sqrt3)$ but then drops the minus sign in front of the second bracket, writing $2+\\sqrt3-2-\\sqrt3=0$. The minus must be distributed to both terms, turning $-\\sqrt3$ into $+\\sqrt3$.",
+    "d": "This writes $\\sqrt{7-4\\sqrt3}$ as $\\sqrt3-2$, which is negative, and then $(2+\\sqrt3)-(\\sqrt3-2)=4$. A square root is never negative; the correct value is $2-\\sqrt3$, which is positive because $2>\\sqrt3$.",
+    "e": "This subtracts the two radicands, $(7+4\\sqrt3)-(7-4\\sqrt3)=8\\sqrt3$, and forgets the square roots. The difference of two square roots is not the square root of the difference, and it is not the difference of the radicands either.",
+    "a": "This combines the two roots as $\\sqrt{a}-\\sqrt{b}=\\sqrt{a-b}$. That rule is false: for example $\\sqrt{25}-\\sqrt{9}=2$ but $\\sqrt{25-9}=4$."
+  },
+  "estimatedSeconds": 140,
+  "stimulusRef": null,
+  "accessibilityText": "Find the value of the square root of seven plus four times root three, minus the square root of seven minus four times root three.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-mathematics-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item on nested radicals. Solvable by denesting or by squaring the whole expression. Distractors: sign distribution error, negative square root, subtracting radicands, and merging roots."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-mathematics-wave6-author",
+    "reviewer": "blind-reviewer-wave7-resolve-held-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-resolve-held-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "7+4√3 = (2+√3)^2 and 7-4√3 = (2-√3)^2, and 2-√3 > 0, so the difference is (2+√3)-(2-√3) = 2√3. Option A, √(8√3), is about 3.72 and 2√3 is about 3.46 (squares 13.86 vs 12), so they are not equal. [A second, separate blind solve (blind-reviewer-wave7-resolve-held-run1) reached the same answer: 7+4√3 = (2+√3)^2 and 7-4√3 = (2-√3)^2, with 2-√3 > 0, so the difference is (2+√3)-(2-√3) = 2√3. Option A, √(8√3), squares to 8√3 ≈ 13.86, not 12, so it is not equal to 2√3.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "nested-radicals",
+    "denesting",
+    "multi-step"
+  ]
+}

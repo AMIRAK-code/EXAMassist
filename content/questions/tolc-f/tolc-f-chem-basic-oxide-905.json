@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-chem-basic-oxide-905",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "chemistry",
+  "domainSlug": "tolcf-chemistry",
+  "skillSlug": "tolcf-chem-inorganic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which of these oxides reacts with water to give a basic (alkaline) solution?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\mathrm{CO_2}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\mathrm{Na_2O}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\mathrm{SO_3}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\mathrm{SO_2}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\mathrm{N_2O_5}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Look at which element the oxygen is bonded to. Oxides of **metals** from the far left of the periodic table (groups 1 and 2) are basic: they react with water to give a hydroxide. Oxides of **non-metals** are acidic: they react with water to give an acid.\n\n$$\\mathrm{Na_2O + H_2O \\rightarrow 2\\,NaOH}$$\n\nThe other four are all non-metal oxides:\n\n$$\\mathrm{SO_3 + H_2O \\rightarrow H_2SO_4}\\qquad \\mathrm{CO_2 + H_2O \\rightleftharpoons H_2CO_3}$$\n\n$$\\mathrm{N_2O_5 + H_2O \\rightarrow 2\\,HNO_3}\\qquad \\mathrm{SO_2 + H_2O \\rightleftharpoons H_2SO_3}$$\n\n**Check:** only one metal appears among the five formulas. Sodium hydroxide, the product, is a strong base, so the solution is alkaline.",
+  "distractorRationale": {
+    "c": "Sulfur trioxide is the oxide of a non-metal. It adds to water to give sulfuric acid, $\\mathrm{H_2SO_4}$, a strong acid.",
+    "a": "Carbon dioxide is a non-metal oxide. It dissolves in water to give carbonic acid, $\\mathrm{H_2CO_3}$, so the solution is slightly acidic, never basic.",
+    "e": "Dinitrogen pentoxide is a non-metal oxide. It gives nitric acid, $\\mathrm{HNO_3}$, on reaction with water.",
+    "d": "Sulfur dioxide is a non-metal oxide. With water it forms sulfurous acid, $\\mathrm{H_2SO_3}$, which is acidic."
+  },
+  "estimatedSeconds": 35,
+  "stimulusRef": null,
+  "accessibilityText": "The question asks which oxide gives a basic solution with water. The oxides are sulfur trioxide, S O subscript 3; carbon dioxide, C O subscript 2; sodium oxide, Na subscript 2 O; dinitrogen pentoxide, N subscript 2 O subscript 5; and sulfur dioxide, S O subscript 2.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-chemistry-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank (Wave 6, TOLC-F chemistry). Each wrong choice comes from one named misconception, recorded in distractorRationale. Numbers chosen for hand calculation with no calculator; every key was recomputed a second way in the build script."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-chemistry-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-chem-run15",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-chem-run15",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Na2O is a metal oxide and gives 2 NaOH with water. CO2, SO3, SO2 and N2O5 are all acidic non-metal oxides. [A second, separate blind solve (blind-reviewer-wave6-tolcf-chem-run18) reached the same answer: Na2O is a metal oxide and reacts with water to give NaOH, which is basic. CO2, SO3, SO2 and N2O5 are all acidic non-metal oxides.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication. Key check: Na2O + H2O gives 2 NaOH; SO3, CO2, N2O5 and SO2 are non-metal oxides giving H2SO4, H2CO3, HNO3 and H2SO3. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "oxides",
+    "acidic-oxide",
+    "basic-oxide"
+  ]
+}

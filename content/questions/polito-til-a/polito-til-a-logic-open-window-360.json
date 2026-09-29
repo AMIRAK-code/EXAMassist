@@ -1,0 +1,83 @@
+{
+  "id": "polito-til-a-logic-open-window-360",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "logical-reasoning",
+  "domainSlug": "tila-logic",
+  "skillSlug": "tila-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "One of four students - Livia, Marco, Nadia and Oreste - left the window of the model room open overnight. Asked about it the next morning, each makes one statement:\n\n- Livia: \"It wasn't me.\"\n- Marco: \"It was Oreste.\"\n- Nadia: \"It was Marco or Oreste.\"\n- Oreste: \"Livia is lying.\"\n\nExactly two of the four statements are true. Who left the window open?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Marco"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "It cannot be determined from the information given."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Oreste"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Livia"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Nadia"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "**What to notice first.** Oreste's statement is about Livia's: he says hers is false. So of those two statements exactly one is true, whoever the culprit is.\n\n**The step that settles it.** Exactly two statements are true in all, and Livia and Oreste supply exactly one of them. So exactly one of Marco's and Nadia's statements is true.\n\n- If Marco's were true (Oreste did it), Nadia's \"Marco or Oreste\" would be true as well: two true, not one. So Marco's statement is false, and Oreste did not do it.\n- Then Nadia's statement is the true one: it was Marco or Oreste. It was not Oreste, so it was Marco.\n\n**How to check it.** Test each suspect and count the true statements.\n\n| Culprit | Livia | Marco | Nadia | Oreste | True statements |\n|---|---|---|---|---|---|\n| Livia | false | false | false | true | 1 |\n| Marco | true | false | true | false | 2 |\n| Nadia | true | false | false | false | 1 |\n| Oreste | true | true | true | false | 3 |\n\nOnly Marco as the culprit gives exactly two true statements.",
+  "distractorRationale": {
+    "d": "Would make Oreste's statement the only true one: Livia's denial is then false, and Marco and Nadia both accuse the wrong people. That is one true statement, not two.",
+    "e": "Would leave Livia's denial as the only true statement: Marco and Nadia accuse the wrong people, and Oreste wrongly calls Livia a liar. One true statement, not two.",
+    "c": "The name accused most often, but it makes three statements true: Livia's denial, Marco's accusation and Nadia's 'Marco or Oreste'. Only Oreste's own statement is false.",
+    "b": "Assumes the statements leave more than one suspect. Testing each of the four in turn, only one culprit gives exactly two true statements, so the answer is fixed."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "A truth and lies puzzle. One of four students, Livia, Marco, Nadia and Oreste, left the model room window open. Livia says: it wasn't me. Marco says: it was Oreste. Nadia says: it was Marco or Oreste. Oreste says: Livia is lying. Exactly two of the four statements are true. The question asks who left the window open. The five choices are: Marco; it cannot be determined from the information given; Oreste; Livia; and Nadia. The explanation contains a table with one row per possible culprit, showing whether each statement is true and how many are true.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-polito-til-a-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank for the TIL-A Logical reasoning section. Names and setting are invented. The statement set was chosen by a search script from natural statements (self-denials, accusations and one statement about another speaker) for a unique solution under 'exactly two are true', and because the Livia-Oreste contradiction gives a short route that the full case table confirms."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-polito-til-a-logic-author",
+    "reviewer": "blind-reviewer-wave7-tila-logic-drawing-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-tila-logic-drawing-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "I counted true statements for each culprit: Livia gives 1 (only Oreste's), Marco gives 2 (Livia's and Nadia's), Nadia gives 1 and Oreste gives 3. Only Marco gives exactly two true statements. [A second, separate blind solve (blind-reviewer-wave7-tila-logic-drawing-run1) reached the same answer: I tested each culprit and counted the true statements: Livia gives 1 (only Oreste's), Marco gives 2 (Livia's and Nadia's), Nadia gives 1 (Livia's) and Oreste gives 3. Only Marco gives exactly two, so B does not apply.]"
+    },
+    "notes": "Author's uniqueness check: by script, for each of the four possible culprits every truth assignment to the four statements was tested for consistency (Oreste's statement is true exactly when Livia's is false). The true-statement counts are 1 for Livia, 2 for Marco, 1 for Nadia and 3 for Oreste, so Marco is the only culprit compatible with exactly two true statements. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "truth-and-lies",
+    "case-analysis",
+    "no-calculator"
+  ]
+}

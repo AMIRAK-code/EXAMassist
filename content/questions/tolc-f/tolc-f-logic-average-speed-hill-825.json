@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-logic-average-speed-hill-825",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "logic",
+  "domainSlug": "tolcf-logic",
+  "skillSlug": "tolcf-logic-math-reasoning",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A cyclist rides from a riverside village up to a hilltop chapel at a steady 10 km/h, then comes back down by the same road at a steady 30 km/h. What is her average speed over the whole round trip?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "7.5 km/h"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "20 km/h"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "15 km/h"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "25 km/h"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "10 km/h"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Average speed is total distance divided by total time, not the mean of the two speeds.\n\nChoose a convenient one-way distance, say 30 km.\n\n- Uphill: $30 \\div 10 = 3$ hours.\n- Downhill: $30 \\div 30 = 1$ hour.\n- Whole trip: $60$ km in $4$ hours, so $60 \\div 4 = 15$ km/h.\n\nThe answer does not depend on the distance chosen, because the same distance cancels out. As a check, the average must lie between 10 and 30 and closer to 10, because more time is spent at the slow speed. The value 15 satisfies both conditions and the simple average of 20 does not.",
+  "distractorRationale": {
+    "a": "This is the product of the speeds divided by their sum, $\\frac{10 \\times 30}{10 + 30}$. It forgets the factor 2 that comes from covering the distance twice.",
+    "e": "This counts only the slow uphill leg. The return leg is faster and raises the average above 10 km/h.",
+    "b": "This is the arithmetic mean of 10 and 30. It would be right only if she spent equal times at each speed, but she spends far longer on the slow uphill leg.",
+    "d": "This weights each speed by itself, $\\frac{10^{2}+30^{2}}{10+30}$, which favours the fast leg. The slow leg takes more time and should weigh more."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "A short text question with no figure. A cyclist rides uphill at a steady 10 kilometres per hour and returns by the same road downhill at a steady 30 kilometres per hour. The question asks the average speed over the whole round trip. The five choices are 7.5, 10, 15, 20 and 25 kilometres per hour.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item on average speed as total distance over total time, with distractors from three misused means."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-logic-run10",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-logic-run10",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "With the same distance d each way, the time is d/10 + d/30 = 4d/30, so the average speed is 2d/(4d/30) = 15 km/h (the harmonic mean). 20 is the arithmetic-mean trap. 7.5, 25 and 10 have no valid route to them. [A second, separate blind solve (blind-reviewer-wave6-tolcf-logic-run11) reached the same answer: Equal distances, so average speed is the harmonic mean: 2*10*30/(10+30) = 15 km/h. Check with d = 30 km: 3 h up + 1 h down = 4 h for 60 km, which gives 15.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "average-speed",
+    "rates",
+    "harmonic-mean"
+  ]
+}
