@@ -1,3 +1,5 @@
+import { readdirSync } from 'node:fs';
+import { join } from 'node:path';
 import { expect, test, type Page } from '@playwright/test';
 import { resetRateLimits } from './helpers';
 
@@ -82,8 +84,10 @@ test.describe('homepage sample question', () => {
   test('the homepage summarises what each exam can start and links to every format', async ({ page }) => {
     await page.goto('/');
     const formats = page.locator('section#formats');
-    // One entry per exam configuration, each naming what is open now.
-    await expect(formats.getByRole('listitem')).toHaveCount(7);
+    // One entry per exam configuration, each naming what is open now. Counted
+    // from the configs themselves, so adding an exam does not break this.
+    const configCount = readdirSync(join(process.cwd(), 'src/lib/exams/configs')).filter((f) => f.endsWith('.ts')).length;
+    await expect(formats.getByRole('listitem')).toHaveCount(configCount);
     await expect(formats.getByRole('listitem').first()).toContainText('Open:');
     await formats.getByRole('link', { name: 'Every format, and what each still needs' }).click();
     await expect(page).toHaveURL(/\/exams#formats$/);
