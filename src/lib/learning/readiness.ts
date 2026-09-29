@@ -74,6 +74,12 @@ export interface TargetAnalysis {
     meetsOfficialFloor: boolean | null;
     method: string;
     assumptions: string[];
+    /** "Projected raw score", or the reported scale's own name where raw is converted. */
+    scoreLabel?: string;
+    /** Every threshold the exam's owner publishes, on the reported scale. */
+    thresholds?: Array<{ label: string; value: number; meaning: string; met: boolean }>;
+    /** Why there is no single published threshold, where there is none. */
+    noThresholdReason?: string | null;
   } | null;
   /** Always present: why we can or cannot speak to the target. */
   explanation: string;
@@ -214,6 +220,66 @@ function bocconiProjection(
       'It assumes our questions are as hard as the real ones. Their difficulty is our editorial judgement, not calibrated against test-taker data.',
       'It assumes you answer under the same conditions: no calculator, 75 minutes, no going back.',
       'It ignores the larger penalty on three-option critical-thinking items, so a real form could score slightly lower.',
+      'It is arithmetic on your own practice, not a prediction of test day.',
+    ],
+  };
+}
+
+/**
+ * Any exam whose config declares its published raw scoring
+ * (`scoring.rawProjection`): a fixed form, a published penalty and a published
+ * conversion to the reported scale. The target and every threshold are on the
+ * reported scale, because that is the number candidates are told.
+ */
+function publishedProjection(
+  config: ExamConfig,
+  targetReported: number,
+  accuracyOnAttempted: number,
+  omissionRate: number,
+): TargetAnalysis['projection'] {
+  const rule = config.scoring.rawProjection!;
+  const items = rule.scoredItems;
+  const attempted = items * (1 - omissionRate);
+  const correct = attempted * accuracyOnAttempted;
+  const wrong = attempted - correct;
+  const omitted = items - attempted;
+  const raw =
+    correct * config.scoring.pointsCorrect +
+    wrong * config.scoring.pointsIncorrect +
+    omitted * config.scoring.pointsOmitted;
+
+  const round = (n: number) => Math.round(n * 10) / 10;
+  const projected = round(raw * rule.reportFactor);
+  const max = round(items * config.scoring.pointsCorrect * rule.reportFactor);
+  const converted = rule.reportFactor !== 1;
+  const scale = config.scoring.officialScale;
+
+  return {
+    projectedRaw: projected,
+    maxRaw: max,
+    targetRaw: targetReported,
+    meetsTarget: projected >= targetReported,
+    officialFloor: null,
+    meetsOfficialFloor: null,
+    scoreLabel: converted && scale ? `Projected score (${scale.label})` : 'Projected raw score',
+    thresholds: rule.thresholds.map((threshold) => ({
+      label: threshold.label,
+      value: threshold.value,
+      meaning: threshold.meaning,
+      met: projected >= threshold.value,
+    })),
+    noThresholdReason: rule.noThresholdReason,
+    method:
+      `Your accuracy on the questions you attempted (${Math.round(accuracyOnAttempted * 100)}%) and your rate of ` +
+      `leaving questions blank (${Math.round(omissionRate * 100)}%) applied to the published ` +
+      `${items}-question form, scored with ${config.publisher}'s published rule: ` +
+      `+${config.scoring.pointsCorrect} correct, ${config.scoring.pointsOmitted} blank, ` +
+      `${config.scoring.pointsIncorrect} wrong` +
+      (converted && scale ? `, then converted to the reported scale (${scale.label}) as published.` : '.'),
+    assumptions: [
+      'It assumes our questions are as hard as the real ones. Their difficulty is our editorial judgement, not calibrated against test-taker data.',
+      `It assumes you answer under the same conditions: ${rule.conditions}.`,
+      ...rule.caveats,
       'It is arithmetic on your own practice, not a prediction of test day.',
     ],
   };
@@ -478,7 +544,20 @@ export function assessReadiness(input: ReadinessInput): ReadinessAssessment {
     const publishesRawScoring =
       config.scoring.pointsIncorrect !== 0 || config.examKey.startsWith('bocconi');
 
-    if (publishesRawScoring) {
+    if (config.scoring.rawProjection) {
+      const omissionRate = scored > 0 ? omitted / scored : 0;
+      const accuracyOnAttempted = answered > 0 ? correct / answered : 0;
+      target = {
+        statedTarget,
+        quantifiable: true,
+        projection: publishedProjection(config, targetScore, accuracyOnAttempted, omissionRate),
+        explanation:
+          `${config.publisher} publishes this exam's scoring in full — a fixed number of questions, each worth ` +
+          `the same, a published penalty for a wrong answer and a published conversion to the reported score — ` +
+          `so your target can be turned into arithmetic rather than guesswork. The projection below is your own ` +
+          `practice accuracy applied to the published form.`,
+      };
+    } else if (publishesRawScoring) {
       const omissionRate = scored > 0 ? omitted / scored : 0;
       const accuracyOnAttempted = answered > 0 ? correct / answered : 0;
       target = {

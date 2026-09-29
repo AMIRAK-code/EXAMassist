@@ -493,3 +493,15 @@ _Every row and every disabled feature above is carried from the eight verified r
 `content/exam-specs/_raw/*.draft.json`. The per-exam detail behind them lives in the generated
 records in `docs/research/` — see `docs/research/README.md` for the index and the refresh
 procedure._
+
+---
+
+## Added 2026-09-29: Politecnico di Torino and CISIA
+
+| ID | Exam | Claim or risk | Verified finding | Official source | Verified on | Consequence for the build |
+| --- | --- | --- | --- | --- | --- | --- |
+| POLITO-01 | TIL | The request named a "TIL-E". | No TIL-E exists. PoliTo's bachelor tests are TIL-I (Engineering), TIL-A (Architecture), TIL-D (Design) and TIL-P (Planning). | <https://www.polito.it/en/education/applying-studying-graduating/admissions-and-enrolment/bachelor-s-degree-programmes/admission-test> | 2026-09-29 | Built TIL-I under PoliTo's own name, as the engineering test the request most plausibly meant. |
+| POLITO-02 | TIL-I | n/a | The call gives Reading comprehension and logic 10 questions; the admission test page describes two excerpts of three questions plus five logic questions, which is 11. | Call for applications, Engineering, a.y. 2026/27, art. 7; admission test page | 2026-09-29 | Follow the call's 10 (the legal document). Do not fix the reading/logic split; disclose it. |
+| POLITO-03 | TIL-A | n/a | The call states a maximum of 50 points and also that the score "is converted to hundredths", with no formula. | Call for applications, Architecture, a.y. 2026/27, art. 8 | 2026-09-29 | Report and project the 50-point score the call states; do not assume a conversion factor. |
+| CISIA-01 | TOLC | A test has a pass mark that practice can be measured against. | CISIA sets none: each university may transform the result, weight sections and set its own minimum. | Regolamento TOLC 2026, 1.5 | 2026-09-29 | Readiness projects the absolute score but shows no threshold, and tells the learner to use their programme's bando. |
+| CISIA-02 | TOLC | The English section is part of the score. | It is scored separately with no penalty and excluded from the main absolute score. | Regolamento TOLC 2026, 1.5; structure pages | 2026-09-29 | Not modelled; every TOLC fidelity note says so. |

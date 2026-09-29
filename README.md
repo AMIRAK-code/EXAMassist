@@ -1,8 +1,9 @@
 # Examer
 
-A configuration-driven exam practice platform for six university admission
-tests: the **Bocconi Online Test** (undergraduate and law), the **Digital SAT**,
-the **Enhanced ACT**, the **LSAT**, the **GMAT** and the **GRE**.
+A configuration-driven exam practice platform for university admission tests:
+the **Bocconi Online Test** (undergraduate and law), the **Digital SAT**, the
+**Enhanced ACT**, the **LSAT**, the **GMAT**, the **GRE**, the **Politecnico di
+Torino TIL-I and TIL-A**, and the **CISIA TOLC-E and TOLC-F**.
 
 The organising principle is that the product does not say anything it cannot
 source. Every claim about how an exam works is verified against the test
@@ -47,7 +48,7 @@ dev server on a synced filesystem such as OneDrive.
   source-backed records in `content/exam-specs/_raw/`. Start with
   [`docs/research/README.md`](docs/research/README.md) and the
   [discrepancy register](docs/research/DISCREPANCY-REGISTER.md).
-- **Seven versioned exam configurations** — `src/lib/exams/configs/`. Sections,
+- **Eleven versioned exam configurations** — `src/lib/exams/configs/`. Sections,
   timing, navigation rules, calculator policy, scoring, official taxonomy, and
   an explicit list of what could not be verified.
 - **A configuration-driven assessment engine** — `src/lib/assessment/`. Pure
@@ -79,5 +80,6 @@ what is missing.
 ## Independence
 
 Not affiliated with, endorsed by or accredited by College Board, ACT, LSAC,
-GMAC, ETS or Università Bocconi. Exam names are used descriptively to identify
+GMAC, ETS, Università Bocconi, Politecnico di Torino or CISIA. Exam names are
+used descriptively to identify
 the exam a guide concerns.

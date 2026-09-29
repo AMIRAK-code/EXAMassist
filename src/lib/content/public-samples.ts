@@ -79,9 +79,17 @@ export const PUBLIC_SAMPLES: readonly PublicSample[] = [
 
 /**
  * Hubs with no public sample, and why. The homepage shows an honest empty
- * state for these rather than a question it cannot stand behind. None today.
+ * state for these rather than a question it cannot stand behind.
  */
-export const WITHHELD_SAMPLES: Readonly<Record<string, string>> = {};
+export const WITHHELD_SAMPLES: Readonly<Record<string, string>> = {
+  // Added 29 September 2026. A public sample is excluded from every measured
+  // format, and a new bank sized close to one full test cannot spare one
+  // without closing a timed section. Choose one once the bank has grown.
+  'politecnico-di-torino-til':
+    'The TIL question bank is new. A sample question will be published once the bank is large enough that making one public does not close a timed section.',
+  'cisia-tolc':
+    'The TOLC question bank is new. A sample question will be published once the bank is large enough that making one public does not close a timed section.',
+};
 
 export const PUBLIC_SAMPLE_IDS: ReadonlySet<string> = new Set(PUBLIC_SAMPLES.map((s) => s.questionId));
 

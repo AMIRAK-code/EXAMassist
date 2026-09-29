@@ -49,6 +49,6 @@ export function indexingEnabled(): boolean {
  */
 export const INDEPENDENCE_NOTICE =
   'Examer is an independent study resource. It is not affiliated with, endorsed by, or accredited by ' +
-  'College Board, ACT, LSAC, GMAC, ETS or Università Bocconi. SAT is a trademark of College Board; ACT ' +
+  'College Board, ACT, LSAC, GMAC, ETS, Università Bocconi, Politecnico di Torino or CISIA. SAT is a trademark of College Board; ACT ' +
   'of ACT; LSAT of LSAC; GMAT of GMAC; GRE of ETS. The practice questions are original, AI-assisted ' +
   'material; see our editorial standards for how they are created and checked.';
