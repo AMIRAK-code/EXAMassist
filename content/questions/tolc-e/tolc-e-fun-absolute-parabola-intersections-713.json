@@ -1,0 +1,82 @@
+{
+  "id": "tolc-e-fun-absolute-parabola-intersections-713",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "How many points do the graphs of $y = |x^{2} - 4|$ and $y = 4$ have in common?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$0$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$1$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$2$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$3$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$4$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "An absolute value equal to 4 means the inside is 4 or $-4$.\n\n**Case 1: $x^{2}-4 = 4$.** Then $x^{2} = 8$, so $x = \\pm 2\\sqrt2$: two points.\n\n**Case 2: $x^{2}-4 = -4$.** Then $x^{2} = 0$, so $x = 0$: one point.\n\nThe three values $-2\\sqrt2$, $0$ and $2\\sqrt2$ are different, so the graphs share **3** points.\n\n**Picture check.** The parabola $y = x^{2}-4$ dips to $-4$ at $x=0$. Taking the absolute value folds the part below the axis upwards, so the dip becomes a peak of height exactly 4 at $x=0$; it touches the line $y=4$ there. Beyond $x=\\pm 2$ the arms climb and each crosses the line once, at $\\pm 2\\sqrt2$.",
+  "distractorRationale": {
+    "a": "Sees that the parabola $x^{2}-4$ bottoms out at $-4$ and concludes the graph never reaches height 4. The absolute value flips that dip up to $+4$, and the outer arms of the parabola rise without limit.",
+    "b": "Finds only $x=0$, where the flipped dip touches height 4, and misses the two outer arms that cross the line.",
+    "c": "Solves only $x^{2}-4=4$ and finds $x=\\pm 2\\sqrt2$, ignoring the second case $x^{2}-4=-4$ that the absolute value creates.",
+    "e": "Solves both cases but counts the double root of $x^{2}=0$ as two points. The graph has one point at $x=0$, not two."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "The question asks how many points the graph of y equals the absolute value of x squared minus 4 has in common with the horizontal line y equals 4. The graph is a parabola with its lowest part folded upwards, so that at x equals 0 it forms a peak of height 4, and its two outer arms rise steadily. The five choices are the numbers 0, 1, 2, 3 and 4.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-tolc-e-mathematics-author",
+    "aiAssisted": true,
+    "notes": "Original item. The line is placed at exactly the height of the folded peak so that a tangent-like contact must be counted once."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-tolc-e-mathematics-author",
+    "reviewer": "blind-reviewer-wave6-tolce-math-run12",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolce-math-run12",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "|x^2-4|=4 means x^2=8 (x=±2sqrt2) or x^2=0 (x=0), which gives three distinct points. At x=0 the reflected vertex just touches y=4, so the count is exactly 3. The distractor 4 counts x=0 twice, and 2 ignores the reflected branch. [A second, separate blind solve (blind-reviewer-wave6-tolce-math-run13) reached the same answer: |x^2-4|=4 means x^2-4=4 (x=+-2sqrt2) or x^2-4=-4 (x=0). That gives three distinct points. The touching point at the vertex x=0 is what separates D from the tempting 2.]"
+    },
+    "notes": "Author check: the key was computed and then confirmed a second way (see the check in the explanation); each wrong choice was tried against the stem and fails for the reason given in its distractor note. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "absolute-value",
+    "graphs",
+    "intersections"
+  ]
+}

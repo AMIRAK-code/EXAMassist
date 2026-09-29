@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-chem-geometric-isomer-915",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "chemistry",
+  "domainSlug": "tolcf-chemistry",
+  "skillSlug": "tolcf-chem-organic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which of the following alkenes can exist as two geometric (cis-trans) isomers?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "3-methylbut-1-ene, $\\mathrm{(CH_3)_2CH{-}CH{=}CH_2}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "pent-1-ene, $\\mathrm{CH_2{=}CH{-}CH_2{-}CH_2{-}CH_3}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "2-methylbut-2-ene, $\\mathrm{(CH_3)_2C{=}CH{-}CH_3}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "2-methylpropene, $\\mathrm{(CH_3)_2C{=}CH_2}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "pent-2-ene, $\\mathrm{CH_3{-}CH{=}CH{-}CH_2{-}CH_3}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Cis-trans isomerism about a $\\mathrm{C{=}C}$ bond exists only when **each** of the two double-bond carbons carries two **different** groups. Rotation about the double bond is blocked, so the two arrangements cannot interconvert. Test the two carbons separately.\n\n- **pent-1-ene:** one carbon is $\\mathrm{CH_2}$, with two hydrogens. No.\n- **2-methylbut-2-ene:** one carbon has two methyl groups. No.\n- **3-methylbut-1-ene:** one carbon is $\\mathrm{CH_2}$, with two hydrogens. No.\n- **2-methylpropene:** one carbon has two methyls and the other has two hydrogens. No.\n- **pent-2-ene:** the second carbon carries H and $\\mathrm{CH_3}$, and the third carbon carries H and $\\mathrm{CH_2CH_3}$. Both carbons have two different groups. Yes.\n\nIn pent-2-ene the two larger groups, $\\mathrm{CH_3}$ and $\\mathrm{C_2H_5}$, can lie on the same side of the double bond (cis) or on opposite sides (trans).\n\n**Check:** cover one carbon of the double bond and ask whether the two groups on the other are different; then repeat on the other carbon. Only pent-2-ene passes on both.",
+  "distractorRationale": {
+    "b": "One carbon of the double bond is the terminal $\\mathrm{CH_2}$, which carries two identical hydrogens. Swapping them gives the same molecule, so there is no cis-trans form.",
+    "c": "It looks promising because both ends of the double bond carry carbon groups, but the carbon bearing two methyl groups has two identical substituents. One identical pair is enough to rule out cis-trans isomerism.",
+    "a": "The branching is on the side chain and does not matter. The terminal $\\mathrm{CH_2}$ again has two identical hydrogens, so there is no cis-trans form.",
+    "d": "Both ends of the double bond carry an identical pair (two methyls on one carbon, two hydrogens on the other), so there is no cis-trans form."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "The question asks which alkene can exist as cis and trans geometric isomers. The choices give a name and a structural formula. Pent-1-ene is a straight chain of five carbons with the double bond at the end: CH2 double bond CH, then CH2, CH2, CH3. 2-methylbut-2-ene is a carbon carrying two methyl groups, double bonded to a CH carbon that carries one more methyl group. 3-methylbut-1-ene is a CH carbon carrying two methyl groups, joined by a single bond to CH double bond CH2. Pent-2-ene is CH3, then CH double bond CH, then CH2 and CH3. 2-methylpropene is a carbon carrying two methyl groups, double bonded to CH2.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-chemistry-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank (Wave 6, TOLC-F chemistry). Each wrong choice comes from one named misconception, recorded in distractorRationale. Numbers chosen for hand calculation with no calculator; every key was recomputed a second way in the build script."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-chemistry-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-chem-run15",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-chem-run15",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Pent-2-ene has H and CH3 on C2 and H and C2H5 on C3, so it has cis and trans forms. A, B and D each have a terminal =CH2 carbon. In C, 2-methylbut-2-ene, C2 carries two identical methyl groups, so there is no cis-trans isomerism. [A second, separate blind solve (blind-reviewer-wave6-tolcf-chem-run18) reached the same answer: In pent-2-ene each double-bond carbon carries two different groups (H/CH3 on one, H/C2H5 on the other), so cis and trans forms exist. 2-methylbut-2-ene has two CH3 groups on C2. The terminal alkenes A, B and D all have a =CH2 or a doubled substituent, so none of them can be cis/trans.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication. Key check: for each alkene, list the two substituents on each sp2 carbon; only pent-2-ene has two different groups on both carbons (H, CH3 and H, C2H5). Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "isomerism",
+    "cis-trans",
+    "alkenes"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "polito-til-i-math-analytic-perpendicular-line-intercept-009",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tili-mathematics",
+  "skillSlug": "tili-math-analytic-exp-log",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In the Cartesian plane, the line $r$ has equation $2x-3y+6=0$. The line $s$ passes through the point $P(1,2)$ and is perpendicular to $r$. At what value of $x$ does $s$ cross the $x$-axis?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "-2"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "-1/3"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "1/3"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "7/3"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "4"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "**What to notice first.** Two perpendicular lines have slopes whose product is $-1$. So find the slope of $r$ first: $2x-3y+6=0$ gives $y=\\frac{2}{3}x+2$, slope $\\frac{2}{3}$. Line $s$ therefore has slope $-\\frac{3}{2}$.\n\n**Line through $P$.** Using the point-slope form, $y-2=-\\dfrac{3}{2}(x-1)$. Multiplying by 2 gives $2y-4=-3x+3$, that is $3x+2y=7$.\n\n**Crossing the $x$-axis.** Put $y=0$: $3x=7$, so $x=\\dfrac{7}{3}$.\n\n**Check.** $P(1,2)$ satisfies $3x+2y=7$, since $3+4=7$. The normal vectors of the two lines, $(2,-3)$ for $r$ and $(3,2)$ for $s$, have dot product $2\\cdot3+(-3)\\cdot2=0$, so the lines are perpendicular.",
+  "distractorRationale": {
+    "a": "This uses the slope of $r$, $\\frac{2}{3}$, for $s$ as well, which gives a parallel line rather than a perpendicular one. Then $0-2=\\frac{2}{3}(x-1)$ gives $x=-2$.",
+    "b": "This takes the reciprocal of the slope, $\\frac{3}{2}$, and forgets to change the sign. Perpendicular slopes multiply to $-1$, so the reciprocal must also be negated. Then $-2=\\frac{3}{2}(x-1)$ gives $x=-\\frac{1}{3}$.",
+    "c": "This has the right slope $-\\frac{3}{2}$ but expands $-\\frac{3}{2}(x-1)$ as $-\\frac{3}{2}x-\\frac{3}{2}$, losing the sign of the second term. The line becomes $y=\\frac{1}{2}-\\frac{3}{2}x$, which meets the $x$-axis at $\\frac{1}{3}$.",
+    "e": "This changes only the sign of the slope, using $-\\frac{2}{3}$ for $s$. Perpendicular slopes multiply to $-1$, and $\\frac{2}{3}\\cdot\\left(-\\frac{2}{3}\\right)=-\\frac{4}{9}$, not $-1$. Then $-2=-\\frac{2}{3}(x-1)$ gives $x=4$."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "The line r has equation two x minus three y plus six equals zero. The line s goes through the point with coordinates one, two, and is perpendicular to r. Find the x coordinate of the point where s crosses the x axis.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-mathematics-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item. Distractors: parallel slope, reciprocal without sign change, negation without reciprocal, and a sign slip in expanding the point-slope form."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-mathematics-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tili-math-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-math-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Line r has slope 2/3, so s has slope -3/2 and equation y-2=-3/2(x-1). Setting y=0 gives x-1=4/3, so x=7/3. None of the other values fits this line. [A second, separate blind solve (blind-reviewer-wave6-tili-math-run7) reached the same answer: r has slope 2/3, so s has slope -3/2 through (1,2): y-2=-3/2(x-1). Setting y=0 gives x-1=4/3, so x=7/3. The other options come from sign or slope mistakes and none of them fit.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "lines",
+    "perpendicular",
+    "intercepts"
+  ]
+}

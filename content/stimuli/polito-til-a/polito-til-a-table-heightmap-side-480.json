@@ -1,0 +1,34 @@
+{
+  "id": "polito-til-a-table-heightmap-side-480",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "kind": "table",
+  "title": "Height map of a solid built from unit cubes (4 rows, 4 columns)",
+  "bodyMd": "A solid is made of identical unit cubes standing on a floor grid of 4 rows and 4 columns. Each number in the table is the count of cubes stacked on that square of the grid; 0 means the square is empty. Row 1 is at the front of the solid and Row 4 at the back. Column 1 is on the left and Column 4 on the right, as seen by someone standing at the front. Each stack rests on the floor with its cubes directly on top of one another.",
+  "data": {
+    "columns": [
+      { "key": "row", "label": "Row" },
+      { "key": "c1", "label": "Column 1 (left)" },
+      { "key": "c2", "label": "Column 2" },
+      { "key": "c3", "label": "Column 3" },
+      { "key": "c4", "label": "Column 4 (right)" }
+    ],
+    "rows": [
+      { "row": "Row 1 (front)", "c1": 2, "c2": 1, "c3": 0, "c4": 1 },
+      { "row": "Row 2", "c1": 0, "c2": 3, "c3": 1, "c4": 1 },
+      { "row": "Row 3", "c1": 1, "c2": 0, "c3": 1, "c4": 0 },
+      { "row": "Row 4 (back)", "c1": 4, "c2": 2, "c3": 0, "c4": 1 }
+    ],
+    "caption": "Number of unit cubes stacked on each square of the floor grid. Row 1 is at the front, Row 4 at the back; Column 1 is on the left and Column 4 on the right, seen from the front.",
+    "chart": null
+  },
+  "accessibilityText": "A table of cube counts with four rows and four columns, describing a solid made of unit cubes. Each number is how many cubes are stacked on that square of the floor; zero means the square is empty. The rows run from the front of the solid to the back, and the columns run from left to right as seen from the front. Row 1, the front row, from Column 1 to Column 4: 2, 1, 0, 1. Row 2: 0, 3, 1, 1. Row 3: 1, 0, 1, 0. Row 4, the back row: 4, 2, 0, 1. In total there are 18 cubes.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-polito-til-a-drawing-author",
+    "aiAssisted": true,
+    "notes": "Original invented height map, posed as a table because the site cannot show drawings. 18 cubes in total: 4 + 5 + 2 + 7 by rows. Row maxima 2, 3, 1, 4 and column maxima 4, 3, 1, 1 were chosen to differ, so the side view and the front view cannot be confused by accident."
+  },
+  "rightsStatus": "original-owned",
+  "state": "published"
+}

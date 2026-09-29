@@ -1,0 +1,83 @@
+{
+  "id": "polito-til-i-math-graphs-abs-parabola-solution-count-012",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tili-mathematics",
+  "skillSlug": "tili-math-graphs",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "For which values of the real parameter $k$ does the equation $|x^{2}-4|=k$ have exactly four distinct real solutions?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$k>4$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$0<k<4$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$0\\le k<4$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$0<k\\le4$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$k>0$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "**What to notice first.** Count the intersections of the horizontal line $y=k$ with the graph of $f(x)=|x^{2}-4|$. The parabola $y=x^{2}-4$ has vertex $(0,-4)$ and crosses the axis at $x=\\pm2$; the absolute value flips the part below the axis. The graph is W-shaped: it touches zero at $x=-2$ and $x=2$, rises to a peak of height $f(0)=4$ between them, and increases without limit outside.\n\n**Read the picture.** A horizontal line meets a W four times when it lies above the two low points and below the central peak, so $0<k<4$. At $k=0$ it meets the graph at the two low points only. At $k=4$ it touches the central peak once and cuts the outer arms twice. Above 4 it meets only the outer arms.\n\n**Confirm algebraically.** For $k>0$ the equation means $x^{2}-4=k$ or $x^{2}-4=-k$, that is $x^{2}=4+k$ or $x^{2}=4-k$. The first always has two solutions. The second has two solutions exactly when $4-k>0$, and both pairs are different when $k\\neq0$. Boundary cases: $k=0$ gives $x=\\pm2$; $k=4$ gives $x=\\pm2\\sqrt{2}$ and $x=0$.",
+  "distractorRationale": {
+    "c": "This includes $k=0$, but then $|x^{2}-4|=0$ gives only $x=2$ and $x=-2$, two solutions. The two branches $x^{2}=4+k$ and $x^{2}=4-k$ coincide when $k=0$.",
+    "d": "This includes $k=4$, but then $x^{2}=8$ gives two solutions and $x^{2}=0$ gives the single solution $x=0$, so there are three solutions. The horizontal line $y=4$ touches the graph at its central peak.",
+    "a": "For $k>4$ the branch $x^{2}=4-k$ has no real solution because the right side is negative, so only $x^{2}=4+k$ remains, with two solutions. The line has passed above the central peak of the graph.",
+    "e": "This notes that $k$ must be positive and that $x^{2}=4+k$ always works, but it does not check that $x^{2}=4-k$ needs $4-k>0$ as well. For $k\\ge4$ there are fewer than four solutions."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": "For which values of the real number k does the equation, the absolute value of x squared minus four equals k, have exactly four different real solutions? The choices are inequalities on k that differ in whether the end values zero and four are included, and in whether k may be greater than four.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-mathematics-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item. Requires reading a solution count off a graph and checking the boundary values k=0 and k=4. Each wrong choice fails at a specific boundary or ignores the peak."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-mathematics-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tili-math-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-math-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "At k=4 there are 3 solutions (x=0 and x=±2√2). At k=0 there are 2 (x=±2). For k>4 there are 2. For 0<k<4 there are 4: x^2=4+k and x^2=4-k, and 4-k>0. So the endpoints are excluded, which rules out C, D and E. [A second, separate blind solve (blind-reviewer-wave6-tili-math-run7) reached the same answer: The graph of |x^2-4| has zeros at +-2 and a local maximum of 4 at x=0. k=0 gives 2 solutions, 0<k<4 gives 4, k=4 gives 3 (0 and +-2sqrt2), and k>4 gives 2. So the answer is exactly 0<k<4, and options C and D fail at their included endpoints.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "absolute-value",
+    "parabola",
+    "parameter",
+    "solution-count"
+  ]
+}

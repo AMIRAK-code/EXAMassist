@@ -1,0 +1,86 @@
+{
+  "id": "polito-til-i-read-alpine-equal-melt-202",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "reading-logic",
+  "domainSlug": "tili-reading-comprehension",
+  "skillSlug": "tili-reading-inferred",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Suppose that in some year the snow had melted from the northern and southern slopes on the same day. On the evidence in the excerpt, the gentians on the two slopes would then most probably have flowered:",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "at roughly the same time, with a gap far smaller than nineteen days."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "about nineteen days apart, as they did on average during the study."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "on the very day of the melt, because the flowers are already formed beneath the snow."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "earlier on the northern slope, because the shade protects the buds."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "only after the air on both slopes had warmed by several degrees."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Start with the excerpt's central claim: flowering followed the snow melt by a nearly constant interval, about three weeks for gentians, \"whatever the weather in between\". On that account, the nineteen-day gap between the slopes is the gap between their melt dates. If the melt dates were equal, the cause of the gap would be gone and the gap itself should nearly vanish.\n\nThat gives the choice placing the two slopes at roughly the same time. The words \"roughly\" and \"far smaller\" are deliberate: the interval is only \"nearly\" constant, and a cold snap after the melt delayed the flowers \"slightly\", so a perfect match is more than the text supports.\n\nThe other choices either keep the effect after removing the cause, or bring in something the excerpt never says: shade protecting buds, flowers formed beneath the snow, or a need for warmer air.\n\n**Check:** an inference question asks what the text makes most probable. Test a candidate by asking whether the excerpt's own main claim would have to be false for the candidate to hold; if so, reject it.",
+  "distractorRationale": {
+    "b": "This keeps the effect (the nineteen-day gap) while removing its cause (the difference in melt dates). The excerpt says the flowers follow the melt at a nearly constant interval, so equal melt dates should give nearly equal flowering dates.",
+    "d": "The excerpt says nothing about shade protecting buds; it mentions shade only as a feature of the northern slope. The reasoning behind this choice comes from outside the text.",
+    "c": "The excerpt places flowering about three weeks after the melt for gentians, not on the day of it. Plants do not begin to grow until light reaches them.",
+    "e": "The excerpt says air temperature had only a slight influence once the snow was gone, and that the two slopes differed by less than two degrees. A warming of several degrees is not what the text makes the deciding factor."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "polito-til-i-passage-alpine-flowering-200",
+    "version": 1
+  },
+  "accessibilityText": "A reading question about the accompanying excerpt on alpine flowers and snow melt. It asks what the excerpt suggests would have happened to the flowering of gentians on the northern and southern slopes in a year when the snow melted from both on the same day. Five answer choices; none uses notation or figures.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-wave6-til-i-reading-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item written against an original excerpt authored alongside it. The answer is deducible from the excerpt alone; no outside knowledge is needed or used."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-wave6-til-i-reading-logic-author",
+    "reviewer": "blind-reviewer-wave6-tili-reading-logic-run4",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-reading-logic-run4",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Flowering follows the melt by a nearly constant interval of about three weeks whatever the weather, and the air-temperature difference was under two degrees. With equal melt dates, flowering should therefore be roughly simultaneous. B ignores the melt mechanism. C contradicts the three-week interval. D and E have no support in the passage. [A second, separate blind solve (blind-reviewer-wave6-tili-reading-logic-run6) reached the same answer: Flowering follows the melt by 'a nearly constant interval... whatever the weather in between', and the temperature difference is under two degrees. So the same melt date predicts roughly simultaneous flowering. B ignores that the melt drives the gap. C contradicts the three-week interval. D and E have no support.]"
+    },
+    "notes": "Inference item. The key rests on the claim that flowering follows the melt by a nearly constant interval; wording is hedged (\"roughly\", \"far smaller\") to match the text's \"nearly constant\" and \"only slightly\". Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "reading",
+    "inferred",
+    "science",
+    "excerpt-1"
+  ]
+}

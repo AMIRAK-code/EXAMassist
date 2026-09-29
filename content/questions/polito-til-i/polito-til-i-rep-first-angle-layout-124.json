@@ -1,0 +1,82 @@
+{
+  "id": "polito-til-i-rep-first-angle-layout-124",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "technical-knowledge",
+  "domainSlug": "tili-representation",
+  "skillSlug": "tili-rep-conventions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A technical drawing of a machine part follows the European convention, first-angle orthographic projection. The sheet shows the front view of the part.\n\nWhere are the view of the part seen from above (the top view) and the view seen from the left placed, relative to the front view?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The top view is below the front view, and the left view is to the left of the front view."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The top view is above the front view, and the left view is to the left of the front view."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The top view is to the right of the front view, and the left view is below the front view."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The top view is below the front view, and the left view is to the right of the front view."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The top view is above the front view, and the left view is to the right of the front view."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "In first-angle projection the part sits **between the observer and the projection planes**. When the planes are folded flat onto the sheet, each view ends up on the side of the front view *opposite* to the direction the observer looked from.\n\n- Looking from above, the picture falls on the floor plane, which lies under the part. After folding, the top view sits **below** the front view.\n- Looking from the left, the picture falls on the plane on the right of the part. After folding, the left view sits **to the right** of the front view.\n\n**Check.** The two conventions are mirror images of each other. Third-angle projection, common in the USA, puts each view on the same side as the viewpoint (top view above, left view on the left). Both placements in the correct choice are the reverse of that layout. A choice that mixes one placement of each kind cannot be right, because both views follow the same rule.",
+  "distractorRationale": {
+    "b": "Describes third-angle projection: each view is placed on the same side as the direction it was seen from. That is the American convention, not the European one.",
+    "a": "Mixes the two conventions: the top view is placed correctly for first angle but the left view is placed as in third angle. Both views follow the same rule and must be on the opposite side to the viewpoint.",
+    "e": "Mixes the two conventions the other way round: the top view is placed as in third angle, above the front view, while the left view is placed as in first angle.",
+    "c": "Swaps the vertical and horizontal directions. The view from above is placed below the front view, not beside it, and the view from the left is placed beside it, not below it."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "A question on technical-drawing conventions, with no figure needed. A drawing of a machine part follows the European convention, first-angle orthographic projection, and the sheet shows the front view. The question asks where the top view (seen from above) and the left view (seen from the left) are placed relative to the front view. The five choices are: top view below and left view to the left; top view above and left view to the left; top view to the right and left view below; top view below and left view to the right; top view above and left view to the right.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-wave6-physics-technical-author",
+    "aiAssisted": true,
+    "notes": "Original item on a well-established drawing convention (first-angle projection, used in Europe and specified in ISO 5456-2). Wrong choices: the third-angle layout, two mixed layouts, and a swap of the two directions."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-wave6-physics-technical-author",
+    "reviewer": "blind-reviewer-wave6-tili-phys-tech-run8",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-phys-tech-run8",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "In first-angle projection the top view is drawn below the front view and the left view is drawn to the right of it. Option B (top view above, left view on the left) is the third-angle layout. The stem names first-angle, so D is the only answer. [A second, separate blind solve (blind-reviewer-wave6-tili-phys-tech-run9) reached the same answer: In first-angle (European) projection the object is projected onto the plane beyond it: the top view goes below the front view and the view from the left is placed to the right. B (above, left) is third-angle; A and E mix the two; C is nonsense.]"
+    },
+    "notes": "Awaiting a blind independent solve. The author recomputed every option and checked the key a second way before saving (see the explanation). Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "first-angle-projection",
+    "orthographic-projection",
+    "drawing-conventions"
+  ]
+}

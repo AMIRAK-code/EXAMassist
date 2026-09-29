@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-chem-dilution-ph-912",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "chemistry",
+  "domainSlug": "tolcf-chemistry",
+  "skillSlug": "tolcf-chem-solutions-acids-bases",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A 0.010 mol/L solution of hydrochloric acid, a strong acid, is diluted with pure water to 100 times its original volume, at 25 °C. What is the pH of the diluted solution?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "0"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "2"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "4"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "7"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "10"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "A strong acid such as HCl is completely dissociated, so $[\\mathrm{H^+}]$ equals the acid concentration.\n\n- **Before dilution:** $[\\mathrm{H^+}] = 0.010 = 10^{-2}\\ \\mathrm{mol/L}$, so $\\mathrm{pH} = 2$.\n- **After dilution to 100 times the volume:** the amount of acid is unchanged but spread over 100 times more solution, so $[\\mathrm{H^+}]$ is divided by 100: $10^{-2} \\div 10^{2} = 10^{-4}\\ \\mathrm{mol/L}$, so $\\mathrm{pH} = 4$.\n\nA useful rule: each ten-fold dilution of a strong acid raises the pH by 1 unit; a hundred-fold dilution raises it by 2.\n\n**Check:** the added water supplies only $10^{-7}$ mol/L of $\\mathrm{H^+}$, negligible against $10^{-4}$, so the answer cannot be near 7. Also, the pH after diluting an acid must be higher than before, and still below 7.",
+  "distractorRationale": {
+    "a": "This moves the pH the wrong way, subtracting 2 units. Diluting an acid makes it less acidic, so the pH rises. It would fall only if hydrogen-ion concentration went up.",
+    "b": "This is the pH of the solution before dilution ($-\\log 0.010 = 2$). Adding water changes the concentration, and with it the pH.",
+    "d": "This assumes that a lot of water makes the solution neutral. The water contributes only $10^{-7}$ mol/L of $\\mathrm{H^+}$, a thousand times less than the $10^{-4}$ mol/L of the acid, so the solution stays clearly acidic.",
+    "e": "This is the pOH of the diluted solution, $14 - 4 = 10$, not its pH. The question asks for pH, the value linked directly to the hydrogen-ion concentration."
+  },
+  "estimatedSeconds": 45,
+  "stimulusRef": null,
+  "accessibilityText": "A 0.010 moles per litre solution of hydrochloric acid, a strong acid, is diluted to 100 times its original volume with pure water, at 25 degrees Celsius. The question asks for the pH of the diluted solution. The choices are the pH values 0, 2, 4, 7 and 10.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-chemistry-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank (Wave 6, TOLC-F chemistry). Each wrong choice comes from one named misconception, recorded in distractorRationale. Numbers chosen for hand calculation with no calculator; every key was recomputed a second way in the build script."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-chemistry-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-chem-run15",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-chem-run15",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "[H+] goes from 1.0e-2 to 1.0e-4 after a 100-fold dilution, so pH = 4. Water autoionisation does not matter at this concentration, so 7 cannot be defended. 2 is the undiluted pH. [A second, separate blind solve (blind-reviewer-wave6-tolcf-chem-run18) reached the same answer: [H+] goes from 1e-2 to 1e-4 after a 100-fold dilution, so pH = 4. At this concentration the H+ from water does not matter, so the answer is not 7. pH 2 is the undiluted solution.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication. Key check: pH before = 2; [H+] divided by 100 gives 1e-4, pH 4; pOH = 10 is the pOH trap; 7 is the neutral trap."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "ph",
+    "dilution",
+    "strong-acid"
+  ]
+}

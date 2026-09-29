@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-a-read-rings-squared-308",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "reading-comprehension",
+  "domainSlug": "tila-reading-comprehension",
+  "skillSlug": "tila-reading-stated",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "According to the passage, why does a squared beam often give a range of years rather than a single year of felling?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Its ring pattern fits the reference sequence at more than one position."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "It comes from an older tree, whose rings are harder to tell apart."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Trees felled in different winters can show identical ring patterns."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Squaring with an axe blurs the pattern of the inner rings, so the beam cannot be matched."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "It has usually lost its outer rings, so the felling year has to be estimated from the last surviving ring plus an allowance for the missing sapwood."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Another **stated-information** question. The answer is in the second paragraph, where the passage explains why \"a dated beam does not date a building\".\n\n**What to notice first.** The chain of reasoning is given in three short steps: the year of felling is known \"only if the outermost ring survives\"; \"a squared beam has usually lost its outer rings\"; so \"the last surviving ring gives only a year before which the tree cannot have been felled\", and researchers add an allowance for missing sapwood, \"which produces a range of years\".\n\n**The step that settles it.** The correct choice compresses that chain: outer rings lost, so the felling year must be estimated from the last surviving ring plus an allowance.\n\n**Testing the others.** A pattern that fits at several positions would stop the dating altogether, not widen the felling year. The age of the tree and damage to the inner rings are not mentioned. A repeated pattern from different winters contradicts the bar-code idea.\n\n**How to check.** Read the explanation the passage gives and make sure your choice names the cause it names, not just a plausible-sounding cause.",
+  "distractorRationale": {
+    "a": "The passage says a calendar year can be given only when the pattern fits at one position only. A double fit would prevent dating altogether rather than produce a range for the felling year.",
+    "b": "The passage says nothing about the age of the tree or the legibility of its rings. Squaring is described as removing wood, not as a property of old trees.",
+    "d": "The axe removes the outer rings; the passage does not say it damages the inner ones. In the abbey example, squared beams were dated.",
+    "c": "The passage never suggests that different years produce the same pattern. It says the pattern is like a bar code, which is what allows exact placement."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": {
+    "id": "polito-til-a-passage-roof-rings-301",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying scientific passage on dating timber by its growth rings. It asks why a squared beam often gives a range of years rather than a single year of felling. Five possible reasons are offered.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-a-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written against the original passage polito-til-a-passage-roof-rings-301, authored alongside it. Every distractor rests on a named misreading of that passage."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-a-wave6-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's uniqueness check: the second paragraph gives the cause: squaring removes the outer rings, so only the last surviving ring and an allowance for missing sapwood are available; the other choices are contradicted by the passage or unsupported by it. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "reading",
+    "stated-information",
+    "science",
+    "dendrochronology",
+    "cause"
+  ]
+}

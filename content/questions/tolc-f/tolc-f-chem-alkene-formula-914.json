@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-chem-alkene-formula-914",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "chemistry",
+  "domainSlug": "tolcf-chemistry",
+  "skillSlug": "tolcf-chem-organic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which molecular formula fits a hydrocarbon with four carbon atoms, one carbon-carbon double bond and no rings?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\mathrm{C_4H_6}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\mathrm{C_4H_8}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\mathrm{C_4H_{10}}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\mathrm{C_4H_4}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\mathrm{C_4H_{12}}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Start from the most hydrogen-rich hydrocarbon, the alkane $\\mathrm{C_nH_{2n+2}}$. For four carbons that is $\\mathrm{C_4H_{10}}$ (butane). Every double bond, and every ring, takes away two hydrogens.\n\n- Alkane (no double bond): $\\mathrm{C_4H_{10}}$\n- Alkene (one double bond): $\\mathrm{C_4H_{10} - 2\\,H = C_4H_8}$, the general formula $\\mathrm{C_nH_{2n}}$\n- Alkyne (one triple bond) or two double bonds: $\\mathrm{C_4H_6}$\n\n**Check:** but-1-ene, $\\mathrm{CH_2{=}CH{-}CH_2{-}CH_3}$, has $2 + 1 + 2 + 3 = 8$ hydrogens. The formula $\\mathrm{C_4H_{12}}$ is impossible because it exceeds the alkane maximum.",
+  "distractorRationale": {
+    "c": "This is the saturated alkane (butane or its branched isomer), with only single bonds. It follows the alkane formula $\\mathrm{C_nH_{2n+2}}$, forgetting that a double bond takes away two hydrogens.",
+    "a": "This has two hydrogens too few for one double bond. It fits a hydrocarbon with a triple bond (an alkyne) or with two double bonds, not an alkene with one.",
+    "d": "This is too unsaturated: it has six hydrogens fewer than the alkane $\\mathrm{C_4H_{10}}$, which means three units of unsaturation (for example one double bond plus one triple bond, as in $\\mathrm{CH_2{=}CH{-}C{\\equiv}CH}$). One double bond removes only two hydrogens.",
+    "e": "This cannot exist: four carbons can bond to at most $2 \\times 4 + 2 = 10$ hydrogens, since carbon forms four bonds. The maximum is that of the alkane."
+  },
+  "estimatedSeconds": 35,
+  "stimulusRef": null,
+  "accessibilityText": "The question asks which molecular formula fits a hydrocarbon with four carbon atoms, one carbon-carbon double bond and no rings. The choices are C subscript 4 H subscript 10, C subscript 4 H subscript 8, C subscript 4 H subscript 6, C subscript 4 H subscript 4, and C subscript 4 H subscript 12.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-chemistry-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank (Wave 6, TOLC-F chemistry). Each wrong choice comes from one named misconception, recorded in distractorRationale. Numbers chosen for hand calculation with no calculator; every key was recomputed a second way in the build script."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-chemistry-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-chem-run15",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-chem-run15",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "An acyclic alkene is CnH2n, so four carbons give C4H8. C4H10 is the alkane, C4H6 needs two degrees of unsaturation (a diene or alkyne), C4H4 needs three, and C4H12 is impossible. [A second, separate blind solve (blind-reviewer-wave6-tolcf-chem-run18) reached the same answer: An acyclic mono-alkene is CnH2n, so with n=4 it is C4H8. C4H10 is the alkane, C4H6 would need two degrees of unsaturation (a diene or alkyne), C4H4 would need three, and C4H12 is impossible.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication. Key check: alkane C4H10 minus 2H per double bond gives C4H8; but-1-ene CH2=CH-CH2-CH3 has 8 H. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "alkenes",
+    "general-formula",
+    "unsaturation"
+  ]
+}

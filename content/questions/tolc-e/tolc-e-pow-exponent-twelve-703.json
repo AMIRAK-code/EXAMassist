@@ -1,0 +1,82 @@
+{
+  "id": "tolc-e-pow-exponent-twelve-703",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-powers-exp-log",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Let $x$ be a real number and put $a = 2^{x}$ and $b = 3^{x}$. Which expression equals $12^{x}$ for every real $x$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$a^{2}+b$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$2ab$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$4ab$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$a^{2}b$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$ab^{2}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Write the base 12 with the primes that appear in $a$ and $b$: $12 = 4\\cdot 3 = 2^{2}\\cdot 3$.\n\n**Step 1 — split the power of a product.** $12^{x} = (2^{2}\\cdot 3)^{x} = 2^{2x}\\cdot 3^{x}$.\n\n**Step 2 — rewrite $2^{2x}$ as a power of $a$.** $2^{2x} = (2^{x})^{2} = a^{2}$, and $3^{x} = b$, so $12^{x} = a^{2}b$.\n\n**How to check it.** One test value is not enough, because a wrong expression can agree with $12^{x}$ at a single point. At $x=1$ the value 12 is also produced by the choice with $2ab$; at $x=2$ the value 144 is also produced by the choice with $4ab$. At $x=3$ we have $a=8$, $b=27$ and $12^{3}=1728$: only $a^{2}b = 64\\cdot 27 = 1728$ works, while $2ab = 432$, $4ab = 864$, $ab^{2}=5832$ and $a^{2}+b = 91$.",
+  "distractorRationale": {
+    "e": "Squares the wrong factor. This equals $2^{x}\\cdot 3^{2x} = (2\\cdot 9)^{x} = 18^{x}$, not $12^{x}$.",
+    "b": "Writes $4^{x}$ as $2\\cdot 2^{x}$, treating the exponent as a multiplier. It matches $12^{x}$ at $x=1$ only.",
+    "c": "Writes $4^{x}$ as $4\\cdot 2^{x}$. It matches at $x=2$ by coincidence, but $4^{x}$ is $(2^{x})^{2}$, and $4\\cdot 2^{x}$ is a different function.",
+    "a": "Turns the product $4\\cdot 3$ into a sum of powers. A power of a product is a product of powers; there is no such rule for sums."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "Let x be a real number, a equal to 2 to the power x and b equal to 3 to the power x. The question asks which expression equals 12 to the power x for every real x. The five choices are: a squared times b; a times b squared; 2 times a times b; 4 times a times b; and a squared plus b.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-tolc-e-mathematics-author",
+    "aiAssisted": true,
+    "notes": "Original item. Two distractors agree with the key at one test value (x = 1 and x = 2), so the item teaches that a single substitution does not verify an identity."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-tolc-e-mathematics-author",
+    "reviewer": "blind-reviewer-wave6-tolce-math-run12",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolce-math-run12",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "12^x=(4*3)^x=(2^x)^2*3^x=a^2 b. I checked x=0: only a^2 b gives 1 (A gives 2, B 2, C 4, E 1). E equals 18^x, so at x=1 it gives 18, not 12. Only D holds for every x. [A second, separate blind solve (blind-reviewer-wave6-tolce-math-run13) reached the same answer: 12^x = (4*3)^x = (2^x)^2 * 3^x = a^2 b. I checked at x=1: a^2 b=12, and 4ab=24, 2ab=12 but fails at x=0 (gives 2 not 1), ab^2=18, a^2+b=7. Only D holds for every x.]"
+    },
+    "notes": "Author check: the key was computed and then confirmed a second way (see the check in the explanation); each wrong choice was tried against the stem and fails for the reason given in its distractor note. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "power-of-a-product",
+    "exponent-laws",
+    "identities"
+  ]
+}

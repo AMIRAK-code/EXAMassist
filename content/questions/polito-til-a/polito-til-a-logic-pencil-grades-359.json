@@ -1,0 +1,83 @@
+{
+  "id": "polito-til-a-logic-pencil-grades-359",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "logical-reasoning",
+  "domainSlug": "tila-logic",
+  "skillSlug": "tila-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A box in a dark storeroom holds 15 drawing pencils that all feel the same: 7 of grade HB, 5 of grade 2B and 3 of grade 4H. Without looking, you take pencils out of the box one at a time and do not put any back.\n\nWhat is the smallest number of pencils you must take out to be **certain** of having at least one pencil of each of the three grades?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "3"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "4"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "8"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "13"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "15"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "**What to notice first.** \"Certain\" means planning for the worst possible luck. Ask: how long can the draws go on *without* completing the set of three grades?\n\n**The step that settles it.** The longest unlucky run keeps one grade out for as long as possible, and the grade that can be kept out longest is the rarest, because the other two supply the most pencils to draw first. All 7 HB and all 5 2B can come out before any 4H: that is 7 + 5 = 12 pencils, still with no 4H. At that point only 4H pencils are left, so the 13th pencil must be a 4H. Thirteen pencils are enough, and twelve are not.\n\n**How to check it.** Look at what stays in the box. After 13 draws only 2 pencils remain. To be missing a grade you would have to leave *every* pencil of that grade in the box, which takes at least 3 (the 4H pencils) or 5 or 7. Two left-over pencils cannot hide a whole grade, so 13 always works, and the 12-pencil run above shows no smaller number does.",
+  "distractorRationale": {
+    "a": "The best case, one of each grade in the first three draws. 'Certain' asks for the worst case, in which the grade you still need comes out last.",
+    "b": "Answers a different question. Four pencils guarantee two of the same grade (with three grades, one must repeat), but here the requirement is one of every grade.",
+    "c": "Guards against one bad run only. After all 7 HB the eighth pencil is sure to be a second grade, but all 5 2B could still come out before any 4H.",
+    "e": "Taking every pencil does guarantee all three grades, but it is not the smallest number: once 13 are out, only 2 remain, too few to hide all 3 of the 4H pencils."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "A worst-case counting question. A box holds 15 pencils that feel the same: 7 of grade H B, 5 of grade 2 B and 3 of grade 4 H. Pencils are taken out without looking and not put back. The question asks for the smallest number of pencils that makes it certain to have at least one of each grade. The five choices are 3, 4, 8, 13 and 15.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-polito-til-a-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank for the TIL-A Logical reasoning section. The pencil counts are invented. Each distractor is the answer to a nearby but different question: the best case, the pigeonhole count for a matching pair, the guarantee of two grades, and a sufficient but not minimal number."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-polito-til-a-logic-author",
+    "reviewer": "blind-reviewer-wave7-tila-logic-drawing-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-tila-logic-drawing-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "In the worst case you draw all 7 HB and all 5 2B first, which is 12 pencils with no 4H. The 13th pencil must be 4H. [A second, separate blind solve (blind-reviewer-wave7-tila-logic-drawing-run1) reached the same answer: The worst case is drawing all 7 HB and all 5 2B first, which is 12 pencils with no 4H. The 13th must then be a 4H. Any 12 can miss a grade and 15 is more than needed, so 13 is the minimum.]"
+    },
+    "notes": "Author's uniqueness check: by script, for each number of draws from 1 to 15 every possible mix of grades was tested; the smallest number at which every mix contains all three grades is 13 (12 fails with 7 HB and 5 2B). The same script gives 4 as the guarantee of a matching pair and 8 as the guarantee of two different grades, the sources of two distractors. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "worst-case",
+    "pigeonhole",
+    "no-calculator"
+  ]
+}

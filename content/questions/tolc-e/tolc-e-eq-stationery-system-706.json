@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-eq-stationery-system-706",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "At a stationery shop, 3 notebooks and 2 pens cost €8.40 in total, while 1 notebook and 1 pen cost €3.20. What is the price of one notebook?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "€1.60"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "€2.80"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "€2.00"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "€1.20"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "€3.20"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Let $n$ be the price of a notebook and $p$ the price of a pen, in euros. The two purchases give\n\n$$3n + 2p = 8.40, \\qquad n + p = 3.20.$$\n\n**Step 1 — make the pens match.** Doubling the second equation gives $2n + 2p = 6.40$.\n\n**Step 2 — subtract it from the first.** $(3n + 2p) - (2n + 2p) = 8.40 - 6.40$, so $n = 2.00$.\n\n**How to check it.** Then $p = 3.20 - 2.00 = 1.20$, and the first purchase costs $3\\times 2.00 + 2\\times 1.20 = 6.00 + 2.40 = 8.40$, as given.",
+  "distractorRationale": {
+    "d": "This is the price of a pen, the other unknown. The system gives $p = 3.20 - 2.00 = 1.20$, but the question asks for the notebook.",
+    "a": "Splits €3.20 evenly between the two items, assuming a notebook and a pen cost the same. Then 3 notebooks and 2 pens would cost $5\\times 1.60 = 8.00$, not 8.40.",
+    "b": "Divides €8.40 by 3, as if the first purchase were 3 notebooks and the pens were free.",
+    "e": "Takes the combined price of one notebook and one pen as the price of the notebook alone."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "A word problem. Three notebooks and two pens cost 8 euros 40 in total. One notebook and one pen cost 3 euros 20. The question asks for the price of one notebook. The five choices are 1 euro 20, 1 euro 60, 2 euros, 2 euros 80 and 3 euros 20.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-tolc-e-mathematics-author",
+    "aiAssisted": true,
+    "notes": "Original item. Setting and prices invented. Distractors: the other unknown, an equal-price assumption, a division that ignores the pens, and the combined price."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-tolc-e-mathematics-author",
+    "reviewer": "blind-reviewer-wave6-tolce-math-run12",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolce-math-run12",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "From n+p=3.20, 3n+2(3.20-n)=8.40, so n=2.00 and p=1.20. Check: 6.00+2.40=8.40. D is the pen price and E is the price of the pair. Nothing else fits. [A second, separate blind solve (blind-reviewer-wave6-tolce-math-run13) reached the same answer: From 3n+2p=8.40 and n+p=3.20, substitution gives n+6.40=8.40, so n=2.00 and p=1.20. D is the pen's price and E is the pair total, so neither fits.]"
+    },
+    "notes": "Author check: the key was computed and then confirmed a second way (see the check in the explanation); each wrong choice was tried against the stem and fails for the reason given in its distractor note. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "linear-system",
+    "word-problem"
+  ]
+}

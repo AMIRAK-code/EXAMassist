@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-math-exponential-equation-substitution-017",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tili-mathematics",
+  "skillSlug": "tili-math-transcendental-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the sum of all the real solutions of $4^{x}-6\\cdot2^{x}+8=0$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "1"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "2"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "3"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "6"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "8"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "**What to notice first.** $4^{x}=\\left(2^{x}\\right)^{2}$, so the equation is a quadratic in $t=2^{x}$: $t^{2}-6t+8=0$, that is $(t-2)(t-4)=0$, so $t=2$ or $t=4$.\n\n**Return to $x$.** Since $2^{x}$ is always positive, both values are allowed. $2^{x}=2$ gives $x=1$, and $2^{x}=4$ gives $x=2$. The sum is $1+2=3$.\n\n**Check.** $x=1$: $4-12+8=0$. $x=2$: $16-24+8=0$.",
+  "distractorRationale": {
+    "a": "This stops after finding the smaller solution $x=1$ and does not look for the second one. The substitution gives two values of $2^{x}$, so there are two values of $x$.",
+    "b": "This reports the number of solutions, two, or only the larger solution $x=2$, and not the sum of the solutions.",
+    "d": "This adds the two values of the new variable, $t=2$ and $t=4$, and never converts back to $x$. The question asks for the sum of the values of $x$, not of $2^{x}$.",
+    "e": "This multiplies the two values of $t=2^{x}$ together (or reads off the constant term 8). Neither is the sum of the solutions in $x$."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "Find the sum of all real solutions of the equation four to the power x, minus six times two to the power x, plus eight, equals zero.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-mathematics-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item. Substitution into a quadratic, then back to x. Distractors: stopping at one root, reporting the count, sum of the substituted values, and their product."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-mathematics-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tili-math-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-math-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Put t=2^x: t^2-6t+8=0 gives t=2 or t=4, so x=1 or x=2 and the sum is 3. D (6) is the sum of the t values and E (8) is their product. Neither is the sum of the x values. [A second, separate blind solve (blind-reviewer-wave6-tili-math-run7) reached the same answer: With t=2^x, t^2-6t+8=0 gives t=2 or t=4, so x=1 or x=2 and the sum is 3. Option D (6) is the sum of the t values and E (8) is their product. Neither is defensible.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "exponential-equation",
+    "substitution"
+  ]
+}

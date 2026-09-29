@@ -1,0 +1,83 @@
+{
+  "id": "polito-til-a-draw-isometric-face-diagonals-457",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "drawing-representation",
+  "domainSlug": "tila-drawing",
+  "skillSlug": "tila-draw-axonometric",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A cube with edges of $6\\ \\text{cm}$ is shown in an isometric drawing seen from above: one set of edges is drawn vertically, the other two are drawn at $30^\\circ$ above the horizontal, and **every edge is drawn at its full length of $6\\ \\text{cm}$**. On the sheet, the top face of the cube becomes a rhombus with one diagonal horizontal and the other vertical.\n\nHow long are these two diagonals on the drawing?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Both $6\\sqrt{2} \\approx 8.5\\ \\text{cm}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Horizontal $6\\sqrt{3} \\approx 10.4\\ \\text{cm}$; vertical $6\\ \\text{cm}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Horizontal $6\\ \\text{cm}$; vertical $6\\sqrt{3} \\approx 10.4\\ \\text{cm}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Horizontal $3\\sqrt{3} \\approx 5.2\\ \\text{cm}$; vertical $3\\ \\text{cm}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Horizontal $6\\sqrt{2} \\approx 8.5\\ \\text{cm}$; vertical $6\\ \\text{cm}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "**What to notice first.** Only lengths **parallel to the three axes** are drawn true in an isometric drawing. A diagonal of a face is not parallel to any axis, so its drawn length has to be worked out from the drawn edges; it will not be the real $6\\sqrt{2}\\ \\text{cm}$.\n\n**The step that settles it.** Put the corner of the top face nearest the viewer at the origin of the sheet. Its two top edges run to the right and to the left at $30^\\circ$ above the horizontal, each $6\\ \\text{cm}$ long, so they end at\n\n$$\\left(6\\cos 30^\\circ,\\ 6\\sin 30^\\circ\\right) = \\left(3\\sqrt{3},\\ 3\\right) \\quad\\text{and}\\quad \\left(-3\\sqrt{3},\\ 3\\right).$$\n\n- The **horizontal** diagonal joins these two side corners: $3\\sqrt{3} + 3\\sqrt{3} = 6\\sqrt{3} \\approx 10.4\\ \\text{cm}$.\n- The **vertical** diagonal joins the nearest corner to the farthest one, which is reached by adding both edge vectors: $(0,\\ 3 + 3) = (0,\\ 6)$. It is $6\\ \\text{cm}$.\n\n**How to check it.** The rhombus has angles of $120^\\circ$ at the nearest and farthest corners and $60^\\circ$ at the side corners. Two of its sides and its vertical diagonal form a triangle with a $60^\\circ$ angle between two equal sides, so that triangle is equilateral and the vertical diagonal equals a side, $6\\ \\text{cm}$. By Pythagoras on a quarter of the rhombus, $3^2 + (3\\sqrt{3})^2 = 9 + 27 = 36 = 6^2$, which confirms the half-diagonals $3$ and $3\\sqrt{3}$.",
+  "distractorRationale": {
+    "a": "Gives the real diagonal of the square face, $6\\sqrt{2}$, for both. An isometric drawing keeps lengths true only along the three axes; the face becomes a rhombus whose diagonals are unequal.",
+    "c": "Has the right two lengths on the wrong diagonals. The side corners of the rhombus are $2 \\times 3\\sqrt{3}$ apart horizontally, while the nearest and farthest corners are only $3 + 3$ apart vertically, so the long diagonal is the horizontal one.",
+    "d": "Stops at the horizontal and vertical components of a single edge, $6\\cos 30^\\circ$ and $6\\sin 30^\\circ$. Each diagonal spans two edges, so both components must be doubled.",
+    "e": "Treats the horizontal diagonal as true length. It is true length only in the true isometric projection, where every axis is shortened to about 82% of its length; this drawing keeps edges at full length, which enlarges everything, that diagonal included, to $6\\sqrt{3}$."
+  },
+  "estimatedSeconds": 140,
+  "stimulusRef": null,
+  "accessibilityText": "A question on isometric drawing, with no figure needed. A cube with six-centimetre edges is drawn isometrically seen from above: one set of edges vertical, the other two at thirty degrees above the horizontal, and every edge drawn at its full six centimetres. The top face becomes a rhombus with one horizontal and one vertical diagonal, and the question asks for their lengths on the drawing. The choices are: both six root two, about eight point five centimetres; horizontal six root three, about ten point four centimetres, and vertical six centimetres; horizontal six centimetres and vertical six root three, about ten point four; horizontal three root three, about five point two, and vertical three centimetres; and horizontal six root two, about eight point five, and vertical six centimetres.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-polito-til-a-drawing-author",
+    "aiAssisted": true,
+    "notes": "Original item. A script placed the rhombus corners at (0, 0), (6 cos 30, 6 sin 30), (-6 cos 30, 6 sin 30) and (0, 6) and measured the diagonals as 10.3923 (6 root 3) and 6.0000 cm; the real face diagonal is 8.4853 (6 root 2) cm. The rhombus angle at the nearest corner is 120 degrees."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-polito-til-a-drawing-author",
+    "reviewer": "blind-reviewer-wave7-tila-logic-drawing-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-tila-logic-drawing-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The top-face edges are drawn as the vectors (6cos30, 6sin30) = (5.196, 3) and (-5.196, 3). Their sum (0, 6) is the vertical diagonal, 6 cm long. Their difference (10.39, 0) is the horizontal diagonal, 6 times root 3. [A second, separate blind solve (blind-reviewer-wave7-tila-logic-drawing-run1) reached the same answer: Put the top face's near corner at the origin. Its two edges go to (+-6cos30, 6sin30) = (+-5.196, 3) and the far corner is at (0, 6). The horizontal diagonal is therefore 2 x 5.196 = 6 sqrt3 (about 10.4 cm) and the vertical diagonal is 6 cm. C swaps the two, and A and E use true-shape values.]"
+    },
+    "notes": "Author's uniqueness check: the stem fixes the drawing convention (full-length edges, 30 degree axes), which determines both diagonals; every wrong choice differs in at least one of the two lengths. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "isometric-drawing",
+    "foreshortening",
+    "rhombus",
+    "trigonometry"
+  ]
+}

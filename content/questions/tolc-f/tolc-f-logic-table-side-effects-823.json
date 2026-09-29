@@ -1,0 +1,85 @@
+{
+  "id": "tolc-f-logic-table-side-effects-823",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "logic",
+  "domainSlug": "tolcf-logic",
+  "skillSlug": "tolcf-logic-graphs-tables",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Of all the patients who reported side effects, what proportion were aged 60 or over?",
+  "instructionsMd": "The percentages in the last column of the table refer to the patients of each age group, not to all 800 patients.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "50%"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "About 33%"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "30%"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "About 67%"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "20%"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Turn the percentages into numbers of patients, then form the ratio.\n\n1. Group sizes out of 800: under 40 is 25% (200 patients), 40 to 59 is 25% (200), 60 and over is 50% (400).\n2. Patients reporting side effects: 10% of 200 = 20; 20% of 200 = 40; 30% of 400 = 120. In all, 20 + 40 + 120 = 180.\n3. The oldest group provides 120 of the 180 reports, and $\\frac{120}{180} = \\frac{2}{3}$, about 67%.\n\nCheck by weights: the oldest group is half the sample and has the highest rate, so its share of the reports must be above 50%. The side-effect percentages in the last column are each taken from a different group, of a different size, which is why they cannot simply be averaged or compared directly.",
+  "distractorRationale": {
+    "e": "This is the simple average of the three percentages in the last column (10, 20 and 30). It ignores that the groups have different sizes.",
+    "b": "One third of the reports came from the two younger groups together (60 out of 180). This answers the question for the wrong group.",
+    "c": "This is the rate of side effects within the oldest group. The question asks for the oldest group’s share of all the reports.",
+    "a": "This is the oldest group’s share of all 800 patients. The group has a higher rate than the others, so its share of the reports is higher than its share of the patients."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": {
+    "id": "tolc-f-table-side-effects-828",
+    "version": 1
+  },
+  "accessibilityText": "A question about the table described with it: three age groups with their share of 800 patients (25, 25 and 50 percent) and the percentage of each group reporting side effects (10, 20 and 30 percent). The question asks what proportion of all patients reporting side effects were aged 60 or over. The five choices are 20 percent, about 33 percent, 30 percent, 50 percent and about 67 percent.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item on weighted proportions. Each distractor is a figure that appears in the table or a natural simple average or complement of the numbers."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-logic-run10",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-logic-run10",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Reporters by group: 200*10% = 20, 200*20% = 40 and 400*30% = 120, for 180 in total. 120/180 = 66.7%, so 'About 67%' is correct. 50% (the group's share) and 30% (the group's rate) are the traps. About 33% is the under-60 fraction. [A second, separate blind solve (blind-reviewer-wave6-tolcf-logic-run11) reached the same answer: Under 40: 200*10% = 20; 40-59: 200*20% = 40; 60 and over: 400*30% = 120. Total reporting = 180. 120/180 = 66.7%, so about 67%.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "weighted-proportion",
+    "percentages",
+    "table-reading"
+  ]
+}

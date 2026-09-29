@@ -1,0 +1,82 @@
+{
+  "id": "polito-til-i-phys-average-speed-vertical-throw-104",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "physics",
+  "domainSlug": "tili-physics",
+  "skillSlug": "tili-phys-kinematics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A stone is thrown straight up from a hand at 20 m/s and is caught at the same height when it falls back. Take g = 10 m/s² and ignore air resistance. What is the stone's average speed over the whole flight, from release to catch?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "5 m/s"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "0 m/s"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "10 m/s"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "40 m/s"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "20 m/s"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Average speed is the total distance travelled divided by the total time. Average velocity is the displacement divided by the time. They differ whenever the path turns back on itself, as it does here.\n\n**Going up.** The speed falls from 20 m/s to 0 at 10 m/s² each second, so the rise takes $20/10 = 2$ s. The average speed on the way up is $(20+0)/2 = 10$ m/s, so the stone rises $10\\times2 = 20$ m.\n\n**Coming down.** By symmetry the fall takes 2 s and covers the same 20 m.\n\n**Whole flight.** Distance $= 20+20 = 40$ m, time $= 4$ s, so average speed $= 40/4 = 10$ m/s.\n\n**Check.** The speed is 10 m/s on average on the way up and 10 m/s on average on the way down, so it cannot be anything else over the whole flight. The displacement is zero, so the average *velocity* is 0, which is a different quantity.",
+  "distractorRationale": {
+    "b": "Gives the average velocity. The stone returns to its starting point, so its displacement is zero, but average speed uses the total path length, which is 40 m.",
+    "a": "Counts only the 20 m upward path against the full 4 s, forgetting that the stone also travels 20 m on the way down.",
+    "e": "Reports the launch speed, or averages the launch and catch speeds, (20 + 20) ÷ 2. The speed is not constant: it falls to zero at the top, so its average over the flight is lower. Averaging end speeds works only on each half, where the speed changes steadily: (20 + 0) ÷ 2 = 10 m/s.",
+    "d": "Reports the total distance of 40 m without dividing by the 4 s of flight, so the answer has the unit of a length rather than of a speed."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "A kinematics question. A stone is thrown straight up at 20 metres per second and caught at the same height as it falls back. Use g equal to 10 metres per second squared and ignore air resistance. The average speed over the whole flight is wanted. The choices are 0, 5, 10, 20 and 40 metres per second.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-wave6-physics-technical-author",
+    "aiAssisted": true,
+    "notes": "Original item. The trap is distance versus displacement. Numbers chosen so the rise is exactly 2 s and 20 m."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-wave6-physics-technical-author",
+    "reviewer": "blind-reviewer-wave6-tili-phys-tech-run8",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-phys-tech-run8",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Max height = 400/20 = 20 m, so the total path is 40 m. Flight time = 2*20/10 = 4 s, so average speed = 10 m/s. The stem clearly asks for speed, not velocity, so 0 m/s (average velocity) cannot be defended. [A second, separate blind solve (blind-reviewer-wave6-tili-phys-tech-run9) reached the same answer: Rise time 2 s, max height 20 m; total distance 40 m in 4 s gives average speed 10 m/s. 0 m/s is average velocity, but stem explicitly asks for speed, so not defensible.]"
+    },
+    "notes": "Awaiting a blind independent solve. The author recomputed every option and checked the key a second way before saving (see the explanation). Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "average-speed",
+    "average-velocity",
+    "vertical-motion"
+  ]
+}

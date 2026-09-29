@@ -1,0 +1,86 @@
+{
+  "id": "polito-til-a-draw-right-side-view-452",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "drawing-representation",
+  "domainSlug": "tila-drawing",
+  "skillSlug": "tila-draw-orthographic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The table gives the height map of a solid built from unit cubes. An observer stands on the **right-hand side** of the solid, beyond Column 4, and looks straight at it towards Column 1, level with the floor. What the observer sees is an orthographic side view: cubes hidden behind other cubes cannot be seen, and the view is made of four vertical strips.\n\nReading from this observer's left to right, how many cubes high are the four strips?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "1, 1, 0, 1"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "2, 3, 1, 4"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "4, 1, 3, 2"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "4, 3, 1, 1"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "4, 5, 2, 7"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "**What to notice first.** Looking from the right, the observer's line of sight runs *along* each row of the grid, from Column 4 towards Column 1. So each strip of the view belongs to one **row**, not to one column, and its height is the **tallest stack anywhere in that row**: a tall stack further away still shows above shorter ones in front of it.\n\n**Get the order right.** Someone standing on the right of the solid and facing it has the front of the solid (Row 1) on their left and the back (Row 4) on their right. So the strips, read from their left to right, are Row 1, Row 2, Row 3, Row 4.\n\n**The step that settles it.** Take the largest number in each row of the table:\n\n- Row 1 holds 2, 1, 0, 1: the strip is 2 high.\n- Row 2 holds 0, 3, 1, 1: 3 high.\n- Row 3 holds 1, 0, 1, 0: 1 high.\n- Row 4 holds 4, 2, 0, 1: 4 high.\n\nThe right side view reads 2, 3, 1, 4.\n\n**How to check it.** The view from the left side of the solid shows the same four strips in mirror order, 4, 1, 3, 2, because that observer has the back on their left. And the tallest strip, 4, must equal the tallest stack in the whole table, which it does.",
+  "distractorRationale": {
+    "c": "Has the right strip heights in mirror order. That is the view from the left-hand side, or the result of putting Row 1 on the observer's right. An observer on the right who faces the solid has the front row on their left.",
+    "d": "This is the front view: the tallest stack in each column, read from Column 1 to Column 4. From the right side the line of sight runs along the rows, so each strip belongs to a row.",
+    "e": "Adds up the cubes in each row (2 + 1 + 0 + 1 = 4, and so on). A view shows how high the outline is, not how many cubes lie behind one another, so hidden cubes add nothing to the height.",
+    "a": "Reads only Column 4, the stacks nearest the observer. Taller stacks further along each row stand up behind them and are visible too."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": {
+    "id": "polito-til-a-table-heightmap-side-480",
+    "version": 1
+  },
+  "accessibilityText": "A spatial question posed through a table, with no drawing. The table is a height map of a solid made of unit cubes on a grid of four rows, front to back, and four columns, left to right as seen from the front; each number is the cubes stacked on that square. Row 1, front: 2, 1, 0, 1. Row 2: 0, 3, 1, 1. Row 3: 1, 0, 1, 0. Row 4, back: 4, 2, 0, 1. An observer stands on the right-hand side of the solid, beyond Column 4, looking towards Column 1, and the question asks for the heights in cubes of the four vertical strips of this side view, from the observer's left to right. The choices are sequences of four numbers: 1, 1, 0, 1; 2, 3, 1, 4; 4, 1, 3, 2; 4, 3, 1, 1; and 4, 5, 2, 7.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-polito-til-a-drawing-author",
+    "aiAssisted": true,
+    "notes": "Original item, posed as a table because the site cannot show drawings. The key (row maxima, front row on the observer's left) was computed by script over the height map. Wrong choices: mirror order, the front view (column maxima), row totals, the nearest column only."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-polito-til-a-drawing-author",
+    "reviewer": "blind-reviewer-wave7-tila-logic-drawing-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-tila-logic-drawing-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "An observer to the east, looking west, has the front (Row 1) on their left. The strips from left to right are therefore Rows 1 to 4, and their maxima are 2, 3, 1 and 4. [A second, separate blind solve (blind-reviewer-wave7-tila-logic-drawing-run1) reached the same answer: An observer beyond Column 4 looking towards Column 1 has the front row (Row 1) on the left and the back row (Row 4) on the right. The row maxima are R1 = 2, R2 = 3, R3 = 1 and R4 = 4, giving 2, 3, 1, 4. C is the left-hand view (the same heights in reverse order), D is the front view's column maxima, and E and A come from row sums or counts.]"
+    },
+    "notes": "Author's uniqueness check: the side view is fixed by the row maxima 2, 3, 1, 4 and the observer's orientation; the four other sequences all differ from it. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "orthographic-side-view",
+    "height-map",
+    "hidden-cubes",
+    "orientation"
+  ]
+}

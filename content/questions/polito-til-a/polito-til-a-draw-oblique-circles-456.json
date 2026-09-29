@@ -1,0 +1,84 @@
+{
+  "id": "polito-til-a-draw-oblique-circles-456",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "drawing-representation",
+  "domainSlug": "tila-drawing",
+  "skillSlug": "tila-draw-axonometric",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A small garden pavilion has a flat roof with a round skylight in it, and a round window in its front wall. It is drawn in two oblique axonometries:\n\n- a **planometric** (military) axonometry: the plan is drawn unchanged in shape and size, turned so that the walls make angles of $30^\\circ$ and $60^\\circ$ with the edge of the sheet, and every vertical edge is drawn vertically at its true length;\n- a **cavalier** axonometry: the front wall is drawn unchanged in shape and size, parallel to the sheet, and every edge running back from it is drawn at $45^\\circ$ at its true length.\n\nHow do the skylight and the window appear in the two drawings?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "In both drawings, both openings are ellipses."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Planometric: the window is a circle and the skylight an ellipse. Cavalier: the skylight is a circle and the window an ellipse."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "In both drawings, both openings are circles."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Planometric: the skylight is a circle and the window an ellipse. Cavalier: the window is a circle and the skylight an ellipse."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Planometric: the skylight is a circle and the window an ellipse. Cavalier: both openings are circles."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "**What to notice first.** Each oblique axonometry keeps **one family of planes** in true shape: the plane it copies unchanged onto the sheet, and every plane parallel to it. A circle stays a circle only if it lies in such a plane. In any other plane, lengths in one direction and angles between directions are altered, and a circle becomes an ellipse.\n\n**The step that settles it.**\n\n- *Planometric:* the plan is copied unchanged, so every **horizontal** plane is in true shape. The flat roof is horizontal, so the skylight stays a circle. The front wall is vertical: its horizontal edges are drawn at $30^\\circ$ or $60^\\circ$ while its vertical edges stay vertical, so its right angles are no longer right angles and the window becomes an ellipse.\n- *Cavalier:* the front wall is copied unchanged, so the window stays a circle. The roof's edges running back are drawn at $45^\\circ$ to its front edge instead of $90^\\circ$, so the roof is distorted into a parallelogram and the skylight becomes an ellipse.\n\n**How to check it.** Picture a square drawn round each opening. A circle inscribed in a square that stays a square stays a circle; a square that becomes a rhombus or parallelogram carries its circle into an ellipse. In the planometric drawing the roof square stays square and the wall square does not; in the cavalier drawing it is the other way round. Keeping lengths true is not enough, as the cavalier roof shows: its sides keep their length but its angles change.",
+  "distractorRationale": {
+    "b": "Swaps the two axonometries. The planometric drawing copies the plan, which is horizontal, so it is the skylight in the roof that stays true; the cavalier drawing copies the front wall, so it is the window that stays true.",
+    "a": "Treats both drawings like an isometric axonometry, in which no face of the building is parallel to the sheet and every circle becomes an ellipse. Each oblique axonometry keeps one plane in true shape.",
+    "c": "Assumes that because the drawings are made with parallel lines and true lengths, every shape keeps its form. Only the plane copied unchanged keeps its right angles; in the other planes the right angles are drawn as 30, 60 or 45 degrees.",
+    "e": "Gets the planometric drawing right but thinks the cavalier roof stays true because its receding edges keep their full length. Length is kept but the right angle between the roof's edges is drawn as 45 degrees, so the roof square becomes a parallelogram and the skylight an ellipse."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "A question on axonometric conventions, with no figure needed. A pavilion has a round skylight in its flat roof and a round window in its front wall. It is drawn in a planometric, or military, axonometry, where the plan is copied unchanged and turned to thirty and sixty degrees and vertical edges are drawn vertically, and in a cavalier axonometry, where the front wall is copied unchanged and edges running back are drawn at forty-five degrees at true length. The question asks how the two openings appear in each drawing. The choices are: in both drawings both openings are ellipses; planometric, window a circle and skylight an ellipse, and cavalier, skylight a circle and window an ellipse; in both drawings both openings are circles; planometric, skylight a circle and window an ellipse, and cavalier, window a circle and skylight an ellipse; and planometric, skylight a circle and window an ellipse, while in the cavalier drawing both openings are circles.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-polito-til-a-drawing-author",
+    "aiAssisted": true,
+    "notes": "Original item. Both conventions are defined in the stem so the item does not depend on terminology. A script checked, for each drawing, whether the images of two perpendicular unit directions in each plane have equal length and stay perpendicular (the condition for a circle to stay a circle): true only for the roof in the planometric drawing and for the front wall in the cavalier drawing."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-polito-til-a-drawing-author",
+    "reviewer": "blind-reviewer-wave7-tila-logic-drawing-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-tila-logic-drawing-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "A planometric drawing keeps the plan true, so the skylight in the horizontal roof is a circle. The front wall's axes are drawn at 30 or 60 degrees against the vertical, so the window becomes an ellipse. A cavalier drawing keeps the front wall true, so the window is a circle, while the roof's depth runs at 45 degrees and turns the skylight into an ellipse. [A second, separate blind solve (blind-reviewer-wave7-tila-logic-drawing-run1) reached the same answer: Planometric axonometry keeps horizontal planes in true shape, so the skylight is a circle. The wall sits at 30 or 60 degrees in plan with true-length verticals, so it becomes a sheared parallelogram and the window an ellipse. Cavalier axonometry keeps the front plane true, so the window is a circle and the horizontal skylight, receding at 45 degrees, is an ellipse. B is the reverse of this, and C and E each wrongly keep one opening as a circle.]"
+    },
+    "notes": "Author's uniqueness check: a circle maps to a circle under a parallel projection only if the plane's two perpendicular directions map to equal, perpendicular vectors; this holds for exactly one of the two planes in each drawing, which fixes the key. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "planometric-axonometry",
+    "cavalier-axonometry",
+    "oblique-projection",
+    "true-shape",
+    "circles-and-ellipses"
+  ]
+}

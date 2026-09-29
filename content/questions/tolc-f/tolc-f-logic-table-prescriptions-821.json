@@ -1,0 +1,85 @@
+{
+  "id": "tolc-f-logic-table-prescriptions-821",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "logic",
+  "domainSlug": "tolcf-logic",
+  "skillSlug": "tolcf-logic-graphs-tables",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which of the following statements is supported by the table?",
+  "instructionsMd": "Use only the information given in the table.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Antihistamines were the only class whose March figure was at least three times its January figure."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "In every month, antihypertensives accounted for more than half of all prescriptions."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Antibiotic prescriptions halved between January and February."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Antibiotics and antihistamines together accounted for the same number of prescriptions in all three months."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Analgesic prescriptions rose by more than a quarter between January and March."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Check each statement against the rows it mentions, and reject it as soon as one number fails.\n\n- Antihistamines rose from 30 to 120, a factor of 4. Antibiotics fell, antihypertensives stayed at 200, and analgesics rose only from 100 to 120. So antihistamines are the only class whose March figure is at least three times its January figure. This statement is supported.\n- Antibiotics fell by a quarter from January to February, and halved only by March.\n- Antihypertensives were 200 of 450, 460 and 500: at most 44% of the total.\n- Analgesics rose 20%, less than the quarter that the statement needs.\n- Antibiotics plus antihistamines: 150, 150, 180. March breaks the equality.\n\nThe traps are statements that are true for two months and false for the third, and statements that use the right numbers with the wrong time span.",
+  "distractorRationale": {
+    "c": "Antibiotics fell from 120 to 90, a fall of 30, or a quarter. The halving happens over two months, from January to March (120 to 60).",
+    "b": "Antihypertensives were 200 out of 450, 460 and 500 prescriptions in the three months, which is 44%, 43% and 40%, never more than half.",
+    "e": "Analgesics rose from 100 to 120, an increase of 20 on a base of 100, that is 20%, less than a quarter.",
+    "d": "The two classes together were 150 in January and 150 in February, but 180 in March. The equality holds for two months, not three."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": {
+    "id": "tolc-f-table-prescriptions-826",
+    "version": 1
+  },
+  "accessibilityText": "A question about the table described with it: prescriptions by class for January, February and March. The five choices are statements: antibiotics halved between January and February; antihypertensives were more than half of all prescriptions every month; analgesics rose by more than a quarter between January and March; antibiotics and antihistamines together were the same in all three months; antihistamines were the only class whose March figure was at least three times its January figure.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item. Each false statement is true for a sub-range of the data or uses the right numbers over the wrong period; only the antihistamine ratio holds across the whole table."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave6-author",
+    "reviewer": "blind-reviewer-wave7-resolve-held-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-resolve-held-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Ratios of March to January: antihistamines 120/30 = 4, antibiotics 0.5, antihypertensives 1, analgesics 1.2, so A is true. Totals are 450, 460 and 500, so antihypertensives are under half every month (B false). Antibiotics went 120 to 90, not halved (C false). Antibiotics plus antihistamines are 150, 150, 180 (D false). Analgesics rose 20%, not more than 25% (E false). [A second, separate blind solve (blind-reviewer-wave7-resolve-held-run1) reached the same answer: March/January ratios: antibiotics 0.5, antihypertensives 1, analgesics 1.2, antihistamines 4. Only antihistamines reach at least 3, so A is true. B: 200 of 450 in January is less than half. C: 120 to 90 is not a halving. D: the combined totals are 150, 150 and 180. E: 100 to 120 is exactly 20%, not more than 25%.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "table-reading",
+    "ratios",
+    "statement-checking"
+  ]
+}

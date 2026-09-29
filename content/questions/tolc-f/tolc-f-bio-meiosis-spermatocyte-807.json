@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-bio-meiosis-spermatocyte-807",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "biology",
+  "domainSlug": "tolcf-biology",
+  "skillSlug": "tolcf-bio-genetics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A human primary spermatocyte, which has 46 chromosomes, completes meiosis. What is the outcome?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Two cells, each with 46 chromosomes"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Four cells, each with 46 chromosomes"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Two cells, each with 23 chromosomes"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Four cells, each with 23 chromosomes"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Four cells, each with 92 chromosomes"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Meiosis is one round of DNA replication followed by two successive divisions.\n\n1. Meiosis I separates the homologous chromosomes. The result is two cells with 23 chromosomes each (haploid), each chromosome still made of two chromatids.\n2. Meiosis II separates the sister chromatids of each cell. The result is four cells, each with 23 chromosomes.\n\nCheck with fertilisation: a sperm with 23 chromosomes fuses with an egg with 23 chromosomes to restore the diploid number of 46. If meiosis kept 46 in the gametes, the number would double in every generation.",
+  "distractorRationale": {
+    "a": "This is the outcome of mitosis. Meiosis includes a division that halves the chromosome number.",
+    "c": "Two cells with 23 chromosomes is where meiosis I ends in terms of chromosome number, but meiosis II then divides each of them again.",
+    "b": "Four cells is right, but the chromosome number is wrong. Meiosis produces haploid cells, not cells with the diploid number.",
+    "e": "This confuses the doubling of DNA content during S phase with the number of chromosomes. Replicated chromosomes still count as 46, and meiosis reduces them, it does not increase them."
+  },
+  "estimatedSeconds": 40,
+  "stimulusRef": null,
+  "accessibilityText": "A short text question with no figure. A human primary spermatocyte with 46 chromosomes completes meiosis, and the question asks for the outcome. The five choices give a number of cells and a chromosome number per cell: two cells of 46; four cells of 46; two cells of 23; four cells of 23; four cells of 92.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item. A spermatocyte is used so that the answer is four cells; the distractors come from mitosis, from stopping after meiosis I, and from confusing DNA amount with chromosome number."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-bio-run17",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-bio-run17",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "A primary spermatocyte (2n = 46) goes through meiosis I and II and gives four haploid spermatids with 23 chromosomes each. Two cells with 23 describes meiosis I only, which gives secondary spermatocytes, and 46 or 92 chromosomes are not meiotic outcomes. [A second, separate blind solve (blind-reviewer-wave6-tolcf-bio-run19) reached the same answer: Meiosis of one primary spermatocyte gives four haploid spermatids, each with 23 chromosomes. Two cells with 23 chromosomes (c) stops after meiosis I, so it is not the end of meiosis. The other options have the wrong ploidy.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "meiosis",
+    "gametes",
+    "chromosome-number"
+  ]
+}

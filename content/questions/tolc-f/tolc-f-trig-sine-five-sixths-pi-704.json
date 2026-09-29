@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-trig-sine-five-sixths-pi-704",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolcf-mathematics",
+  "skillSlug": "tolcf-math-functions-trig",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the value of $\\sin\\dfrac{5\\pi}{6}$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$-\\dfrac{\\sqrt{3}}{2}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$-\\dfrac{1}{2}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$0$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\dfrac{1}{2}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\dfrac{\\sqrt{3}}{2}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Convert to degrees: $\\pi$ is 180 degrees, so $\\tfrac{\\pi}{6}$ is 30 degrees and $\\tfrac{5\\pi}{6}$ is 150 degrees.\n\n150 degrees lies in the second quadrant, where the sine is positive. Its reference angle is $180^\\circ - 150^\\circ = 30^\\circ$, that is $\\pi - \\tfrac{5\\pi}{6} = \\tfrac{\\pi}{6}$. So $\\sin\\tfrac{5\\pi}{6} = \\sin\\tfrac{\\pi}{6} = \\tfrac12$.\n\n**How to check it.** On the unit circle the points at 30 and 150 degrees are mirror images across the vertical axis, so they have the same height, and the height of the point at 30 degrees is $\\tfrac12$.",
+  "distractorRationale": {
+    "a": "Gives the cosine of the angle, which is negative in the second quadrant, rather than its sine.",
+    "b": "Has the right size but the wrong sign. The sine is the height of the point on the unit circle, and in the second quadrant that height is positive.",
+    "c": "Rounds the angle to $\\pi$, where the sine is zero. But $\\tfrac{5\\pi}{6}$ is 150 degrees, 30 degrees short of a half turn, and the sine there is still $\\tfrac12$.",
+    "e": "Takes the reference angle as 60 degrees instead of 30, or swaps the sine and cosine of 30 degrees: $\\tfrac{\\sqrt{3}}{2}$ is $\\sin 60^\\circ$, which equals $\\cos 30^\\circ$. The reference angle for 150 degrees is $180^\\circ - 150^\\circ = 30^\\circ$, whose sine is $\\tfrac12$."
+  },
+  "estimatedSeconds": 45,
+  "stimulusRef": null,
+  "accessibilityText": "The question asks for the value of the sine of 5 pi over 6 radians. The five choices are: negative square root of 3 over 2; negative one half; 0; one half; and square root of 3 over 2.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-tolc-f-mathematics-author",
+    "aiAssisted": true,
+    "notes": "Original item. Distractors: cosine instead of sine, a sign error, a rounding error to pi, and the sine of the 60/120 degree family."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-tolc-f-mathematics-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-math-phys-run14",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-math-phys-run14",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "sin(5pi/6) = sin(pi/6) = 1/2, positive in the second quadrant. -sqrt3/2 is cos(5pi/6), and the other signs and values are wrong. [A second, separate blind solve (blind-reviewer-wave6-tolcf-math-phys-run16) reached the same answer: sin(5pi/6) = sin(pi/6) = 1/2, positive because the angle is in the second quadrant. sqrt3/2 is the magnitude of the cosine and the negative values are sign errors.]"
+    },
+    "notes": "Author check: the key was computed and then confirmed a second way (see the check in the explanation); each wrong choice was tried against the stem and fails for the reason given in its distractor note. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "sine",
+    "radians",
+    "reference-angle"
+  ]
+}

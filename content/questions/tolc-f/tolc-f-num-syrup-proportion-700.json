@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-num-syrup-proportion-700",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolcf-mathematics",
+  "skillSlug": "tolcf-math-numbers",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A syrup contains 40 mg of active ingredient in every 5 mL. How many milligrams of active ingredient are in 12.5 mL of the syrup?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "16 mg"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "100 mg"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "500 mg"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "47.5 mg"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "62.5 mg"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Find the scale factor between the two volumes and apply it to the amount.\n\n12.5 mL is $12.5 \\div 5 = 2.5$ times as much as 5 mL, so the ingredient is also 2.5 times as much: $40 \\times 2.5 = 100$ mg.\n\n**How to check it.** Per millilitre the syrup holds $40 \\div 5 = 8$ mg, and $8 \\times 12.5 = 100$. Or use a sanity bound: 10 mL would hold $2\\times 40 = 80$ mg and 12.5 mL is a little more, so the answer lies just above 80.",
+  "distractorRationale": {
+    "a": "Inverts the proportion ($40\\times 5 \\div 12.5 = 16$). More syrup must hold more ingredient, so the answer has to be larger than 40 mg.",
+    "d": "Reasons by addition: 12.5 mL is 7.5 mL more than 5 mL, so adds 7.5 to 40. Proportional quantities scale by multiplication, not by adding the same amount.",
+    "e": "Multiplies the volume 12.5 by 5, the volume of the reference dose, instead of by the concentration of 8 mg per mL.",
+    "c": "Multiplies 40 by 12.5 and never divides by the 5 mL that the 40 mg belongs to."
+  },
+  "estimatedSeconds": 50,
+  "stimulusRef": null,
+  "accessibilityText": "A syrup contains 40 milligrams of active ingredient in every 5 millilitres. The question asks how many milligrams are in 12 point 5 millilitres. The five choices are 16, 100, 500, 47 point 5 and 62 point 5 milligrams.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-tolc-f-mathematics-author",
+    "aiAssisted": true,
+    "notes": "Original item. Distractors: an inverted proportion, additive reasoning, wrong multiplier, and a missing division."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-tolc-f-mathematics-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-math-phys-run14",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-math-phys-run14",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "8 mg/mL times 12.5 mL = 100 mg. The other options come from wrong operations (40*5/12.5=16, 40*12.5=500, and so on). [A second, separate blind solve (blind-reviewer-wave6-tolcf-math-phys-run16) reached the same answer: The syrup has 8 mg/mL, and 8 x 12.5 = 100 mg. The other options come from inverting the ratio or adding the numbers, and none of them equals 100.]"
+    },
+    "notes": "Author check: the key was computed and then confirmed a second way (see the check in the explanation); each wrong choice was tried against the stem and fails for the reason given in its distractor note. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "proportion",
+    "concentration"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "polito-til-i-math-geometry-similar-triangle-areas-007",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tili-mathematics",
+  "skillSlug": "tili-math-euclidean-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In triangle $PQR$, the point $S$ lies on side $PQ$ and the point $T$ lies on side $PR$, with $ST$ parallel to $QR$. The lengths are $PS=4$ cm and $SQ=6$ cm, and triangle $PST$ has area $8$ cm$^{2}$. What is the area, in cm$^{2}$, of the quadrilateral $SQRT$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "10"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "12"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "18"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "42"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "50"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "**What to notice first.** Since $ST\\parallel QR$, triangle $PST$ is similar to triangle $PQR$: they share the angle at $P$ and have equal corresponding angles at the parallel lines. The ratio of similarity compares corresponding sides of the *two triangles*: $PS$ against $PQ$, where $PQ=4+6=10$.\n\n**Step 1 - linear ratio.** $\\dfrac{PS}{PQ}=\\dfrac{4}{10}=\\dfrac{2}{5}$.\n\n**Step 2 - area ratio.** Areas scale with the square of the linear ratio: $\\dfrac{\\text{area}(PST)}{\\text{area}(PQR)}=\\dfrac{4}{25}$. So $\\text{area}(PQR)=8\\cdot\\dfrac{25}{4}=50$ cm$^{2}$.\n\n**Step 3 - subtract.** The quadrilateral $SQRT$ is triangle $PQR$ without triangle $PST$: $50-8=42$ cm$^{2}$.\n\n**Check.** The small triangle and the quadrilateral should be in the ratio $4:(25-4)=4:21$, and indeed $8:42=4:21$.",
+  "distractorRationale": {
+    "a": "This uses the ratio $PS:SQ=4:6$ as the similarity ratio, although $SQ$ is not a side of the big triangle. Then the areas are in ratio $\\frac{4}{9}$, the whole triangle would be $8\\cdot\\frac{9}{4}=18$, and $18-8=10$. The ratio that matters is $PS:PQ=4:10$.",
+    "b": "This scales the area by the ratio of the sides instead of by its square: $8\\cdot\\frac{10}{4}=20$ for the whole triangle, and $20-8=12$. Areas of similar figures scale with the square of the ratio of corresponding lengths.",
+    "c": "This uses $PS:SQ=4:6$ as the ratio of similarity, so the whole triangle comes out as $8\\cdot\\frac{9}{4}=18$, and then it forgets to subtract the small triangle. The correct ratio is $PS:PQ$, and the quadrilateral is the whole triangle minus the small one.",
+    "e": "This finds the area of the whole triangle $PQR$ correctly but stops there. The quadrilateral $SQRT$ is what is left after the small triangle $PST$ of area 8 has been removed."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "Triangle P Q R. Point S is on side P Q and point T is on side P R, so that segment S T is parallel to side Q R. The length P S is 4 centimetres and the length S Q is 6 centimetres. The small triangle P S T has area 8 square centimetres. Find the area, in square centimetres, of the quadrilateral S Q R T, whose vertices are S, Q, R and T.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-mathematics-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item on similar triangles. Two independent slips (wrong ratio, linear versus squared) and one omission (no subtraction) generate the wrong choices."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-mathematics-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tili-math-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-math-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "PS/PQ = 4/10, so the area ratio is 4/25 and the area of PQR is 8*25/4 = 50. The quadrilateral is 50-8 = 42. E (50) is the whole triangle, and C (18) comes from using the ratio 4:6 squared. [A second, separate blind solve (blind-reviewer-wave6-tili-math-run7) reached the same answer: Similarity ratio PS/PQ = 4/10 = 2/5, so the area ratio is 4/25 and area(PQR) = 8*25/4 = 50. The quadrilateral is 50-8 = 42. Option E (50) is the whole triangle, and the others come from linear-ratio mistakes.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "similar-triangles",
+    "area-ratio",
+    "multi-step"
+  ]
+}

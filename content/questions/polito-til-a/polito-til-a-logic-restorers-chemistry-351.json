@@ -1,0 +1,83 @@
+{
+  "id": "polito-til-a-logic-restorers-chemistry-351",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "logical-reasoning",
+  "domainSlug": "tila-logic",
+  "skillSlug": "tila-logic-verbal",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In a restoration workshop in Asti, both of the following statements are true:\n\n1. Every restorer who works in the workshop has studied chemistry.\n2. Some of the restorers who work in the workshop are architects.\n\nWhich of the following statements must be true?",
+  "instructionsMd": "Read \"some\" as \"at least one, and possibly all\".",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "At least one architect has studied chemistry."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "At least one restorer who works in the workshop is not an architect."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Everyone who has studied chemistry works in the workshop."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Every architect has studied chemistry."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "No architect who works outside the workshop has studied chemistry."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "**What to notice first.** Statement 2 guarantees that at least one person exists who is *both* a restorer in the workshop *and* an architect. Everything that must be true has to come from that person.\n\n**The step that settles it.** Statement 1 applies to every restorer in the workshop, so it applies to that person too: they have studied chemistry. That person is therefore an architect who has studied chemistry, so at least one architect has studied chemistry.\n\n**How to check it.** Build one small situation that obeys both statements and see which claims break. Let the workshop have two restorers, Rita and Sara, both architects and both with chemistry. Outside it are Teo, an architect who never studied chemistry, and Ugo, an architect with a chemistry degree who works for a council.\n\n- Teo shows that not every architect has studied chemistry.\n- Rita and Sara show that every restorer in the workshop may be an architect, since \"some\" allows \"all\".\n- Ugo shows that a person with chemistry can work outside the workshop, and that an architect outside it can have studied chemistry.\n\nThe claim that at least one architect has studied chemistry still holds here, as it must in every situation that obeys the two statements.",
+  "distractorRationale": {
+    "d": "Stretches 'some' into 'all'. The statements speak only about architects who are restorers in the workshop; an architect elsewhere, like Teo in the check, may never have studied chemistry.",
+    "b": "Reads 'some' as 'some but not all'. Under the convention stated with the question, 'some' allows 'all': every restorer in the workshop may be an architect, as Rita and Sara are in the check.",
+    "c": "Reverses statement 1. 'Every restorer here has studied chemistry' does not say that people with chemistry work only here; Ugo in the check studied chemistry and works for a council.",
+    "e": "Draws a conclusion about people the statements never mention. Nothing is said about architects outside the workshop, so one of them, like Ugo, may well have studied chemistry."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "A verbal reasoning question with two numbered premises about a restoration workshop in Asti. One: every restorer who works in the workshop has studied chemistry. Two: some of the restorers who work in the workshop are architects. The word some means at least one, and possibly all. The question asks which statement must be true. The five statements are: at least one architect has studied chemistry; at least one restorer in the workshop is not an architect; everyone who has studied chemistry works in the workshop; every architect has studied chemistry; no architect working outside the workshop has studied chemistry.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-polito-til-a-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank for the TIL-A Logical reasoning section. The workshop and the people in the check are invented. The instruction fixes the logical reading of 'some' so that the 'not all' distractor is wrong by convention rather than by argument."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-polito-til-a-logic-author",
+    "reviewer": "blind-reviewer-wave7-tila-logic-drawing-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-tila-logic-drawing-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Some restorers are architects, and every restorer has studied chemistry, so those restorer-architects are architects who have studied chemistry. [A second, separate blind solve (blind-reviewer-wave7-tila-logic-drawing-run1) reached the same answer: Some workshop restorers are architects, and every workshop restorer has studied chemistry, so at least one architect has studied chemistry. B fails because 'some' can mean all, and C is the converse of statement 1. D over-generalises to every architect, and E is not supported.]"
+    },
+    "notes": "Author's uniqueness check: model-checked by script over every universe of three people, each either a workshop restorer or not, with or without chemistry, architect or not, that satisfies both premises. Only 'at least one architect has studied chemistry' holds in every such universe; each other statement fails in at least one. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "syllogism",
+    "quantifiers",
+    "no-calculator"
+  ]
+}

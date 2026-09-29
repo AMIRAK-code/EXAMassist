@@ -1,0 +1,82 @@
+{
+  "id": "polito-til-i-math-trig-double-angle-quadrant-010",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tili-mathematics",
+  "skillSlug": "tili-math-trigonometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "The angle $\\alpha$ lies in the second quadrant, that is $90^{\\circ}<\\alpha<180^{\\circ}$, and $\\sin\\alpha=\\dfrac{3}{5}$. What is the value of $\\tan 2\\alpha$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "-24/7"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "-3/2"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "-24/25"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "7/25"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "24/7"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "**What to notice first.** The quadrant fixes the sign of the cosine. In the second quadrant the sine is positive and the cosine is negative, so\n\n$$\\cos\\alpha=-\\sqrt{1-\\sin^{2}\\alpha}=-\\sqrt{1-\\tfrac{9}{25}}=-\\tfrac{4}{5}.$$\n\n**Double-angle formulas.**\n\n$$\\sin2\\alpha=2\\sin\\alpha\\cos\\alpha=2\\cdot\\tfrac{3}{5}\\cdot\\left(-\\tfrac{4}{5}\\right)=-\\tfrac{24}{25},\\qquad \\cos2\\alpha=\\cos^{2}\\alpha-\\sin^{2}\\alpha=\\tfrac{16}{25}-\\tfrac{9}{25}=\\tfrac{7}{25}.$$\n\n**Divide.** $\\tan2\\alpha=\\dfrac{\\sin2\\alpha}{\\cos2\\alpha}=\\dfrac{-24/25}{7/25}=-\\dfrac{24}{7}$.\n\n**Check two ways.** With $\\tan\\alpha=-\\frac{3}{4}$, the formula $\\tan2\\alpha=\\dfrac{2\\tan\\alpha}{1-\\tan^{2}\\alpha}=\\dfrac{-3/2}{7/16}=-\\dfrac{24}{7}$ gives the same value. Also $\\alpha$ is about $143^{\\circ}$, so $2\\alpha$ is about $286^{\\circ}$, in the fourth quadrant, where the tangent is negative.",
+  "distractorRationale": {
+    "b": "This computes $2\\tan\\alpha=2\\cdot\\left(-\\frac{3}{4}\\right)$. The tangent of a double angle is not twice the tangent: $\\tan2\\alpha=\\frac{2\\tan\\alpha}{1-\\tan^{2}\\alpha}$.",
+    "c": "This is $\\sin2\\alpha=2\\sin\\alpha\\cos\\alpha$, which has the right sign and size for the sine of the double angle. The question asks for the tangent, which is the sine divided by the cosine of $2\\alpha$.",
+    "e": "This takes $\\cos\\alpha=+\\frac{4}{5}$, ignoring the quadrant. In the second quadrant the cosine is negative, so $\\sin2\\alpha$ is negative while $\\cos2\\alpha=\\frac{7}{25}$ is positive, and the tangent is negative.",
+    "d": "This is $\\cos2\\alpha=\\cos^{2}\\alpha-\\sin^{2}\\alpha$. It is the denominator of the required ratio, not the ratio itself."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "The angle alpha is in the second quadrant, between ninety and one hundred eighty degrees, and the sine of alpha is three fifths. Find the tangent of two alpha.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-mathematics-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item. Distractors: ignoring the quadrant, confusing tan 2a with 2 tan a, and returning the sine or cosine of the double angle instead of the tangent."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-mathematics-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tili-math-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-math-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "In the second quadrant cos α = -4/5, so tan α = -3/4. Then tan 2α = (-3/2)/(1-9/16) = -24/7. E (+24/7) ignores the quadrant sign. C (-24/25) is sin 2α and D (7/25) is cos 2α. [A second, separate blind solve (blind-reviewer-wave6-tili-math-run7) reached the same answer: cos a = -4/5, so tan a = -3/4 and tan 2a = (-3/2)/(1-9/16) = -24/7. Cross-check: sin2a/cos2a = (-24/25)/(7/25). Option E is the sign error from taking cos positive, and C and D are sin2a and cos2a.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "double-angle",
+    "quadrants",
+    "multi-step"
+  ]
+}

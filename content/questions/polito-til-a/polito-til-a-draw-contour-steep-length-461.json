@@ -1,0 +1,86 @@
+{
+  "id": "polito-til-a-draw-contour-steep-length-461",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "drawing-representation",
+  "domainSlug": "tila-drawing",
+  "skillSlug": "tila-draw-graphs-diagrams",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "The table describes a straight footpath drawn on a $1:5000$ map with contour lines every $5\\ \\text{m}$. Assume the ground rises evenly between one contour and the next.\n\nAny stretch of the path steeper than $10\\%$ (a rise of more than 10 m for every 100 m measured horizontally) must be built with steps. What total horizontal length of the path needs steps?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$65\\ \\text{m}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$25\\ \\text{m}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$0\\ \\text{m}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$210\\ \\text{m}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$27.5\\ \\text{m}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "**What to notice first.** Every stretch between consecutive contours climbs the same $5\\ \\text{m}$. So the steepness of a stretch depends only on how long it is: the closer two contours lie on the map, the steeper the ground between them.\n\n**Turn the limit into a map distance.** A gradient of exactly $10\\%$ means a $5\\ \\text{m}$ rise over $50\\ \\text{m}$ horizontally. At $1:5000$, $1\\ \\text{cm}$ on the map is $5000\\ \\text{cm} = 50\\ \\text{m}$. So a stretch is steeper than $10\\%$ exactly when its two contours are **less than 1 cm apart on the map**.\n\n**The step that settles it.** Subtract consecutive map distances to get each stretch: $1.2$, $0.8$, $1.6$, $0.5$ and $1.4\\ \\text{cm}$. Only two are under $1\\ \\text{cm}$: from Crossing 1 to Crossing 2 ($0.8\\ \\text{cm}$) and from Crossing 3 to Crossing 4 ($0.5\\ \\text{cm}$). Together they are $1.3\\ \\text{cm}$ on the map, which is $1.3 \\times 50 = 65\\ \\text{m}$.\n\n**How to check it.** Work out the two gradients directly: $0.8\\ \\text{cm} = 40\\ \\text{m}$, and $5 \\div 40 = 12.5\\%$; $0.5\\ \\text{cm} = 25\\ \\text{m}$, and $5 \\div 25 = 20\\%$. The next steepest stretch, $1.2\\ \\text{cm} = 60\\ \\text{m}$, is $5 \\div 60 \\approx 8.3\\%$, safely under the limit.",
+  "distractorRationale": {
+    "c": "Uses the average gradient of the whole path, a 25 m rise over 5.5 cm = 275 m, which is about 9.1% and under the limit. An average hides the steeper stretches inside it, and the rule applies to each stretch.",
+    "b": "Finds the steepest stretch, where the contours are 0.5 cm apart, and stops there. The stretch with contours 0.8 cm apart rises at 12.5%, which is also over the limit.",
+    "e": "Converts the scale wrongly, as 1 cm = 5 m instead of 50 m. Every stretch then looks far steeper than 10%, and the whole path, 5.5 cm, becomes 27.5 m.",
+    "d": "Reads the contours the wrong way round, treating widely spaced contours as steep ground. It adds the three stretches of 1.2, 1.6 and 1.4 cm (60 + 80 + 70 m), which are exactly the ones that do not need steps."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": {
+    "id": "polito-til-a-table-contour-path-485",
+    "version": 1
+  },
+  "accessibilityText": "A map-reading question posed through a table, with no drawing. A straight footpath is drawn on a map at scale one to five thousand with contours every five metres, and the ground is assumed to rise evenly between contours. The table gives the map distance from the start to each contour crossed: the start at 0 centimetres on the 300 metre contour, then 1.2, 2.0, 3.6, 4.1 and 5.5 centimetres for the contours at 305, 310, 315, 320 and 325 metres. Any stretch steeper than ten percent needs steps, and the question asks for the total horizontal length of path that needs steps. The choices are sixty-five, twenty-five, zero, two hundred ten and twenty-seven point five metres.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-polito-til-a-drawing-author",
+    "aiAssisted": true,
+    "notes": "Original item with invented survey data. A script converted each map gap at 1:5000 and computed the gradients 8.33%, 12.5%, 6.25%, 20% and 7.14%; the two stretches over 10% total 40 + 25 = 65 m. No gap is exactly 1 cm, so no stretch sits on the threshold."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-polito-til-a-drawing-author",
+    "reviewer": "blind-reviewer-wave7-tila-logic-drawing-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-tila-logic-drawing-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "At 1:5000, 1 cm on the map is 50 m. The stretches are 60, 40, 80, 25 and 70 m, and each rises 5 m, so the gradients are 8.3%, 12.5%, 6.25%, 20% and 7.1%. Only the 40 m and 25 m stretches are steeper than 10%, which makes 65 m. [A second, separate blind solve (blind-reviewer-wave7-tila-logic-drawing-run1) reached the same answer: At 1:5000, 1 cm = 50 m. The five stretches are 60, 40, 80, 25 and 70 m long and each rises 5 m, giving grades of 8.3%, 12.5%, 6.25%, 20% and 7.1%. Only the 40 m and 25 m stretches are steeper than 10%, so 40 + 25 = 65 m.]"
+    },
+    "notes": "Author's uniqueness check: the gradients are fixed by the table and the scale, with none equal to 10%, so the set of stretches needing steps, and their total of 65 m, is unique. Each distractor follows from one named misreading. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "contour-lines",
+    "map-scale",
+    "gradient",
+    "terrain"
+  ]
+}

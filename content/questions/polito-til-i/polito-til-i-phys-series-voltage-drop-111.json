@@ -1,0 +1,82 @@
+{
+  "id": "polito-til-i-phys-series-voltage-drop-111",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "physics",
+  "domainSlug": "tili-physics",
+  "skillSlug": "tili-phys-electricity",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A 12 V battery is connected to two resistors in series: one of 4 Ω and one of 2 Ω. What is the voltage across the 4 Ω resistor?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "4 V"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "2 V"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "12 V"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "8 V"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "6 V"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "In a series circuit the same current flows through both resistors, and the battery voltage is shared between them in proportion to their resistances.\n\n**Current.** The total resistance is $4+2 = 6\\ \\Omega$, so $I = 12/6 = 2\\ \\text{A}$.\n\n**Voltage across the 4 Ω resistor.** $V = IR = 2\\times4 = 8\\ \\text{V}$.\n\n**Check.** The 2 Ω resistor has $2\\times2 = 4\\ \\text{V}$ across it, and $8+4 = 12\\ \\text{V}$, the battery voltage. The larger resistor also takes the larger share, in the ratio 4 : 2.",
+  "distractorRationale": {
+    "b": "Reports the current (2 A) as if it were the voltage. The current has to be multiplied by the resistance to give a voltage.",
+    "a": "Gives the voltage across the 2 Ω resistor. The larger resistor takes the larger share of the voltage, so the 4 Ω resistor takes more than 4 V.",
+    "e": "Splits the battery voltage equally, 12 ÷ 2. Resistors in series share the voltage in proportion to their resistances, not equally.",
+    "c": "Gives the whole battery voltage to the 4 Ω resistor, which is how parallel branches behave. In series the voltage is divided between the resistors."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "A circuit question. A 12 volt battery is connected to two resistors in series, one of 4 ohms and one of 2 ohms. The voltage across the 4 ohm resistor is wanted. The choices are 2, 4, 6, 8 and 12 volts.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-wave6-physics-technical-author",
+    "aiAssisted": true,
+    "notes": "Original item. Wrong choices: the current quoted as a voltage, the voltage on the other resistor, an equal split, and the full battery voltage."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-wave6-physics-technical-author",
+    "reviewer": "blind-reviewer-wave6-tili-phys-tech-run8",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-phys-tech-run8",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "I = 12/6 = 2 A; V across 4 Ω = 8 V. 4 V is the drop across the 2 Ω resistor, and 6 V assumes an equal split. [A second, separate blind solve (blind-reviewer-wave6-tili-phys-tech-run9) reached the same answer: I=12/6=2 A; V across 4 ohm = 8 V. 4 V is the 2-ohm drop, 6 V equal split, 12 V full emf.]"
+    },
+    "notes": "Awaiting a blind independent solve. The author recomputed every option and checked the key a second way before saving (see the explanation). Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "ohms-law",
+    "series-circuit",
+    "voltage-divider"
+  ]
+}

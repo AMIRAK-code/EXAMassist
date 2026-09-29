@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-fun-composition-equal-705",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolcf-mathematics",
+  "skillSlug": "tolcf-math-functions-trig",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Let $f(x) = 3x - 2$ and $g(x) = x^{2}$. For which real values of $x$ is $g(f(x)) = f(g(x))$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$x = 0$ and $x = 2$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$x = 1$ only"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$x = \\dfrac{1}{2}$ only"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$x = \\pm\\dfrac{\\sqrt{3}}{3}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "no real value of $x$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Write the two compositions separately. In $g(f(x))$ the function $f$ acts first; in $f(g(x))$ the function $g$ acts first.\n\n$$g(f(x)) = (3x - 2)^{2} = 9x^{2} - 12x + 4, \\qquad f(g(x)) = 3x^{2} - 2.$$\n\n**Set them equal.** $9x^{2} - 12x + 4 = 3x^{2} - 2$ gives $6x^{2} - 12x + 6 = 0$, that is $6(x-1)^{2} = 0$. The only solution is $x = 1$ (a double root).\n\n**How to check it.** At $x = 1$: $f(1) = 1$ and $g(1) = 1$, so both compositions equal 1 ✓. At $x = 0$ the two sides are 4 and $-2$, so $x=0$ fails.",
+  "distractorRationale": {
+    "c": "Evaluates $f(g(x))$ as $(3x)^{2} - 2 = 9x^{2} - 2$, squaring the 3 as well. The function $f$ applied to $x^{2}$ gives $3x^{2} - 2$.",
+    "a": "Drops the constant when collecting terms, reaching $6x^{2} - 12x = 0$ instead of $6x^{2} - 12x + 6 = 0$. Here $4 - (-2) = 6$ remains.",
+    "d": "Expands $(3x-2)^{2}$ as $9x^{2} - 4$, leaving out the middle term $-12x$.",
+    "e": "Expands $(3x-2)^{2}$ as $9x^{2} + 4$, leaving out the middle term and adding the squares, which leads to $6x^{2} = -6$."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "Let f of x equal 3 x minus 2 and g of x equal x squared. The question asks for which real values of x the composition g of f of x equals f of g of x. The five choices are: x equals 0 and x equals 2; x equals 1 only; x equals one half only; x equals plus or minus the square root of 3, divided by 3; and no real value of x.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-tolc-f-mathematics-author",
+    "aiAssisted": true,
+    "notes": "Original item. The two orders of composition give different expressions that happen to meet at a double root; distractors come from expansion slips."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-tolc-f-mathematics-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-math-phys-run14",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-math-phys-run14",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "g(f(x))=(3x-2)^2=9x^2-12x+4 and f(g(x))=3x^2-2. The difference is 6x^2-12x+6=6(x-1)^2=0, so the only solution is x=1 (a double root). 0 and 2 fail: at 0, 4 vs -2. [A second, separate blind solve (blind-reviewer-wave6-tolcf-math-phys-run16) reached the same answer: g(f(x))=(3x-2)^2=9x^2-12x+4 and f(g(x))=3x^2-2. Setting them equal gives 6x^2-12x+6=0, i.e. (x-1)^2=0, so x=1 only. x=0 gives 4 vs -2, x=2 gives 16 vs 10, and x=1/2 gives 1/4 vs -5/4, so the others fail.]"
+    },
+    "notes": "Author check: the key was computed and then confirmed a second way (see the check in the explanation); each wrong choice was tried against the stem and fails for the reason given in its distractor note. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "composition",
+    "quadratic-equation"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "id": "polito-til-a-read-threshold-count-303",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "reading-comprehension",
+  "domainSlug": "tila-reading-comprehension",
+  "skillSlug": "tila-reading-stated",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "According to the passage, what did the observers in Castelvera count?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The number of children playing on each of the two streets."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The number of visits that residents paid to one another’s homes."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The number of neighbours each resident knew by name."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The number of times residents stopped in the street to talk to a neighbour during one week."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The number of residents who sat on a bench in front of their home."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "This is a question about what the text **states**, so the answer must be something you can point to.\n\n**What to notice first.** The passage describes the survey in its second paragraph, and one sentence says what the observers did: they \"counted how many times, during one week in June, a resident stopped in the street to talk to a neighbour\". That is the quantity that was measured.\n\n**The step that settles it.** Each of the other choices takes a detail the passage does mention and promotes it to the thing that was counted: the bench, the residents' acquaintances, the visits and the children. In every case the passage mentions the detail for a different reason (as behaviour noted by the report, as background, as something avoided, or as a control).\n\n**How to check.** For a stated-information question, try to find the sentence that supports your choice and confirm that it says the same thing, not something nearby. Here only one choice has a sentence behind it that describes a count.",
+  "distractorRationale": {
+    "e": "Sitting at the front is what the report noted about some Via Nuova residents, not what was tallied. Taking the behaviour the report describes for the quantity that was measured is the slip here.",
+    "c": "The passage says the residents who sat at the front already knew their neighbours, but that is a background remark about those people. Nobody is said to have counted acquaintances.",
+    "b": "Visits appear in the passage only as something the low wall let residents avoid committing to. They are not the counted event.",
+    "a": "Children are mentioned only to show the two streets were alike (neither had more of them). A control mentioned in passing is not the measurement."
+  },
+  "estimatedSeconds": 45,
+  "stimulusRef": {
+    "id": "polito-til-a-passage-threshold-300",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying essay on the threshold between street and front door. It asks what the observers in the town of Castelvera counted. Five answer choices follow.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-a-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written against the original passage polito-til-a-passage-threshold-300, authored alongside it. Every distractor rests on a named misreading of that passage."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-a-wave6-author",
+    "reviewer": "blind-reviewer-wave7-tila-reading-gk-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-tila-reading-gk-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "'Observers counted how many times, during one week in June, a resident stopped in the street to talk to a neighbour.' Children are mentioned only as a control, not as the count. Visits, names known and bench-sitting were not counted. [A second, separate blind solve (blind-reviewer-wave7-tila-reading-gk-run1) reached the same answer: The passage says observers counted 'how many times, during one week in June, a resident stopped in the street to talk to a neighbour'. Children are mentioned only as a control, visits only in the analysis and benches only in the report's notes. None of those was the count.]"
+    },
+    "notes": "Author's uniqueness check: the second paragraph names one counted event, residents stopping to talk to a neighbour in a week in June; every other choice is a detail the passage mentions but does not say was counted. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "reading",
+    "stated-information",
+    "architecture",
+    "urban-design"
+  ]
+}

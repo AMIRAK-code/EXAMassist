@@ -1,0 +1,83 @@
+{
+  "id": "polito-til-a-draw-scale-site-to-elevation-451",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "drawing-representation",
+  "domainSlug": "tila-drawing",
+  "skillSlug": "tila-draw-orthographic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "On a site plan drawn at a scale of $1:500$, the straight front wall of a new library in Novara measures $4.2\\ \\text{cm}$. The same wall is then drawn, at its full length, in the front elevation of the library at a scale of $1:100$.\n\nHow long is the wall on the elevation drawing?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$21\\ \\text{cm}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$210\\ \\text{cm}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$21\\ \\text{m}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$0.84\\ \\text{cm}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$2.1\\ \\text{cm}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "**What to notice first.** Both drawings show the same real wall. Go through its real length rather than trying to convert one scale into the other directly, and remember that $1:100$ is the *larger* scale: the drawing is bigger than on the $1:500$ site plan.\n\n**The step that settles it.** At $1:500$, every centimetre on the sheet stands for $500\\ \\text{cm}$ of the real wall:\n\n$$4.2 \\times 500 = 2100\\ \\text{cm} = 21\\ \\text{m}.$$\n\nAt $1:100$, the drawn length is the real length divided by 100:\n\n$$2100\\ \\text{cm} \\div 100 = 21\\ \\text{cm}.$$\n\n**How to check it.** Going from $1:500$ to $1:100$ makes every drawn length $500 \\div 100 = 5$ times longer, and $4.2 \\times 5 = 21\\ \\text{cm}$. A 21 cm line also fits comfortably on an elevation sheet, which a line many times longer would not.",
+  "distractorRationale": {
+    "d": "Divides by 5 instead of multiplying. Changing from 1:500 to 1:100 enlarges the drawing, because 1:100 is the larger scale, so the drawn wall gets longer, not shorter.",
+    "e": "Slips on the unit conversion: writes the real length of 21 m as 210 cm instead of 2100 cm, then divides correctly by 100.",
+    "b": "Finds the real length of 2100 cm but divides it by 10 instead of 100, which would be a drawing at 1:10.",
+    "c": "This is the real length of the wall, not its length on the drawing. The last step, reducing 21 m by the elevation's scale of 1:100, is missing."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "A scale question with no figure. On a site plan at scale one to five hundred, the front wall of a library measures four point two centimetres. The same wall is drawn at full length in the front elevation at scale one to one hundred. The question asks how long the wall is on the elevation drawing. The choices are: twenty-one centimetres; two hundred ten centimetres; twenty-one metres; zero point eight four centimetres; and two point one centimetres.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-polito-til-a-drawing-author",
+    "aiAssisted": true,
+    "notes": "Original item; the library and its dimensions are invented. The key and every distractor value were recomputed by script: real length 4.2 x 500 = 2100 cm; at 1:100 that is 21 cm; the inverted factor gives 0.84 cm."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-polito-til-a-drawing-author",
+    "reviewer": "blind-reviewer-wave7-tila-logic-drawing-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-tila-logic-drawing-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "4.2 cm at 1:500 is 2100 cm, or 21 m, in reality. At 1:100 that is drawn as 21 cm. [A second, separate blind solve (blind-reviewer-wave7-tila-logic-drawing-run1) reached the same answer: 4.2 cm x 500 = 2100 cm, so the real wall is 21 m. At 1:100 it is drawn 21 cm long. C gives the real length rather than the drawn one, and B, D and E are scale-factor slips.]"
+    },
+    "notes": "Author's uniqueness check: the drawn length is fixed at 21 cm by the two scales; every other choice differs from it by a named factor (5, 10, 100) or is the real length. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "scale",
+    "site-plan",
+    "elevation",
+    "unit-conversion"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-bio-abo-second-child-809",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "biology",
+  "domainSlug": "tolcf-biology",
+  "skillSlug": "tolcf-bio-genetics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A woman with blood group A and a man with blood group B have a child with blood group O. What is the probability that their next child also has blood group O?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "0"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "1/4"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "1/2"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "3/4"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "1"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Notice first what the group O child tells you. Group O is the genotype $ii$, so that child received an $i$ allele from each parent. A parent with group A is $I^{A}I^{A}$ or $I^{A}i$, and a parent with group B is $I^{B}I^{B}$ or $I^{B}i$. Because the couple has a group O child, both parents must carry $i$: the mother is $I^{A}i$ and the father is $I^{B}i$.\n\nCross $I^{A}i \\times I^{B}i$: the four equally likely children are $I^{A}I^{B}$ (group AB), $I^{A}i$ (group A), $I^{B}i$ (group B) and $ii$ (group O). The probability of group O is $\\frac{1}{4}$.\n\nThe first child does not change the chances for the next one; each child is an independent draw from the same cross. The first child only told us the parents' genotypes.",
+  "distractorRationale": {
+    "a": "This assumes a group A parent and a group B parent cannot have a group O child. They can, if each is heterozygous and carries the recessive allele for group O.",
+    "c": "This is the chance of group O when one parent is $I^{A}i$ and the other is $ii$ (group O), as in a test cross. Here neither parent has group O: each carries one $i$ allele and one non-O allele, so each passes on $i$ only half the time and the chance is $\\frac{1}{2}\\times\\frac{1}{2}=\\frac{1}{4}$.",
+    "d": "This is the chance of NOT having group O: the three quarters of children who receive $I^{A}$, $I^{B}$ or both. It answers the opposite question, or borrows the 3 : 1 ratio without noticing that group O is the recessive, one-in-four type.",
+    "e": "This assumes that because the first child has group O, all children will. Each child inherits alleles independently of its siblings."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A short text question with no figure. A mother with blood group A and a father with blood group B have a child with blood group O. The question asks the probability that the next child also has group O. The five choices are zero, one quarter, one half, three quarters and one. In the explanation, alleles are written I superscript A, I superscript B and lowercase i.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item. Requires inferring both parents are heterozygous from the first child, then one Punnett square."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-bio-run17",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-bio-run17",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "An O child (ii) forces the genotypes to be A mother IAi and B father IBi. Each later child independently has P(ii) = 1/2 x 1/2 = 1/4. 0 and 1 ignore the evidence, 1/2 confuses this with one parent's i gamete, and 3/4 is the chance of not being O. [A second, separate blind solve (blind-reviewer-wave6-tolcf-bio-run19) reached the same answer: An O child means both parents are heterozygous: IAi x IBi. Each birth is independent, so P(ii) = 1/2 x 1/2 = 1/4. 0 would need a parent to be homozygous, which the O child rules out. 1/2 and 3/4 have no genetic basis here, and 1 confuses 'already has an O child' with certainty.]"
+    },
+    "notes": ""
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "abo-blood-groups",
+    "codominance",
+    "inference-of-genotype"
+  ]
+}

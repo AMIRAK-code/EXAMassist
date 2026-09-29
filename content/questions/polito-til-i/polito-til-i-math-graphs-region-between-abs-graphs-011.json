@@ -1,0 +1,82 @@
+{
+  "id": "polito-til-i-math-graphs-region-between-abs-graphs-011",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tili-mathematics",
+  "skillSlug": "tili-math-graphs",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In the Cartesian plane, let $S$ be the set of points $(x,y)$ that satisfy both $y\\ge|x|$ and $y\\le 6-|x|$. What is the area of $S$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "9"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "18"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "27"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "36"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "72"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "**Sketch the two boundaries.** The graph of $y=|x|$ is a V with its vertex at the origin, and $y\\ge|x|$ is the part on or above it. The graph of $y=6-|x|$ is an upside-down V with its vertex at $(0,6)$, and $y\\le6-|x|$ is the part on or below it.\n\n**Where they meet.** $|x|=6-|x|$ gives $|x|=3$, so the corners are $(3,3)$ and $(-3,3)$. The set $S$ is the quadrilateral with vertices $(0,0)$, $(3,3)$, $(0,6)$ and $(-3,3)$.\n\n**Area.** This is a square whose diagonals are the vertical segment from $(0,0)$ to $(0,6)$ and the horizontal segment from $(-3,3)$ to $(3,3)$, both of length 6. Its area is $\\dfrac{6\\cdot6}{2}=18$.\n\n**Check by splitting.** The horizontal line $y=3$ cuts $S$ into two triangles, each with base 6 and height 3, so $2\\cdot\\frac{6\\cdot3}{2}=18$. Also the side of the square is $3\\sqrt{2}$, and $\\left(3\\sqrt{2}\\right)^{2}=18$.",
+  "distractorRationale": {
+    "a": "This is the area of only one of the two triangles that make up $S$, for example the half with $x\\ge0$, whose vertices are $(0,0)$, $(3,3)$ and $(0,6)$. The region is symmetric about the $y$-axis, so the left half must be added.",
+    "c": "This starts from the triangle of area 36 between the graph of $y=6-|x|$ and the $x$-axis, and removes only one of the two corner triangles (area 9) cut off by the condition $y\\ge|x|$. Both corners are excluded: $36-9-9=18$.",
+    "d": "This is the area of the triangle between the graph of $y=6-|x|$ and the $x$-axis, base 12 and height 6. It ignores the condition $y\\ge|x|$, which removes the two corners next to the axis.",
+    "e": "This is the same triangle taken as a rectangle of base 12 and height 6, forgetting the factor $\\frac{1}{2}$ for a triangle. It also ignores the condition $y\\ge|x|$."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": null,
+  "accessibilityText": "Consider all points x, y in the plane that lie on or above the V-shaped graph of y equals the absolute value of x, and on or below the upside-down V-shaped graph of y equals six minus the absolute value of x. Find the area of this region.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-mathematics-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item on regions bounded by absolute-value graphs. Distractors: half the region, the enclosing triangle with and without the factor one half, and removing only one of two symmetric corners."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-mathematics-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tili-math-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-math-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The region is a square with vertices (0,0), (3,3), (0,6) and (-3,3). Both diagonals are 6, so the area is 6*6/2 = 18. D (36) forgets to halve the product of the diagonals, and A (9) is one half of the square. [A second, separate blind solve (blind-reviewer-wave6-tili-math-run7) reached the same answer: The region is a square with vertices (0,0), (3,3), (0,6) and (-3,3). Both diagonals are 6, so the area is 6*6/2 = 18. Option D (36) forgets to halve, and A (9) counts only one half.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "absolute-value",
+    "plane-regions",
+    "area"
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-math-stats-mean-added-value-004",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tili-mathematics",
+  "skillSlug": "tili-math-statistics-probability",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A workshop in Turin measures six steel rods and finds that their mean length is 8 cm. A seventh rod is then measured, and the mean length of all seven rods is 9 cm. How long, in centimetres, is the seventh rod?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "9"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "14"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "15"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "17"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "63"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "**What to notice first.** A mean is a total divided by a count, so work with totals.\n\nSix rods with mean 8 cm total $6\\cdot8=48$ cm. Seven rods with mean 9 cm total $7\\cdot9=63$ cm. The seventh rod accounts for the difference: $63-48=15$ cm.\n\n**Check.** $\\dfrac{48+15}{7}=\\dfrac{63}{7}=9$. Also, the new rod is 6 cm longer than the new mean, and those 6 cm are shared as the 1 cm rise for each of the six old rods: $6\\cdot1=6$.",
+  "distractorRationale": {
+    "a": "This assumes the new rod is as long as the new mean. The mean has risen by 1 because the seventh rod is longer than 9, enough to lift the total for all seven.",
+    "b": "This starts from the old mean, 8 cm, and adds the 1 cm rise for each of the six old rods, $8+6\\cdot1=14$. But the seventh rod must itself reach the new mean of 9 cm before it can supply those 6 extra centimetres, so it is $9+6\\cdot1=15$ cm; a rod of 14 cm would give a total of 62 cm and a mean below 9.",
+    "d": "This adds the old mean and the new mean, $8+9$. Means cannot be added to recover a missing value; the totals are what add up.",
+    "e": "This is the total length of all seven rods, $7\\cdot9$. The length of the seventh rod alone is what is left after taking away the 48 cm of the first six."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "Six rods have a mean length of eight centimetres. After a seventh rod is added the mean of all seven is nine centimetres. Find the length of the seventh rod.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-mathematics-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item on the arithmetic mean. The trap answers correspond to using means instead of totals."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-mathematics-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tili-math-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-math-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The six rods total 48 cm and the seven total 63 cm, so the seventh rod is 15 cm. E (63) is the new total and A (9) is the new mean. No other option is defensible. [A second, separate blind solve (blind-reviewer-wave6-tili-math-run7) reached the same answer: The total goes from 6*8 = 48 to 7*9 = 63, so the seventh rod is 15. Option E (63) is the total and A (9) is the new mean. None of the others is defensible.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "mean",
+    "totals"
+  ]
+}

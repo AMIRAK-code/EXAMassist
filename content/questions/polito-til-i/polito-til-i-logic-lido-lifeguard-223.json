@@ -1,0 +1,83 @@
+{
+  "id": "polito-til-i-logic-lido-lifeguard-223",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "reading-logic",
+  "domainSlug": "tili-logic",
+  "skillSlug": "tili-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Two rules apply at a riverside lido.\n\n- The lido opens only if a lifeguard is on duty.\n- A lifeguard is never on duty during a thunderstorm.\n\nWhich one of the following conclusions follows with certainty?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "If there is a thunderstorm, the lido does not open."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "If the lido does not open, there is a thunderstorm."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "If no lifeguard is on duty, there is a thunderstorm."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "If there is no thunderstorm, the lido opens."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "If a lifeguard is on duty, the lido opens."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Translate the rules into \"if ... then\". \"The lido opens only if a lifeguard is on duty\" means: open leads to lifeguard on duty. \"A lifeguard is never on duty during a thunderstorm\" means: storm leads to no lifeguard.\n\nChain them. A storm means no lifeguard. The contrapositive of the first rule says no lifeguard means the lido is not open. So a storm means the lido does not open. That is the choice that follows with certainty.\n\nThe others each turn a conditional around or deny its front half. \"Only if\" gives a necessary condition, not a sufficient one, which rules out the choice saying a lifeguard on duty makes the lido open. Reversing a valid conclusion (closed leads to storm) or reversing a premise (no lifeguard leads to storm) changes its meaning. Denying the front (no storm, so the lido opens) ignores that a lifeguard can be missing for some other reason.\n\n**Check:** for any doubtful choice, invent an ordinary day that satisfies both rules and breaks the choice. A calm day on which the lifeguard is ill, so the lido stays shut, breaks three of the wrong choices at once.",
+  "distractorRationale": {
+    "d": "This denies the antecedent of the chained conclusion (a storm means the lido stays shut) and treats the absence of a storm as enough to open. A day with no storm can still have no lifeguard, and then the first rule keeps the lido shut.",
+    "b": "This reverses the conclusion just derived. The lido can stay closed for reasons other than a storm, such as a lifeguard simply not turning up.",
+    "e": "This turns \"only if\" around. A lifeguard on duty is necessary for opening, not sufficient; the lido may still stay closed.",
+    "c": "This reverses the second rule. Storms rule out a lifeguard, but a lifeguard can be absent on a calm day too."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A logic question about two rules for a riverside lido: it opens only if a lifeguard is on duty, and a lifeguard is never on duty during a thunderstorm. The question asks which of five if-then conclusions follows with certainty. No notation or figures.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-wave6-til-i-reading-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item; the situation, names and wording are invented. Needs no knowledge beyond reasoning."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-wave6-til-i-reading-logic-author",
+    "reviewer": "blind-reviewer-wave6-tili-reading-logic-run4",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-reading-logic-run4",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "'Opens only if lifeguard' means open -> lifeguard, and thunderstorm -> no lifeguard. Chaining gives thunderstorm -> no lifeguard -> not open. B and C are converses. D is an inverse. E converts 'only if' into 'if'. [A second, separate blind solve (blind-reviewer-wave6-tili-reading-logic-run6) reached the same answer: Open means a lifeguard is on duty, and a thunderstorm means no lifeguard. Chaining these, a thunderstorm means no lifeguard, so the lido does not open. B and C are converse errors. D is an inverse error. E treats a necessary condition as sufficient.]"
+    },
+    "notes": "Deduction item on \"only if\" and the contrapositive. All eight combinations of storm, lifeguard and opening were enumerated: only the storm-implies-closed conclusion holds in every consistent world. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "deduction",
+    "conditionals",
+    "only-if"
+  ]
+}

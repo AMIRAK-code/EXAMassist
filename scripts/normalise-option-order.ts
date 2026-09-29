@@ -26,10 +26,17 @@ import { createRng, shuffle } from '../src/lib/assessment/select';
  *
  * Only draft and in-review items are touched: published order is immutable.
  *
- *   npx tsx scripts/normalise-option-order.ts [--dry-run]
+ *   npx tsx scripts/normalise-option-order.ts [--dry-run] [--exam=<examKey>[,<examKey>...]]
+ *
+ * --exam limits the run to the named exams, so a batch that is ready for
+ * review can be normalised while authors are still writing other exams.
  */
 
 const dryRun = process.argv.includes('--dry-run');
+const examFilter = (() => {
+  const arg = process.argv.find((a) => a.startsWith('--exam='));
+  return arg ? new Set(arg.slice('--exam='.length).split(',').filter(Boolean)) : null;
+})();
 const SHUFFLEABLE = new Set(['single_select', 'multi_select']);
 const LABELS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
@@ -61,6 +68,7 @@ function main(): void {
 
   for (const entry of questions) {
     const question = entry.question;
+    if (examFilter && !examFilter.has(question.examKey)) continue;
 
     // Published content is immutable. Re-ordering a published item would change
     // what a learner was shown and would make this script non-idempotent, so

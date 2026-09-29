@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-bio-same-genus-implies-804",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "biology",
+  "domainSlug": "tolcf-biology",
+  "skillSlug": "tolcf-bio-diversity",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Two organisms are classified in the same genus. Which of the following must be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "They belong to the same family."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "They belong to the same species."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "They can interbreed and produce fertile offspring."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "They belong to different orders."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "They have the same specific epithet in their scientific names."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The ranks of classification are nested, from the most inclusive to the least: domain, kingdom, phylum, class, order, family, genus, species. Each genus lies inside exactly one family, and that family inside one order, and so on upwards.\n\nSo two organisms in the same genus automatically share the family, order, class, phylum and kingdom. Anything that concerns a lower rank, such as being one species, sharing the second word of the name or interbreeding, is not guaranteed. Anything that puts them in different higher taxa contradicts the nesting.",
+  "distractorRationale": {
+    "b": "A genus can contain many species. The lion and the tiger share the genus *Panthera* and are different species.",
+    "c": "Interbreeding with fertile offspring is the usual test for belonging to one species, which is a lower rank than the genus. Two different species of one genus usually cannot do this, so it is not guaranteed.",
+    "d": "The order is a higher rank than the genus, so organisms in one genus cannot be in different orders.",
+    "e": "The specific epithet is the second word of the binomial and names the species. Two species in one genus have different epithets."
+  },
+  "estimatedSeconds": 55,
+  "stimulusRef": null,
+  "accessibilityText": "A short text question with no figure. Two organisms are classified in the same genus, and the question asks what must be true. The five choices are: they belong to the same family; they belong to the same species; they can interbreed and produce fertile offspring; they belong to different orders; they have the same specific epithet.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item on nested taxonomic ranks. The distractors mix ranks below the genus with an impossible claim about ranks above it."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-bio-run17",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-bio-run17",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The taxonomic hierarchy is nested, so the same genus implies the same family (and order, and so on). The same species is not required. Interbreeding is not required. Different orders is impossible. The same specific epithet with the same genus would make them the same species, so it is not required either. [A second, separate blind solve (blind-reviewer-wave6-tolcf-bio-run19) reached the same answer: Taxonomy is nested, so two organisms in the same genus must be in the same family. They need not be the same species, and being able to interbreed is not required. The same order is required, so d is false. Same genus means the same generic name, not the same specific epithet, so e is false.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "taxonomy",
+    "genus",
+    "linnaean-hierarchy"
+  ]
+}

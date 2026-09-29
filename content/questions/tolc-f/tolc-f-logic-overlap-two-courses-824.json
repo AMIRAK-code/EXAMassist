@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-logic-overlap-two-courses-824",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "logic",
+  "domainSlug": "tolcf-logic",
+  "skillSlug": "tolcf-logic-math-reasoning",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In a first-year group of 30 pharmacy students, 18 are enrolled in the anatomy module and 15 in the statistics module. Five students are enrolled in neither module. How many students are enrolled in both modules?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "3"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "5"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "8"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "10"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "12"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Use the union of the two groups. If 5 of the 30 students are in neither module, then $30 - 5 = 25$ students take at least one module.\n\nAdding the two enrolments counts every student in both modules twice: $18 + 15 = 33$. The excess over the 25 who are enrolled is exactly the number counted twice: $33 - 25 = 8$.\n\nCheck: 10 take anatomy only, 7 take statistics only, 8 take both and 5 take neither; $10 + 7 + 8 + 5 = 30$.",
+  "distractorRationale": {
+    "a": "This is 18 + 15 - 30. It uses all 30 students, forgetting that 5 of them are in neither module and so do not count in the union.",
+    "b": "This is the number of students in neither module, not in both.",
+    "d": "This is 15 - 5: it treats the 5 students in neither module as if they were part of the statistics group and removes them from it. Those 5 are outside both groups, so they belong in the step that finds the union ($30 - 5 = 25$), not in either module's count.",
+    "e": "This is 30 - 18, the number of students who are not in anatomy. It does not describe the students in both."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": null,
+  "accessibilityText": "A short text question with no figure. A group of 30 students: 18 take anatomy, 15 take statistics and 5 take neither module. The question asks how many take both. The five choices are 3, 5, 8, 10 and 12.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item on inclusion-exclusion with a group that takes neither module."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-logic-run10",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-logic-run10",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "30 - 5 = 25 students take at least one module. 18 + 15 - 25 = 8 take both. The other values come from no consistent method: 3 = 18-15, 5 = neither, and 12 does not fit. [A second, separate blind solve (blind-reviewer-wave6-tolcf-logic-run11) reached the same answer: Enrolled in at least one module: 30-5 = 25. 18+15-x = 25, so x = 8. Check: anatomy only 10, statistics only 7, both 8, neither 5, total 30.]"
+    },
+    "notes": ""
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "sets",
+    "inclusion-exclusion",
+    "counting"
+  ]
+}

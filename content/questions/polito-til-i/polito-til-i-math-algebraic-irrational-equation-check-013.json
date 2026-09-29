@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-math-algebraic-irrational-equation-check-013",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tili-mathematics",
+  "skillSlug": "tili-math-algebraic-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which of the following correctly describes the real solutions of $\\sqrt{x+6}=x$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "There is no real solution."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$x=-2$ and $x=3$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$x=-3$ and $x=2$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$x=-2$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$x=3$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "**What to notice first.** The left side is a square root, so it is never negative. Any solution must therefore satisfy $x\\ge0$, and every root found must be checked in the original equation, because squaring can create roots that the original does not have.\n\n**Square both sides.** $x+6=x^{2}$, so $x^{2}-x-6=0$, that is $(x-3)(x+2)=0$, giving $x=3$ or $x=-2$.\n\n**Check in the original equation.** For $x=3$: $\\sqrt{9}=3$, which is true. For $x=-2$: $\\sqrt{4}=2\\neq-2$, which is false. The condition $x\\ge0$ would have removed $-2$ at once.\n\nSo the only real solution is $x=3$.",
+  "distractorRationale": {
+    "d": "This keeps the root $-2$ because $\\sqrt{-2+6}=\\sqrt{4}=2$ and treats the equation as if it only had to match in size, not in sign. A square root is never negative, so it cannot equal $-2$.",
+    "b": "This solves the squared equation correctly but never substitutes back. Squaring both sides can introduce a value that the original equation rejects, and $x=-2$ is one: the left side is $2$ and the right side is $-2$.",
+    "c": "This factors $x^{2}-x-6$ as $(x+3)(x-2)$, a sign slip. Neither value works: $\\sqrt{-3+6}=\\sqrt{3}\\neq-3$ and $\\sqrt{2+6}=\\sqrt{8}\\neq2$.",
+    "a": "This squares only the left-hand side, turning the equation into $x+6=x$, which reduces to $6=0$. Both sides of an equation must be squared: $\\left(\\sqrt{x+6}\\right)^{2}=x^{2}$."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": null,
+  "accessibilityText": "Solve the equation: the square root of x plus six equals x. Decide which set of real solutions is correct. The choices are: x equals three; x equals minus two; both minus two and three; x equals minus three and two; or no real solution.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-mathematics-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item on an irrational equation with an extraneous root. Distractors: sign-blind acceptance of the extraneous root, no back-substitution, factoring sign slip, and squaring only one side."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-mathematics-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tili-math-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-math-run0",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Squaring gives x^2-x-6=0, so x=3 or x=-2. The square root is non-negative, so x must be at least 0 and x=-2 is extraneous. Check: sqrt(9)=3. B is the unchecked pair, D is the rejected root only, and C has the wrong signs. [A second, separate blind solve (blind-reviewer-wave6-tili-math-run7) reached the same answer: Squaring gives x^2-x-6=0, so x=3 or x=-2. The root x=-2 is extraneous because the RHS must be >=0 (sqrt(4)=2, not -2). Only x=3 is left.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "irrational-equation",
+    "extraneous-root"
+  ]
+}

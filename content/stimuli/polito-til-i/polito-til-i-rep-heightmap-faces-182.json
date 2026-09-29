@@ -1,0 +1,59 @@
+{
+  "id": "polito-til-i-rep-heightmap-faces-182",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "kind": "table",
+  "title": "Height map of a solid built from unit cubes (3 rows, 3 columns)",
+  "bodyMd": "A solid is made of identical unit cubes standing on a floor grid of 3 rows and 3 columns. Each number in the table is the count of cubes stacked on that square of the grid; 0 means the square is empty. Row 1 is nearest to an observer standing in front of the solid, and Column 1 is on the observer's left. Each stack rests on the floor with its cubes directly on top of one another. Every cube face has an area of one square unit.",
+  "data": {
+    "columns": [
+      {
+        "key": "row",
+        "label": "Row"
+      },
+      {
+        "key": "c1",
+        "label": "Column 1 (left)"
+      },
+      {
+        "key": "c2",
+        "label": "Column 2"
+      },
+      {
+        "key": "c3",
+        "label": "Column 3 (right)"
+      }
+    ],
+    "rows": [
+      {
+        "row": "Row 1 (front)",
+        "c1": 2,
+        "c2": 1,
+        "c3": 0
+      },
+      {
+        "row": "Row 2",
+        "c1": 1,
+        "c2": 3,
+        "c3": 1
+      },
+      {
+        "row": "Row 3 (back)",
+        "c1": 0,
+        "c2": 1,
+        "c3": 2
+      }
+    ],
+    "caption": "Number of unit cubes stacked on each square of the floor grid. Row 1 is nearest to the observer; Column 1 is on the observer's left.",
+    "chart": null
+  },
+  "accessibilityText": "A table of cube counts with three rows and three columns, describing a solid made of unit cubes. Each number is how many cubes are stacked on that square of the floor; zero means the square is empty. The rows run from front to back and the columns from left to right. Row 1, the front row: 2, 1, 0. Row 2, the middle row: 1, 3, 1. Row 3, the back row: 0, 1, 2. In total there are 11 cubes standing on 7 non-empty squares. The two empty squares are at the front right and the back left corners.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-wave6-physics-technical-author",
+    "aiAssisted": true,
+    "notes": "Original invented height map. 11 cubes on 7 squares; every row and column of the table rises and falls at most once."
+  },
+  "rightsStatus": "original-owned",
+  "state": "published"
+}

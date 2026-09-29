@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-a-read-threshold-forecourt-304",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "reading-comprehension",
+  "domainSlug": "tila-reading-comprehension",
+  "skillSlug": "tila-reading-inferred",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which of the following statements is best supported by the passage?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Planners were right to treat the frontage of a house as waste."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "In a street where the houses open onto the pavement, neighbours never stop to talk to one another."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The residents of Via dei Tigli are by nature less friendly than those of Via Nuova."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "A forecourt can turn residents who dislike their neighbours into sociable people."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "On its own, a forecourt is likely to increase conversation mainly among neighbours who are already inclined to talk to one another."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "An **inference** question asks what the text supports without stating it, so build the case from the evidence and then test each choice against it.\n\n**What to notice first.** Two statements in the third paragraph carry the weight. The report noted that residents who sat at the front were \"mostly people who already knew their neighbours\", and the author sums up: the forecourt \"did not create friendliness; it lowered the cost of showing it\".\n\n**The step that settles it.** If a forecourt only makes it cheaper to show friendliness that already exists, its effect will be greatest where people are already inclined to be friendly. That is what the correct choice says, and it is worded cautiously (\"likely\", \"mainly\"), as the evidence allows.\n\n**Testing the others.** The choice about residents who dislike their neighbours is the conclusion the passage rejects. The choice about temperament makes a claim about people that the passage never makes. The choice that neighbours \"never\" talk on the street without forecourts is an absolute that the counts contradict. The choice claiming that planners were right to treat the frontage as waste reverses the author’s position.\n\n**How to check.** Prefer the choice whose strength matches the evidence: careful words such as \"likely\" and \"mainly\" usually survive, and absolutes such as \"never\" usually do not.",
+  "distractorRationale": {
+    "d": "This is the \"tempting\" conclusion the passage sets aside. It says the forecourt \"did not create friendliness\", so it cannot be what turns unwilling neighbours into sociable ones.",
+    "c": "The passage attributes the difference in counts to the layout of the street, and says nothing about the temperament of either group of residents. The dwellings were identical and no difference in the people is reported.",
+    "b": "This overstates the finding. The Via Nuova count was \"almost three times as high\", which implies that some conversations were counted on Via dei Tigli too.",
+    "a": "The passage reports that planners treated the threshold as waste and then argues that removing such places \"takes away something that the plans do not measure\". The choice reverses the author's view."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": {
+    "id": "polito-til-a-passage-threshold-300",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying essay on the threshold between street and front door. It asks which of five statements the passage best supports. The choices are about whether planners were right to treat frontage as waste, whether neighbours never talk on a street without forecourts, whether residents of one street are naturally less friendly, whether a forecourt can turn residents who dislike their neighbours into sociable people, and what a forecourt does for conversation between neighbours who are already inclined to talk.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-a-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written against the original passage polito-til-a-passage-threshold-300, authored alongside it. Every distractor rests on a named misreading of that passage."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-a-wave6-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's uniqueness check: only the choice about neighbours already inclined to talk follows from the report noting that sitters already knew their neighbours together with the author's statement that the forecourt lowers the cost of showing friendliness; turning unfriendly residents into sociable ones is the conclusion the passage rejects, the claims about temperament and about neighbours never talking go beyond the evidence, and the claim that planners were right reverses the author's view. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "reading",
+    "inference",
+    "architecture",
+    "urban-design",
+    "strength-of-claim"
+  ]
+}

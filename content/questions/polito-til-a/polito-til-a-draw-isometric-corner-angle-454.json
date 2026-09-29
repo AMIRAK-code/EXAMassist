@@ -1,0 +1,82 @@
+{
+  "id": "polito-til-a-draw-isometric-corner-angle-454",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "drawing-representation",
+  "domainSlug": "tila-drawing",
+  "skillSlug": "tila-draw-axonometric",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A cube is drawn in **isometric axonometry**, seen from above, from the front and from the right. At the corner of the cube nearest to the viewer, three edges meet; on the real cube each of them is at right angles to the other two, and each pair of them bounds one face of the cube.\n\nOn the drawing, what is the angle between any two of these edges, measured inside the face they bound?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$120^\\circ$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$135^\\circ$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$30^\\circ$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$60^\\circ$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$90^\\circ$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "**What to notice first.** *Isometric* means \"equal measure\": the three edge directions of the cube are treated identically. Nothing makes one pair of edges different from another, so the three angles around the near corner must all be equal.\n\n**The step that settles it.** The three angles fill the whole turn around the corner point, and they are equal, so each is\n\n$$360^\\circ \\div 3 = 120^\\circ.$$\n\nThat is the familiar isometric layout: one edge drawn vertically, and the other two drawn at $30^\\circ$ above the horizontal on either side. Between the vertical edge and either sloping one there are $90^\\circ + 30^\\circ = 120^\\circ$, and between the two sloping edges there are $180^\\circ - 2 \\times 30^\\circ = 120^\\circ$.\n\n**How to check it.** Each face of the cube becomes a rhombus. Its angle at the near corner is $120^\\circ$, and the neighbouring angles of a rhombus add up to $180^\\circ$, so its other two corners are $60^\\circ$. The right angles of the real cube are not preserved in any face, which is exactly what distinguishes isometric axonometry from a front elevation.",
+  "distractorRationale": {
+    "c": "This is the angle each sloping edge makes with the horizontal edge of the sheet, not the angle between two edges of the cube.",
+    "d": "This is the angle at the two side corners of each rhombus-shaped face. At the near corner, where the three edges meet, the face angle is the obtuse one.",
+    "e": "Keeps the true right angle of the cube. A right angle survives only in a face parallel to the drawing plane, as in an elevation or the front face of a cavalier drawing; in isometric axonometry no face is parallel to the sheet.",
+    "b": "Carries over the 45 degree slope of cavalier axonometry, where at a front corner the receding edge makes 135 degrees with each of the two front edges, which stay at 90 degrees to each other. In isometric axonometry the three directions are symmetrical and all three angles are equal."
+  },
+  "estimatedSeconds": 50,
+  "stimulusRef": null,
+  "accessibilityText": "A question on axonometric conventions, with no figure needed. A cube is drawn in isometric axonometry seen from above, front and right. At the corner nearest the viewer three mutually perpendicular edges meet, each pair bounding one face. The question asks for the angle on the drawing between any two of these edges, measured inside the face they bound. The choices are one hundred twenty, one hundred thirty-five, thirty, sixty and ninety degrees.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-polito-til-a-drawing-author",
+    "aiAssisted": true,
+    "notes": "Original item on a standard convention: in isometric axonometry the three axes are drawn 120 degrees apart. Verified by script from the drawn directions (vertical, and 30 degrees above the horizontal each side) and from an orthographic projection along the cube's body diagonal."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-polito-til-a-drawing-author",
+    "reviewer": "blind-reviewer-wave7-tila-logic-drawing-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-tila-logic-drawing-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "In isometric projection the three edges at the nearest corner are drawn 120 degrees apart (vertical down, and 30 degrees above horizontal to each side). Each visible face therefore has a 120 degree angle at that corner. The rhombi's other angles are 60 degrees, but those are at the outer vertices. [A second, separate blind solve (blind-reviewer-wave7-tila-logic-drawing-run1) reached the same answer: In isometric the three edges at the nearest corner are drawn 120 degrees apart, so each face's rhombus has a 120-degree angle at that corner. 60 degrees is the rhombus angle at the side corners, but the stem asks about the nearest corner, measured inside the face, so it does not fit. 90 degrees is the true angle, not the drawn one.]"
+    },
+    "notes": "Author's uniqueness check: the stem fixes the angle as the one inside a face at the near corner, which is 120 degrees; the supplementary 60 degrees belongs to the other corners of the face, so it cannot also be defended. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "isometric-axonometry",
+    "axes",
+    "drawing-conventions"
+  ]
+}

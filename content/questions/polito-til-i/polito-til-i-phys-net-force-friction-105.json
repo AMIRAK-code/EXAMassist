@@ -1,0 +1,82 @@
+{
+  "id": "polito-til-i-phys-net-force-friction-105",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "physics",
+  "domainSlug": "tili-physics",
+  "skillSlug": "tili-phys-dynamics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A 40 kg crate stands on a level floor. A worker pushes it horizontally with a steady force of 200 N, and the floor exerts a constant friction force of 120 N against the motion. What is the crate's acceleration?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$3\\ \\text{m/s}^2$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$80\\ \\text{m/s}^2$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$5\\ \\text{m/s}^2$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$2\\ \\text{m/s}^2$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$8\\ \\text{m/s}^2$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Newton's second law says the **net** force on the crate along its line of motion equals mass times acceleration, $F_{\\text{net}} = ma$.\n\n**Net force.** The push acts forwards and friction acts backwards, so $F_{\\text{net}} = 200 - 120 = 80\\ \\text{N}$. The weight and the floor's normal force are both vertical and cancel, so they play no part.\n\n**Acceleration.** $a = F_{\\text{net}}/m = 80/40 = 2\\ \\text{m/s}^2$.\n\n**Check.** The crate cannot accelerate as fast as the push alone would make it (200/40 = 5 m/s²), because friction takes some of the push away. The result of 2 m/s² is smaller than 5, as it should be.",
+  "distractorRationale": {
+    "a": "Divides the friction force alone by the mass, 120 ÷ 40 = 3. Friction opposes the motion; it is not the force that accelerates the crate.",
+    "c": "Ignores friction and divides only the 200 N push by the mass. Friction takes 120 N away from the push, so the crate accelerates less than this.",
+    "e": "Adds friction to the push, (200 + 120) ÷ 40 = 8. Friction acts against the motion, so it must be subtracted.",
+    "b": "Stops at the net force of 80 N and quotes it as an acceleration. The net force must still be divided by the mass of 40 kg."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "A dynamics question. A 40 kilogram crate on a level floor is pushed horizontally with a steady force of 200 newtons, while the floor exerts a constant friction force of 120 newtons against the motion. The crate's acceleration is wanted. The choices are 2, 3, 5, 8 and 80 metres per second squared.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-wave6-physics-technical-author",
+    "aiAssisted": true,
+    "notes": "Original item. Wrong choices: friction alone divided by mass, push alone, forces added instead of subtracted, and net force not divided by mass."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-wave6-physics-technical-author",
+    "reviewer": "blind-reviewer-wave6-tili-phys-tech-run8",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-phys-tech-run8",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Net force = 200 - 120 = 80 N; a = 80/40 = 2 m/s^2. 5 m/s^2 uses the push alone, 3 m/s^2 uses the push minus friction wrongly, and 80 is the net force itself, not an acceleration. [A second, separate blind solve (blind-reviewer-wave6-tili-phys-tech-run9) reached the same answer: Net force 200-120=80 N; a=80/40=2 m/s^2. 5 ignores friction, 8 adds forces, 80 is net force, 3 is 120/40.]"
+    },
+    "notes": "Awaiting a blind independent solve. The author recomputed every option and checked the key a second way before saving (see the explanation). Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "newtons-second-law",
+    "friction",
+    "net-force"
+  ]
+}

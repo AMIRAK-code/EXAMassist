@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-bio-carrier-given-healthy-810",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "biology",
+  "domainSlug": "tolcf-biology",
+  "skillSlug": "tolcf-bio-genetics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Cystic fibrosis is an autosomal recessive disorder. Two healthy parents, who are both known to be carriers, have a child who is healthy. What is the probability that this healthy child is a carrier?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "1/4"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "1/3"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "1/2"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "2/3"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "3/4"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Cross two carriers, $Aa \\times Aa$. The four equally likely outcomes are $AA$, $Aa$, $Aa$ and $aa$, so the probabilities are $\\frac{1}{4}$ healthy non-carrier, $\\frac{1}{2}$ carrier and $\\frac{1}{4}$ affected.\n\nThe question adds information: the child is healthy, so the affected outcome $aa$ is ruled out. Only three of the four outcomes remain, and two of those three are carriers. The probability is $\\frac{2}{3}$.\n\nWhen a child is known to be unaffected, restrict the sample space before counting. Check: $\\frac{1}{4}+\\frac{1}{2}=\\frac{3}{4}$ unaffected in all, and $\\frac{1/2}{3/4}=\\frac{2}{3}$.",
+  "distractorRationale": {
+    "a": "This is the probability that a child of two carriers is affected. It also ignores the fact that the child is known to be healthy.",
+    "b": "This is the probability that a healthy child is homozygous for the normal allele (1 out of 3 unaffected outcomes), the complement of the correct answer.",
+    "c": "This is the probability that a child of two carriers is a carrier before you learn anything about its health. Knowing the child is healthy removes one outcome and changes the odds.",
+    "e": "This is the probability that a child of two carriers is healthy, which is the given information rather than the probability asked for."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "A short text question with no figure. Two healthy parents who are both carriers of an autosomal recessive disorder have a healthy child. The question asks the probability that the child is a carrier. The five choices are one quarter, one third, one half, two thirds and three quarters.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item on conditional probability in a monohybrid cross. Every distractor is a fraction that appears in the unconditioned cross or its complement."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-bio-run17",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-bio-run17",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Aa x Aa gives AA:Aa:aa = 1:2:1. Given the child is healthy (aa excluded), P(Aa) = 2/3. 1/2 is the unconditional carrier probability and 1/4 is the chance of being affected. The word 'healthy' makes the conditioning clear, so 1/2 cannot be defended. [A second, separate blind solve (blind-reviewer-wave6-tolcf-bio-run19) reached the same answer: Aa x Aa gives AA:Aa:aa = 1:2:1. Given the child is healthy, only AA and Aa remain, so P(carrier) = 2/3. The distractor 1/2 is the unconditional carrier probability, and 1/4 and 3/4 are also unconditional figures.]"
+    },
+    "notes": ""
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "autosomal-recessive",
+    "conditional-probability",
+    "carrier"
+  ]
+}
