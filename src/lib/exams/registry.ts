@@ -6,6 +6,10 @@ import { enhancedActConfig } from './configs/enhanced-act';
 import { gmatConfig } from './configs/gmat';
 import { greConfig } from './configs/gre';
 import { lsatConfig } from './configs/lsat';
+import { politoTilAConfig } from './configs/polito-til-a';
+import { politoTilIConfig } from './configs/polito-til-i';
+import { tolcEConfig } from './configs/tolc-e';
+import { tolcFConfig } from './configs/tolc-f';
 
 /**
  * The exam registry.
@@ -25,6 +29,10 @@ export const EXAM_CONFIGS: readonly ExamConfig[] = [
   greConfig,
   bocconiUndergraduateConfig,
   bocconiLawConfig,
+  politoTilIConfig,
+  politoTilAConfig,
+  tolcEConfig,
+  tolcFConfig,
 ];
 
 export type Audience = 'undergraduate' | 'law' | 'graduate';
@@ -122,6 +130,32 @@ export const EXAM_HUBS: readonly ExamHub[] = [
     audiences: ['graduate'],
     configKeys: ['gre'],
     order: 6,
+  },
+  {
+    slug: 'politecnico-di-torino-til',
+    name: 'Politecnico di Torino TIL',
+    shortName: 'PoliTo TIL',
+    label: 'PoliTo',
+    variantLabels: { 'polito-til-i': 'Engineering (TIL-I)', 'polito-til-a': 'Architecture (TIL-A)' },
+    publisher: 'Politecnico di Torino',
+    tagline:
+      'Politecnico di Torino’s in-person admission tests: TIL-I for Engineering, 42 questions in 90 minutes, and TIL-A for Architecture, 50 questions in 100 minutes, both with a penalty for wrong answers.',
+    audiences: ['undergraduate'],
+    configKeys: ['polito-til-i', 'polito-til-a'],
+    order: 7,
+  },
+  {
+    slug: 'cisia-tolc',
+    name: 'CISIA TOLC',
+    shortName: 'TOLC',
+    label: 'TOLC',
+    variantLabels: { 'tolc-e': 'Economics (TOLC-E)', 'tolc-f': 'Pharmacy (TOLC-F)' },
+    publisher: 'CISIA',
+    tagline:
+      'The online admission tests many Italian universities use: TOLC-E for economics, 36 questions in 90 minutes, and TOLC-F for pharmacy, 50 questions in 72 minutes. Each university sets its own pass mark.',
+    audiences: ['undergraduate'],
+    configKeys: ['tolc-e', 'tolc-f'],
+    order: 8,
   },
 ];
 
