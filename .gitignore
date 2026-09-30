@@ -15,3 +15,32 @@ playwright-report/
 .DS_Store
 *.tsbuildinfo
 next-env.d.ts
+
+# Private environment settings; keep only the documented example.
+.env.*
+!.env.example
+
+# Hosting account links and local provider state.
+.vercel/
+supabase/.temp/
+
+# Private keys and credential exports.
+*.key
+*.pem
+*.p12
+*.pfx
+credentials/
+secrets/
+
+# Local databases, exports, backups and handoff archives.
+*.sqlite
+*.sqlite3
+*.sqlite-*
+*.sqlite3-*
+*.dump
+*.backup
+*.bak
+*.zip
+
+# Owner-specific deployment and migration notes (keep locally).
+/docs/VERCEL-SUPABASE-HANDOFF.md
