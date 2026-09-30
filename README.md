@@ -17,7 +17,7 @@ feature that would have depended on it.
 
 ```bash
 npm install
-cp .env.example .env          # then edit SESSION_SECRET
+cp .env.example .env.local    # then edit SESSION_SECRET; leave DATABASE_URL empty for SQLite
 npm run db:migrate
 npm run db:seed
 npm run build && npm start    # http://localhost:3000
@@ -28,6 +28,25 @@ npm run build && npm start    # http://localhost:3000
 If dev fails with an `EINVAL ... readlink '.next/static/...'` error, delete the
 `.next` directory and start again: a production build left in place can trip the
 dev server on a synced filesystem such as OneDrive.
+
+### Supabase PostgreSQL on Vercel
+
+The server uses Supabase PostgreSQL when DATABASE_URL is set. Local development
+and tests can still use SQLite when DATABASE_URL is absent. Vercel requires
+DATABASE_URL and refuses to fall back to an ephemeral SQLite file.
+
+The application retains its existing accounts and session authentication. Its
+23 tables live in the private examer schema; the restricted examer_app login
+can read and write that schema only. Browser publishable keys cannot access it.
+Connections use the transaction pooler and verified TLS with the bundled public
+Supabase root certificate. No service-role key is required.
+
+Configure DATABASE_URL and the other values in .env.example through Vercel
+environment variables before deploying the updated source. Keep credentials and
+project-specific migration notes in private local files, never in Git.
+
+Run npm run db:check for a PostgreSQL application smoke test that rolls back its
+test records. npm run supabase:check independently checks the public API URL/key.
 
 ### Commands
 
