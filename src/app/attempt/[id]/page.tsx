@@ -24,7 +24,7 @@ export default async function AttemptPage({ params }: { params: Promise<{ id: st
 
   let state;
   try {
-    state = getAttemptState(getDb(), id, user.id);
+    state = (await getAttemptState(getDb(), id, user.id));
   } catch (error) {
     if (error instanceof AttemptError && error.status === 404) notFound();
     throw error;

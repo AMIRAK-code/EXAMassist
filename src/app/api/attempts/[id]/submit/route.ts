@@ -9,7 +9,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     assertSameOrigin(request);
     const user = await requireUser();
     const { id } = await params;
-    return ok(submitAttempt(getDb(), { attemptId: id, userId: user.id }));
+    return ok((await submitAttempt(getDb(), { attemptId: id, userId: user.id })));
   } catch (error) {
     return toErrorResponse(error);
   }

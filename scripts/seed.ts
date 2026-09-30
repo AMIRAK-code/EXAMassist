@@ -1,9 +1,12 @@
+import { loadEnvConfig } from '@next/env';
 import { randomUUID } from 'node:crypto';
 import { getDb } from '../src/lib/db';
 import { migrate } from '../src/lib/db/migrate';
 import { contentHash, loadContent, summariseCoverage } from '../src/lib/content/loader';
 import { EXAM_CONFIGS } from '../src/lib/exams/registry';
 import { hashPassword } from '../src/lib/auth/password';
+
+loadEnvConfig(process.cwd(), true);
 
 /**
  * Seeds exam configurations and the reviewed question bank into the database.
@@ -16,7 +19,7 @@ import { hashPassword } from '../src/lib/auth/password';
 
 async function main(): Promise<void> {
   const db = getDb();
-  migrate(db);
+  (await migrate(db));
 
   const now = new Date().toISOString();
 
@@ -24,14 +27,14 @@ async function main(): Promise<void> {
   let configsWritten = 0;
   for (const config of EXAM_CONFIGS) {
     const hash = contentHash(config);
-    const existing = db
+    const existing = (await db
       .prepare('SELECT content_hash FROM exam_configs WHERE exam_key = ? AND version = ?')
-      .get(config.examKey, config.version) as { content_hash: string } | undefined;
+      .get(config.examKey, config.version)) as { content_hash: string } | undefined;
 
     if (!existing) {
-      db.prepare(
+      (await db.prepare(
         'INSERT INTO exam_configs (exam_key, version, config_json, content_hash, published_at) VALUES (?, ?, ?, ?, ?)',
-      ).run(config.examKey, config.version, JSON.stringify(config), hash, now);
+      ).run(config.examKey, config.version, JSON.stringify(config), hash, now));
       configsWritten += 1;
     } else if (existing.content_hash !== hash) {
       // A published config version is meant to be immutable. Overwriting it
@@ -40,9 +43,9 @@ async function main(): Promise<void> {
         `WARNING  ${config.examKey}@${config.version} has changed since it was seeded. ` +
           'Bump the version string instead of editing a published configuration.',
       );
-      db.prepare(
+      (await db.prepare(
         'UPDATE exam_configs SET config_json = ?, content_hash = ?, published_at = ? WHERE exam_key = ? AND version = ?',
-      ).run(JSON.stringify(config), hash, now, config.examKey, config.version);
+      ).run(JSON.stringify(config), hash, now, config.examKey, config.version));
       configsWritten += 1;
     }
   }
@@ -61,9 +64,9 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
-  const seedAll = db.transaction(() => {
+  const seedAll = db.transaction(async () => {
     for (const { stimulus } of stimuli) {
-      db.prepare(
+      (await db.prepare(
         `INSERT INTO stimuli (id, version, exam_key, kind, title, body_md, data_json,
                               accessibility_text, provenance, rights_status, created_at)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -82,11 +85,11 @@ async function main(): Promise<void> {
         JSON.stringify(stimulus.provenance),
         stimulus.rightsStatus,
         now,
-      );
+      ));
     }
 
     for (const { question } of questions) {
-      db.prepare(
+      (await db.prepare(
         `INSERT INTO questions (id, exam_key, current_version, state, created_at, updated_at)
          VALUES (?, ?, ?, ?, ?, ?)
          ON CONFLICT(id) DO UPDATE SET
@@ -94,12 +97,12 @@ async function main(): Promise<void> {
            current_version = excluded.current_version,
            state = excluded.state,
            updated_at = excluded.updated_at`,
-      ).run(question.id, question.examKey, question.version, question.state, now, now);
+      ).run(question.id, question.examKey, question.version, question.state, now, now));
 
       const hash = contentHash(question);
-      const existing = db
+      const existing = (await db
         .prepare('SELECT id, content_hash FROM question_versions WHERE question_id = ? AND version = ?')
-        .get(question.id, question.version) as { id: string; content_hash: string } | undefined;
+        .get(question.id, question.version)) as { id: string; content_hash: string } | undefined;
 
       if (existing && existing.content_hash !== hash && question.state === 'published') {
         console.warn(
@@ -140,7 +143,7 @@ async function main(): Promise<void> {
       ];
 
       if (existing) {
-        db.prepare(
+        (await db.prepare(
           `UPDATE question_versions SET
              exam_key = ?, section_key = ?, domain_slug = ?, skill_slug = ?, subskill_slug = ?,
              response_type = ?, difficulty = ?, difficulty_basis = ?, stem_md = ?, instructions_md = ?,
@@ -149,9 +152,9 @@ async function main(): Promise<void> {
              provenance = ?, rights_status = ?, author = ?, reviewer = ?, reviewed_at = ?,
              review_notes = ?, state = ?, content_hash = ?
            WHERE id = ?`,
-        ).run(...row, existing.id);
+        ).run(...row, existing.id));
       } else {
-        db.prepare(
+        (await db.prepare(
           `INSERT INTO question_versions (
              id, question_id, version, exam_key, section_key, domain_slug, skill_slug, subskill_slug,
              response_type, difficulty, difficulty_basis, stem_md, instructions_md, options_json,
@@ -159,11 +162,11 @@ async function main(): Promise<void> {
              stimulus_id, stimulus_version, accessibility_text, provenance, rights_status,
              author, reviewer, reviewed_at, review_notes, state, content_hash, created_at
            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-        ).run(randomUUID(), question.id, question.version, ...row, now);
+        ).run(randomUUID(), question.id, question.version, ...row, now));
       }
     }
   });
-  seedAll();
+  (await seedAll());
 
   console.log(`stimuli:   ${stimuli.length} seeded`);
   console.log(`questions: ${questions.length} seeded`);
@@ -172,22 +175,22 @@ async function main(): Promise<void> {
   const adminEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase();
   const adminPassword = process.env.ADMIN_PASSWORD;
   if (adminEmail && adminPassword) {
-    const existing = db.prepare('SELECT id FROM users WHERE email = ?').get(adminEmail) as
+    const existing = (await db.prepare('SELECT id FROM users WHERE email = ?').get(adminEmail)) as
       | { id: string }
       | undefined;
     const hash = await hashPassword(adminPassword);
     if (existing) {
-      db.prepare("UPDATE users SET password_hash = ?, role = 'admin', updated_at = ? WHERE id = ?").run(
+      (await db.prepare("UPDATE users SET password_hash = ?, role = 'admin', updated_at = ? WHERE id = ?").run(
         hash,
         now,
         existing.id,
-      );
+      ));
       console.log(`admin:     updated ${adminEmail}`);
     } else {
-      db.prepare(
+      (await db.prepare(
         `INSERT INTO users (id, email, password_hash, display_name, role, is_guest, locale, created_at, updated_at)
          VALUES (?, ?, ?, 'Administrator', 'admin', 0, 'en', ?, ?)`,
-      ).run(randomUUID(), adminEmail, hash, now, now);
+      ).run(randomUUID(), adminEmail, hash, now, now));
       console.log(`admin:     created ${adminEmail}`);
     }
   } else {

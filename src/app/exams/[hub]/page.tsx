@@ -97,9 +97,9 @@ export default async function ExamHubPage({ params }: { params: Promise<{ hub: s
       <PageHeader eyebrow={hub.publisher} title={hub.name} />
 
       {/* The direct answer, first: what this exam is, in one block. */}
-      {configs.map((config) => {
-        const coverage = examCoverage(db, config);
-        const availability = blueprintAvailability(db, config);
+      {(await Promise.all(configs.map(async (config) => {
+        const coverage = (await examCoverage(db, config));
+        const availability = (await blueprintAvailability(db, config));
         const offered = availability.filter((a) => a.available);
         const unavailable = availability.filter((a) => !a.available);
 
@@ -292,7 +292,7 @@ export default async function ExamHubPage({ params }: { params: Promise<{ hub: s
             ) : null}
           </section>
         );
-      })}
+      })))}
     </Container>
   );
 }

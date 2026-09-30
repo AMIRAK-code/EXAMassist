@@ -21,10 +21,10 @@ let db: Db;
 let alice: string;
 let bob: string;
 
-beforeEach(() => {
-  db = createTestDb();
-  alice = createUser(db);
-  bob = createUser(db);
+beforeEach(async () => {
+  db = (await createTestDb());
+  alice = (await createUser(db));
+  bob = (await createUser(db));
 });
 
 const learner = (id: string, extra: Partial<{ isGuest: boolean; targetExamKey: string | null; sessionExpiresAt: string }> = {}) => ({
@@ -35,13 +35,13 @@ const learner = (id: string, extra: Partial<{ isGuest: boolean; targetExamKey: s
 });
 
 /** A finished practice session, every answer wrong (seeded keys are "a"). */
-function finishSession(userId: string, examKey: string, overrides: Record<string, unknown> = {}, now = new Date()) {
-  const { attemptId } = startAttempt(db, { userId, examKey, blueprintId: 'practice', overrides, now });
-  const items = db.prepare('SELECT position FROM attempt_items WHERE attempt_id = ?').all(attemptId) as Array<{ position: number }>;
+async function finishSession(userId: string, examKey: string, overrides: Record<string, unknown> = {}, now = new Date()) {
+  const { attemptId } = (await startAttempt(db, { userId, examKey, blueprintId: 'practice', overrides, now }));
+  const items = (await db.prepare('SELECT position FROM attempt_items WHERE attempt_id = ?').all(attemptId)) as Array<{ position: number }>;
   for (const { position } of items) {
-    recordResponse(db, { attemptId, userId, partIndex: 0, position, response: { type: 'single_select', optionId: 'b' }, now });
+    (await recordResponse(db, { attemptId, userId, partIndex: 0, position, response: { type: 'single_select', optionId: 'b' }, now }));
   }
-  submitAttempt(db, { attemptId, userId, now });
+  (await submitAttempt(db, { attemptId, userId, now }));
   return attemptId;
 }
 
@@ -66,43 +66,43 @@ describe('choosing the exam', () => {
 });
 
 describe('what each learner sees', () => {
-  it("shows only the learner's own history, whichever exam the address names", () => {
-    seedQuestions(db, SAT, { perDomain: 6 });
-    finishSession(alice, SAT.examKey);
-    startAttempt(db, { userId: alice, examKey: SAT.examKey, blueprintId: 'practice' });
+  it("shows only the learner's own history, whichever exam the address names", async () => {
+    (await seedQuestions(db, SAT, { perDomain: 6 }));
+    (await finishSession(alice, SAT.examKey));
+    (await startAttempt(db, { userId: alice, examKey: SAT.examKey, blueprintId: 'practice' }));
 
-    const forBob = buildDashboard(db, learner(bob), 'digital-sat');
+    const forBob = (await buildDashboard(db, learner(bob), 'digital-sat'));
     expect(forBob.unfinished).toEqual([]);
     expect(forBob.exam).toMatchObject({ examKey: 'digital-sat', finishedCount: 0, totalScored: 0 });
     expect(forBob.exam!.review).toEqual({ dueNow: 0, comingLater: 0, nextDueAt: null });
 
-    const forAlice = buildDashboard(db, learner(alice), undefined);
+    const forAlice = (await buildDashboard(db, learner(alice), undefined));
     expect(forAlice.exam).toMatchObject({ examKey: 'digital-sat', source: 'recent', finishedCount: 1, totalScored: 10 });
     expect(forAlice.unfinished).toHaveLength(1);
   });
 
-  it('does not change the target when another exam is viewed', () => {
-    seedQuestions(db, SAT, { perDomain: 6 });
-    seedQuestions(db, GMAT, { perDomain: 6 });
-    db.prepare("UPDATE users SET target_exam_key = 'digital-sat' WHERE id = ?").run(alice);
-    const data = buildDashboard(db, learner(alice, { targetExamKey: 'digital-sat' }), 'gmat');
+  it('does not change the target when another exam is viewed', async () => {
+    (await seedQuestions(db, SAT, { perDomain: 6 }));
+    (await seedQuestions(db, GMAT, { perDomain: 6 }));
+    (await db.prepare("UPDATE users SET target_exam_key = 'digital-sat' WHERE id = ?").run(alice));
+    const data = (await buildDashboard(db, learner(alice, { targetExamKey: 'digital-sat' }), 'gmat'));
     expect(data.exam?.examKey).toBe('gmat');
     expect(data.choices.find((c) => c.examKey === 'digital-sat')).toMatchObject({ target: true, current: false });
-    const row = db.prepare('SELECT target_exam_key AS t FROM users WHERE id = ?').get(alice) as { t: string };
+    const row = (await db.prepare('SELECT target_exam_key AS t FROM users WHERE id = ?').get(alice)) as { t: string };
     expect(row.t).toBe('digital-sat');
   });
 
-  it('offers a choice when nothing has been practised and no target is set', () => {
-    const data = buildDashboard(db, learner(alice), undefined);
+  it('offers a choice when nothing has been practised and no target is set', async () => {
+    const data = (await buildDashboard(db, learner(alice), undefined));
     expect(data.exam).toBeNull();
     expect(data.choices).toEqual([]);
   });
 });
 
 describe('the next step', () => {
-  it('keeps a short skill drill as it is and offers the whole topic explicitly', () => {
-    seedQuestions(db, SAT, { perDomain: 6 });
-    const facets = practiceFacets(db, SAT);
+  it('keeps a short skill drill as it is and offers the whole topic explicitly', async () => {
+    (await seedQuestions(db, SAT, { perDomain: 6 }));
+    const facets = (await practiceFacets(db, SAT));
     // A skill the bank holds only a few questions for, in a topic that holds more.
     const domain = SAT.domains.find((d) => d.skills.length >= 2)!;
     const skill = domain.skills.find((s) => {
@@ -111,20 +111,20 @@ describe('the next step', () => {
     })!;
     const inSkill = eligibleCount(facets, { skill: skill.slug });
     for (let answered = 0; answered < 4; answered += inSkill) {
-      finishSession(alice, SAT.examKey, { skills: [skill.slug], length: inSkill });
+      (await finishSession(alice, SAT.examKey, { skills: [skill.slug], length: inSkill }));
     }
 
-    const exam = buildDashboard(db, learner(alice), 'digital-sat').exam!;
+    const exam = (await buildDashboard(db, learner(alice), 'digital-sat')).exam!;
     const drill = [exam.next!, ...exam.others].find((step) => step.kind === 'weak_skill' && step.skillSlug === skill.slug)!;
     expect(drill.href).toBe(`/practice/digital-sat?skill=${skill.slug}`);
     expect(drill.broader).toMatchObject({ href: `/practice/digital-sat?domain=${domain.slug}` });
     expect(drill.broader!.because).toContain(`${inSkill} reviewed question`);
   });
 
-  it('puts the recommendation with the lowest priority number first', () => {
-    seedQuestions(db, SAT, { perDomain: 6 });
-    finishSession(alice, SAT.examKey);
-    const exam = buildDashboard(db, learner(alice), 'digital-sat', new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)).exam!;
+  it('puts the recommendation with the lowest priority number first', async () => {
+    (await seedQuestions(db, SAT, { perDomain: 6 }));
+    (await finishSession(alice, SAT.examKey));
+    const exam = (await buildDashboard(db, learner(alice), 'digital-sat', new Date(Date.now() + 2 * 24 * 60 * 60 * 1000))).exam!;
     // Misses from two days ago are due now, and due review outranks everything else.
     expect(exam.next?.kind).toBe('due_review');
     expect(exam.others.every((step) => step.priority >= exam.next!.priority)).toBe(true);
@@ -132,24 +132,24 @@ describe('the next step', () => {
 });
 
 describe('mistake-notebook counts', () => {
-  it('separates questions due now from those coming back later', () => {
-    seedQuestions(db, SAT, { perDomain: 6 });
-    finishSession(alice, SAT.examKey);
-    const today = buildDashboard(db, learner(alice), 'digital-sat').exam!.review;
+  it('separates questions due now from those coming back later', async () => {
+    (await seedQuestions(db, SAT, { perDomain: 6 }));
+    (await finishSession(alice, SAT.examKey));
+    const today = (await buildDashboard(db, learner(alice), 'digital-sat')).exam!.review;
     expect(today.dueNow).toBe(0);
     expect(today.comingLater).toBe(10);
     expect(today.nextDueAt).not.toBeNull();
 
-    const later = buildDashboard(db, learner(alice), 'digital-sat', new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)).exam!.review;
+    const later = (await buildDashboard(db, learner(alice), 'digital-sat', new Date(Date.now() + 2 * 24 * 60 * 60 * 1000))).exam!.review;
     expect(later).toEqual({ dueNow: 10, comingLater: 0, nextDueAt: null });
   });
 });
 
 describe('topics', () => {
-  it('lists every topic and skill, practised or not, with counts and no figure below the threshold', () => {
-    seedQuestions(db, SAT, { perDomain: 6 });
-    finishSession(alice, SAT.examKey, { length: 5 });
-    const exam = buildDashboard(db, learner(alice), 'digital-sat').exam!;
+  it('lists every topic and skill, practised or not, with counts and no figure below the threshold', async () => {
+    (await seedQuestions(db, SAT, { perDomain: 6 }));
+    (await finishSession(alice, SAT.examKey, { length: 5 }));
+    const exam = (await buildDashboard(db, learner(alice), 'digital-sat')).exam!;
     expect(exam.topics.map((t) => t.slug)).toEqual(SAT.domains.map((d) => d.slug));
     expect(exam.topics.flatMap((t) => t.skills)).toHaveLength(SAT.domains.reduce((n, d) => n + d.skills.length, 0));
     for (const topic of exam.topics) {
@@ -161,27 +161,27 @@ describe('topics', () => {
 });
 
 describe('states', () => {
-  it('reports an exam whose bank holds no reviewed questions', () => {
-    const exam = buildDashboard(db, learner(alice), 'gmat').exam!;
+  it('reports an exam whose bank holds no reviewed questions', async () => {
+    const exam = (await buildDashboard(db, learner(alice), 'gmat')).exam!;
     expect(exam.bankSize).toBe(0);
     expect(exam.next).toBeNull();
   });
 
-  it('distinguishes an exam with only an unfinished session', () => {
-    seedQuestions(db, SAT, { perDomain: 6 });
-    startAttempt(db, { userId: alice, examKey: SAT.examKey, blueprintId: 'practice' });
-    const data = buildDashboard(db, learner(alice), undefined);
+  it('distinguishes an exam with only an unfinished session', async () => {
+    (await seedQuestions(db, SAT, { perDomain: 6 }));
+    (await startAttempt(db, { userId: alice, examKey: SAT.examKey, blueprintId: 'practice' }));
+    const data = (await buildDashboard(db, learner(alice), undefined));
     expect(data.exam).toMatchObject({ examKey: 'digital-sat', finishedCount: 0, totalScored: 0 });
     expect(data.exam!.unfinishedHere).toHaveLength(1);
   });
 
-  it('warns a guest in the last two days of the session that holds their practice', () => {
+  it('warns a guest in the last two days of the session that holds their practice', async () => {
     const now = new Date('2026-09-26T12:00:00.000Z');
-    const soon = buildDashboard(db, learner(alice, { isGuest: true, sessionExpiresAt: '2026-09-28T06:00:00.000Z' }), undefined, now);
+    const soon = (await buildDashboard(db, learner(alice, { isGuest: true, sessionExpiresAt: '2026-09-28T06:00:00.000Z' }), undefined, now));
     expect(soon.guest).toEqual({ expiresAt: '2026-09-28T06:00:00.000Z', expiringSoon: true });
-    const later = buildDashboard(db, learner(alice, { isGuest: true, sessionExpiresAt: '2026-10-02T12:00:00.000Z' }), undefined, now);
+    const later = (await buildDashboard(db, learner(alice, { isGuest: true, sessionExpiresAt: '2026-10-02T12:00:00.000Z' }), undefined, now));
     expect(later.guest?.expiringSoon).toBe(false);
-    expect(buildDashboard(db, learner(alice), undefined, now).guest).toBeNull();
+    expect((await buildDashboard(db, learner(alice), undefined, now)).guest).toBeNull();
   });
 });
 

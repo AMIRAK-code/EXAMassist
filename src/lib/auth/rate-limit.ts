@@ -36,28 +36,28 @@ function bucketKey(name: string, identifier: string): string {
   return `${name}:${createHash('sha256').update(identifier).digest('hex').slice(0, 32)}`;
 }
 
-export function checkRateLimit(
+export async function checkRateLimit(
   db: Db,
   name: keyof typeof RATE_LIMITS,
   identifier: string,
   now = new Date(),
-): RateLimitResult {
+): Promise<RateLimitResult> {
   const rule = RATE_LIMITS[name];
   const windowStart = Math.floor(now.getTime() / 1000 / rule.windowSeconds) * rule.windowSeconds;
   const bucket = bucketKey(name, identifier);
 
-  const run = db.transaction(() => {
-    db.prepare(
+  const run = db.transaction(async () => {
+    (await db.prepare(
       `INSERT INTO rate_limits (bucket, window_start, count) VALUES (?, ?, 1)
        ON CONFLICT(bucket, window_start) DO UPDATE SET count = count + 1`,
-    ).run(bucket, windowStart);
-    return db.prepare('SELECT count FROM rate_limits WHERE bucket = ? AND window_start = ?').get(
+    ).run(bucket, windowStart));
+    return (await db.prepare('SELECT count FROM rate_limits WHERE bucket = ? AND window_start = ?').get(
       bucket,
       windowStart,
-    ) as { count: number };
+    )) as { count: number };
   });
 
-  const { count } = run();
+  const { count } = (await run());
   const resetAt = (windowStart + rule.windowSeconds) * 1000;
 
   return {
@@ -68,9 +68,9 @@ export function checkRateLimit(
 }
 
 /** Housekeeping: drop windows that can no longer be current. */
-export function purgeRateLimits(db: Db, now = new Date()): number {
+export async function purgeRateLimits(db: Db, now = new Date()): Promise<number> {
   const cutoff = Math.floor(now.getTime() / 1000) - 24 * 60 * 60;
-  return db.prepare('DELETE FROM rate_limits WHERE window_start < ?').run(cutoff).changes;
+  return (await db.prepare('DELETE FROM rate_limits WHERE window_start < ?').run(cutoff)).changes;
 }
 
 /**

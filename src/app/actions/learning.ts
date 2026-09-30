@@ -44,12 +44,12 @@ export async function startRetryAction(formData: FormData): Promise<void> {
   const source = String(formData.get('sourceAttemptId') ?? '');
   const sourceAttemptId = /^[0-9a-f-]{36}$/.test(source) ? source : null;
 
-  if (!checkRateLimit(db, 'attemptStart', `user:${user.id}`).allowed) redirect(withNotice(back, 'rate-limited'));
+  if (!(await checkRateLimit(db, 'attemptStart', `user:${user.id}`)).allowed) redirect(withNotice(back, 'rate-limited'));
 
   let attemptId: string | null = null;
   let failure: string | null = null;
   try {
-    attemptId = startRetry(db, { userId: user.id, examKey, questionIds, sourceAttemptId }).attemptId;
+    attemptId = (await startRetry(db, { userId: user.id, examKey, questionIds, sourceAttemptId })).attemptId;
   } catch (error) {
     if (!(error instanceof AttemptError)) throw error;
     failure = error.code;
@@ -78,12 +78,12 @@ export async function practiseNewAction(formData: FormData): Promise<void> {
   const requested = Number(formData.get('length') ?? 10);
   const length = Number.isFinite(requested) ? Math.max(1, Math.min(10, Math.round(requested))) : 10;
 
-  if (!checkRateLimit(db, 'attemptStart', `user:${user.id}`).allowed) redirect(withNotice(back, 'rate-limited'));
+  if (!(await checkRateLimit(db, 'attemptStart', `user:${user.id}`)).allowed) redirect(withNotice(back, 'rate-limited'));
 
   let attemptId: string | null = null;
   let failure: string | null = null;
   try {
-    attemptId = startAttempt(db, {
+    attemptId = (await startAttempt(db, {
       userId: user.id,
       examKey: config.examKey,
       blueprintId: 'practice',
@@ -93,7 +93,7 @@ export async function practiseNewAction(formData: FormData): Promise<void> {
         length,
         unseenOnly: true,
       },
-    }).attemptId;
+    })).attemptId;
   } catch (error) {
     if (!(error instanceof AttemptError)) throw error;
     failure = error.code;
@@ -108,7 +108,7 @@ export async function saveLabelsAction(formData: FormData): Promise<void> {
   const attemptItemId = String(formData.get('attemptItemId') ?? '');
   let notice = 'labels-saved';
   try {
-    setMistakeLabels(getDb(), { userId: user.id, attemptItemId, labels: formData.getAll('label') });
+    (await setMistakeLabels(getDb(), { userId: user.id, attemptItemId, labels: formData.getAll('label') }));
   } catch (error) {
     if (!(error instanceof AttemptError)) throw error;
     notice = error.code;
@@ -127,21 +127,21 @@ export async function toggleBookmarkAction(formData: FormData): Promise<void> {
   const back = returnPath(formData.get('returnTo'), '/review');
   const questionId = String(formData.get('questionId') ?? '');
 
-  const owned = db
+  const owned = (await db
     .prepare(
       `SELECT a.exam_key AS examKey FROM attempt_items ai JOIN attempts a ON a.id = ai.attempt_id
         WHERE a.user_id = ? AND ai.question_id = ? LIMIT 1`,
     )
-    .get(user.id, questionId) as { examKey: string } | undefined;
+    .get(user.id, questionId)) as { examKey: string } | undefined;
   if (owned) {
-    const existing = db.prepare('SELECT 1 FROM bookmarks WHERE user_id = ? AND question_id = ?').get(user.id, questionId);
+    const existing = (await db.prepare('SELECT 1 FROM bookmarks WHERE user_id = ? AND question_id = ?').get(user.id, questionId));
     if (existing) {
-      db.prepare('DELETE FROM bookmarks WHERE user_id = ? AND question_id = ?').run(user.id, questionId);
+      (await db.prepare('DELETE FROM bookmarks WHERE user_id = ? AND question_id = ?').run(user.id, questionId));
     } else {
-      db.prepare(
+      (await db.prepare(
         `INSERT INTO bookmarks (user_id, question_id, exam_key, note, created_at) VALUES (?, ?, ?, NULL, ?)
          ON CONFLICT(user_id, question_id) DO NOTHING`,
-      ).run(user.id, questionId, owned.examKey, new Date().toISOString());
+      ).run(user.id, questionId, owned.examKey, new Date().toISOString()));
     }
   }
   revalidatePath('/review');

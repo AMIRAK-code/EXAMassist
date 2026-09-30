@@ -19,8 +19,8 @@ export interface ContinueStudying {
   actionLabel: string;
 }
 
-export function continueStudying(db: Db, userId: string, now = new Date()): ContinueStudying | null {
-  const unfinished = listUnfinishedAttempts(db, userId, now);
+export async function continueStudying(db: Db, userId: string, now = new Date()): Promise<ContinueStudying | null> {
+  const unfinished = (await listUnfinishedAttempts(db, userId, now));
   if (unfinished.length > 0) {
     const latest = unfinished[0];
     const others = unfinished.length - 1;
@@ -34,13 +34,13 @@ export function continueStudying(db: Db, userId: string, now = new Date()): Cont
     };
   }
 
-  const finished = db
+  const finished = (await db
     .prepare(
       `SELECT exam_key AS examKey FROM attempts
         WHERE user_id = ? AND status IN ('submitted', 'expired')
         ORDER BY COALESCE(submitted_at, started_at) DESC LIMIT 1`,
     )
-    .get(userId) as { examKey: string } | undefined;
+    .get(userId)) as { examKey: string } | undefined;
   if (!finished) return null;
 
   return {

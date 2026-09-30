@@ -109,9 +109,9 @@ const LATEST_ANY = `(SELECT ai.id FROM attempt_items ai JOIN attempts a ON a.id 
     WHERE a.user_id = ? AND ai.question_id = %Q AND a.status IN ('submitted', 'expired')
     ORDER BY COALESCE(ai.last_answered_at, a.submitted_at, a.created_at) DESC, ai.id DESC LIMIT 1)`;
 
-function locate(db: Db, userId: string, view: NotebookView, nowIso: string): Located[] {
+async function locate(db: Db, userId: string, view: NotebookView, nowIso: string): Promise<Located[]> {
   if (view === 'due' || view === 'later') {
-    return db
+    return (await db
       .prepare(
         `SELECT rq.question_id AS questionId, ${LATEST_MISS.replace('%Q', 'rq.question_id')} AS itemId,
                 rq.miss_count AS missCount, rq.due_at AS dueAt
@@ -119,10 +119,10 @@ function locate(db: Db, userId: string, view: NotebookView, nowIso: string): Loc
           WHERE rq.user_id = ? AND rq.last_result <> 'correct' AND rq.due_at ${view === 'due' ? '<=' : '>'} ?
           ORDER BY rq.due_at ASC, rq.question_id ASC`,
       )
-      .all(userId, userId, nowIso) as Located[];
+      .all(userId, userId, nowIso)) as Located[];
   }
   if (view === 'all') {
-    return db
+    return (await db
       .prepare(
         `SELECT m.questionId, ${LATEST_MISS.replace('%Q', 'm.questionId')} AS itemId,
                 rq.miss_count AS missCount, rq.due_at AS dueAt
@@ -134,9 +134,9 @@ function locate(db: Db, userId: string, view: NotebookView, nowIso: string): Loc
            LEFT JOIN review_queue rq ON rq.user_id = ? AND rq.question_id = m.questionId
           ORDER BY m.lastMiss DESC, m.questionId ASC`,
       )
-      .all(userId, userId, userId) as Located[];
+      .all(userId, userId, userId)) as Located[];
   }
-  return db
+  return (await db
     .prepare(
       `SELECT b.question_id AS questionId, ${LATEST_ANY.replace('%Q', 'b.question_id')} AS itemId,
               rq.miss_count AS missCount, rq.due_at AS dueAt
@@ -145,25 +145,25 @@ function locate(db: Db, userId: string, view: NotebookView, nowIso: string): Loc
         WHERE b.user_id = ?
         ORDER BY b.created_at DESC, b.question_id ASC`,
     )
-    .all(userId, userId) as Located[];
+    .all(userId, userId)) as Located[];
 }
 
-function counts(db: Db, userId: string, nowIso: string): Record<NotebookView, number> {
-  const queue = db
+async function counts(db: Db, userId: string, nowIso: string): Promise<Record<NotebookView, number>> {
+  const queue = (await db
     .prepare(
       `SELECT COALESCE(SUM(CASE WHEN due_at <= ? THEN 1 ELSE 0 END), 0) AS due,
               COALESCE(SUM(CASE WHEN due_at > ? THEN 1 ELSE 0 END), 0) AS later
          FROM review_queue WHERE user_id = ? AND last_result <> 'correct'`,
     )
-    .get(nowIso, nowIso, userId) as { due: number; later: number };
-  const all = db
+    .get(nowIso, nowIso, userId)) as { due: number; later: number };
+  const all = (await db
     .prepare(
       `SELECT COUNT(DISTINCT ai.question_id) AS n FROM attempt_items ai JOIN attempts a ON a.id = ai.attempt_id
         WHERE a.user_id = ? AND a.status IN ('submitted', 'expired')
           AND (ai.is_correct = 0 OR ai.response_status = 'unanswered')`,
     )
-    .get(userId) as { n: number };
-  const bookmarked = db.prepare('SELECT COUNT(*) AS n FROM bookmarks WHERE user_id = ?').get(userId) as { n: number };
+    .get(userId)) as { n: number };
+  const bookmarked = (await db.prepare('SELECT COUNT(*) AS n FROM bookmarks WHERE user_id = ?').get(userId)) as { n: number };
   return { due: queue.due, later: queue.later, all: all.n, bookmarked: bookmarked.n };
 }
 
@@ -186,10 +186,10 @@ interface DetailRow {
   bookmarked: number | null;
 }
 
-function details(db: Db, userId: string, itemIds: string[]): Map<string, DetailRow> {
+async function details(db: Db, userId: string, itemIds: string[]): Promise<Map<string, DetailRow>> {
   if (itemIds.length === 0) return new Map();
   const placeholders = itemIds.map(() => '?').join(',');
-  const rows = db
+  const rows = (await db
     .prepare(
       `SELECT ai.id AS itemId, ai.attempt_id AS attemptId, a.exam_key AS examKey, ai.question_id AS questionId,
               ai.is_correct AS isCorrect, ai.response_status AS responseStatus,
@@ -208,7 +208,7 @@ function details(db: Db, userId: string, itemIds: string[]): Map<string, DetailR
          LEFT JOIN questions q ON q.id = ai.question_id
         WHERE a.user_id = ? AND ai.id IN (${placeholders})`,
     )
-    .all(userId, ...itemIds) as DetailRow[];
+    .all(userId, ...itemIds)) as DetailRow[];
   return new Map(rows.map((row) => [row.itemId, row]));
 }
 
@@ -217,15 +217,15 @@ function details(db: Db, userId: string, itemIds: string[]): Map<string, DetailR
  * the question id), so an unchanged notebook pages without repeating or
  * skipping an entry. A page past the end shows the last page.
  */
-export function buildNotebook(db: Db, userId: string, view: NotebookView, now = new Date(), requestedPage = 1): NotebookData {
+export async function buildNotebook(db: Db, userId: string, view: NotebookView, now = new Date(), requestedPage = 1): Promise<NotebookData> {
   const nowIso = now.toISOString();
-  const located = locate(db, userId, view, nowIso).filter((row) => row.itemId);
+  const located = (await locate(db, userId, view, nowIso)).filter((row) => row.itemId);
   const pageCount = Math.max(1, Math.ceil(located.length / NOTEBOOK_PAGE));
   const page = Math.min(Math.max(1, Math.floor(requestedPage) || 1), pageCount);
   const offset = (page - 1) * NOTEBOOK_PAGE;
   const visible = located.slice(offset, offset + NOTEBOOK_PAGE);
-  const detailById = details(db, userId, visible.map((row) => row.itemId));
-  const itemLabels = labelsForItems(db, userId, visible.map((row) => row.itemId));
+  const detailById = (await details(db, userId, visible.map((row) => row.itemId)));
+  const itemLabels = (await labelsForItems(db, userId, visible.map((row) => row.itemId)));
 
   const entries: NotebookEntry[] = [];
   for (const row of visible) {
@@ -269,7 +269,7 @@ export function buildNotebook(db: Db, userId: string, view: NotebookView, now = 
       byExam.set(entry.examKey, [...(byExam.get(entry.examKey) ?? []), entry.questionId]);
     }
     for (const [examKey, questionIds] of byExam) {
-      const { available, unavailable } = retryCandidates(db, userId, examKey, questionIds);
+      const { available, unavailable } = (await retryCandidates(db, userId, examKey, questionIds));
       if (available.length === 0 && unavailable.length === 0) continue;
       retryGroups.push({
         examKey,
@@ -280,15 +280,15 @@ export function buildNotebook(db: Db, userId: string, view: NotebookView, now = 
     }
   }
 
-  const next = db
+  const next = (await db
     .prepare(
       "SELECT MIN(due_at) AS nextDueAt FROM review_queue WHERE user_id = ? AND last_result <> 'correct' AND due_at > ?",
     )
-    .get(userId, nowIso) as { nextDueAt: string | null };
+    .get(userId, nowIso)) as { nextDueAt: string | null };
 
   return {
     view,
-    counts: counts(db, userId, nowIso),
+    counts: (await counts(db, userId, nowIso)),
     entries,
     total: located.length,
     page,
@@ -296,6 +296,6 @@ export function buildNotebook(db: Db, userId: string, view: NotebookView, now = 
     firstIndex: offset + 1,
     nextDueAt: next.nextDueAt,
     retryGroups,
-    labelSummary: labelSummary(db, userId),
+    labelSummary: (await labelSummary(db, userId)),
   };
 }

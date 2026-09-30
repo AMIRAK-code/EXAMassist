@@ -21,7 +21,7 @@ export async function POST(request: Request) {
     const user = await requireUser();
     const db = getDb();
 
-    const limit = checkRateLimit(db, 'contentFlag', callerKey(request, user.id));
+    const limit = (await checkRateLimit(db, 'contentFlag', callerKey(request, user.id)));
     if (!limit.allowed) {
       return fail('rate-limited', 'You have sent several reports already. Please try again later.', 429, {
         retryAfterSeconds: limit.retryAfterSeconds,
@@ -29,7 +29,7 @@ export async function POST(request: Request) {
     }
 
     const body = await readJson(request, bodySchema);
-    flagResponse(db, { userId: user.id, isGuest: user.isGuest }, body);
+    (await flagResponse(db, { userId: user.id, isGuest: user.isGuest }, body));
     return ok({ received: true }, { status: 201 });
   } catch (error) {
     return toErrorResponse(error);

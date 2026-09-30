@@ -8,7 +8,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
   try {
     const user = await requireUser();
     const { id } = await params;
-    return ok(getAttemptState(getDb(), id, user.id));
+    return ok((await getAttemptState(getDb(), id, user.id)));
   } catch (error) {
     return toErrorResponse(error);
   }

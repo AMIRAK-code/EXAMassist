@@ -32,7 +32,7 @@ export async function POST(request: Request) {
     const user = await requireUser();
     const db = getDb();
 
-    const limit = checkRateLimit(db, 'attemptStart', callerKey(request, user.id));
+    const limit = (await checkRateLimit(db, 'attemptStart', callerKey(request, user.id)));
     if (!limit.allowed) {
       return fail('rate-limited', 'You have started a lot of sessions. Please wait a moment.', 429, {
         retryAfterSeconds: limit.retryAfterSeconds,
@@ -41,13 +41,13 @@ export async function POST(request: Request) {
 
     const body = await readJson(request, bodySchema);
 
-    const result = startAttempt(db, {
+    const result = (await startAttempt(db, {
       userId: user.id,
       examKey: body.examKey,
       blueprintId: body.blueprintId,
       overrides: body.overrides,
       idempotencyKey: body.idempotencyKey ?? null,
-    });
+    }));
 
     return ok(result, { status: result.reused ? 200 : 201 });
   } catch (error) {

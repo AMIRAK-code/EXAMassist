@@ -1,9 +1,12 @@
+import { loadEnvConfig } from '@next/env';
 import { getDb } from '../src/lib/db';
 import { appliedMigrations, migrate } from '../src/lib/db/migrate';
 
-function main(): void {
+loadEnvConfig(process.cwd(), true);
+
+async function main(): Promise<void> {
   const db = getDb();
-  const applied = migrate(db);
+  const applied = (await migrate(db));
 
   if (applied.length === 0) {
     console.log('Database is up to date.');
@@ -12,9 +15,9 @@ function main(): void {
   }
 
   console.log('\nMigrations on record:');
-  for (const row of appliedMigrations(db)) {
+  for (const row of (await appliedMigrations(db))) {
     console.log(`  ${row.name}  (${row.applied_at})`);
   }
 }
 
-main();
+main().catch((error) => { console.error(error); process.exitCode = 1; });

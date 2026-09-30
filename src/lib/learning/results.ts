@@ -130,12 +130,12 @@ function correctionOf(row: Pick<ItemRow, 'answeredVersion' | 'currentVersion' | 
   return (row.currentVersion ?? 0) > row.answeredVersion ? 'corrected' : 'current';
 }
 
-function ownedAttempt(db: Db, attemptId: string, userId: string): AttemptRow | undefined {
-  return db.prepare('SELECT * FROM attempts WHERE id = ? AND user_id = ?').get(attemptId, userId) as AttemptRow | undefined;
+async function ownedAttempt(db: Db, attemptId: string, userId: string): Promise<AttemptRow | undefined> {
+  return (await db.prepare('SELECT * FROM attempts WHERE id = ? AND user_id = ?').get(attemptId, userId)) as AttemptRow | undefined;
 }
 
-function itemRows(db: Db, attemptId: string): ItemRow[] {
-  return db
+async function itemRows(db: Db, attemptId: string): Promise<ItemRow[]> {
+  return (await db
     .prepare(
       `SELECT ai.id AS itemId, ai.part_index AS partIndex, ai.position, ai.question_id AS questionId,
               ai.question_version_id AS versionId, ai.response_json AS responseJson,
@@ -151,15 +151,15 @@ function itemRows(db: Db, attemptId: string): ItemRow[] {
         WHERE ai.attempt_id = ?
         ORDER BY ai.part_index, ai.position`,
     )
-    .all(attemptId) as ItemRow[];
+    .all(attemptId)) as ItemRow[];
 }
 
-function seenEarlier(db: Db, attempt: AttemptRow, questionIds: string[]): Set<string> {
+async function seenEarlier(db: Db, attempt: AttemptRow, questionIds: string[]): Promise<Set<string>> {
   if (questionIds.length === 0) return new Set();
   const placeholders = questionIds.map(() => '?').join(',');
   return new Set(
     (
-      db
+      (await db
         .prepare(
           `SELECT DISTINCT ai.question_id AS questionId
              FROM attempt_items ai
@@ -167,16 +167,16 @@ function seenEarlier(db: Db, attempt: AttemptRow, questionIds: string[]): Set<st
             WHERE a.user_id = ? AND a.id <> ? AND a.created_at < ? AND ai.first_seen_at IS NOT NULL
               AND ai.question_id IN (${placeholders})`,
         )
-        .all(attempt.user_id, attempt.id, attempt.created_at, ...questionIds) as Array<{ questionId: string }>
+        .all(attempt.user_id, attempt.id, attempt.created_at, ...questionIds)) as Array<{ questionId: string }>
     ).map((row) => row.questionId),
   );
 }
 
-function toItems(db: Db, attempt: AttemptRow, config: ExamConfig): ResultItem[] {
+async function toItems(db: Db, attempt: AttemptRow, config: ExamConfig): Promise<ResultItem[]> {
   const labels = labelsFor(config);
-  const rows = itemRows(db, attempt.id);
-  const seen = seenEarlier(db, attempt, [...new Set(rows.map((row) => row.questionId))]);
-  const itemLabels = labelsForItems(db, attempt.user_id, rows.map((row) => row.itemId));
+  const rows = (await itemRows(db, attempt.id));
+  const seen = (await seenEarlier(db, attempt, [...new Set(rows.map((row) => row.questionId))]));
+  const itemLabels = (await labelsForItems(db, attempt.user_id, rows.map((row) => row.itemId)));
   return rows.map((row, index) => ({
     ordinal: index + 1,
     attemptItemId: row.itemId,
@@ -233,7 +233,7 @@ function topicsOf(config: ExamConfig, items: ResultItem[]): TopicResult[] {
  * many reviewed questions the learner has never been shown there and in its
  * topic. The topic is only ever offered as a separate, explicit choice.
  */
-function practiceSuggestion(db: Db, userId: string, config: ExamConfig, topics: TopicResult[]): PracticeSuggestion | null {
+async function practiceSuggestion(db: Db, userId: string, config: ExamConfig, topics: TopicResult[]): Promise<PracticeSuggestion | null> {
   const candidates = topics.flatMap((topic) => topic.skills.filter((skill) => skill.missed > 0).map((skill) => ({ topic, skill })));
   if (candidates.length === 0) return null;
   candidates.sort((a, b) => b.skill.missed - a.skill.missed || a.skill.correct - b.skill.correct);
@@ -241,9 +241,9 @@ function practiceSuggestion(db: Db, userId: string, config: ExamConfig, topics: 
 
   const practice = getBlueprint(config, 'practice');
   if (!practice) return null;
-  const unseenPool = getPool(db, config.examKey, userId).filter((item) => item.lastSeenAt === null);
+  const unseenPool = (await getPool(db, config.examKey, userId)).filter((item) => item.lastSeenAt === null);
   const unseen = facetsFromPool(unseenPool, config, practice);
-  const all = practiceFacets(db, config);
+  const all = (await practiceFacets(db, config));
   return {
     basis: `You missed ${skill.missed} of ${skill.scored} ${skill.name} question${skill.scored === 1 ? '' : 's'} in this session.`,
     skill: {
@@ -261,18 +261,18 @@ function practiceSuggestion(db: Db, userId: string, config: ExamConfig, topics: 
   };
 }
 
-export function getResultsSummary(db: Db, attemptId: string, userId: string): ResultsSummary | null {
-  const attempt = ownedAttempt(db, attemptId, userId);
+export async function getResultsSummary(db: Db, attemptId: string, userId: string): Promise<ResultsSummary | null> {
+  const attempt = (await ownedAttempt(db, attemptId, userId));
   if (!attempt || attempt.status === 'in_progress') return null;
-  const result = getResult(db, attemptId, userId);
+  const result = (await getResult(db, attemptId, userId));
   if (!result) return null;
 
   const config = requireExamConfig(attempt.exam_key);
   const blueprint = blueprintForAttempt(config, attempt.blueprint_id);
-  const items = toItems(db, attempt, config);
+  const items = (await toItems(db, attempt, config));
   const topics = topicsOf(config, items);
   const missed = items.filter((item) => isMiss(item.outcome)).map((item) => item.questionId);
-  const candidates = retryCandidates(db, userId, attempt.exam_key, missed);
+  const candidates = (await retryCandidates(db, userId, attempt.exam_key, missed));
   const settings = JSON.parse(attempt.settings_json) as { retry?: { sourceAttemptId: string | null } };
   const hub = getHubForConfig(attempt.exam_key);
   const methodology = result.methodology as ResultsSummary['methodology'];
@@ -297,7 +297,7 @@ export function getResultsSummary(db: Db, attemptId: string, userId: string): Re
     topics,
     seenBeforeCount: items.filter((item) => item.seenBefore).length,
     retry: { available: candidates.available.map((item) => item.questionId), unavailable: candidates.unavailable.length },
-    practice: practiceSuggestion(db, userId, config, topics),
+    practice: (await practiceSuggestion(db, userId, config, topics)),
     methodology,
     formatGuideHref: hub ? `/exams/${hub.slug}/format` : null,
   };
@@ -335,22 +335,22 @@ function parseResponse(json: string | null): Response | null {
 }
 
 /** Question `ordinal` (1-based, across sections) of a finished attempt, for its owner. */
-export function getReviewItem(db: Db, attemptId: string, userId: string, ordinal: number): ReviewItem | null {
-  const attempt = ownedAttempt(db, attemptId, userId);
+export async function getReviewItem(db: Db, attemptId: string, userId: string, ordinal: number): Promise<ReviewItem | null> {
+  const attempt = (await ownedAttempt(db, attemptId, userId));
   if (!attempt || attempt.status === 'in_progress') return null;
   const config = requireExamConfig(attempt.exam_key);
-  const items = toItems(db, attempt, config);
+  const items = (await toItems(db, attempt, config));
   const item = items[ordinal - 1];
   if (!Number.isInteger(ordinal) || !item) return null;
 
-  const version = getQuestionVersions(db, [item.questionVersionId]).get(item.questionVersionId) as QuestionVersionRow | undefined;
+  const version = (await getQuestionVersions(db, [item.questionVersionId])).get(item.questionVersionId) as QuestionVersionRow | undefined;
   if (!version) return null;
   const blueprint = blueprintForAttempt(config, attempt.blueprint_id);
   const later = items.slice(ordinal).find((other) => isMiss(other.outcome));
-  const retryable = isMiss(item.outcome) && retryCandidates(db, userId, attempt.exam_key, [item.questionId]).available.length > 0;
-  const bookmarked = !!db
+  const retryable = isMiss(item.outcome) && (await retryCandidates(db, userId, attempt.exam_key, [item.questionId])).available.length > 0;
+  const bookmarked = !!(await db
     .prepare('SELECT 1 FROM bookmarks WHERE user_id = ? AND question_id = ?')
-    .get(userId, item.questionId);
+    .get(userId, item.questionId));
 
   return {
     attemptId,
@@ -360,7 +360,7 @@ export function getReviewItem(db: Db, attemptId: string, userId: string, ordinal
     isRetry: isRetryAttempt(attempt),
     total: items.length,
     item,
-    question: toReviewable(db, version),
+    question: (await toReviewable(db, version)),
     response: parseResponse(item.responseJson),
     previous: ordinal > 1 ? ordinal - 1 : null,
     next: ordinal < items.length ? ordinal + 1 : null,

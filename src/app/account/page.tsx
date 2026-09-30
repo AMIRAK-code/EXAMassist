@@ -53,7 +53,7 @@ export default async function AccountPage() {
 
   const targetConfig = user.targetExamKey ? getExamConfig(user.targetExamKey) : undefined;
   // The one exam date per exam (migration 007), beside each goal.
-  const examDates = listExamTargets(getDb(), user.id)
+  const examDates = (await listExamTargets(getDb(), user.id))
     .filter((target) => target.targetDate && getExamConfig(target.examKey))
     .map((target) => ({ examKey: target.examKey, label: examLabel(target.examKey), date: formatDate(target.targetDate)! }));
 

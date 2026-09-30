@@ -1,6 +1,9 @@
+import { loadEnvConfig } from '@next/env';
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
+
+loadEnvConfig(process.cwd(), true);
 
 /**
  * Drops the database, re-applies migrations and re-seeds the reviewed content.
@@ -10,6 +13,10 @@ import path from 'node:path';
  * Refuses to run against anything that does not look like a local development
  * or test database, so it cannot be pointed at real data by accident.
  */
+
+if (process.env.DATABASE_URL) {
+  throw new Error('db:reset is only for SQLite. Refusing to reset a remote database.');
+}
 
 const configured = process.env.DATABASE_PATH ?? './tmp/examer.db';
 const dbPath = path.isAbsolute(configured) ? configured : path.resolve(configured);

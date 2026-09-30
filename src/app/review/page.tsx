@@ -87,7 +87,7 @@ export default async function ReviewPage({
   const query = await searchParams;
   const view = parseView(query.filter);
   const requested = parsePage(query.page);
-  const data = buildNotebook(getDb(), user.id, view, new Date(), requested);
+  const data = (await buildNotebook(getDb(), user.id, view, new Date(), requested));
   // A page past the end (the view has shrunk since the link was made) opens the last one.
   if (requested !== data.page) {
     const notice = typeof query.notice === 'string' ? `&notice=${encodeURIComponent(query.notice)}` : '';

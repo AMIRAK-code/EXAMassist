@@ -12,7 +12,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     const user = await requireUser();
     const { id } = await params;
     const body = await readJson(request, bodySchema);
-    return ok(submitPart(getDb(), { attemptId: id, userId: user.id, partIndex: body.partIndex }));
+    return ok((await submitPart(getDb(), { attemptId: id, userId: user.id, partIndex: body.partIndex })));
   } catch (error) {
     return toErrorResponse(error);
   }

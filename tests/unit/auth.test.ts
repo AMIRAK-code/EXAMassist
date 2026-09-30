@@ -19,8 +19,8 @@ import { createTestDb, createUser } from './helpers/test-db';
 
 let db: Db;
 
-beforeEach(() => {
-  db = createTestDb();
+beforeEach(async () => {
+  db = (await createTestDb());
 });
 
 describe('password hashing', () => {
@@ -88,93 +88,93 @@ describe('password policy', () => {
 });
 
 describe('sessions', () => {
-  it('resolves a valid token to its user', () => {
-    const userId = createUser(db);
-    const { token } = createSession(db, userId);
-    expect(resolveSession(db, token)?.id).toBe(userId);
+  it('resolves a valid token to its user', async () => {
+    const userId = (await createUser(db));
+    const { token } = (await createSession(db, userId));
+    expect((await resolveSession(db, token))?.id).toBe(userId);
   });
 
-  it('stores only a hash of the token, never the token', () => {
-    const userId = createUser(db);
-    const { token } = createSession(db, userId);
-    const rows = db.prepare('SELECT id FROM sessions').all() as Array<{ id: string }>;
+  it('stores only a hash of the token, never the token', async () => {
+    const userId = (await createUser(db));
+    const { token } = (await createSession(db, userId));
+    const rows = (await db.prepare('SELECT id FROM sessions').all()) as Array<{ id: string }>;
     expect(rows).toHaveLength(1);
     expect(rows[0].id).not.toBe(token);
     expect(rows[0].id).toMatch(/^[0-9a-f]{64}$/);
   });
 
-  it('rejects an unknown, empty or tampered token', () => {
-    const userId = createUser(db);
-    const { token } = createSession(db, userId);
-    expect(resolveSession(db, undefined)).toBeNull();
-    expect(resolveSession(db, '')).toBeNull();
-    expect(resolveSession(db, 'not-a-real-token')).toBeNull();
-    expect(resolveSession(db, `${token}x`)).toBeNull();
+  it('rejects an unknown, empty or tampered token', async () => {
+    const userId = (await createUser(db));
+    const { token } = (await createSession(db, userId));
+    expect((await resolveSession(db, undefined))).toBeNull();
+    expect((await resolveSession(db, ''))).toBeNull();
+    expect((await resolveSession(db, 'not-a-real-token'))).toBeNull();
+    expect((await resolveSession(db, `${token}x`))).toBeNull();
   });
 
-  it('rejects and removes an expired session', () => {
-    const userId = createUser(db);
+  it('rejects and removes an expired session', async () => {
+    const userId = (await createUser(db));
     const past = new Date('2020-01-01T00:00:00.000Z');
-    const { token } = createSession(db, userId, false, past);
+    const { token } = (await createSession(db, userId, false, past));
 
-    expect(resolveSession(db, token, new Date('2026-09-22T00:00:00.000Z'))).toBeNull();
-    const remaining = db.prepare('SELECT COUNT(*) AS n FROM sessions').get() as { n: number };
+    expect((await resolveSession(db, token, new Date('2026-09-22T00:00:00.000Z')))).toBeNull();
+    const remaining = (await db.prepare('SELECT COUNT(*) AS n FROM sessions').get()) as { n: number };
     expect(remaining.n).toBe(0);
   });
 
-  it('gives a guest a shorter session than a signed-up user', () => {
-    const userId = createUser(db);
+  it('gives a guest a shorter session than a signed-up user', async () => {
+    const userId = (await createUser(db));
     const now = new Date('2026-09-22T00:00:00.000Z');
-    const guest = createSession(db, userId, true, now);
-    const member = createSession(db, userId, false, now);
+    const guest = (await createSession(db, userId, true, now));
+    const member = (await createSession(db, userId, false, now));
     expect(guest.expiresAt.getTime()).toBeLessThan(member.expiresAt.getTime());
   });
 
-  it('signing out invalidates only that session', () => {
-    const userId = createUser(db);
-    const laptop = createSession(db, userId);
-    const phone = createSession(db, userId);
+  it('signing out invalidates only that session', async () => {
+    const userId = (await createUser(db));
+    const laptop = (await createSession(db, userId));
+    const phone = (await createSession(db, userId));
 
-    destroySession(db, laptop.token);
-    expect(resolveSession(db, laptop.token)).toBeNull();
-    expect(resolveSession(db, phone.token)?.id).toBe(userId);
+    (await destroySession(db, laptop.token));
+    expect((await resolveSession(db, laptop.token))).toBeNull();
+    expect((await resolveSession(db, phone.token))?.id).toBe(userId);
   });
 
-  it('can revoke every session for a user', () => {
-    const userId = createUser(db);
-    const a = createSession(db, userId);
-    const b = createSession(db, userId);
-    destroyAllSessionsFor(db, userId);
-    expect(resolveSession(db, a.token)).toBeNull();
-    expect(resolveSession(db, b.token)).toBeNull();
+  it('can revoke every session for a user', async () => {
+    const userId = (await createUser(db));
+    const a = (await createSession(db, userId));
+    const b = (await createSession(db, userId));
+    (await destroyAllSessionsFor(db, userId));
+    expect((await resolveSession(db, a.token))).toBeNull();
+    expect((await resolveSession(db, b.token))).toBeNull();
   });
 
-  it('does not resolve a session whose user has been deleted', () => {
-    const userId = createUser(db);
-    const { token } = createSession(db, userId);
-    db.prepare('DELETE FROM users WHERE id = ?').run(userId);
-    expect(resolveSession(db, token)).toBeNull();
+  it('does not resolve a session whose user has been deleted', async () => {
+    const userId = (await createUser(db));
+    const { token } = (await createSession(db, userId));
+    (await db.prepare('DELETE FROM users WHERE id = ?').run(userId));
+    expect((await resolveSession(db, token))).toBeNull();
   });
 
-  it('does not resolve a session for a soft-deleted user', () => {
-    const userId = createUser(db);
-    const { token } = createSession(db, userId);
-    db.prepare('UPDATE users SET deleted_at = ? WHERE id = ?').run(new Date().toISOString(), userId);
-    expect(resolveSession(db, token)).toBeNull();
+  it('does not resolve a session for a soft-deleted user', async () => {
+    const userId = (await createUser(db));
+    const { token } = (await createSession(db, userId));
+    (await db.prepare('UPDATE users SET deleted_at = ? WHERE id = ?').run(new Date().toISOString(), userId));
+    expect((await resolveSession(db, token))).toBeNull();
   });
 
-  it('purges expired sessions in bulk', () => {
-    const userId = createUser(db);
-    createSession(db, userId, false, new Date('2020-01-01T00:00:00.000Z'));
-    createSession(db, userId, false, new Date('2026-09-22T00:00:00.000Z'));
-    const removed = purgeExpiredSessions(db, new Date('2026-09-23T00:00:00.000Z'));
+  it('purges expired sessions in bulk', async () => {
+    const userId = (await createUser(db));
+    (await createSession(db, userId, false, new Date('2020-01-01T00:00:00.000Z')));
+    (await createSession(db, userId, false, new Date('2026-09-22T00:00:00.000Z')));
+    const removed = (await purgeExpiredSessions(db, new Date('2026-09-23T00:00:00.000Z')));
     expect(removed).toBe(1);
   });
 });
 
 describe('guest accounts', () => {
-  it('creates a user row with no personal data', () => {
-    const guest = createGuestUser(db);
+  it('creates a user row with no personal data', async () => {
+    const guest = (await createGuestUser(db));
     expect(guest.is_guest).toBe(1);
     expect(guest.email).toBeNull();
     expect(guest.password_hash).toBeNull();
@@ -182,44 +182,44 @@ describe('guest accounts', () => {
 });
 
 describe('rate limiting', () => {
-  it('allows up to the limit and then blocks', () => {
+  it('allows up to the limit and then blocks', async () => {
     const rule = RATE_LIMITS.signIn;
-    let last = checkRateLimit(db, 'signIn', 'ip:198.51.100.7');
+    let last = (await checkRateLimit(db, 'signIn', 'ip:198.51.100.7'));
     for (let i = 1; i < rule.max; i += 1) {
-      last = checkRateLimit(db, 'signIn', 'ip:198.51.100.7');
+      last = (await checkRateLimit(db, 'signIn', 'ip:198.51.100.7'));
       expect(last.allowed).toBe(true);
     }
-    const blocked = checkRateLimit(db, 'signIn', 'ip:198.51.100.7');
+    const blocked = (await checkRateLimit(db, 'signIn', 'ip:198.51.100.7'));
     expect(blocked.allowed).toBe(false);
     expect(blocked.retryAfterSeconds).toBeGreaterThan(0);
   });
 
-  it('keeps separate counters per identifier', () => {
+  it('keeps separate counters per identifier', async () => {
     for (let i = 0; i < RATE_LIMITS.signIn.max + 2; i += 1) {
-      checkRateLimit(db, 'signIn', 'ip:198.51.100.7');
+      (await checkRateLimit(db, 'signIn', 'ip:198.51.100.7'));
     }
-    expect(checkRateLimit(db, 'signIn', 'ip:203.0.113.9').allowed).toBe(true);
+    expect((await checkRateLimit(db, 'signIn', 'ip:203.0.113.9')).allowed).toBe(true);
   });
 
-  it('keeps separate counters per bucket', () => {
+  it('keeps separate counters per bucket', async () => {
     for (let i = 0; i < RATE_LIMITS.signIn.max + 2; i += 1) {
-      checkRateLimit(db, 'signIn', 'ip:198.51.100.7');
+      (await checkRateLimit(db, 'signIn', 'ip:198.51.100.7'));
     }
-    expect(checkRateLimit(db, 'signUp', 'ip:198.51.100.7').allowed).toBe(true);
+    expect((await checkRateLimit(db, 'signUp', 'ip:198.51.100.7')).allowed).toBe(true);
   });
 
-  it('resets in the next window', () => {
+  it('resets in the next window', async () => {
     const inWindow = new Date('2026-09-22T10:00:00.000Z');
     for (let i = 0; i < RATE_LIMITS.signIn.max + 2; i += 1) {
-      checkRateLimit(db, 'signIn', 'ip:198.51.100.7', inWindow);
+      (await checkRateLimit(db, 'signIn', 'ip:198.51.100.7', inWindow));
     }
     const later = new Date(inWindow.getTime() + RATE_LIMITS.signIn.windowSeconds * 1000 + 1000);
-    expect(checkRateLimit(db, 'signIn', 'ip:198.51.100.7', later).allowed).toBe(true);
+    expect((await checkRateLimit(db, 'signIn', 'ip:198.51.100.7', later)).allowed).toBe(true);
   });
 
-  it('does not store a raw IP address', () => {
-    checkRateLimit(db, 'signIn', 'ip:198.51.100.7');
-    const rows = db.prepare('SELECT bucket FROM rate_limits').all() as Array<{ bucket: string }>;
+  it('does not store a raw IP address', async () => {
+    (await checkRateLimit(db, 'signIn', 'ip:198.51.100.7'));
+    const rows = (await db.prepare('SELECT bucket FROM rate_limits').all()) as Array<{ bucket: string }>;
     expect(rows[0].bucket).not.toContain('198.51.100.7');
   });
 

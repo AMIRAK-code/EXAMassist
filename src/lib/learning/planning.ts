@@ -17,22 +17,22 @@ export function planningHref(view: PlanningView, examKey: string | null): string
   return examKey ? `${PATHS[view]}?exam=${encodeURIComponent(examKey)}` : PATHS[view];
 }
 
-export function planningExam(
+export async function planningExam(
   db: Db,
   user: { id: string; targetExamKey: string | null },
   requested: string | string[] | undefined,
   view: PlanningView,
-): { examKey: string | null; unknownExam: string | null; choices: ExamChoice[] } {
-  const practised = examsPractised(db, user.id);
+): Promise<{ examKey: string | null; unknownExam: string | null; choices: ExamChoice[] }> {
+  const practised = (await examsPractised(db, user.id));
   const { examKey, unknownExam } = chooseExam(requested, user.targetExamKey, practised[0] ?? null);
   const planned = new Set(
     (
-      db
+      (await db
         .prepare(
           `SELECT exam_key AS examKey FROM plans WHERE user_id = ? AND status = 'active'
            UNION SELECT exam_key FROM exam_targets WHERE user_id = ?`,
         )
-        .all(user.id, user.id) as Array<{ examKey: string }>
+        .all(user.id, user.id)) as Array<{ examKey: string }>
     ).map((row) => row.examKey),
   );
   const choices = EXAM_CONFIGS.filter(

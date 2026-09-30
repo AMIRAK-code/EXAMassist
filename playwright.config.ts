@@ -40,6 +40,7 @@ export default defineConfig({
     timeout: 180_000,
     env: {
       DATABASE_PATH: './tmp/e2e.db',
+      DATABASE_URL: '',
       SESSION_SECRET: 'e2e-session-secret-at-least-32-characters-long!!',
       NODE_ENV: 'production',
       // The AI tutor is switched on with a dummy key and pointed at a port
