@@ -1,6 +1,6 @@
 {
   "id": "bocconi-law-verbal-ordinances-deducible-015",
-  "version": 2,
+  "version": 3,
   "examKey": "bocconi-law",
   "sectionKey": "online-test-law",
   "domainSlug": "law-verbal-reasoning",
@@ -15,27 +15,27 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "False: the report rules it out."
+      "textMd": "False: the report shows that the statement cannot be true."
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "True: the report establishes it."
+      "textMd": "True: the report shows that the statement must be true."
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "Not deducible: the report neither establishes it nor rules it out."
+      "textMd": "Not deducible: the report does not settle the statement."
     }
   ],
   "answerKey": {
     "type": "single_select",
     "optionId": "c"
   },
-  "explanationMd": "Line up the two groups the statement joins: *ordinances passed before 1400* and *ordinances annulled by the bishop*.\n\nThe first record puts every pre-1400 ordinance inside the group of Latin ordinances — but it does not say the two groups are the same. Latin could well have continued in use after 1400, so the Latin group may be larger than the pre-1400 group.\n\nThe second record says that *some* Latin ordinances were annulled. \"Some\" points at an unidentified part of the Latin group. Those annulled ordinances might all be pre-1400 ones; they might equally all be later Latin ones. The report simply does not say which.\n\nSo the statement could be true and could be false while every record holds. That is exactly what \"not deducible\" means — the verdict that the report neither establishes it nor rules it out. The third record, about re-enactment, plays no part — it is there to be recognised as irrelevant.\n\n**How to check.** Construct two archives. In the first, the only annulled Latin ordinances date from 1350 — all three records hold and the statement is true. In the second, the only annulled Latin ordinances date from 1450 — all three records still hold and the statement is false. Two consistent archives disagreeing about the statement is the definition of not deducible.",
+  "explanationMd": "Line up the two groups the statement joins: *ordinances passed before 1400* and *ordinances annulled by the bishop*.\n\nThe first record puts every pre-1400 ordinance inside the group of Latin ordinances — but it does not say the two groups are the same. Latin could well have continued in use after 1400, so the Latin group may be larger than the pre-1400 group.\n\nThe second record says that *some* Latin ordinances were annulled. \"Some\" points at an unidentified part of the Latin group. Those annulled ordinances might all be pre-1400 ones; they might equally all be later Latin ones. The report simply does not say which.\n\nSo the statement could be true and could be false while every record holds. That is exactly what \"not deducible\" means — the verdict that the report does not settle the statement: it shows neither that the statement must be true nor that it cannot be true. The third record, about re-enactment, plays no part — it is there to be recognised as irrelevant.\n\n**How to check.** Construct two archives. In the first, the only annulled Latin ordinances date from 1350 — all three records hold and the statement is true. In the second, the only annulled Latin ordinances date from 1450 — all three records still hold and the statement is false. Two consistent archives disagreeing about the statement is the definition of not deducible.",
   "distractorRationale": {
-    "b": "Slides from 'all pre-1400 ordinances were in Latin' to 'all Latin ordinances were pre-1400'. That is the converse of the first record, and the archive in which every annulled Latin ordinance dates from 1450 shows it fails.",
-    "a": "Nothing in the report excludes a pre-1400 annulment; the archive in which the annulled Latin ordinances date from 1350 satisfies every record. Marking a statement false requires a record that contradicts it, and there is none here — the record about re-enactment is about what happened afterwards, not about which ordinances were annulled."
+    "b": "Claims the report shows the statement must be true, which requires sliding from 'all pre-1400 ordinances were in Latin' to 'all Latin ordinances were pre-1400'. That is the converse of the first record, and the archive in which every annulled Latin ordinance dates from 1450 shows it fails.",
+    "a": "Claims the report shows the statement cannot be true, but nothing in the report excludes a pre-1400 annulment; the archive in which the annulled Latin ordinances date from 1350 satisfies every record. Marking a statement false requires a record that contradicts it, and there is none here — the record about re-enactment is about what happened afterwards, not about which ordinances were annulled."
   },
   "estimatedSeconds": 105,
   "stimulusRef": null,
@@ -49,16 +49,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-law-topup-author",
-    "reviewer": "bocconi-law-round2-reviewer",
-    "reviewedOn": "2026-09-22",
+    "reviewer": "blind-reviewer-cue-batch1-run0",
+    "reviewedOn": "2026-09-30",
     "independentSolve": {
-      "solvedBy": "bocconi-law-round2-reviewer",
+      "solvedBy": "blind-reviewer-cue-batch1-run0",
       "solvedAnswer": "c",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Pre-1400 ordinances are a subset of the Latin ones, so the annulled Latin ordinances of record 2 could all be Latin ordinances passed after 1400; nothing establishes the overlap and nothing excludes it, so the statement is consistent but not deducible."
+      "workingNotes": "Pre-1400 ordinances are a subset of Latin ordinances, and some Latin ordinances were annulled, but the annulled Latin ones could all be post-1400; equally they could include pre-1400 ones. The statement is consistent with the report but not forced, so neither 'true' nor 'false' holds. The re-enactment premise is irrelevant. [A second, separate blind solve (blind-reviewer-cue-batch1-run1) reached the same answer: Pre-1400 ordinances are a subset of Latin ordinances, and some Latin ordinances were annulled, but the annulled Latin ones may all be post-1400 or may include pre-1400 ones; both models satisfy the report. The re-enactment premise is irrelevant. So neither true nor false follows.]"
     },
-    "notes": "Author verified non-deducibility with two models that both satisfy all three records: annulled Latin ordinances dated 1350 (statement true) and dated 1450 (statement false). Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. Option-letter references in the explanation were rewritten to name choice content; the key was re-derived independently and is unchanged. Version 2: the wording changed after version 1 was published (letter references replaced with the content of each choice), so the version was incremented to keep earlier attempts pinned to the text they showed."
+    "notes": "Author verified non-deducibility with two models that both satisfy all three records: annulled Latin ordinances dated 1350 (statement true) and dated 1450 (statement false). Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. Option-letter references in the explanation were rewritten to name choice content; the key was re-derived independently and is unchanged. Version 2: the wording changed after version 1 was published (letter references replaced with the content of each choice), so the version was incremented to keep earlier attempts pinned to the text they showed. Choices rebalanced on 2026-09-29 to remove an answer-length cue; the key is unchanged."
   },
   "state": "published",
   "quarantine": null,
