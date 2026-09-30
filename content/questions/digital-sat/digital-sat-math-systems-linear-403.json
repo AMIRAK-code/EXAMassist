@@ -1,0 +1,77 @@
+{
+  "id": "digital-sat-math-systems-linear-403",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "algebra",
+  "skillSlug": "systems-of-two-linear-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "$$kx + 2y = 6$$\n$$8x + ky = 12$$\n\nIn the system of equations above, $k$ is a constant. For which value or values of $k$ does the system have no solution?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$-4$ and $4$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$4$ only"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$-4$ only"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "There is no such value of $k$."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "A system of two linear equations has no solution when its two lines are parallel but **distinct**: the $x$- and $y$-coefficients are proportional, but the constants do not follow the same proportion. If the constants also follow it, the two equations describe the same line and there are infinitely many solutions. So there are two things to check, and the second one is where this item is decided.\n\n**Step 1: when are the lines parallel?** The coefficients are proportional when $\\frac{k}{8} = \\frac{2}{k}$, that is $k^2 = 16$, so $k = 4$ or $k = -4$. For every other value of $k$ the lines cross once and the system has exactly one solution.\n\n**Step 2: test each value against the constants.**\n\n- $k = 4$: the system is $4x + 2y = 6$ and $8x + 4y = 12$. Doubling the first equation gives exactly the second, constant included. Same line: infinitely many solutions.\n- $k = -4$: the system is $-4x + 2y = 6$ and $8x - 4y = 12$. Multiplying the first equation by $-2$ gives $8x - 4y = -12$, which has the same left side as the second equation but the constant $-12$ instead of $12$. No pair $(x, y)$ can make $8x - 4y$ equal both $-12$ and $12$, so the lines are parallel and distinct: no solution.\n\nOnly $k = -4$ gives no solution.\n\nThe trap is to stop after Step 1. Setting the slopes equal finds the values of $k$ for which the system does *not* have exactly one solution; it does not say which of those give none and which give infinitely many. That second question is always settled by the constants.",
+  "distractorRationale": {
+    "b": "At $k = 4$ the second equation is exactly twice the first, constant included, so the equations describe the same line. That gives infinitely many solutions, the opposite of what is asked.",
+    "a": "These are the two values that make the coefficients proportional, found by solving $k^2 = 16$. Stopping there answers \"when is there not exactly one solution?\" rather than \"when is there no solution?\"; checking the constants shows $k = 4$ gives infinitely many solutions.",
+    "d": "This conclusion comes from mishandling the sign at $k = -4$: multiplying $-4x + 2y = 6$ by $-2$ changes the constant to $-12$, but a solver who carries it across as $12$ sees two identical equations and concludes that neither value of $k$ gives a system with no solution."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": "A system of two equations with a constant k: k x plus 2 y equals 6, and 8 x plus k y equals 12. The question asks for which value or values of k the system has no solution. The four choices are: negative 4 and 4; 4 only; negative 4 only; and there is no such value of k.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-sat-math-alg-author",
+    "aiAssisted": true,
+    "notes": "Original item. The constant appears in both equations, so the slope condition is quadratic and yields two candidates that behave differently; the constants 6 and 12 were chosen so that one candidate gives coincident lines and the other gives parallel lines."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-sat-math-alg-author",
+    "reviewer": "blind-reviewer-wave7-sat-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-sat-math-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The determinant k^2 - 16 is 0 at k = +/-4. At k = 4 both equations reduce to 2x + y = 3, the same line, so there are infinitely many solutions. At k = -4 they reduce to -2x + y = 3 and -2x + y = -3, parallel distinct lines, so there is no solution. The answer is -4 only. [A second, separate blind solve (blind-reviewer-wave7-sat-math-run1) reached the same answer: The determinant k^2 - 16 is zero when k = +/-4. At k = 4, both equations reduce to 2x + y = 3, the same line, so there are infinitely many solutions. At k = -4, the equations become -2x + y = 3 and 2x - y = 3, which are parallel and distinct, so there is no solution. That gives -4 only.]"
+    },
+    "notes": "Author solved twice and checked by script over k from -10 to 10: the determinant k^2 - 16 vanishes only at k = 4 (coincident lines, infinitely many solutions) and k = -4 (parallel distinct lines, no solution). Stretch item: harder than a typical hard SAT systems question because k sits in both equations, so the parallel condition is quadratic, and the stem does not announce the case split; the solver must test each root against the constants, with a sign change deciding the case. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "algebra",
+    "systems",
+    "no-solution"
+  ]
+}

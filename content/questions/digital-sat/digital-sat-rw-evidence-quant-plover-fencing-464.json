@@ -1,0 +1,80 @@
+{
+  "id": "digital-sat-rw-evidence-quant-plover-fencing-464",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "rw-module-1",
+  "domainSlug": "information-and-ideas",
+  "skillSlug": "command-of-evidence-quantitative",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Lorentzen claims that fencing raised the hatching rate by the largest proportion (that is, by the greatest percentage of the unfenced rate) on the beach where unfenced nests fared worst. Which choice best uses data from the table to support Lorentzen's claim?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Kestrel Point, where unfenced nests fared worst, is the only beach where fencing more than doubled the hatching rate (from 20% to 45%)."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "At Kestrel Point, only 20% of unfenced nests hatched, and at 45%, its fenced nests also had the lowest hatching rate of the four beaches."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Fencing raised the hatching rate by 30 percentage points at Ostby Sands (from 40% to 70%), a larger gain than on any other beach."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "At Marren Cove, fencing raised the hatching rate from 30% to 57%, nearly doubling it and outgaining Holm Bar."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The claim has two parts, and the evidence must cover both. It names a particular beach (the one where *unfenced* nests did worst) and says that on that beach the gain was the largest *proportion* of the starting rate, compared with every other beach.\n\nFind the beach first. The lowest unfenced rate is $20\\%$, at Kestrel Point. Then compare proportional gains, which means dividing each fenced rate by its unfenced rate rather than subtracting:\n\n- Kestrel Point: $45 \\div 20 = 2.25$\n- Ostby Sands: $70 \\div 40 = 1.75$\n- Marren Cove: $57 \\div 30 = 1.9$\n- Holm Bar: $72 \\div 50 = 1.44$\n\nKestrel Point is the only beach where fencing more than doubled the rate, so the choice that says so, and says no other beach reached double, supports the claim completely.\n\nThe trap is the largest gain in *percentage points*: Ostby Sands gained $30$ points, more than Kestrel Point's $25$. That answers a different question (the largest absolute gain) and names the wrong beach. Whenever a claim says *proportion*, *percentage of* or *relative to*, divide; when it says *points*, subtract.",
+  "distractorRationale": {
+    "c": "This is the answer to a different question. Thirty points is the largest absolute gain, but the claim is about proportion, and in proportional terms Ostby Sands (70 divided by 40, or 1.75) trails Kestrel Point (2.25). It also names a beach other than the one where unfenced nests fared worst.",
+    "b": "Both figures are accurate and they identify the right beach, but they compare rates across beaches rather than the gain on each beach. Having the lowest fenced rate says nothing about whether the proportional gain was the largest.",
+    "d": "This is accurate, but Marren Cove is not the beach where unfenced nests fared worst, and 'nearly doubling' (a factor of 1.9) is smaller than the factor at Kestrel Point, so this figure alone cannot support the claim."
+  },
+  "estimatedSeconds": 95,
+  "stimulusRef": {
+    "id": "digital-sat-stim-plover-fencing-464",
+    "version": 1
+  },
+  "accessibilityText": "Using the table of plover nests hatched with and without fencing on four beaches, choose the data that support the claim that fencing raised the hatching rate by the largest proportion on the beach where unfenced nests fared worst. Unfenced and fenced hatching rates are: Kestrel Point 20 and 45 percent, Ostby Sands 40 and 70 percent, Marren Cove 30 and 57 percent, Holm Bar 50 and 72 percent.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-sat-rw-ideas-craft-author",
+    "aiAssisted": true,
+    "notes": "Original item. Every choice is a true reading of the table; the key is the only one that identifies the right beach and compares proportional gains across all four."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-sat-rw-ideas-craft-author",
+    "reviewer": "blind-reviewer-wave7-sat-rw-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-sat-rw-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The fenced-to-unfenced ratios are Kestrel 2.25, Ostby 1.75, Marren 1.90 and Holm 1.44. Kestrel has the worst unfenced rate (20%) and is the only beach above 2x, so the 'more than doubled' claim in A establishes the largest proportional gain. [A second, separate blind solve (blind-reviewer-wave7-sat-rw-run1) reached the same answer: The ratios of fenced to unfenced rates are Kestrel 45/20=2.25, Ostby 1.75, Marren 1.9 and Holm 1.44. Kestrel has both the lowest unfenced rate and the largest proportional rise, and it is the only beach above 2x, so A is accurate and on target. C uses percentage points, which the stem explicitly rules out. B gives no proportion, and D names the wrong beach.]"
+    },
+    "notes": "Author's own solve and uniqueness check: lowest unfenced rate is Kestrel Point (20); ratios fenced/unfenced are 2.25, 1.75, 1.9 and 1.44 (verified by script), so Kestrel Point is the only beach above 2 and the option stating that is the only complete support. The Ostby Sands option uses the largest point gain (30 vs 25, 27, 22), which is the absolute rather than proportional measure; the option on Kestrel Point's lowest fenced rate compares levels, not gains; the Marren Cove option is a true single-beach fact on the wrong beach. The stem defines 'proportion' as a percentage of the unfenced rate so that a relative reduction in failure rate (under which Ostby Sands would lead) is not a competing reading. Re-solved from the stem alone with the same result. Stretch: harder than a typical hard quantitative-evidence item because it needs two combined readings (identify the beach by one column, then compare ratios across all four rows), the largest absolute gain belongs to a different beach, and a second distractor is a true, correctly targeted fact that does not establish the comparison. Not published: awaiting a blind independent solve by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "reading",
+    "command-of-evidence",
+    "quantitative",
+    "table"
+  ]
+}

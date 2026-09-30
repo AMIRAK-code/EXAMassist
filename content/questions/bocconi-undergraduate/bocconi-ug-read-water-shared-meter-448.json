@@ -1,0 +1,79 @@
+{
+  "id": "bocconi-ug-read-water-shared-meter-448",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-reading-comprehension",
+  "skillSlug": "reading-economic-data-passages",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In one month, the twenty households that share a single connection in one of Velmora's older apartment blocks use 100 cubic metres of water in total, 5 cubic metres each. If each household instead had its own meter and used the same amount of water, by how much would the twenty households' combined bill for that month fall, under the tariff described in the passage?",
+  "instructionsMd": "Answer on the basis of the passage only. No calculator.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "€160"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "€144"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "€224"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "€80"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The tariff is applied per connection per month: €0.80 for each of the first 10 cubic metres through a connection and €2.40 for each cubic metre beyond that. Work out the bill both ways.\n\n**One shared connection.** The first 10 cubic metres cost $10 \\times 0.80 = 8$ euros. The other 90 cost $90 \\times 2.40 = 216$ euros. The combined bill is $8 + 216 = 224$ euros.\n\n**Twenty separate meters.** Each household uses 5 cubic metres, all inside its own cheap block, and pays $5 \\times 0.80 = 4$ euros, the same as the pensioner in the passage. Twenty households pay $20 \\times 4 = 80$ euros.\n\n**The fall.** $224 - 80 = 144$ euros.\n\n**How to check the answer.** Separate meters change the price of exactly those cubic metres that the shared connection bills above the threshold. Under a shared meter, 90 cubic metres are billed at the higher price; with separate meters, none are. Each of those 90 cubic metres becomes $2.40 - 0.80 = 1.60$ euros cheaper, and $90 \\times 1.60 = 144$. The two routes agree.\n\n**Where the passage helps and where it misleads.** The passage says that under a shared meter \"almost all\" of the water is billed at the higher price. \"Almost\" matters: the first 10 cubic metres are still cheap, and treating all 100 as expensive overstates the fall.",
+  "distractorRationale": {
+    "d": "This is the combined bill the households would pay with separate meters, 20 households at 4 euros each. It answers what the new bill would be, not by how much the bill would fall.",
+    "a": "This treats all 100 cubic metres under the shared meter as billed at €2.40, giving a shared bill of 240 euros and a fall of 160. It reads the passage's \"almost all of the water\" as \"all of the water\" and forgets that the first 10 cubic metres through the connection are still cheap.",
+    "c": "This is the combined bill under the shared connection, 8 euros for the first 10 cubic metres plus 216 for the other 90. It stops before comparing that bill with the bill under separate meters."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": {
+    "id": "bocconi-ug-stim-water-tariff-432",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying prose passage on increasing-block water tariffs in Velmora. Twenty households sharing one connection use 100 cubic metres in a month, 5 cubic metres each. The question asks by how much their combined bill would fall if each household had its own meter and used the same amount. The four options are 160, 144, 224 and 80 euros.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-verbal-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item written against the original passage bocconi-ug-stim-water-tariff-432. It turns the passage's qualitative point about shared meters into a calculation that uses the stated tariff. The strongest distractor comes from reading the passage's 'almost all' as 'all'; the other two are the two intermediate bills."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-bocconi-verbal-logic-author",
+    "reviewer": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "On the shared meter the bill is 10 x 0.80 + 90 x 2.40 = 8 + 216 = 224. On separate meters it is 20 x 5 x 0.80 = 80. The bill falls by 144; 224 and 80 are the two bills used as distractors. [A second, separate blind solve (blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run1) reached the same answer: Shared meter: 10 x 0.80 + 90 x 2.40 = 8 + 216 = 224. Separate meters: 20 x (5 x 0.80) = 80. The bill falls by 144. The other options are 224 (the shared bill), 80 (the separate bill) and 160 (100 x 1.60).]"
+    },
+    "notes": "Author's uniqueness check with a read-only script: shared bill 8 + 216 = 224 euros; separate bills 20 x 4 = 80 euros; fall 144 euros, equal to 90 x 1.60. Billing all 100 cubic metres at 2.40 gives 240 and a fall of 160. The four values are distinct and well separated. Solved twice, the second time from the stem and passage alone. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "passage-water-tariff",
+    "data-in-prose",
+    "block-tariff"
+  ]
+}

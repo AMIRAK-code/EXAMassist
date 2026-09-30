@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-crit-trade-fair-possible-438",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-critical-thinking",
+  "skillSlug": "critical-thinking-truth-evaluation",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "The organisers of a trade fair applied three rules to every exhibitor, without exception.\n\n> 1. An exhibitor was given a stand in Hall 1 only if it had registered before March.\n>\n> 2. Every exhibitor that registered before March received a free listing in the catalogue.\n>\n> 3. No exhibitor that received a free listing in the catalogue paid the late fee.\n\nWhich one of the following **could** be true?",
+  "instructionsMd": "Answer on the basis of the three rules alone.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "An exhibitor that paid the late fee had registered before March."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "An exhibitor with a stand in Hall 1 paid the late fee."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "An exhibitor that had not registered before March received a free listing in the catalogue."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "An exhibitor that did not receive a free listing in the catalogue had a stand in Hall 1."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Write the three rules as one chain of arrows. \"Given a stand in Hall 1 **only if** registered before March\" puts the arrow from the stand to the registration, not the other way:\n\n$$\\text{Hall 1} \\rightarrow \\text{registered before March} \\rightarrow \\text{free listing} \\rightarrow \\text{no late fee}$$\n\nA chain like this forbids exactly one kind of exhibitor: one that has a property early in the chain but lacks a property later in it. Everything else is allowed. Test each option against that.\n\n- An exhibitor in Hall 1 that paid the late fee: Hall 1 leads along the chain to \"no late fee\". Forbidden.\n- An exhibitor that paid the late fee and registered before March: registering early leads to \"no late fee\". Forbidden.\n- An exhibitor in Hall 1 without a free listing: Hall 1 leads to \"free listing\". Forbidden.\n- An exhibitor that registered late but still received a free listing: this has a **later** property of the chain without an **earlier** one. The arrows only run forwards, so nothing forbids it. The rules say early registration is enough for a free listing; they never say it is required.\n\nSo the only claim that could be true is that an exhibitor which had not registered before March received a free listing.\n\n**How to check the answer.** Build the exhibitor: registered in April, not in Hall 1, given a free listing as a sponsor, and so, by rule 3, charged no late fee. Every rule is satisfied. For each of the other three, the exhibitor you would need contradicts a rule at the first step you apply.\n\n**What made this hard.** \"Could be true\" questions reverse the usual search. Three options are chains that break a rule and one is a converse that merely feels wrong. Reading the converse of rule 2 as if it were stated is exactly the error that makes the possible option look impossible.",
+  "distractorRationale": {
+    "b": "Hall 1 requires early registration (rule 1), early registration brings a free listing (rule 2), and a free listing rules out the late fee (rule 3). An exhibitor in Hall 1 that paid the late fee breaks the whole chain, so this cannot be true.",
+    "a": "Early registration brings a free listing (rule 2), and a free listing rules out the late fee (rule 3), so no early registrant paid the late fee. A candidate who misses that rule 3 applies to every early registrant, through rule 2, may think this is merely unusual rather than impossible.",
+    "d": "A stand in Hall 1 requires early registration, and early registration guarantees a free listing, so every exhibitor in Hall 1 had a free listing. This choice is tempting to a candidate who checks it against rule 1 alone, sees that rule 1 mentions the hall and registration but not the catalogue, and concludes that a listing has nothing to do with the hall; the link runs through rule 2."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": null,
+  "accessibilityText": "A critical thinking question giving three rules for exhibitors at a trade fair: an exhibitor was given a stand in Hall 1 only if it had registered before March; every exhibitor that registered before March received a free listing in the catalogue; no exhibitor that received a free listing in the catalogue paid the late fee. The question asks which of four statements could be true. The explanation contains a chain of arrows: Hall 1, to registered before March, to free listing, to no late fee.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-verbal-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item. A three-link conditional chain in ordinary language, with 'only if' in the first link so that the direction of the first arrow must be read carefully. The 'could be true' frame means three options are impossible chains and the key is the one converse the rules do not forbid."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-bocconi-verbal-logic-author",
+    "reviewer": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The rules chain as: Hall 1 -> registered before March -> free listing -> no late fee. A, B and D each break this chain or its contrapositive, so they are impossible. C only asserts the converse of rule 2, which the rules allow. [A second, separate blind solve (blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run1) reached the same answer: The rules form a chain: Hall 1 implies registration before March, which implies a free listing, which implies no late fee. A, B and D each break this chain, so they are impossible. C only reverses rule 2, which is one-directional, so an exhibitor that registered in March or later could still get a free listing.]"
+    },
+    "notes": "Author's uniqueness check: with the chain Hall 1, early registration, free listing, no late fee, each distractor requires an exhibitor with an earlier link and without a later one, which the rules forbid; the key requires only a later link without an earlier one, which is consistent. A read-only brute-force check over all worlds of up to two exhibitors with the four properties found models for the key and none for any distractor. Solved twice, the second time from the stem alone. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "conditional-chain",
+    "only-if",
+    "could-be-true"
+  ]
+}

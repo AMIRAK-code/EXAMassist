@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-fn-exp-shift-intercept-401",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-functions-graphs",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Consider the function\n\n$$f(x) = 2^{x - 1} + 3$$\n\nWhich statement about the graph of $f$ is correct?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Its horizontal asymptote is $y = 3$, and it crosses the $y$-axis at $(0, 4)$."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Its horizontal asymptote is $y = 3$, and it crosses the $y$-axis at $(0, 5)$."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Its horizontal asymptote is $y = 0$, and it crosses the $y$-axis at $\\left(0, \\tfrac{7}{2}\\right)$."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Its horizontal asymptote is $y = 3$, and it crosses the $y$-axis at $\\left(0, \\tfrac{7}{2}\\right)$."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "**Build the graph from $y = 2^{x}$ in two moves.**\n\n- Replacing $x$ by $x - 1$ shifts the graph 1 unit to the **right**. This changes where the curve sits horizontally but not its asymptote, which is still $y = 0$.\n- Adding $3$ shifts the whole graph 3 units **up**, and the asymptote moves with it: $y = 0$ becomes $y = 3$.\n\nSo as $x \\to -\\infty$, $2^{x-1} \\to 0$ and $f(x) \\to 3$: the horizontal asymptote is $y = 3$.\n\n**The $y$-intercept.** Set $x = 0$:\n\n$$f(0) = 2^{0 - 1} + 3 = 2^{-1} + 3 = \\frac{1}{2} + 3 = \\frac{7}{2}$$\n\nSo the graph crosses the $y$-axis at $\\left(0, \\tfrac{7}{2}\\right)$.\n\n**Check.** Because $2^{x-1} > 0$ for every $x$, the graph always lies strictly above $y = 3$, and $\\tfrac{7}{2}$ is indeed above 3. A second quick check: the shifted curve reaches height $2^{0} + 3 = 4$ at $x = 1$, one unit to the right of the $y$-axis, so at $x = 0$ it must be lower than 4.",
+  "distractorRationale": {
+    "a": "This ignores the horizontal shift and evaluates $2^{0} + 3 = 4$, which is the intercept of $2^{x} + 3$. With the exponent $x - 1$, setting $x = 0$ gives $2^{-1} = \\tfrac{1}{2}$, not $1$.",
+    "b": "This shifts the graph the wrong way, evaluating $2^{0 + 1} + 3 = 5$ as if the exponent were $x + 1$. Replacing $x$ by $x - 1$ moves the graph right, so at $x = 0$ the exponent is $-1$.",
+    "c": "The intercept is right, but the asymptote has not been moved. Adding $3$ to the function lifts every point of the graph, including the level it approaches as $x \\to -\\infty$, so the asymptote is $y = 3$, not $y = 0$."
+  },
+  "estimatedSeconds": 50,
+  "stimulusRef": null,
+  "accessibilityText": "The function f of x equals 2 to the power x minus 1, plus 3. The question asks which statement about its graph is correct. Each choice states a horizontal asymptote and the point where the graph crosses the y-axis: asymptote y equals 3 with crossing at 0, 4; asymptote y equals 3 with crossing at 0, 5; asymptote y equals 0 with crossing at 0, seven halves; and asymptote y equals 3 with crossing at 0, seven halves.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Two independent facts are tested together, so each distractor keeps one fact right and breaks the other through a single transformation slip. The intercept was recomputed by a read-only script."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-bocconi-math-author",
+    "reviewer": "blind-reviewer-wave7-bocconi-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-bocconi-math-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "2^(x-1) tends to 0 as x goes to -infinity, so the asymptote is y=3. f(0)=2^(-1)+3=7/2. Only D has both parts right: A and B get the intercept wrong, and C gets the asymptote wrong. [A second, separate blind solve (blind-reviewer-wave7-bocconi-math-run1) reached the same answer: f(0)=2^{-1}+3=7/2, and as x -> -infinity, f -> 3. A uses 2^0 (forgetting the shift), B uses 2^1, and C has the wrong asymptote.]"
+    },
+    "notes": "Author's uniqueness check: f(0) = 1/2 + 3 = 7/2 and the limit as x tends to minus infinity is 3, so only the choice pairing y = 3 with (0, 7/2) is correct; every other choice misstates exactly one of the two. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "exponential-graph",
+    "transformations",
+    "asymptote"
+  ]
+}

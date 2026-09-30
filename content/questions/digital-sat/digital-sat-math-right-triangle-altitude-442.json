@@ -1,0 +1,78 @@
+{
+  "id": "digital-sat-math-right-triangle-altitude-442",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "geometry-and-trigonometry",
+  "skillSlug": "right-triangles-and-trigonometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "In triangle $ABC$, angle $C$ is a right angle. Point $D$ lies on $\\overline{AB}$ so that $\\overline{CD}$ is perpendicular to $\\overline{AB}$. If $AD = 4$ and $\\tan B = \\frac{2}{3}$, what is the area of triangle $ABC$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$12$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$27$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$39$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$78$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The altitude $\\overline{CD}$ splits the triangle into two smaller right triangles, $ACD$ and $CBD$, each similar to $ABC$. The given length $AD$ is in one of them and the given angle $B$ is in the other, so the first job is to carry angle $B$ across.\n\n**Angle $ACD$ equals angle $B$.** In right triangle $ACD$, angle $ACD = 90^\\circ - A$. In triangle $ABC$, angle $B = 90^\\circ - A$ as well. So $\\tan(\\angle ACD) = \\tan B = \\frac{2}{3}$.\n\n**Find $CD$.** In triangle $ACD$ the side opposite angle $ACD$ is $AD$ and the adjacent side is $CD$:\n\n$$\\frac{AD}{CD} = \\frac{2}{3} \\;\\Rightarrow\\; \\frac{4}{CD} = \\frac{2}{3} \\;\\Rightarrow\\; CD = 6$$\n\n**Find $DB$.** In triangle $CBD$, the side opposite angle $B$ is $CD$ and the adjacent side is $DB$:\n\n$$\\frac{CD}{DB} = \\frac{2}{3} \\;\\Rightarrow\\; \\frac{6}{DB} = \\frac{2}{3} \\;\\Rightarrow\\; DB = 9$$\n\n**Area.** Use $\\overline{AB}$ as the base and $\\overline{CD}$ as the height: $AB = 4 + 9 = 13$, so\n\n$$\\text{area} = \\frac{1}{2}(13)(6) = 39$$\n\nCheck with the legs instead. $AC = \\sqrt{4^2 + 6^2} = \\sqrt{52}$ and $BC = \\sqrt{6^2 + 9^2} = \\sqrt{117}$, so the area is $\\frac{1}{2}\\sqrt{52 \\cdot 117} = \\frac{1}{2}\\sqrt{6{,}084} = \\frac{1}{2}(78) = 39$. And $\\tan B = \\frac{AC}{BC} = \\sqrt{\\frac{52}{117}} = \\sqrt{\\frac{4}{9}} = \\frac{2}{3}$, as given.\n\nThe insight that unlocks the item is the equal angles: an altitude to the hypotenuse makes each small triangle share an acute angle with the large one.",
+  "distractorRationale": {
+    "a": "This is the area of the small triangle $ACD$, $\\frac{1}{2}(4)(6)$. Triangle $ABC$ also contains triangle $CBD$.",
+    "b": "This is the area of the small triangle $CBD$, $\\frac{1}{2}(9)(6)$. Triangle $ABC$ also contains triangle $ACD$.",
+    "d": "This is base times height, $13 \\times 6$, without the factor of $\\frac{1}{2}$ that the area of a triangle requires."
+  },
+  "estimatedSeconds": 140,
+  "stimulusRef": null,
+  "accessibilityText": "Triangle A B C has a right angle at C. Point D is on side A B, and segment C D is perpendicular to A B, so C D is the altitude to the hypotenuse. The length A D is 4, and the tangent of angle B is two thirds. Find the area of triangle A B C. The choices are 12, 27, 39 and 78.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-sat-math-data-geo-author",
+    "aiAssisted": true,
+    "notes": "Original item. The tangent ratio 2/3 applied twice from AD = 4 gives whole-number segments 6 and 9, and the areas of the two small triangles become the distractors."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-sat-math-data-geo-author",
+    "reviewer": "blind-reviewer-wave7-sat-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-sat-math-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Angle ACD equals angle B, so tan(ACD) = AD/CD = 2/3, which gives CD = 6. In triangle CDB, tan B = CD/DB = 2/3, which gives DB = 9. So AB = 13 and the area is 13(6)/2 = 39. Check: CD^2 = AD x DB = 36. [A second, separate blind solve (blind-reviewer-wave7-sat-math-run1) reached the same answer: Angle ACD equals angle B, so in right triangle ACD, AD/CD = 2/3 and CD = 6. In triangle BCD, CD/BD = 2/3, so BD = 9 and AB = 13. The area is (1/2)(13)(6) = 39. D (78) is the result of forgetting the 1/2.]"
+    },
+    "notes": "Hard: the given length and the given angle sit in different sub-triangles, so the candidate must first see that angle ACD equals angle B, then apply the tangent twice. Author solved twice: CD = 6, DB = 9, area (1/2)(13)(6) = 39; cross-checked with legs sqrt(52) and sqrt(117) and with tan B = AC/BC = 2/3. Verified with a read-only script. Awaiting a blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "geometry",
+    "similar-triangles",
+    "trigonometry",
+    "altitude-to-hypotenuse"
+  ]
+}

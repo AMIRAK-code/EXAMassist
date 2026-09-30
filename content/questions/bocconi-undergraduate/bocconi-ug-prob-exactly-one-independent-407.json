@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-prob-exactly-one-independent-407",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-probability-union-intersection",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A start-up has applied to two investment funds, which decide independently of each other. The probability that the first fund accepts the application is $0.6$, and the probability that the second fund accepts it is $0.3$.\n\nWhat is the probability that **exactly one** of the two funds accepts the application?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$0.18$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$0.54$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$0.72$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$0.9$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Let $F$ be the event \"the first fund accepts\" and $G$ the event \"the second fund accepts\", with $P(F) = 0.6$ and $P(G) = 0.3$.\n\n**Split \"exactly one\" into two disjoint cases.**\n\n- The first accepts and the second refuses: $P(F)\\,P(\\overline{G}) = 0.6 \\times 0.7 = 0.42$\n- The first refuses and the second accepts: $P(\\overline{F})\\,P(G) = 0.4 \\times 0.3 = 0.12$\n\nIndependence is what allows each probability to be written as a product. The two cases cannot happen together, so their probabilities add:\n\n$$P(\\text{exactly one}) = 0.42 + 0.12 = 0.54$$\n\n**A second route through the union.** \"At least one\" is $P(F \\cup G) = 0.6 + 0.3 - 0.6 \\times 0.3 = 0.72$. \"Both\" is $P(F \\cap G) = 0.18$. Exactly one is at least one but not both:\n\n$$0.72 - 0.18 = 0.54$$\n\n**Check.** The four outcomes must account for all the probability: both $0.18$, exactly one $0.54$, neither $0.4 \\times 0.7 = 0.28$, and $0.18 + 0.54 + 0.28 = 1$. ✓",
+  "distractorRationale": {
+    "a": "This is the probability that **both** funds accept, $0.6 \\times 0.3$. It is the case that must be excluded from \"exactly one\", not the answer itself.",
+    "c": "This is the probability that **at least one** fund accepts, $P(F \\cup G) = 0.6 + 0.3 - 0.18$. It still contains the outcome in which both accept, which \"exactly one\" rules out.",
+    "d": "This simply adds the two probabilities. That counts the outcome in which both accept twice over, and it would give a probability greater than 1 for large enough inputs; the union rule subtracts the overlap once, and \"exactly one\" removes it entirely."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": null,
+  "accessibilityText": "Two investment funds decide independently. The first accepts with probability 0.6 and the second with probability 0.3. The question asks for the probability that exactly one of them accepts. The choices are 0.18, 0.54, 0.72 and 0.9.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. The three distractors are the intersection, the union and the naive sum, which are the three quantities a candidate is most likely to confuse with exactly one. All four probabilities were checked by a read-only script."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-bocconi-math-author",
+    "reviewer": "blind-reviewer-wave7-bocconi-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-bocconi-math-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "P(exactly one)=0.6·0.7+0.4·0.3=0.42+0.12=0.54. 0.18 is P(both), 0.72 is P(at least one), and 0.9 is the plain sum. [A second, separate blind solve (blind-reviewer-wave7-bocconi-math-run1) reached the same answer: 0.6*0.7 + 0.4*0.3 = 0.42 + 0.12 = 0.54. 0.18 is both accepting, 0.72 is at least one, and 0.9 is the naive sum.]"
+    },
+    "notes": "Author's uniqueness check: with independence, P(exactly one) = 0.6 x 0.7 + 0.4 x 0.3 = 0.54 uniquely; the other values are P(both) = 0.18, P(at least one) = 0.72 and the sum 0.9, none of which is the probability of exactly one. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "independent-events",
+    "union",
+    "exactly-one"
+  ]
+}

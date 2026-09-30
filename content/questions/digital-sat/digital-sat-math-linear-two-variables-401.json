@@ -1,0 +1,77 @@
+{
+  "id": "digital-sat-math-linear-two-variables-401",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "algebra",
+  "skillSlug": "linear-equations-two-variables",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A community theater sells adult tickets for $\\$16$ each and student tickets for $\\$9$ each. The equation $16a + 9s = 412$ represents an evening on which the theater collected $\\$412$ from selling $a$ adult tickets and $s$ student tickets. If $12$ student tickets were sold that evening, how many adult tickets were sold?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$19$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$25$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$25.75$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$32.5$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Substitute the known value for the variable it belongs to, then solve for the other one.\n\nThe number of student tickets is $s = 12$, and each costs $\\$9$, so student tickets brought in $9 \\times 12 = 108$ dollars:\n\n$$16a + 9(12) = 412$$\n$$16a + 108 = 412$$\n$$16a = 304$$\n$$a = 19$$\n\nCheck: $16 \\times 19 = 304$ and $304 + 108 = 412$, the evening's total.\n\nA quick sense check also helps. The number of tickets sold must be a whole number, so any result with a decimal part signals that a step went wrong.",
+  "distractorRationale": {
+    "b": "This subtracts the number of student tickets, $12$, from $412$ instead of the money they brought in, $9 \\times 12 = 108$: $(412 - 12) \\div 16 = 25$.",
+    "c": "This ignores the student tickets altogether and divides the whole $\\$412$ by the adult price: $412 \\div 16 = 25.75$. A ticket count cannot be fractional.",
+    "d": "This adds the student revenue instead of subtracting it, $(412 + 108) \\div 16 = 32.5$, as if the $\\$108$ were missing from the total rather than part of it."
+  },
+  "estimatedSeconds": 50,
+  "stimulusRef": null,
+  "accessibilityText": "Adult tickets cost 16 dollars and student tickets cost 9 dollars. The equation 16 a plus 9 s equals 412 models an evening's ticket revenue, with a adult tickets and s student tickets. If s equals 12, find a. The four choices are 19, 25, 25.75 and 32.5.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-sat-math-alg-author",
+    "aiAssisted": true,
+    "notes": "Original item. Prices and total chosen so that each distractor is the result of one substitution slip and only the key is a whole number."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-sat-math-alg-author",
+    "reviewer": "blind-reviewer-wave7-sat-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-sat-math-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "16a + 9(12) = 412 gives 16a = 304, so a = 19. The non-integer choices are not possible ticket counts. [A second, separate blind solve (blind-reviewer-wave7-sat-math-run1) reached the same answer: Substituting s = 12 gives 16a + 108 = 412, so 16a = 304 and a = 19. The other choices come from arithmetic slips, and the non-integer ones cannot be ticket counts.]"
+    },
+    "notes": "Author solved twice and checked by script: 16a = 412 - 108 = 304 gives a = 19; each distractor recomputed from its named slip (400/16, 412/16, 520/16). Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "algebra",
+    "linear-equation",
+    "in-context"
+  ]
+}

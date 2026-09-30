@@ -1,0 +1,79 @@
+{
+  "id": "bocconi-ug-num-admissions-international-446",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-numerical-reasoning",
+  "skillSlug": "numerical-reasoning-charts-tables",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which programme enrolled the largest number of international students in 2025?",
+  "instructionsMd": "Use only the figures in the table. No calculator.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Finance"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Economics"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Management"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Data Science"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The international share is a percentage of **enrolled** students, and enrolled students are themselves a percentage of a percentage of applicants. So each programme needs a chain of three steps: applicants, then offered a place, then enrolled, then international. The fee column plays no part.\n\n| Programme | Offered a place | Enrolled | International |\n| --- | --- | --- | --- |\n| Economics | 18% of 4,000 = 720 | 85% of 720 = 612 | 25% of 612 = 153 |\n| Finance | 32% of 2,500 = 800 | 50% of 800 = 400 | 50% of 400 = 200 |\n| Management | 25% of 3,000 = 750 | 80% of 750 = 600 | 36% of 600 = 216 |\n| Data Science | 40% of 1,500 = 600 | 50% of 600 = 300 | 64% of 300 = 192 |\n\nManagement enrolled 216 international students, the largest number, so **Management** is the answer.\n\n**Doing it by hand.** Several products are easier in a different order. For Economics, 25 per cent of 612 is a quarter of 612, which is 153. For Management, 36 per cent of 600 is $6 \\times 36 = 216$. For Data Science, 64 per cent of 300 is $3 \\times 64 = 192$.\n\n**How to check the answer.** The runner-up is Finance with 200, so Management leads by 16 students. No programme's figures sit close enough to Management's for a small arithmetic slip to change the order, but a skipped **step** does change it, which is where the traps are.\n\n**The traps.** Data Science has the highest international share, but that share is taken of only 300 enrolled students. Economics has the most applicants and the most enrolled students, but the lowest international share. And a candidate who applies the international share to those **offered a place**, skipping the enrolment step, gets Finance 400 against Data Science 384, Management 270 and Economics 180, and picks Finance; applying it to all applicants also puts Finance first. The table's definitions settle which base is right.",
+  "distractorRationale": {
+    "b": "Economics has the most applicants, 4,000, the tallest bar in the chart, and the most enrolled students, 612. But only 25 per cent of them are international, which gives 153, the smallest of the four figures.",
+    "a": "This is the answer a candidate reaches by applying the international share to the 800 students offered a place, or to the 2,500 applicants, instead of to the 400 who enrolled. The table defines the share on enrolled students, and half of Finance's 400 enrolled students is 200, fewer than Management's 216.",
+    "d": "Data Science has by far the highest international share, 64 per cent, which is the column a reader reaches for first. But that share applies to only 300 enrolled students, giving 192, fewer than Management's 216."
+  },
+  "estimatedSeconds": 115,
+  "stimulusRef": {
+    "id": "bocconi-ug-stim-arvena-admissions-431",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying table of 2025 admissions by programme at the Arvena School of Economics. It asks which programme enrolled the largest number of international students. The four answer options are programme names: Finance, Economics, Management, Data Science. The explanation contains a table giving, for each programme, the number offered a place, the number enrolled and the number of international students enrolled.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-verbal-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item written against the original table bocconi-ug-stim-arvena-admissions-431. The answer needs a three-link chain of percentages for each of four rows. Each wrong programme leads a different partial reading: the largest international share, the largest intake, and the result of skipping the enrolment step."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-bocconi-verbal-logic-author",
+    "reviewer": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "International students = applicants x admission rate x enrolment rate x international share. That gives Economics 4000x.18x.85x.25 = 153, Finance 200, Management 750x.8x.36 = 216 and Data Science 192. Management is the largest. [A second, separate blind solve (blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run1) reached the same answer: International students = applicants x admission x enrolment x international share. Economics: 4000 x .18 x .85 x .25 = 153. Finance: 2500 x .32 x .5 x .5 = 200. Management: 3000 x .25 x .8 x .36 = 216. Data Science: 1500 x .4 x .5 x .64 = 192. Management is largest.]"
+    },
+    "notes": "Author's uniqueness check with a read-only script: international students enrolled are Economics 153, Finance 200, Management 216 and Data Science 192, so Management is the unique maximum, 16 ahead of Finance. Applying the share to those offered a place gives 180, 400, 270 and 384, and to applicants 1,000, 1,250, 1,080 and 960; both slips point to Finance, which the rationale names. Hard rather than stretch: the chain is long but each step is an ordinary percentage. Solved twice, the second time from the stem and table alone. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "table-arvena-admissions",
+    "percentage-of-a-percentage",
+    "chained-rates"
+  ]
+}

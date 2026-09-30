@@ -1,0 +1,81 @@
+{
+  "id": "digital-sat-math-two-variable-data-residual-433",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "problem-solving-and-data-analysis",
+  "skillSlug": "two-variable-data",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The table shows the daily high temperature $x$, in degrees Fahrenheit, and the number of iced drinks $y$ sold by a food truck on six days. The owner models the data with the equation $y = 3.5x - 120$. For which day does the model overestimate the number of iced drinks sold by the greatest amount?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Saturday"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Wednesday"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Friday"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Monday"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The model overestimates on a day when its prediction is **greater** than the actual number sold, so compare predicted minus actual for each day and look for the largest positive difference.\n\nSubstitute each temperature into $y = 3.5x - 120$:\n\n| Day | Predicted | Actual | Predicted minus actual |\n| --- | --- | --- | --- |\n| Monday | $3.5(64) - 120 = 104$ | $101$ | $3$ |\n| Tuesday | $3.5(72) - 120 = 132$ | $121$ | $11$ |\n| Wednesday | $3.5(80) - 120 = 160$ | $175$ | $-15$ |\n| Thursday | $3.5(68) - 120 = 118$ | $125$ | $-7$ |\n| Friday | $3.5(58) - 120 = 83$ | $92$ | $-9$ |\n| Saturday | $3.5(84) - 120 = 174$ | $160$ | $14$ |\n\nThe model overestimates on Monday, Tuesday and Saturday, and the gap is greatest on Saturday: it predicts $174$ drinks but only $160$ were sold, an overestimate of $14$.\n\nIn residual language, the residual is actual minus predicted, so an overestimate is a **negative** residual, and Saturday's residual of $-14$ is the most negative. Watch the sign: Wednesday has the largest gap of all, $15$ drinks, but there the model *under*estimates.",
+  "distractorRationale": {
+    "d": "The model does overestimate Monday's sales, but only by $3$ drinks ($104$ predicted, $101$ sold). That is the smallest error in the table, not the greatest.",
+    "b": "Wednesday has the largest error in size, $15$ drinks, but in the wrong direction: the model predicts $160$ and the truck sold $175$, so the model underestimates. This choice comes from ignoring the sign of the difference.",
+    "c": "Friday has the lowest temperature and the fewest drinks sold, but a low value is not the same as a large prediction error. The model predicts $83$ and the truck sold $92$, so it underestimates by $9$."
+  },
+  "estimatedSeconds": 105,
+  "stimulusRef": {
+    "id": "digital-sat-stim-iced-drinks-table-440",
+    "version": 1
+  },
+  "accessibilityText": "Using the table of daily high temperatures and iced drinks sold on six days, and the model y equals 3.5 x minus 120, find the day on which the model's prediction is greater than the actual number sold by the largest amount. The choices are Saturday, Wednesday, Friday and Monday.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-sat-math-data-geo-author",
+    "aiAssisted": true,
+    "notes": "Original item. The data were built so that the largest error in size is an underestimate, which separates reading the sign from reading the size."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-sat-math-data-geo-author",
+    "reviewer": "blind-reviewer-wave7-sat-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-sat-math-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Predicted values: Monday 104 (actual 101, over by 3), Tuesday 132 (121, over by 11), Wednesday 160 (175, under), Thursday 118 (125, under), Friday 83 (92, under), Saturday 174 (160, over by 14). Saturday has the largest overestimate. Wednesday has the largest absolute residual, but it is an underestimate. [A second, separate blind solve (blind-reviewer-wave7-sat-math-run1) reached the same answer: Predicted minus actual for each day: Monday 104 - 101 = +3, Tuesday 132 - 121 = +11, Wednesday 160 - 175 = -15, Thursday 118 - 125 = -7, Friday 83 - 92 = -9, Saturday 174 - 160 = +14. The largest overestimate is Saturday (14). Wednesday is the largest underestimate, which makes it the trap.]"
+    },
+    "notes": "Author solved twice. Predicted minus actual: Mon 3, Tue 11, Wed -15, Thu -7, Fri -9, Sat 14; the largest overestimate is Saturday (14), with Tuesday (11) the nearest rival but not offered. Verified with a read-only script. Awaiting a blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "problem-solving",
+    "residuals",
+    "linear-model",
+    "table"
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "id": "gre-quant-ms-square-divisible-409",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-arithmetic",
+  "skillSlug": "arith-integer-properties",
+  "subskillSlug": null,
+  "responseType": "multi_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "The positive integer $k$ is such that $k^{2}$ is divisible by $72$.\n\nWhich of the following must be divisors of $k$?\n\nSelect **all** such numbers.",
+  "instructionsMd": "Select all that apply. There is no credit for a partially correct selection.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$4$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$6$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$8$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$9$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$12$"
+    },
+    {
+      "id": "f",
+      "label": "F",
+      "textMd": "$24$"
+    }
+  ],
+  "answerKey": {
+    "type": "multi_select",
+    "optionIds": [
+      "a",
+      "b",
+      "e"
+    ],
+    "grading": "exact"
+  },
+  "explanationMd": "The word **must** means you are looking for divisors of the smallest possible $k$, and of every other possible $k$ too. So find exactly what the condition forces into $k$.\n\n**Step 1: factor $72$.** $72 = 2^{3} \\times 3^{2}$.\n\n**Step 2: translate to $k$.** In a perfect square every prime appears to an **even** power, twice its power in $k$. If $2^{a}$ is the power of $2$ in $k$, then $k^{2}$ contains $2^{2a}$, and we need $2a \\ge 3$. The smallest whole number that works is $a = 2$, because $a = 1$ gives only $2^{2}$. Likewise, if $3^{b}$ is the power of $3$ in $k$, we need $2b \\ge 2$, so $b \\ge 1$.\n\nTherefore $k$ must be divisible by $2^{2} \\times 3 = 12$, and $k = 12$ itself works: $12^{2} = 144 = 2 \\times 72$.\n\n**Step 3: test each choice against $k = 12$.** A number must divide $k$ in every case only if it divides $12$, and anything that divides $12$ divides every multiple of $12$.\n\n- $4$, $6$ and $12$ divide $12$, so they must divide $k$.\n- $8$, $9$ and $24$ do not divide $12$, so $k = 12$ is a counterexample to each.\n\n**The answer is $4$, $6$ and $12$.**\n\n**How to check.** Confirm the counterexample directly: $144 \\div 72 = 2$, so $k = 12$ is allowed, and $12 \\div 8$, $12 \\div 9$ and $12 \\div 24$ are not whole numbers. The trap is to assume that $k$ must contain everything $72$ contains. Squaring doubles each exponent, so $k$ needs only about half of each exponent, rounded up.",
+  "distractorRationale": {
+    "c": "Reached by assuming that $k$ must contain the full $2^{3}$ from $72$. Squaring doubles the exponent, so $2^{2}$ in $k$ already gives $2^{4}$ in $k^{2}$, which covers $2^{3}$. The value $k = 12$ is allowed and is not divisible by $8$.",
+    "d": "Reached by carrying the $3^{2}$ of $72$ straight into $k$. One factor of $3$ in $k$ gives $3^{2}$ in $k^{2}$, which is enough, so $k = 12$ works and is not divisible by $9$.",
+    "f": "Reached by halving the exponent of $3$ correctly but carrying the full $2^{3}$ from $72$ into $k$, which gives $2^{3} \\times 3 = 24$. Two factors of $2$ in $k$ already give $2^{4}$ in $k^{2}$, so $k = 12$ is allowed, and $24$ does not divide $12$."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "The positive integer k has the property that k squared is divisible by 72. From the list 4, 6, 8, 9, 12 and 24, select every number that must be a divisor of k. More than one answer may be correct and all correct answers must be selected.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-gre-quant-author",
+    "aiAssisted": true,
+    "notes": "Original item written for wave 7. 72 has an odd power of 2 and an even power of 3, so the halving-and-rounding-up step bites on one prime and not the other; each wrong choice overshoots what k needs. Not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-gre-quant-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved: 72 = 2^3 3^2, so k needs 2^2 and 3^1, i.e. 12 | k, and k = 12 works (144 = 2 x 72). Must-divide choices are the divisors of 12 among the options: 4, 6, 12. A script listed every k up to 2000 with 72 | k^2 (12, 24, 36, ...) and confirmed only 4, 6 and 12 divide all of them."
+  },
+  "state": "quarantined",
+  "quarantine": {
+    "reason": "Independent critic (wave 7): closely modelled on a well-known official GMAT problem-solving item - same divisor, same condition on n squared and the same reasoning. Fails the originality rule in docs/AUTHORING-BRIEF.md. Replace with a genuinely new number-properties item rather than editing this one.",
+    "replacedBy": null
+  },
+  "tags": [
+    "select-all",
+    "number-properties",
+    "divisibility",
+    "perfect-squares"
+  ]
+}

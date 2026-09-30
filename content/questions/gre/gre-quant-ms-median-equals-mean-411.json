@@ -1,0 +1,99 @@
+{
+  "id": "gre-quant-ms-median-equals-mean-411",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-data-analysis",
+  "skillSlug": "data-descriptive-statistics",
+  "subskillSlug": null,
+  "responseType": "multi_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A list consists of the five numbers $2$, $5$, $9$, $12$ and $x$. The median of the five numbers is equal to their arithmetic mean.\n\nWhich of the following could be the value of $x$?\n\nSelect **all** such values.",
+  "instructionsMd": "Select all that apply. There is no credit for a partially correct selection.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$-3$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$3$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$5$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$5.6$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$7$"
+    },
+    {
+      "id": "f",
+      "label": "F",
+      "textMd": "$9$"
+    },
+    {
+      "id": "g",
+      "label": "G",
+      "textMd": "$17$"
+    }
+  ],
+  "answerKey": {
+    "type": "multi_select",
+    "optionIds": [
+      "a",
+      "e",
+      "g"
+    ],
+    "grading": "exact"
+  },
+  "explanationMd": "The mean is easy to write down, $\\frac{2 + 5 + 9 + 12 + x}{5} = \\frac{28 + x}{5}$. The median is the hard part, because which number sits in the middle depends on where $x$ falls. That is a case split the stem never announces.\n\n**Step 1: the three cases for the median.** Put the known numbers in order: $2, 5, 9, 12$. Once $x$ joins them, the middle (third) value is\n\n- $5$ if $x \\le 5$,\n- $x$ itself if $5 \\le x \\le 9$,\n- $9$ if $x \\ge 9$.\n\n**Step 2: solve median = mean in each case, then check the case condition.**\n\n- $x \\le 5$: $\\frac{28 + x}{5} = 5$ gives $28 + x = 25$, so $x = -3$. This satisfies $x \\le 5$, so it counts.\n- $5 \\le x \\le 9$: $\\frac{28 + x}{5} = x$ gives $28 + x = 5x$, so $4x = 28$ and $x = 7$. This lies between $5$ and $9$, so it counts.\n- $x \\ge 9$: $\\frac{28 + x}{5} = 9$ gives $28 + x = 45$, so $x = 17$. This satisfies $x \\ge 9$, so it counts.\n\nEvery case produces a valid value, so there are exactly three possibilities. **The answer is $-3$, $7$ and $17$.**\n\n**How to check.** Test each one in full. $x = -3$: the list $-3, 2, 5, 9, 12$ has median $5$ and sum $25$, mean $5$. $x = 7$: the list $2, 5, 7, 9, 12$ has median $7$ and sum $35$, mean $7$. $x = 17$: the list $2, 5, 9, 12, 17$ has median $9$ and sum $45$, mean $9$. Most solvers find only $x = 7$, the case where $x$ is itself the median; nothing in the stem says $x$ must be positive or must land in the middle.",
+  "distractorRationale": {
+    "b": "Reached by solving the first case with a sign slip, taking $28 + x = 25$ to give $x = 3$ instead of $x = -3$. With $x = 3$ the median is $5$ but the mean is $\\frac{31}{5} = 6.2$.",
+    "c": "Reached by guessing that putting $x$ equal to the current middle value keeps things balanced. With $x = 5$ the median is $5$, but the mean is $\\frac{33}{5} = 6.6$.",
+    "d": "Reached by setting up the middle case as $\\frac{28 + x}{5} = x$ and then solving $28 = 5x$, forgetting that $x$ also appears on the left. That gives $5.6$, where the median is $5.6$ but the mean is $\\frac{33.6}{5} = 6.72$.",
+    "f": "Reached by the same balancing guess at the upper end, taking $x$ equal to the upper middle value. With $x = 9$ the median is $9$, but the mean is $\\frac{37}{5} = 7.4$."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": "A list contains the five numbers 2, 5, 9, 12 and an unknown number x. The median of the five numbers equals their arithmetic mean. From the list negative 3, 3, 5, 5.6, 7, 9 and 17, select every value that x could be. More than one answer may be correct and all correct answers must be selected.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-gre-quant-author",
+    "aiAssisted": true,
+    "notes": "Original item written for wave 7. The known values were chosen so that each of the three median cases yields a valid solution, one of them negative. Not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-gre-quant-author",
+    "reviewer": "blind-reviewer-wave7-gre-quant-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-gre-quant-run0",
+      "solvedAnswer": "a,e,g",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The sum is 28+x, so the mean is (28+x)/5. If x<=5 the median is 5, which gives x=-3 (valid). If 5<=x<=9 the median is x, which gives 28+x=5x, so x=7 (valid). If x>=9 the median is 9, which gives x=17 (valid). [A second, separate blind solve (blind-reviewer-wave7-gre-quant-run1) reached the same answer: Sum is 28+x. If x<=5 the median is 5, so 28+x=25 and x=-3 (consistent). If 5<=x<=9 the median is x, so 28+x=5x and x=7 (consistent). If x>=9 the median is 9, so 28+x=45 and x=17 (consistent).]"
+    },
+    "notes": "Author solved by cases on the median: x <= 5 gives x = -3; 5 <= x <= 9 gives x = 7; x >= 9 gives x = 17; each satisfies its case condition. A script tested every choice and swept x from -100 to 100 in steps of 0.01, finding exactly -3, 7 and 17. Stretch: harder than a typical hard select-all statistics item because the stem hides a three-way case split, every branch produces a valid answer (so a solver who stops after the natural middle case, or who assumes x is positive, fails an all-or-nothing item), and one valid value is negative. Each step is ordinary; the difficulty is seeing that the median itself depends on x."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "select-all",
+    "median",
+    "mean",
+    "case-analysis",
+    "stretch"
+  ]
+}

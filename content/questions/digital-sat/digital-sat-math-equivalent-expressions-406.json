@@ -1,0 +1,76 @@
+{
+  "id": "digital-sat-math-equivalent-expressions-406",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "advanced-math",
+  "skillSlug": "equivalent-expressions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which of the following is equivalent to $\\dfrac{2}{x - 3} - \\dfrac{12}{x^2 - 9}$ for $x > 3$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\dfrac{2}{x + 3}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\dfrac{2x + 18}{x^2 - 9}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\dfrac{-10}{x^2 - 9}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\dfrac{2x - 9}{x^2 - 9}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The first thing to notice is that $x^2 - 9$ is a difference of squares, $(x - 3)(x + 3)$, so it already contains the first denominator. That makes it the common denominator.\n\nRewrite the first fraction over $(x - 3)(x + 3)$ by multiplying its top and bottom by $(x + 3)$:\n\n$$\\frac{2}{x - 3} = \\frac{2(x + 3)}{(x - 3)(x + 3)} = \\frac{2x + 6}{(x - 3)(x + 3)}$$\n\nNow subtract the numerators:\n\n$$\\frac{2x + 6 - 12}{(x - 3)(x + 3)} = \\frac{2x - 6}{(x - 3)(x + 3)}$$\n\nThe numerator factors as $2(x - 3)$, and because $x > 3$ the factor $x - 3$ is not zero, so it cancels:\n\n$$\\frac{2(x - 3)}{(x - 3)(x + 3)} = \\frac{2}{x + 3}$$\n\nCheck with a number. At $x = 5$ the original expression is $\\frac{2}{2} - \\frac{12}{16} = 1 - 0.75 = 0.25$, and $\\frac{2}{5 + 3} = 0.25$. At the same value $\\dfrac{2x + 18}{x^2 - 9}$ gives $1.75$, $\\dfrac{-10}{x^2 - 9}$ gives $-0.625$ and $\\dfrac{2x - 9}{x^2 - 9}$ gives $0.0625$.\n\nThe condition $x > 3$ is there so that neither denominator is zero and the cancellation is allowed. It is a good habit to look for a factor like $2x - 6$ that simplifies: an answer left over the full denominator $x^2 - 9$ often has not been finished.",
+  "distractorRationale": {
+    "c": "This subtracts the numerators without first rewriting $\\frac{2}{x - 3}$ over the common denominator, treating $\\frac{2}{x - 3}$ as if it were $\\frac{2}{x^2 - 9}$: $\\frac{2 - 12}{x^2 - 9}$.",
+    "d": "This multiplies only the $x$ by $2$ when rescaling the first numerator, writing $2(x + 3)$ as $2x + 3$, so the numerator becomes $2x + 3 - 12 = 2x - 9$.",
+    "b": "This adds the second fraction instead of subtracting it: $2(x + 3) + 12 = 2x + 18$. The minus sign in front of $\\frac{12}{x^2 - 9}$ applies to its whole numerator."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "Simplify the expression: 2 over the quantity x minus 3, minus 12 over the quantity x squared minus 9, for x greater than 3. The four choices are: 2 over the quantity x plus 3; the quantity 2 x plus 18 over x squared minus 9; negative 10 over x squared minus 9; and the quantity 2 x minus 9 over x squared minus 9.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-sat-math-alg-author",
+    "aiAssisted": true,
+    "notes": "Original item. The numbers were chosen so that the correct numerator, 2x - 6, factors and cancels, and each distractor comes from one named slip in combining the fractions."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-sat-math-alg-author",
+    "reviewer": "blind-reviewer-wave7-sat-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-sat-math-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Over the common denominator: [2(x+3) - 12]/(x^2 - 9) = (2x - 6)/((x-3)(x+3)) = 2/(x+3). This form is not among the other choices, and none of the others simplify to it. [A second, separate blind solve (blind-reviewer-wave7-sat-math-run1) reached the same answer: Over the common denominator x^2 - 9, the expression is (2(x+3) - 12)/(x^2-9) = (2x-6)/((x-3)(x+3)) = 2/(x+3). B, C and D are the results of sign or combining errors and are not equivalent.]"
+    },
+    "notes": "Author solved twice and checked by script at five values of x greater than 3: the expression equals 2/(x + 3) at every one, and each distractor differs from it at least at one value (at x = 5: key 0.25; others -0.625, 0.0625, 1.75). Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "advanced-math",
+    "rational-expressions"
+  ]
+}

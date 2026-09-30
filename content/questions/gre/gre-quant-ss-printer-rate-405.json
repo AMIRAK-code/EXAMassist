@@ -1,0 +1,76 @@
+{
+  "id": "gre-quant-ss-printer-rate-405",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-algebra",
+  "skillSlug": "alg-word-problem-setup",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Working alone at its constant rate, Printer P would complete a certain print job in $9$ hours. Printer P works alone on the job for $3$ hours. Printer Q, working at its own constant rate, then joins Printer P, and together the two printers complete the job in $2$ more hours.\n\nWorking alone at its constant rate, how many hours would Printer Q need to complete the entire job?",
+  "instructionsMd": "Select one answer choice.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\frac{9}{4}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\frac{18}{7}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$3$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\frac{9}{2}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$6$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Work problems are cleanest in terms of **rates**, measured in jobs per hour, because rates of machines working together add, while times do not.\n\n**Step 1: what is left when Printer Q arrives.** Printer P's rate is $\\frac{1}{9}$ job per hour. In $3$ hours it completes $\\frac{3}{9} = \\frac{1}{3}$ of the job, leaving $\\frac{2}{3}$.\n\n**Step 2: the combined rate.** The two printers finish that $\\frac{2}{3}$ in $2$ hours, so together they work at\n\n$$\\frac{2/3}{2} = \\frac{1}{3} \\text{ job per hour}.$$\n\n**Step 3: Printer Q's rate.** Subtract Printer P's share of the combined rate:\n\n$$\\text{rate of Q} = \\frac{1}{3} - \\frac{1}{9} = \\frac{3}{9} - \\frac{1}{9} = \\frac{2}{9} \\text{ job per hour}.$$\n\n**Step 4: time for the whole job.** At $\\frac{2}{9}$ job per hour, Printer Q alone needs $\\frac{9}{2} = 4.5$ hours.\n\n**How to check.** Run the story forward with these rates. In the first $3$ hours Printer P prints $\\frac{3}{9}$ of the job. In the next $2$ hours Printer P prints $\\frac{2}{9}$ and Printer Q prints $2 \\times \\frac{2}{9} = \\frac{4}{9}$. The total is $\\frac{3}{9} + \\frac{2}{9} + \\frac{4}{9} = 1$ job, exactly as described.",
+  "distractorRationale": {
+    "a": "Reached by adding Printer P's rate to the combined rate instead of subtracting it: $\\frac{1}{3} + \\frac{1}{9} = \\frac{4}{9}$, giving $\\frac{9}{4}$ hours. The combined rate already includes Printer P, so its share has to be taken away to isolate Printer Q.",
+    "b": "Reached by treating the $2$ hours as the time for the two printers to do the whole job together, so that the combined rate is $\\frac{1}{2}$ and Printer Q's rate is $\\frac{1}{2} - \\frac{1}{9} = \\frac{7}{18}$. Only two thirds of the job remained when Printer Q joined.",
+    "c": "Reached by forgetting that Printer P keeps working during the last $2$ hours, and crediting all of the remaining $\\frac{2}{3}$ of the job to Printer Q, which gives a rate of $\\frac{1}{3}$ and a time of $3$ hours.",
+    "e": "Reached by subtracting times instead of rates. The combined rate $\\frac{1}{3}$ corresponds to $3$ hours for the job together, and $9 - 3 = 6$. Times for machines working together do not add or subtract; rates do."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "Printer P alone would finish a print job in 9 hours. P works alone for 3 hours, then Printer Q joins, and the two together finish the job in 2 more hours. Find the number of hours Printer Q would need to do the whole job alone. The five choices are 3, 6, 9 over 2, 9 over 4, and 18 over 7.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-gre-quant-author",
+    "aiAssisted": true,
+    "notes": "Original item written for wave 7. Each wrong choice is the result of one specific slip in the rate set-up: adding instead of subtracting the known rate, using the whole job instead of the remainder, dropping Printer P from the final stage, and subtracting times. Not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-gre-quant-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved: P does 1/3 in 3 hours; remaining 2/3 in 2 hours gives combined rate 1/3; Q's rate 1/3 - 1/9 = 2/9, so 9/2 hours. Forward check totals 3/9 + 2/9 + 4/9 = 1. A script reproduced the key (4.5) and each distractor value from its named slip (2.25, 18/7, 3, 6). Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "work-rate",
+    "word-problem",
+    "combined-rates"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "bocconi-ug-stim-arvena-admissions-431",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "kind": "table",
+  "title": "First-year admissions at the Arvena School of Economics, 2025",
+  "bodyMd": "The Arvena School of Economics publishes the following figures for the four bachelor programmes it admitted students to in 2025. \"Applicants\" is the number of people who applied to the programme. \"Admission rate\" is the percentage of applicants who were offered a place. \"Enrolment rate\" is the percentage of those offered a place who then enrolled. \"International share\" is the percentage of enrolled students who came from abroad. \"Annual fee\" is the tuition fee for one year of the programme, in euros.",
+  "data": {
+    "columns": [
+      { "key": "programme", "label": "Programme" },
+      { "key": "applicants", "label": "Applicants" },
+      { "key": "admission", "label": "Admission rate (%)" },
+      { "key": "enrolment", "label": "Enrolment rate (%)" },
+      { "key": "international", "label": "International share (%)" },
+      { "key": "fee", "label": "Annual fee (€)" }
+    ],
+    "rows": [
+      { "programme": "Economics", "applicants": 4000, "admission": 18, "enrolment": 85, "international": 25, "fee": 12500 },
+      { "programme": "Finance", "applicants": 2500, "admission": 32, "enrolment": 50, "international": 50, "fee": 14000 },
+      { "programme": "Management", "applicants": 3000, "admission": 25, "enrolment": 80, "international": 36, "fee": 11000 },
+      { "programme": "Data Science", "applicants": 1500, "admission": 40, "enrolment": 50, "international": 64, "fee": 13500 }
+    ],
+    "caption": "Arvena School of Economics, 2025 intake: applicants, admission rate, enrolment rate, international share of enrolled students and annual tuition fee, by programme.",
+    "chart": {
+      "type": "bar",
+      "xKey": "programme",
+      "yKeys": ["applicants"],
+      "xLabel": "Programme",
+      "yLabel": "Applicants"
+    }
+  },
+  "accessibilityText": "A table of four rows and six columns. The columns are programme, number of applicants, admission rate as the percentage of applicants offered a place, enrolment rate as the percentage of those offered a place who enrolled, international share as the percentage of enrolled students from abroad, and annual tuition fee in euros. Economics: 4,000 applicants, admission rate 18 per cent, enrolment rate 85 per cent, international share 25 per cent, fee 12,500 euros. Finance: 2,500 applicants, admission rate 32 per cent, enrolment rate 50 per cent, international share 50 per cent, fee 14,000 euros. Management: 3,000 applicants, admission rate 25 per cent, enrolment rate 80 per cent, international share 36 per cent, fee 11,000 euros. Data Science: 1,500 applicants, admission rate 40 per cent, enrolment rate 50 per cent, international share 64 per cent, fee 13,500 euros. An accompanying bar chart plots the number of applicants only, one bar per programme, tallest for Economics at 4,000 and shortest for Data Science at 1,500.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-verbal-logic-author",
+    "aiAssisted": true,
+    "notes": "Invented data for a fictional school, written for this item set. Every rate chain gives a whole number of students. The figures were set so that the programme leading each column (most applicants, highest admission rate, highest enrolment rate, highest international share) differs from the programme that leads each product a question asks for, and so that skipping the enrolment step changes which programme leads. The fee column is deliberately superfluous. Not derived from any real institution, dataset or published test item."
+  },
+  "rightsStatus": "original-owned",
+  "state": "in_review"
+}

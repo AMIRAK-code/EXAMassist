@@ -1,0 +1,80 @@
+{
+  "id": "bocconi-ug-num-exports-projection-444",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-numerical-reasoning",
+  "skillSlug": "numerical-reasoning-data-analysis",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Suppose that between 2025 and 2026 the exports of **each** sector change by the same percentage as they did between 2024 and 2025. By approximately what percentage would the total exports of the Calvenza region change between 2025 and 2026?",
+  "instructionsMd": "Use only the figures in the table. No calculator.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "An increase of about 10.0 per cent"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "An increase of about 8.2 per cent"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "An increase of about 12.3 per cent"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "An increase of about 11.3 per cent"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The first thing to notice is that the total will **not** grow at the same rate as before. Each sector keeps its own rate, but the sectors are now of different sizes: the growing sectors are bigger and the shrinking one is smaller. So the weights change, and the total's growth rate changes with them.\n\n**Step 1: the 2025 values** (millions of euros).\n\n$$\\text{Machinery } 700 \\times 1.12 = 784 \\qquad \\text{Food and drink } 300 \\times 1.30 = 390$$\n\n$$\\text{Textiles } 500 \\times 0.78 = 390 \\qquad \\text{Chemicals } 500 \\times 1.20 = 600$$\n\nThe 2025 total is $784 + 390 + 390 + 600 = 2{,}164$.\n\n**Step 2: the 2026 changes, applying each rate to the 2025 value.**\n\n$$12\\% \\text{ of } 784 = 94.08 \\qquad 30\\% \\text{ of } 390 = 117$$\n\n$$-22\\% \\text{ of } 390 = -85.8 \\qquad 20\\% \\text{ of } 600 = 120$$\n\nThe total change is $94.08 + 117 - 85.8 + 120 = 245.28$ million euros.\n\n**Step 3: as a percentage of the 2025 total.** $\\frac{245.28}{2{,}164}$. Since $10\\%$ of $2{,}164$ is $216.4$ and $1\\%$ is about $21.6$, the change is a little over $11\\%$: $216.4 + 21.6 = 238$, leaving about $7.3$, which is about a third of one per cent. So the total rises by about **11.3 per cent**.\n\n**How to check the answer.** Direction first: Textiles, the only falling sector, shrank from a quarter of exports to about 18 per cent of them, and the two fastest-growing sectors both gained share. Growth must therefore speed up from 8.2 per cent, which rules out the option that repeats it. Then size: 12 per cent of 2,164 is about 260 million euros, more than the 245 million increase, so the rise is below 12 per cent; 11 per cent is about 238 million, less than the increase, so it is above 11 per cent. Only one option lies between 11 and 12 per cent.\n\n**What makes this a stretch.** A typical hard item asks for the weighted change once. Here the candidate must see, without being told, that the weights themselves have moved, and then carry out the weighted calculation on the new base.",
+  "distractorRationale": {
+    "b": "This assumes that if every sector repeats its percentage change, the total repeats its percentage change too. It does not: the weights have shifted towards the growing sectors, so the total grows faster than the 8.2 per cent of the year before.",
+    "a": "This is the plain average of the four sector rates, (12 + 30 - 22 + 20) / 4 = 10 per cent. It ignores the sizes of the sectors in both years, which is the error of treating a total's change as an unweighted average.",
+    "c": "This computes the 2026 increase correctly, 245.28 million euros, but divides it by the 2024 total of 2,000 million instead of the 2025 total of 2,164 million. The change between 2025 and 2026 must be measured against its own starting year."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": {
+    "id": "bocconi-ug-stim-calvenza-exports-430",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying table of exports by sector for the Calvenza region. It supposes that each sector's exports change between 2025 and 2026 by the same percentage as between 2024 and 2025, and asks by approximately what percentage the region's total exports would then change. The four options are increases of about 10.0, 8.2, 12.3 and 11.3 per cent.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-verbal-logic-author",
+    "aiAssisted": true,
+    "notes": "Original stretch item written against the original table bocconi-ug-stim-calvenza-exports-430. It builds on the weighted-change idea of the companion total-change item but requires the candidate to recompute the weights on the new base. Every product stays within hand arithmetic."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-bocconi-verbal-logic-author",
+    "reviewer": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "2025 values are 784, 390, 390 and 600, total 2164. Applying the same changes again gives 878.08 + 507 + 304.2 + 720 = 2409.28, so the change is 245.28/2164, about +11.33%. 8.2% is the 2024-25 change and 10% is the unweighted mean of the percentages. [A second, separate blind solve (blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run1) reached the same answer: 2025 values: 784, 390, 390, 600, total 2164. Applying the same rates again gives 878.08 + 507 + 304.2 + 720 = 2409.28, an increase of 245.28/2164 = 11.33%. 8.2% repeats the previous year's figure and 10% is the unweighted mean.]"
+    },
+    "notes": "Stretch: a typical hard Bocconi numerical item combines two readings once; this one needs a two-period weighted change, with the candidate first recognising that repeating each sector's rate does not repeat the total's rate, then rebuilding the base. The strongest distractor, 8.2 per cent, is the correct answer to the previous year's question. Author's uniqueness check with a read-only script: 2025 total 2,164; 2026 increments 94.08, 117, -85.8 and 120, sum 245.28; 245.28 / 2,164 = 11.33 per cent; the same sum over 2,000 is 12.26 per cent; the plain average of rates is 10 per cent. Solved twice, the second time from the stem and table alone. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "table-calvenza-exports",
+    "weighted-average",
+    "compound-change",
+    "stretch"
+  ]
+}

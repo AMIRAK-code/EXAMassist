@@ -1,0 +1,92 @@
+{
+  "id": "gre-quant-ms-triangle-area-410",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-geometry",
+  "skillSlug": "geom-triangles",
+  "subskillSlug": null,
+  "responseType": "multi_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Two sides of a triangle have lengths $5$ and $9$.\n\nWhich of the following could be the area of the triangle?\n\nSelect **all** such values.",
+  "instructionsMd": "Select all that apply. There is no credit for a partially correct selection.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$4$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$12$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$20$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$22.5$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$25$"
+    },
+    {
+      "id": "f",
+      "label": "F",
+      "textMd": "$45$"
+    }
+  ],
+  "answerKey": {
+    "type": "multi_select",
+    "optionIds": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "grading": "exact"
+  },
+  "explanationMd": "The third side is not given, so the triangle can change shape. Find the full range of areas it can have.\n\n**Step 1: use one known side as the base.** Take the side of length $9$ as the base. The height is the perpendicular distance from the far end of the side of length $5$ down to the line of the base.\n\n**Step 2: bound the height.** That height can never be more than $5$, the length of the side it comes from, and it equals $5$ exactly when the two given sides meet at a right angle. As the angle between them closes towards $0^\\circ$ or opens towards $180^\\circ$, the height shrinks towards $0$, but it never reaches $0$ while the figure is still a triangle.\n\n**Step 3: the range of areas.**\n\n$$0 < \\text{area} \\le \\frac{1}{2} \\times 9 \\times 5 = 22.5.$$\n\nAnd every value in that range occurs, because the height passes through every value between $0$ and $5$ as the angle changes.\n\n**Step 4: read off the choices.** $4$, $12$, $20$ and $22.5$ all lie in the range, with $22.5$ reached by the right triangle. $25$ and $45$ are too large. **The answer is $4$, $12$, $20$ and $22.5$.**\n\n**How to check.** The maximum case is a right triangle with legs $5$ and $9$, area $\\frac{1}{2}(5)(9) = 22.5$, which is a real triangle, so $22.5$ must be selected. For a small area such as $4$ the height is $\\frac{2 \\times 4}{9} = \\frac{8}{9}$, which is less than $5$, so a suitable narrow triangle exists.",
+  "distractorRationale": {
+    "e": "Reached by believing that an obtuse triangle, whose third side is longer than the right triangle's, must enclose more area, so that a value a little above the right-triangle area of $22.5$ is possible. In fact widening the angle past $90^\\circ$ lowers the height on the base of $9$ below $5$, so the triangle flattens; no area can exceed $\\frac{1}{2} \\times 9 \\times 5 = 22.5$, and $25$ is out of reach.",
+    "f": "This is $5 \\times 9$, the product of the two sides without the factor of $\\frac{1}{2}$. Even at its tallest the triangle has area $\\frac{1}{2} \\times 9 \\times 5 = 22.5$."
+  },
+  "estimatedSeconds": 105,
+  "stimulusRef": null,
+  "accessibilityText": "A triangle has two sides of lengths 5 and 9, and the third side is not given. From the list 4, 12, 20, 22.5, 25 and 45, select every value that could be the area of the triangle. More than one answer may be correct and all correct answers must be selected.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-gre-quant-author",
+    "aiAssisted": true,
+    "notes": "Original item written for wave 7. The maximum area is offered exactly as a choice so that the inclusive boundary is tested, and a small area is offered to test that very thin triangles are allowed. Not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-gre-quant-author",
+    "reviewer": "blind-reviewer-wave7-gre-quant-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-gre-quant-run0",
+      "solvedAnswer": "a,b,c,d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The area is (1/2)(5)(9)sin(theta), which can take any value in (0, 22.5]. The maximum of 22.5 is reached when the included angle is a right angle. So 4, 12, 20 and 22.5 are all possible; 25 and 45 are above the maximum. [A second, separate blind solve (blind-reviewer-wave7-gre-quant-run1) reached the same answer: Area = (1/2)(5)(9)sin(theta), where theta is the included angle. It takes every value in (0, 22.5], with 22.5 reached at a right angle. So 4, 12, 20 and 22.5 are possible, and 25 and 45 are not.]"
+    },
+    "notes": "Author solved: area = (1/2)(5)(9) sin(angle between them), so 0 < area <= 22.5 with every value attained; choices 4, 12, 20, 22.5 qualify and 25, 45 do not. A script filtered the choices against the interval (0, 22.5]."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "select-all",
+    "triangles",
+    "area",
+    "maximum-value"
+  ]
+}

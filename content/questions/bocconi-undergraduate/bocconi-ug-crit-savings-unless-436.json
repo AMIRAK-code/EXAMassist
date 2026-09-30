@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-crit-savings-unless-436",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-critical-thinking",
+  "skillSlug": "critical-thinking-interpret-text",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The terms and conditions of Cassa Veltrina, a savings bank, contain the following sentence.\n\n> A customer may not open a savings account online unless they already hold a current account with Cassa Veltrina.\n\nIf the rule is applied without exception, which one of the following must be true?",
+  "instructionsMd": "Answer on the basis of the quoted sentence alone.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Every customer who holds a current account with Cassa Veltrina may open a savings account online."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "A customer who holds a current account with Cassa Veltrina and wants a savings account must open it online."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "A customer who does not hold a current account with Cassa Veltrina cannot open a savings account with the bank."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Every savings account opened online with Cassa Veltrina was opened by a customer who already held a current account with the bank."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "\"Not X unless Y\" means that X can happen **only if** Y is already in place. Y is a **necessary** condition for X, not a sufficient one.\n\nHere X is opening a savings account online and Y is already holding a current account. So the rule says: whenever a savings account is opened online, the customer already had a current account. That is the claim that every savings account opened online was opened by a customer who already held a current account, and it is the rule restated.\n\n**How to check the answer.** For each other claim, imagine a bank that obeys the rule exactly and see whether the claim can still fail.\n\n- The bank could also require a minimum balance, or a credit check, before any online savings account is opened. Then some current-account holders could not open one online, so holding a current account does not guarantee permission.\n- The bank could let anyone, customer or not, open a savings account at a branch. The rule is about online opening only, so a customer without a current account could still open a savings account in person.\n- The bank could let current-account holders choose between online and branch opening. Nothing in the sentence forces them online.\n\nEach of these banks obeys the rule and falsifies one of the other claims, so only the restatement must be true.\n\n**The technique.** Translate \"unless\" before you do anything else: \"not X unless Y\" becomes \"if X, then Y\". Then look for the option that keeps both the direction of the arrow and every qualifier in X, here the word \"online\".",
+  "distractorRationale": {
+    "a": "This turns a necessary condition into a sufficient one. The rule says that without a current account you cannot open a savings account online; it does not say that having one is enough. Other requirements, such as a minimum deposit, are entirely consistent with the sentence.",
+    "c": "This drops the word 'online'. The rule restricts only online opening, so a customer without a current account might still open a savings account at a branch. The claim is broader than the rule.",
+    "b": "Nothing in the sentence requires anyone to use the online channel. It limits who may open an account online; it says nothing about how current-account holders must open theirs."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "A critical thinking question quoting one sentence from a savings bank's terms and conditions: a customer may not open a savings account online unless they already hold a current account with the bank. The question asks which of four statements must be true if the rule is applied without exception. There is no figure, table or notation.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-verbal-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item on reading 'not X unless Y' as a necessary condition. The three distractors are the three standard misreadings: necessary taken as sufficient, a qualifier dropped from X, and a requirement invented in the other direction."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-bocconi-verbal-logic-author",
+    "reviewer": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "'May not X unless Y' means X only if Y: an online opening requires an existing current account, which is D. A is the converse. B is not implied. C extends the rule from online openings to all savings accounts. [A second, separate blind solve (blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run1) reached the same answer: 'May not X unless Y' means that X (opening a savings account online) requires Y (already holding a current account), which is D. A is the converse. B invents an obligation. C drops the word 'online', and the rule restricts only online opening.]"
+    },
+    "notes": "Author's uniqueness check: the keyed claim is the rule in 'if X then Y' form, so it holds in every compliant bank. A bank that also demands a minimum balance falsifies the sufficiency claim; a bank that opens savings accounts for anyone at a branch falsifies the claim that non-holders cannot open one at all; a bank offering current-account holders a choice of channel falsifies the claim that they must use the online channel. Checked with a read-only brute-force script over small models. Solved twice, the second time from the stem alone. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "unless",
+    "necessary-versus-sufficient",
+    "precision-of-language"
+  ]
+}

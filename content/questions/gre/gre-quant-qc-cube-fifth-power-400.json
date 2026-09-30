@@ -1,0 +1,77 @@
+{
+  "id": "gre-quant-qc-cube-fifth-power-400",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-algebra",
+  "skillSlug": "alg-exponent-operations",
+  "subskillSlug": null,
+  "responseType": "quantitative_comparison",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "The number $x$ satisfies $x^{3} < x$.\n\n| Quantity A | Quantity B |\n| --- | --- |\n| $x^{3}$ | $x^{5}$ |",
+  "instructionsMd": "Compare Quantity A and Quantity B and select the one statement that is true for every value consistent with the information given.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Quantity A is greater."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Quantity B is greater."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The two quantities are equal."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The relationship cannot be determined from the information given."
+    }
+  ],
+  "answerKey": {
+    "type": "quantitative_comparison",
+    "choice": "A"
+  },
+  "explanationMd": "The first thing to notice is that the condition $x^{3} < x$ is doing real work: it decides which test values you are allowed to use. Find the permitted values before you compare anything.\n\n**Step 1: where is $x^{3} < x$?** Move everything to one side and factor:\n\n$$x^{3} - x = x(x - 1)(x + 1) < 0.$$\n\nThe sign changes at $-1$, $0$ and $1$. Checking one value in each region shows the product is negative exactly when\n\n$$x < -1 \\quad \\text{or} \\quad 0 < x < 1.$$\n\nSo $x$ is either a positive fraction or a number below $-1$. Values between $-1$ and $0$, such as $-\\frac{1}{2}$, are **not** allowed, and neither are $-1$, $0$ or $1$.\n\n**Step 2: compare without plugging in.** Subtract Quantity B from Quantity A and factor out $x^{2}$:\n\n$$x^{3} - x^{5} = x^{2}\\left(x - x^{3}\\right).$$\n\nSince $x \\neq 0$, the factor $x^{2}$ is positive. The factor $x - x^{3}$ is positive because that is exactly what the condition $x^{3} < x$ says. A product of two positive numbers is positive, so $x^{3} - x^{5} > 0$ for every permitted $x$, and **Quantity A is greater**.\n\n**How to check.** Try one value from each permitted region. For $x = \\frac{1}{2}$: $x^{3} = \\frac{1}{8}$ and $x^{5} = \\frac{1}{32}$, and $\\frac{1}{8}$ is larger. For $x = -2$: $x^{3} = -8$ and $x^{5} = -32$, and $-8$ is larger. Both regions agree, as the factoring promised.\n\n**The lesson.** When you plug numbers into a comparison, every number must satisfy the stated condition. The tempting value $-\\frac{1}{2}$ reverses the comparison, but it is outside the permitted set, so it proves nothing.",
+  "distractorRationale": {
+    "b": "Reached by testing only a negative fraction such as $-\\frac{1}{2}$, where $x^{3} = -0.125$ is less than $x^{5} = -0.03125$. That value does not satisfy the condition, because $-0.125$ is greater than $-0.5$, so it cannot be used.",
+    "c": "Reached by testing $x = 1$, $x = -1$ or $x = 0$, where every power of $x$ equals $x$ and the quantities coincide. At each of those values $x^{3} = x$, so the strict inequality in the stem fails and none of them is permitted.",
+    "d": "Reached by testing $x = \\frac{1}{2}$ (Quantity A larger) and then $x = -\\frac{1}{2}$ (Quantity B larger) and concluding that the relationship varies. The second test value breaks the condition. Across the values the condition does allow, $x^{3} - x^{5} = x^{2}(x - x^{3})$ is always positive."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "The number x satisfies x cubed is less than x. Quantity A is x cubed. Quantity B is x to the fifth power. Decide which quantity is greater, whether they are equal, or whether the relationship cannot be determined.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-gre-quant-author",
+    "aiAssisted": true,
+    "notes": "Original item written for wave 7. The condition was chosen so that the permitted set is two disjoint intervals and the most natural negative test value falls outside it. Not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-gre-quant-author",
+    "reviewer": "blind-reviewer-wave7-gre-quant-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-gre-quant-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "x^3 < x holds when x < -1 or 0 < x < 1. The difference x^3 - x^5 = x^3(1-x^2) is positive in both ranges. For 0<x<1 both factors are positive; for x<-1 both are negative. So Quantity A is always greater; for example, x=-2 gives -8 > -32. [A second, separate blind solve (blind-reviewer-wave7-gre-quant-run1) reached the same answer: x^3<x means x(x-1)(x+1)<0, so x<-1 or 0<x<1. x^5-x^3=x^3(x^2-1). For 0<x<1 this is positive times negative. For x<-1 it is negative times positive. It is negative in both cases, so x^3>x^5 always.]"
+    },
+    "notes": "Author solved: x^3 < x means x(x-1)(x+1) < 0, so x < -1 or 0 < x < 1. Then x^3 - x^5 = x^2 (x - x^3), a positive times a positive, so Quantity A is greater. Spot checks x = 1/2 (1/8 > 1/32) and x = -2 (-8 > -32); a script sweeping the permitted region in steps of 0.001 found Quantity A larger at every point, and confirmed x = -1/2 is not permitted. Stretch: harder than a typical hard comparison because the stem does not show the negative branch, the permitted set is two disjoint intervals, and the obvious negative test value (-1/2) is excluded and reverses the comparison, so a candidate who plugs numbers without checking the condition lands on 'cannot be determined'. It stays one-line provable once the factorisation is seen."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "quantitative-comparison",
+    "exponents",
+    "inequalities",
+    "hidden-case"
+  ]
+}

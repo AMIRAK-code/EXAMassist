@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-analytic-line-parabola-parameter-412",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-analytic-line-conic-positions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "In the Cartesian plane, consider the parabola\n\n$$y = x^{2} - 2x + 3$$\n\nand, for each real number $k$, the line $y = kx - 1$. For which values of $k$ do the line and the parabola have **no point in common**?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$-6 < k < 2$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$k < -6 \\ \\text{ or } \\ k > 2$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$-4 < k < 4$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$-2 < k < 6$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "**Step 1 — turn the geometry into an equation.** A common point has the same $x$ and $y$ on both curves, so set the two expressions for $y$ equal:\n\n$$x^{2} - 2x + 3 = kx - 1$$\n\nBring everything to one side and **collect the $x$ terms together** before reading off coefficients:\n\n$$x^{2} - (k + 2)\\,x + 4 = 0$$\n\n**Step 2 — no common point means no real root.** The line misses the parabola exactly when this quadratic has negative discriminant:\n\n$$\\Delta = (k + 2)^{2} - 4 \\cdot 1 \\cdot 4 = (k + 2)^{2} - 16 < 0$$\n\n**Step 3 — solve for $k$.**\n\n$$(k + 2)^{2} < 16 \\iff -4 < k + 2 < 4 \\iff -6 < k < 2$$\n\n**Check the boundary values.** At $k = 2$ the equation is $x^{2} - 4x + 4 = (x - 2)^{2} = 0$: a double root, so the line $y = 2x - 1$ is tangent at $(2, 3)$. At $k = -6$ it is $x^{2} + 4x + 4 = (x + 2)^{2} = 0$: tangent at $(-2, 11)$. Both tangent slopes are excluded, as the strict inequality says. A value inside, $k = 0$, gives the horizontal line $y = -1$, which clearly misses a parabola whose lowest point is $(1, 2)$. ✓\n\n**Geometric reading.** Every line in the family passes through $(0, -1)$, which lies below the parabola. The two tangent lines from that point have slopes $-6$ and $2$; any slope strictly between them gives a line that passes under the parabola without touching it.",
+  "distractorRationale": {
+    "d": "This makes a sign error when collecting the $x$ terms, writing the linear coefficient as $k - 2$ instead of $-(k + 2)$. That gives $(k - 2)^{2} < 16$ and the interval shifted the wrong way. Testing $k = 5$ exposes it: $x^{2} - 7x + 4 = 0$ has discriminant $33 > 0$, so that line does meet the parabola.",
+    "c": "This loses the $-2x$ term of the parabola and works with $x^{2} - kx + 4 = 0$, whose discriminant $k^{2} - 16$ gives $-4 < k < 4$. The linear coefficient of the combined equation is $-(k + 2)$, not $-k$.",
+    "b": "This is the set of slopes for which the discriminant is **positive**, so the line cuts the parabola in two points. The question asks for no common point, which is the region between the roots of $(k + 2)^{2} - 16 = 0$."
+  },
+  "estimatedSeconds": 105,
+  "stimulusRef": null,
+  "accessibilityText": "The parabola is y equals x squared minus 2 x plus 3, and for each real k the line is y equals k x minus 1. The question asks for which k the line and the parabola have no common point. No figure is shown. The choices, every inequality being strict, are: k between minus 6 and 2; k less than minus 6 or greater than 2; k between minus 4 and 4; and k between minus 2 and 6.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. The parabola carries a linear term so that the parameter enters the combined equation shifted by 2, which is where the sign slips happen; the discriminant is a perfect-square comparison so the interval has integer endpoints. The no-intersection region and both tangent slopes were checked by a read-only script."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-bocconi-math-author",
+    "reviewer": "blind-reviewer-wave7-bocconi-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-bocconi-math-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Equating gives x^2-(k+2)x+4=0, and there is no intersection when (k+2)^2-16<0, that is |k+2|<4, so -6<k<2. B is the complement (two intersections), and C and D come from sign or shift errors. [A second, separate blind solve (blind-reviewer-wave7-bocconi-math-run1) reached the same answer: Equating gives x^2-(2+k)x+4=0, which has no real root when (k+2)^2<16, that is -6<k<2. B is the complement, where the line meets the parabola twice. C and D are shifted distractors.]"
+    },
+    "notes": "Author's uniqueness check: the combined equation x^2 - (k + 2)x + 4 = 0 has no real root exactly when (k + 2)^2 < 16, that is -6 < k < 2; the endpoints give tangency and values outside give two intersections, so exactly one choice describes the set. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "line-parabola-position",
+    "discriminant",
+    "parameter"
+  ]
+}

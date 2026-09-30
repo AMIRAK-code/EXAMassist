@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-ug-read-water-family-price-447",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-reading-comprehension",
+  "skillSlug": "reading-explicit-information",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "According to the passage, the family of four pays a higher average price per cubic metre than the pensioner next door because",
+  "instructionsMd": "Answer on the basis of the passage only.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "each member of the family uses more water in a month than the pensioner does."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "the utility charges households with several members a higher price for their first 10 cubic metres."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "the family uses part of its water for discretionary purposes, such as watering a lawn."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "the cheap first block is granted once per connection, and the family's combined use goes beyond it."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The second paragraph opens with the sentence that explains the whole example: \"the tariff is applied to each connection, not to each person.\" The first 10 cubic metres through a connection each month cost €0.80 each, whoever uses them and however many people share them.\n\nThe pensioner uses 5 cubic metres, all inside the cheap block, and pays €0.80 for each. The family's four members use 3 cubic metres each, 12 in total. Those 12 cubic metres all pass through one connection, so the first 10 cost €0.80 each and the last 2 cost €2.40 each: $8.00 + 4.80 = 12.80$ euros, about €1.07 per cubic metre. The family pays more per cubic metre only because its combined use goes beyond the cheap block, which it shares as one connection.\n\n**How to check the answer.** Ask what would change the result. If the family had four separate connections, each using 3 cubic metres, every cubic metre would cost €0.80 and the difference would disappear. Nothing about the family's habits or the price schedule has to change, only the number of connections, which confirms that the connection is the cause.\n\n**Technique.** For a \"according to the passage ... because\" question, find the sentence in which the passage itself gives the reason. Here it comes just before the example, not after it.",
+  "distractorRationale": {
+    "a": "This reverses the passage, which says the family pays more \"although every member of the family uses less water than the pensioner does\": 3 cubic metres each against the pensioner's 5. It is the explanation a reader expects from the tariff's stated aim, and the example is built to show that the expectation fails.",
+    "b": "The passage describes a single price schedule for every connection: €0.80 for each of the first 10 cubic metres and €2.40 beyond. Nothing says the price depends on the number of people in a household; the family's first 10 cubic metres cost exactly what the pensioner's would.",
+    "c": "Discretionary uses such as watering a lawn appear in the first paragraph as part of the general case for the tariff. The passage never says the family uses water that way; on the contrary, its example has each member using only 3 cubic metres."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": {
+    "id": "bocconi-ug-stim-water-tariff-432",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying prose passage on increasing-block water tariffs in Velmora. It asks, according to the passage, why the family of four pays a higher average price per cubic metre than the pensioner next door. There is no figure or table; the options complete the sentence stem.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-verbal-logic-author",
+    "aiAssisted": true,
+    "notes": "Original easy item written against the original passage bocconi-ug-stim-water-tariff-432. The key restates the passage's own explanation; the distractors reverse the example, invent a price rule, and import a detail from the first paragraph."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-bocconi-verbal-logic-author",
+    "reviewer": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The passage says 'the tariff is applied to each connection, not to each person', and the family's 12 m3 passes the 10 m3 cheap block. A contradicts the passage (each member uses less), and B and C are not stated. [A second, separate blind solve (blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run1) reached the same answer: The passage says the tariff applies per connection, not per person. The family's combined 12 m3 exceeds the 10 m3 cheap block, even though each member uses less than the pensioner. A contradicts the passage. B and C are not stated.]"
+    },
+    "notes": "Author's uniqueness check: the key is the passage's sentence that the tariff applies to each connection, not each person, combined with the 12 cubic metres passing the 10-cubic-metre block. The per-member-use claim is contradicted in the passage's own words, the household-size price rule is contradicted by the single stated schedule, and the discretionary-use claim is never made about the family. Arithmetic checked with a read-only script: 12 cubic metres cost 12.80 euros, 1.07 per cubic metre. Solved twice, the second time from the stem and passage alone. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "passage-water-tariff",
+    "explicit-detail"
+  ]
+}

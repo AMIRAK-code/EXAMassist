@@ -1,0 +1,66 @@
+{
+  "id": "digital-sat-math-probability-spr-434",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "problem-solving-and-data-analysis",
+  "skillSlug": "probability-and-conditional-probability",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "After the survey shown in the table was completed, $n$ more grade $12$ students, all of whom usually travel to school by bicycle, were added to the results. No other results changed. After they were added, the probability that a student selected at random from those who travel by bicycle is in grade $12$ is $\\frac{5}{8}$. After they were added, what is the probability that a student selected at random from the grade $12$ students travels by bicycle?",
+  "instructionsMd": "Student-produced response. Enter your answer in the box. Do not enter symbols such as a percent sign, comma, or dollar sign. If your answer is a fraction that does not fit in the box, enter its decimal equivalent instead.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 0.25
+      }
+    ],
+    "acceptedStrings": [
+      "1/4",
+      ".25",
+      "0.25"
+    ]
+  },
+  "explanationMd": "Two different conditional probabilities are in play, and they have different denominators. The given one is conditioned on **bicycle riders**; the one asked for is conditioned on **grade 12 students**. Use the first to find $n$, then compute the second.\n\n**Find $n$.** After the new students are added, there are $12 + n$ grade $12$ bicycle riders and $30 + n$ bicycle riders in all. Adding the new students raises the denominator too:\n\n$$\\frac{12 + n}{30 + n} = \\frac{5}{8}$$\n\n$$8(12 + n) = 5(30 + n) \\;\\Rightarrow\\; 96 + 8n = 150 + 5n \\;\\Rightarrow\\; 3n = 54 \\;\\Rightarrow\\; n = 18$$\n\nCheck: $\\frac{12 + 18}{30 + 18} = \\frac{30}{48} = \\frac{5}{8}$.\n\n**Answer the question asked.** There are now $102 + 18 = 120$ grade $12$ students, of whom $12 + 18 = 30$ travel by bicycle:\n\n$$\\frac{30}{120} = \\frac{1}{4}$$\n\nEnter $1/4$ or $.25$.\n\nThree stopping points are worth recognising. Entering $18$ gives $n$, not a probability. Entering $\\frac{5}{8}$ repeats the given probability, whose denominator is the bicycle riders rather than the grade $12$ students. And $\\frac{30}{102}$ adds the new riders to the numerator but forgets that they are also grade $12$ students who enlarge the denominator. A quicker slip at the first step, setting $\\frac{12 + n}{30} = \\frac{5}{8}$, gives $n = 6.75$, which is impossible for a count of students and is a signal that the denominator was not updated.",
+  "distractorRationale": {},
+  "estimatedSeconds": 150,
+  "stimulusRef": {
+    "id": "digital-sat-stim-commute-survey-441",
+    "version": 1
+  },
+  "accessibilityText": "Using the two-way table of how grade 11 and grade 12 students travel to school, in which 12 of the 102 grade 12 students and 30 of all 182 students travel by bicycle, n more grade 12 bicycle riders are added. Afterwards, the probability that a randomly chosen bicycle rider is in grade 12 is five eighths. Find the probability that a randomly chosen grade 12 student travels by bicycle after they are added. Enter a fraction or decimal.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-sat-math-data-geo-author",
+    "aiAssisted": true,
+    "notes": "Original item. The counts were chosen so that n is a whole number only when the denominator is updated, and the final probability is a simple fraction that fits the entry box."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-sat-math-data-geo-author",
+    "reviewer": "blind-reviewer-wave7-sat-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-sat-math-run0",
+      "solvedAnswer": "1/4",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "(12 + n)/(30 + n) = 5/8 gives 96 + 8n = 150 + 5n, so n = 18. Grade 12 then has 102 + 18 = 120 students, of whom 12 + 18 = 30 cycle, so the probability is 30/120 = 1/4 (0.25). The table's row and column totals are internally consistent. [A second, separate blind solve (blind-reviewer-wave7-sat-math-run1) reached the same answer: From (12 + n)/(30 + n) = 5/8, 96 + 8n = 150 + 5n, so n = 18. After the students are added, grade 12 bicycle riders number 30 out of a grade 12 total of 102 + 18 = 120, so the probability is 30/120 = 1/4 (0.25). The row and column totals in the table are consistent.]"
+    },
+    "notes": "Hard: two linked conditional probabilities with different denominators, where the added students change both numerator and denominator of each. Author solved twice: (12 + n)/(30 + n) = 5/8 gives n = 18 (unique, the equation is linear); then 30/120 = 1/4. Verified with a read-only script that searched n from 0 to 1000. Awaiting a blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "problem-solving",
+    "conditional-probability",
+    "two-way-table",
+    "student-produced-response"
+  ]
+}
