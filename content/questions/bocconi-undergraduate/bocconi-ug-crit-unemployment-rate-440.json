@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-crit-unemployment-rate-440",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-critical-thinking",
+  "skillSlug": "critical-thinking-draw-conclusions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A regional statistics office reports the following for the province of Valdoro.\n\n> Between 2024 and 2025 the unemployment rate in Valdoro fell from 10 per cent to 8 per cent. The number of people in employment in Valdoro was the same in both years.\n\nThe unemployment rate is the number of unemployed people divided by the labour force, and the labour force consists of everyone who is either employed or unemployed.\n\nIf the report is accurate, which one of the following must be true?",
+  "instructionsMd": "Answer on the basis of the report and the definitions given. No calculator.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The number of unemployed people in Valdoro fell by exactly 20 per cent."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Valdoro's labour force was smaller in 2025 than in 2024."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "A larger share of Valdoro's population was in employment in 2025 than in 2024."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Valdoro's population was smaller in 2025 than in 2024."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Let $E$ be the number employed, the same in both years, and $U$ the number unemployed. The rate is $\\frac{U}{E+U}$.\n\n**The quick argument.** With $E$ fixed, the fraction $\\frac{U}{E+U}$ gets larger when $U$ gets larger and smaller when $U$ gets smaller. The rate fell, so $U$ fell. The labour force is $E+U$, and $E$ did not change while $U$ fell, so the labour force shrank. That must be true.\n\n**The numbers, to see the size.** Take $E = 207$ thousand, a convenient figure.\n\n- 2024: unemployed are 10 per cent of the labour force, so employed are 90 per cent. $E = 207$ is 90 per cent, so the labour force is 230 and $U = 23$.\n- 2025: employed are 92 per cent. $207$ is 92 per cent of 225, so the labour force is 225 and $U = 18$.\n\nThe labour force fell from 230 to 225 thousand, as the quick argument said. Unemployment fell from 23 to 18 thousand, a fall of $\\frac{5}{23}$, about 21.7 per cent, not 20.\n\n**How to check the other claims.** The report says nothing about people outside the labour force: children, retired people, students, and people not looking for work. The people who left the labour force (5 thousand in the example) may have moved away, which would shrink the population, or may simply have stopped looking for work while staying in Valdoro, and people may also have been born or arrived. So the population could have risen or fallen, and the share of the population in employment, $\\frac{E}{\\text{population}}$, could have moved either way.\n\n**The trap.** A fall from 10 to 8 per cent is a fall of one fifth in the **rate**. It would be a fall of one fifth in the **number** unemployed only if the labour force, the denominator, had stayed the same, and the report makes that impossible.",
+  "distractorRationale": {
+    "a": "This is the answer to a slightly different question: what happens to unemployment if the labour force stays the same. Here the employed stay the same instead, and the labour force shrinks, so the number unemployed falls by more than the rate does. With 207 thousand employed, unemployment goes from 23 to 18 thousand, a fall of about 21.7 per cent.",
+    "d": "The labour force shrank, but the population also includes everyone outside the labour force. Those who stopped counting as unemployed may have given up looking for work and stayed, and births or arrivals may have added people, so the report does not settle the direction of the population.",
+    "c": "This needs the size of the population in each year, which the report does not give. The number employed was constant, so the share of the population in employment rose only if the population fell, and that is itself undetermined."
+  },
+  "estimatedSeconds": 115,
+  "stimulusRef": null,
+  "accessibilityText": "A critical thinking question. A statistics office reports that the unemployment rate in the province of Valdoro fell from 10 per cent to 8 per cent between 2024 and 2025, while the number of people in employment stayed the same. The unemployment rate is defined as the number unemployed divided by the labour force, which is everyone employed or unemployed. The question asks which of four statements must be true. The explanation uses E for the number employed and U for the number unemployed, so that the rate is U over E plus U.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-verbal-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item on reasoning with a ratio whose denominator moves. The key follows from monotonicity without any arithmetic; the strongest distractor, a 20 per cent fall in unemployment, is the correct answer to the neighbouring question in which the labour force is held fixed, and the arithmetic shows it is false here."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-bocconi-verbal-logic-author",
+    "reviewer": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "With employment E constant, the labour force is L1 = E/0.9 and L2 = E/0.92, so L2 < L1. Unemployed go from E/9 to 2E/23, a ratio of 18/23 and a fall of about 21.7%, not exactly 20% (A). Population is not given, so C and D cannot be established. [A second, separate blind solve (blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run1) reached the same answer: With employment E fixed, the labour force is E/0.90 in 2024 and E/0.92 in 2025, so it shrank. Unemployment went from E/9 to 2E/23, a ratio of 18/23 and a fall of about 21.7%, not exactly 20% (A). No population figures are given, so C and D cannot be established.]"
+    },
+    "notes": "Author's uniqueness check: with E fixed, U/(E+U) is strictly increasing in U, so the fall in the rate forces U and therefore E+U to fall; the keyed claim holds for every E. With E = 207 the figures are 23 unemployed out of 230 in 2024 and 18 out of 225 in 2025, confirmed by a read-only script; the fall in U is 5/23, about 21.7 per cent, for every value of E, so the exact 20 per cent claim is always false. The population and the employment-to-population share are not constrained by the report. Solved twice, the second time from the stem alone. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "ratios",
+    "rates-versus-counts",
+    "economic-reasoning"
+  ]
+}

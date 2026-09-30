@@ -1,0 +1,62 @@
+{
+  "id": "digital-sat-math-nonlinear-systems-spr-409",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "advanced-math",
+  "skillSlug": "nonlinear-equations-and-systems",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "In the $xy$-plane, the graphs of $y = x^2 - 4x + k$ and $y = 2x - 1$, where $k$ is a constant, intersect at two points. The $x$-coordinates of these two points differ by $4$. What is the value of $k$?",
+  "instructionsMd": "Student-produced response. Enter your answer in the box. Do not enter symbols such as a percent sign, comma, or dollar sign.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 4
+      }
+    ],
+    "acceptedStrings": [
+      "4"
+    ]
+  },
+  "explanationMd": "The $x$-coordinates of the intersection points are the solutions of the equation you get by setting the two expressions for $y$ equal:\n\n$$x^2 - 4x + k = 2x - 1 \\;\\Rightarrow\\; x^2 - 6x + (k + 1) = 0$$\n\nYou do not know the two solutions, but you know two things about them. Their average is fixed by the $x$-coefficient, and their distance apart is given in the stem.\n\n**Their midpoint.** The two solutions of $x^2 - 6x + (k + 1) = 0$ sit symmetrically about $x = -\\frac{-6}{2} = 3$, the axis of symmetry of that quadratic. So they have the form $3 - d$ and $3 + d$.\n\n**Their distance apart.** They differ by $4$, so $2d = 4$ and $d = 2$. The solutions are $x = 1$ and $x = 5$.\n\n**Now find $k$.** A quadratic with leading coefficient $1$ and roots $1$ and $5$ is $(x - 1)(x - 5) = x^2 - 6x + 5$. Matching constants, $k + 1 = 5$, so $k = 4$.\n\nCheck both intersection points on both graphs with $k = 4$. At $x = 1$: $1 - 4 + 4 = 1$ and $2(1) - 1 = 1$. At $x = 5$: $25 - 20 + 4 = 9$ and $2(5) - 1 = 9$. The graphs meet at $(1, 1)$ and $(5, 9)$, whose $x$-coordinates differ by $4$.\n\nThe same result comes from the quadratic formula. The solutions are $3 \\pm \\frac{\\sqrt{36 - 4(k + 1)}}{2}$, so their difference is $\\sqrt{36 - 4(k + 1)}$. Setting this equal to $4$ gives $36 - 4(k + 1) = 16$, so $k + 1 = 5$ and $k = 4$.\n\nTwo slips are common. Forgetting to move $2x - 1$ across before working with the quadratic leaves $x^2 - 4x + k$, whose roots sit symmetrically about $x = 2$ and lead to $k = 0$. And setting the difference of the roots equal to $4$ but writing that difference as $\\frac{\\sqrt{36 - 4(k + 1)}}{2}$, which is only half of it, gives $36 - 4(k + 1) = 64$ and $k = -8$; with that value the intersection points are at $x = -1$ and $x = 7$, which differ by $8$, not $4$.",
+  "distractorRationale": {},
+  "estimatedSeconds": 170,
+  "stimulusRef": null,
+  "accessibilityText": "In the coordinate plane, the parabola y equals x squared minus 4 x plus k, with k a constant, and the line y equals 2 x minus 1 intersect at two points. The x-coordinates of the two points differ by 4. Find k. Enter a number.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-sat-math-alg-author",
+    "aiAssisted": true,
+    "notes": "Original item. The stem gives a condition on the distance between the roots rather than on the roots themselves, so the solver has to express the roots through their midpoint and half-width (or through the discriminant) before k can be found."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-sat-math-alg-author",
+    "reviewer": "blind-reviewer-wave7-sat-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-sat-math-run0",
+      "solvedAnswer": "4",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Setting the equations equal gives x^2 - 6x + (k + 1) = 0. The roots differ by sqrt(36 - 4(k + 1)) = 4, so 32 - 4k = 16 and k = 4. Check: x^2 - 6x + 5 has roots 1 and 5. [A second, separate blind solve (blind-reviewer-wave7-sat-math-run1) reached the same answer: Setting the equations equal gives x^2 - 6x + (k+1) = 0. The difference between the roots is sqrt(36 - 4(k+1)) = 4, so 32 - 4k = 16 and k = 4. Check: x^2 - 6x + 5 has roots 1 and 5, which differ by 4.]"
+    },
+    "notes": "Author solved twice by two routes (midpoint and half-width; quadratic formula) and checked by script over k from -50 to 50 in steps of 0.25: only k = 4 gives two intersections whose x-coordinates differ by 4 (they are 1 and 5, with points (1, 1) and (5, 9)). Stretch item: harder than a typical hard SAT nonlinear-systems question because the condition is on the gap between two unknown roots, so the solver must build the roots from the axis of symmetry and the given gap, or relate the gap to the discriminant, before any coefficient can be matched; with a graphing calculator it still needs a slider search rather than a single reading. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "advanced-math",
+    "nonlinear-system",
+    "roots",
+    "student-produced-response",
+    "stretch"
+  ]
+}

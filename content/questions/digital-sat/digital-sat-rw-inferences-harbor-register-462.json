@@ -1,0 +1,79 @@
+{
+  "id": "digital-sat-rw-inferences-harbor-register-462",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "rw-module-1",
+  "domainSlug": "information-and-ideas",
+  "skillSlug": "inferences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Based on the text, what can most reasonably be inferred about Brennholm's harbor register?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "From 1862 on, it does not reliably show how many small fishing boats used Brennholm's harbor."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "It was kept less carefully by the town council after 1862 than it had been in the years before."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "It shows that Brennholm's fishing fleet shrank sharply in 1862 and did not recover in the years that followed."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Before 1862, it listed only the vessels longer than twelve meters that paid a fee to use the harbor."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Begin with what the register was: a list of vessels that *paid a fee* to use the harbor. It was never a list of every boat in the harbor, only of the ones that paid.\n\nNow combine the two things Carvalho found. The fish market sold as much fish after 1862 as before, so the boats were evidently still fishing. And from the spring of 1862, boats under twelve meters paid no fees at all. Small fishing boats therefore stopped appearing in the register not because they vanished but because they no longer met the register's condition for being listed. The reasonable inference is that, from 1862, the register cannot tell you how many small boats were using the harbor.\n\nA good check on an inference answer is to find the sentence in the passage that each part of it rests on. Here the register's definition (first sentence), the steady market (third sentence) and the exemption (last sentence) together support the answer, and nothing more is claimed.",
+  "distractorRationale": {
+    "c": "This is the earlier study's reading, which the passage sets up only so that Carvalho can doubt it. The steady fish market and the fee exemption both point to a gap in the record, not a collapse in the fleet.",
+    "d": "This contradicts the passage. Entries for small fishing boats stop in 1862, which means the register did list them before that year.",
+    "b": "Nothing suggests the clerks became careless. The passage explains the missing entries by a change in who had to pay fees, which the register would reflect even if it were kept perfectly."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": {
+    "id": "digital-sat-stim-harbor-register-462",
+    "version": 1
+  },
+  "accessibilityText": "Using the passage about historian Ines Carvalho and the harbor register of Brennholm, choose the statement about the register that can most reasonably be inferred.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-sat-rw-ideas-craft-author",
+    "aiAssisted": true,
+    "notes": "Original item. The inference needs two readings combined: what the register recorded, and what changed in 1862 about who had to be recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-sat-rw-ideas-craft-author",
+    "reviewer": "blind-reviewer-wave7-sat-rw-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-sat-rw-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The register lists only fee-paying vessels, and from spring 1862 boats under 12 m were exempt, so small boats stop appearing. The register therefore no longer shows how many small boats used the harbor. [A second, separate blind solve (blind-reviewer-wave7-sat-rw-run1) reached the same answer: The register lists only fee-paying vessels, and from spring 1862 boats under 12 m were exempt from fees. Small boats therefore stopped appearing even though fish sales held steady, so after 1862 the register no longer reliably counts them. C is the rejected earlier reading. B has no support. D is false, since small boats were listed before 1862.]"
+    },
+    "notes": "Author's own solve and uniqueness check: the register listed fee-paying vessels only, and from spring 1862 small boats paid no fee while the market shows fishing continued, so the register stops reflecting small-boat use. Only the option saying that from 1862 the register does not reliably show how many small boats used the harbor says this. Options were rebalanced in length on the final pass so that the key is not the longest choice. The fleet-collapse option is the rejected earlier reading; the twelve-meter option contradicts the fact that small-boat entries existed before 1862; the carelessness option has no support. Re-solved from the stem alone with the same result. Not published: awaiting a blind independent solve by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "reading",
+    "inference",
+    "history"
+  ]
+}

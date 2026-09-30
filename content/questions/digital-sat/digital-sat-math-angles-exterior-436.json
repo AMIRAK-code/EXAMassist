@@ -1,0 +1,77 @@
+{
+  "id": "digital-sat-math-angles-exterior-436",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "geometry-and-trigonometry",
+  "skillSlug": "lines-angles-and-triangles",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "In triangle $ABC$, side $\\overline{BC}$ is extended beyond $C$ to point $D$, and angle $ACD$ measures $128^\\circ$. The measure of angle $A$ is $3$ times the measure of angle $B$. What is the measure of angle $B$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$13^\\circ$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$52^\\circ$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$32^\\circ$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$96^\\circ$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Angle $ACD$ is an **exterior angle** of the triangle at $C$. An exterior angle equals the sum of the two interior angles that are not next to it, here angles $A$ and $B$.\n\n$$m\\angle A + m\\angle B = 128^\\circ$$\n\nWith $m\\angle A = 3\\,m\\angle B$:\n\n$$3\\,m\\angle B + m\\angle B = 128^\\circ \\;\\Rightarrow\\; 4\\,m\\angle B = 128^\\circ \\;\\Rightarrow\\; m\\angle B = 32^\\circ$$\n\nCheck with the angle sum. Angle $A$ is $96^\\circ$, and interior angle $ACB$ is $180^\\circ - 128^\\circ = 52^\\circ$, because it forms a straight line with angle $ACD$. Then $32 + 96 + 52 = 180$, as it must.\n\nThe exterior-angle fact is just the angle sum in disguise: interior angle $C$ and the exterior angle together make $180^\\circ$, and so do all three interior angles, so the exterior angle must equal $A + B$.",
+  "distractorRationale": {
+    "a": "This sets $A + B$ equal to the interior angle at $C$, $52^\\circ$, instead of the exterior angle, $128^\\circ$, and then divides $52$ by $4$. Angles $A$ and $B$ add to the exterior angle.",
+    "b": "This is the interior angle $ACB$, $180^\\circ - 128^\\circ$. It is a correct step toward checking the answer, but the question asks for angle $B$.",
+    "d": "This is angle $A$, which is $3$ times angle $B$. The question asks for the smaller angle, $B$."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "In triangle A B C, side B C is extended past C to a point D, and the angle A C D formed outside the triangle measures 128 degrees. Angle A is 3 times angle B. Find the measure of angle B. The choices are 13, 52, 32 and 96 degrees.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-sat-math-data-geo-author",
+    "aiAssisted": true,
+    "notes": "Original item. The exterior angle is divisible by 4 so that the angles are whole numbers, and each distractor is a real intermediate value or a known slip."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-sat-math-data-geo-author",
+    "reviewer": "blind-reviewer-wave7-sat-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-sat-math-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "By the exterior angle theorem, angle ACD = A + B = 3B + B = 4B = 128, so B = 32. Then A = 96 and C = 52, which is a valid triangle. [A second, separate blind solve (blind-reviewer-wave7-sat-math-run1) reached the same answer: By the exterior angle theorem, angle ACD = A + B = 4B = 128, so B = 32. The distractors are 52 (angle ACB = 180 - 128), 96 (angle A), and 13, which none of these readings of the stem produce.]"
+    },
+    "notes": "Author solved twice: A + B = 128 and A = 3B give B = 32; A = 96, interior C = 52, sum 180. Verified with a read-only script. Awaiting a blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "geometry",
+    "exterior-angle",
+    "triangles"
+  ]
+}

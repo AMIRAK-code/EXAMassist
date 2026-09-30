@@ -1,0 +1,61 @@
+{
+  "id": "digital-sat-math-linear-one-variable-spr-400",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "algebra",
+  "skillSlug": "linear-equations-one-variable",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "$$\\frac{2}{3}(9x - 6k) + 11 = 6x - 1$$\n\nIn the equation above, $k$ is a constant. If the equation has infinitely many solutions, what is the value of $k$?",
+  "instructionsMd": "Student-produced response. Enter your answer in the box. Do not enter symbols such as a percent sign, comma, or dollar sign.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 3
+      }
+    ],
+    "acceptedStrings": [
+      "3"
+    ]
+  },
+  "explanationMd": "A linear equation in one variable has infinitely many solutions only when both sides are the *same* expression, so that every value of $x$ makes it true. That means the $x$-terms must match **and** the constant terms must match.\n\nSimplify the left side first, distributing $\\frac{2}{3}$ to both terms inside the parentheses:\n\n$$\\frac{2}{3}(9x) - \\frac{2}{3}(6k) + 11 = 6x - 4k + 11$$\n\nSo the equation reads\n\n$$6x - 4k + 11 = 6x - 1$$\n\nThe $x$-terms already agree ($6x$ on each side), so the equation holds for every $x$ exactly when the constants agree:\n\n$$-4k + 11 = -1 \\;\\Rightarrow\\; -4k = -12 \\;\\Rightarrow\\; k = 3$$\n\nCheck: with $k = 3$ the left side is $\\frac{2}{3}(9x - 18) + 11 = 6x - 12 + 11 = 6x - 1$, identical to the right side, so every real $x$ is a solution. For any other value of $k$ the $6x$ terms still cancel but the constants differ, leaving a false statement such as $7 = -1$, and the equation has **no** solution. There is never exactly one solution here, which is a useful signal that the question is about matching constants rather than solving for $x$.\n\nThe common slip is distributing $\\frac{2}{3}$ to $9x$ but not to $6k$, which gives $6x - 6k + 11 = 6x - 1$ and the wrong value $k = 2$.",
+  "distractorRationale": {},
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "The equation is: two thirds times the quantity 9 x minus 6 k, plus 11, equals 6 x minus 1. k is a constant, and the equation has infinitely many solutions. Find k. Enter a number.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-sat-math-alg-author",
+    "aiAssisted": true,
+    "notes": "Original item. The fraction in front of the parentheses is there so that incomplete distribution produces a clean wrong answer (2) rather than an obviously broken one."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-sat-math-alg-author",
+    "reviewer": "blind-reviewer-wave7-sat-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-sat-math-run0",
+      "solvedAnswer": "3",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The left side expands to 6x - 4k + 11. For infinitely many solutions, -4k + 11 = -1, so k = 3. [A second, separate blind solve (blind-reviewer-wave7-sat-math-run1) reached the same answer: Distributing gives 6x - 4k + 11 = 6x - 1. The x terms match, so the equation has infinitely many solutions exactly when -4k + 11 = -1, which gives k = 3.]"
+    },
+    "notes": "Author solved twice and checked by script: the left side simplifies to 6x - 4k + 11, and the identity with 6x - 1 requires -4k + 11 = -1, so k = 3 is the only value; every other k gives no solution. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "algebra",
+    "linear-equation",
+    "infinitely-many-solutions",
+    "student-produced-response"
+  ]
+}

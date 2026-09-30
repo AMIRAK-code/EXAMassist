@@ -1,0 +1,70 @@
+{
+  "id": "bocconi-ug-crit-certificate-deducible-435",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-critical-thinking",
+  "skillSlug": "critical-thinking-deducibility",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The following statements about the firms in the Pietralta industrial park are all true.\n\n> 1. Every firm in the park that exports to Asia holds a quality certificate.\n>\n> 2. No firm in the park with fewer than 20 employees holds a quality certificate.\n>\n> 3. Brunelli is a firm in the park with 12 employees.\n\nConsider the following assertion.\n\n> **Brunelli exports to Asia.**\n\nOn the basis of the three statements alone, the assertion is",
+  "instructionsMd": "This item has three answer options and carries the heavier penalty for a wrong answer, so answer only if you can justify your choice from the three statements alone.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "impossible to determine from the information given."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "true."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "false."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Start from what you know about Brunelli and follow the statements forward.\n\n1. Brunelli has 12 employees, which is fewer than 20 (statement 3).\n2. No firm in the park with fewer than 20 employees holds a quality certificate, so Brunelli has no certificate (statement 2).\n3. Statement 1 says that exporting to Asia guarantees a certificate. Read it the other way round with **both** ends flipped: a firm with **no** certificate does **not** export to Asia. That reversed form, the contrapositive, is exactly as true as statement 1.\n4. Brunelli has no certificate, so Brunelli does not export to Asia.\n\nThe assertion is therefore **false**, and this is settled, not merely unsupported.\n\n**How to check the answer.** Suppose, for contradiction, that Brunelli did export to Asia. Statement 1 would then give it a certificate, and statement 2 would deny it one. The statements cannot all be true in that situation, so it cannot arise.\n\n**Why the undetermined verdict is tempting.** Statement 1 seems to be about exporters only, so it feels silent about a firm we have not been told exports. But a rule of the form \"every X is Y\" also speaks about everything that is not Y: none of it is X. Once statement 2 puts Brunelli outside the certified firms, statement 1 puts it outside the exporters too.",
+  "distractorRationale": {
+    "b": "Nothing gives Brunelli any property that leads towards exporting. Statement 1 links exporting to certification, which can make the assertion feel connected to the premises, but every fact about Brunelli leads away from certification and therefore away from exporting. To make the assertion true one would need a premise such as 'every certified firm exports to Asia', and there is none.",
+    "a": "This treats statement 1 as speaking only about firms already known to export. Its contrapositive, 'a firm without a certificate does not export to Asia', applies to Brunelli once statement 2 has established that Brunelli has no certificate, so the matter is settled rather than open."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "A critical thinking question with three answer options. Three statements are given: every firm in the Pietralta industrial park that exports to Asia holds a quality certificate; no firm in the park with fewer than 20 employees holds a quality certificate; Brunelli is a firm in the park with 12 employees. The assertion to evaluate is: Brunelli exports to Asia. The three options, in order, are: impossible to determine from the information given; true; false.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-verbal-logic-author",
+    "aiAssisted": true,
+    "notes": "Original three-option item in the true / false / not deducible frame. The deduction needs the contrapositive of statement 1 applied to an individual, so the undetermined verdict catches a candidate who reads 'every X is Y' as silent about things that are not Y. The keyed verdict is false, to vary the answer across the three-option set."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-bocconi-verbal-logic-author",
+    "reviewer": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Brunelli has 12 (<20) employees, so by statement 2 it holds no certificate; by the contrapositive of statement 1 it does not export to Asia. The assertion is therefore false. [A second, separate blind solve (blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run1) reached the same answer: Brunelli has 12 employees (<20), so by statement 2 it holds no certificate; by statement 1 (contrapositive) it cannot export to Asia. The assertion is therefore false.]"
+    },
+    "notes": "Author's uniqueness check: fewer than 20 employees gives no certificate, and the contrapositive of statement 1 gives no export to Asia, so the assertion is false in every model of the premises. A read-only brute-force check over all worlds of up to three firms confirmed that no model has Brunelli exporting to Asia, so neither the true nor the undetermined verdict is defensible. Solved twice, the second time from the stem alone. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "three-option",
+    "deducibility",
+    "contrapositive"
+  ]
+}
