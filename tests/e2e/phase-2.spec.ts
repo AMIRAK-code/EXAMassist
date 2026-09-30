@@ -135,9 +135,14 @@ test.describe('navigation', () => {
   });
 });
 
+// These tests need a Craft and Structure skill with fewer than five reviewed
+// questions, so that the page shows its shortfall state. Cross-Text
+// Connections has four; when it grows past that, pick another small skill.
+const SMALL_SKILL = 'cross-text-connections';
+
 test.describe('practice setup', () => {
   test('a preset skill is shown and the length follows what the bank holds', async ({ page }) => {
-    await page.goto('/practice/digital-sat?skill=words-in-context');
+    await page.goto(`/practice/digital-sat?skill=${SMALL_SKILL}`);
     await expect(page.getByRole('button', { name: 'Remove skill filter' })).toBeVisible();
     await expect(page.getByText(/Only \d+ reviewed questions? match(es)? these settings/)).toBeVisible();
 
@@ -152,7 +157,7 @@ test.describe('practice setup', () => {
   });
 
   test('broader practice is an explicit choice', async ({ page }) => {
-    await page.goto('/practice/digital-sat?skill=words-in-context');
+    await page.goto(`/practice/digital-sat?skill=${SMALL_SKILL}`);
     await page.getByRole('button', { name: /^Practise all of Craft and Structure/ }).click();
     await expect(page.getByRole('button', { name: 'Remove skill filter' })).toHaveCount(0);
     await expect(page.getByLabel('Topic')).toHaveValue('craft-and-structure');
