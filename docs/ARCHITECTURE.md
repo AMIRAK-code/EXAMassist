@@ -11,7 +11,7 @@ exam is data, not code branches.
 | React | 19.3 | Required peer of Next 15.5. |
 | TypeScript | 5.9, `strict` | `noUncheckedIndexedAccess` is off: the runtime validation below carries that weight instead. |
 | Tailwind CSS | 4.3 | CSS-first tokens in `src/app/globals.css`, no component library. |
-| SQLite (better-sqlite3) | 13.0 | See "Why not PostgreSQL" below. |
+| PostgreSQL (pg) / SQLite (better-sqlite3) | 8.23.0 / 13.0 | Supabase in production; SQLite for isolated local tests. |
 | Zod | 4.6 | One schema per contract, used for both compile-time types and runtime validation. |
 | Vitest | 3.2 | Unit and integration tests. |
 | Playwright | 1.63 | Browser tests for the learner journeys. |
@@ -22,29 +22,27 @@ was weighed and declined: the SQL here is simple and benefits from being
 explicit, sessions are 120 lines, the charts are small SVGs that must ship an
 accessible table anyway, and a component library would have been styled away.
 
-### Why not PostgreSQL
+### Database adapters
 
-The brief suggested PostgreSQL. This environment has neither PostgreSQL nor
-Docker available, so a Postgres-only application could not have been run,
-seeded, tested or demonstrated here — it would have been delivered unverified.
+All database operations are asynchronous. DATABASE_URL selects PostgreSQL;
+otherwise DATABASE_PATH selects SQLite locally. Vercel requires PostgreSQL.
+The production schema snapshot is db/postgres/schema.sql. Existing text JSON,
+timestamps and integer flags remain compatible with the application row types.
 
-SQLite was chosen so the whole thing actually runs. The consequences were
-contained deliberately:
+The PostgreSQL adapter uses a small pool, transaction-local search paths,
+verified TLS, and serializable explicit transactions with bounded retries.
+Nested transactions use savepoints. SQLite queues unrelated operations while
+an asynchronous transaction is open. A small SQL adapter translates positional
+parameters and the few SQLite expressions used by the repositories.
 
-- The schema in `db/migrations/001_core.sql` avoids SQLite-specific syntax
-  beyond `INTEGER` booleans and `TEXT` timestamps.
-- All access goes through `src/lib/db/` and the repository modules; no SQL is
-  written in a component.
-- `better-sqlite3` is synchronous, which the assessment engine benefits from:
-  `db.transaction(...)` gives real atomicity for submit-and-score with no
-  interleaving await points.
+Application data lives in the private examer schema. Existing server-side
+session authentication remains in place; the public Supabase client does not
+replace it. The restricted application role has no schema modification rights.
+PostgreSQL schema changes require an operator migration; db:migrate verifies
+recorded migration versions and will not run SQLite DDL against PostgreSQL.
 
-**Porting to PostgreSQL** is therefore a contained job: translate the migration
-(`INTEGER` booleans to `BOOLEAN`, `TEXT` timestamps to `TIMESTAMPTZ`,
-`INTEGER PRIMARY KEY AUTOINCREMENT` to `BIGSERIAL`, keep the partial unique
-index), swap the driver in `src/lib/db/index.ts` for `pg`, and make the
-repository functions async. The transaction boundaries and the SQL itself carry
-over. Estimated at one to two days, mostly mechanical.
+Project-specific deployment notes and migration evidence are kept locally and
+excluded from Git. The README describes the shared configuration and checks.
 
 ## Layers
 
