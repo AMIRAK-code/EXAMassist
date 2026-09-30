@@ -1,5 +1,9 @@
 # Handoff
 
+> **Newer:** `docs/STATUS-2026-09-30.md` covers the PoliTo and CISIA exams,
+> the expanded Bocconi, SAT and GRE banks, and what is still in review. This
+> document describes the platform as of 23 September.
+
 State of the platform at the end of the build session, what is verified, what is
 missing, and what to do next.
 
