@@ -1,6 +1,6 @@
 {
   "id": "digital-sat-rw-evidence-quant-bikeshare-035",
-  "version": 3,
+  "version": 4,
   "examKey": "digital-sat",
   "sectionKey": "rw-module-1",
   "domainSlug": "information-and-ideas",
@@ -15,32 +15,32 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "Weekday trips in Fenwick rose from 1,260 in 2023 to 1,340 in 2025, an increase of 80 trips."
+      "textMd": "Fenwick, one of the two districts without new lanes, went from 1,260 weekday trips in 2023 to 1,340 in 2025, an increase of 80."
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "Weekday trips rose by 890 in Harbour Row and by 675 in Millgate, while the two districts without new lanes changed by only 80 and −55."
+      "textMd": "Weekday trips rose by 890 and 675 in the two districts that gained lanes but changed by only 80 and −55 in the two that did not."
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "South Quay recorded fewer weekday trips in 2025 than it had in 2023."
+      "textMd": "South Quay, one of the two districts without new lanes, recorded 1,455 weekday trips in 2025, down from 1,510 in 2023."
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "In 2025, Harbour Row recorded more weekday trips than any other district."
+      "textMd": "In 2025, Harbour Row recorded 2,310 weekday trips, more than Millgate, Fenwick or South Quay recorded in that same year."
     }
   ],
   "answerKey": {
     "type": "single_select",
     "optionId": "b"
   },
-  "explanationMd": "The claim is comparative — lane districts rose *far more than* no-lane districts — so the supporting data must contain both sides of the comparison. Every option here is a true reading of the table; only one does the job the claim needs.\n\nWork out the four changes first:\n\n- Harbour Row (lanes): $2{,}310 - 1{,}420 = 890$\n- Millgate (lanes): $1{,}655 - 980 = 675$\n- Fenwick (no lanes): $1{,}340 - 1{,}260 = 80$\n- South Quay (no lanes): $1{,}455 - 1{,}510 = -55$\n\nThe choice reporting all four changes together does that job. The two lane districts gained hundreds of trips; the two without gained 80 and lost 55. That is exactly the contrast the claim asserts.\n\nCheck your answer by covering the claim and asking what the option alone would let you conclude. The other three choices each describe one district, and one district cannot establish a difference between two groups.",
+  "explanationMd": "The claim is comparative — lane districts rose *far more than* no-lane districts — so the supporting data must contain both sides of the comparison. Every option here is a true reading of the table; only one does the job the claim needs.\n\nWork out the four changes first:\n\n- Harbour Row (lanes): $2{,}310 - 1{,}420 = 890$\n- Millgate (lanes): $1{,}655 - 980 = 675$\n- Fenwick (no lanes): $1{,}340 - 1{,}260 = 80$\n- South Quay (no lanes): $1{,}455 - 1{,}510 = -55$\n\nThe choice reporting all four changes together does that job. The two lane districts gained hundreds of trips; the two without gained 80 and lost 55. That is exactly the contrast the claim asserts.\n\nCheck your answer by covering the claim and asking what the option alone would let you conclude. The other three choices each give either one district's change or a single year's totals, and neither can establish a difference in growth between two groups.",
   "distractorRationale": {
-    "d": "This is a true statement about a single year's total, not about change. A district can be the busiest in 2025 without having grown faster than anywhere else, so it supports no comparison.",
-    "c": "This gives only the no-lane side of the comparison, and only one district of it. Without the figures for Harbour Row and Millgate there is nothing to say the rise was far larger where lanes were built.",
+    "d": "This is a true statement about a single year's totals, not about change. A district can be the busiest in 2025 without having grown faster than anywhere else, so ranking the four districts by their 2025 figures supports no comparison of rises.",
+    "c": "This gives only the no-lane side of the comparison, and only one district of it. The 2023 and 2025 figures are accurate, but without the figures for Harbour Row and Millgate there is nothing to say the rise was far larger where lanes were built.",
     "a": "This is an accurate calculation for a district without lanes, but it stands alone. An increase of 80 trips is only meaningful for the claim once it is set beside the 890 and 675 in the lane districts."
   },
   "estimatedSeconds": 90,
@@ -48,7 +48,7 @@
     "id": "digital-sat-stim-bikeshare-table-032",
     "version": 1
   },
-  "accessibilityText": "Using the table of Alderport weekday bicycle-share trips in 2023 and 2025, choose the description of the data that best supports the claim that districts with new protected lanes saw a far larger rise in trips than districts without them.",
+  "accessibilityText": "Using the table of Alderport weekday bicycle-share trips in 2023 and 2025, choose the description of the data that best supports the claim that districts with new protected lanes saw a far larger rise in trips than districts without them. The four choices say: that Fenwick, one of the two districts without new lanes, went from 1,260 weekday trips in 2023 to 1,340 in 2025, an increase of 80; that weekday trips rose by 890 and 675 in the two districts that gained lanes but changed by only 80 and minus 55 in the two that did not; that South Quay, one of the two districts without new lanes, recorded 1,455 weekday trips in 2025, down from 1,510 in 2023; and that in 2025 Harbour Row recorded 2,310 weekday trips, more than Millgate, Fenwick or South Quay recorded that year.",
   "provenance": {
     "origin": "original",
     "authoredBy": "digital-sat-wave3-author",
@@ -58,16 +58,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "digital-sat-wave3-author",
-    "reviewer": "closeout-blind-solver-s5",
-    "reviewedOn": "2026-09-24",
+    "reviewer": "blind-reviewer-wave7-sat-rw-run0",
+    "reviewedOn": "2026-09-30",
     "independentSolve": {
-      "solvedBy": "closeout-blind-solver-s5",
+      "solvedBy": "blind-reviewer-wave7-sat-rw-run0",
       "solvedAnswer": "b",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "The changes are Harbour Row +890 and Millgate +675, against Fenwick +80 and South Quay -55. Only (b) compares the lane districts with the non-lane districts, which the claim requires. (a) and (c) describe only non-lane districts. (d) gives a 2025 level, not a rise, for one district."
+      "workingNotes": "The changes from 2023 to 2025 are: Harbour Row +890, Millgate +675, Fenwick +80, South Quay -55. Only B compares the lane districts with the non-lane districts, which the claim needs, and all its figures are correct. [A second, separate blind solve (blind-reviewer-wave7-sat-rw-run1) reached the same answer: The changes are 2310-1420=890, 1655-980=675, 1340-1260=80 and 1455-1510=-55, and all match B. Only B compares the lane districts with the no-lane districts, which is what the claim needs. A and C each describe only one no-lane district. D compares 2025 levels, not the rise.]"
     },
-    "notes": "Author solved and checked uniqueness: the claim is comparative, and D is the only option that reports both groups. Arithmetic re-checked: 890, 675, 80, -55. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 2 option references in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts. Author solved and checked uniqueness: the claim is comparative, and the four-district choice is the only option that reports both groups. Arithmetic re-checked: 890, 675, 80, -55. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. Option-letter references in the explanation were rewritten to name choice content; the key was re-derived independently and is unchanged. Version 3 merges the letter-free wording of the choices with version 2's review; the key and the choices are unchanged."
+    "notes": "Author solved and checked uniqueness: the claim is comparative, and D is the only option that reports both groups. Arithmetic re-checked: 890, 675, 80, -55. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2 (2026-09-24): corrected 2 option references in the explanation that still used the option order from before the options were reordered (the explanation pointed to a wrong option as the answer, or discussed the answer under a wrong letter). Letters in the notes above may use the old order. Correction by the coordinating editor (an AI agent), checked mechanically against the stored option order and the original order of the distractor notes; a separate AI reviewer re-checked every option reference against the option text, and the item passed a new blind solve on 2026-09-24. v1 stays attached to earlier attempts. Author solved and checked uniqueness: the claim is comparative, and the four-district choice is the only option that reports both groups. Arithmetic re-checked: 890, 675, 80, -55. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. Option-letter references in the explanation were rewritten to name choice content; the key was re-derived independently and is unchanged. Version 3 merges the letter-free wording of the choices with version 2's review; the key and the choices are unchanged. v4: choices rebalanced so the key no longer stands out by length, detail or hedging (answer-length cue found by tmp/cue-scan.mjs); stem, passage and key unchanged; re-solved blind."
   },
   "state": "published",
   "quarantine": null,

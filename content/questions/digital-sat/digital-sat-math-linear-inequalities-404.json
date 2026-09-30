@@ -1,0 +1,77 @@
+{
+  "id": "digital-sat-math-linear-inequalities-404",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "algebra",
+  "skillSlug": "linear-inequalities",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A freight crate is loaded with $p$ boxes of type P, which weigh $18$ kilograms each, and $q$ boxes of type Q, which weigh $30$ kilograms each, and nothing else. The total weight of the boxes can be at most $480$ kilograms, and the crate must contain at least twice as many type P boxes as type Q boxes. What is the greatest possible value of $q$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$7$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$8$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$12$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$16$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Translate each condition into an inequality, then ask what the second condition costs you when you try to make $q$ large.\n\n- Weight: $18p + 30q \\le 480$\n- \"At least twice as many P boxes as Q boxes\": the number of P boxes is at least $2$ times the number of Q boxes, so $p \\ge 2q$.\n\nTo fit as many Q boxes as possible, use as few P boxes as the rule allows, which is $p = 2q$ (any extra P box only adds weight). Substitute into the weight condition:\n\n$$18(2q) + 30q \\le 480$$\n$$66q \\le 480$$\n$$q \\le \\frac{480}{66} \\approx 7.27$$\n\nThe number of boxes must be a whole number, so the greatest possible value is $q = 7$.\n\nCheck that $7$ is actually achievable and $8$ is not. With $q = 7$ and $p = 14$: $18(14) + 30(7) = 252 + 210 = 462 \\le 480$, and $14 \\ge 2(7)$. With $q = 8$ the crate needs $p \\ge 16$, and even $p = 16$ gives $288 + 240 = 528 > 480$.\n\nThe translation step is the one to slow down on. \"At least twice as many P as Q\" puts the $2$ next to $q$, not next to $p$: test it with numbers, since $10$ P boxes and $5$ Q boxes should satisfy it, and $10 \\ge 2(5)$ does.",
+  "distractorRationale": {
+    "b": "This rounds $\\frac{480}{66} \\approx 7.27$ up to the nearest whole number. The bound is a maximum, so rounding up breaks it: $8$ Q boxes need at least $16$ P boxes, and together they weigh $528$ kilograms.",
+    "c": "This writes the ratio condition backwards as $2p \\ge q$. Then the fewest P boxes allowed is $\\frac{q}{2}$, the weight condition becomes $9q + 30q = 39q \\le 480$, and $q \\le 12.3$, giving $12$. That inequality says the Q boxes may number up to twice the P boxes, which is a different rule.",
+    "d": "This uses only the weight limit, $30q \\le 480$, as if the crate could hold Q boxes alone. It ignores the requirement that there be at least twice as many P boxes, which forces extra weight onto every Q box."
+  },
+  "estimatedSeconds": 130,
+  "stimulusRef": null,
+  "accessibilityText": "A crate holds p boxes of type P at 18 kilograms each and q boxes of type Q at 30 kilograms each. Total weight is at most 480 kilograms, and there must be at least twice as many type P boxes as type Q boxes. Find the greatest possible q. The four choices are 7, 8, 12 and 16.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-sat-math-alg-author",
+    "aiAssisted": true,
+    "notes": "Original item. Weights chosen so the correct combined coefficient (66) and the reversed-translation coefficient (39) give different whole-number caps, and so that the unrounded bound invites rounding up."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-sat-math-alg-author",
+    "reviewer": "blind-reviewer-wave7-sat-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-sat-math-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Weight is lowest when p = 2q, giving 36q + 30q = 66q <= 480, so q <= 7.27. Box counts are whole numbers, so q = 7 (with p = 14, the weight is 462). For q = 8, p must be at least 16, giving 528 > 480. [A second, separate blind solve (blind-reviewer-wave7-sat-math-run1) reached the same answer: To make q as large as possible, take p as small as allowed, p = 2q. Then 36q + 30q = 66q <= 480, so q <= 7.27. Checking integers: q = 7 with p = 14 weighs 462 kg, which works. q = 8 forces p >= 16, and 288 + 240 = 528 > 480, which fails. So the greatest q is 7.]"
+    },
+    "notes": "Author solved twice and checked by brute force over whole-number p and q: the greatest q satisfying 18p + 30q <= 480 and p >= 2q is 7 (with p = 14); the reversed rule 2p >= q gives 12, the weight limit alone gives 16, and rounding 480/66 up gives 8. Hard: two constraints must be combined by choosing the binding case, the verbal ratio must be translated in the right direction, and the integer cap must be taken downward. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "algebra",
+    "linear-inequality",
+    "in-context"
+  ]
+}

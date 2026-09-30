@@ -1,0 +1,66 @@
+{
+  "id": "gre-quant-ne-tangent-intercept-412",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-algebra",
+  "skillSlug": "alg-coordinate-geometry",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "In the $xy$-plane, a circle with center at the origin passes through the point $(5, 12)$. Line $\\ell$ is tangent to the circle at the point $(5, 12)$.\n\nWhat is the $x$-coordinate of the point where line $\\ell$ crosses the $x$-axis?",
+  "instructionsMd": "Enter your answer as an integer or a decimal in the box. Equivalent forms of the same value are accepted.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 33.8
+      }
+    ],
+    "acceptedStrings": [
+      "33.8",
+      "33.80"
+    ]
+  },
+  "explanationMd": "The one geometric fact that unlocks this item: a tangent line to a circle is **perpendicular to the radius** drawn to the point of tangency.\n\n**Step 1: the slope of the radius.** The radius runs from $(0, 0)$ to $(5, 12)$, so its slope is $\\frac{12}{5}$.\n\n**Step 2: the slope of the tangent.** Perpendicular slopes are negative reciprocals, so line $\\ell$ has slope $-\\frac{5}{12}$.\n\n**Step 3: find where it meets the $x$-axis.** Line $\\ell$ passes through $(5, 12)$. On the $x$-axis $y = 0$, so the line must drop $12$ units from the point of tangency. With slope $-\\frac{5}{12}$, a drop of $12$ requires moving right by\n\n$$12 \\div \\frac{5}{12} = 12 \\times \\frac{12}{5} = \\frac{144}{5} = 28.8.$$\n\nSo the line crosses the $x$-axis at $x = 5 + 28.8 = 33.8$.\n\n**An equation route.** The line is $y - 12 = -\\frac{5}{12}(x - 5)$. Multiplying by $12$ and tidying gives $5x + 12y = 169$. Setting $y = 0$ gives $x = \\frac{169}{5} = 33.8$.\n\n**How to check.** The answer must be to the right of $x = 13$, where the circle itself meets the positive $x$-axis, because the tangent line touches the circle only once and lies outside it everywhere else. $33.8 > 13$, as required. A neat further check: in the right triangle formed by the origin, $(5, 12)$ and $(33.8, 0)$, the legs are the radius $13$ and the tangent segment, and $13^{2} + \\text{(tangent segment)}^{2}$ should equal $33.8^{2}$. The tangent segment from $(5, 12)$ to $(33.8, 0)$ has length $\\sqrt{28.8^{2} + 12^{2}} = \\sqrt{973.44} = 31.2$, and $169 + 973.44 = 1142.44 = 33.8^{2}$.",
+  "distractorRationale": {
+    "trap-13-the-radius": "Entering $13$ gives the radius, $\\sqrt{5^{2} + 12^{2}}$, which is where the circle itself crosses the positive $x$-axis. The tangent line at $(5, 12)$ meets the axis much farther out.",
+    "trap-10-negating-without-reciprocal": "Using slope $-\\frac{12}{5}$, the negative of the radius slope without taking the reciprocal, gives a line through $(5, 12)$ that meets the axis at $x = 10$. That line is not perpendicular to the radius.",
+    "trap-negative-23-8-reciprocal-without-negating": "Using slope $\\frac{5}{12}$, the reciprocal without the sign change, sends the line down to the left and gives $x = 5 - 28.8 = -23.8$.",
+    "trap-14-08-the-y-intercept": "Entering about $14.08$, which is $\\frac{169}{12}$, reports where line $\\ell$ crosses the $y$-axis rather than the $x$-axis."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": "In the coordinate plane, a circle centered at the origin passes through the point 5 comma 12. A line is tangent to the circle at the point 5 comma 12. Find the x-coordinate of the point where this tangent line crosses the x-axis, and type it into the answer box as an integer or decimal.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-gre-quant-author",
+    "aiAssisted": true,
+    "notes": "Original item written for wave 7. A 5-12-13 radius keeps the arithmetic exact while the perpendicular-slope step, the sign of the slope and the choice of intercept each generate a distinct wrong answer. Not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-gre-quant-author",
+    "reviewer": "blind-reviewer-wave7-gre-quant-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-gre-quant-run0",
+      "solvedAnswer": "33.8",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The radius has slope 12/5, so the tangent has slope -5/12. The tangent line is 5x + 12y = 25 + 144 = 169. Setting y=0 gives x = 169/5 = 33.8. [A second, separate blind solve (blind-reviewer-wave7-gre-quant-run1) reached the same answer: The radius to (5,12) has slope 12/5, so the tangent has slope -5/12. Its equation is 5x+12y=169, and setting y=0 gives x=169/5=33.8.]"
+    },
+    "notes": "Author solved: radius slope 12/5, tangent slope -5/12, tangent line 5x + 12y = 169, x-intercept 169/5 = 33.8. Pythagorean check 13^2 + 31.2^2 = 33.8^2. A script confirmed the intercepts (33.8 and 169/12) and the slip values 10 and -23.8."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "numeric-entry",
+    "coordinate-geometry",
+    "tangent-line",
+    "perpendicular-slopes"
+  ]
+}

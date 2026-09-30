@@ -1,0 +1,65 @@
+{
+  "id": "gre-quant-ne-increasing-digits-414",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-data-analysis",
+  "skillSlug": "data-counting-methods",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "How many four-digit positive integers have digits that strictly increase from left to right? (For example, $2{,}469$ is one such integer, but $2{,}449$ and $2{,}496$ are not.)",
+  "instructionsMd": "Enter your answer in the box. Equivalent forms of the same value are accepted.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 126
+      }
+    ],
+    "acceptedStrings": [
+      "126",
+      "126.0"
+    ]
+  },
+  "explanationMd": "The key insight is that **order is not a choice here**. Once you know which four different digits an integer uses, there is exactly one way to write them in increasing order. So counting the integers is the same as counting sets of four digits.\n\n**Step 1: which digits are available?** Could $0$ appear? It cannot be the first digit of a four-digit integer, and it cannot come later either, because every digit after the first must be larger than the first, and nothing is smaller than $0$. So only the digits $1$ through $9$ can be used.\n\n**Step 2: count the sets.** Choose $4$ of the $9$ digits, without regard to order:\n\n$$\\binom{9}{4} = \\frac{9 \\times 8 \\times 7 \\times 6}{4 \\times 3 \\times 2 \\times 1} = \\frac{3{,}024}{24} = 126.$$\n\nEach set gives exactly one integer, so there are $126$ such integers.\n\n**How to check.** Count a smaller version by hand to confirm the method. Two-digit integers with strictly increasing digits should number $\\binom{9}{2} = 36$: starting with $1$ there are $8$ ($12$ to $19$), with $2$ there are $7$, and so on down to $1$ starting with $8$, for $8 + 7 + \\cdots + 1 = 36$. The method matches the direct count, so it can be trusted for four digits.",
+  "distractorRationale": {
+    "trap-3024-ordered-choices": "Entering $3{,}024$, which is $9 \\times 8 \\times 7 \\times 6$, counts ordered arrangements of four different digits. Only one of the $24$ orderings of each set is increasing, so this overcounts by a factor of $24$.",
+    "trap-210-including-zero": "Entering $210$, which is $\\binom{10}{4}$, allows $0$ as one of the digits. Any set containing $0$ would have to start with $0$, which does not give a four-digit integer.",
+    "trap-5040-ordered-with-zero": "Entering $5{,}040$, which is $10 \\times 9 \\times 8 \\times 7$, makes both errors: it counts orderings and it allows $0$.",
+    "trap-495-non-decreasing": "Entering $495$ counts integers whose digits never decrease, allowing repeats such as $2{,}449$, which the stem rules out with the word strictly."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "Count the four-digit positive integers whose digits strictly increase from left to right. For example, 2,469 qualifies, but 2,449 and 2,496 do not. Type the count into the answer box.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-gre-quant-author",
+    "aiAssisted": true,
+    "notes": "Original item written for wave 7. The examples show both ways to fail (a repeated digit and a decrease). The item rewards seeing that increasing order turns a permutation count into a combination count and that 0 is excluded. Not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-gre-quant-author",
+    "reviewer": "blind-reviewer-wave7-gre-quant-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-gre-quant-run0",
+      "solvedAnswer": "126",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Each choice of 4 distinct digits in strictly increasing order gives exactly one integer. The digit 0 cannot appear, because it would have to come first. So the count is C(9,4) = 126. [A second, separate blind solve (blind-reviewer-wave7-gre-quant-run1) reached the same answer: Digits that strictly increase can never include 0: it cannot lead, and nothing smaller could come before it. Each 4-element subset of {1,...,9} gives exactly one such integer, so the count is C(9,4)=126.]"
+    },
+    "notes": "Author solved: each set of 4 digits from 1 to 9 gives one increasing integer; 0 cannot appear; C(9,4) = 126. A script checked every integer from 1000 to 9999 and counted 126. Non-decreasing trap value C(12,4) = 495 recorded as a slip only."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "numeric-entry",
+    "counting",
+    "combinations"
+  ]
+}

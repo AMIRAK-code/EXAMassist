@@ -1,0 +1,78 @@
+{
+  "id": "gre-verbal-rc-guild-ordinances-445",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "verbal-1",
+  "domainSlug": "verbal-reading-comprehension",
+  "skillSlug": "rc-draw-conclusions",
+  "subskillSlug": null,
+  "responseType": "multi_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "According to the author's argument, which of the following is true of guild ordinances?\n\nConsider each choice separately and select **all** that apply.",
+  "instructionsMd": "Select all that apply. There is no credit for a partially correct selection.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Ordinances unaccompanied by records of fines actually collected cannot be read as a measure of a guild's enforcement of its rules."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Ordinances accompanied by records of fines actually collected show that a guild's hold on its trade was tightening."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "A growing number of ordinances against a practice may indicate that the practice was becoming more common."
+    }
+  ],
+  "answerKey": {
+    "type": "multi_select",
+    "optionIds": [
+      "a",
+      "c"
+    ],
+    "grading": "exact"
+  },
+  "explanationMd": "Scoring is all-or-nothing, so judge each statement on its own and anchor every verdict to a sentence. Two of the three turn on the passage's last sentence, which states a *necessary* condition.\n\n**Read the last sentence as logic.** \"*Only where* ordinances are accompanied by records of fines actually collected can they be read as a measure of enforcement rather than of anxiety.\" \"Only where X can Y\" means Y requires X. It does not say that X guarantees Y.\n\n**The statement about ordinances with no records of fines — supported.** This is the same condition turned around: if records of fines are required before ordinances can be read as a measure of enforcement, then ordinances without such records cannot be read that way. **Select it.**\n\n**The statement that ordinances with records of fines show a tightening hold — not supported.** It treats the necessary condition as sufficient. The passage says fines records are what make it *possible* to read ordinances as a measure of enforcement; it never says that such records show enforcement was growing, and a record of fines at one time says nothing by itself about a hold that was tightening over time. **Leave it.**\n\n**The statement that a growing number of ordinances may indicate a spreading practice — supported.** \"A rule is most often written down when the practice it forbids has become common enough to trouble someone,\" and a run of ordinances \"may therefore mark ... a loosening\" grip, because \"the rules multiply as the behaviour they prohibit escapes control.\" The statement keeps the passage's own hedge, \"may\". **Select it.**\n\n**The answer is the statement about ordinances with no records of fines and the statement about a growing number of ordinances.**\n\n**How to check.** Whenever a passage says \"only\", \"only where\" or \"only if\", write the condition as *Y requires X*. The contrapositive (no X, so no Y) is always licensed; the converse (X, so Y) never is unless the passage says so separately.",
+  "distractorRationale": {
+    "b": "This reverses the passage's necessary condition into a sufficient one. \"Only where ordinances are accompanied by records of fines can they be read as a measure of enforcement\" makes fines records a requirement for reading ordinances that way, not a proof of anything; and even a measure of enforcement at one moment would not show that a guild's hold was tightening, which is a claim about change over time."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": {
+    "id": "gre-rc-guild-ordinances-448",
+    "version": 1
+  },
+  "accessibilityText": "Question about the short passage on what guild ordinances record: select every statement that is true of guild ordinances according to the author's argument. The three statements are that ordinances unaccompanied by records of fines actually collected cannot be read as a measure of a guild's enforcement of its rules; that ordinances accompanied by records of fines actually collected show that a guild's hold on its trade was tightening; and that a growing number of ordinances against a practice may indicate that the practice was becoming more common. Consider each choice separately. Select all that apply; there is no credit for a partially correct selection.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-gre-verbal-author",
+    "aiAssisted": true,
+    "notes": "Original Reading Comprehension item in the GRE select-one-or-more-of-three format, written for wave 7 on the original short passage gre-rc-guild-ordinances-448. Two options test the passage's 'only where' sentence: one states its contrapositive in ordinary language (supported), the other its converse (unsupported). Written against the failure mode that quarantined gre-verbal-rc-commonplace-registers-221: each option's subject is exactly the subject of the sentence it rests on, and the supported third option keeps the passage's hedge 'may'. Not adapted from any ETS item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-gre-verbal-author",
+    "reviewer": "blind-reviewer-wave7-gre-verbal-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-gre-verbal-run0",
+      "solvedAnswer": "a,c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The last sentence says ordinances can be read as a measure of enforcement only where records of fines survive, so without fines they cannot, which makes A true. The run of ordinances 'may therefore mark ... a loosening one', which makes C true. B goes too far: fines let ordinances measure enforcement, but the passage never says they show a tightening hold on the trade. [A second, separate blind solve (blind-reviewer-wave7-gre-verbal-run1) reached the same answer: The last sentence says ordinances can be read as a measure of enforcement only where records of fines collected go with them, so A follows. C restates 'the rules multiply as the behaviour they prohibit escapes control'. B goes too far: the fine records make ordinances usable as a measure of enforcement, but a measure could show enforcement getting weaker as easily as stronger, so they do not show the hold was tightening.]"
+    },
+    "notes": "Author solved as the no-fines-records statement and the growing-number statement, twice. Uniqueness: the no-fines statement is the contrapositive of 'Only where ordinances are accompanied by records of fines actually collected can they be read as a measure of enforcement'; the fines-records statement is the converse and also adds a claim about change over time that no sentence supports; the growing-number statement rests on 'a rule is most often written down when the practice it forbids has become common enough to trouble someone' and 'the rules multiply as the behaviour they prohibit escapes control', and keeps 'may'. Awaiting blind independent solve; the author must not publish own work."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "reading-comprehension",
+    "select-all",
+    "necessary-sufficient",
+    "short-passage",
+    "humanities"
+  ]
+}
