@@ -60,16 +60,16 @@ export async function createPlanAction(formData: FormData): Promise<void> {
 
   let notice = 'plan-created';
   try {
-    createPlan(db, { userId: user.id, examKey: config.examKey, weeklyMinutes, examDate: date });
+    (await createPlan(db, { userId: user.id, examKey: config.examKey, weeklyMinutes, examDate: date }));
     // The date chosen here is the exam date, kept with the target score.
-    if (date !== examDateFor(db, user.id, config.examKey).examDate) setExamDate(db, user.id, config.examKey, date);
+    if (date !== (await examDateFor(db, user.id, config.examKey)).examDate) (await setExamDate(db, user.id, config.examKey, date));
     // The weekly time is remembered as the default for the next plan, and
     // the old plan's unattached date, offered at setup, has now been seen.
-    db.prepare('UPDATE users SET weekly_minutes = ?, target_date = NULL, updated_at = ? WHERE id = ?').run(
+    (await db.prepare('UPDATE users SET weekly_minutes = ?, target_date = NULL, updated_at = ? WHERE id = ?').run(
       weeklyMinutes,
       new Date().toISOString(),
       user.id,
-    );
+    ));
   } catch (error) {
     if (!(error instanceof PlanError)) throw error;
     notice = error.code;
@@ -86,18 +86,18 @@ export async function createPlanAction(formData: FormData): Promise<void> {
 export async function startPlanSessionAction(formData: FormData): Promise<void> {
   const user = await requireUser();
   const db = getDb();
-  const planned = openSession(db, user.id, field(formData, 'sessionId'));
+  const planned = (await openSession(db, user.id, field(formData, 'sessionId')));
   if (!planned) redirect(planPath('plan', field(formData, 'examKey'), 'session-closed'));
-  if (!checkRateLimit(db, 'attemptStart', `user:${user.id}`).allowed) redirect(planPath('plan', planned.examKey, 'rate-limited'));
+  if (!(await checkRateLimit(db, 'attemptStart', `user:${user.id}`)).allowed) redirect(planPath('plan', planned.examKey, 'rate-limited'));
 
   let attemptId: string | null = null;
   let failure = 'insufficient-content';
   try {
     if (planned.kind === 'review') {
-      const questionIds = retryableMissed(db, user.id, planned.examKey).slice(0, planned.questionCount);
-      attemptId = startRetry(db, { userId: user.id, examKey: planned.examKey, questionIds }).attemptId;
+      const questionIds = (await retryableMissed(db, user.id, planned.examKey)).slice(0, planned.questionCount);
+      attemptId = (await startRetry(db, { userId: user.id, examKey: planned.examKey, questionIds })).attemptId;
     } else {
-      attemptId = startAttempt(db, {
+      attemptId = (await startAttempt(db, {
         userId: user.id,
         examKey: planned.examKey,
         blueprintId: 'practice',
@@ -107,9 +107,9 @@ export async function startPlanSessionAction(formData: FormData): Promise<void> 
           length: planned.questionCount,
           ...(planned.kind === 'new' || planned.kind === 'mixed' ? { unseenOnly: true } : {}),
         },
-      }).attemptId;
+      })).attemptId;
     }
-    linkStartedSession(db, user.id, planned.id, attemptId);
+    (await linkStartedSession(db, user.id, planned.id, attemptId));
   } catch (error) {
     if (!(error instanceof AttemptError)) throw error;
     failure = planned.kind === 'review' ? 'nothing-to-review' : planned.kind === 'revision' ? 'insufficient-content' : 'not-enough-new';
@@ -123,7 +123,7 @@ export async function skipPlanSessionAction(formData: FormData): Promise<void> {
   const examKey = field(formData, 'examKey');
   let notice = 'session-skipped';
   try {
-    skipSession(getDb(), user.id, field(formData, 'sessionId'));
+    (await skipSession(getDb(), user.id, field(formData, 'sessionId')));
   } catch (error) {
     if (!(error instanceof PlanError)) throw error;
     notice = 'session-closed';
@@ -140,13 +140,13 @@ export async function applyAdjustmentAction(formData: FormData): Promise<void> {
   const weeklyMinutes = parseWeeklyMinutes(field(formData, 'weeklyMinutes'));
   const date = parsePlanDate(field(formData, 'examDate'));
   if (weeklyMinutes === null || date === 'invalid') redirect(planPath('adjust', config.examKey, 'invalid-plan-input'));
-  const plan = activePlan(db, user.id, config.examKey);
+  const plan = (await activePlan(db, user.id, config.examKey));
   if (!plan || plan.id !== field(formData, 'planId')) redirect(planPath('plan', config.examKey, 'no-plan'));
 
   try {
-    applyAdjustment(db, user.id, plan.id, field(formData, 'digest'), { weeklyMinutes, examDate: date });
-    if (date !== examDateFor(db, user.id, config.examKey).examDate) setExamDate(db, user.id, config.examKey, date);
-    db.prepare('UPDATE users SET weekly_minutes = ?, updated_at = ? WHERE id = ?').run(weeklyMinutes, new Date().toISOString(), user.id);
+    (await applyAdjustment(db, user.id, plan.id, field(formData, 'digest'), { weeklyMinutes, examDate: date }));
+    if (date !== (await examDateFor(db, user.id, config.examKey)).examDate) (await setExamDate(db, user.id, config.examKey, date));
+    (await db.prepare('UPDATE users SET weekly_minutes = ?, updated_at = ? WHERE id = ?').run(weeklyMinutes, new Date().toISOString(), user.id));
   } catch (error) {
     if (!(error instanceof PlanError)) throw error;
     // Show the preview again, as it is now, with the learner's inputs.
@@ -162,7 +162,7 @@ export async function endPlanAction(formData: FormData): Promise<void> {
   const examKey = field(formData, 'examKey');
   let notice = 'plan-ended';
   try {
-    endPlan(getDb(), user.id, field(formData, 'planId'));
+    (await endPlan(getDb(), user.id, field(formData, 'planId')));
   } catch (error) {
     if (!(error instanceof PlanError)) throw error;
     notice = 'no-plan';
@@ -178,7 +178,7 @@ export async function resolveDateConflictAction(formData: FormData): Promise<voi
   if (!config) redirect(planPath(back, null));
   const keep = field(formData, 'keep');
   if (keep !== 'current' && keep !== 'earlier') redirect(planPath(back, config.examKey));
-  const settled = resolveDateConflict(getDb(), user.id, config.examKey, keep);
+  const settled = (await resolveDateConflict(getDb(), user.id, config.examKey, keep));
   redirect(planPath(back, config.examKey, settled ? 'date-chosen' : undefined));
 }
 
@@ -196,18 +196,18 @@ export async function startSuggestionAction(formData: FormData): Promise<void> {
   const knownDomain = config.domains.some((d) => d.slug === domain);
   const requested = Number(field(formData, 'length') || 10);
   const length = Number.isFinite(requested) ? Math.max(1, Math.min(10, Math.round(requested))) : 10;
-  if (!checkRateLimit(db, 'attemptStart', `user:${user.id}`).allowed) redirect(planPath('progress', config.examKey, 'rate-limited'));
+  if (!(await checkRateLimit(db, 'attemptStart', `user:${user.id}`)).allowed) redirect(planPath('progress', config.examKey, 'rate-limited'));
 
   let attemptId: string | null = null;
   let failure = 'insufficient-content';
   try {
     if (kind === 'review') {
       failure = 'nothing-to-review';
-      const questionIds = retryableMissed(db, user.id, config.examKey).slice(0, length);
-      attemptId = startRetry(db, { userId: user.id, examKey: config.examKey, questionIds }).attemptId;
+      const questionIds = (await retryableMissed(db, user.id, config.examKey)).slice(0, length);
+      attemptId = (await startRetry(db, { userId: user.id, examKey: config.examKey, questionIds })).attemptId;
     } else if (kind === 'new' || kind === 'revision') {
       if (kind === 'new') failure = 'not-enough-new';
-      attemptId = startAttempt(db, {
+      attemptId = (await startAttempt(db, {
         userId: user.id,
         examKey: config.examKey,
         blueprintId: 'practice',
@@ -217,7 +217,7 @@ export async function startSuggestionAction(formData: FormData): Promise<void> {
           length,
           ...(kind === 'new' ? { unseenOnly: true } : {}),
         },
-      }).attemptId;
+      })).attemptId;
     }
   } catch (error) {
     if (!(error instanceof AttemptError)) throw error;

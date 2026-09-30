@@ -59,55 +59,55 @@ export interface IssuedSession {
   expiresAt: Date;
 }
 
-export function createSession(db: Db, userId: string, isGuest = false, now = new Date()): IssuedSession {
+export async function createSession(db: Db, userId: string, isGuest = false, now = new Date()): Promise<IssuedSession> {
   const token = randomBytes(32).toString('base64url');
   const ttlDays = isGuest ? GUEST_TTL_DAYS : SESSION_TTL_DAYS;
   const expiresAt = new Date(now.getTime() + ttlDays * 24 * 60 * 60 * 1000);
 
-  db.prepare(
+  (await db.prepare(
     'INSERT INTO sessions (id, user_id, created_at, expires_at, last_seen_at) VALUES (?, ?, ?, ?, ?)',
-  ).run(hashToken(token), userId, now.toISOString(), expiresAt.toISOString(), now.toISOString());
+  ).run(hashToken(token), userId, now.toISOString(), expiresAt.toISOString(), now.toISOString()));
 
   return { token, expiresAt };
 }
 
-export function resolveSession(db: Db, token: string | undefined, now = new Date()): AuthUser | null {
+export async function resolveSession(db: Db, token: string | undefined, now = new Date()): Promise<AuthUser | null> {
   if (!token) return null;
 
-  const session = db
+  const session = (await db
     .prepare('SELECT * FROM sessions WHERE id = ?')
-    .get(hashToken(token)) as SessionRow | undefined;
+    .get(hashToken(token))) as SessionRow | undefined;
   if (!session) return null;
 
   if (new Date(session.expires_at).getTime() <= now.getTime()) {
-    db.prepare('DELETE FROM sessions WHERE id = ?').run(session.id);
+    (await db.prepare('DELETE FROM sessions WHERE id = ?').run(session.id));
     return null;
   }
 
-  const user = db
+  const user = (await db
     .prepare('SELECT * FROM users WHERE id = ? AND deleted_at IS NULL')
-    .get(session.user_id) as UserRow | undefined;
+    .get(session.user_id)) as UserRow | undefined;
   if (!user) return null;
 
   // Cheap last-seen tracking, at most once a minute.
   if (now.getTime() - new Date(session.last_seen_at).getTime() > 60_000) {
-    db.prepare('UPDATE sessions SET last_seen_at = ? WHERE id = ?').run(now.toISOString(), session.id);
+    (await db.prepare('UPDATE sessions SET last_seen_at = ? WHERE id = ?').run(now.toISOString(), session.id));
   }
 
   return { ...toAuthUser(user), sessionExpiresAt: session.expires_at };
 }
 
-export function destroySession(db: Db, token: string | undefined): void {
+export async function destroySession(db: Db, token: string | undefined): Promise<void> {
   if (!token) return;
-  db.prepare('DELETE FROM sessions WHERE id = ?').run(hashToken(token));
+  (await db.prepare('DELETE FROM sessions WHERE id = ?').run(hashToken(token)));
 }
 
-export function destroyAllSessionsFor(db: Db, userId: string): void {
-  db.prepare('DELETE FROM sessions WHERE user_id = ?').run(userId);
+export async function destroyAllSessionsFor(db: Db, userId: string): Promise<void> {
+  (await db.prepare('DELETE FROM sessions WHERE user_id = ?').run(userId));
 }
 
-export function purgeExpiredSessions(db: Db, now = new Date()): number {
-  const info = db.prepare('DELETE FROM sessions WHERE expires_at <= ?').run(now.toISOString());
+export async function purgeExpiredSessions(db: Db, now = new Date()): Promise<number> {
+  const info = (await db.prepare('DELETE FROM sessions WHERE expires_at <= ?').run(now.toISOString()));
   return info.changes;
 }
 
@@ -120,14 +120,14 @@ export function purgeExpiredSessions(db: Db, now = new Date()): number {
  * persist and can later be claimed by signing up. They collect no personal
  * data at all.
  */
-export function createGuestUser(db: Db, now = new Date()): UserRow {
+export async function createGuestUser(db: Db, now = new Date()): Promise<UserRow> {
   const id = randomUUID();
-  db.prepare(
+  (await db.prepare(
     `INSERT INTO users (id, email, password_hash, display_name, role, is_guest, locale,
                         created_at, updated_at)
      VALUES (?, NULL, NULL, 'Guest', 'learner', 1, 'en', ?, ?)`,
-  ).run(id, now.toISOString(), now.toISOString());
-  return db.prepare('SELECT * FROM users WHERE id = ?').get(id) as UserRow;
+  ).run(id, now.toISOString(), now.toISOString()));
+  return (await db.prepare('SELECT * FROM users WHERE id = ?').get(id)) as UserRow;
 }
 
 // ---------------------------------------------------------------------------
@@ -147,7 +147,7 @@ export function sessionCookieOptions(expiresAt: Date) {
 /** The signed-in user, or null. Never throws. */
 export async function getCurrentUser(): Promise<AuthUser | null> {
   const store = await cookies();
-  return resolveSession(getDb(), store.get(SESSION_COOKIE)?.value);
+  return (await resolveSession(getDb(), store.get(SESSION_COOKIE)?.value));
 }
 
 export class UnauthorizedError extends Error {
@@ -187,7 +187,7 @@ export async function getOrCreateGuest(): Promise<{ user: AuthUser; setCookie: I
   if (existing) return { user: existing, setCookie: null };
 
   const db = getDb();
-  const row = createGuestUser(db);
-  const issued = createSession(db, row.id, true);
+  const row = (await createGuestUser(db));
+  const issued = (await createSession(db, row.id, true));
   return { user: { ...toAuthUser(row), sessionExpiresAt: issued.expiresAt.toISOString() }, setCookie: issued };
 }

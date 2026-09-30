@@ -60,8 +60,8 @@ export default async function PracticeSetupPage({
   if (!config) notFound();
 
   const db = getDb();
-  const facets = practiceFacets(db, config);
-  const availability = blueprintAvailability(db, config);
+  const facets = (await practiceFacets(db, config));
+  const availability = (await blueprintAvailability(db, config));
   const hub = getHubForConfig(config.examKey);
   const user = await getCurrentUser();
 
@@ -74,7 +74,7 @@ export default async function PracticeSetupPage({
   const practiceBlueprint = getBlueprint(config, 'practice');
   const unseenFacets =
     user && practiceBlueprint
-      ? facetsFromPool(getPool(db, config.examKey, user.id).filter((item) => item.lastSeenAt === null), config, practiceBlueprint)
+      ? facetsFromPool((await getPool(db, config.examKey, user.id)).filter((item) => item.lastSeenAt === null), config, practiceBlueprint)
       : null;
   const offerUnseen = unseenFacets && eligibleCount(unseenFacets, {}) < totalItems ? unseenFacets : null;
   const domainChoices = config.domains.map((domain) => ({

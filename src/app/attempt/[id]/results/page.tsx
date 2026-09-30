@@ -43,14 +43,14 @@ export default async function ResultsPage({
   const db = getDb();
   try {
     // A session whose clock ran out while nobody was looking is closed first.
-    expireIfDue(db, id, user.id);
+    (await expireIfDue(db, id, user.id));
   } catch (error) {
     if (error instanceof AttemptError && error.status === 404) notFound();
     throw error;
   }
-  const summary = getResultsSummary(db, id, user.id);
+  const summary = (await getResultsSummary(db, id, user.id));
   if (!summary) {
-    const inProgress = db.prepare("SELECT 1 FROM attempts WHERE id = ? AND user_id = ? AND status = 'in_progress'").get(id, user.id);
+    const inProgress = (await db.prepare("SELECT 1 FROM attempts WHERE id = ? AND user_id = ? AND status = 'in_progress'").get(id, user.id));
     if (inProgress) redirect(`/attempt/${id}`);
     notFound();
   }

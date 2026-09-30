@@ -231,7 +231,7 @@ export interface StartAttemptResult {
   notes: string[];
 }
 
-export function startAttempt(db: Db, input: StartAttemptInput): StartAttemptResult {
+export async function startAttempt(db: Db, input: StartAttemptInput): Promise<StartAttemptResult> {
   const now = input.now ?? new Date();
   const config = getExamConfig(input.examKey);
   if (!config) throw new AttemptError('unknown-exam', 'That exam is not offered.', 404);
@@ -250,15 +250,15 @@ export function startAttempt(db: Db, input: StartAttemptInput): StartAttemptResu
   // Idempotency: a retried or double-clicked request returns the first attempt
   // rather than creating a second one.
   if (input.idempotencyKey) {
-    const existing = db
+    const existing = (await db
       .prepare('SELECT id FROM attempts WHERE user_id = ? AND idempotency_key = ?')
-      .get(input.userId, input.idempotencyKey) as { id: string } | undefined;
+      .get(input.userId, input.idempotencyKey)) as { id: string } | undefined;
     if (existing) return { attemptId: existing.id, reused: true, notes: [] };
   }
 
   const parts = resolveParts(blueprint, input.overrides ?? {}, config);
   // The same eligibility rule the practice screen uses to say what is open.
-  const eligible = eligiblePool(getPool(db, input.examKey, input.userId), blueprint);
+  const eligible = eligiblePool((await getPool(db, input.examKey, input.userId)), blueprint);
   const customisable = blueprint.mode === 'practice' && blueprint.timing === 'untimed';
   const newQuestionsOnly = customisable && input.overrides?.unseenOnly === true;
   const pool = newQuestionsOnly ? eligible.filter((item) => item.lastSeenAt === null) : eligible;
@@ -300,8 +300,8 @@ export function startAttempt(db: Db, input: StartAttemptInput): StartAttemptResu
     plannedParts.push({ part, items: selection.items, policy });
   }
 
-  const insert = db.transaction(() => {
-    db.prepare(
+  const insert = db.transaction(async () => {
+    (await db.prepare(
       `INSERT INTO attempts (
          id, user_id, exam_key, exam_config_version, blueprint_id, mode, status, seed,
          settings_json, started_at, deadline_at, submitted_at, current_part_index,
@@ -321,14 +321,14 @@ export function startAttempt(db: Db, input: StartAttemptInput): StartAttemptResu
       input.idempotencyKey ?? null,
       toIso(now),
       toIso(now),
-    );
+    ));
 
-    plannedParts.forEach(({ part, items, policy }, partIndex) => {
+    (await Promise.all(plannedParts.map(async ({ part, items, policy }, partIndex) => {
       const isFirst = partIndex === 0;
       const partDeadline =
         isFirst && blueprint.timing === 'per_part' ? computeDeadline(now, part.timeLimitSeconds) : null;
 
-      db.prepare(
+      (await db.prepare(
         `INSERT INTO attempt_parts (
            id, attempt_id, part_index, part_key, section_key, label, time_limit_seconds,
            started_at, deadline_at, submitted_at, status, navigation_json, routing_json
@@ -345,10 +345,10 @@ export function startAttempt(db: Db, input: StartAttemptInput): StartAttemptResu
         partDeadline,
         isFirst ? 'in_progress' : 'pending',
         JSON.stringify(policy),
-      );
+      ));
 
-      items.forEach((chosen, position) => {
-        db.prepare(
+      (await Promise.all(items.map(async (chosen, position) => {
+        (await db.prepare(
           `INSERT INTO attempt_items (
              id, attempt_id, part_index, position, question_id, question_version_id,
              response_json, response_status, is_correct, points_earned, points_possible,
@@ -367,20 +367,20 @@ export function startAttempt(db: Db, input: StartAttemptInput): StartAttemptResu
           // question immediately, and a forward-only exam would then treat
           // every question as already committed.
           isFirst && position === 0 ? toIso(now) : null,
-        );
-      });
-    });
+        ));
+      })));
+    })));
 
-    logEvent(db, attemptId, 'attempt.started', {
+    (await logEvent(db, attemptId, 'attempt.started', {
       blueprintId: blueprint.id,
       configVersion: config.version,
       seed,
       partCount: plannedParts.length,
       itemCount: plannedParts.reduce((n, p) => n + p.items.length, 0),
-    }, now);
+    }, now));
   });
 
-  insert();
+  (await insert());
   return { attemptId, reused: false, notes: [...new Set(notes)] };
 }
 
@@ -400,13 +400,13 @@ export interface RetryCandidates {
  * finished session of this exam, split by whether a current reviewed version
  * exists to ask again. Anything else in the list is ignored.
  */
-export function retryCandidates(db: Db, userId: string, examKey: string, questionIds: readonly string[]): RetryCandidates {
+export async function retryCandidates(db: Db, userId: string, examKey: string, questionIds: readonly string[]): Promise<RetryCandidates> {
   const requested = [...new Set(questionIds)].slice(0, 200);
   if (requested.length === 0) return { available: [], unavailable: [] };
   const placeholders = requested.map(() => '?').join(',');
   const missed = new Set(
     (
-      db
+      (await db
         .prepare(
           `SELECT DISTINCT ai.question_id AS questionId
              FROM attempt_items ai
@@ -415,11 +415,11 @@ export function retryCandidates(db: Db, userId: string, examKey: string, questio
               AND (ai.is_correct = 0 OR ai.response_status = 'unanswered')
               AND ai.question_id IN (${placeholders})`,
         )
-        .all(userId, examKey, ...requested) as Array<{ questionId: string }>
+        .all(userId, examKey, ...requested)) as Array<{ questionId: string }>
     ).map((row) => row.questionId),
   );
   // Only the current, published version of a question is ever asked again.
-  const pool = new Map(getPool(db, examKey, userId).map((item) => [item.questionId, item]));
+  const pool = new Map((await getPool(db, examKey, userId)).map((item) => [item.questionId, item]));
   const available: PoolItem[] = [];
   const unavailable: string[] = [];
   for (const id of requested) {
@@ -451,19 +451,19 @@ export interface StartRetryResult {
  * Starts a retry: a new attempt that asks missed questions again. The
  * original sessions, their answers and their results are not touched.
  */
-export function startRetry(db: Db, input: StartRetryInput): StartRetryResult {
+export async function startRetry(db: Db, input: StartRetryInput): Promise<StartRetryResult> {
   const now = input.now ?? new Date();
   const config = getExamConfig(input.examKey);
   if (!config) throw new AttemptError('unknown-exam', 'That exam is not offered.', 404);
 
   if (input.sourceAttemptId) {
-    const owned = db
+    const owned = (await db
       .prepare('SELECT id FROM attempts WHERE id = ? AND user_id = ? AND exam_key = ?')
-      .get(input.sourceAttemptId, input.userId, input.examKey);
+      .get(input.sourceAttemptId, input.userId, input.examKey));
     if (!owned) throw notFound();
   }
 
-  const { available, unavailable } = retryCandidates(db, input.userId, input.examKey, input.questionIds);
+  const { available, unavailable } = (await retryCandidates(db, input.userId, input.examKey, input.questionIds));
   const chosen = available.slice(0, MAX_RETRY_QUESTIONS);
   if (chosen.length === 0) {
     throw new AttemptError(
@@ -486,8 +486,8 @@ export function startRetry(db: Db, input: StartRetryInput): StartRetryResult {
     retry: { sourceAttemptId: input.sourceAttemptId ?? null, questionIds: chosen.map((item) => item.questionId) },
   };
 
-  const insert = db.transaction(() => {
-    db.prepare(
+  const insert = db.transaction(async () => {
+    (await db.prepare(
       `INSERT INTO attempts (
          id, user_id, exam_key, exam_config_version, blueprint_id, mode, status, seed,
          settings_json, started_at, deadline_at, submitted_at, current_part_index,
@@ -504,15 +504,15 @@ export function startRetry(db: Db, input: StartRetryInput): StartRetryResult {
       toIso(now),
       toIso(now),
       toIso(now),
-    );
-    db.prepare(
+    ));
+    (await db.prepare(
       `INSERT INTO attempt_parts (
          id, attempt_id, part_index, part_key, section_key, label, time_limit_seconds,
          started_at, deadline_at, submitted_at, status, navigation_json, routing_json
        ) VALUES (?, ?, 0, 'retry', ?, 'Retry', NULL, ?, NULL, NULL, 'in_progress', ?, NULL)`,
-    ).run(randomUUID(), attemptId, part.sectionKey, toIso(now), JSON.stringify(policy));
-    chosen.forEach((item, position) => {
-      db.prepare(
+    ).run(randomUUID(), attemptId, part.sectionKey, toIso(now), JSON.stringify(policy)));
+    (await Promise.all(chosen.map(async (item, position) => {
+      (await db.prepare(
         `INSERT INTO attempt_items (
            id, attempt_id, part_index, position, question_id, question_version_id,
            response_json, response_status, is_correct, points_earned, points_possible,
@@ -526,17 +526,17 @@ export function startRetry(db: Db, input: StartRetryInput): StartRetryResult {
         item.questionVersionId,
         config.scoring.pointsCorrect,
         position === 0 ? toIso(now) : null,
-      );
-    });
-    logEvent(db, attemptId, 'attempt.started', {
+      ));
+    })));
+    (await logEvent(db, attemptId, 'attempt.started', {
       blueprintId: RETRY_BLUEPRINT_ID,
       configVersion: config.version,
       retry: settings.retry,
       unavailable,
       itemCount: chosen.length,
-    }, now);
+    }, now));
   });
-  insert();
+  (await insert());
 
   return { attemptId, questionIds: settings.retry!.questionIds, unavailable };
 }
@@ -545,13 +545,13 @@ export function startRetry(db: Db, input: StartRetryInput): StartRetryResult {
 // Loading
 // ---------------------------------------------------------------------------
 
-function logEvent(db: Db, attemptId: string, type: string, payload: unknown, now: Date): void {
-  db.prepare('INSERT INTO attempt_events (attempt_id, type, payload_json, created_at) VALUES (?, ?, ?, ?)').run(
+async function logEvent(db: Db, attemptId: string, type: string, payload: unknown, now: Date): Promise<void> {
+  (await db.prepare('INSERT INTO attempt_events (attempt_id, type, payload_json, created_at) VALUES (?, ?, ?, ?)').run(
     attemptId,
     type,
     JSON.stringify(payload),
     toIso(now),
-  );
+  ));
 }
 
 interface LoadedAttempt {
@@ -563,10 +563,10 @@ interface LoadedAttempt {
   settings: AttemptSettings;
 }
 
-function load(db: Db, attemptId: string, userId: string): LoadedAttempt {
-  const attempt = db
+async function load(db: Db, attemptId: string, userId: string): Promise<LoadedAttempt> {
+  const attempt = (await db
     .prepare('SELECT * FROM attempts WHERE id = ? AND user_id = ?')
-    .get(attemptId, userId) as AttemptRow | undefined;
+    .get(attemptId, userId)) as AttemptRow | undefined;
   // Filtering on user_id means another learner's attempt is indistinguishable
   // from one that does not exist.
   if (!attempt) throw notFound();
@@ -577,12 +577,12 @@ function load(db: Db, attemptId: string, userId: string): LoadedAttempt {
 
   return {
     attempt,
-    parts: db
+    parts: (await db
       .prepare('SELECT * FROM attempt_parts WHERE attempt_id = ? ORDER BY part_index')
-      .all(attemptId) as AttemptPartRow[],
-    items: db
+      .all(attemptId)) as AttemptPartRow[],
+    items: (await db
       .prepare('SELECT * FROM attempt_items WHERE attempt_id = ? ORDER BY part_index, position')
-      .all(attemptId) as AttemptItemRow[],
+      .all(attemptId)) as AttemptItemRow[],
     config,
     blueprint,
     settings: JSON.parse(attempt.settings_json) as AttemptSettings,
@@ -615,14 +615,14 @@ function partStateFrom(
   };
 }
 
-function editsUsedIn(db: Db, attemptId: string, partIndex: number): number {
-  const row = db
+async function editsUsedIn(db: Db, attemptId: string, partIndex: number): Promise<number> {
+  const row = (await db
     .prepare(
       `SELECT COUNT(*) AS n FROM attempt_events
        WHERE attempt_id = ? AND type = 'item.answer_changed'
          AND json_extract(payload_json, '$.partIndex') = ?`,
     )
-    .get(attemptId, partIndex) as { n: number };
+    .get(attemptId, partIndex)) as { n: number };
   return row.n;
 }
 
@@ -635,8 +635,8 @@ function editsUsedIn(db: Db, attemptId: string, partIndex: number): number {
  * and write, so a learner who closes the tab and returns an hour later sees the
  * attempt already finished rather than a live clock.
  */
-export function expireIfDue(db: Db, attemptId: string, userId: string, now = new Date()): boolean {
-  const loaded = load(db, attemptId, userId);
+export async function expireIfDue(db: Db, attemptId: string, userId: string, now = new Date()): Promise<boolean> {
+  const loaded = (await load(db, attemptId, userId));
   if (loaded.attempt.status !== 'in_progress') return false;
 
   const activePart = loaded.parts.find((p) => p.part_index === loaded.attempt.current_part_index);
@@ -647,22 +647,22 @@ export function expireIfDue(db: Db, attemptId: string, userId: string, now = new
   // ending closes that part and opens the next one.
   const overallExpired = hasExpired(loaded.attempt.deadline_at, now);
   if (overallExpired || !activePart) {
-    finalise(db, attemptId, userId, now, 'expired');
+    (await finalise(db, attemptId, userId, now, 'expired'));
     return true;
   }
 
-  const run = db.transaction(() => {
-    db.prepare("UPDATE attempt_parts SET status = 'expired', submitted_at = ? WHERE attempt_id = ? AND part_index = ?").run(
+  const run = db.transaction(async () => {
+    (await db.prepare("UPDATE attempt_parts SET status = 'expired', submitted_at = ? WHERE attempt_id = ? AND part_index = ?").run(
       toIso(now),
       attemptId,
       activePart.part_index,
-    );
-    logEvent(db, attemptId, 'part.expired', { partIndex: activePart.part_index }, now);
+    ));
+    (await logEvent(db, attemptId, 'part.expired', { partIndex: activePart.part_index }, now));
   });
-  run();
+  (await run());
 
-  const advanced = openNextPart(db, attemptId, userId, activePart.part_index, now);
-  if (!advanced) finalise(db, attemptId, userId, now, 'expired');
+  const advanced = (await openNextPart(db, attemptId, userId, activePart.part_index, now));
+  if (!advanced) (await finalise(db, attemptId, userId, now, 'expired'));
   return true;
 }
 
@@ -735,19 +735,19 @@ export interface AttemptState {
   serverNowMs: number;
 }
 
-export function getAttemptState(
+export async function getAttemptState(
   db: Db,
   attemptId: string,
   userId: string,
   now = new Date(),
-): AttemptState {
-  expireIfDue(db, attemptId, userId, now);
-  const { attempt, parts, items, config, blueprint, settings } = load(db, attemptId, userId);
+): Promise<AttemptState> {
+  (await expireIfDue(db, attemptId, userId, now));
+  const { attempt, parts, items, config, blueprint, settings } = (await load(db, attemptId, userId));
 
-  const versions = getQuestionVersions(db, items.map((i) => i.question_version_id));
+  const versions = (await getQuestionVersions(db, items.map((i) => i.question_version_id)));
   const finished = attempt.status !== 'in_progress';
 
-  const partStates: AttemptPartState[] = parts.map((part) => {
+  const partStates: AttemptPartState[] = (await Promise.all(parts.map(async (part) => {
     const policy = JSON.parse(part.navigation_json) as NavigationPolicy;
     const partItems = items.filter((i) => i.part_index === part.part_index);
     const visible = part.status !== 'pending' || finished;
@@ -764,7 +764,7 @@ export function getAttemptState(
       navigation: policy,
       navigationSummary: describePolicy(policy),
       routing: part.routing_json ? (JSON.parse(part.routing_json) as RoutingDecision) : null,
-      items: partItems.map((item) => {
+      items: (await Promise.all(partItems.map(async (item) => {
         const version = versions.get(item.question_version_id);
         if (!version) throw new AttemptError('missing-question', 'A question in this attempt is missing.', 500);
 
@@ -786,11 +786,11 @@ export function getAttemptState(
           feedbackReleased: released,
           responseClock: item.response_clock,
           question: visible
-            ? toPresented(db, version)
+            ? (await toPresented(db, version))
             : ({} as PresentedQuestion),
           review: mayReview
-            ? (() => {
-                const reviewable = toReviewable(db, version);
+            ? (await (async () => {
+                const reviewable = (await toReviewable(db, version));
                 return {
                   // Scored items carry their stored result. A released item in
                   // a live attempt is not scored yet, so it is scored here the
@@ -806,12 +806,12 @@ export function getAttemptState(
                   distractorRationale: reviewable.distractorRationale,
                   difficultyBasis: reviewable.difficultyBasis,
                 };
-              })()
+              })())
             : null,
         };
-      }),
+      }))),
     };
-  });
+  })));
 
   const activePart = parts.find((p) => p.part_index === attempt.current_part_index);
 
@@ -923,13 +923,13 @@ function storedResponse(item: AttemptItemRow): Response | null {
   return parsed.success ? parsed.data : null;
 }
 
-function buildFeedback(
+async function buildFeedback(
   db: Db,
   config: ExamConfig,
   version: QuestionVersionRow,
   response: Response,
-): ItemFeedback {
-  const reviewable = toReviewable(db, version);
+): Promise<ItemFeedback> {
+  const reviewable = (await toReviewable(db, version));
   const outcome = scoreResponse(reviewable.answerKey, response, config.scoring);
   return {
     correct: outcome.status === 'correct',
@@ -945,13 +945,13 @@ function buildFeedback(
  * the same thing) succeeds without changing anything; any other answer is
  * refused.
  */
-function lockedOutcome(
+async function lockedOutcome(
   db: Db,
   config: ExamConfig,
   version: QuestionVersionRow,
   item: AttemptItemRow,
   attempted: Response | null,
-): RecordResponseResult {
+): Promise<RecordResponseResult> {
   const stored = storedResponse(item);
   if (stored && canonicalResponse(stored) === canonicalResponse(attempted)) {
     return {
@@ -962,7 +962,7 @@ function lockedOutcome(
       stale: false,
       current: stored,
       clock: item.response_clock,
-      feedback: buildFeedback(db, config, version, stored),
+      feedback: (await buildFeedback(db, config, version, stored)),
     };
   }
   throw new AttemptError('response-locked', RESPONSE_LOCKED_MESSAGE, 409);
@@ -974,14 +974,14 @@ function lockedOutcome(
  * one. A repeat of the stored answer succeeds without writing (so its time is
  * not counted twice); anything else is stale and changes nothing.
  */
-function notNewerOutcome(
+async function notNewerOutcome(
   db: Db,
   config: ExamConfig,
   version: QuestionVersionRow,
   item: AttemptItemRow,
   attempted: Response | null,
   immediateFeedback: boolean,
-): RecordResponseResult {
+): Promise<RecordResponseResult> {
   const stored = storedResponse(item);
   const locked = immediateFeedback && item.feedback_released_at !== null;
   const same = canonicalResponse(stored) === canonicalResponse(attempted);
@@ -993,7 +993,7 @@ function notNewerOutcome(
     stale: !same,
     current: stored,
     clock: item.response_clock,
-    feedback: same && locked && stored ? buildFeedback(db, config, version, stored) : null,
+    feedback: same && locked && stored ? (await buildFeedback(db, config, version, stored)) : null,
   };
 }
 
@@ -1032,13 +1032,13 @@ export interface PersistResponseInput {
  * even across processes: the checks and the write are one statement inside
  * an IMMEDIATE transaction. Returns `written: false` when a guard refused.
  */
-export function persistResponse(db: Db, input: PersistResponseInput): { written: boolean; clock: number | null } {
+export async function persistResponse(db: Db, input: PersistResponseInput): Promise<{ written: boolean; clock: number | null }> {
   const iso = toIso(input.now);
   const answered = input.response !== null;
   const ordered = input.clock !== undefined;
 
-  const run = db.transaction((): { written: boolean; clock: number | null } => {
-    const row = db
+  const run = db.transaction(async (): Promise<{ written: boolean; clock: number | null }> => {
+    const row = (await db
       .prepare(
         `UPDATE attempt_items
            SET response_json = ?, response_status = ?, time_ms = time_ms + ?,
@@ -1063,28 +1063,28 @@ export function persistResponse(db: Db, input: PersistResponseInput): { written:
         input.itemId,
         ordered ? 1 : 0,
         input.clock ?? null,
-      ) as { clock: number } | undefined;
+      )) as { clock: number } | undefined;
     if (!row) return { written: false, clock: null };
 
-    db.prepare('UPDATE attempts SET updated_at = ? WHERE id = ?').run(iso, input.attemptId);
+    (await db.prepare('UPDATE attempts SET updated_at = ? WHERE id = ?').run(iso, input.attemptId));
 
     const where = { partIndex: input.partIndex, position: input.position };
     if (input.wasAnswered && answered) {
-      logEvent(db, input.attemptId, 'item.answer_changed', where, input.now);
+      (await logEvent(db, input.attemptId, 'item.answer_changed', where, input.now));
     } else {
-      logEvent(db, input.attemptId, 'item.answered', { ...where, answered }, input.now);
+      (await logEvent(db, input.attemptId, 'item.answered', { ...where, answered }, input.now));
     }
-    if (input.release) logEvent(db, input.attemptId, 'item.feedback_released', where, input.now);
+    if (input.release) (await logEvent(db, input.attemptId, 'item.feedback_released', where, input.now));
     return { written: true, clock: row.clock };
   });
 
-  return run.immediate();
+  return (await run());
 }
 
-export function recordResponse(db: Db, input: RecordResponseInput): RecordResponseResult {
+export async function recordResponse(db: Db, input: RecordResponseInput): Promise<RecordResponseResult> {
   const now = input.now ?? new Date();
-  expireIfDue(db, input.attemptId, input.userId, now);
-  const { attempt, parts, items, config, settings } = load(db, input.attemptId, input.userId);
+  (await expireIfDue(db, input.attemptId, input.userId, now));
+  const { attempt, parts, items, config, settings } = (await load(db, input.attemptId, input.userId));
 
   if (attempt.status !== 'in_progress') {
     throw new AttemptError('attempt-closed', 'This attempt has already been submitted.', 409);
@@ -1106,13 +1106,13 @@ export function recordResponse(db: Db, input: RecordResponseInput): RecordRespon
   const item = partItems.find((i) => i.position === input.position);
   if (!item) throw notFound();
 
-  const state = partStateFrom(policy, part, partItems, editsUsedIn(db, input.attemptId, input.partIndex));
+  const state = partStateFrom(policy, part, partItems, (await editsUsedIn(db, input.attemptId, input.partIndex)));
   const decision = canAnswerAt(policy, state, input.position);
   if (!decision.allowed) {
     throw new AttemptError(decision.code, decision.reason, 409);
   }
 
-  const version = getQuestionVersions(db, [item.question_version_id]).get(item.question_version_id);
+  const version = (await getQuestionVersions(db, [item.question_version_id])).get(item.question_version_id);
   if (!version) throw new AttemptError('missing-question', 'Question not found.', 500);
 
   let parsed: Response | null = null;
@@ -1146,15 +1146,15 @@ export function recordResponse(db: Db, input: RecordResponseInput): RecordRespon
   // item, where an old draft arriving late is stale, not a violation).
   const clock = usableClock(input.clock, now) ? input.clock : undefined;
   if (clock !== undefined && item.response_clock !== null && clock <= item.response_clock) {
-    return notNewerOutcome(db, config, version, item, parsed, settings.immediateFeedback);
+    return (await notNewerOutcome(db, config, version, item, parsed, settings.immediateFeedback));
   }
 
   if (settings.immediateFeedback && item.feedback_released_at !== null) {
-    return lockedOutcome(db, config, version, item, parsed);
+    return (await lockedOutcome(db, config, version, item, parsed));
   }
 
   const release = settings.immediateFeedback && input.reveal === true;
-  const written = persistResponse(db, {
+  const written = (await persistResponse(db, {
     attemptId: input.attemptId,
     itemId: item.id,
     partIndex: input.partIndex,
@@ -1165,17 +1165,17 @@ export function recordResponse(db: Db, input: RecordResponseInput): RecordRespon
     release,
     clock,
     now,
-  });
+  }));
 
   if (!written.written) {
     // Another request (a second tab, a resend) wrote between our read and
     // this write: it released feedback, or stored a newer answer. Judge this
     // request against what it did.
-    const fresh = db.prepare('SELECT * FROM attempt_items WHERE id = ?').get(item.id) as AttemptItemRow;
+    const fresh = (await db.prepare('SELECT * FROM attempt_items WHERE id = ?').get(item.id)) as AttemptItemRow;
     if (settings.immediateFeedback && fresh.feedback_released_at !== null && (clock === undefined || fresh.response_clock === null || clock > fresh.response_clock)) {
-      return lockedOutcome(db, config, version, fresh, parsed);
+      return (await lockedOutcome(db, config, version, fresh, parsed));
     }
-    return notNewerOutcome(db, config, version, fresh, parsed, settings.immediateFeedback);
+    return (await notNewerOutcome(db, config, version, fresh, parsed, settings.immediateFeedback));
   }
 
   return {
@@ -1186,16 +1186,16 @@ export function recordResponse(db: Db, input: RecordResponseInput): RecordRespon
     stale: false,
     current: parsed,
     clock: written.clock,
-    feedback: release && parsed ? buildFeedback(db, config, version, parsed) : null,
+    feedback: release && parsed ? (await buildFeedback(db, config, version, parsed)) : null,
   };
 }
 
-export function setFlag(
+export async function setFlag(
   db: Db,
   input: { attemptId: string; userId: string; partIndex: number; position: number; flagged: boolean; now?: Date },
-): void {
+): Promise<void> {
   const now = input.now ?? new Date();
-  const { attempt, parts, items } = load(db, input.attemptId, input.userId);
+  const { attempt, parts, items } = (await load(db, input.attemptId, input.userId));
   if (attempt.status !== 'in_progress') {
     throw new AttemptError('attempt-closed', 'This attempt has already been submitted.', 409);
   }
@@ -1211,13 +1211,13 @@ export function setFlag(
     if (!decision.allowed) throw new AttemptError(decision.code, decision.reason, 409);
   }
 
-  db.prepare('UPDATE attempt_items SET flagged = ? WHERE attempt_id = ? AND part_index = ? AND position = ?').run(
+  (await db.prepare('UPDATE attempt_items SET flagged = ? WHERE attempt_id = ? AND part_index = ? AND position = ?').run(
     input.flagged ? 1 : 0,
     input.attemptId,
     input.partIndex,
     input.position,
-  );
-  logEvent(db, input.attemptId, 'item.flagged', { ...input, now: undefined }, now);
+  ));
+  (await logEvent(db, input.attemptId, 'item.flagged', { ...input, now: undefined }, now));
 }
 
 /**
@@ -1257,10 +1257,10 @@ export interface VisitResult {
  * stored one, in the same statement, so a late request cannot overwrite a
  * newer position however the requests interleave.
  */
-export function visitPosition(db: Db, input: VisitInput): VisitResult {
+export async function visitPosition(db: Db, input: VisitInput): Promise<VisitResult> {
   const now = input.now ?? new Date();
-  expireIfDue(db, input.attemptId, input.userId, now);
-  const { attempt, parts, items } = load(db, input.attemptId, input.userId);
+  (await expireIfDue(db, input.attemptId, input.userId, now));
+  const { attempt, parts, items } = (await load(db, input.attemptId, input.userId));
   if (attempt.status !== 'in_progress') {
     throw new AttemptError('attempt-closed', 'This attempt has already been submitted.', 409);
   }
@@ -1284,25 +1284,25 @@ export function visitPosition(db: Db, input: VisitInput): VisitResult {
     Number.isSafeInteger(clock) && clock >= 0 && clock <= now.getTime() + RESUME_CLOCK_TOLERANCE_MS;
   const iso = toIso(now);
 
-  const run = db.transaction((): boolean => {
-    db.prepare(
+  const run = db.transaction(async (): Promise<boolean> => {
+    (await db.prepare(
       `UPDATE attempt_items SET first_seen_at = COALESCE(first_seen_at, ?)
        WHERE attempt_id = ? AND part_index = ? AND position <= ?`,
-    ).run(iso, input.attemptId, input.partIndex, input.position);
+    ).run(iso, input.attemptId, input.partIndex, input.position));
 
     if (!clockUsable) return false;
-    const info = db
+    const info = (await db
       .prepare(
         `UPDATE attempts
             SET resume_part_index = ?, resume_position = ?, resume_clock = ?, resume_saved_at = ?
           WHERE id = ? AND user_id = ? AND status = 'in_progress' AND current_part_index = ?
             AND (resume_clock IS NULL OR resume_clock < ?)`,
       )
-      .run(input.partIndex, input.position, clock, iso, input.attemptId, input.userId, input.partIndex, clock);
+      .run(input.partIndex, input.position, clock, iso, input.attemptId, input.userId, input.partIndex, clock));
     return info.changes > 0;
   });
 
-  return { position: input.position, recorded: run.immediate() };
+  return { position: input.position, recorded: (await run()) };
 }
 
 /** Where this attempt reopens, re-validated against its current state. */
@@ -1344,20 +1344,20 @@ export interface UnfinishedAttempt {
  * it would close it, so a session past its deadline is never offered as one
  * to continue.
  */
-export function listUnfinishedAttempts(db: Db, userId: string, now = new Date()): UnfinishedAttempt[] {
+export async function listUnfinishedAttempts(db: Db, userId: string, now = new Date()): Promise<UnfinishedAttempt[]> {
   // An exam withdrawn from the registry cannot be run, so it is not offered.
   const ids = (
-    db
+    (await db
       .prepare("SELECT id, exam_key AS examKey FROM attempts WHERE user_id = ? AND status = 'in_progress'")
-      .all(userId) as Array<{ id: string; examKey: string }>
+      .all(userId)) as Array<{ id: string; examKey: string }>
   )
     .filter((row) => getExamConfig(row.examKey))
     .map((row) => row.id);
 
   const unfinished: UnfinishedAttempt[] = [];
   for (const id of ids) {
-    expireIfDue(db, id, userId, now);
-    const { attempt, parts, items, config, blueprint } = load(db, id, userId);
+    (await expireIfDue(db, id, userId, now));
+    const { attempt, parts, items, config, blueprint } = (await load(db, id, userId));
     const resume = resumeFrom(attempt, parts, items);
     if (!resume) continue;
     const part = parts.find((p) => p.part_index === resume.partIndex)!;
@@ -1389,8 +1389,8 @@ export function listUnfinishedAttempts(db: Db, userId: string, now = new Date())
 // ---------------------------------------------------------------------------
 
 /** Opens the next part, applying adaptive routing where enabled. Returns false at the end. */
-function openNextPart(db: Db, attemptId: string, userId: string, fromIndex: number, now: Date): boolean {
-  const { attempt, parts, items, config, blueprint } = load(db, attemptId, userId);
+async function openNextPart(db: Db, attemptId: string, userId: string, fromIndex: number, now: Date): Promise<boolean> {
+  const { attempt, parts, items, config, blueprint } = (await load(db, attemptId, userId));
   const nextIndex = fromIndex + 1;
   const next = parts.find((p) => p.part_index === nextIndex);
   if (!next) return false;
@@ -1406,29 +1406,29 @@ function openNextPart(db: Db, attemptId: string, userId: string, fromIndex: numb
   // Score the completed part FIRST. Routing reads is_correct, which only exists
   // once the part has been scored, so computing the decision before this would
   // read every answer as wrong and route everyone down.
-  const scoreCompletedPart = db.transaction(() => {
-    scorePart(db, attemptId, fromIndex, config, now);
+  const scoreCompletedPart = db.transaction(async () => {
+    (await scorePart(db, attemptId, fromIndex, config, now));
   });
-  scoreCompletedPart();
+  (await scoreCompletedPart());
 
   // Adaptive routing is declared on the routing part and applies to the part
   // that follows it.
   let routing: RoutingDecision | null = null;
   if (previousBlueprintPart?.adaptive?.enabled) {
-    const scored = db
+    const scored = (await db
       .prepare(
         'SELECT is_correct AS isCorrect FROM attempt_items WHERE attempt_id = ? AND part_index = ?',
       )
-      .all(attemptId, fromIndex) as Array<{ isCorrect: 0 | 1 | null }>;
+      .all(attemptId, fromIndex)) as Array<{ isCorrect: 0 | 1 | null }>;
     const correct = scored.filter((row) => row.isCorrect === 1).length;
     const accuracy = scored.length > 0 ? correct / scored.length : 0;
     routing = decideRoute(accuracy, previousBlueprintPart.adaptive);
   }
 
-  const run = db.transaction(() => {
+  const run = db.transaction(async () => {
     if (routing && nextBlueprintPart) {
       const rerouted = applyRoute(nextBlueprintPart.selection, nextBlueprintPart.itemCount, routing.route);
-      const pool = eligiblePool(getPool(db, attempt.exam_key, userId), blueprint);
+      const pool = eligiblePool((await getPool(db, attempt.exam_key, userId)), blueprint);
       const used = new Set(items.map((i) => i.question_id));
       const rng = createRng(`${attempt.seed}:reroute:${nextIndex}`);
       const selection = selectItems(pool, rerouted, nextBlueprintPart.itemCount, rng, {
@@ -1436,9 +1436,9 @@ function openNextPart(db: Db, attemptId: string, userId: string, fromIndex: numb
         now,
       });
       if (selection.items.length === nextBlueprintPart.itemCount) {
-        db.prepare('DELETE FROM attempt_items WHERE attempt_id = ? AND part_index = ?').run(attemptId, nextIndex);
-        selection.items.forEach((chosen, position) => {
-          db.prepare(
+        (await db.prepare('DELETE FROM attempt_items WHERE attempt_id = ? AND part_index = ?').run(attemptId, nextIndex));
+        (await Promise.all(selection.items.map(async (chosen, position) => {
+          (await db.prepare(
             `INSERT INTO attempt_items (
                id, attempt_id, part_index, position, question_id, question_version_id,
                response_json, response_status, is_correct, points_earned, points_possible,
@@ -1453,8 +1453,8 @@ function openNextPart(db: Db, attemptId: string, userId: string, fromIndex: numb
             chosen.questionVersionId,
             config.scoring.pointsCorrect,
             toIso(now),
-          );
-        });
+          ));
+        })));
       } else {
         // Not enough distinct items to honour the route: keep the pre-selected
         // questions and say so, rather than repeating questions.
@@ -1465,34 +1465,34 @@ function openNextPart(db: Db, attemptId: string, userId: string, fromIndex: numb
     const deadline =
       blueprint.timing === 'per_part' ? computeDeadline(now, next.time_limit_seconds) : null;
 
-    db.prepare(
+    (await db.prepare(
       `UPDATE attempt_parts SET status = 'in_progress', started_at = ?, deadline_at = ?, routing_json = ?
        WHERE attempt_id = ? AND part_index = ?`,
-    ).run(toIso(now), deadline, routing ? JSON.stringify(routing) : null, attemptId, nextIndex);
+    ).run(toIso(now), deadline, routing ? JSON.stringify(routing) : null, attemptId, nextIndex));
 
-    db.prepare(
+    (await db.prepare(
       `UPDATE attempt_items SET first_seen_at = COALESCE(first_seen_at, ?)
        WHERE attempt_id = ? AND part_index = ? AND position = 0`,
-    ).run(toIso(now), attemptId, nextIndex);
+    ).run(toIso(now), attemptId, nextIndex));
 
-    db.prepare('UPDATE attempts SET current_part_index = ?, updated_at = ? WHERE id = ?').run(
+    (await db.prepare('UPDATE attempts SET current_part_index = ?, updated_at = ? WHERE id = ?').run(
       nextIndex,
       toIso(now),
       attemptId,
-    );
+    ));
 
-    logEvent(db, attemptId, 'part.started', { partIndex: nextIndex, routing }, now);
+    (await logEvent(db, attemptId, 'part.started', { partIndex: nextIndex, routing }, now));
   });
-  run();
+  (await run());
   return true;
 }
 
 /** Scores every item in one part. Idempotent. */
-function scorePart(db: Db, attemptId: string, partIndex: number, config: ExamConfig, now: Date): void {
-  const items = db
+async function scorePart(db: Db, attemptId: string, partIndex: number, config: ExamConfig, now: Date): Promise<void> {
+  const items = (await db
     .prepare('SELECT * FROM attempt_items WHERE attempt_id = ? AND part_index = ?')
-    .all(attemptId, partIndex) as AttemptItemRow[];
-  const versions = getQuestionVersions(db, items.map((i) => i.question_version_id));
+    .all(attemptId, partIndex)) as AttemptItemRow[];
+  const versions = (await getQuestionVersions(db, items.map((i) => i.question_version_id)));
 
   for (const item of items) {
     const version = versions.get(item.question_version_id);
@@ -1500,14 +1500,14 @@ function scorePart(db: Db, attemptId: string, partIndex: number, config: ExamCon
     const key = answerKeySchema.parse(JSON.parse(version.correct_json));
     const response = item.response_json ? (JSON.parse(item.response_json) as Response) : null;
     const outcome = scoreResponse(key, response, config.scoring);
-    db.prepare('UPDATE attempt_items SET is_correct = ?, points_earned = ?, points_possible = ? WHERE id = ?').run(
+    (await db.prepare('UPDATE attempt_items SET is_correct = ?, points_earned = ?, points_possible = ? WHERE id = ?').run(
       outcome.status === 'correct' ? 1 : outcome.status === 'not_auto_scored' ? null : 0,
       outcome.points,
       outcome.pointsPossible,
       item.id,
-    );
+    ));
   }
-  logEvent(db, attemptId, 'part.scored', { partIndex, itemCount: items.length }, now);
+  (await logEvent(db, attemptId, 'part.scored', { partIndex, itemCount: items.length }, now));
 }
 
 export interface SubmitPartResult {
@@ -1515,13 +1515,13 @@ export interface SubmitPartResult {
   attemptSubmitted: boolean;
 }
 
-export function submitPart(
+export async function submitPart(
   db: Db,
   input: { attemptId: string; userId: string; partIndex: number; now?: Date },
-): SubmitPartResult {
+): Promise<SubmitPartResult> {
   const now = input.now ?? new Date();
-  expireIfDue(db, input.attemptId, input.userId, now);
-  const { attempt, parts } = load(db, input.attemptId, input.userId);
+  (await expireIfDue(db, input.attemptId, input.userId, now));
+  const { attempt, parts } = (await load(db, input.attemptId, input.userId));
 
   if (attempt.status !== 'in_progress') {
     return { advancedToPartIndex: null, attemptSubmitted: true };
@@ -1532,25 +1532,25 @@ export function submitPart(
   const part = parts.find((p) => p.part_index === input.partIndex);
   if (!part) throw notFound();
 
-  db.prepare("UPDATE attempt_parts SET status = 'submitted', submitted_at = ? WHERE attempt_id = ? AND part_index = ?").run(
+  (await db.prepare("UPDATE attempt_parts SET status = 'submitted', submitted_at = ? WHERE attempt_id = ? AND part_index = ?").run(
     toIso(now),
     input.attemptId,
     input.partIndex,
-  );
-  logEvent(db, input.attemptId, 'part.submitted', { partIndex: input.partIndex }, now);
+  ));
+  (await logEvent(db, input.attemptId, 'part.submitted', { partIndex: input.partIndex }, now));
 
-  const advanced = openNextPart(db, input.attemptId, input.userId, input.partIndex, now);
+  const advanced = (await openNextPart(db, input.attemptId, input.userId, input.partIndex, now));
   if (advanced) return { advancedToPartIndex: input.partIndex + 1, attemptSubmitted: false };
 
-  finalise(db, input.attemptId, input.userId, now, 'submitted');
+  (await finalise(db, input.attemptId, input.userId, now, 'submitted'));
   return { advancedToPartIndex: null, attemptSubmitted: true };
 }
 
-export function openReviewScreen(
+export async function openReviewScreen(
   db: Db,
   input: { attemptId: string; userId: string; partIndex: number; now?: Date },
-): void {
-  const { parts, items } = load(db, input.attemptId, input.userId);
+): Promise<void> {
+  const { parts, items } = (await load(db, input.attemptId, input.userId));
   const part = parts.find((p) => p.part_index === input.partIndex);
   if (!part) throw notFound();
   const policy = JSON.parse(part.navigation_json) as NavigationPolicy;
@@ -1565,36 +1565,36 @@ export function openReviewScreen(
  * review queue. Idempotent - a repeated submission returns the existing result
  * instead of scoring twice.
  */
-export function finalise(
+export async function finalise(
   db: Db,
   attemptId: string,
   userId: string,
   now = new Date(),
   status: 'submitted' | 'expired' = 'submitted',
-): void {
-  const existing = db.prepare('SELECT attempt_id FROM attempt_results WHERE attempt_id = ?').get(attemptId);
-  if (existing) return;
+): Promise<void> {
+  const run = db.transaction(async () => {
+    // Re-read the idempotency check and scoring inputs on every transaction retry.
+    const existing = await db.prepare('SELECT attempt_id FROM attempt_results WHERE attempt_id = ?').get(attemptId);
+    if (existing) return;
+    const { attempt, parts, config, blueprint } = await load(db, attemptId, userId);
+    if (attempt.status !== 'in_progress') return;
 
-  const { attempt, parts, items, config, blueprint } = load(db, attemptId, userId);
-  if (attempt.status !== 'in_progress') return;
-
-  const run = db.transaction(() => {
     for (const part of parts) {
-      scorePart(db, attemptId, part.part_index, config, now);
+      (await scorePart(db, attemptId, part.part_index, config, now));
       if (part.status === 'in_progress' || part.status === 'pending') {
-        db.prepare('UPDATE attempt_parts SET status = ?, submitted_at = ? WHERE attempt_id = ? AND part_index = ?').run(
+        (await db.prepare('UPDATE attempt_parts SET status = ?, submitted_at = ? WHERE attempt_id = ? AND part_index = ?').run(
           status === 'expired' ? 'expired' : 'submitted',
           toIso(now),
           attemptId,
           part.part_index,
-        );
+        ));
       }
     }
 
-    const scoredRows = db
+    const scoredRows = (await db
       .prepare('SELECT * FROM attempt_items WHERE attempt_id = ? ORDER BY part_index, position')
-      .all(attemptId) as AttemptItemRow[];
-    const versions = getQuestionVersions(db, scoredRows.map((i) => i.question_version_id));
+      .all(attemptId)) as AttemptItemRow[];
+    const versions = (await getQuestionVersions(db, scoredRows.map((i) => i.question_version_id)));
 
     const scored: ScoredItem[] = scoredRows.map((item) => {
       const version = versions.get(item.question_version_id);
@@ -1638,7 +1638,7 @@ export function finalise(
       unverifiedRules: config.unverified,
     };
 
-    db.prepare(
+    (await db.prepare(
       `INSERT INTO attempt_results (
          attempt_id, computed_at, raw_correct, raw_incorrect, raw_omitted, points_earned,
          points_possible, accuracy, total_time_ms, per_part_json, per_skill_json,
@@ -1657,19 +1657,19 @@ export function finalise(
       JSON.stringify({ byPart: result.byPart, bySection: result.bySection, byDomain: result.byDomain }),
       JSON.stringify(result.bySkill),
       JSON.stringify(methodology),
-    );
+    ));
 
-    db.prepare('UPDATE attempts SET status = ?, submitted_at = ?, updated_at = ? WHERE id = ?').run(
+    (await db.prepare('UPDATE attempts SET status = ?, submitted_at = ?, updated_at = ? WHERE id = ?').run(
       status,
       toIso(now),
       toIso(now),
       attemptId,
-    );
+    ));
 
-    updateReviewQueue(db, attemptId, userId, now);
-    logEvent(db, attemptId, 'attempt.finalised', { status, totals: result.totals }, now);
+    (await updateReviewQueue(db, attemptId, userId, now));
+    (await logEvent(db, attemptId, 'attempt.finalised', { status, totals: result.totals }, now));
   });
-  run();
+  (await run());
 }
 
 /**
@@ -1679,15 +1679,15 @@ export function finalise(
  */
 const REVIEW_INTERVALS = [1, 3, 7, 16, 35];
 
-function updateReviewQueue(db: Db, attemptId: string, userId: string, now: Date): void {
-  const rows = db
+async function updateReviewQueue(db: Db, attemptId: string, userId: string, now: Date): Promise<void> {
+  const rows = (await db
     .prepare(
       `SELECT ai.question_id, ai.is_correct, ai.response_status, qv.exam_key, qv.skill_slug
        FROM attempt_items ai
        JOIN question_versions qv ON qv.id = ai.question_version_id
        WHERE ai.attempt_id = ?`,
     )
-    .all(attemptId) as Array<{
+    .all(attemptId)) as Array<{
     question_id: string;
     is_correct: 0 | 1 | null;
     response_status: string;
@@ -1697,9 +1697,9 @@ function updateReviewQueue(db: Db, attemptId: string, userId: string, now: Date)
 
   for (const row of rows) {
     const result = row.is_correct === 1 ? 'correct' : row.response_status === 'answered' ? 'incorrect' : 'omitted';
-    const existing = db
+    const existing = (await db
       .prepare('SELECT * FROM review_queue WHERE user_id = ? AND question_id = ?')
-      .get(userId, row.question_id) as
+      .get(userId, row.question_id)) as
       | { miss_count: number; correct_streak: number; interval_days: number }
       | undefined;
 
@@ -1708,7 +1708,7 @@ function updateReviewQueue(db: Db, attemptId: string, userId: string, now: Date)
     const interval = result === 'correct' ? REVIEW_INTERVALS[Math.min(streak, REVIEW_INTERVALS.length - 1)] : 1;
     const dueAt = new Date(now.getTime() + interval * 24 * 60 * 60 * 1000);
 
-    db.prepare(
+    (await db.prepare(
       `INSERT INTO review_queue (user_id, question_id, exam_key, skill_slug, last_result,
                                  miss_count, correct_streak, interval_days, due_at, updated_at)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -1730,24 +1730,24 @@ function updateReviewQueue(db: Db, attemptId: string, userId: string, now: Date)
       interval,
       toIso(dueAt),
       toIso(now),
-    );
+    ));
   }
 }
 
-export function submitAttempt(
+export async function submitAttempt(
   db: Db,
   input: { attemptId: string; userId: string; now?: Date },
-): { alreadySubmitted: boolean } {
+): Promise<{ alreadySubmitted: boolean }> {
   const now = input.now ?? new Date();
-  const { attempt } = load(db, input.attemptId, input.userId);
+  const { attempt } = (await load(db, input.attemptId, input.userId));
   if (attempt.status !== 'in_progress') return { alreadySubmitted: true };
-  finalise(db, input.attemptId, input.userId, now, 'submitted');
+  (await finalise(db, input.attemptId, input.userId, now, 'submitted'));
   return { alreadySubmitted: false };
 }
 
-export function getResult(db: Db, attemptId: string, userId: string) {
-  const { attempt } = load(db, attemptId, userId);
-  const row = db.prepare('SELECT * FROM attempt_results WHERE attempt_id = ?').get(attemptId) as
+export async function getResult(db: Db, attemptId: string, userId: string) {
+  const { attempt } = (await load(db, attemptId, userId));
+  const row = (await db.prepare('SELECT * FROM attempt_results WHERE attempt_id = ?').get(attemptId)) as
     | Record<string, unknown>
     | undefined;
   if (!row) return null;

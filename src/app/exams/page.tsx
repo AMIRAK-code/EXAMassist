@@ -50,11 +50,11 @@ export default async function ExamsPage() {
     },
   ];
 
-  const { matrix, asOf } = buildHomeData(db);
+  const { matrix, asOf } = (await buildHomeData(db));
 
-  const hubs = listHubs().map((hub) => {
+  const hubs = (await Promise.all(listHubs().map(async (hub) => {
     const configs = hub.configKeys.map(requireExamConfig);
-    const coverage = configs.map((config) => examCoverage(db, config));
+    const coverage = (await Promise.all(configs.map(async (config) => (await examCoverage(db, config)))));
     return {
       hub,
       configs,
@@ -62,7 +62,7 @@ export default async function ExamsPage() {
       domainsCovered: coverage.reduce((total, c) => total + c.domainsCovered, 0),
       domainsTotal: coverage.reduce((total, c) => total + c.domainsTotal, 0),
     };
-  });
+  })));
 
   return (
     <Container>

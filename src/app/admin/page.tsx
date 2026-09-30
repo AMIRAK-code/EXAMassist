@@ -79,38 +79,38 @@ export default async function AdminOverviewPage() {
 
   const db = getDb();
 
-  const questionStates = db
+  const questionStates = (await db
     .prepare('SELECT state AS state, COUNT(*) AS n FROM questions GROUP BY state')
-    .all() as StateCountRow[];
+    .all()) as StateCountRow[];
 
-  const versionStates = db
+  const versionStates = (await db
     .prepare('SELECT state AS state, COUNT(*) AS n FROM question_versions GROUP BY state')
-    .all() as StateCountRow[];
+    .all()) as StateCountRow[];
 
-  const perExamStates = db
+  const perExamStates = (await db
     .prepare(
       'SELECT exam_key AS examKey, state AS state, COUNT(*) AS n FROM questions GROUP BY exam_key, state',
     )
-    .all() as ExamStateCountRow[];
+    .all()) as ExamStateCountRow[];
 
-  const versionsPerExam = db
+  const versionsPerExam = (await db
     .prepare('SELECT exam_key AS examKey, COUNT(*) AS n FROM question_versions GROUP BY exam_key')
-    .all() as KeyCountRow[];
+    .all()) as KeyCountRow[];
 
-  const flagStatuses = db
+  const flagStatuses = (await db
     .prepare('SELECT status AS status, COUNT(*) AS n FROM content_flags GROUP BY status')
-    .all() as StatusCountRow[];
+    .all()) as StatusCountRow[];
 
   const since = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
   const recentAttempts = (
-    db.prepare('SELECT COUNT(*) AS n FROM attempts WHERE created_at >= ?').get(since) as { n: number }
+    (await db.prepare('SELECT COUNT(*) AS n FROM attempts WHERE created_at >= ?').get(since)) as { n: number }
   ).n;
   const submittedRecently = (
-    db
+    (await db
       .prepare("SELECT COUNT(*) AS n FROM attempts WHERE created_at >= ? AND status = 'submitted'")
-      .get(since) as { n: number }
+      .get(since)) as { n: number }
   ).n;
-  const totalAttempts = (db.prepare('SELECT COUNT(*) AS n FROM attempts').get() as { n: number }).n;
+  const totalAttempts = ((await db.prepare('SELECT COUNT(*) AS n FROM attempts').get()) as { n: number }).n;
 
   const questionCount = (n: string) => questionStates.find((r) => r.state === n)?.n ?? 0;
   const versionCount = (n: string) => versionStates.find((r) => r.state === n)?.n ?? 0;
@@ -121,10 +121,10 @@ export default async function AdminOverviewPage() {
   const openFlags = flagCount('open');
   const quarantined = questionCount('quarantined');
 
-  const perExam = EXAM_CONFIGS.map((config) => {
+  const perExam = (await Promise.all(EXAM_CONFIGS.map(async (config) => {
     const mine = perExamStates.filter((row) => row.examKey === config.examKey);
     const byState = (state: string) => mine.find((row) => row.state === state)?.n ?? 0;
-    const coverage = examCoverage(db, config);
+    const coverage = (await examCoverage(db, config));
     return {
       config,
       hub: getHubForConfig(config.examKey),
@@ -136,7 +136,7 @@ export default async function AdminOverviewPage() {
       versions: versionsPerExam.find((row) => row.examKey === config.examKey)?.n ?? 0,
       coverage,
     };
-  });
+  })));
 
   const trail = [{ href: '/', label: 'Home' }, { label: 'Administration' }];
 

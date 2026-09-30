@@ -43,7 +43,7 @@ export default async function QuestionReviewPage({
   if (!user) redirect(`/sign-in?next=/attempt/${id}/results/${n}`);
 
   const ordinal = /^\d{1,3}$/.test(n) ? Number(n) : NaN;
-  const review = Number.isInteger(ordinal) ? getReviewItem(getDb(), id, user.id, ordinal) : null;
+  const review = Number.isInteger(ordinal) ? (await getReviewItem(getDb(), id, user.id, ordinal)) : null;
   if (!review) notFound();
 
   const { item, question, response } = review;
