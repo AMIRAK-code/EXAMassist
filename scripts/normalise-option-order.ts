@@ -17,8 +17,12 @@ import { createRng, shuffle } from '../src/lib/assessment/select';
  *  - Other choice sets are shuffled with a seed derived from the question id,
  *    so the result is deterministic and reproducible.
  *  - Fixed choice sets are left alone: quantitative comparison and data
- *    sufficiency options have exam-defined meanings attached to their letters,
- *    and two-part items are grouped by column.
+ *    sufficiency options have exam-defined meanings attached to their letters.
+ *  - Two-part items are reordered within each column, never across columns: a
+ *    numeric column is sorted ascending, and a text-completion blank (whose
+ *    word order means nothing) is shuffled. Other text columns, such as a
+ *    ladder of "a decrease of 10 percent ... an increase of 30 percent", keep
+ *    their authored order. Review found the key first in 20 of 31 blanks.
  *
  * Option ids and labels are renumbered by position, and the answer key,
  * distractor notes and independent-solve record are remapped with them, so
@@ -26,24 +30,79 @@ import { createRng, shuffle } from '../src/lib/assessment/select';
  *
  * Only draft and in-review items are touched: published order is immutable.
  *
- *   npx tsx scripts/normalise-option-order.ts [--dry-run] [--exam=<examKey>[,<examKey>...]]
+ *   npx tsx scripts/normalise-option-order.ts [--dry-run] [--exam=<examKey>[,...]] [--ids=<questionId>[,...]]
  *
  * --exam limits the run to the named exams, so a batch that is ready for
  * review can be normalised while authors are still writing other exams.
  */
 
 const dryRun = process.argv.includes('--dry-run');
-const examFilter = (() => {
-  const arg = process.argv.find((a) => a.startsWith('--exam='));
-  return arg ? new Set(arg.slice('--exam='.length).split(',').filter(Boolean)) : null;
-})();
+const listArg = (flag: string): Set<string> | null => {
+  const arg = process.argv.find((a) => a.startsWith(`${flag}=`));
+  return arg ? new Set(arg.slice(flag.length + 1).split(',').filter(Boolean)) : null;
+};
+const examFilter = listArg('--exam');
+// --ids re-normalises named items only, e.g. after fixing the rules for one
+// kind of choice set, without reshuffling items whose wording changed since.
+const idFilter = listArg('--ids');
 const SHUFFLEABLE = new Set(['single_select', 'multi_select']);
 const LABELS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+/** Two-part domains whose columns are free-standing word choices. */
+const SHUFFLE_TWO_PART_DOMAINS = new Set(['verbal-text-completion']);
+
+type Option = { id: string; label: string; textMd: string };
+
+/**
+ * New order for a two-part item's options, column by column, or null when no
+ * column changes. Column blocks keep their positions; ids stay "<column>-<letter>".
+ */
+function twoPartOrder(questionId: string, domainSlug: string, options: readonly Option[]): { options: Option[]; remap: Map<string, string> } | null {
+  const columns: string[] = [];
+  const byColumn = new Map<string, Option[]>();
+  for (const option of options) {
+    const column = option.id.slice(0, option.id.lastIndexOf('-'));
+    if (!byColumn.has(column)) {
+      byColumn.set(column, []);
+      columns.push(column);
+    }
+    byColumn.get(column)!.push(option);
+  }
+
+  const remap = new Map<string, string>();
+  const next: Option[] = [];
+  let changed = false;
+  for (const column of columns) {
+    const current = byColumn.get(column)!;
+    const numeric = current.every((option) => numericValue(option.textMd) !== null);
+    let ordered: Option[];
+    if (numeric) {
+      ordered = [...current].sort((a, b) => (numericValue(a.textMd) ?? 0) - (numericValue(b.textMd) ?? 0));
+    } else if (SHUFFLE_TWO_PART_DOMAINS.has(domainSlug)) {
+      const canonical = [...current].sort((a, b) => a.textMd.localeCompare(b.textMd, 'en'));
+      ordered = shuffle(canonical, createRng(`option-order:${questionId}:${column}`));
+    } else {
+      ordered = current;
+    }
+    ordered.forEach((option, index) => {
+      const newId = `${column}-${LABELS[index].toLowerCase()}`;
+      if (newId !== option.id) changed = true;
+      remap.set(option.id, newId);
+      next.push({ id: newId, label: LABELS[index], textMd: option.textMd });
+    });
+  }
+  return changed ? { options: next, remap } : null;
+}
 
 /** Reads an option as a number, ignoring KaTeX delimiters and formatting. */
 function numericValue(textMd: string): number | null {
-  const cleaned = textMd
+  const withFractions = textMd
     .replace(/\$+/g, '')
+    // \frac{9}{2} must read as 9/2, not as 92 once braces are stripped.
+    .replace(/\\[dt]?frac\s*\{([^{}]+)\}\s*\{([^{}]+)\}/g, '$1/$2');
+  // Any other command (\sqrt, \pi, \times) carries value the stripping below
+  // would destroy: 2\sqrt{3} would read as 23. Such a choice is not a plain number.
+  if (/\\(?!text\b|mathrm\b)[a-zA-Z]+/.test(withFractions)) return null;
+  const cleaned = withFractions
     .replace(/\\[a-zA-Z]+/g, '')
     .replace(/[{}]/g, '')
     .replace(/[,\s]/g, '')
@@ -69,6 +128,7 @@ function main(): void {
   for (const entry of questions) {
     const question = entry.question;
     if (examFilter && !examFilter.has(question.examKey)) continue;
+    if (idFilter && !idFilter.has(question.id)) continue;
 
     // Published content is immutable. Re-ordering a published item would change
     // what a learner was shown and would make this script non-idempotent, so
@@ -79,7 +139,8 @@ function main(): void {
       continue;
     }
 
-    if (!SHUFFLEABLE.has(question.responseType) || question.options.length < 2) {
+    const isTwoPart = question.responseType === 'two_part';
+    if ((!SHUFFLEABLE.has(question.responseType) && !isTwoPart) || question.options.length < 2) {
       skipped += 1;
       continue;
     }
@@ -105,33 +166,45 @@ function main(): void {
       continue;
     }
 
-    const values = question.options.map((option) => numericValue(option.textMd));
-    const allNumeric = values.every((value) => value !== null);
+    let allNumeric = false;
+    let remap = new Map<string, string>();
+    let newOptions: Option[];
 
-    // Canonicalise before shuffling, so the shuffle's input never depends on a
-    // previous run. Without this, re-running the script re-randomises the same
-    // item every time, because a shuffled list is a different input.
-    const canonical = [...question.options].sort((a, b) => a.textMd.localeCompare(b.textMd, 'en'));
+    if (isTwoPart) {
+      const result = twoPartOrder(question.id, question.domainSlug, question.options);
+      if (!result) {
+        skipped += 1;
+        continue;
+      }
+      ({ options: newOptions, remap } = result);
+    } else {
+      const values = question.options.map((option) => numericValue(option.textMd));
+      allNumeric = values.every((value) => value !== null);
 
-    const ordered = allNumeric
-      ? [...question.options].sort(
-          (a, b) => (numericValue(a.textMd) ?? 0) - (numericValue(b.textMd) ?? 0),
-        )
-      : shuffle(canonical, createRng(`option-order:${question.id}`));
+      // Canonicalise before shuffling, so the shuffle's input never depends on a
+      // previous run. Without this, re-running the script re-randomises the same
+      // item every time, because a shuffled list is a different input.
+      const canonical = [...question.options].sort((a, b) => a.textMd.localeCompare(b.textMd, 'en'));
 
-    const unchanged = ordered.every((option, index) => option.id === question.options[index]?.id);
-    if (unchanged) {
-      skipped += 1;
-      continue;
+      const ordered = allNumeric
+        ? [...question.options].sort(
+            (a, b) => (numericValue(a.textMd) ?? 0) - (numericValue(b.textMd) ?? 0),
+          )
+        : shuffle(canonical, createRng(`option-order:${question.id}`));
+
+      const unchanged = ordered.every((option, index) => option.id === question.options[index]?.id);
+      if (unchanged) {
+        skipped += 1;
+        continue;
+      }
+
+      // Renumber ids and labels by position, and remember the mapping.
+      newOptions = ordered.map((option, index) => {
+        const newId = LABELS[index].toLowerCase();
+        remap.set(option.id, newId);
+        return { id: newId, label: LABELS[index], textMd: option.textMd };
+      });
     }
-
-    // Renumber ids and labels by position, and remember the mapping.
-    const remap = new Map<string, string>();
-    const newOptions = ordered.map((option, index) => {
-      const newId = LABELS[index].toLowerCase();
-      remap.set(option.id, newId);
-      return { id: newId, label: LABELS[index], textMd: option.textMd };
-    });
 
     const updated = structuredClone(question) as Record<string, unknown>;
     updated.options = newOptions;
@@ -141,6 +214,11 @@ function main(): void {
       key.optionId = remap.get(String(key.optionId)) ?? key.optionId;
     } else if (key.type === 'multi_select') {
       key.optionIds = (key.optionIds as string[]).map((id) => remap.get(id) ?? id);
+    } else if (key.type === 'two_part') {
+      key.selections = (key.selections as Array<{ columnId: string; optionId: string }>).map((selection) => ({
+        ...selection,
+        optionId: remap.get(selection.optionId) ?? selection.optionId,
+      }));
     }
     updated.answerKey = key;
 
@@ -152,9 +230,16 @@ function main(): void {
     const review = updated.review as Record<string, unknown>;
     const solve = review.independentSolve as Record<string, unknown> | null;
     if (solve && typeof solve.solvedAnswer === 'string') {
+      // Two-part answers may be written "column:option"; remap the option part.
       const remapped = solve.solvedAnswer
         .split(',')
-        .map((part) => remap.get(part.trim()) ?? part.trim())
+        .map((raw) => {
+          const part = raw.trim();
+          const colon = part.lastIndexOf(':');
+          if (colon === -1) return remap.get(part) ?? part;
+          const optionId = part.slice(colon + 1);
+          return `${part.slice(0, colon + 1)}${remap.get(optionId) ?? optionId}`;
+        })
         .join(',');
       solve.solvedAnswer = remapped;
     }
