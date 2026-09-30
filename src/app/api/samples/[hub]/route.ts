@@ -13,7 +13,7 @@ import { loadSampleView } from '@/lib/content/sample-view';
 export async function GET(_request: Request, { params }: { params: Promise<{ hub: string }> }) {
   const { hub } = await params;
   const sample = homepageSampleFor(hub);
-  const view = sample ? loadSampleView(getDb(), sample) : null;
+  const view = sample ? (await loadSampleView(getDb(), sample)) : null;
 
   if (!view) {
     return NextResponse.json(

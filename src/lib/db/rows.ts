@@ -1,5 +1,5 @@
 /**
- * Row shapes as SQLite returns them.
+ * Shared row shapes returned by the SQLite and PostgreSQL adapters.
  *
  * Booleans are INTEGER 0/1 and timestamps are ISO-8601 TEXT, so these types
  * describe the raw row; repositories map them to domain objects.

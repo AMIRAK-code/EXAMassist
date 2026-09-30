@@ -16,17 +16,23 @@
     "db:seed": "tsx scripts/seed.ts",
     "db:reset": "tsx scripts/reset.ts",
     "content:validate": "tsx scripts/validate-content.ts",
-    "verify": "npm run typecheck && npm run content:validate && npm run test"
+    "verify": "npm run typecheck && npm run content:validate && npm run test",
+    "supabase:check": "tsx scripts/check-supabase.ts",
+    "db:import-sqlite": "tsx scripts/import-sqlite.ts",
+    "db:check": "tsx scripts/check-postgres.ts"
   },
   "engines": {
     "node": ">=20.11.0"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.128.0",
+    "@next/env": "15.5.25",
+    "@supabase/supabase-js": "2.117.2",
     "better-sqlite3": "^13.0.3",
     "katex": "^0.18.7",
     "marked": "^18.0.13",
     "next": "^15.5.25",
+    "pg": "8.23.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "sanitize-html": "^2.17.7",
@@ -38,6 +44,7 @@
     "@tailwindcss/postcss": "^4.3.3",
     "@types/better-sqlite3": "^9.6.0",
     "@types/node": "^26.6.1",
+    "@types/pg": "8.23.1",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@types/sanitize-html": "^2.16.1",

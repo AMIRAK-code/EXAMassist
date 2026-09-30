@@ -31,10 +31,10 @@ export interface SampleView {
  * Returns null when the sample is not currently published or is not a
  * single-choice question, so callers show an honest empty state instead.
  */
-export function loadSampleView(db: Db, sample: PublicSample): SampleView | null {
-  const row = getPublishedVersion(db, sample.questionId);
+export async function loadSampleView(db: Db, sample: PublicSample): Promise<SampleView | null> {
+  const row = (await getPublishedVersion(db, sample.questionId));
   if (!row) return null;
-  const question = toReviewable(db, row);
+  const question = (await toReviewable(db, row));
   if (question.answerKey.type !== 'single_select') return null;
 
   const config = requireExamConfig(sample.examKey);

@@ -53,32 +53,32 @@ export async function GET() {
     const user = await requireUser();
     const db = getDb();
 
-    const account = db
+    const account = (await db
       .prepare(
         `SELECT id, email, display_name, role, is_guest, locale, target_exam_key, target_date,
                 weekly_minutes, is_minor, created_at, updated_at
          FROM users WHERE id = ? AND deleted_at IS NULL`,
       )
-      .get(user.id) as Omit<UserRow, 'password_hash' | 'deleted_at'> | undefined;
+      .get(user.id)) as Omit<UserRow, 'password_hash' | 'deleted_at'> | undefined;
 
     if (!account) {
       return toErrorResponse(new Error('The signed-in account could not be read.'));
     }
 
-    const attempts = db
+    const attempts = (await db
       .prepare('SELECT * FROM attempts WHERE user_id = ? ORDER BY started_at')
-      .all(user.id) as AttemptRow[];
+      .all(user.id)) as AttemptRow[];
 
-    const parts = db
+    const parts = (await db
       .prepare(
         `SELECT p.* FROM attempt_parts p
          JOIN attempts a ON a.id = p.attempt_id
          WHERE a.user_id = ?
          ORDER BY p.attempt_id, p.part_index`,
       )
-      .all(user.id) as AttemptPartRow[];
+      .all(user.id)) as AttemptPartRow[];
 
-    const items = db
+    const items = (await db
       .prepare(
         `SELECT i.*, a.status AS attempt_status,
                 qv.exam_key, qv.section_key, qv.domain_slug, qv.skill_slug, qv.difficulty,
@@ -89,60 +89,60 @@ export async function GET() {
          WHERE a.user_id = ?
          ORDER BY i.attempt_id, i.part_index, i.position`,
       )
-      .all(user.id) as ExportItemRow[];
+      .all(user.id)) as ExportItemRow[];
 
-    const results = db
+    const results = (await db
       .prepare(
         `SELECT r.* FROM attempt_results r
          JOIN attempts a ON a.id = r.attempt_id
          WHERE a.user_id = ?`,
       )
-      .all(user.id) as AttemptResultRow[];
+      .all(user.id)) as AttemptResultRow[];
 
-    const bookmarks = db
+    const bookmarks = (await db
       .prepare('SELECT * FROM bookmarks WHERE user_id = ? ORDER BY created_at')
-      .all(user.id) as BookmarkRow[];
+      .all(user.id)) as BookmarkRow[];
 
-    const reviewQueue = db
+    const reviewQueue = (await db
       .prepare('SELECT * FROM review_queue WHERE user_id = ? ORDER BY due_at')
-      .all(user.id) as ReviewQueueRow[];
+      .all(user.id)) as ReviewQueueRow[];
 
     // The learner's own labels on their mistakes (migration 005).
-    const mistakeLabels = db
+    const mistakeLabels = (await db
       .prepare(
         `SELECT ml.label, ml.created_at AS createdAt, ai.attempt_id AS attemptId, ai.question_id AS questionId
            FROM mistake_labels ml JOIN attempt_items ai ON ai.id = ml.attempt_item_id
           WHERE ml.user_id = ? ORDER BY ml.created_at`,
       )
-      .all(user.id) as Array<{ label: string; createdAt: string; attemptId: string; questionId: string }>;
+      .all(user.id)) as Array<{ label: string; createdAt: string; attemptId: string; questionId: string }>;
 
-    const studyPlans = db
+    const studyPlans = (await db
       .prepare('SELECT * FROM study_plans WHERE user_id = ? ORDER BY generated_at')
-      .all(user.id) as StudyPlanRow[];
+      .all(user.id)) as StudyPlanRow[];
 
     // Goals and the one exam date per exam (002, 007), and stored plans with their sessions (007).
-    const examTargets = db
+    const examTargets = (await db
       .prepare('SELECT exam_key, target_score, target_date, legacy_plan_date, created_at, updated_at FROM exam_targets WHERE user_id = ? ORDER BY exam_key')
-      .all(user.id) as Array<{ exam_key: string; target_score: number | null; target_date: string | null; legacy_plan_date: string | null; created_at: string; updated_at: string }>;
-    const plans = db
+      .all(user.id)) as Array<{ exam_key: string; target_score: number | null; target_date: string | null; legacy_plan_date: string | null; created_at: string; updated_at: string }>;
+    const plans = (await db
       .prepare('SELECT * FROM plans WHERE user_id = ? ORDER BY created_at')
-      .all(user.id) as Array<Record<string, string | number | null>>;
-    const planSessionRows = db
+      .all(user.id)) as Array<Record<string, string | number | null>>;
+    const planSessionRows = (await db
       .prepare('SELECT * FROM plan_sessions WHERE user_id = ? ORDER BY plan_id, scheduled_on, sequence')
-      .all(user.id) as Array<Record<string, string | number | null>>;
+      .all(user.id)) as Array<Record<string, string | number | null>>;
     // AI after-test guides are personal and belong in the export. Shared hints
     // and explanations are not stored against anyone, so they are not here.
-    const tutorDebriefs = db
+    const tutorDebriefs = (await db
       .prepare(
         `SELECT id, attempt_id, model, body_md, created_at, withdrawn_at
          FROM tutor_responses WHERE user_id = ? AND kind = 'debrief' ORDER BY created_at`,
       )
-      .all(user.id);
-    const tutorUsage = db
+      .all(user.id));
+    const tutorUsage = (await db
       .prepare(
         `SELECT kind, cache_hit, outcome, created_at FROM tutor_usage WHERE user_id = ? ORDER BY created_at`,
       )
-      .all(user.id);
+      .all(user.id));
 
     const partsByAttempt = new Map<string, AttemptPartRow[]>();
     for (const part of parts) {

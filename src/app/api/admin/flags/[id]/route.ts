@@ -29,7 +29,7 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
     const body = await readJson(request, bodySchema);
 
     const db = getDb();
-    const flag = db.prepare('SELECT * FROM content_flags WHERE id = ?').get(id) as
+    const flag = (await db.prepare('SELECT * FROM content_flags WHERE id = ?').get(id)) as
       | ContentFlagRow
       | undefined;
 
@@ -46,23 +46,23 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
 
     const now = new Date().toISOString();
 
-    const applied = db.transaction(() => {
-      const info = db
+    const applied = db.transaction(async () => {
+      const info = (await db
         .prepare(
           `UPDATE content_flags
               SET status = ?, resolution = ?, resolved_at = ?
             WHERE id = ? AND status = 'open'`,
         )
-        .run(body.status, body.resolution, now, id);
+        .run(body.status, body.resolution, now, id));
 
       if (info.changes === 0) return false;
 
       // An accepted report about an AI response withdraws that response, so
       // no other learner is shown the text an editor has agreed is wrong.
       const tutorResponseId = (flag as ContentFlagRow & { tutor_response_id?: string | null }).tutor_response_id ?? null;
-      const withdrew = body.status === 'accepted' && tutorResponseId ? withdrawResponse(db, tutorResponseId, new Date(now)) : false;
+      const withdrew = body.status === 'accepted' && tutorResponseId ? (await withdrawResponse(db, tutorResponseId, new Date(now))) : false;
 
-      db.prepare(
+      (await db.prepare(
         `INSERT INTO audit_log (actor_user_id, action, entity_type, entity_id, payload_json, created_at)
          VALUES (?, ?, ?, ?, ?, ?)`,
       ).run(
@@ -78,7 +78,7 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
           ...(withdrew ? { withdrewTutorResponse: tutorResponseId } : {}),
         }),
         now,
-      );
+      ));
 
       return true;
     })();

@@ -18,7 +18,7 @@ const bodySchema = z.object({
 export async function GET() {
   try {
     const user = await requireUser();
-    return ok({ targets: listExamTargets(getDb(), user.id) });
+    return ok({ targets: (await listExamTargets(getDb(), user.id)) });
   } catch (error) {
     return toErrorResponse(error);
   }
@@ -55,7 +55,7 @@ export async function POST(request: Request) {
       }
     }
 
-    setExamTarget(getDb(), user.id, body.examKey, body.targetScore, body.targetDate);
+    (await setExamTarget(getDb(), user.id, body.examKey, body.targetScore, body.targetDate));
     return ok({ examKey: body.examKey, targetScore: body.targetScore, targetDate: body.targetDate });
   } catch (error) {
     return toErrorResponse(error);

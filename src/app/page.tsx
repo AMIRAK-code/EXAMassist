@@ -57,8 +57,8 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
   const db = getDb();
   const hubSlug = query.exam && getHub(query.exam) ? query.exam : DEFAULT_HUB;
 
-  const home = buildHomeData(db);
-  const sample = initialSample(db, hubSlug);
+  const home = (await buildHomeData(db));
+  const sample = (await initialSample(db, hubSlug));
   const source = sourceExample();
   const asOf = new Date(home.asOf).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
@@ -66,7 +66,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
   // learner the cookie names; the page is dynamic and sent as private and
   // uncacheable, so it can never be served to anyone else.
   const user = await getCurrentUser();
-  const strip = user ? continueStudying(db, user.id) : null;
+  const strip = user ? (await continueStudying(db, user.id)) : null;
 
   return (
     <div className={accent.variable}>
