@@ -1,6 +1,6 @@
 {
   "id": "enhanced-act-sci-germination-design-033",
-  "version": 1,
+  "version": 2,
   "examKey": "enhanced-act",
   "sectionKey": "science",
   "domainSlug": "act-science-scientific-investigation",
@@ -15,22 +15,22 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "It allowed the mean root length in each tray to be measured to the nearest millimetre."
+      "textMd": "It allowed the mean root length of the seedlings in each tray to be measured to the nearest millimetre on day 10."
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "It ensured that the two varieties would reach their highest germination percentages at the same soil water content."
+      "textMd": "It ensured that Variety R and Variety S would reach their highest germination at the same soil water content."
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "It held every condition other than soil water content and seed variety constant, so that differences in germination could be attributed to those two variables."
+      "textMd": "It fixed every condition except water content and variety, so germination differences could be traced to those two."
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "It guaranteed that every tray would reach a germination percentage of at least 50%."
+      "textMd": "It guaranteed that every tray, whatever its soil water content, would reach a germination percentage of at least 50%."
     }
   ],
   "answerKey": {
@@ -39,16 +39,16 @@
   },
   "explanationMd": "Study 1 deliberately changes two things: the **soil water content** (10%, 20%, 30%, 40%) and the **seed variety** (R or S). Everything else — the potting mix, the temperature, the light period, the seed count, the growth chamber — is held fixed.\n\nThat is the logic of a controlled experiment. If the trays had also differed in temperature or in light, a difference in germination could have been caused by temperature or light instead, and the results would not tell you anything about water content. Holding the other conditions constant is what licenses the conclusion that the changes in germination come from the two variables the students chose to vary.\n\nYou can check a claim like this by asking what would break if the control were removed. Suppose the 40% trays had also sat under a brighter lamp: their germination figures would then be unusable, because two explanations would fit them equally well. That is exactly the ambiguity the fixed conditions are there to prevent.",
   "distractorRationale": {
-    "d": "Confuses a control with a guaranteed outcome. Standardising conditions does not force any particular germination percentage, and Table 1 shows several groups well below 50% — Variety R reached only 18% at 10% water.",
-    "a": "Confuses controlled conditions with measurement precision. How finely root length can be read depends on the ruler and the technique used at day 10, not on whether every tray shared the same soil and light.",
-    "b": "States an outcome the data contradict and that no control could produce. The varieties peaked at different water contents — R at 30% and S at 20% — and a well-designed study does not force two varieties to behave alike; it makes an honest comparison possible."
+    "d": "Confuses a control with a guaranteed outcome. Standardising conditions does not force any particular germination percentage, and Table 1 shows several groups well below 50% at more than one water content — Variety R reached only 18% at 10% water and Variety S only 40% at 40% water.",
+    "a": "Confuses controlled conditions with measurement precision. How finely root length can be read on day 10 depends on the ruler and the technique used, not on whether every tray shared the same soil and light.",
+    "b": "States an outcome the data contradict and that no control could produce. Variety R and Variety S peaked at different water contents — R at 30% and S at 20% — and a well-designed study does not force two varieties to behave alike; it makes an honest comparison possible."
   },
   "estimatedSeconds": 65,
   "stimulusRef": {
     "id": "enhanced-act-stim-sci-germination-005",
     "version": 1
   },
-  "accessibilityText": "The question asks why Study 1 used identical potting mix, a single growth chamber at 22 degrees Celsius, a 16-hour light period and 50 seeds in every tray, while varying only soil water content and seed variety. The choices offer a guaranteed germination level, improved measurement of root length, the isolation of the two intended variables, and forcing both varieties to peak together.",
+  "accessibilityText": "The question asks why Study 1 used identical potting mix, a single growth chamber at 22 degrees Celsius, a 16-hour light period and 50 seeds in every tray, while varying only soil water content and seed variety. The choices, in order, offer more precise measurement of root length on day 10, forcing both varieties to peak at the same soil water content, fixing every other condition so that germination differences can be traced to water content and variety, and a guaranteed germination of at least 50 percent in every tray.",
   "provenance": {
     "origin": "original",
     "authoredBy": "enhanced-act-wave3-author",
@@ -58,16 +58,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "enhanced-act-wave3-author",
-    "reviewer": "enhanced-act-wave3-reviewer",
-    "reviewedOn": "2026-09-23",
+    "reviewer": "blind-reviewer-cue-batch1-run0",
+    "reviewedOn": "2026-09-30",
     "independentSolve": {
-      "solvedBy": "enhanced-act-wave3-reviewer",
+      "solvedBy": "blind-reviewer-cue-batch1-run0",
       "solvedAnswer": "c",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Identical mix, chamber temperature, light period and seed count are controlled variables, leaving soil water content and variety as the only things that differ, so any germination difference is attributable to them. (a) confuses control with measurement precision, and (b) and (d) assert outcomes that controls cannot guarantee (and that the data contradict: peaks at 30% for R and 20% for S)."
+      "workingNotes": "Holding mix, temperature, light and seed count constant leaves only water content and variety varying, so germination differences can be attributed to them. Controls do not determine measurement precision of root length, cannot ensure both varieties peak at the same water content (they did not: S at 20%, R at 30%), and cannot guarantee at least 50% germination (several groups fell below it). [A second, separate blind solve (blind-reviewer-cue-batch1-run1) reached the same answer: Holding the mix, temperature, light and seed count constant leaves water content and variety as the only things that vary between trays, so differences in germination can be attributed to those two. Controlling these conditions does nothing to measurement precision. The same optimum for both varieties and a 50% floor are both false in the data: R peaks at 30% and S at 20%, and R reaches only 18% at 10% water.]"
     },
-    "notes": "Author solved the item and attempted to defend each distractor before keying it. Only the choice naming the isolation of the two independent variables describes what standardised conditions accomplish; the others confuse controls with a guaranteed result, with measurement precision, or with forcing the varieties to agree. Awaiting an independent blind solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author solved the item and attempted to defend each distractor before keying it. Only the choice naming the isolation of the two independent variables describes what standardised conditions accomplish; the others confuse controls with a guaranteed result, with measurement precision, or with forcing the varieties to agree. Awaiting an independent blind solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. Choices rebalanced on 2026-09-29 to remove an answer-length cue; the key is unchanged."
   },
   "state": "published",
   "quarantine": null,
