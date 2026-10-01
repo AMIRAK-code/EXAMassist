@@ -255,4 +255,16 @@ describe('clientAddress', () => {
     expect(clientAddress(headers(undefined, '198.51.100.4'), {})).toBe('198.51.100.4');
     expect(clientAddress(headers(), {})).toBe('unknown');
   });
+
+  it('on Cloudflare Workers uses CF-Connecting-IP, since X-Forwarded-For arrives as the client wrote it', () => {
+    const h = headers('203.0.113.77', '198.51.100.4');
+    h.set('cf-connecting-ip', '198.51.100.4');
+    expect(clientAddress(h, {}, true)).toBe('198.51.100.4');
+    // A rotated forged header does not change the bucket.
+    h.set('x-forwarded-for', '203.0.113.78');
+    expect(clientAddress(h, {}, true)).toBe('198.51.100.4');
+    expect(clientAddress(headers('203.0.113.77'), {}, true)).toBe('unknown');
+    // Elsewhere a client-sent CF-Connecting-IP is not trusted.
+    expect(clientAddress(h, {}, false)).toBe('203.0.113.78');
+  });
 });
