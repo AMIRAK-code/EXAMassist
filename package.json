@@ -19,19 +19,22 @@
     "verify": "npm run typecheck && npm run content:validate && npm run test",
     "supabase:check": "tsx scripts/check-supabase.ts",
     "db:import-sqlite": "tsx scripts/import-sqlite.ts",
-    "db:check": "tsx scripts/check-postgres.ts"
+    "db:check": "tsx scripts/check-postgres.ts",
+    "cf:build": "tsx scripts/cloudflare.ts build",
+    "cf:deploy": "tsx scripts/cloudflare.ts deploy"
   },
   "engines": {
     "node": ">=20.11.0"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.128.0",
-    "@next/env": "15.5.25",
+    "@next/env": "15.5.27",
+    "@opennextjs/cloudflare": "^1.20.7",
     "@supabase/supabase-js": "2.117.2",
     "better-sqlite3": "^13.0.3",
     "katex": "^0.18.7",
     "marked": "^18.0.13",
-    "next": "^15.5.25",
+    "next": "^15.5.27",
     "pg": "8.23.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
@@ -53,7 +56,8 @@
     "tailwindcss": "^4.3.3",
     "tsx": "^4.23.13",
     "typescript": "^5.9.3",
-    "vitest": "^3.2.7"
+    "vitest": "^3.2.7",
+    "wrangler": "^4.145.0"
   },
   "overrides": {
     "next": {

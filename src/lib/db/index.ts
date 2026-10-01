@@ -2,6 +2,7 @@ import Database from 'better-sqlite3';
 import fs from 'node:fs';
 import path from 'node:path';
 import { AsyncLocalStorage } from 'node:async_hooks';
+import { getCloudflareContext } from '@opennextjs/cloudflare';
 import { Pool, types, type PoolClient } from 'pg';
 import { postgresSql } from './postgres-sql';
 import { SUPABASE_CA } from './supabase-ca';
@@ -67,16 +68,18 @@ types.setTypeParser(20, (value) => {
 });
 types.setTypeParser(1700, Number);
 
-export function openPostgres(connectionString: string): Db {
+export function openPostgres(connectionString: string, options: { hyperdrive?: boolean } = {}): Db {
   const url = new URL(connectionString);
   if (!['postgres:', 'postgresql:'].includes(url.protocol)) throw new Error('DATABASE_URL must be a PostgreSQL connection string.');
-  const local = ['localhost', '127.0.0.1', '::1', '[::1]'].includes(url.hostname);
+  // Hyperdrive is reached inside Cloudflare's network and itself verifies TLS to the database.
+  const local = options.hyperdrive || ['localhost', '127.0.0.1', '::1', '[::1]'].includes(url.hostname);
   // TLS is always verified for remote databases. A supplied CA augments trust.
   for (const key of ['sslmode', 'sslcert', 'sslkey', 'sslrootcert']) url.searchParams.delete(key);
   const pool = new Pool({
     connectionString: url.toString(),
     max: 3,
-    idleTimeoutMillis: 10_000,
+    // A Worker's idle timer could fire during a later request, which may not touch this socket.
+    idleTimeoutMillis: options.hyperdrive ? 0 : 10_000,
     connectionTimeoutMillis: 10_000,
     allowExitOnIdle: true,
     ssl: local ? false : { rejectUnauthorized: true, ca: process.env.DATABASE_CA_CERT?.replace(/\\n/g, '\n') ?? (/\.supabase\.(co|com)$/.test(url.hostname) ? SUPABASE_CA : undefined) },
@@ -134,8 +137,29 @@ export function openPostgres(connectionString: string): Db {
   };
 }
 
+const onWorkers = typeof navigator !== 'undefined' && navigator.userAgent === 'Cloudflare-Workers';
+
+/*
+ * On Cloudflare Workers a socket belongs to the request that opened it, so a
+ * pool cannot be shared between requests. Hyperdrive keeps the real database
+ * connections warm, which makes a small pool per request cheap.
+ */
+const requestDbs = new WeakMap<object, Db>();
+function requestDb(): Db {
+  const { env, ctx } = getCloudflareContext();
+  let db = requestDbs.get(ctx);
+  if (!db) {
+    const hyperdrive = (env as { HYPERDRIVE?: { connectionString: string } }).HYPERDRIVE;
+    if (!hyperdrive) throw new Error('The HYPERDRIVE binding must be configured on Cloudflare.');
+    db = openPostgres(hyperdrive.connectionString, { hyperdrive: true });
+    requestDbs.set(ctx, db);
+  }
+  return db;
+}
+
 declare global { var __examerDb: Db | undefined; }
 export function getDb(): Db {
+  if (onWorkers) return requestDb();
   if (!globalThis.__examerDb) {
     if (process.env.DATABASE_URL) globalThis.__examerDb = openPostgres(process.env.DATABASE_URL);
     else {
