@@ -27,12 +27,10 @@ export function SiteHeader({ account }: { account: AccountState }) {
         <Link
           href="/"
           aria-label={`${SITE.name} home`}
-          className="shrink-0 text-2xl font-extrabold tracking-[-0.04em] text-ink no-underline hover:text-ink"
+          className="flex min-h-11 shrink-0 items-center no-underline"
         >
-          {SITE.name}
-          <span aria-hidden="true" className="text-accent">
-            .
-          </span>
+          {/* The brand files in public/brand are the source of truth; never redraw the mark in text. */}
+          <img src="/brand/examer-wordmark.svg" alt="" width={99} height={28} className="block" />
         </Link>
 
         <nav aria-label="Main" className="ms-4 hidden lg:block">
