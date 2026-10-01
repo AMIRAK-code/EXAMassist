@@ -48,6 +48,29 @@ project-specific migration notes in private local files, never in Git.
 Run npm run db:check for a PostgreSQL application smoke test that rolls back its
 test records. npm run supabase:check independently checks the public API URL/key.
 
+### Cloudflare Workers (exam.assist365.app)
+
+The site also runs as the Worker `examer` in the Cloudflare account that holds
+the assist365.app zone, built with OpenNext (`wrangler.jsonc`,
+`open-next.config.ts`). The custom domain gives it its DNS record and
+certificate. A Worker cannot keep a connection pool between requests, so the
+database goes through the Hyperdrive config `examer-db`: the same examer_app
+login against the Supabase session pooler (port 5432), TLS verify-full with the
+Supabase root certificate, and query caching off. Each request opens a small
+pool against Hyperdrive.
+
+Public settings are the `vars` in `wrangler.jsonc`; `SESSION_SECRET` is a
+Worker secret (`npx wrangler secret put SESSION_SECRET`). OpenNext copies
+`.env` and `.env.local` into the Worker bundle, so `npm run cf:deploy` refuses
+to run next to them. Deploy from a clean checkout after `npx wrangler login`:
+
+    git worktree add ../examer-cf HEAD
+    cd ../examer-cf && npm ci --ignore-scripts && npm run cf:deploy
+
+On the Workers Free plan a request may use 10 ms of CPU. One scrypt password
+check takes about 50 ms on a desktop CPU, so sign-in, sign-up and password
+reset can fail there (error 1102) until the account is on Workers Paid.
+
 ### Commands
 
 | Command | What it does |
