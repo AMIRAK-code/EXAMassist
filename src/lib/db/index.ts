@@ -4,6 +4,7 @@ import path from 'node:path';
 import { AsyncLocalStorage } from 'node:async_hooks';
 import { getCloudflareContext } from '@opennextjs/cloudflare';
 import { Pool, types, type PoolClient } from 'pg';
+import { onCloudflareWorkers } from '../runtime';
 import { postgresSql } from './postgres-sql';
 import { SUPABASE_CA } from './supabase-ca';
 
@@ -137,8 +138,6 @@ export function openPostgres(connectionString: string, options: { hyperdrive?: b
   };
 }
 
-const onWorkers = typeof navigator !== 'undefined' && navigator.userAgent === 'Cloudflare-Workers';
-
 /*
  * On Cloudflare Workers a socket belongs to the request that opened it, so a
  * pool cannot be shared between requests. Hyperdrive keeps the real database
@@ -159,7 +158,7 @@ function requestDb(): Db {
 
 declare global { var __examerDb: Db | undefined; }
 export function getDb(): Db {
-  if (onWorkers) return requestDb();
+  if (onCloudflareWorkers) return requestDb();
   if (!globalThis.__examerDb) {
     if (process.env.DATABASE_URL) globalThis.__examerDb = openPostgres(process.env.DATABASE_URL);
     else {
