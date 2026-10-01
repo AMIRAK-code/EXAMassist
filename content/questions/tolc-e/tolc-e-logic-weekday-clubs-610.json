@@ -1,6 +1,6 @@
 {
   "id": "tolc-e-logic-weekday-clubs-610",
-  "version": 1,
+  "version": 2,
   "examKey": "tolc-e",
   "sectionKey": "logic",
   "domainSlug": "tolce-logic",
@@ -9,7 +9,7 @@
   "responseType": "single_select",
   "difficulty": "medium",
   "difficultyBasis": "editorial",
-  "stemMd": "A school hall is used by five clubs - Chess, Choir, Drama, Film and Robotics. Each club meets on a different weekday from Monday to Friday, one club per day. The following is known.\n\n- Chess meets on an earlier day than Film.\n- Film meets on an earlier day than Drama.\n- Choir meets on the day immediately after Film.\n- Chess does not meet on Monday.\n\nWhich club meets on Monday?",
+  "stemMd": "A school hall is used by five clubs - Chess, Choir, Drama, Film and Music. Each club meets on a different weekday from Monday to Friday, one club per day. The following is known.\n\n- Chess meets on an earlier day than Film.\n- Film meets on an earlier day than Drama.\n- Choir meets on the day immediately after Film.\n- Chess does not meet on Monday.\n\nWhich club meets on Monday?",
   "instructionsMd": null,
   "options": [
     {
@@ -25,7 +25,7 @@
     {
       "id": "c",
       "label": "C",
-      "textMd": "Robotics"
+      "textMd": "Music"
     },
     {
       "id": "d",
@@ -42,16 +42,16 @@
     "type": "single_select",
     "optionId": "c"
   },
-  "explanationMd": "Build the chain the clues create and then see how much room it has. Chess comes before Film, Film comes before Drama, and Choir is right after Film. So Film needs one day before it (for Chess) and two different days after it (one for Choir, one for Drama, since Choir and Drama cannot share a day).\n\nChess cannot meet on Monday, so Chess is on Tuesday at the earliest, which puts Film on Wednesday at the earliest. Film also needs two later days, so Wednesday is also its latest possible day. Film is on Wednesday, Chess on Tuesday, Choir on Thursday (immediately after Film), and Drama on Friday (the only day left after Film). The club left for Monday is **Robotics**.\n\nCheck: Tuesday Chess, Wednesday Film, Thursday Choir, Friday Drama and Monday Robotics satisfy all four clues.",
+  "explanationMd": "Build the chain the clues create and then see how much room it has. Chess comes before Film, Film comes before Drama, and Choir is right after Film. So Film needs one day before it (for Chess) and two different days after it (one for Choir, one for Drama, since Choir and Drama cannot share a day).\n\nChess cannot meet on Monday, so Chess is on Tuesday at the earliest, which puts Film on Wednesday at the earliest. Film also needs two later days, so Wednesday is also its latest possible day. Film is on Wednesday, Chess on Tuesday, Choir on Thursday (immediately after Film), and Drama on Friday (the only day left after Film). The club left for Monday is **Music**.\n\nCheck: Monday Music, Tuesday Chess, Wednesday Film, Thursday Choir and Friday Drama satisfy all four clues.",
   "distractorRationale": {
-    "e": "Chess looks like the club that starts the chain, but the last clue forbids Monday for it. Chess meets on Tuesday.",
-    "d": "Choir meets the day after Film, so it cannot be the first day of the week. It meets on Thursday.",
+    "a": "Chess must meet before Film, so Film cannot be the first day of the week. It meets on Wednesday.",
     "b": "Drama must meet after Film, and Film already has Chess before it, so Drama comes late in the week. It meets on Friday.",
-    "a": "Chess must meet before Film, so Film cannot be the first day of the week. It meets on Wednesday."
+    "d": "Choir meets the day after Film, so it cannot be the first day of the week. It meets on Thursday.",
+    "e": "Chess looks like the club that starts the chain, but the last clue forbids Monday for it. Chess meets on Tuesday."
   },
   "estimatedSeconds": 110,
   "stimulusRef": null,
-  "accessibilityText": "A logic problem about scheduling. Five clubs - Chess, Choir, Drama, Film and Robotics - each meet on a different weekday from Monday to Friday. Chess meets earlier in the week than Film; Film meets earlier than Drama; Choir meets on the day right after Film; Chess does not meet on Monday. The question asks which club meets on Monday. The five choices are the five club names.",
+  "accessibilityText": "A logic problem about scheduling. Five clubs - Chess, Choir, Drama, Film and Music - each meet on a different weekday from Monday to Friday. Chess meets earlier in the week than Film; Film meets earlier than Drama; Choir meets on the day right after Film; Chess does not meet on Monday. The question asks which club meets on Monday. The five choices are the five club names, in this order: Film, Drama, Music, Choir and Chess.",
   "provenance": {
     "origin": "original",
     "authoredBy": "tolc-e-wave6-author",
@@ -61,16 +61,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "tolc-e-wave6-author",
-    "reviewer": "blind-reviewer-wave6-tolce-logic-run3",
-    "reviewedOn": "2026-09-29",
+    "reviewer": "blind-reviewer-cue2-batch1-run0",
+    "reviewedOn": "2026-10-01",
     "independentSolve": {
-      "solvedBy": "blind-reviewer-wave6-tolce-logic-run3",
+      "solvedBy": "blind-reviewer-cue2-batch1-run0",
       "solvedAnswer": "c",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Chess is at least Tuesday, so Film is at least Wednesday. Choir is the day after Film, and Drama comes after Film but cannot be Choir's day, so Drama is at least two days after Film. That forces Film = Wednesday, Choir = Thursday, Drama = Friday and Chess = Tuesday, leaving Robotics on Monday. [A second, separate blind solve (blind-reviewer-wave6-tolce-logic-run5) reached the same answer: Chess is Tuesday or later and comes before Film. Choir is the day right after Film, and Drama comes after Film but cannot be Choir's day. If Film is Thursday, Choir must be Friday and Drama has no day left, so Film is Wednesday. That gives Chess Tuesday, Choir Thursday and Drama Friday, leaving Robotics on Monday. This is the only arrangement.]"
+      "workingNotes": "Chess is before Film, Film is before Drama, and Choir is the day right after Film, so Drama is at least two days after Film. Chess is not on Monday, so Chess is on Tuesday or later, Film is on Wednesday or later, and Drama is on Friday or later. That forces Chess on Tuesday, Film on Wednesday, Choir on Thursday and Drama on Friday, which leaves Music on Monday. Film, Drama and Choir each have to come after some other club, so none can be on Monday, and the stem rules out Chess directly. [A second, separate blind solve (blind-reviewer-cue2-batch1-run1) reached the same answer: Chess cannot meet on Monday, so Chess is Tuesday or later. That puts Film on Wednesday or later. Choir meets the day after Film, and Drama must come after Film but cannot share Choir's day, so Drama is at least two days after Film. That forces Film to Wednesday, Choir to Thursday and Drama to Friday, which leaves Chess on Tuesday. The only club left for Monday is Music. Film on Thursday fails because Choir would then take Friday and leave no day for Drama, so the arrangement is unique and Film, Drama, Choir and Chess are all ruled out for Monday.]"
     },
-    "notes": "Uniqueness check: an exhaustive search over all 120 assignments finds exactly one that satisfies the four clues (Robotics, Chess, Film, Choir, Drama from Monday to Friday), and each clue is needed. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Uniqueness check: an exhaustive search over all 120 assignments finds exactly one that satisfies the four clues (Robotics, Chess, Film, Choir, Drama from Monday to Friday), and each clue is needed. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2: Renamed the Robotics club to Music on 2026-10-01 so the key is no longer the longest choice, which was the only reason cue-scan flagged the item. The clues, the unique arrangement and the key are unchanged, with Music in the place Robotics had (the uniqueness note above names the old club). The distractor notes now follow the on-screen order."
   },
   "state": "published",
   "quarantine": null,
