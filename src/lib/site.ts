@@ -2,7 +2,9 @@
  * Site-wide configuration.
  *
  * The brand is deliberately neutral and lives in one place so renaming the
- * product is a single edit here plus the favicon.
+ * product is a single edit here plus the logo files: the wordmark and symbol
+ * variants in public/brand, and the favicon (src/app/icon.svg, a copy of
+ * public/brand/examer-favicon-micro.svg).
  */
 
 export const SITE = {
