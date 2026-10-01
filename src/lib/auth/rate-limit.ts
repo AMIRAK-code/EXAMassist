@@ -24,6 +24,11 @@ export const RATE_LIMITS = {
   contentFlag: { windowSeconds: 3600, max: 20 },
   // Bursts only; the daily AI allowance is counted separately from real model calls.
   tutorRequest: { windowSeconds: 60, max: 12 },
+  // Email codes (migration 009): per caller, and per address so nobody can
+  // flood one inbox. Guessing is also capped per code (MAX_CODE_ATTEMPTS).
+  emailCodeRequest: { windowSeconds: 3600, max: 10 },
+  emailCodeAddress: { windowSeconds: 3600, max: 5 },
+  emailCodeVerify: { windowSeconds: 900, max: 20 },
 } as const satisfies Record<string, RateLimitRule>;
 
 export interface RateLimitResult {

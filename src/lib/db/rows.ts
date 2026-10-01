@@ -20,6 +20,8 @@ export interface UserRow {
   created_at: string;
   updated_at: string;
   deleted_at: string | null;
+  /** Migration 009. NULL until the address is shown to work by a code. */
+  email_verified_at: string | null;
 }
 
 export interface SessionRow {
@@ -28,6 +30,19 @@ export interface SessionRow {
   created_at: string;
   expires_at: string;
   last_seen_at: string;
+}
+
+/** A one-time code sent by email (migration 009). */
+export interface EmailCodeRow {
+  id: string;
+  user_id: string;
+  purpose: 'sign-in' | 'reset-password' | 'verify-email';
+  email: string;
+  code_hash: string;
+  attempts: number;
+  created_at: string;
+  expires_at: string;
+  consumed_at: string | null;
 }
 
 export interface QuestionRow {

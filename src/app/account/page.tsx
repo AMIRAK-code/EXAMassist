@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { getCurrentUser, requireUser } from '@/lib/auth/session';
+import { emailCodesMailer } from '@/lib/auth/email-codes';
 import { getDb } from '@/lib/db';
 import { EXAM_CONFIGS, getExamConfig } from '@/lib/exams/registry';
 import { listExamTargets } from '@/lib/learning/queries';
@@ -52,6 +53,8 @@ export default async function AccountPage() {
   const user = await requireUser();
 
   const targetConfig = user.targetExamKey ? getExamConfig(user.targetExamKey) : undefined;
+  // Offer to confirm the address only where this deployment can send the code.
+  const emailCodes = emailCodesMailer() !== null;
   // The one exam date per exam (migration 007), beside each goal.
   const examDates = (await listExamTargets(getDb(), user.id))
     .filter((target) => target.targetDate && getExamConfig(target.examKey))
@@ -94,7 +97,21 @@ export default async function AccountPage() {
               },
               {
                 term: 'Email address',
-                value: (user.email ? <span className="break-all">{user.email}</span> : null) ?? (
+                value: user.email ? (
+                  <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                    <span className="break-all">{user.email}</span>
+                    {user.emailVerifiedAt ? (
+                      <Badge tone="positive">Confirmed</Badge>
+                    ) : emailCodes ? (
+                      <>
+                        <Badge tone="caution">Not confirmed</Badge>
+                        <Link href="/verify-email?next=%2Faccount" className="text-sm">
+                          Confirm it
+                        </Link>
+                      </>
+                    ) : null}
+                  </span>
+                ) : (
                   <span className="text-ink-muted">
                     None — guest accounts store no email address
                   </span>

@@ -27,6 +27,8 @@ export interface AuthUser {
   targetDate: string | null;
   weeklyMinutes: number | null;
   isMinor: boolean;
+  /** When the email address was confirmed with a code; null if it never was. */
+  emailVerifiedAt: string | null;
   /**
    * When the session that resolved this user ends. For a guest this is when
    * this browser loses access to their practice, because a guest cannot sign
@@ -51,6 +53,9 @@ export function toAuthUser(row: UserRow): AuthUser {
     targetDate: row.target_date,
     weeklyMinutes: row.weekly_minutes,
     isMinor: row.is_minor === 1,
+    // `?? null`: a Postgres database that has not had the 009 operator
+    // migration yet has no such column, and the user is simply unconfirmed.
+    emailVerifiedAt: row.email_verified_at ?? null,
   };
 }
 
