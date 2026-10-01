@@ -1,0 +1,32 @@
+// Cloudflare Workers deployment of the site at https://exam.assist365.app.
+// Build and deploy with `npm run cf:deploy` (see open-next.config.ts).
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "examer",
+  // The account that holds the assist365.app zone.
+  "account_id": "6238aef0224c48ee73d9dfb95fd63796",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-09-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "examer" }],
+  // Cloudflare creates and maintains the DNS record and certificate for this.
+  "routes": [{ "pattern": "exam.assist365.app", "custom_domain": true }],
+  "workers_dev": false,
+  // examer-db: the examer_app login against the Supabase session pooler (port
+  // 5432), TLS verify-full against the Supabase root CA, and query caching off
+  // because the app always needs its own latest writes. Not the transaction
+  // pooler (6543): under Hyperdrive's own pooling, connections got stuck "still
+  // in a transaction" and requests failed.
+  "hyperdrive": [{ "binding": "HYPERDRIVE", "id": "59bdc939a4c04798918628c36b6e1a2d" }],
+  // Public settings. SESSION_SECRET is a Worker secret (wrangler secret put).
+  // NEXT_PUBLIC_* values are inlined at build time, so the build sets them too.
+  "vars": {
+    "NEXT_PUBLIC_SITE_URL": "https://exam.assist365.app",
+    "SEARCH_INDEXING_ENABLED": "false"
+  },
+  "observability": { "enabled": true }
+}
