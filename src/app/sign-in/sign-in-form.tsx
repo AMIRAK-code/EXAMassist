@@ -1,6 +1,7 @@
 'use client';
 
 import { useId, useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Alert, Button, buttonClass, cx, fieldClass } from '@/components/ui';
 
@@ -16,7 +17,16 @@ interface ApiErrorBody {
   error?: { code?: string; message?: string; detail?: { retryAfterSeconds?: number } };
 }
 
-export function SignInForm({ next }: { next: string | null }) {
+export function SignInForm({
+  next,
+  forgotHref,
+  codeHref,
+}: {
+  next: string | null;
+  /** Null when this deployment cannot send email, so there is no reset to offer. */
+  forgotHref: string | null;
+  codeHref: string | null;
+}) {
   const router = useRouter();
   const id = useId();
   const [email, setEmail] = useState('');
@@ -134,6 +144,11 @@ export function SignInForm({ next }: { next: string | null }) {
           aria-describedby={fieldsInvalid ? errorId : undefined}
           className={fieldClass()}
         />
+        {forgotHref ? (
+          <p className="mt-2 text-sm">
+            <Link href={forgotHref}>Forgot your password?</Link>
+          </p>
+        ) : null}
       </div>
 
       <Button type="submit" size="lg" full loading={submitting}>
@@ -143,6 +158,12 @@ export function SignInForm({ next }: { next: string | null }) {
       <p role="status" aria-live="polite" className="text-sm text-ink-muted">
         {submitting ? 'Checking your details…' : null}
       </p>
+
+      {codeHref ? (
+        <p className="border-t border-line pt-4 text-sm">
+          <Link href={codeHref}>Email me a sign-in code instead</Link>
+        </p>
+      ) : null}
     </form>
   );
 }

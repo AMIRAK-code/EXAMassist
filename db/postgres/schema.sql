@@ -17,7 +17,7 @@ CREATE TABLE users (
   created_at        TEXT NOT NULL,
   updated_at        TEXT NOT NULL,
   deleted_at        TEXT
-);
+, email_verified_at TEXT);
 
 CREATE TABLE sessions (
   id            TEXT PRIMARY KEY,                        -- SHA-256 of the cookie token
@@ -325,6 +325,21 @@ CREATE TABLE tutor_usage (
   created_at   TEXT NOT NULL
 );
 
+CREATE TABLE email_codes (
+  id           TEXT PRIMARY KEY,
+  user_id      TEXT NOT NULL REFERENCES users (id) ON DELETE CASCADE,
+  -- 'sign-in' | 'reset-password' | 'verify-email'
+  purpose      TEXT NOT NULL,
+  -- The address the code was sent to. A code proves control of this address
+  -- only, so it stops working if the account's address changes.
+  email        TEXT NOT NULL,
+  code_hash    TEXT NOT NULL,
+  attempts     BIGINT NOT NULL DEFAULT 0,
+  created_at   TEXT NOT NULL,
+  expires_at   TEXT NOT NULL,
+  consumed_at  TEXT
+);
+
 CREATE INDEX idx_users_role ON users (role);
 
 CREATE INDEX idx_users_guest_created ON users (is_guest, created_at);
@@ -382,6 +397,10 @@ CREATE INDEX idx_tutor_usage_user ON tutor_usage (user_id, created_at);
 
 CREATE INDEX idx_tutor_usage_day ON tutor_usage (created_at, cache_hit);
 
+CREATE INDEX idx_email_codes_user ON email_codes (user_id, purpose, created_at);
+
+CREATE INDEX idx_email_codes_expires ON email_codes (expires_at);
+
 ALTER TABLE examer.users ENABLE ROW LEVEL SECURITY;
 ALTER TABLE examer.sessions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE examer.stimuli ENABLE ROW LEVEL SECURITY;
@@ -405,6 +424,7 @@ ALTER TABLE examer.plans ENABLE ROW LEVEL SECURITY;
 ALTER TABLE examer.plan_sessions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE examer.tutor_responses ENABLE ROW LEVEL SECURITY;
 ALTER TABLE examer.tutor_usage ENABLE ROW LEVEL SECURITY;
+ALTER TABLE examer.email_codes ENABLE ROW LEVEL SECURITY;
 REVOKE ALL ON SCHEMA examer FROM PUBLIC, anon, authenticated;
 CREATE TABLE _migrations (name TEXT PRIMARY KEY, applied_at TEXT NOT NULL);
 INSERT INTO _migrations (name, applied_at) VALUES
@@ -415,6 +435,7 @@ INSERT INTO _migrations (name, applied_at) VALUES
 ('005_mistake_labels.sql', '2026-09-30T10:28:36.293Z'),
 ('006_response_clock.sql', '2026-09-30T10:28:36.293Z'),
 ('007_study_plans.sql', '2026-09-30T10:28:36.293Z'),
-('008_tutor.sql', '2026-09-30T10:28:36.293Z');
+('008_tutor.sql', '2026-09-30T10:28:36.293Z'),
+('009_email_codes.sql', '2026-10-01T00:00:00.000Z');
 ALTER TABLE examer._migrations ENABLE ROW LEVEL SECURITY;
 COMMIT;
