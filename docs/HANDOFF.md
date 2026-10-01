@@ -215,7 +215,8 @@ asked for are instead enforced on everything *we* author.
 2. **Whether to port to PostgreSQL now.** Advisable before multi-instance
    hosting.
 3. **The brand.** "Examer" is a placeholder in one constant
-   (`src/lib/site.ts`). Renaming is a single edit plus a favicon.
+   (`src/lib/site.ts`). Renaming is a single edit plus the logo files in
+   `public/brand` and the favicon (`src/app/icon.svg`).
 4. **Legal review** of the privacy and terms drafts, and a decision on the
    contracting entity and jurisdiction.
 5. **Whether to offer an AI tutor.** Not implemented. The brief's constraints
