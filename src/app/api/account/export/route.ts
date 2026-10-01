@@ -144,6 +144,25 @@ export async function GET() {
       )
       .all(user.id));
 
+    // Email codes sent to this account (migration 009). The codes themselves
+    // are never stored, so only what each one was for and when is exported.
+    // A Postgres database awaiting the 009 operator migration has no such
+    // table yet, which must not break the export of everything else.
+    const emailCodes = (await db
+      .prepare(
+        `SELECT purpose, email, attempts, created_at, expires_at, consumed_at
+           FROM email_codes WHERE user_id = ? ORDER BY created_at`,
+      )
+      .all(user.id)
+      .catch(() => [])) as Array<{
+      purpose: string;
+      email: string;
+      attempts: number;
+      created_at: string;
+      expires_at: string;
+      consumed_at: string | null;
+    }>;
+
     const partsByAttempt = new Map<string, AttemptPartRow[]>();
     for (const part of parts) {
       const list = partsByAttempt.get(part.attempt_id) ?? [];
@@ -180,9 +199,19 @@ export async function GET() {
         targetDate: account.target_date,
         weeklyMinutes: account.weekly_minutes,
         declaredUnder16: account.is_minor === 1,
+        // Read from the session's own row, which has it whenever the column exists.
+        emailConfirmedAt: user.emailVerifiedAt,
         createdAt: account.created_at,
         updatedAt: account.updated_at,
       },
+      emailCodes: emailCodes.map((row) => ({
+        purpose: row.purpose,
+        sentTo: row.email,
+        wrongGuesses: row.attempts,
+        sentAt: row.created_at,
+        expiresAt: row.expires_at,
+        usedAt: row.consumed_at,
+      })),
       attempts: attempts.map((attempt) => {
         const result = resultByAttempt.get(attempt.id);
         const submitted = attempt.status !== 'in_progress';
