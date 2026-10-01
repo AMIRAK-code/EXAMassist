@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto';
 import type { Db } from '@/lib/db';
+import { onCloudflareWorkers } from '@/lib/runtime';
 
 /**
  * Fixed-window rate limiting, stored in the database so it survives a restart
@@ -100,8 +101,17 @@ export function callerKey(request: Request, userId?: string | null): string {
  * none, so a deployment that exposes `next start` directly, with no proxy in
  * front, cannot tell a forged header from a real one. Deploy behind a proxy
  * that sets or appends X-Forwarded-For; see docs/HANDOFF.md.
+ *
+ * Cloudflare Workers are the exception: nothing appends to X-Forwarded-For
+ * there, so it arrives exactly as the client wrote it. Use CF-Connecting-IP,
+ * which Cloudflare sets itself and refuses to accept from a client.
  */
-export function clientAddress(headers: Headers, env: Record<string, string | undefined> = process.env): string {
+export function clientAddress(
+  headers: Headers,
+  env: Record<string, string | undefined> = process.env,
+  workers = onCloudflareWorkers,
+): string {
+  if (workers) return headers.get('cf-connecting-ip')?.trim() || 'unknown';
   const hops = Math.max(1, Number.parseInt(env.TRUSTED_PROXY_HOPS ?? '1', 10) || 1);
   const chain = (headers.get('x-forwarded-for') ?? '')
     .split(',')
