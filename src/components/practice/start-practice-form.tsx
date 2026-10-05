@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Alert, Button, cx } from '@/components/ui';
+import { PREMIUM_PATH } from '@/lib/billing/config';
 import {
   defaultLength,
   eligibleCount,
@@ -168,6 +169,10 @@ export function StartPracticeForm({
 
     const data = await response.json().catch(() => null);
 
+    if (data?.error?.code === 'premium-required') {
+      window.location.assign(PREMIUM_PATH);
+      return;
+    }
     if (!response.ok) {
       setSubmitting(false);
       const detail = data?.error?.detail;

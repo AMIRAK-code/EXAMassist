@@ -7,7 +7,10 @@ import { getDb } from '@/lib/db';
 import { EXAM_CONFIGS, getExamConfig } from '@/lib/exams/registry';
 import { listExamTargets } from '@/lib/learning/queries';
 import { examLabel } from '@/lib/learning/dashboard';
-import { Breadcrumbs, Alert, Badge, Card, Container, DefinitionList, PageHeader } from '@/components/ui';
+import { Breadcrumbs, Alert, Badge, ButtonLink, Card, Container, DefinitionList, PageHeader } from '@/components/ui';
+import { FREE_SESSIONS, PLANS, formatEuros, isPlanKey } from '@/lib/billing/config';
+import { getAccess, type Access } from '@/lib/billing/service';
+import { ManageBillingButton } from '@/components/billing/billing-buttons';
 import {
   AccountSettingsForm,
   DeleteAccountForm,
@@ -59,6 +62,8 @@ export default async function AccountPage() {
   const examDates = (await listExamTargets(getDb(), user.id))
     .filter((target) => target.targetDate && getExamConfig(target.examKey))
     .map((target) => ({ examKey: target.examKey, label: examLabel(target.examKey), date: formatDate(target.targetDate)! }));
+
+  const access = await getAccess(getDb(), user.id);
 
   const examOptions = EXAM_CONFIGS.map((config) => ({
     examKey: config.examKey,
@@ -183,6 +188,17 @@ export default async function AccountPage() {
         </Card>
       </section>
 
+      {access.paywall ? (
+        <section id="billing" aria-labelledby="billing-heading" className="mb-10 scroll-mt-24">
+          <h2 id="billing-heading" className="mb-4 font-heading text-2xl font-semibold">
+            Plan and billing
+          </h2>
+          <Card>
+            <PlanSummary access={access} isGuest={user.isGuest} />
+          </Card>
+        </section>
+      ) : null}
+
       <section aria-labelledby="data-heading" className="mb-10">
         <h2 id="data-heading" className="mb-4 font-heading text-2xl font-semibold">
           Your data
@@ -223,5 +239,87 @@ export default async function AccountPage() {
         brought back.
       </p>
     </Container>
+  );
+}
+
+const STATUS_LABEL: Record<string, string> = {
+  active: 'Active',
+  trialing: 'Active',
+  past_due: 'Payment retrying',
+  unpaid: 'Unpaid',
+  paused: 'Paused',
+  canceled: 'Cancelled',
+  incomplete: 'Waiting for payment',
+  incomplete_expired: 'Checkout expired',
+};
+
+/** The learner's plan: Premium with its renewal date, or the free session and a way to upgrade. */
+function PlanSummary({ access, isGuest }: { access: Access; isGuest: boolean }) {
+  const subscription = access.subscription;
+  const planKey = subscription?.plan;
+  const plan = isPlanKey(planKey) ? PLANS[planKey] : null;
+  const periodEnd = subscription?.current_period_end ? formatDate(subscription.current_period_end.slice(0, 10)) : null;
+
+  if (access.premium && subscription) {
+    return (
+      <>
+        <DefinitionList
+          items={[
+            { term: 'Plan', value: <Badge tone="positive">Premium{plan ? `, ${plan.name} plan` : ''}</Badge> },
+            ...(plan ? [{ term: 'Price', value: `${formatEuros(plan.amount)} ${plan.billedEvery}, VAT included` }] : []),
+            { term: 'Status', value: STATUS_LABEL[subscription.status ?? ''] ?? subscription.status ?? 'Active' },
+            ...(periodEnd
+              ? [{ term: subscription.cancel_at_period_end ? 'Ends on' : 'Renews on', value: periodEnd }]
+              : []),
+          ]}
+        />
+        {subscription.status === 'past_due' ? (
+          <Alert tone="caution" className="mt-4">
+            <p>The last renewal payment did not go through. Stripe will try again; you can update your card under Manage billing.</p>
+          </Alert>
+        ) : null}
+        <p className="mt-5 border-t border-line pt-4 text-sm text-ink-muted">
+          Change plan, update your card, download invoices or cancel on Stripe&rsquo;s secure billing page.
+          If you cancel, Premium stays on until the end of the period you paid for.
+        </p>
+        <div className="mt-4">
+          <ManageBillingButton />
+        </div>
+      </>
+    );
+  }
+
+  if (access.staff) {
+    return <p className="text-sm text-ink-muted">Editors and administrators have every exam and practice format open, without a plan.</p>;
+  }
+
+  return (
+    <>
+      <DefinitionList
+        items={[
+          { term: 'Plan', value: <Badge tone="neutral">Free</Badge> },
+          {
+            term: 'Free session',
+            value:
+              access.freeSessionsLeft > 0
+                ? `Not used yet: you can run ${FREE_SESSIONS === 1 ? 'one session' : `${access.freeSessionsLeft} sessions`} on any exam.`
+                : 'Used. Its results stay in your history.',
+          },
+          ...(subscription?.status
+            ? [{ term: 'Last plan', value: `${STATUS_LABEL[subscription.status] ?? subscription.status}${periodEnd ? `, ${periodEnd}` : ''}` }]
+            : []),
+        ]}
+      />
+      <p className="mt-5 border-t border-line pt-4 text-sm text-ink-muted">
+        Premium opens every exam and every practice format, from {formatEuros(PLANS.yearly.perMonth)} a month.
+        {isGuest ? ' It needs an account, so create one first; your guest practice comes with you.' : ''}
+      </p>
+      <div className="mt-4 flex flex-wrap gap-3">
+        <ButtonLink href={isGuest ? `/sign-up?next=${encodeURIComponent('/premium')}` : '/premium'}>
+          {isGuest ? 'Create an account' : 'See Premium plans'}
+        </ButtonLink>
+        {subscription && !isGuest ? <ManageBillingButton label="Past invoices" /> : null}
+      </div>
+    </>
   );
 }

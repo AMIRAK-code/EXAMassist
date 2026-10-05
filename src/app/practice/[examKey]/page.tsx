@@ -9,6 +9,9 @@ import { getCurrentUser } from '@/lib/auth/session';
 import { StartPracticeForm, type PresetSkill } from '@/components/practice/start-practice-form';
 import { GUEST_NOTE_SHORT } from '@/components/site/nav-items';
 import { StartBlueprintButton } from '@/components/practice/start-blueprint-button';
+import { PremiumNotice } from '@/components/billing/premium-notice';
+import { billingSettings } from '@/lib/billing/config';
+import { getAccess } from '@/lib/billing/service';
 import {
   Alert,
   Badge,
@@ -64,6 +67,7 @@ export default async function PracticeSetupPage({
   const availability = (await blueprintAvailability(db, config));
   const hub = getHubForConfig(config.examKey);
   const user = await getCurrentUser();
+  const access = user ? await getAccess(db, user.id) : null;
 
   const others = availability.filter((a) => a.blueprint.id !== 'practice');
   const totalItems = eligibleCount(facets, {});
@@ -127,6 +131,8 @@ export default async function PracticeSetupPage({
         title={`Practise ${config.name}`}
         lead="Practise by topic, untimed, or choose another format below."
       />
+
+      {totalItems > 0 ? <PremiumNotice access={access} paywall={billingSettings().enabled} className="mb-8" /> : null}
 
       {totalItems === 0 ? (
         <Alert tone="caution" title="No reviewed questions yet for this exam">
