@@ -13,7 +13,7 @@ export const SITE = {
   shortName: 'Examer',
   tagline: 'Admission test preparation, verified against official sources',
   description:
-    'Free practice questions, exam format guides and timed practice for the Bocconi Online Test, Digital SAT, Enhanced ACT, LSAT, GMAT and GRE. Every format claim is sourced to the test maker.',
+    'Practice questions, exam format guides and timed practice for the Bocconi Online Test, Digital SAT, Enhanced ACT, LSAT, GMAT and GRE, with your first session free. Every format claim is sourced to the test maker.',
   locale: 'en',
   /**
    * Publisher identity shown on public content and in structured data. Not

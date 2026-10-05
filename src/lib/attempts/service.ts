@@ -44,6 +44,8 @@ import {
   type SelectionConstraint,
 } from '@/lib/assessment/types';
 import { getBlueprint, getExamConfig, getSection, labelsFor, requireExamConfig } from '@/lib/exams/registry';
+import { FREE_SESSIONS } from '@/lib/billing/config';
+import { getAccess, sessionNeedsPremium, type Access } from '@/lib/billing/service';
 import { eligiblePool } from './eligibility';
 import { resolveResume, type ResumeDestination, type ResumeReason } from './resume';
 import { MAX_RETRY_QUESTIONS, RETRY_BLUEPRINT_ID, blueprintForAttempt, retryBlueprint } from './retry';
@@ -73,6 +75,15 @@ export class AttemptError extends Error {
 }
 
 export const notFound = () => new AttemptError('not-found', 'Attempt not found.', 404);
+
+/** The free session is used: anything more needs Premium (src/lib/billing). */
+export const premiumRequired = (access: Access) =>
+  new AttemptError(
+    'premium-required',
+    'You have used your free session. Premium opens every exam and every practice format.',
+    402,
+    { sessionsUsed: access.sessionsUsed, freeSessions: FREE_SESSIONS },
+  );
 
 // ---------------------------------------------------------------------------
 // Settings and blueprint resolution
@@ -256,6 +267,11 @@ export async function startAttempt(db: Db, input: StartAttemptInput): Promise<St
     if (existing) return { attemptId: existing.id, reused: true, notes: [] };
   }
 
+  // One free session, then Premium. Checked again where the session is
+  // written, so two tabs cannot both spend the free one.
+  const access = await getAccess(db, input.userId);
+  if (await sessionNeedsPremium(db, input.userId, access)) throw premiumRequired(access);
+
   const parts = resolveParts(blueprint, input.overrides ?? {}, config);
   // The same eligibility rule the practice screen uses to say what is open.
   const eligible = eligiblePool((await getPool(db, input.examKey, input.userId)), blueprint);
@@ -301,6 +317,7 @@ export async function startAttempt(db: Db, input: StartAttemptInput): Promise<St
   }
 
   const insert = db.transaction(async () => {
+    if (await sessionNeedsPremium(db, input.userId, access)) throw premiumRequired(access);
     (await db.prepare(
       `INSERT INTO attempts (
          id, user_id, exam_key, exam_config_version, blueprint_id, mode, status, seed,
@@ -463,6 +480,9 @@ export async function startRetry(db: Db, input: StartRetryInput): Promise<StartR
     if (!owned) throw notFound();
   }
 
+  const access = await getAccess(db, input.userId);
+  if (await sessionNeedsPremium(db, input.userId, access)) throw premiumRequired(access);
+
   const { available, unavailable } = (await retryCandidates(db, input.userId, input.examKey, input.questionIds));
   const chosen = available.slice(0, MAX_RETRY_QUESTIONS);
   if (chosen.length === 0) {
@@ -487,6 +507,7 @@ export async function startRetry(db: Db, input: StartRetryInput): Promise<StartR
   };
 
   const insert = db.transaction(async () => {
+    if (await sessionNeedsPremium(db, input.userId, access)) throw premiumRequired(access);
     (await db.prepare(
       `INSERT INTO attempts (
          id, user_id, exam_key, exam_config_version, blueprint_id, mode, status, seed,

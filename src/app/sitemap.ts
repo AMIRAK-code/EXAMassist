@@ -21,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl('/'), changeFrequency: 'weekly', priority: 1 },
     { url: absoluteUrl('/exams'), changeFrequency: 'weekly', priority: 0.9 },
     { url: absoluteUrl('/guides'), changeFrequency: 'weekly', priority: 0.7 },
+    { url: absoluteUrl('/premium'), changeFrequency: 'monthly', priority: 0.6 },
     { url: absoluteUrl('/about/editorial-standards'), changeFrequency: 'monthly', priority: 0.5 },
     { url: absoluteUrl('/about/how-scoring-works'), changeFrequency: 'monthly', priority: 0.5 },
     { url: absoluteUrl('/about/privacy'), changeFrequency: 'yearly', priority: 0.3 },

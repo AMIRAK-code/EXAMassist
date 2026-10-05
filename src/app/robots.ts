@@ -37,6 +37,7 @@ export default function robots(): MetadataRoute.Robots {
     '/practice/',
     '/sign-in',
     '/sign-up',
+    '/premium/welcome',
   ];
 
   return {

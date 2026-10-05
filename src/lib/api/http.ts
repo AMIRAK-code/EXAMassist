@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { ZodError } from 'zod';
 import { AttemptError } from '@/lib/attempts/service';
+import { BillingError } from '@/lib/billing/service';
 import { ForbiddenError, UnauthorizedError } from '@/lib/auth/session';
 import { EmailDeliveryError } from '@/lib/email/send';
 import { TutorError } from '@/lib/tutor/service';
@@ -35,6 +36,9 @@ export function toErrorResponse(error: unknown): NextResponse {
     return fail(error.code, error.message, error.status, error.detail);
   }
   if (error instanceof TutorError) {
+    return fail(error.code, error.message, error.status, error.detail);
+  }
+  if (error instanceof BillingError) {
     return fail(error.code, error.message, error.status, error.detail);
   }
   if (error instanceof UnauthorizedError) {

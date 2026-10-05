@@ -163,6 +163,28 @@ export async function GET() {
       consumed_at: string | null;
     }>;
 
+    // Premium (migration 010): which Stripe customer pays for this account and
+    // the plan it is on. Card details never reach us, so there are none here.
+    const subscription = (await db
+      .prepare(
+        `SELECT stripe_customer_id, stripe_subscription_id, plan, status, current_period_end,
+                cancel_at_period_end, created_at, updated_at
+           FROM subscriptions WHERE user_id = ?`,
+      )
+      .get(user.id)
+      .catch(() => undefined)) as
+      | {
+          stripe_customer_id: string;
+          stripe_subscription_id: string | null;
+          plan: string | null;
+          status: string | null;
+          current_period_end: string | null;
+          cancel_at_period_end: number;
+          created_at: string;
+          updated_at: string;
+        }
+      | undefined;
+
     const partsByAttempt = new Map<string, AttemptPartRow[]>();
     for (const part of parts) {
       const list = partsByAttempt.get(part.attempt_id) ?? [];
@@ -204,6 +226,18 @@ export async function GET() {
         createdAt: account.created_at,
         updatedAt: account.updated_at,
       },
+      premium: subscription
+        ? {
+            stripeCustomerId: subscription.stripe_customer_id,
+            stripeSubscriptionId: subscription.stripe_subscription_id,
+            plan: subscription.plan,
+            status: subscription.status,
+            currentPeriodEnd: subscription.current_period_end,
+            cancelsAtPeriodEnd: Number(subscription.cancel_at_period_end) === 1,
+            createdAt: subscription.created_at,
+            updatedAt: subscription.updated_at,
+          }
+        : null,
       emailCodes: emailCodes.map((row) => ({
         purpose: row.purpose,
         sentTo: row.email,

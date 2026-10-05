@@ -340,6 +340,20 @@ CREATE TABLE email_codes (
   consumed_at  TEXT
 );
 
+CREATE TABLE subscriptions (
+  user_id                TEXT PRIMARY KEY REFERENCES users (id) ON DELETE CASCADE,
+  stripe_customer_id     TEXT NOT NULL UNIQUE,
+  stripe_subscription_id TEXT,
+  -- 'monthly' | 'quarterly' | 'yearly'; NULL until a checkout completes
+  plan                   TEXT,
+  -- Stripe's subscription status: active, trialing, past_due, canceled, ...
+  status                 TEXT,
+  current_period_end     TEXT,
+  cancel_at_period_end   BIGINT NOT NULL DEFAULT 0,
+  created_at             TEXT NOT NULL,
+  updated_at             TEXT NOT NULL
+);
+
 CREATE INDEX idx_users_role ON users (role);
 
 CREATE INDEX idx_users_guest_created ON users (is_guest, created_at);
@@ -425,6 +439,7 @@ ALTER TABLE examer.plan_sessions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE examer.tutor_responses ENABLE ROW LEVEL SECURITY;
 ALTER TABLE examer.tutor_usage ENABLE ROW LEVEL SECURITY;
 ALTER TABLE examer.email_codes ENABLE ROW LEVEL SECURITY;
+ALTER TABLE examer.subscriptions ENABLE ROW LEVEL SECURITY;
 REVOKE ALL ON SCHEMA examer FROM PUBLIC, anon, authenticated;
 CREATE TABLE _migrations (name TEXT PRIMARY KEY, applied_at TEXT NOT NULL);
 INSERT INTO _migrations (name, applied_at) VALUES
@@ -436,6 +451,7 @@ INSERT INTO _migrations (name, applied_at) VALUES
 ('006_response_clock.sql', '2026-09-30T10:28:36.293Z'),
 ('007_study_plans.sql', '2026-09-30T10:28:36.293Z'),
 ('008_tutor.sql', '2026-09-30T10:28:36.293Z'),
-('009_email_codes.sql', '2026-10-01T00:00:00.000Z');
+('009_email_codes.sql', '2026-10-01T00:00:00.000Z'),
+('010_billing.sql', '2026-10-05T00:00:00.000Z');
 ALTER TABLE examer._migrations ENABLE ROW LEVEL SECURITY;
 COMMIT;
