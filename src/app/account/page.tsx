@@ -299,11 +299,19 @@ function PlanSummary({ access, isGuest }: { access: Access; isGuest: boolean }) 
         items={[
           { term: 'Plan', value: <Badge tone="neutral">Free</Badge> },
           {
-            term: 'Free session',
-            value:
-              access.freeSessionsLeft > 0
-                ? `Not used yet: you can run ${FREE_SESSIONS === 1 ? 'one session' : `${access.freeSessionsLeft} sessions`} on any exam.`
-                : 'Used. Its results stay in your history.',
+            term: 'Free test',
+            value: isGuest ? (
+              'Needs an account. Without one, the sample question on the home page is open to you.'
+            ) : access.firstSession ? (
+              <>
+                {access.firstSession.status === 'in_progress' ? 'Started' : 'Taken'} on {examLabel(access.firstSession.examKey)}.{' '}
+                <Link href={access.firstSession.status === 'in_progress' ? `/attempt/${access.firstSession.id}` : `/attempt/${access.firstSession.id}/results`}>
+                  {access.firstSession.status === 'in_progress' ? 'Continue it' : 'See its results'}
+                </Link>
+              </>
+            ) : (
+              `Not taken yet: ${FREE_SESSIONS === 1 ? 'one test' : `${FREE_SESSIONS} tests`} on the exam of your choice, the same fixed questions for everyone.`
+            ),
           },
           ...(subscription?.status
             ? [{ term: 'Last plan', value: `${STATUS_LABEL[subscription.status] ?? subscription.status}${periodEnd ? `, ${periodEnd}` : ''}` }]

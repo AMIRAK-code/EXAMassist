@@ -45,7 +45,7 @@ import {
 } from '@/lib/assessment/types';
 import { getBlueprint, getExamConfig, getSection, labelsFor, requireExamConfig } from '@/lib/exams/registry';
 import { FREE_SESSIONS } from '@/lib/billing/config';
-import { getAccess, sessionNeedsPremium, type Access } from '@/lib/billing/service';
+import { getAccess, sessionBlock, type Access, type SessionBlock } from '@/lib/billing/service';
 import { eligiblePool } from './eligibility';
 import { resolveResume, type ResumeDestination, type ResumeReason } from './resume';
 import { MAX_RETRY_QUESTIONS, RETRY_BLUEPRINT_ID, blueprintForAttempt, retryBlueprint } from './retry';
@@ -76,14 +76,83 @@ export class AttemptError extends Error {
 
 export const notFound = () => new AttemptError('not-found', 'Attempt not found.', 404);
 
-/** The free session is used: anything more needs Premium (src/lib/billing). */
+/** Beyond the free test: Premium (src/lib/billing). */
 export const premiumRequired = (access: Access) =>
   new AttemptError(
     'premium-required',
-    'You have used your free session. Premium opens every exam and every practice format.',
+    access.sessionsUsed > 0
+      ? 'You have taken your free test. Premium opens every exam and every practice format.'
+      : 'This format is part of Premium. A free account can take the free test.',
     402,
     { sessionsUsed: access.sessionsUsed, freeSessions: FREE_SESSIONS },
   );
+
+/** Guests get no sessions while Premium is on sale; a free account gets the free test. */
+export const accountRequired = () =>
+  new AttemptError('account-required', 'Create a free account to take the free test.', 403);
+
+function blocked(reason: SessionBlock, access: Access): AttemptError | null {
+  if (reason === 'premium-required') return premiumRequired(access);
+  if (reason === 'account-required') return accountRequired();
+  return null;
+}
+
+// ---------------------------------------------------------------------------
+// The free test
+// ---------------------------------------------------------------------------
+
+/** Changing this gives everyone a new free test, so only bump it on purpose. */
+export const FREE_TEST_SEED = 'examer-free-test-v1';
+
+/** The formats the free test is built from, in order of preference. */
+const FREE_TEST_BLUEPRINTS = ['diagnostic', 'practice'];
+
+/**
+ * The free test, the same for everyone: the exam's diagnostic, or its default
+ * practice set where the diagnostic cannot be built. The pool ignores each
+ * learner's history and is put in a fixed order, so the seed alone decides
+ * which questions it holds, whoever takes it and however often they sign up.
+ */
+export function chooseFreeTest(
+  config: ExamConfig,
+  rawPool: readonly PoolItem[],
+): { blueprint: Blueprint; parts: BlueprintPart[]; pool: PoolItem[] } | null {
+  const stable = rawPool
+    .map((item) => ({ ...item, lastSeenAt: null }))
+    .sort((a, b) => compareIds(a.questionId, b.questionId) || compareIds(a.questionVersionId, b.questionVersionId));
+  for (const id of FREE_TEST_BLUEPRINTS) {
+    const blueprint = getBlueprint(config, id);
+    if (!blueprint) continue;
+    const parts = resolveParts(blueprint, {}, config);
+    const pool = eligiblePool(stable, blueprint);
+    if (checkBlueprintSufficiency(pool, parts).sufficient) return { blueprint, parts, pool };
+  }
+  return null;
+}
+
+/** Plain code-unit order, the same on every engine and locale. */
+const compareIds = (a: string, b: string) => (a < b ? -1 : a > b ? 1 : 0);
+
+/** What an exam's free test is, for the pages that offer it. */
+export async function freeTestPreview(db: Db, examKey: string) {
+  const config = getExamConfig(examKey);
+  if (!config) return null;
+  const choice = chooseFreeTest(config, await getPool(db, examKey, null));
+  if (!choice) return null;
+  const { blueprint, parts } = choice;
+  const seconds =
+    blueprint.timing === 'overall'
+      ? blueprint.overallTimeLimitSeconds
+      : blueprint.timing === 'per_part'
+        ? parts.reduce((sum, part) => sum + (part.timeLimitSeconds ?? 0), 0)
+        : null;
+  return {
+    blueprint,
+    questions: parts.reduce((sum, part) => sum + part.itemCount, 0),
+    minutes: seconds ? Math.round(seconds / 60) : null,
+    sections: parts.length,
+  };
+}
 
 // ---------------------------------------------------------------------------
 // Settings and blueprint resolution
@@ -117,6 +186,8 @@ export interface AttemptSettings {
    * (learning/plan.ts), fixed when the session is created.
    */
   newQuestionsOnly?: true;
+  /** The free test (FREE_TEST_SEED): fixed questions, the same for everyone. */
+  freeTest?: true;
 }
 
 /** Immediate feedback is a study aid, never offered inside a timed simulation. */
@@ -234,6 +305,11 @@ export interface StartAttemptInput {
   idempotencyKey?: string | null;
   seed?: string;
   now?: Date;
+  /**
+   * The free test (chooseFreeTest): fixed questions, the same for everyone.
+   * blueprintId, overrides and seed are ignored.
+   */
+  freeTest?: boolean;
 }
 
 export interface StartAttemptResult {
@@ -246,10 +322,11 @@ export async function startAttempt(db: Db, input: StartAttemptInput): Promise<St
   const now = input.now ?? new Date();
   const config = getExamConfig(input.examKey);
   if (!config) throw new AttemptError('unknown-exam', 'That exam is not offered.', 404);
-  const blueprint = getBlueprint(config, input.blueprintId);
-  if (!blueprint) throw new AttemptError('unknown-blueprint', 'That practice format does not exist.', 404);
+  const freeTest = input.freeTest === true;
+  const requested = freeTest ? null : getBlueprint(config, input.blueprintId);
+  if (!freeTest && !requested) throw new AttemptError('unknown-blueprint', 'That practice format does not exist.', 404);
 
-  if (blueprint.mode === 'simulation' && !config.capabilities.fullSimulation.available) {
+  if (requested?.mode === 'simulation' && !config.capabilities.fullSimulation.available) {
     throw new AttemptError(
       'simulation-unavailable',
       'A full simulation is not offered for this exam.',
@@ -267,29 +344,46 @@ export async function startAttempt(db: Db, input: StartAttemptInput): Promise<St
     if (existing) return { attemptId: existing.id, reused: true, notes: [] };
   }
 
-  // One free session, then Premium. Checked again where the session is
-  // written, so two tabs cannot both spend the free one.
+  // Without Premium there is only the free test, and only for an account.
+  // Checked again where the session is written, so two tabs cannot both
+  // spend it.
   const access = await getAccess(db, input.userId);
-  if (await sessionNeedsPremium(db, input.userId, access)) throw premiumRequired(access);
+  const kind = freeTest ? 'free-test' : 'session';
+  const refusal = blocked(await sessionBlock(db, input.userId, access, kind), access);
+  if (refusal) throw refusal;
 
-  const parts = resolveParts(blueprint, input.overrides ?? {}, config);
-  // The same eligibility rule the practice screen uses to say what is open.
-  const eligible = eligiblePool((await getPool(db, input.examKey, input.userId)), blueprint);
-  const customisable = blueprint.mode === 'practice' && blueprint.timing === 'untimed';
-  const newQuestionsOnly = customisable && input.overrides?.unseenOnly === true;
-  const pool = newQuestionsOnly ? eligible.filter((item) => item.lastSeenAt === null) : eligible;
-  const sufficiency = checkBlueprintSufficiency(pool, parts);
-  if (!sufficiency.sufficient) {
-    throw new AttemptError(
-      'insufficient-content',
-      'There are not enough reviewed questions to build this session without repeating one.',
-      409,
-      sufficiency,
-    );
+  const rawPool = await getPool(db, input.examKey, input.userId);
+  let blueprint: Blueprint;
+  let parts: BlueprintPart[];
+  let pool: PoolItem[];
+  let newQuestionsOnly = false;
+  if (freeTest) {
+    const choice = chooseFreeTest(config, rawPool);
+    if (!choice) {
+      throw new AttemptError('insufficient-content', 'There are not enough reviewed questions to build the free test yet.', 409);
+    }
+    ({ blueprint, parts, pool } = choice);
+  } else {
+    blueprint = requested!;
+    parts = resolveParts(blueprint, input.overrides ?? {}, config);
+    // The same eligibility rule the practice screen uses to say what is open.
+    const eligible = eligiblePool(rawPool, blueprint);
+    const customisable = blueprint.mode === 'practice' && blueprint.timing === 'untimed';
+    newQuestionsOnly = customisable && input.overrides?.unseenOnly === true;
+    pool = newQuestionsOnly ? eligible.filter((item) => item.lastSeenAt === null) : eligible;
+    const sufficiency = checkBlueprintSufficiency(pool, parts);
+    if (!sufficiency.sufficient) {
+      throw new AttemptError(
+        'insufficient-content',
+        'There are not enough reviewed questions to build this session without repeating one.',
+        409,
+        sufficiency,
+      );
+    }
   }
 
   const attemptId = randomUUID();
-  const seed = input.seed ?? randomUUID();
+  const seed = freeTest ? `${FREE_TEST_SEED}:${config.examKey}` : (input.seed ?? randomUUID());
   const rng = createRng(seed);
   const notes: string[] = [];
 
@@ -297,9 +391,10 @@ export async function startAttempt(db: Db, input: StartAttemptInput): Promise<St
     blueprint.timing === 'overall' ? computeDeadline(now, blueprint.overallTimeLimitSeconds) : null;
 
   const settings: AttemptSettings = {
-    overrides: input.overrides ?? {},
+    overrides: freeTest ? {} : (input.overrides ?? {}),
     immediateFeedback: allowsImmediateFeedback(blueprint),
     ...(newQuestionsOnly ? { newQuestionsOnly: true as const } : {}),
+    ...(freeTest ? { freeTest: true as const } : {}),
   };
 
   const usedQuestionIds = new Set<string>();
@@ -317,7 +412,8 @@ export async function startAttempt(db: Db, input: StartAttemptInput): Promise<St
   }
 
   const insert = db.transaction(async () => {
-    if (await sessionNeedsPremium(db, input.userId, access)) throw premiumRequired(access);
+    const late = blocked(await sessionBlock(db, input.userId, access, kind), access);
+    if (late) throw late;
     (await db.prepare(
       `INSERT INTO attempts (
          id, user_id, exam_key, exam_config_version, blueprint_id, mode, status, seed,
@@ -480,8 +576,10 @@ export async function startRetry(db: Db, input: StartRetryInput): Promise<StartR
     if (!owned) throw notFound();
   }
 
+  // Retries are part of Premium: the free test is the only free session.
   const access = await getAccess(db, input.userId);
-  if (await sessionNeedsPremium(db, input.userId, access)) throw premiumRequired(access);
+  const refusal = blocked(await sessionBlock(db, input.userId, access, 'session'), access);
+  if (refusal) throw refusal;
 
   const { available, unavailable } = (await retryCandidates(db, input.userId, input.examKey, input.questionIds));
   const chosen = available.slice(0, MAX_RETRY_QUESTIONS);
@@ -507,7 +605,8 @@ export async function startRetry(db: Db, input: StartRetryInput): Promise<StartR
   };
 
   const insert = db.transaction(async () => {
-    if (await sessionNeedsPremium(db, input.userId, access)) throw premiumRequired(access);
+    const late = blocked(await sessionBlock(db, input.userId, access, 'session'), access);
+    if (late) throw late;
     (await db.prepare(
       `INSERT INTO attempts (
          id, user_id, exam_key, exam_config_version, blueprint_id, mode, status, seed,

@@ -1,4 +1,4 @@
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getDb } from '@/lib/db';
 import { EXAM_CONFIGS, getBlueprint, getExamConfig, getHubForConfig } from '@/lib/exams/registry';
@@ -9,8 +9,7 @@ import { getCurrentUser } from '@/lib/auth/session';
 import { StartPracticeForm, type PresetSkill } from '@/components/practice/start-practice-form';
 import { GUEST_NOTE_SHORT } from '@/components/site/nav-items';
 import { StartBlueprintButton } from '@/components/practice/start-blueprint-button';
-import { PremiumNotice } from '@/components/billing/premium-notice';
-import { billingSettings } from '@/lib/billing/config';
+import { billingSettings, startPath } from '@/lib/billing/config';
 import { getAccess } from '@/lib/billing/service';
 import {
   Alert,
@@ -67,7 +66,9 @@ export default async function PracticeSetupPage({
   const availability = (await blueprintAvailability(db, config));
   const hub = getHubForConfig(config.examKey);
   const user = await getCurrentUser();
-  const access = user ? await getAccess(db, user.id) : null;
+  // Every format here is Premium while it is on sale. Anyone else gets the
+  // exam's short introduction, then the plans or the free test.
+  if (billingSettings().enabled && !(user && (await getAccess(db, user.id)).fullAccess)) redirect(startPath(config.examKey));
 
   const others = availability.filter((a) => a.blueprint.id !== 'practice');
   const totalItems = eligibleCount(facets, {});
@@ -132,7 +133,6 @@ export default async function PracticeSetupPage({
         lead="Practise by topic, untimed, or choose another format below."
       />
 
-      {totalItems > 0 ? <PremiumNotice access={access} paywall={billingSettings().enabled} className="mb-8" /> : null}
 
       {totalItems === 0 ? (
         <Alert tone="caution" title="No reviewed questions yet for this exam">

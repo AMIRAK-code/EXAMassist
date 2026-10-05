@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { getCurrentUser } from '@/lib/auth/session';
 import { getDb } from '@/lib/db';
 import { absoluteUrl, SITE } from '@/lib/site';
-import { EXAM_CONFIGS } from '@/lib/exams/registry';
+import { EXAM_CONFIGS, getExamConfig } from '@/lib/exams/registry';
 import { tutorSettings } from '@/lib/tutor/config';
-import { FREE_SESSIONS, PLANS, PLAN_KEYS, billingSettings, formatEuros } from '@/lib/billing/config';
+import { FREE_SESSIONS, PLANS, PLAN_KEYS, billingSettings, formatEuros, freeTestPath } from '@/lib/billing/config';
 import { getAccess, premiumActive } from '@/lib/billing/service';
 import { Alert, Badge, Breadcrumbs, ButtonLink, Card, Container, PageHeader, cx } from '@/components/ui';
 import { ChoosePlanButton, ManageBillingButton } from '@/components/billing/billing-buttons';
@@ -29,7 +29,7 @@ const saving = (perMonth: number) => Math.floor((1 - perMonth / MONTHLY) * 100);
 export default async function PremiumPage({
   searchParams,
 }: {
-  searchParams: Promise<{ checkout?: string; reason?: string }>;
+  searchParams: Promise<{ checkout?: string; reason?: string; exam?: string }>;
 }) {
   const query = await searchParams;
   const settings = billingSettings();
@@ -37,10 +37,13 @@ export default async function PremiumPage({
   const access = user ? await getAccess(getDb(), user.id) : null;
   const premium = access ? premiumActive(access.subscription) : false;
   const tutor = tutorSettings().enabled;
+  // Came here from an exam's introduction: the free test for it is the way to skip
+  const exam = typeof query.exam === 'string' ? getExamConfig(query.exam) : undefined;
+  const offerFreeTest = settings.enabled && !access?.fullAccess && (access?.sessionsUsed ?? 0) === 0;
 
   const includes = [
     `Every exam on ${SITE.name}, all ${EXAM_CONFIGS.length} of them, with every practice format each one offers.`,
-    'As many sessions as you like: topic practice, timed sections and full-length mock exams wherever the exam offers one.',
+    'As many sessions as you like, with fresh questions in each: topic practice, timed sections and full-length mock exams wherever the exam offers one.',
     'Retries of the questions you missed, your review queue, and the sessions your study plan schedules.',
     'Full results and the worked explanation for every question, in every session.',
     ...(tutor ? ['The AI tutor’s hints and deeper explanations, within its daily allowance.'] : []),
@@ -52,8 +55,14 @@ export default async function PremiumPage({
       <PageHeader
         eyebrow={`${SITE.name} Premium`}
         title="Practise every exam, as often as you need"
-        lead={`Everyone gets ${FREE_SESSIONS === 1 ? 'one free session' : `${FREE_SESSIONS} free sessions`} on the exam of their choice, with full results. Premium opens everything else.`}
-      />
+        lead="A free account gets one free test on the exam of its choice: the same fixed questions for everyone. Premium opens everything else, with fresh questions in every session."
+      >
+        {exam && offerFreeTest ? (
+          <Link href={freeTestPath(exam.examKey)} className="font-semibold">
+            Not ready to choose? Take the free {exam.shortName} test first
+          </Link>
+        ) : null}
+      </PageHeader>
 
       <div className="mb-8 space-y-4">
         {!settings.enabled ? (
@@ -66,11 +75,11 @@ export default async function PremiumPage({
             <p>Nothing was charged. You can choose a plan whenever you are ready.</p>
           </Alert>
         ) : null}
-        {query.reason === 'free-session-used' && !premium ? (
-          <Alert tone="caution" title="You have used your free session">
+        {query.reason === 'free-test-used' && !premium ? (
+          <Alert tone="caution" title="You have taken your free test">
             <p>
-              Your free session and its results stay in your history. Choose a plan below to start
-              another one, on any exam.
+              Its results stay in your history. Choose a plan below to practise any exam, in any format,
+              with fresh questions every time.
             </p>
           </Alert>
         ) : null}
@@ -148,8 +157,11 @@ export default async function PremiumPage({
           </h2>
           <ul className="mt-4 list-disc space-y-2 ps-5">
             <li>
-              {FREE_SESSIONS === 1 ? 'One practice session' : `${FREE_SESSIONS} practice sessions`} on the exam
-              of your choice, with its full results and explanations.
+              With a free account: {FREE_SESSIONS === 1 ? 'one test' : `${FREE_SESSIONS} tests`} on the exam of
+              your choice, the same fixed questions for everyone, with full results and explanations.
+            </li>
+            <li>
+              Without an account: the <Link href="/#top">sample question on the home page</Link>.
             </li>
             <li>
               Every <Link href="/exams">exam format and scoring guide</Link>, sourced to the test maker.

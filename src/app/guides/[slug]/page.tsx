@@ -135,7 +135,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         <Card className="mt-10">
           <h2 className="font-heading text-lg font-semibold">Practise this exam</h2>
           <p className="mt-1 text-sm text-ink-muted">
-            Original questions with worked explanations. Your first session is free, without an account.
+            Original questions with worked explanations. A free account gets one free test.
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
             <ButtonLink href={`/practice/${guide.examKeys[0]}`}>Start practising</ButtonLink>

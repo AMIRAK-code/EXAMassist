@@ -59,9 +59,10 @@ export default function TermsPage() {
           university admission tests. It is a preparation aid and nothing more.
         </p>
         <p>
-          The guides are free. Everyone can also run one practice session free, on the exam of their
-          choice, with its full results. Every further session needs Premium, a paid subscription
-          described below.
+          The guides and the sample question on the home page are open to everyone. A free account can
+          also take one free test, on the exam of its choice: the same fixed questions for every
+          account, with full results. Every other session needs Premium, a paid subscription described
+          below.
         </p>
 
         <h2>Premium and payments</h2>
@@ -126,7 +127,10 @@ export default function TermsPage() {
 
         <h2>Your account and your conduct</h2>
         <ul>
-          <li>You may use the service without an account, as a guest.</li>
+          <li>
+            You may read the guides and try the sample question without an account. Practice sessions
+            need one.
+          </li>
           <li>
             If you create an account, keep your password to yourself. Tell us if you believe someone
             else has used it.

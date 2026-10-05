@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui';
-import { PREMIUM_PATH } from '@/lib/billing/config';
+import { startPath } from '@/lib/billing/config';
 
 /**
  * Starts a fixed blueprint (diagnostic, timed section, simulation).
@@ -50,8 +50,8 @@ export function StartBlueprintButton({
 
     const data = await response?.json().catch(() => null);
 
-    if (data?.error?.code === 'premium-required') {
-      window.location.assign(PREMIUM_PATH);
+    if (data?.error?.code === 'premium-required' || data?.error?.code === 'account-required') {
+      window.location.assign(startPath(examKey));
       return;
     }
     if (!response?.ok) {
