@@ -30,6 +30,8 @@ export const RATE_LIMITS = {
   emailCodeRequest: { windowSeconds: 3600, max: 10 },
   emailCodeAddress: { windowSeconds: 3600, max: 5 },
   emailCodeVerify: { windowSeconds: 900, max: 20 },
+  // Each one calls Stripe, so a stuck button or a script cannot run up requests.
+  billingRequest: { windowSeconds: 3600, max: 20 },
 } as const satisfies Record<string, RateLimitRule>;
 
 export interface RateLimitResult {

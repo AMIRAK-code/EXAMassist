@@ -6,6 +6,7 @@ import { requireUser } from '@/lib/auth/session';
 import { checkRateLimit } from '@/lib/auth/rate-limit';
 import { AttemptError, startAttempt, startRetry } from '@/lib/attempts/service';
 import { getExamConfig } from '@/lib/exams/registry';
+import { PREMIUM_PATH } from '@/lib/billing/config';
 import {
   PlanError,
   activePlan,
@@ -112,6 +113,7 @@ export async function startPlanSessionAction(formData: FormData): Promise<void> 
     (await linkStartedSession(db, user.id, planned.id, attemptId));
   } catch (error) {
     if (!(error instanceof AttemptError)) throw error;
+    if (error.code === 'premium-required') redirect(PREMIUM_PATH);
     failure = planned.kind === 'review' ? 'nothing-to-review' : planned.kind === 'revision' ? 'insufficient-content' : 'not-enough-new';
     attemptId = null;
   }
@@ -221,6 +223,7 @@ export async function startSuggestionAction(formData: FormData): Promise<void> {
     }
   } catch (error) {
     if (!(error instanceof AttemptError)) throw error;
+    if (error.code === 'premium-required') redirect(PREMIUM_PATH);
     attemptId = null;
   }
   redirect(attemptId ? `/attempt/${attemptId}` : planPath('progress', config.examKey, failure));

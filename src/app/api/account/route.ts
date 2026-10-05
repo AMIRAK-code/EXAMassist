@@ -5,6 +5,7 @@ import type { UserRow } from '@/lib/db/rows';
 import { assertSameOrigin, fail, ok, readJson, toErrorResponse } from '@/lib/api/http';
 import { SESSION_COOKIE, requireUser, toAuthUser } from '@/lib/auth/session';
 import { getExamConfig } from '@/lib/exams/registry';
+import { cancelBeforeDeletion } from '@/lib/billing/service';
 
 /**
  * The acting learner's own account.
@@ -126,6 +127,9 @@ export async function DELETE(request: Request) {
     }
 
     const db = getDb();
+    // End any Premium subscription first: nobody is billed for an account that
+    // no longer exists. If Stripe cannot confirm it, nothing is deleted.
+    await cancelBeforeDeletion(db, user.id);
     const purge = db.transaction(async (userId: string) => {
       (await db.prepare('UPDATE content_flags SET user_id = NULL WHERE user_id = ?').run(userId));
       (await db.prepare('DELETE FROM users WHERE id = ?').run(userId));
