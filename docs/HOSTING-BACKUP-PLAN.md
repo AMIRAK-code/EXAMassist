@@ -14,8 +14,11 @@ before relying on Vercel as a second host.
 | Plan | Workers Free | Hobby |
 | Database | Supabase via Hyperdrive `examer-db` (session pooler, port 5432) | Supabase via `DATABASE_URL` (transaction pooler, port 6543), **if** it has been set there; check |
 
-Both talk to the same Supabase project (thwxxgibcbxkfodzoedb, schema `examer`,
-login `examer_app`).
+Both talk to the same Supabase project, "Examer" (lhnvuikmyjvizrekqbtq, schema
+`examer`, login `examer_app`, pooler host aws-1-eu-central-1.pooler.supabase.com).
+Until 5 October 2026 the database lived in a project shared with VibeAssist
+(thwxxgibcbxkfodzoedb); its `examer` schema is a leftover copy, not in use.
+A Vercel `DATABASE_URL` set before that date still points at the old copy.
 
 ## Why two hosts can share users
 
