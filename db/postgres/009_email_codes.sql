@@ -38,6 +38,9 @@ ALTER TABLE examer.email_codes ENABLE ROW LEVEL SECURITY;
 -- restricted login has a different name, change it here; the whole script
 -- rolls back if the role does not exist.
 GRANT SELECT, INSERT, UPDATE, DELETE ON examer.email_codes TO examer_app;
+-- Row-level security is on and examer_app does not bypass it, so without this
+-- policy every read would come back empty and every write would be refused.
+CREATE POLICY backend_access ON examer.email_codes FOR ALL TO examer_app USING (true) WITH CHECK (true);
 
 INSERT INTO _migrations (name, applied_at)
 VALUES ('009_email_codes.sql', to_char(now() AT TIME ZONE 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"'));

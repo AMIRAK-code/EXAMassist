@@ -36,10 +36,16 @@ and tests can still use SQLite when DATABASE_URL is absent. Vercel requires
 DATABASE_URL and refuses to fall back to an ephemeral SQLite file.
 
 The application retains its existing accounts and session authentication. Its
-23 tables live in the private examer schema; the restricted examer_app login
+24 tables live in the private examer schema; the restricted examer_app login
 can read and write that schema only. Browser publishable keys cannot access it.
 Connections use the transaction pooler and verified TLS with the bundled public
 Supabase root certificate. No service-role key is required.
+
+Examer has its own Supabase project, "Examer" (eu-central-1), separate from any
+other app. To set up a fresh project, run db/postgres/schema.sql and then
+db/postgres/app-role.sql as the schema owner; the app connects as
+examer_app.<project-ref> through that project's pooler host, which is shown in
+the dashboard's Connect dialog.
 
 Configure DATABASE_URL and the other values in .env.example through Vercel
 environment variables before deploying the updated source. Keep credentials and
