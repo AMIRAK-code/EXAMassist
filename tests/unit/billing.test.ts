@@ -15,7 +15,7 @@ import { encodeForm, signStripePayload, StripeError, verifyStripeSignature, type
 import { createTestDb, createUser, seedQuestions } from './helpers/test-db';
 
 /**
- * Premium: one free session for everyone, then a plan. Stripe is replaced by a
+ * Premium: one fixed free test for each account, then a plan. Stripe is replaced by a
  * fake that records each call and answers from a small in-memory account, so
  * these tests run the real SQL and the real rules without the network.
  */
@@ -147,69 +147,108 @@ describe('Stripe plumbing', () => {
   });
 });
 
-describe('the free session', () => {
-  it('lets everyone start one session, then asks for Premium', async () => {
-    vi.stubEnv('STRIPE_SECRET_KEY', 'sk_test_unit');
-    await finishSession(db, alice);
-    const refusal = await startAttempt(db, { userId: alice, examKey: SAT.examKey, blueprintId: 'practice' }).catch((e) => e);
+const freeTest = (userId: string, idempotencyKey?: string) =>
+  startAttempt(db, { userId, examKey: SAT.examKey, blueprintId: 'practice', freeTest: true, idempotencyKey });
+
+const practice = (userId: string) => startAttempt(db, { userId, examKey: SAT.examKey, blueprintId: 'practice' });
+
+/** Every question in a session, in the order it is asked. */
+async function questionOrder(attemptId: string): Promise<string[]> {
+  const rows = (await db
+    .prepare('SELECT question_id FROM attempt_items WHERE attempt_id = ? ORDER BY part_index, position')
+    .all(attemptId)) as Array<{ question_id: string }>;
+  return rows.map((row) => row.question_id);
+}
+
+describe('the free test', () => {
+  const paywallOn = () => vi.stubEnv('STRIPE_SECRET_KEY', 'sk_test_unit');
+
+  it('gives a free account one test, then asks for Premium', async () => {
+    paywallOn();
+    await freeTest(alice);
+    const refusal = await freeTest(alice).catch((e) => e);
     expect(refusal).toBeInstanceOf(AttemptError);
     expect(refusal).toMatchObject({ code: 'premium-required', status: 402 });
   });
 
-  it('counts a guest the same way', async () => {
-    vi.stubEnv('STRIPE_SECRET_KEY', 'sk_test_unit');
-    const guest = await createUser(db, { isGuest: true });
-    await startAttempt(db, { userId: guest, examKey: SAT.examKey, blueprintId: 'practice' });
-    await expect(startAttempt(db, { userId: guest, examKey: SAT.examKey, blueprintId: 'practice' })).rejects.toMatchObject({
-      code: 'premium-required',
-    });
+  it('keeps every other format for Premium, even before the free test is taken', async () => {
+    paywallOn();
+    await expect(practice(alice)).rejects.toMatchObject({ code: 'premium-required' });
   });
 
-  it('still returns the free session to a retried request with the same idempotency key', async () => {
-    vi.stubEnv('STRIPE_SECRET_KEY', 'sk_test_unit');
-    const first = await startAttempt(db, { userId: alice, examKey: SAT.examKey, blueprintId: 'practice', idempotencyKey: 'key-12345678' });
-    const again = await startAttempt(db, { userId: alice, examKey: SAT.examKey, blueprintId: 'practice', idempotencyKey: 'key-12345678' });
+  it('asks a guest to create an account, and opens nothing else to a guest', async () => {
+    paywallOn();
+    const guest = await createUser(db, { isGuest: true });
+    await expect(freeTest(guest)).rejects.toMatchObject({ code: 'account-required', status: 403 });
+    await expect(practice(guest)).rejects.toMatchObject({ code: 'premium-required' });
+  });
+
+  it('is the exam diagnostic, marked as the free test', async () => {
+    paywallOn();
+    const { attemptId } = await freeTest(alice);
+    const row = (await db.prepare('SELECT blueprint_id, settings_json FROM attempts WHERE id = ?').get(attemptId)) as {
+      blueprint_id: string;
+      settings_json: string;
+    };
+    expect(row.blueprint_id).toBe('diagnostic');
+    expect(JSON.parse(row.settings_json)).toMatchObject({ freeTest: true, overrides: {} });
+  });
+
+  it('holds the same questions, in the same order, for every account and whatever it has seen', async () => {
+    // Bob practises first, with no paywall, so he has a history; the free test ignores it
+    const bob = await createUser(db);
+    await practice(bob);
+    await practice(bob);
+    const carol = await createUser(db);
+
+    const first = await questionOrder((await freeTest(alice)).attemptId);
+    expect(first.length).toBeGreaterThan(0);
+    expect(await questionOrder((await freeTest(bob)).attemptId)).toEqual(first);
+    paywallOn();
+    expect(await questionOrder((await freeTest(carol)).attemptId)).toEqual(first);
+  });
+
+  it('returns the same free test to a repeated request', async () => {
+    paywallOn();
+    const first = await freeTest(alice, `free-test:${alice}`);
+    const again = await freeTest(alice, `free-test:${alice}`);
     expect(again).toMatchObject({ attemptId: first.attemptId, reused: true });
   });
 
-  it('gates retries of missed questions too', async () => {
-    vi.stubEnv('STRIPE_SECRET_KEY', 'sk_test_unit');
+  it('keeps retries of missed questions for Premium', async () => {
     const source = await finishSession(db, alice);
-    const missed = (await getAttemptState(db, source, alice)).parts[0].items.map((item) => item.questionId);
+    const missed = await questionOrder(source);
+    paywallOn();
     await expect(startRetry(db, { userId: alice, examKey: SAT.examKey, questionIds: missed, sourceAttemptId: source })).rejects.toMatchObject({
       code: 'premium-required',
     });
   });
 
   it('opens everything with an active plan, including one whose renewal is still being retried', async () => {
-    vi.stubEnv('STRIPE_SECRET_KEY', 'sk_test_unit');
-    await finishSession(db, alice);
+    paywallOn();
     await giveSubscription(db, alice, 'past_due', new Date(Date.now() + DAY * 1000));
-    await startAttempt(db, { userId: alice, examKey: SAT.examKey, blueprintId: 'practice' });
-    await startAttempt(db, { userId: alice, examKey: SAT.examKey, blueprintId: 'practice' });
+    await practice(alice);
+    await practice(alice);
   });
 
   it('closes again once a plan is cancelled', async () => {
-    vi.stubEnv('STRIPE_SECRET_KEY', 'sk_test_unit');
-    await finishSession(db, alice);
+    paywallOn();
     await giveSubscription(db, alice, 'canceled', null);
-    await expect(startAttempt(db, { userId: alice, examKey: SAT.examKey, blueprintId: 'practice' })).rejects.toMatchObject({
-      code: 'premium-required',
-    });
+    await expect(practice(alice)).rejects.toMatchObject({ code: 'premium-required' });
   });
 
   it('never asks editors or administrators to pay', async () => {
-    vi.stubEnv('STRIPE_SECRET_KEY', 'sk_test_unit');
+    paywallOn();
     const editor = await createUser(db, { role: 'editor' });
-    await startAttempt(db, { userId: editor, examKey: SAT.examKey, blueprintId: 'practice' });
-    await startAttempt(db, { userId: editor, examKey: SAT.examKey, blueprintId: 'practice' });
+    await practice(editor);
+    await practice(editor);
   });
 
   it('has no paywall at all while billing is not configured', async () => {
     vi.stubEnv('STRIPE_SECRET_KEY', '');
-    await startAttempt(db, { userId: alice, examKey: SAT.examKey, blueprintId: 'practice' });
-    await startAttempt(db, { userId: alice, examKey: SAT.examKey, blueprintId: 'practice' });
-    expect((await getAccess(db, alice, { settings: OFF })).canStart).toBe(true);
+    await practice(alice);
+    await practice(alice);
+    expect((await getAccess(db, alice, { settings: OFF })).fullAccess).toBe(true);
   });
 
   it('re-reads a plan from Stripe once its paid period has passed', async () => {
