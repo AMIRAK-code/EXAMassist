@@ -75,15 +75,19 @@ export function premiumActive(row: SubscriptionRow | null, now = new Date()): bo
 }
 
 export interface Access {
-  /** Billing is configured, so sessions beyond the free one need Premium. */
+  /** Billing is configured, so everything beyond the free test needs Premium. */
   paywall: boolean;
   premium: boolean;
   /** Editors and administrators review content and are never asked to pay. */
   staff: boolean;
+  /** A real account rather than a guest. Only accounts get the free test. */
+  registered: boolean;
+  /** Every exam and format is open: no paywall, Premium, or staff. */
+  fullAccess: boolean;
   sessionsUsed: number;
   freeSessionsLeft: number;
-  /** Whether this user may start a new session right now. */
-  canStart: boolean;
+  /** The learner's first session. For a free account it is the free test. */
+  firstSession: { id: string; examKey: string; status: string } | null;
   subscription: SubscriptionRow | null;
 }
 
@@ -94,8 +98,11 @@ export interface Access {
  */
 export async function getAccess(db: Db, userId: string, options: BillingDeps = {}): Promise<Access> {
   const { settings, stripe, now } = deps(options);
-  const user = (await db.prepare('SELECT role FROM users WHERE id = ?').get(userId)) as { role: string } | undefined;
+  const user = (await db.prepare('SELECT role, is_guest FROM users WHERE id = ?').get(userId)) as
+    | { role: string; is_guest: number | string }
+    | undefined;
   const staff = user?.role === 'editor' || user?.role === 'admin';
+  const registered = user !== undefined && Number(user.is_guest) === 0;
   let subscription = settings.enabled ? await getSubscription(db, userId) : null;
 
   const stale =
@@ -113,14 +120,18 @@ export async function getAccess(db: Db, userId: string, options: BillingDeps = {
 
   const premium = premiumActive(subscription, now);
   const sessionsUsed = await countSessions(db, userId);
-  const freeSessionsLeft = Math.max(0, FREE_SESSIONS - sessionsUsed);
+  const first = (await db
+    .prepare('SELECT id, exam_key, status FROM attempts WHERE user_id = ? ORDER BY created_at, id LIMIT 1')
+    .get(userId)) as { id: string; exam_key: string; status: string } | undefined;
   return {
     paywall: settings.enabled,
     premium,
     staff,
+    registered,
+    fullAccess: !settings.enabled || premium || staff,
     sessionsUsed,
-    freeSessionsLeft,
-    canStart: !settings.enabled || premium || staff || freeSessionsLeft > 0,
+    freeSessionsLeft: Math.max(0, FREE_SESSIONS - sessionsUsed),
+    firstSession: first ? { id: first.id, examKey: first.exam_key, status: first.status } : null,
     subscription,
   };
 }
@@ -130,14 +141,20 @@ async function countSessions(db: Db, userId: string): Promise<number> {
   return Number(row.n);
 }
 
+export type SessionBlock = 'account-required' | 'premium-required' | null;
+
 /**
- * Whether starting one more session needs Premium. Run it again inside the
- * transaction that creates the session, so two tabs cannot both spend the one
- * free session.
+ * Why this learner may not start a session of this kind, or null when they
+ * may. A free account gets one session, the free test; a guest gets none (the
+ * sample questions on the home page need no session). Run it again inside the
+ * transaction that creates the session, so two tabs cannot both spend the
+ * free test.
  */
-export async function sessionNeedsPremium(db: Db, userId: string, access: Access): Promise<boolean> {
-  if (!access.paywall || access.premium || access.staff) return false;
-  return (await countSessions(db, userId)) >= FREE_SESSIONS;
+export async function sessionBlock(db: Db, userId: string, access: Access, kind: 'free-test' | 'session'): Promise<SessionBlock> {
+  if (access.fullAccess) return null;
+  if (kind !== 'free-test') return 'premium-required';
+  if (!access.registered) return 'account-required';
+  return (await countSessions(db, userId)) >= FREE_SESSIONS ? 'premium-required' : null;
 }
 
 // ---------------------------------------------------------------------------

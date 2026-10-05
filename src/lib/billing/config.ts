@@ -114,8 +114,16 @@ export function billingSettings(env: Record<string, string | undefined> = proces
   };
 }
 
-/** Free accounts and guests may start this many sessions in total before Premium is needed. */
+/**
+ * A free account may start this many sessions in total, and each one is the
+ * free test: the same fixed questions for everyone (startAttempt, freeTest).
+ * Guests start none; they can try the sample questions on the home page.
+ */
 export const FREE_SESSIONS = 1;
 
-/** Where a learner goes once the free session is used. */
-export const PREMIUM_PATH = '/premium?reason=free-session-used';
+/** Where a learner goes once the free test is used. */
+export const PREMIUM_PATH = '/premium?reason=free-test-used';
+
+/** The short introduction a learner without Premium sees before an exam's plans and free test. */
+export const startPath = (examKey: string) => `/start/${encodeURIComponent(examKey)}`;
+export const freeTestPath = (examKey: string) => `/free-test/${encodeURIComponent(examKey)}`;
