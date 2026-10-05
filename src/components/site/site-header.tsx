@@ -46,28 +46,22 @@ export function SiteHeader({ account }: { account: AccountState }) {
         </nav>
 
         <div className="ms-auto flex items-center gap-2">
-          {account === 'visitor' ? (
-            <>
-              <NavLink href="/sign-in" className={`${LINK} hidden lg:inline-flex`}>
+          {account === 'visitor' || account === 'guest' ? (
+            // Signing in and creating an account sit side by side, as equals
+            <div className="hidden items-center gap-2 lg:flex">
+              <Link href="/sign-in" className={buttonClass({ variant: 'secondary', size: 'sm' })}>
                 Sign in
-              </NavLink>
-              <Link href="/exams" className={buttonClass({ variant: 'ink', size: 'sm' })}>
-                <span className="lg:hidden">Start</span>
-                <span className="hidden lg:inline">Start practising</span>
               </Link>
-            </>
+              <Link href="/sign-up" className={buttonClass({ variant: 'ink', size: 'sm' })}>
+                Create account
+              </Link>
+            </div>
           ) : null}
-          {account === 'guest' ? (
-            <>
-              <NavLink href="/sign-in" className={`${LINK} hidden lg:inline-flex`}>
-                Sign in
-              </NavLink>
-              <div className="hidden lg:block">
-                <Link href="/sign-up" className={buttonClass({ variant: 'ink', size: 'sm' })}>
-                  Keep your progress
-                </Link>
-              </div>
-            </>
+          {account === 'visitor' ? (
+            <Link href="/exams" className={buttonClass({ variant: 'primary', size: 'sm' })}>
+              <span className="lg:hidden">Start</span>
+              <span className="hidden lg:inline">Start practising</span>
+            </Link>
           ) : null}
           {account === 'registered' ? (
             <NavLink href="/account" className={`${LINK} hidden lg:inline-flex`}>

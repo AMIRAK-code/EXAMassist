@@ -103,7 +103,7 @@ test.describe('navigation', () => {
 
     const menu = page.getByRole('button', { name: 'Menu' });
     if (await menu.isVisible()) await menu.click();
-    const keep = page.getByRole('link', { name: 'Keep your progress' }).filter({ visible: true });
+    const keep = page.getByRole('link', { name: 'Create account' }).filter({ visible: true });
     await expect(keep.first()).toHaveAttribute('href', '/sign-up');
     expect(await horizontalOverflow(page)).toBeLessThanOrEqual(1);
   });
