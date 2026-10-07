@@ -170,6 +170,14 @@ export function getExamConfig(examKey: string): ExamConfig | undefined {
   return configByKey.get(examKey);
 }
 
+/**
+ * The name to put before "test": "Bocconi" for the Bocconi Test, so a page
+ * says "your free Bocconi test" rather than "your free Bocconi Test test".
+ */
+export function examTestName(config: Pick<ExamConfig, 'shortName'>): string {
+  return config.shortName.replace(/\s+test$/i, '');
+}
+
 /** Throws rather than returning undefined, for call sites that cannot continue. */
 export function requireExamConfig(examKey: string): ExamConfig {
   const config = configByKey.get(examKey);

@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation';
 import { getCurrentUser } from '@/lib/auth/session';
 import { getDb } from '@/lib/db';
 import { PLANS, isPlanKey } from '@/lib/billing/config';
+import { examTestName, getExamConfig } from '@/lib/exams/registry';
 import { BillingError, completeCheckout } from '@/lib/billing/service';
 import { Alert, Breadcrumbs, ButtonLink, Container, PageHeader } from '@/components/ui';
 
@@ -21,11 +22,13 @@ export const metadata: Metadata = {
 export default async function PremiumWelcomePage({
   searchParams,
 }: {
-  searchParams: Promise<{ session_id?: string }>;
+  searchParams: Promise<{ session_id?: string; exam?: string }>;
 }) {
   const query = await searchParams;
   const sessionId = typeof query.session_id === 'string' ? query.session_id : '';
-  const here = `/premium/welcome${sessionId ? `?session_id=${encodeURIComponent(sessionId)}` : ''}`;
+  // The exam the learner chose a plan from, so the way back leads to it.
+  const exam = typeof query.exam === 'string' ? getExamConfig(query.exam) : undefined;
+  const here = `/premium/welcome${sessionId ? `?session_id=${encodeURIComponent(sessionId)}` : ''}${exam ? `${sessionId ? '&' : '?'}exam=${encodeURIComponent(exam.examKey)}` : ''}`;
   const user = await getCurrentUser();
   if (!user) redirect(`/sign-in?next=${encodeURIComponent(here)}`);
   if (!sessionId) redirect('/premium');
@@ -58,7 +61,9 @@ export default async function PremiumWelcomePage({
 
       {premium ? (
         <div className="flex flex-wrap gap-3">
-          <ButtonLink href="/exams">Choose an exam</ButtonLink>
+          <ButtonLink href={exam ? `/practice/${exam.examKey}` : '/exams'}>
+            {exam ? `Continue ${examTestName(exam)} practice` : 'Choose an exam'}
+          </ButtonLink>
           <ButtonLink href="/account#billing" variant="secondary">
             See your plan
           </ButtonLink>

@@ -12,6 +12,8 @@ import {
   type PlanKey,
 } from './config';
 import { StripeError, stripeClient, verifyStripeSignature, type StripeRequest } from './stripe';
+import { countEvent, subjectFor } from '@/lib/analytics/funnel';
+import { getExamConfig } from '@/lib/exams/registry';
 
 /**
  * Premium: who has it, the one free session everyone else gets, and keeping
@@ -262,8 +264,21 @@ export async function premiumPrice(stripe: StripeRequest, planKey: PlanKey): Pro
   return price.id;
 }
 
-/** A Stripe Checkout page for this plan. Returns its address. */
-export async function startCheckout(db: Db, user: BillingUser, planKey: PlanKey, options: BillingDeps = {}): Promise<string> {
+/**
+ * A Stripe Checkout page for this plan. Returns its address.
+ *
+ * `context.examKey` is the exam the learner was preparing for when they chose
+ * a plan. It changes nothing about the plan or the price: it rides along as
+ * Stripe metadata (so purchases can be counted per exam) and on the return
+ * addresses, so the learner lands back on that exam's practice.
+ */
+export async function startCheckout(
+  db: Db,
+  user: BillingUser,
+  planKey: PlanKey,
+  options: BillingDeps = {},
+  context: { examKey?: string | null } = {},
+): Promise<string> {
   const { settings, stripe, now } = deps(options);
   if (!settings.enabled) throw new BillingError('billing-off', 'Premium is not on sale yet.', 503);
   if (user.isGuest || !user.email) {
@@ -275,6 +290,9 @@ export async function startCheckout(db: Db, user: BillingUser, planKey: PlanKey,
   return withStripe(async () => {
     const [customer, price] = await Promise.all([ensureCustomer(db, user, stripe, now), premiumPrice(stripe, planKey)]);
     const site = siteUrl();
+    const examKey = context.examKey && getExamConfig(context.examKey) ? context.examKey : null;
+    const examMetadata = examKey ? { exam_key: examKey } : {};
+    const examQuery = examKey ? `&exam=${encodeURIComponent(examKey)}` : '';
     const session = await stripe('POST', 'checkout/sessions', {
       mode: 'subscription',
       customer,
@@ -283,16 +301,16 @@ export async function startCheckout(db: Db, user: BillingUser, planKey: PlanKey,
       allow_promotion_codes: true,
       billing_address_collection: 'auto',
       ...(settings.automaticTax ? { automatic_tax: { enabled: true }, customer_update: { address: 'auto', name: 'auto' } } : {}),
-      metadata: { examer_user_id: user.id, plan: planKey },
-      subscription_data: { metadata: { examer_user_id: user.id, plan: planKey } },
+      metadata: { examer_user_id: user.id, plan: planKey, ...examMetadata },
+      subscription_data: { metadata: { examer_user_id: user.id, plan: planKey, ...examMetadata } },
       custom_text: {
         submit: {
           message:
             'Premium starts as soon as you pay, and you agree that the 14-day right of withdrawal ends when it does. It renews automatically until you cancel, which you can do at any time from your Examer account.',
         },
       },
-      success_url: `${site}/premium/welcome?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${site}/premium?checkout=cancelled`,
+      success_url: `${site}/premium/welcome?session_id={CHECKOUT_SESSION_ID}${examQuery}`,
+      cancel_url: `${site}/premium?checkout=cancelled${examQuery}`,
     });
     return session.url as string;
   });
@@ -320,6 +338,7 @@ export async function openBillingPortal(db: Db, userId: string, options: Billing
 interface StripeSubscription {
   id: string;
   status: string;
+  metadata?: Record<string, string> | null;
   created?: number;
   cancel_at_period_end?: boolean;
   cancel_at?: number | null;
@@ -351,6 +370,7 @@ export async function syncCustomer(
   const item = subscription?.items?.data?.[0];
   // Newer Stripe API versions keep the billing period on the item instead
   const periodEnd = subscription?.current_period_end ?? item?.current_period_end ?? null;
+  const before = await getSubscription(db, userId).catch(() => null);
 
   await linkCustomer(db, userId, customerId, now);
   await db
@@ -368,7 +388,26 @@ export async function syncCustomer(
       now.toISOString(),
       userId,
     );
+  if (subscription && isNewPurchase(before, subscription)) {
+    await countEvent(db, 'purchase', subjectFor(subscription.metadata?.exam_key), 'n/a', now);
+  }
   return getSubscription(db, userId);
+}
+
+/**
+ * Whether this sync is the moment a subscription first became paid: a
+ * subscription we had not stored before, or the one we stored while it was
+ * still incomplete. A renewal, a plan change or a recovery from past_due is
+ * not a purchase. Webhooks and the return from Checkout both sync, and only
+ * the first of them sees the change, so a purchase is counted once.
+ */
+export function isNewPurchase(
+  before: Pick<SubscriptionRow, 'stripe_subscription_id' | 'status'> | null,
+  after: Pick<StripeSubscription, 'id' | 'status'>,
+): boolean {
+  if (!PREMIUM_STATUSES.has(after.status) || after.status === 'past_due') return false;
+  if (!before || before.stripe_subscription_id !== after.id) return true;
+  return before.status === null || before.status === 'incomplete';
 }
 
 /**

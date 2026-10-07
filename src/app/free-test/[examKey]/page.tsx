@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import { getCurrentUser } from '@/lib/auth/session';
 import { getDb } from '@/lib/db';
-import { getExamConfig, getHubForConfig } from '@/lib/exams/registry';
+import { examTestName, getExamConfig, getHubForConfig } from '@/lib/exams/registry';
 import { examLabel } from '@/lib/learning/dashboard';
 import { freeTestPreview } from '@/lib/attempts/service';
 import { billingSettings, freeTestPath } from '@/lib/billing/config';
@@ -65,7 +65,7 @@ export default async function FreeTestPage({
       />
       <PageHeader
         eyebrow={config.publisher}
-        title={`Your free ${config.shortName} test`}
+        title={`Your free ${examTestName(config)} test`}
         lead={
           preview
             ? `${preview.questions} questions across ${preview.sections === 1 ? 'one section' : `${preview.sections} sections`}, ${preview.minutes ? `about ${preview.minutes} minutes` : 'untimed'}, with full results and a worked explanation for every answer.`
@@ -93,7 +93,7 @@ export default async function FreeTestPage({
             </ButtonLink>
           </div>
           <p className="mt-4 text-sm">
-            <Link href="/#top">Try a sample question</Link>
+            <Link href={hub ? `/?exam=${encodeURIComponent(hub.slug)}#top` : '/#top'}>Try a sample question</Link>
           </p>
         </Card>
       ) : first ? (

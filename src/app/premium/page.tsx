@@ -3,9 +3,12 @@ import Link from 'next/link';
 import { getCurrentUser } from '@/lib/auth/session';
 import { getDb } from '@/lib/db';
 import { absoluteUrl, SITE } from '@/lib/site';
-import { EXAM_CONFIGS, getExamConfig } from '@/lib/exams/registry';
+import { headers } from 'next/headers';
+import { EXAM_CONFIGS, examTestName, getConfigsForHub, getExamConfig, getHubForConfig } from '@/lib/exams/registry';
+import { examCoverage } from '@/lib/attempts/availability';
+import { countPageView, subjectFor } from '@/lib/analytics/funnel';
 import { tutorSettings } from '@/lib/tutor/config';
-import { FREE_SESSIONS, PLANS, PLAN_KEYS, billingSettings, formatEuros, freeTestPath } from '@/lib/billing/config';
+import { FREE_SESSIONS, PLANS, PLAN_KEYS, billingSettings, formatEuros, freeTestPath, type PlanKey } from '@/lib/billing/config';
 import { getAccess, premiumActive } from '@/lib/billing/service';
 import { Alert, Badge, Breadcrumbs, ButtonLink, Card, Container, PageHeader, cx } from '@/components/ui';
 import { ChoosePlanButton, ManageBillingButton } from '@/components/billing/billing-buttons';
@@ -40,8 +43,26 @@ export default async function PremiumPage({
   // Came here from an exam's introduction: the free test for it is the way to skip
   const exam = typeof query.exam === 'string' ? getExamConfig(query.exam) : undefined;
   const offerFreeTest = settings.enabled && !access?.fullAccess && (access?.sessionsUsed ?? 0) === 0;
+  await countPageView(getDb(), 'pricing_view', subjectFor(exam?.examKey), await headers());
 
-  const includes = [
+  // Arriving from an exam: lead with what Premium does for that exam.
+  const hub = exam ? getHubForConfig(exam.examKey) : undefined;
+  const hubConfigs = hub ? getConfigsForHub(hub.slug) : [];
+  const examQuestions = exam
+    ? (await Promise.all(hubConfigs.map((config) => examCoverage(getDb(), config)))).reduce((sum, c) => sum + c.publishedItems, 0)
+    : 0;
+  const examIncludes = exam && hub
+    ? [
+        `Every ${hub.label} practice format${hubConfigs.length > 1 ? ` for ${hubConfigs.map((c) => hub.variantLabels?.[c.examKey] ?? c.shortName).join(' and ')}` : ''}: topic practice, timed sets at the real pace${exam.capabilities.fullSimulation.available ? ', and full-length simulations under the published rules' : ''}, drawn from ${examQuestions} reviewed questions.`,
+        'A fresh selection in every session, retries of the questions you missed, and a mistake notebook that brings them back.',
+        `Results by ${hub.label} area and topic after every session, so you can see which topics are holding you back.`,
+        'A study plan that schedules your sessions toward your test date.',
+        ...(tutor ? ['The AI tutor’s hints and deeper explanations, within its daily allowance.'] : []),
+        `Also included, at no extra cost: every other test on ${SITE.name} (${EXAM_CONFIGS.length} tests in all).`,
+      ]
+    : null;
+
+  const includes = examIncludes ?? [
     `Every exam on ${SITE.name}, all ${EXAM_CONFIGS.length} of them, with every practice format each one offers.`,
     'As many sessions as you like, with fresh questions in each: topic practice, timed sections and full-length mock exams wherever the exam offers one.',
     'Retries of the questions you missed, your review queue, and the sessions your study plan schedules.',
@@ -54,12 +75,16 @@ export default async function PremiumPage({
       <Breadcrumbs trail={[{ href: '/', label: 'Home' }, { label: 'Premium' }]} />
       <PageHeader
         eyebrow={`${SITE.name} Premium`}
-        title="Practise every exam, as often as you need"
-        lead="A free account gets one free test on the exam of its choice: the same fixed questions for everyone. Premium opens everything else, with fresh questions in every session."
+        title={hub ? `Premium for your ${hub.label} preparation` : 'Practise every exam, as often as you need'}
+        lead={
+          hub
+            ? `Practise ${hub.label} questions as often as you need, see exactly which topics cost you marks, and follow a plan to your test date. A free account gets one free test; Premium opens everything else.`
+            : 'A free account gets one free test on the exam of its choice: the same fixed questions for everyone. Premium opens everything else, with fresh questions in every session.'
+        }
       >
         {exam && offerFreeTest ? (
           <Link href={freeTestPath(exam.examKey)} className="font-semibold">
-            Not ready to choose? Take the free {exam.shortName} test first
+            Not ready to choose? Take the free {examTestName(exam)} test first
           </Link>
         ) : null}
       </PageHeader>
@@ -94,8 +119,8 @@ export default async function PremiumPage({
                   : null}
             </p>
             <div className="mt-3 flex flex-wrap gap-3">
-              <ButtonLink href="/exams" size="sm">
-                Choose an exam
+              <ButtonLink href={exam ? `/practice/${exam.examKey}` : '/exams'} size="sm">
+                {exam ? `Continue ${examTestName(exam)} practice` : 'Choose an exam'}
               </ButtonLink>
               <ManageBillingButton />
             </div>
@@ -104,15 +129,24 @@ export default async function PremiumPage({
       </div>
 
       <ul className="grid gap-5 md:grid-cols-3" aria-label="Premium plans">
-        {PLAN_KEYS.map((key) => {
+        {planOrder(Boolean(exam)).map((key) => {
           const plan = PLANS[key];
+          // From an exam, the 3-month plan is the one shown first and marked:
+          // it spans a typical run-up to a test date. Prices are unchanged.
+          const featured = exam ? key === 'quarterly' : key === 'yearly';
           const best = key === 'yearly';
           const off = saving(plan.perMonth);
           return (
-            <Card as="li" key={key} padding="lg" className={cx('flex flex-col', best && 'border-2 border-accent')}>
+            <Card as="li" key={key} padding="lg" className={cx('flex flex-col', featured && 'border-2 border-accent')}>
               <div className="flex items-center justify-between gap-2">
                 <h2 className="font-heading text-xl font-semibold">{plan.label}</h2>
-                {best ? <Badge tone="accent">Best value</Badge> : off > 0 ? <Badge tone="neutral">Save {off}%</Badge> : null}
+                {featured && exam ? (
+                  <Badge tone="accent">A 3-month run-up</Badge>
+                ) : best ? (
+                  <Badge tone={featured ? 'accent' : 'neutral'}>Best value</Badge>
+                ) : off > 0 ? (
+                  <Badge tone="neutral">Save {off}%</Badge>
+                ) : null}
               </div>
               <p className="mt-4">
                 <span className="font-heading text-4xl font-semibold tracking-tight">{formatEuros(plan.perMonth)}</span>
@@ -122,11 +156,17 @@ export default async function PremiumPage({
                 {plan.intervalCount === 1 && plan.interval === 'month'
                   ? 'Billed every month. VAT included.'
                   : `${formatEuros(plan.amount)} billed ${plan.billedEvery}. VAT included.`}
-                {best ? ` Save ${off}% against monthly.` : ''}
+                {best || (featured && exam) ? ` Save ${off}% against monthly.` : ''}
+                {featured && exam ? ' Renews every 3 months until you cancel.' : ''}
               </p>
               <div className="mt-6 flex-1" />
               {settings.enabled && !premium ? (
-                <ChoosePlanButton plan={key} label={`Choose ${plan.label.toLowerCase()}`} variant={best ? 'primary' : 'secondary'} />
+                <ChoosePlanButton
+                  plan={key}
+                  label={`Choose ${plan.label.toLowerCase()}`}
+                  variant={featured ? 'primary' : 'secondary'}
+                  exam={exam?.examKey}
+                />
               ) : null}
             </Card>
           );
@@ -143,7 +183,7 @@ export default async function PremiumPage({
       <div className="mt-12 grid gap-8 lg:grid-cols-2">
         <section aria-labelledby="includes-heading">
           <h2 id="includes-heading" className="font-heading text-2xl font-semibold">
-            What Premium includes
+            {hub ? `What Premium includes for ${hub.label} applicants` : 'What Premium includes'}
           </h2>
           <ul className="mt-4 list-disc space-y-2 ps-5">
             {includes.map((line) => (
@@ -195,6 +235,11 @@ export default async function PremiumPage({
       </section>
     </Container>
   );
+}
+
+/** Monthly, 3 months, yearly; from an exam, the 3-month plan comes first. */
+function planOrder(fromExam: boolean): PlanKey[] {
+  return fromExam ? ['quarterly', 'monthly', 'yearly'] : PLAN_KEYS;
 }
 
 function formatDay(iso: string): string {

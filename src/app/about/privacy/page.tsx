@@ -18,9 +18,9 @@ const TITLE = 'Privacy notice (draft)';
 const DESCRIPTION =
   'Draft privacy notice for Examer, prepared for legal review: one session cookie, optional email and password, practice history, Premium payments through Stripe, no advertising, no third-party analytics, and export or deletion from your account page.';
 
-/** Real dates: this draft was written on 2026-09-22 and last revised on 2026-10-05, for Premium. */
+/** Real dates: this draft was written on 2026-09-22, revised on 2026-10-05 for Premium and on 2026-10-07 for the daily totals. */
 const PUBLISHED = '2026-09-22';
-const UPDATED = '2026-10-05';
+const UPDATED = '2026-10-07';
 const PUBLISHED_LABEL = '22 September 2026';
 
 export const metadata: Metadata = {
@@ -88,13 +88,18 @@ const WHAT_WE_HOLD: Array<{ term: string; value: string }> = [
     value:
       'To stop abuse we count requests per caller in fixed windows. The counter key is a SHA-256 hash of an identifier, so a raw IP address is never written to the database.',
   },
+  {
+    term: 'Daily totals (no personal data)',
+    value:
+      'To see whether our exam pages are useful we keep plain daily totals of a few events: views of the exam pages and the plans page, checkouts started and plans bought, each with the exam concerned and a coarse source for page views (search engine, AI assistant, this site, another site, or none). Each total is just a number for a day. No account id, cookie, IP address, browser details or full referring address is recorded, so no total can be linked to you. Whether you started or finished a free test is part of your practice history above.',
+  },
 ];
 
 const WHAT_WE_DO_NOT: string[] = [
   'No advertising, and no advertising or tracking pixels of any kind.',
   'No third-party analytics. There is no Google Analytics, no product-analytics SDK, and no session recording.',
   'No card details. Premium is paid on Stripe’s own checkout page, so card numbers and bank details go to Stripe and are never stored or seen by us.',
-  'No cookies other than the session cookie. Nothing is stored for advertising, measurement or personalisation.',
+  'No cookies other than the session cookie. Nothing is stored on your device for advertising, measurement or personalisation; the daily totals described above are counted on our server and identify nobody.',
   'No selling, renting or sharing of personal data with third parties for their own purposes.',
   'No AI unless you ask for it. The optional AI tutor sends nothing until you press one of its buttons, and it is never needed to practise: every question has its own reviewed explanation.',
   'No email marketing. We hold your address to let you sign in, not to send you campaigns. The only emails we send are the codes described above, as plain text, so they carry no tracking pixel.',

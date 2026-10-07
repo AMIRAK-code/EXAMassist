@@ -15,9 +15,13 @@ interface ApiBody {
   error?: { code?: string; message?: string };
 }
 
-const SIGN_UP = `/sign-up?next=${encodeURIComponent('/premium')}`;
+/** Back to the plans after signing up, for the same exam when there is one. */
+function signUpPath(exam?: string): string {
+  const plans = exam ? `/premium?exam=${encodeURIComponent(exam)}` : '/premium';
+  return `/sign-up?next=${encodeURIComponent(plans)}`;
+}
 
-async function goToStripe(path: string, body: unknown): Promise<string | null> {
+async function goToStripe(path: string, body: unknown, exam?: string): Promise<string | null> {
   const response = await fetch(path, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'examer' },
@@ -32,7 +36,7 @@ async function goToStripe(path: string, body: unknown): Promise<string | null> {
   }
   const code = data?.error?.code;
   if (code === 'unauthorized' || code === 'account-required') {
-    window.location.assign(SIGN_UP);
+    window.location.assign(signUpPath(exam));
     return null;
   }
   if (code === 'already-premium') {
@@ -46,10 +50,13 @@ export function ChoosePlanButton({
   plan,
   label,
   variant = 'primary',
+  exam,
 }: {
   plan: PlanKey;
   label: string;
   variant?: 'primary' | 'secondary' | 'ink';
+  /** The exam the learner is preparing for, kept through sign-up, checkout and the return. */
+  exam?: string;
 }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -58,7 +65,7 @@ export function ChoosePlanButton({
     if (busy) return;
     setBusy(true);
     setError(null);
-    const failure = await goToStripe('/api/billing/checkout', { plan });
+    const failure = await goToStripe('/api/billing/checkout', exam ? { plan, exam } : { plan }, exam);
     // On success the page is already leaving for Stripe; keep the button busy.
     if (failure) {
       setBusy(false);
