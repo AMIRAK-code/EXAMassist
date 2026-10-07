@@ -1,6 +1,6 @@
 {
   "id": "bocconi-ug-num-admissions-not-enrolled-445",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-undergraduate",
   "sectionKey": "online-test",
   "domainSlug": "bocconi-ug-numerical-reasoning",
@@ -37,7 +37,7 @@
     "type": "single_select",
     "optionId": "a"
   },
-  "explanationMd": "Only two columns matter here: the admission rate and the enrolment rate of the Management row. The international share and the annual fee describe other things and can be ignored.\n\n1. **Offered a place.** The admission rate is a percentage of applicants: 25 per cent of 3,000 is 750.\n2. **Enrolled.** The enrolment rate is a percentage of those **offered a place**, not of all applicants: 80 per cent of 750 is 600.\n3. **Offered a place but did not enrol.** $750 - 600 = 150$.\n\nA quicker route: if 80 per cent of those offered a place enrolled, the other 20 per cent did not, and 20 per cent of 750 is **150**.\n\n**How to check the answer.** The three groups among those offered a place must add up: 600 enrolled plus 150 who did not gives 750, which is 25 per cent of 3,000.\n\n**The habit to build.** Before multiplying, say out loud what each percentage is a percentage **of**. The table defines the enrolment rate on those offered a place, and every wrong answer here comes from applying a rate to the wrong group, or from stopping one step early.",
+  "explanationMd": "Only two columns matter here: the admission rate and the enrolment rate of the Management row. The international share and the annual fee describe other things and can be ignored.\n\n1. **Offered a place.** The admission rate is a percentage of applicants: 25 per cent of 3,000 is 750.\n2. **Enrolled.** The enrolment rate is a percentage of those **offered a place**, not of all applicants: 80 per cent of 750 is 600.\n3. **Offered a place but did not enrol.** $750 - 600 = 150$.\n\nA quicker route: if 80 per cent of those offered a place enrolled, the other 20 per cent did not, and 20 per cent of 750 is **150**.\n\n**How to check the answer.** The two groups among those offered a place must add up: 600 enrolled plus 150 who did not gives 750, which is 25 per cent of 3,000.\n\n**The habit to build.** Before multiplying, say out loud what each percentage is a percentage **of**. The table defines the enrolment rate on those offered a place, and every wrong answer here comes from applying a rate to the wrong group, or from stopping one step early.",
   "distractorRationale": {
     "b": "This is the number of Management students who did enrol, 80 per cent of the 750 offered a place. It answers the neighbouring question and stops before the subtraction.",
     "c": "This is the number offered a place, 25 per cent of 3,000. It stops after the first step and forgets that most of those offered a place did enrol.",
@@ -67,7 +67,7 @@
       "uniquenessChecked": true,
       "workingNotes": "Management offered 3000 x 25% = 750 places and 80% of those enrolled, which is 600, so 150 were offered a place but did not enrol. 600 and 750 are the intermediate figures used as distractors. [A second, separate blind solve (blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run1) reached the same answer: Management offered 3000 x 25% = 750 places, and 80% of those (600) enrolled. That leaves 150 who were offered a place but did not enrol. 600, 750 and 2,400 are the intermediate figures and wrong complements.]"
     },
-    "notes": "Author's uniqueness check with a read-only script: Management has 750 offered a place and 600 enrolled, so 150 were offered a place and did not enrol; 3,000 minus 600 is 2,400. The four values are far apart, so no rounding makes two options coincide. Solved twice, the second time from the stem and table alone."
+    "notes": "Author's uniqueness check with a read-only script: Management has 750 offered a place and 600 enrolled, so 150 were offered a place and did not enrol; 3,000 minus 600 is 2,400. The four values are far apart, so no rounding makes two options coincide. Solved twice, the second time from the stem and table alone. v2 (2026-10-07 audit): explanation said \"three groups\" where there are two. Stem, options and answer key unchanged."
   },
   "state": "published",
   "quarantine": null,

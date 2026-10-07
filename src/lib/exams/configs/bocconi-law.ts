@@ -28,7 +28,8 @@ const OFFICIAL_RULES_PDF_2728 =
 const OFFICIAL_RULES_PDF_2627_EN =
   'https://www.unibocconi.it/sites/default/files/Istruzioni%20e%20regole_26-27%20ENG.pdf';
 
-const VERIFIED_ON = '2026-09-18';
+/** First verified 2026-09-18; re-verified against the official pages and the AY 2027/28 rules PDF on 2026-10-07. */
+const VERIFIED_ON = '2026-10-07';
 
 const SECTION_KEY = 'online-test-law';
 
@@ -85,14 +86,14 @@ const PRACTICE_NAVIGATION_OVERRIDE: Partial<NavigationPolicy> = {
 
 export const bocconiLawConfig: ExamConfig = {
   examKey: 'bocconi-law',
-  version: '2026.09',
+  version: '2026.10',
   name: 'Bocconi Online Test - Law',
   shortName: 'Bocconi Law',
   publisher: 'Università Bocconi',
   versionLabel:
     'Bocconi Online Test - Law (a.y. 2027-28 admissions cycle; booking window 13 July 2026 - 20 April 2027)',
   admissionsCycle:
-    'Academic year 2027-28 (Early Session: 2-29 September 2026; Winter Session: 25 November 2026 - 26 January 2027). Attempts from earlier academic years cannot be reused for the 2027-28 selection.',
+    'Academic year 2027-28 (Early Session: 2-29 September 2026, closed; Winter Session: 25 November 2026 - 26 January 2027; Spring Session: 8-27 April 2027, Italian applicants only). Attempts from earlier academic years cannot be reused for the 2027-28 selection.',
   verifiedOn: VERIFIED_ON,
   audience: ['law'],
   summary:
@@ -161,6 +162,7 @@ export const bocconiLawConfig: ExamConfig = {
         'Reading-comprehension items hang off shared passages. Bocconi does not publish how a passage and its items map onto the three-questions-per-screen layout, nor how many passages there are, so we keep a passage group intact on a screen where possible and re-render the passage on every screen carrying its items.',
         'Delivery is fully online and remote-proctored (audio/video recording, a side-mounted mobile device, screen sharing and a Safe Exam Browser lockdown browser). Time spent on proctoring checks requested mid-test is not counted against the test duration.',
         'The test may be taken in Italian or English; the language choice is independent of the degree programme’s language of instruction.',
+        'Each attempt costs a €60 registration fee (official test page, checked 2026-10-07). The Law test "can only be used to apply for programs in the legal area" (the Law School programmes: the integrated Master of Arts in Law and Global Law); the standard test is valid for every programme, Law included.',
       ],
     },
   ],
@@ -638,6 +640,14 @@ export const bocconiLawConfig: ExamConfig = {
     pointsIncorrect: -0.2,
     pointsOmitted: 0,
     multiSelectGrading: 'all_or_nothing',
+    itemPenaltyOverrides: [
+      {
+        domains: ['law-logic-and-critical-thinking'],
+        optionCount: 3,
+        pointsIncorrect: -0.33,
+        source: OFFICIAL_TEST_PAGE_EN,
+      },
+    ],
     officialScale: {
       label: 'Bocconi Online Test - Law total score (penalties included), out of 50',
       min: -10,
@@ -652,7 +662,7 @@ export const bocconiLawConfig: ExamConfig = {
     },
     notes: [
       'Official raw scoring: correct answer +1, missing/omitted answer 0, wrong answer -0.2.',
-      'Exception published by Bocconi: "For questions of the “critical thinking” area that give only three possible answer options, the penalty will be -0.33 points." This is carried as per-item data (an item authored with three options in the Logic and critical thinking domain), not as the config-level penalty, so the -0.2 / -0.33 split stays data rather than code. Whether the rule applies inside the Law test is not explicitly stated by Bocconi — see unverified.',
+      'Exception published by Bocconi: "For questions of the “critical thinking” area that give only three possible answer options, the penalty will be -0.33 points." It is applied per item through itemPenaltyOverrides: a three-option item in the Logic and critical thinking domain scores -0.33 when wrong. Three-option items in other domains keep -0.2. Bocconi states the rule on the page that describes both tests but does not name the Law area explicitly — see unverified.',
       'Maximum raw score is 50. Omitting is never penalised, and Bocconi’s Italian page states each candidate decides autonomously which and how many questions to attempt.',
       'A total score below 17 (penalties included) makes the applicant ineligible for the selection process. Present this as "minimum to be considered", never as a target score, a pass/fail line or an admission prediction.',
       'For Law School admission the selection test score is weighted 55% and third-last and second-last year GPA 45%. Bocconi does not publish how the test score is normalised before that weighting is applied.',
