@@ -150,6 +150,10 @@ export default async function AdminOverviewPage() {
         lead="What the question bank currently holds, what is waiting on a human, and how much of each exam's taxonomy is actually covered."
       />
 
+      <p className="-mt-4 mb-6 text-sm">
+        <Link href="/admin/funnel">Exam funnel: page views, free tests and purchases (admins)</Link>
+      </p>
+
       <Alert tone="info" title="This area is read-only">
         <p>
           Questions are authored as JSON files under <code>content/questions</code>, validated by{' '}

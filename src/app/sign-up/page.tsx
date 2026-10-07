@@ -5,6 +5,7 @@ import { getDb } from '@/lib/db';
 import { getCurrentUser } from '@/lib/auth/session';
 import { emailCodesMailer } from '@/lib/auth/email-codes';
 import { safeNext } from '@/lib/auth/next-path';
+import { examTestName, getExamConfig } from '@/lib/exams/registry';
 import { MIN_PASSWORD_LENGTH } from '@/lib/auth/password';
 import { Alert, Breadcrumbs, Card, Container, PageHeader } from '@/components/ui';
 import { SignUpForm } from './sign-up-form';
@@ -43,6 +44,7 @@ export default async function SignUpPage({
   }
 
   const signInHref = next ? `/sign-in?next=${encodeURIComponent(next)}` : '/sign-in';
+  const destination = describeNext(next);
 
   return (
     <Container size="narrow">
@@ -50,6 +52,12 @@ export default async function SignUpPage({
 
       {/* No lead above the form: see the sign-in page. It is said below the form instead. */}
       <PageHeader title={TITLE} />
+
+      {destination ? (
+        <p className="-mt-4 mb-6 font-semibold" role="note">
+          {destination}
+        </p>
+      ) : null}
 
       {user?.isGuest ? (
         <Alert tone="positive" title="Your practice so far will be kept" className="mb-6">
@@ -91,4 +99,23 @@ export default async function SignUpPage({
       </p>
     </Container>
   );
+}
+
+/**
+ * Where the visitor goes once the account exists, when they came from an
+ * exam's free test or plans, so the exam they chose stays in view.
+ */
+function describeNext(next: string | null): string | null {
+  if (!next) return null;
+  const [path, search = ''] = next.split('?');
+  const freeTest = /^\/free-test\/([a-z0-9-]+)$/.exec(path);
+  if (freeTest) {
+    const config = getExamConfig(freeTest[1]);
+    return config ? `Next: your free ${examTestName(config)} test.` : null;
+  }
+  if (path === '/premium') {
+    const config = getExamConfig(new URLSearchParams(search).get('exam') ?? '');
+    return config ? `Next: the Premium plans for your ${examTestName(config)} preparation.` : null;
+  }
+  return null;
 }
