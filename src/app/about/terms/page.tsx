@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { PAGE_DATES } from '@/lib/content/page-dates';
 import type { Metadata } from 'next';
 import { INDEPENDENCE_NOTICE, SITE, absoluteUrl, siteUrl } from '@/lib/site';
 import { Alert, Breadcrumbs, Card, Container } from '@/components/ui';
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
   },
 };
 
-const LAST_REVIEWED = '2026-10-05';
+const LAST_REVIEWED = PAGE_DATES.terms.updated;
 
 export default function TermsPage() {
   const trail = [{ href: '/', label: 'Home' }, { label: 'Terms of use' }];

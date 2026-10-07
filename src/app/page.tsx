@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getDb } from '@/lib/db';
-import { SITE, absoluteUrl, siteUrl } from '@/lib/site';
+import { SITE, absoluteUrl, googleSiteVerification, indexingEnabled, siteUrl } from '@/lib/site';
 import { getHub, listHubs } from '@/lib/exams/registry';
 import { buildHomeData, initialSample, sourceExample } from '@/lib/home/home-data';
 import { ExamPreview } from '@/components/home/exam-preview';
@@ -16,16 +16,26 @@ import { accent } from './_fonts/accent';
 
 export const dynamic = 'force-dynamic';
 
-export const metadata: Metadata = {
-  title: `${SITE.name} — ${SITE.tagline}`,
-  description: SITE.description,
-  alternates: { canonical: absoluteUrl('/') },
-  openGraph: {
-    url: absoluteUrl('/'),
+/*
+ * Built per request (this page is dynamic anyway), so the Search Console token
+ * is read from the running deployment. Google's HTML-tag verification looks
+ * only at the home page, so the tag lives here rather than in the root layout,
+ * which would have made every prerendered page dynamic.
+ */
+export function generateMetadata(): Metadata {
+  const google = indexingEnabled() ? googleSiteVerification() : null;
+  return {
     title: `${SITE.name} — ${SITE.tagline}`,
     description: SITE.description,
-  },
-};
+    alternates: { canonical: absoluteUrl('/') },
+    openGraph: {
+      url: absoluteUrl('/'),
+      title: `${SITE.name} — ${SITE.tagline}`,
+      description: SITE.description,
+    },
+    ...(google ? { verification: { google } } : {}),
+  };
+}
 
 const DEFAULT_HUB = 'digital-sat';
 
