@@ -35,6 +35,29 @@ export function absoluteUrl(path: string): string {
 }
 
 /**
+ * Google Search Console HTML-tag verification token, when one is set in code.
+ * Prefer the GOOGLE_SITE_VERIFICATION environment variable; put the token here
+ * only if the deployment cannot carry one. It is public by design: Google reads
+ * it from the page's <meta name="google-site-verification">.
+ */
+const GOOGLE_SITE_VERIFICATION_TOKEN = '';
+
+/**
+ * The Search Console verification token for this deployment, or null.
+ *
+ * Accepts the bare token or the whole tag Search Console shows
+ * (<meta name="google-site-verification" content="…" />), and refuses
+ * anything that is not token-shaped, so a pasted typo cannot inject markup.
+ * Only emitted where indexing is enabled: a preview has nothing to verify.
+ */
+export function googleSiteVerification(env: Record<string, string | undefined> = process.env): string | null {
+  const raw = (env.GOOGLE_SITE_VERIFICATION?.trim() || GOOGLE_SITE_VERIFICATION_TOKEN).trim();
+  if (!raw) return null;
+  const token = /content=["']([^"']+)["']/.exec(raw)?.[1] ?? raw;
+  return /^[A-Za-z0-9_-]{10,100}$/.test(token) ? token : null;
+}
+
+/**
  * Whether this deployment may be indexed.
  *
  * Defaults to false so a staging or preview deployment is never indexed by

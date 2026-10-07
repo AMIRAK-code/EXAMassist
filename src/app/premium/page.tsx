@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getCurrentUser } from '@/lib/auth/session';
 import { getDb } from '@/lib/db';
-import { absoluteUrl, SITE } from '@/lib/site';
+import { absoluteUrl, SITE, siteUrl } from '@/lib/site';
+import { JsonLd, breadcrumbSchema } from '@/components/seo/json-ld';
 import { headers } from 'next/headers';
 import { EXAM_CONFIGS, examTestName, getConfigsForHub, getExamConfig, getHubForConfig } from '@/lib/exams/registry';
 import { examCoverage } from '@/lib/attempts/availability';
@@ -25,6 +26,8 @@ export const metadata: Metadata = {
   alternates: { canonical: absoluteUrl('/premium') },
   openGraph: { url: absoluteUrl('/premium'), title: `${TITLE} | ${SITE.shortName}`, description: DESCRIPTION },
 };
+
+const PREMIUM_TRAIL = [{ href: '/', label: 'Home' }, { label: 'Premium' }];
 
 const MONTHLY = PLANS.monthly.perMonth;
 const saving = (perMonth: number) => Math.floor((1 - perMonth / MONTHLY) * 100);
@@ -72,7 +75,8 @@ export default async function PremiumPage({
 
   return (
     <Container>
-      <Breadcrumbs trail={[{ href: '/', label: 'Home' }, { label: 'Premium' }]} />
+      <JsonLd data={breadcrumbSchema(siteUrl(), PREMIUM_TRAIL)} />
+      <Breadcrumbs trail={PREMIUM_TRAIL} />
       <PageHeader
         eyebrow={`${SITE.name} Premium`}
         title={hub ? `Premium for your ${hub.label} preparation` : 'Practise every exam, as often as you need'}

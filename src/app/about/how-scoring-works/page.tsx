@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { PAGE_DATES, longDate } from '@/lib/content/page-dates';
 import type { Metadata } from 'next';
 import { EXAM_CONFIGS, getHubForConfig } from '@/lib/exams/registry';
 import { SITE, absoluteUrl, siteUrl } from '@/lib/site';
@@ -20,10 +21,10 @@ const DESCRIPTION =
   'What Examer reports after a practice session — raw marks, accuracy by topic and pacing — and why it reports no scaled score, no percentile and no admission estimate for any exam, with the per-exam rules for correct, wrong and omitted answers.';
 
 /** Real dates: written on 2026-09-22; revised on 2026-09-24 to add the accuracy-by-topic illustration. */
-const PUBLISHED = '2026-09-22';
-const UPDATED = '2026-09-24';
-const PUBLISHED_LABEL = '22 September 2026';
-const UPDATED_LABEL = '24 September 2026';
+const PUBLISHED = PAGE_DATES.howScoringWorks.published;
+const UPDATED = PAGE_DATES.howScoringWorks.updated;
+const PUBLISHED_LABEL = longDate(PUBLISHED);
+const UPDATED_LABEL = longDate(UPDATED);
 
 export const metadata: Metadata = {
   title: TITLE,
