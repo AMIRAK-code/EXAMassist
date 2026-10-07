@@ -15,6 +15,7 @@ import { SubmitButton } from '@/components/submit-button';
 import { Alert, Badge, Breadcrumbs, ButtonLink, Container } from '@/components/ui';
 import { QuestionTutor } from '@/components/tutor/tutor-panel';
 import { tutorEnabled } from '@/lib/tutor/config';
+import { expertReviewFor } from '@/lib/content/expert-reviews';
 
 /**
  * One question from a finished session, reviewed on its own page: the question
@@ -149,6 +150,7 @@ export default async function QuestionReviewPage({
           <p className="mt-3 text-xs text-ink-subtle">
             {`Difficulty label: ${question.difficultyBasis} judgement, not calibrated against response data.`}
           </p>
+          <ExpertReviewLine questionId={item.questionId} version={review.questionVersion} />
         </section>
 
         {/* Optional AI tutor: a second, labelled explanation built on the reviewed one above. */}
@@ -242,5 +244,30 @@ export default async function QuestionReviewPage({
         </Link>
       </nav>
     </Container>
+  );
+}
+
+/**
+ * Who checked this question. A human expert review is named only when one is
+ * recorded for this exact version (content/expert-reviews.json); otherwise the
+ * line says what did happen, so nothing implies a review that was not done.
+ */
+function ExpertReviewLine({ questionId, version }: { questionId: string; version: number }) {
+  const expert = expertReviewFor(questionId, version);
+  if (!expert) {
+    return (
+      <p className="mt-1 text-xs text-ink-subtle">
+        AI-assisted question, checked by a blind AI solve. No human expert review is recorded for it yet.{' '}
+        <Link href="/about/editorial-standards">How questions are checked</Link>
+      </p>
+    );
+  }
+  const checked = expert.checked.map((c) => c.replace('-', ' ')).join(', ');
+  return (
+    <p className="mt-1 text-xs text-ink-subtle">
+      {`Reviewed by ${expert.reviewer.name} (${expert.reviewer.credentials}) on `}
+      <time dateTime={expert.reviewedOn}>{expert.reviewedOn}</time>
+      {`; checked: ${checked}.`}
+    </p>
   );
 }

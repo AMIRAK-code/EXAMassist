@@ -10,6 +10,7 @@ import {
   type Stimulus,
 } from './question-schema';
 import { EXAM_CONFIGS, getExamConfig } from '@/lib/exams/registry';
+import { validateExpertReviews } from './expert-reviews';
 
 /**
  * Loads and validates the file-based question bank.
@@ -209,6 +210,11 @@ export function loadContent(): LoadResult {
     } else {
       seen.set(question.id, file);
     }
+  }
+
+  // The human expert review ledger must point at real question versions.
+  for (const issue of validateExpertReviews(questions.map(({ question: q }) => ({ id: q.id, examKey: q.examKey, version: q.version })))) {
+    issues.push({ ...issue, file: 'content/expert-reviews.json' });
   }
 
   return { questions, stimuli, issues };
