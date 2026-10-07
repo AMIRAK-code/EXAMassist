@@ -316,6 +316,8 @@ export interface ReviewItem {
   total: number;
   item: ResultItem;
   question: ReviewableQuestion;
+  /** The version of the question this learner was shown, which a recorded expert review must match. */
+  questionVersion: number;
   response: Response | null;
   previous: number | null;
   next: number | null;
@@ -361,6 +363,7 @@ export async function getReviewItem(db: Db, attemptId: string, userId: string, o
     total: items.length,
     item,
     question: (await toReviewable(db, version)),
+    questionVersion: version.version,
     response: parseResponse(item.responseJson),
     previous: ordinal > 1 ? ordinal - 1 : null,
     next: ordinal < items.length ? ordinal + 1 : null,
