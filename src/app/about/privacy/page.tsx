@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { PAGE_DATES, longDate } from '@/lib/content/page-dates';
 import type { Metadata } from 'next';
 import { SITE, absoluteUrl, siteUrl } from '@/lib/site';
 import { Alert, Breadcrumbs, Card, Container, DefinitionList, PageHeader } from '@/components/ui';
@@ -19,9 +20,9 @@ const DESCRIPTION =
   'Draft privacy notice for Examer, prepared for legal review: one session cookie, optional email and password, practice history, Premium payments through Stripe, no advertising, no third-party analytics, and export or deletion from your account page.';
 
 /** Real dates: this draft was written on 2026-09-22, revised on 2026-10-05 for Premium and on 2026-10-07 for the daily totals. */
-const PUBLISHED = '2026-09-22';
-const UPDATED = '2026-10-07';
-const PUBLISHED_LABEL = '22 September 2026';
+const PUBLISHED = PAGE_DATES.privacy.published;
+const UPDATED = PAGE_DATES.privacy.updated;
+const PUBLISHED_LABEL = longDate(PUBLISHED);
 
 export const metadata: Metadata = {
   title: TITLE,

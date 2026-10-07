@@ -41,13 +41,13 @@ conditions that make them possible, and the way to see what actually happens.
    the Supabase pooler. It adds config version 2026.10 for both Bocconi tests
    and new versions of the 17 corrected questions; earlier attempts keep the
    versions they were shown.
-3. **Check the build sets the indexing flag.** `wrangler.jsonc` now sets
-   `SEARCH_INDEXING_ENABLED` to `"true"` for the Worker. `robots.txt`,
-   `sitemap.xml` and every dynamic page read it at runtime. The guide and
-   format pages are prerendered, so their `<meta name="robots">` is decided by
-   the environment of the build: make sure `npm run cf:build` passes
-   `SEARCH_INDEXING_ENABLED=true` to `next build`, as it does for
-   `NEXT_PUBLIC_SITE_URL`.
+3. **Indexing flag.** `wrangler.jsonc` now sets `SEARCH_INDEXING_ENABLED` to
+   `"true"` for the Worker. Every page's robots meta, `robots.txt` and
+   `sitemap.xml` read it at request time: no page is prerendered, because the
+   root layout reads the session cookie (checked 2026-10-07 by building with
+   the flag on and serving with it off, which gave `noindex` everywhere).
+   `NEXT_PUBLIC_SITE_URL` is the exception: it is inlined at build time, so the
+   build must have `https://exam.assist365.app`.
 4. **Deploy** from a clean worktree, as in the README (`npm run cf:deploy`).
 5. **Check production** (the first two should show the change; the others should not say noindex):
 
@@ -78,18 +78,11 @@ canonical and must stay out of the index.
 
 ## Search Console (needs owner access; not set up from here)
 
-1. **Add a property.** Easiest is a *Domain* property for `exam.assist365.app`,
-   verified by a DNS TXT record on the `exam` name in the Cloudflare account
-   that holds assist365.app (Moein's). A *URL-prefix* property for
-   `https://exam.assist365.app/` is the alternative; it can be verified with an
-   HTML file or meta tag, which would need a small code change.
-2. **Submit the sitemap:** `https://exam.assist365.app/sitemap.xml`
-   (robots.txt also announces it).
-3. **URL Inspection** on `https://exam.assist365.app/exams/bocconi-online-test`:
-   check "URL is on Google" or request indexing, and that the *Google-selected
-   canonical* is the same URL.
-4. **Bing Webmaster Tools:** import the site from Search Console (this verifies
-   it and imports the sitemap); Copilot answers come from Bing's index.
+Verification, sitemap submission, URL inspection and the list of indexed and
+excluded routes are in [`GOOGLE_SEARCH_CONSOLE_SETUP.md`](GOOGLE_SEARCH_CONSOLE_SETUP.md).
+Inspect `https://exam.assist365.app/exams/bocconi-online-test` among the first
+URLs, and import the property into Bing Webmaster Tools afterwards: Copilot
+answers come from Bing's index.
 
 ## Is Bocconi search traffic landing on the Bocconi page?
 
