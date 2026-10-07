@@ -24,7 +24,7 @@ import {
   selectItems,
   type PoolItem,
 } from '@/lib/assessment/select';
-import { scoreAttempt, scoreResponse, type ScoredItem } from '@/lib/assessment/score';
+import { scoreAttempt, scoreResponse, type ScoredItem, type ScoringItem } from '@/lib/assessment/score';
 import {
   acceptsWrite,
   computeDeadline,
@@ -1607,6 +1607,12 @@ async function openNextPart(db: Db, attemptId: string, userId: string, fromIndex
   return true;
 }
 
+/** The item facts a per-item penalty rule (Bocconi's three-option -0.33) depends on. */
+export function scoringItem(version: Pick<QuestionVersionRow, 'domain_slug' | 'options_json'>): ScoringItem {
+  const options = version.options_json ? (JSON.parse(version.options_json) as unknown[]) : [];
+  return { domainSlug: version.domain_slug, optionCount: Array.isArray(options) ? options.length : 0 };
+}
+
 /** Scores every item in one part. Idempotent. */
 async function scorePart(db: Db, attemptId: string, partIndex: number, config: ExamConfig, now: Date): Promise<void> {
   const items = (await db
@@ -1619,7 +1625,7 @@ async function scorePart(db: Db, attemptId: string, partIndex: number, config: E
     if (!version) continue;
     const key = answerKeySchema.parse(JSON.parse(version.correct_json));
     const response = item.response_json ? (JSON.parse(item.response_json) as Response) : null;
-    const outcome = scoreResponse(key, response, config.scoring);
+    const outcome = scoreResponse(key, response, config.scoring, scoringItem(version));
     (await db.prepare('UPDATE attempt_items SET is_correct = ?, points_earned = ?, points_possible = ? WHERE id = ?').run(
       outcome.status === 'correct' ? 1 : outcome.status === 'not_auto_scored' ? null : 0,
       outcome.points,
@@ -1721,7 +1727,7 @@ export async function finalise(
       const key = version ? answerKeySchema.parse(JSON.parse(version.correct_json)) : null;
       const response = item.response_json ? (JSON.parse(item.response_json) as Response) : null;
       const outcome = key
-        ? scoreResponse(key, response, config.scoring)
+        ? scoreResponse(key, response, config.scoring, version ? scoringItem(version) : undefined)
         : { status: 'omitted' as const, points: 0, pointsPossible: 0 };
       return {
         partIndex: item.part_index,
