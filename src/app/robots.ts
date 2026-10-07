@@ -17,6 +17,13 @@ import { absoluteUrl, indexingEnabled } from '@/lib/site';
  * NOT remove us from that vendor's AI search, and blocking a search crawler
  * silently destroys discovery. See docs/research/seo-and-crawler-policy.md.
  */
+/*
+ * Rendered per request, never prerendered: whether this deployment may be
+ * indexed is a runtime setting (SEARCH_INDEXING_ENABLED, a Worker var), and a
+ * file baked at build time would keep whatever the build machine had.
+ */
+export const dynamic = 'force-dynamic';
+
 export default function robots(): MetadataRoute.Robots {
   if (!indexingEnabled()) {
     // Staging and preview deployments: nothing is crawlable.
@@ -64,6 +71,11 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: 'ClaudeBot', disallow: '/' },
       { userAgent: 'Google-Extended', disallow: '/' },
       { userAgent: 'Applebot-Extended', disallow: '/' },
+      // Training-only tokens documented since (checked 2026-10-07), under the
+      // same rule. Meta AI citations come from Meta-WebIndexer and Mistral's
+      // search from MistralAI-Index, both still allowed by the * group.
+      { userAgent: 'Meta-ExternalAgent', disallow: '/' },
+      { userAgent: 'MistralAI-Training', disallow: '/' },
     ],
     sitemap: absoluteUrl('/sitemap.xml'),
     host: absoluteUrl('/'),

@@ -26,7 +26,9 @@
   // NEXT_PUBLIC_* values are inlined at build time, so the build sets them too.
   "vars": {
     "NEXT_PUBLIC_SITE_URL": "https://exam.assist365.app",
-    "SEARCH_INDEXING_ENABLED": "false"
+    // Production is the one deployment search engines may index (canonical
+    // https://exam.assist365.app). Previews and the Vercel backup keep "false".
+    "SEARCH_INDEXING_ENABLED": "true"
   },
   "observability": { "enabled": true }
 }

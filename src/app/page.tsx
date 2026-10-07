@@ -48,6 +48,15 @@ const STEPS = [
   },
 ];
 
+/** Link text that says what each exam page is for. */
+const DIRECTORY_LABEL: Record<string, string> = {
+  'bocconi-online-test': 'Bocconi Online Test preparation',
+};
+
+const DIRECTORY_NOTE: Record<string, string> = {
+  'bocconi-online-test': 'The undergraduate and Law tests: practice questions, a free test and the official rules.',
+};
+
 function Accent({ children }: { children: React.ReactNode }) {
   return <em className="accent-italic text-[1.08em]">{children}</em>;
 }
@@ -99,6 +108,29 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
             </>
           }
         />
+      </section>
+
+      {/* --- 1b. The exam directory: one descriptive link per exam page ------ */}
+      <section aria-labelledby="directory-heading" className="border-t-[1.5px] border-ink">
+        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+          <p className="eyebrow">Exams</p>
+          <h2 id="directory-heading" className="display-l mt-4">
+            Choose your <Accent>exam.</Accent>
+          </h2>
+          <ul className="mt-8 grid gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-4">
+            {listHubs().map((hub) => (
+              <li key={hub.slug}>
+                <Link href={`/exams/${hub.slug}`} className="font-bold text-ink">
+                  {DIRECTORY_LABEL[hub.slug] ?? `${hub.name} practice and format guide`}
+                </Link>
+                <p className="mt-1 text-[0.9375rem] leading-snug text-ink-muted">{DIRECTORY_NOTE[hub.slug] ?? hub.publisher}</p>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-8">
+            <Link href="/exams">Every exam, with format and practice availability</Link>
+          </p>
+        </div>
       </section>
 
       {/* --- 2. How practice works ------------------------------------------ */}

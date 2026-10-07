@@ -37,7 +37,7 @@ export function SiteHeader({ account }: { account: AccountState }) {
           <ul className="flex items-center gap-1">
             {primary.map((item) => (
               <li key={item.href}>
-                <NavLink href={item.href} match={item.match} className={`inline-flex ${LINK}`}>
+                <NavLink href={item.href} match={item.match} except={item.except} className={`inline-flex ${LINK}`}>
                   {item.label}
                 </NavLink>
               </li>

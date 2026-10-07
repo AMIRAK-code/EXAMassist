@@ -17,7 +17,15 @@ import {
   PageHeader,
   StatusBadge,
 } from '@/components/ui';
-import { JsonLd, articleSchema, breadcrumbSchema } from '@/components/seo/json-ld';
+import { JsonLd, articleSchema, breadcrumbSchema, webPageSchema } from '@/components/seo/json-ld';
+import { headers } from 'next/headers';
+import { countPageView } from '@/lib/analytics/funnel';
+import { getCurrentUser } from '@/lib/auth/session';
+import { billingSettings } from '@/lib/billing/config';
+import { getAccess } from '@/lib/billing/service';
+import { BOCCONI_HUB_SLUG, bocconiLandingData } from '@/lib/exams/bocconi-landing';
+import { BOCCONI_FACTS_CHECKED_ON } from '@/lib/exams/bocconi-facts';
+import { BocconiLanding } from '@/components/exams/bocconi-landing';
 
 export const dynamic = 'force-dynamic';
 
@@ -33,6 +41,7 @@ export async function generateMetadata({
   const { hub: slug } = await params;
   const hub = getHub(slug);
   if (!hub) return { title: 'Exam' };
+  if (hub.slug === BOCCONI_HUB_SLUG) return bocconiMetadata();
 
   const title = `${hub.name}: format, timing and scoring`;
   const description = hub.tagline;
@@ -48,6 +57,28 @@ export async function generateMetadata({
     },
   };
 }
+
+/**
+ * The Bocconi page is the site's page for Bocconi test preparation, so its
+ * title and description say that, with the live question count.
+ */
+async function bocconiMetadata(): Promise<Metadata> {
+  const counts = (await Promise.all(getConfigsForHub(BOCCONI_HUB_SLUG).map((c) => examCoverage(getDb(), c)))).reduce(
+    (sum, c) => sum + c.publishedItems,
+    0,
+  );
+  const title = BOCCONI_TITLE;
+  const description = `Prepare for the Bocconi Online Test, undergraduate or Law, with ${counts} original practice questions, worked explanations, timed 50-question sets and a free test. Independent of Bocconi.`;
+  const url = absoluteUrl(`/exams/${BOCCONI_HUB_SLUG}`);
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: { url, title: `${title} | ${SITE.shortName}`, description, type: 'website' },
+  };
+}
+
+const BOCCONI_TITLE = 'Bocconi Test Preparation: Practice Questions and a Free Test';
 
 function minutes(value: number | null): string {
   return value === null ? 'Not published' : `${value} min`;
@@ -65,6 +96,36 @@ export default async function ExamHubPage({ params }: { params: Promise<{ hub: s
     { href: '/exams', label: 'Exams' },
     { label: hub.name },
   ];
+  // A daily total of views, by coarse source; nothing about the visitor is kept.
+  await countPageView(db, 'landing_view', hub.slug, await headers());
+
+  if (hub.slug === BOCCONI_HUB_SLUG) {
+    const user = await getCurrentUser();
+    const billing = billingSettings();
+    const fullAccess = !billing.enabled || (user ? (await getAccess(db, user.id)).fullAccess : false);
+    const data = await bocconiLandingData(db);
+    const url = absoluteUrl(`/exams/${hub.slug}`);
+    return (
+      <Container>
+        <JsonLd
+          data={[
+            breadcrumbSchema(siteUrl(), trail),
+            webPageSchema({
+              siteUrl: siteUrl(),
+              url,
+              name: BOCCONI_TITLE,
+              description: `Independent preparation for the Bocconi Online Test and the Bocconi Law test: ${data.totalQuestions} original practice questions with worked explanations, results by area, timed sets and a free test.`,
+              // The date the Bocconi facts on the page were last checked against Bocconi's own pages.
+              dateModified: BOCCONI_FACTS_CHECKED_ON,
+              about: 'Bocconi Online Test',
+            }),
+          ]}
+        />
+        <Breadcrumbs trail={trail} />
+        <BocconiLanding data={data} hasFullAccess={fullAccess} billingOn={billing.enabled} />
+      </Container>
+    );
+  }
 
   const verifiedOn = configs[0]?.verifiedOn ?? '';
 

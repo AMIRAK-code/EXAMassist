@@ -82,7 +82,7 @@ export function MobileMenu({
           <ul>
             {primary.map((item) => (
               <li key={item.href}>
-                <NavLink href={item.href} match={item.match} className={ITEM}>
+                <NavLink href={item.href} match={item.match} except={item.except} className={ITEM}>
                   {item.label}
                 </NavLink>
               </li>
@@ -94,7 +94,7 @@ export function MobileMenu({
                 <li key={item.href}>
                   <NavLink
                     href={item.href}
-                    match={item.match}
+                    match={item.match} except={item.except}
                     className={cx(ITEM, 'min-h-11 text-base text-ink-muted')}
                   >
                     {item.label}
