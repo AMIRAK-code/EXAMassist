@@ -184,6 +184,23 @@ export const scoringPolicySchema = z.object({
   ]),
   notes: z.array(z.string()).default([]),
   /**
+   * Published exceptions to `pointsIncorrect` that attach to the item rather
+   * than the exam: Bocconi penalises a wrong answer on a three-option critical
+   * thinking question at -0.33 instead of -0.2. An item matches when its
+   * domain is listed and it offers exactly `optionCount` options. Unset means
+   * every wrong answer scores `pointsIncorrect`.
+   */
+  itemPenaltyOverrides: z
+    .array(
+      z.object({
+        domains: z.array(z.string().min(1)).min(1),
+        optionCount: z.number().int().positive(),
+        pointsIncorrect: z.number(),
+        source: z.string().url(),
+      }),
+    )
+    .optional(),
+  /**
    * Set only when the exam publishes its raw scoring in full: a fixed number of
    * equally weighted items, a published penalty, and a published conversion to
    * the reported scale. Readiness then turns a learner's target into

@@ -5,7 +5,8 @@ import type { ExamConfig, NavigationPolicy } from '@/lib/assessment/types';
  *
  * Every fact below is taken from the verified research record at
  * content/exam-specs/_raw/bocconi-online-test-undergraduate.draft.json
- * (verification date 2026-09-18). The "Online Bocconi Test - Law" variant has a
+ * (first verified 2026-09-18, re-verified against the official pages and the
+ * AY 2027/28 Instructions and Rules of Conduct on 2026-10-07). The "Online Bocconi Test - Law" variant has a
  * different content mix (Mathematics 5 / Reading 11 / Numerical reasoning 6 /
  * Logics and critical thinking 18 / Verbal reasoning 10) and is deliberately NOT
  * modelled here.
@@ -22,7 +23,7 @@ import type { ExamConfig, NavigationPolicy } from '@/lib/assessment/types';
 const OFFICIAL_TEST_PAGE =
   'https://www.unibocconi.it/en/applying-bocconi/bachelor-and-law-programs/application-and-admissions/online-bocconi-test';
 const OFFICIAL_RULES_PDF =
-  'https://www.unibocconi.it/sites/default/files/Istruzioni%20e%20regole_26-27%20ENG.pdf';
+  'https://www.unibocconi.it/sites/default/files/media/attachments/Instructions%20and%20Rules%20of%20Conduct%2027%2028.pdf';
 
 const SECTION_KEY = 'online-test';
 
@@ -69,15 +70,15 @@ const practiceNavigationOverride: Partial<NavigationPolicy> = {
 
 export const bocconiUndergraduateConfig: ExamConfig = {
   examKey: 'bocconi-undergraduate',
-  version: '2026.09',
+  version: '2026.10',
   name: 'Online Bocconi Test (standard variant)',
   shortName: 'Bocconi Test',
   publisher: 'Bocconi University',
   versionLabel:
-    'Online Bocconi Test, AY 2027-28 admissions cycle. Structure and scoring verified on the current official test page; delivery, navigation and conduct rules verified from the official "ONLINE ADMISSION TEST AY 2026-2027 Instructions and Rules of Conduct" PDF, the most recent such document publicly fetchable.',
+    'Online Bocconi Test, AY 2027-28 admissions cycle. Structure and scoring verified on the current official test page; delivery, navigation and conduct rules verified from the official "Bocconi Online Test, Academic Year 2027/28 — Instructions and Rules of Conduct" PDF.',
   admissionsCycle:
-    'AY 2027-28 (test booking 13 July 2026 – 19 January 2027 for international applicants, 13 July 2026 – 20 April 2027 for Italian applicants)',
-  verifiedOn: '2026-09-18',
+    'AY 2027-28. Test booking runs 13 July 2026 – 19 January 2027 for international applicants and 13 July 2026 – 20 April 2027 for Italian applicants. Sessions: Early 2–29 September 2026 (closed), Winter 25 November 2026 – 26 January 2027, and Spring 8–27 April 2027 for Italian applicants only.',
+  verifiedOn: '2026-10-07',
   audience: ['undergraduate'],
   summary:
     "Bocconi University's own remote-proctored admission test for its Bachelor programs. The standard variant is 50 single-select multiple-choice questions in one undivided 75-minute block: Mathematics 24, Reading comprehension 11, Numerical reasoning 6, Critical thinking 9. Items from the four areas are interleaved rather than grouped, navigation is strictly forward-only in screens of three questions with no return, and no calculator is allowed. Scoring is raw with real negative marking (+1 correct, 0 omitted, −0.2 wrong, −0.33 for three-option critical thinking items), so omitting beats blind guessing. Bocconi publishes an eligibility floor of 17 points, below which an applicant is not considered; it publishes no admission cut-off, because admission is by competitive ranking (test 55%, high-school GPA 45%).",
@@ -87,38 +88,38 @@ export const bocconiUndergraduateConfig: ExamConfig = {
       label: 'Online Bocconi Test — official test page (structure, timing, scoring, eligibility floor)',
       url: OFFICIAL_TEST_PAGE,
       publisher: 'Bocconi University',
-      verifiedOn: '2026-09-18',
+      verifiedOn: '2026-10-07',
     },
     {
       label:
-        'ONLINE ADMISSION TEST AY 2026-2027 — Instructions and Rules of Conduct (navigation, delivery, permitted materials, score report)',
+        'Bocconi Online Test, AY 2027/28 — Instructions and Rules of Conduct (navigation, delivery, permitted materials, attempts, score report)',
       url: OFFICIAL_RULES_PDF,
       publisher: 'Bocconi University',
-      verifiedOn: '2026-09-18',
+      verifiedOn: '2026-10-07',
     },
     {
       label: 'Application and admissions — accepted selection tests and 55/45 ranking weighting',
       url: 'https://www.unibocconi.it/en/applying-bocconi/bachelor-and-law-programs/application-and-admissions/admissions',
       publisher: 'Bocconi University',
-      verifiedOn: '2026-09-18',
+      verifiedOn: '2026-10-07',
     },
     {
       label: 'SAT and ACT — official exclusion floors for the alternative admission routes',
       url: 'https://www.unibocconi.it/en/applying-bocconi/bachelor-and-law-programs/application-and-admissions/sat-and-act',
       publisher: 'Bocconi University',
-      verifiedOn: '2026-09-18',
+      verifiedOn: '2026-10-07',
     },
     {
       label: 'Results and enrollment — ranking construction',
       url: 'https://www.unibocconi.it/en/applying-bocconi/bachelor-and-law-programs/application-and-admissions/results-and-enrollment',
       publisher: 'Bocconi University',
-      verifiedOn: '2026-09-18',
+      verifiedOn: '2026-10-07',
     },
     {
       label: 'Application and admissions overview — places available',
       url: 'https://www.unibocconi.it/en/applying-bocconi/bachelor-and-law-programs/application-and-admissions',
       publisher: 'Bocconi University',
-      verifiedOn: '2026-09-18',
+      verifiedOn: '2026-10-07',
     },
   ],
 
@@ -138,11 +139,12 @@ export const bocconiUndergraduateConfig: ExamConfig = {
       notes: [
         'The four named areas are REPORTING CATEGORIES, not delivered sections. Bocconi states "The questions are distributed within the test in a mixed way both by difficulty level and by topic", so items are interleaved across the 17 screens rather than grouped. There are no section headers, no section timers and no section transitions.',
         'Navigation, per section 3.2 "SEQUENTIAL NAVIGATION DURING THE TEST" of the official rules: "The test offers 3 questions for each screen. With the \'Next\' button, you can view the next screen but going back to the previous one will no longer be possible."',
-        'allowForwardSkip is false because there is no defer-and-return facility: an item left blank on the current screen can never be revisited. Leaving an item unanswered is permitted and scores 0 — it is simply irreversible.',
+        'There is no defer-and-return facility: an item left blank on the current screen can never be revisited. Leaving an item unanswered is permitted (allowForwardSkip) and scores 0 — it is simply irreversible.',
         'No breaks. The rules of conduct forbid leaving the seat for the whole duration once the test has started.',
         'At expiry the platform auto-submits: "the test will close automatically when the available time has expired, the answers provided will be saved". No grace period.',
         'Within 48 hours the candidate can download a score report giving the total score, per-area subscores (mathematics, comprehension of the text, critical and numerical reasoning), the counts of correct / not answered / incorrect answers, and a reference number.',
         'The test may be taken in Italian or English; the choice is independent of the language of the programs applied for. Up to four attempts per test type per academic year, not on the same day nor on two consecutive days.',
+        'Each attempt costs a €60 registration fee (official test page, checked 2026-10-07). Where an applicant submits several results, the admissions portal uses the highest.',
       ],
     },
   ],
@@ -707,6 +709,14 @@ export const bocconiUndergraduateConfig: ExamConfig = {
       reason:
         'Bocconi does not publish, and does not use, any raw-to-scaled conversion for the Online Bocconi Test: the reported result IS the raw penalty-adjusted total out of 50. There is also no published equating between the four permitted attempts, between different test forms, or between the Italian and English versions of the test, and no published formula mapping that total onto the 55% test component of the admission ranking. With no published method there is nothing defensible to estimate, so we report your raw penalty-adjusted total and per-area subscores only.',
     },
+    itemPenaltyOverrides: [
+      {
+        domains: ['bocconi-ug-critical-thinking'],
+        optionCount: 3,
+        pointsIncorrect: -0.33,
+        source: OFFICIAL_TEST_PAGE,
+      },
+    ],
     notes: [
       'Official scoring, quoted: "Right answer: 1 point Missing answer: 0 points Wrong answer: — 0.2 points."',
       'THREE-OPTION EXCEPTION: for critical thinking questions presented with three answer options, "the penalty will be — 0.33 points" instead of −0.2. The penalty therefore belongs to the item, not to the exam: items flagged as three-option critical thinking are scored at −0.33 for a wrong answer while every other item uses the −0.2 configured here.',
@@ -755,7 +765,5 @@ export const bocconiUndergraduateConfig: ExamConfig = {
     'Whether the four permitted attempts draw from equated forms of comparable difficulty, and whether the Italian and English versions are equated.',
     'The additional time granted to candidates with certified disabilities or specific learning disorders — decided case by case by a Commission, with no published multiplier. Any extra-time setting we offer is a generic study aid, not a Bocconi allowance.',
     'The theoretical minimum score: whether the reported total is floored at zero or can be negative when penalties exceed correct answers.',
-    'Whether the AY 2027-28 rules differ from the AY 2026-27 rules on navigation, conduct or attempt limits. The AY 2027-28 Instructions and Rules of Conduct PDF returned HTTP 403 and did not appear in search; re-verify when it is published.',
-    'Whether a Spring session formally exists for the AY 2027-28 international cycle. The admissions page lists only Early and Winter sessions, while the test page lets Italian applicants book until 20 April 2027.',
   ],
 };

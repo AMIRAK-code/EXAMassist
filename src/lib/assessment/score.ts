@@ -151,6 +151,7 @@ export function scoreResponse(
   key: AnswerKey,
   response: Response | null | undefined,
   policy: ScoringPolicy,
+  item?: ScoringItem,
 ): ScoreOutcome {
   if (key.type === 'essay') {
     return { status: 'not_auto_scored', points: 0, pointsPossible: 0 };
@@ -163,7 +164,27 @@ export function scoreResponse(
   const correct = isResponseCorrect(key, response as Response);
   return correct
     ? { status: 'correct', points: policy.pointsCorrect, pointsPossible: policy.pointsCorrect }
-    : { status: 'incorrect', points: policy.pointsIncorrect, pointsPossible: policy.pointsCorrect };
+    : { status: 'incorrect', points: incorrectPoints(policy, item), pointsPossible: policy.pointsCorrect };
+}
+
+/** What the scorer needs to know about an item beyond its key. */
+export interface ScoringItem {
+  domainSlug: string;
+  /** Options offered on screen; 0 for a response type without options. */
+  optionCount: number;
+}
+
+/**
+ * The points for a wrong answer to this item: the exam's rule, unless a
+ * published per-item exception (`itemPenaltyOverrides`) matches it. Without
+ * the item, the exam's rule.
+ */
+export function incorrectPoints(policy: ScoringPolicy, item?: ScoringItem): number {
+  if (!item) return policy.pointsIncorrect;
+  const override = policy.itemPenaltyOverrides?.find(
+    (rule) => rule.optionCount === item.optionCount && rule.domains.includes(item.domainSlug),
+  );
+  return override ? override.pointsIncorrect : policy.pointsIncorrect;
 }
 
 // ---------------------------------------------------------------------------

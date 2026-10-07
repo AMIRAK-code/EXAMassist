@@ -221,6 +221,20 @@ export function answerLettersNamed(explanationMd: string): string[] {
   return [...found];
 }
 
+/** A description that promises the choices come in size order. */
+const ORDER_CLAIM = /\b(?:in (?:increasing|ascending) order|from smallest to largest)\b/i;
+
+/** The first number in a choice, ignoring maths markup and currency: "$€72$" and "About $1.4$ times" read 72 and 1.4. */
+export function leadingNumber(text: string): number | null {
+  const fraction = /\\d?frac\{(-?\d+)\}\{(\d+)\}/.exec(text);
+  if (fraction && Number(fraction[2]) !== 0) return Number(fraction[1]) / Number(fraction[2]);
+  const match = text.replace(/,(?=\d{3}\b)/g, '').match(/-?\d+(?:\.\d+)?/);
+  return match ? Number(match[0]) : null;
+}
+
+/** A currency sign typed inside inline maths renders in a fallback font: "$€80$" instead of "€80". */
+const CURRENCY_IN_MATHS = /\$[€£¥][^$\n]*\$/;
+
 /**
  * Editorial validation. Errors block publication; warnings are reported but do
  * not fail the build.
@@ -378,6 +392,17 @@ export function validateQuestion(
     err('missing-stimulus', `Stimulus "${question.stimulusRef.id}" does not exist.`);
   }
 
+  const learnerText = [
+    question.stemMd,
+    question.instructionsMd ?? '',
+    question.explanationMd,
+    ...question.options.map((o) => o.textMd),
+    ...Object.values(question.distractorRationale ?? {}).map(String),
+  ].join('\n');
+  if (CURRENCY_IN_MATHS.test(learnerText)) {
+    err('currency-in-maths', 'A currency sign sits inside $…$ maths, where it renders in a fallback font. Write "€80", not "$€80$".');
+  }
+
   // Option letters cited in prose.
   //
   // `normalise-option-order.ts` renumbers choices to remove answer-position
@@ -437,6 +462,25 @@ export function validateQuestion(
         'accessibility-cites-letters',
         'The screen-reader description names choices by letter, so option order cannot be normalised. List what each choice says without its letter; the player already announces the letters.',
       );
+    }
+
+    // The same fault in the screen-reader description: "listed in increasing
+    // order" written before the choices were reordered. Found in nine items by
+    // the October 2026 audit, where a screen-reader user heard one order and a
+    // sighted user saw another.
+    if (question.accessibilityText && ORDER_CLAIM.test(question.accessibilityText)) {
+      const values = question.options.map((o) => leadingNumber(o.textMd));
+      if (values.some((v) => v === null)) {
+        err(
+          'accessibility-claims-order',
+          'The screen-reader description says the choices are in size order, which cannot be checked for these choices. List them "in the order shown" instead.',
+        );
+      } else if (values.some((v, i) => i > 0 && (v as number) < (values[i - 1] as number))) {
+        err(
+          'accessibility-claims-order',
+          'The screen-reader description says the choices are in increasing order, but they are not. List them in the order shown.',
+        );
+      }
     }
 
     const prose = [question.explanationMd, ...Object.values(question.distractorRationale ?? {}).map(String)].join(' ');
