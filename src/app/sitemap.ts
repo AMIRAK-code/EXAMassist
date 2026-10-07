@@ -1,5 +1,7 @@
 import type { MetadataRoute } from 'next';
-import { EXAM_HUBS } from '@/lib/exams/registry';
+import { EXAM_HUBS, getConfigsForHub } from '@/lib/exams/registry';
+import { BOCCONI_FACTS_CHECKED_ON } from '@/lib/exams/bocconi-facts';
+import { BOCCONI_HUB_SLUG } from '@/lib/exams/bocconi-landing';
 import { absoluteUrl, indexingEnabled } from '@/lib/site';
 import { listGuides } from '@/lib/content/guides';
 
@@ -14,6 +16,13 @@ import { listGuides } from '@/lib/content/guides';
  * Inventing a fresh date to look current is exactly the freshness abuse we
  * refuse to do.
  */
+/*
+ * Rendered per request, never prerendered: whether this deployment may be
+ * indexed is a runtime setting (SEARCH_INDEXING_ENABLED, a Worker var), and a
+ * file baked at build time would keep whatever the build machine had.
+ */
+export const dynamic = 'force-dynamic';
+
 export default function sitemap(): MetadataRoute.Sitemap {
   if (!indexingEnabled()) return [];
 
@@ -29,9 +38,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   for (const hub of EXAM_HUBS) {
+    // The date the exam facts were last verified: a real date, never "now".
+    const verified = getConfigsForHub(hub.slug)
+      .map((config) => config.verifiedOn)
+      .sort()
+      .at(-1);
+    const hubDate = hub.slug === BOCCONI_HUB_SLUG ? BOCCONI_FACTS_CHECKED_ON : verified;
     entries.push(
-      { url: absoluteUrl(`/exams/${hub.slug}`), changeFrequency: 'monthly', priority: 0.9 },
-      { url: absoluteUrl(`/exams/${hub.slug}/format`), changeFrequency: 'monthly', priority: 0.8 },
+      {
+        url: absoluteUrl(`/exams/${hub.slug}`),
+        ...(hubDate ? { lastModified: new Date(hubDate) } : {}),
+        changeFrequency: 'monthly',
+        priority: 0.9,
+      },
+      {
+        url: absoluteUrl(`/exams/${hub.slug}/format`),
+        ...(verified ? { lastModified: new Date(verified) } : {}),
+        changeFrequency: 'monthly',
+        priority: 0.8,
+      },
     );
   }
 

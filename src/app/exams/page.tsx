@@ -124,7 +124,7 @@ export default async function ExamsPage() {
 
                   <div className="mt-4 flex flex-wrap gap-2">
                     <ButtonLink href={`/exams/${hub.slug}`} size="sm">
-                      Exam guide
+                      {hub.slug === 'bocconi-online-test' ? 'Bocconi test preparation' : 'Exam guide'}
                     </ButtonLink>
                     {configs.map((config) => (
                       <ButtonLink

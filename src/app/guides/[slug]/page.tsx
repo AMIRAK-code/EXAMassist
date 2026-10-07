@@ -4,6 +4,7 @@ import { getGuide, listGuides } from '@/lib/content/guides';
 import { getHub } from '@/lib/exams/registry';
 import { SITE, absoluteUrl, siteUrl } from '@/lib/site';
 import { Markdown } from '@/components/content';
+import { freeTestPath } from '@/lib/billing/config';
 import { Breadcrumbs, ButtonLink, Callout, Card, Container, PageHeader } from '@/components/ui';
 import { JsonLd, articleSchema, breadcrumbSchema } from '@/components/seo/json-ld';
 
@@ -138,9 +139,13 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
             Original questions with worked explanations. A free account gets one free test.
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
-            <ButtonLink href={`/practice/${guide.examKeys[0]}`}>Start practising</ButtonLink>
+            {hub.slug === 'bocconi-online-test' ? (
+              <ButtonLink href={freeTestPath(guide.examKeys[0])}>Try a free Bocconi test</ButtonLink>
+            ) : (
+              <ButtonLink href={`/practice/${guide.examKeys[0]}`}>Start practising</ButtonLink>
+            )}
             <ButtonLink href={`/exams/${hub.slug}`} variant="secondary">
-              {hub.name} guide
+              {hub.slug === 'bocconi-online-test' ? 'Bocconi test preparation' : `${hub.name} guide`}
             </ButtonLink>
           </div>
         </Card>

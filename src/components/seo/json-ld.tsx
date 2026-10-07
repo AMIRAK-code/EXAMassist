@@ -26,6 +26,7 @@ export function organizationSchema(siteUrl: string, name: string, description: s
     '@id': `${siteUrl}#organization`,
     name,
     url: siteUrl,
+    logo: `${siteUrl}/brand/examer-symbol.svg`,
     description,
     // An explicit, honest statement of independence.
     disambiguatingDescription:
@@ -42,6 +43,34 @@ export function webSiteSchema(siteUrl: string, name: string) {
     url: siteUrl,
     publisher: { '@id': `${siteUrl}#organization` },
     inLanguage: 'en',
+  };
+}
+
+/**
+ * A plain WebPage description for a page that is neither an article nor a
+ * product listing. It earns no rich result; it states what the page is about
+ * and who publishes it, matching what the page says in its own text.
+ */
+export function webPageSchema(options: {
+  siteUrl: string;
+  url: string;
+  name: string;
+  description: string;
+  dateModified: string;
+  about: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': options.url,
+    url: options.url,
+    name: options.name,
+    description: options.description,
+    inLanguage: 'en',
+    dateModified: options.dateModified,
+    about: { '@type': 'Thing', name: options.about },
+    isPartOf: { '@id': `${options.siteUrl}#website` },
+    publisher: { '@id': `${options.siteUrl}#organization` },
   };
 }
 
