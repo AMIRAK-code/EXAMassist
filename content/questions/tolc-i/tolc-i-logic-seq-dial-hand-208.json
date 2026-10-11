@@ -1,0 +1,78 @@
+{
+  "id": "tolc-i-logic-seq-dial-hand-208",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-sequences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A sequence of figures is described in words. Each figure is a clock face with the twelve hour marks and a single hand. In the first five figures the hand points to\n\n12, 2, 6, 12, 8\n\nand the hand is coloured black, white, black, white, black, in that order. The figures follow a regular pattern.\n\nWhat does the sixth figure look like?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The hand points to 6 and is white."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The hand points to 6 and is black."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The hand points to 4 and is white."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The hand points to 4 and is black."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The hand points to 10 and is white."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Treat the two features separately.\n\n**Position.** Measure how far the hand moves clockwise each time, in hours: from 12 to 2 is 2, from 2 to 6 is 4, from 6 to 12 is 6, from 12 to 8 is 8. The moves grow by 2 each time, so the next move is 10 hours. Moving 10 hours clockwise from 8 passes 12 and reaches 6 (8 + 10 = 18, and 18 - 12 = 6).\n\n**Colour.** The colour simply alternates, black then white. The fifth hand is black, so the sixth is white.\n\nCheck: the hand's total movement from 12 is 2, 6, 12, 20 and then 30 hours; 30 hours is two full turns plus 6 hours, so the hand points to 6.",
+  "distractorRationale": {
+    "b": "Gets the position right but continues the colour wrongly: the colours alternate, and after a black fifth hand comes a white one.",
+    "c": "Moves the hand 8 hours again, repeating the last move instead of increasing it by 2.",
+    "d": "Repeats the last move of 8 hours and also gets the alternating colour wrong.",
+    "e": "Uses the size of the next move, 10 hours, as if it were the position, instead of adding it to the current position at 8."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "A figure sequence described in words. Each figure is a clock face with twelve hour marks and one hand. In the first five figures the hand points to 12, 2, 6, 12 and 8, and its colour is black, white, black, white, black. The question asks what the sixth figure looks like. The five choices are: hand pointing to 6 and white; hand pointing to 6 and black; hand pointing to 4 and white; hand pointing to 4 and black; hand pointing to 10 and white.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-logic-author",
+    "aiAssisted": true,
+    "notes": "Tests a figure sequence described in words with two features, a rotating hand with growing steps and an alternating colour. The scenario and wording are original to this bank; no published TOLC or other test item was used or adapted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-logic-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "sequences",
+    "figures",
+    "rotation",
+    "no-calculator"
+  ]
+}

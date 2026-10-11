@@ -1,0 +1,79 @@
+{
+  "id": "tolc-i-logic-seq-square-steps-210",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-sequences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A staircase-shaped stack is built in layers. The total number of blocks used after each of the first six layers is\n\n1, 2, 6, 15, 31, 56\n\nand the totals follow a regular pattern. If the pattern continues, how many blocks will have been used in total after the seventh layer?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "81"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "87"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "92"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "106"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "112"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Write the differences between consecutive totals, which are the blocks added in each layer: 1, 4, 9, 16, 25. These are the square numbers $1^2, 2^2, 3^2, 4^2, 5^2$. So the seventh layer adds $6^2 = 36$ blocks, and the total becomes 56 + 36 = **92**.\n\nCheck with second differences: 4 - 1 = 3, 9 - 4 = 5, 16 - 9 = 7, 25 - 16 = 9 are the odd numbers, so the next second difference is 11, the next difference is 25 + 11 = 36, and the next total is 92. Both views agree.",
+  "distractorRationale": {
+    "a": "Adds 25 again, repeating the last difference. The differences are the squares 1, 4, 9, 16, 25, so the next one is 36.",
+    "b": "Adds the two previous totals (31 + 56). That rule fails earlier: 2 + 6 = 8, not 15.",
+    "d": "Doubles the last difference, adding 50. The differences grow as squares, not by doubling: 9 is not twice 4.",
+    "e": "Doubles the last total. Doubling does not fit the earlier totals: twice 15 is 30, not 31, and twice 6 is 12, not 15."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A number sequence question about a stack built in layers. The total number of blocks after each of the first six layers is 1, 2, 6, 15, 31 and 56, following a regular pattern. The question asks for the total after the seventh layer. The five choices are 81, 87, 92, 106 and 112.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-logic-author",
+    "aiAssisted": true,
+    "notes": "Tests a sequence whose first differences are the perfect squares. The scenario and wording are original to this bank; no published TOLC or other test item was used or adapted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-logic-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "sequences",
+    "numeric",
+    "differences",
+    "squares",
+    "no-calculator"
+  ]
+}

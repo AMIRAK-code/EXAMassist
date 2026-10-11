@@ -1,0 +1,78 @@
+{
+  "id": "tolc-i-logic-robotics-league-points-215",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Four robotics teams, Alfa, Beta, Gamma and Delta, play a league in which every team meets every other team exactly once. A win earns 3 points, a draw earns 1 point to each team, and a loss earns 0 points. At the end of the league the points are:\n\nAlfa 7, Beta 5, Gamma 3, Delta 1.\n\nWhich of the following must be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Beta beat Gamma."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Alfa beat Beta."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Gamma drew with Delta."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Delta lost all three of its matches."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Gamma beat Alfa."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Count matches and points first. Four teams playing each other once make 6 matches. A decisive match hands out 3 points in total and a draw hands out 2. The points add up to 7 + 5 + 3 + 1 = 16. If $w$ matches are won and $d$ drawn, then $w + d = 6$ and $3w + 2d = 16$, so $w = 4$ and $d = 2$.\n\nEach team plays 3 matches, so its points fix its record:\n\n- Alfa 7: two wins and one draw.\n- Beta 5: one win and two draws.\n- Delta 1: one draw and two losses.\n- Gamma 3: either one win and two losses, or three draws.\n\nTwo drawn matches give 4 team-draws in total. Alfa, Beta and Delta already account for 1 + 2 + 1 = 4, so Gamma has no draws: one win, two losses. Beta's two draws are therefore the league's two drawn matches, against the only other teams with a draw, Alfa and Delta. Beta's single win must then be against the remaining opponent, Gamma.\n\nCheck the whole table: Alfa drew with Beta and beat Gamma and Delta; Beta beat Gamma and drew with Delta; Gamma beat Delta. That gives 7, 5, 3 and 1 points.",
+  "distractorRationale": {
+    "b": "Beta's two draws must be against Alfa and Delta, so the match between Alfa and Beta was a draw, not an Alfa win.",
+    "c": "Gamma has no draws: the two drawn matches are both Beta's. Gamma's 3 points come from a win over Delta.",
+    "d": "Delta's single point comes from a draw, against Beta, so Delta did not lose all three matches.",
+    "e": "Alfa's 7 points mean two wins and a draw with no defeat, so no team beat Alfa."
+  },
+  "estimatedSeconds": 130,
+  "stimulusRef": null,
+  "accessibilityText": "A logic problem about a league of four robotics teams, Alfa, Beta, Gamma and Delta, in which every team plays every other once. A win earns 3 points, a draw 1 point each, a loss 0. Final points: Alfa 7, Beta 5, Gamma 3, Delta 1. The question asks which statement must be true. The five choices are: Beta beat Gamma; Alfa beat Beta; Gamma drew with Delta; Delta lost all three of its matches; Gamma beat Alfa.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-logic-author",
+    "aiAssisted": true,
+    "notes": "Tests reconstructing match results from a points table by counting wins and draws. The scenario and wording are original to this bank; no published TOLC or other test item was used or adapted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-logic-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "problems",
+    "tournament",
+    "case-analysis",
+    "no-calculator"
+  ]
+}
