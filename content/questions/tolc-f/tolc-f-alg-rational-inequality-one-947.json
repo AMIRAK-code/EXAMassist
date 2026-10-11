@@ -15,12 +15,12 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "For every real $x$ except $x=-2$"
+      "textMd": "For no real $x$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "For $x\\ge -2$"
+      "textMd": "For $x<-2$"
     },
     {
       "id": "c",
@@ -30,12 +30,12 @@
     {
       "id": "d",
       "label": "D",
-      "textMd": "For $x<-2$"
+      "textMd": "For $x\\ge -2$"
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "For no real $x$"
+      "textMd": "For every real $x$ except $x=-2$"
     }
   ],
   "answerKey": {
@@ -44,10 +44,10 @@
   },
   "explanationMd": "**What to notice first.** You may not multiply both sides by $x+2$, because its sign is unknown. Move everything to one side instead.\n\n**The computation.**\n\n$$\\frac{x-3}{x+2}-1=\\frac{x-3-(x+2)}{x+2}=\\frac{-5}{x+2}\\le 0.$$\n\nThe numerator is the constant $-5$, so the fraction is never $0$ and is negative exactly when $x+2>0$. The solution is $x>-2$; at $x=-2$ the expression is undefined.\n\n**How to check it.** At $x=0$: $\\tfrac{-3}{2}\\le 1$ holds. At $x=-3$: $\\tfrac{-6}{-1}=6$, which is not $\\le 1$, so values below $-2$ really are excluded.",
   "distractorRationale": {
-    "a": "Multiplies both sides by $x+2$ without considering its sign, getting $x-3\\le x+2$, which is always true. When $x+2<0$ the inequality sign must flip.",
-    "b": "Includes $x=-2$, where the denominator is zero and the expression does not exist.",
-    "d": "Gets the sign of $\\tfrac{-5}{x+2}$ backwards: the fraction is negative when $x+2$ is positive, not negative.",
-    "e": "Notices that $x$ cancels after rearranging and concludes nothing is left to solve, missing that the sign of $x+2$ still decides the inequality."
+    "e": "Multiplies both sides by $x+2$ without considering its sign, getting $x-3\\le x+2$, which is always true. When $x+2<0$ the inequality sign must flip.",
+    "d": "Includes $x=-2$, where the denominator is zero and the expression does not exist.",
+    "b": "Gets the sign of $\\tfrac{-5}{x+2}$ backwards: the fraction is negative when $x+2$ is positive, not negative.",
+    "a": "Notices that $x$ cancels after rearranging and concludes nothing is left to solve, missing that the sign of $x+2$ still decides the inequality."
   },
   "estimatedSeconds": 90,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

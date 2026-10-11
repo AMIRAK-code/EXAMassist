@@ -15,39 +15,39 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "Tablet"
+      "textMd": "Syrup"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "Patch"
+      "textMd": "Spray"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "Syrup"
+      "textMd": "Placebo"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "Spray"
+      "textMd": "Patch"
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "Placebo"
+      "textMd": "Tablet"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "c"
+    "optionId": "a"
   },
   "explanationMd": "**What to notice first.** The groups have different sizes, so the counts of improved patients cannot be compared directly: each must be divided by its group size.\n\n**The computation.**\n\n- Tablet: $52/80=65\\%$\n- Syrup: $34/50=68\\%$\n- Patch: $72/120=60\\%$\n- Spray: $40/60\\approx 66.7\\%$\n- Placebo: $18/40=45\\%$\n\nThe syrup group has the highest rate.\n\n**How to check it.** Compare the two closest rates directly: syrup $34/50=0.68$ against spray $40/60=2/3\\approx 0.667$. Syrup is still ahead.",
   "distractorRationale": {
-    "a": "The tablet group has the second-largest number of improved patients, but $52/80$ is only $65\\%$.",
-    "b": "The patch group has the most improved patients, $72$, but it is also the largest group: $72/120$ is only $60\\%$.",
-    "d": "The spray rate, $40/60\\approx 66.7\\%$, is close but just below the syrup rate of $68\\%$.",
-    "e": "The placebo group has the highest share of patients who did *not* improve, $22/40=55\\%$; its improvement rate, $45\\%$, is the lowest."
+    "e": "The tablet group has the second-largest number of improved patients, but $52/80$ is only $65\\%$.",
+    "d": "The patch group has the most improved patients, $72$, but it is also the largest group: $72/120$ is only $60\\%$.",
+    "b": "The spray rate, $40/60\\approx 66.7\\%$, is close but just below the syrup rate of $68\\%$.",
+    "c": "The placebo group has the highest share of patients who did *not* improve, $22/40=55\\%$; its improvement rate, $45\\%$, is the lowest."
   },
   "estimatedSeconds": 75,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,
