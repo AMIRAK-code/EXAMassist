@@ -7,7 +7,7 @@
   "skillSlug": "tolci-math-arithmetic-algebra",
   "subskillSlug": null,
   "responseType": "single_select",
-  "difficulty": "hard",
+  "difficulty": "medium",
   "difficultyBasis": "editorial",
   "stemMd": "How many integers from 1 to 300, inclusive, are divisible by 4 or by 6, but not by both?",
   "instructionsMd": null,
@@ -61,12 +61,18 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "tolc-i-wave8-math-a-author",
-    "reviewer": null,
-    "reviewedOn": null,
-    "independentSolve": null,
+    "reviewer": "blind-reviewer-wave8-tolci-math-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-math-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "There are 75 multiples of 4, 50 of 6 and 25 of lcm 12, so exactly one gives 75+50-2*25=75 (brute force confirms). 100 is the 'or' count (inclusion-exclusion); 125 adds without subtracting; 50 is the count of multiples of 6. [A second, separate blind solve (blind-reviewer-wave8-tolci-math-run1) reached the same answer: There are 75 multiples of 4, 50 multiples of 6 and 25 multiples of 12 (lcm). Exclusive-or gives 75+50-2*25=75. 100 is the inclusive 'or', 125 adds without subtracting, and 50 and 101 are slips. The count was confirmed by brute force.]"
+    },
     "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
-  "state": "in_review",
+  "state": "published",
   "quarantine": null,
   "tags": [
     "number-properties",

@@ -61,12 +61,18 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "tolc-i-wave8-logic-author",
-    "reviewer": null,
-    "reviewedOn": null,
-    "independentSolve": null,
+    "reviewer": "blind-reviewer-wave8-tolci-logic-sci-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-logic-sci-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Rule a(n+1) = 2a(n) - 1 (equivalently 2^n + 1, or differences doubling 2,4,8,16,32) gives 65. All natural rules agree; 64 and 66 are off-by-one, 49 and 50 fit no rule. [A second, separate blind solve (blind-reviewer-wave8-tolci-logic-sci-run1) reached the same answer: Each term is 2x-1 (equivalently 2^n+1, or differences doubling 2,4,8,16 -> 32), all giving 65. 64 and 66 are off by one, 49/50 assume constant-ish differences.]"
+    },
     "notes": ""
   },
-  "state": "in_review",
+  "state": "published",
   "quarantine": null,
   "tags": [
     "logic",
