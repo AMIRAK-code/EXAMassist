@@ -15,33 +15,33 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$\\dfrac{3uv}{2u + v}$"
+      "textMd": "$\\dfrac{2uv}{u + v}$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$\\dfrac{u + 2v}{3}$"
+      "textMd": "$\\dfrac{3uv}{u + 2v}$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "$\\dfrac{3uv}{u + 2v}$"
+      "textMd": "$\\dfrac{3uv}{2u + v}$"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "$\\dfrac{2uv}{u + v}$"
+      "textMd": "$\\dfrac{u + 2v}{3}$"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "c"
   },
   "explanationMd": "Average speed is **total distance divided by total time**. It is not the average of the speeds, because the cyclist spends different amounts of time at each speed.\n\n**Step 1 — call the route length $d$.** The distance $d$ will cancel at the end.\n\n**Step 2 — time for each part.** Time is distance divided by speed:\n\n$$t_{1} = \\frac{d/3}{u} = \\frac{d}{3u} \\qquad t_{2} = \\frac{2d/3}{v} = \\frac{2d}{3v}$$\n\n**Step 3 — total time over a common denominator.**\n\n$$t_{1} + t_{2} = \\frac{d}{3u} + \\frac{2d}{3v} = \\frac{d\\,(v + 2u)}{3uv}$$\n\n**Step 4 — divide distance by time.**\n\n$$\\bar{v} = \\frac{d}{\\dfrac{d\\,(2u + v)}{3uv}} = \\frac{3uv}{2u + v}$$\n\n**Check 1 — equal speeds.** If $u = v$, the formula gives $\\frac{3u^{2}}{3u} = u$, as it must.\n\n**Check 2 — numbers.** Take a route of $3$ km, $u = 1$ km/h and $v = 2$ km/h. The first kilometre takes $1$ hour and the next $2$ km take $1$ hour, so the average is $3 / 2 = 1.5$ km/h. The formula gives $\\frac{3 \\cdot 2}{2 + 2} = 1.5$. ✓",
   "distractorRationale": {
-    "b": "This weights the two speeds by the **fractions of distance**, as if average speed were a weighted arithmetic mean. That is only valid when the weights are fractions of **time**. With $u = 1$, $v = 2$ on a 3 km route it gives $\\frac{5}{3}$, but the true average is $1.5$.",
-    "c": "This has the weights the wrong way round in the denominator, as if the cyclist rode two thirds at speed $u$ and one third at speed $v$. The time on the first third is $\\frac{d}{3u}$, which puts the coefficient $2$ on $u$, not on $v$.",
-    "d": "This is the average speed when the route is split into two **equal** halves. Here the split is one third and two thirds, so the formula for halves does not apply."
+    "d": "This weights the two speeds by the **fractions of distance**, as if average speed were a weighted arithmetic mean. That is only valid when the weights are fractions of **time**. With $u = 1$, $v = 2$ on a 3 km route it gives $\\frac{5}{3}$, but the true average is $1.5$.",
+    "b": "This has the weights the wrong way round in the denominator, as if the cyclist rode two thirds at speed $u$ and one third at speed $v$. The time on the first third is $\\frac{d}{3u}$, which puts the coefficient $2$ on $u$, not on $v$.",
+    "a": "This is the average speed when the route is split into two **equal** halves. Here the split is one third and two thirds, so the formula for halves does not apply."
   },
   "estimatedSeconds": 120,
   "stimulusRef": null,
@@ -58,7 +58,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": "Author's uniqueness check: with d = 3, u = 1, v = 2 the true average is 1.5; the four choices evaluate to 1.5, 5/3, 6/5 and 4/3, so only one matches. The keyed expression also returns u when u = v."
+    "notes": "Author's uniqueness check: with d = 3, u = 1, v = 2 the true average is 1.5; the four choices evaluate to 1.5, 5/3, 6/5 and 4/3, so only one matches. The keyed expression also returns u when u = v. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

@@ -15,33 +15,33 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$\\dfrac{a + b + 2}{a + b}$"
+      "textMd": "$\\dfrac{a + b + 1}{a + b}$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$\\dfrac{a + b + 1}{a + b}$"
+      "textMd": "$2$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "$\\dfrac{a + b + 2}{ab}$"
+      "textMd": "$\\dfrac{a + b + 2}{a + b}$"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "$2$"
+      "textMd": "$\\dfrac{a + b + 2}{ab}$"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "c"
   },
   "explanationMd": "Two identities do the work: change of base, and the logarithm of a product.\n\n**Step 1 — change to base 2.** For positive numbers, $\\log_{15} 60 = \\dfrac{\\log_{2} 60}{\\log_{2} 15}$.\n\n**Step 2 — factorise and split.** $60 = 2^{2} \\cdot 3 \\cdot 5$ and $15 = 3 \\cdot 5$, so\n\n$$\\log_{2} 60 = 2 + \\log_{2} 3 + \\log_{2} 5 = 2 + a + b \\qquad \\log_{2} 15 = a + b$$\n\n**Step 3 — combine.**\n\n$$\\log_{15} 60 = \\frac{a + b + 2}{a + b}$$\n\n**Check.** Since $60 = 4 \\cdot 15$, $\\log_{15} 60 = 1 + \\log_{15} 4$, a number a little above $1$ ($\\log_{15} 4$ is about $\\frac{1}{2}$ because $4 \\approx \\sqrt{15}$). With $a \\approx 1.58$ and $b \\approx 2.32$, the keyed expression gives about $\\frac{5.9}{3.9} \\approx 1.5$. ✓",
   "distractorRationale": {
-    "b": "This counts the factor $2$ only once in $60$, writing $\\log_{2} 60 = 1 + a + b$. But $60 = 2^{2} \\cdot 3 \\cdot 5$, so the power of $2$ contributes $\\log_{2} 4 = 2$.",
-    "c": "This writes $\\log_{2} 15$ as $ab$, a product of logarithms. The logarithm of a product is the **sum** of the logarithms: $\\log_{2}(3 \\cdot 5) = a + b$.",
-    "d": "This treats the quotient of logarithms as the logarithm of a quotient: $\\log_{2} 60 - \\log_{2} 15 = \\log_{2} 4 = 2$. Change of base divides the two logarithms; it does not subtract them."
+    "a": "This counts the factor $2$ only once in $60$, writing $\\log_{2} 60 = 1 + a + b$. But $60 = 2^{2} \\cdot 3 \\cdot 5$, so the power of $2$ contributes $\\log_{2} 4 = 2$.",
+    "d": "This writes $\\log_{2} 15$ as $ab$, a product of logarithms. The logarithm of a product is the **sum** of the logarithms: $\\log_{2}(3 \\cdot 5) = a + b$.",
+    "b": "This treats the quotient of logarithms as the logarithm of a quotient: $\\log_{2} 60 - \\log_{2} 15 = \\log_{2} 4 = 2$. Change of base divides the two logarithms; it does not subtract them."
   },
   "estimatedSeconds": 90,
   "stimulusRef": null,
@@ -58,7 +58,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": "Author's uniqueness check: log_15 60 is about 1.512; with a = log_2 3 and b = log_2 5 the four choices evaluate to about 1.512, 1.256, 1.605 and 2, so only one matches."
+    "notes": "Author's uniqueness check: log_15 60 is about 1.512; with a = log_2 3 and b = log_2 5 the four choices evaluate to about 1.512, 1.256, 1.605 and 2, so only one matches. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

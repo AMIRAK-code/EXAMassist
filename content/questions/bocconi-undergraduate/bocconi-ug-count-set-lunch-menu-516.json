@@ -15,17 +15,17 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$35$"
+      "textMd": "$12$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$12$"
+      "textMd": "$20$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "$20$"
+      "textMd": "$35$"
     },
     {
       "id": "d",
@@ -35,12 +35,12 @@
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "c"
   },
   "explanationMd": "Split the lunches into two kinds that cannot overlap, count each kind with the product rule, then add (sum rule).\n\n- **Starter and main:** $4 \\times 5 = 20$ lunches.\n- **Main and dessert:** $5 \\times 3 = 15$ lunches.\n\nNo lunch is of both kinds, because each lunch has exactly two courses. So the total is\n\n$$20 + 15 = 35$$\n\n**Check.** Equivalently, choose the main ($5$ ways) and then the second course from the $4 + 3 = 7$ starters and desserts: $5 \\times 7 = 35$. ✓",
   "distractorRationale": {
-    "b": "This adds all the dishes on the menu, $4 + 5 + 3$. That counts single dishes, not pairs of courses; independent choices made one after another multiply.",
-    "c": "This counts only the lunches with a starter, $4 \\times 5$, and leaves out the $15$ lunches that pair a main course with a dessert.",
+    "a": "This adds all the dishes on the menu, $4 + 5 + 3$. That counts single dishes, not pairs of courses; independent choices made one after another multiply.",
+    "b": "This counts only the lunches with a starter, $4 \\times 5$, and leaves out the $15$ lunches that pair a main course with a dessert.",
     "d": "This is $4 \\times 5 \\times 3$, the number of three-course meals with a starter, a main **and** a dessert. The set lunch has exactly two courses."
   },
   "estimatedSeconds": 45,
@@ -58,7 +58,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": "Author's uniqueness check: 4*5 + 5*3 = 35 = 5*7; the distractors are the plain sum, one case only and the three-course product."
+    "notes": "Author's uniqueness check: 4*5 + 5*3 = 35 = 5*7; the distractors are the plain sum, one case only and the three-course product. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

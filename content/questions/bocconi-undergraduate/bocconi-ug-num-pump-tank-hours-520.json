@@ -15,12 +15,12 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$3$"
+      "textMd": "$0.3$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$0.3$"
+      "textMd": "$3$"
     },
     {
       "id": "c",
@@ -35,11 +35,11 @@
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "b"
   },
   "explanationMd": "Put the capacity and the rate in the same volume unit, find the time in minutes, then convert to hours.\n\n**Step 1 — volume in litres.** One cubic metre is $1000$ litres (a cube of side $10$ dm holds $10^{3}$ dm³), so\n\n$$8.1 \\text{ m}^{3} = 8100 \\text{ L}$$\n\n**Step 2 — time in minutes.**\n\n$$\\frac{8100 \\text{ L}}{45 \\text{ L/min}} = 180 \\text{ min}$$\n\n**Step 3 — time in hours.** $180 \\div 60 = 3$ hours.\n\n**Check.** In one hour the pump delivers $45 \\times 60 = 2700$ L $= 2.7$ m³, and $3 \\times 2.7 = 8.1$ m³. ✓",
   "distractorRationale": {
-    "b": "This uses $1$ m³ $= 100$ L, so the tank seems to hold $810$ L, which takes $18$ minutes, or $0.3$ hours. A cubic metre is $1000$ litres.",
+    "a": "This uses $1$ m³ $= 100$ L, so the tank seems to hold $810$ L, which takes $18$ minutes, or $0.3$ hours. A cubic metre is $1000$ litres.",
     "c": "This uses $1$ m³ $= 10\\,000$ L, so the tank seems to hold $81\\,000$ L, which takes $1800$ minutes, or $30$ hours. A cubic metre is $1000$ litres.",
     "d": "This is the time in **minutes**, $8100 \\div 45$. The question asks for hours, so divide by $60$."
   },
@@ -58,7 +58,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": "Author's uniqueness check: 8100 / 45 = 180 minutes = 3 hours exactly; the distractors are produced by wrong cubic-metre factors (100 or 10 000 litres) and by leaving the answer in minutes."
+    "notes": "Author's uniqueness check: 8100 / 45 = 180 minutes = 3 hours exactly; the distractors are produced by wrong cubic-metre factors (100 or 10 000 litres) and by leaving the answer in minutes. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

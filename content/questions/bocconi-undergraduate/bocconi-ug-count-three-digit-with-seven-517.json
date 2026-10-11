@@ -15,17 +15,17 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$252$"
+      "textMd": "$225$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$225$"
+      "textMd": "$243$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "$243$"
+      "textMd": "$252$"
     },
     {
       "id": "d",
@@ -35,12 +35,12 @@
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "c"
   },
   "explanationMd": "\"At least one\" is easiest through the complement: count the numbers with **no** $7$ at all and subtract from the total.\n\n**Step 1 — total.** From $100$ to $999$ there are $999 - 100 + 1 = 900$ numbers.\n\n**Step 2 — numbers with no 7 (product rule).**\n\n- Hundreds digit: not $0$ and not $7$, so $8$ choices.\n- Tens digit: anything but $7$, so $9$ choices.\n- Units digit: anything but $7$, so $9$ choices.\n\nThat gives $8 \\times 9 \\times 9 = 648$ numbers with no $7$.\n\n**Step 3 — complement.** $900 - 648 = 252$.\n\n**Check by cases (sum rule).**\n\n- Exactly one $7$: in the hundreds place $9 \\times 9 = 81$; in the tens place $8 \\times 9 = 72$; in the units place $8 \\times 9 = 72$. Total $225$.\n- Exactly two $7$s: hundreds and tens $9$; hundreds and units $9$; tens and units $8$. Total $26$.\n- Three $7$s: $1$.\n\n$225 + 26 + 1 = 252$. ✓",
   "distractorRationale": {
-    "b": "This is the count of numbers with **exactly one** $7$. Numbers such as $707$ or $777$ also have at least one $7$ and must be included.",
-    "c": "This multiplies $3$ positions by $9 \\times 9$, as if each position could hold the $7$ with $81$ completions. It forgets that the hundreds digit cannot be $0$ and it misses numbers with more than one $7$.",
+    "a": "This is the count of numbers with **exactly one** $7$. Numbers such as $707$ or $777$ also have at least one $7$ and must be included.",
+    "b": "This multiplies $3$ positions by $9 \\times 9$, as if each position could hold the $7$ with $81$ completions. It forgets that the hundreds digit cannot be $0$ and it misses numbers with more than one $7$.",
     "d": "This is $1000 - 9^{3}$, which counts all strings from $000$ to $999$. That set includes $0$ to $99$, and $19$ of those contain a $7$; they are not three-digit numbers."
   },
   "estimatedSeconds": 110,
@@ -58,7 +58,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": "Author's uniqueness check: 900 - 8*9*9 = 252, confirmed by brute-force enumeration of 100 to 999; the distractors are the exactly-one count, 3*81 and 1000 - 729."
+    "notes": "Author's uniqueness check: 900 - 8*9*9 = 252, confirmed by brute-force enumeration of 100 to 999; the distractors are the exactly-one count, 3*81 and 1000 - 729. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

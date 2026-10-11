@@ -20,17 +20,17 @@
     {
       "id": "b",
       "label": "B",
-      "textMd": "$\\dfrac{24}{25}$"
+      "textMd": "$-\\dfrac{12}{25}$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "$-\\dfrac{12}{25}$"
+      "textMd": "$\\dfrac{7}{25}$"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "$\\dfrac{7}{25}$"
+      "textMd": "$\\dfrac{24}{25}$"
     }
   ],
   "answerKey": {
@@ -39,9 +39,9 @@
   },
   "explanationMd": "Use the double-angle identity $\\sin 2x = 2\\sin x \\cos x$. The sine is given, so the work is finding the cosine **with the right sign**.\n\n**Step 1 — size of the cosine.** From $\\sin^{2} x + \\cos^{2} x = 1$:\n\n$$\\cos^{2} x = 1 - \\frac{9}{25} = \\frac{16}{25} \\;\\Longrightarrow\\; |\\cos x| = \\frac{4}{5}$$\n\n**Step 2 — sign of the cosine.** For $\\frac{\\pi}{2} < x < \\pi$ (second quadrant) the cosine is negative, so $\\cos x = -\\frac{4}{5}$.\n\n**Step 3 — apply the identity.**\n\n$$\\sin 2x = 2 \\cdot \\frac{3}{5} \\cdot \\left(-\\frac{4}{5}\\right) = -\\frac{24}{25}$$\n\n**Check.** If $x$ is in the second quadrant, $2x$ lies between $\\pi$ and $2\\pi$, where the sine is negative (or zero). A negative answer is consistent. ✓",
   "distractorRationale": {
-    "b": "This takes $\\cos x = +\\frac{4}{5}$, ignoring the quadrant. For $\\frac{\\pi}{2} < x < \\pi$ the cosine is negative, which makes $\\sin 2x$ negative.",
-    "c": "This is $\\sin x \\cos x$, without the factor $2$ in the identity $\\sin 2x = 2\\sin x\\cos x$.",
-    "d": "This is $\\cos 2x = 1 - 2\\sin^{2} x = 1 - \\frac{18}{25}$, the double-angle formula for the cosine rather than for the sine."
+    "d": "This takes $\\cos x = +\\frac{4}{5}$, ignoring the quadrant. For $\\frac{\\pi}{2} < x < \\pi$ the cosine is negative, which makes $\\sin 2x$ negative.",
+    "b": "This is $\\sin x \\cos x$, without the factor $2$ in the identity $\\sin 2x = 2\\sin x\\cos x$.",
+    "c": "This is $\\cos 2x = 1 - 2\\sin^{2} x = 1 - \\frac{18}{25}$, the double-angle formula for the cosine rather than for the sine."
   },
   "estimatedSeconds": 70,
   "stimulusRef": null,
@@ -58,7 +58,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": "Author's uniqueness check: the quadrant forces cos x = -4/5, so sin 2x = -24/25 exactly; the distractors are the sign error, the missing factor 2 and cos 2x."
+    "notes": "Author's uniqueness check: the quadrant forces cos x = -4/5, so sin 2x = -24/25 exactly; the distractors are the sign error, the missing factor 2 and cos 2x. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

@@ -15,12 +15,12 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$\\dfrac{49}{81}$"
+      "textMd": "$\\dfrac{1}{81}$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$\\dfrac{1}{81}$"
+      "textMd": "$\\dfrac{49}{81}$"
     },
     {
       "id": "c",
@@ -35,11 +35,11 @@
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "b"
   },
   "explanationMd": "There is no need to find $x$. Everything can be built from the product $p = \\sin x \\cos x$, which the given sum determines.\n\n**Step 1 — square the given sum.**\n\n$$(\\sin x + \\cos x)^{2} = \\sin^{2} x + \\cos^{2} x + 2\\sin x\\cos x = 1 + 2p$$\n\nso $1 + 2p = \\frac{1}{9}$, which gives $2p = -\\frac{8}{9}$ and $p = -\\frac{4}{9}$.\n\n**Step 2 — write the fourth powers through the square of $\\sin^{2} x + \\cos^{2} x$.**\n\n$$\\sin^{4} x + \\cos^{4} x = \\left(\\sin^{2} x + \\cos^{2} x\\right)^{2} - 2\\sin^{2} x\\cos^{2} x = 1 - 2p^{2}$$\n\n**Step 3 — substitute.**\n\n$$1 - 2 \\cdot \\frac{16}{81} = 1 - \\frac{32}{81} = \\frac{49}{81}$$\n\n**Check.** $\\sin^{4} x + \\cos^{4} x$ can never exceed $\\sin^{2} x + \\cos^{2} x = 1$, because each square is at most $1$. The value $\\frac{49}{81}$ lies between $\\frac{1}{2}$ and $1$, the range this expression can take. ✓",
   "distractorRationale": {
-    "b": "This raises the given sum to the fourth power, as if $\\sin^{4} x + \\cos^{4} x$ were $(\\sin x + \\cos x)^{4}$. A power of a sum is not the sum of the powers.",
+    "a": "This raises the given sum to the fourth power, as if $\\sin^{4} x + \\cos^{4} x$ were $(\\sin x + \\cos x)^{4}$. A power of a sum is not the sum of the powers.",
     "c": "This uses $1 - p^{2}$ instead of $1 - 2p^{2}$, dropping the factor $2$ in $\\left(\\sin^{2} x + \\cos^{2} x\\right)^{2} = \\sin^{4} x + \\cos^{4} x + 2\\sin^{2} x\\cos^{2} x$.",
     "d": "This subtracts $2p$ instead of $2p^{2}$, that is, it uses $\\sin x\\cos x$ where $\\sin^{2} x\\cos^{2} x$ is needed. The result is greater than $1$, which is impossible for $\\sin^{4} x + \\cos^{4} x$."
   },
@@ -58,7 +58,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": "Author's uniqueness check: the given sum fixes sin x cos x = -4/9 (such x exists since |1/3| < sqrt 2), so the target is 1 - 2(16/81) = 49/81 exactly; checked numerically for an explicit x. The distractors are 1/81, 65/81 and 17/9."
+    "notes": "Author's uniqueness check: the given sum fixes sin x cos x = -4/9 (such x exists since |1/3| < sqrt 2), so the target is 1 - 2(16/81) = 49/81 exactly; checked numerically for an explicit x. The distractors are 1/81, 65/81 and 17/9. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

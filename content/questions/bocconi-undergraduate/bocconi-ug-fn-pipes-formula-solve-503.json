@@ -20,7 +20,7 @@
     {
       "id": "b",
       "label": "B",
-      "textMd": "$\\dfrac{aR}{R - a}$"
+      "textMd": "$\\dfrac{a - R}{aR}$"
     },
     {
       "id": "c",
@@ -30,7 +30,7 @@
     {
       "id": "d",
       "label": "D",
-      "textMd": "$\\dfrac{a - R}{aR}$"
+      "textMd": "$\\dfrac{aR}{R - a}$"
     }
   ],
   "answerKey": {
@@ -39,9 +39,9 @@
   },
   "explanationMd": "Isolate the term containing $b$, combine the other side into one fraction, and only then take reciprocals.\n\n**Step 1 — isolate $\\frac{1}{b}$.**\n\n$$\\frac{1}{b} = \\frac{1}{R} - \\frac{1}{a}$$\n\n**Step 2 — one fraction on the right.** The common denominator is $aR$:\n\n$$\\frac{1}{b} = \\frac{a - R}{aR}$$\n\n**Step 3 — take reciprocals of both sides.**\n\n$$b = \\frac{aR}{a - R}$$\n\nThis is positive because two pipes together are faster than one alone, so $R < a$.\n\n**Check with numbers.** If $a = 6$ and $b = 3$, then $\\frac{1}{R} = \\frac{1}{6} + \\frac{1}{3} = \\frac{1}{2}$, so $R = 2$. The formula gives $b = \\frac{6 \\cdot 2}{6 - 2} = 3$. ✓",
   "distractorRationale": {
-    "b": "This combines $\\frac{1}{R} - \\frac{1}{a}$ with the numerator the wrong way round, as $\\frac{R - a}{aR}$. Since $R < a$, it would make $b$ negative; with $a = 6$, $R = 2$ it gives $-3$ instead of $3$.",
+    "d": "This combines $\\frac{1}{R} - \\frac{1}{a}$ with the numerator the wrong way round, as $\\frac{R - a}{aR}$. Since $R < a$, it would make $b$ negative; with $a = 6$, $R = 2$ it gives $-3$ instead of $3$.",
     "c": "This takes reciprocals term by term, turning $\\frac{1}{b} = \\frac{1}{R} - \\frac{1}{a}$ into $b = R - a$. The reciprocal of a difference is not the difference of the reciprocals; the right side must first be written as a single fraction.",
-    "d": "This is $\\frac{1}{b}$, not $b$: the last step, taking the reciprocal of both sides, was left out."
+    "b": "This is $\\frac{1}{b}$, not $b$: the last step, taking the reciprocal of both sides, was left out."
   },
   "estimatedSeconds": 75,
   "stimulusRef": null,
@@ -58,7 +58,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": "Author's uniqueness check: with a = 6, R = 2 the true b is 3; the choices evaluate to 3, -3, -4 and 1/3, so only one matches."
+    "notes": "Author's uniqueness check: with a = 6, R = 2 the true b is 3; the choices evaluate to 3, -3, -4 and 1/3, so only one matches. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,
