@@ -15,39 +15,39 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "No weld on the test frame is cracked."
+      "textMd": "Every weld on the test frame is cracked."
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "Every weld on the test frame is cracked."
+      "textMd": "Exactly one weld on the test frame is cracked."
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "Exactly one weld on the test frame is cracked."
+      "textMd": "At least one weld on some other frame is cracked."
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "Some welds on the test frame are cracked and some are not."
+      "textMd": "No weld on the test frame is cracked."
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "At least one weld on some other frame is cracked."
+      "textMd": "Some welds on the test frame are cracked and some are not."
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "d"
   },
   "explanationMd": "To negate a statement, find the single situation it rules out. \"At least one weld is cracked\" is true as soon as one cracked weld exists, so it is false only when there is **no** cracked weld at all. The negation of \"at least one ... is\" is \"none ... is\".\n\nSo the false log entry tells us that no weld on the test frame is cracked.\n\nCheck each other statement against that situation. \"Every weld is cracked\", \"exactly one weld is cracked\" and \"some are cracked and some are not\" all require at least one cracked weld on the frame, so each would make the technician's statement true, not false. A statement about other frames cannot follow from information about this frame alone.",
   "distractorRationale": {
-    "b": "This confuses the negation with the opposite extreme. \"Every weld is cracked\" would make the original statement true, since then at least one weld is certainly cracked.",
-    "c": "Exactly one cracked weld is enough to make \"at least one weld is cracked\" true, so this situation contradicts the inspection.",
-    "d": "If some welds are cracked, then at least one is, and the technician would have been right. This describes a case the inspection rules out.",
-    "e": "The statement and its negation are only about the test frame. Nothing is said about other frames, so this cannot be deduced."
+    "a": "This confuses the negation with the opposite extreme. \"Every weld is cracked\" would make the original statement true, since then at least one weld is certainly cracked.",
+    "b": "Exactly one cracked weld is enough to make \"at least one weld is cracked\" true, so this situation contradicts the inspection.",
+    "e": "If some welds are cracked, then at least one is, and the technician would have been right. This describes a case the inspection rules out.",
+    "c": "The statement and its negation are only about the test frame. Nothing is said about other frames, so this cannot be deduced."
   },
   "estimatedSeconds": 50,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

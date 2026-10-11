@@ -20,22 +20,22 @@
     {
       "id": "b",
       "label": "B",
-      "textMd": "$\\dfrac{3x - 1}{x - 2}$"
+      "textMd": "$\\dfrac{x - 3}{2x + 1}$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "$\\dfrac{3x + 1}{x + 2}$"
+      "textMd": "$\\dfrac{3x + 1}{2 - x}$"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "$\\dfrac{3x + 1}{2 - x}$"
+      "textMd": "$\\dfrac{3x + 1}{x + 2}$"
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "$\\dfrac{x - 3}{2x + 1}$"
+      "textMd": "$\\dfrac{3x - 1}{x - 2}$"
     }
   ],
   "answerKey": {
@@ -44,10 +44,10 @@
   },
   "explanationMd": "To invert, write $y = f(x)$ and solve for $x$ in terms of $y$.\n\n**Step 1 — clear the fraction.** $y(x - 3) = 2x + 1$, so $xy - 3y = 2x + 1$.\n\n**Step 2 — collect the $x$ terms.** $xy - 2x = 3y + 1$, so $x(y - 2) = 3y + 1$ and $x = \\dfrac{3y + 1}{y - 2}$.\n\n**Step 3 — rename the variable.** $f^{-1}(x) = \\dfrac{3x + 1}{x - 2}$, defined for $x \\ne 2$.\n\n**Check with a number.** $f(4) = \\frac{9}{1} = 9$, and $f^{-1}(9) = \\frac{28}{7} = 4$ ✓. Also $f(0) = -\\frac13$ and $f^{-1}\\!\\left(-\\frac13\\right) = \\frac{0}{-7/3} = 0$ ✓.",
   "distractorRationale": {
-    "b": "Moves $+1$ across the equals sign without changing its sign, writing $x(y-2) = 3y - 1$; then $f^{-1}(9)$ would be $\\frac{26}{7}$, not $4$.",
-    "c": "Moves $2x$ to the left without changing its sign, writing $x(y + 2) = 3y + 1$; then $f^{-1}(9)$ would be $\\frac{28}{11}$, not $4$.",
-    "d": "Rewrites $xy - 2x$ as $x(2 - y)$ but keeps $3y + 1$ on the other side, so the overall sign is wrong; then $f^{-1}(9) = -4$.",
-    "e": "Takes the reciprocal $\\frac{1}{f(x)}$, confusing the inverse function $f^{-1}$ with the reciprocal of $f$."
+    "e": "Moves $+1$ across the equals sign without changing its sign, writing $x(y-2) = 3y - 1$; then $f^{-1}(9)$ would be $\\frac{26}{7}$, not $4$.",
+    "d": "Moves $2x$ to the left without changing its sign, writing $x(y + 2) = 3y + 1$; then $f^{-1}(9)$ would be $\\frac{28}{11}$, not $4$.",
+    "c": "Rewrites $xy - 2x$ as $x(2 - y)$ but keeps $3y + 1$ on the other side, so the overall sign is wrong; then $f^{-1}(9) = -4$.",
+    "b": "Takes the reciprocal $\\frac{1}{f(x)}$, confusing the inverse function $f^{-1}$ with the reciprocal of $f$."
   },
   "estimatedSeconds": 110,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

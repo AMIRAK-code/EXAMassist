@@ -15,12 +15,12 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$6\\ \\text{A}$"
+      "textMd": "$\\dfrac{4}{3}\\ \\text{A}$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$\\dfrac{4}{3}\\ \\text{A}$"
+      "textMd": "$6\\ \\text{A}$"
     },
     {
       "id": "c",
@@ -40,11 +40,11 @@
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "b"
   },
   "explanationMd": "**What to notice first.** In parallel, each resistor has the full $12\\ \\text{V}$ across it, and the battery supplies the sum of the two branch currents.\n\n**The steps.** Ohm's law in each branch:\n\n$$I_6 = \\frac{12\\ \\text{V}}{6\\ \\Omega} = 2\\ \\text{A}, \\qquad I_3 = \\frac{12\\ \\text{V}}{3\\ \\Omega} = 4\\ \\text{A}, \\qquad I = 2 + 4 = 6\\ \\text{A}.$$\n\n**How to check it.** The equivalent resistance is $\\dfrac{1}{R} = \\dfrac16 + \\dfrac13 = \\dfrac12$, so $R = 2\\ \\Omega$ and $I = 12/2 = 6\\ \\text{A}$. A parallel combination is always smaller than its smallest resistor, and $2\\ \\Omega < 3\\ \\Omega$ as expected.",
   "distractorRationale": {
-    "b": "Adds the resistances, $6 + 3 = 9\\ \\Omega$, as for a series connection, giving $12/9$. In parallel the equivalent resistance is smaller than either resistor, not larger.",
+    "a": "Adds the resistances, $6 + 3 = 9\\ \\Omega$, as for a series connection, giving $12/9$. In parallel the equivalent resistance is smaller than either resistor, not larger.",
     "c": "This is the current in the $6\\ \\Omega$ branch only. The battery also supplies the $4\\ \\text{A}$ through the $3\\ \\Omega$ resistor.",
     "d": "This is the current in the $3\\ \\Omega$ branch only. The battery also supplies the $2\\ \\text{A}$ through the $6\\ \\Omega$ resistor.",
     "e": "Stops at $\\tfrac16 + \\tfrac13 = \\tfrac12$ and uses $0.5\\ \\Omega$ as the resistance. That sum is $1/R$; the resistance is its reciprocal, $2\\ \\Omega$."
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

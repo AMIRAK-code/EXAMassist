@@ -15,39 +15,39 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "At least one component passed the vibration test and failed the heat test."
+      "textMd": "At least one component failed both tests."
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "No component that passed the vibration test passed the heat test."
+      "textMd": "Every component that failed the vibration test passed the heat test."
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "At least one component passed the heat test and failed the vibration test."
+      "textMd": "At least one component passed the vibration test and failed the heat test."
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "Every component that failed the vibration test passed the heat test."
+      "textMd": "At least one component passed the heat test and failed the vibration test."
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "At least one component failed both tests."
+      "textMd": "No component that passed the vibration test passed the heat test."
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "c"
   },
   "explanationMd": "The claim has the form \"every X is Y\", with X = \"passed the vibration test\" and Y = \"passed the heat test\". Such a claim is false exactly when there is a **counterexample**: at least one X that is not Y. So the audit shows that at least one component passed the vibration test but did not pass, that is failed, the heat test.\n\nA useful way to check: the negation of \"every ... is ...\" is \"at least one ... is not ...\", never \"none ... is ...\". A single counterexample is enough to sink the claim, and it is all that the audit guarantees.\n\nCheck the alternatives by imagining a batch with just two components: one passed vibration and failed heat (the counterexample), and one passed both tests. The claim is false, yet no component failed both tests, no component passed heat after failing vibration, and some component passed both tests.",
   "distractorRationale": {
-    "b": "This is the contrary, not the negation. One counterexample already makes the claim false; other components that passed vibration may well have passed heat too.",
-    "c": "This swaps the roles of the two tests. A component that passed heat but failed vibration does not contradict the claim, which is only about components that passed vibration.",
-    "d": "Components that failed the vibration test are outside the claim altogether, so the audit says nothing about them.",
-    "e": "A component that failed both tests is irrelevant to the claim. The counterexample needed is one that passed vibration and failed heat."
+    "e": "This is the contrary, not the negation. One counterexample already makes the claim false; other components that passed vibration may well have passed heat too.",
+    "d": "This swaps the roles of the two tests. A component that passed heat but failed vibration does not contradict the claim, which is only about components that passed vibration.",
+    "b": "Components that failed the vibration test are outside the claim altogether, so the audit says nothing about them.",
+    "a": "A component that failed both tests is irrelevant to the claim. The counterexample needed is one that passed vibration and failed heat."
   },
   "estimatedSeconds": 75,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

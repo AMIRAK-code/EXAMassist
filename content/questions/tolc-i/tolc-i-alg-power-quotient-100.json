@@ -15,39 +15,39 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$8$"
+      "textMd": "$\\dfrac{1}{4}$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$\\dfrac{1}{4}$"
+      "textMd": "$2$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "$2$"
+      "textMd": "$8$"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "$512$"
+      "textMd": "$32$"
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "$32$"
+      "textMd": "$512$"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "c"
+    "optionId": "b"
   },
   "explanationMd": "Write every factor as a power of the same base, 2, and then only exponents need adding and subtracting.\n\n**Step 1 — rewrite the bases.** $8^{3} = (2^{3})^{3} = 2^{9}$ and $4^{-2} = (2^{2})^{-2} = 2^{-4}$. When a power is raised to a power, the exponents multiply.\n\n**Step 2 — combine.** The numerator is $2^{9}\\cdot 2^{-4} = 2^{9-4} = 2^{5}$, and dividing by $2^{4}$ gives $2^{5-4} = 2^{1} = 2$.\n\n**How to check it.** Use ordinary numbers: $8^{3} = 512$, $4^{-2} = \\tfrac{1}{16}$ and $2^{4} = 16$, so the expression is $\\dfrac{512/16}{16} = \\dfrac{32}{16} = 2$.",
   "distractorRationale": {
-    "a": "Rewrites $4^{-2}$ as $2^{-2}$, forgetting that $4 = 2^{2}$ doubles the exponent. That gives $2^{9-2-4} = 2^{3} = 8$; the correct rewrite is $4^{-2} = 2^{-4}$.",
-    "b": "Adds the exponents in $(2^{3})^{3}$ instead of multiplying them, so $8^{3}$ becomes $2^{6}$ and the result $2^{6-4-4} = 2^{-2}$. A power of a power multiplies the exponents: $8^{3} = 2^{9}$.",
-    "d": "Drops the minus sign of the exponent in $4^{-2}$, treating it as $4^{2} = 2^{4}$. Then the numerator is $2^{13}$ and the result $2^{9} = 512$. A negative exponent means a reciprocal, so $4^{-2} = 2^{-4}$.",
-    "e": "Simplifies the numerator correctly to $2^{5} = 32$ but forgets to divide by the denominator $2^{4}$."
+    "c": "Rewrites $4^{-2}$ as $2^{-2}$, forgetting that $4 = 2^{2}$ doubles the exponent. That gives $2^{9-2-4} = 2^{3} = 8$; the correct rewrite is $4^{-2} = 2^{-4}$.",
+    "a": "Adds the exponents in $(2^{3})^{3}$ instead of multiplying them, so $8^{3}$ becomes $2^{6}$ and the result $2^{6-4-4} = 2^{-2}$. A power of a power multiplies the exponents: $8^{3} = 2^{9}$.",
+    "e": "Drops the minus sign of the exponent in $4^{-2}$, treating it as $4^{2} = 2^{4}$. Then the numerator is $2^{13}$ and the result $2^{9} = 512$. A negative exponent means a reciprocal, so $4^{-2} = 2^{-4}$.",
+    "d": "Simplifies the numerator correctly to $2^{5} = 32$ but forgets to divide by the denominator $2^{4}$."
   },
   "estimatedSeconds": 50,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

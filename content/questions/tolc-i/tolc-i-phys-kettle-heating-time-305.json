@@ -15,7 +15,7 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$252\\ \\text{s}$"
+      "textMd": "$252\\,000\\ \\text{s}$"
     },
     {
       "id": "b",
@@ -25,7 +25,7 @@
     {
       "id": "c",
       "label": "C",
-      "textMd": "$63\\ \\text{s}$"
+      "textMd": "$252\\ \\text{s}$"
     },
     {
       "id": "d",
@@ -35,19 +35,19 @@
     {
       "id": "e",
       "label": "E",
-      "textMd": "$252\\,000\\ \\text{s}$"
+      "textMd": "$63\\ \\text{s}$"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "c"
   },
   "explanationMd": "**What to notice first.** The energy needed comes from $Q = mc\\,\\Delta T$; the time is that energy divided by the power, $t = Q/P$. Keep everything in SI units: the power is $2000\\ \\text{W}$, and a temperature *difference* is the same in kelvin and in degrees Celsius.\n\n**The steps.**\n\n$$Q = 1.5 \\times 4200 \\times (100 - 20) = 6300 \\times 80 = 504\\,000\\ \\text{J},$$\n\n$$t = \\frac{504\\,000\\ \\text{J}}{2000\\ \\text{W}} = 252\\ \\text{s}.$$\n\n**How to check it.** $252\\ \\text{s}$ is just over four minutes, a sensible time for a kettle. Units: $\\text{J} / (\\text{J/s}) = \\text{s}$.",
   "distractorRationale": {
     "b": "Uses a temperature rise of $100\\ ^{\\circ}\\text{C}$, as if the water started at $0\\ ^{\\circ}\\text{C}$. The rise is $100 - 20 = 80$ degrees.",
-    "c": "Uses the starting temperature, $20$ degrees, as the temperature change. The water warms by $80$ degrees.",
+    "e": "Uses the starting temperature, $20$ degrees, as the temperature change. The water warms by $80$ degrees.",
     "d": "Leaves the mass out of $Q = mc\\,\\Delta T$, computing the energy for $1\\ \\text{kg}$ only. The kettle holds $1.5\\ \\text{kg}$.",
-    "e": "Divides by $2$ instead of $2000$, forgetting that $2.0\\ \\text{kW} = 2000\\ \\text{W}$. Almost three days is clearly not how long a kettle takes."
+    "a": "Divides by $2$ instead of $2000$, forgetting that $2.0\\ \\text{kW} = 2000\\ \\text{W}$. Almost three days is clearly not how long a kettle takes."
   },
   "estimatedSeconds": 60,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

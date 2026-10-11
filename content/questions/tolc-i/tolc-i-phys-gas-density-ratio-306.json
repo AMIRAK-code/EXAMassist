@@ -15,17 +15,17 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$\\dfrac{3}{2}$"
+      "textMd": "$\\dfrac{2}{3}$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$\\dfrac{2}{3}$"
+      "textMd": "$\\dfrac{3}{4}$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "$\\dfrac{8}{3}$"
+      "textMd": "$\\dfrac{3}{2}$"
     },
     {
       "id": "d",
@@ -35,19 +35,19 @@
     {
       "id": "e",
       "label": "E",
-      "textMd": "$\\dfrac{3}{4}$"
+      "textMd": "$\\dfrac{8}{3}$"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "c"
   },
   "explanationMd": "**What to notice first.** The mass of gas is fixed, so the density $\\rho = m/V$ changes only through the volume, and the ideal gas law gives the volume: $V = nRT/p$. So $\\rho \\propto p/T$.\n\n**The steps.**\n\n$$\\frac{\\rho_2}{\\rho_1} = \\frac{V_1}{V_2} = \\frac{p_2}{p_1} \\cdot \\frac{T_1}{T_2} = 2 \\times \\frac{300}{400} = \\frac{3}{2}.$$\n\n**How to check it.** Take the change in two stages. Doubling the pressure at constant temperature halves the volume, which doubles the density. Then raising the temperature from $300\\ \\text{K}$ to $400\\ \\text{K}$ at constant pressure multiplies the volume by $\\tfrac43$, which multiplies the density by $\\tfrac34$. Overall: $2 \\times \\tfrac34 = \\tfrac32$.",
   "distractorRationale": {
-    "b": "This is the ratio of the volumes, $V_2/V_1 = \\tfrac{1}{2} \\times \\tfrac{4}{3}$. Density is inversely proportional to volume, so the density ratio is the reciprocal.",
-    "c": "Multiplies the pressure ratio by the temperature ratio, $2 \\times \\tfrac43$. Heating at fixed pressure expands the gas and *lowers* its density, so the temperature ratio enters inverted.",
+    "a": "This is the ratio of the volumes, $V_2/V_1 = \\tfrac{1}{2} \\times \\tfrac{4}{3}$. Density is inversely proportional to volume, so the density ratio is the reciprocal.",
+    "e": "Multiplies the pressure ratio by the temperature ratio, $2 \\times \\tfrac43$. Heating at fixed pressure expands the gas and *lowers* its density, so the temperature ratio enters inverted.",
     "d": "Accounts for the doubled pressure but ignores the heating. The rise from $300\\ \\text{K}$ to $400\\ \\text{K}$ makes the gas expand, which reduces the density by a factor $\\tfrac34$.",
-    "e": "Accounts for the heating but ignores the doubled pressure, which on its own would halve the volume and double the density."
+    "b": "Accounts for the heating but ignores the doubled pressure, which on its own would halve the volume and double the density."
   },
   "estimatedSeconds": 80,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

@@ -15,22 +15,22 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "The supervisor was absent on the day batch 17 was produced, and batch 17 was not shipped."
+      "textMd": "The supervisor was present on the day batch 17 was produced, and batch 17 was not shipped."
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "The supervisor was present on the day batch 17 was produced, and batch 17 was not shipped."
+      "textMd": "The supervisor was absent on the day batch 17 was produced, and batch 17 was not shipped."
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "The supervisor was absent on the day batch 17 was produced, and batch 17 was shipped."
+      "textMd": "Batch 17 was not shipped, but whether the supervisor was present that day cannot be determined."
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "Batch 17 was not shipped, but whether the supervisor was present that day cannot be determined."
+      "textMd": "The supervisor was absent on the day batch 17 was produced, and batch 17 was shipped."
     },
     {
       "id": "e",
@@ -40,13 +40,13 @@
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "b"
   },
   "explanationMd": "Translate each rule into \"if ..., then ...\" form first.\n\n- \"Shipped only if tested\" means: if a batch is shipped, then it has been tested.\n- \"Tested unless the supervisor is absent\" means: if the supervisor is **not** absent, then the batch is tested.\n\nBatch 17 was not tested, which is the negated result of both rules, so apply each contrapositive. From the second rule: if a batch is not tested, the supervisor was absent that day. From the first rule: if a batch is not tested, it is not shipped. Both conclusions are certain: the supervisor was absent and batch 17 was not shipped.\n\nCheck by trying to break it: if the supervisor had been present, the second rule would force batch 17 to be tested, which it was not; if batch 17 had been shipped, the first rule would force it to have been tested. Neither escape works.",
   "distractorRationale": {
-    "b": "A present supervisor would, by the second rule, mean the batch was tested. Since batch 17 was not tested, the supervisor cannot have been present.",
-    "c": "The first rule says only tested batches are shipped. An untested batch therefore cannot have been shipped.",
-    "d": "This treats \"unless\" as giving no information when the batch is untested. In fact \"tested unless absent\" means \"if present, then tested\", so an untested batch shows the supervisor was absent.",
+    "a": "A present supervisor would, by the second rule, mean the batch was tested. Since batch 17 was not tested, the supervisor cannot have been present.",
+    "d": "The first rule says only tested batches are shipped. An untested batch therefore cannot have been shipped.",
+    "c": "This treats \"unless\" as giving no information when the batch is untested. In fact \"tested unless absent\" means \"if present, then tested\", so an untested batch shows the supervisor was absent.",
     "e": "This misreads \"only if\". \"Shipped only if tested\" makes testing a requirement for shipping, so an untested batch is certainly not shipped."
   },
   "estimatedSeconds": 120,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

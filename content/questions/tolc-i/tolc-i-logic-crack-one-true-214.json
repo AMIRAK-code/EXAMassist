@@ -15,39 +15,39 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "P"
+      "textMd": "R"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "Q"
+      "textMd": "The information is not enough to decide."
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "R"
+      "textMd": "S"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "S"
+      "textMd": "P"
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "The information is not enough to decide."
+      "textMd": "Q"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "d"
+    "optionId": "c"
   },
   "explanationMd": "With only four places for the crack, test each one and count how many statements it makes true.\n\n- Crack in P: Aldo true, Bice false, Ciro false, Dora true. Two true statements.\n- Crack in Q: Aldo, Bice and Dora true. Three.\n- Crack in R: Bice, Ciro and Dora true. Three.\n- Crack in S: Aldo false, Bice true, Ciro false, Dora false. Exactly one.\n\nOnly a crack in **S** leaves exactly one true statement, so that is where the crack is.\n\nA quicker route: Bice and Dora are both true unless the crack is in P or in S. If it were in P, Aldo and Dora would both be true. So it must be in S, and then only Bice is right.",
   "distractorRationale": {
-    "a": "A crack in P makes both Aldo's and Dora's statements true, two true statements instead of one.",
-    "b": "A crack in Q makes Aldo, Bice and Dora all right, three true statements.",
-    "c": "A crack in R makes Bice, Ciro and Dora all right, three true statements.",
-    "e": "Testing all four parts shows that exactly one of them, S, gives exactly one true statement, so the information does decide."
+    "d": "A crack in P makes both Aldo's and Dora's statements true, two true statements instead of one.",
+    "e": "A crack in Q makes Aldo, Bice and Dora all right, three true statements.",
+    "a": "A crack in R makes Bice, Ciro and Dora all right, three true statements.",
+    "b": "Testing all four parts shows that exactly one of them, S, gives exactly one true statement, so the information does decide."
   },
   "estimatedSeconds": 100,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

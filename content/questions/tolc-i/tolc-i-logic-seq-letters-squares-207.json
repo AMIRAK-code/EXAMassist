@@ -15,39 +15,39 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "Q"
+      "textMd": "V"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "V"
+      "textMd": "Y"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "W"
+      "textMd": "X"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "X"
+      "textMd": "W"
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "Y"
+      "textMd": "Q"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "e"
+    "optionId": "b"
   },
   "explanationMd": "Turn letters into their positions in the alphabet: A = 1, D = 4, I = 9, P = 16. These are the square numbers $1^2, 2^2, 3^2, 4^2$, so the next letter is in position $5^2 = 25$, which is **Y**.\n\nCheck with the gaps: the moves are 3, 5, 7 places (the odd numbers), so the next move is 9 places: 16 + 9 = 25, again Y. Two independent descriptions of the same series give the same letter. Counting from the end of the alphabet is quicker than counting from A: Z is 26, so Y is 25.",
   "distractorRationale": {
-    "a": "Simply takes the letter after P, ignoring the growing gaps between the letters.",
-    "b": "Moves 6 places: that is the number of letters skipped between I and P (J to O), not the number of places moved, and it is not the next step either.",
-    "c": "Moves 7 places again, repeating the last gap. The gaps grow 3, 5, 7, so the next is 9.",
-    "d": "Moves 8 places. Counting the letters skipped gives 2, 4, 6 and next 8, but the move is one more than the letters skipped, so it should be 9."
+    "e": "Simply takes the letter after P, ignoring the growing gaps between the letters.",
+    "a": "Moves 6 places: that is the number of letters skipped between I and P (J to O), not the number of places moved, and it is not the next step either.",
+    "d": "Moves 7 places again, repeating the last gap. The gaps grow 3, 5, 7, so the next is 9.",
+    "c": "Moves 8 places. Counting the letters skipped gives 2, 4, 6 and next 8, but the move is one more than the letters skipped, so it should be 9."
   },
   "estimatedSeconds": 60,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

@@ -15,39 +15,39 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$100$"
+      "textMd": "$50$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$101$"
+      "textMd": "$75$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "$125$"
+      "textMd": "$100$"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "$50$"
+      "textMd": "$101$"
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "$75$"
+      "textMd": "$125$"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "e"
+    "optionId": "b"
   },
   "explanationMd": "Count each set, find the overlap, and then remove the overlap from **both** counts. The overlap is the set of multiples of the least common multiple of 4 and 6, which is 12, not $4\\cdot 6 = 24$.\n\n**Step 1 — the two counts.** Multiples of 4 up to 300: $300 \\div 4 = 75$. Multiples of 6: $300 \\div 6 = 50$.\n\n**Step 2 — the overlap.** A number divisible by both 4 and 6 is divisible by $\\mathrm{lcm}(4,6) = 12$: $300 \\div 12 = 25$ numbers.\n\n**Step 3 — exactly one.** Divisible by 4 only: $75 - 25 = 50$. Divisible by 6 only: $50 - 25 = 25$. Together: $50 + 25 = 75$.\n\n**How to check it.** Inclusion–exclusion gives the numbers divisible by at least one as $75 + 50 - 25 = 100$; removing the 25 divisible by both leaves $75$ ✓. The pattern also repeats every 12 numbers: from 1 to 12 exactly 4, 6 and 8 qualify (12 is divisible by both), so each of the $300 \\div 12 = 25$ blocks contributes 3, and $25 \\cdot 3 = 75$ ✓.",
   "distractorRationale": {
-    "a": "Counts the numbers divisible by at least one of 4 and 6 ($75 + 50 - 25$) and ignores the words \"but not by both\", so the 25 multiples of 12 are still included.",
-    "b": "Takes the overlap to be the multiples of $4\\cdot 6 = 24$, of which there are 12, giving $75 + 50 - 2\\cdot 12 = 101$. Being divisible by 4 and by 6 requires only divisibility by their least common multiple, 12.",
-    "c": "Adds the two counts, $75 + 50$, without removing the overlap at all, so every multiple of 12 is counted twice instead of not at all.",
-    "d": "Counts only the numbers divisible by 4 but not by 6 ($75 - 25$) and forgets the 25 numbers divisible by 6 but not by 4."
+    "c": "Counts the numbers divisible by at least one of 4 and 6 ($75 + 50 - 25$) and ignores the words \"but not by both\", so the 25 multiples of 12 are still included.",
+    "d": "Takes the overlap to be the multiples of $4\\cdot 6 = 24$, of which there are 12, giving $75 + 50 - 2\\cdot 12 = 101$. Being divisible by 4 and by 6 requires only divisibility by their least common multiple, 12.",
+    "e": "Adds the two counts, $75 + 50$, without removing the overlap at all, so every multiple of 12 is counted twice instead of not at all.",
+    "a": "Counts only the numbers divisible by 4 but not by 6 ($75 - 25$) and forgets the 25 numbers divisible by 6 but not by 4."
   },
   "estimatedSeconds": 120,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

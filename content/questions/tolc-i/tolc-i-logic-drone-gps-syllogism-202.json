@@ -20,22 +20,22 @@
     {
       "id": "b",
       "label": "B",
-      "textMd": "Some drones kept in the north warehouse are certified for flying in rain."
+      "textMd": "Every drone that weighs no more than 2 kg is certified for flying in rain."
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "Some drones kept in the north warehouse weigh no more than 2 kg."
+      "textMd": "Every drone with a GPS module is kept in the north warehouse."
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "Every drone that weighs no more than 2 kg is certified for flying in rain."
+      "textMd": "Some drones kept in the north warehouse weigh no more than 2 kg."
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "Every drone with a GPS module is kept in the north warehouse."
+      "textMd": "Some drones kept in the north warehouse are certified for flying in rain."
     }
   ],
   "answerKey": {
@@ -44,10 +44,10 @@
   },
   "explanationMd": "Follow the chain that actually links up. The second statement guarantees at least one drone that has a GPS module **and** is certified for rain. The third statement says every rain-certified drone weighs no more than 2 kg. So that drone has a GPS module and weighs no more than 2 kg: some drones with a GPS module weigh no more than 2 kg.\n\nThe first statement does not help to say anything about the warehouse. It puts the warehouse drones inside the group of GPS drones, but the rain-certified GPS drones could all be kept elsewhere. To test a choice, try to build a fleet that satisfies the three statements and makes the choice false. For example: the warehouse holds one heavy GPS drone without rain certification, and a light, rain-certified GPS drone is kept at another depot. All three statements hold, yet no warehouse drone is rain-certified or light, and not every GPS drone is in the warehouse. No such fleet can make the keyed statement false.",
   "distractorRationale": {
-    "b": "The rain-certified drones are only known to be among the GPS drones, and the warehouse drones are also among the GPS drones; two subgroups of the same group need not overlap. The certified drones could all be elsewhere.",
-    "c": "This assumes the light, rain-certified GPS drones must be in the warehouse. The first statement only says warehouse drones have GPS, not that GPS drones are in the warehouse.",
-    "d": "This reverses the third statement. Being rain-certified guarantees a weight of 2 kg or less, but a light drone may lack the certification.",
-    "e": "This reverses the first statement. Every warehouse drone has GPS, but GPS drones may be kept anywhere."
+    "e": "The rain-certified drones are only known to be among the GPS drones, and the warehouse drones are also among the GPS drones; two subgroups of the same group need not overlap. The certified drones could all be elsewhere.",
+    "d": "This assumes the light, rain-certified GPS drones must be in the warehouse. The first statement only says warehouse drones have GPS, not that GPS drones are in the warehouse.",
+    "b": "This reverses the third statement. Being rain-certified guarantees a weight of 2 kg or less, but a light drone may lack the certification.",
+    "c": "This reverses the first statement. Every warehouse drone has GPS, but GPS drones may be kept anywhere."
   },
   "estimatedSeconds": 110,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,
