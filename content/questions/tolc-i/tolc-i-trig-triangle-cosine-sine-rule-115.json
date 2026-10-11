@@ -1,0 +1,76 @@
+{
+  "id": "tolc-i-trig-triangle-cosine-sine-rule-115",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-trigonometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "In triangle $PQR$, $PQ = 3$, $PR = 5$ and the angle at $P$ measures $120^\\circ$. What is the value of $\\sin\\widehat{Q}$, the sine of the angle at $Q$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\dfrac{5\\sqrt{3}}{14}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\dfrac{3\\sqrt{3}}{14}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\dfrac{7\\sqrt{3}}{10}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\dfrac{5}{14}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\dfrac{5\\sqrt{3}}{2\\sqrt{19}}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Two sides and the angle between them are given, so the law of cosines gives the third side; then the law of sines gives the angle. Pair each sine with the side **opposite** its angle.\n\n**Step 1 — law of cosines.** $QR^{2} = PQ^{2} + PR^{2} - 2\\cdot PQ\\cdot PR\\cos 120^\\circ = 9 + 25 - 2\\cdot 3\\cdot 5\\cdot\\left(-\\tfrac12\\right) = 34 + 15 = 49$, so $QR = 7$.\n\n**Step 2 — law of sines.** The side opposite the angle at $Q$ is $PR = 5$, and the side opposite the angle at $P$ is $QR = 7$: $$\\frac{\\sin\\widehat{Q}}{PR} = \\frac{\\sin 120^\\circ}{QR} \\quad\\Rightarrow\\quad \\sin\\widehat{Q} = \\frac{5\\cdot\\frac{\\sqrt3}{2}}{7} = \\frac{5\\sqrt3}{14}.$$\n\n**How to check it.** The same rule gives $\\sin\\widehat{R} = \\dfrac{3\\sqrt3}{14}$. Both values are below 1, and since $\\sin\\widehat{Q} > \\sin\\widehat{R}$ the angle at $Q$ is the larger of the two acute angles, as it must be, because it faces the longer side, $5 > 3$.",
+  "distractorRationale": {
+    "b": "Pairs the angle at $Q$ with the side $PQ = 3$, which is adjacent to it. The side opposite the angle at $Q$ is $PR = 5$; the value $\\tfrac{3\\sqrt3}{14}$ is the sine of the angle at $R$.",
+    "c": "Inverts the ratio in the law of sines, computing $\\dfrac{QR\\sin 120^\\circ}{PR}$. The result is about $1.21$, larger than 1, which no sine can be.",
+    "d": "Uses $\\sin 120^\\circ = \\tfrac12$, which is the value of $\\sin 30^\\circ$ (and of $-\\cos 120^\\circ$). The reference angle of $120^\\circ$ is $60^\\circ$, so $\\sin 120^\\circ = \\tfrac{\\sqrt3}{2}$.",
+    "e": "Takes $\\cos 120^\\circ$ as $+\\tfrac12$ in the law of cosines, getting $QR^{2} = 34 - 15 = 19$. An obtuse angle has a negative cosine, which makes the opposite side longer, not shorter."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": "In triangle P Q R, side P Q is 3, side P R is 5, and the angle at vertex P measures 120 degrees. What is the sine of the angle at vertex Q? The five choices are: 5 times the square root of 3, over 14; 3 times the square root of 3, over 14; 7 times the square root of 3, over 10; five fourteenths; and 5 times the square root of 3, over 2 times the square root of 19.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-math-a-author",
+    "aiAssisted": true,
+    "notes": "Original item. Tests solving a triangle with an obtuse angle: the law of cosines for the third side, then the law of sines for an angle. Distractors: adjacent side used, inverted ratio, wrong sine of 120 degrees, wrong sign of its cosine."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-math-a-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "law-of-cosines",
+    "law-of-sines",
+    "triangle"
+  ]
+}
