@@ -1,0 +1,76 @@
+{
+  "id": "tolc-i-phys-kettle-heating-time-305",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "sciences",
+  "domainSlug": "tolci-sciences",
+  "skillSlug": "tolci-sci-thermo",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "An electric kettle of power $2.0\\ \\text{kW}$ heats $1.5\\ \\text{kg}$ of water from $20\\ ^{\\circ}\\text{C}$ to $100\\ ^{\\circ}\\text{C}$. The specific heat of water is $4200\\ \\text{J/(kg·K)}$. Assuming all the electrical energy goes into the water, how long does the heating take?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$252\\ \\text{s}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$315\\ \\text{s}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$63\\ \\text{s}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$168\\ \\text{s}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$252\\,000\\ \\text{s}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "**What to notice first.** The energy needed comes from $Q = mc\\,\\Delta T$; the time is that energy divided by the power, $t = Q/P$. Keep everything in SI units: the power is $2000\\ \\text{W}$, and a temperature *difference* is the same in kelvin and in degrees Celsius.\n\n**The steps.**\n\n$$Q = 1.5 \\times 4200 \\times (100 - 20) = 6300 \\times 80 = 504\\,000\\ \\text{J},$$\n\n$$t = \\frac{504\\,000\\ \\text{J}}{2000\\ \\text{W}} = 252\\ \\text{s}.$$\n\n**How to check it.** $252\\ \\text{s}$ is just over four minutes, a sensible time for a kettle. Units: $\\text{J} / (\\text{J/s}) = \\text{s}$.",
+  "distractorRationale": {
+    "b": "Uses a temperature rise of $100\\ ^{\\circ}\\text{C}$, as if the water started at $0\\ ^{\\circ}\\text{C}$. The rise is $100 - 20 = 80$ degrees.",
+    "c": "Uses the starting temperature, $20$ degrees, as the temperature change. The water warms by $80$ degrees.",
+    "d": "Leaves the mass out of $Q = mc\\,\\Delta T$, computing the energy for $1\\ \\text{kg}$ only. The kettle holds $1.5\\ \\text{kg}$.",
+    "e": "Divides by $2$ instead of $2000$, forgetting that $2.0\\ \\text{kW} = 2000\\ \\text{W}$. Almost three days is clearly not how long a kettle takes."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "An electric kettle of power 2.0 kilowatts heats 1.5 kilograms of water from 20 degrees Celsius to 100 degrees Celsius. The specific heat of water is 4200 joules per kilogram per kelvin. Assuming all the electrical energy goes into the water, how long does the heating take? The choices are 252 seconds, 315 seconds, 63 seconds, 168 seconds and 252 thousand seconds.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-sciences-author",
+    "aiAssisted": true,
+    "notes": "Original item testing Q = mc delta T combined with power and time. Situation and numbers invented for this bank."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-sciences-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "specific-heat",
+    "power",
+    "energy"
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "id": "tolc-i-phys-parallel-current-308",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "sciences",
+  "domainSlug": "tolci-sciences",
+  "skillSlug": "tolci-sci-electromagnetism-optics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A $6\\ \\Omega$ resistor and a $3\\ \\Omega$ resistor are connected in parallel across an ideal $12\\ \\text{V}$ battery. What current does the battery supply?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$6\\ \\text{A}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\dfrac{4}{3}\\ \\text{A}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$2\\ \\text{A}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$4\\ \\text{A}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$24\\ \\text{A}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "**What to notice first.** In parallel, each resistor has the full $12\\ \\text{V}$ across it, and the battery supplies the sum of the two branch currents.\n\n**The steps.** Ohm's law in each branch:\n\n$$I_6 = \\frac{12\\ \\text{V}}{6\\ \\Omega} = 2\\ \\text{A}, \\qquad I_3 = \\frac{12\\ \\text{V}}{3\\ \\Omega} = 4\\ \\text{A}, \\qquad I = 2 + 4 = 6\\ \\text{A}.$$\n\n**How to check it.** The equivalent resistance is $\\dfrac{1}{R} = \\dfrac16 + \\dfrac13 = \\dfrac12$, so $R = 2\\ \\Omega$ and $I = 12/2 = 6\\ \\text{A}$. A parallel combination is always smaller than its smallest resistor, and $2\\ \\Omega < 3\\ \\Omega$ as expected.",
+  "distractorRationale": {
+    "b": "Adds the resistances, $6 + 3 = 9\\ \\Omega$, as for a series connection, giving $12/9$. In parallel the equivalent resistance is smaller than either resistor, not larger.",
+    "c": "This is the current in the $6\\ \\Omega$ branch only. The battery also supplies the $4\\ \\text{A}$ through the $3\\ \\Omega$ resistor.",
+    "d": "This is the current in the $3\\ \\Omega$ branch only. The battery also supplies the $2\\ \\text{A}$ through the $6\\ \\Omega$ resistor.",
+    "e": "Stops at $\\tfrac16 + \\tfrac13 = \\tfrac12$ and uses $0.5\\ \\Omega$ as the resistance. That sum is $1/R$; the resistance is its reciprocal, $2\\ \\Omega$."
+  },
+  "estimatedSeconds": 50,
+  "stimulusRef": null,
+  "accessibilityText": "A 6 ohm resistor and a 3 ohm resistor are connected in parallel across an ideal 12 volt battery. What current does the battery supply? The choices are 6 amperes, four thirds of an ampere, 2 amperes, 4 amperes and 24 amperes.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-sciences-author",
+    "aiAssisted": true,
+    "notes": "Original item testing Ohm's law and resistors in parallel. Situation and numbers invented for this bank."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-sciences-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "circuits",
+    "ohms-law",
+    "parallel-resistors"
+  ]
+}
