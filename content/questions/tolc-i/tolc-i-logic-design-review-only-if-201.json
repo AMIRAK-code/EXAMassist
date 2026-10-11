@@ -1,0 +1,78 @@
+{
+  "id": "tolc-i-logic-design-review-only-if-201",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The rules of an engineering design contest include this sentence:\n\n\"A team is admitted to the final review only if it has submitted its test report and passed the safety inspection.\"\n\nWhich of the following statements follows from this rule?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Passing the safety inspection is a necessary condition for admission to the final review."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Passing the safety inspection is a sufficient condition for admission to the final review."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Submitting the test report is a sufficient condition for admission to the final review."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Any team that has submitted its test report and passed the safety inspection is admitted to the final review."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Any team that is not admitted to the final review has failed the safety inspection."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "\"P only if Q\" means \"if P, then Q\": Q is a **necessary** condition for P, not a sufficient one. Here P is \"the team is admitted\" and Q is \"the team has submitted its report and passed the inspection\". So every admitted team has done both things.\n\nIn particular, every admitted team has passed the safety inspection: a team that fails the inspection cannot be admitted. That is exactly what it means for passing the inspection to be a necessary condition for admission.\n\nThe rule says nothing in the other direction. A team could submit its report and pass the inspection and still not be admitted, for example because its design is judged too weak. So neither requirement, and not even the two together, is guaranteed to be enough for admission. Check by building such a team: it breaks none of the rule's words.",
+  "distractorRationale": {
+    "b": "This reverses the direction of \"only if\". The rule says admission requires the inspection, not that the inspection brings admission.",
+    "c": "The rule lists the report as one requirement among two, and even both together are only required, not enough. A team with a report but no passed inspection is in fact excluded.",
+    "d": "This reads \"only if\" as \"if\": it turns the two requirements into a guarantee. The rule allows a team that meets both requirements to be turned down for some other reason.",
+    "e": "A team that is not admitted might have passed the inspection and been turned down for another reason, or might have failed to submit its report. Non-admission does not tell us which requirement, if any, was missed."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "A deduction question about necessary and sufficient conditions. A contest rule says: a team is admitted to the final review only if it has submitted its test report and passed the safety inspection. The question asks which statement follows. The five choices are: passing the safety inspection is a necessary condition for admission; passing the safety inspection is a sufficient condition for admission; submitting the test report is a sufficient condition for admission; any team that has submitted its report and passed the inspection is admitted; any team that is not admitted has failed the safety inspection.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-logic-author",
+    "aiAssisted": true,
+    "notes": "Tests reading \"only if\" as a necessary condition and distinguishing it from a sufficient one. The scenario and wording are original to this bank; no published TOLC or other test item was used or adapted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-logic-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "deduction",
+    "necessary-sufficient",
+    "only-if",
+    "no-calculator"
+  ]
+}
