@@ -1,0 +1,76 @@
+{
+  "id": "tolc-i-eq-log-inequality-base-half-108",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Find all real $x$ such that $\\log_{1/2}(x-1) > -2$.",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$x > 5$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$1 < x < 5$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$x < 5$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$1 < x < \\dfrac{5}{4}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$x > \\dfrac{5}{4}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Two things decide a logarithmic inequality: the domain (the argument must be positive) and the base. When the base lies between 0 and 1 the logarithm is a **decreasing** function, so removing it reverses the inequality sign.\n\n**Step 1 — domain.** $x - 1 > 0$, so $x > 1$.\n\n**Step 2 — rewrite the right side.** $-2 = \\log_{1/2}\\left(\\tfrac12\\right)^{-2} = \\log_{1/2} 4$, because $\\left(\\tfrac12\\right)^{-2} = 2^{2} = 4$.\n\n**Step 3 — remove the logarithm.** $\\log_{1/2}(x-1) > \\log_{1/2} 4$ with a decreasing logarithm means $x - 1 < 4$, so $x < 5$.\n\n**Step 4 — combine with the domain.** $1 < x < 5$.\n\n**How to check it.** Try $x = 3$: $\\log_{1/2} 2 = -1 > -2$ ✓. Try $x = 9$, outside the interval: $\\log_{1/2} 8 = -3$, which is not greater than $-2$ ✓.",
+  "distractorRationale": {
+    "a": "Keeps the direction of the inequality when removing the logarithm. With base $\\tfrac12$ the logarithm decreases, so $\\log_{1/2}(x-1) > \\log_{1/2}4$ means $x - 1 < 4$: at $x = 9$ the left side is $-3$, which is smaller than $-2$.",
+    "c": "Reverses the sign correctly but forgets the domain. For $x \\le 1$ the argument $x - 1$ is not positive and the logarithm does not exist.",
+    "d": "Evaluates $\\left(\\tfrac12\\right)^{-2}$ as $\\tfrac14$ instead of $4$. A negative exponent inverts the base: $\\left(\\tfrac12\\right)^{-2} = 2^{2} = 4$.",
+    "e": "Makes two slips: it takes $\\left(\\tfrac12\\right)^{-2}$ as $\\tfrac14$ and keeps the direction of the inequality. The correct bound is $x - 1 < 4$."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "Find all real x such that the logarithm to base one half of x minus 1 is greater than negative 2. The five choices are: x greater than 5; x between 1 and 5, both excluded; x less than 5; x between 1 and five quarters, both excluded; and x greater than five quarters.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-math-a-author",
+    "aiAssisted": true,
+    "notes": "Original item. Tests a logarithmic inequality with a base between 0 and 1: domain, reversal of the sign, and a negative exponent. Distractors isolate each of these steps."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-math-a-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "logarithmic-inequality",
+    "decreasing-function",
+    "domain"
+  ]
+}
