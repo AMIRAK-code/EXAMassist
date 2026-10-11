@@ -1,0 +1,72 @@
+{
+  "id": "digital-sat-math-exponential-half-year-rate-517",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "advanced-math",
+  "skillSlug": "nonlinear-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "The function $P(t) = 8{,}000(0.81)^t$ models the number of fish in a lake $t$ years after a survey began. Which statement best describes how the modeled number of fish changes every $6$ months?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "It decreases by $10\\%$ every $6$ months."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "It decreases by $9.5\\%$ every $6$ months."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "It decreases by $19\\%$ every $6$ months."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "It decreases by $59.5\\%$ every $6$ months."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The model gives the yearly factor, $0.81$. Six months is half a year, so the factor for $6$ months is the number that, applied **twice**, gives $0.81$. That is a square root, not half:\n\n$$\\sqrt{0.81} = 0.9 \\qquad\\text{because}\\qquad 0.9 \\times 0.9 = 0.81$$\n\nRewriting the model makes this visible:\n\n$$P(t) = 8{,}000(0.81)^t = 8{,}000\\left(0.9^2\\right)^t = 8{,}000(0.9)^{2t}$$\n\nHere $2t$ counts half-year periods, and each half-year multiplies the population by $0.9$. Multiplying by $0.9$ is a decrease of $1 - 0.9 = 0.10$, or $10\\%$.\n\nCheck with numbers: starting from $8{,}000$, after $6$ months $8{,}000 \\times 0.9 = 7{,}200$, and after another $6$ months $7{,}200 \\times 0.9 = 6{,}480$. The model gives $P(1) = 8{,}000 \\times 0.81 = 6{,}480$ directly, so the half-year factor is right.\n\nNote that two $10\\%$ decreases make a $19\\%$ decrease over the year, not $20\\%$: percent changes compound rather than add, which is why halving the yearly $19\\%$ to $9.5\\%$ does not work.",
+  "distractorRationale": {
+    "b": "This halves the yearly decrease of $19\\%$. Percent decreases compound: two decreases of $9.5\\%$ multiply the population by $0.905^2 \\approx 0.819$, not $0.81$.",
+    "c": "This is the decrease over a full year, since $1 - 0.81 = 0.19$. Over $6$ months the factor is $\\sqrt{0.81} = 0.9$, a $10\\%$ decrease.",
+    "d": "This halves the factor, $0.81 \\div 2 = 0.405$, and reads $1 - 0.405$ as the decrease. The half-year factor is the square root of $0.81$, not half of it."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "The function P of t equals 8,000 times 0.81 to the power t models the number of fish in a lake t years after a survey began. Which statement best describes how the number of fish changes every 6 months? The choices are: it decreases by 10 percent every 6 months; it decreases by 9.5 percent every 6 months; it decreases by 19 percent every 6 months; it decreases by 59.5 percent every 6 months.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "sat-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Converts a yearly exponential decay factor to a half-year factor, where the factor is the square root of 0.81 rather than half of the yearly rate."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "sat-wave8-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "advanced-math",
+    "exponential-function",
+    "percent-change",
+    "growth-factor"
+  ]
+}

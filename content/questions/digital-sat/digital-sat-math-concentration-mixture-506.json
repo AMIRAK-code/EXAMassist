@@ -1,0 +1,72 @@
+{
+  "id": "digital-sat-math-concentration-mixture-506",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "problem-solving-and-data-analysis",
+  "skillSlug": "ratios-rates-proportions-units",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A lab technician has $750$ milliliters of a salt solution with a concentration of $12$ grams of salt per liter. She adds some of a second salt solution, which has a concentration of $4$ grams of salt per liter, so that the resulting mixture has a concentration of $9$ grams of salt per liter. How many milliliters of the second solution did she add?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$250$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$450$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$1{,}200$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$1{,}250$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Track the **amount of salt**, not the concentrations: concentrations do not add, but grams of salt do. Work in liters so the units match the concentrations, then convert back.\n\nThe first solution is $0.75$ liter at $12$ grams per liter, so it contains $0.75 \\times 12 = 9$ grams of salt. Let $v$ be the number of liters of the second solution added; it contains $4v$ grams of salt. The mixture has $0.75 + v$ liters and must have $9$ grams per liter:\n\n$$\\frac{9 + 4v}{0.75 + v} = 9$$\n\n$$9 + 4v = 6.75 + 9v \\;\\Rightarrow\\; 2.25 = 5v \\;\\Rightarrow\\; v = 0.45$$\n\nSo she added $0.45$ liter, which is $450$ milliliters.\n\nCheck: the mixture is $0.75 + 0.45 = 1.2$ liters and contains $9 + 4(0.45) = 10.8$ grams of salt, and $\\frac{10.8}{1.2} = 9$ grams per liter.\n\nA shortcut confirms it. The target, $9$, is $3$ below the first concentration and $5$ above the second, so the volumes must be in the ratio $5 : 3$ (first to second), the *reverse* of those distances: $750 \\times \\frac{3}{5} = 450$. Using the distances in the same order instead gives $750 \\times \\frac{5}{3} = 1{,}250$, which would pull the mixture down to $7$ grams per liter.",
+  "distractorRationale": {
+    "a": "This treats the added liquid as pure water. Diluting $9$ grams of salt to $9$ grams per liter would need $1$ liter in total, so $250$ milliliters of water; but the second solution adds salt of its own, so more of it is needed.",
+    "c": "This is the total volume of the mixture, $750 + 450 = 1{,}200$ milliliters, not the amount of the second solution that was added.",
+    "d": "This sets the volumes in the same ratio as the distances from the target, $750 \\times \\frac{5}{3}$. The ratio must be reversed; with $1{,}250$ milliliters added the mixture would hold $9 + 5 = 14$ grams in $2$ liters, only $7$ grams per liter."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": "A technician has 750 milliliters of a solution with 12 grams of salt per liter. She adds some of a second solution with 4 grams of salt per liter, and the mixture has 9 grams of salt per liter. How many milliliters of the second solution did she add? The choices are 250, 450, 1,200 and 1,250.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "sat-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. A two-concentration mixture with a milliliter-to-liter conversion; distractors come from adding pure water, reporting the total volume, and reversing the mixing ratio."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "sat-wave8-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "problem-solving",
+    "mixture",
+    "concentration",
+    "unit-conversion"
+  ]
+}

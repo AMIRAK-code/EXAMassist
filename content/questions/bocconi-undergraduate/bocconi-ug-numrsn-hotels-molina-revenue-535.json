@@ -1,0 +1,72 @@
+{
+  "id": "bocconi-ug-numrsn-hotels-molina-revenue-535",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-numerical-reasoning",
+  "skillSlug": "numerical-reasoning-relevance",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "On an average night in July 2025, how much did the hotels of Molina take in total from their occupied rooms?",
+  "instructionsMd": "Use only the figures in the table. No calculator.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "€1,320"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "€52,800"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "€88,000"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "€2,112,000"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Decide first which figures the question needs. Revenue from rooms is the number of occupied rooms times the price paid for each one. The table gives the rooms, the share occupied and the average rate per occupied room. The number of hotels plays no part: it would matter only if the question asked about revenue per hotel.\n\n**Occupied rooms in Molina.** $800 \\times 0.60 = 480$.\n\n**Revenue.** $480 \\times 110 = 52{,}800$ euros.\n\n**How to check the answer.** Work the other way round: if every one of Molina's 800 rooms were occupied, revenue would be $800 \\times 110 = 88{,}000$ euros. Only 60 per cent are occupied, and 60 per cent of 88,000 is $52{,}800$. The two routes agree.",
+  "distractorRationale": {
+    "a": "This divides the total by Molina's 40 hotels, giving average revenue per hotel. The question asks for the total taken by all of Molina's hotels together, so the hotels column is not needed.",
+    "c": "This multiplies all 800 rooms by the €110 rate, as if every room were occupied. The rate is paid only for occupied rooms, so the 60 per cent occupancy must be applied first.",
+    "d": "This multiplies the correct total by the 40 hotels as well. The 800 rooms are already the total for all of Molina's hotels, so multiplying by the number of hotels counts every room forty times."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": {
+    "id": "bocconi-ug-stim-lake-hotels-547",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying table of hotels in four lake towns in July 2025. It asks how much the hotels of Molina took in total from their occupied rooms on an average night. The four choices, in the order shown, are 1,320 euros; 52,800 euros; 88,000 euros; and 2,112,000 euros.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-verbal-author",
+    "aiAssisted": true,
+    "notes": "Original item on the original table bocconi-ug-stim-lake-hotels-547 testing which columns are relevant. The hotels column is superfluous; two distractors misuse it and one ignores the occupancy rate."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-verbal-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "table-lake-hotels",
+    "superfluous-data"
+  ]
+}

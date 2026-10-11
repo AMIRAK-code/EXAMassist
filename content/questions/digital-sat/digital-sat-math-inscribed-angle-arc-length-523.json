@@ -1,0 +1,72 @@
+{
+  "id": "digital-sat-math-inscribed-angle-arc-length-523",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "geometry-and-trigonometry",
+  "skillSlug": "circles",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Points $A$, $B$ and $C$ lie on a circle with center $O$ and radius $9$. Point $C$ lies on the major arc $AB$, and inscribed angle $ACB$ measures $70^\\circ$. What is the length of minor arc $AB$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$7\\pi$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\frac{7\\pi}{2}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$11\\pi$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$14\\pi$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "An inscribed angle measures **half** the central angle that intercepts the same arc. Inscribed angle $ACB$ intercepts minor arc $AB$, so the central angle $AOB$ is\n\n$$2 \\times 70^\\circ = 140^\\circ$$\n\nArc length is the fraction of the full circle that the central angle covers, times the circumference:\n\n$$\\text{arc } AB = \\frac{140}{360} \\times 2\\pi(9) = \\frac{7}{18} \\times 18\\pi = 7\\pi$$\n\nCheck the complementary arc: the major arc is $\\frac{220}{360} \\times 18\\pi = 11\\pi$, and $7\\pi + 11\\pi = 18\\pi$, the whole circumference.\n\nThe trap is treating the $70^\\circ$ inscribed angle as if it were the central angle, which gives half the correct length.",
+  "distractorRationale": {
+    "b": "This uses the inscribed angle, $70^\\circ$, as the central angle: $\\frac{70}{360} \\times 18\\pi = \\frac{7\\pi}{2}$. The central angle is twice the inscribed angle, $140^\\circ$.",
+    "c": "This is the length of the major arc, $\\frac{220}{360} \\times 18\\pi = 11\\pi$. The question asks for the minor arc, which the $140^\\circ$ central angle intercepts.",
+    "d": "This uses the diameter, $18$, as the radius, doubling the circumference to $36\\pi$ and giving $\\frac{140}{360} \\times 36\\pi = 14\\pi$."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "Points A, B and C lie on a circle with center O and radius 9. C is on the major arc AB, and inscribed angle ACB measures 70 degrees. What is the length of minor arc AB? The choices are 7 pi, 7 pi over 2, 11 pi, and 14 pi.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "sat-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Combines the inscribed angle theorem with arc length; distractors come from using the inscribed angle as central, finding the major arc, and using the diameter as the radius."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "sat-wave8-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "geometry",
+    "circles",
+    "inscribed-angle",
+    "arc-length"
+  ]
+}

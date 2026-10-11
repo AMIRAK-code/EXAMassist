@@ -1,0 +1,71 @@
+{
+  "id": "digital-sat-math-evaluate-quadratic-negative-518",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "advanced-math",
+  "skillSlug": "nonlinear-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "The function $g$ is defined by $g(x) = x^2 - 3x + 4$. What is the value of $g(-2)$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$14$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$6$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$2$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$-6$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Substitute $-2$ for every $x$, keeping the parentheses so the signs are handled correctly:\n\n$$g(-2) = (-2)^2 - 3(-2) + 4$$\n\nSquaring a negative number gives a positive result, $(-2)^2 = 4$, and $-3$ times $-2$ is $+6$:\n\n$$g(-2) = 4 + 6 + 4 = 14$$\n\nThe wrong values come from sign errors: reading $(-2)^2$ as $-4$ gives $6$; reading $-3(-2)$ as $-6$ gives $2$; and making both errors gives $-6$.",
+  "distractorRationale": {
+    "b": "This treats $(-2)^2$ as $-4$, giving $-4 + 6 + 4 = 6$. The square of a negative number is positive: $(-2)^2 = 4$.",
+    "c": "This treats $-3(-2)$ as $-6$, giving $4 - 6 + 4 = 2$. A negative times a negative is positive, so the middle term is $+6$.",
+    "d": "This makes both sign errors, $-4 - 6 + 4 = -6$."
+  },
+  "estimatedSeconds": 40,
+  "stimulusRef": null,
+  "accessibilityText": "The function g of x equals x squared minus 3 x plus 4. What is g of negative 2? The choices are 14, 6, 2 and negative 6.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "sat-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Evaluating a quadratic at a negative input, with distractors built from the two standard sign errors."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "sat-wave8-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "advanced-math",
+    "function-evaluation",
+    "quadratic"
+  ]
+}
