@@ -15,22 +15,22 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$\\dfrac{5\\sqrt{3}}{14}$"
+      "textMd": "$\\dfrac{5}{14}$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$\\dfrac{3\\sqrt{3}}{14}$"
+      "textMd": "$\\dfrac{7\\sqrt{3}}{10}$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "$\\dfrac{7\\sqrt{3}}{10}$"
+      "textMd": "$\\dfrac{3\\sqrt{3}}{14}$"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "$\\dfrac{5}{14}$"
+      "textMd": "$\\dfrac{5\\sqrt{3}}{14}$"
     },
     {
       "id": "e",
@@ -40,13 +40,13 @@
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "d"
   },
   "explanationMd": "Two sides and the angle between them are given, so the law of cosines gives the third side; then the law of sines gives the angle. Pair each sine with the side **opposite** its angle.\n\n**Step 1 — law of cosines.** $QR^{2} = PQ^{2} + PR^{2} - 2\\cdot PQ\\cdot PR\\cos 120^\\circ = 9 + 25 - 2\\cdot 3\\cdot 5\\cdot\\left(-\\tfrac12\\right) = 34 + 15 = 49$, so $QR = 7$.\n\n**Step 2 — law of sines.** The side opposite the angle at $Q$ is $PR = 5$, and the side opposite the angle at $P$ is $QR = 7$: $$\\frac{\\sin\\widehat{Q}}{PR} = \\frac{\\sin 120^\\circ}{QR} \\quad\\Rightarrow\\quad \\sin\\widehat{Q} = \\frac{5\\cdot\\frac{\\sqrt3}{2}}{7} = \\frac{5\\sqrt3}{14}.$$\n\n**How to check it.** The same rule gives $\\sin\\widehat{R} = \\dfrac{3\\sqrt3}{14}$. Both values are below 1, and since $\\sin\\widehat{Q} > \\sin\\widehat{R}$ the angle at $Q$ is the larger of the two acute angles, as it must be, because it faces the longer side, $5 > 3$.",
   "distractorRationale": {
-    "b": "Pairs the angle at $Q$ with the side $PQ = 3$, which is adjacent to it. The side opposite the angle at $Q$ is $PR = 5$; the value $\\tfrac{3\\sqrt3}{14}$ is the sine of the angle at $R$.",
-    "c": "Inverts the ratio in the law of sines, computing $\\dfrac{QR\\sin 120^\\circ}{PR}$. The result is about $1.21$, larger than 1, which no sine can be.",
-    "d": "Uses $\\sin 120^\\circ = \\tfrac12$, which is the value of $\\sin 30^\\circ$ (and of $-\\cos 120^\\circ$). The reference angle of $120^\\circ$ is $60^\\circ$, so $\\sin 120^\\circ = \\tfrac{\\sqrt3}{2}$.",
+    "c": "Pairs the angle at $Q$ with the side $PQ = 3$, which is adjacent to it. The side opposite the angle at $Q$ is $PR = 5$; the value $\\tfrac{3\\sqrt3}{14}$ is the sine of the angle at $R$.",
+    "b": "Inverts the ratio in the law of sines, computing $\\dfrac{QR\\sin 120^\\circ}{PR}$. The result is about $1.21$, larger than 1, which no sine can be.",
+    "a": "Uses $\\sin 120^\\circ = \\tfrac12$, which is the value of $\\sin 30^\\circ$ (and of $-\\cos 120^\\circ$). The reference angle of $120^\\circ$ is $60^\\circ$, so $\\sin 120^\\circ = \\tfrac{\\sqrt3}{2}$.",
     "e": "Takes $\\cos 120^\\circ$ as $+\\tfrac12$ in the law of cosines, getting $QR^{2} = 34 - 15 = 19$. An obtuse angle has a negative cosine, which makes the opposite side longer, not shorter."
   },
   "estimatedSeconds": 150,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

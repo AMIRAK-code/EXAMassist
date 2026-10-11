@@ -15,39 +15,39 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "Ivo"
+      "textMd": "Mira"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "Lea"
+      "textMd": "Either Lea or Mira; the information does not decide which."
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "Mira"
+      "textMd": "Lea"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "Either Ivo or Mira; the information does not decide which."
+      "textMd": "Ivo"
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "Either Lea or Mira; the information does not decide which."
+      "textMd": "Either Ivo or Mira; the information does not decide which."
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "d"
   },
   "explanationMd": "Start with the day that has fewest possibilities. On Tuesday, Ivo is ruled out because he works Monday and nobody works two consecutive days, and Mira is ruled out by the last clue. So Lea works Tuesday. Lea now has her two days, Tuesday and Saturday.\n\nThat leaves Wednesday, Thursday and Friday for Ivo's second day and both of Mira's days. Mira cannot work two consecutive days, and the only non-consecutive pair among those three days is Wednesday and Friday. So Mira works Wednesday and Friday, and Ivo works **Thursday**.\n\nCheck the full rota, Monday to Saturday: Ivo, Lea, Mira, Ivo, Mira, Lea. Everyone works twice, nobody works two days in a row, and every clue holds.",
   "distractorRationale": {
-    "b": "Lea's two days are already fixed as Tuesday and Saturday: Tuesday is the only possible day for anyone except her, and Saturday is given.",
-    "c": "Mira needs two days among Wednesday, Thursday and Friday that are not consecutive. Thursday is next to both of the other two, so it cannot be one of hers.",
-    "d": "The rota is fully determined. Putting Mira on Thursday would force her other day to be Wednesday or Friday, which are consecutive with Thursday.",
-    "e": "Lea cannot be on duty on Thursday because her two days are already Tuesday and Saturday."
+    "c": "Lea's two days are already fixed as Tuesday and Saturday: Tuesday is the only possible day for anyone except her, and Saturday is given.",
+    "a": "Mira needs two days among Wednesday, Thursday and Friday that are not consecutive. Thursday is next to both of the other two, so it cannot be one of hers.",
+    "e": "The rota is fully determined. Putting Mira on Thursday would force her other day to be Wednesday or Friday, which are consecutive with Thursday.",
+    "b": "Lea cannot be on duty on Thursday because her two days are already Tuesday and Saturday."
   },
   "estimatedSeconds": 100,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

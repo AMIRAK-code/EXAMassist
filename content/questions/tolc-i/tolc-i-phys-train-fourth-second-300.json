@@ -15,12 +15,12 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$7\\ \\text{m}$"
+      "textMd": "$8\\ \\text{m}$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$8\\ \\text{m}$"
+      "textMd": "$16\\ \\text{m}$"
     },
     {
       "id": "c",
@@ -30,24 +30,24 @@
     {
       "id": "d",
       "label": "D",
-      "textMd": "$14\\ \\text{m}$"
+      "textMd": "$7\\ \\text{m}$"
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "$16\\ \\text{m}$"
+      "textMd": "$14\\ \\text{m}$"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "d"
   },
   "explanationMd": "**What to notice first.** The question asks for the distance covered *in one particular second*, not the distance from the start. Find the distance from the start at both ends of that second and subtract.\n\n**The steps.** Starting from rest, $s = \\tfrac12 a t^2 = \\tfrac12 \\cdot 2 \\cdot t^2 = t^2$ (in metres, with $t$ in seconds).\n\n- At $t = 4\\ \\text{s}$: $s = 16\\ \\text{m}$.\n- At $t = 3\\ \\text{s}$: $s = 9\\ \\text{m}$.\n\nDistance during the fourth second: $16 - 9 = 7\\ \\text{m}$.\n\n**How to check it.** The speed is $v = at$, so it is $6\\ \\text{m/s}$ at $t = 3\\ \\text{s}$ and $8\\ \\text{m/s}$ at $t = 4\\ \\text{s}$. With constant acceleration the average speed over that second is the mean of the two, $7\\ \\text{m/s}$, and $7\\ \\text{m/s} \\times 1\\ \\text{s} = 7\\ \\text{m}$.",
   "distractorRationale": {
-    "b": "Multiplies the speed at the end of the fourth second, $8\\ \\text{m/s}$, by $1\\ \\text{s}$, as if the train moved at its final speed for the whole second. It was speeding up from $6$ to $8\\ \\text{m/s}$, so its average speed in that second is $7\\ \\text{m/s}$.",
+    "a": "Multiplies the speed at the end of the fourth second, $8\\ \\text{m/s}$, by $1\\ \\text{s}$, as if the train moved at its final speed for the whole second. It was speeding up from $6$ to $8\\ \\text{m/s}$, so its average speed in that second is $7\\ \\text{m/s}$.",
     "c": "This is the distance covered in the first three seconds, $s(3) = 9\\ \\text{m}$, which is where the fourth second starts, not how far the train goes during it.",
-    "d": "Drops the factor $\\tfrac12$ in $s = \\tfrac12 a t^2$ and computes $2 \\times (16 - 9) = 14$. The method of subtracting is right, but every distance is doubled.",
-    "e": "This is the total distance from the start to $t = 4\\ \\text{s}$, $s(4) = 16\\ \\text{m}$. The question asks only for the part covered during the fourth second."
+    "e": "Drops the factor $\\tfrac12$ in $s = \\tfrac12 a t^2$ and computes $2 \\times (16 - 9) = 14$. The method of subtracting is right, but every distance is doubled.",
+    "b": "This is the total distance from the start to $t = 4\\ \\text{s}$, $s(4) = 16\\ \\text{m}$. The question asks only for the part covered during the fourth second."
   },
   "estimatedSeconds": 75,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

@@ -15,12 +15,12 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$a < b < c$"
+      "textMd": "$a < c < b$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$c < b < a$"
+      "textMd": "$a < b < c$"
     },
     {
       "id": "c",
@@ -30,7 +30,7 @@
     {
       "id": "d",
       "label": "D",
-      "textMd": "$a < c < b$"
+      "textMd": "$c < b < a$"
     },
     {
       "id": "e",
@@ -44,9 +44,9 @@
   },
   "explanationMd": "Roots with different indices cannot be compared directly, but positive numbers keep their order when raised to the same positive power. Choose a power that clears both roots in a pair.\n\n**Compare $a$ and $b$.** Raise both to the 6th power, since 6 is a multiple of 2 and 3: $a^{6} = (2^{1/2})^{6} = 2^{3} = 8$ and $b^{6} = (3^{1/3})^{6} = 3^{2} = 9$. As $8 < 9$, $a < b$.\n\n**Compare $a$ and $c$.** Raise both to the 10th power: $a^{10} = 2^{5} = 32$ and $c^{10} = (5^{1/5})^{10} = 5^{2} = 25$. As $25 < 32$, $c < a$.\n\nPutting the two together, $c < a < b$.\n\n**How to check it.** Compare $b$ and $c$ directly with the 15th power: $b^{15} = 3^{5} = 243$ and $c^{15} = 5^{3} = 125$, so $c < b$, consistent with the chain. Decimal estimates agree too: $a \\approx 1.414$, $b \\approx 1.442$, $c \\approx 1.380$.",
   "distractorRationale": {
-    "a": "Orders the numbers by their radicands, 2, 3 and 5. A larger radicand does not mean a larger value when the root index is also larger: $c^{10} = 25 < 32 = a^{10}$.",
-    "b": "Assumes that a higher root index always gives a smaller number. That is true for $c$, but $b$ is larger than $a$: $b^{6} = 9 > 8 = a^{6}$.",
-    "d": "Gets $a < b$ right but reverses the comparison of $a$ and $c$, perhaps comparing $a^{10}$ with $c^{10}$ as $2^{10}$ against $5^{2}$. Correctly, $a^{10} = 2^{5} = 32$, which is larger than $c^{10} = 25$.",
+    "b": "Orders the numbers by their radicands, 2, 3 and 5. A larger radicand does not mean a larger value when the root index is also larger: $c^{10} = 25 < 32 = a^{10}$.",
+    "d": "Assumes that a higher root index always gives a smaller number. That is true for $c$, but $b$ is larger than $a$: $b^{6} = 9 > 8 = a^{6}$.",
+    "a": "Gets $a < b$ right but reverses the comparison of $a$ and $c$, perhaps comparing $a^{10}$ with $c^{10}$ as $2^{10}$ against $5^{2}$. Correctly, $a^{10} = 2^{5} = 32$, which is larger than $c^{10} = 25$.",
     "e": "Reverses the comparison of $a$ and $b$ and places $c$ last. Raising to the 6th power gives $a^{6} = 8 < 9 = b^{6}$, so $a < b$, and $c$ is the smallest of the three."
   },
   "estimatedSeconds": 140,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

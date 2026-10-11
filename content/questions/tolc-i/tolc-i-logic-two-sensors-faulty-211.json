@@ -20,34 +20,34 @@
     {
       "id": "b",
       "label": "B",
-      "textMd": "Sensor X is reliable and sensor Y is faulty."
+      "textMd": "Both sensors are faulty."
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "Sensor X is faulty and sensor Y is reliable."
+      "textMd": "The report does not allow any of these cases to be ruled out."
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "Both sensors are faulty."
+      "textMd": "Sensor X is faulty and sensor Y is reliable."
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "The report does not allow any of these cases to be ruled out."
+      "textMd": "Sensor X is reliable and sensor Y is faulty."
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "b"
+    "optionId": "e"
   },
   "explanationMd": "Test the two possibilities for the sensor that spoke.\n\n- Suppose X is faulty. Then its report must be false, so neither sensor would be faulty. But X is faulty, a contradiction. So X cannot be faulty.\n- Therefore X is reliable, and its report is true: at least one of the two sensors is faulty. X is not, so Y is.\n\nCheck: with X reliable and Y faulty, X's report \"at least one of us is faulty\" is indeed true, so the situation is consistent.",
   "distractorRationale": {
     "a": "If both were reliable, X's report \"at least one of the two is faulty\" would be false, and a reliable sensor never sends a false report.",
-    "c": "A faulty X must send false reports, but with X faulty the statement \"at least one is faulty\" is true. So X cannot be faulty.",
-    "d": "If both were faulty, X's report would be true, which a faulty sensor cannot send.",
-    "e": "The report does decide the case: assuming X faulty leads to a contradiction, and X reliable then forces Y to be faulty."
+    "d": "A faulty X must send false reports, but with X faulty the statement \"at least one is faulty\" is true. So X cannot be faulty.",
+    "b": "If both were faulty, X's report would be true, which a faulty sensor cannot send.",
+    "c": "The report does decide the case: assuming X faulty leads to a contradiction, and X reliable then forces Y to be faulty."
   },
   "estimatedSeconds": 55,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

@@ -15,7 +15,7 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "Real and inverted, $30\\ \\text{cm}$ behind the lens, twice the height of the object"
+      "textMd": "Real and inverted, $5\\ \\text{cm}$ behind the lens, one third of the height of the object"
     },
     {
       "id": "b",
@@ -25,7 +25,7 @@
     {
       "id": "c",
       "label": "C",
-      "textMd": "Virtual and upright, $30\\ \\text{cm}$ in front of the lens, twice the height of the object"
+      "textMd": "Real and inverted, $30\\ \\text{cm}$ behind the lens, twice the height of the object"
     },
     {
       "id": "d",
@@ -35,19 +35,19 @@
     {
       "id": "e",
       "label": "E",
-      "textMd": "Real and inverted, $5\\ \\text{cm}$ behind the lens, one third of the height of the object"
+      "textMd": "Virtual and upright, $30\\ \\text{cm}$ in front of the lens, twice the height of the object"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "c"
   },
   "explanationMd": "**What to notice first.** The object is between $f$ and $2f$ from a converging lens ($10 < 15 < 20$ cm). Such an object always gives a real, inverted, enlarged image beyond $2f$ on the other side. The thin-lens equation gives the exact position.\n\n**The steps.** With object distance $p = 15\\ \\text{cm}$ and image distance $q$:\n\n$$\\frac1p + \\frac1q = \\frac1f \\quad\\Rightarrow\\quad \\frac1q = \\frac1{10} - \\frac1{15} = \\frac{3 - 2}{30} = \\frac1{30}, \\qquad q = 30\\ \\text{cm}.$$\n\n$q$ is positive, so the image is real, on the opposite side of the lens from the object. The magnification is $m = -\\dfrac{q}{p} = -\\dfrac{30}{15} = -2$: the minus sign means inverted, and the size is doubled.\n\n**How to check it.** Substitute back: $\\tfrac1{15} + \\tfrac1{30} = \\tfrac{2+1}{30} = \\tfrac1{10}$. And $30\\ \\text{cm}$ is beyond $2f = 20\\ \\text{cm}$, as the rule of thumb predicted.",
   "distractorRationale": {
     "b": "Adds the reciprocals, $\\tfrac1{10} + \\tfrac1{15} = \\tfrac16$, instead of subtracting $\\tfrac1p$ from $\\tfrac1f$. The equation is $\\tfrac1q = \\tfrac1f - \\tfrac1p$.",
-    "c": "A converging lens gives a virtual, upright image only when the object is closer than the focal length. At $15\\ \\text{cm}$ the object is beyond the $10\\ \\text{cm}$ focus, and $q = +30\\ \\text{cm}$ means a real image.",
+    "e": "A converging lens gives a virtual, upright image only when the object is closer than the focal length. At $15\\ \\text{cm}$ the object is beyond the $10\\ \\text{cm}$ focus, and $q = +30\\ \\text{cm}$ means a real image.",
     "d": "The position is right, but the magnification is inverted: it divides $p$ by $q$. The image is farther from the lens than the object, so it is larger, $q/p = 2$.",
-    "e": "Subtracts the distances, $15 - 10 = 5\\ \\text{cm}$, instead of their reciprocals. Lengths do not combine this way in the lens equation."
+    "a": "Subtracts the distances, $15 - 10 = 5\\ \\text{cm}$, instead of their reciprocals. Lengths do not combine this way in the lens equation."
   },
   "estimatedSeconds": 110,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

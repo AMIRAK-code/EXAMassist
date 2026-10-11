@@ -15,39 +15,39 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$\\pi$"
+      "textMd": "$5\\pi$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$2\\pi$"
+      "textMd": "$\\pi$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "$\\dfrac{13\\pi}{6}$"
+      "textMd": "$3\\pi$"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "$3\\pi$"
+      "textMd": "$2\\pi$"
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "$5\\pi$"
+      "textMd": "$\\dfrac{13\\pi}{6}$"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "d"
+    "optionId": "c"
   },
   "explanationMd": "Use $\\sin 2x = 2\\sin x\\cos x$, then bring everything to one side and **factor** — never divide by $\\cos x$, because that throws away every solution with $\\cos x = 0$.\n\n**Step 1 — factor.** $2\\sin x\\cos x - \\cos x = 0$, so $\\cos x\\,(2\\sin x - 1) = 0$.\n\n**Step 2 — first factor.** $\\cos x = 0$ gives $x = \\dfrac{\\pi}{2}$ and $x = \\dfrac{3\\pi}{2}$.\n\n**Step 3 — second factor.** $\\sin x = \\dfrac12$ gives $x = \\dfrac{\\pi}{6}$ and $x = \\dfrac{5\\pi}{6}$.\n\n**Step 4 — sum.** $\\dfrac{\\pi}{6} + \\dfrac{\\pi}{2} + \\dfrac{5\\pi}{6} + \\dfrac{3\\pi}{2} = \\dfrac{\\pi + 3\\pi + 5\\pi + 9\\pi}{6} = \\dfrac{18\\pi}{6} = 3\\pi$.\n\n**How to check it.** At $x = \\dfrac{\\pi}{6}$: $\\sin\\dfrac{\\pi}{3} = \\dfrac{\\sqrt3}{2} = \\cos\\dfrac{\\pi}{6}$ ✓. At $x = \\dfrac{3\\pi}{2}$: $\\sin 3\\pi = 0 = \\cos\\dfrac{3\\pi}{2}$ ✓.",
   "distractorRationale": {
-    "a": "Divides both sides by $\\cos x$, leaving only $\\sin x = \\tfrac12$ and the two solutions $\\tfrac{\\pi}{6}$ and $\\tfrac{5\\pi}{6}$. Dividing by $\\cos x$ loses $\\tfrac{\\pi}{2}$ and $\\tfrac{3\\pi}{2}$, where both sides are zero.",
-    "b": "Keeps only the solutions of $\\cos x = 0$ and drops the factor $2\\sin x - 1$.",
-    "c": "Finds only one solution of $\\sin x = \\tfrac12$, namely $\\tfrac{\\pi}{6}$, and misses $\\tfrac{5\\pi}{6}$ in the second quadrant, where the sine is also positive.",
-    "e": "Factors with the wrong sign, solving $\\sin x = -\\tfrac12$ (giving $\\tfrac{7\\pi}{6}$ and $\\tfrac{11\\pi}{6}$) instead of $\\sin x = \\tfrac12$. At $x = \\tfrac{7\\pi}{6}$, $\\sin\\tfrac{7\\pi}{3} = \\tfrac{\\sqrt3}{2}$ but $\\cos\\tfrac{7\\pi}{6} = -\\tfrac{\\sqrt3}{2}$."
+    "b": "Divides both sides by $\\cos x$, leaving only $\\sin x = \\tfrac12$ and the two solutions $\\tfrac{\\pi}{6}$ and $\\tfrac{5\\pi}{6}$. Dividing by $\\cos x$ loses $\\tfrac{\\pi}{2}$ and $\\tfrac{3\\pi}{2}$, where both sides are zero.",
+    "d": "Keeps only the solutions of $\\cos x = 0$ and drops the factor $2\\sin x - 1$.",
+    "e": "Finds only one solution of $\\sin x = \\tfrac12$, namely $\\tfrac{\\pi}{6}$, and misses $\\tfrac{5\\pi}{6}$ in the second quadrant, where the sine is also positive.",
+    "a": "Factors with the wrong sign, solving $\\sin x = -\\tfrac12$ (giving $\\tfrac{7\\pi}{6}$ and $\\tfrac{11\\pi}{6}$) instead of $\\sin x = \\tfrac12$. At $x = \\tfrac{7\\pi}{6}$, $\\sin\\tfrac{7\\pi}{3} = \\tfrac{\\sqrt3}{2}$ but $\\cos\\tfrac{7\\pi}{6} = -\\tfrac{\\sqrt3}{2}$."
   },
   "estimatedSeconds": 120,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

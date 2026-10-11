@@ -15,39 +15,39 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "The hand points to 6 and is white."
+      "textMd": "The hand points to 4 and is white."
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "The hand points to 6 and is black."
+      "textMd": "The hand points to 10 and is white."
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "The hand points to 4 and is white."
+      "textMd": "The hand points to 6 and is white."
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "The hand points to 4 and is black."
+      "textMd": "The hand points to 6 and is black."
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "The hand points to 10 and is white."
+      "textMd": "The hand points to 4 and is black."
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "c"
   },
   "explanationMd": "Treat the two features separately.\n\n**Position.** Measure how far the hand moves clockwise each time, in hours: from 12 to 2 is 2, from 2 to 6 is 4, from 6 to 12 is 6, from 12 to 8 is 8. The moves grow by 2 each time, so the next move is 10 hours. Moving 10 hours clockwise from 8 passes 12 and reaches 6 (8 + 10 = 18, and 18 - 12 = 6).\n\n**Colour.** The colour simply alternates, black then white. The fifth hand is black, so the sixth is white.\n\nCheck: the hand's total movement from 12 is 2, 6, 12, 20 and then 30 hours; 30 hours is two full turns plus 6 hours, so the hand points to 6.",
   "distractorRationale": {
-    "b": "Gets the position right but continues the colour wrongly: the colours alternate, and after a black fifth hand comes a white one.",
-    "c": "Moves the hand 8 hours again, repeating the last move instead of increasing it by 2.",
-    "d": "Repeats the last move of 8 hours and also gets the alternating colour wrong.",
-    "e": "Uses the size of the next move, 10 hours, as if it were the position, instead of adding it to the current position at 8."
+    "d": "Gets the position right but continues the colour wrongly: the colours alternate, and after a black fifth hand comes a white one.",
+    "a": "Moves the hand 8 hours again, repeating the last move instead of increasing it by 2.",
+    "e": "Repeats the last move of 8 hours and also gets the alternating colour wrong.",
+    "b": "Uses the size of the next move, 10 hours, as if it were the position, instead of adding it to the current position at 8."
   },
   "estimatedSeconds": 75,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

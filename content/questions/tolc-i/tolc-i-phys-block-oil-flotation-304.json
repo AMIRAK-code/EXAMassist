@@ -15,39 +15,39 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$\\dfrac{15}{16}$"
+      "textMd": "$\\dfrac{3}{5}$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$\\dfrac{3}{5}$"
+      "textMd": "$\\dfrac{3}{4}$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "$\\dfrac{3}{4}$"
+      "textMd": "It does not float: the whole block sinks to the bottom"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "$\\dfrac{4}{5}$"
+      "textMd": "$\\dfrac{15}{16}$"
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "It does not float: the whole block sinks to the bottom"
+      "textMd": "$\\dfrac{4}{5}$"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "d"
   },
   "explanationMd": "**What to notice first.** For a floating body the buoyant force equals the weight, which gives a simple rule: the fraction submerged equals $\\rho_{\\text{body}}/\\rho_{\\text{liquid}}$. Use the water to find the block's density, then apply the rule again in the oil.\n\n**The steps.**\n\n- In water: $\\dfrac{\\rho_{\\text{block}}}{1000} = \\dfrac34$, so $\\rho_{\\text{block}} = 750\\ \\text{kg/m}^3$.\n- The block is less dense than the oil ($750 < 800$), so it still floats.\n- In oil: fraction submerged $= \\dfrac{750}{800} = \\dfrac{15}{16}$.\n\n**How to check it.** With $\\tfrac{15}{16}$ of the volume $V$ in the oil, the buoyant force is $800 \\cdot \\tfrac{15}{16} V g = 750\\,Vg$, exactly the block's weight $750\\,Vg$. A less dense liquid gives less support per cubic metre, so more of the block must go under: $\\tfrac{15}{16}$ is more than $\\tfrac34$, as it should be.",
   "distractorRationale": {
-    "b": "Multiplies the fraction by the density ratio, $\\tfrac34 \\times \\tfrac{800}{1000} = \\tfrac35$, instead of dividing. That would make the block ride higher in the less dense liquid, the opposite of what happens.",
-    "c": "Assumes the submerged fraction belongs to the block alone. It depends on the ratio of the block's density to the liquid's, so it changes when the liquid does.",
-    "d": "This is the ratio of the two liquid densities, $800/1000$. The block's own density, $750\\ \\text{kg/m}^3$, must be compared with the oil's.",
-    "e": "A body sinks only if it is denser than the liquid. The block's density is $750\\ \\text{kg/m}^3$, less than the oil's $800\\ \\text{kg/m}^3$, so it floats with most of its volume submerged."
+    "a": "Multiplies the fraction by the density ratio, $\\tfrac34 \\times \\tfrac{800}{1000} = \\tfrac35$, instead of dividing. That would make the block ride higher in the less dense liquid, the opposite of what happens.",
+    "b": "Assumes the submerged fraction belongs to the block alone. It depends on the ratio of the block's density to the liquid's, so it changes when the liquid does.",
+    "e": "This is the ratio of the two liquid densities, $800/1000$. The block's own density, $750\\ \\text{kg/m}^3$, must be compared with the oil's.",
+    "c": "A body sinks only if it is denser than the liquid. The block's density is $750\\ \\text{kg/m}^3$, less than the oil's $800\\ \\text{kg/m}^3$, so it floats with most of its volume submerged."
   },
   "estimatedSeconds": 100,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

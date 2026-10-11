@@ -15,39 +15,39 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$+600\\ \\text{J}$"
+      "textMd": "$+1000\\ \\text{J}$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$+1400\\ \\text{J}$"
+      "textMd": "$+600\\ \\text{J}$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "$+1000\\ \\text{J}$"
+      "textMd": "$+1400\\ \\text{J}$"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "$+400\\ \\text{J}$"
+      "textMd": "$-399\\,000\\ \\text{J}$"
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "$-399\\,000\\ \\text{J}$"
+      "textMd": "$+400\\ \\text{J}$"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "b"
   },
   "explanationMd": "**What to notice first.** Two things: at constant pressure the work done *by* the gas is $W = p\\,\\Delta V$, and $\\Delta V$ must be in cubic metres before it is multiplied by a pressure in pascals ($1\\ \\text{L} = 10^{-3}\\ \\text{m}^3$).\n\n**The steps.**\n\n- $\\Delta V = 5.0 - 3.0 = 2.0\\ \\text{L} = 2.0 \\times 10^{-3}\\ \\text{m}^3$.\n- Work done by the gas: $W = 2.0 \\times 10^{5} \\times 2.0 \\times 10^{-3} = 400\\ \\text{J}$.\n- First law, with $Q$ the heat absorbed and $W$ the work done by the gas: $\\Delta U = Q - W = 1000 - 400 = +600\\ \\text{J}$.\n\n**How to check it.** Follow the energy. $1000\\ \\text{J}$ enters as heat; the expanding gas pushes the piston out and spends $400\\ \\text{J}$ of it as work on the surroundings. What stays in the gas is $600\\ \\text{J}$. Units: $\\text{Pa} \\cdot \\text{m}^3 = \\text{N/m}^2 \\cdot \\text{m}^3 = \\text{N·m} = \\text{J}$.",
   "distractorRationale": {
-    "b": "Adds the work to the heat. Work done *by* an expanding gas leaves the gas, so it is subtracted from the heat absorbed.",
-    "c": "Ignores the work. The gas expands against the piston, so part of the heat it absorbs is spent pushing the piston out.",
-    "d": "This is the work done by the gas, $p\\,\\Delta V = 400\\ \\text{J}$, not the change in internal energy, which is the heat minus that work.",
-    "e": "Multiplies the pressure by $2.0$ litres as if they were $2.0\\ \\text{m}^3$, giving $400\\,000\\ \\text{J}$ of work. One litre is $10^{-3}\\ \\text{m}^3$, so the work is a thousand times smaller."
+    "c": "Adds the work to the heat. Work done *by* an expanding gas leaves the gas, so it is subtracted from the heat absorbed.",
+    "a": "Ignores the work. The gas expands against the piston, so part of the heat it absorbs is spent pushing the piston out.",
+    "e": "This is the work done by the gas, $p\\,\\Delta V = 400\\ \\text{J}$, not the change in internal energy, which is the heat minus that work.",
+    "d": "Multiplies the pressure by $2.0$ litres as if they were $2.0\\ \\text{m}^3$, giving $400\\,000\\ \\text{J}$ of work. One litre is $10^{-3}\\ \\text{m}^3$, so the work is a thousand times smaller."
   },
   "estimatedSeconds": 100,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

@@ -20,7 +20,7 @@
     {
       "id": "b",
       "label": "B",
-      "textMd": "$\\left(\\tfrac{1}{2}, +\\infty\\right)$"
+      "textMd": "$[-1, +\\infty)$"
     },
     {
       "id": "c",
@@ -30,12 +30,12 @@
     {
       "id": "d",
       "label": "D",
-      "textMd": "$[-1, +\\infty)$"
+      "textMd": "$[1, +\\infty)$"
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "$[1, +\\infty)$"
+      "textMd": "$\\left(\\tfrac{1}{2}, +\\infty\\right)$"
     }
   ],
   "answerKey": {
@@ -44,10 +44,10 @@
   },
   "explanationMd": "Find the range of the inner function first, then see what the outer function does to that set.\n\n**Step 1 — the inner function.** $g(x) = x^{2} - 2x = (x - 1)^{2} - 1$. Its minimum is $-1$, reached at $x = 1$, and it takes every value from $-1$ upwards: its range is $[-1, +\\infty)$.\n\n**Step 2 — the outer function.** $2^{t}$ is increasing, so on $t \\ge -1$ its smallest value is $2^{-1} = \\frac{1}{2}$, reached at $t = -1$, and it grows without bound. Hence $h(x) = 2^{x^{2} - 2x}$ has range $\\left[\\frac12, +\\infty\\right)$.\n\n**Check.** $h(1) = 2^{-1} = \\frac12$, so $\\frac12$ is attained; $h(0) = h(2) = 2^{0} = 1$, and $h(3) = 2^{3} = 8$. No value below $\\frac12$ is possible because the exponent is never below $-1$.",
   "distractorRationale": {
-    "b": "Excludes $\\frac12$, as though the minimum were only approached; it is reached at $x = 1$, where the exponent equals $-1$.",
+    "e": "Excludes $\\frac12$, as though the minimum were only approached; it is reached at $x = 1$, where the exponent equals $-1$.",
     "c": "Gives the range of $2^{x}$ on all reals, ignoring that the exponent $g(x)$ can never be less than $-1$.",
-    "d": "Gives the range of the inner function $g$, which is also the range of the other composition $g(f(x)) = 4^{x} - 2\\cdot 2^{x}$, not of $f(g(x))$.",
-    "e": "Evaluates $h$ at $x = 0$, where $g = 0$, and treats that as the minimum; $g$ is smallest at $x = 1$, the vertex of the parabola, not at $x = 0$."
+    "b": "Gives the range of the inner function $g$, which is also the range of the other composition $g(f(x)) = 4^{x} - 2\\cdot 2^{x}$, not of $f(g(x))$.",
+    "d": "Evaluates $h$ at $x = 0$, where $g = 0$, and treats that as the minimum; $g$ is smallest at $x = 1$, the vertex of the parabola, not at $x = 0$."
   },
   "estimatedSeconds": 140,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

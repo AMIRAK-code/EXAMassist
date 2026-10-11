@@ -15,7 +15,7 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$-\\dfrac{2}{5}$"
+      "textMd": "$\\dfrac{2}{5}$"
     },
     {
       "id": "b",
@@ -25,29 +25,29 @@
     {
       "id": "c",
       "label": "C",
-      "textMd": "$\\dfrac{2}{3}$"
+      "textMd": "$-\\dfrac{2\\sqrt{5}}{5}$"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "$-\\dfrac{2\\sqrt{5}}{5}$"
+      "textMd": "$-\\dfrac{2}{5}$"
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "$\\dfrac{2}{5}$"
+      "textMd": "$\\dfrac{2}{3}$"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "e"
+    "optionId": "a"
   },
   "explanationMd": "Find the sine and cosine from the tangent, using the quadrant for their signs, or divide by $\\sin^{2}\\alpha + \\cos^{2}\\alpha = 1$ to express everything through $\\tan\\alpha$.\n\n**Method 1 — through the tangent.** $$\\sin\\alpha\\cos\\alpha = \\frac{\\sin\\alpha\\cos\\alpha}{\\sin^{2}\\alpha + \\cos^{2}\\alpha} = \\frac{\\tan\\alpha}{1 + \\tan^{2}\\alpha} = \\frac{2}{1 + 4} = \\frac{2}{5},$$ dividing numerator and denominator by $\\cos^{2}\\alpha$.\n\n**Method 2 — the values themselves.** $\\cos^{2}\\alpha = \\dfrac{1}{1 + \\tan^{2}\\alpha} = \\dfrac15$. In the third quadrant both sine and cosine are negative, so $\\cos\\alpha = -\\dfrac{1}{\\sqrt5}$ and $\\sin\\alpha = \\tan\\alpha\\cos\\alpha = -\\dfrac{2}{\\sqrt5}$. The product is $\\dfrac{2}{5}$ ✓.\n\nThe quadrant matters for each factor but not for the product: two negatives give a positive, which matches the sign of the tangent.",
   "distractorRationale": {
-    "a": "Reasons that the third quadrant makes the answer negative. Sine and cosine are both negative there, so their product is positive, with the same sign as $\\tan\\alpha = \\dfrac{\\sin\\alpha}{\\cos\\alpha}$.",
+    "d": "Reasons that the third quadrant makes the answer negative. Sine and cosine are both negative there, so their product is positive, with the same sign as $\\tan\\alpha = \\dfrac{\\sin\\alpha}{\\cos\\alpha}$.",
     "b": "Computes $\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha$ instead of $\\sin\\alpha\\cos\\alpha$, which doubles the value.",
-    "c": "Uses $\\dfrac{\\tan\\alpha}{1 + \\tan\\alpha}$ instead of $\\dfrac{\\tan\\alpha}{1 + \\tan^{2}\\alpha}$. The denominator comes from $\\sin^{2}\\alpha + \\cos^{2}\\alpha$ divided by $\\cos^{2}\\alpha$, which is $1 + \\tan^{2}\\alpha$.",
-    "d": "Stops at the intermediate value $\\sin\\alpha = -\\dfrac{2}{\\sqrt5} = -\\dfrac{2\\sqrt5}{5}$ and does not multiply by $\\cos\\alpha = -\\dfrac{1}{\\sqrt5}$."
+    "e": "Uses $\\dfrac{\\tan\\alpha}{1 + \\tan\\alpha}$ instead of $\\dfrac{\\tan\\alpha}{1 + \\tan^{2}\\alpha}$. The denominator comes from $\\sin^{2}\\alpha + \\cos^{2}\\alpha$ divided by $\\cos^{2}\\alpha$, which is $1 + \\tan^{2}\\alpha$.",
+    "c": "Stops at the intermediate value $\\sin\\alpha = -\\dfrac{2}{\\sqrt5} = -\\dfrac{2\\sqrt5}{5}$ and does not multiply by $\\cos\\alpha = -\\dfrac{1}{\\sqrt5}$."
   },
   "estimatedSeconds": 100,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

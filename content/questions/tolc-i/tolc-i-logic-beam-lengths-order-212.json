@@ -15,39 +15,39 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "L"
+      "textMd": "N"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "M"
+      "textMd": "P"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "N"
+      "textMd": "M"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "O"
+      "textMd": "L"
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "P"
+      "textMd": "O"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "e"
+    "optionId": "b"
   },
   "explanationMd": "Build the order one clue at a time, from longest to shortest.\n\n- L is longer than M, and N is shorter than M: L, M, N.\n- O is longer than L: O, L, M, N.\n- P fits between L and M: O, L, P, M, N.\n\nEvery beam now has a fixed place, and the third longest is **P**.\n\nCheck each clue against the final order O, L, P, M, N: L before M, N after M, O before L, and P between L and M. All hold.",
   "distractorRationale": {
-    "a": "L is second longest: only O is longer than it. Choosing it miscounts the position or overlooks O.",
-    "b": "M is fourth longest, with O, L and P all longer. Choosing it ignores the clue that places P above M.",
-    "c": "N is the shortest beam, since it is shorter than M, which is shorter than the other three.",
-    "d": "O is the longest beam, because it is longer than L, which is longer than all the rest."
+    "d": "L is second longest: only O is longer than it. Choosing it miscounts the position or overlooks O.",
+    "c": "M is fourth longest, with O, L and P all longer. Choosing it ignores the clue that places P above M.",
+    "a": "N is the shortest beam, since it is shorter than M, which is shorter than the other three.",
+    "e": "O is the longest beam, because it is longer than L, which is longer than all the rest."
   },
   "estimatedSeconds": 50,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

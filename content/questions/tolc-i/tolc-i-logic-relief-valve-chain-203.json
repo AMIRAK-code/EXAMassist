@@ -15,39 +15,39 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "The pressure in the tank did not exceed 6 bar."
+      "textMd": "The pressure in the tank was above 6 bar and the alarm failed."
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "The pressure in the tank was exactly 6 bar."
+      "textMd": "The relief valve did not open, although the pressure exceeded 6 bar."
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "The relief valve opened, but the alarm did not sound."
+      "textMd": "The pressure in the tank did not exceed 6 bar."
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "The relief valve did not open, although the pressure exceeded 6 bar."
+      "textMd": "The relief valve opened, but the alarm did not sound."
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "The pressure in the tank was above 6 bar and the alarm failed."
+      "textMd": "The pressure in the tank was exactly 6 bar."
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "c"
   },
   "explanationMd": "Chain the two rules: pressure above 6 bar leads to the valve opening, which leads to the alarm. So \"pressure above 6 bar\" leads, through the valve, to \"the alarm sounds\".\n\nNow use the contrapositive, which is always equivalent to the original rule: if the result did not happen, the condition did not happen. The alarm did not sound, so the valve did not open; the valve did not open, so the pressure did not exceed 6 bar.\n\nCheck: \"did not exceed 6 bar\" allows any pressure up to and including 6 bar, which is all the rules can tell us. They give no way to pin the value down further.",
   "distractorRationale": {
-    "b": "The rules only tell us the pressure was not above 6 bar. Exactly 6 bar is one possibility among many, such as 4 bar or 5.5 bar, so it need not be true.",
-    "c": "The second rule says the alarm always sounds when the valve opens. Since the alarm was silent, the valve cannot have opened.",
-    "d": "The first rule says the valve always opens when the pressure exceeds 6 bar, so a closed valve with pressure above 6 bar breaks it.",
-    "e": "The stem says both rules always hold, so the alarm cannot fail. Pressure above 6 bar would have opened the valve and sounded the alarm."
+    "e": "The rules only tell us the pressure was not above 6 bar. Exactly 6 bar is one possibility among many, such as 4 bar or 5.5 bar, so it need not be true.",
+    "d": "The second rule says the alarm always sounds when the valve opens. Since the alarm was silent, the valve cannot have opened.",
+    "b": "The first rule says the valve always opens when the pressure exceeds 6 bar, so a closed valve with pressure above 6 bar breaks it.",
+    "a": "The stem says both rules always hold, so the alarm cannot fail. Pressure above 6 bar would have opened the valve and sounded the alarm."
   },
   "estimatedSeconds": 55,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

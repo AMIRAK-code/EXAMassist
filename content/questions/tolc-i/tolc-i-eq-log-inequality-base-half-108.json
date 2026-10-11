@@ -15,7 +15,7 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$x > 5$"
+      "textMd": "$1 < x < \\dfrac{5}{4}$"
     },
     {
       "id": "b",
@@ -25,17 +25,17 @@
     {
       "id": "c",
       "label": "C",
-      "textMd": "$x < 5$"
+      "textMd": "$x > 5$"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "$1 < x < \\dfrac{5}{4}$"
+      "textMd": "$x > \\dfrac{5}{4}$"
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "$x > \\dfrac{5}{4}$"
+      "textMd": "$x < 5$"
     }
   ],
   "answerKey": {
@@ -44,10 +44,10 @@
   },
   "explanationMd": "Two things decide a logarithmic inequality: the domain (the argument must be positive) and the base. When the base lies between 0 and 1 the logarithm is a **decreasing** function, so removing it reverses the inequality sign.\n\n**Step 1 — domain.** $x - 1 > 0$, so $x > 1$.\n\n**Step 2 — rewrite the right side.** $-2 = \\log_{1/2}\\left(\\tfrac12\\right)^{-2} = \\log_{1/2} 4$, because $\\left(\\tfrac12\\right)^{-2} = 2^{2} = 4$.\n\n**Step 3 — remove the logarithm.** $\\log_{1/2}(x-1) > \\log_{1/2} 4$ with a decreasing logarithm means $x - 1 < 4$, so $x < 5$.\n\n**Step 4 — combine with the domain.** $1 < x < 5$.\n\n**How to check it.** Try $x = 3$: $\\log_{1/2} 2 = -1 > -2$ ✓. Try $x = 9$, outside the interval: $\\log_{1/2} 8 = -3$, which is not greater than $-2$ ✓.",
   "distractorRationale": {
-    "a": "Keeps the direction of the inequality when removing the logarithm. With base $\\tfrac12$ the logarithm decreases, so $\\log_{1/2}(x-1) > \\log_{1/2}4$ means $x - 1 < 4$: at $x = 9$ the left side is $-3$, which is smaller than $-2$.",
-    "c": "Reverses the sign correctly but forgets the domain. For $x \\le 1$ the argument $x - 1$ is not positive and the logarithm does not exist.",
-    "d": "Evaluates $\\left(\\tfrac12\\right)^{-2}$ as $\\tfrac14$ instead of $4$. A negative exponent inverts the base: $\\left(\\tfrac12\\right)^{-2} = 2^{2} = 4$.",
-    "e": "Makes two slips: it takes $\\left(\\tfrac12\\right)^{-2}$ as $\\tfrac14$ and keeps the direction of the inequality. The correct bound is $x - 1 < 4$."
+    "c": "Keeps the direction of the inequality when removing the logarithm. With base $\\tfrac12$ the logarithm decreases, so $\\log_{1/2}(x-1) > \\log_{1/2}4$ means $x - 1 < 4$: at $x = 9$ the left side is $-3$, which is smaller than $-2$.",
+    "e": "Reverses the sign correctly but forgets the domain. For $x \\le 1$ the argument $x - 1$ is not positive and the logarithm does not exist.",
+    "a": "Evaluates $\\left(\\tfrac12\\right)^{-2}$ as $\\tfrac14$ instead of $4$. A negative exponent inverts the base: $\\left(\\tfrac12\\right)^{-2} = 2^{2} = 4$.",
+    "d": "Makes two slips: it takes $\\left(\\tfrac12\\right)^{-2}$ as $\\tfrac14$ and keeps the direction of the inequality. The correct bound is $x - 1 < 4$."
   },
   "estimatedSeconds": 100,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,
