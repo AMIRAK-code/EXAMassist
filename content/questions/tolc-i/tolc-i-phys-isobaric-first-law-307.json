@@ -1,0 +1,77 @@
+{
+  "id": "tolc-i-phys-isobaric-first-law-307",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "sciences",
+  "domainSlug": "tolci-sciences",
+  "skillSlug": "tolci-sci-thermo",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A gas in a cylinder with a freely moving piston is kept at a constant pressure of $2.0 \\times 10^{5}\\ \\text{Pa}$. It absorbs $1000\\ \\text{J}$ of heat and expands from $3.0\\ \\text{L}$ to $5.0\\ \\text{L}$. What is the change in the internal energy of the gas?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$+600\\ \\text{J}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$+1400\\ \\text{J}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$+1000\\ \\text{J}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$+400\\ \\text{J}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$-399\\,000\\ \\text{J}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "**What to notice first.** Two things: at constant pressure the work done *by* the gas is $W = p\\,\\Delta V$, and $\\Delta V$ must be in cubic metres before it is multiplied by a pressure in pascals ($1\\ \\text{L} = 10^{-3}\\ \\text{m}^3$).\n\n**The steps.**\n\n- $\\Delta V = 5.0 - 3.0 = 2.0\\ \\text{L} = 2.0 \\times 10^{-3}\\ \\text{m}^3$.\n- Work done by the gas: $W = 2.0 \\times 10^{5} \\times 2.0 \\times 10^{-3} = 400\\ \\text{J}$.\n- First law, with $Q$ the heat absorbed and $W$ the work done by the gas: $\\Delta U = Q - W = 1000 - 400 = +600\\ \\text{J}$.\n\n**How to check it.** Follow the energy. $1000\\ \\text{J}$ enters as heat; the expanding gas pushes the piston out and spends $400\\ \\text{J}$ of it as work on the surroundings. What stays in the gas is $600\\ \\text{J}$. Units: $\\text{Pa} \\cdot \\text{m}^3 = \\text{N/m}^2 \\cdot \\text{m}^3 = \\text{N·m} = \\text{J}$.",
+  "distractorRationale": {
+    "b": "Adds the work to the heat. Work done *by* an expanding gas leaves the gas, so it is subtracted from the heat absorbed.",
+    "c": "Ignores the work. The gas expands against the piston, so part of the heat it absorbs is spent pushing the piston out.",
+    "d": "This is the work done by the gas, $p\\,\\Delta V = 400\\ \\text{J}$, not the change in internal energy, which is the heat minus that work.",
+    "e": "Multiplies the pressure by $2.0$ litres as if they were $2.0\\ \\text{m}^3$, giving $400\\,000\\ \\text{J}$ of work. One litre is $10^{-3}\\ \\text{m}^3$, so the work is a thousand times smaller."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "A gas in a cylinder with a freely moving piston is kept at a constant pressure of 2.0 times 10 to the 5 pascals. It absorbs 1000 joules of heat and expands from 3.0 litres to 5.0 litres. What is the change in the internal energy of the gas? The choices are plus 600 joules, plus 1400 joules, plus 1000 joules, plus 400 joules and minus 399 thousand joules.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-sciences-author",
+    "aiAssisted": true,
+    "notes": "Original item testing the first law of thermodynamics with isobaric work p delta V, including the litre to cubic metre conversion. Situation and numbers invented for this bank."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-sciences-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "first-law",
+    "isobaric",
+    "work",
+    "unit-conversion"
+  ]
+}

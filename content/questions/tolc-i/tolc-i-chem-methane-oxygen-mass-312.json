@@ -1,0 +1,77 @@
+{
+  "id": "tolc-i-chem-methane-oxygen-mass-312",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "sciences",
+  "domainSlug": "tolci-sciences",
+  "skillSlug": "tolci-sci-chemistry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Methane, $\\mathrm{CH_4}$, burns completely in oxygen to give carbon dioxide and water. What mass of oxygen, $\\mathrm{O_2}$, is needed to burn $8\\ \\text{g}$ of methane completely? Molar masses: $\\mathrm{H} = 1\\ \\text{g/mol}$, $\\mathrm{C} = 12\\ \\text{g/mol}$, $\\mathrm{O} = 16\\ \\text{g/mol}$.",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$32\\ \\text{g}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$16\\ \\text{g}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$64\\ \\text{g}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$22\\ \\text{g}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$8\\ \\text{g}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "**What to notice first.** Masses do not react in the ratio of the coefficients; moles do. Balance the equation, convert grams of methane to moles, use the mole ratio, then convert back to grams.\n\n**The steps.**\n\n- Balanced equation: $\\mathrm{CH_4 + 2\\,O_2 \\rightarrow CO_2 + 2\\,H_2O}$ (one C, four H and four O on each side).\n- $M(\\mathrm{CH_4}) = 12 + 4 = 16\\ \\text{g/mol}$, so $8\\ \\text{g}$ is $0.5\\ \\text{mol}$.\n- Each mole of methane needs $2$ mol of $\\mathrm{O_2}$: $0.5 \\times 2 = 1\\ \\text{mol}$ of $\\mathrm{O_2}$.\n- $M(\\mathrm{O_2}) = 32\\ \\text{g/mol}$, so the mass is $1 \\times 32 = 32\\ \\text{g}$.\n\n**How to check it.** Conservation of mass: $0.5\\ \\text{mol}$ of $\\mathrm{CO_2}$ is $22\\ \\text{g}$ and $1\\ \\text{mol}$ of $\\mathrm{H_2O}$ is $18\\ \\text{g}$, together $40\\ \\text{g}$, which equals $8\\ \\text{g} + 32\\ \\text{g}$ of reactants.",
+  "distractorRationale": {
+    "b": "Leaves the equation unbalanced, using one $\\mathrm{O_2}$ per $\\mathrm{CH_4}$. That cannot be right: one $\\mathrm{O_2}$ has only two oxygen atoms, while one $\\mathrm{CO_2}$ and two $\\mathrm{H_2O}$ need four.",
+    "c": "Reads the coefficient $2$ as the moles of oxygen needed whatever the amount of methane, giving $2 \\times 32$. That is the oxygen for a full mole ($16\\ \\text{g}$) of methane; here there is only half a mole.",
+    "d": "This is the mass of carbon dioxide produced, $0.5 \\times 44$, not the mass of oxygen consumed.",
+    "e": "Assumes the reactants combine in equal masses. They combine in a fixed ratio of moles, and an $\\mathrm{O_2}$ molecule is twice as heavy as a $\\mathrm{CH_4}$ molecule."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "Methane, C H 4, burns completely in oxygen to give carbon dioxide and water. What mass of oxygen, O 2, is needed to burn 8 grams of methane completely? Molar masses: hydrogen 1, carbon 12 and oxygen 16 grams per mole. The choices are 32 grams, 16 grams, 64 grams, 22 grams and 8 grams.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-sciences-author",
+    "aiAssisted": true,
+    "notes": "Original item testing equation balancing and mole-ratio stoichiometry for a combustion. Numbers and distractors written for this bank."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-sciences-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "stoichiometry",
+    "mole",
+    "combustion",
+    "balancing"
+  ]
+}
