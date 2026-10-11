@@ -10,6 +10,7 @@ import { politoTilAConfig } from './configs/polito-til-a';
 import { politoTilIConfig } from './configs/polito-til-i';
 import { tolcEConfig } from './configs/tolc-e';
 import { tolcFConfig } from './configs/tolc-f';
+import { tolcIConfig } from './configs/tolc-i';
 
 /**
  * The exam registry.
@@ -33,6 +34,7 @@ export const EXAM_CONFIGS: readonly ExamConfig[] = [
   politoTilAConfig,
   tolcEConfig,
   tolcFConfig,
+  tolcIConfig,
 ];
 
 export type Audience = 'undergraduate' | 'law' | 'graduate';
@@ -149,12 +151,12 @@ export const EXAM_HUBS: readonly ExamHub[] = [
     name: 'CISIA TOLC',
     shortName: 'TOLC',
     label: 'TOLC',
-    variantLabels: { 'tolc-e': 'Economics (TOLC-E)', 'tolc-f': 'Pharmacy (TOLC-F)' },
+    variantLabels: { 'tolc-e': 'Economics (TOLC-E)', 'tolc-f': 'Pharmacy (TOLC-F)', 'tolc-i': 'Engineering (TOLC-I)' },
     publisher: 'CISIA',
     tagline:
-      'The online admission tests many Italian universities use: TOLC-E for economics, 36 questions in 90 minutes, and TOLC-F for pharmacy, 50 questions in 72 minutes. Each university sets its own pass mark.',
+      'The online admission tests many Italian universities use: TOLC-E for economics, 36 questions in 90 minutes; TOLC-F for pharmacy, 50 questions in 72 minutes; and TOLC-I for engineering, 50 questions in 110 minutes. Each university sets its own pass mark.',
     audiences: ['undergraduate'],
-    configKeys: ['tolc-e', 'tolc-f'],
+    configKeys: ['tolc-e', 'tolc-f', 'tolc-i'],
     order: 8,
   },
 ];

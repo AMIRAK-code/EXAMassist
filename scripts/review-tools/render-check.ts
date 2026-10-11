@@ -6,7 +6,7 @@ import { renderMarkdown } from '../../src/lib/markdown';
 // reports any maths KaTeX cannot typeset.
 const bad: string[] = [];
 let fields = 0;
-const exams = process.argv.slice(2).length ? process.argv.slice(2) : ['polito-til-i', 'polito-til-a', 'tolc-e', 'tolc-f'];
+const exams = process.argv.slice(2).length ? process.argv.slice(2) : ['polito-til-i', 'polito-til-a', 'tolc-e', 'tolc-f', 'tolc-i'];
 for (const exam of exams) {
   for (const kind of ['questions', 'stimuli']) {
     const dir = path.join('content', kind, exam);

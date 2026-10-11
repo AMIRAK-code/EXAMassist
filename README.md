@@ -3,7 +3,7 @@
 A configuration-driven exam practice platform for university admission tests:
 the **Bocconi Online Test** (undergraduate and law), the **Digital SAT**, the
 **Enhanced ACT**, the **LSAT**, the **GMAT**, the **GRE**, the **Politecnico di
-Torino TIL-I and TIL-A**, and the **CISIA TOLC-E and TOLC-F**.
+Torino TIL-I and TIL-A**, and the **CISIA TOLC-E, TOLC-F and TOLC-I**.
 
 The organising principle is that the product does not say anything it cannot
 source. Every claim about how an exam works is verified against the test
@@ -96,7 +96,7 @@ reset can fail there (error 1102) until the account is on Workers Paid.
   source-backed records in `content/exam-specs/_raw/`. Start with
   [`docs/research/README.md`](docs/research/README.md) and the
   [discrepancy register](docs/research/DISCREPANCY-REGISTER.md).
-- **Eleven versioned exam configurations** — `src/lib/exams/configs/`. Sections,
+- **Twelve versioned exam configurations** — `src/lib/exams/configs/`. Sections,
   timing, navigation rules, calculator policy, scoring, official taxonomy, and
   an explicit list of what could not be verified.
 - **A configuration-driven assessment engine** — `src/lib/assessment/`. Pure

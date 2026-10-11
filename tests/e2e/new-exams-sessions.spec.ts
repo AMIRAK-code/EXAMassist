@@ -21,6 +21,7 @@ const PAGES = [
   '/practice/polito-til-a',
   '/practice/tolc-e',
   '/practice/tolc-f',
+  '/practice/tolc-i',
 ];
 
 async function api(page: Page, method: string, url: string, body?: unknown): Promise<{ status: number; data: any }> {

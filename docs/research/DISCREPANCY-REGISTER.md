@@ -505,3 +505,10 @@ procedure._
 | POLITO-03 | TIL-A | n/a | The call states a maximum of 50 points and also that the score "is converted to hundredths", with no formula. | Call for applications, Architecture, a.y. 2026/27, art. 8 | 2026-09-29 | Report and project the 50-point score the call states; do not assume a conversion factor. |
 | CISIA-01 | TOLC | A test has a pass mark that practice can be measured against. | CISIA sets none: each university may transform the result, weight sections and set its own minimum. | Regolamento TOLC 2026, 1.5 | 2026-09-29 | Readiness projects the absolute score but shows no threshold, and tells the learner to use their programme's bando. |
 | CISIA-02 | TOLC | The English section is part of the score. | It is scored separately with no penalty and excluded from the main absolute score. | Regolamento TOLC 2026, 1.5; structure pages | 2026-09-29 | Not modelled; every TOLC fidelity note says so. |
+
+## Added 2026-10-11: CISIA TOLC-I
+
+| ID | Exam | Claim or risk | Verified finding | Official source | Verified on | Consequence for the build |
+| --- | --- | --- | --- | --- | --- | --- |
+| CISIA-03 | TOLC-I | The TOLC-I structure page was read first-hand like the TOLC-E and TOLC-F pages. | It was not: cisiaonline.it was unreachable from the build environment. The counts and clocks (Mathematics 20/50, Logic 10/20, Sciences 10/20, Verbal comprehension 10/20; English 30/15) were confirmed through search results quoting CISIA's pages, which agree with one another. One CISIA page calls the fourth section "Reading comprehension". | <https://www.cisiaonline.it/en/tolc/tolc-i/structure-and-syllabus> | 2026-10-11 | Config built and listed as unverified; re-read the page first-hand and update `verifiedOn` before relying on the syllabus detail. |
+| CISIA-04 | TOLC-I | One national TOLC-I pass mark exists (often quoted as a number of Mathematics points). | Thresholds such as "11 points" come from individual universities' notices, not from CISIA. | Regolamento TOLC 2026, 1.5 | 2026-10-11 | No threshold shown; readiness points to the programme's bando, and notes that many universities read the Mathematics section alone. |
