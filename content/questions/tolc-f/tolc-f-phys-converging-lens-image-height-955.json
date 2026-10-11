@@ -1,0 +1,76 @@
+{
+  "id": "tolc-f-phys-converging-lens-image-height-955",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "physics",
+  "domainSlug": "tolcf-physics",
+  "skillSlug": "tolcf-phys-electricity-waves",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "An object $2.0\\ \\text{cm}$ tall stands upright on the axis of a thin converging lens of focal length $10\\ \\text{cm}$, at a distance of $15\\ \\text{cm}$ from the lens. What is the height of the image formed by the lens?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$1.0\\ \\text{cm}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$0.80\\ \\text{cm}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$4.0\\ \\text{cm}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$6.0\\ \\text{cm}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\dfrac{2}{3}\\ \\text{cm}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "**Method.** Find the image distance $q$ with the thin-lens equation $\\dfrac1p+\\dfrac1q=\\dfrac1f$, then the magnification $\\dfrac{q}{p}$.\n\n**The computation.**\n\n$$\\frac1q=\\frac1{10}-\\frac1{15}=\\frac{3-2}{30}=\\frac1{30}\\quad\\Rightarrow\\quad q=30\\ \\text{cm}.$$\n\nThe magnification is $\\dfrac{q}{p}=\\dfrac{30}{15}=2$, so the image is $2\\cdot 2.0=4.0\\ \\text{cm}$ tall (real and inverted).\n\n**How to check it.** An object between $f$ and $2f$ always gives a real image beyond $2f$ that is larger than the object. Here $10<15<20$ and $q=30>20$, and the image is indeed enlarged.",
+  "distractorRationale": {
+    "a": "Inverts the magnification, using $\\tfrac{p}{q}=\\tfrac12$ instead of $\\tfrac{q}{p}$, and so shrinks the image.",
+    "b": "Adds the reciprocals, $\\tfrac1q=\\tfrac1{10}+\\tfrac1{15}=\\tfrac16$, getting $q=6\\ \\text{cm}$ and a magnification of $0.4$.",
+    "d": "Uses $\\tfrac{q}{f}=3$ as the magnification instead of $\\tfrac{q}{p}$.",
+    "e": "Takes the image distance as $p-f=5\\ \\text{cm}$ instead of using the lens equation, giving a magnification of $\\tfrac13$."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "An object 2.0 centimetres tall stands on the axis of a thin converging lens of focal length 10 centimetres, 15 centimetres from the lens. Find the height of the image. The five choices are: 1.0 centimetre; 0.80 centimetres; 4.0 centimetres; 6.0 centimetres; two thirds of a centimetre.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave8-mpl-author",
+    "aiAssisted": true,
+    "notes": "Original item on the thin-lens equation and magnification for an object between f and 2f. Distractors: inverted magnification, added reciprocals, magnification relative to f, and a subtraction shortcut."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave8-mpl-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "thin-lens",
+    "magnification",
+    "optics"
+  ]
+}
