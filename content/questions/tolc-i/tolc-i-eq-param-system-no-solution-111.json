@@ -1,0 +1,76 @@
+{
+  "id": "tolc-i-eq-param-system-no-solution-111",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Consider the linear system in the unknowns $x$ and $y$, where $a$ is a real parameter: $$\\begin{cases} ax + 2y = 3 \\\\ 2x + ay = a + 1 \\end{cases}$$ For which value or values of $a$ does the system have **no** solution?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$a = 2$ only"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$a = -2$ only"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$a = 2$ and $a = -2$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$a = 0$ only"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "no real value of $a$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "A $2\\times 2$ linear system has exactly one solution when its determinant is non-zero. When the determinant is zero, the two lines are parallel: the system has either no solution (distinct parallel lines) or infinitely many (the same line), and each case has to be checked separately.\n\n**Step 1 — determinant.** $a\\cdot a - 2\\cdot 2 = a^{2} - 4$, which is zero for $a = 2$ and $a = -2$. For every other $a$ there is exactly one solution.\n\n**Step 2 — $a = 2$.** The equations become $2x + 2y = 3$ and $2x + 2y = 3$: the same equation, so there are infinitely many solutions.\n\n**Step 3 — $a = -2$.** The equations become $-2x + 2y = 3$ and $2x - 2y = -1$. Multiplying the second by $-1$ gives $-2x + 2y = 1$, which contradicts $-2x + 2y = 3$. No solution.\n\nSo the system has no solution only for $a = -2$.\n\n**How to check it.** For $a = -2$ both equations describe lines of slope 1, $y = x + \\tfrac32$ and $y = x + \\tfrac12$: parallel and distinct, so they never meet ✓.",
+  "distractorRationale": {
+    "a": "Mixes up the two degenerate cases. At $a = 2$ both equations reduce to $2x + 2y = 3$, so the system has infinitely many solutions, not none.",
+    "c": "Stops at the determinant. A zero determinant rules out a unique solution but leaves two possibilities; at $a = 2$ the equations coincide and every point of the line is a solution.",
+    "d": "Takes $a = 0$ to be special because it removes terms. At $a = 0$ the system is $2y = 3$, $2x = 1$, which has the single solution $x = \\tfrac12$, $y = \\tfrac32$.",
+    "e": "Checks only $a = 2$, finds infinitely many solutions there, and concludes that the system always has a solution. The other root of $a^{2} - 4 = 0$, $a = -2$, gives two parallel distinct lines."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": "Consider the linear system in the unknowns x and y, where a is a real parameter. First equation: a x plus 2 y equals 3. Second equation: 2 x plus a y equals a plus 1. For which value or values of a does the system have no solution? The five choices are: a equals 2 only; a equals negative 2 only; a equals 2 and a equals negative 2; a equals 0 only; and no real value of a.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-math-a-author",
+    "aiAssisted": true,
+    "notes": "Original item. Tests discussing a parametric 2 by 2 linear system: a zero determinant, then separating the inconsistent case from the dependent one."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-math-a-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "linear-system",
+    "parameter",
+    "determinant"
+  ]
+}

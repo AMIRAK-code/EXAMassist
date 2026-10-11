@@ -1,0 +1,76 @@
+{
+  "id": "tolc-i-eq-rational-excluded-root-107",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Find all real solutions of $\\dfrac{2}{x-1} + \\dfrac{x}{x+1} = \\dfrac{4}{x^{2}-1}$.",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\{-2,\\ 1\\}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\{-2\\}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\{1\\}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\{-1,\\ 2\\}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "no real solution"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "With a rational equation, first write down the values that make a denominator zero, then clear the denominators using the least common denominator, and finally discard any candidate that was excluded.\n\n**Step 1 — conditions.** $x^{2} - 1 = (x-1)(x+1)$, so $x \\neq 1$ and $x \\neq -1$.\n\n**Step 2 — clear denominators.** Multiplying by $(x-1)(x+1)$: $2(x+1) + x(x-1) = 4$, that is $x^{2} + x + 2 = 4$, so $x^{2} + x - 2 = 0$.\n\n**Step 3 — solve and filter.** $(x+2)(x-1) = 0$ gives $x = -2$ or $x = 1$. The value $x = 1$ makes two denominators zero, so it is rejected. The only solution is $x = -2$.\n\n**How to check it.** At $x = -2$: $\\dfrac{2}{-3} + \\dfrac{-2}{-1} = -\\dfrac23 + 2 = \\dfrac43$, and $\\dfrac{4}{4-1} = \\dfrac43$ ✓.",
+  "distractorRationale": {
+    "a": "Solves the quadratic correctly but keeps both roots. The value $x = 1$ makes $x - 1$ and $x^{2} - 1$ zero, so the original equation is not even defined there.",
+    "c": "Keeps the excluded value and throws away the genuine root. It is $x = 1$ that must go; $x = -2$ satisfies the equation, as substituting shows.",
+    "d": "Factorises $x^{2} + x - 2$ with the signs reversed, as $(x-2)(x+1)$. Expanding that gives $x^{2} - x - 2$; the correct factorisation is $(x+2)(x-1)$.",
+    "e": "Drops the right-hand side while clearing denominators, getting $x^{2} + x + 2 = 0$, which has negative discriminant. Multiplying the right side $\\dfrac{4}{x^{2}-1}$ by $x^{2}-1$ leaves $4$, which must stay in the equation."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "Find all real solutions of the equation: 2 over x minus 1, plus x over x plus 1, equals 4 over x squared minus 1. The five choices are: the set containing negative 2 and 1; the set containing negative 2; the set containing 1; the set containing negative 1 and 2; and no real solution.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-math-a-author",
+    "aiAssisted": true,
+    "notes": "Original item. Tests solving a rational equation with a common denominator and rejecting a root that makes a denominator zero."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-math-a-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "rational-equation",
+    "domain",
+    "extraneous-root"
+  ]
+}

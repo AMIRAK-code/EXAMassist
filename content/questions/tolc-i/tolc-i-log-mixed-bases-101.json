@@ -1,0 +1,76 @@
+{
+  "id": "tolc-i-log-mixed-bases-101",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-arithmetic-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the value of $\\log_{2} 0.125 + \\log_{9} 3$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\dfrac{7}{2}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$-1$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$-\\dfrac{7}{2}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$-\\dfrac{5}{2}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$0$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Evaluate each logarithm separately by asking which power of the base gives the argument. Turning the decimal into a fraction is the first move.\n\n**First term.** $0.125 = \\dfrac{1}{8} = 2^{-3}$, so $\\log_{2} 0.125 = -3$. A number between 0 and 1 always has a negative logarithm when the base is greater than 1.\n\n**Second term.** $3 = \\sqrt{9} = 9^{1/2}$, so $\\log_{9} 3 = \\dfrac{1}{2}$.\n\n**Sum.** $-3 + \\dfrac{1}{2} = -\\dfrac{5}{2}$.\n\n**How to check it.** Raise each base to the value found: $2^{-3} = \\tfrac18 = 0.125$ ✓ and $9^{1/2} = 3$ ✓.",
+  "distractorRationale": {
+    "a": "Takes $\\log_{2} 0.125$ as $+3$, forgetting that $0.125 = 2^{-3}$ is a reciprocal. A number smaller than 1 has a negative logarithm in base 2, so the sum is $-3 + \\tfrac12$, not $3 + \\tfrac12$.",
+    "b": "Inverts the second logarithm, reading $\\log_{9} 3$ as \"what power of 3 gives 9\", which is 2. That is $\\log_{3} 9$. The correct value is $\\tfrac12$, since $9^{1/2} = 3$.",
+    "c": "Finds both values correctly but combines them as $-(3 + \\tfrac12)$. Adding $\\tfrac12$ to $-3$ moves towards zero, giving $-\\tfrac52$.",
+    "e": "Computes $\\log_{9} 3$ as $9 \\div 3 = 3$, treating the logarithm as a division, so the sum becomes $-3 + 3 = 0$. A logarithm is an exponent: $9^{1/2} = 3$, so $\\log_{9} 3 = \\tfrac12$."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "What is the value of the logarithm to base 2 of 0.125, plus the logarithm to base 9 of 3? The five choices are: seven halves; negative 1; negative seven halves; negative five halves; and 0.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-math-a-author",
+    "aiAssisted": true,
+    "notes": "Original item. Tests evaluating logarithms of a decimal and of a root by writing the argument as a power of the base; distractors come from sign, inversion and arithmetic slips."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-math-a-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "logarithms",
+    "negative-exponents",
+    "fractional-exponents"
+  ]
+}
