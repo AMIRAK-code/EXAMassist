@@ -6,7 +6,7 @@ import path from 'node:path';
 // "\t" -> tab, "\b" -> backspace), TeX commands missing their backslash, and
 // option counts other than five.
 // Exams come from the command line; with none, the four PoliTo and TOLC banks.
-const FIVE_OPTION_EXAMS = ['polito-til-i', 'polito-til-a', 'tolc-e', 'tolc-f'];
+const FIVE_OPTION_EXAMS = ['polito-til-i', 'polito-til-a', 'tolc-e', 'tolc-f', 'tolc-i'];
 const EXAMS = process.argv.slice(2).length ? process.argv.slice(2) : FIVE_OPTION_EXAMS;
 const CONTROL = /[\u0000-\u0008\u000b\u000c\u000e-\u001f]/;
 const TEX_WORDS = ['frac', 'sqrt', 'times', 'cdot', 'leq', 'geq', 'neq', 'text', 'log', 'sin', 'cos', 'tan', 'pi', 'circ', 'dfrac', 'left', 'right', 'mathrm', 'mathbf', 'operatorname', 'overline', 'vec', 'hat'];

@@ -20,6 +20,7 @@ const PAGES = [
   '/practice/polito-til-a',
   '/practice/tolc-e',
   '/practice/tolc-f',
+  '/practice/tolc-i',
 ];
 
 
