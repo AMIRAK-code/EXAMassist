@@ -1,0 +1,69 @@
+{
+  "id": "bocconi-ug-logexp-power-of-log-512",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-logexp-identities",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the value of\n\n$$9^{\\log_{3} 5} \\;?$$",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$25$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$5$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$10$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$45$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The key identity is $a^{\\log_{a} y} = y$: raising the base to the logarithm in the **same base** undoes the logarithm. Here the bases differ ($9$ and $3$), so first rewrite $9$ as a power of $3$.\n\n$$9^{\\log_{3} 5} = \\left(3^{2}\\right)^{\\log_{3} 5} = \\left(3^{\\log_{3} 5}\\right)^{2} = 5^{2} = 25$$\n\n**Check by the logarithm.** $\\log_{3}\\left(9^{\\log_{3} 5}\\right) = \\log_{3} 5 \\cdot \\log_{3} 9 = 2\\log_{3} 5 = \\log_{3} 25$, so the number is $25$. ✓",
+  "distractorRationale": {
+    "b": "This applies $a^{\\log_{a} y} = y$ although the bases do not match: the power has base $9$ while the logarithm has base $3$. Writing $9 = 3^{2}$ shows the result is $5^{2}$.",
+    "c": "This turns the exponent $2$ from $9 = 3^{2}$ into a multiplier of the result, giving $2 \\cdot 5$. Since $\\left(3^{2}\\right)^{t} = \\left(3^{t}\\right)^{2}$, the $2$ is a power: $5^{2}$.",
+    "d": "This multiplies the base by the argument of the logarithm, $9 \\cdot 5$, as if the expression meant $9 \\times 5$. The logarithm is an exponent, not a factor."
+  },
+  "estimatedSeconds": 35,
+  "stimulusRef": null,
+  "accessibilityText": "Find the value of 9 raised to the power log base 3 of 5. The choices are the numbers 25, 5, 10 and 45.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. It tests the identity a to the log base a of y equals y, combined with the power-of-a-power rule when the bases do not match directly."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's uniqueness check: 9^(log_3 5) = (3^(log_3 5))^2 = 25 exactly; 5, 10 and 45 each come from one named slip."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "logarithm-identities",
+    "exponent-rules"
+  ]
+}

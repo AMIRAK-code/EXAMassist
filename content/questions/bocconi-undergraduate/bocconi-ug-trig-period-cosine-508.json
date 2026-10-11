@@ -1,0 +1,70 @@
+{
+  "id": "bocconi-ug-trig-period-cosine-508",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-trigonometry-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the smallest positive period of the function\n\n$$f(x) = 2\\cos\\left(\\frac{\\pi x}{3}\\right) \\;?$$",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$6$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$3$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$6\\pi$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\dfrac{2\\pi}{3}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The function $\\cos x$ has smallest period $2\\pi$. For $\\cos(kx)$ with $k > 0$, the argument runs through a full period of $2\\pi$ when $x$ increases by $\\frac{2\\pi}{k}$, so the period is $\\frac{2\\pi}{k}$. The factor $2$ in front changes the amplitude, not the period.\n\nHere $k = \\frac{\\pi}{3}$:\n\n$$T = \\frac{2\\pi}{\\pi/3} = 2\\pi \\cdot \\frac{3}{\\pi} = 6$$\n\n**Check.** $f(x + 6) = 2\\cos\\left(\\frac{\\pi x}{3} + 2\\pi\\right) = 2\\cos\\left(\\frac{\\pi x}{3}\\right) = f(x)$. And no smaller shift works: $f(0) = 2$, and $f$ next equals $2$ when $\\frac{\\pi x}{3} = 2\\pi$, at $x = 6$. ✓",
+  "distractorRationale": {
+    "b": "This uses $\\pi$ as the period of the cosine, getting $\\frac{\\pi}{\\pi/3} = 3$. The cosine repeats after $2\\pi$; $\\pi$ is the period of the tangent.",
+    "c": "This drops the $\\pi$ from the coefficient, treating the function as $2\\cos\\left(\\frac{x}{3}\\right)$, whose period is $2\\pi \\cdot 3 = 6\\pi$. The coefficient of $x$ is $\\frac{\\pi}{3}$, and the two factors of $\\pi$ cancel.",
+    "d": "This multiplies the basic period $2\\pi$ by $\\frac{1}{3}$ instead of dividing by the coefficient of $x$. A coefficient smaller than $1$ stretches the graph horizontally and makes the period longer, not shorter."
+  },
+  "estimatedSeconds": 40,
+  "stimulusRef": null,
+  "accessibilityText": "Find the smallest positive period of the function f of x equals 2 times cosine of pi x over 3. The choices are: 6; 3; 6 pi; 2 pi over 3.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. It tests the period of a cosine with a coefficient of x that itself contains pi, so that the factors of pi cancel."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's uniqueness check: the period of cos(kx) is 2 pi / k = 6 for k = pi/3, and f(x) = 2 only at multiples of 6, so 6 is the smallest; 3, 6 pi and 2 pi/3 are not periods."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "period",
+    "cosine",
+    "graph-transformations"
+  ]
+}
