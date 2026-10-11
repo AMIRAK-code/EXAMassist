@@ -15,17 +15,17 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$\\{9\\}$"
+      "textMd": "$\\{2\\}$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$\\{2\\}$"
+      "textMd": "$\\{2, 9\\}$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "$\\{2, 9\\}$"
+      "textMd": "$\\{9\\}$"
     },
     {
       "id": "d",
@@ -35,12 +35,12 @@
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "c"
   },
   "explanationMd": "Square both sides to remove the radical, solve the resulting quadratic, and then **check every candidate in the original equation**. Squaring can introduce solutions that the original equation does not have, because it treats $a = b$ and $a = -b$ alike.\n\n$$x + 7 = (x - 5)^2 = x^2 - 10x + 25$$\n\n$$0 = x^2 - 11x + 18 = (x - 2)(x - 9)$$\n\nThe candidates are $x = 2$ and $x = 9$.\n\n- $x = 9$: $\\sqrt{9 + 7} = \\sqrt{16} = 4$ and $9 - 5 = 4$. It works.\n- $x = 2$: $\\sqrt{2 + 7} = \\sqrt{9} = 3$ but $2 - 5 = -3$. A square root is never negative, so $x = 2$ is extraneous.\n\nThe solution set is $\\{9\\}$.\n\nA quick way to spot the extraneous root without substituting: the right side, $x - 5$, must be at least $0$, so any solution has $x \\geq 5$. That rules out $2$ at once.",
   "distractorRationale": {
-    "b": "This keeps the extraneous root and drops the real one. At $x = 2$ the left side is $\\sqrt{9} = 3$ and the right side is $-3$, so $2$ does not satisfy the original equation.",
-    "c": "These are the roots of the squared equation, $x^2 - 11x + 18 = 0$. Squaring introduced $x = 2$, which fails the original equation because $2 - 5$ is negative.",
+    "a": "This keeps the extraneous root and drops the real one. At $x = 2$ the left side is $\\sqrt{9} = 3$ and the right side is $-3$, so $2$ does not satisfy the original equation.",
+    "b": "These are the roots of the squared equation, $x^2 - 11x + 18 = 0$. Squaring introduced $x = 2$, which fails the original equation because $2 - 5$ is negative.",
     "d": "This misreads the factored form $(x - 2)(x - 9) = 0$ as giving $x = -2$ and $x = -9$. Neither value works: for example, $x = -9$ makes $x + 7$ negative."
   },
   "estimatedSeconds": 90,
@@ -58,7 +58,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,
