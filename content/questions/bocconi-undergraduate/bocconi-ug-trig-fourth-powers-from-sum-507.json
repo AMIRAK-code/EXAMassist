@@ -1,0 +1,70 @@
+{
+  "id": "bocconi-ug-trig-fourth-powers-from-sum-507",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-trigonometry-identities",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "The real number $x$ satisfies\n\n$$\\sin x + \\cos x = \\frac{1}{3}$$\n\nWhat is the value of $\\sin^{4} x + \\cos^{4} x$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\dfrac{49}{81}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\dfrac{1}{81}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\dfrac{65}{81}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\dfrac{17}{9}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "There is no need to find $x$. Everything can be built from the product $p = \\sin x \\cos x$, which the given sum determines.\n\n**Step 1 — square the given sum.**\n\n$$(\\sin x + \\cos x)^{2} = \\sin^{2} x + \\cos^{2} x + 2\\sin x\\cos x = 1 + 2p$$\n\nso $1 + 2p = \\frac{1}{9}$, which gives $2p = -\\frac{8}{9}$ and $p = -\\frac{4}{9}$.\n\n**Step 2 — write the fourth powers through the square of $\\sin^{2} x + \\cos^{2} x$.**\n\n$$\\sin^{4} x + \\cos^{4} x = \\left(\\sin^{2} x + \\cos^{2} x\\right)^{2} - 2\\sin^{2} x\\cos^{2} x = 1 - 2p^{2}$$\n\n**Step 3 — substitute.**\n\n$$1 - 2 \\cdot \\frac{16}{81} = 1 - \\frac{32}{81} = \\frac{49}{81}$$\n\n**Check.** $\\sin^{4} x + \\cos^{4} x$ can never exceed $\\sin^{2} x + \\cos^{2} x = 1$, because each square is at most $1$. The value $\\frac{49}{81}$ lies between $\\frac{1}{2}$ and $1$, the range this expression can take. ✓",
+  "distractorRationale": {
+    "b": "This raises the given sum to the fourth power, as if $\\sin^{4} x + \\cos^{4} x$ were $(\\sin x + \\cos x)^{4}$. A power of a sum is not the sum of the powers.",
+    "c": "This uses $1 - p^{2}$ instead of $1 - 2p^{2}$, dropping the factor $2$ in $\\left(\\sin^{2} x + \\cos^{2} x\\right)^{2} = \\sin^{4} x + \\cos^{4} x + 2\\sin^{2} x\\cos^{2} x$.",
+    "d": "This subtracts $2p$ instead of $2p^{2}$, that is, it uses $\\sin x\\cos x$ where $\\sin^{2} x\\cos^{2} x$ is needed. The result is greater than $1$, which is impossible for $\\sin^{4} x + \\cos^{4} x$."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": null,
+  "accessibilityText": "The real number x satisfies sine x plus cosine x equals 1 third. The question asks for the value of sine to the fourth of x plus cosine to the fourth of x. The choices are: 49 over 81; 1 over 81; 65 over 81; 17 over 9.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. It tests chaining the Pythagorean identity twice: once to get sin x cos x from the given sum, and once to express the fourth powers through the square of sin squared plus cos squared."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's uniqueness check: the given sum fixes sin x cos x = -4/9 (such x exists since |1/3| < sqrt 2), so the target is 1 - 2(16/81) = 49/81 exactly; checked numerically for an explicit x. The distractors are 1/81, 65/81 and 17/9."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "pythagorean-identity",
+    "symmetric-expressions",
+    "trigonometric-identities"
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "id": "bocconi-ug-stat-books-relative-frequency-526",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-statistics-frequencies",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "The students of a year group were asked how many books they had read during the summer. The absolute frequencies of their answers are:\n\n| Books read | $0$ | $1$ | $2$ | $3$ | $4$ |\n| --- | --- | --- | --- | --- | --- |\n| Number of students | $6$ | $10$ | $12$ | $8$ | $4$ |\n\nWhat percentage of the students read **at least two** books?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$60\\%$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$24\\%$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$30\\%$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$40\\%$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "A relative frequency is an absolute frequency divided by the total number of observations.\n\n**Step 1 — total.** $6 + 10 + 12 + 8 + 4 = 40$ students.\n\n**Step 2 — favourable count.** \"At least two\" means $2$, $3$ or $4$ books: $12 + 8 + 4 = 24$ students.\n\n**Step 3 — relative frequency.**\n\n$$\\frac{24}{40} = \\frac{3}{5} = 0.6 = 60\\%$$\n\n**Check with the complement.** At most one book: $6 + 10 = 16$ students, that is $\\frac{16}{40} = 40\\%$, and $100\\% - 40\\% = 60\\%$. ✓",
+  "distractorRationale": {
+    "b": "This reports the absolute frequency $24$ as if it were a percentage. It must be divided by the $40$ students in total.",
+    "c": "This uses only the students who read **exactly** two books, $\\frac{12}{40}$. At least two also includes those who read three or four.",
+    "d": "This is the share who read **at most one** book, $\\frac{16}{40}$, the complement of the group asked about."
+  },
+  "estimatedSeconds": 45,
+  "stimulusRef": null,
+  "accessibilityText": "Students were asked how many books they read during the summer. A table gives the number of students for each answer: 0 books, 6 students; 1 book, 10 students; 2 books, 12 students; 3 books, 8 students; 4 books, 4 students. The question asks what percentage read at least two books. The choices are 60, 24, 30 and 40 per cent.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. It tests turning absolute frequencies into a relative frequency for a cumulative condition."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's uniqueness check: 24 of 40 students read two or more books, exactly 60 per cent; the distractors are the raw count, the exactly-two share and the complement."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "relative-frequency",
+    "frequency-table",
+    "percentages"
+  ]
+}

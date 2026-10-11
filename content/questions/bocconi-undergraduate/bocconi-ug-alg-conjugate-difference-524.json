@@ -1,0 +1,70 @@
+{
+  "id": "bocconi-ug-alg-conjugate-difference-524",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-algebra-expressions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the value of\n\n$$\\frac{1}{\\sqrt{5} - 2} - \\frac{1}{\\sqrt{5} + 2} \\;?$$",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$4$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$0$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$-4$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$2\\sqrt{5}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The two denominators are conjugates, and their product is free of roots: $(\\sqrt{5} - 2)(\\sqrt{5} + 2) = 5 - 4 = 1$. Use it as the common denominator.\n\n$$\\frac{1}{\\sqrt{5} - 2} - \\frac{1}{\\sqrt{5} + 2} = \\frac{(\\sqrt{5} + 2) - (\\sqrt{5} - 2)}{(\\sqrt{5} - 2)(\\sqrt{5} + 2)} = \\frac{4}{1} = 4$$\n\n**Check by rationalising each term.** Since the product of the conjugates is $1$, each fraction equals the other denominator: $\\frac{1}{\\sqrt{5} - 2} = \\sqrt{5} + 2$ and $\\frac{1}{\\sqrt{5} + 2} = \\sqrt{5} - 2$. The difference is $(\\sqrt{5} + 2) - (\\sqrt{5} - 2) = 4$. ✓\n\nA size check agrees: $\\sqrt{5} - 2 \\approx 0.24$ is small, so its reciprocal is about $4.2$, while $\\frac{1}{\\sqrt{5} + 2} \\approx 0.24$; the difference is about $4$.",
+  "distractorRationale": {
+    "b": "This assumes the two fractions are equal and cancel. They are not: the first denominator, $\\sqrt{5} - 2 \\approx 0.24$, is much smaller than the second, so the first fraction is much larger.",
+    "c": "This subtracts the numerators in the wrong order, computing $(\\sqrt{5} - 2) - (\\sqrt{5} + 2)$. Over the common denominator, the first fraction's numerator is $\\sqrt{5} + 2$, the factor it was multiplied by.",
+    "d": "This is the **sum** of the two fractions, $(\\sqrt{5} + 2) + (\\sqrt{5} - 2)$, not their difference."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "Find the value of 1 over the quantity square root of 5 minus 2, minus 1 over the quantity square root of 5 plus 2. The choices are: 4; 0; minus 4; 2 times the square root of 5.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. It tests combining fractions with conjugate radical denominators, whose product is rational."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's uniqueness check: the common denominator is 5 - 4 = 1 and the numerator is 4, so the value is exactly 4 (numerically about 4.236 - 0.236); the distractors are 0, -4 and the sum 2 sqrt 5."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "radicals",
+    "rationalising",
+    "conjugates"
+  ]
+}

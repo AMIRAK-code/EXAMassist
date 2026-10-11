@@ -1,0 +1,70 @@
+{
+  "id": "bocconi-ug-analytic-line-circle-secant-range-527",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-analytic-line-conic-positions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In the Cartesian plane, consider the circle $x^{2} + y^{2} = 8$ and, for each real number $c$, the line $x + y = c$.\n\nFor which values of $c$ does the line meet the circle in **two distinct** points?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$-4 < c < 4$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$-2\\sqrt{2} < c < 2\\sqrt{2}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$c < -4$ or $c > 4$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "every real $c$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "A line cuts a circle in two points exactly when its distance from the centre is **less than** the radius.\n\n**Step 1 — centre and radius.** The circle has centre $(0, 0)$ and radius $r = \\sqrt{8} = 2\\sqrt{2}$.\n\n**Step 2 — distance from the centre to the line.** For the line $x + y - c = 0$,\n\n$$d = \\frac{|0 + 0 - c|}{\\sqrt{1^{2} + 1^{2}}} = \\frac{|c|}{\\sqrt{2}}$$\n\n**Step 3 — impose $d < r$.**\n\n$$\\frac{|c|}{\\sqrt{2}} < 2\\sqrt{2} \\;\\Longrightarrow\\; |c| < 4 \\;\\Longrightarrow\\; -4 < c < 4$$\n\n**Check by substitution.** Put $y = c - x$ into the circle: $x^{2} + (c - x)^{2} = 8$, that is $2x^{2} - 2cx + c^{2} - 8 = 0$. Its discriminant is\n\n$$4c^{2} - 8\\left(c^{2} - 8\\right) = 64 - 4c^{2}$$\n\nwhich is positive exactly when $c^{2} < 16$. ✓ At $c = \\pm 4$ the line is tangent, for example touching at $(2, 2)$ when $c = 4$.",
+  "distractorRationale": {
+    "b": "This compares $|c|$ itself with the radius, forgetting to divide by $\\sqrt{1^{2} + 1^{2}} = \\sqrt{2}$ in the distance formula. The distance of $x + y = c$ from the origin is $\\frac{|c|}{\\sqrt{2}}$, not $|c|$.",
+    "c": "This is the condition for the line to miss the circle altogether, $d > r$. Two intersection points need the line to be closer to the centre than the radius.",
+    "d": "This comes from a discriminant computed without the leading coefficient $2$, as $4c^{2} - 4\\left(c^{2} - 8\\right) = 32$, which is always positive. With the correct coefficient the discriminant is $64 - 4c^{2}$, which is negative for $|c| > 4$."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "In the Cartesian plane, consider the circle x squared plus y squared equals 8 and, for each real c, the line x plus y equals c. The question asks for which values of c the line meets the circle in two distinct points. The choices are: c strictly between minus 4 and 4; c strictly between minus 2 root 2 and 2 root 2; c less than minus 4 or c greater than 4; every real c.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. It tests the relative position of a line and a circle through the distance from the centre, with the discriminant as a check."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's uniqueness check: the discriminant 64 - 4c^2 is positive exactly for |c| < 4; each other choice either includes values with no or one intersection, or excludes values with two."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "circle",
+    "secant",
+    "distance-point-line"
+  ]
+}

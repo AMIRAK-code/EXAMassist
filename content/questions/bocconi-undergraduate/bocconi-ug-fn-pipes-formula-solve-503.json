@@ -1,0 +1,70 @@
+{
+  "id": "bocconi-ug-fn-pipes-formula-solve-503",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-functions-notation",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Two pipes, used separately, fill a tank in $a$ hours and $b$ hours respectively. Used together, they fill it in $R$ hours, where\n\n$$\\frac{1}{R} = \\frac{1}{a} + \\frac{1}{b}$$\n\nand $a$, $b$, $R$ are positive with $a \\neq R$.\n\nWhich expression gives $b$ in terms of $a$ and $R$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\dfrac{aR}{a - R}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\dfrac{aR}{R - a}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$R - a$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\dfrac{a - R}{aR}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Isolate the term containing $b$, combine the other side into one fraction, and only then take reciprocals.\n\n**Step 1 — isolate $\\frac{1}{b}$.**\n\n$$\\frac{1}{b} = \\frac{1}{R} - \\frac{1}{a}$$\n\n**Step 2 — one fraction on the right.** The common denominator is $aR$:\n\n$$\\frac{1}{b} = \\frac{a - R}{aR}$$\n\n**Step 3 — take reciprocals of both sides.**\n\n$$b = \\frac{aR}{a - R}$$\n\nThis is positive because two pipes together are faster than one alone, so $R < a$.\n\n**Check with numbers.** If $a = 6$ and $b = 3$, then $\\frac{1}{R} = \\frac{1}{6} + \\frac{1}{3} = \\frac{1}{2}$, so $R = 2$. The formula gives $b = \\frac{6 \\cdot 2}{6 - 2} = 3$. ✓",
+  "distractorRationale": {
+    "b": "This combines $\\frac{1}{R} - \\frac{1}{a}$ with the numerator the wrong way round, as $\\frac{R - a}{aR}$. Since $R < a$, it would make $b$ negative; with $a = 6$, $R = 2$ it gives $-3$ instead of $3$.",
+    "c": "This takes reciprocals term by term, turning $\\frac{1}{b} = \\frac{1}{R} - \\frac{1}{a}$ into $b = R - a$. The reciprocal of a difference is not the difference of the reciprocals; the right side must first be written as a single fraction.",
+    "d": "This is $\\frac{1}{b}$, not $b$: the last step, taking the reciprocal of both sides, was left out."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "Two pipes used separately fill a tank in a hours and b hours. Together they fill it in R hours, where 1 over R equals 1 over a plus 1 over b, with a, b and R positive and a not equal to R. The question asks for b in terms of a and R. The choices are: a R over the quantity a minus R; a R over the quantity R minus a; R minus a; the quantity a minus R, over a R.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. It tests rearranging a formula with reciprocals to isolate one variable, where taking reciprocals term by term is the tempting slip."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's uniqueness check: with a = 6, R = 2 the true b is 3; the choices evaluate to 3, -3, -4 and 1/3, so only one matches."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "formula-rearrangement",
+    "reciprocals",
+    "work-rate"
+  ]
+}

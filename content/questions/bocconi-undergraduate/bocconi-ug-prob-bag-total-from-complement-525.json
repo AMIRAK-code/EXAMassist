@@ -1,0 +1,70 @@
+{
+  "id": "bocconi-ug-prob-bag-total-from-complement-525",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-probability-basics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A bag contains only red, green and blue marbles. When one marble is drawn at random, each marble being equally likely, the probability of red is $\\dfrac{1}{3}$ and the probability of green is $\\dfrac{1}{4}$. There are $15$ blue marbles.\n\nHow many marbles are in the bag?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$36$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$21$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$45$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$60$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The three colours are mutually exclusive and cover every marble, so their probabilities add up to $1$.\n\n**Step 1 — probability of blue.**\n\n$$P(\\text{blue}) = 1 - \\frac{1}{3} - \\frac{1}{4} = \\frac{12 - 4 - 3}{12} = \\frac{5}{12}$$\n\n**Step 2 — from probability to count.** With equally likely marbles, $P(\\text{blue}) = \\frac{\\text{blue marbles}}{\\text{total}}$, so\n\n$$\\frac{15}{N} = \\frac{5}{12} \\;\\Longrightarrow\\; N = 15 \\cdot \\frac{12}{5} = 36$$\n\n**Check.** Red: $\\frac{1}{3} \\cdot 36 = 12$; green: $\\frac{1}{4} \\cdot 36 = 9$; blue: $15$. Total $12 + 9 + 15 = 36$. ✓",
+  "distractorRationale": {
+    "b": "This adds the fractions by adding numerators and denominators, $\\frac{1}{3} + \\frac{1}{4} = \\frac{2}{7}$, so blue appears to be $\\frac{5}{7}$ and the total $15 \\cdot \\frac{7}{5} = 21$. The correct sum is $\\frac{7}{12}$.",
+    "c": "This takes the probability of blue to be $\\frac{1}{3}$, the same as red, giving $15 \\times 3$. Blue's probability is what remains after red and green, $\\frac{5}{12}$.",
+    "d": "This takes the probability of blue to be $\\frac{1}{4}$, the same as green, giving $15 \\times 4$. Blue's probability is what remains after red and green, $\\frac{5}{12}$."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "A bag contains only red, green and blue marbles. Drawing one at random, the probability of red is 1 third and of green is 1 quarter. There are 15 blue marbles. The question asks how many marbles are in the bag. The choices are the numbers 36, 21, 45 and 60.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. It tests the basic properties that the probabilities of exclusive, exhaustive outcomes sum to 1 and that a probability is a ratio of favourable to total cases."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's uniqueness check: P(blue) = 5/12, so N = 36 with 12 red, 9 green and 15 blue; each of 21, 45 and 60 contradicts the given probabilities."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "complement",
+    "classical-probability",
+    "fractions"
+  ]
+}

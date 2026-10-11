@@ -1,0 +1,70 @@
+{
+  "id": "bocconi-ug-trig-ladder-height-510",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-trigonometry-right-triangles",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A ladder $6$ m long rests against a vertical wall on horizontal ground. The ladder makes an angle of $60^{\\circ}$ with the ground.\n\nHow high up the wall, in metres, does the top of the ladder reach?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$3\\sqrt{3}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$3$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$6\\sqrt{3}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$3\\sqrt{2}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The ladder, the wall and the ground form a right triangle with the right angle at the foot of the wall. The ladder is the **hypotenuse**, and the height on the wall is the leg **opposite** the $60^{\\circ}$ angle.\n\nOpposite leg $=$ hypotenuse $\\times$ sine of the angle:\n\n$$h = 6 \\sin 60^{\\circ} = 6 \\cdot \\frac{\\sqrt{3}}{2} = 3\\sqrt{3}$$\n\n**Check.** The foot of the ladder is $6\\cos 60^{\\circ} = 3$ m from the wall, and $3^{2} + \\left(3\\sqrt{3}\\right)^{2} = 9 + 27 = 36 = 6^{2}$. ✓ Also, a steep $60^{\\circ}$ ladder should reach higher than it stands out from the wall, and $3\\sqrt{3} \\approx 5.2 > 3$.",
+  "distractorRationale": {
+    "b": "This uses the cosine, $6\\cos 60^{\\circ} = 3$, which gives the distance of the ladder's foot from the wall, the leg **adjacent** to the $60^{\\circ}$ angle.",
+    "c": "This uses $6\\tan 60^{\\circ}$, treating the $6$ m as the horizontal leg. The ladder is the hypotenuse, and no leg can be longer than it, yet $6\\sqrt{3} > 6$.",
+    "d": "This uses $\\frac{\\sqrt{2}}{2}$, the sine of $45^{\\circ}$, instead of $\\sin 60^{\\circ} = \\frac{\\sqrt{3}}{2}$."
+  },
+  "estimatedSeconds": 40,
+  "stimulusRef": null,
+  "accessibilityText": "A ladder 6 metres long rests against a vertical wall on horizontal ground and makes an angle of 60 degrees with the ground. The question asks how high up the wall, in metres, the top of the ladder reaches. The choices are: 3 times the square root of 3; 3; 6 times the square root of 3; 3 times the square root of 2.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. It tests choosing the correct trigonometric ratio for the leg opposite a given angle in a right triangle."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's uniqueness check: the opposite leg is 6 sin 60 = 3 sqrt 3, about 5.20; the other choices are 3, about 10.39 and about 4.24."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "right-triangle",
+    "sine",
+    "special-angles"
+  ]
+}

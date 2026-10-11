@@ -1,0 +1,70 @@
+{
+  "id": "bocconi-ug-num-negative-order-must-518",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-numbers-ordering",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The real numbers $a$ and $b$ satisfy $a < b < 0$.\n\nWhich of the following statements **must** be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$a^{2} > b^{2}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\dfrac{1}{a} < \\dfrac{1}{b}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$ab < b^{2}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\dfrac{a}{b} < 1$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Work from what $a < b < 0$ says: both numbers are negative, and $a$ is further from $0$, so $|a| > |b| > 0$.\n\n**The true statement.** Squaring removes the sign: $a^{2} = |a|^{2}$ and $b^{2} = |b|^{2}$. Since $|a| > |b| > 0$, it follows that $a^{2} > b^{2}$, always.\n\n**Why the others fail (in fact, they are always false).**\n\n- $\\frac{1}{a} - \\frac{1}{b} = \\frac{b - a}{ab}$. The numerator $b - a$ is positive and $ab$ is positive, so $\\frac{1}{a} > \\frac{1}{b}$.\n- $ab - b^{2} = b(a - b)$, a product of two negative numbers, so $ab > b^{2}$.\n- $\\frac{a}{b} = \\frac{|a|}{|b|} > 1$.\n\n**Check with numbers.** Take $a = -3$, $b = -1$: $a^{2} = 9 > 1 = b^{2}$ ✓; $\\frac{1}{a} = -\\frac{1}{3}$ is greater than $\\frac{1}{b} = -1$; $ab = 3 > 1 = b^{2}$; $\\frac{a}{b} = 3 > 1$.",
+  "distractorRationale": {
+    "b": "This keeps the inequality direction when taking reciprocals. For two numbers of the same sign, taking reciprocals **reverses** the order: from $a < b < 0$ we get $\\frac{1}{a} > \\frac{1}{b}$, for example $-\\frac{1}{3} > -1$.",
+    "c": "This multiplies $a < b$ by $b$ without reversing the inequality. Since $b$ is negative, multiplying by it reverses the order, giving $ab > b^{2}$.",
+    "d": "This divides $a < b$ by $b$ and keeps the direction. Dividing by the negative number $b$ reverses it, so $\\frac{a}{b} > 1$; for example $\\frac{-3}{-1} = 3$."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "The real numbers a and b satisfy a less than b less than 0. The question asks which statement must be true. The choices are: a squared is greater than b squared; 1 over a is less than 1 over b; a b is less than b squared; a over b is less than 1.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. It tests the ordering properties of the reals under squaring, reciprocals and multiplication or division by a negative number."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's uniqueness check: under a < b < 0 the keyed statement always holds and each of the other three is always false (shown algebraically in the explanation), so exactly one choice must be true."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "inequalities",
+    "negative-numbers",
+    "order-properties"
+  ]
+}

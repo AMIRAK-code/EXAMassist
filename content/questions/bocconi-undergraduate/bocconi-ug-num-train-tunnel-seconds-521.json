@@ -1,0 +1,70 @@
+{
+  "id": "bocconi-ug-num-train-tunnel-seconds-521",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-numbers-unit-conversion",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A train $240$ m long travels at a constant speed of $72$ km/h towards a tunnel $1.2$ km long.\n\nHow many seconds pass from the moment the front of the train enters the tunnel to the moment the rear of the train leaves it?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$72$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$20$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$48$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$60$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Two things need care: the **distance** the train must cover, and putting speed and distance into matching units.\n\n**Step 1 — distance covered.** From the front entering until the rear leaves, the front travels the whole tunnel and then a further train length:\n\n$$1200 \\text{ m} + 240 \\text{ m} = 1440 \\text{ m}$$\n\n**Step 2 — speed in metres per second.** One km/h is $\\frac{1000 \\text{ m}}{3600 \\text{ s}} = \\frac{1}{3.6}$ m/s, so\n\n$$72 \\text{ km/h} = \\frac{72}{3.6} \\text{ m/s} = 20 \\text{ m/s}$$\n\n**Step 3 — time.**\n\n$$\\frac{1440 \\text{ m}}{20 \\text{ m/s}} = 72 \\text{ s}$$\n\n**Check.** In $72$ s at $72$ km/h the train covers $72 \\times \\frac{72}{3600}$ km $= \\frac{5184}{3600}$ km $= 1.44$ km, which is the tunnel plus the train. ✓",
+  "distractorRationale": {
+    "b": "This divides the $1440$ m by the speed $72$ written in km/h, without converting units. Metres divided by kilometres per hour does not give seconds; the speed must first become $20$ m/s.",
+    "c": "This uses $1200 - 240 = 960$ m, the distance for which the **whole** train is inside the tunnel. The question runs from the front entering to the rear leaving, which is $1200 + 240$ m.",
+    "d": "This uses only the tunnel length, $1200 \\div 20$. When the front of the train reaches the far end, the rear is still $240$ m back inside the tunnel."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "A train 240 metres long travels at a constant 72 kilometres per hour towards a tunnel 1.2 kilometres long. The question asks how many seconds pass from the front of the train entering the tunnel to the rear of the train leaving it. The choices are the numbers 72, 20, 48 and 60.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. It tests converting a speed from km/h to m/s and a length from km to m, combined with identifying the correct distance travelled."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's uniqueness check: 72 km/h = 20 m/s and the distance is 1440 m, so the time is exactly 72 s; the distractors come from skipping the unit conversion or using the wrong distance (960 m or 1200 m)."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "unit-conversion",
+    "speed",
+    "kinematics"
+  ]
+}

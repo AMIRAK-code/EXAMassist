@@ -1,0 +1,70 @@
+{
+  "id": "bocconi-ug-ps-cinema-price-revenue-522",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-problem-solving",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A cinema charges €10 per ticket and sells $400$ tickets per show. Market research shows that each €1 increase in the ticket price loses $20$ spectators per show, and this pattern holds for every whole-euro increase up to the price at which nobody would come. Prices can only be raised in whole euros.\n\nWhich ticket price, in euros, gives the cinema the greatest revenue per show?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$15$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$10$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$20$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$30$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Write revenue as a function of the number of €1 increases, then find the maximum of the resulting parabola.\n\n**Step 1 — model.** After $x$ increases of €1 (with $x$ a whole number from $0$ to $20$), the price is $10 + x$ euros and the audience is $400 - 20x$. Revenue in euros:\n\n$$R(x) = (10 + x)(400 - 20x) = 20\\,(10 + x)(20 - x)$$\n\n**Step 2 — maximise.** $R$ is a downward parabola in $x$ whose zeros are $x = -10$ and $x = 20$. Its vertex lies halfway between the zeros:\n\n$$x = \\frac{-10 + 20}{2} = 5$$\n\nwhich is a whole number, so it is allowed. The best price is $10 + 5 = 15$ euros.\n\n**Check by comparing values.**\n\n| Price (€) | $10$ | $14$ | $15$ | $16$ | $20$ |\n| --- | --- | --- | --- | --- | --- |\n| Spectators | $400$ | $320$ | $300$ | $280$ | $200$ |\n| Revenue (€) | $4000$ | $4480$ | $4500$ | $4480$ | $4000$ |\n\nRevenue rises up to €15 and falls after it; the maximum is €4500. ✓",
+  "distractorRationale": {
+    "b": "This keeps the current price. At €10 the revenue is €4000, but raising the price a little gains more per ticket than it loses in spectators: at €15 the revenue is €4500.",
+    "c": "This chooses the price at which the audience halves, $x = 10$, perhaps by maximising one factor only. At €20 the revenue is $20 \\times 200 = 4000$ euros, the same as at €10 and below the maximum.",
+    "d": "This is the price at which the audience falls to zero, $400 - 20x = 0$, so $x = 20$. That is a zero of the revenue function, not its maximum."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": null,
+  "accessibilityText": "A cinema charges 10 euros per ticket and sells 400 tickets per show. Each 1 euro increase in price loses 20 spectators, for every whole-euro increase up to the price at which nobody comes, and prices rise only in whole euros. The question asks which ticket price, in euros, gives the greatest revenue per show. The choices are the numbers 15, 10, 20 and 30.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. It is a worded optimisation problem: build a quadratic revenue model from a price-demand rule and locate its vertex."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's uniqueness check: R(x) = 20(10 + x)(20 - x) for whole x in [0, 20] is maximised only at x = 5 (R = 4500; R(4) = R(6) = 4480), so the price 15 euros is the unique optimum. Checked by enumerating every whole-euro price."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "optimisation",
+    "quadratic-model",
+    "revenue"
+  ]
+}
