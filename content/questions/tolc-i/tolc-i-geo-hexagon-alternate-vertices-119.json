@@ -1,0 +1,76 @@
+{
+  "id": "tolc-i-geo-hexagon-alternate-vertices-119",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A regular hexagon has sides of $4$ cm. Joining every other vertex of the hexagon (the first, third and fifth) gives a triangle. What is the area of that triangle?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$4\\sqrt{3}\\ \\text{cm}^{2}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$12\\sqrt{3}\\ \\text{cm}^{2}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$16\\sqrt{3}\\ \\text{cm}^{2}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$24\\sqrt{3}\\ \\text{cm}^{2}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$48\\sqrt{3}\\ \\text{cm}^{2}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "By symmetry the triangle is equilateral, so you only need its side: the distance between two vertices of the hexagon with one vertex between them.\n\n**Step 1 — the side.** Take vertices $P$, $Q$, $R$ in a row. $PQ = QR = 4$ and the interior angle at $Q$ is $120^{\\circ}$. Dropping the perpendicular from $Q$ to $PR$ splits the isosceles triangle $PQR$ into two $30$-$60$-$90$ triangles with hypotenuse $4$; the long leg is $4\\cdot\\frac{\\sqrt{3}}{2} = 2\\sqrt{3}$, so $PR = 4\\sqrt{3}$ cm.\n\n**Step 2 — the area.** An equilateral triangle of side $s$ has area $\\frac{\\sqrt{3}}{4}s^{2}$: $\\frac{\\sqrt{3}}{4}\\cdot 48 = 12\\sqrt{3}\\ \\text{cm}^{2}$.\n\n**Check.** The hexagon is six equilateral triangles of side 4, area $6\\cdot\\frac{\\sqrt3}{4}\\cdot 16 = 24\\sqrt{3}$. The three pieces cut off at the corners are triangles like $PQR$, each with area $\\frac12\\cdot 4\\cdot 4\\cdot\\sin 120^{\\circ} = 4\\sqrt{3}$. So the inner triangle has area $24\\sqrt{3} - 3\\cdot 4\\sqrt{3} = 12\\sqrt{3}$ ✓, exactly half the hexagon.",
+  "distractorRationale": {
+    "a": "Gives the area of an equilateral triangle of side $4$, the hexagon's own side, rather than of side $4\\sqrt{3}$.",
+    "c": "Takes the triangle's side to be $8$ cm, the long diagonal through the centre, which joins opposite vertices, not every other vertex.",
+    "d": "Gives the area of the whole hexagon, which is twice the triangle.",
+    "e": "Finds the side $4\\sqrt{3}$ correctly but uses $\\sqrt{3}\\,s^{2}$ for the area, forgetting to divide by $4$."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "A regular hexagon has sides of 4 centimetres. Joining every other vertex of the hexagon, the first, third and fifth, gives a triangle. What is the area of that triangle? The five choices are: 4 root 3 square centimetres; 12 root 3 square centimetres; 16 root 3 square centimetres; 24 root 3 square centimetres; 48 root 3 square centimetres. Here root 3 means the square root of 3.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-math-b-author",
+    "aiAssisted": true,
+    "notes": "Tests the short diagonal of a regular hexagon and the area of an equilateral triangle, with a subtraction check. Original item, stated in words so no figure is needed."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-math-b-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "regular-hexagon",
+    "equilateral-triangle",
+    "area"
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "id": "tolc-i-fun-inverse-rational-125",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-analytic-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The function $f(x) = \\dfrac{2x + 1}{x - 3}$, defined for $x \\ne 3$, is invertible. Which expression gives its inverse $f^{-1}(x)$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\dfrac{3x + 1}{x - 2}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\dfrac{3x - 1}{x - 2}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\dfrac{3x + 1}{x + 2}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\dfrac{3x + 1}{2 - x}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\dfrac{x - 3}{2x + 1}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "To invert, write $y = f(x)$ and solve for $x$ in terms of $y$.\n\n**Step 1 — clear the fraction.** $y(x - 3) = 2x + 1$, so $xy - 3y = 2x + 1$.\n\n**Step 2 — collect the $x$ terms.** $xy - 2x = 3y + 1$, so $x(y - 2) = 3y + 1$ and $x = \\dfrac{3y + 1}{y - 2}$.\n\n**Step 3 — rename the variable.** $f^{-1}(x) = \\dfrac{3x + 1}{x - 2}$, defined for $x \\ne 2$.\n\n**Check with a number.** $f(4) = \\frac{9}{1} = 9$, and $f^{-1}(9) = \\frac{28}{7} = 4$ ✓. Also $f(0) = -\\frac13$ and $f^{-1}\\!\\left(-\\frac13\\right) = \\frac{0}{-7/3} = 0$ ✓.",
+  "distractorRationale": {
+    "b": "Moves $+1$ across the equals sign without changing its sign, writing $x(y-2) = 3y - 1$; then $f^{-1}(9)$ would be $\\frac{26}{7}$, not $4$.",
+    "c": "Moves $2x$ to the left without changing its sign, writing $x(y + 2) = 3y + 1$; then $f^{-1}(9)$ would be $\\frac{28}{11}$, not $4$.",
+    "d": "Rewrites $xy - 2x$ as $x(2 - y)$ but keeps $3y + 1$ on the other side, so the overall sign is wrong; then $f^{-1}(9) = -4$.",
+    "e": "Takes the reciprocal $\\frac{1}{f(x)}$, confusing the inverse function $f^{-1}$ with the reciprocal of $f$."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": null,
+  "accessibilityText": "The function f of x equals 2 x plus 1 over x minus 3, defined for x different from 3, is invertible. Which expression gives its inverse, f inverse of x? The five choices are: 3 x plus 1 over x minus 2; 3 x minus 1 over x minus 2; 3 x plus 1 over x plus 2; 3 x plus 1 over 2 minus x; x minus 3 over 2 x plus 1.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-math-b-author",
+    "aiAssisted": true,
+    "notes": "Tests finding the inverse of a linear fractional function by solving for x, with a numerical check. Original item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-math-b-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "inverse-function",
+    "rational-function"
+  ]
+}

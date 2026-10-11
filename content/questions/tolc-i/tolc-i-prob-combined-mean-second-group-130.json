@@ -1,0 +1,75 @@
+{
+  "id": "tolc-i-prob-combined-mean-second-group-130",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-probability",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Two groups of students sat the same test. Group A has $12$ students and their mean mark is $7.5$. Group B has $18$ students. The mean mark of all $30$ students together is $6.9$. What is the mean mark of group B?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$3.9$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$6$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$6.3$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$6.5$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$9.75$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Means do not combine by simple averaging when the groups differ in size; work with totals instead.\n\n**Step 1 — total of everyone.** $30 \\cdot 6.9 = 207$.\n\n**Step 2 — total of group A.** $12 \\cdot 7.5 = 90$.\n\n**Step 3 — group B.** Its total is $207 - 90 = 117$, shared by $18$ students: $\\frac{117}{18} = 6.5$.\n\n**Check.** $\\frac{12\\cdot 7.5 + 18\\cdot 6.5}{30} = \\frac{90 + 117}{30} = \\frac{207}{30} = 6.9$ ✓. The overall mean lies nearer to group B's mean because B is the larger group.",
+  "distractorRationale": {
+    "a": "Finds group B's total, $117$, but divides it by all $30$ students instead of by the $18$ in group B.",
+    "b": "Swaps the group sizes, giving A $18$ students: $(207 - 18\\cdot 7.5)/12 = 72/12 = 6$.",
+    "c": "Treats the overall mean as the plain average of the two group means, $\\frac{7.5 + x}{2} = 6.9$; that only works for groups of equal size.",
+    "e": "Finds group B's total, $117$, but divides by $12$, the size of group A."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "Two groups of students sat the same test. Group A has 12 students and their mean mark is 7.5. Group B has 18 students. The mean mark of all 30 students together is 6.9. What is the mean mark of group B? The five choices are: 3.9; 6; 6.3; 6.5; 9.75.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-math-b-author",
+    "aiAssisted": true,
+    "notes": "Tests the weighted mean of two groups, recovering one group's mean from totals. Original item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-math-b-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "weighted-mean",
+    "arithmetic-mean"
+  ]
+}

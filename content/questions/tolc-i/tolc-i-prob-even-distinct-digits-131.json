@@ -1,0 +1,76 @@
+{
+  "id": "tolc-i-prob-even-distinct-digits-131",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-probability",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Using only the digits $0, 1, 2, 3, 4, 5$, how many even four-digit numbers can be written in which no digit is repeated? (A four-digit number cannot begin with $0$.)",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$60$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$96$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$150$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$156$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$180$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Two positions carry restrictions: the last digit must be even ($0$, $2$ or $4$) and the first digit cannot be $0$. Because $0$ appears in both restrictions, split the count according to the last digit.\n\n**Case 1 — last digit $0$.** The first digit can be any of the $5$ remaining digits, then $4$ and $3$ choices for the middle two: $5\\cdot 4\\cdot 3 = 60$.\n\n**Case 2 — last digit $2$ or $4$ ($2$ ways).** The first digit cannot be $0$ or the last digit: $4$ choices. Then $4$ and $3$ choices for the middle: $2\\cdot 4\\cdot 4\\cdot 3 = 96$.\n\n**Total.** $60 + 96 = 156$.\n\n**Check by subtraction.** Even strings of four distinct digits, leading $0$ allowed: last digit $3$ ways, then $5\\cdot 4\\cdot 3$, so $180$. Those that start with $0$ must end in $2$ or $4$, with $4\\cdot 3$ choices for the middle: $2\\cdot 12 = 24$. And $180 - 24 = 156$ ✓.",
+  "distractorRationale": {
+    "a": "Counts only the numbers ending in $0$ and leaves out those ending in $2$ or $4$.",
+    "b": "Counts only the numbers ending in $2$ or $4$ and leaves out those ending in $0$.",
+    "c": "Assumes exactly half of the $5\\cdot 5\\cdot 4\\cdot 3 = 300$ four-digit numbers with distinct digits are even, because three of the six digits are even. The halves are not equal: a number ending in $0$ has five choices for its first digit, while one ending in any other digit has only four.",
+    "e": "Forgets that a four-digit number cannot begin with $0$, counting $3\\cdot 5\\cdot 4\\cdot 3 = 180$ strings that include $24$ starting with $0$."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": "Using only the digits 0, 1, 2, 3, 4, 5, how many even four-digit numbers can be written in which no digit is repeated? A four-digit number cannot begin with 0. The five choices are: 60; 96; 150; 156; 180.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-math-b-author",
+    "aiAssisted": true,
+    "notes": "Tests counting with two interacting restrictions (even last digit, non-zero first digit) by cases, checked by subtraction. Original item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-math-b-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "counting",
+    "permutations",
+    "case-analysis"
+  ]
+}
