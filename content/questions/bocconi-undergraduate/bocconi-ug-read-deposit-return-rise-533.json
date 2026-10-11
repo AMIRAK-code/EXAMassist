@@ -20,12 +20,12 @@
     {
       "id": "b",
       "label": "B",
-      "textMd": "€3.0 million"
+      "textMd": "€3.6 million"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "€3.6 million"
+      "textMd": "€3.0 million"
     },
     {
       "id": "d",
@@ -35,12 +35,12 @@
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "c"
+    "optionId": "b"
   },
   "explanationMd": "Two items change when more containers come back, and they move the same way for the operator. First list what the passage gives: 500 million containers sold in 2024, a deposit of €0.15, a handling fee of €0.03 paid to a shop for each container it accepts, and 88 per cent returned in 2024.\n\n**Extra containers returned.** The share returned rises by 4 percentage points, so $0.04 \\times 500 = 20$ million more containers come back in 2025.\n\n**Unclaimed deposits.** Each of those 20 million containers no longer leaves its deposit with the operator: $20 \\times 0.15 = 3$, so this income falls by €3 million. As a check against the passage, 2024 income was 12 per cent of 500 million times €0.15, that is $60 \\times 0.15 = 9$, matching the stated €9 million; in 2025 it is $40 \\times 0.15 = 6$.\n\n**Handling fees.** Each extra container returned also costs the operator another €0.03: $20 \\times 0.03 = 0.6$, so €0.6 million more is paid to shops.\n\n**Combined.** Less income and more cost both make the operator worse off: $3 + 0.6 = 3.6$ million euros.\n\n**How to check the answer.** Each extra returned container changes the operator's position by the deposit it no longer keeps plus the fee it now pays: $0.15 + 0.03 = 0.18$ euros. Then $20 \\text{ million} \\times 0.18 = 3.6$ million euros. The two routes agree.",
   "distractorRationale": {
     "a": "This treats the extra handling fees as a saving and subtracts them, 3 minus 0.6. But the operator pays the handling fee on every container returned, so more returns mean more fees paid, and the fee adds to the loss.",
-    "b": "This is the fall in income from unclaimed deposits alone, 20 million containers times €0.15. It leaves out the handling fee the operator pays on each of the 20 million extra containers, which the question asks to include.",
+    "c": "This is the fall in income from unclaimed deposits alone, 20 million containers times €0.15. It leaves out the handling fee the operator pays on each of the 20 million extra containers, which the question asks to include.",
     "d": "This is the operator's income from unclaimed deposits in 2025, 8 per cent of 500 million times €0.15. It answers how much that income is, not how much worse off the operator becomes."
   },
   "estimatedSeconds": 120,
@@ -61,7 +61,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,
