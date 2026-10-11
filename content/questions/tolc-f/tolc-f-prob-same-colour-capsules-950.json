@@ -15,12 +15,12 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$\\dfrac{2}{5}$"
+      "textMd": "$\\dfrac{1}{15}$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$\\dfrac{5}{9}$"
+      "textMd": "$\\dfrac{2}{5}$"
     },
     {
       "id": "c",
@@ -35,7 +35,7 @@
     {
       "id": "e",
       "label": "E",
-      "textMd": "$\\dfrac{1}{15}$"
+      "textMd": "$\\dfrac{5}{9}$"
     }
   ],
   "answerKey": {
@@ -44,10 +44,10 @@
   },
   "explanationMd": "**What to notice first.** \\\"Same colour\\\" means two red **or** two white: two disjoint cases whose probabilities add.\n\n**The computation.** Two red: $\\tfrac46\\cdot\\tfrac35=\\tfrac{12}{30}=\\tfrac{6}{15}$. Two white: $\\tfrac26\\cdot\\tfrac15=\\tfrac{2}{30}=\\tfrac{1}{15}$. Total: $\\tfrac{6}{15}+\\tfrac{1}{15}=\\tfrac{7}{15}$.\n\n**How to check it.** Count unordered pairs: there are $\\binom{6}{2}=15$ pairs in all, $\\binom{4}{2}=6$ red pairs and $\\binom{2}{2}=1$ white pair, so $\\tfrac{7}{15}$ again. The complement, one of each colour, is $\\tfrac{4\\cdot 2}{15}=\\tfrac{8}{15}$, and $\\tfrac{7}{15}+\\tfrac{8}{15}=1$.",
   "distractorRationale": {
-    "a": "Counts only the two-red case, $\\tfrac{6}{15}$, and forgets that two white capsules are also the same colour.",
-    "b": "Treats the draws as if the first capsule were put back: $\\left(\\tfrac46\\right)^{2}+\\left(\\tfrac26\\right)^{2}=\\tfrac{20}{36}$.",
+    "b": "Counts only the two-red case, $\\tfrac{6}{15}$, and forgets that two white capsules are also the same colour.",
+    "e": "Treats the draws as if the first capsule were put back: $\\left(\\tfrac46\\right)^{2}+\\left(\\tfrac26\\right)^{2}=\\tfrac{20}{36}$.",
     "d": "Computes the probability of one capsule of each colour, the complement of the event asked for.",
-    "e": "Counts only the two-white case and forgets the much more likely two-red case."
+    "a": "Counts only the two-white case and forgets the much more likely two-red case."
   },
   "estimatedSeconds": 90,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

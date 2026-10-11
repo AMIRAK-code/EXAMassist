@@ -15,7 +15,7 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$8$"
+      "textMd": "$1$"
     },
     {
       "id": "b",
@@ -25,29 +25,29 @@
     {
       "id": "c",
       "label": "C",
-      "textMd": "$1$"
+      "textMd": "$4$"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "$4$"
+      "textMd": "$\\dfrac{9}{2}$"
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "$\\dfrac{9}{2}$"
+      "textMd": "$8$"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "d"
+    "optionId": "c"
   },
   "explanationMd": "**What to notice first.** Powers of the same base cannot be added or subtracted term by term, but a common factor can be pulled out.\n\n**The computation.** Factor $3^{6}$ from the top and the bottom:\n\n$$\\frac{3^{8}-3^{6}}{3^{6}+3^{6}}=\\frac{3^{6}(3^{2}-1)}{3^{6}\\cdot 2}=\\frac{9-1}{2}=4.$$\n\n**How to check it.** With the actual numbers, $3^{6}=729$ and $3^{8}=6561$: the numerator is $6561-729=5832$, the denominator is $1458$, and $1458\\cdot 4=5832$.",
   "distractorRationale": {
-    "a": "Writes the denominator $3^{6}+3^{6}$ as $3^{6}$, dropping the factor $2$, so gets $3^{2}-1=8$.",
+    "e": "Writes the denominator $3^{6}+3^{6}$ as $3^{6}$, dropping the factor $2$, so gets $3^{2}-1=8$.",
     "b": "Writes $3^{6}+3^{6}$ as $3^{7}$, confusing twice $3^{6}$ with three times $3^{6}$.",
-    "c": "Factors the numerator as $3^{6}(3-1)$, treating $3^{8}$ as $3^{6}\\cdot 3$ instead of $3^{6}\\cdot 3^{2}$.",
-    "e": "Drops the $-3^{6}$ in the numerator and computes $\\tfrac{3^{8}}{2\\cdot 3^{6}}=\\tfrac{9}{2}$."
+    "a": "Factors the numerator as $3^{6}(3-1)$, treating $3^{8}$ as $3^{6}\\cdot 3$ instead of $3^{6}\\cdot 3^{2}$.",
+    "d": "Drops the $-3^{6}$ in the numerator and computes $\\tfrac{3^{8}}{2\\cdot 3^{6}}=\\tfrac{9}{2}$."
   },
   "estimatedSeconds": 60,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

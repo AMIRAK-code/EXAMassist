@@ -15,17 +15,17 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "Only one amino acid is changed; the rest of the protein is normal"
+      "textMd": "One amino acid is missing; the rest of the protein is normal"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "One amino acid is missing; the rest of the protein is normal"
+      "textMd": "There is no change, because the genetic code is redundant"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "There is no change, because the genetic code is redundant"
+      "textMd": "An extra amino acid is inserted at the point of the deletion"
     },
     {
       "id": "d",
@@ -35,7 +35,7 @@
     {
       "id": "e",
       "label": "E",
-      "textMd": "An extra amino acid is inserted at the point of the deletion"
+      "textMd": "Only one amino acid is changed; the rest of the protein is normal"
     }
   ],
   "answerKey": {
@@ -44,10 +44,10 @@
   },
   "explanationMd": "The code is read in **triplets** (codons) from the start codon onward, with no punctuation between them. Removing one nucleotide shifts every later grouping by one position.\n\nFor example, the message `AUG GCA UUC GAA ...` with the first `G` of `GCA` deleted becomes `AUG CAU UCG AA...`: every codon after the deletion is new. The amino-acid sequence is altered from that point on, and a stop codon often appears early, cutting the protein short. This is a **frameshift mutation**, and near the start of the gene it usually destroys the protein's function.\n\n**Check:** to remove exactly one amino acid and leave the frame intact, three adjacent nucleotides (a whole codon) would have to be deleted. One nucleotide is not a multiple of three, so the frame must shift.",
   "distractorRationale": {
-    "a": "Changing a single amino acid is the typical effect of a substitution (a missense mutation), where the number of nucleotides stays the same and the frame is kept.",
-    "b": "Losing exactly one amino acid requires the deletion of three nucleotides, a whole codon. Deleting one nucleotide shifts the frame instead.",
-    "c": "Redundancy can hide a substitution in the third base of a codon (a silent mutation). It cannot hide a deletion, which changes how every following codon is grouped.",
-    "e": "An insertion of nucleotides, not a deletion, would be needed to add material; and even an inserted single nucleotide would shift the frame rather than add one amino acid."
+    "e": "Changing a single amino acid is the typical effect of a substitution (a missense mutation), where the number of nucleotides stays the same and the frame is kept.",
+    "a": "Losing exactly one amino acid requires the deletion of three nucleotides, a whole codon. Deleting one nucleotide shifts the frame instead.",
+    "b": "Redundancy can hide a substitution in the third base of a codon (a silent mutation). It cannot hide a deletion, which changes how every following codon is grouped.",
+    "c": "An insertion of nucleotides, not a deletion, would be needed to add material; and even an inserted single nucleotide would shift the frame rather than add one amino acid."
   },
   "estimatedSeconds": 50,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

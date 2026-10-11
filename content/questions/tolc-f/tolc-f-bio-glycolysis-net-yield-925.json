@@ -15,39 +15,39 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "2 pyruvate, 2 ATP and 2 NADH"
+      "textMd": "2 lactate and 2 ATP"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "2 pyruvate, 4 ATP and 2 NADH"
+      "textMd": "2 pyruvate, 2 ATP and 2 $\\mathrm{FADH_2}$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "2 pyruvate and 2 ATP, with no NADH"
+      "textMd": "2 pyruvate, 2 ATP and 2 NADH"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "2 pyruvate, 2 ATP and 2 $\\mathrm{FADH_2}$"
+      "textMd": "2 pyruvate, 4 ATP and 2 NADH"
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "2 lactate and 2 ATP"
+      "textMd": "2 pyruvate and 2 ATP, with no NADH"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "c"
   },
   "explanationMd": "Keep the accounts in two phases.\n\n- **Investment phase:** the six-carbon sugar is phosphorylated twice, using **2 ATP**, and is split into two three-carbon molecules.\n- **Payoff phase:** each three-carbon molecule is oxidised, reducing one $\\mathrm{NAD^+}$ to NADH, and yields 2 ATP. For two of them: **2 NADH** and **4 ATP**.\n\nNet: $4 - 2 = 2$ ATP, plus 2 NADH and 2 pyruvate. The word *net* in the stem is the warning: the 4 ATP made is a gross figure.\n\n**Check by carbon:** 6 carbons in glucose end up as $2 \\times 3$ carbons in pyruvate, with no $\\mathrm{CO_2}$ released, which matches a pathway that oxidises glucose only a little and so yields only a little energy.",
   "distractorRationale": {
-    "b": "4 ATP is the gross yield of the payoff phase. It ignores the 2 ATP spent at the start to phosphorylate glucose, so the net gain is 2.",
-    "c": "Glycolysis is an oxidation: one step transfers electrons to $\\mathrm{NAD^+}$, producing 2 NADH per glucose. That NADH is exactly why cells must regenerate $\\mathrm{NAD^+}$, by respiration or fermentation.",
-    "d": "$\\mathrm{FADH_2}$ is produced in the Krebs cycle, in the mitochondria, not in glycolysis. The electron carrier reduced in glycolysis is NAD.",
-    "e": "Lactate is made only when pyruvate is reduced in lactic fermentation, a separate step after glycolysis. The stem asks about glycolysis, which ends at pyruvate."
+    "d": "4 ATP is the gross yield of the payoff phase. It ignores the 2 ATP spent at the start to phosphorylate glucose, so the net gain is 2.",
+    "e": "Glycolysis is an oxidation: one step transfers electrons to $\\mathrm{NAD^+}$, producing 2 NADH per glucose. That NADH is exactly why cells must regenerate $\\mathrm{NAD^+}$, by respiration or fermentation.",
+    "b": "$\\mathrm{FADH_2}$ is produced in the Krebs cycle, in the mitochondria, not in glycolysis. The electron carrier reduced in glycolysis is NAD.",
+    "a": "Lactate is made only when pyruvate is reduced in lactic fermentation, a separate step after glycolysis. The stem asks about glycolysis, which ends at pyruvate."
   },
   "estimatedSeconds": 60,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

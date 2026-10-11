@@ -15,12 +15,12 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$2$"
+      "textMd": "$1$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$1$"
+      "textMd": "$2$"
     },
     {
       "id": "c",
@@ -40,11 +40,11 @@
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "b"
   },
   "explanationMd": "**What to notice first.** For any triangle, area $=$ inradius $\\times$ semiperimeter, because the incentre splits the triangle into three triangles whose heights are all the inradius $r$.\n\n**The computation.** The hypotenuse is $\\sqrt{6^{2}+8^{2}}=\\sqrt{100}=10$. The area is $\\tfrac12\\cdot 6\\cdot 8=24$ and the semiperimeter is $\\tfrac{6+8+10}{2}=12$, so $r=\\dfrac{24}{12}=2$.\n\n**How to check it.** For a right triangle there is a shortcut: $r=\\dfrac{a+b-c}{2}=\\dfrac{6+8-10}{2}=2$, where $c$ is the hypotenuse. Both routes agree.",
   "distractorRationale": {
-    "b": "Divides the area by the whole perimeter, $24/24$, instead of by the semiperimeter $12$.",
+    "a": "Divides the area by the whole perimeter, $24/24$, instead of by the semiperimeter $12$.",
     "c": "Uses $a+b-c=4$ from the right-triangle shortcut but forgets to halve it.",
     "d": "Gives the altitude to the hypotenuse, $\\tfrac{6\\cdot 8}{10}=4.8$, a different segment from the inradius.",
     "e": "Gives the radius of the circumscribed circle, half the hypotenuse, instead of the inscribed one."
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,
