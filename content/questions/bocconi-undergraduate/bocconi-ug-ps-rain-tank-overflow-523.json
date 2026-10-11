@@ -15,12 +15,12 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$40$"
+      "textMd": "$0$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$0$"
+      "textMd": "$40$"
     },
     {
       "id": "c",
@@ -35,11 +35,11 @@
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "b"
   },
   "explanationMd": "Find the volume of rain collected, convert it to litres, then compare with the space left in the tank.\n\n**Step 1 — volume of rain.** The rain forms a layer $12$ mm $= 0.012$ m deep over the roof area $15 \\times 8 = 120$ m²:\n\n$$V = 120 \\times 0.012 = 1.44 \\text{ m}^{3} = 1440 \\text{ L}$$\n\n(using $1$ m³ $= 1000$ L).\n\n**Step 2 — space in the tank.** $2000 - 600 = 1400$ litres are free.\n\n**Step 3 — overflow.** $1440 - 1400 = 40$ litres.\n\n**Check.** After the storm the water would total $600 + 1440 = 2040$ litres, which is $40$ litres more than the $2000$ the tank can hold. ✓",
   "distractorRationale": {
-    "b": "This converts $1.44$ m³ as if one cubic metre were $100$ litres, getting $144$ L, which fits easily. A cubic metre is $1000$ litres, so $1440$ L arrive, more than the $1400$ L of free space.",
+    "a": "This converts $1.44$ m³ as if one cubic metre were $100$ litres, getting $144$ L, which fits easily. A cubic metre is $1000$ litres, so $1440$ L arrive, more than the $1400$ L of free space.",
     "c": "This is the free space in the tank before the storm, $2000 - 600$. The overflow is what the rain exceeds that space by.",
     "d": "This is the total rain collected, $1440$ L. Most of it fits in the tank; only the excess over the $1400$ L of free space overflows."
   },
@@ -58,7 +58,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": "Author's uniqueness check: 120 m^2 * 0.012 m = 1.44 m^3 = 1440 L, and 600 + 1440 - 2000 = 40 L exactly; the distractors are a wrong cubic-metre factor, the free space and the total rainfall."
+    "notes": "Author's uniqueness check: 120 m^2 * 0.012 m = 1.44 m^3 = 1440 L, and 600 + 1440 - 2000 = 40 L exactly; the distractors are a wrong cubic-metre factor, the free space and the total rainfall. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

@@ -15,33 +15,33 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "Lerna"
+      "textMd": "Castra"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "Brivio"
+      "textMd": "Lerna"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "Castra"
+      "textMd": "Molina"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "Molina"
+      "textMd": "Brivio"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "b"
   },
   "explanationMd": "The number of occupied rooms is the number of rooms times the occupancy rate. Neither column on its own answers the question, so compute the product for each town.\n\n- Lerna: $600 \\times 0.85 = 510$\n- Brivio: $900 \\times 0.55 = 495$\n- Castra: $400 \\times 0.90 = 360$\n- Molina: $800 \\times 0.60 = 480$\n\nLerna has the most occupied rooms, 510.\n\n**How to check the answer.** The close contest is between Lerna and Brivio. Count the empty rooms instead: Lerna has 15 per cent of 600 empty, that is 90, so $600 - 90 = 510$; Brivio has 45 per cent of 900 empty, that is 405, so $900 - 405 = 495$. Lerna still leads, by 15 rooms.\n\n**What the table is designed to tempt.** Each of the other towns leads one column: Brivio has the most rooms, Castra the highest occupancy, Molina the most hotels. None of those columns alone measures occupied rooms.",
   "distractorRationale": {
-    "b": "Brivio has the most rooms, 900, but only 55 per cent are occupied, giving 495, fewer than Lerna's 510. This picks the leader of the rooms column without applying the occupancy rate.",
-    "c": "Castra has the highest occupancy rate, 90 per cent, but only 400 rooms, so just 360 are occupied. This picks the leader of the occupancy column and ignores how many rooms the rate applies to.",
-    "d": "Molina has the most hotels, 40, but the number of hotels says nothing about how many rooms are occupied. Its 800 rooms at 60 per cent give 480, fewer than Lerna's 510."
+    "d": "Brivio has the most rooms, 900, but only 55 per cent are occupied, giving 495, fewer than Lerna's 510. This picks the leader of the rooms column without applying the occupancy rate.",
+    "a": "Castra has the highest occupancy rate, 90 per cent, but only 400 rooms, so just 360 are occupied. This picks the leader of the occupancy column and ignores how many rooms the rate applies to.",
+    "c": "Molina has the most hotels, 40, but the number of hotels says nothing about how many rooms are occupied. Its 800 rooms at 60 per cent give 480, fewer than Lerna's 510."
   },
   "estimatedSeconds": 60,
   "stimulusRef": {
@@ -61,7 +61,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

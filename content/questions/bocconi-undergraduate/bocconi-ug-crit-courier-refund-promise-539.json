@@ -15,17 +15,17 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "A parcel was delivered two working days after collection, and the delivery charge was refunded."
+      "textMd": "A parcel was delivered four working days after collection, and the delivery charge was not refunded."
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "A parcel was delivered four working days after collection, and the delivery charge was not refunded."
+      "textMd": "A parcel was delivered five working days after collection, and the delivery charge was refunded."
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "A parcel was delivered five working days after collection, and the delivery charge was refunded."
+      "textMd": "A parcel was delivered two working days after collection, and the delivery charge was refunded."
     },
     {
       "id": "d",
@@ -35,12 +35,12 @@
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "b"
+    "optionId": "a"
   },
   "explanationMd": "A promise of the form \"if late, then refund\" is broken in exactly one kind of case: the parcel is late **and** no refund is given. Every other combination keeps it.\n\nHere \"late\" means not delivered within three working days. The parcel delivered after four working days was late, so the company had to refund the charge; it did not, so the promise was broken.\n\n**How to check the answer.** Sort each case into the four possible combinations.\n\n- Late and refunded (five working days, refund): the promise is kept.\n- On time and not refunded (one working day, no refund): the promise says nothing about on-time parcels, so it is kept.\n- On time and refunded (two working days, refund): the company gave more than it promised. Being generous breaks nothing.\n- Late and not refunded (four working days, no refund): the only combination that breaks the promise.",
   "distractorRationale": {
-    "a": "This reads the promise as if it also meant \"if the parcel is on time, there is no refund\". The promise only says what happens when a parcel is late; refunding an on-time parcel is generous, not a breach.",
-    "c": "The parcel was late, and the charge was refunded, which is exactly what the promise requires. A candidate who reacts to the delay alone, without checking whether the refund was paid, may pick this.",
+    "c": "This reads the promise as if it also meant \"if the parcel is on time, there is no refund\". The promise only says what happens when a parcel is late; refunding an on-time parcel is generous, not a breach.",
+    "b": "The parcel was late, and the charge was refunded, which is exactly what the promise requires. A candidate who reacts to the delay alone, without checking whether the refund was paid, may pick this.",
     "d": "The parcel arrived on time, so the promise did not require a refund. Choosing this treats a refund as owed in every case rather than only for late parcels."
   },
   "estimatedSeconds": 45,
@@ -58,7 +58,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

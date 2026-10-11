@@ -15,7 +15,7 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$10$"
+      "textMd": "$2\\sqrt{5}$"
     },
     {
       "id": "b",
@@ -30,18 +30,18 @@
     {
       "id": "d",
       "label": "D",
-      "textMd": "$2\\sqrt{5}$"
+      "textMd": "$10$"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "d"
   },
   "explanationMd": "Use the distance formula, which is Pythagoras' theorem applied to the horizontal and vertical gaps:\n\n$$AB = \\sqrt{(x_{B} - x_{A})^{2} + (y_{B} - y_{A})^{2}}$$\n\n**Gaps — subtract with signs.**\n\n$$x_{B} - x_{A} = 5 - (-1) = 6 \\qquad y_{B} - y_{A} = -5 - 3 = -8$$\n\n**Distance.**\n\n$$AB = \\sqrt{6^{2} + (-8)^{2}} = \\sqrt{36 + 64} = \\sqrt{100} = 10$$\n\n**Check.** The gaps $6$ and $8$ are twice the familiar $3$–$4$–$5$ right triangle, so the hypotenuse is twice $5$. ✓",
   "distractorRationale": {
     "b": "This adds the horizontal and vertical gaps, $6 + 8$, which is the length of a path that goes across and then up. The straight-line distance is the hypotenuse, $\\sqrt{6^{2} + 8^{2}}$.",
     "c": "This mishandles a sign in the vertical gap, computing $3 + (-5) = -2$ instead of $-5 - 3 = -8$, and so gets $\\sqrt{36 + 4} = \\sqrt{40}$.",
-    "d": "This adds the coordinates instead of subtracting them in both directions: $5 + (-1) = 4$ and $3 + (-5) = -2$, giving $\\sqrt{16 + 4} = \\sqrt{20}$."
+    "a": "This adds the coordinates instead of subtracting them in both directions: $5 + (-1) = 4$ and $3 + (-5) = -2$, giving $\\sqrt{16 + 4} = \\sqrt{20}$."
   },
   "estimatedSeconds": 40,
   "stimulusRef": null,
@@ -58,7 +58,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": "Author's uniqueness check: the differences are 6 and -8, giving exactly 10; the other choices are 14, about 6.32 and about 4.47."
+    "notes": "Author's uniqueness check: the differences are 6 and -8, giving exactly 10; the other choices are 14, about 6.32 and about 4.47. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

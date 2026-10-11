@@ -20,7 +20,7 @@
     {
       "id": "b",
       "label": "B",
-      "textMd": "$\\dfrac{3P^{2}}{16}$"
+      "textMd": "$\\dfrac{P^{2}}{16}$"
     },
     {
       "id": "c",
@@ -30,7 +30,7 @@
     {
       "id": "d",
       "label": "D",
-      "textMd": "$\\dfrac{P^{2}}{16}$"
+      "textMd": "$\\dfrac{3P^{2}}{16}$"
     }
   ],
   "answerKey": {
@@ -39,9 +39,9 @@
   },
   "explanationMd": "Introduce one auxiliary unknown, write both the perimeter and the area in terms of it, then eliminate it.\n\n**Step 1 — name the width.** Let the width be $w$. The length is $3w$.\n\n**Step 2 — perimeter in terms of $w$.** The perimeter counts each side twice:\n\n$$P = 2(w + 3w) = 8w \\;\\Longrightarrow\\; w = \\frac{P}{8}$$\n\n**Step 3 — area in terms of $w$, then in terms of $P$.**\n\n$$A = w \\cdot 3w = 3w^{2} = 3\\left(\\frac{P}{8}\\right)^{2} = \\frac{3P^{2}}{64}$$\n\n**Check with numbers.** Take a width of $2$ m: the length is $6$ m, the perimeter is $16$ m and the area is $12$ m². The formula gives $\\frac{3 \\cdot 16^{2}}{64} = \\frac{768}{64} = 12$. ✓",
   "distractorRationale": {
-    "b": "This comes from setting $w + 3w = P$, that is, using only half the perimeter. The perimeter goes round all four sides, so $P = 8w$, not $4w$.",
+    "d": "This comes from setting $w + 3w = P$, that is, using only half the perimeter. The perimeter goes round all four sides, so $P = 8w$, not $4w$.",
     "c": "This squares the length instead of multiplying length by width: $(3w)^{2} = 9w^{2}$. The area of a rectangle is $w \\cdot 3w = 3w^{2}$.",
-    "d": "This is the area of a **square** with perimeter $P$, side $\\frac{P}{4}$. The garden is not square: its sides are in the ratio $1 : 3$."
+    "b": "This is the area of a **square** with perimeter $P$, side $\\frac{P}{4}$. The garden is not square: its sides are in the ratio $1 : 3$."
   },
   "estimatedSeconds": 60,
   "stimulusRef": null,
@@ -58,7 +58,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": "Author's uniqueness check: P = 8w forces w = P/8 and A = 3P^2/64; the three other expressions differ from it for every P > 0 (checked at P = 16, giving 12, 48, 36 and 16)."
+    "notes": "Author's uniqueness check: P = 8w forces w = P/8 and A = 3P^2/64; the three other expressions differ from it for every P > 0 (checked at P = 16, giving 12, 48, 36 and 16). Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,
