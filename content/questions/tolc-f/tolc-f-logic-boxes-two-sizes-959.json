@@ -1,0 +1,76 @@
+{
+  "id": "tolc-f-logic-boxes-two-sizes-959",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "logic",
+  "domainSlug": "tolcf-logic",
+  "skillSlug": "tolcf-logic-math-reasoning",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A pharmacy receives 8 boxes of tablets. Each box holds either 12 tablets or 20 tablets, and there are 136 tablets in all. How many of the boxes hold 20 tablets?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$2$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$3$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$4$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$5$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$6$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "**What to notice first.** Start from the case in which every box is small, then see how much each large box adds.\n\n**The computation.** If all 8 boxes held 12 tablets there would be $8\\cdot 12=96$. The real total is $136$, which is $40$ more. Swapping a 12-box for a 20-box adds $8$ tablets, so there must be $40/8=5$ boxes of 20.\n\n**How to check it.** Five boxes of 20 and three boxes of 12: $100+36=136$ tablets in $8$ boxes.",
+  "distractorRationale": {
+    "a": "Divides the extra $40$ tablets by $20$ instead of by $8$: each large box adds only $8$ tablets compared with a small one.",
+    "b": "Gives the number of 12-tablet boxes, $8-5=3$, instead of the number of 20-tablet boxes.",
+    "c": "Assumes the boxes are split evenly. Four of each would hold $48+80=128$ tablets, not $136$.",
+    "e": "Divides the total $136$ by $20$ and rounds down to $6$, ignoring the 12-tablet boxes. Six boxes of 20 and two of 12 would hold $144$ tablets."
+  },
+  "estimatedSeconds": 55,
+  "stimulusRef": null,
+  "accessibilityText": "A pharmacy receives 8 boxes of tablets; each holds either 12 or 20 tablets, and there are 136 tablets in total. How many boxes hold 20 tablets? The five choices are: 2; 3; 4; 5; 6.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave8-mpl-author",
+    "aiAssisted": true,
+    "notes": "Original item: a two-unknown counting problem solved by the 'all small, then swap' argument. Distractors: wrong divisor, the other unknown, an even split, and dividing the total by the larger size."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave8-mpl-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "system-of-equations",
+    "counting",
+    "reasoning"
+  ]
+}
