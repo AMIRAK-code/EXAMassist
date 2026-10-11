@@ -1,0 +1,77 @@
+{
+  "id": "tolc-i-chem-propanol-isomer-315",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "sciences",
+  "domainSlug": "tolci-sciences",
+  "skillSlug": "tolci-sci-chemistry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which of the following compounds is a structural isomer of propan-1-ol, $\\mathrm{CH_3CH_2CH_2OH}$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\mathrm{CH_3OCH_2CH_3}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\mathrm{CH_3CH_2CHO}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\mathrm{CH_3COCH_3}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\mathrm{CH_3CH_2COOH}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\mathrm{CH_3CH_2CH_2CH_2OH}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "**What to notice first.** Structural isomers have the **same molecular formula** but atoms joined in a different order. So first find the molecular formula of propan-1-ol, then the formula of each candidate.\n\n**The steps.** Propan-1-ol, $\\mathrm{CH_3CH_2CH_2OH}$, has $3$ C, $8$ H and $1$ O: $\\mathrm{C_3H_8O}$.\n\n- $\\mathrm{CH_3OCH_2CH_3}$ (methoxyethane, an ether): $3$ C, $3 + 2 + 3 = 8$ H, $1$ O, so $\\mathrm{C_3H_8O}$. Same formula, but the oxygen sits between two carbons instead of carrying an OH group: an isomer.\n- $\\mathrm{CH_3CH_2CHO}$ (propanal) and $\\mathrm{CH_3COCH_3}$ (propanone): $\\mathrm{C_3H_6O}$, two hydrogens short.\n- $\\mathrm{CH_3CH_2COOH}$ (propanoic acid): $\\mathrm{C_3H_6O_2}$.\n- $\\mathrm{CH_3CH_2CH_2CH_2OH}$ (butan-1-ol): $\\mathrm{C_4H_{10}O}$.\n\n**How to check it.** Count the hydrogens a fully saturated molecule with three carbons can carry, $2n + 2 = 8$. Both propan-1-ol and the ether are saturated, with no C=O double bond, so both have eight; every carbonyl compound in the list has lost two.",
+  "distractorRationale": {
+    "b": "Propanal has the same three carbons and one oxygen, but its C=O double bond leaves it with six hydrogens, $\\mathrm{C_3H_6O}$. It is the oxidation product of propan-1-ol, not an isomer of it.",
+    "c": "Propanone also has three carbons and one oxygen, but its carbonyl group leaves it with six hydrogens, $\\mathrm{C_3H_6O}$. It is an isomer of propanal, not of propan-1-ol.",
+    "d": "Propanoic acid has two oxygen atoms and six hydrogens, $\\mathrm{C_3H_6O_2}$. Sharing the three-carbon chain does not make it an isomer.",
+    "e": "Butan-1-ol has the same functional group but one more $\\mathrm{CH_2}$, $\\mathrm{C_4H_{10}O}$. It is the next member of the same homologous series, not an isomer."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": null,
+  "accessibilityText": "Which of the following compounds is a structural isomer of propan-1-ol, written C H 3, C H 2, C H 2, O H? The choices are: C H 3, O, C H 2, C H 3; C H 3, C H 2, C H O; C H 3, C O, C H 3; C H 3, C H 2, C O O H; and C H 3, C H 2, C H 2, C H 2, O H.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-sciences-author",
+    "aiAssisted": true,
+    "notes": "Original item testing structural isomerism by molecular formula across alcohols, ethers, carbonyl compounds and acids. Wording and distractors written for this bank."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-sciences-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "organic",
+    "isomerism",
+    "alcohols",
+    "ethers"
+  ]
+}
