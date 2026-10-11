@@ -1,0 +1,77 @@
+{
+  "id": "tolc-i-geo-cube-space-diagonal-volume-118",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The diagonal of a cube, the segment joining two opposite vertices that do not lie on the same face, is $6$ cm long. What is the volume of the cube?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$8\\ \\text{cm}^{3}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$24\\sqrt{3}\\ \\text{cm}^{3}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$54\\sqrt{2}\\ \\text{cm}^{3}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$72\\ \\text{cm}^{3}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$216\\ \\text{cm}^{3}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "First relate the diagonal of the cube to its edge $a$, then cube the edge.\n\n**Step 1 — the diagonal.** A face diagonal is $a\\sqrt{2}$. The cube's diagonal is the hypotenuse of a right triangle whose legs are a face diagonal and an edge: $d^{2} = (a\\sqrt{2})^{2} + a^{2} = 3a^{2}$, so $d = a\\sqrt{3}$.\n\n**Step 2 — the edge.** $a\\sqrt{3} = 6$ gives $a = \\dfrac{6}{\\sqrt{3}} = \\dfrac{6\\sqrt{3}}{3} = 2\\sqrt{3}$ cm.\n\n**Step 3 — the volume.** $a^{3} = (2\\sqrt{3})^{3} = 8\\cdot 3\\sqrt{3} = 24\\sqrt{3}\\ \\text{cm}^{3}$.\n\n**Check.** $a^{2} = 12$, so $3a^{2} = 36 = 6^{2}$ ✓. As a size check, $24\\sqrt{3}\\approx 41.6$, between $3^{3}=27$ and $4^{3}=64$, and indeed $a = 2\\sqrt3 \\approx 3.46$.",
+  "distractorRationale": {
+    "a": "Divides the diagonal by $3$ instead of by $\\sqrt{3}$, getting an edge of $2$ cm.",
+    "c": "Uses the face-diagonal relation $a\\sqrt{2} = 6$, giving $a = 3\\sqrt{2}$ and $a^{3} = 54\\sqrt{2}$; the segment through the inside of the cube is $a\\sqrt{3}$.",
+    "d": "Finds $a^{2} = 12$ correctly and then computes the total surface area $6a^{2} = 72$ instead of the volume.",
+    "e": "Takes the diagonal, $6$ cm, as the edge and cubes it."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": null,
+  "accessibilityText": "The diagonal of a cube, the segment joining two opposite vertices that do not lie on the same face, is 6 centimetres long. What is the volume of the cube? The five choices are: 8 cubic centimetres; 24 times the square root of 3 cubic centimetres; 54 times the square root of 2 cubic centimetres; 72 cubic centimetres; 216 cubic centimetres.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-math-b-author",
+    "aiAssisted": true,
+    "notes": "Tests the space diagonal of a cube, d equals a root 3, and simplification of a radical before cubing. Original item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-math-b-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "cube",
+    "space-diagonal",
+    "volume",
+    "radicals"
+  ]
+}
