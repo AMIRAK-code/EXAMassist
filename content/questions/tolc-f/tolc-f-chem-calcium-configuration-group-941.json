@@ -1,0 +1,76 @@
+{
+  "id": "tolc-f-chem-calcium-configuration-group-941",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "chemistry",
+  "domainSlug": "tolcf-chemistry",
+  "skillSlug": "tolcf-chem-atoms-periodic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A neutral atom of an element X has the electron configuration $1s^2\\,2s^2\\,2p^6\\,3s^2\\,3p^6\\,4s^2$. Which statement about X is correct?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "X is a noble gas, because its last subshell, 4s, is full"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "X belongs to period 2, because it has two outer electrons"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "X tends to gain two electrons and form the ion $\\mathrm{X^{2-}}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "X is in group 2 and tends to lose two electrons, forming $\\mathrm{X^{2+}}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "X is a transition metal, because its outer electrons are in the fourth shell"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Read two things off the configuration.\n\n- **The highest shell number** gives the period: the outermost electrons are in shell 4, so X is in **period 4**.\n- **The electrons in that outer shell** give the group for main-group elements: $4s^2$ means two valence electrons in an s subshell, so X is in **group 2**, the alkaline-earth metals. Counting all the electrons, $2+2+6+2+6+2 = 20$: X is calcium.\n\nLosing its two outer electrons leaves X with the configuration $1s^2\\,2s^2\\,2p^6\\,3s^2\\,3p^6$, the same as the noble gas argon, so X readily forms $\\mathrm{X^{2+}}$, as calcium forms $\\mathrm{Ca^{2+}}$.\n\n**Check:** a noble gas has a full outer s **and** p subshell ($ns^2\\,np^6$); here the fourth shell holds only two electrons.",
+  "distractorRationale": {
+    "a": "A noble gas needs a complete outer shell, $ns^2\\,np^6$, eight electrons. X has only two electrons in its fourth shell, and those it loses easily.",
+    "b": "This confuses period with group. The period is the number of the outermost shell, 4; the two outer electrons place X in group 2.",
+    "c": "Gaining two electrons is typical of elements with six outer electrons, such as oxygen. X has two outer electrons and, as a metal, loses them.",
+    "e": "Transition metals are the elements in which d subshells are being filled. X has no d electrons; the fourth shell is the outer shell of every period-4 element, including main-group ones."
+  },
+  "estimatedSeconds": 50,
+  "stimulusRef": null,
+  "accessibilityText": "A short text question. A neutral atom of element X has the electron configuration 1 s 2, 2 s 2, 2 p 6, 3 s 2, 3 p 6, 4 s 2, where each final number is a superscript count of electrons. The question asks which statement about X is correct. The choices are: X is a noble gas because its last subshell, 4 s, is full; X belongs to period 2 because it has two outer electrons; X tends to gain two electrons to form X 2 minus; X is in group 2 and tends to lose two electrons, forming X 2 plus; X is a transition metal because its outer electrons are in the fourth shell.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave8-biochem-author",
+    "aiAssisted": true,
+    "notes": "Original item. Tests reading period, group and typical ion from an electron configuration."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave8-biochem-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "electron-configuration",
+    "periodic-table",
+    "ions"
+  ]
+}

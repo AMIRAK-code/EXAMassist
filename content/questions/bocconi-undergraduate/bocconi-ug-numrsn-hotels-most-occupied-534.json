@@ -1,0 +1,72 @@
+{
+  "id": "bocconi-ug-numrsn-hotels-most-occupied-534",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-numerical-reasoning",
+  "skillSlug": "numerical-reasoning-charts-tables",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "On an average night in July 2025, which town had the largest number of occupied hotel rooms?",
+  "instructionsMd": "Use only the figures in the table. No calculator.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Lerna"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Brivio"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Castra"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Molina"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The number of occupied rooms is the number of rooms times the occupancy rate. Neither column on its own answers the question, so compute the product for each town.\n\n- Lerna: $600 \\times 0.85 = 510$\n- Brivio: $900 \\times 0.55 = 495$\n- Castra: $400 \\times 0.90 = 360$\n- Molina: $800 \\times 0.60 = 480$\n\nLerna has the most occupied rooms, 510.\n\n**How to check the answer.** The close contest is between Lerna and Brivio. Count the empty rooms instead: Lerna has 15 per cent of 600 empty, that is 90, so $600 - 90 = 510$; Brivio has 45 per cent of 900 empty, that is 405, so $900 - 405 = 495$. Lerna still leads, by 15 rooms.\n\n**What the table is designed to tempt.** Each of the other towns leads one column: Brivio has the most rooms, Castra the highest occupancy, Molina the most hotels. None of those columns alone measures occupied rooms.",
+  "distractorRationale": {
+    "b": "Brivio has the most rooms, 900, but only 55 per cent are occupied, giving 495, fewer than Lerna's 510. This picks the leader of the rooms column without applying the occupancy rate.",
+    "c": "Castra has the highest occupancy rate, 90 per cent, but only 400 rooms, so just 360 are occupied. This picks the leader of the occupancy column and ignores how many rooms the rate applies to.",
+    "d": "Molina has the most hotels, 40, but the number of hotels says nothing about how many rooms are occupied. Its 800 rooms at 60 per cent give 480, fewer than Lerna's 510."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": {
+    "id": "bocconi-ug-stim-lake-hotels-547",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying table of hotels in four lake towns in July 2025. It asks which town had the largest number of occupied hotel rooms on an average night. The four choices, in the order shown, are Lerna, Brivio, Castra and Molina.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-verbal-author",
+    "aiAssisted": true,
+    "notes": "Original table-reading item on the original table bocconi-ug-stim-lake-hotels-547. The answer requires a product of two columns, and each wrong town leads one single column."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-verbal-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "table-lake-hotels",
+    "product-of-columns"
+  ]
+}
