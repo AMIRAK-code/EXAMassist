@@ -20,12 +20,12 @@
     {
       "id": "b",
       "label": "B",
-      "textMd": "$V(t) = 340 - 20t$"
+      "textMd": "$V(t) = 460 - 30t$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "$V(t) = 460 - 30t$"
+      "textMd": "$V(t) = 340 - 20t$"
     },
     {
       "id": "d",
@@ -39,8 +39,8 @@
   },
   "explanationMd": "A constant rate means $V$ is linear: $V(t) = mt + b$, where $m$ is the rate of change and $b$ is the amount at $t = 0$.\n\n**Rate.** Between $t = 4$ and $t = 10$ the volume falls from $340$ to $220$ liters:\n\n$$m = \\frac{220 - 340}{10 - 4} = \\frac{-120}{6} = -20 \\text{ liters per minute}$$\n\n**Starting amount.** Work back $4$ minutes from $340$ liters: $b = 340 + 4(20) = 420$.\n\n$$V(t) = 420 - 20t$$\n\nCheck both readings: $V(4) = 420 - 80 = 340$ and $V(10) = 420 - 200 = 220$. The domain also fits: $V(21) = 420 - 420 = 0$, so the tank is empty at $21$ minutes.\n\nAlways test a candidate against **both** given points; each wrong function here fails at least one of them.",
   "distractorRationale": {
-    "b": "This uses the reading at $4$ minutes as the starting amount. $V(4)$ would then be $260$, not $340$; the tank held $420$ liters at $t = 0$.",
-    "c": "This divides the $120$-liter drop by $4$ minutes instead of the $6$ minutes between the readings. It matches the first reading but gives $V(10) = 160$, not $220$.",
+    "c": "This uses the reading at $4$ minutes as the starting amount. $V(4)$ would then be $260$, not $340$; the tank held $420$ liters at $t = 0$.",
+    "b": "This divides the $120$-liter drop by $4$ minutes instead of the $6$ minutes between the readings. It matches the first reading but gives $V(10) = 160$, not $220$.",
     "d": "This gets the sign of the rate wrong, so the tank would be filling. It matches the first reading but gives $V(10) = 460$, not $220$."
   },
   "estimatedSeconds": 60,
@@ -58,7 +58,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,
