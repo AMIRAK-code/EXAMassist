@@ -1,4 +1,4 @@
-# CISIA TOLC-E and TOLC-F — verified specification
+# CISIA TOLC-E, TOLC-F and TOLC-I — verified specification
 
 **Version covered:** TOLC as delivered in 2026 (CISIA announces structural changes by 31 December each year)  
 **Verified on:** 2026-09-29, first-hand: the structure tables were parsed directly from the HTML of CISIA's pages, and the regulation PDF was downloaded and its text extracted; no summary was relied on  
@@ -8,6 +8,7 @@
 
 1. TOLC-E structure and syllabus — <https://www.cisiaonline.it/en/tolc/tolc-e/structure-and-syllabus>
 2. TOLC-F structure and syllabus — <https://www.cisiaonline.it/en/tolc/tolc-f/structure-and-syllabus>
+4. TOLC-I structure and syllabus — <https://www.cisiaonline.it/en/tolc/tolc-i/structure-and-syllabus> (checked through search results on 2026-10-11; see below)
 3. Regolamento TOLC 2026 — <https://www.cisiaonline.it/sites/default/files/Regolamenti/Regolamento-TOLC-2026.pdf>
 
 ## Rules common to both — [3]
@@ -57,6 +58,25 @@ Syllabus headings [2]:
 - **Physics:** measures; kinematics and dynamics; forces; fluid mechanics; thermology and thermodynamics; electrostatics, currents and magnetism; waves and geometric optics.
 - **Logic:** logic of propositions; necessary and sufficient conditions; interpreting graphic representations and tables; elementary mathematical concepts.
 
+## TOLC-I — [4]
+
+**How this was checked:** on 2026-10-11 cisiaonline.it could not be reached from the build environment, so the page was not parsed first-hand. The table below is what search results quoting CISIA's TOLC-I pages state; they agree with one another. Treat it as provisional until the page is re-read directly (DISCREPANCY-REGISTER, CISIA-03).
+
+| # | Section | Questions | Minutes |
+| --- | --- | --- | --- |
+| 1 | Mathematics | 20 | 50 |
+| 2 | Logic | 10 | 20 |
+| 3 | Sciences | 10 | 20 |
+| 4 | Verbal comprehension | 10 | 20 |
+| | **Total** | **50** | **110** |
+| | English (separately scored) | 30 | 15 |
+| | **Total including English** | **80** | **125** |
+
+- **Logic and Verbal comprehension:** described by CISIA as testing aptitude rather than secondary-school knowledge. No topic list; the site's skills are editorial.
+- **Mathematics (syllabus headings as reported):** arithmetic and algebra; geometry; analytic geometry and numerical functions; trigonometry; probability and statistics.
+- **Sciences (syllabus headings as reported):** mechanics; thermodynamics; electromagnetism and optics; structure of matter, chemical symbols, stoichiometry, solutions, redox and elementary organic chemistry.
+- The same regulation [3] applies: five options, +1 / 0 / −0.25, no calculator, no return to a closed section, no national pass mark. Thresholds often quoted for engineering (for example a minimum number of Mathematics points for OFA) are set by each university.
+
 ## Not published (unverified)
 
 - Movement between questions, or changing answers, within an open section.
@@ -64,6 +84,6 @@ Syllabus headings [2]:
 
 ## What the build does with this
 
-- Three (TOLC-E) and five (TOLC-F) consecutive sections with their own clocks and no return to a closed section; within-section movement allowed and disclosed. Full simulations labelled **approximation**.
+- Three (TOLC-E), five (TOLC-F) and four (TOLC-I) consecutive sections with their own clocks and no return to a closed section; within-section movement allowed and disclosed. Full simulations labelled **approximation**.
 - The separately scored English section is **not modelled**, and every fidelity note says so.
 - Readiness projects the absolute score on the published form and states that **each university sets its own threshold**, pointing the learner to their programme's bando.

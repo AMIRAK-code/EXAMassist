@@ -7,7 +7,8 @@ import type { ExamConfig } from '@/lib/assessment/types';
  * The Politecnico di Torino TIL and CISIA TOLC configurations.
  *
  * Every number checked here was read from the official documents on
- * 29 September 2026 (docs/research/polito-til.md, docs/research/cisia-tolc.md).
+ * 29 September 2026 (docs/research/polito-til.md, docs/research/cisia-tolc.md);
+ * the TOLC-I structure was checked on 11 October 2026.
  * The tests pin those numbers, so a later edit that drifts from them fails
  * here rather than on a learner's screen.
  */
@@ -53,6 +54,16 @@ const PUBLISHED: Record<string, { sections: Array<[string, number, number]>; tot
     ],
     total: 50,
     minutes: 72,
+  },
+  'tolc-i': {
+    sections: [
+      ['mathematics', 20, 50],
+      ['logic', 10, 20],
+      ['sciences', 10, 20],
+      ['verbal-comprehension', 10, 20],
+    ],
+    total: 50,
+    minutes: 110,
   },
 };
 
@@ -176,6 +187,7 @@ describe('readiness for exams with no single pass mark', () => {
   it.each([
     ['tolc-e', 36, /each university/i],
     ['tolc-f', 50, /each university/i],
+    ['tolc-i', 50, /each university/i],
     ['polito-til-a', 50, /ranked by score/i],
   ])('%s quantifies the score but says why there is no pass mark', (examKey, max, reason) => {
     const projection = assessReadiness(readinessFor(requireExamConfig(examKey), 0.7, max / 2)).target!.projection!;
