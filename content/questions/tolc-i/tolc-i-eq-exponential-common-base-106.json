@@ -15,17 +15,17 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$x = 2$"
+      "textMd": "no real solution"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$x = 3$"
+      "textMd": "$x = 5$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "$x = 5$"
+      "textMd": "$x = 2$"
     },
     {
       "id": "d",
@@ -35,19 +35,19 @@
     {
       "id": "e",
       "label": "E",
-      "textMd": "no real solution"
+      "textMd": "$x = 3$"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "c"
+    "optionId": "b"
   },
   "explanationMd": "Write both sides as powers of the same base. Since $4 = 2^{2}$ and $8 = 2^{3}$, the equation becomes an equation between exponents.\n\n**Step 1 — common base.** $4^{x+1} = 2^{2(x+1)} = 2^{2x+2}$ and $8^{x-1} = 2^{3(x-1)} = 2^{3x-3}$.\n\n**Step 2 — equate exponents.** The function $2^{t}$ is one-to-one, so $2x + 2 = 3x - 3$, which gives $x = 5$.\n\n**How to check it.** $4^{6} = 4096$ and $8^{4} = 4096$ ✓.",
   "distractorRationale": {
-    "a": "Multiplies only the $x$ by the new exponents and not the constants: $2x + 1 = 3x - 1$. The whole exponent is multiplied, $2(x+1) = 2x + 2$ and $3(x-1) = 3x - 3$.",
-    "b": "Distributes on the left but not on the right, writing $2x + 2 = 3x - 1$. Both brackets must be multiplied out: the right exponent is $3x - 3$.",
+    "c": "Multiplies only the $x$ by the new exponents and not the constants: $2x + 1 = 3x - 1$. The whole exponent is multiplied, $2(x+1) = 2x + 2$ and $3(x-1) = 3x - 3$.",
+    "e": "Distributes on the left but not on the right, writing $2x + 2 = 3x - 1$. Both brackets must be multiplied out: the right exponent is $3x - 3$.",
     "d": "Sets up $2x + 2 = 3x - 3$ correctly but slips when isolating $x$. Collecting terms gives $5 = x$, not $-5$; at $x = -5$ the left side is $4^{-4}$ and the right side $8^{-6}$, which differ.",
-    "e": "Equates the exponents without first matching the bases, getting $x + 1 = x - 1$, which has no solution. Exponents can only be compared once both sides use the same base."
+    "a": "Equates the exponents without first matching the bases, getting $x + 1 = x - 1$, which has no solution. Exponents can only be compared once both sides use the same base."
   },
   "estimatedSeconds": 60,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

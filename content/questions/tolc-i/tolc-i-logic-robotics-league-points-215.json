@@ -20,17 +20,17 @@
     {
       "id": "b",
       "label": "B",
-      "textMd": "Alfa beat Beta."
+      "textMd": "Gamma drew with Delta."
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "Gamma drew with Delta."
+      "textMd": "Delta lost all three of its matches."
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "Delta lost all three of its matches."
+      "textMd": "Alfa beat Beta."
     },
     {
       "id": "e",
@@ -44,9 +44,9 @@
   },
   "explanationMd": "Count matches and points first. Four teams playing each other once make 6 matches. A decisive match hands out 3 points in total and a draw hands out 2. The points add up to 7 + 5 + 3 + 1 = 16. If $w$ matches are won and $d$ drawn, then $w + d = 6$ and $3w + 2d = 16$, so $w = 4$ and $d = 2$.\n\nEach team plays 3 matches, so its points fix its record:\n\n- Alfa 7: two wins and one draw.\n- Beta 5: one win and two draws.\n- Delta 1: one draw and two losses.\n- Gamma 3: either one win and two losses, or three draws.\n\nTwo drawn matches give 4 team-draws in total. Alfa, Beta and Delta already account for 1 + 2 + 1 = 4, so Gamma has no draws: one win, two losses. Beta's two draws are therefore the league's two drawn matches, against the only other teams with a draw, Alfa and Delta. Beta's single win must then be against the remaining opponent, Gamma.\n\nCheck the whole table: Alfa drew with Beta and beat Gamma and Delta; Beta beat Gamma and drew with Delta; Gamma beat Delta. That gives 7, 5, 3 and 1 points.",
   "distractorRationale": {
-    "b": "Beta's two draws must be against Alfa and Delta, so the match between Alfa and Beta was a draw, not an Alfa win.",
-    "c": "Gamma has no draws: the two drawn matches are both Beta's. Gamma's 3 points come from a win over Delta.",
-    "d": "Delta's single point comes from a draw, against Beta, so Delta did not lose all three matches.",
+    "d": "Beta's two draws must be against Alfa and Delta, so the match between Alfa and Beta was a draw, not an Alfa win.",
+    "b": "Gamma has no draws: the two drawn matches are both Beta's. Gamma's 3 points come from a win over Delta.",
+    "c": "Delta's single point comes from a draw, against Beta, so Delta did not lose all three matches.",
     "e": "Alfa's 7 points mean two wins and a draw with no defeat, so no team beat Alfa."
   },
   "estimatedSeconds": 130,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

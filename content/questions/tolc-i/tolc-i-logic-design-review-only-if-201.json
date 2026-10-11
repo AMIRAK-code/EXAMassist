@@ -20,22 +20,22 @@
     {
       "id": "b",
       "label": "B",
-      "textMd": "Passing the safety inspection is a sufficient condition for admission to the final review."
+      "textMd": "Any team that has submitted its test report and passed the safety inspection is admitted to the final review."
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "Submitting the test report is a sufficient condition for admission to the final review."
+      "textMd": "Any team that is not admitted to the final review has failed the safety inspection."
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "Any team that has submitted its test report and passed the safety inspection is admitted to the final review."
+      "textMd": "Passing the safety inspection is a sufficient condition for admission to the final review."
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "Any team that is not admitted to the final review has failed the safety inspection."
+      "textMd": "Submitting the test report is a sufficient condition for admission to the final review."
     }
   ],
   "answerKey": {
@@ -44,10 +44,10 @@
   },
   "explanationMd": "\"P only if Q\" means \"if P, then Q\": Q is a **necessary** condition for P, not a sufficient one. Here P is \"the team is admitted\" and Q is \"the team has submitted its report and passed the inspection\". So every admitted team has done both things.\n\nIn particular, every admitted team has passed the safety inspection: a team that fails the inspection cannot be admitted. That is exactly what it means for passing the inspection to be a necessary condition for admission.\n\nThe rule says nothing in the other direction. A team could submit its report and pass the inspection and still not be admitted, for example because its design is judged too weak. So neither requirement, and not even the two together, is guaranteed to be enough for admission. Check by building such a team: it breaks none of the rule's words.",
   "distractorRationale": {
-    "b": "This reverses the direction of \"only if\". The rule says admission requires the inspection, not that the inspection brings admission.",
-    "c": "The rule lists the report as one requirement among two, and even both together are only required, not enough. A team with a report but no passed inspection is in fact excluded.",
-    "d": "This reads \"only if\" as \"if\": it turns the two requirements into a guarantee. The rule allows a team that meets both requirements to be turned down for some other reason.",
-    "e": "A team that is not admitted might have passed the inspection and been turned down for another reason, or might have failed to submit its report. Non-admission does not tell us which requirement, if any, was missed."
+    "d": "This reverses the direction of \"only if\". The rule says admission requires the inspection, not that the inspection brings admission.",
+    "e": "The rule lists the report as one requirement among two, and even both together are only required, not enough. A team with a report but no passed inspection is in fact excluded.",
+    "b": "This reads \"only if\" as \"if\": it turns the two requirements into a guarantee. The rule allows a team that meets both requirements to be turned down for some other reason.",
+    "c": "A team that is not admitted might have passed the inspection and been turned down for another reason, or might have failed to submit its report. Non-admission does not tell us which requirement, if any, was missed."
   },
   "estimatedSeconds": 75,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

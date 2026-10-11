@@ -15,22 +15,22 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$2\\sqrt{3}$"
+      "textMd": "$10$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$4$"
+      "textMd": "$2\\sqrt{3}$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "$8$"
+      "textMd": "$4$"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "$10$"
+      "textMd": "$8$"
     },
     {
       "id": "e",
@@ -40,13 +40,13 @@
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "c"
+    "optionId": "d"
   },
   "explanationMd": "The points on the $y$-axis have $x = 0$, so substitute and solve.\n\n**Step 1 — substitute $x = 0$.** $y^{2} + 4y - 12 = 0$, which factors as $(y + 6)(y - 2) = 0$, so $y = 2$ or $y = -6$.\n\n**Step 2 — the distance.** The points are $(0, 2)$ and $(0, -6)$, so they are $2 - (-6) = 8$ apart.\n\n**Check by geometry.** Completing the squares, $(x-3)^{2} + (y+2)^{2} = 9 + 4 + 12 = 25$: centre $(3, -2)$, radius $5$. The centre is $3$ from the $y$-axis, so the half-chord is $\\sqrt{5^{2} - 3^{2}} = 4$ and the chord is $8$ ✓.",
   "distractorRationale": {
-    "a": "Takes the constant term as giving $r^{2} = 12$, so the half-chord is $\\sqrt{12 - 9} = \\sqrt{3}$; completing the squares gives $r^{2} = 9 + 4 + 12 = 25$.",
-    "b": "Finds the half-chord, $\\sqrt{25 - 9} = 4$, and does not double it.",
-    "d": "Gives the diameter of the circle; the $y$-axis does not pass through the centre $(3, -2)$, so the chord is shorter than a diameter.",
+    "b": "Takes the constant term as giving $r^{2} = 12$, so the half-chord is $\\sqrt{12 - 9} = \\sqrt{3}$; completing the squares gives $r^{2} = 9 + 4 + 12 = 25$.",
+    "c": "Finds the half-chord, $\\sqrt{25 - 9} = 4$, and does not double it.",
+    "a": "Gives the diameter of the circle; the $y$-axis does not pass through the centre $(3, -2)$, so the chord is shorter than a diameter.",
     "e": "Substitutes $y = 0$ instead of $x = 0$, finding the chord on the $x$-axis: $x^{2} - 6x - 12 = 0$ has roots $3 \\pm \\sqrt{21}$."
   },
   "estimatedSeconds": 100,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

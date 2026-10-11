@@ -15,22 +15,22 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$300\\ \\text{W}$"
+      "textMd": "$30\\ \\text{W}$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$30\\ \\text{W}$"
+      "textMd": "$300\\ \\text{W}$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "$6000\\ \\text{W}$"
+      "textMd": "$15\\ \\text{W}$"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "$15\\ \\text{W}$"
+      "textMd": "$6000\\ \\text{W}$"
     },
     {
       "id": "e",
@@ -40,13 +40,13 @@
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "b"
   },
   "explanationMd": "**What to notice first.** At constant speed the kinetic energy does not change, so all the work done by the hoist goes into gravitational potential energy. Power is that work divided by the time taken.\n\n**The steps.**\n\n$$W = mgh = 50 \\times 10 \\times 12 = 6000\\ \\text{J}, \\qquad P = \\frac{W}{t} = \\frac{6000\\ \\text{J}}{20\\ \\text{s}} = 300\\ \\text{W}.$$\n\n**How to check it.** Use $P = Fv$. At constant speed the hoist pulls with a force equal to the weight, $F = mg = 500\\ \\text{N}$, and the speed is $v = 12/20 = 0.6\\ \\text{m/s}$. Then $P = 500 \\times 0.6 = 300\\ \\text{W}$, the same result. Units: $\\text{J/s} = \\text{W}$.",
   "distractorRationale": {
-    "b": "Leaves out $g$, using $mh/t = 50 \\times 12 / 20 = 30$. The force needed to lift the crate is its weight, $mg = 500\\ \\text{N}$, not its mass.",
-    "c": "Stops at the work, $mgh = 6000\\ \\text{J}$, and labels it as a power. Power is work per unit time, so the $6000\\ \\text{J}$ must still be divided by $20\\ \\text{s}$.",
-    "d": "Divides the work by the square of the time, $6000 / 400 = 15$. That gives units of $\\text{J/s}^2$, which is not a power.",
+    "a": "Leaves out $g$, using $mh/t = 50 \\times 12 / 20 = 30$. The force needed to lift the crate is its weight, $mg = 500\\ \\text{N}$, not its mass.",
+    "d": "Stops at the work, $mgh = 6000\\ \\text{J}$, and labels it as a power. Power is work per unit time, so the $6000\\ \\text{J}$ must still be divided by $20\\ \\text{s}$.",
+    "c": "Divides the work by the square of the time, $6000 / 400 = 15$. That gives units of $\\text{J/s}^2$, which is not a power.",
     "e": "Uses $P = Fv$ with a speed of $1.2\\ \\text{m/s}$, twice $12/20$, as if the crate started from rest and accelerated uniformly. The stem says the speed is constant, so the speed is simply $0.6\\ \\text{m/s}$."
   },
   "estimatedSeconds": 60,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

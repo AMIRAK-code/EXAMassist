@@ -20,34 +20,34 @@
     {
       "id": "b",
       "label": "B",
-      "textMd": "$k > 4$"
+      "textMd": "$k > 1$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "$k \\ge 4$"
+      "textMd": "$k > 4$"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "$k > 1$"
+      "textMd": "$-5 < k < -1$ or $k > 4$"
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "$-5 < k < -1$ or $k > 4$"
+      "textMd": "$k \\ge 4$"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "b"
+    "optionId": "c"
   },
   "explanationMd": "Two distinct positive roots need three conditions at once: a positive discriminant (two distinct real roots), a positive product and a positive sum (both roots positive). For $x^{2} + bx + c = 0$ the sum of the roots is $-b$ and the product is $c$.\n\n**Discriminant.** $\\dfrac{\\Delta}{4} = (k-1)^{2} - (k+5) = k^{2} - 3k - 4 = (k-4)(k+1) > 0$, so $k < -1$ or $k > 4$.\n\n**Product.** $k + 5 > 0$, so $k > -5$.\n\n**Sum.** $2(k-1) > 0$, so $k > 1$.\n\n**Intersection.** Only $k > 4$ satisfies all three.\n\n**How to check it.** At $k = 5$ the equation is $x^{2} - 8x + 10 = 0$, with roots $4 \\pm \\sqrt6$, both positive and distinct ✓. At $k = -2$ (allowed by the discriminant and the product) it is $x^{2} + 6x + 3 = 0$, whose roots are both negative ✗.",
   "distractorRationale": {
     "a": "Uses only the discriminant, which guarantees two distinct real roots but says nothing about their signs. For $k < -1$ the sum $2(k-1)$ is negative, so the roots cannot both be positive.",
-    "c": "Allows $k = 4$, where the discriminant is zero and the equation has the double root $x = 3$. The question asks for two distinct roots, so the inequality on the discriminant is strict.",
-    "d": "Uses only the condition on the sum. For $1 < k \\le 4$ the discriminant $(k-4)(k+1)$ is not positive, so there are not two distinct real roots: at $k = 2$ the equation $x^{2} - 2x + 7 = 0$ has none.",
-    "e": "Combines the discriminant with the product but forgets the sum. A positive product only says the roots have the same sign; for $-5 < k < -1$ they are both negative."
+    "e": "Allows $k = 4$, where the discriminant is zero and the equation has the double root $x = 3$. The question asks for two distinct roots, so the inequality on the discriminant is strict.",
+    "b": "Uses only the condition on the sum. For $1 < k \\le 4$ the discriminant $(k-4)(k+1)$ is not positive, so there are not two distinct real roots: at $k = 2$ the equation $x^{2} - 2x + 7 = 0$ has none.",
+    "d": "Combines the discriminant with the product but forgets the sum. A positive product only says the roots have the same sign; for $-5 < k < -1$ they are both negative."
   },
   "estimatedSeconds": 150,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

@@ -20,34 +20,34 @@
     {
       "id": "b",
       "label": "B",
-      "textMd": "$0$"
+      "textMd": "$-2$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "$-2$"
+      "textMd": "$0$"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "$10$"
+      "textMd": "$8$"
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "$8$"
+      "textMd": "$10$"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "e"
+    "optionId": "d"
   },
   "explanationMd": "Both conditions are remainder-theorem statements: the remainder on division by $x - c$ is $p(c)$. So first use $p(3) = 0$ to find $a$, then compute $p(-1)$.\n\n**Step 1 — find $a$.** $p(3) = 27 - 18 + 3a + 6 = 15 + 3a$. Divisibility by $x - 3$ means $15 + 3a = 0$, so $a = -5$.\n\n**Step 2 — the remainder.** Division by $x + 1$ is division by $x - (-1)$, so the remainder is $p(-1) = (-1)^{3} - 2(-1)^{2} - 5(-1) + 6 = -1 - 2 + 5 + 6 = 8$.\n\n**How to check it.** With $a = -5$ the polynomial factorises: $x^{3} - 2x^{2} - 5x + 6 = (x-3)(x-1)(x+2)$. At $x = -1$ this is $(-4)(-2)(1) = 8$ ✓.",
   "distractorRationale": {
     "a": "Stops after the first step and gives the value of the parameter, $a = -5$, instead of the remainder the question asks for.",
-    "b": "Evaluates $p(1)$ instead of $p(-1)$. Division by $x + 1$ means substituting $x = -1$; the value 0 shows that $x - 1$ is a factor, which is a different divisor.",
-    "c": "Solves $15 + 3a = 0$ as $a = 5$, a sign slip, so the term $ax$ at $x = -1$ becomes $-5$ instead of $+5$ and the total is $-1 - 2 - 5 + 6 = -2$.",
-    "d": "Takes $(-1)^{3}$ as $+1$. An odd power of a negative number is negative, so the first term is $-1$, and the total is $8$, not $1 - 2 + 5 + 6 = 10$."
+    "c": "Evaluates $p(1)$ instead of $p(-1)$. Division by $x + 1$ means substituting $x = -1$; the value 0 shows that $x - 1$ is a factor, which is a different divisor.",
+    "b": "Solves $15 + 3a = 0$ as $a = 5$, a sign slip, so the term $ax$ at $x = -1$ becomes $-5$ instead of $+5$ and the total is $-1 - 2 - 5 + 6 = -2$.",
+    "e": "Takes $(-1)^{3}$ as $+1$. An odd power of a negative number is negative, so the first term is $-1$, and the total is $8$, not $1 - 2 + 5 + 6 = 10$."
   },
   "estimatedSeconds": 100,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

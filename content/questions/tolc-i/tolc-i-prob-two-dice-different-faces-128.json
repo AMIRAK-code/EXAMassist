@@ -15,7 +15,7 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$\\dfrac{1}{6}$"
+      "textMd": "$\\dfrac{1}{9}$"
     },
     {
       "id": "b",
@@ -25,17 +25,17 @@
     {
       "id": "c",
       "label": "C",
-      "textMd": "$\\dfrac{1}{9}$"
+      "textMd": "$\\dfrac{5}{36}$"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "$\\dfrac{3}{10}$"
+      "textMd": "$\\dfrac{1}{6}$"
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "$\\dfrac{5}{36}$"
+      "textMd": "$\\dfrac{3}{10}$"
     }
   ],
   "answerKey": {
@@ -44,10 +44,10 @@
   },
   "explanationMd": "List the equally likely outcomes as ordered pairs (six-faced die, four-faced die) and count the favourable ones.\n\n**Step 1 — all outcomes.** $6 \\cdot 4 = 24$ pairs, all equally likely.\n\n**Step 2 — favourable outcomes.** The four-faced die shows at most $4$, so the six-faced die must show at least $4$: $(4, 4)$, $(5, 3)$, $(6, 2)$. That is $3$ pairs; $(7, 1)$ is impossible.\n\n**Step 3 — the probability.** $\\frac{3}{24} = \\frac{1}{8}$.\n\n**Check.** Fix the four-faced die: whichever value $k$ it shows, the six-faced die must show $8 - k$, which is possible for $k = 2, 3, 4$ and not for $k = 1$. So $3$ of the $4$ values of $k$ each give probability $\\frac16$: $\\frac14\\cdot 3\\cdot\\frac16 = \\frac18$ ✓.",
   "distractorRationale": {
-    "a": "Counts four pairs, including an impossible one such as a $7$ on the six-faced die with a $1$, giving $\\frac{4}{24}$.",
-    "c": "Treats the nine possible sums, $2$ to $10$, as equally likely; middle sums arise from more pairs than extreme ones.",
-    "d": "Divides the $3$ favourable pairs by $6 + 4 = 10$, adding the numbers of faces instead of multiplying them.",
-    "e": "Answers for two ordinary six-faced dice, where a sum of $8$ comes from $5$ of $36$ pairs."
+    "d": "Counts four pairs, including an impossible one such as a $7$ on the six-faced die with a $1$, giving $\\frac{4}{24}$.",
+    "a": "Treats the nine possible sums, $2$ to $10$, as equally likely; middle sums arise from more pairs than extreme ones.",
+    "e": "Divides the $3$ favourable pairs by $6 + 4 = 10$, adding the numbers of faces instead of multiplying them.",
+    "c": "Answers for two ordinary six-faced dice, where a sum of $8$ comes from $5$ of $36$ pairs."
   },
   "estimatedSeconds": 70,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

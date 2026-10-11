@@ -15,39 +15,39 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$0$"
+      "textMd": "$-\\dfrac{1+\\sqrt{3}}{2}$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$1$"
+      "textMd": "$-\\sqrt{3}$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "$-1$"
+      "textMd": "$0$"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "$-\\dfrac{1+\\sqrt{3}}{2}$"
+      "textMd": "$1$"
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "$-\\sqrt{3}$"
+      "textMd": "$-1$"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "c"
+    "optionId": "e"
   },
   "explanationMd": "Convert each angle to degrees, find its quadrant to fix the sign, and use the reference angle to fix the size.\n\n**First term.** $\\dfrac{4\\pi}{3} = 240^\\circ$, in the third quadrant, where the cosine is negative. The reference angle is $240^\\circ - 180^\\circ = 60^\\circ$, so $\\cos\\dfrac{4\\pi}{3} = -\\cos 60^\\circ = -\\dfrac12$.\n\n**Second term.** $\\dfrac{7\\pi}{6} = 210^\\circ$, also in the third quadrant, where the sine is negative. The reference angle is $30^\\circ$, so $\\sin\\dfrac{7\\pi}{6} = -\\sin 30^\\circ = -\\dfrac12$.\n\n**Sum.** $-\\dfrac12 - \\dfrac12 = -1$.\n\n**How to check it.** On the unit circle, the point at $240^\\circ$ is $\\left(-\\tfrac12, -\\tfrac{\\sqrt3}{2}\\right)$ and the point at $210^\\circ$ is $\\left(-\\tfrac{\\sqrt3}{2}, -\\tfrac12\\right)$. The first coordinate of one plus the second coordinate of the other is $-\\tfrac12 - \\tfrac12 = -1$ ✓.",
   "distractorRationale": {
-    "a": "Gets one of the two signs wrong, so the terms cancel. Both angles are in the third quadrant, where sine and cosine are both negative.",
-    "b": "Uses the reference-angle values $\\cos 60^\\circ = \\tfrac12$ and $\\sin 30^\\circ = \\tfrac12$ without the signs of the third quadrant.",
-    "d": "Takes the wrong reference value for one of the angles, for example $\\cos 240^\\circ = -\\tfrac{\\sqrt3}{2}$. The reference angle of $240^\\circ$ is $60^\\circ$, and $\\cos 60^\\circ = \\tfrac12$.",
-    "e": "Swaps sine and cosine for both angles, giving $-\\tfrac{\\sqrt3}{2} - \\tfrac{\\sqrt3}{2}$. Those are $\\sin 240^\\circ$ and $\\cos 210^\\circ$, not the values asked for."
+    "c": "Gets one of the two signs wrong, so the terms cancel. Both angles are in the third quadrant, where sine and cosine are both negative.",
+    "d": "Uses the reference-angle values $\\cos 60^\\circ = \\tfrac12$ and $\\sin 30^\\circ = \\tfrac12$ without the signs of the third quadrant.",
+    "a": "Takes the wrong reference value for one of the angles, for example $\\cos 240^\\circ = -\\tfrac{\\sqrt3}{2}$. The reference angle of $240^\\circ$ is $60^\\circ$, and $\\cos 60^\\circ = \\tfrac12$.",
+    "b": "Swaps sine and cosine for both angles, giving $-\\tfrac{\\sqrt3}{2} - \\tfrac{\\sqrt3}{2}$. Those are $\\sin 240^\\circ$ and $\\cos 210^\\circ$, not the values asked for."
   },
   "estimatedSeconds": 60,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

@@ -15,7 +15,7 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$-2 \\le x \\le 2$ with $x \\ne 1$"
+      "textMd": "$x \\le -2$ or $x \\ge 2$"
     },
     {
       "id": "b",
@@ -25,29 +25,29 @@
     {
       "id": "c",
       "label": "C",
-      "textMd": "$-2 \\le x \\le 2$"
+      "textMd": "$x \\le 2$ with $x \\ne 1$"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "$x \\le 2$ with $x \\ne 1$"
+      "textMd": "$-2 \\le x \\le 2$"
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "$x \\le -2$ or $x \\ge 2$"
+      "textMd": "$-2 \\le x \\le 2$ with $x \\ne 1$"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "e"
   },
   "explanationMd": "Write down every condition the formula imposes and keep the values of $x$ that satisfy all of them.\n\n**Condition 1 — the square root.** Its argument must be non-negative: $4 - x^{2} \\ge 0$, that is $x^{2} \\le 4$, which holds for $-2 \\le x \\le 2$. The endpoints are allowed, because $\\sqrt{0} = 0$ is defined.\n\n**Condition 2 — the denominator.** It must not be zero: $x \\ne 1$.\n\nTogether: $-2 \\le x \\le 2$ with $x \\ne 1$.\n\n**Check.** $f(2) = \\frac{0}{1} = 0$ is defined; $f(1)$ has a zero denominator; $f(3)$ would need $\\sqrt{-5}$, which is not real.",
   "distractorRationale": {
     "b": "Excludes $x = \\pm 2$, treating the condition on the root as strict; at those points the root is $\\sqrt{0} = 0$, which is defined and sits in the numerator.",
-    "c": "Handles the square root but forgets that the denominator $x - 1$ vanishes at $x = 1$.",
-    "d": "Solves $x^{2} \\le 4$ as $x \\le 2$, keeping only one side of the inequality; for $x = -3$ the argument $4 - 9$ is negative.",
-    "e": "Reverses the inequality: $x \\le -2$ or $x \\ge 2$ is where $4 - x^{2} \\le 0$, so apart from $\\pm 2$ the root is not real there."
+    "d": "Handles the square root but forgets that the denominator $x - 1$ vanishes at $x = 1$.",
+    "c": "Solves $x^{2} \\le 4$ as $x \\le 2$, keeping only one side of the inequality; for $x = -3$ the argument $4 - 9$ is negative.",
+    "a": "Reverses the inequality: $x \\le -2$ or $x \\ge 2$ is where $4 - x^{2} \\le 0$, so apart from $\\pm 2$ the root is not real there."
   },
   "estimatedSeconds": 60,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,
