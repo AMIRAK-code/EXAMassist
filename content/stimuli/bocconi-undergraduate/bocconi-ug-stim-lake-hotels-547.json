@@ -1,0 +1,81 @@
+{
+  "id": "bocconi-ug-stim-lake-hotels-547",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "kind": "table",
+  "title": "Hotel rooms in four lake towns, July 2025",
+  "bodyMd": "The tourist board of a lake district publishes the following figures for the hotels in its four towns in July 2025. \"Hotels\" is the number of hotels in the town. \"Rooms\" is the total number of rooms in all of the town's hotels. \"Occupancy\" is the percentage of those rooms that were occupied on an average night in July. \"Average rate\" is the average price paid for one occupied room for one night, in euros. No hotel rooms were added or withdrawn during the month.",
+  "data": {
+    "columns": [
+      {
+        "key": "town",
+        "label": "Town"
+      },
+      {
+        "key": "hotels",
+        "label": "Hotels"
+      },
+      {
+        "key": "rooms",
+        "label": "Rooms"
+      },
+      {
+        "key": "occupancy",
+        "label": "Occupancy (%)"
+      },
+      {
+        "key": "rate",
+        "label": "Average rate (€ per occupied room per night)"
+      }
+    ],
+    "rows": [
+      {
+        "town": "Lerna",
+        "hotels": 15,
+        "rooms": 600,
+        "occupancy": 85,
+        "rate": 120
+      },
+      {
+        "town": "Brivio",
+        "hotels": 18,
+        "rooms": 900,
+        "occupancy": 55,
+        "rate": 80
+      },
+      {
+        "town": "Castra",
+        "hotels": 8,
+        "rooms": 400,
+        "occupancy": 90,
+        "rate": 150
+      },
+      {
+        "town": "Molina",
+        "hotels": 40,
+        "rooms": 800,
+        "occupancy": 60,
+        "rate": 110
+      }
+    ],
+    "caption": "Lake district, July 2025: number of hotels, total rooms, occupancy on an average night and average rate per occupied room per night, by town.",
+    "chart": {
+      "type": "bar",
+      "xKey": "town",
+      "yKeys": [
+        "rooms"
+      ],
+      "xLabel": "Town",
+      "yLabel": "Rooms"
+    }
+  },
+  "accessibilityText": "A table of four rows and five columns. The columns are town, number of hotels, total number of rooms in the town's hotels, occupancy as the percentage of rooms occupied on an average night in July 2025, and the average rate in euros paid for one occupied room for one night. Lerna: 15 hotels, 600 rooms, occupancy 85 per cent, average rate 120 euros. Brivio: 18 hotels, 900 rooms, occupancy 55 per cent, average rate 80 euros. Castra: 8 hotels, 400 rooms, occupancy 90 per cent, average rate 150 euros. Molina: 40 hotels, 800 rooms, occupancy 60 per cent, average rate 110 euros. The four towns have 2,700 rooms in total. An accompanying bar chart plots the number of rooms only, one bar per town, tallest for Brivio at 900 and shortest for Castra at 400.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-verbal-author",
+    "aiAssisted": true,
+    "notes": "Invented data for a fictional lake district, written for this item set. Every occupancy percentage gives a whole number of occupied rooms (510, 495, 360 and 480, total 1,845 of 2,700 rooms). The figures were set so that a different town leads each column: Brivio has the most rooms, Castra the highest occupancy and rate, Molina the most hotels, while Lerna has the most occupied rooms. The hotels column is superfluous to every question that asks about rooms or revenue. Not derived from any real place, dataset or published test item."
+  },
+  "rightsStatus": "original-owned",
+  "state": "published"
+}

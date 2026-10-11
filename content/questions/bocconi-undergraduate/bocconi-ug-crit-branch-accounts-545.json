@@ -1,0 +1,70 @@
+{
+  "id": "bocconi-ug-crit-branch-accounts-545",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-critical-thinking",
+  "skillSlug": "critical-thinking-truth-evaluation",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A bank has three branches: North, Centre and South. In 2025 the three branches together opened 400 new accounts. The following is also known.\n\n> North opened 120 new accounts.\n>\n> Centre opened more new accounts than North.\n>\n> South opened fewer new accounts than Centre.\n>\n> No branch opened fewer than 100 new accounts.\n\nWhich one of the following statements must be false?",
+  "instructionsMd": "Answer on the basis of the information given only. No calculator.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Centre opened more than a third of all the new accounts."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Centre opened more than 45 per cent of all the new accounts."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "South opened more new accounts than North."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "South opened fewer new accounts than North."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Turn the facts into limits on one unknown. North opened 120, so Centre and South together opened $400 - 120 = 280$. Call Centre's number $C$; then South opened $280 - C$.\n\n- South opened fewer than Centre: $280 - C < C$, so $C > 140$.\n- South opened at least 100: $280 - C \\geq 100$, so $C \\leq 180$.\n- Centre opened more than North: $C > 120$, already implied by $C > 140$.\n\nSo Centre opened between 141 and 180 new accounts. Now 45 per cent of 400 is 180, and Centre cannot have opened more than 180. The statement that Centre opened more than 45 per cent of the new accounts **must be false**.\n\n**How to check the answer.** Test each of the other statements with a value of $C$ in the allowed range.\n\n- A third of 400 is about 133. Every allowed value of $C$ is above that, so this statement is in fact always true.\n- $C = 150$ gives South 130, more than North's 120: possible.\n- $C = 170$ gives South 110, fewer than North but not below 100: possible.\n\nOnly the 45 per cent statement fails in every case.",
+  "distractorRationale": {
+    "a": "This statement is not false; it must be true. Centre opened at least 141 accounts, which is more than a third of 400. A candidate who looks for a statement that must hold, rather than one that must fail, is drawn to it.",
+    "c": "This can be true. With Centre at 150, South opens 130, more than North's 120, and every condition is met.",
+    "d": "This can be true. With Centre at 170, South opens 110: fewer than North, still at least 100, and fewer than Centre. Every condition is met."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "A critical thinking question. A bank's three branches, North, Centre and South, opened 400 new accounts in 2025. North opened 120; Centre opened more than North; South opened fewer than Centre; no branch opened fewer than 100. The question asks which statement must be false. The four choices, in the order shown, are: Centre opened more than a third of all the new accounts; Centre opened more than 45 per cent of all the new accounts; South opened more new accounts than North; South opened fewer new accounts than North. The explanation uses C for the number of accounts Centre opened, and inequalities read as less than, greater than, at least and at most.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-verbal-author",
+    "aiAssisted": true,
+    "notes": "Original item evaluating statements against a set of numerical constraints. The constraints pin Centre to between 141 and 180 accounts; the key exceeds the upper bound, one distractor is necessarily true, and two are merely possible."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-verbal-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "inequalities",
+    "must-be-false",
+    "constraints"
+  ]
+}

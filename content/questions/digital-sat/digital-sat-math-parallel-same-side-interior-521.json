@@ -1,0 +1,71 @@
+{
+  "id": "digital-sat-math-parallel-same-side-interior-521",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "geometry-and-trigonometry",
+  "skillSlug": "lines-angles-and-triangles",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Parallel lines $\\ell$ and $m$ are intersected by a transversal $t$. Two interior angles on the same side of $t$, one at line $\\ell$ and one at line $m$, measure $(3x + 10)^\\circ$ and $(5x - 30)^\\circ$. What is the measure, in degrees, of the larger of these two angles?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$95$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$85$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$70$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$25$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "When parallel lines are cut by a transversal, two interior angles on the **same side** of the transversal are supplementary: their measures add to $180^\\circ$. (It is alternate interior angles, on opposite sides, that are equal.)\n\n$$(3x + 10) + (5x - 30) = 180$$\n\n$$8x - 20 = 180 \\;\\Rightarrow\\; 8x = 200 \\;\\Rightarrow\\; x = 25$$\n\nThe angles measure $3(25) + 10 = 85^\\circ$ and $5(25) - 30 = 95^\\circ$, so the larger is $95^\\circ$.\n\nCheck: $85 + 95 = 180$.\n\nThe tempting error is to set the two expressions equal, which gives $x = 20$ and two $70^\\circ$ angles; their sum is only $140^\\circ$, so they cannot be same-side interior angles.",
+  "distractorRationale": {
+    "b": "This is the smaller of the two angles, $3(25) + 10 = 85$. The question asks for the larger one, $95$.",
+    "c": "This sets the two expressions equal, as if the angles were alternate interior angles, giving $x = 20$ and $70^\\circ$. Same-side interior angles are supplementary, not equal.",
+    "d": "This is the value of $x$, not an angle measure. Substitute $x = 25$ into each expression to find the angles."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "Parallel lines l and m are cut by transversal t. Two interior angles on the same side of t, one at each parallel line, measure 3 x plus 10 degrees and 5 x minus 30 degrees. What is the measure in degrees of the larger angle? The choices are 95, 85, 70 and 25.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "sat-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Uses the supplementary relationship of same-side interior angles; distractors come from the equal-angles error, the smaller angle, and stopping at x."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "sat-wave8-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "geometry",
+    "parallel-lines",
+    "angles"
+  ]
+}

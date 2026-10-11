@@ -1,0 +1,56 @@
+{
+  "id": "digital-sat-math-frequency-table-mean-spr-507",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "problem-solving-and-data-analysis",
+  "skillSlug": "one-variable-data",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "The table shows the number of books that each of the $20$ members of a reading club finished in March.\n\n| Number of books | Number of members |\n|---|---|\n| $0$ | $3$ |\n| $1$ | $5$ |\n| $2$ | $7$ |\n| $3$ | $4$ |\n| $4$ | $1$ |\n\nWhat is the mean number of books finished per member in March?",
+  "instructionsMd": "Student-produced response. Enter your answer in the box. Do not enter symbols such as a percent sign, comma, or dollar sign. If your answer is a fraction that does not fit in the box, enter its decimal equivalent instead.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 1.75
+      }
+    ],
+    "acceptedStrings": [
+      "7/4",
+      "1.75"
+    ]
+  },
+  "explanationMd": "In a frequency table, each value counts as many times as its frequency. Multiply each number of books by the number of members who finished that many, add the products to get the total number of books, and divide by the number of members.\n\n$$0(3) + 1(5) + 2(7) + 3(4) + 4(1) = 0 + 5 + 14 + 12 + 4 = 35$$\n\nThe frequencies add to $3 + 5 + 7 + 4 + 1 = 20$ members, as the stem says. So the mean is\n\n$$\\frac{35}{20} = 1.75$$\n\nEnter $1.75$ or $7/4$.\n\nCheck that the answer is reasonable: most members finished $1$ or $2$ books, and the $3$ members with $0$ pull the mean below $2$.\n\nTwo slips are worth avoiding. Averaging the five values $0$ through $4$ gives $2$, which ignores how many members had each value; and averaging the frequencies gives $\\frac{20}{5} = 4$, which is the mean number of members per row, not books per member.",
+  "distractorRationale": {},
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "A table shows how many books each of 20 reading-club members finished in March: 3 members finished 0 books, 5 finished 1, 7 finished 2, 4 finished 3, and 1 finished 4. What is the mean number of books per member? Enter a number.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "sat-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Mean from a frequency table; values chosen so the mean is a terminating decimal that fits the entry box."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "sat-wave8-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "problem-solving",
+    "mean",
+    "frequency-table",
+    "student-produced-response"
+  ]
+}

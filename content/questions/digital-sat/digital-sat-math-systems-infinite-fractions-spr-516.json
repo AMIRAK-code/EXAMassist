@@ -1,0 +1,55 @@
+{
+  "id": "digital-sat-math-systems-infinite-fractions-spr-516",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "algebra",
+  "skillSlug": "systems-of-two-linear-equations",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "$$\\frac{1}{2}x + \\frac{2}{3}y = 5$$\n$$ax + 8y = b$$\n\nIn the system of equations above, $a$ and $b$ are constants. If the system has infinitely many solutions, what is the value of $a + b$?",
+  "instructionsMd": "Student-produced response. Enter your answer in the box. Do not enter symbols such as a percent sign, comma, or dollar sign.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 66
+      }
+    ],
+    "acceptedStrings": [
+      "66"
+    ]
+  },
+  "explanationMd": "A system of two linear equations has infinitely many solutions exactly when one equation is a constant multiple of the other: the two equations describe the same line.\n\nCompare the $y$-coefficients to find the multiplier. To turn $\\frac{2}{3}y$ into $8y$, multiply by $8 \\div \\frac{2}{3} = 12$. Multiply the **whole** first equation by $12$:\n\n$$12\\left(\\frac{1}{2}x\\right) + 12\\left(\\frac{2}{3}y\\right) = 12(5) \\;\\Rightarrow\\; 6x + 8y = 60$$\n\nMatching this with $ax + 8y = b$ gives $a = 6$ and $b = 60$, so\n\n$$a + b = 66$$\n\nCheck with ratios: $\\frac{a}{1/2} = \\frac{6}{1/2} = 12$, $\\frac{8}{2/3} = 12$, and $\\frac{b}{5} = \\frac{60}{5} = 12$. All three ratios agree, so the equations are the same line.\n\nThe common slip is multiplying only some terms by $12$, for example forgetting the right side and keeping $b = 5$, which gives $11$; that system has no solution, because the lines would be parallel but distinct.",
+  "distractorRationale": {},
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A system: one half x plus two thirds y equals 5, and a x plus 8 y equals b, where a and b are constants. The system has infinitely many solutions. Find a plus b. Enter a number.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "sat-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Infinitely-many-solutions condition for a system with fractional coefficients, requiring the solver to find the scale factor from the y-coefficients and apply it to every term."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "sat-wave8-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "algebra",
+    "system-of-equations",
+    "number-of-solutions",
+    "student-produced-response"
+  ]
+}

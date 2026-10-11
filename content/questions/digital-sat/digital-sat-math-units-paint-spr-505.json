@@ -1,0 +1,56 @@
+{
+  "id": "digital-sat-math-units-paint-spr-505",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "problem-solving-and-data-analysis",
+  "skillSlug": "ratios-rates-proportions-units",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A painter will apply two coats of paint to one rectangular wall that is $8$ yards long and $3$ yards high. One gallon of the paint covers $360$ square feet with one coat. How many gallons of paint does the painter need for the two coats? $(1 \\text{ yard} = 3 \\text{ feet})$",
+  "instructionsMd": "Student-produced response. Enter your answer in the box. Do not enter symbols such as a percent sign, comma, or dollar sign. If your answer is a fraction that does not fit in the box, enter its decimal equivalent instead.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 1.2
+      }
+    ],
+    "acceptedStrings": [
+      "6/5",
+      "1.2"
+    ]
+  },
+  "explanationMd": "Convert the lengths to feet **before** finding the area. Converting an area needs the conversion factor twice, because $1$ square yard is $3 \\times 3 = 9$ square feet; converting the side lengths first avoids that trap.\n\n$$8 \\text{ yd} = 24 \\text{ ft} \\qquad 3 \\text{ yd} = 9 \\text{ ft}$$\n\n$$\\text{Area} = 24 \\times 9 = 216 \\text{ square feet}$$\n\nTwo coats cover the wall twice: $2 \\times 216 = 432$ square feet of coverage. At $360$ square feet per gallon:\n\n$$\\frac{432}{360} = 1.2 \\text{ gallons}$$\n\nEnter $1.2$ or $6/5$.\n\nCheck: $1.2 \\times 360 = 432$, which is twice the wall's $216$ square feet.\n\nCommon slips: computing the area as $24$ square yards and multiplying by $3$ instead of $9$ gives $72$ square feet and $0.4$ gallons; forgetting the second coat gives $0.6$ gallons.",
+  "distractorRationale": {},
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A rectangular wall is 8 yards long and 3 yards high and needs two coats of paint. One gallon covers 360 square feet per coat, and 1 yard equals 3 feet. How many gallons are needed for the two coats? Enter a number.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "sat-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Unit conversion with an area, where the conversion factor must be applied to each dimension, followed by a rate; answer chosen to be a clean decimal."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "sat-wave8-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "problem-solving",
+    "unit-conversion",
+    "rates",
+    "student-produced-response"
+  ]
+}

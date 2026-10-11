@@ -1,0 +1,69 @@
+{
+  "id": "bocconi-ug-crit-courier-refund-promise-539",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-critical-thinking",
+  "skillSlug": "critical-thinking-interpret-text",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A courier company's website makes the following promise.\n\n> If your parcel is not delivered within three working days of collection, we will refund the delivery charge.\n\nIn which one of the following cases has the company failed to keep this promise?",
+  "instructionsMd": "Answer on the basis of the quoted promise alone.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "A parcel was delivered two working days after collection, and the delivery charge was refunded."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "A parcel was delivered four working days after collection, and the delivery charge was not refunded."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "A parcel was delivered five working days after collection, and the delivery charge was refunded."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "A parcel was delivered one working day after collection, and the delivery charge was not refunded."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "A promise of the form \"if late, then refund\" is broken in exactly one kind of case: the parcel is late **and** no refund is given. Every other combination keeps it.\n\nHere \"late\" means not delivered within three working days. The parcel delivered after four working days was late, so the company had to refund the charge; it did not, so the promise was broken.\n\n**How to check the answer.** Sort each case into the four possible combinations.\n\n- Late and refunded (five working days, refund): the promise is kept.\n- On time and not refunded (one working day, no refund): the promise says nothing about on-time parcels, so it is kept.\n- On time and refunded (two working days, refund): the company gave more than it promised. Being generous breaks nothing.\n- Late and not refunded (four working days, no refund): the only combination that breaks the promise.",
+  "distractorRationale": {
+    "a": "This reads the promise as if it also meant \"if the parcel is on time, there is no refund\". The promise only says what happens when a parcel is late; refunding an on-time parcel is generous, not a breach.",
+    "c": "The parcel was late, and the charge was refunded, which is exactly what the promise requires. A candidate who reacts to the delay alone, without checking whether the refund was paid, may pick this.",
+    "d": "The parcel arrived on time, so the promise did not require a refund. Choosing this treats a refund as owed in every case rather than only for late parcels."
+  },
+  "estimatedSeconds": 45,
+  "stimulusRef": null,
+  "accessibilityText": "A critical thinking question quoting a courier company's promise: if your parcel is not delivered within three working days of collection, we will refund the delivery charge. It asks in which case the company has failed to keep this promise. The four cases, in the order shown, are: delivered two working days after collection, charge refunded; delivered four working days after collection, charge not refunded; delivered five working days after collection, charge refunded; delivered one working day after collection, charge not refunded.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-verbal-author",
+    "aiAssisted": true,
+    "notes": "Original item on interpreting a conditional promise. Exactly one case pairs a late delivery with no refund; the distractors cover the other three combinations, including the generous refund that tempts a candidate who reads the conditional as a biconditional."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-verbal-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "conditional",
+    "precision-of-language"
+  ]
+}

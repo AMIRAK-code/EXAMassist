@@ -1,0 +1,73 @@
+{
+  "id": "bocconi-ug-numrsn-hotels-district-occupancy-536",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-numerical-reasoning",
+  "skillSlug": "numerical-reasoning-data-analysis",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Suppose that in July 2025 Brivio's occupancy had been as high as Lerna's, with every other figure in the table unchanged. By how many percentage points would the occupancy of the four towns taken together have been higher?",
+  "instructionsMd": "Use only the figures in the table. No calculator.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "7.5"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "10"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "about 14.6"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "30"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The occupancy of the four towns taken together is the total number of occupied rooms divided by the total number of rooms. It is **not** the average of the four percentages, because the towns have different numbers of rooms. So work in rooms, then convert back to a percentage at the end.\n\n**Extra occupied rooms.** Brivio's occupancy would rise from 55 to 85 per cent, 30 percentage points. On 900 rooms that is $900 \\times 0.30 = 270$ more occupied rooms. Nothing else changes.\n\n**Total rooms.** $600 + 900 + 400 + 800 = 2{,}700$.\n\n**Change in the combined rate.** $\\frac{270}{2{,}700} = 0.10$, that is 10 percentage points.\n\n**How to check the answer.** Compute both combined rates in full. Occupied rooms now: $510 + 495 + 360 + 480 = 1{,}845$, so $\\frac{1{,}845}{2{,}700} \\approx 68.3$ per cent. With Brivio at 85 per cent: $1{,}845 + 270 = 2{,}115$, and $\\frac{2{,}115}{2{,}700} \\approx 78.3$ per cent. The difference is 10 percentage points. A quicker check: Brivio has $\\frac{900}{2{,}700} = \\frac{1}{3}$ of all the rooms, so a 30-point rise in Brivio moves the combined rate by a third of 30, which is 10.",
+  "distractorRationale": {
+    "a": "This averages the four towns' percentages as if each town counted equally, so a 30-point rise in one town moves the average by 30 divided by 4. Brivio has a third of the district's rooms, not a quarter, so its weight is larger.",
+    "c": "This is the percentage increase in the number of occupied rooms, 270 out of 1,845, not the change in the occupancy rate in percentage points. It confuses a relative change with a difference between two rates.",
+    "d": "This is the rise in Brivio's own occupancy, from 55 to 85 per cent. Brivio holds only a third of the rooms, so the combined rate moves by much less."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "bocconi-ug-stim-lake-hotels-547",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying table of hotels in four lake towns in July 2025. It supposes Brivio's occupancy had been as high as Lerna's, 85 per cent instead of 55 per cent, with everything else unchanged, and asks by how many percentage points the occupancy of the four towns taken together would have been higher. The four choices, in the order shown, are 7.5; 10; about 14.6; and 30 percentage points. The explanation writes fractions such as 270 over 2,700.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-verbal-author",
+    "aiAssisted": true,
+    "notes": "Original weighted-average item on the original table bocconi-ug-stim-lake-hotels-547. The combined rate must be built from room counts; distractors are the unweighted average, the relative change in occupied rooms and the single town's own change."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-verbal-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "table-lake-hotels",
+    "weighted-average",
+    "percentage-points"
+  ]
+}

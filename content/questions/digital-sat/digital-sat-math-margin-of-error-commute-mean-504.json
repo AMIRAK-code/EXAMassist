@@ -1,0 +1,71 @@
+{
+  "id": "digital-sat-math-margin-of-error-commute-mean-504",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "problem-solving-and-data-analysis",
+  "skillSlug": "inference-from-sample-statistics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A transportation agency selected $120$ commuters at random from all the commuters in a city and recorded each one's one-way commute time. The mean commute time for the sample was $34$ minutes, with an associated margin of error of $2.5$ minutes. Which of the following is a plausible value for the mean one-way commute time, in minutes, of all commuters in the city?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$31$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$35$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$37$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$39$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "A margin of error gives a range of plausible values for the population mean: the sample mean minus the margin to the sample mean plus the margin.\n\n$$34 - 2.5 = 31.5 \\qquad 34 + 2.5 = 36.5$$\n\nSo plausible values for the mean commute time of all the city's commuters run from $31.5$ to $36.5$ minutes. Of the values offered, only $35$ lies in that range.\n\nCheck the others against the endpoints: $31$ is below $31.5$, $37$ is above $36.5$, and $39$ is well above it. The value $39$ comes from adding the margin of error twice ($34 + 5$), which doubles the width of the range.",
+  "distractorRationale": {
+    "a": "The lower end of the plausible range is $34 - 2.5 = 31.5$, and $31$ is below it; this comes from rounding the margin up to $3$ before subtracting.",
+    "c": "The upper end of the plausible range is $34 + 2.5 = 36.5$, and $37$ is above it; this comes from rounding the margin up to $3$ before adding.",
+    "d": "This adds the margin of error twice, $34 + 2(2.5) = 39$. The plausible range extends only one margin of error on each side of the sample mean, up to $36.5$."
+  },
+  "estimatedSeconds": 50,
+  "stimulusRef": null,
+  "accessibilityText": "A random sample of 120 of a city's commuters had a mean one-way commute time of 34 minutes, with a margin of error of 2.5 minutes. Which is a plausible value, in minutes, for the mean commute time of all the city's commuters? The choices are 31, 35, 37 and 39.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "sat-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Builds the plausible interval for a population mean from a sample mean and margin of error, with distractors just outside each endpoint."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "sat-wave8-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "problem-solving",
+    "margin-of-error",
+    "sample-mean"
+  ]
+}
