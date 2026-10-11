@@ -1,0 +1,76 @@
+{
+  "id": "tolc-i-prob-two-dice-different-faces-128",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-probability",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "An ordinary fair die with faces numbered $1$ to $6$ and a fair four-faced die with faces numbered $1$ to $4$ are rolled together. What is the probability that the two numbers shown add up to $8$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\dfrac{1}{6}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\dfrac{1}{8}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\dfrac{1}{9}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\dfrac{3}{10}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\dfrac{5}{36}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "List the equally likely outcomes as ordered pairs (six-faced die, four-faced die) and count the favourable ones.\n\n**Step 1 — all outcomes.** $6 \\cdot 4 = 24$ pairs, all equally likely.\n\n**Step 2 — favourable outcomes.** The four-faced die shows at most $4$, so the six-faced die must show at least $4$: $(4, 4)$, $(5, 3)$, $(6, 2)$. That is $3$ pairs; $(7, 1)$ is impossible.\n\n**Step 3 — the probability.** $\\frac{3}{24} = \\frac{1}{8}$.\n\n**Check.** Fix the four-faced die: whichever value $k$ it shows, the six-faced die must show $8 - k$, which is possible for $k = 2, 3, 4$ and not for $k = 1$. So $3$ of the $4$ values of $k$ each give probability $\\frac16$: $\\frac14\\cdot 3\\cdot\\frac16 = \\frac18$ ✓.",
+  "distractorRationale": {
+    "a": "Counts four pairs, including an impossible one such as a $7$ on the six-faced die with a $1$, giving $\\frac{4}{24}$.",
+    "c": "Treats the nine possible sums, $2$ to $10$, as equally likely; middle sums arise from more pairs than extreme ones.",
+    "d": "Divides the $3$ favourable pairs by $6 + 4 = 10$, adding the numbers of faces instead of multiplying them.",
+    "e": "Answers for two ordinary six-faced dice, where a sum of $8$ comes from $5$ of $36$ pairs."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": null,
+  "accessibilityText": "An ordinary fair die with faces numbered 1 to 6 and a fair four-faced die with faces numbered 1 to 4 are rolled together. What is the probability that the two numbers shown add up to 8? The five choices are: one sixth; one eighth; one ninth; three tenths; five thirty-sixths.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-math-b-author",
+    "aiAssisted": true,
+    "notes": "Tests building the sample space of two different dice and counting a sum. Original item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-math-b-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "dice",
+    "sample-space",
+    "classical-probability"
+  ]
+}
