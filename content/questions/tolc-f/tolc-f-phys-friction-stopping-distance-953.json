@@ -1,0 +1,76 @@
+{
+  "id": "tolc-f-phys-friction-stopping-distance-953",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "physics",
+  "domainSlug": "tolcf-physics",
+  "skillSlug": "tolcf-phys-mechanics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A $4.0\\ \\text{kg}$ box slides along a horizontal floor. Its speed is $6.0\\ \\text{m/s}$, and a constant friction force brings it to rest after $9.0\\ \\text{m}$. What is the magnitude of the friction force?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$16\\ \\text{N}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$2.0\\ \\text{N}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$4.0\\ \\text{N}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$72\\ \\text{N}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$8.0\\ \\text{N}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "**What to notice first.** Friction does negative work that removes all the kinetic energy, and the work of a constant force is force times distance.\n\n**The computation.** Initial kinetic energy: $\\tfrac12 m v^{2}=\\tfrac12\\cdot 4.0\\cdot 36=72\\ \\text{J}$. Setting $F\\cdot d=72\\ \\text{J}$ with $d=9.0\\ \\text{m}$ gives $F=\\dfrac{72}{9.0}=8.0\\ \\text{N}$.\n\n**How to check it.** Kinematics gives the same: $v^{2}=2ad$, so $a=\\dfrac{36}{18}=2.0\\ \\text{m/s}^{2}$ and $F=ma=4.0\\cdot 2.0=8.0\\ \\text{N}$.",
+  "distractorRationale": {
+    "a": "Takes the kinetic energy as $m v^{2}=144\\ \\text{J}$, forgetting the factor $\\tfrac12$.",
+    "b": "Finds the deceleration, $2.0\\ \\text{m/s}^{2}$, and reports it without multiplying by the mass.",
+    "c": "Divides the kinetic energy by $2d$ instead of $d$, mixing the work formula with $v^{2}=2ad$.",
+    "d": "Stops at the kinetic energy, $72\\ \\text{J}$, and never divides by the stopping distance."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": null,
+  "accessibilityText": "A 4.0 kilogram box slides on a horizontal floor at 6.0 metres per second, and a constant friction force stops it in 9.0 metres. Find the magnitude of the friction force. The five choices are: 16 newtons; 2.0 newtons; 4.0 newtons; 72 newtons; 8.0 newtons.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave8-mpl-author",
+    "aiAssisted": true,
+    "notes": "Original item on the work-energy theorem with a constant friction force, checkable by kinematics. Distractors: missing one half, reporting the acceleration, dividing by twice the distance, stopping at the energy."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave8-mpl-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "work-energy",
+    "friction",
+    "newtons-laws"
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "id": "tolc-f-alg-rational-inequality-one-947",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolcf-mathematics",
+  "skillSlug": "tolcf-math-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "For which real values of $x$ is $\\dfrac{x-3}{x+2}\\le 1$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "For every real $x$ except $x=-2$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "For $x\\ge -2$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "For $x>-2$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "For $x<-2$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "For no real $x$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "**What to notice first.** You may not multiply both sides by $x+2$, because its sign is unknown. Move everything to one side instead.\n\n**The computation.**\n\n$$\\frac{x-3}{x+2}-1=\\frac{x-3-(x+2)}{x+2}=\\frac{-5}{x+2}\\le 0.$$\n\nThe numerator is the constant $-5$, so the fraction is never $0$ and is negative exactly when $x+2>0$. The solution is $x>-2$; at $x=-2$ the expression is undefined.\n\n**How to check it.** At $x=0$: $\\tfrac{-3}{2}\\le 1$ holds. At $x=-3$: $\\tfrac{-6}{-1}=6$, which is not $\\le 1$, so values below $-2$ really are excluded.",
+  "distractorRationale": {
+    "a": "Multiplies both sides by $x+2$ without considering its sign, getting $x-3\\le x+2$, which is always true. When $x+2<0$ the inequality sign must flip.",
+    "b": "Includes $x=-2$, where the denominator is zero and the expression does not exist.",
+    "d": "Gets the sign of $\\tfrac{-5}{x+2}$ backwards: the fraction is negative when $x+2$ is positive, not negative.",
+    "e": "Notices that $x$ cancels after rearranging and concludes nothing is left to solve, missing that the sign of $x+2$ still decides the inequality."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "For which real values of x is the fraction x minus 3 over x plus 2 less than or equal to 1? The five choices are: for every real x except x equals minus 2; for x greater than or equal to minus 2; for x greater than minus 2; for x less than minus 2; for no real x.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave8-mpl-author",
+    "aiAssisted": true,
+    "notes": "Original item on a rational inequality in which multiplying through by the denominator gives a false 'always true'. Distractors capture the sign, endpoint and cross-multiplication slips."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave8-mpl-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "rational-inequality",
+    "sign-analysis"
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "id": "tolc-f-logic-contrapositive-fridge-956",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "logic",
+  "domainSlug": "tolcf-logic",
+  "skillSlug": "tolcf-logic-propositions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "The leaflet of an eye drop states: \"If a bottle is kept in the fridge, then it stays effective until its expiry date.\" Which of the following statements is logically equivalent to the leaflet's statement?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "If a bottle stays effective until its expiry date, then it was kept in the fridge."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "If a bottle is not kept in the fridge, then it does not stay effective until its expiry date."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "If a bottle does not stay effective until its expiry date, then it was not kept in the fridge."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Keeping a bottle in the fridge is necessary for it to stay effective until its expiry date."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Some bottles kept in the fridge do not stay effective until their expiry date."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "**What to notice first.** A statement \"if P then Q\" is equivalent to its contrapositive, \"if not Q then not P\", and to nothing else among the usual rewordings.\n\n**Apply it.** Here P is \"kept in the fridge\" and Q is \"stays effective until expiry\". The contrapositive is \"if a bottle does not stay effective until expiry, it was not kept in the fridge\". This is equivalent: a bottle that lost effectiveness yet had been in the fridge would break the original rule.\n\n**How to check the others.** The converse (\"if Q then P\") and the inverse (\"if not P then not Q\") say something new about bottles kept *outside* the fridge, which the leaflet does not mention. Saying the fridge is *necessary* for effectiveness is the converse in other words. And \"some fridge bottles fail\" contradicts the leaflet rather than restating it.",
+  "distractorRationale": {
+    "a": "This is the converse. The leaflet allows a bottle kept out of the fridge to stay effective too, so this does not follow from it.",
+    "b": "This is the inverse. The leaflet says nothing about what happens to bottles not kept in the fridge.",
+    "d": "\"P is necessary for Q\" means \"if Q then P\", which is the converse again. The leaflet makes the fridge sufficient, not necessary.",
+    "e": "This is the negation of the leaflet's statement: it is true exactly when the leaflet's rule is false."
+  },
+  "estimatedSeconds": 50,
+  "stimulusRef": null,
+  "accessibilityText": "A text question. An eye drop leaflet states: if a bottle is kept in the fridge, then it stays effective until its expiry date. Which statement is logically equivalent? The five choices are: if a bottle stays effective until its expiry date, then it was kept in the fridge; if a bottle is not kept in the fridge, then it does not stay effective until its expiry date; if a bottle does not stay effective until its expiry date, then it was not kept in the fridge; keeping a bottle in the fridge is necessary for it to stay effective until its expiry date; some bottles kept in the fridge do not stay effective until their expiry date.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave8-mpl-author",
+    "aiAssisted": true,
+    "notes": "Original item on the contrapositive of a conditional. Distractors are the converse, the inverse, the converse in necessary-condition wording, and the negation."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave8-mpl-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "contrapositive",
+    "conditional",
+    "necessary-sufficient"
+  ]
+}
