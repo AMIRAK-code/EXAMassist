@@ -15,33 +15,33 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "It is plausible that the percentage of all Town P residents who support the bike lane is greater than the percentage of all Town Q residents who support it."
+      "textMd": "The percentage of all Town Q residents who support the bike lane is greater than the percentage of all Town P residents who support it."
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "The percentage of all Town Q residents who support the bike lane is greater than the percentage of all Town P residents who support it."
+      "textMd": "It is plausible that the percentage of all Town P residents who support the bike lane is greater than the percentage of all Town Q residents who support it."
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "More than half of all Town Q residents support the bike lane."
+      "textMd": "Fewer than half of all Town P residents support the bike lane."
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "Fewer than half of all Town P residents support the bike lane."
+      "textMd": "More than half of all Town Q residents support the bike lane."
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "b"
   },
   "explanationMd": "Turn each estimate into the range of plausible values for the whole town before comparing anything.\n\n$$\\text{Town P: } 48\\% \\pm 3 \\;\\Rightarrow\\; 45\\% \\text{ to } 51\\%$$\n\n$$\\text{Town Q: } 52\\% \\pm 4 \\;\\Rightarrow\\; 48\\% \\text{ to } 56\\%$$\n\nA statement about the towns is supported only if it holds for **every** plausible value, and a statement that something is *plausible* is supported if it holds for **some** pair of plausible values.\n\n- The two ranges overlap from $48\\%$ to $51\\%$. Town P could plausibly be at $50\\%$ while Town Q is at $49\\%$, so it is plausible that Town P's percentage is the greater one. That is the supported statement.\n- Because of that same overlap, the data do not establish that Town Q's percentage is greater than Town P's, even though Town Q's sample percentage is higher.\n- Town Q's range includes values below $50\\%$, so it is not established that more than half of Town Q supports the lane.\n- Town P's range includes values above $50\\%$ (up to $51\\%$), so it is not established that fewer than half of Town P supports it.\n\nThe lesson: when two margin-of-error ranges overlap, the samples do not show which population percentage is larger.",
   "distractorRationale": {
-    "b": "This compares only the sample percentages. The plausible ranges, $45\\%$ to $51\\%$ for Town P and $48\\%$ to $56\\%$ for Town Q, overlap, so the data do not show which town's true percentage is higher.",
-    "c": "Town Q's plausible range is $48\\%$ to $56\\%$, which includes values below $50\\%$, so the results do not establish that more than half of Town Q supports the lane.",
-    "d": "Town P's plausible range is $45\\%$ to $51\\%$, which includes values above $50\\%$, so the results do not establish that fewer than half of Town P supports the lane."
+    "a": "This compares only the sample percentages. The plausible ranges, $45\\%$ to $51\\%$ for Town P and $48\\%$ to $56\\%$ for Town Q, overlap, so the data do not show which town's true percentage is higher.",
+    "d": "Town Q's plausible range is $48\\%$ to $56\\%$, which includes values below $50\\%$, so the results do not establish that more than half of Town Q supports the lane.",
+    "c": "Town P's plausible range is $45\\%$ to $51\\%$, which includes values above $50\\%$, so the results do not establish that fewer than half of Town P supports the lane."
   },
   "estimatedSeconds": 90,
   "stimulusRef": null,
@@ -58,7 +58,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

@@ -20,28 +20,28 @@
     {
       "id": "b",
       "label": "B",
-      "textMd": "$\\frac{13}{16}$"
+      "textMd": "$\\frac{13}{35}$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "$\\frac{13}{35}$"
+      "textMd": "$\\frac{3}{5}$"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "$\\frac{3}{5}$"
+      "textMd": "$\\frac{13}{16}$"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "b"
+    "optionId": "d"
   },
   "explanationMd": "Two conditional probabilities appear, and they have different denominators. The given one is out of the **failed** parts; the one asked for is out of the **night-shift** parts. Use the first to fill in the table, then compute the second.\n\n**Fill in the missing cell.** $60\\%$ of the $50$ failed parts came from the night shift:\n\n$$0.6 \\times 50 = 30 \\text{ night-shift parts failed}$$\n\nThe night shift made $160$ parts, so $160 - 30 = 130$ of them passed. (For completeness, the day shift had $50 - 30 = 20$ failures and $240 - 20 = 220$ passes, and $220 + 130 = 350$ matches the Passed total.)\n\n**Answer the question asked.** Out of the $160$ night-shift parts, $130$ passed:\n\n$$\\frac{130}{160} = \\frac{13}{16}$$\n\nThe distractors each use the right numbers with the wrong denominator or the wrong cell: $\\frac{3}{16}$ is the probability that a night-shift part **failed**; $\\frac{13}{35}$ is $\\frac{130}{350}$, the probability that a part that **passed** came from the night shift; and $\\frac{3}{5}$ is the given probability, whose denominator is the failed parts.",
   "distractorRationale": {
     "a": "This is $\\frac{30}{160}$, the probability that a night-shift part **failed**. The question asks for the night-shift parts that passed, $160 - 30 = 130$.",
-    "c": "This is $\\frac{130}{350}$, which divides by all the parts that passed. That is the probability that a part that passed came from the night shift; the question conditions on the night shift, so the denominator is $160$.",
-    "d": "This repeats the given probability, $0.6$, which is out of the $50$ failed parts. It describes where failures came from, not how night-shift parts fared."
+    "b": "This is $\\frac{130}{350}$, which divides by all the parts that passed. That is the probability that a part that passed came from the night shift; the question conditions on the night shift, so the denominator is $160$.",
+    "c": "This repeats the given probability, $0.6$, which is out of the $50$ failed parts. It describes where failures came from, not how night-shift parts fared."
   },
   "estimatedSeconds": 120,
   "stimulusRef": null,
@@ -58,7 +58,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

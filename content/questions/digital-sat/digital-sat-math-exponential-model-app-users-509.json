@@ -15,17 +15,17 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$y = 2{,}000(1.3)^x$"
+      "textMd": "$y = 2{,}600(1.3)^x$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$y = 2{,}000 + 600x$"
+      "textMd": "$y = 2{,}000(1.3)^x$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "$y = 2{,}600(1.3)^x$"
+      "textMd": "$y = 2{,}000 + 600x$"
     },
     {
       "id": "d",
@@ -35,12 +35,12 @@
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "b"
   },
   "explanationMd": "Decide first whether the data change by a constant **difference** (linear) or a constant **ratio** (exponential).\n\nDifferences: $2{,}600 - 2{,}000 = 600$, $3{,}380 - 2{,}600 = 780$, $4{,}394 - 3{,}380 = 1{,}014$. They are growing, so the data are not linear.\n\nRatios: $\\frac{2{,}600}{2{,}000} = 1.3$, $\\frac{3{,}380}{2{,}600} = 1.3$, $\\frac{4{,}394}{3{,}380} = 1.3$. Each month the number of users is multiplied by $1.3$, so an exponential model fits.\n\nAn exponential model has the form $y = a(b)^x$, where $a$ is the value at $x = 0$ and $b$ is the growth factor. Here $a = 2{,}000$ and $b = 1.3$:\n\n$$y = 2{,}000(1.3)^x$$\n\nCheck at $x = 3$: $2{,}000 \\times 1.3^3 = 2{,}000 \\times 2.197 = 4{,}394$, matching the table.\n\nNote the difference between the growth **rate**, $30\\%$ or $0.3$, and the growth **factor**, $1 + 0.3 = 1.3$. The base of the power must be the factor.",
   "distractorRationale": {
-    "b": "This uses only the first difference, $600$, as a constant rate. The differences grow ($600$, $780$, $1{,}014$), so a linear model predicts $3{,}200$ and $3{,}800$ instead of $3{,}380$ and $4{,}394$.",
-    "c": "This uses the value at $x = 1$ as the starting value. At $x = 0$ the model must give $2{,}000$, but this one gives $2{,}600$.",
+    "c": "This uses only the first difference, $600$, as a constant rate. The differences grow ($600$, $780$, $1{,}014$), so a linear model predicts $3{,}200$ and $3{,}800$ instead of $3{,}380$ and $4{,}394$.",
+    "a": "This uses the value at $x = 1$ as the starting value. At $x = 0$ the model must give $2{,}000$, but this one gives $2{,}600$.",
     "d": "This uses the growth rate, $0.3$, as the base. A base less than $1$ models decay; the monthly growth factor is $1 + 0.3 = 1.3$."
   },
   "estimatedSeconds": 75,
@@ -58,7 +58,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,
