@@ -15,22 +15,22 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$1.3\\times 10^{6}\\ \\text{kg/m}^{3}$"
+      "textMd": "$0.13\\ \\text{kg/m}^{3}$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$1.3\\times 10^{-3}\\ \\text{kg/m}^{3}$"
+      "textMd": "$1.3\\times 10^{6}\\ \\text{kg/m}^{3}$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "$0.13\\ \\text{kg/m}^{3}$"
+      "textMd": "$1.3\\times 10^{3}\\ \\text{kg/m}^{3}$"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "$1.3\\times 10^{3}\\ \\text{kg/m}^{3}$"
+      "textMd": "$1.3\\times 10^{-3}\\ \\text{kg/m}^{3}$"
     },
     {
       "id": "e",
@@ -40,13 +40,13 @@
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "d"
+    "optionId": "c"
   },
   "explanationMd": "**Method.** Convert the numerator and the denominator separately. $1\\ \\text{g}=10^{-3}\\ \\text{kg}$, and since $1\\ \\text{cm}=10^{-2}\\ \\text{m}$, $1\\ \\text{cm}^{3}=(10^{-2})^{3}\\ \\text{m}^{3}=10^{-6}\\ \\text{m}^{3}$. So\n\n$$1.3\\ \\frac{\\text{g}}{\\text{cm}^{3}}=1.3\\cdot\\frac{10^{-3}\\ \\text{kg}}{10^{-6}\\ \\text{m}^{3}}=1.3\\times 10^{3}\\ \\frac{\\text{kg}}{\\text{m}^{3}}.$$\n\n**How to check it.** Water, $1\\ \\text{g/cm}^{3}$, is $1000\\ \\text{kg/m}^{3}$ (a cubic metre of water has a mass of one tonne). A syrup $1.3$ times as dense is $1300\\ \\text{kg/m}^{3}$.",
   "distractorRationale": {
-    "a": "Converts only the volume, $\\text{cm}^{3}\\to\\text{m}^{3}$, and leaves the mass in grams: $1.3\\times 10^{6}$ is the density in $\\text{g/m}^{3}$.",
-    "b": "Converts only the mass, $\\text{g}\\to\\text{kg}$, and leaves the volume in cubic centimetres: this is the density in $\\text{kg/cm}^{3}$.",
-    "c": "Uses $1\\ \\text{m}^{3}=100\\ \\text{cm}^{3}$, applying the length factor $10^{2}$ instead of cubing it.",
+    "b": "Converts only the volume, $\\text{cm}^{3}\\to\\text{m}^{3}$, and leaves the mass in grams: $1.3\\times 10^{6}$ is the density in $\\text{g/m}^{3}$.",
+    "d": "Converts only the mass, $\\text{g}\\to\\text{kg}$, and leaves the volume in cubic centimetres: this is the density in $\\text{kg/cm}^{3}$.",
+    "a": "Uses $1\\ \\text{m}^{3}=100\\ \\text{cm}^{3}$, applying the length factor $10^{2}$ instead of cubing it.",
     "e": "Confuses the cubic metre with the litre: $1.3\\ \\text{g/cm}^{3}$ is $1.3\\ \\text{kg/L}$, but a cubic metre holds $1000$ litres."
   },
   "estimatedSeconds": 40,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": ""
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,
