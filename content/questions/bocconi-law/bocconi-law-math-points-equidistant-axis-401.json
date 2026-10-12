@@ -7,7 +7,7 @@
   "skillSlug": "law-math-analytic-geometry-points",
   "subskillSlug": null,
   "responseType": "single_select",
-  "difficulty": "hard",
+  "difficulty": "medium",
   "difficultyBasis": "editorial",
   "stemMd": "In the Cartesian plane, consider the points $A(1,\\,4)$ and $B(7,\\,2)$. The point $P$ lies on the $x$-axis and is at the same distance from $A$ as from $B$. What are the coordinates of $P$?",
   "instructionsMd": null,
@@ -55,12 +55,18 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-law-wave8-author",
-    "reviewer": null,
-    "reviewedOn": null,
-    "independentSolve": null,
+    "reviewer": "blind-reviewer-wave8-final-quant-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-final-quant-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "(x-1)^2+16 = (x-7)^2+4 gives 12x = 36, x = 3. Check: PA^2 = 4+16 = 20 = 16+4 = PB^2. (4,0) is the midpoint's x; (5,0) and (13,0) do not satisfy the equation. [A second, separate blind solve (blind-reviewer-wave8-final-quant-run1) reached the same answer: (x-1)^2+16=(x-7)^2+4 gives 12x=36, so x=3. (4,0) is the projection of the midpoint, and (5,0) and (13,0) fail the distance check.]"
+    },
     "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
-  "state": "in_review",
+  "state": "published",
   "quarantine": null,
   "tags": [
     "mathematics",
