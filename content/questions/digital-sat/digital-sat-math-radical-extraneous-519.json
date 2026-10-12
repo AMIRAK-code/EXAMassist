@@ -55,12 +55,18 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "sat-wave8-math-author",
-    "reviewer": null,
-    "reviewedOn": null,
-    "independentSolve": null,
+    "reviewer": "blind-reviewer-wave8-sat-math-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-sat-math-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Squaring: x^2 - 11x + 18 = 0, x = 2 or 9. x=9: sqrt16 = 4 = 4 ok; x=2: sqrt9 = 3 != -3, extraneous. Solution set {9}; {2,9} keeps the extraneous root, {-9,-2} is a sign error. [A second, separate blind solve (blind-reviewer-wave8-sat-math-run1) reached the same answer: Squaring: x+7 = x^2 - 10x + 25, x^2 - 11x + 18 = 0, x = 2 or 9. x=2 gives 3 = -3 (extraneous); x=9 gives 4 = 4. {2,9} keeps the extraneous root; {2} keeps only it; {-9,-2} is a sign error.]"
+    },
     "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
-  "state": "in_review",
+  "state": "published",
   "quarantine": null,
   "tags": [
     "math",
