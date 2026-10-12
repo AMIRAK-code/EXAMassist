@@ -8,6 +8,7 @@ published". Run everything from the repository root.
 | --- | --- |
 | `qa-scan.mjs [exam...]` | Finds damage schema validation cannot see: control characters and tabs where a TeX backslash was eaten, TeX commands without their backslash, unbalanced `$`, newlines inside maths, option counts other than five on the PoliTo and TOLC exams. |
 | `render-check.ts [exam...]` (tsx) | Renders every maths-bearing field through the site's own `renderMarkdown` and lists any that fail. `render-errors.ts <file...>` prints the failing spans. |
+| `skill-coverage.ts [exam...]` (tsx) | Published and in-review items per declared skill, including skills with none, to aim an authoring wave. |
 | `cue-scan.mjs <exam...>` | Answer-length cueing: how often the key is the longest choice, and items where it is at least 30% longer than the next. |
 | `numeric-order-scan.mjs` | Numeric choice sets not in ascending order by true value. |
 | `two-part-positions.mjs` | Where each blank's correct answer sits in two-part items (position cue). |
