@@ -55,12 +55,18 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-ug-wave8-math-author",
-    "reviewer": null,
-    "reviewedOn": null,
-    "independentSolve": null,
+    "reviewer": "blind-reviewer-wave8-bocug-math-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-bocug-math-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "2cos^2x - cos x - 1 = 0 gives cos x = 1 or -1/2, i.e. x = 0, 2pi/3, 4pi/3 in [0,2pi): 3 solutions. 4 would double count x=0/2pi (excluded); 2 forgets cos x=1. [A second, separate blind solve (blind-reviewer-wave8-bocug-math-run1) reached the same answer: 2cos^2x-cosx-1=0 gives cosx=1 (x=0) or cosx=-1/2 (x=2pi/3, 4pi/3), so there are 3 solutions in [0,2pi). 4 would count 2pi, which is excluded, and 2 forgets x=0.]"
+    },
     "notes": "Author's uniqueness check: the roots are cos x = 1 and cos x = -1/2, giving exactly x = 0, 2 pi/3 and 4 pi/3 on the half-open interval; checked numerically on a fine grid. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
-  "state": "in_review",
+  "state": "published",
   "quarantine": null,
   "tags": [
     "trigonometric-equations",

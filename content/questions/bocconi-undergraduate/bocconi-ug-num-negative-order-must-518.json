@@ -55,12 +55,18 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-ug-wave8-math-author",
-    "reviewer": null,
-    "reviewedOn": null,
-    "independentSolve": null,
+    "reviewer": "blind-reviewer-wave8-bocug-math-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-bocug-math-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "With |a|>|b|>0, a^2>b^2 always. Counterexample a=-2,b=-1: 1/a=-0.5 > 1/b=-1 (fails B), ab=2 > b^2=1 (fails C), a/b=2>1 (fails D). [A second, separate blind solve (blind-reviewer-wave8-bocug-math-run1) reached the same answer: |a|>|b|, so a^2>b^2. With a=-2 and b=-1: 1/a=-0.5 is not less than 1/b=-1; ab=2 is not less than b^2=1, and in general ab-b^2=b(a-b)>0; and a/b=2 is not less than 1. Only A always holds.]"
+    },
     "notes": "Author's uniqueness check: under a < b < 0 the keyed statement always holds and each of the other three is always false (shown algebraically in the explanation), so exactly one choice must be true."
   },
-  "state": "in_review",
+  "state": "published",
   "quarantine": null,
   "tags": [
     "inequalities",

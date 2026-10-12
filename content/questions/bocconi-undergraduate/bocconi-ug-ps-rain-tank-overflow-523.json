@@ -55,12 +55,18 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-ug-wave8-math-author",
-    "reviewer": null,
-    "reviewedOn": null,
-    "independentSolve": null,
+    "reviewer": "blind-reviewer-wave8-bocug-math-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-bocug-math-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Rain volume 15*8*0.012 = 1.44 m^3 = 1440 L; free space 2000-600 = 1400 L; overflow 40 L. 1440 is total rain, 1400 the spare capacity, 0 assumes it fits. [A second, separate blind solve (blind-reviewer-wave8-bocug-math-run1) reached the same answer: Rain volume is 15*8*0.012=1.44 m^3=1440 L, and free capacity is 2000-600=1400 L, so 40 L overflows. 1440 is the total rainfall, 1400 the free capacity, and 0 ignores the starting volume.]"
+    },
     "notes": "Author's uniqueness check: 120 m^2 * 0.012 m = 1.44 m^3 = 1440 L, and 600 + 1440 - 2000 = 40 L exactly; the distractors are a wrong cubic-metre factor, the free space and the total rainfall. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
-  "state": "in_review",
+  "state": "published",
   "quarantine": null,
   "tags": [
     "word-problem",
