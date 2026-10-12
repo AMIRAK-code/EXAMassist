@@ -61,12 +61,18 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "tolc-f-wave8-mpl-author",
-    "reviewer": null,
-    "reviewedOn": null,
-    "independentSolve": null,
+    "reviewer": "blind-reviewer-wave8-tolcf-mpl-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolcf-mpl-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Combine: log2[x(x-2)]=3 so x^2-2x-8=0, x=4 or x=-2; domain needs x>2, so only x=4. x=-2 (and the pair -2,4) fails the domain; x=5 gives 15 and x=3 gives 3, not 8. [A second, separate blind solve (blind-reviewer-wave8-tolcf-mpl-run1) reached the same answer: Domain needs x>2; log2[x(x-2)]=3 gives x^2-2x-8=0, x=4 or x=-2, and -2 is outside the domain, so only x=4. x=5 gives log2(15), x=3 gives log2(3); options with -2 ignore the domain.]"
+    },
     "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
-  "state": "in_review",
+  "state": "published",
   "quarantine": null,
   "tags": [
     "logarithmic-equation",
