@@ -55,12 +55,18 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-ug-wave8-math-author",
-    "reviewer": null,
-    "reviewedOn": null,
-    "independentSolve": null,
+    "reviewer": "blind-reviewer-wave8-bocug-math-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-bocug-math-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "All subsets 2^7=128 minus the empty set and 7 singletons = 120. 127 excludes only the empty set, 128 excludes nothing, 21 counts only exactly-two pizzas. [A second, separate blind solve (blind-reviewer-wave8-bocug-math-run1) reached the same answer: There are 2^7=128 subsets in all. Removing the empty set and the 7 singletons leaves 120. 127 removes only the empty set, 128 counts every subset, and 21 counts only the 2-topping pizzas.]"
+    },
     "notes": "Author's uniqueness check: 2^7 - 1 - 7 = 120, equal to the sum of C(7,k) for k = 2 to 7; the distractors are C(7,2), 2^7 - 1 and 2^7. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
-  "state": "in_review",
+  "state": "published",
   "quarantine": null,
   "tags": [
     "subsets",
