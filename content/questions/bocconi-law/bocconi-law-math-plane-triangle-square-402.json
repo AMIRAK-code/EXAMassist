@@ -1,0 +1,73 @@
+{
+  "id": "bocconi-law-math-plane-triangle-square-402",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-mathematics",
+  "skillSlug": "law-math-plane-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A right-angled triangle has legs of $9$ cm and $12$ cm. A square has the same perimeter as the triangle. What is the area of the square?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$324$ cm²"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$81$ cm²"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$225$ cm²"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$54$ cm²"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The triangle's perimeter needs all three sides, so start with the side that is not given.\n\n**Find the hypotenuse.** By Pythagoras,\n\n$$\\sqrt{9^2 + 12^2} = \\sqrt{81 + 144} = \\sqrt{225} = 15 \\text{ cm}$$\n\n**Perimeter of the triangle.** $9 + 12 + 15 = 36$ cm.\n\n**Side and area of the square.** A square's perimeter is four times its side, so the side is $36 \\div 4 = 9$ cm and the area is $9^2 = 81$ cm².\n\n**How to check.** $9$–$12$–$15$ is three times the $3$–$4$–$5$ triangle, so the hypotenuse is right. Then a square of side $9$ has perimeter $4 \\times 9 = 36$, matching the triangle's $36$.",
+  "distractorRationale": {
+    "d": "This is the area of the triangle, $\\frac{1}{2} \\times 9 \\times 12 = 54$. The question links the two shapes through their perimeters, not their areas.",
+    "c": "This is $15^2$, the area of a square built on the hypotenuse. The hypotenuse is only one of the three sides that make up the perimeter.",
+    "a": "This is $18^2$: the perimeter $36$ was divided by $2$ instead of by $4$ to get the side. A square has four equal sides, so the side is a quarter of the perimeter."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "A right-angled triangle has legs of 9 centimetres and 12 centimetres. A square has the same perimeter as the triangle. The question asks for the area of the square. The four answer options are: 54 square centimetres; 81 square centimetres; 225 square centimetres; 324 square centimetres.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave8-author",
+    "aiAssisted": true,
+    "notes": "Original item on plane-geometry formulas for triangles and squares: Pythagoras, perimeter and area in sequence. Numbers chosen so every step is exact without a calculator."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave8-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "mathematics",
+    "plane-geometry",
+    "pythagoras",
+    "perimeter",
+    "area",
+    "no-calculator"
+  ]
+}

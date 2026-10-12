@@ -1,0 +1,72 @@
+{
+  "id": "bocconi-law-logic-trainee-assessments-418",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-data-propositions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Each of a law firm's 40 trainees sat three assessments: drafting, advocacy and ethics. The firm reports exactly the following:\n\n- 32 trainees passed drafting.\n- 30 trainees passed advocacy.\n- 28 trainees passed ethics.\n\nWhich of the following must be true?",
+  "instructionsMd": "Use the reported data only.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "At least 20 trainees passed both advocacy and ethics."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "At least 10 trainees passed all three assessments."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Exactly 10 trainees passed all three assessments."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "At least one trainee failed all three assessments."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Count the **failures**, not the passes: a trainee misses out on \"passed all three\" only by failing at least one assessment.\n\n**Failures per assessment.** Drafting: $40 - 32 = 8$. Advocacy: $40 - 30 = 10$. Ethics: $40 - 28 = 12$. That is $8 + 10 + 12 = 30$ failures in all.\n\n**Lower bound for passing all three.** Thirty failures can touch at most 30 different trainees (fewer, if some trainee fails more than once). So at least $40 - 30 = 10$ trainees failed nothing, that is, passed all three.\n\n**The bound can be reached.** If the 30 failures fall on 30 different trainees, exactly 10 pass everything. So 10 is the true minimum.\n\n**How to check the other statements.** Each fails in a case that fits the data:\n\n- In the case just described, every trainee fails at most one assessment, so nobody fails all three.\n- Advocacy and ethics: their $10 + 12 = 22$ failures can fall on 22 different trainees, leaving only $40 - 22 = 18$ who passed both — fewer than 20.\n- \"Exactly 10\" fails because the number can be much higher: if all 28 ethics passers also passed drafting and advocacy, 28 trainees passed all three.\n\nOnly \"at least 10 passed all three\" holds in every case.",
+  "distractorRationale": {
+    "a": "The guaranteed overlap of advocacy and ethics is smaller than this. Their failures, 10 and 12, can fall on 22 different trainees, leaving only 18 who passed both. Twenty would follow only if the failures were forced to overlap, which nothing in the data requires.",
+    "d": "The 30 failures can be spread so that no trainee fails more than one assessment, in which case nobody fails all three. Nothing in the data forces anyone to fail everything.",
+    "c": "Ten is the minimum, not a fixed value. If the ethics passers also passed the other two assessments, as many as 28 trainees could have passed all three, so \"exactly 10\" is not guaranteed."
+  },
+  "estimatedSeconds": 130,
+  "stimulusRef": null,
+  "accessibilityText": "A data-propositions logic question. Each of a law firm's 40 trainees sat three assessments, drafting, advocacy and ethics. 32 trainees passed drafting, 30 passed advocacy and 28 passed ethics. The question asks which statement must be true. The four answer options are: at least 20 trainees passed both advocacy and ethics; at least one trainee failed all three assessments; at least 10 trainees passed all three assessments; exactly 10 trainees passed all three assessments.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave8-author",
+    "aiAssisted": true,
+    "notes": "Original data-propositions item on guaranteed overlaps among three sets, solved by counting failures. Distractors test a mis-computed pairwise bound, an unforced existence claim and a minimum mistaken for an exact value. Firm and figures are invented."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave8-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "data-propositions",
+    "overlapping-sets",
+    "bounds",
+    "no-calculator"
+  ]
+}

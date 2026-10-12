@@ -1,0 +1,72 @@
+{
+  "id": "bocconi-law-math-ordering-two-negatives-405",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-mathematics",
+  "skillSlug": "law-math-real-number-ordering",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The real numbers $a$ and $b$ satisfy $a < b < 0$. Which of the following inequalities is true for **every** such pair?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$ab < b^2$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$a^2 > b^2$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\frac{a}{b} < 1$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\frac{1}{a} < \\frac{1}{b}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Two rules about inequalities do all the work: multiplying both sides by a **negative** number reverses the inequality, and multiplying by a **positive** number keeps it.\n\n**Squares.** Since $a < b < 0$, the number $a$ is further from zero than $b$, so $|a| > |b|$, and squaring two non-negative numbers keeps their order: $a^2 = |a|^2 > |b|^2 = b^2$. Formally: multiply $a < b$ by $a$ (negative, so reverse) to get $a^2 > ab$, and multiply $a < b$ by $b$ (negative, so reverse) to get $ab > b^2$. Chaining, $a^2 > ab > b^2$.\n\n**The other three all fail, always.**\n\n- Dividing $a < b$ by the positive number $ab$ keeps the order and gives $\\frac{1}{b} < \\frac{1}{a}$, which is the opposite of $\\frac{1}{a} < \\frac{1}{b}$.\n- The chain above shows $ab > b^2$, the opposite of $ab < b^2$.\n- Dividing $a < b$ by the negative number $b$ reverses the order and gives $\\frac{a}{b} > 1$, the opposite of $\\frac{a}{b} < 1$.\n\n**How to check.** Try $a = -2$, $b = -1$. Then $a^2 = 4 > 1 = b^2$; $\\frac{1}{a} = -0.5$ is greater than $\\frac{1}{b} = -1$; $ab = 2$ is greater than $b^2 = 1$; and $\\frac{a}{b} = 2$ is greater than $1$. Only the inequality between the squares holds, exactly as the general argument says.",
+  "distractorRationale": {
+    "d": "This assumes that taking reciprocals keeps the order. For two numbers of the same sign it reverses it: with $a = -2$ and $b = -1$, $\\frac{1}{a} = -\\frac{1}{2}$ is greater than $\\frac{1}{b} = -1$.",
+    "a": "This comes from multiplying $a < b$ by $b$ without reversing the inequality. Because $b$ is negative the sign must flip, giving $ab > b^2$; with $a = -2$ and $b = -1$, $ab = 2$ while $b^2 = 1$.",
+    "c": "This divides $a < b$ by $b$ as if $b$ were positive. Dividing by a negative number reverses the inequality, so $\\frac{a}{b} > 1$; with $a = -2$ and $b = -1$ the quotient is $2$."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "The real numbers a and b satisfy a less than b less than 0. The question asks which inequality is true for every such pair. The four answer options are: a squared is greater than b squared; 1 over a is less than 1 over b; a times b is less than b squared; a over b is less than 1.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave8-author",
+    "aiAssisted": true,
+    "notes": "Original item on ordering of the reals under multiplication: each distractor is the result of forgetting to reverse an inequality when multiplying or dividing by a negative quantity, or of assuming reciprocals preserve order."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave8-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "mathematics",
+    "inequalities",
+    "ordering",
+    "negative-numbers",
+    "no-calculator"
+  ]
+}
