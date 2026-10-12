@@ -1,0 +1,74 @@
+{
+  "id": "bocconi-law-numrsn-interpreting-most-requests-412",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-numerical-reasoning",
+  "skillSlug": "law-numrsn-charts-and-tables",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "For which language did the tribunal receive the largest number of interpreting requests in 2024?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Romanian"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Chinese"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Arabic"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Albanian"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Before reading any figure, fix which column the question needs: the number of requests **in 2024**. The other two columns are not relevant here.\n\nReading down the \"Requests, 2024\" column: Albanian 300, Arabic 360, Chinese 210, Romanian 400, Ukrainian 90. The largest is Romanian, with 400.\n\n**How to check.** The most common slip is to read the wrong year. In 2023 Arabic led with 420, but its requests fell to 360 in 2024 while Romanian's rose from 320 to 400. Confirm that the figure you chose sits in the 2024 column and that no other entry in that column is larger.",
+  "distractorRationale": {
+    "d": "Albanian had 300 requests in 2024, fewer than both Romanian (400) and Arabic (360). Its rise of 60 requests is notable, but the question asks for the largest number, not the largest increase.",
+    "c": "Arabic had the most requests in **2023** (420). In 2024 its requests fell to 360, below Romanian's 400. Choosing it means reading the 2023 column instead of the 2024 column.",
+    "b": "Chinese has the longest average interpreting time per request (60 minutes), but only 210 requests in 2024. Choosing it means reading the average-time column instead of the requests column."
+  },
+  "estimatedSeconds": 40,
+  "stimulusRef": {
+    "id": "bocconi-law-table-interpreting-requests-431",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying table of court-interpreting requests at a tribunal by language. For Albanian, Arabic, Chinese, Romanian and Ukrainian it gives the requests in 2023, the requests in 2024 and the average interpreting time per request in 2024 in minutes: Albanian 240, 300, 40; Arabic 420, 360, 50; Chinese 150, 210, 60; Romanian 320, 400, 40; Ukrainian 50, 90, 30. The question asks for which language the tribunal received the largest number of interpreting requests in 2024. The four answer options are Albanian, Arabic, Chinese and Romanian.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave8-author",
+    "aiAssisted": true,
+    "notes": "Original item written against an invented table of court-interpreting requests at a fictional tribunal. This easy item tests reading the correct column of a table, with distractors from the wrong year and the wrong measure."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave8-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "numerical-reasoning",
+    "tables",
+    "column-reading",
+    "no-calculator"
+  ]
+}

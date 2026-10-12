@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-law-numrsn-interpreting-albanian-hours-414",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-numerical-reasoning",
+  "skillSlug": "law-numrsn-relevant-vs-superfluous",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In 2024 the tribunal had 8 Albanian interpreters on its list, each paid €0.60 per minute of interpreting, and every Albanian request was handled by a single interpreter. How many hours in total did the tribunal's interpreters spend interpreting from and into Albanian in 2024?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "25"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "160"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "200"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "12,000"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Start by asking which figures the question actually needs. Total interpreting time depends only on how many Albanian requests there were in 2024 and how long each took on average. The number of interpreters, the rate of pay and the 2023 figure are all superfluous.\n\n**Use the 2024 row.** Albanian had $300$ requests in 2024, averaging $40$ minutes each:\n\n$$300 \\times 40 = 12{,}000 \\text{ minutes}$$\n\n**Convert to hours.** $12{,}000 \\div 60 = 200$ hours.\n\n**How to check.** $40$ minutes is two thirds of an hour, so the total in hours is two thirds of the number of requests: $\\frac{2}{3} \\times 300 = 200$. Note that splitting the work among $8$ interpreters changes how many hours each one worked, but not the total, and the rate of pay would matter only for a question about cost.",
+  "distractorRationale": {
+    "a": "This is $200 \\div 8 = 25$, the average number of hours **per interpreter**. The question asks for the total time spent by all the interpreters together, which does not depend on how many of them shared the work.",
+    "b": "This uses the 2023 figure: $240 \\times 40 = 9{,}600$ minutes $= 160$ hours. The question is about 2024, when there were $300$ Albanian requests, and the average time in the table is itself a 2024 figure.",
+    "d": "This is the total time in **minutes**, $300 \\times 40 = 12{,}000$. The question asks for hours, so it must still be divided by $60$."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": {
+    "id": "bocconi-law-table-interpreting-requests-431",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying table of court-interpreting requests at a tribunal by language. For Albanian, Arabic, Chinese, Romanian and Ukrainian it gives the requests in 2023, the requests in 2024 and the average interpreting time per request in 2024 in minutes: Albanian 240, 300, 40; Arabic 420, 360, 50; Chinese 150, 210, 60; Romanian 320, 400, 40; Ukrainian 50, 90, 30. The question states that in 2024 the tribunal had 8 Albanian interpreters, each paid 0.60 euro per minute of interpreting, and that every Albanian request was handled by a single interpreter. It asks how many hours in total were spent interpreting Albanian in 2024. The four answer options are 25, 160, 200 and 12,000.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave8-author",
+    "aiAssisted": true,
+    "notes": "Original item written against an invented table of court-interpreting requests at a fictional tribunal. The stem deliberately adds superfluous data (number of interpreters, rate of pay) alongside an irrelevant table column, so the item tests selecting only the information the question needs."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave8-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": ""
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "numerical-reasoning",
+    "tables",
+    "superfluous-information",
+    "unit-conversion",
+    "no-calculator"
+  ]
+}
