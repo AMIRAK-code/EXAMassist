@@ -1,0 +1,73 @@
+{
+  "id": "bocconi-law-math-lines-intersection-perpendicular-403",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-mathematics",
+  "skillSlug": "law-math-analytic-geometry-lines",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In the Cartesian plane, the line $r$ passes through the points $(0,\\,5)$ and $(10,\\,0)$. The line $s$ passes through the origin and is perpendicular to $r$. At which point do $r$ and $s$ intersect?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\left(5,\\,\\frac{5}{2}\\right)$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$(4,\\,2)$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\left(-\\frac{10}{3},\\,\\frac{20}{3}\\right)$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$(2,\\,4)$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Write both lines in the form $y = mx + q$ and solve them together.\n\n**Line r.** Its slope is $\\frac{0 - 5}{10 - 0} = -\\frac{1}{2}$ and it crosses the $y$-axis at $5$, so $r: \\; y = -\\frac{1}{2}x + 5$.\n\n**Line s.** Perpendicular slopes multiply to $-1$, so the slope of $s$ is the negative reciprocal of $-\\frac{1}{2}$, namely $2$. Through the origin: $s: \\; y = 2x$.\n\n**Intersect.** Substitute $y = 2x$ into the equation of $r$:\n\n$$2x = -\\frac{1}{2}x + 5 \\;\\Longrightarrow\\; \\frac{5}{2}x = 5 \\;\\Longrightarrow\\; x = 2$$\n\nand then $y = 2 \\cdot 2 = 4$. The lines meet at $(2,\\,4)$.\n\n**How to check.** The point must lie on both lines. On $s$: $4 = 2 \\cdot 2$. On $r$: $-\\frac{1}{2} \\cdot 2 + 5 = 4$. Both hold. As a further check, the slopes $-\\frac{1}{2}$ and $2$ multiply to $-1$, confirming the lines are perpendicular.",
+  "distractorRationale": {
+    "b": "The right numbers in the wrong order: $x$ and $y$ were swapped. $(4,\\,2)$ is not on $s$, since $2 \\neq 2 \\cdot 4$, and not on $r$, since $-\\frac{1}{2} \\cdot 4 + 5 = 3$.",
+    "a": "This gives $s$ the slope $\\frac{1}{2}$ (the slope of $r$ with its sign changed but not inverted). Solving $\\frac{1}{2}x = -\\frac{1}{2}x + 5$ gives $x = 5$. It is also the midpoint of the two given points, which can make it look right; but the line from the origin to it has slope $\\frac{1}{2}$, and $\\frac{1}{2} \\cdot \\left(-\\frac{1}{2}\\right) \\neq -1$.",
+    "c": "This gives $s$ the slope $-2$ (the reciprocal was taken but the sign was not changed). Solving $-2x = -\\frac{1}{2}x + 5$ gives $x = -\\frac{10}{3}$. The product of the slopes is then $(-2)\\left(-\\frac{1}{2}\\right) = +1$, not $-1$, so the lines would not be perpendicular."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "In the Cartesian plane, the line r passes through the points 0, 5 and 10, 0. The line s passes through the origin and is perpendicular to r. The question asks for the point where r and s intersect. The four answer options are the points: 2, 4; 4, 2; 5, five halves; minus ten thirds, twenty thirds.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave8-author",
+    "aiAssisted": true,
+    "notes": "Original item on lines: slope from two points, perpendicular slope, and intersection of two lines. The distractors are the two standard errors in forming a perpendicular slope and a swapped-coordinates slip."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave8-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "mathematics",
+    "analytic-geometry",
+    "lines",
+    "perpendicular",
+    "intersection",
+    "no-calculator"
+  ]
+}

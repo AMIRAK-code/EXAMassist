@@ -1,0 +1,72 @@
+{
+  "id": "bocconi-law-logic-case-assignment-419",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-deductive-conditions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Three lawyers — Fabbri, Gatti and Leone — are each assigned exactly one of three cases: a contract dispute, a divorce and an inheritance claim, with a different case for each lawyer. The assignment satisfies all of the following conditions:\n\n- Fabbri is not assigned the divorce.\n- If Gatti is assigned the contract dispute, then Leone is assigned the divorce.\n- Leone is not assigned the inheritance claim.\n\nIf Gatti is not assigned the inheritance claim, which of the following must be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Leone is assigned the divorce."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Fabbri is assigned the inheritance claim."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Gatti is assigned the contract dispute."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Leone is assigned the contract dispute."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "With only three people and three cases, the safest method is to list every assignment the conditions allow and then apply the extra condition.\n\n**Start with Leone**, who has the most restrictive condition: Leone takes either the contract dispute or the divorce.\n\n- **Leone takes the contract dispute.** Fabbri cannot take the divorce, so Fabbri takes the inheritance claim and Gatti the divorce. The conditional is not triggered (Gatti does not have the contract dispute). Valid: *Fabbri – inheritance, Gatti – divorce, Leone – contract.*\n- **Leone takes the divorce.** Fabbri and Gatti share the contract dispute and the inheritance claim, in either order. If Gatti takes the contract dispute, the conditional requires Leone to take the divorce, which he does. Both orders are valid: *Fabbri – contract, Gatti – inheritance* and *Fabbri – inheritance, Gatti – contract.*\n\nSo there are exactly three valid assignments.\n\n**Apply the extra condition.** Gatti does not take the inheritance claim, which removes the assignment in which Gatti has it. Two remain:\n\n1. Fabbri – inheritance, Gatti – divorce, Leone – contract.\n2. Fabbri – inheritance, Gatti – contract, Leone – divorce.\n\nIn both, Fabbri has the inheritance claim, so that must be true.\n\n**How to check.** Every other statement is true in one remaining assignment and false in the other: Leone has the divorce only in the second, Gatti has the contract dispute only in the second, and Leone has the contract dispute only in the first.",
+  "distractorRationale": {
+    "a": "True only when Gatti takes the contract dispute. In the remaining assignment Gatti takes the divorce, so Leone takes the contract dispute; nothing forces Leone onto the divorce.",
+    "c": "True in one remaining assignment but not the other: Gatti can take the divorce instead, with Leone on the contract dispute and Fabbri on the inheritance claim. The conditional only says what follows if Gatti has the contract dispute; it does not require it.",
+    "d": "True only when Gatti takes the divorce. When Gatti takes the contract dispute, the conditional sends Leone to the divorce, so Leone does not always have the contract dispute."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "A deductive reasoning question. Three lawyers, Fabbri, Gatti and Leone, are each assigned exactly one of three cases, a contract dispute, a divorce and an inheritance claim, a different case for each. Conditions: Fabbri is not assigned the divorce; if Gatti is assigned the contract dispute, then Leone is assigned the divorce; Leone is not assigned the inheritance claim. The question asks: if Gatti is not assigned the inheritance claim, which statement must be true? The four answer options are: Leone is assigned the divorce; Gatti is assigned the contract dispute; Fabbri is assigned the inheritance claim; Leone is assigned the contract dispute.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave8-author",
+    "aiAssisted": true,
+    "notes": "Original deductive-logic item: three conditions including a one-way conditional, followed by a supposition that leaves two assignments sharing exactly one fixed placement. Lawyers and cases are invented."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave8-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "deductive-conditions",
+    "assignment",
+    "conditional-reasoning",
+    "no-calculator"
+  ]
+}

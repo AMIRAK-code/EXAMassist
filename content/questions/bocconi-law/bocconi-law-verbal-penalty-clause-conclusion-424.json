@@ -1,0 +1,71 @@
+{
+  "id": "bocconi-law-verbal-penalty-clause-conclusion-424",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-verbal-reasoning",
+  "skillSlug": "law-verbal-conclusion",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "> Every contract registered with the chamber of commerce has been checked by a notary. No contract checked by a notary contains a penalty clause worth more than 10% of the contract's value. The supply contract between Ortis and Velma contains a penalty clause worth 15% of its value.\n\nWhich of the following conclusions follows from these statements?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The Ortis–Velma contract has not been registered with the chamber of commerce."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Every contract whose penalty clause is worth at most 10% of its value has been checked by a notary."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The Ortis–Velma contract will be registered once its penalty clause is reduced to 10%."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The Ortis–Velma contract is not legally enforceable."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Chain the two general statements, then run the chain backwards from the fact about Ortis and Velma.\n\n**The chain.** *registered → checked by a notary → penalty clause of at most 10%.* So every registered contract has a penalty clause of at most 10%.\n\n**Run it backwards (the contrapositive).** The Ortis–Velma contract has a penalty clause of 15%, which is more than 10%. So it cannot have been checked by a notary, and therefore it cannot have been registered with the chamber of commerce.\n\n**How to check.** Test each other choice by asking whether the statements actually say it. Nothing is said about enforceability. Nothing says that a low penalty clause guarantees a notary's check — that reverses the second statement's direction. And nothing says what will happen if the clause is changed: being registered *requires* (among other things) a clause of at most 10%, but meeting that requirement does not ensure registration.",
+  "distractorRationale": {
+    "d": "The statements concern registration, notarial checks and penalty clauses; none mentions enforceability. Concluding that the contract cannot be enforced brings in a legal consequence the argument never states.",
+    "b": "This reverses the second statement. The text says that contracts checked by a notary have clauses of at most 10%, not that every contract with such a clause has been checked. Many contracts with modest clauses may never have seen a notary.",
+    "c": "A clause of at most 10% is something every registered contract has, not something that guarantees registration. Reducing the clause removes one obstacle, but the statements give no reason to expect that the contract will then be registered."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "A conclusion question. The statements are: every contract registered with the chamber of commerce has been checked by a notary; no contract checked by a notary contains a penalty clause worth more than 10 percent of the contract's value; the supply contract between Ortis and Velma contains a penalty clause worth 15 percent of its value. The question asks which conclusion follows. The four answer options are: the Ortis–Velma contract is not legally enforceable; the Ortis–Velma contract has not been registered with the chamber of commerce; every contract whose penalty clause is worth at most 10 percent of its value has been checked by a notary; the Ortis–Velma contract will be registered once its penalty clause is reduced to 10 percent.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave8-author",
+    "aiAssisted": true,
+    "notes": "Original conclusion item: a two-link chain of conditionals applied by contraposition. The distractors are an unstated legal consequence, the converse of a premise, and a necessary condition treated as sufficient. Parties and contract are invented."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave8-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "verbal-reasoning",
+    "conclusion",
+    "contrapositive",
+    "conditional-chain"
+  ]
+}
