@@ -1,0 +1,76 @@
+{
+  "id": "tolce-math-added-mean-213",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-probability-statistics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "The mean of five numbers is $12$. When a sixth number is added to the list, the mean of the six numbers is $13$. What is the sixth number?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$1$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$5$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$13$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$14$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$18$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Work with totals, not means: a mean is a total shared out equally, so the total is the mean times the count.\n\n- Five numbers with mean $12$ have total $5 \\times 12 = 60$.\n- Six numbers with mean $13$ have total $6 \\times 13 = 78$.\n\nThe sixth number accounts for the whole difference:\n\n$$78 - 60 = 18$$\n\nAnother way to see it: the new number has to equal the new mean, $13$, and also supply the extra $1$ for each of the five old numbers, so it is $13 + 5 = 18$.\n\nCheck: $\\frac{60 + 18}{6} = \\frac{78}{6} = 13$.",
+  "distractorRationale": {
+    "a": "This is the change in the mean, $13 - 12$, not the value that caused it. Raising the mean of six numbers by $1$ takes far more than a $1$.",
+    "b": "This uses $5$ as the count for the new total, $5 \\times 13 - 5 \\times 12$. After the sixth number is added there are six values, so the new total is $6 \\times 13$.",
+    "c": "This assumes the new number equals the new mean. A value equal to the mean leaves the mean of the list where it is: adding $13$ to the original five gives a mean of $\\frac{73}{6}$, about $12.2$.",
+    "d": "This adds the change in the mean once to the new mean, $13 + 1$. The new number has to lift each of the five original numbers' share by $1$, so it must exceed the new mean by $5$, not by $1$."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "Five numbers have mean 12. After a sixth number is added, the six numbers have mean 13. The question asks for the sixth number. The answer choices are 1, 5, 13, 14 and 18.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Mean as total over count; distractors model reporting the change in mean, using the wrong count, and adding the change only once."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Awaiting blind independent solve before publication."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "statistics",
+    "mean"
+  ]
+}

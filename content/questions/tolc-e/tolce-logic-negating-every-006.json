@@ -15,7 +15,7 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "No student who passed the exam attended any lecture."
+      "textMd": "At least one student who attended a lecture failed the exam."
     },
     {
       "id": "b",
@@ -25,29 +25,29 @@
     {
       "id": "c",
       "label": "C",
-      "textMd": "At least one student passed the exam without attending any lecture."
+      "textMd": "Every student who failed the exam attended at least one lecture."
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "At least one student who attended a lecture failed the exam."
+      "textMd": "At least one student passed the exam without attending any lecture."
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "Every student who failed the exam attended at least one lecture."
+      "textMd": "No student who passed the exam attended any lecture."
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "c"
+    "optionId": "d"
   },
   "explanationMd": "The negation of a statement is the claim that is true exactly when the original is false. The original says that among the students who passed, there is no exception: each attended at least one lecture. It is false as soon as there is a single exception, that is, one student who passed and attended no lectures. So the negation is \"at least one student passed the exam without attending any lecture.\"\n\nThe general pattern: the negation of \"every X is Y\" is \"at least one X is not Y\". The \"every\" becomes \"at least one\" (some), and only the final property is denied; the group being talked about, students who passed, stays the same.\n\nCheck by asking whether the candidate and the original can both be true, and whether they can both be false. A true negation passes both tests: they never agree.\n\nWhat to notice first: a negation is never stronger than it needs to be. Turning \"every\" into \"no\" produces the opposite extreme, not the negation.",
   "distractorRationale": {
-    "a": "This is the opposite extreme, not the negation. If some students who passed attended lectures and others did not, the original and this statement are both false, so they are not negations of each other.",
+    "e": "This is the opposite extreme, not the negation. If some students who passed attended lectures and others did not, the original and this statement are both false, so they are not negations of each other.",
     "b": "This is the contrapositive of the original, so it says the same thing. A student who attended no lectures and passed would break both statements at once.",
-    "d": "This talks about students who failed, a group the original says nothing about. It can be true at the same time as the original.",
-    "e": "This also concerns students who failed, and so can be true or false regardless of the original. Swapping the groups does not deny the claim."
+    "a": "This talks about students who failed, a group the original says nothing about. It can be true at the same time as the original.",
+    "c": "This also concerns students who failed, and so can be true or false regardless of the original. Swapping the groups does not deny the claim."
   },
   "estimatedSeconds": 60,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": "Author solved the item and then tried to defend each wrong choice; none survives. Awaiting blind independent solve and uniqueness check by a second party."
+    "notes": "Author solved the item and then tried to defend each wrong choice; none survives. Awaiting blind independent solve and uniqueness check by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

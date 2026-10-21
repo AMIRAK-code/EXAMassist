@@ -1,0 +1,76 @@
+{
+  "id": "tolce-math-radical-sum-204",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-arithmetic-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the value of $\\sqrt{50} - \\sqrt{18} + \\sqrt{8}$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$4$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$4\\sqrt{2}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$6\\sqrt{2}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$10\\sqrt{2}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$2\\sqrt{10}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Square roots can only be added or subtracted directly when they have the same radicand, so first bring each one to the form $n\\sqrt{2}$ by pulling out the largest perfect-square factor.\n\n- $\\sqrt{50} = \\sqrt{25 \\cdot 2} = 5\\sqrt{2}$\n- $\\sqrt{18} = \\sqrt{9 \\cdot 2} = 3\\sqrt{2}$\n- $\\sqrt{8} = \\sqrt{4 \\cdot 2} = 2\\sqrt{2}$\n\nNow they are like terms:\n\n$$5\\sqrt{2} - 3\\sqrt{2} + 2\\sqrt{2} = (5 - 3 + 2)\\sqrt{2} = 4\\sqrt{2}$$\n\nA rough check: $\\sqrt{50} \\approx 7.07$, $\\sqrt{18} \\approx 4.24$ and $\\sqrt{8} \\approx 2.83$, so the expression is about $5.66$, and $4\\sqrt{2} \\approx 4 \\times 1.414 = 5.66$.",
+  "distractorRationale": {
+    "a": "This gets the coefficient right, $5 - 3 + 2 = 4$, and then drops the common factor $\\sqrt{2}$. The expression is about $5.66$, not $4$.",
+    "c": "This writes $\\sqrt{8}$ as $4\\sqrt{2}$, taking half of $8$ instead of the square root of its square factor $4$. In fact $\\sqrt{8} = \\sqrt{4}\\sqrt{2} = 2\\sqrt{2}$.",
+    "e": "This combines the radicands, $\\sqrt{50 - 18 + 8} = \\sqrt{40} = 2\\sqrt{10}$. Square roots do not add that way: $\\sqrt{a} + \\sqrt{b}$ is not $\\sqrt{a + b}$.",
+    "d": "This adds all three terms, $5\\sqrt{2} + 3\\sqrt{2} + 2\\sqrt{2}$, losing the minus sign in front of $\\sqrt{18}$."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "The expression is the square root of 50, minus the square root of 18, plus the square root of 8. The answer choices are: 4; 4 times the square root of 2; 6 times the square root of 2; 2 times the square root of 10; 10 times the square root of 2.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Simplifying and combining like radicals; distractors model dropping the radical, a wrong simplification, combining radicands and a sign slip."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "radicals",
+    "simplification"
+  ]
+}

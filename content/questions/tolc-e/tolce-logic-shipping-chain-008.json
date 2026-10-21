@@ -15,39 +15,39 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "Order 417 was received by Monday but was not shipped by Friday."
+      "textMd": "Order 417 was packed by Wednesday."
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "Order 417 was not received by Monday."
+      "textMd": "If the parts for order 417 had arrived on time, it would have been shipped by Friday."
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "If the parts for order 417 had arrived on time, it would have been shipped by Friday."
+      "textMd": "Order 417 was not received by Monday."
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "Order 417 was packed by Wednesday."
+      "textMd": "Order 417 was received at some point after Monday."
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "Order 417 was received at some point after Monday."
+      "textMd": "Order 417 was received by Monday but was not shipped by Friday."
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "b"
+    "optionId": "c"
   },
   "explanationMd": "Rewrite every rule as \"if ..., then ...\" before combining them.\n\n- Rule 1: received by Monday → shipped by Friday.\n- Rule 2: \"shipped by Friday **only if** packed by Wednesday\" means shipped by Friday → packed by Wednesday. \"Only if\" introduces the necessary condition, so it goes after the arrow.\n- Rule 3: \"unless the parts arrive on time, it cannot be packed by Wednesday\" means not on time → not packed, which is the same as packed by Wednesday → parts on time.\n\nThe rules form one chain: received by Monday → shipped by Friday → packed by Wednesday → parts on time.\n\nThe parts were not on time. Moving backwards along the chain (the contrapositive), the order was not packed by Wednesday, so it was not shipped by Friday, so it was not received by Monday.\n\nThe chain says nothing about what would happen if the parts *had* arrived on time: arriving on time is necessary for the earlier steps, not sufficient for them.\n\nWhat to notice first: translate \"only if\" and \"unless\" into arrows before reasoning. A false final link lets you deny every earlier link, never the reverse.",
   "distractorRationale": {
-    "a": "This is impossible under the rules. Rule 1 says any order received by Monday is shipped by Friday, so the two halves of this statement cannot hold together.",
-    "c": "This runs the chain forwards from its last link. Parts arriving on time is a necessary condition for packing by Wednesday, not a guarantee of it, so the rules do not support this conditional.",
-    "d": "This contradicts Rule 3: without the parts arriving on time, the order cannot be packed by Wednesday.",
-    "e": "The rules tell us only that the order was not received by Monday. They do not say it was received at all; it might, for instance, never have arrived. This choice adds a fact the rules do not supply."
+    "e": "This is impossible under the rules. Rule 1 says any order received by Monday is shipped by Friday, so the two halves of this statement cannot hold together.",
+    "b": "This runs the chain forwards from its last link. Parts arriving on time is a necessary condition for packing by Wednesday, not a guarantee of it, so the rules do not support this conditional.",
+    "a": "This contradicts Rule 3: without the parts arriving on time, the order cannot be packed by Wednesday.",
+    "d": "The rules tell us only that the order was not received by Monday. They do not say it was received at all; it might, for instance, never have arrived. This choice adds a fact the rules do not supply."
   },
   "estimatedSeconds": 100,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": "Author solved the item and then tried to defend each wrong choice; none survives. Awaiting blind independent solve and uniqueness check by a second party."
+    "notes": "Author solved the item and then tried to defend each wrong choice; none survives. Awaiting blind independent solve and uniqueness check by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

@@ -15,39 +15,39 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "G is on Thursday."
+      "textMd": "J is on Friday."
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "J is on Tuesday."
+      "textMd": "K is on Thursday."
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "K is on Thursday."
+      "textMd": "F is on Friday and G is on Wednesday."
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "J is on Friday."
+      "textMd": "G is on Thursday."
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "F is on Friday and G is on Wednesday."
+      "textMd": "J is on Tuesday."
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "d"
+    "optionId": "a"
   },
   "explanationMd": "Split on H, since it has only two possible days.\n\n- **H on Wednesday.** K cannot be on Tuesday or Thursday, so K is on Monday or Friday. F also needs Monday or Friday, so F and K take those two days between them. G and J take Tuesday and Thursday, with G on Tuesday because it comes first. Two schedules: K, G, H, J, F and F, G, H, J, K.\n- **H on Thursday.** K cannot be on Wednesday or Friday, so K is on Monday or Tuesday. If F is on Monday, K is on Tuesday and G, J fill Wednesday and Friday: F, K, G, H, J. If F is on Friday, K and G, J share Monday to Wednesday: K, G, J, H, F or G, K, J, H, F.\n\nThat gives five possible schedules. The schedule F, K, G, H, J puts J on Friday, so that statement could be true.\n\nTest each of the others against the list, or directly:\n\n- G on Thursday forces J onto Friday and H onto Wednesday; then K needs Monday or Friday, Friday is taken, and F cannot have either end day.\n- J on Tuesday forces G onto Monday and F onto Friday; H and K are left with Wednesday and Thursday, which are adjacent.\n- K on Thursday is adjacent to H on Wednesday, and H cannot also be on Thursday.\n- F on Friday with G on Wednesday leaves Thursday for both H and J, since J must come after G.\n\nWhat to notice first: in a \"could be true\" question, build the short list of complete schedules first; then each choice is a quick look-up.",
   "distractorRationale": {
-    "a": "With G on Thursday, J must be on Friday and H on Wednesday. K then needs Monday or Friday, so it takes Monday, and F has neither end day available.",
-    "b": "With J on Tuesday, G must be on Monday, so F is on Friday. H and K are left with Wednesday and Thursday, which are consecutive days, breaking the condition on K.",
-    "c": "K on Thursday is next to Wednesday, and H must be on Wednesday once Thursday is taken. The condition on K and H rules this out.",
-    "e": "With F on Friday and G on Wednesday, J must come after Wednesday, so J is on Thursday; but H also needs Wednesday or Thursday, and both are taken."
+    "d": "With G on Thursday, J must be on Friday and H on Wednesday. K then needs Monday or Friday, so it takes Monday, and F has neither end day available.",
+    "e": "With J on Tuesday, G must be on Monday, so F is on Friday. H and K are left with Wednesday and Thursday, which are consecutive days, breaking the condition on K.",
+    "b": "K on Thursday is next to Wednesday, and H must be on Wednesday once Thursday is taken. The condition on K and H rules this out.",
+    "c": "With F on Friday and G on Wednesday, J must come after Wednesday, so J is on Thursday; but H also needs Wednesday or Thursday, and both are taken."
   },
   "estimatedSeconds": 150,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": "Author solved the item and then tried to defend each wrong choice; none survives. Awaiting blind independent solve and uniqueness check by a second party."
+    "notes": "Author solved the item and then tried to defend each wrong choice; none survives. Awaiting blind independent solve and uniqueness check by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

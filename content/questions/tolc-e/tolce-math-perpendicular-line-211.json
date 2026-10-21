@@ -1,0 +1,77 @@
+{
+  "id": "tolce-math-perpendicular-line-211",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In the Cartesian plane, line $r$ has equation $2x - 3y + 6 = 0$. Line $s$ is perpendicular to $r$ and passes through the point $(1, 4)$. At what value of $y$ does line $s$ cross the $y$-axis?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$2$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\dfrac{5}{2}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\dfrac{10}{3}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\dfrac{11}{2}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\dfrac{14}{3}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Get the slope of $r$ by solving its equation for $y$:\n\n$$3y = 2x + 6 \\iff y = \\frac{2}{3}x + 2$$\n\nSo $r$ has slope $\\frac{2}{3}$. Perpendicular slopes multiply to $-1$, so $s$ has slope $-\\frac{3}{2}$: the reciprocal **and** the opposite sign.\n\nLine $s$ passes through $(1, 4)$:\n\n$$y - 4 = -\\frac{3}{2}(x - 1)$$\n\nAt the $y$-axis $x = 0$, so $y = 4 + \\frac{3}{2} = \\frac{11}{2}$.\n\nCheck: $s$ is $y = -\\frac{3}{2}x + \\frac{11}{2}$; at $x = 1$ it gives $-\\frac{3}{2} + \\frac{11}{2} = 4$, and $\\frac{2}{3} \\cdot \\left(-\\frac{3}{2}\\right) = -1$, so the lines are perpendicular.",
+  "distractorRationale": {
+    "a": "This is where line $r$ crosses the $y$-axis. The question asks about the new line $s$.",
+    "b": "This takes the reciprocal of the slope but keeps its sign, using $+\\frac{3}{2}$, so $y = 4 - \\frac{3}{2}$ at $x = 0$. A line with slope $\\frac{3}{2}$ is not perpendicular to one with slope $\\frac{2}{3}$, because their product is $1$, not $-1$.",
+    "c": "This uses the slope of $r$ itself, $\\frac{2}{3}$, which gives the line through $(1, 4)$ parallel to $r$, not perpendicular to it.",
+    "e": "This changes the sign of the slope but forgets to take the reciprocal, using $-\\frac{2}{3}$. Perpendicularity needs both: the slopes must multiply to $-1$."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "In the coordinate plane, line r has equation 2 x minus 3 y plus 6 equals 0. Line s is perpendicular to r and passes through the point 1, 4. The question asks for the y-intercept of s. The answer choices are 2, five halves, ten thirds, fourteen thirds, and eleven halves.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Perpendicular slope and point-slope form; distractors model the original intercept, a missing sign change, the parallel slope, and a missing reciprocal."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "analytic-geometry",
+    "perpendicular-lines",
+    "slope"
+  ]
+}

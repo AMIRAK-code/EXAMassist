@@ -1,0 +1,76 @@
+{
+  "id": "tolce-math-successive-discounts-203",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-arithmetic-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A shop reduces the price of a jacket by $25\\%$. Later it raises the reduced price by $20\\%$, and the jacket now costs €$108$. What was the price of the jacket before both changes?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "€$120$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "€$118.80$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "€$108$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "€$97.20$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "€$113.40$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Successive percentage changes multiply; they do not add. Call the original price $p$.\n\n- A reduction of $25\\%$ multiplies by $0.75$.\n- An increase of $20\\%$ multiplies by $1.20$.\n\nSo the final price is\n\n$$p \\times 0.75 \\times 1.20 = 0.9\\,p = 108$$\n\nwhich gives $p = 108 \\div 0.9 = 120$.\n\nCheck forwards: $25\\%$ off €$120$ is €$90$, and $20\\%$ more than €$90$ is €$90 + 18 = $ €$108$, the price given.\n\nThe first thing to notice is that the percentages are taken of **different** amounts: the $25\\%$ is of the original price and the $20\\%$ is of the reduced price. That is why the net effect is $-10\\%$, not $-5\\%$, and why undoing it means dividing by $0.9$, not adding $10\\%$ of the final price.",
+  "distractorRationale": {
+    "d": "This applies the two changes to €$108$ instead of undoing them: $108 \\times 0.75 \\times 1.20 = 97.20$. The €$108$ is the price after the changes, so the original must be found by working backwards.",
+    "c": "This undoes each change by reversing the percentage on the current amount: take $20\\%$ off €$108$ to get €$86.40$, then add $25\\%$ to get €$108$ again. A $20\\%$ rise is undone by dividing by $1.20$, not by subtracting $20\\%$, because the percentages are of different bases.",
+    "e": "This treats the net change as $-25\\% + 20\\% = -5\\%$ and adds $5\\%$ of €$108$. Percentage changes combine by multiplying, $0.75 \\times 1.20 = 0.9$, so the net change is $-10\\%$.",
+    "b": "This finds the correct net change of $-10\\%$ but undoes it by adding $10\\%$ of the final price. Since $108 = 0.9\\,p$, the original is $108 \\div 0.9$, not $108 \\times 1.1$."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A jacket's price is reduced by 25 percent, then the reduced price is raised by 20 percent, giving 108 euros. The question asks for the original price. The answer choices are amounts in euros: 97.20, 108, 113.40, 118.80 and 120.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Reverse successive percentage changes; each distractor is a distinct, common error with multiplicative percentages."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "percentages",
+    "successive-changes"
+  ]
+}
