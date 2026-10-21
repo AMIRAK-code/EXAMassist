@@ -1,0 +1,76 @@
+{
+  "id": "tolce-logic-race-order-010",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-arrangements",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Five runners, P, Q, R, S and T, finish a race. There are no ties.\n\n- Q finishes ahead of R.\n- R finishes ahead of T.\n- S finishes immediately after P.\n- T finishes neither first nor last.\n\nWhich of the following must be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Q finishes second."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "R finishes first."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "S finishes third."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "P finishes fourth."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "T finishes fourth."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Combine the first two conditions into one order: Q ahead of R ahead of T. Two runners finish ahead of T, so T is at least third. T is not last, so T is third or fourth.\n\n- **T fourth.** The remaining places are 1st, 2nd, 3rd and 5th. P and S need two consecutive places, which can only be 1st and 2nd or 2nd and 3rd. Either way, one of Q and R is pushed into 5th place, behind T, which breaks the order Q, R, T. This case fails.\n- **T third.** Q and R must take 1st and 2nd, in that order, and P and S take 4th and 5th, with S immediately after P.\n\nThe only possible finishing order is Q, R, T, P, S. So P finishes fourth.\n\nWhat to notice first: chain the \"ahead of\" conditions into a single line, then use it to limit where the last runner in the chain can go.",
+  "distractorRationale": {
+    "a": "Q must be ahead of both R and T, and T is third, so Q is first. Second place belongs to R.",
+    "b": "R must finish behind Q, so R can never be first.",
+    "c": "Third place is taken by T in the only valid order. S finishes fifth, immediately after P.",
+    "e": "T in fourth place forces P and S into two consecutive places among 1st to 3rd, which pushes Q or R behind T. T must be third."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "Five runners named by the letters P, Q, R, S and T finish a race with no ties. Q is ahead of R; R is ahead of T; S finishes immediately after P; T is neither first nor last. The question asks which statement about finishing positions must be true. Five answer choices.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-logic-author",
+    "aiAssisted": true,
+    "notes": "Original five-runner ordering with a unique solution. Not derived from any CISIA or other published item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-logic-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved the item and then tried to defend each wrong choice; none survives. Awaiting blind independent solve and uniqueness check by a second party."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "arrangements",
+    "linear-order",
+    "ranking"
+  ]
+}

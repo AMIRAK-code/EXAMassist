@@ -1,0 +1,76 @@
+{
+  "id": "tolce-logic-alternating-letters-002",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-sequences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Using the 26-letter English alphabet, which letter comes next in the sequence?\n\n$\\text{C}, \\; \\text{F}, \\; \\text{E}, \\; \\text{H}, \\; \\text{G}, \\; \\text{J}, \\; \\ldots$",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "H"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "I"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "K"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "L"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "M"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Turn the letters into their positions in the alphabet: $3, 6, 5, 8, 7, 10$. The steps are $+3, -1, +3, -1, +3$, so the moves alternate between three forward and one back. The next step is $-1$, and $10 - 1 = 9$, which is the letter I.\n\nA second view confirms it. The letters in odd positions of the sequence (3rd, 5th, 7th...) run $3, 5, 7$, going up by two, and the letters in even positions run $6, 8, 10$, also going up by two. The missing term is the seventh, an odd position, so it continues $3, 5, 7$ with $9$.\n\nWhat to notice first: when a letter sequence goes forwards and then backwards, convert to numbers and write down the steps. An alternating pattern of steps, or two interleaved sequences, is the usual explanation.",
+  "distractorRationale": {
+    "a": "This steps back two places from J instead of one. The backward step in this sequence has always been exactly one letter (F to E, H to G).",
+    "c": "This moves one letter forward, perhaps because the sequence gains one letter overall for every two steps. That net gain describes pairs of steps, not the single step that comes next.",
+    "d": "This continues the even-position series (F, H, J) by two more letters. The term asked for is the seventh, which belongs to the odd-position series C, E, G.",
+    "e": "This applies the forward step of three again, missing that forward and backward steps alternate and the last step taken was forward."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "A sequence of capital letters: C, F, E, H, G, J, followed by a gap for the next letter. The English alphabet of 26 letters is to be used. Each answer choice is a single letter: H, I, K, L or M. Five answer choices.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-logic-author",
+    "aiAssisted": true,
+    "notes": "Original interleaved letter sequence. Not derived from any CISIA or other published item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-logic-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved the item and then tried to defend each wrong choice; none survives. Awaiting blind independent solve and uniqueness check by a second party."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "sequences",
+    "letters",
+    "alternating-steps"
+  ]
+}

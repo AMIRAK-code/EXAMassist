@@ -1,0 +1,76 @@
+{
+  "id": "tolce-logic-square-differences-004",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-sequences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "What number comes next in the sequence?\n\n$1, \\; 2, \\; 6, \\; 15, \\; 31, \\; 56, \\; \\ldots$",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$81$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$87$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$92$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$97$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$112$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The terms are not multiples of one another, so look at the differences: $1, 4, 9, 16, 25$. These are the perfect squares $1^2, 2^2, 3^2, 4^2, 5^2$. The next difference is $6^2 = 36$, so the next term is $56 + 36 = 92$.\n\nIf the squares are not spotted at once, go one level deeper: the second differences are $3, 5, 7, 9$, the odd numbers. The next second difference is $11$, so the next difference is $25 + 11 = 36$, giving the same result. Either route leads to $92$, and the agreement is the check.\n\nWhat to notice first: when first differences do not repeat and do not form a simple multiple pattern, compare them with familiar lists (squares, odd numbers, primes) or take differences again.",
+  "distractorRationale": {
+    "a": "This adds $25$ again, repeating the last difference. Every difference so far has been larger than the one before it.",
+    "b": "This adds $31$, the term before $56$, as if each term were the sum of the two before it. Testing that rule on earlier terms fails at once: $2 + 6 = 8$, not $15$.",
+    "d": "This adds $16 + 25 = 41$, combining the last two differences in Fibonacci fashion. The differences $1, 4, 9, 16, 25$ do not themselves follow that rule ($1 + 4 = 5$, not $9$).",
+    "e": "This doubles $56$. Doubling does not describe any earlier step, for example $15 \\times 2 = 30$, not $31$."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A number sequence: 1, 2, 6, 15, 31, 56, followed by a gap for the next term. The question asks for the next number. Five answer choices.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-logic-author",
+    "aiAssisted": true,
+    "notes": "Original sequence whose differences are consecutive squares. Not derived from any CISIA or other published item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-logic-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved the item and then tried to defend each wrong choice; none survives. Awaiting blind independent solve and uniqueness check by a second party."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "sequences",
+    "numbers",
+    "second-differences"
+  ]
+}

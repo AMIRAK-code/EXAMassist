@@ -1,0 +1,76 @@
+{
+  "id": "tolce-logic-negating-every-006",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Consider the statement:\n\n\"Every student who passed the exam attended at least one lecture.\"\n\nWhich of the following is the **negation** of this statement?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "No student who passed the exam attended any lecture."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Every student who attended no lectures failed the exam."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "At least one student passed the exam without attending any lecture."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "At least one student who attended a lecture failed the exam."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Every student who failed the exam attended at least one lecture."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The negation of a statement is the claim that is true exactly when the original is false. The original says that among the students who passed, there is no exception: each attended at least one lecture. It is false as soon as there is a single exception, that is, one student who passed and attended no lectures. So the negation is \"at least one student passed the exam without attending any lecture.\"\n\nThe general pattern: the negation of \"every X is Y\" is \"at least one X is not Y\". The \"every\" becomes \"at least one\" (some), and only the final property is denied; the group being talked about, students who passed, stays the same.\n\nCheck by asking whether the candidate and the original can both be true, and whether they can both be false. A true negation passes both tests: they never agree.\n\nWhat to notice first: a negation is never stronger than it needs to be. Turning \"every\" into \"no\" produces the opposite extreme, not the negation.",
+  "distractorRationale": {
+    "a": "This is the opposite extreme, not the negation. If some students who passed attended lectures and others did not, the original and this statement are both false, so they are not negations of each other.",
+    "b": "This is the contrapositive of the original, so it says the same thing. A student who attended no lectures and passed would break both statements at once.",
+    "d": "This talks about students who failed, a group the original says nothing about. It can be true at the same time as the original.",
+    "e": "This also concerns students who failed, and so can be true or false regardless of the original. Swapping the groups does not deny the claim."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "A statement in quotation marks: every student who passed the exam attended at least one lecture. The question asks which choice is its negation. Five answer choices.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-logic-author",
+    "aiAssisted": true,
+    "notes": "Original negation item; one distractor is the contrapositive (equivalent, not negation). Not derived from any CISIA or other published item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-logic-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved the item and then tried to defend each wrong choice; none survives. Awaiting blind independent solve and uniqueness check by a second party."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "deduction",
+    "negation",
+    "quantifiers"
+  ]
+}

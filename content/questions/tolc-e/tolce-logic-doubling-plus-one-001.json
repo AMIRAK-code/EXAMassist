@@ -1,0 +1,76 @@
+{
+  "id": "tolce-logic-doubling-plus-one-001",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-sequences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "What number comes next in the sequence?\n\n$2, \\; 5, \\; 11, \\; 23, \\; 47, \\; \\ldots$",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$71$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$94$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$95$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$96$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$141$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Start with the differences between consecutive terms: $3, 6, 12, 24$. Each difference is double the one before, so the next difference is $48$ and the next term is $47 + 48 = 95$.\n\nThe same rule can be seen directly on the terms: each term is twice the previous one plus one ($2 \\times 2 + 1 = 5$, $5 \\times 2 + 1 = 11$, $11 \\times 2 + 1 = 23$, $23 \\times 2 + 1 = 47$). Applying it once more gives $47 \\times 2 + 1 = 95$. Two descriptions of the same rule agreeing is a good check that you have found it.\n\nWhat to notice first: when the differences grow quickly, test whether each is a fixed multiple of the previous one before trying anything more elaborate.",
+  "distractorRationale": {
+    "a": "This adds the last difference, $24$, a second time. It treats the sequence as if its differences had stopped growing, when every difference so far has doubled.",
+    "b": "This doubles $47$ but forgets the $+1$ that every step of the sequence includes. Checking the rule on an earlier step ($5 \\times 2 = 10$, not $11$) exposes the slip.",
+    "d": "This doubles the next difference, $48$, and reports it as the next term. It confuses the difference with the term itself.",
+    "e": "This multiplies by three. No step in the sequence triples: $2 \\times 3 = 6$, not $5$."
+  },
+  "estimatedSeconds": 45,
+  "stimulusRef": null,
+  "accessibilityText": "A number sequence: 2, 5, 11, 23, 47, followed by a gap for the next term. The question asks for the next number. Five answer choices.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-logic-author",
+    "aiAssisted": true,
+    "notes": "Original doubling-plus-one sequence with distractors from common slips. Not derived from any CISIA or other published item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-logic-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved the item and then tried to defend each wrong choice; none survives. Awaiting blind independent solve and uniqueness check by a second party."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "sequences",
+    "numbers",
+    "differences"
+  ]
+}
