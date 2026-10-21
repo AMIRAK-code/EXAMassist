@@ -1,0 +1,76 @@
+{
+  "id": "tolce-logic-two-languages-012",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "In a class of 30 students, 18 study French, 15 study German and 5 study neither language.\n\nHow many students study both French and German?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$3$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$5$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$8$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$10$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$13$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "First find how many students study at least one of the two languages: $30 - 5 = 25$.\n\nIf you add the French and German students, $18 + 15 = 33$, everybody who studies both has been counted twice. The total should be $25$, so the excess, $33 - 25 = 8$, is the number counted twice: $8$ students study both.\n\nCheck: $18 - 8 = 10$ study only French, $15 - 8 = 7$ study only German, and $10 + 7 + 8 + 5 = 30$.\n\nWhat to notice first: remove the \"neither\" group before comparing the sum of the two groups with the total.",
+  "distractorRationale": {
+    "a": "This compares $18 + 15 = 33$ with the whole class of $30$, forgetting that the $5$ students who study neither language are not among the $33$.",
+    "b": "This repeats the number of students who study neither language, which is given in the question and is not the overlap.",
+    "d": "This is $25 - 15$, the number who study only French once the overlap is removed, mistaken for the overlap itself.",
+    "e": "This is $18 - 5$, a subtraction that mixes the French total with the group that studies neither language and has no meaning in the problem."
+  },
+  "estimatedSeconds": 45,
+  "stimulusRef": null,
+  "accessibilityText": "A class of 30 students: 18 study French, 15 study German and 5 study neither. The question asks how many study both. Five answer choices.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-logic-author",
+    "aiAssisted": true,
+    "notes": "Original two-set overlap problem. Not derived from any CISIA or other published item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-logic-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved the item and then tried to defend each wrong choice; none survives. Awaiting blind independent solve and uniqueness check by a second party."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "problems",
+    "sets",
+    "overlap"
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "id": "tolce-logic-shipping-chain-008",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "At a factory the following rules always hold:\n\n- If an order is received by Monday, it is shipped by Friday.\n- An order is shipped by Friday only if it has been packed by Wednesday.\n- Unless its parts arrive on time, an order cannot be packed by Wednesday.\n\nThe parts for order 417 did not arrive on time. Which of the following must be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Order 417 was received by Monday but was not shipped by Friday."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Order 417 was not received by Monday."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "If the parts for order 417 had arrived on time, it would have been shipped by Friday."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Order 417 was packed by Wednesday."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Order 417 was received at some point after Monday."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Rewrite every rule as \"if ..., then ...\" before combining them.\n\n- Rule 1: received by Monday → shipped by Friday.\n- Rule 2: \"shipped by Friday **only if** packed by Wednesday\" means shipped by Friday → packed by Wednesday. \"Only if\" introduces the necessary condition, so it goes after the arrow.\n- Rule 3: \"unless the parts arrive on time, it cannot be packed by Wednesday\" means not on time → not packed, which is the same as packed by Wednesday → parts on time.\n\nThe rules form one chain: received by Monday → shipped by Friday → packed by Wednesday → parts on time.\n\nThe parts were not on time. Moving backwards along the chain (the contrapositive), the order was not packed by Wednesday, so it was not shipped by Friday, so it was not received by Monday.\n\nThe chain says nothing about what would happen if the parts *had* arrived on time: arriving on time is necessary for the earlier steps, not sufficient for them.\n\nWhat to notice first: translate \"only if\" and \"unless\" into arrows before reasoning. A false final link lets you deny every earlier link, never the reverse.",
+  "distractorRationale": {
+    "a": "This is impossible under the rules. Rule 1 says any order received by Monday is shipped by Friday, so the two halves of this statement cannot hold together.",
+    "c": "This runs the chain forwards from its last link. Parts arriving on time is a necessary condition for packing by Wednesday, not a guarantee of it, so the rules do not support this conditional.",
+    "d": "This contradicts Rule 3: without the parts arriving on time, the order cannot be packed by Wednesday.",
+    "e": "The rules tell us only that the order was not received by Monday. They do not say it was received at all; it might, for instance, never have arrived. This choice adds a fact the rules do not supply."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "Three rules about orders at a factory: an order received by Monday is shipped by Friday; an order is shipped by Friday only if it was packed by Wednesday; unless its parts arrive on time, an order cannot be packed by Wednesday. For order 417 the parts did not arrive on time. The question asks what must be true. Five answer choices.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-logic-author",
+    "aiAssisted": true,
+    "notes": "Original conditional chain using 'only if' and 'unless', solved by the contrapositive. Not derived from any CISIA or other published item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-logic-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved the item and then tried to defend each wrong choice; none survives. Awaiting blind independent solve and uniqueness check by a second party."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "deduction",
+    "conditionals",
+    "contrapositive",
+    "only-if",
+    "unless"
+  ]
+}

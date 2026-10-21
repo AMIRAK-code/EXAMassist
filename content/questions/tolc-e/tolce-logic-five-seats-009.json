@@ -1,0 +1,76 @@
+{
+  "id": "tolce-logic-five-seats-009",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-arrangements",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Anna, Bruno, Carla, Dario and Elena sit in a row of five seats numbered 1 to 5 from left to right, one person per seat.\n\n- Anna sits in seat 2.\n- Bruno sits in one of the two end seats.\n- Dario sits immediately to the right of Carla.\n- Elena does not sit next to Anna.\n\nWho sits in seat 4?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Anna"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Bruno"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Carla"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Dario"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Elena"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Start from the fixed fact and the strongest restriction. Anna is in seat 2, so Elena cannot be in seat 1 or seat 3.\n\nTry the two options for Bruno.\n\n- **Bruno in seat 1.** Seats 3, 4 and 5 are left for Carla, Dario and Elena. Elena cannot take seat 3, so she is in 4 or 5, and Carla and Dario need two adjacent seats with Carla on the left. If Elena is in 5, Carla is in 3 and Dario in 4: this works. If Elena is in 4, seats 3 and 5 are not adjacent: this fails.\n- **Bruno in seat 5.** Seats 1, 3 and 4 are left. Elena can take neither 1 nor 3, so she is in 4, leaving seats 1 and 3 for Carla and Dario, which are not adjacent: this fails.\n\nThe only arrangement is Bruno, Anna, Carla, Dario, Elena from seat 1 to seat 5, so Dario sits in seat 4.\n\nWhat to notice first: in seating problems, place the fixed person, then mark which seats each restriction forbids before trying cases.",
+  "distractorRationale": {
+    "a": "Anna's seat is given directly as seat 2, so she cannot be in seat 4.",
+    "b": "Bruno must sit at an end, seat 1 or seat 5, so seat 4 is never his.",
+    "c": "Carla must have Dario immediately to her right. In the only arrangement that works she is in seat 3; placing her in seat 4 would force Dario into seat 5 and Bruno into seat 1, leaving Elena in seat 3, next to Anna.",
+    "e": "If Elena takes seat 4, the two seats left for Carla and Dario are seats 3 and 5 (with Bruno in seat 1) or seats 1 and 3 (with Bruno in seat 5). Neither pair is adjacent, so Dario cannot sit immediately to the right of Carla."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "Five people, Anna, Bruno, Carla, Dario and Elena, sit in seats numbered 1 to 5 from left to right. Anna is in seat 2; Bruno is in an end seat; Dario is immediately to the right of Carla; Elena is not next to Anna. The question asks who sits in seat 4, and the answer choices are the five names. Five answer choices.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-logic-author",
+    "aiAssisted": true,
+    "notes": "Original five-seat linear arrangement with a unique solution. Not derived from any CISIA or other published item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-logic-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved the item and then tried to defend each wrong choice; none survives. Awaiting blind independent solve and uniqueness check by a second party."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "arrangements",
+    "linear-order",
+    "seating"
+  ]
+}
