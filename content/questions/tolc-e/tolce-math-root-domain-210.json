@@ -1,0 +1,77 @@
+{
+  "id": "tolce-math-root-domain-210",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the domain of the real function $f(x) = \\sqrt{\\dfrac{4 - x^2}{x - 1}}$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$1 < x \\le 2$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$-2 \\le x \\le 2$ and $x \\ne 1$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$x \\le -2$ or $1 \\le x \\le 2$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$x \\le -2$ or $1 < x \\le 2$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$-2 \\le x < 1$ or $x \\ge 2$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Two conditions define the domain: the denominator must not be zero, so $x \\ne 1$, and the quantity under the square root must be non-negative:\n\n$$\\frac{4 - x^2}{x - 1} \\ge 0, \\qquad 4 - x^2 = (2 - x)(2 + x)$$\n\nThe critical points are $x = -2$ and $x = 2$ (numerator zero) and $x = 1$ (denominator zero). Study the sign on each interval:\n\n| interval | $4 - x^2$ | $x - 1$ | quotient |\n| --- | --- | --- | --- |\n| $x < -2$ | $-$ | $-$ | $+$ |\n| $-2 < x < 1$ | $+$ | $-$ | $-$ |\n| $1 < x < 2$ | $+$ | $+$ | $+$ |\n| $x > 2$ | $-$ | $+$ | $-$ |\n\nThe quotient is non-negative on $x < -2$ and $1 < x < 2$, and equals zero at $x = \\pm 2$, which are allowed. The point $x = 1$ is excluded.\n\nDomain: $x \\le -2$ or $1 < x \\le 2$.\n\nSpot-check: $x = -3$ gives $\\frac{-5}{-4} = \\frac{5}{4} \\ge 0$ (allowed); $x = 0$ gives $\\frac{4}{-1} < 0$ (not allowed); $x = 3$ gives $\\frac{-5}{2} < 0$ (not allowed).\n\nThe lesson: when the expression under a root is a fraction, both factors can be negative at once, so a branch far from the obvious interval can belong to the domain.",
+  "distractorRationale": {
+    "a": "This finds the interval where both numerator and denominator are positive but misses the branch $x \\le -2$, where both are negative and the quotient is again positive, as $x = -3$ shows.",
+    "c": "This includes $x = 1$, where the denominator is zero and the fraction is undefined. Only the zeros of the numerator can be included.",
+    "b": "This asks only that the numerator be non-negative and then removes $x = 1$. The sign of the denominator matters too: at $x = 0$ the quotient is $\\frac{4}{-1} < 0$, so the root does not exist there.",
+    "e": "This reads the sign table backwards and keeps the intervals where the quotient is negative (with endpoints attached). On those intervals the square root is not real, for example at $x = 0$ or $x = 3$."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": "The function f of x is the square root of the fraction with numerator 4 minus x squared and denominator x minus 1. The question asks for its domain. The answer choices are: x greater than 1 and at most 2; x at most negative 2, or x greater than 1 and at most 2; x at most negative 2, or x from 1 to 2 inclusive; x from negative 2 to 2 inclusive with x not equal to 1; x from negative 2 inclusive to 1 exclusive, or x at least 2.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Domain of a square root of a rational expression; distractors model a missing branch, including the pole, ignoring the denominator's sign, and a reversed sign table."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "domain",
+    "rational-functions",
+    "sign-table"
+  ]
+}

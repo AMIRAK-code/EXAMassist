@@ -15,12 +15,12 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "Every employee of the firm who holds a driving licence is a courier."
+      "textMd": "Every employee of the firm aged 18 or over is a courier."
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "No courier at the firm is under 18 years old."
+      "textMd": "Every employee of the firm who holds a driving licence is a courier."
     },
     {
       "id": "c",
@@ -30,24 +30,24 @@
     {
       "id": "d",
       "label": "D",
-      "textMd": "Every employee of the firm aged 18 or over is a courier."
+      "textMd": "Some employees of the firm hold a driving licence but are not couriers."
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "Some employees of the firm hold a driving licence but are not couriers."
+      "textMd": "No courier at the firm is under 18 years old."
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "b"
+    "optionId": "e"
   },
   "explanationMd": "Chain the two statements. Take any courier: by the first statement they hold a driving licence; by the second, nobody with a licence is under 18. So no courier is under 18.\n\nA quick way to see it is with nested groups: the couriers sit inside the licence holders, and the licence holders sit entirely outside the under-18s. Anything inside the couriers is therefore also outside the under-18s.\n\nThe other choices either reverse a statement (\"every courier holds a licence\" does not mean \"every licence holder is a courier\"), contradict what was derived, or claim something the statements leave open.\n\nWhat to notice first: \"all X are Y\" followed by \"no Y is Z\" always gives \"no X is Z\". Watch for choices that swap the order of an \"all\" statement.",
   "distractorRationale": {
-    "a": "This reverses the first statement. Every courier holding a licence leaves room for other employees, such as managers or mechanics, who hold a licence but are not couriers.",
+    "b": "This reverses the first statement. Every courier holding a licence leaves room for other employees, such as managers or mechanics, who hold a licence but are not couriers.",
     "c": "This contradicts the two statements together: every courier holds a licence, and no licence holder is under 18.",
-    "d": "This links being 18 or over to being a courier, but the statements only say that couriers are licensed and licence holders are not under 18. Nothing forces adult employees to be couriers.",
-    "e": "This may be true, but nothing requires it. It is consistent with the statements that the couriers are the only licence holders at the firm."
+    "a": "This links being 18 or over to being a courier, but the statements only say that couriers are licensed and licence holders are not under 18. Nothing forces adult employees to be couriers.",
+    "d": "This may be true, but nothing requires it. It is consistent with the statements that the couriers are the only licence holders at the firm."
   },
   "estimatedSeconds": 45,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": "Author solved the item and then tried to defend each wrong choice; none survives. Awaiting blind independent solve and uniqueness check by a second party."
+    "notes": "Author solved the item and then tried to defend each wrong choice; none survives. Awaiting blind independent solve and uniqueness check by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

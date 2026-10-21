@@ -1,0 +1,77 @@
+{
+  "id": "tolce-math-log-equation-209",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which real number $x$ satisfies $\\log_2(x + 3) - \\log_2(x - 1) = 2$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$5$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$-\\dfrac{1}{3}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\dfrac{4}{3}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\dfrac{7}{3}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "No real number satisfies the equation."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Begin with the domain: both logarithms need positive arguments, so $x + 3 > 0$ and $x - 1 > 0$, which together mean $x > 1$.\n\nA difference of logarithms with the same base is the logarithm of a quotient:\n\n$$\\log_2\\frac{x + 3}{x - 1} = 2 \\iff \\frac{x + 3}{x - 1} = 2^2 = 4$$\n\nMultiply by $x - 1$ (positive on the domain):\n\n$$x + 3 = 4x - 4 \\iff 7 = 3x \\iff x = \\frac{7}{3}$$\n\nSince $\\frac{7}{3} > 1$, it lies in the domain.\n\nCheck: $x + 3 = \\frac{16}{3}$ and $x - 1 = \\frac{4}{3}$, whose quotient is $4$, and $\\log_2 4 = 2$.",
+  "distractorRationale": {
+    "b": "This comes from a sign slip when collecting terms: from $x + 3 = 4x - 4$ it moves the $-4$ across without changing its sign, getting $3x = -1$. The value also fails the domain condition $x > 1$, which should have signalled an error.",
+    "c": "This expands $4(x - 1)$ as $4x - 1$, giving $x + 3 = 4x - 1$. The $4$ multiplies both terms in the bracket, so the right side is $4x - 4$.",
+    "a": "This sets the quotient equal to $2$ instead of $2^2$, solving $\\frac{x + 3}{x - 1} = 2$. The equation $\\log_2 y = 2$ means $y = 2^2 = 4$.",
+    "e": "This is reached by rejecting a wrong root, such as $-\\frac{1}{3}$ from a sign slip, on domain grounds, or by inverting the quotient. Correct algebra gives $\\frac{7}{3}$, which satisfies $x > 1$ and checks in the original equation."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "The equation is: log base 2 of x plus 3, minus log base 2 of x minus 1, equals 2. The answer choices are negative one third, four thirds, seven thirds, 5, and the statement that no real number satisfies the equation.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Logarithm quotient rule with a domain check; distractors model a sign slip, a distribution error, forgetting to exponentiate, and a false 'no solution'."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "logarithms",
+    "equations",
+    "domain"
+  ]
+}
