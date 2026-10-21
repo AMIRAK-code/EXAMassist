@@ -89,6 +89,7 @@ reset can fail there (error 1102) until the account is on Workers Paid.
 | `npm run db:migrate` / `db:seed` / `db:reset` | Database lifecycle |
 | `npm run content:validate` | Validate the question bank and report coverage |
 | `npx tsx scripts/validate-configs.ts` | Validate the exam configurations |
+| `npm run billing:discounts` | Create the discount codes in `src/lib/billing/discounts.ts` in Stripe (needs `STRIPE_SECRET_KEY`; safe to re-run) |
 
 ## What is here
 
