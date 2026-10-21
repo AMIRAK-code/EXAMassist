@@ -15,17 +15,17 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "No member of the drama club is a member of the chess club."
+      "textMd": "Some members of the chess club are members of the drama club."
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "Some members of the chess club are members of the drama club."
+      "textMd": "Some members of the chess club are not members of the drama club."
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "Some members of the chess club are not members of the drama club."
+      "textMd": "No member of the drama club is a member of the chess club."
     },
     {
       "id": "d",
@@ -44,9 +44,9 @@
   },
   "explanationMd": "Pick one of the drama club members who is under 16; the second statement guarantees at least one exists. That student cannot be in the chess club, because the first statement rules out anyone under 16 there. So at least one drama club member is not in the chess club.\n\nEverything else depends on details the statements leave open. The older drama club members might or might not also play chess, so \"no drama member is in the chess club\" and \"some chess members are in the drama club\" are both undecided. Likewise the chess club could be made up entirely of older drama members, so \"some chess members are not in drama\" is not forced either.\n\nWhat to notice first: \"no A is C\" with \"some B is C\" always yields \"some B is not A\". The conclusion is about the group that the \"some\" statement describes, not the other way round.",
   "distractorRationale": {
-    "a": "This is too strong. Only the under-16 drama members are excluded from chess; drama members aged 16 or over may well belong to the chess club.",
-    "b": "This may be true, but nothing requires any overlap between the clubs. The statements are equally consistent with no student belonging to both.",
-    "c": "This reverses the valid conclusion. The chess club could consist entirely of drama members aged 16 or over, in which case every chess member is also in drama.",
+    "c": "This is too strong. Only the under-16 drama members are excluded from chess; drama members aged 16 or over may well belong to the chess club.",
+    "a": "This may be true, but nothing requires any overlap between the clubs. The statements are equally consistent with no student belonging to both.",
+    "b": "This reverses the valid conclusion. The chess club could consist entirely of drama members aged 16 or over, in which case every chess member is also in drama.",
     "e": "The statements say nothing about under-16 students outside both clubs. Some under-16 students may belong to neither."
   },
   "estimatedSeconds": 65,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": "Author solved the item and then tried to defend each wrong choice; none survives. Awaiting blind independent solve and uniqueness check by a second party."
+    "notes": "Author solved the item and then tried to defend each wrong choice; none survives. Awaiting blind independent solve and uniqueness check by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,

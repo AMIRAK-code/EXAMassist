@@ -1,0 +1,77 @@
+{
+  "id": "tolce-math-commuter-sets-201",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-sets-logic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "In a survey of $40$ commuters, $23$ say they use the bus, $19$ say they use the train and $6$ say they use neither. How many of the commuters use both the bus and the train?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$2$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$6$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$8$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$11$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$15$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Start from the people who use **at least one** of the two services, because that is the set the bus and train counts describe between them.\n\nOf the $40$ commuters, $6$ use neither, so $40 - 6 = 34$ use the bus, the train or both.\n\nAdding the two counts, $23 + 19 = 42$, counts everyone who uses both services twice. The excess over the true union is exactly the overlap:\n\n$$|\\text{bus} \\cap \\text{train}| = 23 + 19 - 34 = 8$$\n\nCheck with the four regions of a Venn diagram: bus only $23 - 8 = 15$, train only $19 - 8 = 11$, both $8$, neither $6$. These add to $15 + 11 + 8 + 6 = 40$, the size of the survey.\n\nThe habit to keep: before using $|X \\cup Y| = |X| + |Y| - |X \\cap Y|$, make sure the union you plug in excludes anyone outside both sets.",
+  "distractorRationale": {
+    "a": "This is $23 + 19 - 40$: it uses the whole survey as the union, forgetting that $6$ commuters are in neither set. The union of bus users and train users has only $34$ members.",
+    "b": "This repeats the number of commuters who use neither service. That region lies outside both sets; the overlap is a different region of the diagram.",
+    "d": "This is the number who use the train only, $19 - 8$. It is one region of the correct diagram, reported instead of the overlap.",
+    "e": "This is the number who use the bus only, $23 - 8$. It answers \"bus but not train\" rather than \"bus and train\"."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "A survey of 40 commuters: 23 use the bus, 19 use the train, 6 use neither. The question asks how many use both. The answer choices are the whole numbers 2, 6, 8, 11 and 15.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Two-set inclusion-exclusion with a 'neither' group, numbers chosen so that each Venn region is a distinct distractor."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Awaiting blind independent solve before publication."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "sets",
+    "venn-diagram",
+    "inclusion-exclusion"
+  ]
+}

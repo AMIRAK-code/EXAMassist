@@ -1,0 +1,77 @@
+{
+  "id": "tolce-math-invoice-negation-202",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-sets-logic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Consider the statement:\n\n> Every invoice issued in March was paid within $30$ days.\n\nWhich of the following is the negation of this statement?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "No invoice issued in March was paid within $30$ days."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Every invoice paid within $30$ days was issued in March."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "At least one invoice issued in March was not paid within $30$ days."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "At least one invoice not issued in March was not paid within $30$ days."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "At least one invoice issued in March was paid within $30$ days."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The negation of a statement is the statement that is true exactly when the original is false, no more and no less.\n\nThe original has the form \"for every $x$ in the set of March invoices, $x$ was paid within $30$ days\". It is false as soon as **one** March invoice breaks the rule. So the negation is\n\n$$\\text{not}\\,(\\forall x,\\ P(x)) \\iff \\exists x,\\ \\text{not}\\,P(x)$$\n\nIn words: at least one invoice issued in March was not paid within $30$ days. Two things change: \"every\" becomes \"at least one\", and the property is negated. The set the statement talks about (invoices issued in March) stays exactly the same.\n\nA quick test settles the doubtful cases. Imagine $10$ March invoices of which $9$ were paid on time and $1$ was late. The original is false, so the negation must be true. \"At least one March invoice was not paid within 30 days\" is true here. \"No March invoice was paid within 30 days\" is false here, because nine were, so it cannot be the negation.",
+  "distractorRationale": {
+    "a": "This is the contrary, not the negation. It claims that every March invoice was late, which is much stronger than needed. In the scenario where nine of ten March invoices were paid on time and one was late, the original is false but this statement is false too.",
+    "b": "This is the converse: it swaps the roles of \"issued in March\" and \"paid within 30 days\". A statement and its converse can both be true at once, so the converse can never be a negation.",
+    "e": "This changes \"every\" to \"at least one\" but forgets to negate the property. It is compatible with the original: if every March invoice was paid on time, this is true as well.",
+    "d": "This negates the wrong part. It moves the claim to invoices issued outside March, which the original says nothing about. Whatever happened to invoices from other months, the original can still be true or false."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "A statement is quoted: every invoice issued in March was paid within 30 days. The question asks for its negation. The five choices are short sentences about invoices issued in March, or not in March, being paid or not paid within 30 days.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Negating a universal statement; distractors are the contrary, the converse, an existential that keeps the property, and a negation applied to the wrong set."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "logic",
+    "negation",
+    "quantifiers"
+  ]
+}
