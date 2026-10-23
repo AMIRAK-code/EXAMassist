@@ -1,0 +1,120 @@
+{
+  "id": "imat-chem-dilution-108",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-chemistry",
+  "skillSlug": "imat-chem-stoichiometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A technician needs 500 mL of a 0.40 mol/L sodium hydroxide solution and has a stock solution of sodium hydroxide at 2.0 mol/L. What volume of the stock solution must be diluted with water to a final volume of 500 mL?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "100 mL"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "200 mL"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "250 mL"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "400 mL"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "2500 mL"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Dilution adds water but no solute, so the moles of NaOH taken from the stock must equal the moles in the final solution: $c_1V_1 = c_2V_2$.\n\nMoles needed: $0.40\\ \\text{mol/L} \\times 0.500\\ \\text{L} = 0.20$ mol.\n\nVolume of stock that contains 0.20 mol:\n\n$$V_1 = \\frac{0.20\\ \\text{mol}}{2.0\\ \\text{mol/L}} = 0.10\\ \\text{L} = 100\\ \\text{mL}$$\n\nCheck with the dilution factor: the concentration falls from 2.0 to 0.40 mol/L, a factor of 5, so the volume must grow by a factor of 5, and $100 \\times 5 = 500$ mL. The 100 mL of stock is then made up to 500 mL with water.",
+  "distractorRationale": {
+    "b": "200 is $0.40 \\times 500$, the amount of NaOH needed in millimoles, read as a volume. The step that divides by the stock concentration, 2.0 mol/L, is missing.",
+    "c": "This halves 500 mL because the stock is 2.0 mol/L, ignoring the target concentration of 0.40 mol/L. That would make a 1.0 mol/L solution.",
+    "d": "400 mL is roughly the volume of water added to the stock, not the volume of stock taken. The question asks how much stock is diluted.",
+    "e": "This inverts the concentration ratio, $500 \\times 2.0 / 0.40$. Diluting makes a solution weaker, so the volume of concentrated stock must be smaller than the final volume, not larger."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "A 2.0 moles per litre sodium hydroxide stock solution is to be diluted to make 500 millilitres of 0.40 moles per litre solution. The question asks what volume of stock is needed. Five choices, in millilitres: 100, 200, 250, 400 and 2500.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "imat-chemistry-author",
+    "aiAssisted": true,
+    "notes": "Original item. Concentrations chosen for a fivefold dilution; each distractor is a distinct slip with c1V1 = c2V2."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "imat-chemistry-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved the item twice independently and tried to defend each wrong choice; only the keyed choice survives. Awaiting blind independent solve. The Italian version uses the decimal comma, as Italian schools do, and awaits a check by someone other than its translator."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "chemistry",
+    "solutions",
+    "concentration",
+    "dilution"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un tecnico ha bisogno di 500 mL di una soluzione di idrossido di sodio 0,40 mol/L e dispone di una soluzione madre di idrossido di sodio 2,0 mol/L. Quale volume della soluzione madre deve essere diluito con acqua fino a un volume finale di 500 mL?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "100 mL"
+        },
+        {
+          "id": "b",
+          "textMd": "200 mL"
+        },
+        {
+          "id": "c",
+          "textMd": "250 mL"
+        },
+        {
+          "id": "d",
+          "textMd": "400 mL"
+        },
+        {
+          "id": "e",
+          "textMd": "2500 mL"
+        }
+      ],
+      "explanationMd": "La diluizione aggiunge acqua ma non soluto, quindi le moli di NaOH prelevate dalla soluzione madre devono essere uguali alle moli nella soluzione finale: $c_1V_1 = c_2V_2$.\n\nMoli necessarie: $0{,}40\\ \\text{mol/L} \\times 0{,}500\\ \\text{L} = 0{,}20$ mol.\n\nVolume di soluzione madre che contiene 0,20 mol:\n\n$$V_1 = \\frac{0{,}20\\ \\text{mol}}{2{,}0\\ \\text{mol/L}} = 0{,}10\\ \\text{L} = 100\\ \\text{mL}$$\n\nVerifica con il fattore di diluizione: la concentrazione scende da 2,0 a 0,40 mol/L, cioè di un fattore 5, quindi il volume deve aumentare di un fattore 5, e $100 \\times 5 = 500$ mL. I 100 mL di soluzione madre vengono poi portati a 500 mL con acqua.",
+      "distractorRationale": {
+        "b": "200 è $0{,}40 \\times 500$, la quantità di NaOH necessaria in millimoli, letta come se fosse un volume. Manca il passaggio in cui si divide per la concentrazione della soluzione madre, 2,0 mol/L.",
+        "c": "Dimezza 500 mL perché la soluzione madre è 2,0 mol/L, ignorando la concentrazione richiesta di 0,40 mol/L. Si otterrebbe una soluzione 1,0 mol/L.",
+        "d": "400 mL è all'incirca il volume di acqua aggiunto alla soluzione madre, non il volume di soluzione madre prelevato. La domanda chiede quanta soluzione madre viene diluita.",
+        "e": "Inverte il rapporto tra le concentrazioni, $500 \\times 2{,}0 / 0{,}40$. La diluizione rende una soluzione meno concentrata, quindi il volume di soluzione madre concentrata deve essere minore del volume finale, non maggiore."
+      },
+      "accessibilityText": "Una soluzione madre di idrossido di sodio 2,0 moli per litro deve essere diluita per preparare 500 millilitri di soluzione 0,40 moli per litro. La domanda chiede quale volume di soluzione madre serve. Cinque scelte, in millilitri: 100, 200, 250, 400 e 2500.",
+      "check": {
+        "translatedBy": "imat-chemistry-author",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
+}
