@@ -1,4 +1,5 @@
 import type { Blueprint, ExamConfig, SectionConfig } from '@/lib/assessment/types';
+import { bocconiGraduateConfig } from './configs/bocconi-graduate';
 import { bocconiLawConfig } from './configs/bocconi-law';
 import { bocconiUndergraduateConfig } from './configs/bocconi-undergraduate';
 import { digitalSatConfig } from './configs/digital-sat';
@@ -14,11 +15,13 @@ import { imatConfig } from './configs/imat';
 /**
  * The exam registry.
  *
- * A *hub* is what a visitor browses (six of them, as the brief requires). A
- * *config* is what the assessment engine runs. The Bocconi hub carries two
- * configs because the undergraduate and law forms are genuinely different
- * tests, and mixing their requirements would be exactly the confusion the
- * brief warns against.
+ * A *hub* is what a visitor browses. A *config* is what the assessment engine
+ * runs. Bocconi has two hubs because bachelor and master's admission are
+ * separate tracks with different tests: the Bachelor & Law hub carries the
+ * standard and law forms of the Online Bocconi test, which are genuinely
+ * different tests, and the Master hub carries the graduate form and points to
+ * the GMAT and GRE, which Bocconi accepts in its place. Mixing their
+ * requirements would be exactly the confusion the brief warns against.
  */
 
 export const EXAM_CONFIGS: readonly ExamConfig[] = [
@@ -29,6 +32,7 @@ export const EXAM_CONFIGS: readonly ExamConfig[] = [
   greConfig,
   bocconiUndergraduateConfig,
   bocconiLawConfig,
+  bocconiGraduateConfig,
 ];
 
 /**
@@ -78,17 +82,71 @@ export interface ExamHub {
 
 export const EXAM_HUBS: readonly ExamHub[] = [
   {
+    // The slug predates the split into two Bocconi hubs and is kept so that
+    // existing links keep working.
     slug: 'bocconi-online-test',
-    name: 'Bocconi Online Test',
-    shortName: 'Bocconi Test',
-    label: 'Bocconi',
-    variantLabels: { 'bocconi-undergraduate': 'Undergraduate', 'bocconi-law': 'Law' },
+    name: 'Bocconi Bachelor & Law admission',
+    shortName: 'Bocconi Bachelor & Law',
+    label: 'Bocconi Bachelor',
+    variantLabels: { 'bocconi-undergraduate': 'Standard', 'bocconi-law': 'Law' },
     publisher: 'Università Bocconi',
     tagline:
-      'The online admission test for Bocconi bachelor and law programmes: 50 questions in 75 minutes, with negative marking and strictly forward-only navigation.',
+      'The Online Bocconi test for Bocconi bachelor and law programmes, in its standard and law forms: 50 questions in 75 minutes, with negative marking and strictly forward-only navigation.',
     audiences: ['undergraduate', 'law'],
     configKeys: ['bocconi-undergraduate', 'bocconi-law'],
+    otherRoutes: [
+      {
+        programme: 'Bachelor programmes (Undergraduate School)',
+        audience: 'undergraduate',
+        configKey: 'digital-sat',
+        note: 'Bocconi also accepts the SAT. A total below 1040, or a section score below 520, is not considered; scores obtained before 2022 are not accepted. The Bachelor in Mathematical and Computing Sciences for Artificial Intelligence also requires at least 600 out of 800 in SAT Math.',
+      },
+      {
+        programme: 'Bachelor programmes (Undergraduate School)',
+        audience: 'undergraduate',
+        configKey: 'enhanced-act',
+        note: 'Bocconi also accepts the ACT. A composite below 19 is not considered; scores obtained before 2021 are not accepted. The Bachelor in Mathematical and Computing Sciences for Artificial Intelligence also requires at least 25 out of 36 in ACT Math.',
+      },
+      {
+        programme: 'Law programmes (Integrated Master of Arts in Law, Bachelor in Global Law)',
+        audience: 'law',
+        configKey: 'lsat',
+        note: 'Bocconi’s Law School also accepts the LSAT. A score below 147 out of 180 is not considered. The LSAT counts for the law programmes only.',
+      },
+    ],
     order: 1,
+  },
+  {
+    slug: 'bocconi-master',
+    name: 'Bocconi Master’s admission',
+    shortName: 'Bocconi Master',
+    label: 'Bocconi Master',
+    publisher: 'Università Bocconi',
+    tagline:
+      'Admission to Bocconi Master of Science and MA programmes: the graduate Online Bocconi test (50 questions in 75 minutes, −0.25 for a wrong answer, 15 out of 50 to be considered), or the GMAT or GRE instead.',
+    audiences: ['graduate'],
+    configKeys: ['bocconi-graduate'],
+    otherRoutes: [
+      {
+        programme: 'Master of Science and MA programmes',
+        audience: 'graduate',
+        configKey: 'gmat',
+        note: 'Bocconi accepts the GMAT in place of its own test, in test-centre or online format. The GMAT Exam needs at least 500 out of 800 and the GMAT Focus Edition at least 485 out of 805. Scores from the current and previous editions are accepted if no more than five years old.',
+      },
+      {
+        programme: 'Master of Science and MA programmes',
+        audience: 'graduate',
+        configKey: 'gre',
+        note: 'Bocconi accepts the GRE General Test and the Shorter GRE in place of its own test, but not the GRE General Test at Home. Scores are accepted if no more than five years old. Bocconi sets a combined Verbal and Quantitative threshold that we could not verify, so it is not shown here; check it on Bocconi’s own page.',
+      },
+      {
+        programme: 'PPA and GLOBE',
+        audience: 'graduate',
+        configKey: null,
+        note: 'These two programmes require no selection test.',
+      },
+    ],
+    order: 2,
   },
   {
     slug: 'digital-sat',
@@ -100,7 +158,7 @@ export const EXAM_HUBS: readonly ExamHub[] = [
       'The two-stage adaptive digital SAT: two Reading and Writing modules and two Math modules, 2 hours 14 minutes of testing.',
     audiences: ['undergraduate'],
     configKeys: ['digital-sat'],
-    order: 2,
+    order: 3,
   },
   {
     slug: 'enhanced-act',
@@ -112,7 +170,7 @@ export const EXAM_HUBS: readonly ExamHub[] = [
       'The shorter enhanced ACT: English, Mathematics and Reading as the core test, with Science and Writing optional.',
     audiences: ['undergraduate'],
     configKeys: ['enhanced-act'],
-    order: 3,
+    order: 4,
   },
   {
     slug: 'lsat',
@@ -124,7 +182,7 @@ export const EXAM_HUBS: readonly ExamHub[] = [
       'The current LSAT: four 35-minute sections of Logical Reasoning and Reading Comprehension. Analytical Reasoning was removed in August 2024.',
     audiences: ['law'],
     configKeys: ['lsat'],
-    order: 4,
+    order: 5,
   },
   {
     slug: 'gmat',
@@ -136,7 +194,7 @@ export const EXAM_HUBS: readonly ExamHub[] = [
       'The current GMAT, previously branded the Focus Edition: Quantitative Reasoning, Verbal Reasoning and Data Insights, 64 questions in 2 hours 15 minutes.',
     audiences: ['graduate'],
     configKeys: ['gmat'],
-    order: 5,
+    order: 6,
   },
   {
     slug: 'gre',
@@ -148,7 +206,7 @@ export const EXAM_HUBS: readonly ExamHub[] = [
       'The shorter GRE General Test: one Analytical Writing task plus two Verbal and two Quantitative sections, about 1 hour 58 minutes.',
     audiences: ['graduate'],
     configKeys: ['gre'],
-    order: 6,
+    order: 7,
   },
 ];
 
@@ -181,7 +239,7 @@ export const DRAFT_EXAM_HUBS: readonly ExamHub[] = [
         note: 'SAA appears to run its own selection for its MBA programmes. Whether it asks for or accepts a GMAT or GRE score is unverified; until SAA’s own pages are read, no test is linked here.',
       },
     ],
-    order: 7,
+    order: 8,
   },
 ];
 

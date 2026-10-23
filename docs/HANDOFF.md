@@ -12,8 +12,9 @@ claim made here.
 
 A learner can do all of this today, end to end, verified in a browser:
 
-- **Discover** — land on the homepage, browse six exam hubs grouped by
-  undergraduate / law / graduate admission, read a format and scoring guide that
+- **Discover** — land on the homepage, browse seven exam hubs grouped by
+  undergraduate / law / graduate admission (Bocconi has two: Bachelor & Law,
+  and Master's), read a format and scoring guide that
   cites the test maker for every fact and shows the date it was checked.
 - **Practise** — start a session with no account (a guest session is created
   automatically), choose topic, difficulty and length, answer questions of every
