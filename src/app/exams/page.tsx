@@ -13,7 +13,7 @@ export const dynamic = 'force-dynamic';
 
 const TITLE = 'Admission exams we cover';
 const DESCRIPTION =
-  'Format, timing, scoring and practice for the Bocconi Online Test, Digital SAT, Enhanced ACT, LSAT, GMAT and GRE, with undergraduate, law and graduate requirements kept separate.';
+  'Format, timing, scoring and practice for the Online Bocconi test (bachelor, law and master’s forms), Digital SAT, Enhanced ACT, LSAT, GMAT and GRE, with undergraduate, law and graduate requirements kept separate.';
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -46,7 +46,7 @@ export default async function ExamsPage() {
     {
       audience: 'graduate',
       label: 'Graduate and business admission',
-      blurb: 'Tests taken after a first degree, for master’s and MBA programmes.',
+      blurb: 'Tests taken after a first degree, for master’s and MBA programmes, including the Bocconi master’s route, which has its own form of the Bocconi test.',
     },
   ];
 
