@@ -1,0 +1,120 @@
+{
+  "id": "imat-chem-bond-angles-106",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-chemistry",
+  "skillSlug": "imat-chem-bonding",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which of the following ranks the molecules by bond angle, from **largest** to **smallest**? For each molecule, consider the angle between two bonds to the central atom.",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\mathrm{CO_2} > \\mathrm{BF_3} > \\mathrm{CH_4} > \\mathrm{H_2O}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\mathrm{CO_2} > \\mathrm{CH_4} > \\mathrm{BF_3} > \\mathrm{H_2O}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\mathrm{CO_2} > \\mathrm{BF_3} > \\mathrm{H_2O} > \\mathrm{CH_4}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\mathrm{BF_3} > \\mathrm{CO_2} > \\mathrm{CH_4} > \\mathrm{H_2O}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\mathrm{H_2O} > \\mathrm{CH_4} > \\mathrm{BF_3} > \\mathrm{CO_2}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Count the electron domains around each central atom (bonding pairs and lone pairs, with a double bond counting as one domain), then apply VSEPR.\n\n- $\\mathrm{CO_2}$: two domains (two C=O double bonds) and no lone pairs, so the molecule is linear: $180^\\circ$.\n- $\\mathrm{BF_3}$: three bonding domains and no lone pairs, trigonal planar: $120^\\circ$.\n- $\\mathrm{CH_4}$: four bonding domains, tetrahedral: $109.5^\\circ$.\n- $\\mathrm{H_2O}$: four domains, but two of them are lone pairs. Lone pairs repel more strongly than bonding pairs and squeeze the two O–H bonds together, to about $104.5^\\circ$.\n\nSo the ranking is $\\mathrm{CO_2} > \\mathrm{BF_3} > \\mathrm{CH_4} > \\mathrm{H_2O}$.\n\nThe general lesson: the more electron domains share the space around a central atom, the smaller the angle between them; among molecules with the same number of domains, each lone pair narrows the bond angle further.",
+  "distractorRationale": {
+    "b": "This places methane above boron trifluoride, perhaps because methane has more bonds. More electron domains around the centre force them closer together, so four domains give $109.5^\\circ$, less than the $120^\\circ$ of three.",
+    "c": "This puts water above methane, as if water's lone pairs widened the angle. Lone pairs repel more strongly than bonding pairs and push the O–H bonds closer together, to about $104.5^\\circ$.",
+    "d": "This puts boron trifluoride above carbon dioxide. A linear molecule has the largest possible angle, $180^\\circ$; three domains in a plane give only $120^\\circ$.",
+    "e": "This is the reverse of the correct order, as though more electron domains spread the bonds further apart. The more domains share the space around the central atom, the smaller the angle between neighbouring bonds."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": null,
+  "accessibilityText": "The question asks which list ranks four molecules by bond angle, from largest to smallest. Each choice is a chain of 'greater than' signs. The choices: carbon dioxide, boron trifluoride, methane, water; carbon dioxide, methane, boron trifluoride, water; carbon dioxide, boron trifluoride, water, methane; boron trifluoride, carbon dioxide, methane, water; water, methane, boron trifluoride, carbon dioxide.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "imat-chemistry-author",
+    "aiAssisted": true,
+    "notes": "Original item. Four molecules with two, three, four and four (two lone pairs) electron domains, giving well-separated textbook angles of 180, 120, 109.5 and about 104.5 degrees."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "imat-chemistry-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved the item twice independently and tried to defend each wrong choice; only the keyed choice survives. Awaiting blind independent solve. The Italian version uses the decimal comma, as Italian schools do, and awaits a check by someone other than its translator."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "chemistry",
+    "molecular-shape",
+    "vsepr",
+    "bond-angle"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Quale dei seguenti elenchi ordina le molecole per angolo di legame, dal **più grande** al **più piccolo**? Per ogni molecola si consideri l'angolo tra due legami con l'atomo centrale.",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\mathrm{CO_2} > \\mathrm{BF_3} > \\mathrm{CH_4} > \\mathrm{H_2O}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\mathrm{CO_2} > \\mathrm{CH_4} > \\mathrm{BF_3} > \\mathrm{H_2O}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$\\mathrm{CO_2} > \\mathrm{BF_3} > \\mathrm{H_2O} > \\mathrm{CH_4}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\mathrm{BF_3} > \\mathrm{CO_2} > \\mathrm{CH_4} > \\mathrm{H_2O}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\mathrm{H_2O} > \\mathrm{CH_4} > \\mathrm{BF_3} > \\mathrm{CO_2}$"
+        }
+      ],
+      "explanationMd": "Si contano i domini elettronici attorno a ciascun atomo centrale (coppie di legame e doppietti solitari, con un doppio legame che conta come un solo dominio), poi si applica la teoria VSEPR.\n\n- $\\mathrm{CO_2}$: due domini (due doppi legami C=O) e nessun doppietto solitario, quindi la molecola è lineare: $180^\\circ$.\n- $\\mathrm{BF_3}$: tre domini di legame e nessun doppietto solitario, trigonale planare: $120^\\circ$.\n- $\\mathrm{CH_4}$: quattro domini di legame, tetraedrica: $109{,}5^\\circ$.\n- $\\mathrm{H_2O}$: quattro domini, ma due sono doppietti solitari. I doppietti solitari si respingono più fortemente delle coppie di legame e avvicinano i due legami O–H, fino a circa $104{,}5^\\circ$.\n\nQuindi l'ordine è $\\mathrm{CO_2} > \\mathrm{BF_3} > \\mathrm{CH_4} > \\mathrm{H_2O}$.\n\nLa regola generale: più domini elettronici si dividono lo spazio attorno a un atomo centrale, più piccolo è l'angolo tra di essi; tra molecole con lo stesso numero di domini, ogni doppietto solitario restringe ulteriormente l'angolo di legame.",
+      "distractorRationale": {
+        "b": "Mette il metano al di sopra del trifluoruro di boro, forse perché il metano ha più legami. Più domini elettronici attorno all'atomo centrale li costringono più vicini, quindi quattro domini danno $109{,}5^\\circ$, meno dei $120^\\circ$ di tre domini.",
+        "c": "Mette l'acqua al di sopra del metano, come se i doppietti solitari dell'acqua allargassero l'angolo. I doppietti solitari si respingono più fortemente delle coppie di legame e avvicinano i legami O–H, fino a circa $104{,}5^\\circ$.",
+        "d": "Mette il trifluoruro di boro al di sopra del diossido di carbonio. Una molecola lineare ha l'angolo più grande possibile, $180^\\circ$; tre domini in un piano danno solo $120^\\circ$.",
+        "e": "È l'inverso dell'ordine corretto, come se più domini elettronici allontanassero di più i legami. Più domini si dividono lo spazio attorno all'atomo centrale, più piccolo è l'angolo tra legami vicini."
+      },
+      "accessibilityText": "La domanda chiede quale elenco ordina quattro molecole per angolo di legame, dal più grande al più piccolo. Ogni scelta è una catena di segni 'maggiore di'. Le scelte: diossido di carbonio, trifluoruro di boro, metano, acqua; diossido di carbonio, metano, trifluoruro di boro, acqua; diossido di carbonio, trifluoruro di boro, acqua, metano; trifluoruro di boro, diossido di carbonio, metano, acqua; acqua, metano, trifluoruro di boro, diossido di carbonio.",
+      "check": {
+        "translatedBy": "imat-chemistry-author",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
+}
