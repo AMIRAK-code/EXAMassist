@@ -15,39 +15,39 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "0.6 mL"
+      "textMd": "3 mL"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "2 mL"
+      "textMd": "12 mL"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "3 mL"
+      "textMd": "15 mL"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "12 mL"
+      "textMd": "0.6 mL"
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "15 mL"
+      "textMd": "2 mL"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "c"
+    "optionId": "a"
   },
   "explanationMd": "Work in three short steps, keeping the units with every number.\n\n**1. Daily amount of drug.**\n$$20\\ \\text{mg/kg} \\times 24\\ \\text{kg} = 480\\ \\text{mg per day}$$\n\n**2. Amount per dose.** A dose every 6 hours means $24 \\div 6 = 4$ doses a day.\n$$480\\ \\text{mg} \\div 4 = 120\\ \\text{mg per dose}$$\n\n**3. Volume per dose.** The syrup has $200\\ \\text{mg}$ in $5\\ \\text{mL}$, so its concentration is\n$$200\\ \\text{mg} \\div 5\\ \\text{mL} = 40\\ \\text{mg/mL}$$\nand the volume needed is\n$$120\\ \\text{mg} \\div 40\\ \\text{mg/mL} = 3\\ \\text{mL}$$\n\n**Check backwards.** $3\\ \\text{mL}$ at $40\\ \\text{mg/mL}$ is $120\\ \\text{mg}$; four doses give $480\\ \\text{mg}$, which is $20\\ \\text{mg}$ for each of the child's $24\\ \\text{kg}$. Every condition in the prescription is met.\n\nThe two places where errors creep in are the number of doses (\"every 6 hours\" is four doses a day, not six) and the concentration (the label gives milligrams per **5** mL, not per millilitre). Converting the concentration to milligrams per millilitre first removes the second trap.",
   "distractorRationale": {
-    "a": "This divides the 120 mg dose by 200, as if the syrup contained 200 mg in every millilitre. The label says 200 mg in every 5 mL, so each millilitre holds only 40 mg and five times this volume is needed.",
-    "b": "This splits the daily 480 mg into six doses, reading \"every 6 hours\" as \"six times a day\". A dose every 6 hours means $24 \\div 6 = 4$ doses a day, so each dose is 120 mg, not 80 mg.",
-    "d": "This is the volume for the whole day, $480\\ \\text{mg} \\div 40\\ \\text{mg/mL}$. The daily amount still has to be divided among the four doses given every 6 hours.",
-    "e": "This divides 120 mg by 40 to get 3 and then multiplies by 5 mL, applying the 5 mL a second time. Once the concentration is expressed as 40 mg per mL, $120 \\div 40$ is already the answer in millilitres; 15 mL of syrup would contain 600 mg."
+    "d": "This divides the 120 mg dose by 200, as if the syrup contained 200 mg in every millilitre. The label says 200 mg in every 5 mL, so each millilitre holds only 40 mg and five times this volume is needed.",
+    "e": "This splits the daily 480 mg into six doses, reading \"every 6 hours\" as \"six times a day\". A dose every 6 hours means $24 \\div 6 = 4$ doses a day, so each dose is 120 mg, not 80 mg.",
+    "b": "This is the volume for the whole day, $480\\ \\text{mg} \\div 40\\ \\text{mg/mL}$. The daily amount still has to be divided among the four doses given every 6 hours.",
+    "c": "This divides 120 mg by 40 to get 3 and then multiplies by 5 mL, applying the 5 mL a second time. Once the concentration is expressed as 40 mg per mL, $120 \\div 40$ is already the answer in millilitres; 15 mL of syrup would contain 600 mg."
   },
   "estimatedSeconds": 100,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": "Author solved the item twice independently (480 mg per day, 4 doses, 120 mg per dose, 40 mg/mL, 3 mL) and checked it backwards. Awaiting blind independent solve."
+    "notes": "Author solved the item twice independently (480 mg per day, 4 doses, 120 mg per dose, 40 mg/mL, 3 mL) and checked it backwards. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,
@@ -81,31 +81,31 @@
       "options": [
         {
           "id": "a",
-          "textMd": "0,6 mL"
-        },
-        {
-          "id": "b",
-          "textMd": "2 mL"
-        },
-        {
-          "id": "c",
           "textMd": "3 mL"
         },
         {
-          "id": "d",
+          "id": "b",
           "textMd": "12 mL"
         },
         {
-          "id": "e",
+          "id": "c",
           "textMd": "15 mL"
+        },
+        {
+          "id": "d",
+          "textMd": "0,6 mL"
+        },
+        {
+          "id": "e",
+          "textMd": "2 mL"
         }
       ],
       "explanationMd": "Procedi in tre brevi passaggi, tenendo le unità di misura accanto a ogni numero.\n\n**1. Quantità giornaliera di farmaco.**\n$$20\\ \\text{mg/kg} \\times 24\\ \\text{kg} = 480\\ \\text{mg al giorno}$$\n\n**2. Quantità per dose.** Una dose ogni 6 ore significa $24 \\div 6 = 4$ dosi al giorno.\n$$480\\ \\text{mg} \\div 4 = 120\\ \\text{mg per dose}$$\n\n**3. Volume per dose.** Lo sciroppo contiene $200\\ \\text{mg}$ in $5\\ \\text{mL}$, quindi la sua concentrazione è\n$$200\\ \\text{mg} \\div 5\\ \\text{mL} = 40\\ \\text{mg/mL}$$\ne il volume necessario è\n$$120\\ \\text{mg} \\div 40\\ \\text{mg/mL} = 3\\ \\text{mL}$$\n\n**Verifica a ritroso.** $3\\ \\text{mL}$ a $40\\ \\text{mg/mL}$ corrispondono a $120\\ \\text{mg}$; quattro dosi danno $480\\ \\text{mg}$, cioè $20\\ \\text{mg}$ per ciascuno dei $24\\ \\text{kg}$ del bambino. Ogni condizione della prescrizione è rispettata.\n\nI due punti in cui si insinuano gli errori sono il numero di dosi (\"ogni 6 ore\" significa quattro dosi al giorno, non sei) e la concentrazione (l'etichetta indica i milligrammi ogni **5** mL, non per millilitro). Convertire subito la concentrazione in milligrammi per millilitro elimina la seconda trappola.",
       "distractorRationale": {
-        "a": "Divide la dose di 120 mg per 200, come se lo sciroppo contenesse 200 mg in ogni millilitro. L'etichetta indica 200 mg ogni 5 mL, quindi ogni millilitro contiene solo 40 mg e serve un volume cinque volte maggiore.",
-        "b": "Suddivide i 480 mg giornalieri in sei dosi, leggendo \"ogni 6 ore\" come \"sei volte al giorno\". Una dose ogni 6 ore significa $24 \\div 6 = 4$ dosi al giorno, quindi ogni dose è di 120 mg, non di 80 mg.",
-        "d": "È il volume per l'intera giornata, $480\\ \\text{mg} \\div 40\\ \\text{mg/mL}$. La quantità giornaliera deve ancora essere suddivisa tra le quattro dosi somministrate ogni 6 ore.",
-        "e": "Divide 120 mg per 40 ottenendo 3 e poi moltiplica per 5 mL, applicando i 5 mL una seconda volta. Una volta espressa la concentrazione come 40 mg per mL, $120 \\div 40$ è già il risultato in millilitri; 15 mL di sciroppo conterrebbero 600 mg."
+        "d": "Divide la dose di 120 mg per 200, come se lo sciroppo contenesse 200 mg in ogni millilitro. L'etichetta indica 200 mg ogni 5 mL, quindi ogni millilitro contiene solo 40 mg e serve un volume cinque volte maggiore.",
+        "e": "Suddivide i 480 mg giornalieri in sei dosi, leggendo \"ogni 6 ore\" come \"sei volte al giorno\". Una dose ogni 6 ore significa $24 \\div 6 = 4$ dosi al giorno, quindi ogni dose è di 120 mg, non di 80 mg.",
+        "b": "È il volume per l'intera giornata, $480\\ \\text{mg} \\div 40\\ \\text{mg/mL}$. La quantità giornaliera deve ancora essere suddivisa tra le quattro dosi somministrate ogni 6 ore.",
+        "c": "Divide 120 mg per 40 ottenendo 3 e poi moltiplica per 5 mL, applicando i 5 mL una seconda volta. Una volta espressa la concentrazione come 40 mg per mL, $120 \\div 40$ è già il risultato in millilitri; 15 mL di sciroppo conterrebbero 600 mg."
       },
       "accessibilityText": "A un bambino con una massa corporea di 24 kilogrammi vengono prescritti 20 milligrammi di farmaco per kilogrammo di massa corporea al giorno, in dosi uguali ogni 6 ore, da uno sciroppo che contiene 200 milligrammi di farmaco ogni 5 millilitri. Trovare il volume di sciroppo per dose. Le cinque opzioni di risposta sono volumi in millilitri: 0,6, 2, 3, 12 e 15.",
       "check": {

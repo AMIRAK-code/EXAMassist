@@ -20,17 +20,17 @@
     {
       "id": "b",
       "label": "B",
-      "textMd": "$4$"
+      "textMd": "$-2$ and $4$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "$5$"
+      "textMd": "$4$"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "$-2$ and $4$"
+      "textMd": "$5$"
     },
     {
       "id": "e",
@@ -40,13 +40,13 @@
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "b"
+    "optionId": "c"
   },
   "explanationMd": "Start with the domain, because a logarithm equation can produce roots that do not belong to it. $\\log_2 x$ needs $x > 0$ and $\\log_2(x-2)$ needs $x > 2$, so any solution must satisfy $x > 2$.\n\nCombine the logarithms with the product rule, $\\log_2 a + \\log_2 b = \\log_2(ab)$:\n\n$$\\log_2\\big[x(x-2)\\big] = 3 \\quad\\Longrightarrow\\quad x(x-2) = 2^3 = 8$$\n\nSo $x^2 - 2x - 8 = 0$, which factorises as $(x - 4)(x + 2) = 0$, giving $x = 4$ or $x = -2$.\n\nNow apply the domain: $-2$ fails $x > 2$ (neither logarithm is defined there), so the only solution is $x = 4$.\n\nCheck by substitution: $\\log_2 4 + \\log_2 2 = 2 + 1 = 3$. The habit to carry forward: after solving any logarithmic equation, test each root in the original arguments before accepting it.",
   "distractorRationale": {
     "a": "This sets $x(x-2)$ equal to $3$ instead of $2^3 = 8$, forgetting that undoing $\\log_2$ means raising $2$ to the power $3$. That gives $x^2 - 2x - 3 = 0$, so $x = 3$ or $x = -1$, and $3$ survives the domain. Substituting back gives $\\log_2 3 + \\log_2 1 = \\log_2 3$, which is not $3$.",
-    "c": "This uses the false rule $\\log_2 x + \\log_2(x-2) = \\log_2(x + x - 2)$, adding the arguments instead of multiplying them, so $2x - 2 = 8$ and $x = 5$. Substituting back gives $\\log_2 5 + \\log_2 3 = \\log_2 15$, which is not $3$.",
-    "d": "This solves the quadratic correctly but skips the domain check. At $x = -2$ neither $\\log_2 x$ nor $\\log_2(x - 2)$ is defined, so $-2$ is not a solution of the original equation.",
+    "d": "This uses the false rule $\\log_2 x + \\log_2(x-2) = \\log_2(x + x - 2)$, adding the arguments instead of multiplying them, so $2x - 2 = 8$ and $x = 5$. Substituting back gives $\\log_2 5 + \\log_2 3 = \\log_2 15$, which is not $3$.",
+    "b": "This solves the quadratic correctly but skips the domain check. At $x = -2$ neither $\\log_2 x$ nor $\\log_2(x - 2)$ is defined, so $-2$ is not a solution of the original equation.",
     "e": "This rejects every root, perhaps by discarding $4$ along with $-2$ or after a wrong combination step. But $x = 4$ satisfies the equation exactly: $\\log_2 4 + \\log_2 2 = 2 + 1 = 3$."
   },
   "estimatedSeconds": 90,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": "Author solved the item twice by independent routes and argued for each wrong choice; each fails on a specific, named error. Awaiting blind independent solve."
+    "notes": "Author solved the item twice by independent routes and argued for each wrong choice; each fails on a specific, named error. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,
@@ -85,15 +85,15 @@
         },
         {
           "id": "b",
-          "textMd": "$4$"
+          "textMd": "$-2$ e $4$"
         },
         {
           "id": "c",
-          "textMd": "$5$"
+          "textMd": "$4$"
         },
         {
           "id": "d",
-          "textMd": "$-2$ e $4$"
+          "textMd": "$5$"
         },
         {
           "id": "e",
@@ -103,8 +103,8 @@
       "explanationMd": "Si parte dal dominio (le condizioni di esistenza), perché un'equazione logaritmica può produrre radici che non vi appartengono. $\\log_2 x$ richiede $x > 0$ e $\\log_2(x-2)$ richiede $x > 2$, quindi ogni soluzione deve soddisfare $x > 2$.\n\nSi uniscono i logaritmi con la proprietà del prodotto, $\\log_2 a + \\log_2 b = \\log_2(ab)$:\n\n$$\\log_2\\big[x(x-2)\\big] = 3 \\quad\\Longrightarrow\\quad x(x-2) = 2^3 = 8$$\n\nQuindi $x^2 - 2x - 8 = 0$, che si scompone in $(x - 4)(x + 2) = 0$, da cui $x = 4$ oppure $x = -2$.\n\nOra si applica il dominio: $-2$ non soddisfa $x > 2$ (nessuno dei due logaritmi vi è definito), quindi l'unica soluzione è $x = 4$.\n\nVerifica per sostituzione: $\\log_2 4 + \\log_2 2 = 2 + 1 = 3$. L'abitudine da conservare: dopo aver risolto un'equazione logaritmica, controllare ogni radice negli argomenti originali prima di accettarla.",
       "distractorRationale": {
         "a": "Qui si pone $x(x-2)$ uguale a $3$ invece che a $2^3 = 8$, dimenticando che per eliminare $\\log_2$ bisogna elevare $2$ alla potenza $3$. Si ottiene $x^2 - 2x - 3 = 0$, quindi $x = 3$ oppure $x = -1$, e $3$ rispetta il dominio. Sostituendo si ottiene $\\log_2 3 + \\log_2 1 = \\log_2 3$, che non vale $3$.",
-        "c": "Qui si usa la regola falsa $\\log_2 x + \\log_2(x-2) = \\log_2(x + x - 2)$, sommando gli argomenti invece di moltiplicarli, quindi $2x - 2 = 8$ e $x = 5$. Sostituendo si ottiene $\\log_2 5 + \\log_2 3 = \\log_2 15$, che non vale $3$.",
-        "d": "Qui l'equazione di secondo grado è risolta correttamente, ma si salta il controllo del dominio. Per $x = -2$ né $\\log_2 x$ né $\\log_2(x - 2)$ sono definiti, quindi $-2$ non è soluzione dell'equazione originale.",
+        "d": "Qui si usa la regola falsa $\\log_2 x + \\log_2(x-2) = \\log_2(x + x - 2)$, sommando gli argomenti invece di moltiplicarli, quindi $2x - 2 = 8$ e $x = 5$. Sostituendo si ottiene $\\log_2 5 + \\log_2 3 = \\log_2 15$, che non vale $3$.",
+        "b": "Qui l'equazione di secondo grado è risolta correttamente, ma si salta il controllo del dominio. Per $x = -2$ né $\\log_2 x$ né $\\log_2(x - 2)$ sono definiti, quindi $-2$ non è soluzione dell'equazione originale.",
         "e": "Qui si scartano tutte le radici, forse eliminando $4$ insieme a $-2$ oppure dopo un passaggio errato nell'unire i logaritmi. Ma $x = 4$ soddisfa esattamente l'equazione: $\\log_2 4 + \\log_2 2 = 2 + 1 = 3$."
       },
       "accessibilityText": "Trovare tutti i valori reali di x tali che il logaritmo in base 2 di x, più il logaritmo in base 2 della quantità x meno 2, sia uguale a 3. Le cinque alternative sono: 3; 4; 5; meno 2 e 4; non esiste alcuna soluzione reale.",
