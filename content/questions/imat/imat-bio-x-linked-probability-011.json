@@ -1,0 +1,120 @@
+{
+  "id": "imat-bio-x-linked-probability-011",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-biology",
+  "skillSlug": "imat-bio-genetics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Haemophilia A is caused by a recessive allele on the X chromosome. A woman with normal blood clotting has a brother with haemophilia A; neither of their parents has the condition. She has a child with a man who does not have haemophilia A.\n\nAssuming no new mutations, what is the probability that this child is a boy with haemophilia A?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$0$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$1/16$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$1/8$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$1/4$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$1/2$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Work out the woman's genotype first, then the child.\n\n**The woman.** Her brother is affected, $X^hY$, and received his $X^h$ from their mother, because a son gets his X only from his mother. Their mother is unaffected, so she is a carrier, $X^HX^h$. Their father is unaffected, $X^HY$. The woman received her father's $X^H$ and either of her mother's X chromosomes, so she is a carrier with probability $1/2$.\n\n**The child.** If she is a carrier, then with an $X^HY$ partner:\n- probability the child is a boy: $1/2$;\n- probability a boy receives her $X^h$: $1/2$.\n\nSo a carrier mother has an affected son with probability $1/4$ per child.\n\nCombine: $\\dfrac{1}{2} \\times \\dfrac{1}{4} = \\dfrac{1}{8}$.\n\nThe father's unaffected status does not protect a son, because a son's X comes from his mother.",
+  "distractorRationale": {
+    "a": "This assumes an unaffected father cannot have an affected child. A son's X chromosome comes from his mother, so the father's genotype does not protect sons.",
+    "b": "This introduces one factor of $1/2$ too many, for example by treating the woman's mother as only possibly a carrier. Her affected son shows that she is certainly a carrier.",
+    "d": "This treats the woman as a certain carrier. She is unaffected and has a carrier mother, so she carries the allele with probability only $1/2$.",
+    "e": "This is the probability that a son of a carrier is affected. It ignores both the chance that the child is a girl and the chance that the woman is not a carrier."
+  },
+  "estimatedSeconds": 130,
+  "stimulusRef": null,
+  "accessibilityText": "X-linked recessive haemophilia A. An unaffected woman has an affected brother and unaffected parents. Her partner is unaffected. What is the probability their child is an affected boy? Choices: 0, one sixteenth, one eighth, one quarter, one half. In the explanation, X with superscript capital H is the normal allele and X with superscript small h is the haemophilia allele.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "imat-biology-author",
+    "aiAssisted": true,
+    "notes": "Original pedigree-probability item. Requires inferring the grandmother as an obligate carrier and the woman as a carrier with probability one half."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "imat-biology-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved the item twice independently and argued for each wrong choice; no second choice was found defensible. Awaiting blind independent solve and a check of the Italian translation by a second party."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "biology",
+    "sex-linkage",
+    "pedigree",
+    "probability"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "L'emofilia A è causata da un allele recessivo situato sul cromosoma X. Una donna con coagulazione del sangue normale ha un fratello con emofilia A; nessuno dei loro genitori ha la malattia. La donna ha un figlio da un uomo che non ha l'emofilia A.\n\nSupponendo che non vi siano nuove mutazioni, qual è la probabilità che questo figlio sia un maschio con emofilia A?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$0$"
+        },
+        {
+          "id": "b",
+          "textMd": "$1/16$"
+        },
+        {
+          "id": "c",
+          "textMd": "$1/8$"
+        },
+        {
+          "id": "d",
+          "textMd": "$1/4$"
+        },
+        {
+          "id": "e",
+          "textMd": "$1/2$"
+        }
+      ],
+      "explanationMd": "Si ricavi prima il genotipo della donna, poi quello del figlio.\n\n**La donna.** Il fratello è malato, $X^hY$, e ha ricevuto il suo $X^h$ dalla madre, perché un figlio maschio riceve il cromosoma X solo dalla madre. La madre non è malata, quindi è portatrice, $X^HX^h$. Il padre non è malato, $X^HY$. La donna ha ricevuto l'$X^H$ del padre e uno qualsiasi dei due cromosomi X della madre, quindi è portatrice con probabilità $1/2$.\n\n**Il figlio.** Se la donna è portatrice, con un partner $X^HY$:\n- probabilità che il figlio sia maschio: $1/2$;\n- probabilità che un maschio riceva il suo $X^h$: $1/2$.\n\nQuindi una madre portatrice ha un figlio maschio malato con probabilità $1/4$ per ogni figlio.\n\nSi combini: $\\dfrac{1}{2} \\times \\dfrac{1}{4} = \\dfrac{1}{8}$.\n\nIl fatto che il padre non sia malato non protegge un figlio maschio, perché il cromosoma X di un maschio proviene dalla madre.",
+      "distractorRationale": {
+        "a": "Presuppone che un padre sano non possa avere un figlio malato. Il cromosoma X di un figlio maschio proviene dalla madre, quindi il genotipo del padre non protegge i figli maschi.",
+        "b": "Introduce un fattore $1/2$ di troppo, per esempio considerando la madre della donna solo possibilmente portatrice. Il figlio maschio malato dimostra che è certamente portatrice.",
+        "d": "Considera la donna portatrice certa. È sana e ha una madre portatrice, quindi porta l'allele solo con probabilità $1/2$.",
+        "e": "È la probabilità che un figlio maschio di una portatrice sia malato. Ignora sia la possibilità che il figlio sia femmina sia la possibilità che la donna non sia portatrice."
+      },
+      "accessibilityText": "Emofilia A recessiva legata al cromosoma X. Una donna sana ha un fratello malato e genitori sani. Il suo partner è sano. Qual è la probabilità che il loro figlio sia un maschio malato? Opzioni: 0, un sedicesimo, un ottavo, un quarto, un mezzo. Nella spiegazione, X con apice H maiuscola indica l'allele normale e X con apice h minuscola l'allele dell'emofilia.",
+      "check": {
+        "translatedBy": "imat-biology-author",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
+}
