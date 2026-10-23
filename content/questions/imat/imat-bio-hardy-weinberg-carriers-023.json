@@ -1,0 +1,120 @@
+{
+  "id": "imat-bio-hardy-weinberg-carriers-023",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-biology",
+  "skillSlug": "imat-bio-evolution-ecology",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In a large population in Hardy-Weinberg equilibrium, 4% of individuals show a trait determined by a recessive allele of a single gene with two alleles. What percentage of the population is heterozygous for this gene?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "4%"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "16%"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "20%"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "32%"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "64%"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Only the recessive homozygotes show the trait, so start from them.\n\n1. Recessive homozygotes: $q^2 = 0.04$, so the recessive allele frequency is $q = \\sqrt{0.04} = 0.2$.\n2. The dominant allele frequency is $p = 1 - q = 0.8$.\n3. Heterozygotes: $2pq = 2 \\times 0.8 \\times 0.2 = 0.32$, that is 32%.\n\nCheck that the genotype frequencies add up: $p^2 + 2pq + q^2 = 0.64 + 0.32 + 0.04 = 1$.\n\nThe percentage showing the trait is a **genotype** frequency ($q^2$), not an **allele** frequency, so the square root step comes first.",
+  "distractorRationale": {
+    "a": "This is the frequency of affected recessive homozygotes, $q^2$, which the stem already gives; it is not the heterozygote frequency.",
+    "b": "This is $pq = 0.8 \\times 0.2$, forgetting the factor of 2: a heterozygote can receive the recessive allele from either parent.",
+    "c": "This is the recessive allele frequency $q$, not the frequency of heterozygous individuals.",
+    "e": "This is $p^2$, the frequency of dominant homozygotes."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "In a population in Hardy-Weinberg equilibrium, 4 percent show a recessive trait controlled by one gene with two alleles. What percentage is heterozygous? Choices: 4, 16, 20, 32 and 64 percent. In the explanation, p and q are the dominant and recessive allele frequencies, q squared is 0.04, q is 0.2, p is 0.8 and 2 p q is 0.32.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "imat-biology-author",
+    "aiAssisted": true,
+    "notes": "Original population-genetics item with by-hand numbers; each distractor is a quantity a candidate computes on the way."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "imat-biology-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved the item twice independently and argued for each wrong choice; no second choice was found defensible. Awaiting blind independent solve and a check of the Italian translation by a second party."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "biology",
+    "population-genetics",
+    "hardy-weinberg",
+    "allele-frequency"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "In una grande popolazione in equilibrio di Hardy-Weinberg, il 4% degli individui manifesta un carattere determinato dall'allele recessivo di un singolo gene con due alleli. Quale percentuale della popolazione è eterozigote per questo gene?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "4%"
+        },
+        {
+          "id": "b",
+          "textMd": "16%"
+        },
+        {
+          "id": "c",
+          "textMd": "20%"
+        },
+        {
+          "id": "d",
+          "textMd": "32%"
+        },
+        {
+          "id": "e",
+          "textMd": "64%"
+        }
+      ],
+      "explanationMd": "Solo gli omozigoti recessivi manifestano il carattere, quindi si parta da loro.\n\n1. Omozigoti recessivi: $q^2 = 0{,}04$, quindi la frequenza dell'allele recessivo è $q = \\sqrt{0{,}04} = 0{,}2$.\n2. La frequenza dell'allele dominante è $p = 1 - q = 0{,}8$.\n3. Eterozigoti: $2pq = 2 \\times 0{,}8 \\times 0{,}2 = 0{,}32$, cioè il 32%.\n\nSi verifichi che le frequenze genotipiche diano la somma corretta: $p^2 + 2pq + q^2 = 0{,}64 + 0{,}32 + 0{,}04 = 1$.\n\nLa percentuale che manifesta il carattere è una frequenza **genotipica** ($q^2$), non una frequenza **allelica**, quindi la radice quadrata va calcolata per prima.",
+      "distractorRationale": {
+        "a": "È la frequenza degli omozigoti recessivi che manifestano il carattere, $q^2$, già data nel testo; non è la frequenza degli eterozigoti.",
+        "b": "È $pq = 0{,}8 \\times 0{,}2$, dimenticando il fattore 2: un eterozigote può ricevere l'allele recessivo da l'uno o dall'altro genitore.",
+        "c": "È la frequenza dell'allele recessivo $q$, non la frequenza degli individui eterozigoti.",
+        "e": "È $p^2$, la frequenza degli omozigoti dominanti."
+      },
+      "accessibilityText": "In una popolazione in equilibrio di Hardy-Weinberg, il 4 per cento manifesta un carattere recessivo controllato da un gene con due alleli. Quale percentuale è eterozigote? Opzioni: 4, 16, 20, 32 e 64 per cento. Nella spiegazione, p e q sono le frequenze degli alleli dominante e recessivo, q al quadrato è 0,04, q è 0,2, p è 0,8 e 2 p q è 0,32.",
+      "check": {
+        "translatedBy": "imat-biology-author",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
+}
