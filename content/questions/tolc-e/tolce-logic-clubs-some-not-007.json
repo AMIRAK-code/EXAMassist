@@ -78,5 +78,48 @@
     "deduction",
     "quantifiers",
     "syllogism"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "In una scuola sono vere le seguenti affermazioni:\n\n- Nessun membro del club di scacchi ha meno di 16 anni.\n- Alcuni membri del club di teatro hanno meno di 16 anni.\n\nQuale delle seguenti affermazioni è necessariamente vera?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Alcuni membri del club di scacchi sono membri del club di teatro."
+        },
+        {
+          "id": "b",
+          "textMd": "Alcuni membri del club di scacchi non sono membri del club di teatro."
+        },
+        {
+          "id": "c",
+          "textMd": "Nessun membro del club di teatro è membro del club di scacchi."
+        },
+        {
+          "id": "d",
+          "textMd": "Alcuni membri del club di teatro non sono membri del club di scacchi."
+        },
+        {
+          "id": "e",
+          "textMd": "Ogni studente con meno di 16 anni è membro del club di teatro."
+        }
+      ],
+      "explanationMd": "Scegli uno dei membri del club di teatro con meno di 16 anni; la seconda affermazione garantisce che ne esiste almeno uno. Quello studente non può far parte del club di scacchi, perché la prima affermazione esclude da quel club chiunque abbia meno di 16 anni. Quindi almeno un membro del club di teatro non è nel club di scacchi.\n\nTutto il resto dipende da dettagli che le affermazioni lasciano aperti. I membri del club di teatro con 16 anni o più potrebbero giocare o non giocare anche a scacchi, quindi «nessun membro del club di teatro è nel club di scacchi» e «alcuni membri del club di scacchi sono nel club di teatro» restano entrambe indeterminate. Allo stesso modo il club di scacchi potrebbe essere formato interamente da membri del club di teatro con 16 anni o più, quindi neppure «alcuni membri del club di scacchi non sono nel club di teatro» è obbligata.\n\nDa notare subito: «nessun A è C» insieme a «alcuni B sono C» dà sempre «alcuni B non sono A». La conclusione riguarda il gruppo descritto dall'affermazione con «alcuni», non il contrario.",
+      "distractorRationale": {
+        "c": "È troppo forte. Solo i membri del club di teatro con meno di 16 anni sono esclusi dagli scacchi; i membri del club di teatro con 16 anni o più possono benissimo far parte del club di scacchi.",
+        "a": "Può essere vera, ma nulla impone che i due club abbiano membri in comune. Le affermazioni sono ugualmente compatibili con il caso in cui nessuno studente appartenga a entrambi.",
+        "b": "Inverte la conclusione valida. Il club di scacchi potrebbe essere formato interamente da membri del club di teatro con 16 anni o più, e in quel caso ogni membro del club di scacchi è anche nel club di teatro.",
+        "e": "Le affermazioni non dicono nulla sugli studenti con meno di 16 anni che non fanno parte di nessuno dei due club. Alcuni studenti con meno di 16 anni potrebbero non appartenere a nessuno dei due."
+      },
+      "accessibilityText": "Due affermazioni sui club di una scuola: nessun membro del club di scacchi ha meno di 16 anni, e alcuni membri del club di teatro hanno meno di 16 anni. La domanda chiede quale affermazione è necessariamente vera. Cinque alternative di risposta.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": "'Some' is rendered 'alcuni' in the standard logical sense of 'at least one'."
+      }
+    }
+  }
 }

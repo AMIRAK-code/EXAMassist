@@ -78,5 +78,48 @@
     "arrangements",
     "scheduling",
     "could-be-true"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Cinque presentazioni, F, G, H, J e K, sono programmate una al giorno dal lunedì al venerdì della stessa settimana.\n\n- G è programmata in un giorno precedente a quello di J.\n- H è il mercoledì o il giovedì.\n- K non è né nel giorno immediatamente precedente né in quello immediatamente successivo a quello di H.\n- F è il lunedì o il venerdì.\n\nQuale delle seguenti affermazioni **può** essere vera?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "J è il venerdì."
+        },
+        {
+          "id": "b",
+          "textMd": "K è il giovedì."
+        },
+        {
+          "id": "c",
+          "textMd": "F è il venerdì e G è il mercoledì."
+        },
+        {
+          "id": "d",
+          "textMd": "G è il giovedì."
+        },
+        {
+          "id": "e",
+          "textMd": "J è il martedì."
+        }
+      ],
+      "explanationMd": "Distingui i casi in base a H, che ha solo due giorni possibili.\n\n- **H il mercoledì.** K non può essere né il martedì né il giovedì, quindi K è il lunedì o il venerdì. Anche F ha bisogno del lunedì o del venerdì, quindi F e K si dividono questi due giorni. G e J occupano martedì e giovedì, con G il martedì perché viene prima. Due calendari: K, G, H, J, F e F, G, H, J, K.\n- **H il giovedì.** K non può essere né il mercoledì né il venerdì, quindi K è il lunedì o il martedì. Se F è il lunedì, K è il martedì e G, J occupano mercoledì e venerdì: F, K, G, H, J. Se F è il venerdì, K e G, J si dividono i giorni dal lunedì al mercoledì: K, G, J, H, F oppure G, K, J, H, F.\n\nSi ottengono così cinque calendari possibili. Il calendario F, K, G, H, J mette J il venerdì, quindi questa affermazione può essere vera.\n\nVerifica ciascuna delle altre confrontandola con l'elenco, oppure direttamente:\n\n- G il giovedì costringe J al venerdì e H al mercoledì; allora K ha bisogno del lunedì o del venerdì, il venerdì è occupato, e F non può avere nessuno dei due giorni estremi.\n- J il martedì costringe G al lunedì e F al venerdì; a H e K restano mercoledì e giovedì, che sono adiacenti.\n- K il giovedì è adiacente a H il mercoledì, e H non può essere anch'essa il giovedì.\n- F il venerdì con G il mercoledì lascia il giovedì sia a H sia a J, poiché J deve venire dopo G.\n\nDa notare subito: in una domanda del tipo «può essere vera», costruisci prima il breve elenco dei calendari completi; poi ogni alternativa si controlla con un rapido confronto.",
+      "distractorRationale": {
+        "d": "Con G il giovedì, J deve essere il venerdì e H il mercoledì. K ha quindi bisogno del lunedì o del venerdì, perciò prende il lunedì, e a F non resta nessuno dei due giorni estremi.",
+        "e": "Con J il martedì, G deve essere il lunedì, quindi F è il venerdì. A H e K restano mercoledì e giovedì, che sono giorni consecutivi, e la condizione su K non è rispettata.",
+        "b": "K il giovedì è accanto al mercoledì, e H deve essere il mercoledì se il giovedì è occupato. La condizione su K e H esclude questo caso.",
+        "c": "Con F il venerdì e G il mercoledì, J deve venire dopo il mercoledì, quindi J è il giovedì; ma anche H ha bisogno del mercoledì o del giovedì, ed entrambi sono occupati."
+      },
+      "accessibilityText": "Cinque presentazioni indicate con le lettere F, G, H, J e K sono programmate una al giorno, dal lunedì al venerdì. G è prima di J; H è il mercoledì o il giovedì; K non è in un giorno adiacente a quello di H; F è il lunedì o il venerdì. La domanda chiede quale affermazione può essere vera. Cinque alternative di risposta.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": "'Could be true' is rendered 'può essere vera' (possibility), matching the English modality."
+      }
+    }
+  }
 }

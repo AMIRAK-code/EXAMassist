@@ -80,5 +80,48 @@
     "contrapositive",
     "only-if",
     "unless"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "In una fabbrica valgono sempre le seguenti regole:\n\n- Se un ordine viene ricevuto entro lunedì, viene spedito entro venerdì.\n- Un ordine viene spedito entro venerdì solo se è stato imballato entro mercoledì.\n- A meno che i suoi componenti non arrivino in tempo, un ordine non può essere imballato entro mercoledì.\n\nI componenti dell'ordine 417 non sono arrivati in tempo. Quale delle seguenti affermazioni è necessariamente vera?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "L'ordine 417 è stato imballato entro mercoledì."
+        },
+        {
+          "id": "b",
+          "textMd": "Se i componenti dell'ordine 417 fossero arrivati in tempo, l'ordine sarebbe stato spedito entro venerdì."
+        },
+        {
+          "id": "c",
+          "textMd": "L'ordine 417 non è stato ricevuto entro lunedì."
+        },
+        {
+          "id": "d",
+          "textMd": "L'ordine 417 è stato ricevuto in un momento successivo a lunedì."
+        },
+        {
+          "id": "e",
+          "textMd": "L'ordine 417 è stato ricevuto entro lunedì ma non è stato spedito entro venerdì."
+        }
+      ],
+      "explanationMd": "Riscrivi ogni regola nella forma «se ..., allora ...» prima di combinarle.\n\n- Regola 1: ricevuto entro lunedì → spedito entro venerdì.\n- Regola 2: «spedito entro venerdì **solo se** imballato entro mercoledì» significa spedito entro venerdì → imballato entro mercoledì. «Solo se» introduce la condizione necessaria, che quindi va dopo la freccia.\n- Regola 3: «a meno che i componenti non arrivino in tempo, non può essere imballato entro mercoledì» significa componenti non in tempo → non imballato, che equivale a imballato entro mercoledì → componenti in tempo.\n\nLe regole formano un'unica catena: ricevuto entro lunedì → spedito entro venerdì → imballato entro mercoledì → componenti in tempo.\n\nI componenti non sono arrivati in tempo. Percorrendo la catena all'indietro (la contronominale), l'ordine non è stato imballato entro mercoledì, quindi non è stato spedito entro venerdì, quindi non è stato ricevuto entro lunedì.\n\nLa catena non dice nulla su che cosa sarebbe successo se i componenti *fossero* arrivati in tempo: l'arrivo in tempo è necessario per i passaggi precedenti, non sufficiente.\n\nDa notare subito: traduci «solo se» e «a meno che» in frecce prima di ragionare. Un ultimo anello falso permette di negare tutti gli anelli precedenti, mai il contrario.",
+      "distractorRationale": {
+        "e": "È impossibile secondo le regole. La Regola 1 dice che ogni ordine ricevuto entro lunedì viene spedito entro venerdì, quindi le due metà di questa affermazione non possono essere vere insieme.",
+        "b": "Percorre la catena in avanti a partire dal suo ultimo anello. L'arrivo in tempo dei componenti è una condizione necessaria per l'imballaggio entro mercoledì, non una sua garanzia, quindi le regole non giustificano questo condizionale.",
+        "a": "Contraddice la Regola 3: se i componenti non arrivano in tempo, l'ordine non può essere imballato entro mercoledì.",
+        "d": "Le regole dicono soltanto che l'ordine non è stato ricevuto entro lunedì. Non dicono che sia stato ricevuto in assoluto; potrebbe, per esempio, non essere mai arrivato. Questa alternativa aggiunge un fatto che le regole non forniscono."
+      },
+      "accessibilityText": "Tre regole sugli ordini in una fabbrica: un ordine ricevuto entro lunedì viene spedito entro venerdì; un ordine viene spedito entro venerdì solo se è stato imballato entro mercoledì; a meno che i suoi componenti non arrivino in tempo, un ordine non può essere imballato entro mercoledì. Per l'ordine 417 i componenti non sono arrivati in tempo. La domanda chiede che cosa è necessariamente vero. Cinque alternative di risposta.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": "'Unless' is rendered 'a meno che ... non' (expletive 'non', not a negation); 'only if' as 'solo se'. The conditional chain is unchanged."
+      }
+    }
+  }
 }

@@ -79,5 +79,48 @@
     "logarithms",
     "equations",
     "domain"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Quale numero reale $x$ soddisfa $\\log_2(x + 3) - \\log_2(x - 1) = 2$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$5$"
+        },
+        {
+          "id": "b",
+          "textMd": "$-\\dfrac{1}{3}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$\\dfrac{4}{3}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\dfrac{7}{3}$"
+        },
+        {
+          "id": "e",
+          "textMd": "Nessun numero reale soddisfa l'equazione."
+        }
+      ],
+      "explanationMd": "Parti dal dominio: entrambi i logaritmi richiedono argomenti positivi, quindi $x + 3 > 0$ e $x - 1 > 0$, che insieme significano $x > 1$.\n\nUna differenza di logaritmi nella stessa base è il logaritmo di un quoziente:\n\n$$\\log_2\\frac{x + 3}{x - 1} = 2 \\iff \\frac{x + 3}{x - 1} = 2^2 = 4$$\n\nMoltiplica per $x - 1$ (positivo nel dominio):\n\n$$x + 3 = 4x - 4 \\iff 7 = 3x \\iff x = \\frac{7}{3}$$\n\nPoiché $\\frac{7}{3} > 1$, il valore appartiene al dominio.\n\nVerifica: $x + 3 = \\frac{16}{3}$ e $x - 1 = \\frac{4}{3}$, il cui quoziente è $4$, e $\\log_2 4 = 2$.",
+      "distractorRationale": {
+        "b": "Deriva da un errore di segno nel raccogliere i termini: da $x + 3 = 4x - 4$ sposta il $-4$ dall'altra parte senza cambiarne il segno, ottenendo $3x = -1$. Inoltre il valore non soddisfa la condizione di dominio $x > 1$, il che avrebbe dovuto segnalare un errore.",
+        "c": "Sviluppa $4(x - 1)$ come $4x - 1$, ottenendo $x + 3 = 4x - 1$. Il $4$ moltiplica entrambi i termini nella parentesi, quindi il secondo membro è $4x - 4$.",
+        "a": "Pone il quoziente uguale a $2$ invece che a $2^2$, risolvendo $\\frac{x + 3}{x - 1} = 2$. L'equazione $\\log_2 y = 2$ significa $y = 2^2 = 4$.",
+        "e": "Si arriva a questa conclusione scartando per motivi di dominio una radice sbagliata, come $-\\frac{1}{3}$ ottenuta da un errore di segno, oppure invertendo il quoziente. Con passaggi algebrici corretti si ottiene $\\frac{7}{3}$, che soddisfa $x > 1$ e verifica l'equazione originale."
+      },
+      "accessibilityText": "L'equazione è: logaritmo in base 2 di x più 3, meno logaritmo in base 2 di x meno 1, uguale a 2. Le alternative di risposta sono meno un terzo, quattro terzi, sette terzi, 5, e l'affermazione che nessun numero reale soddisfa l'equazione.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

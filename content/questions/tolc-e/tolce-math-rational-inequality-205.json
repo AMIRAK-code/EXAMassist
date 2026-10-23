@@ -79,5 +79,48 @@
     "inequalities",
     "rational-inequality",
     "sign-table"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Quale insieme contiene esattamente i numeri reali $x$ che soddisfano $\\dfrac{2x - 1}{x + 2} \\ge 1$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$x \\le -2$ oppure $x \\ge 3$"
+        },
+        {
+          "id": "b",
+          "textMd": "$x < -2$ oppure $x \\ge \\dfrac{1}{2}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$x < -2$ oppure $x \\ge 3$"
+        },
+        {
+          "id": "d",
+          "textMd": "$x \\ge 3$"
+        },
+        {
+          "id": "e",
+          "textMd": "$-2 < x \\le 3$"
+        }
+      ],
+      "explanationMd": "La trappola è moltiplicare entrambi i membri per $x + 2$. Ciò è lecito senza cambiare il verso della disuguaglianza solo quando $x + 2 > 0$, e il segno di $x + 2$ non è noto. Il metodo sicuro è portare tutto a primo membro e studiare il segno di un'unica frazione.\n\n$$\\frac{2x - 1}{x + 2} - 1 = \\frac{2x - 1 - (x + 2)}{x + 2} = \\frac{x - 3}{x + 2} \\ge 0$$\n\nIl numeratore si annulla per $x = 3$ e il denominatore si annulla per $x = -2$. Costruisci la tabella dei segni:\n\n| intervallo | $x - 3$ | $x + 2$ | frazione |\n| --- | --- | --- | --- |\n| $x < -2$ | $-$ | $-$ | $+$ |\n| $-2 < x < 3$ | $-$ | $+$ | $-$ |\n| $x > 3$ | $+$ | $+$ | $+$ |\n\nLa frazione è positiva per $x < -2$ e per $x > 3$, e vale zero per $x = 3$, valore ammesso dal segno «$\\ge$». Per $x = -2$ la frazione non è definita, quindi $-2$ è escluso.\n\nSoluzione: $x < -2$ oppure $x \\ge 3$.\n\nVerifica a campione nella disequazione originale: $x = -3$ dà $\\frac{-7}{-1} = 7 \\ge 1$, vero; $x = 0$ dà $-\\frac{1}{2} \\ge 1$, falso; $x = 3$ dà $\\frac{5}{5} = 1 \\ge 1$, vero.",
+      "distractorRationale": {
+        "d": "Moltiplica entrambi i membri per $x + 2$ come se fosse sempre positivo, ottenendo $2x - 1 \\ge x + 2$. Per $x < -2$ il moltiplicatore è negativo e la disuguaglianza cambierebbe verso, quindi così si perde l'intero ramo $x < -2$ (per esempio $x = -3$ è una soluzione).",
+        "a": "Include $x = -2$, dove il denominatore si annulla e la frazione non esiste. Quando la disuguaglianza è non stretta si possono includere solo gli zeri del numeratore.",
+        "e": "Legge la tabella dei segni al contrario e tiene l'intervallo in cui la frazione è negativa. Quella è la soluzione di $\\frac{x - 3}{x + 2} < 0$ (con l'estremo $3$ aggiunto erroneamente), non della disequazione data.",
+        "b": "Dimentica l'$1$ a secondo membro e risolve $\\frac{2x - 1}{x + 2} \\ge 0$, il cui numeratore si annulla in $\\frac{1}{2}$. Il secondo membro va portato a primo membro prima dello studio del segno, e così il numeratore diventa $x - 3$."
+      },
+      "accessibilityText": "La disequazione è: la frazione con numeratore 2x meno 1 e denominatore x più 2 è maggiore o uguale a 1. Le alternative di risposta sono: x maggiore o uguale a 3; x minore di meno 2 oppure x maggiore o uguale a 3; x minore o uguale a meno 2 oppure x maggiore o uguale a 3; x maggiore di meno 2 e minore o uguale a 3; x minore di meno 2 oppure x maggiore o uguale a un mezzo.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": "The English connective 'or' between inequalities in the options is rendered 'oppure'; the KaTeX inside each option is unchanged."
+      }
+    }
+  }
 }

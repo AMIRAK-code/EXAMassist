@@ -77,5 +77,48 @@
   "tags": [
     "sequences",
     "words"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Le parole seguenti (in inglese) seguono una regola.\n\nAT → TOE → EACH → HOTEL → ...\n\nQuale parola continua la sequenza secondo la stessa regola?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "PLANET"
+        },
+        {
+          "id": "b",
+          "textMd": "LADDERS"
+        },
+        {
+          "id": "c",
+          "textMd": "RATTLE"
+        },
+        {
+          "id": "d",
+          "textMd": "LEMON"
+        },
+        {
+          "id": "e",
+          "textMd": "LETTER"
+        }
+      ],
+      "explanationMd": "Osserva come ogni parola si collega alla precedente. A ogni passo cambiano insieme due cose:\n\n- ogni parola inizia con l'**ultima lettera** della parola precedente (AT finisce con T, TOE inizia con T; TOE finisce con E, EACH inizia con E; EACH finisce con H, HOTEL inizia con H);\n- ogni parola ha **una lettera in più** della precedente (2, 3, 4, 5 lettere).\n\nQuindi la parola successiva deve iniziare con L, l'ultima lettera di HOTEL, e avere 6 lettere. LETTER è l'unica alternativa che soddisfa entrambe le condizioni.\n\nDa notare subito: nelle sequenze di parole, controlla i raccordi tra parole consecutive (prima e ultima lettera) e le lunghezze. Un'alternativa che soddisfa una condizione ma non l'altra è la trappola tipica, quindi verifica ogni condizione sulla parola scelta.",
+      "distractorRationale": {
+        "d": "LEMON inizia con L, come richiesto, ma ha solo 5 lettere, la stessa lunghezza di HOTEL. La sequenza cresce di una lettera a ogni passo.",
+        "b": "LADDERS inizia con L ma ha 7 lettere. Salta una lunghezza, come se la sequenza crescesse di due.",
+        "a": "PLANET ha 6 lettere e contiene una L, ma la L non è la sua prima lettera. La regola collega la fine di una parola all'inizio della successiva.",
+        "c": "RATTLE ha la lunghezza giusta, 6 lettere, ma inizia con R. Ignora il collegamento tra l'ultima lettera di HOTEL e la prima lettera della parola successiva."
+      },
+      "accessibilityText": "Una sequenza di parole inglesi collegate da frecce: AT, TOE, EACH, HOTEL, poi uno spazio vuoto per la parola successiva. Le alternative di risposta sono le parole LEMON, LETTER, LADDERS, PLANET e RATTLE. Cinque alternative di risposta.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": "Language-dependent: the rule works on the spelling of the English words (first/last letter and word length). The English words in the stem and the options are kept unchanged and only the instructions are translated; the stem adds '(in inglese)' so the Italian reader knows the words are English. Word meanings play no part, so the keyed answer is unchanged."
+      }
+    }
+  }
 }

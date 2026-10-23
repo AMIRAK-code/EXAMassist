@@ -80,5 +80,48 @@
     "right-triangle",
     "pythagoras",
     "area"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "I due cateti di un triangolo rettangolo stanno nel rapporto $3 : 4$, e il triangolo ha area $54\\ \\text{cm}^2$. Qual è il perimetro del triangolo?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$15$ cm"
+        },
+        {
+          "id": "b",
+          "textMd": "$21$ cm"
+        },
+        {
+          "id": "c",
+          "textMd": "$108$ cm"
+        },
+        {
+          "id": "d",
+          "textMd": "$36$ cm"
+        },
+        {
+          "id": "e",
+          "textMd": "$18\\sqrt{2}$ cm"
+        }
+      ],
+      "explanationMd": "Scrivi i cateti come $3t$ e $4t$ per un opportuno numero positivo $t$. In un triangolo rettangolo i cateti sono perpendicolari, quindi uno è la base e l'altro l'altezza:\n\n$$\\text{area} = \\frac{1}{2} \\cdot 3t \\cdot 4t = 6t^2 = 54 \\iff t^2 = 9 \\iff t = 3$$\n\nI cateti misurano $9$ cm e $12$ cm. L'ipotenusa si ottiene con il teorema di Pitagora, oppure notando che in un triangolo rettangolo con cateti in rapporto $3 : 4$ l'ipotenusa sta nella proporzione $5$:\n\n$$\\sqrt{9^2 + 12^2} = \\sqrt{81 + 144} = \\sqrt{225} = 15$$\n\nPerimetro: $9 + 12 + 15 = 36$ cm.\n\nVerifica: $\\frac{1}{2} \\cdot 9 \\cdot 12 = 54$, e $9 : 12 = 3 : 4$.",
+      "distractorRationale": {
+        "a": "È solo l'ipotenusa. Il perimetro è la somma di tutti e tre i lati.",
+        "b": "Somma i due cateti, $9 + 12$, e lascia fuori l'ipotenusa.",
+        "c": "Usa $t^2 = 9$ come fattore di scala invece di $t = 3$, ottenendo i lati $27$, $36$ e $45$. Con questi lati l'area sarebbe $486\\ \\text{cm}^2$, nove volte troppo grande.",
+        "e": "Dimentica il $\\frac{1}{2}$ nella formula dell'area, risolvendo $12t^2 = 54$ e ottenendo $t = \\frac{3}{\\sqrt{2}}$ e un perimetro di $12t = 18\\sqrt{2}$. L'area di un triangolo è la metà del prodotto di base e altezza."
+      },
+      "accessibilityText": "Un triangolo rettangolo ha i cateti in rapporto 3 a 4 e un'area di 54 centimetri quadrati. La domanda chiede il suo perimetro. Le alternative di risposta, in centimetri, sono 15, 21, 36, 108 e 18 per la radice quadrata di 2.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

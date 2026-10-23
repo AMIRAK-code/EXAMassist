@@ -79,5 +79,48 @@
     "logic",
     "negation",
     "quantifiers"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Si consideri l'affermazione:\n\n> Ogni fattura emessa a marzo è stata pagata entro $30$ giorni.\n\nQuale delle seguenti è la negazione di questa affermazione?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Nessuna fattura emessa a marzo è stata pagata entro $30$ giorni."
+        },
+        {
+          "id": "b",
+          "textMd": "Ogni fattura pagata entro $30$ giorni è stata emessa a marzo."
+        },
+        {
+          "id": "c",
+          "textMd": "Almeno una fattura emessa a marzo non è stata pagata entro $30$ giorni."
+        },
+        {
+          "id": "d",
+          "textMd": "Almeno una fattura non emessa a marzo non è stata pagata entro $30$ giorni."
+        },
+        {
+          "id": "e",
+          "textMd": "Almeno una fattura emessa a marzo è stata pagata entro $30$ giorni."
+        }
+      ],
+      "explanationMd": "La negazione di un'affermazione è l'affermazione che è vera esattamente quando l'originale è falsa, né più né meno.\n\nL'originale ha la forma «per ogni $x$ nell'insieme delle fatture di marzo, $x$ è stata pagata entro $30$ giorni». È falsa non appena **una** fattura di marzo viola la regola. Quindi la negazione è\n\n$$\\text{non}\\,(\\forall x,\\ P(x)) \\iff \\exists x,\\ \\text{non}\\,P(x)$$\n\nA parole: almeno una fattura emessa a marzo non è stata pagata entro $30$ giorni. Cambiano due cose: «ogni» diventa «almeno una», e la proprietà viene negata. L'insieme di cui parla l'affermazione (le fatture emesse a marzo) resta esattamente lo stesso.\n\nUna prova rapida risolve i casi dubbi. Immagina $10$ fatture di marzo, di cui $9$ pagate in tempo e $1$ in ritardo. L'originale è falsa, quindi la negazione deve essere vera. «Almeno una fattura di marzo non è stata pagata entro 30 giorni» è vera in questo caso. «Nessuna fattura di marzo è stata pagata entro 30 giorni» è falsa in questo caso, perché nove lo sono state, quindi non può essere la negazione.",
+      "distractorRationale": {
+        "a": "È la contraria, non la negazione. Afferma che ogni fattura di marzo è stata pagata in ritardo, il che è molto più forte del necessario. Nello scenario in cui nove fatture di marzo su dieci sono state pagate in tempo e una in ritardo, l'originale è falsa ma anche questa affermazione è falsa.",
+        "b": "È l'inversa: scambia i ruoli di «emessa a marzo» e «pagata entro 30 giorni». Un'affermazione e la sua inversa possono essere vere contemporaneamente, quindi l'inversa non può mai essere una negazione.",
+        "e": "Trasforma «ogni» in «almeno una» ma dimentica di negare la proprietà. È compatibile con l'originale: se ogni fattura di marzo è stata pagata in tempo, anche questa è vera.",
+        "d": "Nega la parte sbagliata. Sposta l'affermazione sulle fatture emesse in mesi diversi da marzo, su cui l'originale non dice nulla. Qualunque cosa sia successa alle fatture degli altri mesi, l'originale può comunque essere vera o falsa."
+      },
+      "accessibilityText": "Viene citata un'affermazione: ogni fattura emessa a marzo è stata pagata entro 30 giorni. La domanda chiede la sua negazione. Le cinque alternative sono brevi frasi su fatture emesse, o non emesse, a marzo, pagate o non pagate entro 30 giorni.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": "'not' inside \\text{} in the displayed formula is rendered 'non'. 'Contrary' and 'converse' use the standard Italian terms 'contraria' and 'inversa'."
+      }
+    }
+  }
 }

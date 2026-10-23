@@ -78,5 +78,48 @@
     "deduction",
     "quantifiers",
     "syllogism"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "In un'azienda di consegne sono vere le seguenti affermazioni:\n\n- Ogni corriere dell'azienda possiede la patente di guida.\n- Nessun dipendente dell'azienda che possiede la patente di guida ha meno di 18 anni.\n\nQuale delle seguenti affermazioni deve essere a sua volta vera?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Ogni dipendente dell'azienda che ha 18 anni o più è un corriere."
+        },
+        {
+          "id": "b",
+          "textMd": "Ogni dipendente dell'azienda che possiede la patente di guida è un corriere."
+        },
+        {
+          "id": "c",
+          "textMd": "Alcuni corrieri dell'azienda hanno meno di 18 anni."
+        },
+        {
+          "id": "d",
+          "textMd": "Alcuni dipendenti dell'azienda possiedono la patente di guida ma non sono corrieri."
+        },
+        {
+          "id": "e",
+          "textMd": "Nessun corriere dell'azienda ha meno di 18 anni."
+        }
+      ],
+      "explanationMd": "Concatena le due affermazioni. Prendi un corriere qualsiasi: per la prima affermazione possiede la patente; per la seconda, nessuno con la patente ha meno di 18 anni. Quindi nessun corriere ha meno di 18 anni.\n\nUn modo rapido per vederlo è con insiemi annidati: i corrieri stanno dentro l'insieme dei titolari di patente, e i titolari di patente stanno interamente fuori dall'insieme di chi ha meno di 18 anni. Tutto ciò che sta dentro l'insieme dei corrieri sta quindi anch'esso fuori dall'insieme di chi ha meno di 18 anni.\n\nLe altre alternative o invertono un'affermazione («ogni corriere possiede la patente» non significa «ogni titolare di patente è un corriere»), o contraddicono ciò che si è dedotto, o affermano qualcosa che le affermazioni lasciano aperto.\n\nDa notare subito: «tutti gli X sono Y» seguito da «nessun Y è Z» dà sempre «nessun X è Z». Attenzione alle alternative che invertono l'ordine di un'affermazione con «tutti».",
+      "distractorRationale": {
+        "b": "Inverte la prima affermazione. Il fatto che ogni corriere possieda la patente lascia spazio ad altri dipendenti, per esempio dirigenti o meccanici, che possiedono la patente ma non sono corrieri.",
+        "c": "Contraddice le due affermazioni prese insieme: ogni corriere possiede la patente, e nessun titolare di patente ha meno di 18 anni.",
+        "a": "Collega l'avere 18 anni o più all'essere corriere, ma le affermazioni dicono soltanto che i corrieri hanno la patente e che i titolari di patente non hanno meno di 18 anni. Nulla obbliga i dipendenti maggiorenni a essere corrieri.",
+        "d": "Può essere vera, ma nulla la rende necessaria. È compatibile con le affermazioni che i corrieri siano gli unici titolari di patente dell'azienda."
+      },
+      "accessibilityText": "Due affermazioni su un'azienda di consegne: ogni corriere possiede la patente di guida, e nessun dipendente che possiede la patente di guida ha meno di 18 anni. La domanda chiede quale ulteriore affermazione deve essere vera. Cinque alternative di risposta.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

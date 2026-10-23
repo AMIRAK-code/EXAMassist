@@ -79,5 +79,48 @@
     "domain",
     "rational-functions",
     "sign-table"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Qual è il dominio della funzione reale $f(x) = \\sqrt{\\dfrac{4 - x^2}{x - 1}}$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$1 < x \\le 2$"
+        },
+        {
+          "id": "b",
+          "textMd": "$-2 \\le x \\le 2$ e $x \\ne 1$"
+        },
+        {
+          "id": "c",
+          "textMd": "$x \\le -2$ oppure $1 \\le x \\le 2$"
+        },
+        {
+          "id": "d",
+          "textMd": "$x \\le -2$ oppure $1 < x \\le 2$"
+        },
+        {
+          "id": "e",
+          "textMd": "$-2 \\le x < 1$ oppure $x \\ge 2$"
+        }
+      ],
+      "explanationMd": "Due condizioni definiscono il dominio: il denominatore non deve annullarsi, quindi $x \\ne 1$, e la quantità sotto radice deve essere non negativa:\n\n$$\\frac{4 - x^2}{x - 1} \\ge 0, \\qquad 4 - x^2 = (2 - x)(2 + x)$$\n\nI punti critici sono $x = -2$ e $x = 2$ (zeri del numeratore) e $x = 1$ (zero del denominatore). Studia il segno in ciascun intervallo:\n\n| intervallo | $4 - x^2$ | $x - 1$ | quoziente |\n| --- | --- | --- | --- |\n| $x < -2$ | $-$ | $-$ | $+$ |\n| $-2 < x < 1$ | $+$ | $-$ | $-$ |\n| $1 < x < 2$ | $+$ | $+$ | $+$ |\n| $x > 2$ | $-$ | $+$ | $-$ |\n\nIl quoziente è non negativo per $x < -2$ e per $1 < x < 2$, e vale zero in $x = \\pm 2$, valori ammessi. Il punto $x = 1$ è escluso.\n\nDominio: $x \\le -2$ oppure $1 < x \\le 2$.\n\nVerifica a campione: $x = -3$ dà $\\frac{-5}{-4} = \\frac{5}{4} \\ge 0$ (ammesso); $x = 0$ dà $\\frac{4}{-1} < 0$ (non ammesso); $x = 3$ dà $\\frac{-5}{2} < 0$ (non ammesso).\n\nLa lezione: quando l'espressione sotto radice è una frazione, i due fattori possono essere negativi contemporaneamente, quindi anche un intervallo lontano da quello più evidente può appartenere al dominio.",
+      "distractorRationale": {
+        "a": "Trova l'intervallo in cui numeratore e denominatore sono entrambi positivi, ma perde il ramo $x \\le -2$, dove sono entrambi negativi e il quoziente è di nuovo positivo, come mostra $x = -3$.",
+        "c": "Include $x = 1$, dove il denominatore si annulla e la frazione non è definita. Si possono includere solo gli zeri del numeratore.",
+        "b": "Richiede soltanto che il numeratore sia non negativo e poi toglie $x = 1$. Conta anche il segno del denominatore: in $x = 0$ il quoziente è $\\frac{4}{-1} < 0$, quindi lì la radice non esiste.",
+        "e": "Legge la tabella dei segni al contrario e tiene gli intervalli in cui il quoziente è negativo (con gli estremi aggiunti). In quegli intervalli la radice quadrata non è reale, per esempio in $x = 0$ o in $x = 3$."
+      },
+      "accessibilityText": "La funzione f di x è la radice quadrata della frazione con numeratore 4 meno x al quadrato e denominatore x meno 1. La domanda chiede il suo dominio. Le alternative di risposta sono: x maggiore di 1 e al massimo 2; x al massimo meno 2, oppure x maggiore di 1 e al massimo 2; x al massimo meno 2, oppure x compreso tra 1 e 2, estremi inclusi; x compreso tra meno 2 e 2, estremi inclusi, con x diverso da 1; x compreso tra meno 2 incluso e 1 escluso, oppure x almeno 2.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": "The English connectives 'or'/'and' between conditions in the options are rendered 'oppure'/'e'; the KaTeX inside each option is unchanged."
+      }
+    }
+  }
 }

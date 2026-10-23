@@ -79,5 +79,48 @@
     "probability",
     "without-replacement",
     "combinatorics"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un sacchetto contiene $4$ gettoni rossi e $6$ gettoni blu. Si estraggono a caso due gettoni, uno dopo l'altro, senza rimettere il primo nel sacchetto. Qual è la probabilità che i due gettoni siano dello stesso colore?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\dfrac{1}{3}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\dfrac{2}{15}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$\\dfrac{7}{15}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\dfrac{8}{15}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\dfrac{13}{25}$"
+        }
+      ],
+      "explanationMd": "«Stesso colore» significa due rossi **oppure** due blu. Questi casi non possono verificarsi insieme, quindi le loro probabilità si sommano. In ciascun caso la seconda estrazione avviene da un sacchetto con un gettone in meno.\n\n- Due rossi: $\\frac{4}{10} \\cdot \\frac{3}{9} = \\frac{12}{90}$\n- Due blu: $\\frac{6}{10} \\cdot \\frac{5}{9} = \\frac{30}{90}$\n\n$$P(\\text{stesso colore}) = \\frac{12 + 30}{90} = \\frac{42}{90} = \\frac{7}{15}$$\n\nUna seconda strada conta le coppie non ordinate. In totale ci sono $\\binom{10}{2} = 45$ coppie, $\\binom{4}{2} = 6$ coppie rosse e $\\binom{6}{2} = 15$ coppie blu, quindi la probabilità è $\\frac{6 + 15}{45} = \\frac{21}{45} = \\frac{7}{15}$. I due metodi concordano.\n\nLa prima cosa da notare è «senza rimettere il primo nel sacchetto»: le probabilità della seconda estrazione dipendono dalla prima, quindi il denominatore per la seconda estrazione è $9$, non $10$.",
+      "distractorRationale": {
+        "b": "È la probabilità di due gettoni rossi soltanto, $\\frac{12}{90} = \\frac{2}{15}$. «Stesso colore» comprende anche due gettoni blu.",
+        "a": "È la probabilità di due gettoni blu soltanto, $\\frac{30}{90} = \\frac{1}{3}$. A essa va aggiunto il caso dei due rossi.",
+        "d": "È la probabilità che i gettoni siano di colore **diverso**, $1 - \\frac{7}{15}$, e risponde alla domanda opposta.",
+        "e": "Tratta le estrazioni come se il primo gettone venisse rimesso nel sacchetto, usando $\\frac{4}{10} \\cdot \\frac{4}{10} + \\frac{6}{10} \\cdot \\frac{6}{10} = \\frac{52}{100}$. Senza reimmissione la seconda estrazione avviene da $9$ gettoni, con uno in meno del colore già estratto."
+      },
+      "accessibilityText": "Un sacchetto contiene 4 gettoni rossi e 6 blu. Se ne estraggono due senza reimmissione. La domanda chiede la probabilità che siano entrambi dello stesso colore. Le alternative di risposta sono le frazioni due quindicesimi, un terzo, sette quindicesimi, otto quindicesimi e tredici venticinquesimi.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": "'same colour' inside \\text{} in the displayed formula is rendered 'stesso colore'."
+      }
+    }
+  }
 }

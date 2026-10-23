@@ -78,5 +78,48 @@
     "math",
     "statistics",
     "mean"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "La media di cinque numeri è $12$. Quando si aggiunge un sesto numero all'elenco, la media dei sei numeri è $13$. Qual è il sesto numero?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$1$"
+        },
+        {
+          "id": "b",
+          "textMd": "$5$"
+        },
+        {
+          "id": "c",
+          "textMd": "$13$"
+        },
+        {
+          "id": "d",
+          "textMd": "$14$"
+        },
+        {
+          "id": "e",
+          "textMd": "$18$"
+        }
+      ],
+      "explanationMd": "Lavora con i totali, non con le medie: una media è un totale ripartito in parti uguali, quindi il totale è la media moltiplicata per il numero dei valori.\n\n- Cinque numeri con media $12$ hanno totale $5 \\times 12 = 60$.\n- Sei numeri con media $13$ hanno totale $6 \\times 13 = 78$.\n\nIl sesto numero spiega l'intera differenza:\n\n$$78 - 60 = 18$$\n\nUn altro modo di vederlo: il nuovo numero deve essere uguale alla nuova media, $13$, e fornire in più $1$ per ciascuno dei cinque numeri precedenti, quindi vale $13 + 5 = 18$.\n\nVerifica: $\\frac{60 + 18}{6} = \\frac{78}{6} = 13$.",
+      "distractorRationale": {
+        "a": "È la variazione della media, $13 - 12$, non il valore che l'ha prodotta. Per alzare di $1$ la media di sei numeri serve molto più di un $1$.",
+        "b": "Usa $5$ come numero dei valori anche per il nuovo totale, $5 \\times 13 - 5 \\times 12$. Dopo l'aggiunta del sesto numero i valori sono sei, quindi il nuovo totale è $6 \\times 13$.",
+        "c": "Presuppone che il nuovo numero sia uguale alla nuova media. Un valore uguale alla media lascia la media dell'elenco dov'è: aggiungere $13$ ai cinque numeri iniziali dà una media di $\\frac{73}{6}$, circa $12.2$.",
+        "d": "Aggiunge una sola volta alla nuova media la variazione della media, $13 + 1$. Il nuovo numero deve aumentare di $1$ la quota di ciascuno dei cinque numeri iniziali, quindi deve superare la nuova media di $5$, non di $1$."
+      },
+      "accessibilityText": "Cinque numeri hanno media 12. Dopo l'aggiunta di un sesto numero, i sei numeri hanno media 13. La domanda chiede il sesto numero. Le alternative di risposta sono 1, 5, 13, 14 e 18.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": "Decimal numbers inside KaTeX keep the decimal point, so the maths and options stay identical to the English; prose numbers in the accessibility text use the decimal comma."
+      }
+    }
+  }
 }
