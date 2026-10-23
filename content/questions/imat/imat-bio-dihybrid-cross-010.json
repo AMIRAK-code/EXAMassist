@@ -1,0 +1,120 @@
+{
+  "id": "imat-bio-dihybrid-cross-010",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-biology",
+  "skillSlug": "imat-bio-genetics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In a species of beetle, green body colour (allele $G$) is dominant over brown ($g$), and long antennae (allele $L$) are dominant over short ($l$). The two genes are on different chromosomes. A beetle of genotype $GgLl$ is crossed with a beetle of genotype $Ggll$.\n\nWhat fraction of the offspring is expected to have a green body and short antennae?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$1/8$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$3/16$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$1/4$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$3/8$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$9/16$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Because the genes are on different chromosomes they assort independently, so treat each gene as a separate monohybrid cross and multiply.\n\n- **Body colour:** $Gg \\times Gg$ gives $GG : Gg : gg$ in the ratio $1 : 2 : 1$. Green ($GG$ or $Gg$) is $3/4$.\n- **Antennae:** $Ll \\times ll$ gives $Ll : ll$ in the ratio $1 : 1$. Short ($ll$) is $1/2$.\n\nGreen and short: $\\dfrac{3}{4} \\times \\dfrac{1}{2} = \\dfrac{3}{8}$.\n\nThe ratios $9/16$ and $3/16$ belong to a cross between two double heterozygotes, which this is not; read both parental genotypes before reaching for a remembered ratio.",
+  "distractorRationale": {
+    "a": "This multiplies by $1/4$, the probability of a brown ($gg$) beetle, instead of $3/4$ for green: it is the fraction that is brown with short antennae.",
+    "b": "This is the $3/16$ class of the $9 : 3 : 3 : 1$ ratio, which applies only when both parents are $GgLl$. The second parent here is $ll$.",
+    "c": "This takes the probability of green as $1/2$, as if the colour cross were $Gg \\times gg$, and multiplies it by $1/2$ for short antennae.",
+    "e": "This is the fraction showing both dominant traits in a $GgLl \\times GgLl$ cross, not the fraction that is green with short antennae in this cross."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "Beetles: green body, capital G, is dominant over brown, small g; long antennae, capital L, are dominant over short, small l; the genes are unlinked. The cross is capital G small g capital L small l, times capital G small g small l small l. What fraction of offspring are green with short antennae? Choices: one eighth, three sixteenths, one quarter, three eighths, nine sixteenths.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "imat-biology-author",
+    "aiAssisted": true,
+    "notes": "Original dihybrid item with an invented organism; one parent is homozygous recessive at one locus so that remembered 9:3:3:1 fractions are wrong."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "imat-biology-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved the item twice independently and argued for each wrong choice; no second choice was found defensible. Awaiting blind independent solve and a check of the Italian translation by a second party."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "biology",
+    "mendelian-genetics",
+    "dihybrid-cross",
+    "probability"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "In una specie di coleottero il colore verde del corpo (allele $G$) è dominante sul marrone ($g$), e le antenne lunghe (allele $L$) sono dominanti su quelle corte ($l$). I due geni si trovano su cromosomi diversi. Un coleottero di genotipo $GgLl$ viene incrociato con un coleottero di genotipo $Ggll$.\n\nQuale frazione della prole ci si aspetta che abbia corpo verde e antenne corte?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$1/8$"
+        },
+        {
+          "id": "b",
+          "textMd": "$3/16$"
+        },
+        {
+          "id": "c",
+          "textMd": "$1/4$"
+        },
+        {
+          "id": "d",
+          "textMd": "$3/8$"
+        },
+        {
+          "id": "e",
+          "textMd": "$9/16$"
+        }
+      ],
+      "explanationMd": "Poiché i geni si trovano su cromosomi diversi, assortiscono in modo indipendente: si tratti ogni gene come un incrocio monoibrido separato e si moltiplichino le probabilità.\n\n- **Colore del corpo:** $Gg \\times Gg$ dà $GG : Gg : gg$ nel rapporto $1 : 2 : 1$. Il verde ($GG$ o $Gg$) è $3/4$.\n- **Antenne:** $Ll \\times ll$ dà $Ll : ll$ nel rapporto $1 : 1$. Le antenne corte ($ll$) sono $1/2$.\n\nVerde e antenne corte: $\\dfrac{3}{4} \\times \\dfrac{1}{2} = \\dfrac{3}{8}$.\n\nI rapporti $9/16$ e $3/16$ appartengono a un incrocio tra due doppi eterozigoti, che non è questo caso; si leggano entrambi i genotipi parentali prima di ricorrere a un rapporto memorizzato.",
+      "distractorRationale": {
+        "a": "Moltiplica per $1/4$, la probabilità di un coleottero marrone ($gg$), invece che per $3/4$ del verde: è la frazione con corpo marrone e antenne corte.",
+        "b": "È la classe $3/16$ del rapporto $9 : 3 : 3 : 1$, valido solo quando entrambi i genitori sono $GgLl$. Qui il secondo genitore è $ll$.",
+        "c": "Prende come $1/2$ la probabilità del verde, come se l'incrocio per il colore fosse $Gg \\times gg$, e la moltiplica per $1/2$ delle antenne corte.",
+        "e": "È la frazione con entrambi i caratteri dominanti in un incrocio $GgLl \\times GgLl$, non la frazione con corpo verde e antenne corte in questo incrocio."
+      },
+      "accessibilityText": "Coleotteri: corpo verde, G maiuscola, dominante sul marrone, g minuscola; antenne lunghe, L maiuscola, dominanti su quelle corte, l minuscola; i geni non sono associati. L'incrocio è G maiuscola g minuscola L maiuscola l minuscola, per G maiuscola g minuscola l minuscola l minuscola. Quale frazione della prole ha corpo verde e antenne corte? Opzioni: un ottavo, tre sedicesimi, un quarto, tre ottavi, nove sedicesimi.",
+      "check": {
+        "translatedBy": "imat-biology-author",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
+}
