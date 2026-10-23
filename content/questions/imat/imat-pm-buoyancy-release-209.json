@@ -15,39 +15,39 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$0.25\\ \\text{m/s}^2$"
+      "textMd": "$2.0\\ \\text{m/s}^2$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$2.0\\ \\text{m/s}^2$"
+      "textMd": "$12.5\\ \\text{m/s}^2$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "$2.5\\ \\text{m/s}^2$"
+      "textMd": "$10\\ \\text{m/s}^2$"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "$10\\ \\text{m/s}^2$"
+      "textMd": "$0.25\\ \\text{m/s}^2$"
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "$12.5\\ \\text{m/s}^2$"
+      "textMd": "$2.5\\ \\text{m/s}^2$"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "c"
+    "optionId": "e"
   },
   "explanationMd": "Immediately after the string is cut, the block is still fully submerged, so two forces act on it: its weight downwards and the buoyant force upwards. Find each, then apply $F = ma$ to the block's own mass.\n\n- Mass of the block: $m = \\rho_{\\text{block}} V = 800 \\times 4.0 \\times 10^{-3} = 3.2\\ \\text{kg}$, so its weight is $32\\ \\text{N}$.\n- Buoyant force (Archimedes): the weight of displaced water, $\\rho_{\\text{water}} V g = 1000 \\times 4.0 \\times 10^{-3} \\times 10 = 40\\ \\text{N}$.\n\nThe net force is $40 - 32 = 8\\ \\text{N}$ upwards (this is also the tension the string was supplying). So\n\n$$a = \\frac{8\\ \\text{N}}{3.2\\ \\text{kg}} = 2.5\\ \\text{m/s}^2 \\text{ upwards}$$\n\nCheck with the shortcut $a = g \\cdot \\frac{\\rho_{\\text{water}} - \\rho_{\\text{block}}}{\\rho_{\\text{block}}} = 10 \\times \\frac{200}{800} = 2.5\\ \\text{m/s}^2$. The denominator is the block's density because the mass being accelerated is the block's, not the water's.",
   "distractorRationale": {
-    "a": "This is $\\frac{\\rho_{\\text{water}} - \\rho_{\\text{block}}}{\\rho_{\\text{block}}} = \\frac{200}{800}$ without the factor $g$. That ratio is a pure number, not an acceleration.",
-    "b": "This divides the net force by the mass of the displaced water ($4.0\\ \\text{kg}$) instead of the block's mass ($3.2\\ \\text{kg}$): $\\frac{8}{4} = 2$. Newton's second law uses the mass of the object being accelerated.",
-    "d": "This assumes any released object accelerates at $g$. That holds for free fall in air with no buoyancy; here the buoyant force more than cancels the weight, and the block accelerates upwards at much less than $g$.",
-    "e": "This divides the buoyant force alone by the block's mass, $\\frac{40}{3.2} = 12.5$, forgetting that the $32\\ \\text{N}$ weight acts downwards at the same time."
+    "d": "This is $\\frac{\\rho_{\\text{water}} - \\rho_{\\text{block}}}{\\rho_{\\text{block}}} = \\frac{200}{800}$ without the factor $g$. That ratio is a pure number, not an acceleration.",
+    "a": "This divides the net force by the mass of the displaced water ($4.0\\ \\text{kg}$) instead of the block's mass ($3.2\\ \\text{kg}$): $\\frac{8}{4} = 2$. Newton's second law uses the mass of the object being accelerated.",
+    "c": "This assumes any released object accelerates at $g$. That holds for free fall in air with no buoyancy; here the buoyant force more than cancels the weight, and the block accelerates upwards at much less than $g$.",
+    "b": "This divides the buoyant force alone by the block's mass, $\\frac{40}{3.2} = 12.5$, forgetting that the $32\\ \\text{N}$ weight acts downwards at the same time."
   },
   "estimatedSeconds": 120,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": "Author solved the item twice by independent routes and argued for each wrong choice; each fails on a specific, named error. Awaiting blind independent solve."
+    "notes": "Author solved the item twice by independent routes and argued for each wrong choice; each fails on a specific, named error. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,
@@ -82,31 +82,31 @@
       "options": [
         {
           "id": "a",
-          "textMd": "$0{,}25\\ \\text{m/s}^2$"
-        },
-        {
-          "id": "b",
           "textMd": "$2{,}0\\ \\text{m/s}^2$"
         },
         {
-          "id": "c",
-          "textMd": "$2{,}5\\ \\text{m/s}^2$"
+          "id": "b",
+          "textMd": "$12{,}5\\ \\text{m/s}^2$"
         },
         {
-          "id": "d",
+          "id": "c",
           "textMd": "$10\\ \\text{m/s}^2$"
         },
         {
+          "id": "d",
+          "textMd": "$0{,}25\\ \\text{m/s}^2$"
+        },
+        {
           "id": "e",
-          "textMd": "$12{,}5\\ \\text{m/s}^2$"
+          "textMd": "$2{,}5\\ \\text{m/s}^2$"
         }
       ],
       "explanationMd": "Subito dopo il taglio del filo il blocco è ancora completamente immerso, quindi su di esso agiscono due forze: il peso verso il basso e la spinta di Archimede verso l'alto. Si calcolano entrambe, poi si applica $F = ma$ con la massa del blocco.\n\n- Massa del blocco: $m = \\rho_{\\text{blocco}} V = 800 \\times 4{,}0 \\times 10^{-3} = 3{,}2\\ \\text{kg}$, quindi il suo peso è $32\\ \\text{N}$.\n- Spinta di Archimede: il peso dell'acqua spostata, $\\rho_{\\text{acqua}} V g = 1000 \\times 4{,}0 \\times 10^{-3} \\times 10 = 40\\ \\text{N}$.\n\nLa forza risultante è $40 - 32 = 8\\ \\text{N}$ verso l'alto (è anche la tensione che il filo esercitava). Quindi\n\n$$a = \\frac{8\\ \\text{N}}{3{,}2\\ \\text{kg}} = 2{,}5\\ \\text{m/s}^2 \\text{ verso l'alto}$$\n\nVerifica con la formula rapida $a = g \\cdot \\frac{\\rho_{\\text{acqua}} - \\rho_{\\text{blocco}}}{\\rho_{\\text{blocco}}} = 10 \\times \\frac{200}{800} = 2{,}5\\ \\text{m/s}^2$. Al denominatore c'è la densità del blocco perché la massa che viene accelerata è quella del blocco, non quella dell'acqua.",
       "distractorRationale": {
-        "a": "Questo è $\\frac{\\rho_{\\text{acqua}} - \\rho_{\\text{blocco}}}{\\rho_{\\text{blocco}}} = \\frac{200}{800}$ senza il fattore $g$. Quel rapporto è un numero puro, non un'accelerazione.",
-        "b": "Qui si divide la forza risultante per la massa dell'acqua spostata ($4{,}0\\ \\text{kg}$) invece che per la massa del blocco ($3{,}2\\ \\text{kg}$): $\\frac{8}{4} = 2$. Il secondo principio della dinamica usa la massa del corpo che viene accelerato.",
-        "d": "Qui si suppone che qualsiasi corpo lasciato libero acceleri con $g$. Questo vale per la caduta libera in aria senza spinta di Archimede; qui la spinta supera il peso, e il blocco accelera verso l'alto con un valore molto minore di $g$.",
-        "e": "Qui si divide la sola spinta di Archimede per la massa del blocco, $\\frac{40}{3{,}2} = 12{,}5$, dimenticando che nello stesso tempo il peso di $32\\ \\text{N}$ agisce verso il basso."
+        "d": "Questo è $\\frac{\\rho_{\\text{acqua}} - \\rho_{\\text{blocco}}}{\\rho_{\\text{blocco}}} = \\frac{200}{800}$ senza il fattore $g$. Quel rapporto è un numero puro, non un'accelerazione.",
+        "a": "Qui si divide la forza risultante per la massa dell'acqua spostata ($4{,}0\\ \\text{kg}$) invece che per la massa del blocco ($3{,}2\\ \\text{kg}$): $\\frac{8}{4} = 2$. Il secondo principio della dinamica usa la massa del corpo che viene accelerato.",
+        "c": "Qui si suppone che qualsiasi corpo lasciato libero acceleri con $g$. Questo vale per la caduta libera in aria senza spinta di Archimede; qui la spinta supera il peso, e il blocco accelera verso l'alto con un valore molto minore di $g$.",
+        "b": "Qui si divide la sola spinta di Archimede per la massa del blocco, $\\frac{40}{3{,}2} = 12{,}5$, dimenticando che nello stesso tempo il peso di $32\\ \\text{N}$ agisce verso il basso."
       },
       "accessibilityText": "Un blocco pieno di volume 4,0 per 10 alla meno 3 metri cubi e densità 800 chilogrammi al metro cubo è tenuto completamente immerso in acqua, di densità 1000 chilogrammi al metro cubo, da un filo legato al fondo di una vasca. Il filo viene tagliato. Con g uguale a 10 metri al secondo quadrato, considerando solo il peso e la spinta di Archimede, trovare il modulo dell'accelerazione del blocco subito dopo il taglio. Le cinque alternative, in metri al secondo quadrato, sono 0,25; 2,0; 2,5; 10 e 12,5.",
       "check": {

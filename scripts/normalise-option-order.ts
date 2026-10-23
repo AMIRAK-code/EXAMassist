@@ -37,6 +37,8 @@ const LABELS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 function numericValue(textMd: string): number | null {
   const cleaned = textMd
     .replace(/\$+/g, '')
+    // \frac{3}{8} and \dfrac{3}{8} are 3/8, not "38" once the braces go.
+    .replace(/\\d?frac\{\s*(-?\d+(?:\.\d+)?)\s*\}\{\s*(\d+(?:\.\d+)?)\s*\}/g, '$1/$2')
     .replace(/\\[a-zA-Z]+/g, '')
     .replace(/[{}]/g, '')
     .replace(/[,\s]/g, '')

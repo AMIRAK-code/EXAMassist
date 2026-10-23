@@ -20,7 +20,7 @@
     {
       "id": "b",
       "label": "B",
-      "textMd": "T is in bed 5."
+      "textMd": "P is in bed 4."
     },
     {
       "id": "c",
@@ -35,7 +35,7 @@
     {
       "id": "e",
       "label": "E",
-      "textMd": "P is in bed 4."
+      "textMd": "T is in bed 5."
     }
   ],
   "answerKey": {
@@ -44,10 +44,10 @@
   },
   "explanationMd": "Start with the condition that allows the fewest cases, and test each case against the others.\n\n**Where can R go?** R is in an even-numbered bed, so bed 2 or bed 4. Suppose R is in bed 4. Q must have a higher number, so Q is in bed 5. P must be next to Q, so P would need bed 4, which R already occupies. That is impossible, so **R is in bed 2 in every valid arrangement.**\n\n**Is anything else fixed?** With R in bed 2, T is in bed 1 or bed 5.\n\n- *T in bed 5.* Beds 1, 3 and 4 remain for P, Q and S. S cannot be in bed 4, next to T. If S were in bed 3, P and Q would be in beds 1 and 4, which are not neighbours. So S is in bed 1, and P and Q fill beds 3 and 4 in either order. Both orders satisfy every condition (Q is above R, S is below P).\n- *T in bed 1.* Beds 3, 4 and 5 remain. S cannot be in bed 5, because P must be higher. If S were in bed 4, P and Q would be in beds 3 and 5, not neighbours. So S is in bed 3, and P and Q fill beds 4 and 5 in either order.\n\nThat gives four valid arrangements (beds 1 to 5): S R P Q T, S R Q P T, T R S P Q and T R S Q P. R is in bed 2 in all four; T, S, P and Q each change bed from one arrangement to another.\n\nA \"must be true\" question is answered by the statement that survives **every** valid arrangement. To reject any other statement, a single valid arrangement in which it is false is enough.",
   "distractorRationale": {
-    "b": "T can be in either end bed. The arrangement T R S P Q (beds 1 to 5) satisfies every condition with T in bed 1, so T need not be in bed 5.",
+    "e": "T can be in either end bed. The arrangement T R S P Q (beds 1 to 5) satisfies every condition with T in bed 1, so T need not be in bed 5.",
     "c": "S is in bed 1 only when T takes bed 5. In the arrangement T R S P Q, which satisfies every condition, S is in bed 3.",
     "d": "Q's bed depends on the arrangement. In S R Q P T (beds 1 to 5) every condition holds and Q is in bed 3, so Q need not be in bed 4.",
-    "e": "P and Q can swap places within their neighbouring pair. In S R P Q T every condition holds and P is in bed 3, so P need not be in bed 4."
+    "b": "P and Q can swap places within their neighbouring pair. In S R P Q T every condition holds and P is in bed 3, so P need not be in bed 4."
   },
   "estimatedSeconds": 150,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": "Author solved the item twice independently, once by case analysis and once by computer enumeration of all 120 orderings; only the placement of R in bed 2 holds in every valid arrangement, and each other statement fails in at least one valid arrangement named in its note. Awaiting blind independent solve."
+    "notes": "Author solved the item twice independently, once by case analysis and once by computer enumeration of all 120 orderings; only the placement of R in bed 2 holds in every valid arrangement, and each other statement fails in at least one valid arrangement named in its note. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,
@@ -85,7 +85,7 @@
         },
         {
           "id": "b",
-          "textMd": "T si trova nel letto 5."
+          "textMd": "P si trova nel letto 4."
         },
         {
           "id": "c",
@@ -97,15 +97,15 @@
         },
         {
           "id": "e",
-          "textMd": "P si trova nel letto 4."
+          "textMd": "T si trova nel letto 5."
         }
       ],
       "explanationMd": "Parti dalla condizione che ammette meno casi e verifica ciascun caso rispetto alle altre.\n\n**Dove può stare R?** R si trova in un letto con numero pari, quindi nel letto 2 o nel letto 4. Supponi che R sia nel letto 4. Q deve avere un numero maggiore, quindi Q è nel letto 5. P deve essere accanto a Q, quindi P avrebbe bisogno del letto 4, già occupato da R. È impossibile, quindi **R è nel letto 2 in ogni disposizione valida.**\n\n**C'è qualcos'altro di fisso?** Con R nel letto 2, T è nel letto 1 o nel letto 5.\n\n- *T nel letto 5.* Restano i letti 1, 3 e 4 per P, Q e S. S non può essere nel letto 4, accanto a T. Se S fosse nel letto 3, P e Q sarebbero nei letti 1 e 4, che non sono vicini. Quindi S è nel letto 1, e P e Q occupano i letti 3 e 4 in un ordine o nell'altro. Entrambi gli ordini rispettano ogni condizione (Q è sopra R, S è sotto P).\n- *T nel letto 1.* Restano i letti 3, 4 e 5. S non può essere nel letto 5, perché P deve avere un numero maggiore. Se S fosse nel letto 4, P e Q sarebbero nei letti 3 e 5, non vicini. Quindi S è nel letto 3, e P e Q occupano i letti 4 e 5 in un ordine o nell'altro.\n\nSi ottengono quattro disposizioni valide (letti da 1 a 5): S R P Q T, S R Q P T, T R S P Q e T R S Q P. R è nel letto 2 in tutte e quattro; T, S, P e Q cambiano letto da una disposizione all'altra.\n\nA una domanda del tipo \"necessariamente vera\" risponde l'affermazione che resiste in **ogni** disposizione valida. Per scartare qualsiasi altra affermazione basta una sola disposizione valida in cui essa è falsa.",
       "distractorRationale": {
-        "b": "T può trovarsi in uno qualsiasi dei due letti alle estremità. La disposizione T R S P Q (letti da 1 a 5) rispetta ogni condizione con T nel letto 1, quindi T non è necessariamente nel letto 5.",
+        "e": "T può trovarsi in uno qualsiasi dei due letti alle estremità. La disposizione T R S P Q (letti da 1 a 5) rispetta ogni condizione con T nel letto 1, quindi T non è necessariamente nel letto 5.",
         "c": "S è nel letto 1 solo quando T occupa il letto 5. Nella disposizione T R S P Q, che rispetta ogni condizione, S è nel letto 3.",
         "d": "Il letto di Q dipende dalla disposizione. In S R Q P T (letti da 1 a 5) ogni condizione è rispettata e Q è nel letto 3, quindi Q non è necessariamente nel letto 4.",
-        "e": "P e Q possono scambiarsi di posto all'interno della loro coppia di letti vicini. In S R P Q T ogni condizione è rispettata e P è nel letto 3, quindi P non è necessariamente nel letto 4."
+        "b": "P e Q possono scambiarsi di posto all'interno della loro coppia di letti vicini. In S R P Q T ogni condizione è rispettata e P è nel letto 3, quindi P non è necessariamente nel letto 4."
       },
       "accessibilityText": "Un problema di disposizione. Cinque pazienti indicati con P, Q, R, S e T occupano cinque letti in fila, numerati da 1 a 5 da sinistra a destra, un paziente per letto. Condizioni: T è in uno dei due letti alle estremità; P e Q sono in letti vicini; R è in un letto con numero pari; S non è accanto a T; il numero del letto di Q è maggiore di quello di R; il numero del letto di S è minore di quello di P. La domanda chiede quale affermazione è necessariamente vera. Cinque opzioni di risposta, ciascuna colloca un paziente in un letto.",
       "check": {
