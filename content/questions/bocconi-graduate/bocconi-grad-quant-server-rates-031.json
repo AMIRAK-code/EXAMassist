@@ -1,0 +1,74 @@
+{
+  "id": "bocconi-grad-quant-server-rates-031",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-quantitative-reasoning",
+  "skillSlug": "grad-quant-algebra-problem-solving",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Server Orion, working alone, processes a batch of files in 6 hours. Orion and server Lyra, working together, process the same batch in 4 hours. Working alone at its constant rate, how many hours does Lyra need to process the batch?",
+  "instructionsMd": "Work by hand.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "2"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "2.4"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "10"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "12"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "24"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Work with rates in batches per hour, because rates add when machines work together:\n\n$$\\text{Orion} = \\frac{1}{6}, \\qquad \\text{together} = \\frac{1}{4}$$\n\n$$\\text{Lyra} = \\frac{1}{4} - \\frac{1}{6} = \\frac{3}{12} - \\frac{2}{12} = \\frac{1}{12}$$\n\nLyra processes one twelfth of a batch an hour, so it needs 12 hours alone.\n\n**How to check.** In 4 hours Orion does $\\frac{4}{6} = \\frac{2}{3}$ of the batch and Lyra does $\\frac{4}{12} = \\frac{1}{3}$. Together that is one whole batch.\n\n**The trap.** Times do not add or subtract; rates do.",
+  "distractorRationale": {
+    "a": "This subtracts the times, $6 - 4$. Times cannot be subtracted: a 2-hour Lyra would make the pair faster than 4 hours, since Lyra alone would beat their combined time.",
+    "b": "This is $\\frac{6 \\times 4}{6 + 4}$, the formula for the COMBINED time of two machines taking 6 and 4 hours. Here 4 hours is already the combined time.",
+    "c": "This adds the times, $6 + 4$. Adding times has no meaning for machines working simultaneously.",
+    "e": "This multiplies the times, $6 \\times 4$. The correct calculation uses $\\frac{6 \\times 4}{6 - 4} = 12$, the difference of the times in the denominator."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A quantitative question. Server Orion alone processes a batch in 6 hours; Orion and Lyra together take 4 hours. It asks how many hours Lyra alone needs. The options are 2, 2.4, 10, 12 and 24.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-graduate-author",
+    "aiAssisted": true,
+    "notes": "Original work-rate item. Distractors are the arithmetic operations on times that learners reach for instead of rates."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-graduate-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author checked that exactly one option is defensible. Awaiting blind independent solve."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "work-rates"
+  ]
+}

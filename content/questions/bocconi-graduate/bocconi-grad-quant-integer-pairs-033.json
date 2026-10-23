@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-grad-quant-integer-pairs-033",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-quantitative-reasoning",
+  "skillSlug": "grad-quant-algebra-problem-solving",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "How many ordered pairs of positive integers $(x, y)$ satisfy both $x + y = 12$ and $xy > 30$?",
+  "instructionsMd": "Work by hand.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "3"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "4"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "5"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "6"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "11"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Substitute $y = 12 - x$, so the condition is $x(12 - x) > 30$. With $x$ a positive integer from 1 to 11, list the products:\n\n| $x$ | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| $x(12-x)$ | 11 | 20 | 27 | 32 | 35 | 36 | 35 | 32 | 27 | 20 | 11 |\n\nThe product exceeds 30 for $x = 4, 5, 6, 7, 8$: five ordered pairs, $(4,8), (5,7), (6,6), (7,5), (8,4)$.\n\n**Why the list is symmetric.** Swapping $x$ and $y$ gives the same product, so the table mirrors around $x = 6$. Ordered pairs count $(4, 8)$ and $(8, 4)$ separately, but $(6, 6)$ only once.\n\n**How to check the edge.** At $x = 3$ the product is 27, which fails; at $x = 4$ it is 32, which passes. No integer gives exactly 30.",
+  "distractorRationale": {
+    "a": "This counts UNORDERED pairs, $\\{4,8\\}, \\{5,7\\}, \\{6,6\\}$. The question asks for ordered pairs, so $(4,8)$ and $(8,4)$ are different.",
+    "b": "This counts the ordered pairs with $x \\neq y$ and leaves out $(6, 6)$. Nothing in the question requires $x$ and $y$ to differ.",
+    "d": "This includes one pair too many, typically $(3, 9)$ or $(9, 3)$, whose product is 27 and fails the condition.",
+    "e": "This counts every positive-integer pair with $x + y = 12$ and ignores the condition $xy > 30$."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": null,
+  "accessibilityText": "A quantitative question. It asks how many ordered pairs of positive integers x and y satisfy x plus y equals 12 and x times y greater than 30. The options are 3, 4, 5, 6 and 11.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-graduate-author",
+    "aiAssisted": true,
+    "notes": "Original item. Distractors are unordered counting, excluding the equal pair, a boundary error, and ignoring the inequality."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-graduate-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author checked that exactly one option is defensible. Awaiting blind independent solve."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "integer-pairs",
+    "inequalities"
+  ]
+}
