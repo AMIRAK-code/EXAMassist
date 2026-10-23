@@ -47,6 +47,13 @@ const CALCULATOR_LABEL: Record<string, string> = {
   unverified: 'Not verified',
 };
 
+/** Shown instead of the usual lead when the test maker publishes no navigation rule. */
+const UNVERIFIED_NAVIGATION = {
+  title: 'Not published for this test',
+  body: (publisher: string) =>
+    `${publisher} does not publish the navigation rule for this test. The lines below describe how our practice behaves, which is our choice, not the exam’s rule.`,
+};
+
 function formatDate(iso: string): string {
   return new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 }
@@ -172,10 +179,16 @@ export default async function FormatGuidePage({ params }: { params: Promise<{ hu
 
           {/* Navigation */}
           <h3 className="mt-8 font-heading text-xl font-semibold">Navigation rules</h3>
-          <p className="mt-2 text-ink-muted">
-            What you may and may not do once a section has started. Our timed practice enforces these
-            on the server, not just in the interface.
-          </p>
+          {config.sections[0].navigation.source === 'unverified' ? (
+            <Alert tone="caution" title={UNVERIFIED_NAVIGATION.title} className="mt-3">
+              {UNVERIFIED_NAVIGATION.body(config.publisher)}
+            </Alert>
+          ) : (
+            <p className="mt-2 text-ink-muted">
+              What you may and may not do once a section has started. Our timed practice enforces these
+              on the server, not just in the interface.
+            </p>
+          )}
           <ul className="mt-3 list-disc space-y-1.5 ps-5">
             {describePolicy(config.sections[0].navigation).map((line) => (
               <li key={line}>{line}</li>

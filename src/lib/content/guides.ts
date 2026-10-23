@@ -33,14 +33,16 @@ const GUIDES: Guide[] = [
     slug: 'bocconi-test-negative-marking-when-to-guess',
     title: 'Negative marking on the Bocconi Online Test: when to guess and when to leave a blank',
     answer:
-      'Guess only when you can rule out at least one option. The Bocconi Online Test scores +1 for a correct answer, 0 for a blank and −0.2 for a wrong answer (−0.33 on three-option critical-thinking items), so a blind guess on a five-option question is worth exactly 0 on average, and eliminating one option makes guessing clearly worthwhile.',
+      'Guess only when you can rule out at least one option. The Online Bocconi test for bachelor and law programmes scores +1 for a correct answer, 0 for a blank and −0.2 for a wrong answer (−0.33 on three-option critical-thinking items), so a blind guess on a five-option question is worth almost nothing on average, and eliminating one option makes guessing clearly worthwhile. The master’s form of the test penalises a wrong answer more heavily, at −0.25.',
     description:
-      'How Bocconi’s +1 / 0 / −0.2 scoring changes guessing strategy, worked through with the actual arithmetic, for the 2027-28 admissions cycle.',
+      'How Bocconi’s +1 / 0 / −0.2 scoring changes guessing strategy on the bachelor and law test, worked through with the actual arithmetic for the 2027-28 admissions cycle, and how the master’s form’s −0.25 penalty changes it.',
     examKeys: ['bocconi-undergraduate', 'bocconi-law'],
     hubSlug: 'bocconi-online-test',
     publishedOn: '2026-09-22',
-    updatedOn: '2026-09-22',
-    readingMinutes: 5,
+    // Updated when the master's form of the test, with its different penalty
+    // and floor, was added.
+    updatedOn: '2026-10-23',
+    readingMinutes: 6,
     sources: [
       {
         label: 'Online Bocconi test — structure and scoring',
@@ -52,10 +54,17 @@ const GUIDES: Guide[] = [
         url: 'https://www.unibocconi.it/sites/default/files/media/attachments/Instructions%20and%20Rules%20of%20Conduct%2027%2028.pdf',
         publisher: 'Università Bocconi',
       },
+      {
+        label: 'Online Bocconi test — international graduate applicants (master’s form)',
+        url: 'https://www.unibocconi.it/en/applying-bocconi/master-science-and-ma-programs/application-and-admissions/online-bocconi-test-international-graduate-applicants',
+        publisher: 'Università Bocconi',
+      },
     ],
-    bodyMd: `## The rule, exactly as Bocconi states it
+    bodyMd: `This guide is about the Online Bocconi test taken for **bachelor and law programmes**, in its standard and law forms. Applicants to Bocconi's **Master of Science and MA programmes** take a different form of the test with a heavier penalty and a lower floor; the last section covers it.
 
-Bocconi publishes the scoring for the online test as: **"Right answer: 1 point. Missing answer: 0 points. Wrong answer: — 0.2 points."** A separate, larger penalty applies to some critical-thinking items: **"For questions of the 'critical thinking' area that give only three possible answer options, the penalty will be — 0.33 points."**
+## The rule, exactly as Bocconi states it
+
+Bocconi publishes the scoring for the bachelor and law test as: **"Right answer: 1 point. Missing answer: 0 points. Wrong answer: — 0.2 points."** A separate, larger penalty applies to some critical-thinking items: **"For questions of the 'critical thinking' area that give only three possible answer options, the penalty will be — 0.33 points."**
 
 This matters more than it looks. On the SAT, the ACT, the LSAT, the GMAT and the GRE there is no wrong-answer penalty at all, so the correct strategy on those exams is simple: never leave anything blank. On the Bocconi test that advice is wrong, and following it will cost you marks.
 
@@ -98,7 +107,13 @@ A workable policy:
 
 Bocconi publishes an eligibility floor: an applicant whose total score, **penalties included**, is below **17** is not considered in the selection. That is a published requirement, not a competitive average. It is also not a target — admission is by competitive ranking, in which the test contributes alongside your school grades — so clearing 17 means you are in the ranking, not that you are admitted.
 
-Be careful with any other number you read online. Figures circulated as "the score you need for Bocconi" are almost always observed averages from unofficial sources, not published thresholds, and we do not repeat them.`,
+Be careful with any other number you read online. Figures circulated as "the score you need for Bocconi" are almost always observed averages from unofficial sources, not published thresholds, and we do not repeat them.
+
+## The master's form scores differently
+
+The Online Bocconi test for international graduate applicants — the master's form, with Verbal reasoning, Data insight and Quantitative reasoning areas — is also 50 questions in 75 minutes, but Bocconi gives its penalty as **"Wrong answer: -0.25/-0.33 points"**, and its floor as **"lower than 15 out of 50 will not be considered"**. Bocconi does not say which items carry −0.33, or how many options each question has.
+
+The arithmetic above still applies, with a larger cost per wrong answer. Guessing between four options is worth $\\tfrac{1}{4}(1) + \\tfrac{3}{4}(-0.25) = 0.25 - 0.1875 \\approx 0.06$; between three, $\\tfrac{1}{3}(1) + \\tfrac{2}{3}(-0.25) \\approx 0.17$. Elimination matters even more here than on the bachelor test. Bocconi does not publish the navigation rule for the master's form, so the forward-only advice above is not assumed for it.`,
   },
   {
     slug: 'lsat-without-logic-games',

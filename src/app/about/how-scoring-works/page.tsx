@@ -21,9 +21,9 @@ const DESCRIPTION =
 
 /** Real dates: written on 2026-09-22; revised on 2026-09-24 to add the accuracy-by-topic illustration. */
 const PUBLISHED = '2026-09-22';
-const UPDATED = '2026-09-24';
+const UPDATED = '2026-10-23';
 const PUBLISHED_LABEL = '22 September 2026';
-const UPDATED_LABEL = '24 September 2026';
+const UPDATED_LABEL = '23 October 2026';
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -270,6 +270,11 @@ export default function HowScoringWorksPage() {
                 admission is decided by a competitive ranking that weights the test 55% and
                 high-school GPA 45%, and no cut-off is published for any programme or round.
               </p>
+              <p>
+                The master’s form of the test, for Master of Science and MA applicants, is scored
+                the same way with a heavier penalty, 0.25 for a wrong answer, and a lower floor: a
+                total lower than 15 out of 50 is not considered.
+              </p>
             </div>
           </Card>
         </section>
@@ -361,10 +366,11 @@ export default function HowScoringWorksPage() {
           </div>
 
           <p className="mt-3 text-sm text-ink-muted">
-            One exception the table cannot hold: on both Bocconi variants, critical-thinking items
-            offered with three answer options carry a heavier penalty of 0.33 points instead of 0.2.
-            That penalty attaches to the individual item, so the column above shows the exam-level
-            rule.
+            One exception the table cannot hold: on the bachelor and law forms of the Bocconi test,
+            critical-thinking items offered with three answer options carry a heavier penalty of 0.33
+            points instead of 0.2. The master’s form gives its penalty as 0.25 or 0.33 without
+            saying which items carry 0.33, so we score every wrong answer there at 0.25. Those
+            penalties attach to individual items, so the column above shows the exam-level rule.
           </p>
         </section>
 
