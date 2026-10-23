@@ -78,5 +78,48 @@
     "problems",
     "sets",
     "overlap"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "In una classe di 30 studenti, 18 studiano francese, 15 studiano tedesco e 5 non studiano nessuna delle due lingue.\n\nQuanti studenti studiano sia il francese sia il tedesco?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$3$"
+        },
+        {
+          "id": "b",
+          "textMd": "$5$"
+        },
+        {
+          "id": "c",
+          "textMd": "$8$"
+        },
+        {
+          "id": "d",
+          "textMd": "$10$"
+        },
+        {
+          "id": "e",
+          "textMd": "$13$"
+        }
+      ],
+      "explanationMd": "Per prima cosa trova quanti studenti studiano almeno una delle due lingue: $30 - 5 = 25$.\n\nSe sommi gli studenti di francese e quelli di tedesco, $18 + 15 = 33$, chi studia entrambe le lingue è stato contato due volte. Il totale dovrebbe essere $25$, quindi l'eccedenza, $33 - 25 = 8$, è il numero di studenti contati due volte: $8$ studenti studiano entrambe le lingue.\n\nVerifica: $18 - 8 = 10$ studiano solo francese, $15 - 8 = 7$ studiano solo tedesco, e $10 + 7 + 8 + 5 = 30$.\n\nDa notare subito: togli il gruppo «nessuna delle due» prima di confrontare la somma dei due gruppi con il totale.",
+      "distractorRationale": {
+        "a": "Confronta $18 + 15 = 33$ con l'intera classe di $30$, dimenticando che i $5$ studenti che non studiano nessuna delle due lingue non sono compresi nei $33$.",
+        "b": "Ripete il numero di studenti che non studiano nessuna delle due lingue, che è dato nel testo e non è l'intersezione.",
+        "d": "È $25 - 15$, il numero di chi studia solo francese una volta tolta l'intersezione, scambiato per l'intersezione stessa.",
+        "e": "È $18 - 5$, una sottrazione che mescola il totale di francese con il gruppo che non studia nessuna delle due lingue e che non ha alcun significato nel problema."
+      },
+      "accessibilityText": "Una classe di 30 studenti: 18 studiano francese, 15 studiano tedesco e 5 nessuna delle due lingue. La domanda chiede quanti studiano entrambe. Cinque alternative di risposta.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

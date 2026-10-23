@@ -78,5 +78,48 @@
     "arrangements",
     "linear-order",
     "ranking"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Cinque corridori, P, Q, R, S e T, terminano una gara. Non ci sono arrivi a pari merito.\n\n- Q arriva prima di R.\n- R arriva prima di T.\n- S arriva immediatamente dopo P.\n- T non arriva né primo né ultimo.\n\nQuale delle seguenti affermazioni è necessariamente vera?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "T arriva quarto."
+        },
+        {
+          "id": "b",
+          "textMd": "S arriva terzo."
+        },
+        {
+          "id": "c",
+          "textMd": "P arriva quarto."
+        },
+        {
+          "id": "d",
+          "textMd": "R arriva primo."
+        },
+        {
+          "id": "e",
+          "textMd": "Q arriva secondo."
+        }
+      ],
+      "explanationMd": "Combina le prime due condizioni in un unico ordine: Q prima di R prima di T. Due corridori arrivano prima di T, quindi T è almeno terzo. T non è ultimo, quindi T è terzo o quarto.\n\n- **T quarto.** Restano il 1°, il 2°, il 3° e il 5° posto. P e S hanno bisogno di due posizioni consecutive, che possono essere solo 1° e 2° oppure 2° e 3°. In entrambi i casi uno tra Q e R finisce al 5° posto, dietro a T, e l'ordine Q, R, T non è rispettato. Questo caso non funziona.\n- **T terzo.** Q e R devono occupare il 1° e il 2° posto, in quest'ordine, e P e S occupano il 4° e il 5°, con S immediatamente dopo P.\n\nL'unico ordine di arrivo possibile è Q, R, T, P, S. Quindi P arriva quarto.\n\nDa notare subito: concatena le condizioni «arriva prima di» in un'unica fila, poi usala per limitare la posizione dell'ultimo corridore della catena.",
+      "distractorRationale": {
+        "e": "Q deve arrivare prima sia di R sia di T, e T è terzo, quindi Q è primo. Il secondo posto spetta a R.",
+        "d": "R deve arrivare dietro a Q, quindi R non può mai essere primo.",
+        "b": "Nell'unico ordine valido il terzo posto è occupato da T. S arriva quinto, immediatamente dopo P.",
+        "a": "T al quarto posto costringe P e S in due posizioni consecutive tra il 1° e il 3°, il che spinge Q o R dietro a T. T deve essere terzo."
+      },
+      "accessibilityText": "Cinque corridori indicati con le lettere P, Q, R, S e T terminano una gara senza arrivi a pari merito. Q arriva prima di R; R arriva prima di T; S arriva immediatamente dopo P; T non è né primo né ultimo. La domanda chiede quale affermazione sulle posizioni d'arrivo è necessariamente vera. Cinque alternative di risposta.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

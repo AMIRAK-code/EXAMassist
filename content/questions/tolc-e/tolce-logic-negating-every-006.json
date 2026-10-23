@@ -78,5 +78,48 @@
     "deduction",
     "negation",
     "quantifiers"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Si consideri l'affermazione:\n\n«Ogni studente che ha superato l'esame ha frequentato almeno una lezione.»\n\nQuale delle seguenti è la **negazione** di questa affermazione?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Almeno uno studente che ha frequentato una lezione non ha superato l'esame."
+        },
+        {
+          "id": "b",
+          "textMd": "Ogni studente che non ha frequentato nessuna lezione non ha superato l'esame."
+        },
+        {
+          "id": "c",
+          "textMd": "Ogni studente che non ha superato l'esame ha frequentato almeno una lezione."
+        },
+        {
+          "id": "d",
+          "textMd": "Almeno uno studente ha superato l'esame senza frequentare alcuna lezione."
+        },
+        {
+          "id": "e",
+          "textMd": "Nessuno studente che ha superato l'esame ha frequentato alcuna lezione."
+        }
+      ],
+      "explanationMd": "La negazione di un'affermazione è l'affermazione che è vera esattamente quando l'originale è falsa. L'originale dice che, tra gli studenti che hanno superato l'esame, non ci sono eccezioni: ciascuno ha frequentato almeno una lezione. È falsa non appena c'è una sola eccezione, cioè uno studente che ha superato l'esame e non ha frequentato nessuna lezione. Quindi la negazione è «almeno uno studente ha superato l'esame senza frequentare alcuna lezione».\n\nLo schema generale: la negazione di «ogni X è Y» è «almeno un X non è Y». Il quantificatore «ogni» diventa «almeno uno» (alcuni), e si nega solo la proprietà finale; il gruppo di cui si parla, gli studenti che hanno superato l'esame, resta lo stesso.\n\nPer verificare, chiediti se la candidata e l'originale possono essere entrambe vere, e se possono essere entrambe false. Una vera negazione supera entrambe le prove: le due affermazioni non concordano mai.\n\nDa notare subito: una negazione non è mai più forte del necessario. Trasformare «ogni» in «nessuno» produce l'estremo opposto, non la negazione.",
+      "distractorRationale": {
+        "e": "È l'estremo opposto, non la negazione. Se alcuni studenti che hanno superato l'esame hanno frequentato lezioni e altri no, l'originale e questa affermazione sono entrambe false, quindi non sono l'una la negazione dell'altra.",
+        "b": "È la contronominale dell'originale, quindi dice la stessa cosa. Uno studente che non ha frequentato nessuna lezione e ha superato l'esame renderebbe false entrambe le affermazioni contemporaneamente.",
+        "a": "Parla di studenti che non hanno superato l'esame, un gruppo su cui l'originale non dice nulla. Può essere vera contemporaneamente all'originale.",
+        "c": "Anche questa riguarda gli studenti che non hanno superato l'esame, e quindi può essere vera o falsa indipendentemente dall'originale. Scambiare i gruppi non nega l'affermazione."
+      },
+      "accessibilityText": "Un'affermazione tra virgolette: ogni studente che ha superato l'esame ha frequentato almeno una lezione. La domanda chiede quale alternativa ne è la negazione. Cinque alternative di risposta.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": "'Failed the exam' is rendered 'non ha superato l'esame' throughout, so 'passed'/'failed' remain exact complements as in the English."
+      }
+    }
+  }
 }

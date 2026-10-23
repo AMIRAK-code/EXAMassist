@@ -78,5 +78,48 @@
     "arrangements",
     "linear-order",
     "seating"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Anna, Bruno, Carla, Dario ed Elena siedono in una fila di cinque posti numerati da 1 a 5 da sinistra a destra, una persona per posto.\n\n- Anna siede al posto 2.\n- Bruno siede in uno dei due posti alle estremità.\n- Dario siede immediatamente alla destra di Carla.\n- Elena non siede accanto ad Anna.\n\nChi siede al posto 4?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Dario"
+        },
+        {
+          "id": "b",
+          "textMd": "Anna"
+        },
+        {
+          "id": "c",
+          "textMd": "Carla"
+        },
+        {
+          "id": "d",
+          "textMd": "Elena"
+        },
+        {
+          "id": "e",
+          "textMd": "Bruno"
+        }
+      ],
+      "explanationMd": "Parti dal dato fisso e dal vincolo più forte. Anna è al posto 2, quindi Elena non può essere né al posto 1 né al posto 3.\n\nProva le due possibilità per Bruno.\n\n- **Bruno al posto 1.** Restano i posti 3, 4 e 5 per Carla, Dario ed Elena. Elena non può occupare il posto 3, quindi è al 4 o al 5, e Carla e Dario hanno bisogno di due posti adiacenti con Carla a sinistra. Se Elena è al 5, Carla è al 3 e Dario al 4: funziona. Se Elena è al 4, i posti 3 e 5 non sono adiacenti: non funziona.\n- **Bruno al posto 5.** Restano i posti 1, 3 e 4. Elena non può occupare né l'1 né il 3, quindi è al 4, e restano i posti 1 e 3 per Carla e Dario, che non sono adiacenti: non funziona.\n\nL'unica disposizione possibile è Bruno, Anna, Carla, Dario, Elena dal posto 1 al posto 5, quindi Dario siede al posto 4.\n\nDa notare subito: nei problemi di disposizione, colloca prima la persona fissa, poi segna quali posti esclude ciascun vincolo prima di provare i vari casi.",
+      "distractorRationale": {
+        "b": "Il posto di Anna è dato direttamente come posto 2, quindi lei non può essere al posto 4.",
+        "e": "Bruno deve sedere a un'estremità, al posto 1 o al posto 5, quindi il posto 4 non è mai il suo.",
+        "c": "Carla deve avere Dario immediatamente alla sua destra. Nell'unica disposizione che funziona lei è al posto 3; metterla al posto 4 costringerebbe Dario al posto 5 e Bruno al posto 1, lasciando Elena al posto 3, accanto ad Anna.",
+        "d": "Se Elena occupa il posto 4, i due posti rimasti per Carla e Dario sono il 3 e il 5 (con Bruno al posto 1) oppure l'1 e il 3 (con Bruno al posto 5). Nessuna delle due coppie è formata da posti adiacenti, quindi Dario non può sedere immediatamente alla destra di Carla."
+      },
+      "accessibilityText": "Cinque persone, Anna, Bruno, Carla, Dario ed Elena, siedono nei posti numerati da 1 a 5 da sinistra a destra. Anna è al posto 2; Bruno è in un posto all'estremità; Dario è immediatamente alla destra di Carla; Elena non è accanto ad Anna. La domanda chiede chi siede al posto 4, e le alternative di risposta sono i cinque nomi. Cinque alternative di risposta.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }
