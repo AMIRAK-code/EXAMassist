@@ -78,5 +78,48 @@
     "problems",
     "truth-tellers-liars",
     "case-analysis"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Su un'isola ogni abitante è o un cavaliere, che dice sempre la verità, o un furfante, che mente sempre. Si incontrano insieme tre abitanti, Ada, Ben e Cal.\n\n- Ada dice: «Ben è un furfante.»\n- Ben dice: «Ada e Cal sono dello stesso tipo.»\n\nCal non dice nulla. Quale delle seguenti affermazioni è necessariamente vera?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Cal è un cavaliere."
+        },
+        {
+          "id": "b",
+          "textMd": "Ben è un furfante."
+        },
+        {
+          "id": "c",
+          "textMd": "Ada è un cavaliere."
+        },
+        {
+          "id": "d",
+          "textMd": "Cal è un furfante."
+        },
+        {
+          "id": "e",
+          "textMd": "Ada e Ben sono dello stesso tipo."
+        }
+      ],
+      "explanationMd": "Prova entrambe le possibilità per Ada.\n\n- **Ada è un cavaliere.** La sua affermazione è vera, quindi Ben è un furfante. L'affermazione di Ben è allora falsa, quindi Ada e Cal sono di tipo diverso. Ada è un cavaliere, quindi Cal è un furfante.\n- **Ada è un furfante.** La sua affermazione è falsa, quindi Ben è un cavaliere. L'affermazione di Ben è allora vera, quindi Ada e Cal sono dello stesso tipo. Ada è un furfante, quindi Cal è un furfante.\n\nIn entrambi i casi Cal è un furfante, quindi questa è l'unica affermazione necessariamente vera. Non si può stabilire se il cavaliere sia Ada o Ben, ma i due sono sempre di tipo opposto.\n\nDa notare subito: quando un personaggio parla di un altro, assumi un tipo per il primo, segui le conseguenze, poi ripeti con l'altro tipo. Ciò che vale in ogni caso rimasto possibile è ciò che è necessariamente vero.",
+      "distractorRationale": {
+        "c": "Ada potrebbe essere un cavaliere, ma il caso in cui è un furfante e Ben è un cavaliere è ugualmente compatibile con entrambe le affermazioni, quindi questa non è necessariamente vera.",
+        "b": "Ben è un furfante solo se Ada è un cavaliere. Anche l'altro caso, con Ben cavaliere, è compatibile, quindi questa non è necessariamente vera.",
+        "a": "Entrambi i casi compatibili rendono Cal un furfante. Se Cal fosse un cavaliere, l'affermazione di Ben sarebbe falsa nel caso in cui Ben è un cavaliere, o vera nel caso in cui Ben è un furfante, e in entrambi i casi il tipo di Ben verrebbe contraddetto.",
+        "e": "L'affermazione di Ada rende lei e Ben di tipo opposto in ogni caso: un'Ada sincera chiama correttamente Ben furfante, e un'Ada bugiarda chiama furfante un cavaliere."
+      },
+      "accessibilityText": "Un rompicapo di cavalieri e furfanti. I cavalieri dicono sempre la verità e i furfanti mentono sempre. Ada dice che Ben è un furfante. Ben dice che Ada e Cal sono dello stesso tipo. Cal non dice nulla. La domanda chiede quale affermazione è necessariamente vera. Cinque alternative di risposta.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": "Uses the standard Italian 'cavalieri e furfanti' terminology; 'cavaliere' and 'furfante' are used as type names for every inhabitant regardless of gender, so 'dello stesso tipo' reads unambiguously."
+      }
+    }
+  }
 }

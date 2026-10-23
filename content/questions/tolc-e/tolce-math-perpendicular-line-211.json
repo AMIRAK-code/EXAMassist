@@ -79,5 +79,48 @@
     "analytic-geometry",
     "perpendicular-lines",
     "slope"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Nel piano cartesiano la retta $r$ ha equazione $2x - 3y + 6 = 0$. La retta $s$ è perpendicolare a $r$ e passa per il punto $(1, 4)$. Qual è l'ordinata del punto in cui la retta $s$ interseca l'asse $y$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$2$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\dfrac{5}{2}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$\\dfrac{10}{3}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\dfrac{11}{2}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\dfrac{14}{3}$"
+        }
+      ],
+      "explanationMd": "Ricava il coefficiente angolare di $r$ risolvendo la sua equazione rispetto a $y$:\n\n$$3y = 2x + 6 \\iff y = \\frac{2}{3}x + 2$$\n\nQuindi $r$ ha coefficiente angolare $\\frac{2}{3}$. I coefficienti angolari di due rette perpendicolari hanno prodotto $-1$, quindi $s$ ha coefficiente angolare $-\\frac{3}{2}$: il reciproco **e** con il segno opposto.\n\nLa retta $s$ passa per $(1, 4)$:\n\n$$y - 4 = -\\frac{3}{2}(x - 1)$$\n\nSull'asse $y$ si ha $x = 0$, quindi $y = 4 + \\frac{3}{2} = \\frac{11}{2}$.\n\nVerifica: $s$ è $y = -\\frac{3}{2}x + \\frac{11}{2}$; per $x = 1$ dà $-\\frac{3}{2} + \\frac{11}{2} = 4$, e $\\frac{2}{3} \\cdot \\left(-\\frac{3}{2}\\right) = -1$, quindi le rette sono perpendicolari.",
+      "distractorRationale": {
+        "a": "È il punto in cui la retta $r$ interseca l'asse $y$. La domanda riguarda la nuova retta $s$.",
+        "b": "Prende il reciproco del coefficiente angolare ma ne mantiene il segno, usando $+\\frac{3}{2}$, quindi $y = 4 - \\frac{3}{2}$ per $x = 0$. Una retta con coefficiente angolare $\\frac{3}{2}$ non è perpendicolare a una con coefficiente angolare $\\frac{2}{3}$, perché il loro prodotto è $1$, non $-1$.",
+        "c": "Usa il coefficiente angolare di $r$ stessa, $\\frac{2}{3}$, che dà la retta per $(1, 4)$ parallela a $r$, non perpendicolare.",
+        "e": "Cambia il segno del coefficiente angolare ma dimentica di prenderne il reciproco, usando $-\\frac{2}{3}$. La perpendicolarità richiede entrambe le cose: i coefficienti angolari devono avere prodotto $-1$."
+      },
+      "accessibilityText": "Nel piano cartesiano la retta r ha equazione 2 x meno 3 y più 6 uguale a 0. La retta s è perpendicolare a r e passa per il punto di coordinate 1, 4. La domanda chiede l'ordinata del punto in cui s interseca l'asse y. Le alternative di risposta sono 2, cinque mezzi, dieci terzi, quattordici terzi e undici mezzi.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": "'At what value of y does s cross the y-axis' is rendered in the usual Italian form 'ordinata del punto in cui s interseca l'asse y' (same quantity)."
+      }
+    }
+  }
 }

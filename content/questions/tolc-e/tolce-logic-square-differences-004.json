@@ -78,5 +78,48 @@
     "sequences",
     "numbers",
     "second-differences"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Quale numero segue nella successione?\n\n$1, \\; 2, \\; 6, \\; 15, \\; 31, \\; 56, \\; \\ldots$",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$81$"
+        },
+        {
+          "id": "b",
+          "textMd": "$87$"
+        },
+        {
+          "id": "c",
+          "textMd": "$92$"
+        },
+        {
+          "id": "d",
+          "textMd": "$97$"
+        },
+        {
+          "id": "e",
+          "textMd": "$112$"
+        }
+      ],
+      "explanationMd": "I termini non sono multipli l'uno dell'altro, quindi conviene guardare le differenze: $1, 4, 9, 16, 25$. Sono i quadrati perfetti $1^2, 2^2, 3^2, 4^2, 5^2$. La differenza successiva è $6^2 = 36$, quindi il termine successivo è $56 + 36 = 92$.\n\nSe i quadrati non saltano subito all'occhio, scendi di un livello: le differenze seconde sono $3, 5, 7, 9$, cioè i numeri dispari. La differenza seconda successiva è $11$, quindi la differenza successiva è $25 + 11 = 36$, e il risultato è lo stesso. Entrambe le strade portano a $92$, e la loro concordanza è la verifica.\n\nDa notare subito: quando le differenze prime non si ripetono e non seguono un semplice schema moltiplicativo, confrontale con elenchi noti (quadrati, numeri dispari, numeri primi) oppure calcola di nuovo le differenze.",
+      "distractorRationale": {
+        "a": "Somma di nuovo $25$, ripetendo l'ultima differenza. Finora ogni differenza è stata maggiore della precedente.",
+        "b": "Somma $31$, il termine che precede $56$, come se ogni termine fosse la somma dei due precedenti. Se si controlla questa regola sui termini precedenti, fallisce subito: $2 + 6 = 8$, non $15$.",
+        "d": "Somma $16 + 25 = 41$, combinando le ultime due differenze alla maniera di Fibonacci. Le differenze $1, 4, 9, 16, 25$ non seguono a loro volta questa regola ($1 + 4 = 5$, non $9$).",
+        "e": "Raddoppia $56$. Il raddoppio non descrive nessun passo precedente: per esempio $15 \\times 2 = 30$, non $31$."
+      },
+      "accessibilityText": "Una successione numerica: 1, 2, 6, 15, 31, 56, seguita da uno spazio vuoto per il termine successivo. La domanda chiede il numero successivo. Cinque alternative di risposta.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

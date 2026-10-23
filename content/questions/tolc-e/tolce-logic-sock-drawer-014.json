@@ -78,5 +78,48 @@
     "problems",
     "pigeonhole",
     "worst-case"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un cassetto contiene 6 calzini rossi, 8 calzini blu e 10 calzini neri, tutti mescolati. Al buio, si estraggono i calzini uno alla volta senza guardare.\n\nQual è il numero minimo di calzini che occorre estrarre per essere **certi** di avere un paio di un colore e anche un paio di un colore diverso?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$5$"
+        },
+        {
+          "id": "b",
+          "textMd": "$7$"
+        },
+        {
+          "id": "c",
+          "textMd": "$12$"
+        },
+        {
+          "id": "d",
+          "textMd": "$13$"
+        },
+        {
+          "id": "e",
+          "textMd": "$17$"
+        }
+      ],
+      "explanationMd": "«Certi» significa che il numero deve funzionare anche con la sfortuna peggiore possibile, quindi cerca la serie di estrazioni più lunga che **non** dà ancora due paia di colori diversi.\n\nPer evitare due paia di colori diversi, al più un colore può comparire due o più volte; ciascuno degli altri colori può comparire al più una volta. Il caso peggiore permette al colore più numeroso di fornire quanti più calzini possibile: tutti i $10$ calzini neri, più $1$ rosso e $1$ blu. Sono $12$ calzini con paia solo nere.\n\nIl calzino successivo è rosso o blu e completa un paio di quel colore. Quindi $12 + 1 = 13$ calzini lo garantiscono. Controllando gli altri modi di evitare due paia si conferma che $12$ è il caso peggiore: tutti gli $8$ blu con un rosso e un nero fanno solo $10$ calzini, e tutti i $6$ rossi con uno per ciascuno degli altri colori fanno solo $8$.\n\nDa notare subito: per una garanzia, costruisci la selezione più grande che non soddisfa la richiesta, poi aggiungi uno. Con quantità diverse per colore, il caso peggiore esaurisce il colore più numeroso.",
+      "distractorRationale": {
+        "a": "Cinque calzini bastano solo con estrazioni fortunate. Nulla impedisce che tutti e cinque siano neri, il che dà paia nere ma nessun paio di un secondo colore.",
+        "b": "Considera un calzino isolato per ciascun colore più altri quattro per formare due paia, ma ignora che le estrazioni possono continuare a cadere sullo stesso colore. Tutti e sette i calzini potrebbero essere neri.",
+        "c": "Dodici calzini possono essere tutti e dieci i calzini neri più un rosso e un blu, il che non dà nessun paio di un secondo colore. Per la garanzia ne serve uno in più.",
+        "e": "Aggiunge tutti i calzini neri e tutti quelli rossi prima di quello in più, ma prendere tutti e sei i calzini rossi dà già paia rosse. Il caso peggiore limita a un solo calzino ogni colore tranne uno."
+      },
+      "accessibilityText": "Un cassetto contiene 6 calzini rossi, 8 blu e 10 neri, mescolati. Si estraggono i calzini uno alla volta senza guardare. La domanda chiede il numero minimo di estrazioni che garantisce un paio di un colore e un altro paio di un colore diverso. Cinque alternative di risposta.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }
