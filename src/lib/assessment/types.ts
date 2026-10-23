@@ -389,6 +389,13 @@ export const examConfigSchema = z.object({
   }),
   /** Rules we could not verify. Surfaced to learners; gates simulation features. */
   unverified: z.array(z.string()).default([]),
+  /**
+   * Languages the exam's questions are offered in. English is the original.
+   * Italian is offered for the TOLC-E (which CISIA runs in Italian) and for the
+   * IMAT as a study aid (the real IMAT is English-only; its simulation stays
+   * in English). Interface language is separate and covers the whole site.
+   */
+  contentLocales: z.array(z.enum(['en', 'it'])).optional(),
 });
 export type ExamConfig = z.infer<typeof examConfigSchema>;
 
