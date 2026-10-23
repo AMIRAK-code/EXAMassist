@@ -79,9 +79,12 @@ export const PUBLIC_SAMPLES: readonly PublicSample[] = [
 
 /**
  * Hubs with no public sample, and why. The homepage shows an honest empty
- * state for these rather than a question it cannot stand behind. None today.
+ * state for these rather than a question it cannot stand behind.
  */
-export const WITHHELD_SAMPLES: Readonly<Record<string, string>> = {};
+export const WITHHELD_SAMPLES: Readonly<Record<string, string>> = {
+  'bocconi-master':
+    'The graduate Bocconi test bank is new and small. Making one of its questions public would take it out of every diagnostic and timed set, so no sample is shown until the bank is larger.',
+};
 
 export const PUBLIC_SAMPLE_IDS: ReadonlySet<string> = new Set(PUBLIC_SAMPLES.map((s) => s.questionId));
 
