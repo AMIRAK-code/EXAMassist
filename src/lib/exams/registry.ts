@@ -9,6 +9,7 @@ import { lsatConfig } from './configs/lsat';
 import { politoTilAConfig } from './configs/polito-til-a';
 import { politoTilIConfig } from './configs/polito-til-i';
 import { tolcEConfig } from './configs/tolc-e';
+import { imatConfig } from './configs/imat';
 
 /**
  * The exam registry.
@@ -39,7 +40,7 @@ export const EXAM_CONFIGS: readonly ExamConfig[] = [
  * docs/research/ and its `unverified` list holds only what the official
  * sources genuinely leave open.
  */
-export const DRAFT_EXAM_CONFIGS: readonly ExamConfig[] = [tolcEConfig, politoTilIConfig, politoTilAConfig];
+export const DRAFT_EXAM_CONFIGS: readonly ExamConfig[] = [tolcEConfig, politoTilIConfig, politoTilAConfig, imatConfig];
 
 export type Audience = 'undergraduate' | 'law' | 'graduate';
 

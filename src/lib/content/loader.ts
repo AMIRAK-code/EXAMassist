@@ -140,6 +140,16 @@ export function loadContent(): LoadResult {
       });
       continue;
     }
+    for (const locale of Object.keys(question.translations ?? {})) {
+      if (!(config.contentLocales ?? ['en']).includes(locale as 'it')) {
+        issues.push({
+          file: rel,
+          level: 'error',
+          code: 'translation-not-offered',
+          message: `${config.shortName} is not offered in "${locale}"; add it to the config's contentLocales only if the real exam is.`,
+        });
+      }
+    }
     const section = config.sections.find((s) => s.key === question.sectionKey);
     if (!section) {
       issues.push({

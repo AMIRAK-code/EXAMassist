@@ -140,6 +140,23 @@ function main(): void {
       Object.entries(question.distractorRationale).map(([id, text]) => [remap.get(id) ?? id, text]),
     );
 
+    // Translations carry the same option ids; they move with the original.
+    updated.translations = Object.fromEntries(
+      Object.entries(question.translations ?? {}).map(([locale, t]) => [
+        locale,
+        {
+          ...t,
+          options: newOptions.map((o) => ({
+            id: o.id,
+            textMd: t.options.find((x) => remap.get(x.id) === o.id)?.textMd ?? '',
+          })),
+          distractorRationale: Object.fromEntries(
+            Object.entries(t.distractorRationale).map(([id, text]) => [remap.get(id) ?? id, text]),
+          ),
+        },
+      ]),
+    );
+
     // Keep the audit trail consistent with the file it describes.
     const review = updated.review as Record<string, unknown>;
     const solve = review.independentSolve as Record<string, unknown> | null;
