@@ -1,0 +1,69 @@
+{
+  "id": "bocconi-grad-quant-remote-share-028",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-quantitative-reasoning",
+  "skillSlug": "grad-quant-numbers-percentages",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A consultancy's staff are 60% analysts and 40% managers. 25% of the analysts and 50% of the managers work remotely. What fraction of the staff who work remotely are managers?",
+  "instructionsMd": "Work by hand.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "2/5"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "3/7"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "1/2"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "4/7"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Work with a convenient total, say 100 staff: 60 analysts and 40 managers.\n\n- Remote analysts: 25 per cent of 60 is 15.\n- Remote managers: 50 per cent of 40 is 20.\n\nSo 35 people work remotely, and 20 of them are managers:\n\n$$\\frac{20}{35} = \\frac{4}{7}$$\n\n**How to check.** The remote analysts are then $\\frac{15}{35} = \\frac{3}{7}$, and $\\frac{3}{7} + \\frac{4}{7} = 1$, as it must.\n\n**The trap.** The question restricts attention to remote workers first. Managers are 40 per cent of all staff, but because they work remotely at twice the analysts' rate, they are a larger share of the remote group.",
+  "distractorRationale": {
+    "a": "This is the managers' share of ALL staff, 40 per cent. The question asks about the remote workers only, among whom managers are over-represented.",
+    "b": "This is the share of remote workers who are ANALYSTS, $\\frac{15}{35}$. The question asks about managers.",
+    "c": "This is the share of managers who work remotely, 50 per cent: the condition is reversed. The question asks what share of remote workers are managers."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A quantitative question. Staff are 60 per cent analysts and 40 per cent managers; 25 per cent of analysts and 50 per cent of managers work remotely. It asks what fraction of remote workers are managers. The options are two fifths, three sevenths, one half and four sevenths.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-graduate-author",
+    "aiAssisted": true,
+    "notes": "Original item. Distractors are the unconditional share, the complementary group, and the reversed conditional."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-graduate-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author checked that exactly one option is defensible. Awaiting blind independent solve."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "conditional-share",
+    "mixtures"
+  ]
+}

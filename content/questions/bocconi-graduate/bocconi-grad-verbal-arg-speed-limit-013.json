@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-grad-verbal-arg-speed-limit-013",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-verbal-reasoning",
+  "skillSlug": "grad-verbal-argument-analysis",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A city lowered the speed limit on its ring road from 90 to 70 km/h. In the following year, the number of collisions on the ring road fell by 20 per cent. The city's transport department concluded that the lower speed limit was responsible for the fall in collisions.\n\nThe transport department's conclusion depends on which of the following assumptions?",
+  "instructionsMd": "Choose the one best answer.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Drivers on the ring road kept to the new limit at all times."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Lower speed limits reduce collisions on every type of road."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The fall in collisions was not caused mainly by some other change affecting the ring road during the same year."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The number of collisions on the ring road had been rising before the limit was changed."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Collisions at 70 km/h cause less serious injuries than collisions at 90 km/h."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The argument moves from \"the limit changed, then collisions fell\" to \"the limit caused the fall\". That step needs one thing to be true: nothing else that changed at the same time is the real cause.\n\n**The negation test.** Deny the assumption: suppose the fall WAS caused mainly by another change, such as a new lighting system or a big drop in traffic. Then the conclusion that the lower limit \"was responsible for the fall\" collapses. An assumption whose denial destroys the argument is one it depends on.\n\n**How to check the others.** Deny each and see whether the conclusion still stands. If some drivers sometimes broke the limit, the limit could still have reduced collisions. If speed limits do not help on every road, they could still help on this one. Injury severity concerns how bad collisions are, not how many there were. And the trend before the change is not required: collisions could have been flat and the argument would be unchanged.",
+  "distractorRationale": {
+    "a": "Too strong. The limit can reduce collisions even if some drivers sometimes exceed it; average speeds only need to fall. Denying this option leaves the conclusion intact.",
+    "b": "Far broader than the argument needs. The conclusion is about this ring road only, so it does not depend on what happens on every type of road.",
+    "e": "This concerns the severity of collisions, but the conclusion is about their number. The argument neither uses nor needs a claim about injuries.",
+    "d": "The argument needs no particular earlier trend. If collisions had been flat before the change, the conclusion would be unaffected, so denying this option leaves the argument intact."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "An argument-analysis question. A city lowered a ring-road speed limit from 90 to 70 km/h, collisions fell 20 per cent the next year, and the transport department concluded the lower limit was responsible. The question asks which assumption the conclusion depends on. The five options are: the fall was not mainly caused by another change that year; drivers kept to the limit at all times; lower limits reduce collisions on every road; collisions at 70 cause less serious injuries; collisions had been rising before the change.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-graduate-author",
+    "aiAssisted": true,
+    "notes": "Original argument item. Distractors are an over-strong version, an over-broad generalisation, a shift from number to severity, and an unneeded trend claim."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-graduate-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author checked that exactly one option is defensible. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "assumption",
+    "causal-reasoning"
+  ],
+  "translations": {}
+}

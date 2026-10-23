@@ -1,0 +1,73 @@
+{
+  "id": "bocconi-grad-verbal-defaults-evidence-008",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-verbal-reasoning",
+  "skillSlug": "grad-verbal-passage-reasoning",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which of the following findings, if true, would most strongly support the second reading of the evidence described in the passage over the first?",
+  "instructionsMd": "Answer on the basis of the passage only.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Many workers who had not joined voluntarily said they had meant to join but had not got round to the paperwork."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Workers who opted out of automatic enrolment most often gave the cost of contributions as their reason."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Participation in pension schemes rose after automatic enrolment was introduced."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Among workers of the kind who had previously joined voluntarily, those enrolled at a default rate of six per cent contributed more on average than similar workers enrolled at three per cent."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Find where the two readings make DIFFERENT predictions, because only evidence there can favour one over the other. The passage says they agree that participation rises, and differ on workers who were always going to join. Inertia predicts the default changes nothing for them; advice predicts some of them move their contribution towards the suggested figure.\n\nSo the decisive evidence concerns voluntary joiners: if their contributions follow the default — higher when the default is six per cent, lower when it is three — the default is acting as advice. That is the finding about voluntary joiners at six and three per cent.\n\n**How to check.** For each option ask, \"would the first reading also predict this?\" Rising participation: yes, both readings predict it. Workers who meant to join but did not: that is the first reading's own mechanism. Only the voluntary joiners tracking the default is something inertia alone cannot explain.",
+  "distractorRationale": {
+    "c": "The passage says both readings \"agree that participation rises\". A finding both predict cannot favour one over the other.",
+    "a": "This describes the first reading's mechanism, inertia: people who meant to save but put off the paperwork. If anything it supports the first reading, not the second.",
+    "b": "Reasons for opting out bear on neither reading as the passage frames them. The readings differ on how much voluntary joiners contribute, and this finding says nothing about that."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": {
+    "id": "bocconi-grad-stim-defaults-002",
+    "version": 1
+  },
+  "accessibilityText": "A question about the passage on automatic pension enrolment. It asks which finding would most strongly support the second reading, that defaults act as advice, over the first, that defaults work through inertia. The options are: voluntary-type joiners contribute more at a six per cent default than at three per cent; participation rose; many non-joiners say they meant to join; opt-outs cite cost.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-graduate-author",
+    "aiAssisted": true,
+    "notes": "Original evidence-evaluation item. The key lies where the two hypotheses diverge; distractors are evidence both predict, evidence for the rival, and irrelevant evidence."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-graduate-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author checked that exactly one option is defensible. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "passage-defaults",
+    "evaluate-evidence"
+  ],
+  "translations": {}
+}
