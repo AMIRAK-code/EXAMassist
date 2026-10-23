@@ -15,39 +15,39 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$x + 2y - 5 = 0$"
+      "textMd": "$x - 2y + 3 = 0$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$2x - y = 0$"
+      "textMd": "$x + 2y - 3 = 0$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "$x - 2y + 3 = 0$"
+      "textMd": "$x + 2y - 5 = 0$"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "$2x + y - 4 = 0$"
+      "textMd": "$2x - y = 0$"
     },
     {
       "id": "e",
       "label": "E",
-      "textMd": "$x + 2y - 3 = 0$"
+      "textMd": "$2x + y - 4 = 0$"
     }
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "a"
+    "optionId": "c"
   },
   "explanationMd": "A line in this question has to pass two tests: the right slope and the right point. Find the slope first.\n\nRewrite the given line as $y = 2x + 3$, so its slope is $2$. Two non-vertical lines are perpendicular when the product of their slopes is $-1$, so the required slope is $-\\tfrac{1}{2}$.\n\nUse the point–slope form through $(1, 2)$:\n\n$$y - 2 = -\\tfrac{1}{2}(x - 1) \\quad\\Longrightarrow\\quad 2y - 4 = -x + 1 \\quad\\Longrightarrow\\quad x + 2y - 5 = 0$$\n\nCheck both tests: the slope of $x + 2y - 5 = 0$ is $-\\tfrac{1}{2}$, and $1 + 2 \\cdot 2 - 5 = 0$, so the point lies on it. Every other choice fails exactly one of the two tests, which is why checking both is worth the few seconds.",
   "distractorRationale": {
-    "b": "This line has slope $2$, the same as the given line, so it is parallel to it, not perpendicular. It does pass through $(1, 2)$, which makes it tempting if only the point is checked.",
-    "c": "This line has slope $\\tfrac{1}{2}$: the reciprocal was taken but the sign was not changed. The product of the slopes is $2 \\cdot \\tfrac{1}{2} = 1$, not $-1$, so the lines are not perpendicular.",
-    "d": "This line has slope $-2$: the sign was changed but the reciprocal was not taken. The product of the slopes is $-4$, not $-1$.",
-    "e": "This line has the correct slope $-\\tfrac{1}{2}$ but does not pass through $(1, 2)$: $1 + 4 - 3 = 2 \\ne 0$. It passes through $(-1, 2)$ instead, the result of writing $x + 1$ for $x - 1$ in the point–slope form."
+    "d": "This line has slope $2$, the same as the given line, so it is parallel to it, not perpendicular. It does pass through $(1, 2)$, which makes it tempting if only the point is checked.",
+    "a": "This line has slope $\\tfrac{1}{2}$: the reciprocal was taken but the sign was not changed. The product of the slopes is $2 \\cdot \\tfrac{1}{2} = 1$, not $-1$, so the lines are not perpendicular.",
+    "e": "This line has slope $-2$: the sign was changed but the reciprocal was not taken. The product of the slopes is $-4$, not $-1$.",
+    "b": "This line has the correct slope $-\\tfrac{1}{2}$ but does not pass through $(1, 2)$: $1 + 4 - 3 = 2 \\ne 0$. It passes through $(-1, 2)$ instead, the result of writing $x + 1$ for $x - 1$ in the point–slope form."
   },
   "estimatedSeconds": 70,
   "stimulusRef": null,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": "Author solved the item twice by independent routes and argued for each wrong choice; each fails on a specific, named error. Awaiting blind independent solve."
+    "notes": "Author solved the item twice by independent routes and argued for each wrong choice; each fails on a specific, named error. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,
@@ -81,31 +81,31 @@
       "options": [
         {
           "id": "a",
-          "textMd": "$x + 2y - 5 = 0$"
-        },
-        {
-          "id": "b",
-          "textMd": "$2x - y = 0$"
-        },
-        {
-          "id": "c",
           "textMd": "$x - 2y + 3 = 0$"
         },
         {
+          "id": "b",
+          "textMd": "$x + 2y - 3 = 0$"
+        },
+        {
+          "id": "c",
+          "textMd": "$x + 2y - 5 = 0$"
+        },
+        {
           "id": "d",
-          "textMd": "$2x + y - 4 = 0$"
+          "textMd": "$2x - y = 0$"
         },
         {
           "id": "e",
-          "textMd": "$x + 2y - 3 = 0$"
+          "textMd": "$2x + y - 4 = 0$"
         }
       ],
       "explanationMd": "In questa domanda la retta deve superare due controlli: il coefficiente angolare giusto e il punto giusto. Si trova prima il coefficiente angolare.\n\nLa retta data si riscrive come $y = 2x + 3$, quindi il suo coefficiente angolare è $2$. Due rette non verticali sono perpendicolari quando il prodotto dei loro coefficienti angolari è $-1$, quindi il coefficiente angolare cercato è $-\\tfrac{1}{2}$.\n\nSi usa l'equazione della retta passante per un punto con coefficiente angolare noto, con il punto $(1, 2)$:\n\n$$y - 2 = -\\tfrac{1}{2}(x - 1) \\quad\\Longrightarrow\\quad 2y - 4 = -x + 1 \\quad\\Longrightarrow\\quad x + 2y - 5 = 0$$\n\nSi verificano entrambe le condizioni: il coefficiente angolare di $x + 2y - 5 = 0$ è $-\\tfrac{1}{2}$, e $1 + 2 \\cdot 2 - 5 = 0$, quindi il punto appartiene alla retta. Ogni altra alternativa non supera esattamente uno dei due controlli, ed è per questo che vale la pena verificarli entrambi.",
       "distractorRationale": {
-        "b": "Questa retta ha coefficiente angolare $2$, uguale a quello della retta data, quindi è parallela, non perpendicolare. Passa però per $(1, 2)$, il che la rende attraente se si controlla solo il punto.",
-        "c": "Questa retta ha coefficiente angolare $\\tfrac{1}{2}$: si è preso il reciproco ma non si è cambiato il segno. Il prodotto dei coefficienti angolari è $2 \\cdot \\tfrac{1}{2} = 1$, non $-1$, quindi le rette non sono perpendicolari.",
-        "d": "Questa retta ha coefficiente angolare $-2$: si è cambiato il segno ma non si è preso il reciproco. Il prodotto dei coefficienti angolari è $-4$, non $-1$.",
-        "e": "Questa retta ha il coefficiente angolare corretto $-\\tfrac{1}{2}$ ma non passa per $(1, 2)$: $1 + 4 - 3 = 2 \\ne 0$. Passa invece per $(-1, 2)$, il risultato di aver scritto $x + 1$ al posto di $x - 1$ nell'equazione della retta."
+        "d": "Questa retta ha coefficiente angolare $2$, uguale a quello della retta data, quindi è parallela, non perpendicolare. Passa però per $(1, 2)$, il che la rende attraente se si controlla solo il punto.",
+        "a": "Questa retta ha coefficiente angolare $\\tfrac{1}{2}$: si è preso il reciproco ma non si è cambiato il segno. Il prodotto dei coefficienti angolari è $2 \\cdot \\tfrac{1}{2} = 1$, non $-1$, quindi le rette non sono perpendicolari.",
+        "e": "Questa retta ha coefficiente angolare $-2$: si è cambiato il segno ma non si è preso il reciproco. Il prodotto dei coefficienti angolari è $-4$, non $-1$.",
+        "b": "Questa retta ha il coefficiente angolare corretto $-\\tfrac{1}{2}$ ma non passa per $(1, 2)$: $1 + 4 - 3 = 2 \\ne 0$. Passa invece per $(-1, 2)$, il risultato di aver scritto $x + 1$ al posto di $x - 1$ nell'equazione della retta."
       },
       "accessibilityText": "Nel piano cartesiano, trovare la retta passante per il punto (1, 2) e perpendicolare alla retta 2x meno y più 3 uguale a 0. Le cinque alternative sono le rette: x più 2y meno 5 uguale a 0; 2x meno y uguale a 0; x meno 2y più 3 uguale a 0; 2x più y meno 4 uguale a 0; x più 2y meno 3 uguale a 0.",
       "check": {

@@ -15,22 +15,22 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "$2$"
+      "textMd": "$27$"
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "$3$"
+      "textMd": "$12$"
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "$12$"
+      "textMd": "$3$"
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "$27$"
+      "textMd": "$2$"
     },
     {
       "id": "e",
@@ -40,13 +40,13 @@
   ],
   "answerKey": {
     "type": "single_select",
-    "optionId": "b"
+    "optionId": "c"
   },
   "explanationMd": "The first thing to notice is that every power can be written in terms of $3^x$: $9^x = (3^2)^x = (3^x)^2$ and $3^{x+1} = 3 \\cdot 3^x$.\n\nSubstitute $y = 3^x$ (so $y > 0$). The equation becomes\n\n$$y^2 - 4 \\cdot 3y + 27 = 0 \\quad\\Longrightarrow\\quad y^2 - 12y + 27 = 0 \\quad\\Longrightarrow\\quad (y - 3)(y - 9) = 0$$\n\nBoth roots, $y = 3$ and $y = 9$, are positive, so both give real values of $x$: $3^x = 3$ gives $x = 1$, and $3^x = 9$ gives $x = 2$. The sum of the solutions is $1 + 2 = 3$.\n\nCheck each in the original: for $x = 1$, $9 - 4 \\cdot 9 + 27 = 0$; for $x = 2$, $81 - 4 \\cdot 27 + 27 = 0$. A quicker cross-check: the product of the two $y$-roots is $27$, and $3^{x_1} \\cdot 3^{x_2} = 3^{x_1 + x_2}$, so $3^{x_1 + x_2} = 27$ and $x_1 + x_2 = 3$.",
   "distractorRationale": {
-    "a": "This is the product of the two solutions, $1 \\times 2 = 2$, not their sum.",
-    "c": "This is the sum of the two values of $y = 3^x$, read from the quadratic $y^2 - 12y + 27 = 0$. Those are values of $3^x$; each still has to be converted back to $x$ before adding.",
-    "d": "This is the product of the two values of $y = 3^x$ (the constant term of the quadratic). It does contain the answer, since $3^{x_1 + x_2} = 27$, but the final step to $x_1 + x_2 = 3$ is missing.",
+    "d": "This is the product of the two solutions, $1 \\times 2 = 2$, not their sum.",
+    "b": "This is the sum of the two values of $y = 3^x$, read from the quadratic $y^2 - 12y + 27 = 0$. Those are values of $3^x$; each still has to be converted back to $x$ before adding.",
+    "a": "This is the product of the two values of $y = 3^x$ (the constant term of the quadratic). It does contain the answer, since $3^{x_1 + x_2} = 27$, but the final step to $x_1 + x_2 = 3$ is missing.",
     "e": "This comes from mishandling $3^{x+1}$, writing it as $3^x$ or as $3^x + 1$. Those give $y^2 - 4y + 27 = 0$ or $y^2 - 4y + 23 = 0$, both with negative discriminant. In fact $3^{x+1} = 3 \\cdot 3^x$, and the correct quadratic has two positive roots."
   },
   "estimatedSeconds": 110,
@@ -64,7 +64,7 @@
     "reviewer": null,
     "reviewedOn": null,
     "independentSolve": null,
-    "notes": "Author solved the item twice by independent routes and argued for each wrong choice; each fails on a specific, named error. Awaiting blind independent solve."
+    "notes": "Author solved the item twice by independent routes and argued for each wrong choice; each fails on a specific, named error. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
   },
   "state": "in_review",
   "quarantine": null,
@@ -81,19 +81,19 @@
       "options": [
         {
           "id": "a",
-          "textMd": "$2$"
+          "textMd": "$27$"
         },
         {
           "id": "b",
-          "textMd": "$3$"
-        },
-        {
-          "id": "c",
           "textMd": "$12$"
         },
         {
+          "id": "c",
+          "textMd": "$3$"
+        },
+        {
           "id": "d",
-          "textMd": "$27$"
+          "textMd": "$2$"
         },
         {
           "id": "e",
@@ -102,9 +102,9 @@
       ],
       "explanationMd": "La prima cosa da notare è che ogni potenza si può scrivere in funzione di $3^x$: $9^x = (3^2)^x = (3^x)^2$ e $3^{x+1} = 3 \\cdot 3^x$.\n\nSi pone $y = 3^x$ (quindi $y > 0$). L'equazione diventa\n\n$$y^2 - 4 \\cdot 3y + 27 = 0 \\quad\\Longrightarrow\\quad y^2 - 12y + 27 = 0 \\quad\\Longrightarrow\\quad (y - 3)(y - 9) = 0$$\n\nEntrambe le radici, $y = 3$ e $y = 9$, sono positive, quindi entrambe danno valori reali di $x$: $3^x = 3$ dà $x = 1$ e $3^x = 9$ dà $x = 2$. La somma delle soluzioni è $1 + 2 = 3$.\n\nVerifica nell'equazione originale: per $x = 1$, $9 - 4 \\cdot 9 + 27 = 0$; per $x = 2$, $81 - 4 \\cdot 27 + 27 = 0$. Un controllo più rapido: il prodotto delle due radici in $y$ è $27$, e $3^{x_1} \\cdot 3^{x_2} = 3^{x_1 + x_2}$, quindi $3^{x_1 + x_2} = 27$ e $x_1 + x_2 = 3$.",
       "distractorRationale": {
-        "a": "Questo è il prodotto delle due soluzioni, $1 \\times 2 = 2$, non la loro somma.",
-        "c": "Questa è la somma dei due valori di $y = 3^x$, letta dall'equazione $y^2 - 12y + 27 = 0$. Sono valori di $3^x$: ciascuno va ancora riportato a $x$ prima di sommare.",
-        "d": "Questo è il prodotto dei due valori di $y = 3^x$ (il termine noto dell'equazione di secondo grado). Contiene la risposta, perché $3^{x_1 + x_2} = 27$, ma manca l'ultimo passaggio fino a $x_1 + x_2 = 3$.",
+        "d": "Questo è il prodotto delle due soluzioni, $1 \\times 2 = 2$, non la loro somma.",
+        "b": "Questa è la somma dei due valori di $y = 3^x$, letta dall'equazione $y^2 - 12y + 27 = 0$. Sono valori di $3^x$: ciascuno va ancora riportato a $x$ prima di sommare.",
+        "a": "Questo è il prodotto dei due valori di $y = 3^x$ (il termine noto dell'equazione di secondo grado). Contiene la risposta, perché $3^{x_1 + x_2} = 27$, ma manca l'ultimo passaggio fino a $x_1 + x_2 = 3$.",
         "e": "Nasce da un errore su $3^{x+1}$, scritto come $3^x$ oppure come $3^x + 1$. Si ottengono così $y^2 - 4y + 27 = 0$ oppure $y^2 - 4y + 23 = 0$, entrambe con discriminante negativo. In realtà $3^{x+1} = 3 \\cdot 3^x$, e l'equazione corretta ha due radici positive."
       },
       "accessibilityText": "Trovare la somma di tutte le soluzioni reali dell'equazione: 9 elevato a x, meno 4 per 3 elevato a x più 1, più 27, uguale a 0. Le cinque alternative sono: 2; 3; 12; 27; l'equazione non ha soluzioni reali.",
