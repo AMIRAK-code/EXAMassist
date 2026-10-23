@@ -1,0 +1,119 @@
+{
+  "id": "imat-pm-mean-added-value-206",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-physics-maths",
+  "skillSlug": "imat-math-probability-statistics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "The mean of five numbers is $6$. A sixth number is added to the list, and the mean of all six numbers is $7$. What is the sixth number?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$1$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$7$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$12$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$13$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$42$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Means are hard to combine directly, but totals are easy: the total of a list is its mean times the number of values.\n\n- Total of the original five numbers: $5 \\times 6 = 30$.\n- Total of all six numbers: $6 \\times 7 = 42$.\n\nThe sixth number is the difference between the totals: $42 - 30 = 12$.\n\nCheck: $\\frac{30 + 12}{6} = \\frac{42}{6} = 7$. Another way to see it: the new number must supply the new mean, $7$, for itself, plus $1$ extra for each of the other five numbers to lift their mean from $6$ to $7$, so $7 + 5 = 12$.",
+  "distractorRationale": {
+    "a": "This is the increase in the mean, $7 - 6$, not a value in the list.",
+    "b": "This assumes the added number equals the new mean. Adding $7$ to five numbers whose total is $30$ gives a mean of $\\tfrac{37}{6}$, a little above $6$, not $7$.",
+    "d": "This adds the two means, $6 + 7$, which has no meaning here; the means must first be turned into totals.",
+    "e": "This is the total of all six numbers, $6 \\times 7$. The original total of $30$ still has to be subtracted."
+  },
+  "estimatedSeconds": 50,
+  "stimulusRef": null,
+  "accessibilityText": "The mean of five numbers is 6. After a sixth number is added, the mean of the six numbers is 7. Find the sixth number. The five choices are 1, 7, 12, 13 and 42.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "imat-physmaths-author",
+    "aiAssisted": true,
+    "notes": "Original item. Mean-to-total conversion."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "imat-physmaths-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved the item twice by independent routes and argued for each wrong choice; each fails on a specific, named error. Awaiting blind independent solve."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "mathematics",
+    "statistics",
+    "arithmetic-mean"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "La media aritmetica di cinque numeri è $6$. Si aggiunge all'elenco un sesto numero, e la media aritmetica dei sei numeri diventa $7$. Qual è il sesto numero?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$1$"
+        },
+        {
+          "id": "b",
+          "textMd": "$7$"
+        },
+        {
+          "id": "c",
+          "textMd": "$12$"
+        },
+        {
+          "id": "d",
+          "textMd": "$13$"
+        },
+        {
+          "id": "e",
+          "textMd": "$42$"
+        }
+      ],
+      "explanationMd": "Le medie sono difficili da combinare direttamente, mentre le somme sono semplici: la somma di un elenco è la sua media moltiplicata per il numero di valori.\n\n- Somma dei cinque numeri iniziali: $5 \\times 6 = 30$.\n- Somma di tutti e sei i numeri: $6 \\times 7 = 42$.\n\nIl sesto numero è la differenza tra le due somme: $42 - 30 = 12$.\n\nVerifica: $\\frac{30 + 12}{6} = \\frac{42}{6} = 7$. Un altro modo di vederlo: il nuovo numero deve fornire la nuova media, $7$, per sé stesso, più $1$ in più per ciascuno degli altri cinque numeri, così da portare la loro media da $6$ a $7$; quindi $7 + 5 = 12$.",
+      "distractorRationale": {
+        "a": "Questo è l'aumento della media, $7 - 6$, non un valore dell'elenco.",
+        "b": "Qui si suppone che il numero aggiunto sia uguale alla nuova media. Aggiungendo $7$ a cinque numeri con somma $30$ si ottiene una media di $\\tfrac{37}{6}$, poco più di $6$, non $7$.",
+        "d": "Qui si sommano le due medie, $6 + 7$, operazione priva di significato in questo caso; le medie vanno prima trasformate in somme.",
+        "e": "Questa è la somma di tutti e sei i numeri, $6 \\times 7$. Bisogna ancora sottrarre la somma iniziale, $30$."
+      },
+      "accessibilityText": "La media aritmetica di cinque numeri è 6. Dopo l'aggiunta di un sesto numero, la media dei sei numeri è 7. Trovare il sesto numero. Le cinque alternative sono 1, 7, 12, 13 e 42.",
+      "check": {
+        "translatedBy": "imat-physmaths-author",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
+}
