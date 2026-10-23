@@ -203,4 +203,5 @@ export const tolcEConfig: ExamConfig = {
     'Which University of Turin and SAA programmes require the TOLC-E for 2026/27, and how each uses the score.',
     ...TOLC_UNVERIFIED,
   ],
+  contentLocales: ['en', 'it'],
 };
