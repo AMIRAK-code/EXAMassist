@@ -1,0 +1,73 @@
+{
+  "id": "bocconi-grad-data-ebike-growth-021",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-data-insight",
+  "skillSlug": "grad-data-reading-displays",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which region had the largest percentage increase in e-bike sales from 2024 to 2025?",
+  "instructionsMd": "Use only the figures shown. Work by hand.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Alta"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Costa"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Bassa"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Monti"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Percentage increase is the change divided by the 2024 figure:\n\n$$\\text{Alta } \\tfrac{10}{40} = 25\\% \\quad \\text{Bassa } \\tfrac{10}{25} = 40\\% \\quad \\text{Costa } \\tfrac{6}{60} = 10\\% \\quad \\text{Monti } \\tfrac{9}{15} = 60\\%$$\n\nMonti grew fastest.\n\n**The trap.** Monti's bars are the shortest on the chart and its absolute increase, 9 thousand, is not the largest. Alta and Bassa each added 10 thousand. A percentage change compares the increase with the starting level, and Monti started lowest.",
+  "distractorRationale": {
+    "a": "Alta added 10 thousand units, joint largest in absolute terms, but from a base of 40 thousand that is only 25 per cent.",
+    "c": "Bassa also added 10 thousand, and from 25 thousand that is 40 per cent: second-fastest, behind Monti's 60 per cent.",
+    "b": "Costa sells the most e-bikes in both years, but its increase of 6 thousand on 60 thousand is only 10 per cent, the slowest growth of the four."
+  },
+  "estimatedSeconds": 65,
+  "stimulusRef": {
+    "id": "bocconi-grad-stim-ebike-005",
+    "version": 1
+  },
+  "accessibilityText": "A question about the bar chart of e-bike sales by region in 2024 and 2025. It asks which region had the largest percentage increase. The options are the four regions: Alta, Bassa, Costa, Monti.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-graduate-author",
+    "aiAssisted": true,
+    "notes": "Original item. Distractors are the largest absolute increases and the largest region."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-graduate-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author checked that exactly one option is defensible. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "chart-ebike",
+    "percentage-change"
+  ],
+  "translations": {}
+}
