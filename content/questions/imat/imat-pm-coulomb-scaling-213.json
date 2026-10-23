@@ -1,0 +1,120 @@
+{
+  "id": "imat-pm-coulomb-scaling-213",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-physics-maths",
+  "skillSlug": "imat-phys-electricity",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Two small charged spheres, which can be treated as point charges, exert an electrostatic force of magnitude $F$ on each other. The charge on each sphere is doubled and the distance between their centres is tripled, with nothing else changed. What is the magnitude of the new force?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\frac{2F}{9}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\frac{4F}{9}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\frac{2F}{3}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\frac{4F}{3}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\frac{9F}{4}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Coulomb's law gives the force between two point charges as\n\n$$F = k\\,\\frac{q_1 q_2}{r^2}$$\n\nTrack each factor separately. Doubling both charges multiplies the product $q_1 q_2$ by $2 \\times 2 = 4$. Tripling the distance multiplies $r^2$ by $3^2 = 9$, which divides the force by $9$. So the new force is\n\n$$F' = F \\cdot \\frac{4}{9} = \\frac{4F}{9}$$\n\nSense check: the force is smaller than before, which makes sense because the inverse-square dependence on distance (a factor of $9$) outweighs the effect of the larger charges (a factor of $4$).",
+  "distractorRationale": {
+    "a": "This doubles only one of the two charges, giving a factor of $2$ instead of $4$. The question doubles the charge on each sphere.",
+    "c": "This doubles only one charge and also divides by $3$ instead of $3^2$, so it makes two errors at once.",
+    "d": "This handles the charges correctly but divides by $3$ instead of $9$, missing that the force depends on the square of the distance.",
+    "e": "This inverts the correct ratio, as though the force grew with the square of the distance and shrank with the charges."
+  },
+  "estimatedSeconds": 45,
+  "stimulusRef": null,
+  "accessibilityText": "Two point charges exert a force of magnitude F on each other. Each charge is doubled and the distance between them is tripled. Find the new force. The five choices are: 2F over 9; 4F over 9; 2F over 3; 4F over 3; 9F over 4.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "imat-physmaths-author",
+    "aiAssisted": true,
+    "notes": "Original item. Proportional reasoning with Coulomb's law."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "imat-physmaths-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved the item twice by independent routes and argued for each wrong choice; each fails on a specific, named error. Awaiting blind independent solve."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "physics",
+    "electrostatics",
+    "coulombs-law",
+    "inverse-square-law"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Due piccole sfere cariche, che si possono considerare cariche puntiformi, esercitano l'una sull'altra una forza elettrostatica di modulo $F$. La carica di ciascuna sfera viene raddoppiata e la distanza tra i loro centri viene triplicata, senza cambiare nient'altro. Qual è il modulo della nuova forza?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\frac{2F}{9}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\frac{4F}{9}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$\\frac{2F}{3}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\frac{4F}{3}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\frac{9F}{4}$"
+        }
+      ],
+      "explanationMd": "La legge di Coulomb esprime la forza tra due cariche puntiformi come\n\n$$F = k\\,\\frac{q_1 q_2}{r^2}$$\n\nSi segue ogni fattore separatamente. Raddoppiare entrambe le cariche moltiplica il prodotto $q_1 q_2$ per $2 \\times 2 = 4$. Triplicare la distanza moltiplica $r^2$ per $3^2 = 9$, e quindi divide la forza per $9$. La nuova forza è quindi\n\n$$F' = F \\cdot \\frac{4}{9} = \\frac{4F}{9}$$\n\nControllo di buon senso: la forza è minore di prima, il che è ragionevole perché la dipendenza dall'inverso del quadrato della distanza (un fattore $9$) pesa più dell'effetto delle cariche maggiori (un fattore $4$).",
+      "distractorRationale": {
+        "a": "Qui si raddoppia solo una delle due cariche, ottenendo un fattore $2$ invece di $4$. La domanda raddoppia la carica di ciascuna sfera.",
+        "c": "Qui si raddoppia una sola carica e si divide anche per $3$ invece che per $3^2$: due errori insieme.",
+        "d": "Qui le cariche sono trattate correttamente, ma si divide per $3$ invece che per $9$, trascurando che la forza dipende dal quadrato della distanza.",
+        "e": "Qui si inverte il rapporto corretto, come se la forza crescesse con il quadrato della distanza e diminuisse con le cariche."
+      },
+      "accessibilityText": "Due cariche puntiformi esercitano l'una sull'altra una forza di modulo F. Ciascuna carica viene raddoppiata e la distanza tra loro viene triplicata. Trovare la nuova forza. Le cinque alternative sono: 2F su 9; 4F su 9; 2F su 3; 4F su 3; 9F su 4.",
+      "check": {
+        "translatedBy": "imat-physmaths-author",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
+}

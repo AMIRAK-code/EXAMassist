@@ -1,0 +1,120 @@
+{
+  "id": "imat-pm-trig-equation-count-204",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-physics-maths",
+  "skillSlug": "imat-math-geometry-trig",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "How many solutions does the equation $2\\sin^2 x = \\sin x$ have in the interval $0 \\le x < 2\\pi$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$1$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$2$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$3$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$4$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$5$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The trap is to divide both sides by $\\sin x$. That is only allowed where $\\sin x \\ne 0$, and it silently throws away every solution with $\\sin x = 0$. Bring everything to one side and factorise instead:\n\n$$2\\sin^2 x - \\sin x = 0 \\quad\\Longrightarrow\\quad \\sin x\\,(2\\sin x - 1) = 0$$\n\nSo $\\sin x = 0$ or $\\sin x = \\tfrac{1}{2}$.\n\n- $\\sin x = 0$ gives $x = 0$ and $x = \\pi$. The value $x = 2\\pi$ is excluded because the interval is $0 \\le x < 2\\pi$.\n- $\\sin x = \\tfrac{1}{2}$ gives $x = \\tfrac{\\pi}{6}$ and $x = \\tfrac{5\\pi}{6}$, because sine is positive in both the first and the second quadrant.\n\nThe two lists do not overlap, so there are $4$ solutions. Check one of the less obvious ones: at $x = \\tfrac{5\\pi}{6}$, $\\sin x = \\tfrac{1}{2}$ and $2 \\cdot \\tfrac{1}{4} = \\tfrac{1}{2}$.",
+  "distractorRationale": {
+    "a": "This makes two errors: it divides by $\\sin x$ (losing $x = 0$ and $x = \\pi$) and then keeps only $x = \\tfrac{\\pi}{6}$, missing the second-quadrant solution $x = \\tfrac{5\\pi}{6}$.",
+    "b": "This divides both sides by $\\sin x$, which is only valid when $\\sin x \\ne 0$. It finds $\\tfrac{\\pi}{6}$ and $\\tfrac{5\\pi}{6}$ but loses $x = 0$ and $x = \\pi$, where both sides equal $0$.",
+    "c": "This factorises correctly but finds only one angle with $\\sin x = \\tfrac{1}{2}$. Sine is positive in the first and second quadrants, so $\\tfrac{5\\pi}{6}$ is a solution as well as $\\tfrac{\\pi}{6}$.",
+    "e": "This counts $x = 2\\pi$ as a third solution of $\\sin x = 0$. The interval is $0 \\le x < 2\\pi$, so $2\\pi$ is excluded; it is the same angle as $0$."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "How many solutions does the equation 2 times sine squared of x equals sine of x have for x greater than or equal to 0 and strictly less than 2 pi? The five choices are the numbers 1, 2, 3, 4 and 5.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "imat-physmaths-author",
+    "aiAssisted": true,
+    "notes": "Original item. Tests the factorise-not-divide habit, the second-quadrant solution of sin x = 1/2 and a half-open interval."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "imat-physmaths-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved the item twice by independent routes and argued for each wrong choice; each fails on a specific, named error. Awaiting blind independent solve."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "mathematics",
+    "trigonometry",
+    "trigonometric-equations",
+    "factorisation"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Quante soluzioni ha l'equazione $2\\sin^2 x = \\sin x$ nell'intervallo $0 \\le x < 2\\pi$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$1$"
+        },
+        {
+          "id": "b",
+          "textMd": "$2$"
+        },
+        {
+          "id": "c",
+          "textMd": "$3$"
+        },
+        {
+          "id": "d",
+          "textMd": "$4$"
+        },
+        {
+          "id": "e",
+          "textMd": "$5$"
+        }
+      ],
+      "explanationMd": "La trappola è dividere entrambi i membri per $\\sin x$. È lecito solo dove $\\sin x \\ne 0$, e in questo modo si perdono tutte le soluzioni con $\\sin x = 0$. Si porta invece tutto a primo membro e si raccoglie:\n\n$$2\\sin^2 x - \\sin x = 0 \\quad\\Longrightarrow\\quad \\sin x\\,(2\\sin x - 1) = 0$$\n\nQuindi $\\sin x = 0$ oppure $\\sin x = \\tfrac{1}{2}$.\n\n- $\\sin x = 0$ dà $x = 0$ e $x = \\pi$. Il valore $x = 2\\pi$ è escluso perché l'intervallo è $0 \\le x < 2\\pi$.\n- $\\sin x = \\tfrac{1}{2}$ dà $x = \\tfrac{\\pi}{6}$ e $x = \\tfrac{5\\pi}{6}$, perché il seno è positivo sia nel primo sia nel secondo quadrante.\n\nI due elenchi non hanno elementi in comune, quindi le soluzioni sono $4$. Si verifica una delle meno ovvie: per $x = \\tfrac{5\\pi}{6}$, $\\sin x = \\tfrac{1}{2}$ e $2 \\cdot \\tfrac{1}{4} = \\tfrac{1}{2}$.",
+      "distractorRationale": {
+        "a": "Qui si commettono due errori: si divide per $\\sin x$ (perdendo $x = 0$ e $x = \\pi$) e poi si tiene solo $x = \\tfrac{\\pi}{6}$, dimenticando la soluzione nel secondo quadrante $x = \\tfrac{5\\pi}{6}$.",
+        "b": "Qui si dividono entrambi i membri per $\\sin x$, operazione valida solo se $\\sin x \\ne 0$. Si trovano $\\tfrac{\\pi}{6}$ e $\\tfrac{5\\pi}{6}$ ma si perdono $x = 0$ e $x = \\pi$, dove entrambi i membri valgono $0$.",
+        "c": "Qui si raccoglie correttamente ma si trova un solo angolo con $\\sin x = \\tfrac{1}{2}$. Il seno è positivo nel primo e nel secondo quadrante, quindi anche $\\tfrac{5\\pi}{6}$ è soluzione, oltre a $\\tfrac{\\pi}{6}$.",
+        "e": "Qui si conta $x = 2\\pi$ come terza soluzione di $\\sin x = 0$. L'intervallo è $0 \\le x < 2\\pi$, quindi $2\\pi$ è escluso; è lo stesso angolo di $0$."
+      },
+      "accessibilityText": "Quante soluzioni ha l'equazione 2 per seno al quadrato di x uguale a seno di x, per x maggiore o uguale a 0 e strettamente minore di 2 pi greco? Le cinque alternative sono i numeri 1, 2, 3, 4 e 5.",
+      "check": {
+        "translatedBy": "imat-physmaths-author",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
+}
