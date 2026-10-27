@@ -1,0 +1,79 @@
+{
+  "id": "bocconi-ug-read-deposit-return-rise-533",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-reading-comprehension",
+  "skillSlug": "reading-economic-data-passages",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Suppose that in 2025 the same number of containers is sold in Ostria as in 2024, the deposit and the handling fee are unchanged, and the share of containers returned rises from 88 per cent to 92 per cent. Taking together the operator's income from unclaimed deposits and the handling fees it pays to shops, by how much would the operator be worse off in 2025 than in 2024?",
+  "instructionsMd": "Use only the figures in the passage. No calculator.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "€2.4 million"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "€3.6 million"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "€3.0 million"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "€6.0 million"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Two items change when more containers come back, and they move the same way for the operator. First list what the passage gives: 500 million containers sold in 2024, a deposit of €0.15, a handling fee of €0.03 paid to a shop for each container it accepts, and 88 per cent returned in 2024.\n\n**Extra containers returned.** The share returned rises by 4 percentage points, so $0.04 \\times 500 = 20$ million more containers come back in 2025.\n\n**Unclaimed deposits.** Each of those 20 million containers no longer leaves its deposit with the operator: $20 \\times 0.15 = 3$, so this income falls by €3 million. As a check against the passage, 2024 income was 12 per cent of 500 million times €0.15, that is $60 \\times 0.15 = 9$, matching the stated €9 million; in 2025 it is $40 \\times 0.15 = 6$.\n\n**Handling fees.** Each extra container returned also costs the operator another €0.03: $20 \\times 0.03 = 0.6$, so €0.6 million more is paid to shops.\n\n**Combined.** Less income and more cost both make the operator worse off: $3 + 0.6 = 3.6$ million euros.\n\n**How to check the answer.** Each extra returned container changes the operator's position by the deposit it no longer keeps plus the fee it now pays: $0.15 + 0.03 = 0.18$ euros. Then $20 \\text{ million} \\times 0.18 = 3.6$ million euros. The two routes agree.",
+  "distractorRationale": {
+    "a": "This treats the extra handling fees as a saving and subtracts them, 3 minus 0.6. But the operator pays the handling fee on every container returned, so more returns mean more fees paid, and the fee adds to the loss.",
+    "c": "This is the fall in income from unclaimed deposits alone, 20 million containers times €0.15. It leaves out the handling fee the operator pays on each of the 20 million extra containers, which the question asks to include.",
+    "d": "This is the operator's income from unclaimed deposits in 2025, 8 per cent of 500 million times €0.15. It answers how much that income is, not how much worse off the operator becomes."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "bocconi-ug-stim-deposit-return-546",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying passage on Ostria's deposit-return scheme. It supposes that in 2025 the same number of containers is sold as in 2024, the deposit and handling fee are unchanged, and the share returned rises from 88 to 92 per cent. Counting together the operator's income from unclaimed deposits and the handling fees it pays to shops, it asks by how much the operator would be worse off than in 2024. The four choices, in the order shown, are 2.4, 3.6, 3.0 and 6.0 million euros. The explanation uses multiplication written with a times sign.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-verbal-author",
+    "aiAssisted": true,
+    "notes": "Original data item on the original passage bocconi-ug-stim-deposit-return-546. It requires combining two per-container amounts given in different paragraphs and recognising that both move against the operator; the 2024 figures in the passage serve as a built-in check."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-verbal-author",
+    "reviewer": "blind-reviewer-wave8-bocug-verbal-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-bocug-verbal-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Unclaimed deposits fall from 12% to 8% of 500m: 20m fewer x 0.15 = 3.0m less income (check: 60m x 0.15 = 9m in 2024). Returns rise by 20m containers, adding 20m x 0.03 = 0.6m in handling fees. Total 3.6m worse off. 3.0m omits the handling fees, 2.4m subtracts them instead of adding, and 6.0m is the whole 2025 deposit income. [A second, separate blind solve (blind-reviewer-wave8-bocug-verbal-run1) reached the same answer: Moving 4% of 500m = 20m containers from unclaimed to returned loses 20m x €0.15 = €3.0m in deposits and adds 20m x €0.03 = €0.6m in handling fees, a total of €3.6m. This is consistent with the stated €9m = 12% x 500m x 0.15. €3.0m omits the handling fees. €2.4m nets the fees the wrong way.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "passage-deposit-return",
+    "data-in-prose",
+    "percentage-points"
+  ]
+}

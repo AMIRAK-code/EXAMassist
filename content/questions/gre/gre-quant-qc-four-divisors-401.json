@@ -1,0 +1,77 @@
+{
+  "id": "gre-quant-qc-four-divisors-401",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-arithmetic",
+  "skillSlug": "arith-integer-properties",
+  "subskillSlug": null,
+  "responseType": "quantitative_comparison",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "The positive integer $n$ has exactly four positive divisors.\n\n| Quantity A | Quantity B |\n| --- | --- |\n| The number of positive divisors of $n^{2}$ | $9$ |",
+  "instructionsMd": "Compare Quantity A and Quantity B and select the one statement that is true for every value consistent with the information given.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Quantity A is greater."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Quantity B is greater."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The two quantities are equal."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The relationship cannot be determined from the information given."
+    }
+  ],
+  "answerKey": {
+    "type": "quantitative_comparison",
+    "choice": "D"
+  },
+  "explanationMd": "Start by asking which integers have exactly four positive divisors. The count of divisors comes from the prime factorization: if $n = p^{a} q^{b} \\cdots$ for distinct primes, then $n$ has $(a + 1)(b + 1)\\cdots$ positive divisors.\n\n**Step 1: the shapes of $n$.** The product of the $(\\text{exponent} + 1)$ factors must be $4$. There are two ways to make $4$:\n\n- $4 = 2 \\times 2$: two distinct primes, each to the first power, so $n = pq$. Example: $n = 6$, with divisors $1, 2, 3, 6$.\n- $4 = 4$: a single prime cubed, so $n = p^{3}$. Example: $n = 8$, with divisors $1, 2, 4, 8$.\n\nThe stem does not say which shape $n$ has, so both must be checked.\n\n**Step 2: square each shape.**\n\n- If $n = pq$, then $n^{2} = p^{2}q^{2}$, which has $(2 + 1)(2 + 1) = 9$ divisors. The quantities are equal.\n- If $n = p^{3}$, then $n^{2} = p^{6}$, which has $6 + 1 = 7$ divisors. Quantity B is greater.\n\nTwo permitted values of $n$ give two different relationships, so **the relationship cannot be determined from the information given**.\n\n**How to check.** List them directly. $n = 6$: $n^{2} = 36$ has divisors $1, 2, 3, 4, 6, 9, 12, 18, 36$, which is nine. $n = 8$: $n^{2} = 64$ has divisors $1, 2, 4, 8, 16, 32, 64$, which is seven. The case split the stem does not announce is the whole question.",
+  "distractorRationale": {
+    "a": "Reached by assuming that squaring $n$ squares its number of divisors, so that $n^{2}$ has $4^{2} = 16$ divisors. Divisor counts do not scale that way: they depend on the exponents in the factorization, and squaring $n$ gives $9$ divisors in one case and $7$ in the other, never more than $9$.",
+    "b": "Reached by testing only a cube of a prime, such as $n = 8$, whose square $64$ has $7$ divisors. That case is real, but it is not the only one: $n = 6$ also has four divisors and its square has exactly $9$.",
+    "c": "Reached by assuming that four divisors means a product of two distinct primes, as with $6$, $10$ or $15$, so that $n^{2}$ always has $3 \\times 3 = 9$ divisors. That misses the prime cubes such as $8$ and $27$, which also have exactly four divisors."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "The positive integer n has exactly four positive divisors. Quantity A is the number of positive divisors of n squared. Quantity B is 9. Decide which quantity is greater, whether they are equal, or whether the relationship cannot be determined.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-gre-quant-author",
+    "aiAssisted": true,
+    "notes": "Original item written for wave 7. Quantity B was set at 9 so that the common case (a product of two primes) gives equality and the forgotten case (a prime cubed) breaks it. Not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-gre-quant-author",
+    "reviewer": "blind-reviewer-wave7-gre-quant-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-gre-quant-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "A number with exactly four divisors is either p^3 or pq with distinct primes p and q. If n=p^3, then n^2=p^6, which has 7 divisors (less than 9). If n=pq, then n^2=p^2q^2, which has 9 divisors (equal). The relationship cannot be determined. [A second, separate blind solve (blind-reviewer-wave7-gre-quant-run1) reached the same answer: Exactly four divisors means n=p^3 or n=pq with distinct primes p and q. For n=8, n^2=64 has 7 divisors, so B is greater. For n=6, n^2=36 has 9 divisors, so they are equal. The relationship cannot be determined.]"
+    },
+    "notes": "Author solved: four divisors means n = pq or n = p^3. Then n^2 = p^2 q^2 has 9 divisors (equal to Quantity B) and n^2 = p^6 has 7 (less), so the relationship cannot be determined. A script over every n up to 400 with exactly four divisors found only the counts 9 and 7 for n^2. Checks: 36 has 9 divisors, 64 has 7."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "quantitative-comparison",
+    "number-properties",
+    "divisors",
+    "hidden-case"
+  ]
+}

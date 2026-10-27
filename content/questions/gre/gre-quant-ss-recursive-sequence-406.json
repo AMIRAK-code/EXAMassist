@@ -1,0 +1,82 @@
+{
+  "id": "gre-quant-ss-recursive-sequence-406",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-arithmetic",
+  "skillSlug": "arith-sequences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In a sequence of numbers, $a_{1} = 3$, and for every integer $n \\ge 2$,\n\n$$a_{n} = 2a_{n-1} - 1.$$\n\nWhat is the value of $a_{10}$?",
+  "instructionsMd": "Select one answer choice.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$513$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$1{,}023$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$1{,}024$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$1{,}025$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$2{,}049$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Write out the first few terms and look for a pattern you can prove, rather than grinding out ten terms and risking an off-by-one error.\n\n**Step 1: the first terms.**\n\n$$a_{1} = 3, \\quad a_{2} = 2(3) - 1 = 5, \\quad a_{3} = 2(5) - 1 = 9, \\quad a_{4} = 2(9) - 1 = 17.$$\n\nEach term is one more than a power of $2$: $3 = 2^{1} + 1$, $5 = 2^{2} + 1$, $9 = 2^{3} + 1$, $17 = 2^{4} + 1$.\n\n**Step 2: why the pattern holds.** Subtract $1$ from both sides of the rule:\n\n$$a_{n} - 1 = 2a_{n-1} - 2 = 2\\left(a_{n-1} - 1\\right).$$\n\nSo the numbers $a_{n} - 1$ double at every step. They start at $a_{1} - 1 = 2$, so $a_{n} - 1 = 2^{n}$ and\n\n$$a_{n} = 2^{n} + 1.$$\n\n**Step 3: the tenth term.** $a_{10} = 2^{10} + 1 = 1{,}024 + 1 = 1{,}025$.\n\n**How to check.** Continue the list with the calculator: $17, 33, 65, 129, 257, 513, 1{,}025$ for terms $4$ through $10$. The index of each term matches the exponent in $2^{n} + 1$, which is the detail most slips get wrong.",
+  "distractorRationale": {
+    "a": "This is $a_{9} = 2^{9} + 1$. It comes from matching the index to the wrong exponent, writing $a_{n} = 2^{n-1} + 1$, which is off by one step because $a_{1}$ is already $2^{1} + 1$.",
+    "b": "This is $2^{10} - 1$, the tenth term of the familiar sequence $1, 3, 7, 15, \\ldots$. It comes from recognising a double-and-shift-by-one rule and recalling that well-known formula instead of deriving the one for this sequence. Testing it on the first term exposes the slip: $2^{1} - 1 = 1$, not $3$.",
+    "c": "This is $2^{10}$ alone. It comes from spotting the doubling but dropping the constant $1$ that every term carries on top of its power of $2$.",
+    "e": "This is $a_{11} = 2^{11} + 1$. It comes from counting the first term as $a_{0}$, so that one extra doubling is applied."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A sequence has first term a sub 1 equal to 3, and each later term a sub n equals 2 times the previous term minus 1. Find a sub 10, the tenth term. The five choices are 513, 1,023, 1,024, 1,025 and 2,049.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-gre-quant-author",
+    "aiAssisted": true,
+    "notes": "Original item written for wave 7. The choices surround the key with the neighbouring terms and the two nearby powers-of-two slips. Not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-gre-quant-author",
+    "reviewer": "blind-reviewer-wave7-gre-quant-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-gre-quant-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Let b_n = a_n - 1. Then b_n = 2b_{n-1} with b_1 = 2, so b_n = 2^n. That gives a_10 = 2^10 + 1 = 1025. Checking the first terms: 3, 5, 9, 17. [A second, separate blind solve (blind-reviewer-wave7-gre-quant-run1) reached the same answer: Let b_n=a_n-1. Then b_n=2b_(n-1) with b_1=2, so b_n=2^n. That gives a_10=2^10+1=1025.]"
+    },
+    "notes": "Author solved: a_n - 1 doubles from 2, so a_n = 2^n + 1 and a_10 = 1025. A script iterating the rule gave a_9 = 513, a_10 = 1025, a_11 = 2049."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "sequences",
+    "recursion",
+    "powers-of-two"
+  ]
+}

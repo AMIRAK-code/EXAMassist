@@ -31,11 +31,11 @@ export interface SkillPerformance {
   hasSignal: boolean;
 }
 
-export function skillPerformance(db: Db, userId: string, examKey: string): SkillPerformance[] {
+export async function skillPerformance(db: Db, userId: string, examKey: string): Promise<SkillPerformance[]> {
   const config = requireExamConfig(examKey);
   const labels = labelsFor(config);
 
-  const rows = db
+  const rows = (await db
     .prepare(
       `SELECT
          qv.skill_slug                                            AS skillSlug,
@@ -53,7 +53,7 @@ export function skillPerformance(db: Db, userId: string, examKey: string): Skill
          AND a.mode <> 'review'
        GROUP BY qv.skill_slug, qv.domain_slug`,
     )
-    .all(userId, examKey) as Array<{
+    .all(userId, examKey)) as Array<{
     skillSlug: string;
     domainSlug: string;
     presented: number;
@@ -64,7 +64,7 @@ export function skillPerformance(db: Db, userId: string, examKey: string): Skill
   }>;
 
   // Median time is computed separately: SQLite has no median aggregate.
-  const times = db
+  const times = (await db
     .prepare(
       `SELECT qv.skill_slug AS skillSlug, ai.time_ms AS timeMs
        FROM attempt_items ai
@@ -73,7 +73,7 @@ export function skillPerformance(db: Db, userId: string, examKey: string): Skill
        WHERE a.user_id = ? AND a.exam_key = ? AND a.status IN ('submitted', 'expired') AND a.mode <> 'review'
          AND ai.time_ms > 0`,
     )
-    .all(userId, examKey) as Array<{ skillSlug: string; timeMs: number }>;
+    .all(userId, examKey)) as Array<{ skillSlug: string; timeMs: number }>;
 
   const timesBySkill = new Map<string, number[]>();
   for (const row of times) {

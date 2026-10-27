@@ -1,6 +1,6 @@
 {
   "id": "digital-sat-rw-inferences-fog-nets-301",
-  "version": 1,
+  "version": 2,
   "examKey": "digital-sat",
   "sectionKey": "rw-module-1",
   "domainSlug": "information-and-ideas",
@@ -15,22 +15,22 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "Fog collection will work anywhere that mornings are humid."
+      "textMd": "Nets like Belmont's would collect water anywhere that mornings are humid, not only on ridges above coastal towns."
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "A net woven from the finest available thread will collect no water at all."
+      "textMd": "A net woven from the finest available thread will collect no water at all, because the fog is pushed around it."
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "Tripling the surface area of a net will roughly triple the water it collects each day."
+      "textMd": "As long as its mesh lets air through, a net with three times the surface area will collect about three times as much water."
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "How much water a net collects depends not only on how much fog reaches it but also on how much of that fog passes through it."
+      "textMd": "A net's yield depends not only on how much fog reaches it but also on how much of that fog passes through its mesh."
     }
   ],
   "answerKey": {
@@ -39,16 +39,16 @@
   },
   "explanationMd": "An inference question asks for the claim the text forces on you, not the claim it merely leaves room for. Work from the explanation the passage actually gives.\n\nThe fine nets failed, the passage says, because air could not pass through them, so the fog went around the net and took its droplets with it. That single sentence links a net's yield to the volume of fog that gets through the mesh, not just to the volume of fog that arrives at the ridge. The option about how much of the arriving fog passes through the mesh states exactly that link, and the coarse net's result confirms it: slowing the air without blocking it produced nearly three times as much water from the same fog.\n\nCheck an inference by asking what would have to be added to the text to make each option true. The other three each need a fact the passage never supplies: a yield of exactly zero, a rule connecting area to output, or evidence from some site other than Cerro Alto.",
   "distractorRationale": {
-    "b": "This turns 'performed worst of all' into 'collected nothing'. Ranking last is not the same as producing zero, and the passage gives no figure for the fine nets at all.",
-    "c": "The threefold increase in the passage came from changing the weave, not from changing the size of the net. The text never mentions surface area, so this transfers a number to a variable it was not measured for.",
-    "a": "Everything reported here happens at one ridge above Cerro Alto, where thick fog arrives most mornings. Humid air is not the same as dense fog, and one site cannot establish that the method works anywhere."
+    "b": "The reason is the passage's own, but the conclusion is not: this turns 'performed worst of all' into 'collected nothing'. Ranking last is not the same as producing zero, and the passage gives no figure for the fine nets at all.",
+    "c": "The threefold increase in the passage came from changing the weave, not from changing the size of the net. The condition about letting air through is borrowed from the passage, but the text never mentions surface area, so this transfers a number to a variable it was not measured for.",
+    "a": "Everything reported here happens at one ridge above Cerro Alto, where thick fog arrives most mornings. Humid air is not the same as dense fog, and one site cannot establish that the method works anywhere, coastal or not."
   },
   "estimatedSeconds": 80,
   "stimulusRef": {
     "id": "digital-sat-stim-fog-nets-300",
     "version": 1
   },
-  "accessibilityText": "Using the passage about Nadia Belmont's fog-collecting nets, choose the statement about such nets that the passage most strongly supports.",
+  "accessibilityText": "Using the passage about Nadia Belmont's fog-collecting nets, choose the statement about such nets that the passage most strongly supports. The four choices say: that nets like Belmont's would collect water anywhere that mornings are humid, not only on ridges above coastal towns; that a net woven from the finest available thread will collect no water at all, because the fog is pushed around it; that as long as its mesh lets air through, a net with three times the surface area will collect about three times as much water; and that a net's yield depends not only on how much fog reaches it but also on how much of that fog passes through its mesh.",
   "provenance": {
     "origin": "original",
     "authoredBy": "digital-sat-wave4-author",
@@ -58,16 +58,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "digital-sat-wave4-author",
-    "reviewer": "blind-reviewer-wave5-B",
-    "reviewedOn": "2026-09-28",
+    "reviewer": "blind-reviewer-wave7-sat-rw-run0",
+    "reviewedOn": "2026-09-30",
     "independentSolve": {
-      "solvedBy": "blind-reviewer-wave5-B",
+      "solvedBy": "blind-reviewer-wave7-sat-rw-run0",
       "solvedAnswer": "d",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "The fine nets met the same fog but 'performed worst' because the fog 'was pushed around the net rather than through it', while a coarser mesh 'slowed the air without blocking it' and yielded about three times as much. So the yield depends on how much fog passes through the net. B overstates ('worst', not zero); C confuses the threefold yield with surface area, which is never mentioned; A overgeneralises beyond the passage."
+      "workingNotes": "The fine nets met the same fog but yielded least, because the fog went around them rather than through them. So a net's yield depends on how much of the fog passes through the mesh, which is D. [A second, separate blind solve (blind-reviewer-wave7-sat-rw-run1) reached the same answer: The fine net received the fog, but the fog was pushed around it rather than through it, so yield depends on how much passes through. B overstates 'performed worst' as 'no water at all'. C asserts a proportional scaling the text never tests. A generalizes beyond the text.]"
     },
-    "notes": "Author's own solve and uniqueness check: Only A restates the causal mechanism the passage gives (air must pass through the mesh or the fog carries its droplets past). B overstates 'worst' as zero, C moves the 3x result onto an unmeasured variable (area), D generalises from one site and swaps fog for humidity. No second option survives. Not published: awaiting a blind independent solve by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author's own solve and uniqueness check: Only A restates the causal mechanism the passage gives (air must pass through the mesh or the fog carries its droplets past). B overstates 'worst' as zero, C moves the 3x result onto an unmeasured variable (area), D generalises from one site and swaps fog for humidity. No second option survives. Not published: awaiting a blind independent solve by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2: choices rebalanced so the key no longer stands out by length, detail or hedging (answer-length cue found by tmp/cue-scan.mjs); stem, passage and key unchanged; re-solved blind."
   },
   "state": "published",
   "quarantine": null,

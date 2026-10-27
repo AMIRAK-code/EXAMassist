@@ -1,0 +1,61 @@
+{
+  "id": "digital-sat-math-similar-triangles-trapezoid-spr-522",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "geometry-and-trigonometry",
+  "skillSlug": "lines-angles-and-triangles",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "In triangle $ABC$, point $D$ lies on $\\overline{AB}$ and point $E$ lies on $\\overline{AC}$ so that $\\overline{DE}$ is parallel to $\\overline{BC}$. The length of $\\overline{AD}$ is $6$, the length of $\\overline{DB}$ is $4$, and the area of triangle $ADE$ is $27$ square units. What is the area, in square units, of quadrilateral $DBCE$?",
+  "instructionsMd": "Student-produced response. Enter your answer in the box. Do not enter symbols such as a percent sign, comma, or dollar sign.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 48
+      }
+    ],
+    "acceptedStrings": [
+      "48"
+    ]
+  },
+  "explanationMd": "Because $\\overline{DE} \\parallel \\overline{BC}$, the corresponding angles at $D$ and $B$ are equal, and the angles at $E$ and $C$ are equal, so triangle $ADE$ is similar to triangle $ABC$.\n\n**Scale factor.** Compare corresponding sides from vertex $A$. Note that $AB = AD + DB = 10$, not $4$:\n\n$$\\frac{AD}{AB} = \\frac{6}{10} = \\frac{3}{5}$$\n\n**Areas scale by the square of the length ratio.**\n\n$$\\frac{\\text{area of } ADE}{\\text{area of } ABC} = \\left(\\frac{3}{5}\\right)^2 = \\frac{9}{25}$$\n\n$$\\text{area of } ABC = 27 \\times \\frac{25}{9} = 75$$\n\nThe quadrilateral is what is left of triangle $ABC$ after triangle $ADE$ is removed:\n\n$$75 - 27 = 48$$\n\nCheck: $\\frac{27}{75} = \\frac{9}{25}$, which is $\\left(\\frac{3}{5}\\right)^2$.\n\nThree slips are common. Using the length ratio instead of its square gives an area of $45$ for triangle $ABC$ and $18$ for the quadrilateral. Comparing $AD$ with $DB$ (ratio $\\frac{6}{4}$) instead of with $AB$ treats the pieces as similar figures when they are not. And entering $75$ gives the whole triangle rather than the quadrilateral.",
+  "distractorRationale": {},
+  "estimatedSeconds": 130,
+  "stimulusRef": null,
+  "accessibilityText": "In triangle ABC, point D is on side AB and point E is on side AC, with segment DE parallel to side BC. AD is 6, DB is 4, and triangle ADE has area 27 square units. Find the area of quadrilateral DBCE in square units. Enter a number.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "sat-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Similar triangles cut by a parallel segment, requiring the full-side ratio and the squared scale factor for area before subtracting."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "sat-wave8-math-author",
+    "reviewer": "blind-reviewer-wave8-sat-math-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-sat-math-run0",
+      "solvedAnswer": "48",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "ADE ~ ABC with ratio AD/AB = 6/10; area ratio 9/25, so area ABC = 27*25/9 = 75 and DBCE = 75 - 27 = 48. [A second, separate blind solve (blind-reviewer-wave8-sat-math-run1) reached the same answer: AD/AB = 6/10 = 3/5, area ratio 9/25, so area ABC = 27 x 25/9 = 75 and DBCE = 75 - 27 = 48.]"
+    },
+    "notes": ""
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "geometry",
+    "similar-triangles",
+    "area-ratio",
+    "student-produced-response"
+  ]
+}

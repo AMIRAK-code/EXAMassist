@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { PAGE_DATES, longDate } from '@/lib/content/page-dates';
 import type { Metadata } from 'next';
 import { SITE, absoluteUrl, siteUrl } from '@/lib/site';
 import { Badge, Breadcrumbs, Card, Container, DefinitionList, PageHeader } from '@/components/ui';
@@ -23,10 +24,10 @@ const DESCRIPTION =
  * which checks are done by a model and that no per-question human review is
  * recorded, and again that day to record the option-letter correction.
  */
-const PUBLISHED = '2026-09-22';
-const UPDATED = '2026-09-24';
-const PUBLISHED_LABEL = '22 September 2026';
-const UPDATED_LABEL = '24 September 2026';
+const PUBLISHED = PAGE_DATES.editorialStandards.published;
+const UPDATED = PAGE_DATES.editorialStandards.updated;
+const PUBLISHED_LABEL = longDate(PUBLISHED);
+const UPDATED_LABEL = longDate(UPDATED);
 
 export const metadata: Metadata = {
   title: TITLE,

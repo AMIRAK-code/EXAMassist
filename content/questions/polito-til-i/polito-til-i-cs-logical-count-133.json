@@ -1,0 +1,83 @@
+{
+  "id": "polito-til-i-cs-logical-count-133",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "technical-knowledge",
+  "domainSlug": "tili-computer-science",
+  "skillSlug": "tili-cs-operators",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "In the Python program below, `%` gives the remainder after division and the loop takes the values of the list one at a time.\n\n```\ncount = 0\nfor n in [3, 8, 12, 15, 20, 27]:\n    if n % 3 == 0 and n % 2 == 1 or n > 18:\n        count = count + 1\nprint(count)\n```\n\nWhat does it print?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "2"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "3"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "4"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "5"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "6"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "In Python, `and` binds more tightly than `or`, so the condition is read as\n\n`(n % 3 == 0 and n % 2 == 1) or (n > 18)`\n\nthat is: *n is an odd multiple of 3*, **or** *n is greater than 18*. Test each value:\n\n| n | multiple of 3? | odd? | n > 18? | counted? |\n| --- | --- | --- | --- | --- |\n| 3 | yes | yes | no | yes |\n| 8 | no | no | no | no |\n| 12 | yes | no | no | no |\n| 15 | yes | yes | no | yes |\n| 20 | no | no | yes | yes |\n| 27 | yes | yes | yes | yes |\n\nThe counted values are 3, 15, 20 and 27, so the program prints `4`.\n\n**Check.** The value 12 is the deciding case for the operator: it is a multiple of 3 but even, and not above 18, so the `and` clause rejects it. The value 20 is the deciding case for the grouping: it is not a multiple of 3, but it exceeds 18, so the `or` clause accepts it.",
+  "distractorRationale": {
+    "a": "Applies only the clause `n > 18`, which is true for 20 and 27, and ignores the first clause. The odd multiples of 3 (3 and 15) also make the whole condition true.",
+    "b": "Groups the `or` first, reading the test as `n % 3 == 0 and (n % 2 == 1 or n > 18)`. That rejects 20, which is not a multiple of 3, and leaves only 3, 15 and 27. The same total of 3 comes from dropping the `n > 18` clause altogether.",
+    "d": "Reads the `and` as an `or`, so that any multiple of 3, any odd number, or any value above 18 passes. That wrongly lets in 12, which is a multiple of 3 but even, and gives 3, 12, 15, 20 and 27.",
+    "e": "Counts every element of the list, as if the condition were always true. Several values, such as 8 and 12, make it false."
+  },
+  "estimatedSeconds": 130,
+  "stimulusRef": null,
+  "accessibilityText": "A Python question on logical operators inside a loop. The program sets count to 0 and loops over the list 3, 8, 12, 15, 20, 27. Inside the loop the condition is written without brackets, exactly as: n percent 3 equals equals 0, and, n percent 2 equals equals 1, or, n greater than 18. The percent sign gives the remainder after division. If the condition is true the program adds 1 to count. At the end it prints count. The value printed is wanted. The choices are 2, 3, 4, 5 and 6.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-wave6-physics-technical-author",
+    "aiAssisted": true,
+    "notes": "Original item. Answer 4 (3, 15, 20, 27). Wrong choices: only the second clause, the or grouped first, and as an or, all elements. Each wrong count was computed by running the mis-parsed condition."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-wave6-physics-technical-author",
+    "reviewer": "blind-reviewer-wave6-tili-phys-tech-run8",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-phys-tech-run8",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "In Python, and binds tighter than or, so the test is (n%3==0 and n odd) or n>18. It is true for 3, 15, 20 and 27, so count = 4. Grouping it as and(... or ...) would give 3 (option B), but Python's precedence rules settle this, so B is only a distractor. [A second, separate blind solve (blind-reviewer-wave6-tili-phys-tech-run9) reached the same answer: Python precedence: (n%3==0 and n%2==1) or n>18. 3 yes, 8 no, 12 no (even, not >18), 15 yes, 20 yes (>18), 27 yes: count 4. Option B (3) would come from misgrouping as and(or) (3,15,27), 5/6 from other misreadings; with standard precedence only 4 is correct.]"
+    },
+    "notes": "Awaiting a blind independent solve. The author recomputed every option and checked the key a second way before saving (see the explanation)."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logical-operators",
+    "operator-precedence",
+    "for-loop",
+    "python"
+  ]
+}

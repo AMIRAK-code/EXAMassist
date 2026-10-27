@@ -1,0 +1,78 @@
+{
+  "id": "digital-sat-math-area-volume-cone-438",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "geometry-and-trigonometry",
+  "skillSlug": "area-and-volume",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A container is shaped like a right circular cone with its vertex pointing straight down. The container has a height of $18$ centimeters and a base radius of $6$ centimeters. It holds water to a depth of $12$ centimeters, measured from the vertex. How many more cubic centimeters of water are needed to fill the container completely?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$64\\pi$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$72\\pi$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$120\\pi$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$152\\pi$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The water itself forms a smaller cone with the same vertex and the same shape as the container. Find its radius by similarity, then subtract its volume from the full volume.\n\n**Full container.** Using $V = \\frac{1}{3}\\pi r^2 h$:\n\n$$V_{\\text{full}} = \\frac{1}{3}\\pi (6)^2 (18) = 216\\pi$$\n\n**Water cone.** The water cone and the container are similar, so their radius-to-height ratios match. The container's ratio is $\\frac{6}{18} = \\frac{1}{3}$, so at a depth of $12$ the water's surface has radius $\\frac{12}{3} = 4$:\n\n$$V_{\\text{water}} = \\frac{1}{3}\\pi (4)^2 (12) = 64\\pi$$\n\n**Water still needed.**\n\n$$216\\pi - 64\\pi = 152\\pi$$\n\nA faster check uses scale factors. The water cone is the container scaled by $\\frac{12}{18} = \\frac{2}{3}$ in every length, so its volume is $\\left(\\frac{2}{3}\\right)^3 = \\frac{8}{27}$ of the full volume: $\\frac{8}{27} \\times 216\\pi = 64\\pi$. The empty part is $\\frac{19}{27}$ of the container, which is $152\\pi$.\n\nThe instinct to resist is that two-thirds of the height means two-thirds of the volume. A cone narrows toward its vertex, so the bottom two-thirds of the height holds less than a third of the water, and most of the capacity is in the wide top third.",
+  "distractorRationale": {
+    "a": "This is the volume of water already in the container, $\\frac{1}{3}\\pi(4)^2(12)$. The question asks for the water still needed, which is the full volume minus this amount.",
+    "b": "This scales volume in proportion to depth: the empty top is $\\frac{1}{3}$ of the height, and $\\frac{1}{3}$ of $216\\pi$ is $72\\pi$. Volume scales with the cube of the length ratio, not the ratio itself. The same value appears if the water's radius is taken as the full $6$ instead of $4$.",
+    "c": "This scales volume with the square of the length ratio, as for an area: $\\left(1 - \\left(\\frac{2}{3}\\right)^2\\right) \\times 216\\pi = \\frac{5}{9} \\times 216\\pi = 120\\pi$. Volume needs the cube, $\\left(\\frac{2}{3}\\right)^3 = \\frac{8}{27}$."
+  },
+  "estimatedSeconds": 130,
+  "stimulusRef": null,
+  "accessibilityText": "A cone-shaped container stands with its vertex pointing down. It is 18 centimeters tall with a base radius of 6 centimeters, and it holds water to a depth of 12 centimeters measured from the vertex. Find how many more cubic centimeters of water are needed to fill it. The choices are 64 pi, 72 pi, 120 pi and 152 pi.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-sat-math-data-geo-author",
+    "aiAssisted": true,
+    "notes": "Original item. The dimensions give a 2-to-3 length ratio so that linear, square and cube scaling each produce a distinct whole multiple of pi."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-sat-math-data-geo-author",
+    "reviewer": "blind-reviewer-wave7-sat-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-sat-math-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The full cone holds (1/3)pi(36)(18) = 216pi. By similar triangles, water 12 deep has radius 4, so it holds (1/3)pi(16)(12) = 64pi. The amount still needed is 216pi - 64pi = 152pi. [A second, separate blind solve (blind-reviewer-wave7-sat-math-run1) reached the same answer: The full cone is (1/3)pi(36)(18) = 216pi. The water forms a similar cone at depth 12 with radius 4 (ratio 2/3), so its volume is (1/3)pi(16)(12) = 64pi. The water still needed is 216pi - 64pi = 152pi.]"
+    },
+    "notes": "Hard: the water's radius must be found by similarity before any volume can be computed, and the distractors are exactly the linear, square and different-question stopping points. Author solved twice: full 216 pi, water 64 pi (radius 4), needed 152 pi; cross-checked with (2/3)^3 = 8/27. Verified with a read-only script. Awaiting a blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "geometry",
+    "cone",
+    "similar-solids",
+    "volume"
+  ]
+}

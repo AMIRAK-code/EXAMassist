@@ -1,0 +1,83 @@
+{
+  "id": "polito-til-a-draw-floor-plan-convention-450",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "drawing-representation",
+  "domainSlug": "tila-drawing",
+  "skillSlug": "tila-draw-orthographic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A set of architectural drawings for a two-storey house includes a ground-floor plan, sections, elevations and a roof plan.\n\nBy convention, how is the ground-floor plan obtained?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "As a horizontal section through the building, cut roughly 1 to 1.5 m above the floor so that it passes through the doors and windows, and seen from above"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "As a view of the building from directly above, with nothing cut away, so that the roof is what is drawn"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "As the projection of the main façade onto a vertical plane parallel to it"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "As a vertical section through the whole building, from the roof down to the foundations, seen from the side"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "As a horizontal section through the ground floor seen from below, showing the ceiling as if reflected in a mirror laid on the floor"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "**What to notice first.** A plan, an elevation and a section are all orthographic projections; they differ in the direction of view and in whether the building is cut. Each drawing in the list in the stem has its own job, so the plan cannot be the same drawing as any of the others.\n\n**The step that settles it.** A floor plan is a **horizontal section seen from above**. The cutting plane is imagined roughly 1 to 1.5 m above the floor, a height chosen so that it slices through the walls, the door openings and the windows. Everything cut is drawn with a heavier line; what lies below the cut (the floor, furniture, steps) is drawn as seen from above; what lies above it (the ceiling, the roof) is left out. That is why a plan shows the thickness of walls and the positions and widths of openings, which a view of the outside could never show.\n\n**How to check it.** Match each of the other descriptions to its own drawing: the vertical cut is a **section**, the view of the façade onto a vertical plane is an **elevation**, the view from above with nothing removed is the **roof plan**, and the ceiling seen from below is a **reflected ceiling plan**. Only the horizontal section seen from above is left for the floor plan.",
+  "distractorRationale": {
+    "d": "Describes a section. A section is also a cut, but a vertical one, and it shows heights: floor levels, ceiling heights and stairs. The plan is the horizontal cut.",
+    "b": "Describes the roof plan. Without a cut, a view from above shows only the roof and hides every wall, door and room below it.",
+    "e": "Describes a reflected ceiling plan, a specialised drawing for lighting and ceilings. The ordinary floor plan looks down at the floor, not up at the ceiling.",
+    "c": "Describes an elevation, the view of a façade projected onto a vertical plane. An elevation shows the outside of the building and none of its internal layout."
+  },
+  "estimatedSeconds": 50,
+  "stimulusRef": null,
+  "accessibilityText": "A question on architectural drawing conventions, with no figure needed. It asks how the ground-floor plan in a set of drawings of a house is conventionally obtained. The choices are: a horizontal section cut roughly one to one and a half metres above the floor, through the doors and windows, seen from above; a view from directly above with nothing cut away, showing the roof; the projection of the main façade onto a vertical plane parallel to it; a vertical section through the whole building seen from the side; and a horizontal section seen from below, showing the ceiling as if reflected in a mirror on the floor.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-polito-til-a-drawing-author",
+    "aiAssisted": true,
+    "notes": "Original item on a standard architectural convention: a floor plan is a horizontal section at roughly 1 to 1.5 m above floor level, seen from above. Each wrong choice is the definition of another standard drawing (section, roof plan, reflected ceiling plan, elevation), so only one choice describes a floor plan."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-polito-til-a-drawing-author",
+    "reviewer": "blind-reviewer-wave7-tila-logic-drawing-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-tila-logic-drawing-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "By convention a floor plan is a horizontal section cut at about 1 to 1.5 m, through the doors and windows, and seen from above. Option B describes the roof plan, C an elevation, D a vertical section and E a reflected ceiling plan. [A second, separate blind solve (blind-reviewer-wave7-tila-logic-drawing-run1) reached the same answer: By convention a floor plan is a horizontal section cut about 1-1.5 m above the floor, through the openings, and seen from above. B describes a roof plan, C an elevation, D a vertical section and E a reflected ceiling plan.]"
+    },
+    "notes": "Author's uniqueness check: each wrong choice is the accepted definition of a different drawing in the set, so none can also be the floor plan. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "floor-plan",
+    "horizontal-section",
+    "orthographic-projection",
+    "drawing-conventions"
+  ]
+}

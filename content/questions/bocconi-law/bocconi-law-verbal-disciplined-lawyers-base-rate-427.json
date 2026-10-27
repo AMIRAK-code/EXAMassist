@@ -1,0 +1,77 @@
+{
+  "id": "bocconi-law-verbal-disciplined-lawyers-base-rate-427",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-verbal-reasoning",
+  "skillSlug": "law-verbal-logical-error",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "> Of the lawyers disciplined by the regional bar council last year, 70% were under forty years of age. Lawyers under forty are therefore more likely to commit professional misconduct than older lawyers.\n\nWhich of the following best describes the logical error in this argument?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "It treats a condition that is necessary for misconduct as if it were sufficient."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "It fails to consider what proportion of the region's lawyers are under forty."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "It assumes that every lawyer under forty has committed some form of misconduct."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "It relies on the bar council's figures without showing that the council is impartial."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The argument passes from \"most of the disciplined lawyers are young\" to \"young lawyers are more likely to be disciplined\". Those are different claims, and the gap between them is the size of each group.\n\nTo say young lawyers are **more likely** to commit misconduct, you must compare rates: the share of young lawyers who were disciplined against the share of older lawyers who were. The 70% figure only tells you how the disciplined lawyers divide by age. Whether it is high or low depends on how many of the region's lawyers are under forty in the first place.\n\n**How to check — build a counterexample.** Suppose 80% of the region's lawyers are under forty. Then a group of disciplined lawyers that is only 70% young actually **under**-represents them: young lawyers would be *less* likely to be disciplined than older ones. The premise is true in this case and the conclusion false, so the argument is invalid, and what it leaves out is the proportion of lawyers under forty in the profession as a whole.",
+  "distractorRationale": {
+    "c": "The argument makes a comparative claim about likelihood, not a claim about every young lawyer. Nothing in it suggests that all lawyers under forty have misbehaved.",
+    "d": "The argument takes the council's figures at face value, but the flaw lies elsewhere: even if the figures were perfectly accurate, they would not support the conclusion without knowing how many lawyers are under forty. Doubting the source is not the error in the reasoning.",
+    "a": "No condition is presented as necessary or sufficient for misconduct. The argument draws a statistical conclusion from a percentage; it does not reverse a conditional."
+  },
+  "estimatedSeconds": 95,
+  "stimulusRef": null,
+  "accessibilityText": "A logical error question. The argument says that, of the lawyers disciplined by the regional bar council last year, 70 percent were under forty years of age, and concludes that lawyers under forty are more likely to commit professional misconduct than older lawyers. The question asks which description best identifies the logical error. The four answer options are: it treats a condition that is necessary for misconduct as if it were sufficient; it fails to consider what proportion of the region's lawyers are under forty; it assumes that every lawyer under forty has committed some form of misconduct; it relies on the bar council's figures without showing that the council is impartial.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave8-author",
+    "aiAssisted": true,
+    "notes": "Original logical-error item on neglect of the base rate: a share of a subgroup is mistaken for a rate of the whole group. The bar council and figures are invented."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave8-author",
+    "reviewer": "blind-reviewer-wave8-final-verbal-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-final-verbal-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "This is a base-rate error: 70% of disciplined lawyers being under forty shows nothing unless we know what share of all lawyers are under forty. If 80% are, younger lawyers are actually less likely to be disciplined. The argument does not assume every young lawyer misbehaves, uses no necessary/sufficient structure, and the council's impartiality is not the core flaw. [A second, separate blind solve (blind-reviewer-wave8-final-verbal-run1) reached the same answer: This is a base-rate error: if about 70% or more of the region's lawyers are under forty, the figure shows no higher risk. The argument does not confuse necessary with sufficient conditions and does not claim every young lawyer misbehaves. Council impartiality is not the flaw in the inference.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "verbal-reasoning",
+    "logical-error",
+    "base-rate",
+    "statistics"
+  ]
+}

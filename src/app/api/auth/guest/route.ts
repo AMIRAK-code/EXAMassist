@@ -24,15 +24,15 @@ export async function POST(request: Request) {
     const existing = await getCurrentUser();
     if (existing) return ok({ userId: existing.id, created: false, isGuest: existing.isGuest });
 
-    const limit = checkRateLimit(db, 'guestStart', callerKey(request));
+    const limit = (await checkRateLimit(db, 'guestStart', callerKey(request)));
     if (!limit.allowed) {
       return fail('rate-limited', 'Too many sessions started. Please try again later.', 429, {
         retryAfterSeconds: limit.retryAfterSeconds,
       });
     }
 
-    const user = createGuestUser(db);
-    const session = createSession(db, user.id, true);
+    const user = (await createGuestUser(db));
+    const session = (await createSession(db, user.id, true));
     const store = await cookies();
     store.set(SESSION_COOKIE, session.token, sessionCookieOptions(session.expiresAt));
 

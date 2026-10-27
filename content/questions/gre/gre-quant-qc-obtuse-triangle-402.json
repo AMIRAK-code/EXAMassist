@@ -1,0 +1,77 @@
+{
+  "id": "gre-quant-qc-obtuse-triangle-402",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-geometry",
+  "skillSlug": "geom-pythagorean-theorem",
+  "subskillSlug": null,
+  "responseType": "quantitative_comparison",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In triangle $PQR$, $PQ = 7$, $QR = 10$, and the measure of angle $PQR$ is greater than $90^\\circ$.\n\n| Quantity A | Quantity B |\n| --- | --- |\n| $PR$ | $12$ |",
+  "instructionsMd": "Compare Quantity A and Quantity B and select the one statement that is true for every value consistent with the information given.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Quantity A is greater."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Quantity B is greater."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The two quantities are equal."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The relationship cannot be determined from the information given."
+    }
+  ],
+  "answerKey": {
+    "type": "quantitative_comparison",
+    "choice": "A"
+  },
+  "explanationMd": "The side $PR$ is the one opposite angle $PQR$. The angle is not given exactly, only that it is obtuse, so find the smallest value $PR$ can take and compare that with $12$.\n\n**Step 1: the boundary case.** If angle $PQR$ were exactly $90^\\circ$, the Pythagorean theorem would give\n\n$$PR^{2} = 7^{2} + 10^{2} = 49 + 100 = 149, \\qquad PR = \\sqrt{149}.$$\n\n**Step 2: open the angle.** Keep $PQ$ and $QR$ fixed and widen the angle between them. The free ends move apart, so $PR$ grows. An angle greater than $90^\\circ$ therefore makes $PR$ longer than $\\sqrt{149}$:\n\n$$PR^{2} > 149.$$\n\n**Step 3: compare with $12$.** Since $12^{2} = 144$ and $149 > 144$, even the boundary value $\\sqrt{149}$ exceeds $12$, and every obtuse case is larger still. **Quantity A is greater.**\n\n**How to check.** Estimate: $\\sqrt{149}$ is a little more than $\\sqrt{144} = 12$, about $12.2$. At the other extreme, as the angle approaches $180^\\circ$ the triangle flattens and $PR$ approaches $7 + 10 = 17$. So $PR$ lies strictly between about $12.2$ and $17$, entirely above $12$. Comparing squares ($149$ against $144$) avoids any square-root arithmetic.",
+  "distractorRationale": {
+    "b": "Reached by treating the given sides as if $PR$ were a leg rather than the side opposite the obtuse angle, for example by computing $\\sqrt{10^{2} - 7^{2}} = \\sqrt{51}$, about $7.1$. The side opposite the largest angle is the longest side, so $PR$ must exceed $10$ and in fact exceeds $\\sqrt{149}$.",
+    "c": "Reached by rounding $\\sqrt{149}$ down to $12$ and then forgetting that the angle is strictly greater than $90^\\circ$. Even the right-angle value is above $12$, because $149 > 144$, and the obtuse angle only makes $PR$ longer.",
+    "d": "Reached by using only the triangle inequality, which allows $PR$ anywhere between $3$ and $17$ and so seems to straddle $12$. That range ignores the obtuse angle. Once the angle exceeds $90^\\circ$, $PR$ is forced above $\\sqrt{149}$."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "In triangle PQR, side PQ has length 7, side QR has length 10, and the angle at vertex Q, between those two sides, measures more than 90 degrees. Quantity A is the length of side PR, the side opposite that angle. Quantity B is 12. Decide which quantity is greater, whether they are equal, or whether the relationship cannot be determined.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-gre-quant-author",
+    "aiAssisted": true,
+    "notes": "Original item written for wave 7. The side lengths were chosen so that the right-angle value, the square root of 149, sits just above 12, which makes comparing squares the decisive move. Not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-gre-quant-author",
+    "reviewer": "blind-reviewer-wave7-gre-quant-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-gre-quant-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Because angle Q is obtuse, PR^2 > 49 + 100 = 149. So PR > sqrt(149), about 12.21, which is greater than 12, and PR < 17 by the triangle inequality. Quantity A is always greater. [A second, separate blind solve (blind-reviewer-wave7-gre-quant-run1) reached the same answer: Angle Q is obtuse, so PR^2 > 7^2+10^2 = 149. That makes PR > sqrt(149), about 12.21, which is greater than 12. The triangle inequality also caps PR below 17, and every value in (12.21, 17) is still greater than 12.]"
+    },
+    "notes": "Author solved: at 90 degrees PR = sqrt(149), and an obtuse angle makes PR^2 > 149 > 144, so PR > 12 and Quantity A is greater. A script evaluating PR = sqrt(149 - 140 cos Q) for Q just above 90 and just below 180 degrees gave about 12.207 and about 17.0, so PR is always above 12."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "quantitative-comparison",
+    "triangles",
+    "pythagorean-theorem",
+    "obtuse-angle"
+  ]
+}

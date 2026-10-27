@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-chem-oxidation-number-907",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "chemistry",
+  "domainSlug": "tolcf-chemistry",
+  "skillSlug": "tolcf-chem-stoichiometry-redox",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "In which of these species does nitrogen have oxidation number $-3$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\mathrm{N_2O}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\mathrm{N_2}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\mathrm{NO_3^{-}}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\mathrm{NH_4^{+}}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\mathrm{NO_2}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The rules: oxygen is $-2$ and hydrogen is $+1$ in these compounds, and the oxidation numbers must add up to the charge of the species. Solve for nitrogen, $x$, in each.\n\n- $\\mathrm{NO_3^-}$: $x + 3(-2) = -1$, so $x = +5$.\n- $\\mathrm{NO_2}$: $x + 2(-2) = 0$, so $x = +4$.\n- $\\mathrm{N_2}$: an element, so $0$.\n- $\\mathrm{N_2O}$: $2x + (-2) = 0$, so $x = +1$.\n- $\\mathrm{NH_4^+}$: $x + 4(+1) = +1$, so $x = -3$.\n\nNitrogen is negative only when it is bonded to a less electronegative element, here hydrogen. **Check:** in the ammonium ion, four $+1$ hydrogens total $+4$ and the ion has charge $+1$, so nitrogen must supply $-3$.",
+  "distractorRationale": {
+    "c": "This takes the negative charge of the ion as the oxidation number of nitrogen. The charge belongs to the whole ion. With three oxygens at $-2$ (total $-6$), nitrogen must be $+5$ so that the sum is $-1$.",
+    "e": "This recalls that $-3$ is a common oxidation number of nitrogen and applies it without calculating. In $\\mathrm{NO_2}$ oxygen, the more electronegative atom, takes $-2$ each, total $-4$; the molecule is neutral, so nitrogen is $+4$.",
+    "b": "This takes the three bonds of the $\\mathrm{N{\\equiv}N}$ triple bond as an oxidation number of $-3$. In a pure element the atoms are identical and share electrons equally, so no atom gains or loses control of electrons: the oxidation number is 0.",
+    "a": "This is tempting because nitrous oxide is the least oxidised of the nitrogen oxides, with more nitrogen atoms than oxygen atoms, which suggests nitrogen has gained electrons. It has not: oxygen is $-2$, and the two nitrogens must sum to $+2$, so each is $+1$. Bonded only to the more electronegative oxygen, nitrogen is in a positive state."
+  },
+  "estimatedSeconds": 40,
+  "stimulusRef": null,
+  "accessibilityText": "The question asks in which species nitrogen has oxidation number minus 3. The species are the nitrate ion, N O subscript 3 with charge one minus; nitrogen dioxide, N O subscript 2; dinitrogen, N subscript 2; nitrous oxide, N subscript 2 O; and the ammonium ion, N H subscript 4 with charge one plus.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-chemistry-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank (Wave 6, TOLC-F chemistry). Each wrong choice comes from one named misconception, recorded in distractorRationale. Numbers chosen for hand calculation with no calculator; every key was recomputed a second way in the build script."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-chemistry-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-chem-run15",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-chem-run15",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "In NH4+, x + 4 = +1, so x = -3. The others are N2O +1, N2 0, NO3- +5 and NO2 +4. [A second, separate blind solve (blind-reviewer-wave6-tolcf-chem-run18) reached the same answer: In NH4+, N + 4(+1) = +1, so N = -3. The others are N2O +1, N2 0, NO3- +5 and NO2 +4. None of them is -3.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication. Key check: NO3- +5, NO2 +4, N2 0, N2O +1, NH4+ -3. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "oxidation-numbers",
+    "nitrogen"
+  ]
+}

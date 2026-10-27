@@ -3,6 +3,7 @@ import { cookies } from 'next/headers';
 import { z } from 'zod';
 import { getDb } from '@/lib/db';
 import { assertSameOrigin, fail, ok, readJson, toErrorResponse } from '@/lib/api/http';
+import { emailCodesMailer, prepareVerificationEmail } from '@/lib/auth/email-codes';
 import { checkPasswordStrength, hashPassword } from '@/lib/auth/password';
 import { callerKey, checkRateLimit } from '@/lib/auth/rate-limit';
 import {
@@ -11,6 +12,7 @@ import {
   getCurrentUser,
   sessionCookieOptions,
 } from '@/lib/auth/session';
+import { deliverAfterResponse } from '@/lib/email/deliver';
 
 const bodySchema = z.object({
   email: z.string().trim().toLowerCase().email().max(254),
@@ -28,7 +30,7 @@ export async function POST(request: Request) {
     assertSameOrigin(request);
     const db = getDb();
 
-    const limit = checkRateLimit(db, 'signUp', callerKey(request));
+    const limit = (await checkRateLimit(db, 'signUp', callerKey(request)));
     if (!limit.allowed) {
       return fail('rate-limited', 'Too many attempts. Please try again later.', 429, {
         retryAfterSeconds: limit.retryAfterSeconds,
@@ -40,7 +42,7 @@ export async function POST(request: Request) {
     const problem = checkPasswordStrength(body.password, body.email);
     if (problem) return fail(problem.code, problem.message, 400);
 
-    const existing = db.prepare('SELECT id FROM users WHERE email = ?').get(body.email) as
+    const existing = (await db.prepare('SELECT id FROM users WHERE email = ?').get(body.email)) as
       | { id: string }
       | undefined;
     if (existing) {
@@ -62,25 +64,38 @@ export async function POST(request: Request) {
 
     if (guest?.isGuest) {
       userId = guest.id;
-      db.prepare(
+      (await db.prepare(
         `UPDATE users SET email = ?, password_hash = ?, display_name = ?, is_guest = 0,
                           is_minor = ?, updated_at = ?
          WHERE id = ? AND is_guest = 1`,
-      ).run(body.email, passwordHash, body.displayName ?? null, body.isMinor ? 1 : 0, nowIso, userId);
+      ).run(body.email, passwordHash, body.displayName ?? null, body.isMinor ? 1 : 0, nowIso, userId));
     } else {
       userId = randomUUID();
-      db.prepare(
+      (await db.prepare(
         `INSERT INTO users (id, email, password_hash, display_name, role, is_guest, locale,
                             is_minor, created_at, updated_at)
          VALUES (?, ?, ?, ?, 'learner', 0, 'en', ?, ?, ?)`,
-      ).run(userId, body.email, passwordHash, body.displayName ?? null, body.isMinor ? 1 : 0, nowIso, nowIso);
+      ).run(userId, body.email, passwordHash, body.displayName ?? null, body.isMinor ? 1 : 0, nowIso, nowIso));
     }
 
-    const session = createSession(db, userId, false, now);
+    const session = (await createSession(db, userId, false, now));
     const store = await cookies();
     store.set(SESSION_COOKIE, session.token, sessionCookieOptions(session.expiresAt));
 
-    return ok({ userId, upgradedFromGuest: Boolean(guest?.isGuest) }, { status: 201 });
+    // A confirmation code, when this deployment can send email. The account
+    // exists either way: nothing here may fail the sign-up itself.
+    let verificationSent = false;
+    const mailer = emailCodesMailer();
+    if (mailer) {
+      try {
+        deliverAfterResponse(mailer, await prepareVerificationEmail(db, { id: userId, email: body.email }, { now }));
+        verificationSent = true;
+      } catch (error) {
+        console.error('[sign-up] could not issue a confirmation code:', error instanceof Error ? error.message : error);
+      }
+    }
+
+    return ok({ userId, upgradedFromGuest: Boolean(guest?.isGuest), verificationSent }, { status: 201 });
   } catch (error) {
     return toErrorResponse(error);
   }

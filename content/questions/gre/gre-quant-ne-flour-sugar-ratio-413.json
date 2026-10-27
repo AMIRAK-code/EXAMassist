@@ -1,0 +1,65 @@
+{
+  "id": "gre-quant-ne-flour-sugar-ratio-413",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-arithmetic",
+  "skillSlug": "arith-ratio",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A baking mix contains only flour and sugar, in the ratio $5$ to $2$ by weight. A bag of the mix weighs $350$ grams.\n\nHow many more grams of flour than sugar does the bag contain?",
+  "instructionsMd": "Enter your answer in the box. Equivalent forms of the same value are accepted; do not include units.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 150
+      }
+    ],
+    "acceptedStrings": [
+      "150",
+      "150.0"
+    ]
+  },
+  "explanationMd": "A ratio of $5$ to $2$ means the mix can be thought of as $5 + 2 = 7$ equal parts, $5$ of flour and $2$ of sugar.\n\n**Step 1: the size of one part.** $350 \\div 7 = 50$ grams.\n\n**Step 2: the two amounts.** Flour is $5 \\times 50 = 250$ grams and sugar is $2 \\times 50 = 100$ grams.\n\n**Step 3: the difference.** $250 - 100 = 150$ grams.\n\n**A shortcut.** The difference is $5 - 2 = 3$ parts, and $3 \\times 50 = 150$ directly.\n\n**How to check.** The amounts must add to the whole bag, $250 + 100 = 350$, and must be in the right ratio, $\\frac{250}{100} = \\frac{5}{2}$. Both hold. Then re-read the question: it asks for the **difference**, not for either amount.",
+  "distractorRationale": {
+    "trap-250-the-flour": "Entering $250$ gives the weight of flour, not how much more flour there is than sugar.",
+    "trap-100-the-sugar": "Entering $100$ gives the weight of sugar, the smaller of the two amounts, rather than the gap between them.",
+    "trap-3-the-parts": "Entering $3$ gives the difference in ratio parts, $5 - 2$, and stops before converting parts to grams.",
+    "trap-210-parts-of-five": "Entering $210$ comes from dividing the bag into $5$ parts instead of $7$, so that one part is $70$ grams and the difference is $3 \\times 70$. The ratio $5$ to $2$ has $7$ parts in total."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "A baking mix is only flour and sugar in the ratio 5 to 2 by weight, and a bag weighs 350 grams. Find how many more grams of flour than sugar the bag contains and type the number into the answer box.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-gre-quant-author",
+    "aiAssisted": true,
+    "notes": "Original item written for wave 7. Asking for the difference rather than either amount adds one step to an otherwise routine ratio split. Not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-gre-quant-author",
+    "reviewer": "blind-reviewer-wave7-gre-quant-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-gre-quant-run0",
+      "solvedAnswer": "150",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "There are 7 parts in the ratio, so 350/7 = 50 g per part. Flour is 250 g and sugar is 100 g, a difference of 150 g (3 parts). [A second, separate blind solve (blind-reviewer-wave7-gre-quant-run1) reached the same answer: 350 grams split in the ratio 5:2 gives 250 g of flour and 100 g of sugar. The difference is 150.]"
+    },
+    "notes": "Author solved: 7 parts of 50 grams; flour 250, sugar 100, difference 150. Script check 350 x 3/7 = 150."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "numeric-entry",
+    "ratio",
+    "part-to-whole"
+  ]
+}

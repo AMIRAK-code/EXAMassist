@@ -1,0 +1,83 @@
+{
+  "id": "polito-til-i-logic-truth-tellers-224",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "reading-logic",
+  "domainSlug": "tili-logic",
+  "skillSlug": "tili-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "On a remote island every inhabitant either always tells the truth or always lies. Two inhabitants are \"of the same kind\" if both always tell the truth or both always lie. Three islanders speak to a visitor.\n\n- Marco says: \"Luca and I are of the same kind.\"\n- Luca says: \"Marco and Sofia are of different kinds.\"\n- Sofia says: \"At least one of the three of us is a liar.\"\n\nWho tells the truth?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Only Luca"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "All three"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Marco and Luca"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Marco and Sofia"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Luca and Sofia"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Start with the statement that is easiest to test, and let each conclusion feed the next.\n\n**Sofia.** Suppose she lied. Then \"at least one of us is a liar\" would be false, so all three would be truthful, contradicting her being a liar. So Sofia tells the truth, and at least one islander is a liar.\n\n**Marco.** Suppose he told the truth. Then Luca is of the same kind, so Luca is truthful too. But Luca says Marco and Sofia are of different kinds, and Marco and Sofia are both truthful, so that would be false. Contradiction, so Marco is a liar.\n\n**Luca.** Marco lies, so his statement is false: he and Luca are of different kinds, so Luca is truthful. Check Luca's own statement: Marco (liar) and Sofia (truthful) are of different kinds, which is true, as it should be.\n\nSo Luca and Sofia tell the truth and Marco lies.\n\n**Check:** every wrong choice fails at one statement, as the notes show. A quick way to test the key is to confirm that each speaker's statement is true exactly when that speaker is a truth-teller.",
+  "distractorRationale": {
+    "a": "If only Luca were truthful, Marco and Sofia would both be liars, so they would be of the same kind, and Luca's statement that they differ would be false. A truth-teller cannot say that.",
+    "c": "If Marco and Luca were truthful, Sofia would be a liar, but then her statement \"at least one of us is a liar\" would be true. A liar cannot say something true.",
+    "d": "If Marco were truthful, Luca would have to be truthful too (the same kind), but here Luca would be a liar. Marco's statement would then be false, which a truth-teller cannot make.",
+    "b": "If all three were truthful, Sofia's statement that at least one of them is a liar would be false. A truth-teller cannot say that."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": "A logic puzzle about three islanders who each always tell the truth or always lie. Marco says he and Luca are of the same kind; Luca says Marco and Sofia are of different kinds; Sofia says at least one of the three is a liar. The question asks who tells the truth. Five answer choices, each naming a set of the islanders.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-wave6-til-i-reading-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item; the situation, names and wording are invented. Needs no knowledge beyond reasoning."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-wave6-til-i-reading-logic-author",
+    "reviewer": "blind-reviewer-wave6-tili-reading-logic-run4",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-reading-logic-run4",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Checked all 8 truth assignments. The only consistent one is Marco a liar, Luca truthful and Sofia truthful. Marco's claim that he and Luca are the same kind is false. Luca's claim that Marco and Sofia differ is true. Sofia's claim that at least one of them lies is true. Every other assignment contradicts itself. [A second, separate blind solve (blind-reviewer-wave6-tili-reading-logic-run6) reached the same answer: Checked all 8 truth assignments. The only consistent one: Marco lies, Luca and Sofia tell the truth. Luca's claim that Marco and Sofia differ is true, Sofia's 'at least one liar' is true, and Marco's 'Luca and I are the same' is false. The solution is unique, so no other option can be defended.]"
+    },
+    "notes": "Truth-teller and liar puzzle. All eight assignments were enumerated: exactly one (Marco a liar; Luca and Sofia truthful) makes every statement true if and only if its speaker is truthful. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "problems",
+    "truth-tellers",
+    "case-analysis"
+  ]
+}

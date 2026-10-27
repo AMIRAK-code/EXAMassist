@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-num-gcd-lcm-partner-701",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolcf-mathematics",
+  "skillSlug": "tolcf-math-numbers",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Two positive integers have greatest common divisor 5 and least common multiple 60. One of them is 15. What is the other?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$4$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$12$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$20$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$45$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$300$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "For any two positive integers, the product of their greatest common divisor and least common multiple equals the product of the numbers themselves:\n\n$$\\gcd \\times \\operatorname{lcm} = a \\times b.$$\n\nHere $5 \\times 60 = 300 = 15 \\times b$, so $b = 300 \\div 15 = 20$.\n\n**How to check it.** Factor: $15 = 3\\cdot 5$ and $20 = 2^{2}\\cdot 5$. The only shared prime is 5, so the greatest common divisor is 5; taking each prime at its highest power gives $2^{2}\\cdot 3\\cdot 5 = 60$, the least common multiple.",
+  "distractorRationale": {
+    "a": "Divides the least common multiple by 15 and ignores the common divisor. The numbers 15 and 4 have greatest common divisor 1, not 5.",
+    "b": "Divides the least common multiple by the greatest common divisor ($60 \\div 5$). That quotient is not the missing number; 15 and 12 have greatest common divisor 3.",
+    "d": "Subtracts 15 from 60, as if the least common multiple were the sum of the two numbers. The numbers 15 and 45 have greatest common divisor 15.",
+    "e": "Multiplies the greatest common divisor by the least common multiple ($5\\times 60$) and stops. That product equals the product of the two numbers, so it must still be divided by 15."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": null,
+  "accessibilityText": "Two positive integers have greatest common divisor 5 and least common multiple 60. One of them is 15. The question asks for the other one. The five choices are 4, 12, 20, 45 and 300.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-tolc-f-mathematics-author",
+    "aiAssisted": true,
+    "notes": "Original item. Uses the identity gcd times lcm equals the product; every distractor is a coherent wrong operation on the given numbers, and each fails the gcd or lcm test."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-tolc-f-mathematics-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-math-phys-run14",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-math-phys-run14",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "gcd times lcm = 300 = 15 times n, so n=20; check gcd(15,20)=5 and lcm=60. Checked the others: 4 and 12 give gcd 1 and 3, 45 gives lcm 45, 300 gives gcd 15. [A second, separate blind solve (blind-reviewer-wave6-tolcf-math-phys-run16) reached the same answer: gcd times lcm = 300 = 15n, so n=20; check gcd(15,20)=5 and lcm=60. 4 has gcd 1 with 15, 12 gives gcd 3, 45 gives lcm 45, and 300 is the product itself.]"
+    },
+    "notes": "Author check: the key was computed and then confirmed a second way (see the check in the explanation); each wrong choice was tried against the stem and fails for the reason given in its distractor note. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "gcd",
+    "lcm"
+  ]
+}

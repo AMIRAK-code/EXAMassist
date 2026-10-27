@@ -2,7 +2,9 @@
  * Site-wide configuration.
  *
  * The brand is deliberately neutral and lives in one place so renaming the
- * product is a single edit here plus the favicon.
+ * product is a single edit here plus the logo files: the wordmark and symbol
+ * variants in public/brand, and the favicon (src/app/icon.svg, a copy of
+ * public/brand/examer-favicon-micro.svg).
  */
 
 export const SITE = {
@@ -11,7 +13,7 @@ export const SITE = {
   shortName: 'Examer',
   tagline: 'Admission test preparation, verified against official sources',
   description:
-    'Free practice questions, exam format guides and timed practice for the Online Bocconi test (bachelor, law and master’s forms), Digital SAT, Enhanced ACT, LSAT, GMAT and GRE. Every format claim is sourced to the test maker.',
+    'Practice questions, exam format guides and timed practice for the Bocconi Online Test (bachelor, law and master’s forms), Digital SAT, Enhanced ACT, LSAT, GMAT, GRE, CISIA TOLC and Politecnico di Torino TIL, with a free test for every account. Every format claim is sourced to the test maker.',
   locale: 'en',
   /**
    * Publisher identity shown on public content and in structured data. Not
@@ -33,6 +35,29 @@ export function absoluteUrl(path: string): string {
 }
 
 /**
+ * Google Search Console HTML-tag verification token, when one is set in code.
+ * Prefer the GOOGLE_SITE_VERIFICATION environment variable; put the token here
+ * only if the deployment cannot carry one. It is public by design: Google reads
+ * it from the page's <meta name="google-site-verification">.
+ */
+const GOOGLE_SITE_VERIFICATION_TOKEN = '';
+
+/**
+ * The Search Console verification token for this deployment, or null.
+ *
+ * Accepts the bare token or the whole tag Search Console shows
+ * (<meta name="google-site-verification" content="…" />), and refuses
+ * anything that is not token-shaped, so a pasted typo cannot inject markup.
+ * Only emitted where indexing is enabled: a preview has nothing to verify.
+ */
+export function googleSiteVerification(env: Record<string, string | undefined> = process.env): string | null {
+  const raw = (env.GOOGLE_SITE_VERIFICATION?.trim() || GOOGLE_SITE_VERIFICATION_TOKEN).trim();
+  if (!raw) return null;
+  const token = /content=["']([^"']+)["']/.exec(raw)?.[1] ?? raw;
+  return /^[A-Za-z0-9_-]{10,100}$/.test(token) ? token : null;
+}
+
+/**
  * Whether this deployment may be indexed.
  *
  * Defaults to false so a staging or preview deployment is never indexed by
@@ -49,6 +74,6 @@ export function indexingEnabled(): boolean {
  */
 export const INDEPENDENCE_NOTICE =
   'Examer is an independent study resource. It is not affiliated with, endorsed by, or accredited by ' +
-  'College Board, ACT, LSAC, GMAC, ETS or Università Bocconi. SAT is a trademark of College Board; ACT ' +
+  'College Board, ACT, LSAC, GMAC, ETS, Università Bocconi, Politecnico di Torino or CISIA. SAT is a trademark of College Board; ACT ' +
   'of ACT; LSAT of LSAC; GMAT of GMAC; GRE of ETS. The practice questions are original, AI-assisted ' +
   'material; see our editorial standards for how they are created and checked.';

@@ -37,10 +37,16 @@ function renderMath(tex: string, displayMode: boolean): string {
   }
 }
 
+/**
+ * An inline formula: an unescaped $, then any run of characters other than $,
+ * newline or backslash, or of backslash-escaped pairs, then the closing $.
+ */
+const INLINE_MATH = /(^|[^\\])\$((?:[^$\n\\]|\\[^\n])+?)\$/g;
+
 /** Whether rendering this source produces any KaTeX output (the same delimiters extractMath uses). */
 export function containsMath(source: string | null | undefined): boolean {
   if (!source) return false;
-  return /\$\$[\s\S]+?\$\$/.test(source) || /(^|[^\\])\$[^$\n]+?\$/.test(source);
+  return /\$\$[\s\S]+?\$\$/.test(source) || new RegExp(INLINE_MATH.source).test(source);
 }
 
 function extractMath(source: string): { text: string; tokens: MathToken[] } {
@@ -54,8 +60,10 @@ function extractMath(source: string): { text: string; tokens: MathToken[] } {
     return `\n\n${placeholder}\n\n`;
   });
 
-  // Inline maths. An escaped \$ is a literal dollar sign and is left alone.
-  text = text.replace(/(^|[^\\])\$([^$\n]+?)\$/g, (_match, before: string, tex: string) => {
+  // Inline maths. An escaped \$ outside a formula is a literal dollar sign and
+  // is left alone; inside one, escaped pairs such as \$ (a dollar in the
+  // formula, as in $\$80$) belong to the TeX and do not close the span.
+  text = text.replace(INLINE_MATH, (_match, before: string, tex: string) => {
     const placeholder = `${PLACEHOLDER_PREFIX}${index++}zz`;
     tokens.push({ placeholder, html: renderMath(tex.trim(), false) });
     return `${before}${placeholder}`;

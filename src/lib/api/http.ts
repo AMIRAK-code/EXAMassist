@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server';
 import { ZodError } from 'zod';
 import { AttemptError } from '@/lib/attempts/service';
+import { BillingError } from '@/lib/billing/service';
 import { ForbiddenError, UnauthorizedError } from '@/lib/auth/session';
+import { EmailDeliveryError } from '@/lib/email/send';
 import { TutorError } from '@/lib/tutor/service';
 
 /**
@@ -36,11 +38,19 @@ export function toErrorResponse(error: unknown): NextResponse {
   if (error instanceof TutorError) {
     return fail(error.code, error.message, error.status, error.detail);
   }
+  if (error instanceof BillingError) {
+    return fail(error.code, error.message, error.status, error.detail);
+  }
   if (error instanceof UnauthorizedError) {
     return fail('unauthorized', error.message, 401);
   }
   if (error instanceof ForbiddenError) {
     return fail('forbidden', error.message, 403);
+  }
+  if (error instanceof EmailDeliveryError) {
+    // The provider's reason stays in the server log.
+    console.error('[api] email delivery failed:', error.message);
+    return fail('email-unavailable', 'We could not send the email just now. Please try again in a few minutes.', 503);
   }
   if (error instanceof ZodError) {
     return fail('invalid-request', 'That request was not valid.', 400, {

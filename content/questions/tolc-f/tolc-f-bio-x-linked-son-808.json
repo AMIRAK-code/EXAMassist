@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-bio-x-linked-son-808",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "biology",
+  "domainSlug": "tolcf-biology",
+  "skillSlug": "tolcf-bio-genetics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Red-green colour blindness is caused by a recessive allele on the X chromosome. A woman with normal colour vision who carries the allele has children with a man who has normal colour vision. What is the probability that a son of this couple is colour-blind?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "0"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "1/4"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "1/2"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "3/4"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "1"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Write the genotypes. The mother is a carrier, $X^{C}X^{c}$, and the father has normal vision, $X^{C}Y$.\n\nNotice who the question is about: a son, not any child. A son always receives the Y chromosome from his father, so his single X chromosome comes from his mother. Her eggs carry $X^{C}$ or $X^{c}$ with equal probability, so each son has a $\\frac{1}{2}$ chance of receiving $X^{c}$ and being colour-blind. The father's X chromosome goes only to daughters, so it is irrelevant here.\n\nCheck with the full cross: the four equally likely children are a normal daughter, a carrier daughter, a normal son and a colour-blind son. One child in four is a colour-blind son, so $\\frac{1}{4}$ is the probability for a child of either sex. But only two of the four outcomes are sons, and one of those two is colour-blind: restricted to sons, the probability is $\\frac{1/4}{1/2}=\\frac{1}{2}$.",
+  "distractorRationale": {
+    "a": "This assumes the father’s normal vision protects his sons. A son receives his Y chromosome from his father and his only X chromosome from his mother, so the mother’s allele decides.",
+    "b": "This is the probability that any child of the couple is a colour-blind son (one square in a four-square cross). The question asks about a son, so the sons are the whole sample space.",
+    "d": "This is the share of children showing the dominant phenotype in a cross of two heterozygotes, a 3 : 1 autosomal ratio. It does not apply here: a son has only one X chromosome, from his mother.",
+    "e": "This assumes every son of a carrier mother is affected. Half of her eggs carry the normal X chromosome."
+  },
+  "estimatedSeconds": 65,
+  "stimulusRef": null,
+  "accessibilityText": "A short text question with no figure. Red-green colour blindness is caused by a recessive allele on the X chromosome. A woman with normal vision who carries the allele has children with a man with normal vision, and the question asks the probability that a son of this couple is colour-blind. The five choices are zero, one quarter, one half, three quarters and one. In the explanation the mother is written X superscript capital C, X superscript lowercase c, and the father X superscript capital C, Y.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original X-linked cross. Options are fixed fractions; the one-quarter distractor is the probability for a child rather than for a son."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-bio-run17",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-bio-run17",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The mother is XAXa and the father XAY. A son gets his Y from the father and one of the mother's X chromosomes, so P(XaY | son) = 1/2. 1/4 would be the chance that any child is a colour-blind son, but the stem conditions on a son, so 1/4 cannot be defended. [A second, separate blind solve (blind-reviewer-wave6-tolcf-bio-run19) reached the same answer: The cross is XAXa x XAY. A son gets his Y from his father and one of the mother's X chromosomes, so P(colour-blind son) = 1/2. The 1/4 option is the probability for any child (P(son and affected)), but the stem conditions on a son. The other values do not fit.]"
+    },
+    "notes": ""
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "x-linked",
+    "punnett-square",
+    "sex-linked-inheritance"
+  ]
+}

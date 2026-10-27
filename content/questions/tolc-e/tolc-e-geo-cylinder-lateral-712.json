@@ -1,0 +1,82 @@
+{
+  "id": "tolc-e-geo-cylinder-lateral-712",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A cylinder has volume $90\\pi\\ \\text{cm}^{3}$ and height $10\\ \\text{cm}$. What is the area of its curved (lateral) surface?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$180\\pi\\ \\text{cm}^{2}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$90\\pi\\ \\text{cm}^{2}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$78\\pi\\ \\text{cm}^{2}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$60\\pi\\ \\text{cm}^{2}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$30\\pi\\ \\text{cm}^{2}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The volume gives the radius; the radius gives the curved surface.\n\n**Step 1 — the radius.** $V = \\pi r^{2} h$, so $90\\pi = \\pi r^{2}\\cdot 10$ and $r^{2} = 9$, hence $r = 3$ cm.\n\n**Step 2 — the curved surface.** Unrolled, it is a rectangle of width $2\\pi r$ and height $h$: $2\\pi\\cdot 3\\cdot 10 = 60\\pi\\ \\text{cm}^{2}$.\n\n**How to check it.** Rebuild the volume from $r=3$, $h=10$: $\\pi\\cdot 9\\cdot 10 = 90\\pi$ ✓. And the curved surface is the circumference $6\\pi$ times the height 10, which is $60\\pi$.",
+  "distractorRationale": {
+    "e": "Uses $\\pi r h$ instead of $2\\pi r h$, forgetting that the circumference is $2\\pi r$.",
+    "c": "Adds the two circular ends ($2\\times 9\\pi = 18\\pi$) to the curved surface. That is the total surface area, not the curved one.",
+    "b": "Repeats the volume. The volume has units of cubic centimetres and the question asks for an area.",
+    "a": "Reads $\\pi r^{2} h = 90\\pi$ as $r = 9$ instead of $r^{2} = 9$, then computes $2\\pi\\cdot 9\\cdot 10$."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "A cylinder has volume 90 pi cubic centimetres and height 10 centimetres. The question asks for the area of its curved lateral surface. The five choices are 30 pi, 60 pi, 78 pi, 90 pi and 180 pi square centimetres.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-tolc-e-mathematics-author",
+    "aiAssisted": true,
+    "notes": "Original item. Distractors: missing factor 2, total instead of lateral area, volume repeated, radius squared misread."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-tolc-e-mathematics-author",
+    "reviewer": "blind-reviewer-wave6-tolce-math-run12",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolce-math-run12",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "pi r^2 * 10 = 90pi gives r=3, so the lateral area is 2pi*3*10=60pi. The other values come from mistakes: 180pi uses the diameter wrongly, 90pi is the volume, 78pi is the total surface (60+18), and 30pi is pi r h. None of them is the curved surface. [A second, separate blind solve (blind-reviewer-wave6-tolce-math-run13) reached the same answer: pi r^2 * 10 = 90pi gives r=3, so the lateral area is 2*pi*3*10=60pi. The total surface would be 78pi (C), a deliberate distractor that the word 'curved (lateral)' excludes. A and B do not match either reading.]"
+    },
+    "notes": "Author check: the key was computed and then confirmed a second way (see the check in the explanation); each wrong choice was tried against the stem and fails for the reason given in its distractor note. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "cylinder",
+    "lateral-area",
+    "volume"
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "id": "bocconi-law-logic-library-loans-416",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-data-propositions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A university law library records exactly the following about its loans in March:\n\n- There were 120 loans in all.\n- Each loan was of either a textbook or a commentary, and each was made either to an undergraduate or to a postgraduate.\n- 75 of the loans were of textbooks.\n- More commentary loans were made to postgraduates than to undergraduates.\n\nWhich of the following must be true?",
+  "instructionsMd": "Use the recorded data only.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "At least 23 commentary loans were made to postgraduates."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Exactly 23 commentary loans were made to postgraduates."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "More loans in total were made to postgraduates than to undergraduates."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "At least 23 textbook loans were made to postgraduates."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Work out what the figures fix exactly before judging any statement.\n\n**Commentary loans.** Every loan is a textbook or a commentary, so there were $120 - 75 = 45$ commentary loans.\n\n**How they split.** Each commentary loan went to an undergraduate or a postgraduate, and postgraduates received more of them. Two whole numbers that add to 45 cannot be equal (45 is odd), and the larger must be more than half of 45, that is more than 22.5. So postgraduates received **at least 23** commentary loans. The split 23 to postgraduates and 22 to undergraduates shows the minimum can actually occur.\n\n**How to check.** For each of the other statements, build a case that fits every record but breaks the statement. If all 75 textbook loans and 22 commentary loans went to undergraduates, and 23 commentary loans to postgraduates, the records all hold; yet postgraduates received no textbook loans and only 23 loans in all against 97 for undergraduates. If instead all 45 commentary loans went to postgraduates, the records still hold and the number is 45, not 23. Only the \"at least 23 commentary loans\" statement survives every case.",
+  "distractorRationale": {
+    "d": "The records say nothing about who borrowed the textbooks. All 75 textbook loans could have gone to undergraduates, so postgraduates might have received none.",
+    "c": "Postgraduates are only known to lead on commentaries. If all 75 textbook loans went to undergraduates, undergraduates would have at least 75 + 22 = 97 loans against at most 23 for postgraduates.",
+    "b": "23 is the smallest number of commentary loans the postgraduates could have received, not the only possible number. Any figure from 23 to 45 fits the records, so \"exactly 23\" does not follow."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "A data-propositions logic question. A university law library records exactly the following about its loans in March: there were 120 loans in all; each loan was of either a textbook or a commentary, and was made either to an undergraduate or to a postgraduate; 75 of the loans were of textbooks; more commentary loans were made to postgraduates than to undergraduates. The question asks which statement must be true. The four answer options are: at least 23 commentary loans were made to postgraduates; exactly 23 commentary loans were made to postgraduates; more loans in total were made to postgraduates than to undergraduates; at least 23 textbook loans were made to postgraduates.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave8-author",
+    "aiAssisted": true,
+    "notes": "Original data-propositions item: a subtraction fixes one total, and a \"more than\" condition on an odd total fixes a lower bound but not an exact value. The library and figures are invented."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave8-author",
+    "reviewer": "blind-reviewer-wave8-final-quant-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-final-quant-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "45 commentary loans split with postgraduates strictly more, so postgraduate commentary loans >= 23. 'Exactly 23' is not forced (could be 30); the textbook split and overall postgraduate/undergraduate totals are unconstrained. [A second, separate blind solve (blind-reviewer-wave8-final-quant-run1) reached the same answer: There are 120-75=45 commentary loans; postgraduate commentary > undergraduate commentary forces postgraduate commentary >= 23. 'Exactly 23' is not forced (e.g. 30/15). The total split by borrower and the textbook split by borrower are unconstrained.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "data-propositions",
+    "bounds",
+    "no-calculator"
+  ]
+}

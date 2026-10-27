@@ -1,0 +1,82 @@
+{
+  "id": "tolc-i-phys-gas-density-ratio-306",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "sciences",
+  "domainSlug": "tolci-sciences",
+  "skillSlug": "tolci-sci-thermo",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A fixed amount of an ideal gas is held in a cylinder closed by a movable piston. Initially the gas is at $300\\ \\text{K}$ and $1.0 \\times 10^{5}\\ \\text{Pa}$. After the piston is moved and the gas is heated, it is at $400\\ \\text{K}$ and $2.0 \\times 10^{5}\\ \\text{Pa}$. By what factor has the density of the gas changed (new density divided by old density)?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\dfrac{2}{3}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\dfrac{3}{4}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\dfrac{3}{2}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$2$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\dfrac{8}{3}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "**What to notice first.** The mass of gas is fixed, so the density $\\rho = m/V$ changes only through the volume, and the ideal gas law gives the volume: $V = nRT/p$. So $\\rho \\propto p/T$.\n\n**The steps.**\n\n$$\\frac{\\rho_2}{\\rho_1} = \\frac{V_1}{V_2} = \\frac{p_2}{p_1} \\cdot \\frac{T_1}{T_2} = 2 \\times \\frac{300}{400} = \\frac{3}{2}.$$\n\n**How to check it.** Take the change in two stages. Doubling the pressure at constant temperature halves the volume, which doubles the density. Then raising the temperature from $300\\ \\text{K}$ to $400\\ \\text{K}$ at constant pressure multiplies the volume by $\\tfrac43$, which multiplies the density by $\\tfrac34$. Overall: $2 \\times \\tfrac34 = \\tfrac32$.",
+  "distractorRationale": {
+    "a": "This is the ratio of the volumes, $V_2/V_1 = \\tfrac{1}{2} \\times \\tfrac{4}{3}$. Density is inversely proportional to volume, so the density ratio is the reciprocal.",
+    "e": "Multiplies the pressure ratio by the temperature ratio, $2 \\times \\tfrac43$. Heating at fixed pressure expands the gas and *lowers* its density, so the temperature ratio enters inverted.",
+    "d": "Accounts for the doubled pressure but ignores the heating. The rise from $300\\ \\text{K}$ to $400\\ \\text{K}$ makes the gas expand, which reduces the density by a factor $\\tfrac34$.",
+    "b": "Accounts for the heating but ignores the doubled pressure, which on its own would halve the volume and double the density."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "A fixed amount of an ideal gas is held in a cylinder closed by a movable piston. Initially the gas is at 300 kelvin and 1.0 times 10 to the 5 pascals. After the piston is moved and the gas is heated, it is at 400 kelvin and 2.0 times 10 to the 5 pascals. By what factor has the density of the gas changed, new density divided by old density? The choices are two thirds, three quarters, three halves, 2 and eight thirds.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-sciences-author",
+    "aiAssisted": true,
+    "notes": "Original item testing the ideal gas law through density, which is proportional to pressure over absolute temperature for a fixed mass. Situation and numbers invented for this bank."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-sciences-author",
+    "reviewer": "blind-reviewer-wave8-tolci-logic-sci-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-logic-sci-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "For a fixed amount of gas, density is proportional to P/T: (2.0/1.0)*(300/400) = 3/2. 8/3 multiplies by T instead of dividing, 2/3 is the inverse, 2 ignores temperature. [A second, separate blind solve (blind-reviewer-wave8-tolci-logic-sci-run1) reached the same answer: For fixed mass, density ∝ P/T: (2.0/1.0) * (300/400) = 3/2. 8/3 uses T ratio upside down; 2/3 inverts the answer.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "ideal-gas",
+    "density",
+    "gas-laws"
+  ]
+}

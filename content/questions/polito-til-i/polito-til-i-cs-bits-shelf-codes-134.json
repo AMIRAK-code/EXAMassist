@@ -1,0 +1,82 @@
+{
+  "id": "polito-til-i-cs-bits-shelf-codes-134",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "technical-knowledge",
+  "domainSlug": "tili-computer-science",
+  "skillSlug": "tili-cs-data-units",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A warehouse in Novara gives each of its 300 shelf positions a different code. Every code is a binary number written with the same, fixed number of bits. What is the smallest number of bits that makes this possible?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "8"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "9"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "10"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "38"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "300"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "A code of $n$ bits can take $2^{n}$ different values, so the shortest usable length is the smallest $n$ with $2^{n} \\ge 300$.\n\nPowers of two: $2^{8} = 256$ and $2^{9} = 512$.\n\nWith 8 bits there are only 256 codes, which is fewer than the 300 positions. With 9 bits there are 512 codes, which is enough. The smallest number of bits is 9.\n\n**Check.** Both sides of the boundary: 8 bits fail because $256 < 300$, and 9 bits succeed because $512 \\ge 300$. Nothing smaller than 9 can work, since fewer bits give even fewer codes.",
+  "distractorRationale": {
+    "a": "Uses a single byte, which is the habit for storing a small number, but 8 bits give only $2^{8} = 256$ codes and 300 are needed.",
+    "c": "Rounds up to $2^{10} = 1024$ as a safe size. That works, but it is not the smallest: 9 bits already give 512 codes.",
+    "d": "Divides 300 by 8, mixing up bits and bytes. The number of bits needed grows with the logarithm of the count, not in proportion to it.",
+    "e": "Uses one bit for each position. A code of $n$ bits can distinguish $2^{n}$ things, not just $n$ things."
+  },
+  "estimatedSeconds": 50,
+  "stimulusRef": null,
+  "accessibilityText": "A question on bits. A warehouse gives each of its 300 shelf positions a different binary code, all codes having the same fixed number of bits. The smallest possible number of bits is wanted. The choices are 8, 9, 10, 38 and 300.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-wave6-physics-technical-author",
+    "aiAssisted": true,
+    "notes": "Original item. Wrong choices: one byte, the next round power of two, bits confused with bytes, one bit per item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-wave6-physics-technical-author",
+    "reviewer": "blind-reviewer-wave6-tili-phys-tech-run8",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-phys-tech-run8",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "2^8=256 < 300 <= 512=2^9, so 9 bits is the smallest number that works. 8 bits is too few. 10 bits works but is not the smallest, and 38 and 300 are nonsense distractors. [A second, separate blind solve (blind-reviewer-wave6-tili-phys-tech-run9) reached the same answer: 2^8=256<300<=512=2^9, so 9 bits is the minimum. 8 is too few, 10 works but is not smallest, 38 and 300 are arbitrary.]"
+    },
+    "notes": "Awaiting a blind independent solve. The author recomputed every option and checked the key a second way before saving (see the explanation)."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "bits",
+    "binary-codes",
+    "powers-of-two"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-bio-plasmolysis-hypertonic-923",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "biology",
+  "domainSlug": "tolcf-biology",
+  "skillSlug": "tolcf-bio-cell",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A strip of onion epidermis is placed in a sodium chloride solution that is much more concentrated than the contents of its cells. After a few minutes it is examined under a microscope. What has happened to the cells?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Water has entered the cells by osmosis, and they have swollen until their membranes burst"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Sodium chloride has moved into the cells by osmosis until the concentrations are equal, with no change in cell volume"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Water has left the cells by osmosis, so the vacuole has shrunk and the membrane has pulled away from the wall"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Nothing has changed, because the cellulose cell wall does not let water through"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Water has entered the cells by osmosis, and they have become turgid, with the cell wall preventing them from bursting"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "First decide the direction of water movement. In **osmosis**, water crosses a selectively permeable membrane from the more dilute solution (more free water) to the more concentrated one. The external solution here is much more concentrated, it is **hypertonic**, so water leaves the cells.\n\nIn a plant cell most of that water comes from the large central vacuole, which shrinks. The cytoplasm and plasma membrane shrink with it, but the rigid cell wall keeps its shape, so the membrane pulls away from the wall. This is **plasmolysis**.\n\n**Check:** swelling, turgor or bursting would need water to move inwards, which happens only in a hypotonic solution such as pure water. And the wall cannot be what stops water: it is freely permeable; the selective barrier is the plasma membrane.",
+  "distractorRationale": {
+    "a": "This has the direction of osmosis reversed: water moves into a cell only when the outside is more dilute. Even then a plant cell would not burst, because its wall resists the pressure.",
+    "e": "This describes a plant cell in a hypotonic solution, such as pure water. In a solution more concentrated than the cell, water moves out, not in.",
+    "b": "Osmosis is the movement of water, not of solute. The plasma membrane does not let sodium chloride freely through, so equilibrium is approached by water leaving the cell, and the cell does shrink.",
+    "d": "The cellulose wall is fully permeable to water and dissolved ions. The barrier that matters is the plasma membrane, and water crosses it readily."
+  },
+  "estimatedSeconds": 50,
+  "stimulusRef": null,
+  "accessibilityText": "A short text question with no figure. A strip of onion epidermis is placed in a sodium chloride solution much more concentrated than the cell contents and examined after a few minutes. The question asks what has happened to the cells. The choices are: water has entered and the cells have swollen until their membranes burst; sodium chloride has moved in by osmosis until concentrations are equal, with no change in volume; water has left by osmosis, so the vacuole has shrunk and the membrane has pulled away from the wall; nothing has changed because the cellulose wall does not let water through; water has entered and the cells became turgid, the wall preventing bursting.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave8-biochem-author",
+    "aiAssisted": true,
+    "notes": "Original item. Tests the direction of osmosis in a hypertonic solution and the resulting plasmolysis of a plant cell."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave8-biochem-author",
+    "reviewer": "blind-reviewer-wave8-tolcf-biochem-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolcf-biochem-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "In a hypertonic solution water leaves the cells by osmosis; the vacuole shrinks and the plasma membrane pulls away from the wall (plasmolysis). Water entering (bursting or turgidity) is hypotonic behaviour; osmosis is movement of water, not NaCl; the cellulose wall is fully permeable. [A second, separate blind solve (blind-reviewer-wave8-tolcf-biochem-run1) reached the same answer: In a hypertonic NaCl solution, water leaves by osmosis, the vacuole shrinks and the membrane pulls away from the wall (plasmolysis). The swelling/turgor options describe a hypotonic solution, osmosis is movement of water and not salt, and the cell wall is permeable to water.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "osmosis",
+    "plasmolysis",
+    "plant-cell"
+  ]
+}

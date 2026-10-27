@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-trig-altitude-hypotenuse-511",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-trigonometry-right-triangles",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "In the triangle $ABC$ the angle at $C$ is a right angle, and $\\cos \\widehat{B} = \\dfrac{3}{5}$. The altitude from $C$ to the hypotenuse $AB$ has length $12$.\n\nWhat is the length of the hypotenuse $AB$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\dfrac{25}{2}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$15$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$20$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$25$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Express the two legs and the altitude through the hypotenuse $c = AB$, then use the given altitude.\n\n**Step 1 — the ratios.** From $\\cos \\widehat{B} = \\frac{3}{5}$ and $\\sin^{2} + \\cos^{2} = 1$, with $\\widehat{B}$ acute, $\\sin \\widehat{B} = \\frac{4}{5}$.\n\n**Step 2 — the legs.** In the right triangle, $BC = c\\cos\\widehat{B} = \\frac{3}{5}c$ and $AC = c\\sin\\widehat{B} = \\frac{4}{5}c$.\n\n**Step 3 — the altitude.** Let $H$ be the foot of the altitude. Triangle $BHC$ is right-angled at $H$, with hypotenuse $BC$ and the angle $\\widehat{B}$, so\n\n$$CH = BC \\sin\\widehat{B} = \\frac{3}{5}c \\cdot \\frac{4}{5} = \\frac{12}{25}c$$\n\n**Step 4 — use $CH = 12$.**\n\n$$\\frac{12}{25}c = 12 \\;\\Longrightarrow\\; c = 25$$\n\n**Check with areas.** The legs are $BC = 15$ and $AC = 20$, so the area is $\\frac{1}{2} \\cdot 15 \\cdot 20 = 150$. Using the hypotenuse as base: $\\frac{1}{2} \\cdot 25 \\cdot 12 = 150$. ✓",
+  "distractorRationale": {
+    "a": "This takes the altitude to be $c\\sin 2\\widehat{B} = c \\cdot \\frac{24}{25}$, using the double angle by mistake. The altitude is $c\\sin\\widehat{B}\\cos\\widehat{B}$, which is half of that, so this answer is half the true one.",
+    "b": "This treats the altitude as the leg $AC$, solving $c\\sin\\widehat{B} = 12$. The altitude to the hypotenuse is shorter than either leg; here $AC = 20$.",
+    "c": "This treats the altitude as the leg $BC$, solving $c\\cos\\widehat{B} = 12$. The altitude is not a side of the triangle; here $BC = 15$, and the altitude is $BC\\sin\\widehat{B} = 12$."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "In triangle A B C the angle at C is a right angle, and the cosine of angle B is 3 fifths. The altitude from C to the hypotenuse A B has length 12. The question asks for the length of the hypotenuse A B. No figure is shown. The choices are: 25 over 2; 15; 20; 25.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. It tests expressing the legs and the altitude to the hypotenuse of a right triangle through one angle's sine and cosine."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-math-author",
+    "reviewer": "blind-reviewer-wave8-bocug-math-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-bocug-math-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "cos B = BC/AB = 3/5 gives sides 3k,4k,5k; altitude = (3k*4k)/(5k)=12k/5=12 so k=5 and AB=25. 15 and 20 are the legs; 25/2 halves the hypotenuse. [A second, separate blind solve (blind-reviewer-wave8-bocug-math-run1) reached the same answer: BC=(3/5)AB and AC=(4/5)AB. The altitude is AC*BC/AB=(12/25)AB=12, so AB=25. 15 and 20 are the legs, and 25/2 inverts the ratio.]"
+    },
+    "notes": "Author's uniqueness check: the altitude equals (12/25) times the hypotenuse for this angle, so AB = 25 exactly, with legs 15 and 20; the area check (150 both ways) confirms it. The distractors confuse the altitude with a leg or with c sin 2B. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "right-triangle",
+    "altitude",
+    "sine-cosine"
+  ]
+}

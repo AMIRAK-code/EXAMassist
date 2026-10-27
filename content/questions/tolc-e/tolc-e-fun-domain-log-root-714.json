@@ -1,0 +1,82 @@
+{
+  "id": "tolc-e-fun-domain-log-root-714",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the domain of $f(x) = \\dfrac{\\ln(4 - x^{2})}{\\sqrt{x+1}}$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$(-1,\\ 2)$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$(2,\\ +\\infty)$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$(-1,\\ +\\infty)$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$[-1,\\ 2)$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$(-2,\\ 2)$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "A function is defined where **every** operation in it is defined, so list each restriction and intersect them.\n\n**1. The logarithm** needs a positive argument: $4 - x^{2} > 0$, that is $x^{2} < 4$, so $-2 < x < 2$.\n\n**2. The square root** needs $x + 1 \\ge 0$.\n\n**3. The denominator** must not be zero: $\\sqrt{x+1} \\ne 0$, so $x \\ne -1$. Together with the previous line, $x + 1 > 0$, that is $x > -1$.\n\n**Intersect.** $-2 < x < 2$ and $x > -1$ gives $-1 < x < 2$, the interval $(-1, 2)$.\n\n**How to check it.** Try one point around each boundary: $x = -1$ gives a division by zero, $x = 0$ gives $\\ln 4 / 1$, defined; $x = 2$ gives $\\ln 0$, undefined; $x = -1.5$ gives the square root of a negative number.",
+  "distractorRationale": {
+    "d": "Requires only $x+1 \\ge 0$, the condition for a square root alone. Here the root is in the denominator, so it must also be non-zero, which excludes $x=-1$.",
+    "e": "Applies the condition for the logarithm and forgets the square root, which needs $x+1>0$. At $x=-1.5$ the root is of a negative number.",
+    "c": "Applies the condition for the root and the denominator and forgets the logarithm, whose argument $4-x^{2}$ must be positive. At $x=3$ it is $-5$.",
+    "b": "Solves $4 - x^{2} > 0$ with the inequality the wrong way round, getting $x^{2} > 4$, that is $x<-2$ or $x>2$; intersecting with $x>-1$ then leaves $x>2$. In fact $x^{2}<4$ is needed, and at $x=3$ the argument $4-9=-5$ is negative."
+  },
+  "estimatedSeconds": 130,
+  "stimulusRef": null,
+  "accessibilityText": "The question asks for the domain of the function f of x, a fraction whose numerator is the natural logarithm of 4 minus x squared and whose denominator is the square root of x plus 1. The five choices are intervals: the open interval from negative 1 to 2; from negative 1 included to 2 excluded; the open interval from negative 2 to 2; the open interval from negative 1 to infinity; and the open interval from 2 to infinity.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-tolc-e-mathematics-author",
+    "aiAssisted": true,
+    "notes": "Original item. Combines three restrictions; each distractor omits or reverses exactly one of them."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-tolc-e-mathematics-author",
+    "reviewer": "blind-reviewer-wave6-tolce-math-run12",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolce-math-run12",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The log needs 4-x^2>0, so -2<x<2. The root in the denominator needs x+1>0 (strict, since the denominator cannot be zero). Together these give (-1,2). D includes -1, where the denominator is zero. E ignores the root, and C ignores the log. [A second, separate blind solve (blind-reviewer-wave6-tolce-math-run13) reached the same answer: The log needs 4-x^2>0, so -2<x<2. The root in the denominator needs x+1>0, so x>-1. Together that is (-1,2). D wrongly includes x=-1, where the denominator is 0. E ignores the root and C ignores the log.]"
+    },
+    "notes": "Author check: the key was computed and then confirmed a second way (see the check in the explanation); each wrong choice was tried against the stem and fails for the reason given in its distractor note. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "domain",
+    "logarithm",
+    "square-root"
+  ]
+}

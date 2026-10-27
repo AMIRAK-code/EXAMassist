@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-bio-energy-food-chain-813",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "biology",
+  "domainSlug": "tolcf-biology",
+  "skillSlug": "tolcf-bio-ecology",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "In a meadow in the Po valley there is a food chain: grass, then grasshopper, then frog, then heron. Assume that each trophic level passes on 10% of the energy it receives to the next level. If the grass captures 50,000 kJ, how much energy reaches the frog?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "45,000 kJ"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "500 kJ"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "40,500 kJ"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "50 kJ"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "5,000 kJ"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Count the transfers first. Grass is the first level, the grasshopper the second and the frog the third, so there are two transfers between the grass and the frog. Each transfer passes on 10%, that is one tenth.\n\n- Grass to grasshopper: $50{,}000 \\div 10 = 5{,}000$ kJ.\n- Grasshopper to frog: $5{,}000 \\div 10 = 500$ kJ.\n\nCheck: $50{,}000 \\times 0.1 \\times 0.1 = 500$. Each wrong choice comes from miscounting the transfers or from reading \"passes on 10%\" as \"loses 10%\".",
+  "distractorRationale": {
+    "d": "This is the energy that reaches the heron. It counts one transfer too many.",
+    "e": "This is the energy that reaches the grasshopper. It counts one transfer too few, because the frog is two steps after the grass.",
+    "c": "This reads 10% as the amount lost at each step, so 90% is passed on twice: $50{,}000 \\times 0.9 \\times 0.9 = 40{,}500$ kJ.",
+    "a": "This reads 10% as the amount lost and applies it only once ($50{,}000 \\times 0.9 = 45{,}000$ kJ), so it makes both mistakes: the wrong fraction and one transfer too few."
+  },
+  "estimatedSeconds": 45,
+  "stimulusRef": null,
+  "accessibilityText": "A short text question with no figure. A food chain of four levels reads grass, grasshopper, frog, heron. Each level passes on ten percent of the energy it receives to the next. The grass captures fifty thousand kilojoules and the question asks how much reaches the frog. The five choices are 45,000, 500, 40,500, 50 and 5,000 kilojoules.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item on the ten percent rule. The distractors are two miscounts of trophic steps and two readings of 10% as the fraction lost."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-bio-run17",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-bio-run17",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Grass 50,000 kJ, grasshopper 10% = 5,000 kJ, frog 10% = 500 kJ. 5,000 is the grasshopper level, 50 is the heron level, and 45,000 and 40,500 come from subtracting 10% instead of keeping it. [A second, separate blind solve (blind-reviewer-wave6-tolcf-bio-run19) reached the same answer: Energy falls to 10% at each step: grass 50,000, grasshopper 5,000, frog 500 kJ. The 5,000 kJ option is the grasshopper and 50 kJ is the heron. The 45,000 and 40,500 options come from subtracting 10% instead of keeping 10%.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "energy-flow",
+    "trophic-levels",
+    "food-chain"
+  ]
+}

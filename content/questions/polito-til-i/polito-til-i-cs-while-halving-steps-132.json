@@ -1,0 +1,83 @@
+{
+  "id": "polito-til-i-cs-while-halving-steps-132",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "technical-knowledge",
+  "domainSlug": "tili-computer-science",
+  "skillSlug": "tili-cs-control-flow",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In the Python program below, `%` gives the remainder after division and `//` is integer division (so `7 // 2` is 3).\n\n```\nn = 20\nsteps = 0\nwhile n > 1:\n    if n % 2 == 0:\n        n = n // 2\n    else:\n        n = n - 1\n    steps = steps + 1\nprint(steps)\n```\n\nWhat does it print?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "1"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "4"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "5"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "6"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "19"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Trace the loop, testing the condition `n > 1` before every pass. The variable `steps` counts the passes.\n\n| pass | n before | n even? | n after | steps |\n| --- | --- | --- | --- | --- |\n| 1 | 20 | yes | 10 | 1 |\n| 2 | 10 | yes | 5 | 2 |\n| 3 | 5 | no | 4 | 3 |\n| 4 | 4 | yes | 2 | 4 |\n| 5 | 2 | yes | 1 | 5 |\n\nNow `n` is 1, the test `n > 1` fails, and the loop ends. The program prints `5`.\n\n**Check.** The loop prints the number of passes, not the last value of `n`. Sorting the passes by branch gives the same total: passes 1, 2, 4 and 5 halve an even number, and pass 3 subtracts 1 from the odd number 5. That is 4 + 1 = 5 passes.",
+  "distractorRationale": {
+    "a": "Reports the final value of `n`, which is 1. The last line prints `steps`, the number of passes made by the loop, not the value that `n` ends with.",
+    "b": "Counts only the four halvings (passes 1, 2, 4 and 5) and leaves out the subtraction pass; it is also the total if the loop is stopped when `n` reaches 2. The variable `steps` goes up on every pass, whichever branch runs, and the pass that turns 2 into 1 still runs because 2 is greater than 1.",
+    "d": "Runs one pass too many, as if the test were `n >= 1`, or counts the six numbers in the sequence 20, 10, 5, 4, 2, 1 instead of the five passes between them. When `n` reaches 1 the test `n > 1` is false and the loop stops at once.",
+    "e": "Assumes `n` falls by 1 on every pass, as in the else branch, ignoring the halving. Going from 20 down to 1 in steps of 1 would take 19 passes, but the even values are halved, which is much faster."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "A Python tracing question with a while loop. The program sets n to 20 and steps to 0. While n is greater than 1, it checks whether n is even: if so it replaces n with n integer-divided by 2, and if not it subtracts 1 from n. After either branch it adds 1 to steps. At the end it prints steps. The percent sign gives a remainder and a double slash is integer division. The value printed is wanted. The choices are 1, 4, 5, 6 and 19.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-wave6-physics-technical-author",
+    "aiAssisted": true,
+    "notes": "Original item. Trace is 20, 10, 5, 4, 2, 1 in five passes. Wrong choices: final n printed, halvings only or loop stopped early, loop run once too often, and n assumed to fall by 1 each pass."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-wave6-physics-technical-author",
+    "reviewer": "blind-reviewer-wave6-tili-phys-tech-run8",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-phys-tech-run8",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "20->10->5->4->2->1 takes 5 steps, and the loop stops when n=1. Answers of 4 or 6 come from off-by-one errors, and none of the other options can be defended. [A second, separate blind solve (blind-reviewer-wave6-tili-phys-tech-run9) reached the same answer: 20->10->5->4->2->1, five iterations, then loop exits since n=1 is not >1. Prints 5. 4 or 6 are off-by-one errors; 19 is subtract-only; 1 is nonsense.]"
+    },
+    "notes": "Awaiting a blind independent solve. The author recomputed every option and checked the key a second way before saving (see the explanation)."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "while-loop",
+    "tracing",
+    "integer-division",
+    "python"
+  ]
+}

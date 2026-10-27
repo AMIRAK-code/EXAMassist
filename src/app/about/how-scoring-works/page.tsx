@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { PAGE_DATES, longDate } from '@/lib/content/page-dates';
 import type { Metadata } from 'next';
 import { EXAM_CONFIGS, getHubForConfig } from '@/lib/exams/registry';
 import { SITE, absoluteUrl, siteUrl } from '@/lib/site';
@@ -20,10 +21,10 @@ const DESCRIPTION =
   'What Examer reports after a practice session — raw marks, accuracy by topic and pacing — and why it reports no scaled score, no percentile and no admission estimate for any exam, with the per-exam rules for correct, wrong and omitted answers.';
 
 /** Real dates: written on 2026-09-22; revised on 2026-09-24 to add the accuracy-by-topic illustration. */
-const PUBLISHED = '2026-09-22';
-const UPDATED = '2026-10-23';
-const PUBLISHED_LABEL = '22 September 2026';
-const UPDATED_LABEL = '23 October 2026';
+const PUBLISHED = PAGE_DATES.howScoringWorks.published;
+const UPDATED = PAGE_DATES.howScoringWorks.updated;
+const PUBLISHED_LABEL = longDate(PUBLISHED);
+const UPDATED_LABEL = longDate(UPDATED);
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -253,10 +254,8 @@ export default function HowScoringWorksPage() {
                 Bocconi publishes its scoring outright: a correct answer scores +1, an omitted answer
                 scores 0, and a wrong answer costs 0.2 points — 0.33 points on critical-thinking
                 items presented with only three options. The penalty belongs to the item, not to the
-                exam, which is why the table below records the exam-level rule. On the bachelor form
-                our engine applies the heavier penalty to every three-option critical-thinking item.
-                On the law form Bocconi does not say whether the rule reaches its “logic and critical
-                thinking” area, so there we score every wrong answer at 0.2.
+                exam, which is why the table below records the exam-level rule and our engine applies
+                the heavier penalty to the items that carry it.
               </p>
               <p>
                 Two consequences follow, and both are practical rather than theoretical. First,
@@ -271,11 +270,6 @@ export default function HowScoringWorksPage() {
                 selection process”. That is an eligibility floor, not a pass mark and not a target:
                 admission is decided by a competitive ranking that weights the test 55% and
                 high-school GPA 45%, and no cut-off is published for any programme or round.
-              </p>
-              <p>
-                The master’s form of the test, for Master of Science and MA applicants, is scored
-                the same way with a heavier penalty, 0.25 for a wrong answer, and a lower floor: a
-                total lower than 15 out of 50 is not considered.
               </p>
             </div>
           </Card>
@@ -368,12 +362,10 @@ export default function HowScoringWorksPage() {
           </div>
 
           <p className="mt-3 text-sm text-ink-muted">
-            One exception the table cannot hold: on the bachelor form of the Bocconi test,
-            critical-thinking items offered with three answer options carry a heavier penalty of 0.33
-            points instead of 0.2, and we apply it. Bocconi does not say whether the law form’s
-            “logic and critical thinking” area follows the same rule, so we score it at 0.2. The master’s form gives its penalty as 0.25 or 0.33 without
-            saying which items carry 0.33, so we score every wrong answer there at 0.25. Those
-            penalties attach to individual items, so the column above shows the exam-level rule.
+            One exception the table cannot hold: on both Bocconi variants, critical-thinking items
+            offered with three answer options carry a heavier penalty of 0.33 points instead of 0.2.
+            That penalty attaches to the individual item, so the column above shows the exam-level
+            rule.
           </p>
         </section>
 

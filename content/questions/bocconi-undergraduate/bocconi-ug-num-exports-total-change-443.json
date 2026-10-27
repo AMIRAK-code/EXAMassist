@@ -1,0 +1,79 @@
+{
+  "id": "bocconi-ug-num-exports-total-change-443",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-numerical-reasoning",
+  "skillSlug": "numerical-reasoning-hand-calculation",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "By what percentage did the total exports of the Calvenza region change between 2024 and 2025?",
+  "instructionsMd": "Use only the figures in the table. No calculator.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "An increase of about 7.6 per cent"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "An increase of 8.2 per cent"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "An increase of 10 per cent"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "An increase of 19.2 per cent"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The four sectors make up all of the region's exports, so the total change is the sum of the four changes **in euros**, divided by the 2024 total. The percentages cannot simply be averaged, because the sectors are of different sizes.\n\n**Step 1: the 2024 total.** $700 + 300 + 500 + 500 = 2{,}000$ million euros.\n\n**Step 2: each sector's change in euros.**\n\n$$12\\% \\text{ of } 700 = 84 \\qquad 30\\% \\text{ of } 300 = 90$$\n\n$$-22\\% \\text{ of } 500 = -110 \\qquad 20\\% \\text{ of } 500 = 100$$\n\n**Step 3: the total change.** $84 + 90 - 110 + 100 = 164$ million euros.\n\n**Step 4: as a percentage of the 2024 total.** $\\frac{164}{2{,}000} = 0.082$, an increase of **8.2 per cent**.\n\n**How to check the answer.** The 2025 total is $784 + 390 + 390 + 600 = 2{,}164$ million euros, and $2{,}000 \\times 1.082 = 2{,}164$. The two routes agree.\n\n**Why the simple average is wrong.** Averaging the four percentages gives $\\frac{12 + 30 - 22 + 20}{4} = 10$ per cent, which would be right only if all four sectors were the same size. Here Food and drink, the fastest-growing sector, is also the smallest, so the plain average overstates growth. The total's percentage change is a **weighted** average of the sectors' changes, each weighted by its share of 2024 exports.",
+  "distractorRationale": {
+    "a": "This divides the 164 million euro increase by the 2025 total of 2,164 million instead of the 2024 total of 2,000 million. A percentage change is measured against the starting value, so the correct denominator is the 2024 figure.",
+    "c": "This is the plain average of the four percentage changes, which treats a 300 million euro sector as if it counted as much as a 700 million euro one. The total's change is a weighted average, and the weights here pull it down to 8.2 per cent.",
+    "d": "This adds the Textiles change as a gain instead of a loss: 84 + 90 + 110 + 100 = 384 million euros, and 384 out of 2,000 is 19.2 per cent. The minus sign on the Textiles row turns a 110 million euro fall into a 220 million euro error."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": {
+    "id": "bocconi-ug-stim-calvenza-exports-430",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying table of exports by sector for the Calvenza region. It asks by what percentage the region's total exports changed between 2024 and 2025. The four options are increases of about 7.6 per cent, 8.2 per cent, 10 per cent and 19.2 per cent.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-verbal-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item written against the original table bocconi-ug-stim-calvenza-exports-430. It tests that the percentage change of a total is a weighted, not a simple, average of the parts' changes. Each distractor is the result of one named slip: the wrong denominator, the unweighted average, and a lost minus sign."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-bocconi-verbal-logic-author",
+    "reviewer": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Total 2024 = 2000 and total 2025 = 784 + 390 + 390 + 600 = 2164, an increase of 164/2000 = 8.2%. 10% is the simple average of the four percentages, a trap. [A second, separate blind solve (blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run1) reached the same answer: 2024 total = 2000. Net change = 84 + 90 - 110 + 100 = +164, which is 164/2000 = 8.2%. 10% is the unweighted mean of the four percentages. 19.2% and 7.6% do not match any correct weighting.]"
+    },
+    "notes": "Author's uniqueness check: total change 164 on a base of 2,000 is exactly 8.2 per cent. A read-only script reproduced every figure: 164 divided by 2,164 is 7.58 per cent, the plain average of the rates is 10 per cent, and ignoring the Textiles sign gives 19.2 per cent. The four values are well separated, so no rounding makes two options coincide. Solved twice, the second time from the stem and table alone."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "table-calvenza-exports",
+    "weighted-average",
+    "percentage-change"
+  ]
+}

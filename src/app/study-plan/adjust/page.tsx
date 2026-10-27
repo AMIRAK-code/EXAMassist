@@ -57,15 +57,15 @@ export default async function AdjustPlanPage({ searchParams }: { searchParams: P
   const config = getExamConfig(one(query.exam) ?? '');
   if (!config) redirect('/study-plan');
   const db = getDb();
-  let plan = activePlan(db, user.id, config.examKey);
+  let plan = (await activePlan(db, user.id, config.examKey));
   if (!plan) redirect(`/study-plan?exam=${encodeURIComponent(config.examKey)}&notice=no-plan`);
-  if (recordCompletions(db, user.id, plan) > 0) plan = activePlan(db, user.id, config.examKey)!;
+  if ((await recordCompletions(db, user.id, plan)) > 0) plan = (await activePlan(db, user.id, config.examKey))!;
 
   // Inputs: what the learner asked to preview, else the plan's own, with the
   // exam date as it is now (it may have changed since the plan was made).
   const weeklyMinutes = parseWeeklyMinutes(one(query.minutes)) ?? plan.weeklyMinutes;
   const askedDate = one(query.date);
-  const current = examDateFor(db, user.id, config.examKey).examDate;
+  const current = (await examDateFor(db, user.id, config.examKey)).examDate;
   const parsed = parsePlanDate(askedDate !== undefined ? askedDate : current);
   const examDate = parsed === 'invalid' ? null : parsed;
   const dateNote =
@@ -75,7 +75,7 @@ export default async function AdjustPlanPage({ searchParams }: { searchParams: P
         : `Your exam date, ${formatDate(current!)}, has passed, so this preview uses none.`
       : null;
 
-  const { preview, digest } = planAdjustment(db, user.id, plan, { weeklyMinutes, examDate });
+  const { preview, digest } = (await planAdjustment(db, user.id, plan, { weeklyMinutes, examDate }));
   const { moves, removed, added } = pairMoves(preview.removed, preview.added);
   const carried = [...new Set(preview.missed.filter((s) => s.kind === 'new' || s.kind === 'revision').map((s) => sessionLabel(config, s)))];
   const inputsChanged = weeklyMinutes !== plan.weeklyMinutes || examDate !== plan.examDate;

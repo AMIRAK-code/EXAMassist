@@ -1,41 +1,32 @@
 import type { ExamConfig } from '@/lib/assessment/types';
-import { sectionedBlueprints, type SectionSpec } from './_sectioned';
+import { sectionedBlueprints, type SectionSpec } from '../sectioned-blueprints';
 import {
   TOLC_NO_CALCULATOR,
   TOLC_REGULATION_2026,
-  TOLC_RULES_PAGE,
   TOLC_SCORING_NOTES,
   TOLC_UNVERIFIED,
   tolcSectionNavigation,
-} from './_tolc';
+} from '../tolc-rules';
 
 /**
- * CISIA TOLC-E - the TOLC for Economics, Business and Statistics.
+ * CISIA TOLC-E, 2026.
  *
- * Added for the University of Turin's SAA School of Management, whose
- * Italian-taught business bachelor's programmes (for example Economia
- * aziendale) admit through the TOLC-E. It is also accepted by many other
- * Italian universities.
- *
- * DRAFT. Nothing in this file has been verified first-hand: cisiaonline.it
- * and unito.it were unreachable from the build environment, so the structure,
- * timing, scoring and syllabus below are drafted from CISIA's published
- * format as the author understood it. The config is therefore registered in
- * `DRAFT_EXAM_CONFIGS`, which the product never serves, and every structural
- * fact is listed in `unverified`. It moves to `EXAM_CONFIGS` only after each
- * fact is re-read against the sources and recorded in docs/research/tolc-e.md.
+ * The TOLC used by many Italian universities for admission to economics,
+ * business and statistics degrees. Structure and scoring read first-hand on
+ * 29 September 2026 from CISIA's TOLC-E structure page (the table parsed
+ * directly from its HTML) and the TOLC 2026 regulation; the research record is
+ * docs/research/cisia-tolc.md.
  *
  * Distinctive behaviours encoded:
- *  - three consecutive sections, 30 minutes each, no return to a closed one;
- *  - five options per question, one correct; +1 / 0 / -0.25;
- *  - no national pass mark: each university sets its own use of the score;
- *  - a separate English section, scored without penalty, not modelled here.
+ *  - three consecutive sections, thirty minutes each: Logic 13, Verbal
+ *    comprehension 10, Mathematics 13 - 36 questions, 90 minutes;
+ *  - five options, one correct; +1 / 0 / -0.25;
+ *  - NO national pass mark: each university sets its own;
+ *  - the separately scored, unpenalised 30-question English section is not modelled.
  */
 
-const STRUCTURE_PAGE = 'https://www.cisiaonline.it/en/tolc-e/structure-and-syllabus';
-const UNITO_ADMISSIONS =
-  'https://www.unito.it/didattica/iscrizioni/corsi-di-laurea-triennali-ad-accesso-programmato/iscrizione-ai-corsi-di-0';
-const UNVERIFIED_ON = 'not yet verified';
+const STRUCTURE_PAGE = 'https://www.cisiaonline.it/en/tolc/tolc-e/structure-and-syllabus';
+const navigation = tolcSectionNavigation(STRUCTURE_PAGE);
 
 const SECTIONS: SectionSpec[] = [
   { key: 'logic', name: 'Logic', questions: 13, minutes: 30, domains: ['tolce-logic'] },
@@ -45,7 +36,7 @@ const SECTIONS: SectionSpec[] = [
 
 const skill = (slug: string, name: string, description: string) => ({ slug, name, description });
 
-const sectionConfig = (spec: SectionSpec, order: number, notes: string[]) => ({
+const section = (spec: SectionSpec, order: number, notes: string[]) => ({
   key: spec.key,
   name: spec.name,
   order,
@@ -53,41 +44,42 @@ const sectionConfig = (spec: SectionSpec, order: number, notes: string[]) => ({
   officialTimeMinutes: spec.minutes,
   calculator: 'none' as const,
   calculatorNote: TOLC_NO_CALCULATOR,
-  navigation: tolcSectionNavigation(STRUCTURE_PAGE),
+  navigation,
   responseTypes: ['single_select' as const],
   notes,
 });
 
+const APTITUDE =
+  'CISIA: "The Logic and Verbal comprehension questions seek to test in particular the candidate’s aptitude rather than the skills acquired in secondary school. Therefore, they do not require any specific preparation." CISIA publishes no topic list for this section, so the skills below are our editorial taxonomy for organising practice, not an official breakdown.';
+
 export const tolcEConfig: ExamConfig = {
   examKey: 'tolc-e',
-  version: '2026.10-draft',
-  name: 'CISIA TOLC-E (Economics and Business)',
+  version: '2026.09',
+  name: 'CISIA TOLC-E (Economics)',
   shortName: 'TOLC-E',
   publisher: 'CISIA',
   versionLabel:
-    'TOLC-E as used for admission to Italian-taught economics and business bachelor’s programmes, including those of the University of Turin’s SAA School of Management, a.y. 2026/27. DRAFT: structure, timing and scoring not yet verified against CISIA’s published rules.',
-  admissionsCycle: 'Academic year 2026/27 (draft; to be confirmed against the TOLC 2026 regulation)',
-  verifiedOn: UNVERIFIED_ON,
+    'TOLC-E as delivered in 2026. Structure verified from CISIA’s TOLC-E structure page; scoring, answer format and conduct rules from the Regolamento TOLC 2026.',
+  admissionsCycle: 'Calendar year 2026 (CISIA announces changes to TOLC structure by 31 December each year)',
+  verifiedOn: '2026-09-29',
   audience: ['undergraduate'],
   summary:
-    'CISIA’s online test for economics, business and statistics degrees, taken at a university (TOLC@UNI) or from home under remote supervision (TOLC@CASA). It is 36 questions in three consecutive, separately timed sections: Logic 13 questions in 30 minutes, Verbal comprehension 10 in 30, Mathematics 13 in 30. Each question has five options, one correct; a correct answer scores 1, a blank 0 and a wrong answer -0.25. A 30-question English section follows and is scored separately. CISIA sets no pass mark: each university decides how it uses the score. Draft summary, not yet verified against CISIA’s published rules.',
+    'The TOLC-E is the CISIA online test that many Italian universities use for admission to economics, business and statistics degrees. It has three consecutive sections, each with its own 30-minute clock: Logic 13 questions, Verbal comprehension 10, Mathematics 13 - 36 questions in 90 minutes - followed by a separately scored 30-question English section. Each question has five options, one correct; a correct answer scores 1, a blank 0 and a wrong answer -0.25. There is no national pass mark: each university decides how to use the result and sets its own minimum. It can be taken at a university (TOLC@UNI) or from home under remote proctoring (TOLC@CASA), at most once per calendar month.',
 
   sources: [
-    { label: 'TOLC 2026 regulation (Regolamento TOLC 2026)', url: TOLC_REGULATION_2026, publisher: 'CISIA', verifiedOn: UNVERIFIED_ON },
-    { label: 'TOLC rules page', url: TOLC_RULES_PAGE, publisher: 'CISIA', verifiedOn: UNVERIFIED_ON },
-    { label: 'TOLC-E structure and syllabus', url: STRUCTURE_PAGE, publisher: 'CISIA', verifiedOn: UNVERIFIED_ON },
+    { label: 'TOLC-E structure and syllabus', url: STRUCTURE_PAGE, publisher: 'CISIA', verifiedOn: '2026-09-29' },
     {
-      label: 'University of Turin: bachelor’s programmes admitting through the SAT or a TOLC, a.y. 2026/27',
-      url: UNITO_ADMISSIONS,
-      publisher: 'Università degli Studi di Torino',
-      verifiedOn: UNVERIFIED_ON,
+      label: 'Regolamento TOLC 2026 (answer format, scoring, conduct, attempts, validity)',
+      url: TOLC_REGULATION_2026,
+      publisher: 'CISIA',
+      verifiedOn: '2026-09-29',
     },
   ],
 
   sections: [
-    sectionConfig(SECTIONS[0], 0, ['Sequences, deductions and short reasoning problems that need no prior knowledge.']),
-    sectionConfig(SECTIONS[1], 1, ['Short texts, each followed by questions answered only from what the text says or implies.']),
-    sectionConfig(SECTIONS[2], 2, ['School mathematics: sets, arithmetic and algebra, geometry, functions and graphs, probability and statistics.']),
+    section(SECTIONS[0], 0, ['Logic: 13 questions in 30 minutes (CISIA structure table).', APTITUDE]),
+    section(SECTIONS[1], 1, ['Verbal comprehension: 10 questions in 30 minutes (CISIA structure table).', APTITUDE]),
+    section(SECTIONS[2], 2, ['Mathematics: 13 questions in 30 minutes (CISIA structure table).']),
   ],
 
   domains: [
@@ -95,43 +87,45 @@ export const tolcEConfig: ExamConfig = {
       slug: 'tolce-logic',
       name: 'Logic',
       sectionKey: 'logic',
-      description: 'Reasoning from given information: completing sequences, drawing valid conclusions and solving short problems.',
+      description: 'Reasoning aptitude. CISIA publishes no topic list for this section; the skills are our editorial grouping.',
       officialShare: '13 of 36 questions',
       source: STRUCTURE_PAGE,
       skills: [
-        skill('tolce-logic-sequences', 'Sequences', 'Finding the rule behind a sequence of numbers, letters or words and continuing it.'),
-        skill('tolce-logic-deduction', 'Deduction', 'What must follow from premises, including statements with "all", "some" and "none", and their negations.'),
-        skill('tolce-logic-arrangements', 'Orders and arrangements', 'Placing people or objects in an order that satisfies every condition.'),
-        skill('tolce-logic-problems', 'Reasoning problems', 'Short word problems solved by reasoning rather than formal calculation.'),
+        skill('tolce-logic-deduction', 'Deduction', 'What must follow from given statements, including conditions and quantifiers.'),
+        skill('tolce-logic-sequences', 'Sequences and patterns', 'Numeric, letter and figure sequences.'),
+        skill('tolce-logic-problems', 'Logic problems', 'Arrangements and short puzzles solved by reasoning.'),
+        skill('tolce-logic-arguments', 'Arguments', 'Assumptions, conclusions and what strengthens or weakens a claim.'),
       ],
     },
     {
       slug: 'tolce-verbal',
       name: 'Verbal comprehension',
       sectionKey: 'verbal-comprehension',
-      description: 'Understanding short texts on economic, social and general topics, answering only from the text.',
+      description: 'Reading aptitude. CISIA publishes no topic list for this section; the skills are our editorial grouping.',
       officialShare: '10 of 36 questions',
       source: STRUCTURE_PAGE,
       skills: [
-        skill('tolce-verbal-stated', 'What the text states', 'Locating information the text gives explicitly.'),
-        skill('tolce-verbal-inferred', 'What the text implies', 'The conclusion the text supports, and rejecting ones it does not.'),
-        skill('tolce-verbal-purpose', 'Purpose and structure', 'The aim of the text and the role of a sentence or paragraph in it.'),
-        skill('tolce-verbal-vocabulary', 'Meaning in context', 'What a word or phrase means as the text uses it.'),
+        skill('tolce-verbal-stated', 'What the text states', 'Information stated in a passage.'),
+        skill('tolce-verbal-inferred', 'What the text implies', 'The conclusion a passage supports.'),
+        skill('tolce-verbal-meaning', 'Meaning in context', 'The meaning of a word or phrase as used in the passage.'),
+        skill('tolce-verbal-purpose', 'Purpose and structure', 'The aim of a passage and the role of its parts.'),
       ],
     },
     {
       slug: 'tolce-mathematics',
       name: 'Mathematics',
       sectionKey: 'mathematics',
-      description: 'The school mathematics the TOLC-E syllabus lists.',
+      description: 'The topics of CISIA’s TOLC-E Mathematics syllabus.',
       officialShare: '13 of 36 questions',
       source: STRUCTURE_PAGE,
       skills: [
-        skill('tolce-math-sets-logic', 'Sets and elementary logic', 'Sets, their operations, and logical connectives.'),
-        skill('tolce-math-arithmetic-algebra', 'Arithmetic and algebra', 'Fractions, percentages, powers and radicals; polynomials; equations, inequalities and systems.'),
-        skill('tolce-math-geometry', 'Geometry', 'Plane figures, lengths, areas and volumes; points and lines in the Cartesian plane.'),
-        skill('tolce-math-functions', 'Functions and graphs', 'Linear, quadratic, exponential and logarithmic functions and reading their graphs.'),
-        skill('tolce-math-probability-statistics', 'Probability and statistics', 'Elementary probability, averages and reading data.'),
+        skill('tolce-math-numbers', 'Numbers and percentages', 'Properties of and operations on integers, rationals and reals; percentages; absolute value.'),
+        skill('tolce-math-powers-exp-log', 'Powers, roots, exponentials and logarithms', 'Powers and roots and their properties; exponentials and logarithms and their properties.'),
+        skill('tolce-math-polynomials', 'Polynomials and rational expressions', 'Operations, factorisation, division with remainder, identities; fractional rational expressions.'),
+        skill('tolce-math-equations', 'Equations, inequalities and systems', 'First- and second-degree equations and inequalities; fractional, irrational, exponential and logarithmic ones; simple linear systems.'),
+        skill('tolce-math-analytic-geometry', 'Analytic geometry', 'Cartesian coordinates, lines and the elementary conics; elementary analytic geometry problems.'),
+        skill('tolce-math-geometry', 'Plane and solid geometry', 'Segments, polygons, circles, perimeters and areas; significant solids, surfaces and volumes.'),
+        skill('tolce-math-functions', 'Elementary functions', 'Graphs and domains of elementary functions; symbolic mathematics.'),
       ],
     },
   ],
@@ -139,15 +133,15 @@ export const tolcEConfig: ExamConfig = {
   blueprints: sectionedBlueprints({
     examLabel: 'TOLC-E',
     sections: SECTIONS,
-    diagnosticPerSection: 3,
-    diagnosticSecondsPerItem: 180,
+    diagnosticPerSection: 4,
+    diagnosticSecondsPerItem: 200,
     responseTypes: ['single_select'],
     simulationFidelityNote:
-      'Follows the TOLC-E format as drafted: three sections of 30 minutes in order, 36 questions, five options per question, +1 / 0 / -0.25, no calculator, and no return to a closed section. Not yet verified against CISIA’s published rules. Our questions are original, not CISIA items, and their difficulty is our editorial judgement; moving back within the open section is allowed here, a rule CISIA does not describe; the separate English section is not included.',
-    timedFidelityNote: (section) =>
-      `The drafted length and clock of the TOLC-E ${section.name} section, with the TOLC scoring. Our questions are original and their difficulty is editorial; moving back within the section is allowed here.`,
+      'Matches the published TOLC-E: three sections in the published order - Logic 13, Verbal comprehension 10, Mathematics 13 - each with its own 30-minute clock, five options per question, +1 / 0 / -0.25, no calculator, and no return to a closed section. What differs: our questions are original, not from CISIA’s reserved database, and their difficulty is our editorial judgement; CISIA does not describe moving between questions within a section, so we let you move back inside the open section; and the separately scored 30-question English section that follows the real test is not included.',
+    timedFidelityNote: (s) =>
+      `The published length and clock of the TOLC-E ${s.name} section, with CISIA’s scoring. Our questions are original and their difficulty is editorial; moving back within the section is allowed here, a rule CISIA does not describe.`,
     diagnosticFidelityNote:
-      'A short skill check, not a predictor of a TOLC-E score. Three questions from each section, about three minutes per question, with free movement and changes allowed. Use it to find weak areas.',
+      'A short skill check, not a predictor of a TOLC-E score. It has four questions from each section at a generous pace and lets you move back and change answers. Use it to find weak areas.',
     practiceFidelityNote:
       'A study tool, not a reproduction of the exam: untimed, free navigation, and whatever section, topic and difficulty you choose.',
   }),
@@ -158,50 +152,51 @@ export const tolcEConfig: ExamConfig = {
     pointsOmitted: 0,
     multiSelectGrading: 'all_or_nothing',
     officialScale: {
-      label: 'TOLC-E score (main sections)',
+      label: 'TOLC-E absolute score, excluding English, out of 36',
       min: -9,
       max: 36,
       increment: 0.25,
-      note: 'The absolute score CISIA reports for the 36 scored questions. The minimum shown is the arithmetic floor if every question were answered wrongly; whether CISIA reports a negative score as such is unverified.',
+      note: 'CISIA reports an absolute score ("punteggio assoluto") for the three main sections: 36 questions at 1 point, with the -0.25 penalty. The minimum shown is the arithmetic floor if every question were answered wrongly; CISIA does not say whether a negative total is reported as such. The English section is reported separately on its own 0-30 scale.',
     },
     scaledEstimate: {
       enabled: false,
-      reason: 'Nothing to estimate: CISIA reports the raw penalty-adjusted score, and each university applies its own rules to it.',
+      reason:
+        'CISIA reports the absolute score itself; any transformation is done by each university with its own system, which is not national and not modelled here.',
     },
     rawProjection: {
       scoredItems: 36,
       reportFactor: 1,
       thresholds: [],
       noThresholdReason:
-        'CISIA publishes no pass mark for the TOLC-E. Each university decides how it uses the score: some rank applicants for a limited number of places, some set a minimum, and some assign extra coursework below a set score. The number that matters is in the admission notice (bando) of the programme you apply to, such as the University of Turin’s call for its SAA programmes.',
-      conditions: '36 questions in three sections of 30 minutes, 90 minutes, no calculator',
-      caveats: ['It covers the three main sections only; the separately scored English section is not included.'],
+        'CISIA sets no pass mark for the TOLC-E. Each university may transform the score, weight the three sections and set its own minimum, and the minimum often differs between programmes at the same university. Check the admission notice (bando) of the programme you are applying to, and set that number as your target.',
+      conditions: '36 questions in three separately timed sections of 30 minutes, no calculator or other aids',
+      caveats: [
+        'It covers the three main sections only. The English section is scored separately and some universities use it too.',
+        'A university that weights sections differently will turn the same answers into a different result.',
+      ],
     },
-    notes: TOLC_SCORING_NOTES,
+    notes: [...TOLC_SCORING_NOTES],
   },
 
   capabilities: {
     fullSimulation: {
-      available: false,
-      reason:
-        'The TOLC-E structure has not yet been verified against CISIA’s published rules. A simulation opens once it is.',
+      available: true,
+      note:
+        'Structure, section clocks, answer format and scoring are published by CISIA and verified. Labelled an approximation because CISIA does not describe navigation within a section, and because the separately scored English section is not included.',
     },
     adaptiveRouting: {
       available: false,
-      reason: 'The TOLC-E is not adaptive: every candidate answers a fixed number of questions per section.',
+      reason:
+        'The TOLC is not adaptive. Tests are generated from, or selected among, forms of analogous difficulty from the CISIA database (Regolamento TOLC 2026, 1.2).',
     },
     scaledScoreEstimate: {
       available: false,
-      reason: 'There is no scaled score. CISIA reports the raw penalty-adjusted score.',
+      reason: 'There is no national scaled score. Universities transform the absolute score in their own ways.',
     },
   },
 
-  unverified: [
-    'Every structural fact in this config: question counts (13 / 10 / 13), section times (30 minutes each), five options per question, the order of the sections, and the English section (30 questions, 15 minutes, no penalty).',
-    'The scoring rule (+1 / 0 / -0.25) as it applies to the TOLC-E, against the TOLC 2026 regulation.',
-    'The topic list for each section, against the official TOLC-E syllabus.',
-    'Which University of Turin and SAA programmes require the TOLC-E for 2026/27, and how each uses the score.',
-    ...TOLC_UNVERIFIED,
-  ],
+  unverified: [...TOLC_UNVERIFIED],
+  // CISIA delivers the TOLC-E in Italian; questions with a checked Italian
+  // translation are offered in Italian as well as English.
   contentLocales: ['en', 'it'],
 };

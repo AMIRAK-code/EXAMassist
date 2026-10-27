@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-alg-linear-brackets-702",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolcf-mathematics",
+  "skillSlug": "tolcf-math-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Solve $3(x-2) - 2(x-5) = 4x - 8$.",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$-\\dfrac{8}{3}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$-\\dfrac{4}{3}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$4$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$12$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\dfrac{16}{3}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Expand each bracket completely, paying attention to the signs.\n\n$$3(x-2) = 3x - 6, \\qquad -2(x-5) = -2x + 10.$$\n\nThe left side becomes $3x - 6 - 2x + 10 = x + 4$. So $x + 4 = 4x - 8$, and moving the terms gives $12 = 3x$, hence $x = 4$.\n\n**How to check it.** Substitute $x=4$: the left side is $3\\cdot 2 - 2\\cdot(-1) = 6 + 2 = 8$ and the right side is $16 - 8 = 8$ ✓.",
+  "distractorRationale": {
+    "a": "Mishandles the minus in front of the second bracket, writing $-2(x-5) = -2x - 10$. The product of two negatives is positive: $-2\\cdot(-5) = +10$.",
+    "b": "Reaches $x + 4 = 4x - 8$ correctly and then moves terms with the wrong sign, writing $4 - 8 = 3x$ instead of $4 + 8 = 3x$.",
+    "e": "Multiplies only the first term of the first bracket, writing $3(x-2) = 3x - 2$. The 3 multiplies both terms.",
+    "d": "Arrives at $3x = 12$ correctly and reports 12 without dividing by 3."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "Solve the equation: 3 times the quantity x minus 2, minus 2 times the quantity x minus 5, equals 4 x minus 8. The five choices are negative eight thirds, negative four thirds, 4, 12 and sixteen thirds.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-tolc-f-mathematics-author",
+    "aiAssisted": true,
+    "notes": "Original item. Distractors: a sign error in the second bracket, a sign error on transposing, a partly distributed factor, and a missing final division."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-tolc-f-mathematics-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-math-phys-run14",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-math-phys-run14",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "LHS 3x-6-2x+10 = x+4; x+4=4x-8 gives 3x=12, x=4. Check: 3(2)-2(-1)=8=16-8. The other values fail substitution. [A second, separate blind solve (blind-reviewer-wave6-tolcf-math-phys-run16) reached the same answer: The left side expands to 3x-6-2x+10=x+4, so x+4=4x-8 and x=4. The other values do not satisfy the equation; for example x=12 gives 16 vs 40.]"
+    },
+    "notes": "Author check: the key was computed and then confirmed a second way (see the check in the explanation); each wrong choice was tried against the stem and fails for the reason given in its distractor note. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "linear-equation",
+    "brackets"
+  ]
+}

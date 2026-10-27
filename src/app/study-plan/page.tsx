@@ -64,7 +64,7 @@ export default async function StudyPlanPage({ searchParams }: { searchParams: Pr
   const user = await requireSignedIn('/study-plan');
   const query = await searchParams;
   const db = getDb();
-  const { examKey, choices } = planningExam(db, user, query.exam, 'plan');
+  const { examKey, choices } = (await planningExam(db, user, query.exam, 'plan'));
 
   if (!examKey) {
     return (
@@ -87,10 +87,10 @@ export default async function StudyPlanPage({ searchParams }: { searchParams: Pr
   }
 
   const config = requireExamConfig(examKey);
-  let plan = activePlan(db, user.id, examKey);
+  let plan = (await activePlan(db, user.id, examKey));
   // The only write a visit makes: finished sessions complete what they satisfy.
-  if (plan && recordCompletions(db, user.id, plan) > 0) plan = activePlan(db, user.id, examKey);
-  const dates = examDateFor(db, user.id, examKey);
+  if (plan && (await recordCompletions(db, user.id, plan)) > 0) plan = (await activePlan(db, user.id, examKey));
+  const dates = (await examDateFor(db, user.id, examKey));
 
   return (
     <Container>
@@ -103,13 +103,13 @@ export default async function StudyPlanPage({ searchParams }: { searchParams: Pr
         <DateConflictCard examKey={examKey} examName={config.shortName} current={dates.examDate} earlier={dates.conflicting} returnTo="plan" />
       ) : null}
       {plan ? (
-        <StoredPlan plan={plan} sessions={planSessions(db, user.id, plan.id)} examDate={dates.examDate} configKey={examKey} />
+        <StoredPlan plan={plan} sessions={(await planSessions(db, user.id, plan.id))} examDate={dates.examDate} configKey={examKey} />
       ) : (
         <PlanSetup
           examKey={examKey}
           userId={user.id}
           canonicalDate={dates.examDate}
-          unattached={unattachedPlanDate(db, user.id)}
+          unattached={(await unattachedPlanDate(db, user.id))}
           savedMinutes={user.weeklyMinutes}
           query={query}
         />
@@ -122,7 +122,7 @@ export default async function StudyPlanPage({ searchParams }: { searchParams: Pr
 // No plan yet: inputs, and a preview of exactly what would be saved
 // ---------------------------------------------------------------------------
 
-function PlanSetup({
+async function PlanSetup({
   examKey,
   userId,
   canonicalDate,
@@ -155,7 +155,7 @@ function PlanSetup({
         ? `Your exam date, ${formatDate(fallbackDate)}, has passed, so the preview uses none.`
         : null;
 
-  const sessions = buildSessions(planInputs(db, userId, config, { startsOn: today, examDate, weeklyMinutes }));
+  const sessions = buildSessions((await planInputs(db, userId, config, { startsOn: today, examDate, weeklyMinutes })));
   const shape = planShape(today, examDate, weeklyMinutes);
   const slots = planSlots(shape);
   const counts = { new: 0, revision: 0, review: 0 };
@@ -244,7 +244,7 @@ function PlanSetup({
 // A stored plan
 // ---------------------------------------------------------------------------
 
-function StoredPlan({
+async function StoredPlan({
   plan,
   sessions,
   examDate,
@@ -264,12 +264,12 @@ function StoredPlan({
     completedBy.length === 0
       ? []
       : (
-          getDb()
+          (await getDb()
             .prepare(
               `SELECT a.id, (SELECT COUNT(*) FROM attempt_items ai WHERE ai.attempt_id = a.id AND ai.response_status = 'answered') AS answered
                  FROM attempts a WHERE a.user_id = ? AND a.id IN (${completedBy.map(() => '?').join(',')})`,
             )
-            .all(plan.userId, ...completedBy) as Array<{ id: string; answered: number }>
+            .all(plan.userId, ...completedBy)) as Array<{ id: string; answered: number }>
         ).map((row) => [row.id, row.answered] as const),
   );
   const states = sessions.map((s) => ({
@@ -288,9 +288,9 @@ function StoredPlan({
     linked.length === 0
       ? []
       : (
-          getDb()
+          (await getDb()
             .prepare(`SELECT id FROM attempts WHERE user_id = ? AND status = 'in_progress' AND id IN (${linked.map(() => '?').join(',')})`)
-            .all(plan.userId, ...linked) as Array<{ id: string }>
+            .all(plan.userId, ...linked)) as Array<{ id: string }>
         ).map((row) => row.id),
   );
 

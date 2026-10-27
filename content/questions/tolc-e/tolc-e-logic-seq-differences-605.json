@@ -1,0 +1,83 @@
+{
+  "id": "tolc-e-logic-seq-differences-605",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-sequences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A cafe counts the pastries it sells in each of its first five hours of opening: 4, 5, 7, 10, 14. The counts follow a regular pattern.\n\nIf the pattern continues, how many pastries will the cafe sell in the sixth hour?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "17"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "18"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "19"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "20"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "28"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "When a list of numbers grows slowly and irregularly, write down the differences between neighbours before trying anything cleverer.\n\nThe differences are 5 - 4 = 1, 7 - 5 = 2, 10 - 7 = 3 and 14 - 10 = 4. They form the run 1, 2, 3, 4, so the next difference is 5, and the sixth count is 14 + 5 = **19**.\n\nCheck: rebuild the whole list from the rule \"start at 4 and add 1, then 2, then 3, then 4, then 5\": 4, 5, 7, 10, 14, 19.",
+  "distractorRationale": {
+    "a": "Adds 3, reusing the increase before the last one (from 7 to 10). The increases are 1, 2, 3, 4 and each is one larger than the last, so the next increase cannot be 3.",
+    "b": "Adds 4 again, repeating the last increase. The increases keep growing by 1, so the next one is 5, not 4.",
+    "d": "Adds 6, which skips a step in the run of increases 1, 2, 3, 4. The next whole increase in the run is 5.",
+    "e": "Doubles the last count. Doubling does not fit the earlier counts: 4 to 5, 5 to 7 and 7 to 10 are nowhere near doublings."
+  },
+  "estimatedSeconds": 45,
+  "stimulusRef": null,
+  "accessibilityText": "A number sequence question in a cafe setting. The pastry counts in the first five hours are 4, 5, 7, 10 and 14, and the pattern continues. The question asks for the count in the sixth hour. The five choices are 17, 18, 19, 20 and 28.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-e-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Scenario, names and figures are invented; no published TOLC or other test item was used or adapted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-e-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolce-logic-run3",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolce-logic-run3",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The differences are 1, 2, 3, 4, so the next is 5 and 14 + 5 = 19. No other simple rule fits all five terms and gives 17, 18, 20 or 28. [A second, separate blind solve (blind-reviewer-wave6-tolce-logic-run5) reached the same answer: The differences are 1, 2, 3, 4, so the next is 5, giving 14 + 5 = 19. No other simple rule fits all five terms and leads to 17, 18, 20 or 28.]"
+    },
+    "notes": "Uniqueness check: successive differences 1, 2, 3, 4 give a next difference of 5 and a next term of 19; no other simple rule fits all five terms."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "sequences",
+    "differences",
+    "no-calculator"
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "id": "bocconi-ug-crit-loan-approval-437",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-critical-thinking",
+  "skillSlug": "critical-thinking-draw-conclusions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "An internal auditor's report on one bank branch contains two findings about the loans the branch issued in March.\n\n> 1. It is not true that every loan the branch issued in March was approved by a senior officer.\n>\n> 2. Every loan the branch issued in March for more than 50,000 euros was approved by a senior officer.\n\nIf both findings are correct, which one of the following must be true?",
+  "instructionsMd": "This item has three answer options and carries the heavier penalty for a wrong answer, so answer only if you can justify your choice from the two findings alone.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "None of the loans the branch issued in March was approved by a senior officer."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "At least one loan the branch issued in March was for 50,000 euros or less."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "None of the loans the branch issued in March was for more than 50,000 euros."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Begin with the negation, because it is the finding that guarantees something exists.\n\n1. \"It is **not** true that **every** loan was approved by a senior officer\" means that **at least one** March loan was not approved by a senior officer. It does not mean that none was. Call that loan $L$.\n2. Finding 2 says every loan above 50,000 euros was approved by a senior officer. Flip both ends: a loan that was **not** approved by a senior officer was **not** above 50,000 euros.\n3. $L$ was not approved by a senior officer, so $L$ was for 50,000 euros or less.\n\nSo at least one March loan was for 50,000 euros or less, and that must be true.\n\n**How to check the answer.** Build a small branch that satisfies both findings: one loan of 80,000 euros approved by a senior officer and one loan of 20,000 euros approved by a junior officer. Finding 1 holds, because the small loan was not approved by a senior officer, and finding 2 holds, because the only large loan was. In this branch a loan above 50,000 euros exists, and a senior officer approved something, so the other two claims are both false. The keyed claim is true here, as it must be in every such branch.\n\n**The trap in the negation.** \"Not every\" denies a universal; it is satisfied by a single exception. Reading it as \"none\" produces the claim that no loan was approved by a senior officer, and reading the exception as the whole picture produces the claim that no loan exceeded 50,000 euros.",
+  "distractorRationale": {
+    "c": "This generalises from the one exception that finding 1 guarantees. That exception must be a small loan, but other loans may be large, provided a senior officer approved them. A branch with one approved 80,000-euro loan and one unapproved 20,000-euro loan satisfies both findings and has a loan above 50,000 euros.",
+    "a": "This reads 'not every loan was approved by a senior officer' as 'no loan was approved by a senior officer'. The negation of 'every' is 'at least one is not', which leaves open that many loans, including all the large ones, were approved by a senior officer."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": "A critical thinking question with three answer options. An auditor reports two findings about the loans a bank branch issued in March: first, it is not true that every such loan was approved by a senior officer; second, every such loan for more than 50,000 euros was approved by a senior officer. The question asks which of three statements must be true. There is no figure, table or notation.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-verbal-logic-author",
+    "aiAssisted": true,
+    "notes": "Original three-option item combining the negation of a universal with a contrapositive. The two distractors are the two ways of mishandling 'not every': reading it as 'none', and treating the guaranteed exception as the whole population."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-bocconi-verbal-logic-author",
+    "reviewer": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Finding 1 means at least one March loan was not approved by a senior officer. Finding 2 means every loan over 50,000 was approved, so the unapproved loan must be for 50,000 or less. A and C are consistent with the findings but are not forced by them. [A second, separate blind solve (blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run1) reached the same answer: Finding 1 means at least one March loan was not approved by a senior officer. By finding 2 that loan cannot be over 50,000, so it was 50,000 or less. A and C are consistent with the findings but do not have to be true.]"
+    },
+    "notes": "Author's uniqueness check: finding 1 guarantees a loan not approved by a senior officer, and the contrapositive of finding 2 makes it a loan of 50,000 euros or less, so the keyed claim holds in every model. The two-loan branch in the explanation (80,000 approved by a senior officer, 20,000 not) satisfies both findings and falsifies both distractors. A read-only brute-force check over all branches of up to four loans agreed. Solved twice, the second time from the stem alone. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "three-option",
+    "quantifiers",
+    "negation",
+    "contrapositive"
+  ]
+}

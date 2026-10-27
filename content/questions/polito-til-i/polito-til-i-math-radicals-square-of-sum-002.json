@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-math-radicals-square-of-sum-002",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tili-mathematics",
+  "skillSlug": "tili-math-reals-radicals",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the value of $\\left(\\sqrt{12}+\\sqrt{3}\\right)^{2}$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "36"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$3\\sqrt{3}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "24"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "27"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "15"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "**What to notice first.** $\\sqrt{12}$ can be simplified, and then both terms are multiples of $\\sqrt{3}$: $\\sqrt{12}=\\sqrt{4\\cdot 3}=2\\sqrt{3}$.\n\n**Step 1.** $\\sqrt{12}+\\sqrt{3}=2\\sqrt{3}+\\sqrt{3}=3\\sqrt{3}$.\n\n**Step 2.** Square the result: $\\left(3\\sqrt{3}\\right)^{2}=9\\cdot3=27$.\n\n**Check by expanding instead.** $(a+b)^{2}=a^{2}+2ab+b^{2}$ gives $12+2\\sqrt{12\\cdot 3}+3=12+2\\cdot 6+3=27$. Two independent routes agree, which also guards against losing one of the three terms.",
+  "distractorRationale": {
+    "e": "This drops the middle term of the expansion, or adds the radicands as if $\\sqrt{12}+\\sqrt{3}=\\sqrt{15}$. In both cases $12+3=15$. Squaring a sum gives $a^{2}+2ab+b^{2}$, and the cross term $2\\sqrt{12}\\sqrt{3}=12$ is not zero.",
+    "c": "This keeps $a^{2}$ and $2ab$ but forgets $b^{2}$: $12+2\\sqrt{36}=12+12=24$. The expansion of a square has three terms, and the last one, $(\\sqrt{3})^{2}=3$, has been lost.",
+    "a": "This treats $\\sqrt{12}+\\sqrt{3}$ as $\\sqrt{12\\cdot3}=6$ and then squares it. Radicals are multiplied under one root, not added: the sum of two square roots is not the square root of their product.",
+    "b": "This stops after simplifying the sum to $3\\sqrt{3}$ and never squares it. The question asks for the square of that sum."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "Find the value of the square of the sum of the square root of twelve and the square root of three.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-mathematics-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item. Each wrong choice is one named error: losing the cross term, losing the last square, merging radicals by multiplication, and not squaring at the end."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-mathematics-wave6-author",
+    "reviewer": "blind-reviewer-wave7-resolve-held-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-resolve-held-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "√12 = 2√3, so the sum is 3√3 and its square is 27. Equivalently 12 + 3 + 2√36 = 15 + 12 = 27. The other choices match common slips: 15 drops the cross term, 3√3 forgets to square, and 36 and 24 are arithmetic errors. [A second, separate blind solve (blind-reviewer-wave7-resolve-held-run1) reached the same answer: √12 = 2√3, so the sum is 3√3 and its square is 27. The other options come from common mistakes: 15 is 12+3 with the cross term left out, 3√3 is the unsquared sum, and 36 and 24 match no correct working.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "radicals",
+    "squares-of-binomials"
+  ]
+}

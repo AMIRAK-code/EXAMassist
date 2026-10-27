@@ -1,0 +1,76 @@
+{
+  "id": "gre-quant-qc-lamp-percent-increase-403",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-arithmetic",
+  "skillSlug": "arith-percent",
+  "subskillSlug": null,
+  "responseType": "quantitative_comparison",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "The price of a desk lamp increased from $\\$80$ to $\\$100$.\n\n| Quantity A | Quantity B |\n| --- | --- |\n| The percent increase in the price of the lamp | $20$ |",
+  "instructionsMd": "Compare Quantity A and Quantity B and select the one statement that is true for every value consistent with the information given.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Quantity A is greater."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Quantity B is greater."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The two quantities are equal."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The relationship cannot be determined from the information given."
+    }
+  ],
+  "answerKey": {
+    "type": "quantitative_comparison",
+    "choice": "A"
+  },
+  "explanationMd": "A percent change is always measured against the **starting** value.\n\n**Step 1: the change.** The price rose by $100 - 80 = 20$ dollars.\n\n**Step 2: divide by the original price.**\n\n$$\\text{percent increase} = \\frac{20}{80} \\times 100 = 25.$$\n\nQuantity A is $25$ and Quantity B is $20$, so **Quantity A is greater**.\n\n**How to check.** Apply the answer forwards: $80$ increased by $25$ percent is $80 \\times 1.25 = 100$, the new price. Applying $20$ percent instead gives only $80 \\times 1.20 = 96$. The figure $20$ is a percent of the new price, $\\frac{20}{100}$, which is the size of the percent decrease you would need to get back from $\\$100$ to $\\$80$, not the increase.",
+  "distractorRationale": {
+    "b": "Reached by reading the ratio of new price to old price, $\\frac{100}{80} = 1.25$, as $1.25$ percent instead of as a multiplier meaning a $25$ percent increase. The multiplier $1.25$ corresponds to an increase of $25$ percent, which is more than $20$.",
+    "c": "Reached either by treating the $20$ dollar change as a $20$ percent change, or by dividing the change by the new price, $\\frac{20}{100}$, instead of by the original price. A percent increase is taken relative to where the price started, $\\$80$.",
+    "d": "Reached by thinking that a percent needs more information, such as a time period or a second price. Both the starting and ending prices are given, so the percent increase is a single fixed number."
+  },
+  "estimatedSeconds": 45,
+  "stimulusRef": null,
+  "accessibilityText": "The price of a desk lamp increased from 80 dollars to 100 dollars. Quantity A is the percent increase in the price. Quantity B is 20. Decide which quantity is greater, whether they are equal, or whether the relationship cannot be determined.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-gre-quant-author",
+    "aiAssisted": true,
+    "notes": "Original item written for wave 7. Quantity B was set to the dollar change, which is also the percent change measured from the wrong base, so the one conceptual slip lands on equality. Not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-gre-quant-author",
+    "reviewer": "blind-reviewer-wave7-gre-quant-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-gre-quant-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The percent increase is 20/80 = 25%, and 25 > 20. The obvious trap is 20% of the new price, 20/100. [A second, separate blind solve (blind-reviewer-wave7-gre-quant-run1) reached the same answer: The increase is 20/80, which is 25 percent. 25 > 20, so A is greater. The trap is dividing by the new price, 20/100 = 20, which would make C look right.]"
+    },
+    "notes": "Author solved: increase 20 dollars on a base of 80 is 25 percent, and 25 > 20, so Quantity A is greater. Check: 80 x 1.25 = 100."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "quantitative-comparison",
+    "percent-change",
+    "base-value"
+  ]
+}

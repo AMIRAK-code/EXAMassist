@@ -1,0 +1,84 @@
+{
+  "id": "tolc-i-logic-crack-one-true-214",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A hairline crack has been found in exactly one of four parts of a turbine, labelled P, Q, R and S. Four inspectors each make one statement.\n\n- Aldo: \"The crack is in P or in Q.\"\n- Bice: \"The crack is not in P.\"\n- Ciro: \"The crack is in R.\"\n- Dora: \"The crack is not in S.\"\n\nExactly one of the four statements is true. In which part is the crack?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "R"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The information is not enough to decide."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "S"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "P"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Q"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "With only four places for the crack, test each one and count how many statements it makes true.\n\n- Crack in P: Aldo true, Bice false, Ciro false, Dora true. Two true statements.\n- Crack in Q: Aldo, Bice and Dora true. Three.\n- Crack in R: Bice, Ciro and Dora true. Three.\n- Crack in S: Aldo false, Bice true, Ciro false, Dora false. Exactly one.\n\nOnly a crack in **S** leaves exactly one true statement, so that is where the crack is.\n\nA quicker route: Bice and Dora are both true unless the crack is in P or in S. If it were in P, Aldo and Dora would both be true. So it must be in S, and then only Bice is right.",
+  "distractorRationale": {
+    "d": "A crack in P makes both Aldo's and Dora's statements true, two true statements instead of one.",
+    "e": "A crack in Q makes Aldo, Bice and Dora all right, three true statements.",
+    "a": "A crack in R makes Bice, Ciro and Dora all right, three true statements.",
+    "b": "Testing all four parts shows that exactly one of them, S, gives exactly one true statement, so the information does decide."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "A logic problem. A crack is in exactly one of four turbine parts labelled P, Q, R and S. Aldo says the crack is in P or in Q. Bice says it is not in P. Ciro says it is in R. Dora says it is not in S. Exactly one of the four statements is true. The question asks where the crack is. The five choices are: R; the information is not enough to decide; S; P; Q.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-logic-author",
+    "aiAssisted": true,
+    "notes": "Tests case-checking under an \"exactly one statement is true\" constraint. The scenario and wording are original to this bank; no published TOLC or other test item was used or adapted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-logic-author",
+    "reviewer": "blind-reviewer-wave8-tolci-logic-sci-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-logic-sci-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Testing each location: P makes Aldo and Dora true (2), Q makes Aldo, Bice, Dora true, R makes Bice, Ciro, Dora true, S makes only Bice true. So the crack is in S; 'not enough information' fails because exactly one case works. [A second, separate blind solve (blind-reviewer-wave8-tolci-logic-sci-run1) reached the same answer: Count true statements per location: P gives 2 (Aldo, Dora), Q gives 3, R gives 3, S gives exactly 1 (Bice). So the crack is in S, uniquely; 'not enough information' fails.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "problems",
+    "truth-tellers",
+    "case-analysis",
+    "no-calculator"
+  ]
+}

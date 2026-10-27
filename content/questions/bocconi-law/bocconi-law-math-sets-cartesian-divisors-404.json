@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-law-math-sets-cartesian-divisors-404",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-mathematics",
+  "skillSlug": "law-math-sets",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Let $A$ be the set of the positive divisors of $12$ and let $B$ be the set of the positive divisors of $18$. How many elements does the Cartesian product $A \\times (A \\cap B)$ contain?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "10"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "16"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "24"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "36"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The size of a Cartesian product is the **product** of the sizes of the two factors, because each element of the first set is paired with each element of the second. So find the two sets first.\n\n**List the divisors.**\n\n$$A = \\{1,\\,2,\\,3,\\,4,\\,6,\\,12\\}, \\qquad B = \\{1,\\,2,\\,3,\\,6,\\,9,\\,18\\}$$\n\n**Intersect.** The divisors common to both are $A \\cap B = \\{1,\\,2,\\,3,\\,6\\}$, which has $4$ elements. (These are exactly the divisors of $6$, the greatest common divisor of $12$ and $18$.)\n\n**Multiply.** $A$ has $6$ elements, so\n\n$$|A \\times (A \\cap B)| = |A| \\cdot |A \\cap B| = 6 \\cdot 4 = 24$$\n\n**How to check.** Picture a table with one row for each element of $A$ and one column for each element of $A \\cap B$: $6$ rows and $4$ columns, so $24$ cells, each cell one ordered pair such as $(12,\\,3)$.",
+  "distractorRationale": {
+    "a": "This is $6 + 4 = 10$: the sizes of the two sets were added. Adding counts the elements of a union of disjoint sets; a Cartesian product pairs every element of one set with every element of the other, so the sizes multiply.",
+    "b": "This is $4 \\cdot 4 = 16$, the size of $(A \\cap B) \\times (A \\cap B)$. The intersection was used for both factors, but the first factor is the whole of $A$.",
+    "d": "This is $6 \\cdot 6 = 36$, the size of $A \\times B$ (or $A \\times A$). The second factor is the intersection $A \\cap B$, which has only $4$ elements, not the whole of $B$."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": null,
+  "accessibilityText": "A is the set of positive divisors of 12 and B is the set of positive divisors of 18. The question asks how many elements are in the Cartesian product of A with the intersection of A and B. The four answer options are the whole numbers 10, 16, 24 and 36.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave8-author",
+    "aiAssisted": true,
+    "notes": "Original item on the sets syllabus entry (intersection and Cartesian product). Divisor sets are small enough to list by hand; the distractors separate adding from multiplying and using the wrong factor."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave8-author",
+    "reviewer": "blind-reviewer-wave8-final-quant-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-final-quant-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "A = {1,2,3,4,6,12} has 6 elements, A∩B = {1,2,3,6} has 4, so 6*4 = 24. 10 adds instead of multiplying, 16 squares the intersection, 36 squares A. [A second, separate blind solve (blind-reviewer-wave8-final-quant-run1) reached the same answer: |A|=6 ({1,2,3,4,6,12}) and A∩B={1,2,3,6} has 4 elements, so the product has 6*4=24 elements. 10 is a sum, 16 is 4^2 and 36 is 6^2.]"
+    },
+    "notes": ""
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "mathematics",
+    "sets",
+    "cartesian-product",
+    "intersection",
+    "no-calculator"
+  ]
+}

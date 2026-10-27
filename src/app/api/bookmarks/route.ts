@@ -33,7 +33,7 @@ export async function GET() {
     const user = await requireUser();
     const db = getDb();
 
-    const rows = db
+    const rows = (await db
       .prepare(
         `SELECT
            b.question_id  AS questionId,
@@ -50,7 +50,7 @@ export async function GET() {
          ORDER BY b.created_at DESC
          LIMIT 200`,
       )
-      .all(user.id) as BookmarkListRow[];
+      .all(user.id)) as BookmarkListRow[];
 
     return ok({
       bookmarks: rows.map((row) => ({
@@ -79,7 +79,7 @@ export async function POST(request: Request) {
     const body = await readJson(request, postSchema);
 
     // Entitlement: the learner must have been shown this question.
-    const owned = db
+    const owned = (await db
       .prepare(
         `SELECT a.exam_key AS examKey
            FROM attempt_items ai
@@ -87,7 +87,7 @@ export async function POST(request: Request) {
           WHERE a.user_id = ? AND ai.question_id = ?
           LIMIT 1`,
       )
-      .get(user.id, body.questionId) as { examKey: string } | undefined;
+      .get(user.id, body.questionId)) as { examKey: string } | undefined;
 
     if (!owned) {
       return fail(
@@ -97,23 +97,23 @@ export async function POST(request: Request) {
       );
     }
 
-    const existing = db
+    const existing = (await db
       .prepare('SELECT 1 AS present FROM bookmarks WHERE user_id = ? AND question_id = ?')
-      .get(user.id, body.questionId) as { present: number } | undefined;
+      .get(user.id, body.questionId)) as { present: number } | undefined;
 
     const shouldBookmark = body.bookmarked ?? existing === undefined;
 
     if (shouldBookmark) {
-      db.prepare(
+      (await db.prepare(
         `INSERT INTO bookmarks (user_id, question_id, exam_key, note, created_at)
          VALUES (?, ?, ?, NULL, ?)
          ON CONFLICT(user_id, question_id) DO NOTHING`,
-      ).run(user.id, body.questionId, owned.examKey, new Date().toISOString());
+      ).run(user.id, body.questionId, owned.examKey, new Date().toISOString()));
     } else {
-      db.prepare('DELETE FROM bookmarks WHERE user_id = ? AND question_id = ?').run(
+      (await db.prepare('DELETE FROM bookmarks WHERE user_id = ? AND question_id = ?').run(
         user.id,
         body.questionId,
-      );
+      ));
     }
 
     return ok({ questionId: body.questionId, examKey: owned.examKey, bookmarked: shouldBookmark });

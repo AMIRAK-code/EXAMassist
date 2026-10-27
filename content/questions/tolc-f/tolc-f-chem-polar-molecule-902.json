@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-chem-polar-molecule-902",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "chemistry",
+  "domainSlug": "tolcf-chemistry",
+  "skillSlug": "tolcf-chem-atoms-periodic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which of the following molecules has polar bonds but is nonpolar as a whole?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\mathrm{Cl_2}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\mathrm{HF}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\mathrm{NH_3}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\mathrm{H_2O}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\mathrm{CO_2}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Two separate questions decide whether a molecule is polar. **First:** are the bonds polar? That depends on the difference in electronegativity between the two bonded atoms. **Second:** do the bond dipoles cancel? That depends on the shape of the molecule.\n\n- $\\mathrm{Cl_2}$: identical atoms, electronegativity difference zero. The bond is nonpolar, so it fails the requirement of polar bonds.\n- $\\mathrm{HF}$: one polar bond, no cancelling partner, so the molecule is polar.\n- $\\mathrm{H_2O}$: two polar bonds in a bent shape; the dipoles add, so the molecule is polar.\n- $\\mathrm{NH_3}$: three polar bonds in a pyramid; the dipoles add, so the molecule is polar.\n- $\\mathrm{CO_2}$: oxygen is more electronegative than carbon, so each C=O bond is polar. But the molecule is linear, O=C=O, and the two equal dipoles point in exactly opposite directions and cancel.\n\nSo carbon dioxide has polar bonds and is nonpolar overall. **Check:** picture the molecule; if a symmetrical arrangement makes every dipole face an equal and opposite one, the molecule is nonpolar.",
+  "distractorRationale": {
+    "d": "The O-H bonds are polar, but the molecule is bent (about $104.5^\\circ$), so the two bond dipoles add up instead of cancelling. Water is a polar molecule.",
+    "c": "The N-H bonds are polar and the molecule is a trigonal pyramid, not a flat symmetric shape. The three dipoles add to a net dipole, so ammonia is polar.",
+    "b": "Hydrogen fluoride has a single, strongly polar bond. With only one bond dipole there is nothing to cancel it, so the molecule is polar.",
+    "a": "This molecule is nonpolar, but not for the reason asked: the two atoms are identical, so the bond itself is nonpolar. The question needs polar bonds that cancel."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "The question asks which molecule has polar bonds yet is nonpolar overall. The molecules are water, H subscript 2 O; ammonia, N H subscript 3; carbon dioxide, C O subscript 2; hydrogen fluoride, HF; and chlorine, Cl subscript 2.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-chemistry-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank (Wave 6, TOLC-F chemistry). Each wrong choice comes from one named misconception, recorded in distractorRationale. Numbers chosen for hand calculation with no calculator; every key was recomputed a second way in the build script."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-chemistry-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-chem-run15",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-chem-run15",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "CO2 is linear, so its two polar C=O bond dipoles cancel. Cl2 has a nonpolar bond. HF, bent H2O and pyramidal NH3 are all polar overall. [A second, separate blind solve (blind-reviewer-wave6-tolcf-chem-run18) reached the same answer: CO2 is linear, so the dipoles of its two polar C=O bonds cancel. Cl2 has a nonpolar bond. HF, NH3 (trigonal pyramidal) and H2O (bent) are all polar molecules.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication. Key check: CO2 is linear so its two C=O dipoles cancel; H2O bent, NH3 pyramidal, HF diatomic heteronuclear are polar; Cl2 has nonpolar bonds so fails the first condition. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "polarity",
+    "electronegativity",
+    "molecular-shape"
+  ]
+}

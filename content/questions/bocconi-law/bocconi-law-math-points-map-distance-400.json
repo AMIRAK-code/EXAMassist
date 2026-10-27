@@ -1,0 +1,77 @@
+{
+  "id": "bocconi-law-math-points-map-distance-400",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-mathematics",
+  "skillSlug": "law-math-analytic-geometry-points",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "On a map of a province drawn on a Cartesian grid whose unit is $1$ km, the provincial courthouse is at the point $C(-1,\\,2)$ and the district prison is at the point $P(5,\\,10)$. What is the straight-line distance between the courthouse and the prison?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$4\\sqrt{10}$ km"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$10$ km"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$100$ km"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$14$ km"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The distance between two points is Pythagoras applied to the horizontal and vertical gaps between them.\n\n**Find the two gaps.** Subtract coordinate by coordinate:\n\n$$\\Delta x = 5 - (-1) = 6, \\qquad \\Delta y = 10 - 2 = 8$$\n\n**Combine them.** The straight segment $CP$ is the hypotenuse of a right triangle with legs $6$ and $8$:\n\n$$CP = \\sqrt{6^2 + 8^2} = \\sqrt{36 + 64} = \\sqrt{100} = 10$$\n\nSo the courthouse and the prison are $10$ km apart.\n\n**How to check.** The legs $6$ and $8$ are twice the legs of the familiar $3$–$4$–$5$ right triangle, so the hypotenuse must be twice $5$, which is $10$. A second sanity check: the straight-line distance must be longer than the longer leg ($8$) and shorter than the walk along both legs ($6 + 8 = 14$); $10$ sits between them.",
+  "distractorRationale": {
+    "d": "This is $6 + 8 = 14$: the two gaps were added instead of being combined with Pythagoras. That is the distance travelled along the grid lines, east and then north, not the straight-line distance, which is always shorter.",
+    "c": "This is $6^2 + 8^2 = 100$, the square of the distance. The final square root was left out, so the answer is in \"square kilometres\" rather than kilometres.",
+    "a": "This comes from adding the coordinates instead of subtracting them: $-1 + 5 = 4$ and $2 + 10 = 12$, giving $\\sqrt{4^2 + 12^2} = \\sqrt{160} = 4\\sqrt{10}$. The gaps between the points are differences of coordinates, not sums."
+  },
+  "estimatedSeconds": 50,
+  "stimulusRef": null,
+  "accessibilityText": "On a map drawn on a Cartesian grid with a unit of 1 kilometre, a courthouse C is at the point minus 1, 2 and a prison P is at the point 5, 10. The question asks for the straight-line distance between them. The four answer options are: 4 times the square root of 10 kilometres; 10 kilometres; 100 kilometres; 14 kilometres.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave8-author",
+    "aiAssisted": true,
+    "notes": "Original item on the syllabus entry for points in the plane and distances between points. The coordinates are invented and give a 6-8-10 right triangle so the distance comes out exact without a calculator."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave8-author",
+    "reviewer": "blind-reviewer-wave8-final-quant-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-final-quant-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "dx = 6, dy = 8, distance = 10 km. 100 is the squared distance, 14 is dx+dy, 4*sqrt(10) is from a sign error (dx 4 or similar). [A second, separate blind solve (blind-reviewer-wave8-final-quant-run1) reached the same answer: dx=6 and dy=8, so the distance is sqrt(100)=10 km. 100 is the squared distance, 14 is dx+dy, and 4sqrt10 comes from a sign error.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "mathematics",
+    "analytic-geometry",
+    "distance-formula",
+    "no-calculator"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "polito-til-i-math-trig-equation-quadratic-in-sine-015",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tili-mathematics",
+  "skillSlug": "tili-math-transcendental-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the sum of all the solutions of $2\\sin^{2}x-\\sin x-1=0$ in the interval $0\\le x<2\\pi$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\dfrac{7\\pi}{2}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$5\\pi$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\dfrac{3\\pi}{2}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$3\\pi$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\dfrac{5\\pi}{2}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "**What to notice first.** The equation is a quadratic in $\\sin x$. Put $t=\\sin x$: $2t^{2}-t-1=0$, that is $(2t+1)(t-1)=0$, so $t=1$ or $t=-\\frac{1}{2}$.\n\n**Case $\\sin x=1$.** In $[0,2\\pi)$ this happens only at $x=\\dfrac{\\pi}{2}$.\n\n**Case $\\sin x=-\\dfrac{1}{2}$.** The sine is negative in the third and fourth quadrants, and the reference angle is $\\frac{\\pi}{6}$. So $x=\\pi+\\frac{\\pi}{6}=\\frac{7\\pi}{6}$ and $x=2\\pi-\\frac{\\pi}{6}=\\frac{11\\pi}{6}$.\n\n**Add.** $\\dfrac{\\pi}{2}+\\dfrac{7\\pi}{6}+\\dfrac{11\\pi}{6}=\\dfrac{3\\pi+7\\pi+11\\pi}{6}=\\dfrac{21\\pi}{6}=\\dfrac{7\\pi}{2}$.\n\n**Check.** At $x=\\frac{7\\pi}{6}$: $2\\cdot\\frac{1}{4}+\\frac{1}{2}-1=0$. At $x=\\frac{\\pi}{2}$: $2-1-1=0$.",
+  "distractorRationale": {
+    "c": "This turns the root $\\sin x=-\\frac{1}{2}$ into $\\sin x=+\\frac{1}{2}$, giving $\\frac{\\pi}{6}$ and $\\frac{5\\pi}{6}$, and adds $\\frac{\\pi}{2}$: $\\frac{\\pi}{6}+\\frac{5\\pi}{6}+\\frac{\\pi}{2}=\\frac{3\\pi}{2}$. A negative sine puts the angles in the third and fourth quadrants.",
+    "e": "This factors the quadratic as if its roots were $\\frac{1}{2}$ and $-1$, giving $\\frac{\\pi}{6}$, $\\frac{5\\pi}{6}$ and $\\frac{3\\pi}{2}$. Substituting $t=\\frac{1}{2}$ gives $2\\cdot\\frac{1}{4}-\\frac{1}{2}-1=-1$, so it is not a root. The roots are $1$ and $-\\frac{1}{2}$.",
+    "d": "This solves only $\\sin x=-\\frac{1}{2}$ correctly, $\\frac{7\\pi}{6}+\\frac{11\\pi}{6}=3\\pi$, and drops the other root $\\sin x=1$, which gives $x=\\frac{\\pi}{2}$. Both roots of the quadratic in $\\sin x$ must be used.",
+    "b": "This counts $\\sin x=1$ at both $\\frac{\\pi}{2}$ and $\\frac{3\\pi}{2}$, then adds $\\frac{7\\pi}{6}+\\frac{11\\pi}{6}$. But at $\\frac{3\\pi}{2}$ the sine is $-1$, not $1$; the sine equals 1 only once in the interval."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "Find the sum of all solutions of the equation: two times the square of sine x, minus sine x, minus one, equals zero, where x is at least zero and less than two pi (x in radians). The choices are multiples of pi: three pi over two, five pi over two, three pi, seven pi over two, and five pi.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-mathematics-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item. A quadratic in sin x with one tangent root and one pair of roots in different quadrants. Distractors come from a sign slip on one root, a mis-factored quadratic, a dropped root, and a spurious extra root."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-mathematics-wave6-author",
+    "reviewer": "blind-reviewer-wave7-resolve-held-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-resolve-held-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The equation factors as (2 sin x + 1)(sin x - 1) = 0. sin x = 1 gives π/2, and sin x = -1/2 gives 7π/6 and 11π/6 in [0, 2π). The sum is π/2 + 3π = 7π/2. 3π is only the sine = -1/2 pair, and 3π/2 or 5π/2 come from missing or wrong roots. [A second, separate blind solve (blind-reviewer-wave7-resolve-held-run1) reached the same answer: The equation factors as (2 sin x + 1)(sin x - 1) = 0. sin x = 1 gives π/2, and sin x = -1/2 gives 7π/6 and 11π/6. The sum is π/2 + 3π = 7π/2. 5π/2 would need a root to be left out or counted twice, and no other option fits the three roots.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "trigonometric-equation",
+    "substitution",
+    "unit-circle"
+  ]
+}

@@ -543,15 +543,15 @@ const toPlan = (row: RawPlan): PlanRow => ({
   version: row.version,
 });
 
-export function activePlan(db: Db, userId: string, examKey: string): PlanRow | null {
-  const row = db
+export async function activePlan(db: Db, userId: string, examKey: string): Promise<PlanRow | null> {
+  const row = (await db
     .prepare("SELECT * FROM plans WHERE user_id = ? AND exam_key = ? AND status = 'active'")
-    .get(userId, examKey) as RawPlan | undefined;
+    .get(userId, examKey)) as RawPlan | undefined;
   return row ? toPlan(row) : null;
 }
 
-export function planSessions(db: Db, userId: string, planId: string): PlanSessionRow[] {
-  return db
+export async function planSessions(db: Db, userId: string, planId: string): Promise<PlanSessionRow[]> {
+  return (await db
     .prepare(
       `SELECT id, plan_id AS planId, scheduled_on AS scheduledOn, sequence, kind, domain_slug AS domainSlug,
               skill_slug AS skillSlug, question_count AS questionCount, minutes, reason, status,
@@ -559,14 +559,14 @@ export function planSessions(db: Db, userId: string, planId: string): PlanSessio
          FROM plan_sessions WHERE plan_id = ? AND user_id = ?
         ORDER BY scheduled_on, sequence`,
     )
-    .all(planId, userId) as PlanSessionRow[];
+    .all(planId, userId)) as PlanSessionRow[];
 }
 
 /** The canonical exam date (exam_targets), and any value the migration kept for the learner to choose. */
-export function examDateFor(db: Db, userId: string, examKey: string): { examDate: string | null; conflicting: string | null } {
-  const row = db
+export async function examDateFor(db: Db, userId: string, examKey: string): Promise<{ examDate: string | null; conflicting: string | null }> {
+  const row = (await db
     .prepare('SELECT target_date AS examDate, legacy_plan_date AS conflicting FROM exam_targets WHERE user_id = ? AND exam_key = ?')
-    .get(userId, examKey) as { examDate: string | null; conflicting: string | null } | undefined;
+    .get(userId, examKey)) as { examDate: string | null; conflicting: string | null } | undefined;
   return { examDate: row?.examDate ?? null, conflicting: row?.conflicting ?? null };
 }
 
@@ -575,16 +575,16 @@ export function examDateFor(db: Db, userId: string, examKey: string): { examDate
  * saved (queries.setExamTarget), a kept earlier date is settled only if the
  * date actually changes.
  */
-export function setExamDate(db: Db, userId: string, examKey: string, examDate: string | null, now = new Date()): void {
+export async function setExamDate(db: Db, userId: string, examKey: string, examDate: string | null, now = new Date()): Promise<void> {
   const iso = now.toISOString();
-  db.prepare(
+  (await db.prepare(
     `INSERT INTO exam_targets (user_id, exam_key, target_score, target_date, created_at, updated_at, legacy_plan_date)
      VALUES (?, ?, NULL, ?, ?, ?, NULL)
      ON CONFLICT (user_id, exam_key) DO UPDATE SET
        legacy_plan_date = CASE WHEN excluded.target_date IS exam_targets.target_date THEN exam_targets.legacy_plan_date ELSE NULL END,
        target_date = excluded.target_date,
        updated_at = excluded.updated_at`,
-  ).run(userId, examKey, examDate, iso, iso);
+  ).run(userId, examKey, examDate, iso, iso));
 }
 
 /**
@@ -592,15 +592,15 @@ export function setExamDate(db: Db, userId: string, examKey: string, examDate: s
  * date, or takes the one from their earlier study plan. Either way the other
  * is cleared, because the learner chose.
  */
-export function resolveDateConflict(db: Db, userId: string, examKey: string, keep: 'current' | 'earlier', now = new Date()): boolean {
-  const info = db
+export async function resolveDateConflict(db: Db, userId: string, examKey: string, keep: 'current' | 'earlier', now = new Date()): Promise<boolean> {
+  const info = (await db
     .prepare(
       `UPDATE exam_targets
           SET target_date = CASE WHEN ? = 'earlier' THEN legacy_plan_date ELSE target_date END,
               legacy_plan_date = NULL, updated_at = ?
         WHERE user_id = ? AND exam_key = ? AND legacy_plan_date IS NOT NULL`,
     )
-    .run(keep, now.toISOString(), userId, examKey);
+    .run(keep, now.toISOString(), userId, examKey));
   return info.changes > 0;
 }
 
@@ -609,8 +609,8 @@ export function resolveDateConflict(db: Db, userId: string, examKey: string, kee
  * (users.target_date, no longer written). Offered when the learner first
  * plans, and cleared once a plan is created with or without it.
  */
-export function unattachedPlanDate(db: Db, userId: string): string | null {
-  const row = db.prepare('SELECT target_date AS date FROM users WHERE id = ?').get(userId) as { date: string | null } | undefined;
+export async function unattachedPlanDate(db: Db, userId: string): Promise<string | null> {
+  const row = (await db.prepare('SELECT target_date AS date FROM users WHERE id = ?').get(userId)) as { date: string | null } | undefined;
   return row?.date ?? null;
 }
 
@@ -618,53 +618,53 @@ export function unattachedPlanDate(db: Db, userId: string): string | null {
  * Questions of this exam the learner missed and has not answered correctly
  * since (the review queue), that can be asked again, soonest due first.
  */
-export function retryableMissed(db: Db, userId: string, examKey: string): string[] {
+export async function retryableMissed(db: Db, userId: string, examKey: string): Promise<string[]> {
   const missed = (
-    db
+    (await db
       .prepare(
         `SELECT question_id AS id FROM review_queue
           WHERE user_id = ? AND exam_key = ? AND last_result <> 'correct'
           ORDER BY due_at, question_id`,
       )
-      .all(userId, examKey) as Array<{ id: string }>
+      .all(userId, examKey)) as Array<{ id: string }>
   ).map((row) => row.id);
-  return retryCandidates(db, userId, examKey, missed).available.map((item) => item.questionId);
+  return (await retryCandidates(db, userId, examKey, missed)).available.map((item) => item.questionId);
 }
 
 /** Everything a plan is built from, read now for this learner. */
-export function planInputs(
+export async function planInputs(
   db: Db,
   userId: string,
   config: ExamConfig,
   options: { startsOn: string; examDate: string | null; weeklyMinutes: number; carryForward?: PlanInputs['carryForward'] },
-): PlanInputs {
+): Promise<PlanInputs> {
   const practice = getBlueprint(config, 'practice');
-  const unseenPool = getPool(db, config.examKey, userId).filter((item) => item.lastSeenAt === null);
+  const unseenPool = (await getPool(db, config.examKey, userId)).filter((item) => item.lastSeenAt === null);
   return {
     config,
     startsOn: options.startsOn,
     examDate: options.examDate,
     weeklyMinutes: options.weeklyMinutes,
-    performance: skillPerformance(db, userId, config.examKey),
-    allFacets: practiceFacets(db, config),
+    performance: (await skillPerformance(db, userId, config.examKey)),
+    allFacets: (await practiceFacets(db, config)),
     unseenFacets: practice ? facetsFromPool(unseenPool, config, practice) : [],
-    retryable: retryableMissed(db, userId, config.examKey).length,
+    retryable: (await retryableMissed(db, userId, config.examKey)).length,
     carryForward: options.carryForward,
   };
 }
 
-function insertSessions(db: Db, userId: string, planId: string, sessions: PlannedSession[], firstSequence: number, iso: string): void {
+async function insertSessions(db: Db, userId: string, planId: string, sessions: PlannedSession[], firstSequence: number, iso: string): Promise<void> {
   const insert = db.prepare(
     `INSERT INTO plan_sessions (id, plan_id, user_id, scheduled_on, sequence, kind, domain_slug, skill_slug,
                                 question_count, minutes, reason, status, attempt_id, status_at, created_at)
      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'planned', NULL, NULL, ?)`,
   );
-  sessions.forEach((session, index) => {
-    insert.run(
+  (await Promise.all(sessions.map(async (session, index) => {
+    (await insert.run(
       randomUUID(), planId, userId, session.scheduledOn, firstSequence + index, session.kind,
       session.domainSlug, session.skillSlug, session.questionCount, session.minutes, session.reason, iso,
-    );
-  });
+    ));
+  })));
 }
 
 export class PlanError extends Error {
@@ -677,33 +677,33 @@ export class PlanError extends Error {
 }
 
 /** Creates the learner's plan for an exam. Refused if one is already active. */
-export function createPlan(
+export async function createPlan(
   db: Db,
   input: { userId: string; examKey: string; weeklyMinutes: number; examDate: string | null; now?: Date },
-): PlanRow {
+): Promise<PlanRow> {
   const now = input.now ?? new Date();
   const config = requireExamConfig(input.examKey);
   const startsOn = isoDay(now);
-  const sessions = buildSessions(planInputs(db, input.userId, config, { startsOn, examDate: input.examDate, weeklyMinutes: input.weeklyMinutes }));
+  const sessions = buildSessions((await planInputs(db, input.userId, config, { startsOn, examDate: input.examDate, weeklyMinutes: input.weeklyMinutes })));
   if (sessions.length === 0) throw new PlanError('nothing-to-plan', 'There are no reviewed questions to plan for this exam yet.');
   const shape = planShape(startsOn, input.examDate, input.weeklyMinutes);
   const id = randomUUID();
   const iso = now.toISOString();
-  const run = db.transaction(() => {
-    if (activePlan(db, input.userId, config.examKey)) throw new PlanError('plan-exists', 'You already have a plan for this exam.');
-    db.prepare(
+  const run = db.transaction(async () => {
+    if ((await activePlan(db, input.userId, config.examKey))) throw new PlanError('plan-exists', 'You already have a plan for this exam.');
+    (await db.prepare(
       `INSERT INTO plans (id, user_id, exam_key, status, weekly_minutes, session_minutes, starts_on, ends_on, exam_date, created_at, adjusted_at, ended_at, version)
        VALUES (?, ?, ?, 'active', ?, ?, ?, ?, ?, ?, NULL, NULL, 1)`,
-    ).run(id, input.userId, config.examKey, input.weeklyMinutes, SESSION_MINUTES, startsOn, shape.endsOn, input.examDate, iso);
-    insertSessions(db, input.userId, id, sessions, 1, iso);
+    ).run(id, input.userId, config.examKey, input.weeklyMinutes, SESSION_MINUTES, startsOn, shape.endsOn, input.examDate, iso));
+    (await insertSessions(db, input.userId, id, sessions, 1, iso));
   });
-  run.immediate();
-  return activePlan(db, input.userId, config.examKey)!;
+  (await run());
+  return (await activePlan(db, input.userId, config.examKey))!;
 }
 
 /** The learner's finished sessions of this exam since the plan was created, with their filters. */
-function finishedSince(db: Db, userId: string, config: ExamConfig, since: string): FinishedAttempt[] {
-  const rows = db
+async function finishedSince(db: Db, userId: string, config: ExamConfig, since: string): Promise<FinishedAttempt[]> {
+  const rows = (await db
     .prepare(
       `SELECT a.id, a.blueprint_id AS blueprintId, a.mode, a.submitted_at AS submittedAt, a.settings_json AS settings,
               (SELECT COUNT(*) FROM attempt_items ai WHERE ai.attempt_id = a.id AND ai.response_status = 'answered') AS answered
@@ -711,7 +711,7 @@ function finishedSince(db: Db, userId: string, config: ExamConfig, since: string
         WHERE a.user_id = ? AND a.exam_key = ? AND a.status IN ('submitted', 'expired')
           AND a.submitted_at IS NOT NULL AND a.submitted_at >= ?`,
     )
-    .all(userId, config.examKey, since) as Array<{ id: string; blueprintId: string; mode: string; submittedAt: string; settings: string; answered: number }>;
+    .all(userId, config.examKey, since)) as Array<{ id: string; blueprintId: string; mode: string; submittedAt: string; settings: string; answered: number }>;
   // A session restricted to a skill practised that skill's topic too.
   const domainOfSkill = new Map(config.domains.flatMap((domain) => domain.skills.map((skill) => [skill.slug, domain.slug] as const)));
   return rows.map((row) => {
@@ -748,44 +748,44 @@ function finishedSince(db: Db, userId: string, config: ExamConfig, since: string
  * Records completions: the only write a visit makes. It never changes the
  * schedule. Returns how many sessions it completed.
  */
-export function recordCompletions(db: Db, userId: string, plan: PlanRow): number {
+export async function recordCompletions(db: Db, userId: string, plan: PlanRow): Promise<number> {
   const config = requireExamConfig(plan.examKey);
-  const run = db.transaction(() => {
-    const sessions = planSessions(db, userId, plan.id);
-    const matches = matchCompletions(sessions, finishedSince(db, userId, config, plan.createdAt));
+  const run = db.transaction(async () => {
+    const sessions = (await planSessions(db, userId, plan.id));
+    const matches = matchCompletions(sessions, (await finishedSince(db, userId, config, plan.createdAt)));
     if (matches.length === 0) return 0;
     const update = db.prepare(
       "UPDATE plan_sessions SET status = 'completed', attempt_id = ?, status_at = ? WHERE id = ? AND user_id = ? AND status = 'planned'",
     );
-    for (const match of matches) update.run(match.attemptId, match.at, match.sessionId, userId);
-    db.prepare('UPDATE plans SET version = version + 1 WHERE id = ? AND user_id = ?').run(plan.id, userId);
+    for (const match of matches) (await update.run(match.attemptId, match.at, match.sessionId, userId));
+    (await db.prepare('UPDATE plans SET version = version + 1 WHERE id = ? AND user_id = ?').run(plan.id, userId));
     return matches.length;
   });
-  return run.immediate();
+  return (await run());
 }
 
 /**
  * Skips a session still stored as planned (shown as planned or missed).
  * Completed and recorded-missed sessions are history and cannot be skipped.
  */
-export function skipSession(db: Db, userId: string, sessionId: string, now = new Date()): void {
-  const run = db.transaction(() => {
-    const info = db
+export async function skipSession(db: Db, userId: string, sessionId: string, now = new Date()): Promise<void> {
+  const run = db.transaction(async () => {
+    const info = (await db
       .prepare(
         `UPDATE plan_sessions SET status = 'skipped', status_at = ?
           WHERE id = ? AND user_id = ? AND status = 'planned'
             AND plan_id IN (SELECT id FROM plans WHERE user_id = ? AND status = 'active')`,
       )
-      .run(now.toISOString(), sessionId, userId, userId);
+      .run(now.toISOString(), sessionId, userId, userId));
     if (info.changes === 0) throw new PlanError('not-skippable', 'That session cannot be skipped.');
-    db.prepare('UPDATE plans SET version = version + 1 WHERE id = (SELECT plan_id FROM plan_sessions WHERE id = ?)').run(sessionId);
+    (await db.prepare('UPDATE plans SET version = version + 1 WHERE id = (SELECT plan_id FROM plan_sessions WHERE id = ?)').run(sessionId));
   });
-  run.immediate();
+  (await run());
 }
 
 /** A session of the learner's active plan still stored as planned, or null. */
-export function openSession(db: Db, userId: string, sessionId: string): (PlanSessionRow & { examKey: string }) | null {
-  const row = db
+export async function openSession(db: Db, userId: string, sessionId: string): Promise<(PlanSessionRow & { examKey: string }) | null> {
+  const row = (await db
     .prepare(
       `SELECT s.id, s.plan_id AS planId, s.scheduled_on AS scheduledOn, s.sequence, s.kind, s.domain_slug AS domainSlug,
               s.skill_slug AS skillSlug, s.question_count AS questionCount, s.minutes, s.reason, s.status,
@@ -793,7 +793,7 @@ export function openSession(db: Db, userId: string, sessionId: string): (PlanSes
          FROM plan_sessions s JOIN plans p ON p.id = s.plan_id
         WHERE s.id = ? AND s.user_id = ? AND s.status = 'planned' AND p.status = 'active'`,
     )
-    .get(sessionId, userId) as (PlanSessionRow & { examKey: string }) | undefined;
+    .get(sessionId, userId)) as (PlanSessionRow & { examKey: string }) | undefined;
   return row ?? null;
 }
 
@@ -801,12 +801,12 @@ export function openSession(db: Db, userId: string, sessionId: string): (PlanSes
  * Links a session started from the plan to its attempt, so that attempt (and
  * no other) can satisfy it. Starting it again moves the link to the new one.
  */
-export function linkStartedSession(db: Db, userId: string, sessionId: string, attemptId: string): void {
-  db.prepare("UPDATE plan_sessions SET attempt_id = ? WHERE id = ? AND user_id = ? AND status = 'planned'").run(
+export async function linkStartedSession(db: Db, userId: string, sessionId: string, attemptId: string): Promise<void> {
+  (await db.prepare("UPDATE plan_sessions SET attempt_id = ? WHERE id = ? AND user_id = ? AND status = 'planned'").run(
     attemptId,
     sessionId,
     userId,
-  );
+  ));
 }
 
 export interface AdjustmentPlan {
@@ -818,15 +818,15 @@ export interface AdjustmentPlan {
 }
 
 /** Works out an adjustment without storing anything. */
-export function planAdjustment(
+export async function planAdjustment(
   db: Db,
   userId: string,
   plan: PlanRow,
   options: { weeklyMinutes: number; examDate: string | null; now?: Date },
-): AdjustmentPlan {
+): Promise<AdjustmentPlan> {
   const now = options.now ?? new Date();
   const config = requireExamConfig(plan.examKey);
-  const sessions = planSessions(db, userId, plan.id);
+  const sessions = (await planSessions(db, userId, plan.id));
   const missed = sessions.filter((s) => stateOf(s, now) === 'missed');
   const startsOn = isoDay(now);
   const carryForward = missed
@@ -834,7 +834,7 @@ export function planAdjustment(
     .map((s) => ({ domainSlug: s.domainSlug, skillSlug: s.skillSlug }));
   const started = sessions.filter((s) => s.status === 'planned' && s.attemptId && stateOf(s, now) === 'planned');
   const rebuilt = buildSessions(
-    planInputs(db, userId, config, { startsOn, examDate: options.examDate, weeklyMinutes: options.weeklyMinutes, carryForward }),
+    (await planInputs(db, userId, config, { startsOn, examDate: options.examDate, weeklyMinutes: options.weeklyMinutes, carryForward })),
   )
     // A session already started from the plan stays; the new schedule does not repeat its slot.
     .filter((r) => !started.some((s) => s.scheduledOn === r.scheduledOn && s.kind === r.kind));
@@ -864,39 +864,39 @@ export function planAdjustment(
  * if the plan, the learner's practice or the day moved on meanwhile, the
  * learner is shown the new preview instead.
  */
-export function applyAdjustment(
+export async function applyAdjustment(
   db: Db,
   userId: string,
   planId: string,
   expectedDigest: string,
   options: { weeklyMinutes: number; examDate: string | null; now?: Date },
-): void {
+): Promise<void> {
   const now = options.now ?? new Date();
   const iso = now.toISOString();
-  const run = db.transaction(() => {
-    const raw = db.prepare("SELECT * FROM plans WHERE id = ? AND user_id = ? AND status = 'active'").get(planId, userId) as RawPlan | undefined;
+  const run = db.transaction(async () => {
+    const raw = (await db.prepare("SELECT * FROM plans WHERE id = ? AND user_id = ? AND status = 'active'").get(planId, userId)) as RawPlan | undefined;
     if (!raw) throw new PlanError('no-plan', 'That plan is no longer active.');
     const plan = toPlan(raw);
-    const { preview, digest } = planAdjustment(db, userId, plan, { ...options, now });
+    const { preview, digest } = (await planAdjustment(db, userId, plan, { ...options, now }));
     if (digest !== expectedDigest) throw new PlanError('plan-changed', 'The plan changed since you looked at it. Review the changes again.');
     const markMissed = db.prepare("UPDATE plan_sessions SET status = 'missed', status_at = ? WHERE id = ? AND user_id = ? AND status = 'planned'");
-    for (const session of preview.missed) markMissed.run(iso, session.id, userId);
+    for (const session of preview.missed) (await markMissed.run(iso, session.id, userId));
     const remove = db.prepare("DELETE FROM plan_sessions WHERE id = ? AND user_id = ? AND status = 'planned' AND attempt_id IS NULL");
-    for (const session of preview.removed) remove.run(session.id, userId);
-    const maxSequence = (db.prepare('SELECT COALESCE(MAX(sequence), 0) AS n FROM plan_sessions WHERE plan_id = ?').get(plan.id) as { n: number }).n;
-    insertSessions(db, userId, plan.id, preview.added, maxSequence + 1, iso);
-    db.prepare(
+    for (const session of preview.removed) (await remove.run(session.id, userId));
+    const maxSequence = ((await db.prepare('SELECT COALESCE(MAX(sequence), 0) AS n FROM plan_sessions WHERE plan_id = ?').get(plan.id)) as { n: number }).n;
+    (await insertSessions(db, userId, plan.id, preview.added, maxSequence + 1, iso));
+    (await db.prepare(
       `UPDATE plans SET weekly_minutes = ?, exam_date = ?, ends_on = ?, adjusted_at = ?, version = version + 1
         WHERE id = ? AND user_id = ?`,
-    ).run(options.weeklyMinutes, options.examDate, preview.endsOn, iso, plan.id, userId);
+    ).run(options.weeklyMinutes, options.examDate, preview.endsOn, iso, plan.id, userId));
   });
-  run.immediate();
+  (await run());
 }
 
 /** Ends a plan. Its sessions stay as history. */
-export function endPlan(db: Db, userId: string, planId: string, now = new Date()): void {
-  const info = db
+export async function endPlan(db: Db, userId: string, planId: string, now = new Date()): Promise<void> {
+  const info = (await db
     .prepare("UPDATE plans SET status = 'ended', ended_at = ?, version = version + 1 WHERE id = ? AND user_id = ? AND status = 'active'")
-    .run(now.toISOString(), planId, userId);
+    .run(now.toISOString(), planId, userId));
   if (info.changes === 0) throw new PlanError('no-plan', 'That plan is no longer active.');
 }

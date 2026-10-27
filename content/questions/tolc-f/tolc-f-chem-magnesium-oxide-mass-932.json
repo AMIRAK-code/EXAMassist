@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-chem-magnesium-oxide-mass-932",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "chemistry",
+  "domainSlug": "tolcf-chemistry",
+  "skillSlug": "tolcf-chem-stoichiometry-redox",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Magnesium burns in oxygen according to\n\n$$2\\,\\mathrm{Mg} + \\mathrm{O_2} \\rightarrow 2\\,\\mathrm{MgO}$$\n\nMolar masses: $\\mathrm{Mg} = 24\\ \\mathrm{g/mol}$, $\\mathrm{MgO} = 40\\ \\mathrm{g/mol}$. What mass of magnesium oxide forms when 12 g of magnesium burns completely?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "20 g"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "12 g"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "28 g"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "40 g"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "10 g"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Work in moles, then use the coefficients.\n\n1. Moles of magnesium: $12 \\div 24 = 0.5$ mol.\n2. The equation gives $2\\,\\mathrm{Mg} \\rightarrow 2\\,\\mathrm{MgO}$, a 1 : 1 ratio, so 0.5 mol of MgO forms.\n3. Mass of MgO: $0.5 \\times 40 = 20$ g.\n\n**Check by conservation of mass:** 0.5 mol of Mg needs 0.25 mol of $\\mathrm{O_2}$, which is $0.25 \\times 32 = 8$ g. Then $12 + 8 = 20$ g of product, the same answer.",
+  "distractorRationale": {
+    "e": "This halves the moles a second time, as if the 2 in front of Mg meant two moles of magnesium give one of oxide. The coefficients are 2 and 2, a 1 : 1 ratio.",
+    "b": "This assumes the mass does not change. The oxide also contains the oxygen that combined with the magnesium, so it is heavier than the metal.",
+    "c": "This adds the mass of a whole mole of oxygen atoms (16 g) to the magnesium. Only 0.5 mol of O atoms, 8 g, combine with 0.5 mol of Mg.",
+    "d": "This is the mass of one whole mole of MgO. Only 0.5 mol of magnesium is present, so only 0.5 mol of oxide can form."
+  },
+  "estimatedSeconds": 45,
+  "stimulusRef": null,
+  "accessibilityText": "The balanced equation is 2 M g plus O 2 gives 2 M g O. Molar masses are 24 grams per mole for magnesium and 40 grams per mole for magnesium oxide. The question asks the mass of magnesium oxide formed when 12 grams of magnesium burns completely. The choices are 20 grams, 12 grams, 28 grams, 40 grams and 10 grams.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave8-biochem-author",
+    "aiAssisted": true,
+    "notes": "Original item. A one-step mole-ratio calculation, with distractors drawn from coefficient and conservation-of-mass slips."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave8-biochem-author",
+    "reviewer": "blind-reviewer-wave8-tolcf-biochem-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolcf-biochem-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "12 g / 24 g/mol = 0.5 mol Mg -> 0.5 mol MgO (1:1) x 40 g/mol = 20 g. 12 g ignores the added oxygen, 40 g is one mole, 10 g and 28 g arise from ratio or arithmetic slips. [A second, separate blind solve (blind-reviewer-wave8-tolcf-biochem-run1) reached the same answer: 12 g Mg is 0.5 mol, which gives 0.5 mol MgO (1:1 ratio), or 0.5 x 40 = 20 g. 12 g ignores the added oxygen, 40 g is 1 mol, and 10 g and 28 g come from wrong ratios.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "stoichiometry",
+    "mole-ratio"
+  ]
+}

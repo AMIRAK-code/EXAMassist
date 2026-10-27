@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-trig-cos-double-equation-count-509",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-trigonometry-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "How many solutions does the equation\n\n$$\\cos 2x = \\cos x$$\n\nhave in the interval $0 \\le x < 2\\pi$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$1$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$2$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$3$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$4$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Turn the equation into a quadratic in $c = \\cos x$, solve for $c$, then count the angles in the interval for each value of $c$.\n\n**Step 1 — rewrite with one function.** Using $\\cos 2x = 2\\cos^{2} x - 1$:\n\n$$2c^{2} - 1 = c \\;\\Longrightarrow\\; 2c^{2} - c - 1 = 0 \\;\\Longrightarrow\\; (2c + 1)(c - 1) = 0$$\n\nso $c = 1$ or $c = -\\frac{1}{2}$.\n\n**Step 2 — count the angles in $0 \\le x < 2\\pi$.**\n\n- $\\cos x = 1$: only $x = 0$ (the next one, $2\\pi$, is excluded).\n- $\\cos x = -\\frac{1}{2}$: $x = \\frac{2\\pi}{3}$ and $x = \\frac{4\\pi}{3}$.\n\nThat is $3$ solutions.\n\n**Check.** At $x = \\frac{2\\pi}{3}$: $\\cos\\frac{4\\pi}{3} = -\\frac{1}{2}$ and $\\cos\\frac{2\\pi}{3} = -\\frac{1}{2}$. ✓ At $x = \\frac{4\\pi}{3}$: $\\cos\\frac{8\\pi}{3} = \\cos\\frac{2\\pi}{3} = -\\frac{1}{2}$ and $\\cos\\frac{4\\pi}{3} = -\\frac{1}{2}$. ✓",
+  "distractorRationale": {
+    "a": "This finds only the obvious solution $x = 0$, where $2x$ and $x$ coincide. Equal cosines do not require equal angles; the quadratic in $\\cos x$ also gives $\\cos x = -\\frac{1}{2}$.",
+    "b": "This keeps only the two angles with $\\cos x = -\\frac{1}{2}$ and loses $x = 0$, for example by dropping the root $c = 1$ of the quadratic.",
+    "d": "This assumes each value of $\\cos x$ gives two angles in a full turn. That is true for $-\\frac{1}{2}$ but not for $1$: in $0 \\le x < 2\\pi$ the cosine equals $1$ only at $x = 0$."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "How many solutions does the equation cosine of 2 x equals cosine of x have for x greater than or equal to 0 and less than 2 pi? The choices are the numbers 1, 2, 3 and 4.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. It tests the graph and values of the cosine on one period, after the double-angle identity turns the equation into a quadratic in cos x."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-math-author",
+    "reviewer": "blind-reviewer-wave8-bocug-math-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-bocug-math-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "2cos^2x - cos x - 1 = 0 gives cos x = 1 or -1/2, i.e. x = 0, 2pi/3, 4pi/3 in [0,2pi): 3 solutions. 4 would double count x=0/2pi (excluded); 2 forgets cos x=1. [A second, separate blind solve (blind-reviewer-wave8-bocug-math-run1) reached the same answer: 2cos^2x-cosx-1=0 gives cosx=1 (x=0) or cosx=-1/2 (x=2pi/3, 4pi/3), so there are 3 solutions in [0,2pi). 4 would count 2pi, which is excluded, and 2 forgets x=0.]"
+    },
+    "notes": "Author's uniqueness check: the roots are cos x = 1 and cos x = -1/2, giving exactly x = 0, 2 pi/3 and 4 pi/3 on the half-open interval; checked numerically on a fine grid. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "trigonometric-equations",
+    "cosine",
+    "counting-solutions"
+  ]
+}

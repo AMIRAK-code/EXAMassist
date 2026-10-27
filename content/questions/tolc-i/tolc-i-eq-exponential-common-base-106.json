@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-eq-exponential-common-base-106",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Solve $4^{x+1} = 8^{x-1}$.",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "no real solution"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$x = 5$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$x = 2$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$x = -5$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$x = 3$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Write both sides as powers of the same base. Since $4 = 2^{2}$ and $8 = 2^{3}$, the equation becomes an equation between exponents.\n\n**Step 1 — common base.** $4^{x+1} = 2^{2(x+1)} = 2^{2x+2}$ and $8^{x-1} = 2^{3(x-1)} = 2^{3x-3}$.\n\n**Step 2 — equate exponents.** The function $2^{t}$ is one-to-one, so $2x + 2 = 3x - 3$, which gives $x = 5$.\n\n**How to check it.** $4^{6} = 4096$ and $8^{4} = 4096$ ✓.",
+  "distractorRationale": {
+    "c": "Multiplies only the $x$ by the new exponents and not the constants: $2x + 1 = 3x - 1$. The whole exponent is multiplied, $2(x+1) = 2x + 2$ and $3(x-1) = 3x - 3$.",
+    "e": "Distributes on the left but not on the right, writing $2x + 2 = 3x - 1$. Both brackets must be multiplied out: the right exponent is $3x - 3$.",
+    "d": "Sets up $2x + 2 = 3x - 3$ correctly but slips when isolating $x$. Collecting terms gives $5 = x$, not $-5$; at $x = -5$ the left side is $4^{-4}$ and the right side $8^{-6}$, which differ.",
+    "a": "Equates the exponents without first matching the bases, getting $x + 1 = x - 1$, which has no solution. Exponents can only be compared once both sides use the same base."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "Solve the equation: 4 to the power x plus 1 equals 8 to the power x minus 1. The five choices are: no real solution; x equals 5; x equals 2; x equals negative 5; and x equals 3.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-math-a-author",
+    "aiAssisted": true,
+    "notes": "Original item. Tests solving an exponential equation by rewriting both sides on a common base; distractors come from distributing the exponent wrongly and from comparing exponents with different bases."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-math-a-author",
+    "reviewer": "blind-reviewer-wave8-tolci-math-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-math-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "2^(2x+2)=2^(3x-3) gives 2x+2=3x-3, so x=5. -5 is a sign slip, and the other values fail the check. [A second, separate blind solve (blind-reviewer-wave8-tolci-math-run1) reached the same answer: 2^(2x+2)=2^(3x-3), so 2x+2=3x-3 and x=5. The check works: 4^6 = 8^4 = 4096. -5, 2 and 3 come from sign slips, and the equation clearly does have a solution.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "exponential-equation",
+    "common-base"
+  ]
+}

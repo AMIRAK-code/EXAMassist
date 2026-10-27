@@ -1,0 +1,83 @@
+{
+  "id": "tolc-i-phys-converging-lens-image-310",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "sciences",
+  "domainSlug": "tolci-sciences",
+  "skillSlug": "tolci-sci-electromagnetism-optics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "An object is placed $15\\ \\text{cm}$ in front of a thin converging lens of focal length $10\\ \\text{cm}$. Which statement correctly describes the image?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Real and inverted, $5\\ \\text{cm}$ behind the lens, one third of the height of the object"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Real and inverted, $6\\ \\text{cm}$ behind the lens, $0.4$ times the height of the object"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Real and inverted, $30\\ \\text{cm}$ behind the lens, twice the height of the object"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Real and inverted, $30\\ \\text{cm}$ behind the lens, half the height of the object"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Virtual and upright, $30\\ \\text{cm}$ in front of the lens, twice the height of the object"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "**What to notice first.** The object is between $f$ and $2f$ from a converging lens ($10 < 15 < 20$ cm). Such an object always gives a real, inverted, enlarged image beyond $2f$ on the other side. The thin-lens equation gives the exact position.\n\n**The steps.** With object distance $p = 15\\ \\text{cm}$ and image distance $q$:\n\n$$\\frac1p + \\frac1q = \\frac1f \\quad\\Rightarrow\\quad \\frac1q = \\frac1{10} - \\frac1{15} = \\frac{3 - 2}{30} = \\frac1{30}, \\qquad q = 30\\ \\text{cm}.$$\n\n$q$ is positive, so the image is real, on the opposite side of the lens from the object. The magnification is $m = -\\dfrac{q}{p} = -\\dfrac{30}{15} = -2$: the minus sign means inverted, and the size is doubled.\n\n**How to check it.** Substitute back: $\\tfrac1{15} + \\tfrac1{30} = \\tfrac{2+1}{30} = \\tfrac1{10}$. And $30\\ \\text{cm}$ is beyond $2f = 20\\ \\text{cm}$, as the rule of thumb predicted.",
+  "distractorRationale": {
+    "b": "Adds the reciprocals, $\\tfrac1{10} + \\tfrac1{15} = \\tfrac16$, instead of subtracting $\\tfrac1p$ from $\\tfrac1f$. The equation is $\\tfrac1q = \\tfrac1f - \\tfrac1p$.",
+    "e": "A converging lens gives a virtual, upright image only when the object is closer than the focal length. At $15\\ \\text{cm}$ the object is beyond the $10\\ \\text{cm}$ focus, and $q = +30\\ \\text{cm}$ means a real image.",
+    "d": "The position is right, but the magnification is inverted: it divides $p$ by $q$. The image is farther from the lens than the object, so it is larger, $q/p = 2$.",
+    "a": "Subtracts the distances, $15 - 10 = 5\\ \\text{cm}$, instead of their reciprocals. Lengths do not combine this way in the lens equation."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": null,
+  "accessibilityText": "An object is placed 15 centimetres in front of a thin converging lens of focal length 10 centimetres. Which statement correctly describes the image? The choices are: real and inverted, 5 centimetres behind the lens, one third of the height of the object; real and inverted, 6 centimetres behind the lens, 0.4 times the height of the object; real and inverted, 30 centimetres behind the lens, twice the height of the object; real and inverted, 30 centimetres behind the lens, half the height of the object; virtual and upright, 30 centimetres in front of the lens, twice the height of the object.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-sciences-author",
+    "aiAssisted": true,
+    "notes": "Original item testing the thin-lens equation and magnification for an object between f and 2f. Situation and numbers invented for this bank."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-sciences-author",
+    "reviewer": "blind-reviewer-wave8-tolci-logic-sci-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-logic-sci-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "1/v = 1/10 - 1/15 = 1/30, so v = 30 cm (real, behind the lens) and m = -30/15 = -2: inverted and twice the size. The 'half height' option inverts the magnification; 5 cm and 6 cm come from wrong lens formulas; a virtual image would need the object inside f. [A second, separate blind solve (blind-reviewer-wave8-tolci-logic-sci-run1) reached the same answer: 1/v = 1/10 - 1/15 = 1/30, v = 30 cm on the far side; m = -30/15 = -2, so real, inverted, twice the height. Object between f and 2f gives an enlarged real image, ruling out the diminished and virtual options.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "optics",
+    "thin-lens",
+    "magnification",
+    "real-image"
+  ]
+}

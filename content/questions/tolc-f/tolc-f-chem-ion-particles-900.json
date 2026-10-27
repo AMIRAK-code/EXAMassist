@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-chem-ion-particles-900",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "chemistry",
+  "domainSlug": "tolcf-chemistry",
+  "skillSlug": "tolcf-chem-atoms-periodic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "An aluminium ion is written $^{27}_{13}\\mathrm{Al}^{3+}$. How many protons, neutrons and electrons does it contain?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "13 protons, 14 neutrons, 10 electrons"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "10 protons, 14 neutrons, 13 electrons"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "13 protons, 14 neutrons, 13 electrons"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "13 protons, 14 neutrons, 16 electrons"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "13 protons, 27 neutrons, 10 electrons"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Read the symbol before counting anything. The number written at the lower left, 13, is the atomic number: it is the number of protons. The number at the upper left, 27, is the mass number: protons plus neutrons.\n\n- **Protons:** 13.\n- **Neutrons:** $27 - 13 = 14$.\n- **Electrons:** a neutral atom has as many electrons as protons, 13. The charge $3+$ means three electrons have been lost, so $13 - 3 = 10$.\n\n**Check.** Charge equals protons minus electrons: $13 - 10 = +3$, which matches the symbol. A change of charge only ever changes the electron count; the nucleus is untouched. (Ten electrons is also the electron count of neon: by losing its three outer electrons aluminium reaches the noble-gas configuration $1s^2,2s^2,2p^6$.)",
+  "distractorRationale": {
+    "d": "This adds the three units of charge to the electron count, as if a positive ion had gained electrons. A $3+$ ion has lost three electrons, so it has fewer electrons than protons, not more.",
+    "e": "This reads the mass number, 27, as the number of neutrons. The mass number counts protons and neutrons together, so the 13 protons must be subtracted: $27 - 13 = 14$.",
+    "b": "This swaps protons and electrons, as if forming the ion changed the nucleus. Ionisation only removes or adds electrons; the atomic number, 13, fixes the number of protons and the element.",
+    "c": "This ignores the charge and describes the neutral aluminium atom. The $3+$ tells you that three electrons have been removed."
+  },
+  "estimatedSeconds": 45,
+  "stimulusRef": null,
+  "accessibilityText": "The symbol shows aluminium with mass number 27 written as a superscript to the left of the symbol, atomic number 13 written as a subscript to the left of the symbol, and a charge of three plus written as a superscript to the right. Each choice gives a number of protons, neutrons and electrons, and you must pick the correct set.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-chemistry-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank (Wave 6, TOLC-F chemistry). Each wrong choice comes from one named misconception, recorded in distractorRationale. Numbers chosen for hand calculation with no calculator; every key was recomputed a second way in the build script."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-chemistry-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-chem-run15",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-chem-run15",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Z = 13 gives 13 protons. Neutrons = 27 - 13 = 14. The 3+ charge means 13 - 3 = 10 electrons. The other options confuse charge, protons and mass number. [A second, separate blind solve (blind-reviewer-wave6-tolcf-chem-run18) reached the same answer: Z = 13 gives 13 protons. 27 - 13 = 14 neutrons. The 3+ charge gives 13 - 3 = 10 electrons. The distractors either swap the numbers, ignore the charge (13 electrons), add electrons instead of removing them (16), or use A as the neutron count (27).]"
+    },
+    "notes": "Awaiting a blind independent solve before publication. Key check: protons 13, neutrons 27-13=14, electrons 13-3=10; charge 13-10=+3. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "isotopes-ions",
+    "atomic-number",
+    "mass-number"
+  ]
+}

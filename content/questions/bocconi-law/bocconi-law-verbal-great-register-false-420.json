@@ -1,0 +1,77 @@
+{
+  "id": "bocconi-law-verbal-great-register-false-420",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-verbal-reasoning",
+  "skillSlug": "law-verbal-true-false-not-deducible",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A historian of the Duchy of Ostra reports the following about its courts:\n\n- Every judgment delivered in Latin was copied into the Great Register.\n- No judgment of the lower courts was copied into the Great Register.\n- The judgment in the Valsecchi case was copied into the Great Register.\n\nOn the basis of this report alone, which of the following statements is **false**?",
+  "instructionsMd": "A statement is false only if the report shows that it cannot be true. A statement that the report neither establishes nor rules out is not deducible, and so is not false.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Every judgment copied into the Great Register was delivered in Latin."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The Valsecchi judgment was delivered in Latin."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "No judgment of the lower courts was delivered in Latin."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The Valsecchi judgment was delivered by one of the lower courts."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Sort each statement into one of three bins — true on the report, false on the report, or not deducible — by writing the two general rules as arrows:\n\n- *delivered in Latin → copied into the Register*\n- *lower-court judgment → not copied into the Register*\n\n**The Valsecchi judgment was delivered by a lower court: false.** If it had been, the second rule says it would not have been copied into the Register. But the report says it was copied. So it cannot have come from a lower court; the statement is ruled out.\n\n**No lower-court judgment was in Latin: true.** A Latin lower-court judgment would have to be copied (first rule) and not copied (second rule) at once. So no such judgment exists.\n\n**The Valsecchi judgment was in Latin: not deducible.** The first rule runs from Latin to the Register, not back. Being copied is consistent with being in Latin, but other judgments may have been copied too.\n\n**Every copied judgment was in Latin: not deducible.** This is the reverse of the first rule. The report says that all Latin judgments were copied, not that only Latin judgments were.\n\n**How to check.** For a \"false\" verdict you must be able to show a contradiction with the report; for \"not deducible\" you must be able to describe one situation where the statement holds and another where it fails, both consistent with the report. A Register containing only Latin judgments, and one containing a vernacular judgment of the ducal high court as well, are both consistent with the report — so the two statements about Latin are open, and only the lower-court statement collides with it.",
+  "distractorRationale": {
+    "b": "Not deducible, so not false. The report says Latin judgments were copied into the Register, not that every copied judgment was in Latin. The Valsecchi judgment may or may not have been in Latin; the report is consistent with both.",
+    "c": "This is true on the report, not false. A Latin judgment of a lower court would have to be copied into the Register by the first rule and kept out of it by the second, which is impossible; so no lower-court judgment was in Latin.",
+    "a": "Not deducible, so not false. It reverses the first rule: \"all Latin judgments were copied\" does not mean \"only Latin judgments were copied\". The report neither confirms nor excludes copied judgments in another language."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": null,
+  "accessibilityText": "A true, false or not deducible question. A historian reports that, in the Duchy of Ostra, every judgment delivered in Latin was copied into the Great Register; no judgment of the lower courts was copied into the Great Register; and the judgment in the Valsecchi case was copied into the Great Register. The question asks which statement is false on the basis of the report alone, where a statement that the report neither establishes nor rules out counts as not deducible rather than false. The four answer options are: every judgment copied into the Great Register was delivered in Latin; the Valsecchi judgment was delivered in Latin; no judgment of the lower courts was delivered in Latin; the Valsecchi judgment was delivered by one of the lower courts.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave8-author",
+    "aiAssisted": true,
+    "notes": "Original true / false / not-deducible item with one false statement, one true statement and two not-deducible statements, so the solver must separate \"false\" from \"not deducible\". The duchy, register and case are invented."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave8-author",
+    "reviewer": "blind-reviewer-wave8-final-verbal-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-final-verbal-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Lower-court judgments were never copied into the Register, and Valsecchi was, so Valsecchi cannot be a lower-court judgment. That statement is false. 'Every Register judgment was in Latin' is the converse and not deducible, and 'Valsecchi was in Latin' is likewise not deducible. 'No lower-court judgment was in Latin' is actually true: a Latin judgment would have been copied, and lower-court judgments never were. [A second, separate blind solve (blind-reviewer-wave8-final-verbal-run1) reached the same answer: Valsecchi is in the Register and no lower-court judgment is, so Valsecchi cannot be a lower-court judgment, which makes D false. 'No lower-court judgment was in Latin' is true by contraposition: Latin implies Register, so lower court implies not in Register implies not Latin. 'Every Register judgment was in Latin' (the converse) and 'Valsecchi was in Latin' are not deducible.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "verbal-reasoning",
+    "true-false-not-deducible",
+    "conditional-reasoning",
+    "legal-history"
+  ]
+}

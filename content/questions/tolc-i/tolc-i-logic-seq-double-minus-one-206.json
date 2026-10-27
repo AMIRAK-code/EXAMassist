@@ -1,0 +1,84 @@
+{
+  "id": "tolc-i-logic-seq-double-minus-one-206",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-sequences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A lab culture is measured once a day. The readings on the first five days are\n\n3, 5, 9, 17, 33\n\nand they follow a regular pattern. If the pattern continues, what is the reading on the sixth day?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "49"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "50"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "64"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "65"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "66"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Look at how each reading is obtained from the one before. The differences are 2, 4, 8, 16: each difference doubles. So the next difference is 32, and the sixth reading is 33 + 32 = **65**.\n\nThe same rule can be seen another way: each reading is twice the previous one minus 1 ($2 \\times 3 - 1 = 5$, $2 \\times 5 - 1 = 9$, and so on), which gives $2 \\times 33 - 1 = 65$. A third view: every reading is one more than a power of 2 ($3 = 2 + 1$, $5 = 4 + 1$, ..., $33 = 32 + 1$), so the next is $64 + 1 = 65$. All three descriptions agree, which confirms the answer.",
+  "distractorRationale": {
+    "a": "Adds 16 again, repeating the last difference. The differences double each time, so the next one is 32.",
+    "b": "Adds the previous reading (33 + 17). That rule fails earlier: 9 + 5 = 14, not 17.",
+    "c": "Spots that the readings are one more than powers of 2 but forgets the \"+ 1\" in the next term.",
+    "e": "Doubles 33 but forgets to subtract 1, so it breaks the rule that produced every earlier reading."
+  },
+  "estimatedSeconds": 45,
+  "stimulusRef": null,
+  "accessibilityText": "A number sequence question. A culture's readings on the first five days are 3, 5, 9, 17 and 33, following a regular pattern. The question asks for the reading on the sixth day. The five choices are 49, 50, 64, 65 and 66.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-logic-author",
+    "aiAssisted": true,
+    "notes": "Tests recognising a sequence whose differences double (equivalently, each term is twice the previous minus 1). The scenario and wording are original to this bank; no published TOLC or other test item was used or adapted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-logic-author",
+    "reviewer": "blind-reviewer-wave8-tolci-logic-sci-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-logic-sci-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Rule a(n+1) = 2a(n) - 1 (equivalently 2^n + 1, or differences doubling 2,4,8,16,32) gives 65. All natural rules agree; 64 and 66 are off-by-one, 49 and 50 fit no rule. [A second, separate blind solve (blind-reviewer-wave8-tolci-logic-sci-run1) reached the same answer: Each term is 2x-1 (equivalently 2^n+1, or differences doubling 2,4,8,16 -> 32), all giving 65. 64 and 66 are off by one, 49/50 assume constant-ish differences.]"
+    },
+    "notes": ""
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "sequences",
+    "numeric",
+    "doubling",
+    "no-calculator"
+  ]
+}

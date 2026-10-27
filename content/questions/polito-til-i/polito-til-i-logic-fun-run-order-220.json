@@ -1,0 +1,82 @@
+{
+  "id": "polito-til-i-logic-fun-run-order-220",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "reading-logic",
+  "domainSlug": "tili-logic",
+  "skillSlug": "tili-logic-orders",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Five friends, Ada, Bruno, Carla, Dario and Elena, cross the finish line of a fun run one after another, with no ties.\n\n- Bruno finished before Ada.\n- Carla finished after Dario.\n- Elena finished immediately after Bruno.\n- Ada finished before Dario.\n\nWho finished third?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Carla"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Bruno"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Dario"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Ada"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Elena"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Build the chain from the clues that give a direction, then fit in the clue that gives an exact place.\n\nBruno is before Ada, Ada is before Dario, and Dario is before Carla, so the four run Bruno, Ada, Dario, Carla. Elena must finish *immediately* after Bruno, so she goes into the gap right behind him, ahead of Ada. The full order is Bruno, Elena, Ada, Dario, Carla, and the third runner is Ada.\n\nThe usual slip is to list the four-runner chain and forget where Elena goes; putting her at the end would make Dario third. \"Immediately after\" is stronger than \"after\": it leaves no room for anyone between the two.\n\n**Check:** read the finished order back against all four clues. Bruno is before Ada, Carla is after Dario, Elena is directly behind Bruno, and Ada is before Dario. All four hold.",
+  "distractorRationale": {
+    "b": "Bruno finished first: he is before Ada, and Elena comes straight after him, so nothing can precede him.",
+    "a": "Carla finished last: she is after Dario, who is after Ada, who is after Bruno and Elena.",
+    "c": "Dario finishes fourth. He is third only if Elena is left out of the chain, or placed last, which the \"immediately after Bruno\" clue does not allow.",
+    "e": "Elena finishes second, immediately after Bruno. She cannot be third because that would put someone between her and Bruno."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": null,
+  "accessibilityText": "A logic question about the finishing order of five friends in a fun run. Four clues fix relative places: Bruno before Ada, Carla after Dario, Elena immediately after Bruno, and Ada before Dario. The question asks who finished third. Five answer choices, each a first name.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-wave6-til-i-reading-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item; the situation, names and wording are invented. Needs no knowledge beyond reasoning."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-wave6-til-i-reading-logic-author",
+    "reviewer": "blind-reviewer-wave6-tili-reading-logic-run4",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-reading-logic-run4",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The chain B < A < D < C with E immediately after B gives the only order B, E, A, D, C, which I confirmed by enumeration. Ada is third. [A second, separate blind solve (blind-reviewer-wave6-tili-reading-logic-run6) reached the same answer: The chain gives B < A < D < C, and E comes immediately after B, so the only order is B, E, A, D, C. Ada is third. The enumeration confirms this is the only valid order, so no other option can be defended.]"
+    },
+    "notes": "Ordering item. Brute-force enumeration of all 120 orders leaves exactly one consistent with the four clues (Bruno, Elena, Ada, Dario, Carla). Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "orders",
+    "ranking"
+  ]
+}

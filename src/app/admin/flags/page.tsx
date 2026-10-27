@@ -111,19 +111,19 @@ export default async function AdminFlagsPage({
   const where = status ? 'WHERE f.status = ?' : '';
   const bindings = status ? [status] : [];
 
-  const counts = db
+  const counts = (await db
     .prepare('SELECT status AS status, COUNT(*) AS n FROM content_flags GROUP BY status')
-    .all() as Array<{ status: string; n: number }>;
+    .all()) as Array<{ status: string; n: number }>;
   const countFor = (value: string) => counts.find((row) => row.status === value)?.n ?? 0;
   const totalFlags = counts.reduce((sum, row) => sum + row.n, 0);
 
   const total = (
-    db.prepare(`SELECT COUNT(*) AS n FROM content_flags f ${where}`).get(...bindings) as { n: number }
+    (await db.prepare(`SELECT COUNT(*) AS n FROM content_flags f ${where}`).get(...bindings)) as { n: number }
   ).n;
 
   // The flag records the exact version the learner saw; fall back to the
   // question's current version when it does not, so the stem is still shown.
-  const rows = db
+  const rows = (await db
     .prepare(
       `SELECT
          f.id                  AS id,
@@ -163,7 +163,7 @@ export default async function AdminFlagsPage({
          f.created_at DESC
        LIMIT ${ROW_LIMIT}`,
     )
-    .all(...bindings) as FlagListRow[];
+    .all(...bindings)) as FlagListRow[];
 
   const trail = [
     { href: '/', label: 'Home' },

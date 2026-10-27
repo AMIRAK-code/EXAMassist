@@ -55,7 +55,7 @@ export default async function DashboardPage({
 }) {
   const user = await requireLearner('/dashboard');
   const query = await searchParams;
-  const data = buildDashboard(getDb(), user, query.exam);
+  const data = (await buildDashboard(getDb(), user, query.exam));
   const exam = data.exam;
   const trail = [{ href: '/', label: 'Home' }, { label: 'Dashboard' }];
 

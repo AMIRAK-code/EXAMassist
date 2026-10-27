@@ -1,0 +1,83 @@
+{
+  "id": "tolc-f-chem-titration-volume-913",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "chemistry",
+  "domainSlug": "tolcf-chemistry",
+  "skillSlug": "tolcf-chem-solutions-acids-bases",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "What volume of 0.10 mol/L $\\mathrm{NaOH}$ is needed to neutralise completely, forming $\\mathrm{Na_2SO_4}$, 20 mL of 0.15 mol/L sulfuric acid, $\\mathrm{H_2SO_4}$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "15 mL"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "30 mL"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "40 mL"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "120 mL"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "60 mL"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Write the balanced equation first, since it sets the mole ratio.\n\n$$\\mathrm{H_2SO_4 + 2\\,NaOH \\rightarrow Na_2SO_4 + 2\\,H_2O}$$\n\nOne mole of the acid needs two moles of base.\n\n1. **Moles of acid:** $0.15\\ \\mathrm{mol/L} \\times 0.020\\ \\mathrm{L} = 0.0030\\ \\mathrm{mol}$ (3.0 mmol).\n2. **Moles of base needed:** $2 \\times 3.0 = 6.0$ mmol.\n3. **Volume of base:** $V = n \\div c = 6.0\\ \\mathrm{mmol} \\div 0.10\\ \\mathrm{mmol/mL} = 60\\ \\mathrm{mL}$.\n\n**Check by counting hydrogen ions.** 3.0 mmol of $\\mathrm{H_2SO_4}$ gives 6.0 mmol of $\\mathrm{H^+}$; 60 mL of 0.10 mol/L base gives $60 \\times 0.10 = 6.0$ mmol of $\\mathrm{OH^-}$. They match, so the acid is exactly neutralised. Keeping to millilitres and millimoles avoids decimal-place slips.",
+  "distractorRationale": {
+    "a": "This runs the mole ratio the wrong way: it halves the 30 mL, as if one $\\mathrm{NaOH}$ could neutralise two acid hydrogens. Each $\\mathrm{NaOH}$ supplies only one $\\mathrm{OH^-}$, so twice as many moles of base as of acid are needed.",
+    "b": "This treats the reaction as one $\\mathrm{NaOH}$ per $\\mathrm{H_2SO_4}$: $3.0\\ \\mathrm{mmol} \\div 0.10 = 30$ mL. It forgets that sulfuric acid is diprotic and gives two $\\mathrm{H^+}$.",
+    "c": "This doubles the acid volume, $2 \\times 20 = 40$, using the ratio 2 but ignoring that the two solutions have different concentrations (0.15 against 0.10 mol/L).",
+    "d": "This applies the factor of 2 twice, once when counting $\\mathrm{H^+}$ from the acid and again when converting to $\\mathrm{NaOH}$, giving 12 mmol of base instead of 6 mmol."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "Sodium hydroxide solution with a concentration of 0.10 moles per litre is used to neutralise completely 20 millilitres of 0.15 moles per litre sulfuric acid, H subscript 2 S O subscript 4, forming sodium sulfate, Na subscript 2 S O subscript 4. The question asks for the volume of sodium hydroxide needed. The choices are volumes in millilitres.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-chemistry-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank (Wave 6, TOLC-F chemistry). Each wrong choice comes from one named misconception, recorded in distractorRationale. Numbers chosen for hand calculation with no calculator; every key was recomputed a second way in the build script."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-chemistry-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-chem-run15",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-chem-run15",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "H2SO4 = 0.020 L x 0.15 = 3.0e-3 mol, which needs 6.0e-3 mol NaOH (2:1 to form Na2SO4). 6.0e-3 / 0.10 = 0.060 L = 60 mL. 30 mL comes from ignoring the factor 2, 15 mL from a halved factor, and 120 mL from doubling twice. [A second, separate blind solve (blind-reviewer-wave6-tolcf-chem-run18) reached the same answer: 0.020 L x 0.15 = 0.0030 mol H2SO4. Full neutralisation needs 2 x 0.0030 = 0.0060 mol NaOH, and 0.0060 / 0.10 = 0.060 L = 60 mL. 30 mL forgets the factor of 2. 15 mL, 40 mL and 120 mL come from other ratio slips.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication. Key check: 0.15 x 20 = 3.0 mmol acid; x 2 = 6.0 mmol base; 6.0 / 0.10 = 60 mL; H+ 6.0 mmol equals OH- 6.0 mmol. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "neutralisation",
+    "titration",
+    "diprotic-acid",
+    "molarity"
+  ]
+}

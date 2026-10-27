@@ -150,32 +150,32 @@ let db: Db;
 let learner: string;
 
 /** A finished practice session with the given filters; every answer "a" (correct) except `wrong` positions. */
-function practise(overrides: Record<string, unknown>, wrong: number[] = [], now?: Date): string {
-  const { attemptId } = startAttempt(db, { userId: learner, examKey: SAT.examKey, blueprintId: 'practice', overrides, now });
-  const items = db.prepare('SELECT position FROM attempt_items WHERE attempt_id = ? ORDER BY position').all(attemptId) as Array<{ position: number }>;
+async function practise(overrides: Record<string, unknown>, wrong: number[] = [], now?: Date): Promise<string> {
+  const { attemptId } = (await startAttempt(db, { userId: learner, examKey: SAT.examKey, blueprintId: 'practice', overrides, now }));
+  const items = (await db.prepare('SELECT position FROM attempt_items WHERE attempt_id = ? ORDER BY position').all(attemptId)) as Array<{ position: number }>;
   for (const { position } of items) {
-    recordResponse(db, {
+    (await recordResponse(db, {
       attemptId,
       userId: learner,
       partIndex: 0,
       position,
       response: { type: 'single_select', optionId: wrong.includes(position) ? 'b' : 'a' },
       now,
-    });
+    }));
   }
-  submitAttempt(db, { attemptId, userId: learner, now });
+  (await submitAttempt(db, { attemptId, userId: learner, now }));
   return attemptId;
 }
 
-beforeEach(() => {
-  db = createTestDb();
-  learner = createUser(db);
-  seedQuestions(db, SAT, { perDomain: 12 });
+beforeEach(async () => {
+  db = (await createTestDb());
+  learner = (await createUser(db));
+  (await seedQuestions(db, SAT, { perDomain: 12 }));
 });
 
 describe('building sessions from what is available', () => {
-  it('plans new questions while enough are unseen, then revision, saying so', () => {
-    const inputs = planInputs(db, learner, SAT, { startsOn: '2026-10-01', examDate: null, weeklyMinutes: 200 });
+  it('plans new questions while enough are unseen, then revision, saying so', async () => {
+    const inputs = (await planInputs(db, learner, SAT, { startsOn: '2026-10-01', examDate: null, weeklyMinutes: 200 }));
     const sessions = buildSessions(inputs);
     const topic = sessions.filter((s) => s.domainSlug === DOMAIN.slug && s.skillSlug === null);
     // 12 questions in the topic: one new session of 10, then revision.
@@ -184,8 +184,8 @@ describe('building sessions from what is available', () => {
     expect(topic[1].reason).toContain('revises ones you have');
   });
 
-  it('revises a topic at most once a week, leaving time unfilled rather than repeating more', () => {
-    const inputs = planInputs(db, learner, SAT, { startsOn: '2026-10-01', examDate: null, weeklyMinutes: 420 });
+  it('revises a topic at most once a week, leaving time unfilled rather than repeating more', async () => {
+    const inputs = (await planInputs(db, learner, SAT, { startsOn: '2026-10-01', examDate: null, weeklyMinutes: 420 }));
     const sessions = buildSessions(inputs);
     const shape = planShape('2026-10-01', null, 420);
     const perWeek = new Map<string, number>();
@@ -205,22 +205,22 @@ describe('building sessions from what is available', () => {
     expect(sessionMinutes(1)).toBe(5);
   });
 
-  it('plans a thin skill as its topic, saying so', () => {
+  it('plans a thin skill as its topic, saying so', async () => {
     // A weak skill with signal (4 answers, 1 right), but only a few reviewed questions of its own.
     const skill = DOMAIN.skills[0].slug;
-    practise({ skills: [skill], length: 3 }, [0, 1, 2]);
-    practise({ skills: [skill], length: 1 }, [0]);
-    const inputs = planInputs(db, learner, SAT, { startsOn: '2026-10-01', examDate: null, weeklyMinutes: 150 });
+    (await practise({ skills: [skill], length: 3 }, [0, 1, 2]));
+    (await practise({ skills: [skill], length: 1 }, [0]));
+    const inputs = (await planInputs(db, learner, SAT, { startsOn: '2026-10-01', examDate: null, weeklyMinutes: 150 }));
     const first = buildSessions(inputs).find((s) => s.kind !== 'review')!;
     expect(first).toMatchObject({ domainSlug: DOMAIN.slug, skillSlug: null });
     expect(first.reason).toMatch(/has only \d reviewed questions?, so its topic is practised/);
   });
 
-  it('plans a review only while missed questions can be asked again, as many as it takes', () => {
-    expect(buildSessions(planInputs(db, learner, SAT, { startsOn: '2026-10-01', examDate: null, weeklyMinutes: 150 })).some((s) => s.kind === 'review')).toBe(false);
-    practise({ domains: [DOMAIN.slug], length: 10 }, [0, 1, 2]);
-    expect(retryableMissed(db, learner, SAT.examKey)).toHaveLength(3);
-    const reviews = buildSessions(planInputs(db, learner, SAT, { startsOn: '2026-10-01', examDate: null, weeklyMinutes: 150 })).filter((s) => s.kind === 'review');
+  it('plans a review only while missed questions can be asked again, as many as it takes', async () => {
+    expect(buildSessions((await planInputs(db, learner, SAT, { startsOn: '2026-10-01', examDate: null, weeklyMinutes: 150 }))).some((s) => s.kind === 'review')).toBe(false);
+    (await practise({ domains: [DOMAIN.slug], length: 10 }, [0, 1, 2]));
+    expect((await retryableMissed(db, learner, SAT.examKey))).toHaveLength(3);
+    const reviews = buildSessions((await planInputs(db, learner, SAT, { startsOn: '2026-10-01', examDate: null, weeklyMinutes: 150 }))).filter((s) => s.kind === 'review');
     expect(reviews).toHaveLength(1);
     expect(reviews[0]).toMatchObject({ questionCount: 3, scheduledOn: '2026-10-01' });
     expect(reviews[0].reason).toContain('This repeats them on purpose');
@@ -228,217 +228,217 @@ describe('building sessions from what is available', () => {
 });
 
 describe('a stored plan', () => {
-  const create = (now = new Date(), weeklyMinutes = 150) =>
-    createPlan(db, { userId: learner, examKey: SAT.examKey, weeklyMinutes, examDate: null, now });
+  const create = async (now = new Date(), weeklyMinutes = 150) =>
+    (await createPlan(db, { userId: learner, examKey: SAT.examKey, weeklyMinutes, examDate: null, now }));
 
-  it('is created once per exam, and a visit only records completions', () => {
-    const plan = create();
-    expect(() => create()).toThrowError(PlanError);
-    const before = planSessions(db, learner, plan.id);
+  it('is created once per exam, and a visit only records completions', async () => {
+    const plan = (await create());
+    (await expect(async () => (await create())).rejects.toThrowError(PlanError));
+    const before = (await planSessions(db, learner, plan.id));
     expect(before.length).toBeGreaterThan(0);
     expect(before.every((s) => s.status === 'planned')).toBe(true);
 
-    expect(recordCompletions(db, learner, plan)).toBe(0);
-    expect(planSessions(db, learner, plan.id)).toEqual(before);
+    expect((await recordCompletions(db, learner, plan))).toBe(0);
+    expect((await planSessions(db, learner, plan.id))).toEqual(before);
   });
 
-  it('is completed by a finished matching session, and not by an unfinished one', () => {
-    const plan = create();
-    const first = planSessions(db, learner, plan.id)[0];
+  it('is completed by a finished matching session, and not by an unfinished one', async () => {
+    const plan = (await create());
+    const first = (await planSessions(db, learner, plan.id))[0];
     expect(first.domainSlug).not.toBeNull();
 
     // Opened and answered, but not finished.
-    const open = startAttempt(db, { userId: learner, examKey: SAT.examKey, blueprintId: 'practice', overrides: { domains: [first.domainSlug!], length: 10, unseenOnly: true } });
+    const open = (await startAttempt(db, { userId: learner, examKey: SAT.examKey, blueprintId: 'practice', overrides: { domains: [first.domainSlug!], length: 10, unseenOnly: true } }));
     for (let position = 0; position < 10; position += 1) {
-      recordResponse(db, { attemptId: open.attemptId, userId: learner, partIndex: 0, position, response: { type: 'single_select', optionId: 'a' } });
+      (await recordResponse(db, { attemptId: open.attemptId, userId: learner, partIndex: 0, position, response: { type: 'single_select', optionId: 'a' } }));
     }
-    expect(recordCompletions(db, learner, activePlan(db, learner, SAT.examKey)!)).toBe(0);
+    expect((await recordCompletions(db, learner, (await activePlan(db, learner, SAT.examKey))!))).toBe(0);
 
-    submitAttempt(db, { attemptId: open.attemptId, userId: learner });
-    expect(recordCompletions(db, learner, activePlan(db, learner, SAT.examKey)!)).toBe(1);
-    const done = planSessions(db, learner, plan.id).find((s) => s.id === first.id)!;
+    (await submitAttempt(db, { attemptId: open.attemptId, userId: learner }));
+    expect((await recordCompletions(db, learner, (await activePlan(db, learner, SAT.examKey))!))).toBe(1);
+    const done = (await planSessions(db, learner, plan.id)).find((s) => s.id === first.id)!;
     expect(done).toMatchObject({ status: 'completed', attemptId: open.attemptId });
 
     // Recording again changes nothing.
-    expect(recordCompletions(db, learner, activePlan(db, learner, SAT.examKey)!)).toBe(0);
+    expect((await recordCompletions(db, learner, (await activePlan(db, learner, SAT.examKey))!))).toBe(0);
   });
 
-  it('links a session started from it, so that session completes it', () => {
-    const plan = create();
-    const target = planSessions(db, learner, plan.id)[2];
-    const attemptId = practise({ ...(target.domainSlug ? { domains: [target.domainSlug] } : {}), length: 10, unseenOnly: true });
+  it('links a session started from it, so that session completes it', async () => {
+    const plan = (await create());
+    const target = (await planSessions(db, learner, plan.id))[2];
+    const attemptId = (await practise({ ...(target.domainSlug ? { domains: [target.domainSlug] } : {}), length: 10, unseenOnly: true }));
     // Pretend it was started from the plan: link, then record.
-    db.prepare("UPDATE attempts SET submitted_at = ? WHERE id = ?").run(new Date().toISOString(), attemptId);
-    linkStartedSession(db, learner, target.id, attemptId);
-    recordCompletions(db, learner, activePlan(db, learner, SAT.examKey)!);
-    expect(planSessions(db, learner, plan.id).find((s) => s.id === target.id)).toMatchObject({ status: 'completed', attemptId });
+    (await db.prepare("UPDATE attempts SET submitted_at = ? WHERE id = ?").run(new Date().toISOString(), attemptId));
+    (await linkStartedSession(db, learner, target.id, attemptId));
+    (await recordCompletions(db, learner, (await activePlan(db, learner, SAT.examKey))!));
+    expect((await planSessions(db, learner, plan.id)).find((s) => s.id === target.id)).toMatchObject({ status: 'completed', attemptId });
   });
 
-  it('skips a session for good, and refuses to skip a completed one', () => {
-    const plan = create();
-    const [first, second] = planSessions(db, learner, plan.id);
-    skipSession(db, learner, second.id);
-    expect(planSessions(db, learner, plan.id).find((s) => s.id === second.id)!.status).toBe('skipped');
-    practise({ domains: [first.domainSlug!], length: 10, unseenOnly: true });
-    recordCompletions(db, learner, activePlan(db, learner, SAT.examKey)!);
-    expect(() => skipSession(db, learner, first.id)).toThrowError(PlanError);
+  it('skips a session for good, and refuses to skip a completed one', async () => {
+    const plan = (await create());
+    const [first, second] = (await planSessions(db, learner, plan.id));
+    (await skipSession(db, learner, second.id));
+    expect((await planSessions(db, learner, plan.id)).find((s) => s.id === second.id)!.status).toBe('skipped');
+    (await practise({ domains: [first.domainSlug!], length: 10, unseenOnly: true }));
+    (await recordCompletions(db, learner, (await activePlan(db, learner, SAT.examKey))!));
+    (await expect(async () => (await skipSession(db, learner, first.id))).rejects.toThrowError(PlanError));
     // Another learner cannot skip it.
-    const other = createUser(db);
-    const [third] = planSessions(db, learner, plan.id).filter((s) => s.status === 'planned');
-    expect(() => skipSession(db, other, third.id)).toThrowError(PlanError);
+    const other = (await createUser(db));
+    const [third] = (await planSessions(db, learner, plan.id)).filter((s) => s.status === 'planned');
+    (await expect(async () => (await skipSession(db, other, third.id))).rejects.toThrowError(PlanError));
   });
 });
 
 describe('what completes an activity', () => {
   /** A plan with exactly the given open activities, dated today. */
-  function planWith(activities: Array<{ kind: PlannedSession['kind']; domainSlug?: string | null; questionCount?: number }>) {
-    const plan = createPlan(db, { userId: learner, examKey: SAT.examKey, weeklyMinutes: 150, examDate: null, now: new Date() });
-    db.prepare('DELETE FROM plan_sessions WHERE plan_id = ?').run(plan.id);
+  async function planWith(activities: Array<{ kind: PlannedSession['kind']; domainSlug?: string | null; questionCount?: number }>) {
+    const plan = (await createPlan(db, { userId: learner, examKey: SAT.examKey, weeklyMinutes: 150, examDate: null, now: new Date() }));
+    (await db.prepare('DELETE FROM plan_sessions WHERE plan_id = ?').run(plan.id));
     const today = isoDay(new Date());
     const insert = db.prepare(
       `INSERT INTO plan_sessions (id, plan_id, user_id, scheduled_on, sequence, kind, domain_slug, skill_slug, question_count, minutes, reason, status, created_at)
        VALUES (?, ?, ?, ?, ?, ?, ?, NULL, ?, 25, 'test', 'planned', ?)`,
     );
-    const ids = activities.map((a, index) => {
+    const ids = (await Promise.all(activities.map(async (a, index) => {
       const id = `act-${index}`;
-      insert.run(id, plan.id, learner, today, index + 1, a.kind, a.domainSlug === undefined ? DOMAIN.slug : a.domainSlug, a.questionCount ?? 10, new Date().toISOString());
+      (await insert.run(id, plan.id, learner, today, index + 1, a.kind, a.domainSlug === undefined ? DOMAIN.slug : a.domainSlug, a.questionCount ?? 10, new Date().toISOString()));
       return id;
-    });
+    })));
     return { plan, ids };
   }
-  const statusOf = (id: string) => (db.prepare('SELECT status, attempt_id AS attemptId FROM plan_sessions WHERE id = ?').get(id) as { status: string; attemptId: string | null });
-  const record = () => recordCompletions(db, learner, activePlan(db, learner, SAT.examKey)!);
+  const statusOf = async (id: string) => ((await db.prepare('SELECT status, attempt_id AS attemptId FROM plan_sessions WHERE id = ?').get(id)) as { status: string; attemptId: string | null });
+  const record = async () => (await recordCompletions(db, learner, (await activePlan(db, learner, SAT.examKey))!));
 
   /** A practice session of the topic with `answered` questions answered and the rest left blank, finished as `status`. */
-  function finishWith(overrides: Record<string, unknown>, answered: number, status: 'submitted' | 'expired' | 'abandoned' = 'submitted'): string {
-    const { attemptId } = startAttempt(db, { userId: learner, examKey: SAT.examKey, blueprintId: 'practice', overrides: { domains: [DOMAIN.slug], ...overrides } });
-    const items = db.prepare('SELECT position FROM attempt_items WHERE attempt_id = ? ORDER BY position').all(attemptId) as Array<{ position: number }>;
+  async function finishWith(overrides: Record<string, unknown>, answered: number, status: 'submitted' | 'expired' | 'abandoned' = 'submitted'): Promise<string> {
+    const { attemptId } = (await startAttempt(db, { userId: learner, examKey: SAT.examKey, blueprintId: 'practice', overrides: { domains: [DOMAIN.slug], ...overrides } }));
+    const items = (await db.prepare('SELECT position FROM attempt_items WHERE attempt_id = ? ORDER BY position').all(attemptId)) as Array<{ position: number }>;
     for (const { position } of items.slice(0, answered)) {
-      recordResponse(db, { attemptId, userId: learner, partIndex: 0, position, response: { type: 'single_select', optionId: 'a' } });
+      (await recordResponse(db, { attemptId, userId: learner, partIndex: 0, position, response: { type: 'single_select', optionId: 'a' } }));
     }
-    submitAttempt(db, { attemptId, userId: learner });
+    (await submitAttempt(db, { attemptId, userId: learner }));
     // Practice has no clock, so "closed by its clock" and "abandoned" are set directly.
-    if (status !== 'submitted') db.prepare('UPDATE attempts SET status = ? WHERE id = ?').run(status, attemptId);
+    if (status !== 'submitted') (await db.prepare('UPDATE attempts SET status = ? WHERE id = ?').run(status, attemptId));
     return attemptId;
   }
 
-  it('records "new questions only" on a session only when it was enforced as it was built', () => {
-    const settings = (id: string) => JSON.parse((db.prepare('SELECT settings_json AS s FROM attempts WHERE id = ?').get(id) as { s: string }).s);
-    expect(settings(finishWith({ length: 10, unseenOnly: true }, 10)).newQuestionsOnly).toBe(true);
-    expect(settings(finishWith({ length: 10 }, 10)).newQuestionsOnly).toBeUndefined();
+  it('records "new questions only" on a session only when it was enforced as it was built', async () => {
+    const settings = async (id: string) => JSON.parse(((await db.prepare('SELECT settings_json AS s FROM attempts WHERE id = ?').get(id)) as { s: string }).s);
+    expect((await settings((await finishWith({ length: 10, unseenOnly: true }, 10)))).newQuestionsOnly).toBe(true);
+    expect((await settings((await finishWith({ length: 10 }, 10)))).newQuestionsOnly).toBeUndefined();
   });
 
-  it('completes a new-questions activity with a genuinely new-question session', () => {
-    const { ids } = planWith([{ kind: 'new' }]);
-    const attemptId = finishWith({ length: 10, unseenOnly: true }, 10);
-    expect(record()).toBe(1);
-    expect(statusOf(ids[0])).toEqual({ status: 'completed', attemptId });
+  it('completes a new-questions activity with a genuinely new-question session', async () => {
+    const { ids } = (await planWith([{ kind: 'new' }]));
+    const attemptId = (await finishWith({ length: 10, unseenOnly: true }, 10));
+    expect((await record())).toBe(1);
+    expect((await statusOf(ids[0]))).toEqual({ status: 'completed', attemptId });
   });
 
-  it('does not let an ordinary session, repeats included, complete a new-questions activity', () => {
+  it('does not let an ordinary session, repeats included, complete a new-questions activity', async () => {
     // Seen before the plan: the next ordinary session of this 12-question topic must repeat some.
-    finishWith({ length: 10 }, 10);
-    const { ids } = planWith([{ kind: 'new' }, { kind: 'mixed', domainSlug: null }, { kind: 'revision' }]);
-    const ordinary = finishWith({ length: 10 }, 10);
-    const repeated = db
+    (await finishWith({ length: 10 }, 10));
+    const { ids } = (await planWith([{ kind: 'new' }, { kind: 'mixed', domainSlug: null }, { kind: 'revision' }]));
+    const ordinary = (await finishWith({ length: 10 }, 10));
+    const repeated = (await db
       .prepare(
         `SELECT COUNT(*) AS n FROM attempt_items ai WHERE ai.attempt_id = ? AND EXISTS (
            SELECT 1 FROM attempt_items prior JOIN attempts a ON a.id = prior.attempt_id
             WHERE prior.question_id = ai.question_id AND a.user_id = ? AND a.id <> ai.attempt_id)`,
       )
-      .get(ordinary, learner) as { n: number };
+      .get(ordinary, learner)) as { n: number };
     expect(repeated.n).toBeGreaterThan(0);
-    record();
-    expect(statusOf(ids[0]).status).toBe('planned');
-    expect(statusOf(ids[1]).status).toBe('planned');
+    (await record());
+    expect((await statusOf(ids[0])).status).toBe('planned');
+    expect((await statusOf(ids[1])).status).toBe('planned');
     // It is revision, which may repeat: that one it completes.
-    expect(statusOf(ids[2])).toEqual({ status: 'completed', attemptId: ordinary });
+    expect((await statusOf(ids[2]))).toEqual({ status: 'completed', attemptId: ordinary });
   });
 
-  it('counts answers, not questions shown: blanks do not count, and 5 answers complete a 10-question activity', () => {
-    const { ids } = planWith([{ kind: 'new' }]);
-    finishWith({ length: 10, unseenOnly: true }, 4);
-    expect(record()).toBe(0);
+  it('counts answers, not questions shown: blanks do not count, and 5 answers complete a 10-question activity', async () => {
+    const { ids } = (await planWith([{ kind: 'new' }]));
+    (await finishWith({ length: 10, unseenOnly: true }, 4));
+    expect((await record())).toBe(0);
     // The threshold, not every planned question: 5 answered of the 10 planned.
-    finishWith({ length: 5, unseenOnly: true }, 5);
-    expect(record()).toBe(1);
-    expect(statusOf(ids[0]).status).toBe('completed');
+    (await finishWith({ length: 5, unseenOnly: true }, 5));
+    expect((await record())).toBe(1);
+    expect((await statusOf(ids[0])).status).toBe('completed');
   });
 
-  it('completes a short activity when every planned question is answered, and not with one left blank', () => {
-    const { ids } = planWith([{ kind: 'revision', questionCount: 3 }]);
-    finishWith({ length: 3 }, 2);
-    expect(record()).toBe(0);
-    finishWith({ length: 3 }, 3);
-    expect(record()).toBe(1);
-    expect(statusOf(ids[0]).status).toBe('completed');
+  it('completes a short activity when every planned question is answered, and not with one left blank', async () => {
+    const { ids } = (await planWith([{ kind: 'revision', questionCount: 3 }]));
+    (await finishWith({ length: 3 }, 2));
+    expect((await record())).toBe(0);
+    (await finishWith({ length: 3 }, 3));
+    expect((await record())).toBe(1);
+    expect((await statusOf(ids[0])).status).toBe('completed');
   });
 
-  it('treats a session closed by its clock as finished, and an abandoned one as not', () => {
-    const { ids } = planWith([{ kind: 'new' }, { kind: 'new' }]);
-    finishWith({ length: 5, unseenOnly: true }, 5, 'abandoned');
-    expect(record()).toBe(0);
-    finishWith({ length: 5, unseenOnly: true }, 5, 'expired');
-    expect(record()).toBe(1);
-    expect([statusOf(ids[0]).status, statusOf(ids[1]).status]).toEqual(['completed', 'planned']);
+  it('treats a session closed by its clock as finished, and an abandoned one as not', async () => {
+    const { ids } = (await planWith([{ kind: 'new' }, { kind: 'new' }]));
+    (await finishWith({ length: 5, unseenOnly: true }, 5, 'abandoned'));
+    expect((await record())).toBe(0);
+    (await finishWith({ length: 5, unseenOnly: true }, 5, 'expired'));
+    expect((await record())).toBe(1);
+    expect([(await statusOf(ids[0])).status, (await statusOf(ids[1])).status]).toEqual(['completed', 'planned']);
   });
 
-  it('lets one session complete at most one activity, and opening one completes nothing', () => {
-    const { ids } = planWith([{ kind: 'new' }, { kind: 'new' }]);
-    const open = startAttempt(db, { userId: learner, examKey: SAT.examKey, blueprintId: 'practice', overrides: { domains: [DOMAIN.slug], length: 10, unseenOnly: true } });
-    linkStartedSession(db, learner, ids[0], open.attemptId);
-    expect(record()).toBe(0);
-    expect(statusOf(ids[0])).toEqual({ status: 'planned', attemptId: open.attemptId });
+  it('lets one session complete at most one activity, and opening one completes nothing', async () => {
+    const { ids } = (await planWith([{ kind: 'new' }, { kind: 'new' }]));
+    const open = (await startAttempt(db, { userId: learner, examKey: SAT.examKey, blueprintId: 'practice', overrides: { domains: [DOMAIN.slug], length: 10, unseenOnly: true } }));
+    (await linkStartedSession(db, learner, ids[0], open.attemptId));
+    expect((await record())).toBe(0);
+    expect((await statusOf(ids[0]))).toEqual({ status: 'planned', attemptId: open.attemptId });
     for (let position = 0; position < 10; position += 1) {
-      recordResponse(db, { attemptId: open.attemptId, userId: learner, partIndex: 0, position, response: { type: 'single_select', optionId: 'a' } });
+      (await recordResponse(db, { attemptId: open.attemptId, userId: learner, partIndex: 0, position, response: { type: 'single_select', optionId: 'a' } }));
     }
-    submitAttempt(db, { attemptId: open.attemptId, userId: learner });
-    expect(record()).toBe(1);
-    expect([statusOf(ids[0]).status, statusOf(ids[1]).status]).toEqual(['completed', 'planned']);
-    expect(record()).toBe(0);
+    (await submitAttempt(db, { attemptId: open.attemptId, userId: learner }));
+    expect((await record())).toBe(1);
+    expect([(await statusOf(ids[0])).status, (await statusOf(ids[1])).status]).toEqual(['completed', 'planned']);
+    expect((await record())).toBe(0);
   });
 
-  it('never re-judges history: completed and skipped activities stay as they were', () => {
-    const { ids } = planWith([{ kind: 'new' }, { kind: 'new' }]);
-    const earlier = finishWith({ length: 10 }, 10);
+  it('never re-judges history: completed and skipped activities stay as they were', async () => {
+    const { ids } = (await planWith([{ kind: 'new' }, { kind: 'new' }]));
+    const earlier = (await finishWith({ length: 10 }, 10));
     // Completed before this rule, by an ordinary session; and one skipped.
-    db.prepare("UPDATE plan_sessions SET status = 'completed', attempt_id = ?, status_at = ? WHERE id = ?").run(earlier, new Date().toISOString(), ids[0]);
-    skipSession(db, learner, ids[1]);
-    finishWith({ length: 2, unseenOnly: true }, 2);
-    record();
-    expect(statusOf(ids[0])).toEqual({ status: 'completed', attemptId: earlier });
-    expect(statusOf(ids[1]).status).toBe('skipped');
+    (await db.prepare("UPDATE plan_sessions SET status = 'completed', attempt_id = ?, status_at = ? WHERE id = ?").run(earlier, new Date().toISOString(), ids[0]));
+    (await skipSession(db, learner, ids[1]));
+    (await finishWith({ length: 2, unseenOnly: true }, 2));
+    (await record());
+    expect((await statusOf(ids[0]))).toEqual({ status: 'completed', attemptId: earlier });
+    expect((await statusOf(ids[1])).status).toBe('skipped');
   });
 });
 
 describe('adjusting the remaining plan', () => {
-  it('previews first, and applies exactly the preview: missed recorded, future replaced, history kept', () => {
+  it('previews first, and applies exactly the preview: missed recorded, future replaced, history kept', async () => {
     const start = new Date(Date.now() - 10 * 24 * 60 * 60 * 1000);
-    const plan = createPlan(db, { userId: learner, examKey: SAT.examKey, weeklyMinutes: 150, examDate: null, now: start });
-    const sessions = planSessions(db, learner, plan.id);
+    const plan = (await createPlan(db, { userId: learner, examKey: SAT.examKey, weeklyMinutes: 150, examDate: null, now: start }));
+    const sessions = (await planSessions(db, learner, plan.id));
     const now = new Date();
     const missedBefore = sessions.filter((s) => stateOf(s, now) === 'missed');
     expect(missedBefore.length).toBeGreaterThan(0);
 
     // One of the past sessions was skipped: history.
-    skipSession(db, learner, missedBefore[0].id);
-    const current = activePlan(db, learner, SAT.examKey)!;
+    (await skipSession(db, learner, missedBefore[0].id));
+    const current = (await activePlan(db, learner, SAT.examKey))!;
 
-    const { preview, digest } = planAdjustment(db, learner, current, { weeklyMinutes: 150, examDate: null, now });
+    const { preview, digest } = (await planAdjustment(db, learner, current, { weeklyMinutes: 150, examDate: null, now }));
     expect(preview.missed.map((s) => s.id)).not.toContain(missedBefore[0].id);
     expect(preview.missed.length).toBe(missedBefore.length - 1);
     expect(preview.history).toBe(1);
     expect(preview.startsOn).toBe(isoDay(now));
     // Nothing is stored by a preview.
-    expect(planSessions(db, learner, plan.id).filter((s) => s.status === 'missed')).toHaveLength(0);
+    expect((await planSessions(db, learner, plan.id)).filter((s) => s.status === 'missed')).toHaveLength(0);
 
     // A stale preview is refused.
-    expect(() => applyAdjustment(db, learner, plan.id, 'not-the-digest', { weeklyMinutes: 150, examDate: null, now })).toThrowError(
+    (await expect(async () => (await applyAdjustment(db, learner, plan.id, 'not-the-digest', { weeklyMinutes: 150, examDate: null, now }))).rejects.toThrowError(
       expect.objectContaining({ code: 'plan-changed' }),
-    );
+    ));
 
-    applyAdjustment(db, learner, plan.id, digest, { weeklyMinutes: 150, examDate: null, now });
-    const after = planSessions(db, learner, plan.id);
+    (await applyAdjustment(db, learner, plan.id, digest, { weeklyMinutes: 150, examDate: null, now }));
+    const after = (await planSessions(db, learner, plan.id));
     expect(after.filter((s) => s.status === 'missed').map((s) => s.id).sort()).toEqual(preview.missed.map((s) => s.id).sort());
     expect(after.find((s) => s.id === missedBefore[0].id)!.status).toBe('skipped');
     const upcoming = after.filter((s) => s.status === 'planned');
@@ -449,51 +449,51 @@ describe('adjusting the remaining plan', () => {
     expect(carried.reason).toContain('Carried from a missed session');
 
     // Applying the same preview twice is refused: the plan moved on.
-    expect(() => applyAdjustment(db, learner, plan.id, digest, { weeklyMinutes: 150, examDate: null, now })).toThrowError(
+    (await expect(async () => (await applyAdjustment(db, learner, plan.id, digest, { weeklyMinutes: 150, examDate: null, now }))).rejects.toThrowError(
       expect.objectContaining({ code: 'plan-changed' }),
-    );
+    ));
   });
 
-  it('keeps a recorded-missed session missed, even if matching practice comes later', () => {
+  it('keeps a recorded-missed session missed, even if matching practice comes later', async () => {
     const start = new Date(Date.now() - 10 * 24 * 60 * 60 * 1000);
-    const plan = createPlan(db, { userId: learner, examKey: SAT.examKey, weeklyMinutes: 150, examDate: null, now: start });
-    const current = activePlan(db, learner, SAT.examKey)!;
-    const { digest, preview } = planAdjustment(db, learner, current, { weeklyMinutes: 150, examDate: null });
-    applyAdjustment(db, learner, plan.id, digest, { weeklyMinutes: 150, examDate: null });
+    const plan = (await createPlan(db, { userId: learner, examKey: SAT.examKey, weeklyMinutes: 150, examDate: null, now: start }));
+    const current = (await activePlan(db, learner, SAT.examKey))!;
+    const { digest, preview } = (await planAdjustment(db, learner, current, { weeklyMinutes: 150, examDate: null }));
+    (await applyAdjustment(db, learner, plan.id, digest, { weeklyMinutes: 150, examDate: null }));
     const missed = preview.missed[0];
-    practise({ domains: [missed.domainSlug!], length: 10 });
-    recordCompletions(db, learner, activePlan(db, learner, SAT.examKey)!);
-    expect(planSessions(db, learner, plan.id).find((s) => s.id === missed.id)!.status).toBe('missed');
+    (await practise({ domains: [missed.domainSlug!], length: 10 }));
+    (await recordCompletions(db, learner, (await activePlan(db, learner, SAT.examKey))!));
+    expect((await planSessions(db, learner, plan.id)).find((s) => s.id === missed.id)!.status).toBe('missed');
   });
 });
 
 describe('the one exam date', () => {
-  const target = () =>
-    db.prepare('SELECT target_score AS score, target_date AS date, legacy_plan_date AS legacy FROM exam_targets WHERE user_id = ?').get(learner);
+  const target = async () =>
+    (await db.prepare('SELECT target_score AS score, target_date AS date, legacy_plan_date AS legacy FROM exam_targets WHERE user_id = ?').get(learner));
 
-  it('keeps a conflict open until the learner chooses, and keeps the target score', () => {
-    db.prepare("INSERT INTO exam_targets (user_id, exam_key, target_score, target_date, created_at, updated_at, legacy_plan_date) VALUES (?, ?, 1400, '2026-12-05', 'x', 'x', '2026-11-07')").run(learner, SAT.examKey);
-    setExamDate(db, learner, SAT.examKey, '2026-12-05');
-    expect(target()).toEqual({ score: 1400, date: '2026-12-05', legacy: '2026-11-07' });
-    expect(resolveDateConflict(db, learner, SAT.examKey, 'earlier')).toBe(true);
-    expect(target()).toEqual({ score: 1400, date: '2026-11-07', legacy: null });
-    expect(resolveDateConflict(db, learner, SAT.examKey, 'current')).toBe(false);
+  it('keeps a conflict open until the learner chooses, and keeps the target score', async () => {
+    (await db.prepare("INSERT INTO exam_targets (user_id, exam_key, target_score, target_date, created_at, updated_at, legacy_plan_date) VALUES (?, ?, 1400, '2026-12-05', 'x', 'x', '2026-11-07')").run(learner, SAT.examKey));
+    (await setExamDate(db, learner, SAT.examKey, '2026-12-05'));
+    expect((await target())).toEqual({ score: 1400, date: '2026-12-05', legacy: '2026-11-07' });
+    expect((await resolveDateConflict(db, learner, SAT.examKey, 'earlier'))).toBe(true);
+    expect((await target())).toEqual({ score: 1400, date: '2026-11-07', legacy: null });
+    expect((await resolveDateConflict(db, learner, SAT.examKey, 'current'))).toBe(false);
   });
 
-  it('settles a conflict when the learner sets a different date', () => {
-    db.prepare("INSERT INTO exam_targets (user_id, exam_key, target_score, target_date, created_at, updated_at, legacy_plan_date) VALUES (?, ?, NULL, '2026-12-05', 'x', 'x', '2026-11-07')").run(learner, SAT.examKey);
-    setExamDate(db, learner, SAT.examKey, addDays('2026-12-05', 7));
-    expect(target()).toEqual({ score: null, date: '2026-12-12', legacy: null });
+  it('settles a conflict when the learner sets a different date', async () => {
+    (await db.prepare("INSERT INTO exam_targets (user_id, exam_key, target_score, target_date, created_at, updated_at, legacy_plan_date) VALUES (?, ?, NULL, '2026-12-05', 'x', 'x', '2026-11-07')").run(learner, SAT.examKey));
+    (await setExamDate(db, learner, SAT.examKey, addDays('2026-12-05', 7)));
+    expect((await target())).toEqual({ score: null, date: '2026-12-12', legacy: null });
   });
 });
 
 describe('reviews', () => {
-  it('drops a missed question from review once it is answered right in a retry', () => {
-    practise({ domains: [DOMAIN.slug], length: 10 }, [0]);
-    const [missed] = retryableMissed(db, learner, SAT.examKey);
-    const retry = startRetry(db, { userId: learner, examKey: SAT.examKey, questionIds: [missed] });
-    recordResponse(db, { attemptId: retry.attemptId, userId: learner, partIndex: 0, position: 0, response: { type: 'single_select', optionId: 'a' } });
-    submitAttempt(db, { attemptId: retry.attemptId, userId: learner });
-    expect(retryableMissed(db, learner, SAT.examKey)).toEqual([]);
+  it('drops a missed question from review once it is answered right in a retry', async () => {
+    (await practise({ domains: [DOMAIN.slug], length: 10 }, [0]));
+    const [missed] = (await retryableMissed(db, learner, SAT.examKey));
+    const retry = (await startRetry(db, { userId: learner, examKey: SAT.examKey, questionIds: [missed] }));
+    (await recordResponse(db, { attemptId: retry.attemptId, userId: learner, partIndex: 0, position: 0, response: { type: 'single_select', optionId: 'a' } }));
+    (await submitAttempt(db, { attemptId: retry.attemptId, userId: learner }));
+    expect((await retryableMissed(db, learner, SAT.examKey))).toEqual([]);
   });
 });

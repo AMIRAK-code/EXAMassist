@@ -1,0 +1,77 @@
+{
+  "id": "bocconi-law-numrsn-moot-fifth-round-415",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-numerical-reasoning",
+  "skillSlug": "law-numrsn-reasoning-over-calculation",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In a moot-court competition, a team's average score over its first four rounds was 72 points. After the fifth round, its average score over all five rounds was 75 points. What did the team score in the fifth round?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "75"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "78"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "84"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "87"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Think of the fifth score as having to \"pay for\" the rise in the average.\n\n**Reasoning route.** For the average of five rounds to stand at $75$, each of the five rounds must, in effect, contribute $75$. The first four rounds contributed only $72$ each, so they fall short by $3$ points each, $4 \\times 3 = 12$ points in all. The fifth round must reach $75$ for itself and make up those $12$ points: $75 + 12 = 87$.\n\n**Calculation route (as a check).** The total of the first four rounds is $4 \\times 72 = 288$. The total of all five must be $5 \\times 75 = 375$. The fifth score is the difference: $375 - 288 = 87$.\n\n**How to check.** Put the answer back. Four rounds totalling $288$ plus $87$ give $375$, and $375 \\div 5 = 75$, as stated.",
+  "distractorRationale": {
+    "a": "This assumes the fifth score must equal the new average. A score equal to 75 would raise the average above 72, but only to 72.6, because the other four rounds are still dragging it down.",
+    "b": "This adds the rise of 3 points once to the new average (75 + 3). The rise has to be spread across all the earlier rounds, not added once.",
+    "c": "This makes up the shortfall of the four earlier rounds ($4 \\times 3 = 12$) but adds it to the old average, $72 + 12$, instead of to the new one. With $84$ the five-round total would be $372$ and the average $74.4$."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": null,
+  "accessibilityText": "In a moot-court competition, a team averaged 72 points over its first four rounds. After the fifth round, its average over all five rounds was 75 points. The question asks what the team scored in the fifth round. The four answer options are 75, 78, 84 and 87.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave8-author",
+    "aiAssisted": true,
+    "notes": "Original standalone numerical-reasoning item on averages, built so that a short reasoning route (each earlier round falls 3 points short) is faster than the full calculation. The competition and scores are invented."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave8-author",
+    "reviewer": "blind-reviewer-wave8-final-quant-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-final-quant-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "5*75 - 4*72 = 375 - 288 = 87. 78 adds only the 3-point gap once, 84 adds 4*3 to 72, 75 is the new average. [A second, separate blind solve (blind-reviewer-wave8-final-quant-run1) reached the same answer: The fifth score is 5*75-4*72 = 375-288 = 87. 78 adds only the 3-point rise once and 84 adds 4*3; the fifth score must cover the rise for all five rounds: 75+4*3=87.]"
+    },
+    "notes": ""
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "numerical-reasoning",
+    "averages",
+    "reasoning-over-calculation",
+    "no-calculator"
+  ]
+}

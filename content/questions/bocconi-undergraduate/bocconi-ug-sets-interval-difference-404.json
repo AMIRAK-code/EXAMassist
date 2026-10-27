@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-sets-interval-difference-404",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-sets",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Consider the subsets of $\\mathbb{R}$\n\n$$S = \\left\\{ x \\in \\mathbb{R} : x^{2} - 4x < 0 \\right\\} \\qquad T = \\left\\{ x \\in \\mathbb{R} : |x - 4| \\le 2 \\right\\}$$\n\nWhich set is $S \\setminus T$, the set of elements of $S$ that do not belong to $T$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\left\\{ x \\in \\mathbb{R} : 4 \\le x \\le 6 \\right\\}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\left\\{ x \\in \\mathbb{R} : 0 < x < 2 \\right\\}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\left\\{ x \\in \\mathbb{R} : 2 \\le x < 4 \\right\\}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\left\\{ x \\in \\mathbb{R} : 0 < x \\le 2 \\right\\}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "**Step 1 — write each set as an interval.**\n\n- $S$: $x^{2} - 4x = x(x - 4) < 0$ holds strictly between the roots, so $S = \\{x : 0 < x < 4\\}$. Both endpoints are excluded because the inequality is strict.\n- $T$: $|x - 4| \\le 2$ means the distance from $x$ to $4$ is at most $2$, so $-2 \\le x - 4 \\le 2$, that is $T = \\{x : 2 \\le x \\le 6\\}$. Both endpoints are included.\n\n**Step 2 — remove $T$ from $S$.** On a number line, $S$ runs from $0$ to $4$ (open at both ends) and $T$ runs from $2$ to $6$ (closed at both ends). They overlap on $2 \\le x < 4$. Removing that overlap from $S$ leaves\n\n$$S \\setminus T = \\{x : 0 < x < 2\\}$$\n\n**Step 3 — settle the endpoints.** The point $x = 2$ belongs to $T$ (since $|2 - 4| = 2 \\le 2$), so it is removed and the interval is open at $2$. The point $x = 0$ was never in $S$ (since $0^{2} - 4 \\cdot 0 = 0$ is not negative), so it stays excluded.\n\n**Check with a sample point.** $x = 1$: $1 - 4 = -3 < 0$, so $1 \\in S$, and $|1 - 4| = 3 > 2$, so $1 \\notin T$. It belongs to $S \\setminus T$, as the answer says.",
+  "distractorRationale": {
+    "d": "This gets the pieces right but keeps the endpoint $x = 2$. Because $|2 - 4| = 2$ satisfies the non-strict inequality, $2$ is an element of $T$ and must be removed from $S$.",
+    "c": "This is $S \\cap T$, the part the two sets share. The difference $S \\setminus T$ is what remains of $S$ after that shared part is taken away.",
+    "a": "This is $T \\setminus S$, the difference taken in the opposite order: the elements of $T$ that are not in $S$. Set difference is not symmetric, and the question asks for elements of $S$."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "S is the set of real x with x squared minus 4 x less than zero. T is the set of real x with the absolute value of x minus 4 at most 2. The question asks for S minus T, the elements of S that are not in T. The choices are the sets of real x with: x from 4 to 6, both included; x greater than 0 and less than 2; x at least 2 and less than 4; and x greater than 0 and at most 2.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. One set is defined by a strict quadratic inequality and the other by a non-strict absolute-value inequality, so the endpoints behave differently and one distractor turns on that difference; the other two are the intersection and the reversed difference. The sets are named S and T so that no set name coincides with an option label. Membership of the endpoints was checked by a read-only script."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-bocconi-math-author",
+    "reviewer": "blind-reviewer-wave7-bocconi-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-bocconi-math-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "S=(0,4) and T=[2,6], so S\\T=(0,2). D includes 2, but 2 is in T (|2-4|=2<=2), so D is wrong. C is the intersection S∩T, and A is part of T\\S plus the point 4. [A second, separate blind solve (blind-reviewer-wave7-bocconi-math-run1) reached the same answer: S=(0,4) and T=[2,6], so S\\T=(0,2). D wrongly includes 2, which is in T. C is S∩T, and A is part of T\\S (with the endpoint 4 mishandled).]"
+    },
+    "notes": "Author's uniqueness check: S = (0, 4) and T = [2, 6], so S minus T = (0, 2), which is stated by exactly one choice; the other three sets differ from it (one contains 2, one is S intersect T, one is T minus S). Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "set-difference",
+    "intervals",
+    "absolute-value"
+  ]
+}

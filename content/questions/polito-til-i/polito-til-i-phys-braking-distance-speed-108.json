@@ -1,0 +1,82 @@
+{
+  "id": "polito-til-i-phys-braking-distance-speed-108",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "physics",
+  "domainSlug": "tili-physics",
+  "skillSlug": "tili-phys-work-energy",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "On a dry road a car braking with a constant braking force stops in 10 m from a speed of 36 km/h. The same car, braking with the same constant force, is now travelling at 72 km/h. In what distance does it stop?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$80\\ \\text{m}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$40\\ \\text{m}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$10\\ \\text{m}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$10\\sqrt{2}\\ \\text{m}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$20\\ \\text{m}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Use the work-energy theorem. The braking force $F$ does negative work over the stopping distance $d$ and removes all the kinetic energy: $F d = \\tfrac12 m v^{2}$. So $d = \\dfrac{m v^{2}}{2F}$, and with the same car and the same force, **the stopping distance is proportional to the square of the speed**.\n\nDoubling the speed (36 km/h to 72 km/h) multiplies $v^{2}$ by $2^{2} = 4$, so the distance is $4\\times10 = 40\\ \\text{m}$.\n\n**Check with numbers.** 36 km/h is 10 m/s and 72 km/h is 20 m/s. From $v^{2} = 2ad$ the first stop gives $100 = 2a\\times10$, so $a = 5\\ \\text{m/s}^2$. At 20 m/s: $d = 400/(2\\times5) = 40\\ \\text{m}$.",
+  "distractorRationale": {
+    "c": "Assumes the distance depends only on the braking force, which is unchanged. The distance also depends on how much kinetic energy has to be removed, and that grows with speed.",
+    "d": "Treats the distance as proportional to the square root of the speed, turning the relationship round. It is the speed that goes with the square root of the distance, not the other way.",
+    "e": "Assumes the distance is proportional to the speed, so doubling the speed doubles the distance. Kinetic energy grows with the square of the speed, and so does the stopping distance.",
+    "a": "Counts the doubling twice: once through the fourfold kinetic energy, and again for the doubled speed. The distance is multiplied by 4 only."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": null,
+  "accessibilityText": "A work and energy question. A car braking with a constant force stops in 10 metres from 36 kilometres per hour. The same car with the same constant braking force is travelling at 72 kilometres per hour, and the new stopping distance is wanted. The choices are 10 metres, 10 times the square root of 2 metres, 20 metres, 40 metres and 80 metres.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-wave6-physics-technical-author",
+    "aiAssisted": true,
+    "notes": "Original item. Wrong choices name four wrong proportionalities: constant, square root, linear and cubic-style double counting."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-wave6-physics-technical-author",
+    "reviewer": "blind-reviewer-wave6-tili-phys-tech-run8",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-phys-tech-run8",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "With a constant braking force, the stopping distance is proportional to v^2. Doubling the speed multiplies the distance by 4, giving 40 m. 20 m assumes a linear relation, and 80 m and 10√2 m are wrong scalings. [A second, separate blind solve (blind-reviewer-wave6-tili-phys-tech-run9) reached the same answer: Work-energy with constant force: d proportional to v^2; doubling speed quadruples distance, 10 m to 40 m. 20 m (linear), 80 m (cubic/8x), 10*sqrt2 (sqrt) are standard errors.]"
+    },
+    "notes": "Awaiting a blind independent solve. The author recomputed every option and checked the key a second way before saving (see the explanation). Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "work-energy-theorem",
+    "stopping-distance",
+    "proportional-reasoning"
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "id": "tolc-i-logic-seq-digit-sum-209",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-sequences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Each term of the sequence below is obtained from the previous term by the same rule.\n\n7, 14, 19, 29, 40, 44, ?\n\nWhat is the next term?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "48"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "51"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "52"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "60"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "88"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The differences 7, 5, 10, 11, 4 follow no arithmetic pattern, which is the signal to look at the digits of each term instead. Each term is the previous term plus the **sum of its own digits**:\n\n- 7 + 7 = 14\n- 14 + (1 + 4) = 19\n- 19 + (1 + 9) = 29\n- 29 + (2 + 9) = 40\n- 40 + (4 + 0) = 44\n\nSo the next term is 44 + (4 + 4) = **52**.\n\nCheck that the rule really reproduces every step from the first term: it does, with no exceptions, and the problem says one rule produces every term.",
+  "distractorRationale": {
+    "a": "Adds 4 again, repeating the last difference. The differences are not constant; each is the digit sum of the current term, and 44 has digit sum 8.",
+    "b": "Assumes the differences 7, 5, 10, 11, 4 repeat in a cycle and starts again with 7. Five differences with no repetition give no evidence of a cycle, and the digit-sum rule explains each of them.",
+    "d": "Uses the product of the digits, 4 × 4 = 16, instead of their sum. The product rule fails earlier: from 14 it would add 4 and give 18, not 19.",
+    "e": "Doubles the last term. Doubling fits only the first step, 7 to 14."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "A number sequence question. Each term comes from the previous one by the same rule. The terms are 7, 14, 19, 29, 40, 44, followed by an unknown term. The question asks for the next term. The five choices are 48, 51, 52, 60 and 88.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-logic-author",
+    "aiAssisted": true,
+    "notes": "Tests a sequence where each term adds the digit sum of the previous term, so the differences look irregular. The scenario and wording are original to this bank; no published TOLC or other test item was used or adapted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-logic-author",
+    "reviewer": "blind-reviewer-wave8-tolci-logic-sci-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-logic-sci-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Each term = previous + its digit sum: 7+7=14, 14+5=19, 19+10=29, 29+11=40, 40+4=44, 44+8=52. Differences 7,5,10,11,4 have no other simple pattern, so 48, 51, 60, 88 lack support. [A second, separate blind solve (blind-reviewer-wave8-tolci-logic-sci-run1) reached the same answer: Each term adds its own digit sum: 7+7=14, 14+5=19, 19+10=29, 29+11=40, 40+4=44, 44+8=52. Doubling gives 88 but fails 14->19; no other simple rule fits all steps to give 48, 51 or 60.]"
+    },
+    "notes": ""
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "sequences",
+    "numeric",
+    "digit-sum",
+    "no-calculator"
+  ]
+}

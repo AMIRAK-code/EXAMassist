@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-chem-salt-solution-basic-936",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "chemistry",
+  "domainSlug": "tolcf-chemistry",
+  "skillSlug": "tolcf-chem-solutions-acids-bases",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Each of the following salts is dissolved in pure water at 25 °C to make a 0.1 mol/L solution. Which solution has a pH greater than 7?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Ammonium nitrate, $\\mathrm{NH_4NO_3}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Sodium chloride, $\\mathrm{NaCl}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Sodium acetate, $\\mathrm{CH_3COONa}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Ammonium chloride, $\\mathrm{NH_4Cl}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Potassium nitrate, $\\mathrm{KNO_3}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Think of each salt as made from an acid and a base, and ask which parent is weak. The ion that comes from a **weak** parent reacts with water; the ion from a **strong** parent does not.\n\n- NaCl: from NaOH (strong) and HCl (strong). Neither ion reacts: **neutral**, pH 7.\n- $\\mathrm{KNO_3}$: from KOH (strong) and $\\mathrm{HNO_3}$ (strong): **neutral**.\n- $\\mathrm{NH_4Cl}$ and $\\mathrm{NH_4NO_3}$: from the weak base $\\mathrm{NH_3}$ and a strong acid. The ammonium ion gives $\\mathrm{H^+}$ to water: **acidic**.\n- $\\mathrm{CH_3COONa}$: from NaOH (strong) and acetic acid (weak). The acetate ion takes $\\mathrm{H^+}$ from water:\n\n$$\\mathrm{CH_3COO^-} + \\mathrm{H_2O} \\rightleftharpoons \\mathrm{CH_3COOH} + \\mathrm{OH^-}$$\n\nThe extra $\\mathrm{OH^-}$ makes the solution **basic**.\n\n**Check:** strong acid with strong base gives neutral, strong acid with weak base gives acidic, weak acid with strong base gives basic; only sodium acetate fits the last pattern.",
+  "distractorRationale": {
+    "b": "Sodium chloride comes from a strong acid and a strong base. Neither ion reacts with water, so the solution is neutral.",
+    "e": "Potassium nitrate also comes from a strong base and a strong acid, so its solution is neutral, not basic.",
+    "d": "The ammonium ion is the conjugate acid of the weak base ammonia; it donates $\\mathrm{H^+}$ to water, so the solution is acidic, pH below 7.",
+    "a": "Ammonium nitrate contains the ammonium ion, which makes the solution acidic; the nitrate ion, from a strong acid, does not offset it."
+  },
+  "estimatedSeconds": 50,
+  "stimulusRef": null,
+  "accessibilityText": "A short text question. Each salt is dissolved in pure water at 25 degrees Celsius at 0.1 moles per litre, and the question asks which solution has a pH greater than 7. The choices are: ammonium nitrate, N H 4 N O 3; sodium chloride, N a C l; sodium acetate, C H 3 C O O N a; ammonium chloride, N H 4 C l; potassium nitrate, K N O 3.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave8-biochem-author",
+    "aiAssisted": true,
+    "notes": "Original item. Tests predicting the acidity of salt solutions from the strength of the parent acid and base."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave8-biochem-author",
+    "reviewer": "blind-reviewer-wave8-tolcf-biochem-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolcf-biochem-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Sodium acetate is the salt of a weak acid and a strong base; acetate hydrolyses to give OH-, so pH > 7. NaCl and KNO3 (strong acid + strong base) are neutral, and NH4NO3 and NH4Cl are acidic because NH4+ hydrolyses. [A second, separate blind solve (blind-reviewer-wave8-tolcf-biochem-run1) reached the same answer: Acetate is the conjugate base of a weak acid and hydrolyses to give OH-, so sodium acetate solution has pH > 7. NH4NO3 and NH4Cl are acidic (NH4+ hydrolysis), while NaCl and KNO3 come from a strong acid and a strong base and are neutral.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "salt-hydrolysis",
+    "ph",
+    "acids-bases"
+  ]
+}

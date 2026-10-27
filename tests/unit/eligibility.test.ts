@@ -158,32 +158,32 @@ describe('session creation', () => {
   let db: Db;
   let learner: string;
 
-  beforeEach(() => {
-    db = createTestDb();
-    learner = createUser(db);
-    seedQuestions(db, SAT, { perDomain: 6 });
+  beforeEach(async () => {
+    db = (await createTestDb());
+    learner = (await createUser(db));
+    (await seedQuestions(db, SAT, { perDomain: 6 }));
   });
 
-  it('builds a drill of exactly the eligible count and refuses one more', () => {
-    const facets = practiceFacets(db, SAT);
+  it('builds a drill of exactly the eligible count and refuses one more', async () => {
+    const facets = (await practiceFacets(db, SAT));
     const skill = facets[0].skillSlug;
     const eligible = eligibleCount(facets, { skill });
 
-    const ok = startAttempt(db, {
+    const ok = (await startAttempt(db, {
       userId: learner,
       examKey: SAT.examKey,
       blueprintId: 'practice',
       overrides: { skills: [skill], length: eligible },
-    });
-    expect(getAttemptState(db, ok.attemptId, learner).parts[0].items).toHaveLength(eligible);
+    }));
+    expect((await getAttemptState(db, ok.attemptId, learner)).parts[0].items).toHaveLength(eligible);
 
     try {
-      startAttempt(db, {
+      (await startAttempt(db, {
         userId: learner,
         examKey: SAT.examKey,
         blueprintId: 'practice',
         overrides: { skills: [skill], length: eligible + 1 },
-      });
+      }));
       expect.unreachable();
     } catch (error) {
       expect((error as AttemptError).code).toBe('insufficient-content');
@@ -191,37 +191,37 @@ describe('session creation', () => {
     }
   });
 
-  it('treats a chosen difficulty as a filter, never padding with other levels', () => {
-    const hard = eligibleCount(practiceFacets(db, SAT), { difficulty: 'hard' });
-    const { attemptId } = startAttempt(db, {
+  it('treats a chosen difficulty as a filter, never padding with other levels', async () => {
+    const hard = eligibleCount((await practiceFacets(db, SAT)), { difficulty: 'hard' });
+    const { attemptId } = (await startAttempt(db, {
       userId: learner,
       examKey: SAT.examKey,
       blueprintId: 'practice',
       overrides: { difficulty: 'hard', length: hard },
-    });
-    const ids = attemptQuestionOrder(db, attemptId);
-    const levels = db
+    }));
+    const ids = (await attemptQuestionOrder(db, attemptId));
+    const levels = (await db
       .prepare(
         `SELECT DISTINCT qv.difficulty AS d FROM attempt_items ai
          JOIN question_versions qv ON qv.id = ai.question_version_id WHERE ai.attempt_id = ?`,
       )
-      .all(attemptId) as Array<{ d: string }>;
+      .all(attemptId)) as Array<{ d: string }>;
     expect(ids).toHaveLength(hard);
     expect(levels.map((l) => l.d)).toEqual(['hard']);
 
-    expect(() =>
-      startAttempt(db, {
+    (await expect(async () =>
+      (await startAttempt(db, {
         userId: learner,
         examKey: SAT.examKey,
         blueprintId: 'practice',
         overrides: { difficulty: 'hard', length: hard + 1 },
-      }),
-    ).toThrowError(AttemptError);
+      })),
+    ).rejects.toThrowError(AttemptError));
   });
 
-  it('reports an unknown exam as not found rather than failing', () => {
+  it('reports an unknown exam as not found rather than failing', async () => {
     try {
-      startAttempt(db, { userId: learner, examKey: 'no-such-exam', blueprintId: 'practice' });
+      (await startAttempt(db, { userId: learner, examKey: 'no-such-exam', blueprintId: 'practice' }));
       expect.unreachable();
     } catch (error) {
       expect((error as AttemptError).status).toBe(404);
@@ -230,59 +230,59 @@ describe('session creation', () => {
 
   describe('with a public sample in the bank', () => {
     const SAMPLE = 'digital-sat-rw-words-in-context-cochineal-039';
-    beforeEach(() => {
+    beforeEach(async () => {
       // Give a synthetic question the id of a real public sample.
       for (const [from, to] of [['craft-and-structure-q0', SAMPLE]]) {
-        db.prepare(
+        (await db.prepare(
           `INSERT INTO questions (id, exam_key, current_version, state, created_at, updated_at)
            SELECT ?, exam_key, current_version, state, created_at, updated_at FROM questions WHERE id = ?`,
-        ).run(to, from);
-        db.prepare('UPDATE question_versions SET question_id = ? WHERE question_id = ?').run(to, from);
-        db.prepare('DELETE FROM questions WHERE id = ?').run(from);
+        ).run(to, from));
+        (await db.prepare('UPDATE question_versions SET question_id = ? WHERE question_id = ?').run(to, from));
+        (await db.prepare('DELETE FROM questions WHERE id = ?').run(from));
       }
     });
 
-    it('never places it in a new diagnostic or timed session', () => {
+    it('never places it in a new diagnostic or timed session', async () => {
       for (let seed = 0; seed < 25; seed += 1) {
         for (const blueprintId of ['diagnostic']) {
-          const { attemptId } = startAttempt(db, {
+          const { attemptId } = (await startAttempt(db, {
             userId: learner,
             examKey: SAT.examKey,
             blueprintId,
             seed: `seed-${blueprintId}-${seed}`,
-          });
-          expect(attemptQuestionOrder(db, attemptId)).not.toContain(SAMPLE);
+          }));
+          expect((await attemptQuestionOrder(db, attemptId))).not.toContain(SAMPLE);
         }
       }
     });
 
-    it('still lets topic practice serve it', () => {
-      const served = Array.from({ length: 25 }, (_, seed) =>
-        attemptQuestionOrder(
+    it('still lets topic practice serve it', async () => {
+      const served = (await Promise.all((await Promise.all(Array.from({ length: 25 }, async (_, seed) =>
+        (await attemptQuestionOrder(
           db,
-          startAttempt(db, {
+          (await startAttempt(db, {
             userId: learner,
             examKey: SAT.examKey,
             blueprintId: 'practice',
             overrides: { domains: ['craft-and-structure'], length: 3 },
             seed: `practice-${seed}`,
-          }).attemptId,
-        ),
-      );
+          })).attemptId,
+        )),
+      )))));
       expect(served.some((ids) => ids.includes(SAMPLE))).toBe(true);
     });
 
-    it('keeps an existing attempt’s assignment, even one that holds the sample', () => {
-      const { attemptId } = startAttempt(db, { userId: learner, examKey: SAT.examKey, blueprintId: 'diagnostic' });
-      const version = db.prepare('SELECT id FROM question_versions WHERE question_id = ?').get(SAMPLE) as { id: string };
+    it('keeps an existing attempt’s assignment, even one that holds the sample', async () => {
+      const { attemptId } = (await startAttempt(db, { userId: learner, examKey: SAT.examKey, blueprintId: 'diagnostic' }));
+      const version = (await db.prepare('SELECT id FROM question_versions WHERE question_id = ?').get(SAMPLE)) as { id: string };
       // An attempt created before the sample set existed.
-      db.prepare(
+      (await db.prepare(
         'UPDATE attempt_items SET question_id = ?, question_version_id = ? WHERE attempt_id = ? AND position = 0 AND part_index = 0',
-      ).run(SAMPLE, version.id, attemptId);
+      ).run(SAMPLE, version.id, attemptId));
 
-      const before = attemptQuestionOrder(db, attemptId);
-      getAttemptState(db, attemptId, learner);
-      expect(attemptQuestionOrder(db, attemptId)).toEqual(before);
+      const before = (await attemptQuestionOrder(db, attemptId));
+      (await getAttemptState(db, attemptId, learner));
+      expect((await attemptQuestionOrder(db, attemptId))).toEqual(before);
       expect(before).toContain(SAMPLE);
     });
   });

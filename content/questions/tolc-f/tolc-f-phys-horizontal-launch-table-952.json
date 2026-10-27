@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-phys-horizontal-launch-table-952",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "physics",
+  "domainSlug": "tolcf-physics",
+  "skillSlug": "tolcf-phys-mechanics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A marble rolls off the edge of a horizontal table $0.80\\ \\text{m}$ high with a horizontal speed of $3.0\\ \\text{m/s}$. Neglecting air resistance and taking $g=10\\ \\text{m/s}^{2}$, how far from the foot of the table, measured horizontally, does it hit the floor?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$1.2\\ \\text{m}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$12\\ \\text{m}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$0.60\\ \\text{m}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$0.40\\ \\text{m}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$0.48\\ \\text{m}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "**What to notice first.** The horizontal and vertical motions are independent. Vertically the marble starts from zero vertical speed and falls freely; horizontally it keeps its $3.0\\ \\text{m/s}$.\n\n**The computation.** Fall time from $h=\\tfrac12 g t^{2}$:\n\n$$t=\\sqrt{\\frac{2h}{g}}=\\sqrt{\\frac{2\\cdot 0.80}{10}}=\\sqrt{0.16}=0.40\\ \\text{s}.$$\n\nHorizontal distance: $x=v\\,t=3.0\\cdot 0.40=1.2\\ \\text{m}$.\n\n**How to check it.** In $0.40\\ \\text{s}$ a free fall covers $\\tfrac12\\cdot 10\\cdot 0.16=0.80\\ \\text{m}$, exactly the table height.",
+  "distractorRationale": {
+    "e": "Stops at $t^{2}=0.16$ and uses it as the time: $3.0\\cdot 0.16=0.48$. The square root was missed.",
+    "c": "Misplaces the factor $2$, using $t=\\sqrt{h/(2g)}=0.20\\ \\text{s}$, half the true fall time.",
+    "b": "Uses $\\sqrt{2gh}=4$, which is the vertical impact speed in $\\text{m/s}$, as if it were the fall time.",
+    "d": "Reports the fall time, $0.40\\ \\text{s}$, as the distance, without multiplying by the horizontal speed."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "A marble rolls off a horizontal table 0.80 metres high with a horizontal speed of 3.0 metres per second. Neglect air resistance; g is 10 metres per second squared. How far from the foot of the table, horizontally, does it land? The five choices are: 1.2 metres; 12 metres; 0.60 metres; 0.40 metres; 0.48 metres.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave8-mpl-author",
+    "aiAssisted": true,
+    "notes": "Original item on a horizontal launch: fall time from the height, then range from the constant horizontal speed. Numbers chosen so the square root is exact."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave8-mpl-author",
+    "reviewer": "blind-reviewer-wave8-tolcf-mpl-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolcf-mpl-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Fall time t=sqrt(2h/g)=sqrt(0.16)=0.40 s; range 3.0*0.40=1.2 m. 0.40 m is the time read as a distance; 12 m, 0.60 m and 0.48 m come from wrong time or squared-term slips. [A second, separate blind solve (blind-reviewer-wave8-tolcf-mpl-run1) reached the same answer: t = sqrt(2h/g) = sqrt(0.16) = 0.40 s; x = 3.0*0.40 = 1.2 m. 0.40 m is the time value, 0.60 m uses t=0.2 s, 12 m is a decimal slip.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "projectile",
+    "horizontal-launch",
+    "kinematics"
+  ]
+}

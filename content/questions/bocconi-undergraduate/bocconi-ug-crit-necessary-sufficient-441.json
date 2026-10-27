@@ -1,0 +1,70 @@
+{
+  "id": "bocconi-ug-crit-necessary-sufficient-441",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-critical-thinking",
+  "skillSlug": "critical-thinking-deducibility",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The admissions office of the Ardesia master's programme publishes the following, all of which is true.\n\n> 1. Passing the language test is necessary, but not sufficient, for admission to the Ardesia programme.\n>\n> 2. Every applicant admitted to the Ardesia programme was interviewed.\n>\n> 3. Paolo, an applicant to the Ardesia programme, passed the language test and was interviewed.\n\nConsider the following assertion.\n\n> **Paolo was admitted to the Ardesia programme.**\n\nOn the basis of the three statements alone, the assertion is",
+  "instructionsMd": "This item has three answer options and carries the heavier penalty for a wrong answer, so answer only if you can justify your choice from the three statements alone.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "impossible to determine from the information given."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "false."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "true."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Paolo has two properties, a passed test and an interview. Check whether either of them, or both together, forces an admission decision.\n\n- **The test.** Statement 1 says passing is **necessary** for admission: everyone admitted passed. It also says passing is **not sufficient**: passing does not guarantee admission. So Paolo's pass allows admission but does not deliver it.\n- **The interview.** Statement 2 says every admitted applicant was interviewed. That arrow runs from admitted to interviewed. Read backwards, as \"everyone interviewed was admitted\", it would settle the question, but the statement does not say that, and an interview is exactly the kind of step that rejected applicants also go through.\n\nBoth of Paolo's properties are things that every admitted applicant has. Having the necessary conditions for something does not mean you have it. Nothing in the three statements rules Paolo in or out, so the assertion is **impossible to determine**.\n\n**How to check the answer.** Build two worlds that satisfy all three statements.\n\n- World one: Paolo is admitted, and another applicant who passed the test is rejected after interview. Statement 1 holds, including \"not sufficient\", because of the other applicant.\n- World two: Paolo is rejected after interview, and some other applicant is admitted. Statement 1 holds, and Paolo himself shows that passing is not sufficient.\n\nThe assertion is true in the first world and false in the second, so it cannot be deduced either way.\n\n**Two errors, two directions.** Treating the necessary conditions as if they were sufficient makes the assertion look true. Reading \"not sufficient\" as \"those who pass are not admitted\" makes it look false. \"Not sufficient\" says only that passing is not a guarantee; it says nothing about any one applicant.",
+  "distractorRationale": {
+    "c": "This treats necessary conditions as sufficient ones. Paolo passed the test and was interviewed, and every admitted applicant did both, but statement 2 does not say that everyone interviewed was admitted, and statement 1 says outright that passing is not enough. A world in which Paolo is interviewed and rejected satisfies every statement.",
+    "b": "This reads 'not sufficient' as if it meant that passing the test leads to rejection, or that Paolo in particular was the applicant for whom passing was not enough. 'Not sufficient' means only that some who pass may still be rejected. A world in which Paolo is admitted and a different applicant who passed is rejected satisfies every statement."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "A critical thinking question with three answer options. Three statements are given: passing the language test is necessary, but not sufficient, for admission to the Ardesia programme; every applicant admitted to the programme was interviewed; Paolo, an applicant, passed the language test and was interviewed. The assertion to evaluate is: Paolo was admitted to the Ardesia programme. The three options are impossible to determine from the information given, false, and true.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-verbal-logic-author",
+    "aiAssisted": true,
+    "notes": "Original three-option item on necessary versus sufficient conditions. The individual satisfies two necessary conditions and no sufficient one, so the key is the undetermined verdict; the two wrong verdicts come from opposite misreadings, necessary taken as sufficient and 'not sufficient' taken as 'leads to rejection'. An interview was chosen as the second condition because rejected applicants plausibly go through it too, so the undetermined verdict does not depend on an unusual real-world reading."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-bocconi-verbal-logic-author",
+    "reviewer": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Passing the test and the interview are both necessary conditions, and Paolo meets both, but 'not sufficient' means meeting them does not guarantee admission. Nothing forces admission or rejection, so the assertion cannot be determined; 'false' would misread 'not sufficient' as 'rejected'. [A second, separate blind solve (blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run1) reached the same answer: Passing the test and being interviewed are both only necessary conditions for admission, and the test is explicitly not sufficient. Paolo meeting both conditions is consistent with admission and with rejection, so the answer cannot be determined. It is not false either, because nothing rules admission out.]"
+    },
+    "notes": "Author's uniqueness check: the two worlds in the explanation both satisfy all three statements, including the existential content of 'not sufficient', and give opposite truth values to the assertion. A read-only brute-force check over all worlds of up to three applicants found models with Paolo admitted and models with Paolo not admitted, so both the true and the false verdicts are indefensible. Solved twice, the second time from the stem alone. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "three-option",
+    "necessary-versus-sufficient",
+    "deducibility"
+  ]
+}

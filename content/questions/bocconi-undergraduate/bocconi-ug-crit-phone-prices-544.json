@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-ug-crit-phone-prices-544",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-critical-thinking",
+  "skillSlug": "critical-thinking-truth-evaluation",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Anna, Bruno, Carla and Dario each bought one phone. The four phones cost €200, €300, €400 and €500, and no two of the friends paid the same price. The following is also known.\n\n> Anna paid more than Bruno.\n>\n> Carla paid exactly €100 more than Dario.\n>\n> Bruno did not pay the lowest price.\n\nWhich one of the following statements is true?",
+  "instructionsMd": "Answer on the basis of the information given only.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Anna paid €400."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Bruno paid €300."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Carla paid more than Bruno."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Dario paid €200."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Start from the person with the tightest limits. Bruno did not pay €200, and since Anna paid more than him he did not pay €500 either. So Bruno paid €300 or €400. Test both.\n\n**Bruno paid €300.** Anna paid more, so €400 or €500. The two prices left for Carla and Dario must differ by exactly €100.\n- Anna €400 leaves €200 and €500, which differ by €300.\n- Anna €500 leaves €200 and €400, which differ by €200.\n\nNeither works, so Bruno did not pay €300.\n\n**Bruno paid €400.** Anna must have paid more, so €500. That leaves €200 and €300, which differ by €100: Carla €300, Dario €200. Every condition holds.\n\nSo the prices are fixed: Anna €500, Bruno €400, Carla €300, Dario €200. Dario paid €200 is true.\n\n**How to check the answer.** Run the solution through the three conditions: €500 is more than €400; €300 is €100 more than €200; Bruno's €400 is not the lowest price. Then test the other statements against it: Anna paid €500, not €400; Bruno paid €400, not €300; Carla's €300 is less than Bruno's €400. All three are false.",
+  "distractorRationale": {
+    "a": "Anna €400 would force Bruno onto €300 and leave €200 and €500 for Carla and Dario, which do not differ by €100. Anna must have paid €500.",
+    "b": "Bruno €300 is the natural first guess, but it leaves no pair of prices €100 apart for Carla and Dario, whichever price Anna takes. Bruno must have paid €400.",
+    "c": "In the only arrangement that meets every condition, Carla paid €300 and Bruno €400, so Carla paid less than Bruno, not more."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A critical thinking question. Anna, Bruno, Carla and Dario each bought one phone; the phones cost 200, 300, 400 and 500 euros and no two paid the same. Anna paid more than Bruno; Carla paid exactly 100 euros more than Dario; Bruno did not pay the lowest price. The question asks which statement is true. The four choices, in the order shown, are: Anna paid 400 euros; Bruno paid 300 euros; Carla paid more than Bruno; Dario paid 200 euros.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-verbal-author",
+    "aiAssisted": true,
+    "notes": "Original arrangement item for evaluating the truth of statements against given data. The conditions admit exactly one assignment of prices, so exactly one statement is true and the other three are false."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-verbal-author",
+    "reviewer": "blind-reviewer-wave8-bocug-verbal-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-bocug-verbal-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Bruno is not 200, and he is not 500 because Anna paid more. If Bruno paid 300, Anna paid 400 or 500 and the remaining pair ({200,500} or {200,400}) cannot differ by 100. So Bruno=400, Anna=500, Carla=300, Dario=200. 'Anna 400', 'Bruno 300' and 'Carla > Bruno' are false. [A second, separate blind solve (blind-reviewer-wave8-bocug-verbal-run1) reached the same answer: Bruno is 300 or 400. If Bruno=300, Anna takes 400 or 500 and the remaining pair ({200,500} or {200,400}) is not €100 apart, so Carla=Dario+100 fails. So Bruno=400, Anna=500, Carla=300, Dario=200. 'Anna €400', 'Bruno €300' and 'Carla more than Bruno' are all false.]"
+    },
+    "notes": ""
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "ordering",
+    "case-analysis"
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-law-logic-tax-appeals-lawyer-417",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-data-propositions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A tax tribunal's register for 2025 records exactly the following:\n\n- 80 appeals were lodged.\n- 50 of them were lodged by individuals and the other 30 by companies.\n- Every appeal lodged by a company was lodged through a lawyer.\n- 60% of the appeals lodged by individuals were lodged through a lawyer.\n\nWhich of the following follows from these data?",
+  "instructionsMd": "Use the recorded data only.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Exactly three appeals in four were lodged through a lawyer."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Most of the appeals lodged through a lawyer were lodged by companies."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "More than a quarter of the appeals were lodged without a lawyer."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Exactly 20 appeals lodged by individuals were lodged through a lawyer."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Every quantity here can be pinned down exactly, so turn the percentages into counts first and then test each statement against the counts.\n\n**Through a lawyer.** All $30$ company appeals, plus $60\\%$ of the $50$ individual appeals, which is $30$. In total $30 + 30 = 60$ appeals were lodged through a lawyer.\n\n**Without a lawyer.** $80 - 60 = 20$, all of them by individuals.\n\n**The share.** $\\frac{60}{80} = \\frac{3}{4}$, so exactly three appeals in four were lodged through a lawyer.\n\n**How to check.** Check the near misses, because each distractor is built on a boundary. Companies account for $30$ of the $60$ lawyer-assisted appeals, which is exactly half, not \"most\". The $20$ appeals without a lawyer are exactly $\\frac{20}{80} = \\frac{1}{4}$, not \"more than a quarter\". And $20$ is the number of individuals **without** a lawyer, whereas $30$ individuals had one.",
+  "distractorRationale": {
+    "b": "Companies lodged $30$ of the $60$ lawyer-assisted appeals and individuals the other $30$. Half is not most, so the statement is false.",
+    "c": "$20$ appeals out of $80$ were lodged without a lawyer, which is exactly a quarter. \"More than a quarter\" overshoots the boundary, so the statement is false.",
+    "d": "$20$ is the number of individuals who lodged **without** a lawyer ($40\\%$ of $50$). Those who used a lawyer number $60\\%$ of $50$, which is $30$."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "A data-propositions logic question. A tax tribunal's register for 2025 records: 80 appeals were lodged; 50 by individuals and the other 30 by companies; every company appeal was lodged through a lawyer; 60 percent of the individual appeals were lodged through a lawyer. The question asks which statement follows from these data. The four answer options are: exactly three appeals in four were lodged through a lawyer; most of the appeals lodged through a lawyer were lodged by companies; more than a quarter of the appeals were lodged without a lawyer; exactly 20 appeals lodged by individuals were lodged through a lawyer.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave8-author",
+    "aiAssisted": true,
+    "notes": "Original data-propositions item in which every distractor sits exactly on a boundary (half versus most, a quarter versus more than a quarter) or confuses a group with its complement. Tribunal and figures are invented."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave8-author",
+    "reviewer": "blind-reviewer-wave8-final-quant-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-final-quant-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Lawyer appeals = 30 (companies) + 0.6*50 = 30 (individuals) = 60 of 80 = exactly 3/4. Companies are exactly half of lawyer appeals (not most), without-lawyer = 20 = exactly a quarter (not more), individuals via lawyer = 30 not 20. [A second, separate blind solve (blind-reviewer-wave8-final-quant-run1) reached the same answer: Through a lawyer: 30 by companies + 0.6*50=30 by individuals, so 60 of 80, exactly 3/4. Companies make exactly half of the lawyer appeals, not most; 20 without a lawyer is exactly a quarter, not more; individuals with a lawyer number 30, not 20.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "data-propositions",
+    "percentages",
+    "boundaries",
+    "no-calculator"
+  ]
+}

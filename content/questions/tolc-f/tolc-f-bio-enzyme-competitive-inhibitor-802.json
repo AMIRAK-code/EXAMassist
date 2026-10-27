@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-bio-enzyme-competitive-inhibitor-802",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "biology",
+  "domainSlug": "tolcf-biology",
+  "skillSlug": "tolcf-bio-molecules",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A drug molecule has a shape very like the substrate of an enzyme. It binds reversibly to the active site of the enzyme and so competes with the substrate. Which change would most reduce the drug’s inhibiting effect on the rate of the reaction?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Increasing the concentration of the substrate"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Reducing the amount of enzyme in the mixture"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Adding more of the same drug"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Heating the mixture well above the optimum temperature of the enzyme"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Adding a second inhibitor that binds to the enzyme away from the active site"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "A molecule that mimics the substrate and binds the active site reversibly is a competitive inhibitor. Substrate and inhibitor compete for the same site, so which one wins depends on their relative concentrations.\n\nRaising the substrate concentration makes it more likely that an active site is occupied by substrate rather than by the drug. Because the binding is reversible, the drug is displaced and the rate climbs back towards its maximum.\n\nA quick test for every other change is to ask whether it gives the substrate an advantage. More drug, a second inhibitor, less enzyme, or heat that denatures the protein all leave the rate the same or lower; none of them helps the substrate win.",
+  "distractorRationale": {
+    "c": "More inhibitor means the active sites are occupied by the drug more often, so the rate falls further, the opposite of what is asked.",
+    "d": "Too much heat denatures the enzyme and destroys its active site. The rate falls towards zero; this does not relieve the competition.",
+    "b": "Fewer enzyme molecules means fewer active sites and a lower rate. It does nothing to shift the competition: the substrate still has to compete with the drug for each remaining site.",
+    "e": "A non-competitive inhibitor cannot be out-competed by substrate and adds to the inhibition, so the rate falls further."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "A short text question with no figure. A drug that resembles the substrate binds reversibly to the enzyme’s active site and competes with the substrate. The question asks which change would most reduce the drug’s inhibiting effect. The five choices are: raise the substrate concentration; reduce the amount of enzyme; add more of the drug; heat the mixture far above the optimum temperature; add a second inhibitor that binds away from the active site.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item on competitive inhibition. Each distractor is either a change that worsens inhibition or a change that has nothing to do with competition for the active site."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-bio-run17",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-bio-run17",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Competitive inhibition is overcome by raising substrate concentration, which outcompetes the inhibitor for the active site. Adding more drug or a non-competitive inhibitor increases inhibition. Reducing enzyme lowers the rate, and heating denatures the enzyme, so the rate falls either way. [A second, separate blind solve (blind-reviewer-wave6-tolcf-bio-run19) reached the same answer: A competitive inhibitor can be outcompeted by raising the substrate concentration. Adding more drug makes inhibition worse. Heating denatures the enzyme and lowers the rate, which is not reducing the inhibition. Less enzyme lowers the rate. A second, non-competitive inhibitor adds inhibition. Only a works.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "enzymes",
+    "competitive-inhibition"
+  ]
+}

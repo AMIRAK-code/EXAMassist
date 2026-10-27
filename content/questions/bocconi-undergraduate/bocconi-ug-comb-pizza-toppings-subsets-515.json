@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-comb-pizza-toppings-subsets-515",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-discrete-applied-combinatorics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A pizzeria offers $7$ different toppings. A customer may choose any set of toppings, but a pizza must have **at least two** different toppings, and no topping can be chosen twice. The order in which toppings are chosen does not matter.\n\nHow many different pizzas can be ordered?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$21$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$120$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$127$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$128$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Count all possible sets of toppings, then remove the ones that are not allowed.\n\n**Step 1 — all subsets.** Each of the $7$ toppings is either on the pizza or not, so there are $2^{7} = 128$ sets of toppings, including the empty one.\n\n**Step 2 — remove the forbidden sets.** A pizza needs at least two toppings, so remove the empty set ($1$) and the sets with exactly one topping ($7$):\n\n$$128 - 1 - 7 = 120$$\n\n**Check by adding the allowed sizes directly.**\n\n$$\\binom{7}{2} + \\binom{7}{3} + \\binom{7}{4} + \\binom{7}{5} + \\binom{7}{6} + \\binom{7}{7} = 21 + 35 + 35 + 21 + 7 + 1 = 120$$ ✓",
+  "distractorRationale": {
+    "a": "This is $\\binom{7}{2}$, the pizzas with **exactly** two toppings. The condition is at least two, so pizzas with three to seven toppings count as well.",
+    "c": "This removes only the empty set, $2^{7} - 1$, and so still counts the $7$ single-topping pizzas, which the rule excludes.",
+    "d": "This is $2^{7}$, every subset of the toppings, including the empty set and the seven single-topping choices."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": null,
+  "accessibilityText": "A pizzeria offers 7 different toppings. A pizza must have at least two different toppings, no topping twice, and order does not matter. The question asks how many different pizzas can be ordered. The choices are the numbers 21, 120, 127 and 128.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. It tests counting subsets with a lower bound on size, using the complement of the total 2 to the n."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-math-author",
+    "reviewer": "blind-reviewer-wave8-bocug-math-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-bocug-math-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "All subsets 2^7=128 minus the empty set and 7 singletons = 120. 127 excludes only the empty set, 128 excludes nothing, 21 counts only exactly-two pizzas. [A second, separate blind solve (blind-reviewer-wave8-bocug-math-run1) reached the same answer: There are 2^7=128 subsets in all. Removing the empty set and the 7 singletons leaves 120. 127 removes only the empty set, 128 counts every subset, and 21 counts only the 2-topping pizzas.]"
+    },
+    "notes": "Author's uniqueness check: 2^7 - 1 - 7 = 120, equal to the sum of C(7,k) for k = 2 to 7; the distractors are C(7,2), 2^7 - 1 and 2^7. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "subsets",
+    "complement-counting",
+    "combinations"
+  ]
+}

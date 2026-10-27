@@ -1,0 +1,36 @@
+{
+  "id": "polito-til-a-table-flat-plan-484",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "kind": "table",
+  "title": "Plan of a flat on a grid of 1.5 m squares (5 rows, 5 columns)",
+  "bodyMd": "The table is the floor plan of a small flat drawn on a grid. Each cell is a square of floor measuring 1.5 m by 1.5 m, and names the room it belongs to. Row 1 is the north side of the flat and Column 1 the west side. The edge of the grid is the outside wall of the flat. Wherever two squares belonging to different rooms share a side, an internal wall runs along that side; squares of the same room have no wall between them. Wall thickness is ignored.",
+  "data": {
+    "columns": [
+      { "key": "row", "label": "Row" },
+      { "key": "c1", "label": "Column 1 (west)" },
+      { "key": "c2", "label": "Column 2" },
+      { "key": "c3", "label": "Column 3" },
+      { "key": "c4", "label": "Column 4" },
+      { "key": "c5", "label": "Column 5 (east)" }
+    ],
+    "rows": [
+      { "row": "Row 1 (north)", "c1": "Living room", "c2": "Living room", "c3": "Living room", "c4": "Kitchen", "c5": "Kitchen" },
+      { "row": "Row 2", "c1": "Living room", "c2": "Living room", "c3": "Living room", "c4": "Kitchen", "c5": "Kitchen" },
+      { "row": "Row 3", "c1": "Hall", "c2": "Hall", "c3": "Hall", "c4": "Hall", "c5": "Bathroom" },
+      { "row": "Row 4", "c1": "Bedroom", "c2": "Bedroom", "c3": "Bedroom", "c4": "Hall", "c5": "Bathroom" },
+      { "row": "Row 5 (south)", "c1": "Bedroom", "c2": "Bedroom", "c3": "Bedroom", "c4": "Store", "c5": "Store" }
+    ],
+    "caption": "Floor plan of a flat on a grid of 1.5 m by 1.5 m squares. Each cell names the room that square belongs to.",
+    "chart": null
+  },
+  "accessibilityText": "A floor plan of a flat drawn as a grid of five rows, north to south, and five columns, west to east; each cell is a square of floor 1.5 metres on a side and names its room. Row 1: Living room in Columns 1 to 3, Kitchen in Columns 4 and 5. Row 2: the same, Living room in Columns 1 to 3 and Kitchen in Columns 4 and 5. Row 3: Hall in Columns 1 to 4, Bathroom in Column 5. Row 4: Bedroom in Columns 1 to 3, Hall in Column 4, Bathroom in Column 5. Row 5: Bedroom in Columns 1 to 3, Store in Columns 4 and 5. So the living room is a block of six squares in the north-west, the kitchen a block of four in the north-east, the hall an L shape of five squares running along Row 3 from the west edge to Column 4 and then one square south into Row 4, the bathroom two squares in Column 5 in Rows 3 and 4, the bedroom a block of six squares in the south-west, and the store two squares in the south-east. The edge of the grid is the outside wall, and an internal wall runs wherever squares of two different rooms share a side.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-polito-til-a-drawing-author",
+    "aiAssisted": true,
+    "notes": "Original invented plan. A script walked the four sides of every hall square and counted 11 sides shared with other rooms (bedroom 4, living room 3, bathroom 2, kitchen 1, store 1) and 1 side on the outside wall."
+  },
+  "rightsStatus": "original-owned",
+  "state": "published"
+}

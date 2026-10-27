@@ -15,7 +15,7 @@ export async function POST(request: Request) {
     const user = await requireUser();
     const db = getDb();
 
-    const burst = checkRateLimit(db, 'tutorRequest', callerKey(request, user.id));
+    const burst = (await checkRateLimit(db, 'tutorRequest', callerKey(request, user.id)));
     if (!burst.allowed) {
       return fail('rate-limited', 'That was a lot of requests in a short time. Please wait a moment.', 429, {
         retryAfterSeconds: burst.retryAfterSeconds,

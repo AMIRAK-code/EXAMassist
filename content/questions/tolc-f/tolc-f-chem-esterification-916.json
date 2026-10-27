@@ -1,0 +1,83 @@
+{
+  "id": "tolc-f-chem-esterification-916",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "chemistry",
+  "domainSlug": "tolcf-chemistry",
+  "skillSlug": "tolcf-chem-organic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Ethanoic acid (acetic acid), $\\mathrm{CH_3COOH}$, is heated with methanol, $\\mathrm{CH_3OH}$, with a few drops of concentrated sulfuric acid as catalyst. What are the products?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "methyl ethanoate, $\\mathrm{CH_3COOCH_3}$, and water"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "ethyl methanoate, $\\mathrm{HCOOCH_2CH_3}$, and water"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "methyl methanoate, $\\mathrm{HCOOCH_3}$, and water"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "ethyl ethanoate, $\\mathrm{CH_3COOCH_2CH_3}$, and water"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "methyl ethanoate, $\\mathrm{CH_3COOCH_3}$, and hydrogen gas"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "This is esterification: a carboxylic acid and an alcohol, with an acid catalyst, give an ester and water. The reaction is reversible.\n\n$$\\mathrm{R{-}COOH + R'{-}OH \\rightleftharpoons R{-}COO{-}R' + H_2O}$$\n\nThe ester has two parts: the acyl part $\\mathrm{R{-}CO{-}}$ comes from the **acid**, and the alkyl group $\\mathrm{R'}$ on the oxygen comes from the **alcohol**. The name is written alcohol part first, acid part second: alkyl alkanoate.\n\n- Acid: ethanoic acid, so the acyl part is $\\mathrm{CH_3CO{-}}$, named ethanoate.\n- Alcohol: methanol, so the alkyl group is $\\mathrm{CH_3{-}}$, named methyl.\n\nThe ester is methyl ethanoate, $\\mathrm{CH_3COOCH_3}$, and the other product is water.\n\n**Check the atoms.** Reactants: $\\mathrm{C_2H_4O_2} + \\mathrm{CH_4O} = \\mathrm{C_3H_8O_3}$. Products: $\\mathrm{C_3H_6O_2} + \\mathrm{H_2O} = \\mathrm{C_3H_8O_3}$. Everything is accounted for, with no hydrogen gas.",
+  "distractorRationale": {
+    "b": "This swaps the roles of the two reactants. It has the same molecular formula as the real product but is an isomer, and it would come from methanoic acid and ethanol. In an ester name, the first word comes from the alcohol (methanol gives methyl) and the second from the acid (ethanoic gives ethanoate).",
+    "d": "The acid part is right, but the alcohol part is wrong: this ester needs ethanol, with two carbons. The alcohol here is methanol, with one carbon, so the group on the oxygen is methyl.",
+    "c": "The alcohol part is right, but the acid part is wrong: methanoic acid has one carbon. The acid used has two carbons, so the ester ends in ethanoate.",
+    "e": "The ester is right, but hydrogen gas is not the second product. This borrows the reaction of an acid with a reactive metal. In esterification the $\\mathrm{OH}$ from the acid and the $\\mathrm{H}$ from the alcohol combine to form water."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "Ethanoic acid, C H subscript 3 C O O H, is heated with methanol, C H subscript 3 O H, using concentrated sulfuric acid as a catalyst. The question asks for the products. Each choice names an ester and gives its formula, then names a second product, either water or hydrogen gas. The esters offered are methyl ethanoate, ethyl methanoate, ethyl ethanoate and methyl methanoate.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-chemistry-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank (Wave 6, TOLC-F chemistry). Each wrong choice comes from one named misconception, recorded in distractorRationale. Numbers chosen for hand calculation with no calculator; every key was recomputed a second way in the build script."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-chemistry-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-chem-run15",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-chem-run15",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Fischer esterification: ethanoic acid plus methanol gives methyl ethanoate CH3COOCH3 and water. The other esters swap or mismatch the acid and alcohol parts, and option E wrongly gives H2 as the by-product. [A second, separate blind solve (blind-reviewer-wave6-tolcf-chem-run18) reached the same answer: Fischer esterification gives CH3COOCH3 (methyl ethanoate) plus H2O. Option E has the right ester but the wrong by-product (H2). B, C and D have the acid or alcohol part wrong.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication. Key check: the alkyl group comes from methanol (methyl), the acyl group from ethanoic acid (ethanoate); atom balance C2H4O2 + CH4O = C3H6O2 + H2O. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "esterification",
+    "carboxylic-acids",
+    "alcohols",
+    "esters"
+  ]
+}

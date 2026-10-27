@@ -1,0 +1,83 @@
+{
+  "id": "tolc-i-phys-block-oil-flotation-304",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "sciences",
+  "domainSlug": "tolci-sciences",
+  "skillSlug": "tolci-sci-mechanics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A wooden block floats in fresh water (density $1000\\ \\text{kg/m}^3$) with three quarters of its volume below the surface. The same block is then placed in an oil of density $800\\ \\text{kg/m}^3$. What fraction of the block's volume is below the surface of the oil?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\dfrac{3}{5}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\dfrac{3}{4}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "It does not float: the whole block sinks to the bottom"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\dfrac{15}{16}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\dfrac{4}{5}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "**What to notice first.** For a floating body the buoyant force equals the weight, which gives a simple rule: the fraction submerged equals $\\rho_{\\text{body}}/\\rho_{\\text{liquid}}$. Use the water to find the block's density, then apply the rule again in the oil.\n\n**The steps.**\n\n- In water: $\\dfrac{\\rho_{\\text{block}}}{1000} = \\dfrac34$, so $\\rho_{\\text{block}} = 750\\ \\text{kg/m}^3$.\n- The block is less dense than the oil ($750 < 800$), so it still floats.\n- In oil: fraction submerged $= \\dfrac{750}{800} = \\dfrac{15}{16}$.\n\n**How to check it.** With $\\tfrac{15}{16}$ of the volume $V$ in the oil, the buoyant force is $800 \\cdot \\tfrac{15}{16} V g = 750\\,Vg$, exactly the block's weight $750\\,Vg$. A less dense liquid gives less support per cubic metre, so more of the block must go under: $\\tfrac{15}{16}$ is more than $\\tfrac34$, as it should be.",
+  "distractorRationale": {
+    "a": "Multiplies the fraction by the density ratio, $\\tfrac34 \\times \\tfrac{800}{1000} = \\tfrac35$, instead of dividing. That would make the block ride higher in the less dense liquid, the opposite of what happens.",
+    "b": "Assumes the submerged fraction belongs to the block alone. It depends on the ratio of the block's density to the liquid's, so it changes when the liquid does.",
+    "e": "This is the ratio of the two liquid densities, $800/1000$. The block's own density, $750\\ \\text{kg/m}^3$, must be compared with the oil's.",
+    "c": "A body sinks only if it is denser than the liquid. The block's density is $750\\ \\text{kg/m}^3$, less than the oil's $800\\ \\text{kg/m}^3$, so it floats with most of its volume submerged."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "A wooden block floats in fresh water, density 1000 kilograms per cubic metre, with three quarters of its volume below the surface. The same block is then placed in an oil of density 800 kilograms per cubic metre. What fraction of the block's volume is below the surface of the oil? The choices are three fifths; three quarters; it does not float, the whole block sinks to the bottom; fifteen sixteenths; and four fifths.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-sciences-author",
+    "aiAssisted": true,
+    "notes": "Original item testing Archimedes' principle for a floating body in two liquids: the density is inferred from one and applied to the other. Situation and numbers invented for this bank."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-sciences-author",
+    "reviewer": "blind-reviewer-wave8-tolci-logic-sci-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-logic-sci-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Block density = 3/4 * 1000 = 750 kg/m^3 < 800, so it floats with 750/800 = 15/16 submerged. 3/4 ignores the change of liquid, 3/5 and 4/5 come from wrong ratios, and it does not sink because 750 < 800. [A second, separate blind solve (blind-reviewer-wave8-tolci-logic-sci-run1) reached the same answer: Block density = 3/4 * 1000 = 750 kg/m^3 < 800, so it floats with fraction 750/800 = 15/16. 3/5 multiplies instead of dividing; 3/4 ignores the density change; it does not sink.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "archimedes",
+    "flotation",
+    "density",
+    "hydrostatics"
+  ]
+}

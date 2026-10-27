@@ -16,7 +16,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     const user = await requireUser();
     const { id } = await params;
     const body = await readJson(request, bodySchema);
-    setFlag(getDb(), { attemptId: id, userId: user.id, ...body });
+    (await setFlag(getDb(), { attemptId: id, userId: user.id, ...body }));
     return ok({ flagged: body.flagged });
   } catch (error) {
     return toErrorResponse(error);

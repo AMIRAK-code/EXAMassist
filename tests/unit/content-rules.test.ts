@@ -114,3 +114,57 @@ describe('validateQuestion and choice positions', () => {
     expect(codes(q)).toEqual([]);
   });
 });
+
+describe('screen-reader descriptions and currency in maths (October 2026 audit)', () => {
+  const money = [
+    { id: 'a', label: 'A', textMd: '€225 million' },
+    { id: 'b', label: 'B', textMd: '€75 million' },
+    { id: 'c', label: 'C', textMd: '€50 million' },
+  ];
+
+  it('rejects a description that promises an increasing order the choices do not have', () => {
+    const q = question({
+      options: money,
+      answerKey: { type: 'single_select', optionId: 'b' },
+      distractorRationale: {},
+      accessibilityText: 'The options are amounts in millions of euros, listed in increasing order: 50, 75, 225.',
+    });
+    expect(codes(q)).toContain('error:accessibility-claims-order');
+  });
+
+  it('accepts the same description once it lists the choices in the order shown', () => {
+    const q = question({
+      options: money,
+      answerKey: { type: 'single_select', optionId: 'b' },
+      distractorRationale: {},
+      accessibilityText: 'The options are amounts in millions of euros, in the order shown: 225, 75, 50.',
+    });
+    expect(codes(q)).not.toContain('error:accessibility-claims-order');
+  });
+
+  it('accepts a true increasing-order claim, fractions included', () => {
+    const q = question({
+      options: [
+        { id: 'a', label: 'A', textMd: '$\frac{1}{10}$' },
+        { id: 'b', label: 'B', textMd: '$\frac{2}{5}$' },
+        { id: 'c', label: 'C', textMd: '$\frac{4}{7}$' },
+      ],
+      answerKey: { type: 'single_select', optionId: 'c' },
+      distractorRationale: {},
+      accessibilityText: 'Answer options are fractions listed in increasing order: one tenth, two fifths, four sevenths.',
+    });
+    expect(codes(q)).not.toContain('error:accessibility-claims-order');
+  });
+
+  it('rejects a size-order claim about choices that are not numbers', () => {
+    const q = question({ accessibilityText: 'The three options are listed from smallest to largest.' });
+    expect(codes(q)).toContain('error:accessibility-claims-order');
+  });
+
+  it('rejects a currency sign inside inline maths', () => {
+    expect(codes(question({ stemMd: 'A coat costs $€80$. What is the price after both changes?' }))).toContain(
+      'error:currency-in-maths',
+    );
+    expect(codes(question({ stemMd: 'A coat costs €80 and $x$ is its new price.' }))).not.toContain('error:currency-in-maths');
+  });
+});

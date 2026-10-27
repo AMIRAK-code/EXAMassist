@@ -1,0 +1,84 @@
+{
+  "id": "tolc-e-logic-seq-common-terms-608",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-sequences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Sequence P begins 3, 7, 11, 15, ... and continues for ever, always adding 4. Sequence Q begins 2, 7, 12, 17, ... and continues for ever, always adding 5. The number 7 appears in both.\n\nWhat is the fourth smallest number that appears in both sequences?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "27"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "47"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "67"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "80"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "87"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Do not list both sequences in full. Notice how often a shared number can recur.\n\nStarting from a shared number, sequence P visits every 4th number and sequence Q every 5th. Both land together again after a distance that is a multiple of 4 and of 5, and the smallest such distance is 20. So the common numbers are 7, 7 + 20, 7 + 40, 7 + 60, ...: **7, 27, 47, 67**. The fourth is 67.\n\nCheck 67 directly: $67 - 3 = 64 = 4 \\times 16$, so it belongs to P; $67 - 2 = 65 = 5 \\times 13$, so it belongs to Q. By contrast 17 belongs to Q but not to P: $17 - 3 = 14$ is not a multiple of 4.",
+  "distractorRationale": {
+    "a": "This is the second number common to both sequences, reached after adding one period of 20 to 7. It comes from stopping at the first shared number found after 7, answering \"the next common number\" instead of the fourth one.",
+    "b": "This is the third common number, 7 + 40. It stops one step early: 7 counts as the first common number, so three periods of 20 are needed after it.",
+    "d": "This is 4 times 20, treating the common numbers as the multiples of 20. The common numbers form a run that starts at 7, so they all end in 7 and none is a multiple of 20.",
+    "e": "This is the fifth common number, 7 + 80. It counts 7 as the zeroth common number rather than the first."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": null,
+  "accessibilityText": "A number sequence question about two sequences. Sequence P starts 3, 7, 11, 15 and always adds 4. Sequence Q starts 2, 7, 12, 17 and always adds 5. Both continue for ever and the number 7 appears in both. The question asks for the fourth smallest number that appears in both sequences. The five choices are 27, 47, 67, 80 and 87.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-e-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Scenario, names and figures are invented; no published TOLC or other test item was used or adapted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-e-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolce-logic-run3",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolce-logic-run3",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "P is 3 mod 4 and Q is 2 mod 5, so the common terms are 7 mod 20: 7, 27, 47, 67, 87. The fourth smallest is 67. Both sequences contain 67 (3 + 4*16 and 2 + 5*13). 87 is the fifth common term and 47 the third, so they are off-by-one distractors. 80 appears in neither sequence. [A second, separate blind solve (blind-reviewer-wave6-tolce-logic-run5) reached the same answer: The common terms satisfy x = 3 mod 4 and x = 2 mod 5, giving 7, 27, 47, 67, 87 and so on. The fourth smallest is 67. 27 and 47 are the 2nd and 3rd, 87 is the 5th, and 80 is in neither sequence.]"
+    },
+    "notes": "Uniqueness check: the numbers congruent to 3 mod 4 and to 2 mod 5 are exactly 7 mod 20 (7, 27, 47, 67, 87, ...), verified by a short script. The fourth is 67."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "sequences",
+    "arithmetic-progressions",
+    "common-terms",
+    "no-calculator"
+  ]
+}

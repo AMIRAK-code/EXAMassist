@@ -1,0 +1,87 @@
+{
+  "id": "polito-til-a-read-threshold-tempting-306",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "reading-comprehension",
+  "domainSlug": "tila-reading-comprehension",
+  "skillSlug": "tila-reading-purpose",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "In the passage, the sentence \"It would be tempting to conclude that forecourts make people sociable\" is used mainly to",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "summarise the main claim that the rest of the passage goes on to support."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "contrast the views of architects with those of planners."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "state the conclusion reached by the cooperative in its report."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "introduce a common reading of the findings that the author then qualifies."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "cast doubt on the accuracy of the count of conversations on the two streets."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "A question about the **role of one sentence** is answered by reading the sentences on either side of it.\n\n**What to notice first.** The sentence uses the word \"tempting\", which signals a view that is attractive but doubtful. The very next sentence turns: \"The cooperative's report was more careful.\"\n\n**The step that settles it.** What follows the tempting conclusion is a more careful account: sitters were mostly people who already knew their neighbours, so the forecourt \"did not create friendliness; it lowered the cost of showing it\". The author has raised the simple reading in order to refine it. That is what the correct choice says.\n\n**Testing the others.** The report is described as more careful, so the tempting view is not the report's. The rest of the passage qualifies the tempting view instead of supporting it. Nobody doubts the count. And the sentence has nothing to do with architects versus planners.\n\n**How to check.** When a sentence opens with a hedge such as \"it would be tempting\", look for the turning word in the next sentence (here \"more careful\"). The sentence usually exists to be set aside or narrowed.",
+  "distractorRationale": {
+    "c": "The next sentence says the report \"was more careful\", so the tempting conclusion is not the report's. Attributing it to the cooperative reverses the passage.",
+    "a": "The rest of the passage qualifies this claim rather than supporting it: the forecourt \"did not create friendliness\". A sentence the author goes on to correct cannot be the main claim.",
+    "e": "The author accepts the count and even reports that it was almost three times as high. What is questioned is the explanation of the count, not the count itself.",
+    "b": "Architects and planners are both mentioned in the first paragraph, but no contrast between their views is drawn there or here: this sentence is about how to interpret the survey, and it names neither group."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": {
+    "id": "polito-til-a-passage-threshold-300",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying essay on the threshold between street and front door. It asks what the sentence \"It would be tempting to conclude that forecourts make people sociable\" is used mainly to do. Five possible roles are offered.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-a-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written against the original passage polito-til-a-passage-threshold-300, authored alongside it. Every distractor rests on a named misreading of that passage."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-a-wave6-author",
+    "reviewer": "blind-reviewer-wave7-tila-reading-gk-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-tila-reading-gk-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The next sentence reads 'The cooperative's report was more careful', and the passage then refines the claim: the forecourt lowers the cost of showing friendliness. So the sentence sets up a reading to be qualified. C is wrong because the report rejects that conclusion. A is wrong because the rest does not support it as stated. B and E are not what the sentence does. [A second, separate blind solve (blind-reviewer-wave7-tila-reading-gk-run1) reached the same answer: The sentence is followed at once by 'The cooperative's report was more careful' and by the qualification that forecourts lower the cost of friendliness rather than create it. So the sentence sets up a tempting reading that the passage then qualifies. C is wrong because the cooperative did not reach that conclusion, A is the opposite of the passage, and B and E are irrelevant.]"
+    },
+    "notes": "Author's uniqueness check: the sentence is followed immediately by \"The cooperative's report was more careful\" and by an account that qualifies it, so its role is to introduce a common reading that is then qualified; each other choice contradicts what the next sentences say. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "reading",
+    "purpose",
+    "structure",
+    "architecture",
+    "role-of-a-sentence"
+  ]
+}

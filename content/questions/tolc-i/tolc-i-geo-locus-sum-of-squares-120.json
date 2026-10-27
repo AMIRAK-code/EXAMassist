@@ -1,0 +1,82 @@
+{
+  "id": "tolc-i-geo-locus-sum-of-squares-120",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "In a plane, $A$ and $B$ are two fixed points $6$ cm apart. Which of the following describes the set of all points $P$ of the plane such that $PA^{2} + PB^{2} = 50\\ \\text{cm}^{2}$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The circle with centre the midpoint of $AB$ and radius $5$ cm"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The circle with centre the midpoint of $AB$ and radius $4$ cm"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The perpendicular bisector of $AB$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The circle with centre the midpoint of $AB$ and radius $4\\sqrt{2}$ cm"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "An ellipse with foci $A$ and $B$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Put the figure in coordinates so that the symmetry does the work: let $A = (-3, 0)$ and $B = (3, 0)$, so the midpoint $M$ of $AB$ is the origin.\n\n**Step 1 — write the condition.** For $P = (x, y)$: $PA^{2} = (x+3)^{2} + y^{2}$ and $PB^{2} = (x-3)^{2} + y^{2}$. Adding, the $\\pm 6x$ terms cancel: $PA^{2}+PB^{2} = 2x^{2} + 2y^{2} + 18$.\n\n**Step 2 — solve.** $2x^{2}+2y^{2}+18 = 50$ gives $x^{2}+y^{2} = 16$: the circle with centre $M$ and radius $4$ cm.\n\n**Check with two points.** On the perpendicular bisector, $4$ cm from $M$: $PA^{2} = PB^{2} = 4^{2}+3^{2} = 25$, sum $50$ ✓. On line $AB$, $4$ cm from $M$ (so $7$ cm from one point and $1$ cm from the other): $49 + 1 = 50$ ✓. Both points are $4$ cm from $M$, as a circle requires.",
+  "distractorRationale": {
+    "a": "Drops the constant: writes $2x^{2}+2y^{2} = 50$, forgetting the $18$ that comes from the two $3^{2}$ terms, so $x^{2}+y^{2}=25$.",
+    "d": "Subtracts the $18$ but forgets to divide by $2$: $x^{2}+y^{2} = 50-18 = 32$, radius $\\sqrt{32} = 4\\sqrt{2}$.",
+    "e": "Confuses the condition with $PA + PB$ constant, which does define an ellipse with foci $A$ and $B$; a constant sum of squares gives a circle.",
+    "c": "Confuses the condition with $PA = PB$; the perpendicular bisector is infinite, and its points far from $AB$ have $PA^{2}+PB^{2}$ much larger than $50$."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": "In a plane, A and B are two fixed points 6 centimetres apart. Which of the following describes the set of all points P of the plane such that P A squared plus P B squared equals 50 square centimetres? The five choices are: the circle with centre the midpoint of A B and radius 5 centimetres; the circle with centre the midpoint of A B and radius 4 centimetres; the perpendicular bisector of A B; the circle with centre the midpoint of A B and radius 4 times the square root of 2 centimetres; an ellipse with foci A and B.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-math-b-author",
+    "aiAssisted": true,
+    "notes": "Tests a locus defined by a constant sum of squared distances, solved with coordinates and checked with two points. Original item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-math-b-author",
+    "reviewer": "blind-reviewer-wave8-tolci-math-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-math-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "By Apollonius' median formula, PA^2+PB^2=2PM^2+AB^2/2=2PM^2+18=50, so PM=4: a circle centred at the midpoint with radius 4. Radius 5 ignores the AB term; the ellipse would need PA+PB constant. [A second, separate blind solve (blind-reviewer-wave8-tolci-math-run1) reached the same answer: By Apollonius, PA^2+PB^2=2PM^2+AB^2/2=2PM^2+18=50, so PM=4: a circle centred at the midpoint with radius 4. Radius 5 ignores the AB term, radius 4sqrt(2) ignores the factor 2, the perpendicular bisector would need PA=PB, and an ellipse needs PA+PB constant.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "locus",
+    "circle",
+    "coordinates"
+  ]
+}

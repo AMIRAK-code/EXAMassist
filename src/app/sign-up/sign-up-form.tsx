@@ -22,9 +22,12 @@ const PASSWORD_CODES = new Set(['too-short', 'too-long', 'contains-email', 'too-
 export function SignUpForm({
   next,
   minPasswordLength,
+  emailCodes,
 }: {
   next: string | null;
   minPasswordLength: number;
+  /** Whether this deployment sends account codes by email. */
+  emailCodes: boolean;
 }) {
   const router = useRouter();
   const id = useId();
@@ -77,7 +80,7 @@ export function SignUpForm({
       return;
     }
 
-    const body: ApiErrorBody | null = await response.json().catch(() => null);
+    const body: (ApiErrorBody & { verificationSent?: boolean }) | null = await response.json().catch(() => null);
 
     if (!response.ok) {
       setSubmitting(false);
@@ -107,7 +110,13 @@ export function SignUpForm({
       return;
     }
 
-    router.push(destination);
+    // A confirmation code is on its way: ask for it now, while the email is
+    // fresh. The page lets them skip straight on to where they were going.
+    router.push(
+      body?.verificationSent
+        ? `/verify-email?sent=1&next=${encodeURIComponent(destination)}`
+        : destination,
+    );
     router.refresh();
   }
 
@@ -144,7 +153,9 @@ export function SignUpForm({
           className={fieldClass()}
         />
         <p id={`${id}-email-hint`} className="mt-1.5 text-sm text-ink-muted">
-          Used to sign in and nothing else. We send no marketing email.
+          {emailCodes
+            ? 'Used to sign in and for account codes, such as one to confirm this address or reset your password. We send no marketing email.'
+            : 'Used to sign in and nothing else. We send no marketing email.'}
         </p>
       </div>
 

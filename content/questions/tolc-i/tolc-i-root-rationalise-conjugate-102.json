@@ -1,0 +1,82 @@
+{
+  "id": "tolc-i-root-rationalise-conjugate-102",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-arithmetic-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Simplify $\\dfrac{2}{\\sqrt{5}-\\sqrt{3}} - \\sqrt{5}$.",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\sqrt{5}+2\\sqrt{3}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\sqrt{3}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\sqrt{2}-\\sqrt{5}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\dfrac{\\sqrt{3}-3\\sqrt{5}}{4}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$-2\\sqrt{5}-\\sqrt{3}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "A denominator of the form $\\sqrt{a}-\\sqrt{b}$ is rationalised by multiplying top and bottom by the conjugate $\\sqrt{a}+\\sqrt{b}$, because $(\\sqrt{a}-\\sqrt{b})(\\sqrt{a}+\\sqrt{b}) = a - b$.\n\n**Step 1 — rationalise.** $$\\frac{2}{\\sqrt5-\\sqrt3}\\cdot\\frac{\\sqrt5+\\sqrt3}{\\sqrt5+\\sqrt3} = \\frac{2(\\sqrt5+\\sqrt3)}{5-3} = \\frac{2(\\sqrt5+\\sqrt3)}{2} = \\sqrt5+\\sqrt3.$$\n\n**Step 2 — subtract.** $\\sqrt5+\\sqrt3-\\sqrt5 = \\sqrt3$.\n\n**How to check it.** Reverse the work: if $\\dfrac{2}{\\sqrt5-\\sqrt3} = \\sqrt5+\\sqrt3$, then $(\\sqrt5+\\sqrt3)(\\sqrt5-\\sqrt3)$ must equal 2, and indeed it is $5-3 = 2$ ✓.",
+  "distractorRationale": {
+    "a": "Rationalises correctly but forgets to divide by the new denominator $5-3 = 2$, keeping $2\\sqrt5+2\\sqrt3$ and then subtracting $\\sqrt5$.",
+    "c": "Subtracts under the root sign, writing $\\sqrt5-\\sqrt3 = \\sqrt2$. Roots do not combine that way: $\\sqrt5-\\sqrt3 \\approx 0.50$, whereas $\\sqrt2 \\approx 1.41$.",
+    "d": "Expands the product of conjugates as $a + b$, getting a denominator of $5+3 = 8$. The product $(\\sqrt5-\\sqrt3)(\\sqrt5+\\sqrt3)$ is a difference of squares, $5-3 = 2$.",
+    "e": "Computes the difference of squares in the wrong order, $3-5 = -2$, which turns the first term into $-(\\sqrt5+\\sqrt3)$. Since $\\sqrt5 > \\sqrt3$, the original denominator is positive, so the first term must be positive too."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "Simplify: 2 divided by the quantity square root of 5 minus square root of 3, then minus the square root of 5. The five choices are: square root of 5 plus 2 times the square root of 3; the square root of 3; square root of 2 minus square root of 5; the fraction with numerator square root of 3 minus 3 times the square root of 5, and denominator 4; and negative 2 times the square root of 5, minus the square root of 3.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-math-a-author",
+    "aiAssisted": true,
+    "notes": "Original item. Tests rationalising a denominator with a conjugate; distractors come from a forgotten division, subtracting under a root, and mis-expanding the product of conjugates."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-math-a-author",
+    "reviewer": "blind-reviewer-wave8-tolci-math-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-math-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "2/(sqrt5-sqrt3)=2(sqrt5+sqrt3)/2=sqrt5+sqrt3, so subtracting sqrt5 leaves sqrt3. sqrt5+2*sqrt3 and the other forms come from the wrong conjugate or denominator. [A second, separate blind solve (blind-reviewer-wave8-tolci-math-run1) reached the same answer: 2/(sqrt5-sqrt3)=2(sqrt5+sqrt3)/2=sqrt5+sqrt3, and subtracting sqrt5 leaves sqrt3. sqrt5+2sqrt3 and the other options come from conjugate or denominator errors (for example, dividing by 8 instead of 2).]"
+    },
+    "notes": ""
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "radicals",
+    "rationalising",
+    "conjugate"
+  ]
+}

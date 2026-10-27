@@ -1,0 +1,83 @@
+{
+  "id": "tolc-i-chem-dichromate-iron-ratio-314",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "sciences",
+  "domainSlug": "tolci-sciences",
+  "skillSlug": "tolci-sci-chemistry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "In acidic solution, the dichromate ion $\\mathrm{Cr_2O_7^{2-}}$ oxidises iron(II) ions, $\\mathrm{Fe^{2+}}$, to iron(III) ions, $\\mathrm{Fe^{3+}}$, and is itself reduced to chromium(III) ions, $\\mathrm{Cr^{3+}}$. In the balanced equation, how many $\\mathrm{Fe^{2+}}$ ions react with each $\\mathrm{Cr_2O_7^{2-}}$ ion?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$2$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$3$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$6$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$12$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$14$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "**What to notice first.** In a redox reaction the electrons lost by the reducing agent must equal the electrons gained by the oxidising agent. Find the oxidation numbers, count electrons per formula unit, and match the totals.\n\n**The steps.**\n\n- Chromium in $\\mathrm{Cr_2O_7^{2-}}$: with oxygen at $-2$, $2x + 7(-2) = -2$, so $x = +6$.\n- Each Cr goes from $+6$ to $+3$ and gains $3$ electrons. The ion contains **two** Cr atoms, so one dichromate gains $6$ electrons.\n- Each $\\mathrm{Fe^{2+}}$ goes to $\\mathrm{Fe^{3+}}$ and loses $1$ electron.\n\nTo supply $6$ electrons, $6$ iron(II) ions are needed per dichromate ion.\n\n**How to check it.** The full balanced equation is $\\mathrm{Cr_2O_7^{2-} + 6\\,Fe^{2+} + 14\\,H^+ \\rightarrow 2\\,Cr^{3+} + 6\\,Fe^{3+} + 7\\,H_2O}$. Charge on the left: $-2 + 12 + 14 = +24$; on the right: $+6 + 18 = +24$. The charges balance, and so do the atoms.",
+  "distractorRationale": {
+    "b": "Counts the electrons gained by a single chromium atom, $3$. The dichromate ion contains two chromium atoms, so it accepts $6$ electrons.",
+    "a": "Takes the charge of the dichromate ion, $2-$, as the number of electrons it accepts. The electrons gained come from the change in the oxidation number of chromium, $+6$ to $+3$, for each of two atoms.",
+    "d": "Treats chromium as reduced all the way to the metal, $+6$ to $0$, giving $6$ electrons per atom and $12$ per ion. The stem says it ends as $\\mathrm{Cr^{3+}}$.",
+    "e": "This is the coefficient of $\\mathrm{H^+}$ in the balanced equation, not of $\\mathrm{Fe^{2+}}$."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": null,
+  "accessibilityText": "In acidic solution, the dichromate ion, C r 2 O 7 with a two minus charge, oxidises iron two plus ions to iron three plus ions, and is itself reduced to chromium three plus ions. In the balanced equation, how many iron two plus ions react with each dichromate ion? The choices are 2, 3, 6, 12 and 14.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-sciences-author",
+    "aiAssisted": true,
+    "notes": "Original item testing electron bookkeeping in a redox reaction, where the trap is the two chromium atoms per ion. Wording and distractors written for this bank."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-sciences-author",
+    "reviewer": "blind-reviewer-wave8-tolci-logic-sci-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-logic-sci-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Each Cr goes +6 to +3, so one Cr2O7^2- gains 6 electrons; each Fe2+ loses 1, so 6 Fe2+ per dichromate (Cr2O7^2- + 6Fe2+ + 14H+ -> 2Cr3+ + 6Fe3+ + 7H2O). 14 is the H+ coefficient, 3 is per Cr atom, 2 is the Cr3+ coefficient. [A second, separate blind solve (blind-reviewer-wave8-tolci-logic-sci-run1) reached the same answer: Each Cr goes +6 to +3, so one Cr2O7^2- takes 6 electrons; each Fe2+ gives 1, so 6 Fe2+ per dichromate (Cr2O7^2- + 6Fe2+ + 14H+ -> 2Cr3+ + 6Fe3+ + 7H2O). 14 is the H+ count, 2 the Cr count, 3 the per-Cr electron count.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "redox",
+    "oxidation-number",
+    "balancing",
+    "electron-transfer"
+  ]
+}

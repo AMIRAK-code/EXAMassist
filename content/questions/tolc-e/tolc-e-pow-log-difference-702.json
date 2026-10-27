@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-pow-log-difference-702",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-powers-exp-log",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Simplify $\\log_2 40 - \\log_2 5$.",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\log_2 35$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$3$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$8$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\dfrac{\\log_2 40}{\\log_2 5}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\log_2 200$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Both logarithms have base 2, so the quotient law applies:\n\n$$\\log_2 40 - \\log_2 5 = \\log_2 \\frac{40}{5} = \\log_2 8.$$\n\nNow ask what power of 2 gives 8. Since $2^{3} = 8$, the value is $3$.\n\n**How to check it.** Raise 2 to the result: $2^{\\log_2 40 - \\log_2 5} = \\dfrac{40}{5} = 8 = 2^{3}$, so the exponent must be 3. A rough estimate agrees: $2^5 = 32 < 40 < 64 = 2^6$ gives $\\log_2 40$ a little above 5, and $\\log_2 5$ is a little above 2, so their difference is close to 3.",
+  "distractorRationale": {
+    "a": "Subtracts inside the logarithm (40 − 5). The law is that a *difference of logarithms* becomes the logarithm of a *quotient*, not of a difference.",
+    "e": "Applies the product law, which multiplies the arguments (40 × 5). That law belongs to a sum of logarithms; here the sign is minus.",
+    "c": "Divides 40 by 5 correctly but stops there. The number 8 is the argument of the logarithm, not its value; the last step is to ask which power of 2 gives 8.",
+    "d": "Turns the subtraction into a division of the two logarithms. The quotient law divides the arguments inside a single logarithm; it does not divide one logarithm by another."
+  },
+  "estimatedSeconds": 55,
+  "stimulusRef": null,
+  "accessibilityText": "Simplify the logarithm to base 2 of 40 minus the logarithm to base 2 of 5. The five choices are: 3; 8; the logarithm to base 2 of 35; the logarithm to base 2 of 200; and the fraction whose top is the logarithm to base 2 of 40 and whose bottom is the logarithm to base 2 of 5.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-tolc-e-mathematics-author",
+    "aiAssisted": true,
+    "notes": "Original item. Each distractor applies one wrong logarithm law (difference of arguments, product law, log of the quotient left unevaluated, quotient of logarithms)."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-tolc-e-mathematics-author",
+    "reviewer": "blind-reviewer-wave6-tolce-math-run12",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolce-math-run12",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "log2(40/5)=log2 8=3. log2 35 subtracts the arguments, 8 is the argument rather than the log, the quotient of logs is a different number, and log2 200 multiplies the arguments. B is the only correct simplification. [A second, separate blind solve (blind-reviewer-wave6-tolce-math-run13) reached the same answer: log2(40/5) = log2 8 = 3. C is the argument 8, not the log. A, D and E are rule misapplications (a difference of arguments, a quotient of logs, a product of arguments), and none of them equals 3.]"
+    },
+    "notes": "Author check: the key was computed and then confirmed a second way (see the check in the explanation); each wrong choice was tried against the stem and fails for the reason given in its distractor note. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logarithms",
+    "quotient-law"
+  ]
+}

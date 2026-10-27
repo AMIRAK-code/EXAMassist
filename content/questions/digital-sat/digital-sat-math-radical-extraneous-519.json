@@ -1,0 +1,77 @@
+{
+  "id": "digital-sat-math-radical-extraneous-519",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "advanced-math",
+  "skillSlug": "nonlinear-equations-and-systems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the solution set of the equation $\\sqrt{x + 7} = x - 5$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\{2\\}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\{2, 9\\}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\{9\\}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\{-9, -2\\}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Square both sides to remove the radical, solve the resulting quadratic, and then **check every candidate in the original equation**. Squaring can introduce solutions that the original equation does not have, because it treats $a = b$ and $a = -b$ alike.\n\n$$x + 7 = (x - 5)^2 = x^2 - 10x + 25$$\n\n$$0 = x^2 - 11x + 18 = (x - 2)(x - 9)$$\n\nThe candidates are $x = 2$ and $x = 9$.\n\n- $x = 9$: $\\sqrt{9 + 7} = \\sqrt{16} = 4$ and $9 - 5 = 4$. It works.\n- $x = 2$: $\\sqrt{2 + 7} = \\sqrt{9} = 3$ but $2 - 5 = -3$. A square root is never negative, so $x = 2$ is extraneous.\n\nThe solution set is $\\{9\\}$.\n\nA quick way to spot the extraneous root without substituting: the right side, $x - 5$, must be at least $0$, so any solution has $x \\geq 5$. That rules out $2$ at once.",
+  "distractorRationale": {
+    "a": "This keeps the extraneous root and drops the real one. At $x = 2$ the left side is $\\sqrt{9} = 3$ and the right side is $-3$, so $2$ does not satisfy the original equation.",
+    "b": "These are the roots of the squared equation, $x^2 - 11x + 18 = 0$. Squaring introduced $x = 2$, which fails the original equation because $2 - 5$ is negative.",
+    "d": "This misreads the factored form $(x - 2)(x - 9) = 0$ as giving $x = -2$ and $x = -9$. Neither value works: for example, $x = -9$ makes $x + 7$ negative."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "What is the solution set of the equation: the square root of x plus 7 equals x minus 5? The choices are: the set containing 2; the set containing 2 and 9; the set containing 9; the set containing negative 9 and negative 2.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "sat-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. A radical equation whose squared form has two roots, one of them extraneous; tests the check step rather than the algebra."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "sat-wave8-math-author",
+    "reviewer": "blind-reviewer-wave8-sat-math-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-sat-math-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Squaring: x^2 - 11x + 18 = 0, x = 2 or 9. x=9: sqrt16 = 4 = 4 ok; x=2: sqrt9 = 3 != -3, extraneous. Solution set {9}; {2,9} keeps the extraneous root, {-9,-2} is a sign error. [A second, separate blind solve (blind-reviewer-wave8-sat-math-run1) reached the same answer: Squaring: x+7 = x^2 - 10x + 25, x^2 - 11x + 18 = 0, x = 2 or 9. x=2 gives 3 = -3 (extraneous); x=9 gives 4 = 4. {2,9} keeps the extraneous root; {2} keeps only it; {-9,-2} is a sign error.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "advanced-math",
+    "radical-equation",
+    "extraneous-solution"
+  ]
+}

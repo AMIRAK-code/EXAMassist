@@ -1,6 +1,6 @@
 {
   "id": "digital-sat-rw-evidence-quant-moth-lamps-305",
-  "version": 1,
+  "version": 2,
   "examKey": "digital-sat",
   "sectionKey": "rw-module-1",
   "domainSlug": "information-and-ideas",
@@ -15,7 +15,7 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "Mercury-vapour lamps drew 900 moths in total, more than the 640 drawn by warm white LEDs."
+      "textMd": "Mercury-vapour lamps drew 900 moths in total, more than the 640 drawn by warm white LEDs and the 500 by low-pressure sodium lamps."
     },
     {
       "id": "b",
@@ -25,30 +25,30 @@
     {
       "id": "c",
       "label": "C",
-      "textMd": "Mercury-vapour lamps recorded 23 moth species, more than any other lamp type."
+      "textMd": "Mercury-vapour lamps recorded 23 moth species, more than the 19, 14 and 11 species recorded at the other three lamp types."
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "Mercury-vapour lamps were surveyed on 10 nights, fewer than any other lamp type."
+      "textMd": "Mercury-vapour lamps were surveyed on 10 nights, fewer than the 20, 20 and 25 nights spent at the other three lamp types."
     }
   ],
   "answerKey": {
     "type": "single_select",
     "optionId": "b"
   },
-  "explanationMd": "The claim names a *rate*: moths per night. So the supporting data must be the per-night column, and it must cover all four lamp types, because the claim is that mercury vapour beats every one of them.\n\nRead down that column: $20$ for low-pressure sodium, $32$ for warm white LED, $90$ for mercury vapour, $55$ for cool white LED. Mercury vapour is the largest, and the option that sets 90 per night against 55, 32 and 20 reports all four figures, so it settles the comparison on its own.\n\nCheck the answer by confirming the rates against the other columns: $\\frac{500}{25} = 20$, $\\frac{640}{20} = 32$, $\\frac{900}{10} = 90$ and $\\frac{1{,}100}{20} = 55$. Then check the trap: the largest total belongs to cool white LED at 1,100 moths, not to mercury vapour, so totals could never have supported this claim.",
+  "explanationMd": "The claim names a *rate*: moths per night. So the supporting data must be the per-night column, and it must cover all four lamp types, because the claim is that mercury vapour beats every one of them.\n\nRead down that column: $20$ for low-pressure sodium, $32$ for warm white LED, $90$ for mercury vapour, $55$ for cool white LED. Mercury vapour is the largest, and the option that sets 90 per night against 55, 32 and 20 reports all four figures, so it settles the comparison on its own. The choices about species and about nights surveyed also set mercury vapour against every other lamp type, but in columns that do not measure moths per night.\n\nCheck the answer by confirming the rates against the other columns: $\\frac{500}{25} = 20$, $\\frac{640}{20} = 32$, $\\frac{900}{10} = 90$ and $\\frac{1{,}100}{20} = 55$. Then check the trap: the largest total belongs to cool white LED at 1,100 moths, not to mercury vapour, so totals could never have supported this claim.",
   "distractorRationale": {
-    "a": "This uses totals rather than a rate, and it compares only two of the four lamp types. Cool white LEDs recorded a larger total, 1,100 moths, so the totals column does not support the claim at all.",
-    "d": "The number of nights surveyed is the denominator of the rate, not evidence of it. A short survey says nothing on its own about how strongly a lamp attracted moths on each of those nights.",
-    "c": "Species counts measure variety, not rate. A lamp could attract many different species while drawing few moths a night, so this figure leaves the claim about rate unsupported."
+    "a": "This uses totals rather than a rate, and it compares only three of the four lamp types, leaving out the one that matters. Cool white LEDs recorded a larger total, 1,100 moths, so the totals column does not support the claim at all.",
+    "d": "The number of nights surveyed is the denominator of the rate, not evidence of it. Setting mercury vapour's 10 nights against the other lamps' 20, 20 and 25 shows only that its survey was shortest, which says nothing on its own about how strongly a lamp attracted moths on each of those nights.",
+    "c": "Species counts measure variety, not rate. The comparison covers all four lamp types, but a lamp could attract many different species while drawing few moths a night, so this column leaves the claim about rate unsupported."
   },
   "estimatedSeconds": 75,
   "stimulusRef": {
     "id": "digital-sat-stim-moth-lamps-302",
     "version": 1
   },
-  "accessibilityText": "Using the table of moths recorded at four street-lamp types, choose the description of the data that supports the claim that mercury-vapour lamps drew moths at the highest rate. The per-night rates in the table are 20 for low-pressure sodium, 32 for warm white LED, 90 for mercury vapour and 55 for cool white LED.",
+  "accessibilityText": "Using the table of moths recorded at four street-lamp types, choose the description of the data that supports the claim that mercury-vapour lamps drew moths at the highest rate. The per-night rates in the table are 20 for low-pressure sodium, 32 for warm white LED, 90 for mercury vapour and 55 for cool white LED. The four choices say that mercury-vapour lamps: drew 900 moths in total, more than the 640 drawn by warm white LEDs and the 500 by low-pressure sodium lamps; drew 90 moths per night, more than the 55, 32 and 20 per night recorded at the other three lamp types; recorded 23 moth species, more than the 19, 14 and 11 species recorded at the other three lamp types; and were surveyed on 10 nights, fewer than the 20, 20 and 25 nights spent at the other three lamp types.",
   "provenance": {
     "origin": "original",
     "authoredBy": "digital-sat-wave4-author",
@@ -58,16 +58,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "digital-sat-wave4-author",
-    "reviewer": "blind-reviewer-wave5-B",
-    "reviewedOn": "2026-09-28",
+    "reviewer": "blind-reviewer-wave7-sat-rw-run0",
+    "reviewedOn": "2026-09-30",
     "independentSolve": {
-      "solvedBy": "blind-reviewer-wave5-B",
+      "solvedBy": "blind-reviewer-wave7-sat-rw-run0",
       "solvedAnswer": "b",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "The claim is about rate, so the per-night column decides it: mercury vapour 90 versus 55, 32 and 20, all matching the table. A uses totals, and totals would not support the claim (cool white LED's 1,100 exceeds 900); C is about species; D is about nights surveyed, not attraction rate."
+      "workingNotes": "The claim is about rate, meaning catch per night. Mercury vapour caught 90 per night, against 55, 32 and 20 for the other lamps, which matches the table. [A second, separate blind solve (blind-reviewer-wave7-sat-rw-run1) reached the same answer: 'Rate' means catch per night, and the per-night figures are 90 vs 55, 32 and 20, all matching B. A uses totals and also leaves out cool white LED, whose total of 1,100 beats mercury's 900. C is about species and D about nights, so neither addresses rate.]"
     },
-    "notes": "Author's own solve and uniqueness check: Claim is about rate, so only the per-night column can support it: 90 beats 55, 32 and 20, and A reports all four. B uses totals, where cool white's 1,100 is highest, so it cannot support the claim; C reports the denominator; D reports species. Unique. Not published: awaiting a blind independent solve by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author's own solve and uniqueness check: Claim is about rate, so only the per-night column can support it: 90 beats 55, 32 and 20, and A reports all four. B uses totals, where cool white's 1,100 is highest, so it cannot support the claim; C reports the denominator; D reports species. Unique. Not published: awaiting a blind independent solve by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2: choices rebalanced so the key no longer stands out by length, detail or hedging (answer-length cue found by tmp/cue-scan.mjs); stem, passage and key unchanged; re-solved blind."
   },
   "state": "published",
   "quarantine": null,

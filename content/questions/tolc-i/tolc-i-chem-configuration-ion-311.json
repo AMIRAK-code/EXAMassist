@@ -1,0 +1,83 @@
+{
+  "id": "tolc-i-chem-configuration-ion-311",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "sciences",
+  "domainSlug": "tolci-sciences",
+  "skillSlug": "tolci-sci-chemistry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "In its ground state, an atom of element X has the electron configuration $1s^2\\,2s^2\\,2p^6\\,3s^2\\,3p^4$. Which simple monatomic ion is X most likely to form?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\mathrm{X^{2+}}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\mathrm{X^{6-}}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\mathrm{X^{4-}}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\mathrm{X^{2-}}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\mathrm{X^{4+}}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "**What to notice first.** Count the electrons in the outermost shell ($n = 3$): $3s^2\\,3p^4$ gives $6$ valence electrons. An atom with $6$ valence electrons is two short of a complete octet.\n\n**The steps.** The easiest way to reach the stable configuration of the next noble gas (argon, $3s^2\\,3p^6$) is to *gain* two electrons. Gaining two negative charges gives the ion $\\mathrm{X^{2-}}$. (X has $2 + 8 + 6 = 16$ electrons, so it is sulfur, which forms the sulfide ion $\\mathrm{S^{2-}}$.)\n\n**How to check it.** Elements of group 16, such as oxygen and sulfur, sit two places before the noble gases and form $2-$ ions: oxide $\\mathrm{O^{2-}}$ and sulfide $\\mathrm{S^{2-}}$.",
+  "distractorRationale": {
+    "c": "Reads the exponent $4$ in $3p^4$ as the number of electrons to gain. A $p$ subshell holds six electrons, so $3p^4$ needs only two more to be full.",
+    "a": "Removes the two $3s$ electrons, as a group 2 metal such as magnesium does. Losing two electrons would leave four valence electrons, not a noble-gas configuration.",
+    "e": "Removes the four $3p$ electrons. That would still leave $3s^2$ in the outer shell, and removing four electrons costs far more energy than gaining two.",
+    "b": "Takes the number of valence electrons, six, as the charge. The charge is set by how many electrons are needed to complete the octet, which is two."
+  },
+  "estimatedSeconds": 45,
+  "stimulusRef": null,
+  "accessibilityText": "In its ground state, an atom of element X has the electron configuration 1 s 2, 2 s 2, 2 p 6, 3 s 2, 3 p 4, where each number after the letter is the number of electrons in that subshell. Which simple monatomic ion is X most likely to form? The choices are X two plus, X six minus, X four minus, X two minus and X four plus.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-sciences-author",
+    "aiAssisted": true,
+    "notes": "Original item testing the link between electron configuration, valence electrons and the charge of a monatomic ion. Wording and distractors written for this bank."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-sciences-author",
+    "reviewer": "blind-reviewer-wave8-tolci-logic-sci-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-logic-sci-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Configuration 3s2 3p4 is sulfur (16 electrons, group 16); gaining 2 electrons completes the octet, giving X^2-. X^2+/X^4+ would leave an incomplete shell, X^6- and X^4- are not simple stable ions. [A second, separate blind solve (blind-reviewer-wave8-tolci-logic-sci-run1) reached the same answer: Configuration 1s2 2s2 2p6 3s2 3p4 is sulfur (group 16), which gains 2 electrons to reach the argon octet, giving X2-. X2+, X4+, X4- and X6- would need losing/gaining far more electrons than the octet route; X6- is impossible for a simple ion.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "electron-configuration",
+    "valence-electrons",
+    "ions",
+    "periodic-table"
+  ]
+}

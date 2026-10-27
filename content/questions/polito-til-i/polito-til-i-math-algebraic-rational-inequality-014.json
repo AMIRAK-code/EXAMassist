@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-math-algebraic-rational-inequality-014",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tili-mathematics",
+  "skillSlug": "tili-math-algebraic-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which set of real numbers is the solution of $\\dfrac{x-1}{x+2}\\ge 2$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$-5\\le x\\le-2$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$x\\le-5$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$-5\\le x<-2$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$-2<x\\le3$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$x\\le-5$ or $x>-2$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "**What to notice first.** The denominator $x+2$ can be positive or negative, so do not multiply by it. Move everything to one side and study the sign of a single fraction, remembering that $x\\neq-2$.\n\n$$\\frac{x-1}{x+2}-2\\ge0\\iff\\frac{x-1-2(x+2)}{x+2}\\ge0\\iff\\frac{-x-5}{x+2}\\ge0\\iff\\frac{x+5}{x+2}\\le0.$$\n\n**Sign of $\\dfrac{x+5}{x+2}$.** The numerator is zero at $x=-5$ and the denominator at $x=-2$. The quotient is positive for $x<-5$, negative for $-5<x<-2$, and positive again for $x>-2$. It is zero at $x=-5$.\n\n**Collect.** The fraction is $\\le0$ for $-5\\le x<-2$: the endpoint $-5$ is included because the inequality is not strict, and $-2$ is excluded because the fraction is undefined there.\n\n**Check with test values.** $x=-3$ gives $\\frac{-4}{-1}=4\\ge2$, true. $x=-5$ gives $\\frac{-6}{-3}=2\\ge2$, true. $x=-6$ gives $\\frac{-7}{-4}=1.75$, false. $x=0$ gives $-\\frac{1}{2}$, false.",
+  "distractorRationale": {
+    "a": "This finds the right endpoints but includes $x=-2$. At $x=-2$ the denominator is zero and the fraction is undefined, so $-2$ can never belong to the solution set.",
+    "b": "This multiplies both sides by $x+2$ without asking about its sign, so $x-1\\ge2x+4$ gives $x\\le-5$. The inequality only keeps its direction when $x+2>0$; for $x\\le-5$ the factor is negative, and for example $x=-6$ gives $\\frac{-7}{-4}=1.75$, which is less than 2.",
+    "e": "This solves the inequality after moving everything to one side, but reverses the final sign condition: after multiplying by $-1$ the inequality becomes $\\frac{x+5}{x+2}\\le0$, not $\\ge0$. Then $x=0$ would be a solution, yet $\\frac{0-1}{0+2}=-\\frac{1}{2}<2$.",
+    "d": "This makes a sign error when subtracting 2: it writes $\\frac{x-1-2x+4}{x+2}$, forgetting to distribute the minus sign over both terms of $2(x+2)$. It should be $x-1-2x-4$. Then $x=0$ would be a solution, but it is not."
+  },
+  "estimatedSeconds": 130,
+  "stimulusRef": null,
+  "accessibilityText": "Solve the inequality: the fraction with numerator x minus one and denominator x plus two is greater than or equal to two. The choices are sets of real numbers written as inequalities, and they differ in which end values are included and in which side of minus two is kept.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-mathematics-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item on a rational inequality. Distractors: multiplying by an expression of unknown sign, including the excluded value, reversing the final sign test, and an algebra sign slip."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-mathematics-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tili-math-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-math-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Moving 2 to the left gives (-x-5)/(x+2)>=0, which is (x+5)/(x+2)<=0. That holds for -5<=x<-2: x=-5 is included, x=-2 is excluded. A wrongly includes -2, where the expression is undefined. B and E come from sign or cross-multiplying errors. [A second, separate blind solve (blind-reviewer-wave6-tili-math-run7) reached the same answer: (x-1)/(x+2)-2 = (-x-5)/(x+2) >= 0, which is the same as (x+5)/(x+2) <= 0, so -5 <= x < -2. Option A wrongly includes x=-2, where the expression is undefined. E is the sign-flipped complement.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "rational-inequality",
+    "sign-analysis"
+  ]
+}

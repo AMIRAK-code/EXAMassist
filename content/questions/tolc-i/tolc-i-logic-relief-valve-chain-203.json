@@ -1,0 +1,84 @@
+{
+  "id": "tolc-i-logic-relief-valve-chain-203",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Two rules describe the safety system of a compressor.\n\n- If the pressure in the tank exceeds 6 bar, the relief valve opens.\n- Whenever the relief valve opens, the alarm sounds.\n\nBoth rules always hold. This morning the alarm did not sound.\n\nWhich of the following must be true about this morning?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The pressure in the tank was above 6 bar and the alarm failed."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The relief valve did not open, although the pressure exceeded 6 bar."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The pressure in the tank did not exceed 6 bar."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The relief valve opened, but the alarm did not sound."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The pressure in the tank was exactly 6 bar."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Chain the two rules: pressure above 6 bar leads to the valve opening, which leads to the alarm. So \"pressure above 6 bar\" leads, through the valve, to \"the alarm sounds\".\n\nNow use the contrapositive, which is always equivalent to the original rule: if the result did not happen, the condition did not happen. The alarm did not sound, so the valve did not open; the valve did not open, so the pressure did not exceed 6 bar.\n\nCheck: \"did not exceed 6 bar\" allows any pressure up to and including 6 bar, which is all the rules can tell us. They give no way to pin the value down further.",
+  "distractorRationale": {
+    "e": "The rules only tell us the pressure was not above 6 bar. Exactly 6 bar is one possibility among many, such as 4 bar or 5.5 bar, so it need not be true.",
+    "d": "The second rule says the alarm always sounds when the valve opens. Since the alarm was silent, the valve cannot have opened.",
+    "b": "The first rule says the valve always opens when the pressure exceeds 6 bar, so a closed valve with pressure above 6 bar breaks it.",
+    "a": "The stem says both rules always hold, so the alarm cannot fail. Pressure above 6 bar would have opened the valve and sounded the alarm."
+  },
+  "estimatedSeconds": 55,
+  "stimulusRef": null,
+  "accessibilityText": "A deduction question about two rules for a compressor. If the pressure in the tank exceeds 6 bar, the relief valve opens. Whenever the relief valve opens, the alarm sounds. Both rules always hold, and this morning the alarm did not sound. The question asks what must be true about this morning. The five choices are: the pressure was above 6 bar and the alarm failed; the relief valve did not open although the pressure exceeded 6 bar; the pressure did not exceed 6 bar; the relief valve opened but the alarm did not sound; the pressure was exactly 6 bar.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-logic-author",
+    "aiAssisted": true,
+    "notes": "Tests chaining two conditionals and applying the contrapositive. The scenario and wording are original to this bank; no published TOLC or other test item was used or adapted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-logic-author",
+    "reviewer": "blind-reviewer-wave8-tolci-logic-sci-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-logic-sci-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Chain: pressure > 6 -> valve opens -> alarm. No alarm, so by contrapositive the valve did not open and the pressure did not exceed 6 bar. Options with pressure above 6 or valve open contradict the rules; 'exactly 6 bar' is possible but not necessary. [A second, separate blind solve (blind-reviewer-wave8-tolci-logic-sci-run1) reached the same answer: Chain: pressure > 6 -> valve opens -> alarm. Alarm did not sound, so by modus tollens the valve did not open and pressure did not exceed 6 bar. A, B and D contradict the rules; E (exactly 6) is possible but not required.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "deduction",
+    "conditionals",
+    "contrapositive",
+    "no-calculator"
+  ]
+}

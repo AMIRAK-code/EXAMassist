@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-geo-circle-radius-completing-square-945",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolcf-mathematics",
+  "skillSlug": "tolcf-math-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "In the Cartesian plane, what is the radius of the circle with equation $x^{2}+y^{2}-6x+8y=0$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$7$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\sqrt{7}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$25$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$10$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$5$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "**Method.** Complete the square in $x$ and in $y$ separately: $x^{2}-6x=(x-3)^{2}-9$ and $y^{2}+8y=(y+4)^{2}-16$. The equation becomes\n\n$$(x-3)^{2}+(y+4)^{2}=25,$$\n\na circle with centre $(3,-4)$ and radius $\\sqrt{25}=5$.\n\n**Shortcut and check.** For $x^{2}+y^{2}+ax+by+c=0$ the radius is $\\sqrt{(a/2)^{2}+(b/2)^{2}-c}=\\sqrt{9+16-0}=5$. The circle passes through the origin (the constant term is $0$), and the origin is indeed $\\sqrt{3^{2}+4^{2}}=5$ from the centre.",
+  "distractorRationale": {
+    "c": "Stops at $r^{2}=25$ and forgets to take the square root.",
+    "a": "Adds the coordinates of the centre, $3+4$, instead of combining their squares.",
+    "b": "Subtracts the squares, $\\sqrt{16-9}$, as if one completed square had the opposite sign.",
+    "d": "Gives the diameter, twice the radius."
+  },
+  "estimatedSeconds": 45,
+  "stimulusRef": null,
+  "accessibilityText": "In the Cartesian plane a circle has equation x squared plus y squared minus 6 x plus 8 y equals 0. The question asks for its radius. The five choices are: 7; the square root of 7; 25; 10; 5.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave8-mpl-author",
+    "aiAssisted": true,
+    "notes": "Original item on reading the radius of a circle from its general equation by completing the square. Distractors: radius squared, diameter, and two ways of mishandling the centre's coordinates."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave8-mpl-author",
+    "reviewer": "blind-reviewer-wave8-tolcf-mpl-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolcf-mpl-run0",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "(x-3)^2+(y+4)^2=25, radius 5. 25 is r^2, sqrt7/7/10 come from sign or arithmetic slips. [A second, separate blind solve (blind-reviewer-wave8-tolcf-mpl-run1) reached the same answer: (x-3)^2+(y+4)^2=25, so r=5. 25 is r^2, 7 and sqrt7 come from adding 3+4, 10 is the diameter.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "circle",
+    "completing-the-square",
+    "analytic-geometry"
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "id": "tolc-i-logic-beam-lengths-order-212",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Five steel beams, labelled L, M, N, O and P, all have different lengths. The following is known.\n\n- L is longer than M.\n- N is shorter than M.\n- O is longer than L.\n- P is shorter than L but longer than M.\n\nWhich beam is the third longest?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "N"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "P"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "M"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "L"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "O"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Build the order one clue at a time, from longest to shortest.\n\n- L is longer than M, and N is shorter than M: L, M, N.\n- O is longer than L: O, L, M, N.\n- P fits between L and M: O, L, P, M, N.\n\nEvery beam now has a fixed place, and the third longest is **P**.\n\nCheck each clue against the final order O, L, P, M, N: L before M, N after M, O before L, and P between L and M. All hold.",
+  "distractorRationale": {
+    "d": "L is second longest: only O is longer than it. Choosing it miscounts the position or overlooks O.",
+    "c": "M is fourth longest, with O, L and P all longer. Choosing it ignores the clue that places P above M.",
+    "a": "N is the shortest beam, since it is shorter than M, which is shorter than the other three.",
+    "e": "O is the longest beam, because it is longer than L, which is longer than all the rest."
+  },
+  "estimatedSeconds": 50,
+  "stimulusRef": null,
+  "accessibilityText": "A logic problem about five steel beams labelled L, M, N, O and P, all of different lengths. L is longer than M. N is shorter than M. O is longer than L. P is shorter than L but longer than M. The question asks which beam is the third longest. The five choices are N, P, M, L and O.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-logic-author",
+    "aiAssisted": true,
+    "notes": "Tests building a strict ordering from pairwise comparisons. The scenario and wording are original to this bank; no published TOLC or other test item was used or adapted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-logic-author",
+    "reviewer": "blind-reviewer-wave8-tolci-logic-sci-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-logic-sci-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Order is O > L > P > M > N (P between L and M, N below M, O above L), so the third longest is P. L is second, M fourth. [A second, separate blind solve (blind-reviewer-wave8-tolci-logic-sci-run1) reached the same answer: Order is O > L > P > M > N, fully determined, so the third longest is P. M and N are 4th/5th, L 2nd, O 1st.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "problems",
+    "ordering",
+    "no-calculator"
+  ]
+}

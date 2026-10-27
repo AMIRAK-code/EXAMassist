@@ -1,0 +1,83 @@
+{
+  "id": "tolc-e-logic-round-table-611",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Six colleagues - Anna, Bruno, Carla, Dario, Elisa and Fabio - sit at a round table with six seats spaced evenly around it, so that each person sits directly opposite exactly one other person. The following is known.\n\n- Anna sits directly opposite Carla.\n- Bruno sits next to Anna.\n- Dario does not sit next to Anna.\n- Bruno and Dario do not sit next to each other.\n\nWho sits directly opposite Elisa?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Carla"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Bruno"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Fabio"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Dario"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Anna"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Number the seats 1 to 6 clockwise. Opposite seats differ by three, so the opposite pairs are 1 and 4, 2 and 5, 3 and 6. Because the table is round, put Anna in seat 1 without loss of generality. Carla is then opposite her in seat 4.\n\nBruno is next to Anna, in seat 2 or seat 6. Mirror-reversing the table swaps these two, and every statement about who is opposite whom is unchanged, so take seat 2. Dario cannot sit in seats 2 or 6, which are next to Anna, nor in seats 1 or 3, which are next to Bruno, and seat 4 is Carla's. That leaves seat 5 for Dario, directly opposite Bruno.\n\nElisa and Fabio share seats 3 and 6, which are opposite each other. So Elisa sits opposite **Fabio**, whichever of the two seats she takes.\n\nCheck: the opposite pairs are Anna and Carla, Bruno and Dario, Elisa and Fabio, and all four clues hold.",
+  "distractorRationale": {
+    "e": "Choosing Anna forgets that each person has exactly one person opposite. Anna sits opposite Carla by the first clue, so she cannot also be opposite Elisa.",
+    "b": "This is what happens if the last clue is overlooked: Dario could then sit next to Bruno, and Elisa could take the seat opposite Bruno. With the clue applied, Dario is forced into that seat, so Bruno is opposite Dario, not Elisa.",
+    "a": "Choosing Carla forgets that each person has exactly one person opposite. Carla sits opposite Anna by the first clue, so she cannot also be opposite Elisa.",
+    "d": "This is what happens if one of the two clues about Dario is dropped: he could then sit in a seat that Elisa might face. With both clues applied, his only possible seat is the one opposite Bruno, so he is not opposite Elisa."
+  },
+  "estimatedSeconds": 135,
+  "stimulusRef": null,
+  "accessibilityText": "A logic problem about seating at a round table with six evenly spaced seats, so that each person is directly opposite exactly one other person. The six people are Anna, Bruno, Carla, Dario, Elisa and Fabio. Anna sits opposite Carla; Bruno sits next to Anna; Dario does not sit next to Anna; Bruno and Dario do not sit next to each other. The question asks who sits opposite Elisa. The five choices are Anna, Bruno, Carla, Dario and Fabio.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-e-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Scenario, names and figures are invented; no published TOLC or other test item was used or adapted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-e-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolce-logic-run3",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolce-logic-run3",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Place A at seat 0 and C at seat 3. Dario must be at 2 or 4, and Bruno at 1 or 5 with Bruno and Dario not adjacent. That gives (B1, D4) or (B5, D2). In every arrangement of the remaining pair, Elisa and Fabio take opposite seats, so Fabio is always opposite Elisa. [A second, separate blind solve (blind-reviewer-wave6-tolce-logic-run5) reached the same answer: Put Anna in seat 0 and Carla in seat 3, with Bruno in seat 1 (seat 5 is the mirror case). Dario cannot be in seat 1 or 5 (next to Anna) or seat 2 (next to Bruno), so he is in seat 4. Elisa and Fabio take seats 2 and 5, which face each other, so Fabio is opposite Elisa in every arrangement.]"
+    },
+    "notes": "Uniqueness check: an exhaustive enumeration of all seatings with Anna fixed gives four arrangements (mirror images and swaps of Elisa and Fabio); in all of them Elisa is opposite Fabio. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "arrangements",
+    "circular-seating",
+    "no-calculator"
+  ]
+}

@@ -114,10 +114,10 @@ export default async function AdminQuestionsPage({
   const where = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
 
   const total = (
-    db.prepare(`SELECT COUNT(*) AS n FROM questions q ${where}`).get(...bindings) as { n: number }
+    (await db.prepare(`SELECT COUNT(*) AS n FROM questions q ${where}`).get(...bindings)) as { n: number }
   ).n;
 
-  const rows = db
+  const rows = (await db
     .prepare(
       `SELECT
          q.id               AS id,
@@ -146,7 +146,7 @@ export default async function AdminQuestionsPage({
          q.id
        LIMIT ${ROW_LIMIT}`,
     )
-    .all(...bindings) as QuestionListRow[];
+    .all(...bindings)) as QuestionListRow[];
 
   // The authored files carry two things the database does not: the evidence of
   // an independent solve, and the quarantine reason. Reading them is best

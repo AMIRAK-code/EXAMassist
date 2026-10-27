@@ -1,0 +1,83 @@
+{
+  "id": "polito-til-i-logic-festival-talks-221",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "reading-logic",
+  "domainSlug": "tili-logic",
+  "skillSlug": "tili-logic-orders",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A science festival schedules six talks in six consecutive slots, numbered 1 to 6 in order, one talk per slot. The talks are on Algae, Bees, Comets, Dunes, Eels and Fungi. The schedule obeys these rules.\n\n- Exactly one talk is scheduled between the talk on Bees and the talk on Comets, in either order.\n- The talk on Fungi comes immediately after the talk on Bees.\n- The talks on Dunes and Bees are not in consecutive slots.\n- The talk on Algae is neither first nor last.\n\nWhich one of the following must be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The talk on Bees is in one of slots 1, 2 or 3."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The talk on Algae comes before the talk on Bees."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The talk on Eels is in slot 6."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The talk on Comets is not in slot 6."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The talk on Dunes is not in slot 3."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "A \"must be true\" question is settled by proving one statement impossible to break and finding a valid schedule that breaks each of the others.\n\nStart with what the rules tie together. Bees and Fungi form a pair, Fungi right after Bees, so Bees cannot be in slot 6. Comets is exactly two slots from Bees, and Dunes may not sit next to Bees.\n\nNow test the statement about Dunes in slot 3. If Dunes were in slot 3, Bees could not be in slot 2 or 4 (next to Dunes), nor in 3 (taken), nor in 6 (Fungi must follow). That leaves Bees in slot 1 or 5. But Comets must be exactly two slots from Bees. With Bees in slot 1 the only place is slot 3, since slot -1 does not exist; with Bees in slot 5 the only place is slot 3, since slot 7 does not exist. Slot 3 is already taken by Dunes, so this is a contradiction. Dunes is never in slot 3, and the statement about Dunes must be true.\n\nFor each other choice, one complete valid schedule that breaks it is enough to reject it. Dunes, Algae, Comets, Eels, Bees, Fungi puts Bees in slot 5. Bees, Fungi, Comets, Algae, Dunes, Eels puts Algae after Bees. Bees, Fungi, Comets, Algae, Eels, Dunes puts Dunes, not Eels, in slot 6. Dunes, Algae, Eels, Bees, Fungi, Comets puts Comets in slot 6.\n\n**Check:** test every counterexample against all four rules, not just the two that seem relevant. Take Bees, Fungi, Comets, Algae, Eels, Dunes: exactly one talk (Fungi) lies between Bees and Comets, Fungi is right after Bees, Dunes is in slot 6 and Bees in slot 1 so they are not consecutive, and Algae is in slot 4, neither first nor last.",
+  "distractorRationale": {
+    "a": "This assumes Fungi and Comets both need room after Bees. Only Fungi must follow Bees; Comets can sit two slots before it. Dunes, Algae, Comets, Eels, Bees, Fungi obeys every rule and has Bees in slot 5.",
+    "b": "The Algae rule bars it only from the two end slots; it says nothing about where Algae stands relative to Bees. Bees, Fungi, Comets, Algae, Dunes, Eels obeys every rule and has Algae after Bees.",
+    "c": "Eels is the one talk with no rule of its own, so it is tempting to treat it as the filler for the last slot, but other talks can go last. Bees, Fungi, Comets, Algae, Eels, Dunes obeys every rule and has Eels in slot 5.",
+    "d": "Comets in slot 6 forces Bees into slot 4 and Fungi into slot 5, which looks too crowded to work, but it does. Dunes, Algae, Eels, Bees, Fungi, Comets obeys every rule and puts Comets in slot 6."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": "A logic question about scheduling six talks (Algae, Bees, Comets, Dunes, Eels and Fungi) in six numbered slots, one per slot. Four rules: exactly one talk lies between Bees and Comets; Fungi immediately follows Bees; Dunes and Bees are not in consecutive slots; Algae is neither first nor last. The question asks which of five statements about slots must be true. Statements refer to slot numbers 1 to 6.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-wave6-til-i-reading-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item; the situation, names and wording are invented. Needs no knowledge beyond reasoning."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-wave6-til-i-reading-logic-author",
+    "reviewer": "blind-reviewer-wave6-tili-reading-logic-run4",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-reading-logic-run4",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Brute-forced all 720 orders: 18 schedules satisfy the rules. Only E holds in every one. If Dunes were in slot 3, Bees could not be in 2 or 4. Bees in 1 puts Fungi in 2 and Comets in 3, and Bees in 5 puts Fungi in 6 and Comets in 3, so both clash with Dunes. Counterexamples for the others: EDCABF (Bees is 5th, against A), BFCADE (Algae after Bees, against B), BFCAED (Eels not 6th, against C), DAEBFC (Comets 6th, against D). [A second, separate blind solve (blind-reviewer-wave6-tili-reading-logic-run6) reached the same answer: Brute-forced all 720 orders: 18 schedules satisfy the rules. Dunes in slot 3 is impossible: then Bees could not be in 2 or 4, Bees-Fungi must be adjacent, and Bees in 1 or 5 would put Comets in slot 3. Each other option fails in at least one valid schedule: BFCADE breaks A, B and C; CABFDE breaks D.]"
+    },
+    "notes": "Arrangement item. All 720 permutations were enumerated: 18 satisfy the four rules. The Dunes-not-in-slot-3 statement holds in all 18; each other choice fails in at least one, and the counterexample given for each was re-verified by code. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "orders",
+    "arrangement",
+    "must-be-true"
+  ]
+}

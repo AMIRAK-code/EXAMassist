@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-ug-crit-export-share-434",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-critical-thinking",
+  "skillSlug": "critical-thinking-exclude-implications",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "All of the revenue of an olive-oil cooperative in the Tresca valley comes from sales, either to buyers in Italy or to buyers abroad. The cooperative's annual report states:\n\n> In 2025, 40 per cent of the cooperative's revenue came from sales abroad, compared with 30 per cent in 2024.\n\nWhich one of the following can be concluded from this statement alone?",
+  "instructionsMd": "Answer on the basis of the information given only.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The cooperative's revenue from sales in Italy was lower in 2025 than in 2024."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The cooperative's total revenue was higher in 2025 than in 2024."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The cooperative's revenue from sales abroad was higher in 2025 than in 2024."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The share of revenue from sales in Italy fell from 70 per cent to 60 per cent."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The report gives **shares**, not amounts. A share tells you how a total is divided; it tells you nothing about how big the total is. So the only safe conclusions are about how the revenue was split.\n\nBecause every euro of revenue came either from Italy or from abroad, the two shares add up to 100 per cent in each year. Abroad was 30 per cent in 2024, so Italy was 70 per cent; abroad was 40 per cent in 2025, so Italy was 60 per cent. The Italian share therefore fell from 70 to 60 per cent, and that follows with certainty.\n\n**How to check the answer.** Test every claim about amounts with two invented years that both fit the report.\n\n- Revenue of 100 thousand euros in 2024 and 50 thousand in 2025. Sales abroad go from 30 to 20 thousand and sales in Italy from 70 to 30 thousand. Revenue abroad fell and total revenue fell.\n- Revenue of 100 thousand euros in 2024 and 200 thousand in 2025. Sales in Italy go from 70 to 120 thousand, so revenue from Italy rose.\n\nEvery claim about an amount is true in one of these cases and false in the other, so none of them can be concluded. Only the claim about the division of revenue survives both.\n\n**The habit to build.** Whenever a statement is phrased in percentages of a total, ask whether the total is given. If it is not, rises and falls in amounts are out of reach.",
+  "distractorRationale": {
+    "c": "This reads a rising share as a rising amount. The share abroad rose, but if total revenue shrank enough the amount earned abroad could fall: 30 per cent of 100 thousand euros is more than 40 per cent of 50 thousand.",
+    "b": "The report says nothing about the size of total revenue in either year. A larger share abroad is equally consistent with a year of growth and a year of sharp decline.",
+    "a": "This is the mirror image of the claim about sales abroad: a falling Italian share read as a falling Italian amount. If total revenue doubled, 60 per cent of the new total would exceed 70 per cent of the old one, so Italian revenue could have risen."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "A critical thinking question. All the revenue of an olive-oil cooperative comes from sales either in Italy or abroad. Its annual report states that 40 per cent of its revenue came from sales abroad in 2025, compared with 30 per cent in 2024. The question asks which of four statements can be concluded from this alone. There is no figure, table or notation.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-verbal-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item on the distinction between shares and amounts. Three distractors each turn the share statement into a claim about an amount (abroad, total, Italy), and a pair of invented years refutes each of them."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-bocconi-verbal-logic-author",
+    "reviewer": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "All revenue comes from Italy or abroad, so the Italian share is the complement: 70% in 2024 and 60% in 2025. A, B and C all depend on the unknown total revenue (the total could shrink or grow), so none of them follows. [A second, separate blind solve (blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run1) reached the same answer: Revenue is either domestic or abroad, so the domestic share is the complement: 70% in 2024 and 60% in 2025. A, B and C all need the absolute size of revenue, which is not given. For example, total revenue could have fallen, making abroad revenue lower.]"
+    },
+    "notes": "Author's uniqueness check: the Italian share is forced to be 70 then 60 per cent because the two shares sum to 100. A 2024 total of 100 and a 2025 total of 50 falsifies the claims that revenue abroad rose and that total revenue rose; a 2025 total of 200 falsifies the claim that Italian revenue fell. Checked by random sampling of totals with a read-only script. Solved twice, the second time from the stem alone. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "shares-versus-amounts",
+    "percentages"
+  ]
+}

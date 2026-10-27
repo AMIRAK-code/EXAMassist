@@ -1,0 +1,82 @@
+{
+  "id": "tolc-i-prob-sensors-exactly-one-129",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-probability",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A fault in a machine is watched by two sensors that work independently. When the fault occurs, the first sensor detects it with probability $0.6$ and the second with probability $0.7$. What is the probability that exactly one of the two sensors detects the fault?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$0.12$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$0.18$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$0.42$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$0.46$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$0.88$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "\\\"Exactly one\\\" splits into two incompatible cases; for each case multiply, because the sensors are independent, then add the cases.\n\n**Case 1 — only the first detects.** $0.6 \\cdot (1 - 0.7) = 0.6 \\cdot 0.3 = 0.18$.\n\n**Case 2 — only the second detects.** $(1 - 0.6)\\cdot 0.7 = 0.4 \\cdot 0.7 = 0.28$.\n\n**Total.** $0.18 + 0.28 = 0.46$.\n\n**Check by complement.** The four cases are: both $0.6\\cdot 0.7 = 0.42$; neither $0.4\\cdot 0.3 = 0.12$; exactly one. They add to $1$, so exactly one is $1 - 0.42 - 0.12 = 0.46$ ✓.",
+  "distractorRationale": {
+    "a": "Gives the probability that neither sensor detects the fault, $0.4 \\cdot 0.3$.",
+    "b": "Counts only the case in which the first sensor detects and the second does not, leaving out the opposite case.",
+    "c": "Gives the probability that both sensors detect the fault, $0.6 \\cdot 0.7$.",
+    "e": "Gives the probability that at least one sensor detects the fault, $1 - 0.12$, which also includes the case in which both do."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A fault in a machine is watched by two sensors that work independently. When the fault occurs, the first sensor detects it with probability 0.6 and the second with probability 0.7. What is the probability that exactly one of the two sensors detects the fault? The five choices are: 0.12; 0.18; 0.42; 0.46; 0.88.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-math-b-author",
+    "aiAssisted": true,
+    "notes": "Tests the probability of exactly one of two independent events, checked against the complement. Original item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-math-b-author",
+    "reviewer": "blind-reviewer-wave8-tolci-math-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-math-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "0.6*0.3+0.4*0.7=0.18+0.28=0.46. 0.88 is 'at least one', 0.42 is 'both', and 0.12 is 'neither'; 0.18 is only one of the two cases. [A second, separate blind solve (blind-reviewer-wave8-tolci-math-run1) reached the same answer: 0.6*0.3+0.4*0.7=0.18+0.28=0.46. 0.42 is both detecting, 0.88 is at least one, 0.12 is neither, and 0.18 is only one of the two cases.]"
+    },
+    "notes": ""
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "independent-events",
+    "exactly-one",
+    "complement"
+  ]
+}

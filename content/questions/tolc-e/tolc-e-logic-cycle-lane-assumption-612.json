@@ -1,0 +1,84 @@
+{
+  "id": "tolc-e-logic-cycle-lane-assumption-612",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-arguments",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Since the cycle lane along Via Roma opened in March, the number of cyclists counted on that street between 7 and 9 each weekday morning has risen from 240 to 320. The city council concludes that the new lane has persuaded more residents to cycle to work.\n\nWhich of the following is an assumption on which the council's conclusion depends?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Every resident who cycles to work now uses Via Roma."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Cycling to work costs residents less than driving to work."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Before the lane opened, some residents avoided cycling on Via Roma because they thought it was dangerous."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The additional cyclists counted on Via Roma are not simply residents who used to cycle to work along other streets."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The council built the lane in response to requests from residents."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Find the gap between the evidence and the conclusion. The evidence is a rise in the count of cyclists on one street. The conclusion is that more residents are cycling to work. Those are different things: the count could rise on Via Roma simply because riders switched to it from elsewhere.\n\nA necessary assumption is one whose denial breaks the argument. Deny the correct choice: suppose the extra cyclists are just people who used to ride to work along other streets. Then the number of residents cycling to work has not risen at all, and the council's conclusion fails. So the argument depends on excluding that possibility.\n\nApply the same denial test to each other choice: it is possible for the argument to survive if no resident avoided Via Roma out of fear, if cycling costs more than driving, or if the lane was not requested by residents; and the argument never claims that every commuting cyclist uses Via Roma.",
+  "distractorRationale": {
+    "a": "Far too strong. The conclusion needs only that some additional residents cycle to work; it does not need all commuting cyclists to be on this street.",
+    "c": "This makes the conclusion more plausible but the argument does not depend on it. The lane could have persuaded new cyclists for other reasons, such as a visible, safer-looking route, and the argument would still stand.",
+    "b": "Cost is not the subject of the argument. Whether cycling is cheaper than driving has no bearing on whether the lane brought in new cyclists.",
+    "e": "Why the lane was built is irrelevant to whether the rise in the count reflects more people cycling to work."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "An argument question about assumptions. A city council reports that since a new cycle lane opened on Via Roma in March, the morning cyclist count on that street has risen from 240 to 320, and concludes the lane has persuaded more residents to cycle to work. The question asks which statement is an assumption the conclusion depends on. The choices say: every commuting cyclist now uses Via Roma; some residents avoided the street before the lane because of danger; the extra cyclists are not simply residents who previously rode along other streets; cycling costs less than driving; the council built the lane after requests from residents.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-e-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Scenario, names and figures are invented; no published TOLC or other test item was used or adapted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-e-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolce-logic-run3",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolce-logic-run3",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The count rose on one street, but the conclusion is that more residents now cycle. That requires the extra cyclists not to be existing commuters who moved over from other streets (D). A is too strong and not needed. C gives a possible mechanism but is not required. B and E are irrelevant. [A second, separate blind solve (blind-reviewer-wave6-tolce-logic-run5) reached the same answer: The conclusion is that more residents now cycle. It depends on ruling out that existing cyclists simply moved over from other streets, which is D. A is far too strong. C and E are not required, and B is irrelevant, since the argument works without any of them (negating each leaves the conclusion intact).]"
+    },
+    "notes": "Uniqueness check with the denial test: only the assumption that the extra cyclists are not merely diverted commuters is necessary; denying it destroys the inference from a higher count on one street to more residents cycling to work. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "arguments",
+    "assumption",
+    "necessary-assumption",
+    "no-calculator"
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "id": "bocconi-ug-crit-minister-delays-310",
-  "version": 1,
+  "version": 2,
   "examKey": "bocconi-undergraduate",
   "sectionKey": "online-test",
   "domainSlug": "bocconi-ug-critical-thinking",
@@ -15,17 +15,17 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "Every train that was delayed last winter was the operator's fault."
+      "textMd": "Every train delayed last winter, whether by more or by less than an hour, was delayed through the operator's fault."
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "No train delayed by less than an hour was the operator's fault."
+      "textMd": "No train that was delayed by less than an hour last winter was delayed through any fault of the operator's."
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "No train was delayed by more than an hour last winter."
+      "textMd": "No train at all was delayed by more than an hour last winter, for reasons inside or outside the operator's control."
     },
     {
       "id": "d",
@@ -39,13 +39,13 @@
   },
   "explanationMd": "The second sentence is a universal negative, and the quickest way to read one is to turn it around.\n\n\"**No** train delayed by more than an hour was delayed for a reason **outside** the operator's control\" says that the group of long-delayed trains and the group of trains delayed by outside causes do not overlap at all. Every long-delayed train therefore falls on the other side of that division: its cause was **not** outside the operator's control, which is to say it was within the operator's control.\n\nThat is exactly the claim that every train delayed by more than an hour last winter was delayed for a reason within the operator's control. The two statements are the same claim, one phrased as an exclusion and the other as an inclusion.\n\n**How to check the answer.** Test each option by trying to make the minister's two sentences true while the option is false.\n\n- For the within-the-operator's-control claim: if some long-delayed train had a cause the operator could not control, the minister's second sentence would be false immediately. That claim cannot be false while the minister is telling the truth, so it follows.\n- For the claim that every delayed train was the operator's fault: imagine a winter with one train delayed ten minutes by a lightning strike and one delayed two hours by a crew shortage. Both of the minister's sentences hold, and that claim is false. So it does not follow.\n\nAn option that can be made false while the premises stay true does not follow. Building one small counter-example is faster and safer than arguing about it.\n\n**The word to watch.** \"Not every\" is not \"none\". The minister's first sentence denies that all delays are the operator's fault; it leaves completely open how many are. The claim that every delayed train was the operator's fault and the claim that no train delayed by less than an hour was the operator's fault both treat it as though it settled the matter, in opposite directions.\n\n**On the claim that no train was delayed by more than an hour.** A sentence about all members of a group does not promise that the group has any members, but it does not promise that the group is empty either. The minister's second sentence is consistent with a hundred long delays and with none, so nothing about how many occurred follows from it.",
   "distractorRationale": {
-    "c": "This mistakes a statement about the causes of long delays for a statement about whether long delays occurred. The minister's second sentence classifies every such delay; it is silent on how many there were, and it would be a strange thing to say if there had been none. Nothing in either sentence rules long delays in or out.",
-    "a": "This reads the first sentence as 'every delayed train is the operator's fault', which is precisely what 'Not every delayed train is the operator's fault' denies. The minister's claim about the operator's control is confined to delays of more than an hour, so short delays are left entirely open.",
+    "c": "This mistakes a statement about the causes of long delays for a statement about whether long delays occurred. The minister's second sentence classifies every such delay; it is silent on how many there were, and it would be a strange thing to say if there had been none. Nothing in either sentence rules long delays in or out, whatever their cause.",
+    "a": "This reads the first sentence as 'every delayed train is the operator's fault', which is precisely what 'Not every delayed train is the operator's fault' denies. The minister's claim about the operator's control is confined to delays of more than an hour, so short delays are left entirely open, and a train delayed ten minutes by a lightning strike would make this claim false without contradicting the minister.",
     "b": "This also over-reads the first sentence, in the opposite direction from the claim that every delayed train was the operator's fault. 'Not every delayed train is the operator's fault' means at least one is not; it does not identify which, and it certainly does not exempt all short delays. Some trains delayed by less than an hour could still be the operator's fault."
   },
   "estimatedSeconds": 95,
   "stimulusRef": null,
-  "accessibilityText": "A critical thinking question quoting two sentences from a transport minister: not every delayed train is the operator's fault; and no train delayed by more than an hour last winter was delayed for a reason outside the operator's control. The question asks which of four statements follows. There is no figure, table or notation.",
+  "accessibilityText": "A critical thinking question quoting two sentences from a transport minister: not every delayed train is the operator's fault; and no train delayed by more than an hour last winter was delayed for a reason outside the operator's control. The question asks which of four statements follows. The four statements are: every train delayed last winter, whether by more or by less than an hour, was delayed through the operator's fault; no train delayed by less than an hour last winter was delayed through any fault of the operator's; no train at all was delayed by more than an hour last winter, for reasons inside or outside the operator's control; and every train delayed by more than an hour last winter was delayed for a reason within the operator's control. There is no figure, table or notation.",
   "provenance": {
     "origin": "original",
     "authoredBy": "bocconi-undergraduate-wave4-author",
@@ -55,16 +55,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "bocconi-undergraduate-wave4-author",
-    "reviewer": "blind-reviewer-wave5-A",
-    "reviewedOn": "2026-09-28",
+    "reviewer": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+    "reviewedOn": "2026-09-30",
     "independentSolve": {
-      "solvedBy": "blind-reviewer-wave5-A",
+      "solvedBy": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
       "solvedAnswer": "d",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "'No train delayed >1h last winter was delayed for a reason outside the operator's control' is equivalent to 'every such train was delayed for a reason within its control', which is D. A is not implied (and is in tension with sentence 1); B and C are not supported by either sentence."
+      "workingNotes": "Saying that no train delayed over an hour had an outside cause is the same as saying every such train's delay had a cause within the operator's control, which is D. A contradicts the first sentence, and nothing said covers delays under an hour (B) or rules out delays over an hour (C). [A second, separate blind solve (blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run1) reached the same answer: Sentence 2 says no train delayed over an hour last winter was delayed for a reason outside the operator's control. So every such train was delayed only for reasons within its control, which is D (vacuously true if there were none). A goes beyond sentence 2 and clashes with sentence 1. Nothing is said about delays under an hour (B) or about whether any long delays happened (C).]"
     },
-    "notes": "Author's uniqueness check: C is a restatement of the second sentence with the negation moved, so it follows necessarily. A counter-example refutes each of the others: one ten-minute lightning delay plus one two-hour crew-shortage delay makes both premises true while A, B and D are all false. Awaiting blind independent solve before publication. Option-letter references in the explanation were rewritten to name choice content; the key was re-derived independently and is unchanged. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author's uniqueness check: C is a restatement of the second sentence with the negation moved, so it follows necessarily. A counter-example refutes each of the others: one ten-minute lightning delay plus one two-hour crew-shortage delay makes both premises true while A, B and D are all false. Awaiting blind independent solve before publication. Option-letter references in the explanation were rewritten to name choice content; the key was re-derived independently and is unchanged. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. v2: choices rebalanced so the key no longer stands out by length, detail or hedging (answer-length cue found by tmp/cue-scan.mjs); stem, passage and key unchanged; re-solved blind."
   },
   "state": "published",
   "quarantine": null,

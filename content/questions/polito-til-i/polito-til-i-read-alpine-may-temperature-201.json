@@ -1,0 +1,86 @@
+{
+  "id": "polito-til-i-read-alpine-may-temperature-201",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "reading-logic",
+  "domainSlug": "tili-reading-comprehension",
+  "skillSlug": "tili-reading-stated",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "According to the excerpt, how did the average May air temperature on the southern slope compare with that on the northern slope?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The northern slope was noticeably warmer than the southern slope."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The two averages differed by less than two degrees."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The difference in temperature was the main reason the southern gentians flowered first."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The two averages were identical."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The southern slope was about nineteen degrees warmer."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "This is a *stated* question: the answer is a fact the excerpt gives in so many words, so find the sentence and do not reason from what you know about mountains or weather.\n\nThe second paragraph supplies it: \"In May the average air temperature on the two slopes differed by less than two degrees.\" That is the choice saying the averages differed by less than two degrees.\n\nEach wrong choice fails on a specific point of the text. The figure nineteen counts *days* between flowering dates, not degrees. The excerpt says the averages \"differed\", so \"identical\" overstates it. It gives the size of the difference but never its direction, so nothing says the northern slope was the warmer. And the excerpt argues against the choice that credits temperature for the early southern flowering: it puts the gap down to the date of the snow melt and calls two degrees far too little to explain it.\n\n**Check:** for a stated question, be able to point to the words that support your choice. If you cannot, you are inferring rather than reading.",
+  "distractorRationale": {
+    "e": "This mixes up two figures. The nineteen in the excerpt is the gap in days between the two slopes' flowering dates, not a difference in degrees.",
+    "d": "The excerpt says the averages \"differed\", by less than two degrees. A small difference is still a difference, so \"identical\" claims more than the text says.",
+    "a": "The excerpt gives the size of the temperature difference and calls it too small to matter, but it never says which slope was warmer. \"Noticeably\" also contradicts \"less than two degrees\".",
+    "c": "This states the very idea the excerpt rejects. The flowering gap is attributed to the date the snow melted, and the temperature difference is described as far too small to explain it."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": {
+    "id": "polito-til-i-passage-alpine-flowering-200",
+    "version": 1
+  },
+  "accessibilityText": "A reading question about the accompanying excerpt on alpine flowers and snow melt. It asks how, according to the text, the average May air temperature on the southern slope compared with that on the northern slope. Five answer choices; none uses notation or figures.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-wave6-til-i-reading-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item written against an original excerpt authored alongside it. The answer is deducible from the excerpt alone; no outside knowledge is needed or used."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-wave6-til-i-reading-logic-author",
+    "reviewer": "blind-reviewer-wave6-tili-reading-logic-run4",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-reading-logic-run4",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The passage states it directly: 'In May the average air temperature on the two slopes differed by less than two degrees.' D (identical) goes beyond the text. C contradicts the passage. A and E are unsupported, and E confuses the nineteen days with degrees. [A second, separate blind solve (blind-reviewer-wave6-tili-reading-logic-run6) reached the same answer: The text says directly: 'In May the average air temperature on the two slopes differed by less than two degrees.' D (identical) is not stated. C contradicts the passage's argument. A and E are unsupported; E confuses nineteen days with degrees.]"
+    },
+    "notes": "Stated-information item. Author checked each wrong choice against the excerpt: the nineteen-degrees choice confuses days with degrees, the identical choice overstates, the northern-warmer choice adds an unstated direction, and the last reverses the finding. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "reading",
+    "stated",
+    "science",
+    "excerpt-1"
+  ]
+}

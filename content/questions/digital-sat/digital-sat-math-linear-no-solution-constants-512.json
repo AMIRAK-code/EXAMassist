@@ -1,0 +1,77 @@
+{
+  "id": "digital-sat-math-linear-no-solution-constants-512",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "algebra",
+  "skillSlug": "linear-equations-one-variable",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "$$ax + 9 = 3(4x - b)$$\n\nIn the equation above, $a$ and $b$ are constants. If the equation has no solution, which of the following could be the values of $a$ and $b$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$a = 12$ and $b = 3$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$a = 4$ and $b = 3$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$a = -12$ and $b = 3$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$a = 12$ and $b = -3$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Write both sides in the form (coefficient)$x$ + (constant):\n\n$$ax + 9 = 12x - 3b$$\n\nA linear equation has\n\n- **no solution** when the $x$-coefficients are equal and the constants are different,\n- **infinitely many solutions** when both the coefficients and the constants are equal,\n- **exactly one solution** when the coefficients are different.\n\nSo no solution requires $a = 12$ and $9 \\neq -3b$, that is, $b \\neq -3$. Among the pairs offered, only $a = 12$ and $b = 3$ meets both conditions.\n\nCheck: with $a = 12$ and $b = 3$ the equation becomes $12x + 9 = 12x - 9$. Subtracting $12x$ from both sides leaves $9 = -9$, which is false for every $x$.\n\nThe sign of $b$ is the trap: with $b = -3$ the right side is $12x + 9$, identical to the left, and every $x$ is a solution.",
+  "distractorRationale": {
+    "d": "With these values the equation is $12x + 9 = 12x + 9$, which is true for every $x$: infinitely many solutions, not none. The constants must differ, so $9 \\neq -3b$.",
+    "b": "This divides $12$ by $3$ instead of distributing the $3$. With $a = 4$ the equation is $4x + 9 = 12x - 9$, which has exactly one solution, $x = \\frac{9}{4}$.",
+    "c": "The $x$-coefficients must be equal, not opposite. With $a = -12$ the equation is $-12x + 9 = 12x - 9$, which has exactly one solution, $x = \\frac{3}{4}$."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "In the equation a x plus 9 equals 3 times the quantity 4 x minus b, a and b are constants, and the equation has no solution. Which could be the values of a and b? The choices are: a equals 12 and b equals 3; a equals 4 and b equals 3; a equals negative 12 and b equals 3; a equals 12 and b equals negative 3.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "sat-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Applies the no-solution condition for a linear equation with two unknown constants, with a sign trap that produces the infinitely-many-solutions case."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "sat-wave8-math-author",
+    "reviewer": "blind-reviewer-wave8-sat-math-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-sat-math-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "ax + 9 = 12x - 3b has no solution iff a = 12 and 9 != -3b (b != -3). a=12, b=3 gives 9 = -9, no solution. a=12, b=-3 gives infinitely many solutions; a=4 or a=-12 give exactly one solution. [A second, separate blind solve (blind-reviewer-wave8-sat-math-run1) reached the same answer: Right side 12x - 3b; no solution needs a = 12 and 9 != -3b (b != -3). a=12, b=3 gives 9 = -9, no solution. a=12, b=-3 gives identity (infinitely many); a=4 or a=-12 give exactly one solution.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "algebra",
+    "linear-equation",
+    "number-of-solutions"
+  ]
+}

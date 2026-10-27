@@ -1,0 +1,83 @@
+{
+  "id": "polito-til-a-logic-position-code-356",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "logical-reasoning",
+  "domainSlug": "tila-logic",
+  "skillSlug": "tila-logic-symbolic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In a code, each letter of a word is replaced by a later letter of the 26-letter English alphabet (A to Z), following one fixed rule. For example:\n\n- CASA is written DCVE\n- LEGNO is written MGJRT\n\nHow is PONTE written in the same code?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "QQQXF"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "QQQXJ"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "OMKPZ"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "USQVF"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "QPOUF"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "**What to notice first.** Compare each word with its code letter by letter and count how far each letter moves.\n\n| Place in the word | 1st | 2nd | 3rd | 4th | 5th |\n|---|---|---|---|---|---|\n| CASA to DCVE | C to D: +1 | A to C: +2 | S to V: +3 | A to E: +4 | |\n| LEGNO to MGJRT | L to M: +1 | E to G: +2 | G to J: +3 | N to R: +4 | O to T: +5 |\n\nEach letter moves forward by its place in the word: the first by one, the second by two, and so on. The second example matters: it shows the fifth letter moving by five, so nothing has to be guessed for a five-letter word.\n\n**The step that settles it.** Apply the same shifts to PONTE, using letter positions (P = 16, O = 15, N = 14, T = 20, E = 5):\n\n- P + 1 = 17, Q\n- O + 2 = 17, Q\n- N + 3 = 17, Q\n- T + 4 = 24, X\n- E + 5 = 10, J\n\nThe code is QQQXJ.\n\n**How to check it.** Decode the answer: move each letter of QQQXJ back by its place (Q − 1, Q − 2, Q − 3, X − 4, J − 5) and PONTE comes back.",
+  "distractorRationale": {
+    "e": "Moves every letter forward by one, the shift of the first letter only. The examples show the shift growing along the word: in CASA the second letter moves two places and the third moves three.",
+    "a": "Uses the shifts 1, 2, 3, 4 and then starts again at 1, a pattern that fits the four-letter example alone. The five-letter example settles the fifth place: O becomes T, a move of five.",
+    "c": "Moves each letter backward by its place, which is how to decode, not how to encode. Going back five places from the fifth letter of the alphabet wraps round to Z.",
+    "d": "Numbers the places from the right-hand end of the word, so P moves five places and the final letter only one. That rule would turn the first letter of CASA into G, not the D the example shows."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A letter code question using the 26-letter English alphabet. Example one: the word C A S A is written D C V E. Example two: the word L E G N O is written M G J R T. The question asks how the word P O N T E is written in the same code. The five choices, spelled letter by letter, are: Q Q Q X F; Q Q Q X J; O M K P Z; U S Q V F; and Q P O U F. The explanation contains a table comparing each example word with its code, one column per place in the word.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-polito-til-a-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank for the TIL-A Logical reasoning section. The words are Italian (house, wood, bridge) but the code uses the 26-letter English alphabet, which the stem states. The second example has five letters so that the shift for every place in PONTE is shown directly, and no competing rule consistent with both examples gives a different code."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-polito-til-a-logic-author",
+    "reviewer": "blind-reviewer-wave7-tila-logic-drawing-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-tila-logic-drawing-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The n-th letter moves forward n places (CASA: +1, +2, +3, +4; LEGNO: +1 to +5). PONTE becomes P+1 = Q, O+2 = Q, N+3 = Q, T+4 = X, E+5 = J, giving QQQXJ. [A second, separate blind solve (blind-reviewer-wave7-tila-logic-drawing-run1) reached the same answer: Each letter moves forward by its position in the word (+1, +2, +3, ...), which checks out on both CASA and LEGNO. For PONTE that gives P+1 = Q, O+2 = Q, N+3 = Q, T+4 = X and E+5 = J, so QQQXJ. A differs only in the last letter (E+1), so the options are close but distinguishable.]"
+    },
+    "notes": "Author's uniqueness check: by script, shifting each letter forward by its place gives DCVE from CASA and MGJRT from LEGNO, matching both examples, and QQQXJ from PONTE. Because the five-letter example fixes the shift for places 1 to 5 directly, the code of any five-letter word is determined. The distractors were generated by script from the named slips: constant shift of one (QPOUF), shifts cycling after four (QQQXF, which gives MGJRP for LEGNO and so contradicts the example), shifting backward (OMKPZ) and numbering places from the right (USQVF, which gives GDUB for CASA). Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "coding",
+    "letters",
+    "no-calculator"
+  ]
+}

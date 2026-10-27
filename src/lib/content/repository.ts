@@ -51,10 +51,10 @@ function parseOptions(json: string | null): Array<{ id: string; label: string; t
   return Array.isArray(parsed) ? (parsed as Array<{ id: string; label: string; textMd: string }>) : [];
 }
 
-export function getStimulus(db: Db, id: string, version: number): StimulusPayload | null {
-  const row = db
+export async function getStimulus(db: Db, id: string, version: number): Promise<StimulusPayload | null> {
+  const row = (await db
     .prepare('SELECT * FROM stimuli WHERE id = ? AND version = ?')
-    .get(id, version) as StimulusRow | undefined;
+    .get(id, version)) as StimulusRow | undefined;
   if (!row) return null;
   return {
     id: row.id,
@@ -67,7 +67,7 @@ export function getStimulus(db: Db, id: string, version: number): StimulusPayloa
   };
 }
 
-export function toPresented(db: Db, row: QuestionVersionRow): PresentedQuestion {
+export async function toPresented(db: Db, row: QuestionVersionRow): Promise<PresentedQuestion> {
   return {
     questionId: row.question_id,
     questionVersionId: row.id,
@@ -83,14 +83,14 @@ export function toPresented(db: Db, row: QuestionVersionRow): PresentedQuestion 
     accessibilityText: row.accessibility_text,
     stimulus:
       row.stimulus_id && row.stimulus_version !== null
-        ? getStimulus(db, row.stimulus_id, row.stimulus_version)
+        ? (await getStimulus(db, row.stimulus_id, row.stimulus_version))
         : null,
   };
 }
 
-export function toReviewable(db: Db, row: QuestionVersionRow): ReviewableQuestion {
+export async function toReviewable(db: Db, row: QuestionVersionRow): Promise<ReviewableQuestion> {
   return {
-    ...toPresented(db, row),
+    ...(await toPresented(db, row)),
     answerKey: answerKeySchema.parse(JSON.parse(row.correct_json)),
     explanationMd: row.explanation_md,
     distractorRationale: row.distractor_rationale_json
@@ -100,29 +100,29 @@ export function toReviewable(db: Db, row: QuestionVersionRow): ReviewableQuestio
   };
 }
 
-export function getQuestionVersion(db: Db, questionVersionId: string): QuestionVersionRow | undefined {
-  return db.prepare('SELECT * FROM question_versions WHERE id = ?').get(questionVersionId) as
+export async function getQuestionVersion(db: Db, questionVersionId: string): Promise<QuestionVersionRow | undefined> {
+  return (await db.prepare('SELECT * FROM question_versions WHERE id = ?').get(questionVersionId)) as
     | QuestionVersionRow
     | undefined;
 }
 
 /** The version of a question currently being served, if it is published. */
-export function getPublishedVersion(db: Db, questionId: string): QuestionVersionRow | undefined {
-  return db
+export async function getPublishedVersion(db: Db, questionId: string): Promise<QuestionVersionRow | undefined> {
+  return (await db
     .prepare(
       `SELECT qv.* FROM question_versions qv
        JOIN questions q ON q.id = qv.question_id AND q.current_version = qv.version
        WHERE q.id = ? AND q.state = 'published' AND qv.state = 'published'`,
     )
-    .get(questionId) as QuestionVersionRow | undefined;
+    .get(questionId)) as QuestionVersionRow | undefined;
 }
 
-export function getQuestionVersions(db: Db, ids: readonly string[]): Map<string, QuestionVersionRow> {
+export async function getQuestionVersions(db: Db, ids: readonly string[]): Promise<Map<string, QuestionVersionRow>> {
   if (ids.length === 0) return new Map();
   const placeholders = ids.map(() => '?').join(',');
-  const rows = db
+  const rows = (await db
     .prepare(`SELECT * FROM question_versions WHERE id IN (${placeholders})`)
-    .all(...ids) as QuestionVersionRow[];
+    .all(...ids)) as QuestionVersionRow[];
   return new Map(rows.map((row) => [row.id, row]));
 }
 
@@ -130,8 +130,8 @@ export function getQuestionVersions(db: Db, ids: readonly string[]): Map<string,
  * Candidate pool for selection: published items only, annotated with when this
  * learner last saw each question so selection can prefer fresh material.
  */
-export function getPool(db: Db, examKey: string, userId: string | null): PoolItem[] {
-  const rows = db
+export async function getPool(db: Db, examKey: string, userId: string | null): Promise<PoolItem[]> {
+  const rows = (await db
     .prepare(
       `SELECT
          qv.id                AS questionVersionId,
@@ -152,7 +152,7 @@ export function getPool(db: Db, examKey: string, userId: string | null): PoolIte
        JOIN questions q ON q.id = qv.question_id AND q.current_version = qv.version
        WHERE qv.exam_key = ? AND qv.state = 'published' AND q.state = 'published'`,
     )
-    .all(userId ?? '', examKey) as PoolItem[];
+    .all(userId ?? '', examKey)) as PoolItem[];
   return rows;
 }
 
@@ -167,10 +167,10 @@ export interface CoverageRow {
 }
 
 /** Content coverage, surfaced to learners so bank size is never hidden. */
-export function getCoverage(db: Db, examKey?: string): CoverageRow[] {
+export async function getCoverage(db: Db, examKey?: string): Promise<CoverageRow[]> {
   const where = examKey ? 'WHERE qv.exam_key = ?' : '';
   const params = examKey ? [examKey] : [];
-  return db
+  return (await db
     .prepare(
       `SELECT
          qv.exam_key     AS examKey,
@@ -186,17 +186,17 @@ export function getCoverage(db: Db, examKey?: string): CoverageRow[] {
        GROUP BY qv.exam_key, qv.section_key, qv.domain_slug
        ORDER BY qv.exam_key, qv.section_key, qv.domain_slug`,
     )
-    .all(...params) as CoverageRow[];
+    .all(...params)) as CoverageRow[];
 }
 
-export function countPublished(db: Db, examKey: string): number {
-  const row = db
+export async function countPublished(db: Db, examKey: string): Promise<number> {
+  const row = (await db
     .prepare(
       `SELECT COUNT(*) AS n
        FROM question_versions qv
        JOIN questions q ON q.id = qv.question_id AND q.current_version = qv.version
        WHERE qv.exam_key = ? AND qv.state = 'published' AND q.state = 'published'`,
     )
-    .get(examKey) as { n: number };
+    .get(examKey)) as { n: number };
   return row.n;
 }

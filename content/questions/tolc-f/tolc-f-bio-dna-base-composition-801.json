@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-bio-dna-base-composition-801",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "biology",
+  "domainSlug": "tolcf-biology",
+  "skillSlug": "tolcf-bio-molecules",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "In a sample of double-stranded DNA taken from an olive leaf, 20% of the nucleotides carry adenine. What percentage of the nucleotides carry guanine?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "20%"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "30%"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "40%"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "60%"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "80%"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Start from base pairing. In double-stranded DNA, adenine pairs with thymine and guanine pairs with cytosine, so the amount of A equals the amount of T, and the amount of G equals the amount of C.\n\n1. Adenine is 20%, so thymine is also 20%, and together A + T make 40%.\n2. The other 60% is guanine plus cytosine. Because G = C, each base is half of 60%, that is 30%.\n\nCheck: 20 + 20 + 30 + 30 = 100. The usual slip is to stop after one of the steps and report a total for two bases instead of the single base the question asks for.",
+  "distractorRationale": {
+    "a": "This treats guanine as equal to adenine. The equalities are between paired bases, so adenine matches thymine, not guanine.",
+    "c": "This is the share of adenine and thymine together (20% + 20%). It answers \"how much A + T\", not \"how much G\".",
+    "d": "This is the share of guanine and cytosine together. It is the right subtraction (100% - 40%) but stops before splitting the 60% between the two bases.",
+    "e": "This subtracts only the adenine from 100% and forgets that thymine must equal adenine, so it removes 20% instead of 40%."
+  },
+  "estimatedSeconds": 40,
+  "stimulusRef": null,
+  "accessibilityText": "A short text question with no figure. Twenty percent of the nucleotides in a double-stranded DNA sample from an olive leaf are adenine. The five choices are percentages: twenty, thirty, forty, sixty and eighty percent.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item on base-pairing (Chargaff) rules. Each wrong option is one unfinished or misapplied step of the pairing arithmetic."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-bio-run17",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-bio-run17",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Chargaff's rule gives A = T = 20%, so G + C = 60% and G = 30%. 20% is the value for T, 60% is G+C, and 40% is A+T. [A second, separate blind solve (blind-reviewer-wave6-tolcf-bio-run19) reached the same answer: Chargaff's rules give A = T = 20%, so G + C = 60% and G = 30%. The other options are 20% (G equated with A), 40% (A + T), 60% (G + C) and 80%, all traps.]"
+    },
+    "notes": ""
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "dna",
+    "base-pairing",
+    "chargaff"
+  ]
+}

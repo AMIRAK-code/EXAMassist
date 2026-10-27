@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-ug-analytic-two-point-distance-504",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-analytic-points-distances",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "In the Cartesian plane, what is the distance between the points $A = (-1,\\, 3)$ and $B = (5,\\, -5)$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$2\\sqrt{5}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$14$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$2\\sqrt{10}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$10$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Use the distance formula, which is Pythagoras' theorem applied to the horizontal and vertical gaps:\n\n$$AB = \\sqrt{(x_{B} - x_{A})^{2} + (y_{B} - y_{A})^{2}}$$\n\n**Gaps — subtract with signs.**\n\n$$x_{B} - x_{A} = 5 - (-1) = 6 \\qquad y_{B} - y_{A} = -5 - 3 = -8$$\n\n**Distance.**\n\n$$AB = \\sqrt{6^{2} + (-8)^{2}} = \\sqrt{36 + 64} = \\sqrt{100} = 10$$\n\n**Check.** The gaps $6$ and $8$ are twice the familiar $3$–$4$–$5$ right triangle, so the hypotenuse is twice $5$. ✓",
+  "distractorRationale": {
+    "b": "This adds the horizontal and vertical gaps, $6 + 8$, which is the length of a path that goes across and then up. The straight-line distance is the hypotenuse, $\\sqrt{6^{2} + 8^{2}}$.",
+    "c": "This mishandles a sign in the vertical gap, computing $3 + (-5) = -2$ instead of $-5 - 3 = -8$, and so gets $\\sqrt{36 + 4} = \\sqrt{40}$.",
+    "a": "This adds the coordinates instead of subtracting them in both directions: $5 + (-1) = 4$ and $3 + (-5) = -2$, giving $\\sqrt{16 + 4} = \\sqrt{20}$."
+  },
+  "estimatedSeconds": 40,
+  "stimulusRef": null,
+  "accessibilityText": "In the Cartesian plane, find the distance between the points A, at minus 1 comma 3, and B, at 5 comma minus 5. The choices are: 2 times the square root of 5; 14; 2 times the square root of 10; 10.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. It tests the distance formula with coordinates of mixed sign, where sign slips in the differences produce the distractors."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-math-author",
+    "reviewer": "blind-reviewer-wave8-bocug-math-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-bocug-math-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "dx=6, dy=-8, distance sqrt(36+64)=10. 14 adds |dx|+|dy|; 2sqrt5 and 2sqrt10 come from sign slips (e.g. dx=4 or 2). [A second, separate blind solve (blind-reviewer-wave8-bocug-math-run1) reached the same answer: dx=6 and dy=-8 give sqrt(36+64)=10. 14 adds |dx|+|dy|, 2sqrt5 comes from adding the coordinates, and 2sqrt10 from a sign error.]"
+    },
+    "notes": "Author's uniqueness check: the differences are 6 and -8, giving exactly 10; the other choices are 14, about 6.32 and about 4.47. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "distance-formula",
+    "coordinates"
+  ]
+}

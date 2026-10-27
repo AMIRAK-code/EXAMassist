@@ -1,0 +1,72 @@
+{
+  "id": "bocconi-ug-crit-most-overlap-439",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-critical-thinking",
+  "skillSlug": "critical-thinking-deducibility",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "The following statements about the members of the Collina Alta farming cooperative are all true. In these statements, \"most\" means \"more than half\".\n\n> 1. Most of the cooperative's members grow olives.\n>\n> 2. Most of the cooperative's members sell at the Saturday market.\n>\n> 3. Nobody who sells at the Saturday market is exempt from the market levy.\n\nConsider the following assertion.\n\n> **Some of the cooperative's olive growers are not exempt from the market levy.**\n\nOn the basis of the three statements alone, the assertion is",
+  "instructionsMd": "This item has three answer options and carries the heavier penalty for a wrong answer, so answer only if you can justify your choice from the three statements alone.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "true."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "false."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "impossible to determine from the information given."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The whole item turns on one question: must at least one member both grow olives **and** sell at the Saturday market? If so, statement 3 finishes the job.\n\n**Step 1: two majorities of the same group must overlap.** Suppose the cooperative has $n$ members. The olive growers are more than $\\frac{n}{2}$ of them, and so are the Saturday sellers. If the two groups had no member in common, together they would contain more than $\\frac{n}{2} + \\frac{n}{2} = n$ different members, which is more members than the cooperative has. So at least one member is in both groups.\n\n**Step 2: follow that member through statement 3.** That member sells at the Saturday market, so by statement 3 is not exempt from the market levy. The same member grows olives. So there is an olive grower who is not exempt, which is exactly what the assertion claims. The assertion is **true**.\n\n**How to check the answer.** Try to build a cooperative where every olive grower is exempt. The exempt members cannot sell at the Saturday market (statement 3), so the olive growers and the Saturday sellers would have to be separate groups, each more than half of the membership. With 10 members you would need at least 6 olive growers and at least 6 different sellers, 12 people in a cooperative of 10. It cannot be done.\n\n**Why this is harder than a usual syllogism.** \"Most\" does not behave like \"all\": \"most bankers are golfers\" and \"most golfers are left-handed\" together prove nothing about bankers and left-handers. What does work is two majorities **of the same group**, and seeing that requires a counting argument rather than a rule of logic. A candidate who knows only that \"most\" is weak will stop at \"cannot be determined\" one step too early.",
+  "distractorRationale": {
+    "c": "This is the verdict of a candidate who knows that statements with 'most' usually cannot be chained, and stops there. The rule applies to chains that pass from one group to a different group, such as 'most bankers are golfers, most golfers are left-handed'. Here both majorities are majorities of the same membership, and two groups each larger than half of a set must share a member. That member settles the assertion.",
+    "b": "Calling the assertion false means claiming that every olive grower in the cooperative is exempt from the levy. That would force the olive growers and the Saturday sellers to be disjoint, since sellers are never exempt, and two disjoint groups cannot each be more than half of the membership. This verdict usually comes from losing track of the double negative in statement 3 and the assertion."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": null,
+  "accessibilityText": "A critical thinking question with three answer options. Three statements are given about the members of a farming cooperative, where most means more than half: most members grow olives; most members sell at the Saturday market; nobody who sells at the Saturday market is exempt from the market levy. The assertion to evaluate is: some of the cooperative's olive growers are not exempt from the market levy. The three options, in order, are: true; false; impossible to determine from the information given. The explanation uses n for the number of members and n over 2 for half of them.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-verbal-logic-author",
+    "aiAssisted": true,
+    "notes": "Original three-option stretch item. The deduction needs the fact that two majorities of one set overlap, a counting argument, before an ordinary universal negative can be applied. The stem defines 'most' as 'more than half' so that the item cannot turn on a reading of the word."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-bocconi-verbal-logic-author",
+    "reviewer": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Olive growers are more than n/2 and market sellers are more than n/2, so the two groups must share at least one member. That member sells at the market, so by statement 3 is not exempt. The assertion is therefore true. [A second, separate blind solve (blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run1) reached the same answer: Two groups that each hold more than half of the members must overlap, so at least one olive grower sells at the Saturday market. By statement 3 that member is not exempt from the levy. The assertion is true.]"
+    },
+    "notes": "Stretch: a typical hard Bocconi deducibility item chains all / some / none statements; this one requires the candidate to prove, by counting, that two 'most' statements about the same group force a common member, and a well-prepared candidate who has learned that 'most' cannot be chained is drawn to the undetermined verdict. Author's uniqueness check: two subsets each larger than half of the membership intersect; any member of the intersection is an olive grower who sells at the market and so is not exempt. A read-only brute-force check over all cooperatives of one to seven members found the assertion true in every model (182 models) and the denial true in none. Solved twice, the second time from the stem alone. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "three-option",
+    "quantifiers",
+    "most",
+    "deducibility",
+    "stretch"
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "id": "tolc-e-logic-seq-interleaved-607",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-sequences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The terms of a number sequence are\n\n3, 30, 7, 26, 11, 22, 15, ...\n\nWhat is the next term?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "11"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "18"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "19"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "22"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "26"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "When neighbouring terms jump up and down in turn, suspect two sequences woven together. Separate the odd-numbered terms from the even-numbered ones.\n\nTerms in odd positions: 3, 7, 11, 15, which rise by 4 each time. Terms in even positions: 30, 26, 22, which fall by 4 each time. The next term is in position 8, an even position, so it continues the falling run: 22 - 4 = **18**.\n\nCheck by looking at successive differences of the whole list: +27, -23, +19, -15, +11, -7, and the next would be +3, giving 15 + 3 = 18. Two different ways of reading the list agree.",
+  "distractorRationale": {
+    "a": "Subtracts 4 from the last term, treating the whole list as one falling sequence. Every second term rises, so the last term, 15, belongs to the rising run and the next term must come from the falling run.",
+    "c": "Adds 4 to the last term, treating the whole list as one rising sequence. The terms alternate between two runs; the term after 15 belongs to the run that is going down.",
+    "d": "Repeats the previous term in the falling run instead of extending it. Each term in that run is 4 lower than its predecessor, so it cannot repeat.",
+    "e": "Moves the falling run up by 4 instead of down. The terms 30, 26, 22 are decreasing, so the next one is lower than 22."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": "A number sequence question. The terms are 3, 30, 7, 26, 11, 22, 15 and the sequence continues. The question asks for the next term. The five choices are 11, 18, 19, 22 and 26.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-e-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Scenario, names and figures are invented; no published TOLC or other test item was used or adapted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-e-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolce-logic-run3",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolce-logic-run3",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Two interleaved sequences: the odd positions go 3, 7, 11, 15 (+4) and the even positions go 30, 26, 22 (-4). The 8th term is an even position, so it is 22 - 4 = 18. 19 would be the next odd-position term, which is the wrong one here. [A second, separate blind solve (blind-reviewer-wave6-tolce-logic-run5) reached the same answer: Two sequences are interleaved: the odd positions go 3, 7, 11, 15 (+4) and the even positions go 30, 26, 22 (-4). The next term is the 8th, which is an even position, so it is 18. 19 would be the 9th term, a plausible slip but not the next term.]"
+    },
+    "notes": "Uniqueness check: odd positions rise by 4 (3, 7, 11, 15) and even positions fall by 4 (30, 26, 22), giving 18. The alternating differences 27, -23, 19, -15, 11, -7 also lead to 18."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "sequences",
+    "interleaved",
+    "no-calculator"
+  ]
+}

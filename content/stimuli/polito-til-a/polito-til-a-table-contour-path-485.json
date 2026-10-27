@@ -1,0 +1,34 @@
+{
+  "id": "polito-til-a-table-contour-path-485",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "kind": "table",
+  "title": "A straight path crossing contour lines on a 1:5000 map",
+  "bodyMd": "A straight footpath up a hillside above an Alpine village is drawn on a map at a scale of 1:5000, on which contour lines are drawn every 5 m of height. The path starts on the 300 m contour and climbs steadily, crossing each contour once. The table gives, for each contour the path meets, the distance measured on the map from the start of the path to that contour, and the contour's height above sea level. Distances on the map are horizontal distances.",
+  "data": {
+    "columns": [
+      { "key": "point", "label": "Contour crossed" },
+      { "key": "mapCm", "label": "Distance from the start on the map (cm)" },
+      { "key": "height", "label": "Height of the contour (m)" }
+    ],
+    "rows": [
+      { "point": "Start", "mapCm": 0, "height": 300 },
+      { "point": "Crossing 1", "mapCm": 1.2, "height": 305 },
+      { "point": "Crossing 2", "mapCm": 2.0, "height": 310 },
+      { "point": "Crossing 3", "mapCm": 3.6, "height": 315 },
+      { "point": "Crossing 4", "mapCm": 4.1, "height": 320 },
+      { "point": "Crossing 5 (end)", "mapCm": 5.5, "height": 325 }
+    ],
+    "caption": "Map distance from the start of the path to each contour it crosses, on a 1:5000 map, with the height of each contour.",
+    "chart": null
+  },
+  "accessibilityText": "A table with six rows and three columns: the contour crossed, the distance from the start of the path measured on the map in centimetres, and the height of the contour in metres. The start is at 0 centimetres on the 300 metre contour. Crossing 1 is at 1.2 centimetres, height 305 metres. Crossing 2 is at 2.0 centimetres, height 310 metres. Crossing 3 is at 3.6 centimetres, height 315 metres. Crossing 4 is at 4.1 centimetres, height 320 metres. Crossing 5, the end of the path, is at 5.5 centimetres, height 325 metres. The map scale is 1 to 5000 and the contour interval is 5 metres, so each stretch between consecutive contours climbs 5 metres.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-polito-til-a-drawing-author",
+    "aiAssisted": true,
+    "notes": "Original invented survey data. Map gaps 1.2, 0.8, 1.6, 0.5 and 1.4 cm give horizontal stretches of 60, 40, 80, 25 and 70 m and gradients of about 8.3%, 12.5%, 6.25%, 20% and 7.1%, recomputed by script. No gap equals exactly 1 cm, so no stretch sits exactly on a 10% threshold."
+  },
+  "rightsStatus": "original-owned",
+  "state": "published"
+}

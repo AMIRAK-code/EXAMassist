@@ -1,0 +1,87 @@
+{
+  "id": "tolc-i-verbal-bridge-alerts-400",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "verbal-comprehension",
+  "domainSlug": "tolci-verbal",
+  "skillSlug": "tolci-verbal-stated",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "According to the passage, what caused almost all of the alerts raised in the monitoring system's first year?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Cracks and rust that earlier visual inspections had failed to notice."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The normal effects of weather and traffic on the bridge."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Sensors that stopped working properly in cold weather."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "River currents shaking the piers during floods."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Damage to the deck done by a single overloaded lorry."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "A question that begins \"according to the passage\" is answered by one sentence in the text, so find it before reading the choices. The third paragraph gives the figure and its cause in the same sentence: the system raised \"more than two thousand alerts, almost all of them caused by weather and traffic rather than by damage\". The sentences before it describe what that means: the deck grows and shrinks with temperature, vibration frequencies drift, and heavy lorries produce large strain readings, all on \"a healthy bridge\".\n\nCheck the tempting alternatives against the text. The lorry is mentioned, but its readings only \"looked alarming\" on paper; the passage never says it damaged anything. Cracks and rust belong to the description of visual inspection, not to the alerts, and nothing is said about sensors failing or about floods.",
+  "distractorRationale": {
+    "a": "Cracks and rust appear only in the first paragraph, as what inspectors looked for. The alerts are said to have been caused by weather and traffic \"rather than by damage\".",
+    "c": "Cold weather does change the readings, by shrinking the deck, but the passage says the sensors were reporting real movement of a healthy bridge. It never says any sensor failed.",
+    "e": "The lorry is an example of normal traffic producing readings that \"on paper, looked alarming\". The passage does not say it damaged the deck, and one lorry could not explain two thousand alerts.",
+    "d": "The passage mentions that the bridge crosses a river, but it never names currents or floods as a source of alerts."
+  },
+  "estimatedSeconds": 50,
+  "stimulusRef": {
+    "id": "tolc-i-passage-bridge-monitoring-490",
+    "version": 1
+  },
+  "accessibilityText": "A stated-information question about the bridge monitoring passage. It asks what caused almost all of the alerts raised in the monitoring system's first year. The five choices: Cracks and rust that earlier visual inspections had failed to notice; The normal effects of weather and traffic on the bridge; Sensors that stopped working properly in cold weather; River currents shaking the piers during floods; Damage to the deck done by a single overloaded lorry.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-verbal-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank against an original passage; it tests locating a stated cause in a short engineering passage. Every option is answerable, or refutable, from the passage text alone."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-verbal-author",
+    "reviewer": "blind-reviewer-wave8-tolci-verbal-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-verbal-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The passage says the alerts were 'almost all of them caused by weather and traffic rather than by damage', which matches the normal effects of weather and traffic. Hidden cracks and rust, and lorry damage, are damage, which the passage rules out: the lorry only produced readings that looked alarming. The passage never mentions sensors failing in the cold or floods shaking the piers. [A second, separate blind solve (blind-reviewer-wave8-tolci-verbal-run1) reached the same answer: Stated: 'almost all of them caused by weather and traffic rather than by damage'. The overloaded lorry produced alarming-looking readings, not damage; undetected cracks, cold-failing sensors and flood currents are not mentioned.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "verbal",
+    "reading",
+    "stated",
+    "engineering",
+    "no-calculator"
+  ]
+}

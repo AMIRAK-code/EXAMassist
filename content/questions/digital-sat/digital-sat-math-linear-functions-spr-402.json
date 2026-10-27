@@ -1,0 +1,61 @@
+{
+  "id": "digital-sat-math-linear-functions-spr-402",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "algebra",
+  "skillSlug": "linear-functions",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "For the linear function $f$, $f(5) - f(1) = 14$ and $f(f(0)) = 27$. What is the value of $f(2)$?",
+  "instructionsMd": "Student-produced response. Enter your answer in the box. Do not enter symbols such as a percent sign, comma, or dollar sign.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 13
+      }
+    ],
+    "acceptedStrings": [
+      "13"
+    ]
+  },
+  "explanationMd": "Write the function with its two unknown constants, $f(x) = mx + b$, and use each condition to pin down one of them. The first condition fixes the slope; only then does the second condition become a simple equation.\n\n**Slope.** The difference $f(5) - f(1)$ is four steps of size $m$:\n\n$$f(5) - f(1) = (5m + b) - (m + b) = 4m = 14 \\;\\Rightarrow\\; m = \\frac{7}{2}$$\n\n**Intercept.** Since $f(0) = b$, the expression $f(f(0))$ is $f(b)$, the function evaluated at its own $y$-intercept:\n\n$$f(b) = mb + b = \\frac{7}{2}b + b = \\frac{9}{2}b = 27 \\;\\Rightarrow\\; b = 6$$\n\nSo $f(x) = \\frac{7}{2}x + 6$, and\n\n$$f(2) = \\frac{7}{2}(2) + 6 = 7 + 6 = 13$$\n\nCheck both conditions: $f(5) = 17.5 + 6 = 23.5$ and $f(1) = 3.5 + 6 = 9.5$, a difference of $14$; and $f(0) = 6$, $f(6) = 21 + 6 = 27$.\n\nTwo slips to avoid. Reading $f(f(0)) = 27$ as $f(0) = 27$ skips the inner evaluation and gives $b = 27$, so $f(2) = 34$. And forgetting the $+\\,b$ when evaluating $f(b)$, writing $\\frac{7}{2}b = 27$, gives a fractional intercept; when a nested function appears, evaluate the inner value completely before applying the outer rule.",
+  "distractorRationale": {},
+  "estimatedSeconds": 140,
+  "stimulusRef": null,
+  "accessibilityText": "f is a linear function. f of 5 minus f of 1 equals 14, and f of f of 0 equals 27, meaning f applied to the value f of 0. Find f of 2. Enter a number.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-sat-math-alg-author",
+    "aiAssisted": true,
+    "notes": "Original item. The composition condition only becomes solvable once the slope is known, so the path has to be found in order; the slope is deliberately a fraction while the answer is a whole number."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-sat-math-alg-author",
+    "reviewer": "blind-reviewer-wave7-sat-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-sat-math-run0",
+      "solvedAnswer": "13",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Let f(x) = mx + b. Then 4m = 14, so m = 3.5. Next, f(f(0)) = f(b) = 3.5b + b = 4.5b = 27, so b = 6. So f(2) = 7 + 6 = 13. [A second, separate blind solve (blind-reviewer-wave7-sat-math-run1) reached the same answer: Write f(x) = mx + b. Then 4m = 14, so m = 7/2. Also f(f(0)) = f(b) = (7/2)b + b = (9/2)b = 27, so b = 6. Therefore f(2) = 7 + 6 = 13.]"
+    },
+    "notes": "Author solved twice and checked by script: 4m = 14 gives m = 7/2; f(b) = (9/2)b = 27 gives b = 6; f(2) = 13. Both conditions re-checked (23.5 - 9.5 = 14, f(6) = 27). The answer is unique because each condition is linear in the single remaining unknown. Hard: two linked steps, the second of which (evaluating f at its own intercept) is only set up once the first is done. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "algebra",
+    "linear-function",
+    "composition",
+    "student-produced-response"
+  ]
+}

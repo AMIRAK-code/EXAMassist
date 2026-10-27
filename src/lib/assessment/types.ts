@@ -184,19 +184,18 @@ export const scoringPolicySchema = z.object({
   ]),
   notes: z.array(z.string()).default([]),
   /**
-   * Published exceptions to `pointsIncorrect` that belong to particular
-   * items: Bocconi's "critical thinking questions that give only three
-   * possible answer options" cost 0.33, not 0.2. An item matches when it is in
-   * one of the domains AND has exactly `optionCount` options. Only rules the
-   * exam's owner publishes go here.
+   * Published exceptions to `pointsIncorrect` that attach to the item rather
+   * than the exam: Bocconi penalises a wrong answer on a three-option critical
+   * thinking question at -0.33 instead of -0.2. An item matches when its
+   * domain is listed and it offers exactly `optionCount` options. Unset means
+   * every wrong answer scores `pointsIncorrect`.
    */
-  penaltyOverrides: z
+  itemPenaltyOverrides: z
     .array(
       z.object({
-        domainSlugs: z.array(z.string().min(1)).min(1),
+        domains: z.array(z.string().min(1)).min(1),
         optionCount: z.number().int().positive(),
         pointsIncorrect: z.number(),
-        rule: z.string().min(1),
         source: z.string().url(),
       }),
     )

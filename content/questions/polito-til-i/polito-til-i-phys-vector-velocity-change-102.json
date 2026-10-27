@@ -1,0 +1,82 @@
+{
+  "id": "polito-til-i-phys-vector-velocity-change-102",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "physics",
+  "domainSlug": "tili-physics",
+  "skillSlug": "tili-phys-vectors-units",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A cyclist rides round a corner in a Turin street. Just before the corner her velocity is 6 m/s due east. Exactly 2 s later, just after the corner, it is 8 m/s due north. What is the magnitude of her average acceleration during these 2 s?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$5\\ \\text{m/s}^2$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$1\\ \\text{m/s}^2$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$14\\ \\text{m/s}^2$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$10\\ \\text{m/s}^2$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$7\\ \\text{m/s}^2$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Acceleration is a vector: $\\vec a = \\Delta\\vec v/\\Delta t$, where $\\Delta\\vec v$ is the final velocity minus the initial velocity. What matters is the change of direction as well as the change of speed.\n\n**The velocity change.** Subtracting an eastward 6 m/s is the same as adding a westward 6 m/s. So $\\Delta\\vec v$ has a component of 6 m/s to the west and a component of 8 m/s to the north. These are at right angles, so\n$$|\\Delta\\vec v| = \\sqrt{6^{2}+8^{2}} = 10\\ \\text{m/s}.$$\n\n**Divide by the time.** $|\\vec a| = 10/2 = 5\\ \\text{m/s}^2$.\n\n**Check.** By the triangle inequality the size of the velocity change must lie between the difference of the speeds (8 - 6 = 2 m/s) and their sum (14 m/s). Dividing by 2 s, the acceleration must lie between 1 and 7 m/s². The value 5 is inside that range, and the right-angle case gives exactly the 6-8-10 triangle.",
+  "distractorRationale": {
+    "b": "Subtracts the speeds, (8 - 6) ÷ 2 = 1, as if the cyclist stayed on one straight line. The two velocities point in perpendicular directions, so the velocity change is not 2 m/s.",
+    "e": "Adds the two speeds, (6 + 8) ÷ 2 = 7, treating perpendicular vectors as if they pointed the same way. Magnitudes add only for parallel vectors.",
+    "d": "Finds the size of the velocity change correctly (10 m/s) but does not divide by the 2 s. That is a change of velocity, not an acceleration.",
+    "c": "Adds the two speeds (6 + 8 = 14) and does not divide by the time, so it makes both the vector-addition error and the missing-division error."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": null,
+  "accessibilityText": "A vector question. A cyclist has velocity 6 metres per second due east just before a corner, and 2 seconds later 8 metres per second due north. The magnitude of her average acceleration over those 2 seconds is wanted. The choices are 1, 5, 7, 10 and 14 metres per second squared.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-wave6-physics-technical-author",
+    "aiAssisted": true,
+    "notes": "Original item. Uses the 6-8-10 right triangle so the arithmetic is exact by hand. Wrong choices: subtracting speeds, adding speeds, forgetting the division by time, and both errors together."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-wave6-physics-technical-author",
+    "reviewer": "blind-reviewer-wave6-tili-phys-tech-run8",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-phys-tech-run8",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Δv = (-6, 8), so |Δv| = 10 m/s; average acceleration = 10/2 = 5 m/s^2. 1 m/s^2 uses only the change in speed, 7 comes from adding the speeds, and 10 forgets to divide by the time. [A second, separate blind solve (blind-reviewer-wave6-tili-phys-tech-run9) reached the same answer: Delta v = (-6, 8), magnitude 10 m/s; over 2 s gives 5 m/s^2. 1 is (8-6)/2, 7 is (6+8)/2, 10 forgets dividing by time, 14 is sum of speeds.]"
+    },
+    "notes": "Awaiting a blind independent solve. The author recomputed every option and checked the key a second way before saving (see the explanation). Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "vectors",
+    "average-acceleration",
+    "velocity-change"
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "id": "tolc-i-logic-vibration-heat-negation-204",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A batch of components goes through two tests, a vibration test and a heat test; each component either passes or fails each test. The quality report claims:\n\n\"Every component that passed the vibration test also passed the heat test.\"\n\nAn audit shows that this claim is false. Which of the following must be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "At least one component failed both tests."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Every component that failed the vibration test passed the heat test."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "At least one component passed the vibration test and failed the heat test."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "At least one component passed the heat test and failed the vibration test."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "No component that passed the vibration test passed the heat test."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The claim has the form \"every X is Y\", with X = \"passed the vibration test\" and Y = \"passed the heat test\". Such a claim is false exactly when there is a **counterexample**: at least one X that is not Y. So the audit shows that at least one component passed the vibration test but did not pass, that is failed, the heat test.\n\nA useful way to check: the negation of \"every ... is ...\" is \"at least one ... is not ...\", never \"none ... is ...\". A single counterexample is enough to sink the claim, and it is all that the audit guarantees.\n\nCheck the alternatives by imagining a batch with just two components: one passed vibration and failed heat (the counterexample), and one passed both tests. The claim is false, yet no component failed both tests, no component passed heat after failing vibration, and some component passed both tests.",
+  "distractorRationale": {
+    "e": "This is the contrary, not the negation. One counterexample already makes the claim false; other components that passed vibration may well have passed heat too.",
+    "d": "This swaps the roles of the two tests. A component that passed heat but failed vibration does not contradict the claim, which is only about components that passed vibration.",
+    "b": "Components that failed the vibration test are outside the claim altogether, so the audit says nothing about them.",
+    "a": "A component that failed both tests is irrelevant to the claim. The counterexample needed is one that passed vibration and failed heat."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "A deduction question about negating a general claim. Each component either passes or fails a vibration test and a heat test. The report claims that every component that passed the vibration test also passed the heat test, and an audit shows this is false. The question asks which statement must be true. The five choices are: at least one component failed both tests; every component that failed the vibration test passed the heat test; at least one component passed the vibration test and failed the heat test; at least one component passed the heat test and failed the vibration test; no component that passed the vibration test passed the heat test.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-logic-author",
+    "aiAssisted": true,
+    "notes": "Tests the negation of a universal conditional (\"every X is Y\" becomes \"some X is not Y\"). The scenario and wording are original to this bank; no published TOLC or other test item was used or adapted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-logic-author",
+    "reviewer": "blind-reviewer-wave8-tolci-logic-sci-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-logic-sci-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The negation of 'every V-passer passed H' is 'some component passed V and failed H'. 'Failed both' and 'passed heat but failed vibration' are not required; 'no V-passer passed H' is too strong; the claim about V-failers is unrelated. [A second, separate blind solve (blind-reviewer-wave8-tolci-logic-sci-run1) reached the same answer: The negation of 'every V-pass also H-passed' is 'some component passed V and failed H'. A and D are not implied; B and E are too strong (E is the contrary, not the negation).]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "deduction",
+    "negation",
+    "quantifiers",
+    "no-calculator"
+  ]
+}

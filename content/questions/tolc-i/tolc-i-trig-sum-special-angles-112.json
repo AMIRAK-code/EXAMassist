@@ -1,0 +1,82 @@
+{
+  "id": "tolc-i-trig-sum-special-angles-112",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-trigonometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the value of $\\cos\\dfrac{4\\pi}{3} + \\sin\\dfrac{7\\pi}{6}$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$-\\dfrac{1+\\sqrt{3}}{2}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$-\\sqrt{3}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$0$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$1$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$-1$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Convert each angle to degrees, find its quadrant to fix the sign, and use the reference angle to fix the size.\n\n**First term.** $\\dfrac{4\\pi}{3} = 240^\\circ$, in the third quadrant, where the cosine is negative. The reference angle is $240^\\circ - 180^\\circ = 60^\\circ$, so $\\cos\\dfrac{4\\pi}{3} = -\\cos 60^\\circ = -\\dfrac12$.\n\n**Second term.** $\\dfrac{7\\pi}{6} = 210^\\circ$, also in the third quadrant, where the sine is negative. The reference angle is $30^\\circ$, so $\\sin\\dfrac{7\\pi}{6} = -\\sin 30^\\circ = -\\dfrac12$.\n\n**Sum.** $-\\dfrac12 - \\dfrac12 = -1$.\n\n**How to check it.** On the unit circle, the point at $240^\\circ$ is $\\left(-\\tfrac12, -\\tfrac{\\sqrt3}{2}\\right)$ and the point at $210^\\circ$ is $\\left(-\\tfrac{\\sqrt3}{2}, -\\tfrac12\\right)$. The first coordinate of one plus the second coordinate of the other is $-\\tfrac12 - \\tfrac12 = -1$ ✓.",
+  "distractorRationale": {
+    "c": "Gets one of the two signs wrong, so the terms cancel. Both angles are in the third quadrant, where sine and cosine are both negative.",
+    "d": "Uses the reference-angle values $\\cos 60^\\circ = \\tfrac12$ and $\\sin 30^\\circ = \\tfrac12$ without the signs of the third quadrant.",
+    "a": "Takes the wrong reference value for one of the angles, for example $\\cos 240^\\circ = -\\tfrac{\\sqrt3}{2}$. The reference angle of $240^\\circ$ is $60^\\circ$, and $\\cos 60^\\circ = \\tfrac12$.",
+    "b": "Swaps sine and cosine for both angles, giving $-\\tfrac{\\sqrt3}{2} - \\tfrac{\\sqrt3}{2}$. Those are $\\sin 240^\\circ$ and $\\cos 210^\\circ$, not the values asked for."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "What is the value of the cosine of 4 pi over 3, plus the sine of 7 pi over 6? The five choices are: negative the fraction 1 plus the square root of 3, over 2; negative the square root of 3; 0; 1; and negative 1.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-math-a-author",
+    "aiAssisted": true,
+    "notes": "Original item. Tests sine and cosine of standard angles beyond the first quadrant, in radians; distractors come from sign errors and swapped reference values."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-math-a-author",
+    "reviewer": "blind-reviewer-wave8-tolci-math-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-math-run0",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "cos(4pi/3)=-1/2 and sin(7pi/6)=-1/2, so the sum is -1. 0 comes from a sign error, and -(1+sqrt3)/2 mixes up the special values. [A second, separate blind solve (blind-reviewer-wave8-tolci-math-run1) reached the same answer: cos(4pi/3)=-1/2 and sin(7pi/6)=-1/2, so the sum is -1. -(1+sqrt3)/2 mixes in sqrt3/2, and 0 and 1 have sign errors.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "special-angles",
+    "radians",
+    "reference-angle"
+  ]
+}

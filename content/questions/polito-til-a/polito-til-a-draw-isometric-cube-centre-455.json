@@ -1,0 +1,83 @@
+{
+  "id": "polito-til-a-draw-isometric-cube-centre-455",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "drawing-representation",
+  "domainSlug": "tila-drawing",
+  "skillSlug": "tila-draw-axonometric",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A cube is drawn in true isometric projection: it is projected orthographically onto the sheet along the direction of one of its body diagonals, the line joining the corner nearest to the viewer to the corner farthest from the viewer. Visible edges are drawn as continuous lines and hidden edges as dashed lines. The outline of the drawing is a regular hexagon.\n\nHow many line segments of the drawing meet at the centre of the hexagon, and how are they drawn?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Six, all continuous"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Four: three continuous edges and the body diagonal, drawn dashed"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Three, all continuous"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Six: three continuous and three dashed"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "None: the centre of the hexagon lies inside one face"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "**What to notice first.** The direction of projection is the body diagonal itself. Every point on that line lands on the same point of the sheet, so **both** of its ends, the nearest corner and the farthest corner, are drawn at the centre of the hexagon. The diagonal is seen end-on, as a single point, not as a segment.\n\n**The step that settles it.** Three edges leave each of those two corners.\n\n- The three edges at the **nearest** corner each lie between two faces turned towards the viewer, so they are visible: three continuous segments from the centre.\n- The three edges at the **farthest** corner each lie between two faces turned away from the viewer, so they are hidden: three dashed segments from the centre.\n\nThe six segments run to the six corners of the hexagon, $60^\\circ$ apart, continuous and dashed alternating, so none of them overlaps another.\n\n**How to check it.** Count all 12 edges. The six that touch neither the nearest nor the farthest corner form the hexagonal outline; three continuous and three dashed segments meet at the centre; and $6 + 3 + 3 = 12$. The usual sketch of a cube as a hexagon with a \"Y\" inside simply leaves the three dashed edges out.",
+  "distractorRationale": {
+    "c": "Describes the familiar isometric sketch with hidden edges left out. The stem asks for hidden edges to be drawn dashed, and the three edges at the farthest corner, which also projects onto the centre, are hidden.",
+    "a": "Finds all six segments but treats them as visible. The edges at the farthest corner lie between faces turned away from the viewer, so they are hidden and must be dashed.",
+    "b": "Draws the body diagonal as a line. The projection is taken along that very diagonal, so it is seen end-on and appears as a single point; the diagonal is not an edge in any case.",
+    "e": "Pictures the hexagon as though the cube were seen face-on, with a face in the middle. Looking along a body diagonal, the middle of the drawing is where the nearest and farthest corners fall, and six edges meet there."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A question on axonometric projection, with no figure needed. A cube is projected orthographically along one of its body diagonals, the line from the corner nearest the viewer to the corner farthest away; visible edges are continuous lines, hidden edges dashed lines, and the outline is a regular hexagon. The question asks how many line segments meet at the centre of the hexagon and how they are drawn. The choices are: six, all continuous; four, three continuous edges and the body diagonal drawn dashed; three, all continuous; six, three continuous and three dashed; and none, because the centre lies inside one face.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-polito-til-a-drawing-author",
+    "aiAssisted": true,
+    "notes": "Original item. A script projected the eight vertices of a unit cube along the direction (1, 1, 1), classified each edge by how many of its two faces point towards the viewer, and found 6 outline edges, 3 visible interior edges and 3 hidden edges, with 6 segments at the centre in directions 60 degrees apart, 3 of them hidden."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-polito-til-a-drawing-author",
+    "reviewer": "blind-reviewer-wave7-tila-logic-drawing-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-tila-logic-drawing-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Projecting along the body diagonal puts both the nearest and the farthest corner on the centre of the hexagon. Three visible edges leave the near corner and three hidden edges leave the far corner, each going to alternate outer vertices. So six segments meet at the centre: three continuous and three dashed. [A second, separate blind solve (blind-reviewer-wave7-tila-logic-drawing-run1) reached the same answer: Projecting along the body diagonal sends both the nearest and the farthest vertex to the centre of the hexagon. The three visible edges from the near vertex (continuous) run to three alternate hexagon vertices, and the three hidden edges from the far vertex (dashed) run to the other three, so six distinct segments meet there. The body diagonal projects to a single point and is not an edge, so B is wrong. A and C would need hidden lines drawn continuous or left out, which the stem rules out.]"
+    },
+    "notes": "Author's uniqueness check: the count (6) and the line types (3 continuous, 3 dashed) were both computed; each wrong choice is wrong in count, in line type, or both. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "isometric-projection",
+    "hidden-lines",
+    "cube",
+    "body-diagonal"
+  ]
+}

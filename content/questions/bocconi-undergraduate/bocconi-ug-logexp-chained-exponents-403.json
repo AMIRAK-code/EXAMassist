@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-logexp-chained-exponents-403",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-logexp-forms",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The real numbers $a$ and $b$ satisfy\n\n$$3^{a} = 4 \\qquad \\text{and} \\qquad 2^{b} = 27$$\n\nWhat is the value of the product $ab$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$5$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$6$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$108$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$729$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Neither $a$ nor $b$ is a whole number, so do not try to find them separately. Look instead for a single power in which the product $ab$ appears as the exponent.\n\n**Route 1 — raise one equation to the power of the other unknown.** Raise $3^{a} = 4$ to the power $b$:\n\n$$3^{ab} = \\left(3^{a}\\right)^{b} = 4^{b} = \\left(2^{2}\\right)^{b} = \\left(2^{b}\\right)^{2} = 27^{2} = 3^{6}$$\n\nTwo powers of $3$ are equal only when their exponents are equal, so $ab = 6$.\n\n**Route 2 — logarithmic form.** Rewrite each equation as a logarithm:\n\n$$a = \\log_{3} 4 = 2\\log_{3} 2 \\qquad b = \\log_{2} 27 = 3\\log_{2} 3$$\n\nThen $ab = 6 \\cdot \\log_{3} 2 \\cdot \\log_{2} 3 = 6$, because $\\log_{3} 2$ and $\\log_{2} 3$ are reciprocals of each other.\n\n**Check.** $\\log_{3} 4$ is a little above 1 (since $3 < 4 < 9$) and $\\log_{2} 27$ is a little below 5 (since $16 < 27 < 32$). A product of roughly $1.26 \\times 4.75$ is about 6, which agrees.",
+  "distractorRationale": {
+    "a": "This adds the exponents $2$ (from $4 = 2^{2}$) and $3$ (from $27 = 3^{3}$) instead of multiplying them. The two factors come out of the logarithms as multipliers, $a = 2\\log_{3} 2$ and $b = 3\\log_{2} 3$, so in the product they multiply to $6$.",
+    "c": "This multiplies the given values $4 \\times 27$, treating $a$ and $b$ as if they were the powers themselves. In $3^{a} = 4$ the unknown $a$ is the exponent, not the number 4.",
+    "d": "This stops at $3^{ab} = 729$ and reports the power instead of its exponent. Since $729 = 3^{6}$, the product $ab$ is $6$."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "The real numbers a and b satisfy 3 to the power a equals 4, and 2 to the power b equals 27. Find the product a times b. The choices are the numbers 5, 6, 108 and 729.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. The bases and values were crossed (base 3 gives a power of 2, base 2 gives a power of 3) so that neither unknown is rational and the candidate must combine the equations rather than solve them. The product was checked numerically by a read-only script."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-bocconi-math-author",
+    "reviewer": "blind-reviewer-wave7-bocconi-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-bocconi-math-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "a=log_3 4=2log_3 2 and b=log_2 27=3log_2 3, so ab=6·(log_3 2·log_2 3)=6. The other options are 5, 108=4·27 and 729, which are traps. [A second, separate blind solve (blind-reviewer-wave7-bocconi-math-run1) reached the same answer: a = log_3 4 = 2 log_3 2 and b = log_2 27 = 3 log_2 3, so ab = 6 * (log_3 2)(log_2 3) = 6. The other values come from multiplying or adding the raw numbers.]"
+    },
+    "notes": "Author's uniqueness check: 3^(ab) = 4^b = (2^b)^2 = 729 = 3^6, and x -> 3^x is injective, so ab = 6 exactly; the other three values are each produced by one named slip and none equals 6. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logarithmic-form",
+    "change-of-base",
+    "exponent-rules"
+  ]
+}

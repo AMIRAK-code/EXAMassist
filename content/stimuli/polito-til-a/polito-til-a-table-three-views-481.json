@@ -1,0 +1,35 @@
+{
+  "id": "polito-til-a-table-three-views-481",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "kind": "table",
+  "title": "Three orthographic views of a solid built from unit cubes (3 rows, 4 columns)",
+  "bodyMd": "A solid is made of identical unit cubes standing on a floor grid of 3 rows and 4 columns. Row 1 is at the front and Row 3 at the back; Column 1 is on the left and Column 4 on the right, as seen from the front. Every stack rests on the floor with its cubes directly on top of one another.\n\nThe solid is described only by three orthographic views:\n\n- the **top view** (plan), shown in the grid cells: \"occupied\" means at least one cube stands on that square, \"empty\" means none does;\n- the **front view**, in the bottom row: the height, in cubes, of the view's strip above each column, which is the height of the tallest stack in that column;\n- the **side view**, in the last column: the height, in cubes, of the view's strip for each row, which is the height of the tallest stack in that row.",
+  "data": {
+    "columns": [
+      { "key": "row", "label": "Row" },
+      { "key": "c1", "label": "Column 1 (left)" },
+      { "key": "c2", "label": "Column 2" },
+      { "key": "c3", "label": "Column 3" },
+      { "key": "c4", "label": "Column 4 (right)" },
+      { "key": "side", "label": "Side view: tallest stack in the row" }
+    ],
+    "rows": [
+      { "row": "Row 1 (front)", "c1": "occupied", "c2": "occupied", "c3": "empty", "c4": "occupied", "side": 1 },
+      { "row": "Row 2", "c1": "occupied", "c2": "occupied", "c3": "occupied", "c4": "empty", "side": 3 },
+      { "row": "Row 3 (back)", "c1": "empty", "c2": "occupied", "c3": "occupied", "c4": "occupied", "side": 2 },
+      { "row": "Front view: tallest stack in the column", "c1": 3, "c2": 2, "c3": 3, "c4": 1, "side": "" }
+    ],
+    "caption": "Top view (occupied or empty squares), front view heights per column and side view heights per row of a solid made of unit cubes.",
+    "chart": null
+  },
+  "accessibilityText": "A table describing a solid of unit cubes on a floor grid of three rows, front to back, and four columns, left to right, through three views. The top view says which squares hold at least one cube. Row 1, the front row: Columns 1, 2 and 4 are occupied and Column 3 is empty. Row 2: Columns 1, 2 and 3 are occupied and Column 4 is empty. Row 3, the back row: Column 1 is empty and Columns 2, 3 and 4 are occupied. So 9 of the 12 squares are occupied. The side view gives the tallest stack in each row: Row 1, 1 cube; Row 2, 3 cubes; Row 3, 2 cubes. The front view gives the tallest stack in each column: Column 1, 3 cubes; Column 2, 2 cubes; Column 3, 3 cubes; Column 4, 1 cube.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-polito-til-a-drawing-author",
+    "aiAssisted": true,
+    "notes": "Original invented set of views. A brute-force script over every assignment of 1 to 3 cubes to the nine occupied squares found exactly 5 solids that reproduce all three views, with totals from 14 to 16 cubes."
+  },
+  "rightsStatus": "original-owned",
+  "state": "published"
+}

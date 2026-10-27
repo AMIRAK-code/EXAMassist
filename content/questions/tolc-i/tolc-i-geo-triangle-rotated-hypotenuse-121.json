@@ -1,0 +1,82 @@
+{
+  "id": "tolc-i-geo-triangle-rotated-hypotenuse-121",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A right triangle has legs of $6$ cm and $8$ cm. It makes one full turn about the line containing its hypotenuse. What is the volume of the solid it sweeps out?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\dfrac{1152\\pi}{5}\\ \\text{cm}^{3}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\dfrac{250\\pi}{3}\\ \\text{cm}^{3}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$128\\pi\\ \\text{cm}^{3}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$96\\pi\\ \\text{cm}^{3}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\dfrac{384\\pi}{5}\\ \\text{cm}^{3}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Turning about the hypotenuse, the right-angle vertex traces a circle, and each leg sweeps out the lateral surface of a cone. The solid is two cones joined base to base.\n\n**Step 1 — the common radius.** It is the distance from the right-angle vertex to the hypotenuse, the altitude $h$. The hypotenuse is $\\sqrt{36+64} = 10$, and twice the area gives $10\\,h = 6\\cdot 8$, so $h = \\frac{48}{10} = \\frac{24}{5}$ cm.\n\n**Step 2 — the heights.** The foot of the altitude splits the hypotenuse into two parts that are the heights of the two cones; whatever they are, they add up to $10$ cm.\n\n**Step 3 — the volume.** $V = \\frac13\\pi h^{2} h_{1} + \\frac13\\pi h^{2} h_{2} = \\frac13\\pi h^{2}(h_{1}+h_{2}) = \\frac13\\pi\\cdot\\frac{576}{25}\\cdot 10 = \\frac{5760\\pi}{75} = \\frac{384\\pi}{5}\\ \\text{cm}^{3}$.\n\n**Check.** The parts of the hypotenuse are $\\frac{36}{10} = 3.6$ and $\\frac{64}{10} = 6.4$ (each leg squared over the hypotenuse); $3.6 + 6.4 = 10$ ✓. Also, the answer $76.8\\pi$ is smaller than both single cones obtained by turning about a leg ($96\\pi$ and $128\\pi$), as it should be: the radius $4.8$ is smaller than either leg.",
+  "distractorRationale": {
+    "b": "Takes the radius to be $5$ cm, half the hypotenuse; the radius of the common base is the altitude to the hypotenuse, $4.8$ cm.",
+    "d": "Turns the triangle about the $8$ cm leg, giving one cone of radius $6$ and height $8$.",
+    "c": "Turns the triangle about the $6$ cm leg, giving one cone of radius $8$ and height $6$.",
+    "a": "Sets up the two cones correctly but forgets the factor $\\frac{1}{3}$ in the volume of a cone, computing $\\pi\\cdot\\frac{576}{25}\\cdot 10$."
+  },
+  "estimatedSeconds": 170,
+  "stimulusRef": null,
+  "accessibilityText": "A right triangle has legs of 6 centimetres and 8 centimetres. It makes one full turn about the line containing its hypotenuse. What is the volume of the solid it sweeps out? The five choices are: 1152 pi over 5 cubic centimetres; 250 pi over 3 cubic centimetres; 128 pi cubic centimetres; 96 pi cubic centimetres; 384 pi over 5 cubic centimetres.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-math-b-author",
+    "aiAssisted": true,
+    "notes": "Tests a solid of revolution made of two cones, using the altitude to the hypotenuse as the common radius. Original item, described in words so no figure is needed."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-math-b-author",
+    "reviewer": "blind-reviewer-wave8-tolci-math-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-math-run0",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Two cones share base radius h=6*8/10=4.8, and their heights add to 10: V=(1/3)*pi*4.8^2*10=76.8*pi=384*pi/5. 128*pi and 96*pi are rotations about a leg; 1152*pi/5 omits the 1/3. [A second, separate blind solve (blind-reviewer-wave8-tolci-math-run1) reached the same answer: The solid is two cones sharing a base of radius equal to the altitude to the hypotenuse, h=48/10=4.8. The volume is (1/3)pi h^2 * 10 = 76.8pi = 384pi/5. 1152pi/5 forgets the 1/3, 128pi and 96pi come from rotating about a leg, and 250pi/3 uses radius 5.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "solid-of-revolution",
+    "cone",
+    "altitude-to-hypotenuse"
+  ]
+}

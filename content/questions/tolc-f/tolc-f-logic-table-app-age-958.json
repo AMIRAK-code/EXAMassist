@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-logic-table-app-age-958",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "logic",
+  "domainSlug": "tolcf-logic",
+  "skillSlug": "tolcf-logic-graphs-tables",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A pharmacy surveyed 250 customers about its booking app. Some cells of the summary table were lost; they are shown with a question mark.\n\n| | Uses the app | Does not use the app | Total |\n| --- | --- | --- | --- |\n| Under 40 | 66 | ? | 150 |\n| 40 and over | ? | ? | 100 |\n| Total | 90 | ? | 250 |\n\nWhat percentage of the customers aged 40 and over do **not** use the app?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$24\\%$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$56\\%$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$76\\%$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$47.5\\%$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$30.4\\%$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "**What to notice first.** The question asks for a share *within* the 40-and-over row, so the denominator is that row's total, $100$, not the grand total and not the column total.\n\n**Fill in the table.** Customers aged 40 and over who use the app: $90-66=24$. Those who do not: $100-24=76$. As a percentage of the $100$ customers in that age group: $76\\%$.\n\n**How to check it.** Complete the rest: under-40 non-users are $150-66=84$, and all non-users are $250-90=160$. Then $84+76=160$, so the table is consistent.",
+  "distractorRationale": {
+    "a": "This is the share of customers aged 40 and over who *do* use the app, $24$ out of $100$.",
+    "d": "Divides by all $160$ non-users: $76/160=47.5\\%$ is the share of non-users who are 40 and over, the reverse conditional.",
+    "e": "Divides by all $250$ customers: $76/250=30.4\\%$ is the share of the whole sample who are 40 or over and do not use the app.",
+    "b": "Reads the wrong row: $84/150=56\\%$ is the share of under-40 customers who do not use the app."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A two-way table of 250 surveyed customers, by age and app use, with columns uses the app, does not use the app, and total. Under 40: 66 use the app, the non-user count is missing, total 150. 40 and over: both counts missing, total 100. Totals row: 90 use the app, the non-user total is missing, grand total 250. The question asks what percentage of customers aged 40 and over do not use the app. The five choices are: 24 percent; 56 percent; 76 percent; 47.5 percent; 30.4 percent.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave8-mpl-author",
+    "aiAssisted": true,
+    "notes": "Original item with invented survey figures: complete a two-way table and take a percentage within one row. Distractors are the complementary share, the reverse conditional, the share of the whole sample and the other row."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave8-mpl-author",
+    "reviewer": "blind-reviewer-wave8-tolcf-mpl-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolcf-mpl-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "App users aged 40+ = 90-66 = 24, so non-users = 100-24 = 76, i.e. 76% of 100. 24% is the users' share; 30.4% is 76/250; 56% is under-40 non-users (84/150); 47.5% is not supported. [A second, separate blind solve (blind-reviewer-wave8-tolcf-mpl-run1) reached the same answer: App users aged 40+ = 90-66 = 24, so non-users = 100-24 = 76 of 100 = 76%. 24% is the user share, 56% is the under-40 non-users (84/150), 47.5% and 30.4% are other wrong bases.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "two-way-table",
+    "conditional-percentage",
+    "missing-values"
+  ]
+}

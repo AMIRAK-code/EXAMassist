@@ -1,0 +1,85 @@
+{
+  "id": "polito-til-i-rep-front-view-heights-121",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "technical-knowledge",
+  "domainSlug": "tili-representation",
+  "skillSlug": "tili-rep-projections",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The table gives the height map of a solid built from unit cubes. An observer stands in front of Row 1 and looks straight at the solid, level with the floor and at right angles to the rows. This is an orthographic front view: cubes hidden behind other cubes cannot be seen.\n\nReading from the observer's left to right, how many cubes high does the solid appear to be above each of Columns 1, 2, 3 and 4?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "0, 2, 1, 2"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "2, 1, 0, 3"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "2, 3, 1, 3"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "3, 1, 3, 2"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "3, 6, 1, 6"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "In a front view, each column of the grid becomes one vertical strip. The height of the strip is set by the **tallest stack anywhere in that column**, whichever row it stands in: a tall stack behind a short one still shows above it, and cubes hidden behind others add nothing.\n\nGo down each column of the table:\n\n- Column 1 holds stacks of 2, 1 and 0, so the strip is 2 high.\n- Column 2 holds 1, 3 and 2, so it is 3 high.\n- Column 3 holds 0, 0 and 1. The two front squares are empty, so the observer sees the single cube at the back: 1 high.\n- Column 4 holds 3, 1 and 2, so it is 3 high.\n\nThe front view reads 2, 3, 1, 3.\n\n**Check.** The tallest strip must equal the tallest stack in the whole table, which is 3. Each strip must also be at least as high as the front-row stack in its column (2, 1, 0, 3), because the front row is never hidden: 2, 3, 1, 3 satisfies both conditions.",
+  "distractorRationale": {
+    "b": "Reads only the front row. Stacks behind the front row that are taller stand up above it and are visible in the front view.",
+    "d": "Has the right heights in the wrong order, which is the view from behind the solid or a mix-up of left and right. Column 1 is on the observer's left, so it must come first.",
+    "e": "Adds up all the cubes in each column (2 + 1 + 0 = 3, 1 + 3 + 2 = 6, 0 + 0 + 1 = 1, 3 + 1 + 2 = 6). A view shows how high the outline is, not how many cubes are in a column, and cubes hidden behind others do not add to the height.",
+    "a": "Reads only the back row. The back row is the farthest from the observer, and stacks in front of it that are taller hide it."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": {
+    "id": "polito-til-i-rep-heightmap-front-181",
+    "version": 1
+  },
+  "accessibilityText": "A spatial question posed through a table, with no drawing. The table is a height map of a solid made of unit cubes: three rows from front to back and four columns from left to right, each number being the cubes stacked on that square. Row 1, front: 2, 1, 0, 3. Row 2: 1, 3, 0, 1. Row 3, back: 0, 2, 1, 2. An observer in front of Row 1 looks straight at the solid, and the question asks for the apparent height in cubes above each of the four columns, from the observer's left to right. The choices are sequences of four numbers: 2, 1, 0, 3; 2, 3, 1, 3; 3, 1, 3, 2; 3, 6, 1, 6; and 0, 2, 1, 2.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-wave6-physics-technical-author",
+    "aiAssisted": true,
+    "notes": "Original item, posed as a table because the site cannot show drawings. The key is the per-column maximum. Wrong choices: front row only, mirror order, column totals, back row only."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-wave6-physics-technical-author",
+    "reviewer": "blind-reviewer-wave6-tili-phys-tech-run8",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-phys-tech-run8",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The front view shows the tallest stack in each column: c1 = max(2,1,0) = 2, c2 = max(1,3,2) = 3, c3 = max(0,0,1) = 1, c4 = max(3,1,2) = 3, giving 2,3,1,3. B is Row 1 only, E is the column sums, and A and D are other readings. [A second, separate blind solve (blind-reviewer-wave6-tili-phys-tech-run9) reached the same answer: Front view height per column = max over rows: c1 max(2,1,0)=2, c2 max(1,3,2)=3, c3 max(0,0,1)=1, c4 max(3,1,2)=3 gives 2,3,1,3. B is front row only, E is column sums, A is back row, D is side-view/row reading.]"
+    },
+    "notes": "Awaiting a blind independent solve. The author recomputed every option and checked the key a second way before saving (see the explanation). Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "orthographic-front-view",
+    "height-map",
+    "hidden-cubes"
+  ]
+}

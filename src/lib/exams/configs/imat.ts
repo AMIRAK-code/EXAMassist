@@ -1,5 +1,5 @@
 import type { Blueprint, BlueprintPart, ExamConfig, NavigationPolicy } from '@/lib/assessment/types';
-import { studyNavigation } from './_sectioned';
+import { studyNavigation } from '../sectioned-blueprints';
 
 /**
  * IMAT - International Medical Admissions Test, a.y. 2026/27.

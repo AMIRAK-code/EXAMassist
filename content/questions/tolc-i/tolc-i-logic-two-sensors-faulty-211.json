@@ -1,0 +1,84 @@
+{
+  "id": "tolc-i-logic-two-sensors-faulty-211",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Two sensors, X and Y, report on a test rig. Each sensor is either reliable, meaning every report it sends is true, or faulty, meaning every report it sends is false. Sensor X sends this report:\n\n\"At least one of the two sensors X and Y is faulty.\"\n\nWhat can be concluded?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Both sensors are reliable."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Both sensors are faulty."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The report does not allow any of these cases to be ruled out."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Sensor X is faulty and sensor Y is reliable."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Sensor X is reliable and sensor Y is faulty."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Test the two possibilities for the sensor that spoke.\n\n- Suppose X is faulty. Then its report must be false, so neither sensor would be faulty. But X is faulty, a contradiction. So X cannot be faulty.\n- Therefore X is reliable, and its report is true: at least one of the two sensors is faulty. X is not, so Y is.\n\nCheck: with X reliable and Y faulty, X's report \"at least one of us is faulty\" is indeed true, so the situation is consistent.",
+  "distractorRationale": {
+    "a": "If both were reliable, X's report \"at least one of the two is faulty\" would be false, and a reliable sensor never sends a false report.",
+    "d": "A faulty X must send false reports, but with X faulty the statement \"at least one is faulty\" is true. So X cannot be faulty.",
+    "b": "If both were faulty, X's report would be true, which a faulty sensor cannot send.",
+    "c": "The report does decide the case: assuming X faulty leads to a contradiction, and X reliable then forces Y to be faulty."
+  },
+  "estimatedSeconds": 55,
+  "stimulusRef": null,
+  "accessibilityText": "A logic puzzle about two sensors, X and Y. Each is either reliable, so all its reports are true, or faulty, so all its reports are false. Sensor X reports: at least one of the two sensors X and Y is faulty. The question asks what can be concluded. The five choices are: both sensors are reliable; both sensors are faulty; the report does not allow any of these cases to be ruled out; X is faulty and Y is reliable; X is reliable and Y is faulty.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-logic-author",
+    "aiAssisted": true,
+    "notes": "Tests a truth-teller and liar puzzle with a self-referential statement. The scenario and wording are original to this bank; no published TOLC or other test item was used or adapted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-logic-author",
+    "reviewer": "blind-reviewer-wave8-tolci-logic-sci-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-logic-sci-run0",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "If X were faulty, its report would be false, so both would be reliable, contradicting X faulty. So X is reliable and its true report forces Y faulty. Both-reliable makes the report false; both-faulty and X-faulty are impossible as shown. [A second, separate blind solve (blind-reviewer-wave8-tolci-logic-sci-run1) reached the same answer: If X were faulty its report would be false, meaning both are reliable - contradiction. So X is reliable, its report is true, and since X is not faulty, Y must be faulty.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "problems",
+    "truth-tellers",
+    "self-reference",
+    "no-calculator"
+  ]
+}

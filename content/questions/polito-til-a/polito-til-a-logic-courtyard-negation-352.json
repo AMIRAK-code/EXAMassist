@@ -1,0 +1,83 @@
+{
+  "id": "polito-til-a-logic-courtyard-negation-352",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "logical-reasoning",
+  "domainSlug": "tila-logic",
+  "skillSlug": "tila-logic-verbal",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "After inspecting an old palazzo, a surveyor writes:\n\n> Every room on the ground floor has at least one window facing the courtyard.\n\nWhich of the following statements is the **negation** of the surveyor's statement, that is, the statement that is true exactly when the surveyor's statement is false?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "At least one room on the ground floor has no window facing the courtyard."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Every room on the ground floor has at least one window that does not face the courtyard."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "No room on the ground floor has a window facing the courtyard."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "At least one room on the ground floor has a window that does not face the courtyard."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "At least one room that is not on the ground floor has a window facing the courtyard."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "**What to notice first.** The statement has the shape *every ground-floor room has property P*, where P is \"has at least one courtyard window\". To deny \"every room is P\" you do not need every room to fail; one failing room is enough. So the negation has the shape *at least one ground-floor room is not P*.\n\n**The step that settles it.** Now say what \"not P\" means. A room that does not have at least one courtyard window has *no* courtyard window. Putting the two steps together: at least one room on the ground floor has no window facing the courtyard.\n\n**How to check it.** A negation must be false whenever the original is true, and true whenever the original is false. Test two floors.\n\n- *Floor 1:* three rooms, each with one courtyard window and one street window. The surveyor is right. The statement about a room with a window not facing the courtyard is true here, and so is the one saying every room has such a window, so neither can be the negation.\n- *Floor 2:* the same, except that one room has only a street window. The surveyor is wrong. The statement that no room has a courtyard window is false here (two rooms still have one), so it is not the negation either.\n\nThe key statement is false on the first floor and true on the second, as the negation must be, and the statement about rooms on other floors does not depend on the ground floor at all.",
+  "distractorRationale": {
+    "c": "The opposite extreme, not the negation. The surveyor is already wrong if a single room lacks a courtyard window while the others have one; in that case this statement is false as well.",
+    "d": "Denies the wrong thing: that every window faces the courtyard. A room with one courtyard window and one street window makes this true while the surveyor's statement is still true.",
+    "b": "Keeps 'every' and moves the 'not' onto the window. On a floor where each room has one courtyard window and one street window, this and the surveyor's statement are true together, so it cannot be the negation.",
+    "e": "Changes the subject to rooms on other floors, about which the surveyor said nothing. It can be true or false whatever the ground floor is like."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": null,
+  "accessibilityText": "A verbal reasoning question about negation. The surveyor's statement: every room on the ground floor has at least one window facing the courtyard. The question asks for the statement that is true exactly when the surveyor's statement is false. The five statements are: at least one ground-floor room has no window facing the courtyard; every ground-floor room has at least one window that does not face the courtyard; no ground-floor room has a window facing the courtyard; at least one ground-floor room has a window that does not face the courtyard; at least one room not on the ground floor has a window facing the courtyard.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-polito-til-a-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank for the TIL-A Logical reasoning section. The statement nests 'at least one' inside 'every', so each distractor comes from negating one quantifier and not the other, negating the wrong part, or changing the subject."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-polito-til-a-logic-author",
+    "reviewer": "blind-reviewer-wave7-tila-logic-drawing-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-tila-logic-drawing-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The negation of 'every x has P' is 'some x lacks P', which here is 'at least one ground-floor room has no courtyard window'. [A second, separate blind solve (blind-reviewer-wave7-tila-logic-drawing-run1) reached the same answer: The negation of 'for every room, at least one courtyard window' is 'some room has no courtyard window'. D is a different claim, since a room can have windows facing both ways. C is the contrary, not the negation, and B and E are unrelated.]"
+    },
+    "notes": "Author's uniqueness check: by script, each statement was compared with the negation of the surveyor's statement over every building of three rooms (ground floor or not, with up to two windows each facing the courtyard or not). Only 'at least one ground-floor room has no courtyard window' agrees with the negation in every building; each of the other four disagrees in at least one. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "negation",
+    "quantifiers",
+    "no-calculator"
+  ]
+}

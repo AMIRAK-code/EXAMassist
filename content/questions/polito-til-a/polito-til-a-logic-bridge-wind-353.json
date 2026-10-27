@@ -1,0 +1,84 @@
+{
+  "id": "polito-til-a-logic-bridge-wind-353",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "logical-reasoning",
+  "domainSlug": "tila-logic",
+  "skillSlug": "tila-logic-verbal",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "For a river bridge in Turin, the following three rules hold without exception:\n\n1. The bridge is closed only if the wind is stronger than 80 km/h or the deck is being inspected.\n2. The deck is never inspected on a Sunday.\n3. Unless the bridge is closed, trams run across it.\n\nToday is a Sunday, and no trams are running across the bridge. Which of the following statements must be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Whenever the wind is stronger than 80 km/h, the bridge is closed."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The bridge is open, and the trams have stopped for some other reason."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Trams never run across the bridge on a Sunday."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The deck is being inspected."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The wind is stronger than 80 km/h."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "**What to notice first.** Two of the rules use words that hide a conditional. Translate them before reasoning.\n\n- Rule 3, \"unless the bridge is closed, trams run\", means: *if the bridge is not closed, trams run*.\n- Rule 1, \"closed only if strong wind or inspection\", means: *if the bridge is closed, then the wind is strong or the deck is being inspected*. \"Only if\" introduces a necessary condition.\n\n**The step that settles it.** Work backwards from today's facts.\n\n1. No trams are running. By rule 3, an open bridge always has trams, so the bridge must be closed.\n2. The bridge is closed, so by rule 1 the wind is stronger than 80 km/h or the deck is being inspected.\n3. It is Sunday, so by rule 2 there is no inspection. Only the wind is left: it is stronger than 80 km/h.\n\n**How to check it.** A calm Sunday with no trams is impossible: the bridge could not be closed (no strong wind, no inspection), so trams would have to run. The two general statements fail against situations the rules allow. A windy Monday with the bridge open and trams running breaks no rule, so strong wind does not force a closure. A calm Sunday is allowed and forces the trams to run, so the rules permit trams on a Sunday.",
+  "distractorRationale": {
+    "d": "Uses rule 1 but forgets rule 2. On a Sunday the deck is never inspected, so the inspection branch of rule 1 is closed off and cannot explain the closure.",
+    "b": "Misreads rule 3. 'Unless the bridge is closed, trams run' means an open bridge always has trams, so a bridge with no trams must be closed; the rules leave no room for another reason.",
+    "a": "Reverses 'only if'. Rule 1 makes strong wind (or an inspection) necessary for closing the bridge, not sufficient: a windy day with the bridge open and trams running breaks no rule.",
+    "c": "Generalises from today. On a calm Sunday the bridge cannot be closed, because there is neither strong wind nor an inspection, so by rule 3 trams must run across it."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": null,
+  "accessibilityText": "A verbal reasoning question with three numbered rules about a river bridge. One: the bridge is closed only if the wind is stronger than 80 kilometres per hour or the deck is being inspected. Two: the deck is never inspected on a Sunday. Three: unless the bridge is closed, trams run across it. Today is a Sunday and no trams are running across the bridge. The question asks which statement must be true. The five statements are: whenever the wind is stronger than 80 kilometres per hour the bridge is closed; the bridge is open and the trams stopped for another reason; trams never run across the bridge on a Sunday; the deck is being inspected; the wind is stronger than 80 kilometres per hour.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-polito-til-a-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank for the TIL-A Logical reasoning section. The bridge and its rules are invented. The item chains a contrapositive of 'unless', a necessary condition from 'only if', and an elimination, and its distractors come from dropping or reversing one of those steps."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-polito-til-a-logic-author",
+    "reviewer": "blind-reviewer-wave7-tila-logic-drawing-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-tila-logic-drawing-run0",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "No trams means the bridge is closed (the contrapositive of rule 3). Closed means strong wind or an inspection (rule 1). It is Sunday, so there is no inspection (rule 2), and the wind must be stronger than 80 km/h. [A second, separate blind solve (blind-reviewer-wave7-tila-logic-drawing-run1) reached the same answer: No trams means, by rule 3, that the bridge is closed. By rule 1, closed means wind or inspection, and rule 2 rules out an inspection on a Sunday, so the wind must be above 80 km/h. A is the converse of rule 1 and does not follow. B and D contradict what we derived, and C over-generalises from one Sunday.]"
+    },
+    "notes": "Author's uniqueness check: truth table by script over the five propositions closed, strong wind, inspection, Sunday and trams running. Exactly one assignment satisfies the three rules with Sunday true and trams not running: closed, strong wind, no inspection. Strong wind holds there; inspection and an open bridge do not. The two general statements were tested against all assignments satisfying the rules: 'strong wind implies closed' fails (windy, open, trams running) and 'no trams on Sundays' fails (calm Sunday, open, trams running). Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "conditional",
+    "only-if",
+    "unless",
+    "no-calculator"
+  ]
+}

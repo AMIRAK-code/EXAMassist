@@ -1,0 +1,70 @@
+{
+  "id": "bocconi-ug-prob-at-least-two-condition-409",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-probability-conditional-bayes",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A box contains $4$ red tokens and $6$ blue tokens. Three tokens are drawn at random **without replacement**.\n\nYou are told that **at least two** of the three tokens drawn are red. Given this information, what is the probability that all three are red?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\dfrac{1}{30}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\dfrac{1}{10}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\dfrac{2}{11}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\dfrac{1}{4}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The information \"at least two are red\" shrinks the sample space to the draws with **two or three** red tokens. Count those draws, then see what fraction of them has three reds.\n\n**Count unordered draws.** Every set of 3 tokens out of 10 is equally likely.\n\n- Exactly three red: choose 3 of the 4 reds, $\\binom{4}{3} = 4$ ways.\n- Exactly two red: choose 2 of the 4 reds and 1 of the 6 blues, $\\binom{4}{2}\\binom{6}{1} = 6 \\times 6 = 36$ ways.\n\nSo $4 + 36 = 40$ equally likely draws have at least two reds, and $4$ of them have three.\n\n**Conditional probability.**\n\n$$P(\\text{three red} \\mid \\text{at least two red}) = \\frac{4}{40} = \\frac{1}{10}$$\n\nThe total $\\binom{10}{3} = 120$ is not even needed: it cancels, because both probabilities have it as their denominator.\n\n**Why the condition matters.** \"At least two are red\" does not say *which* two. If you were told that the **first two** tokens drawn were red, the question would be about the third token alone, with 2 reds among the 8 remaining tokens, and the answer would be $\\frac{2}{8} = \\frac{1}{4}$. The weaker information \"at least two, in any positions\" is satisfied by many more two-red draws, so it makes three reds less likely.\n\n**Check.** Unconditionally, $P(\\text{three red}) = \\frac{4}{120} = \\frac{1}{30}$. Conditioning on an event that three reds implies can only raise this, and $\\frac{1}{10} > \\frac{1}{30}$. ✓",
+  "distractorRationale": {
+    "a": "This is the unconditional probability of three reds, $\\frac{4}{120}$. It ignores the information given: once we know at least two tokens are red, only the 40 draws with two or three reds remain possible.",
+    "c": "This treats the draws as if they were made **with** replacement, with each token red with probability $0.4$: $\\frac{0.064}{0.064 + 0.288} = \\frac{2}{11}$. Without replacement the colours are not independent, and counting combinations gives $\\frac{4}{40}$.",
+    "d": "This answers a different question: the probability that the third token is red given that the **first two** drawn were red, $\\frac{2}{8}$. Being told that at least two of the three are red, in unspecified positions, is weaker information and includes all 36 draws with exactly two reds."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "A box holds 4 red and 6 blue tokens. Three are drawn at random without replacement. Given that at least two of the three are red, the question asks for the probability that all three are red. The choices are the fractions 1 over 4, 1 over 10, 1 over 30 and 2 over 11.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. The conditional probability, the unconditional probability, the with-replacement value and the first-two-red value were all checked by a read-only script that enumerates every ordered draw of three tokens from the box."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-bocconi-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Stretch item: harder than a typical hard Bocconi conditional-probability item because the conditioning event is a compound 'at least two' that must itself be counted in two cases, and the most tempting distractor, 1/4, is the correct answer to the closely related question 'given that the first two are red'. A candidate must see that the positions of the reds are not specified. Author's uniqueness check: C(4,3) = 4 draws have three reds and C(4,2) x C(6,1) = 36 have exactly two, so the conditional probability is 4/40 = 1/10 exactly; enumeration of all 720 ordered draws confirms it. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "conditional-probability",
+    "without-replacement",
+    "combinations"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "tolc-i-phys-wall-rebound-force-303",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "sciences",
+  "domainSlug": "tolci-sciences",
+  "skillSlug": "tolci-sci-mechanics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A ball of mass $0.2\\ \\text{kg}$ travelling horizontally at $10\\ \\text{m/s}$ hits a vertical wall head-on and bounces straight back at $8\\ \\text{m/s}$. The contact with the wall lasts $0.02\\ \\text{s}$. What is the magnitude of the average force the wall exerts on the ball?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$180\\ \\text{N}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$100\\ \\text{N}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$20\\ \\text{N}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$3.6\\ \\text{N}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$80\\ \\text{N}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "**What to notice first.** Velocity is a vector. The ball reverses direction, so its velocity does not change by $10 - 8$; it changes from $+10\\ \\text{m/s}$ to $-8\\ \\text{m/s}$, a change of $18\\ \\text{m/s}$.\n\n**The steps.** The impulse of the wall's force equals the change in momentum:\n\n$$F\\,\\Delta t = m\\,|\\Delta v| = 0.2 \\times 18 = 3.6\\ \\text{kg·m/s}, \\qquad F = \\frac{3.6}{0.02} = 180\\ \\text{N}.$$\n\n**How to check it.** Split the contact into two parts: stopping the ball takes $0.2 \\times 10 = 2\\ \\text{kg·m/s}$ of impulse, and sending it back at $8\\ \\text{m/s}$ takes another $0.2 \\times 8 = 1.6\\ \\text{kg·m/s}$. The total, $3.6\\ \\text{kg·m/s}$ over $0.02\\ \\text{s}$, is $180\\ \\text{N}$. Units: $\\text{kg·m/s}^2 = \\text{N}$.",
+  "distractorRationale": {
+    "c": "Subtracts the speeds, $10 - 8 = 2\\ \\text{m/s}$, ignoring that the ball reverses. That would be the change only if the ball kept moving toward the wall at a lower speed.",
+    "b": "Counts only the impulse needed to stop the ball, $0.2 \\times 10 / 0.02$. The wall must also push the ball back out at $8\\ \\text{m/s}$.",
+    "e": "Counts only the rebound, $0.2 \\times 8 / 0.02$, forgetting that the ball first has to be brought to rest from $10\\ \\text{m/s}$.",
+    "d": "This is the impulse, $3.6\\ \\text{kg·m/s}$, reported as a force. Dividing by the $0.02\\ \\text{s}$ of contact is the last step that turns impulse into average force."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "A ball of mass 0.2 kilograms travelling horizontally at 10 metres per second hits a vertical wall head-on and bounces straight back at 8 metres per second. The contact lasts 0.02 seconds. What is the magnitude of the average force the wall exerts on the ball? The choices are 180 newtons, 100 newtons, 20 newtons, 3.6 newtons and 80 newtons.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-sciences-author",
+    "aiAssisted": true,
+    "notes": "Original item testing the impulse-momentum theorem with a velocity reversal. Situation and numbers invented for this bank."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-sciences-author",
+    "reviewer": "blind-reviewer-wave8-tolci-logic-sci-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-logic-sci-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Change in momentum = 0.2*(10 + 8) = 3.6 kg m/s (direction reverses), F = 3.6/0.02 = 180 N. 20 N uses 10 - 8, 100 N and 80 N use only one speed, 3.6 N is the impulse. [A second, separate blind solve (blind-reviewer-wave8-tolci-logic-sci-run1) reached the same answer: Δp = 0.2*(10+8) = 3.6 kg·m/s; F = 3.6/0.02 = 180 N. 20 N uses 10-8 = 2 m/s (ignores reversal); 3.6 N is Δp; 100 N and 80 N use only one speed.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "momentum",
+    "impulse",
+    "average-force"
+  ]
+}

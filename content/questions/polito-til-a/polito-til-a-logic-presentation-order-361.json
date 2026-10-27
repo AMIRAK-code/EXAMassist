@@ -1,0 +1,84 @@
+{
+  "id": "polito-til-a-logic-presentation-order-361",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "logical-reasoning",
+  "domainSlug": "tila-logic",
+  "skillSlug": "tila-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Five students - Anna, Bruno, Carla, Dario and Elena - present their projects to a design jury in five consecutive slots, one student per slot. The order must satisfy all three conditions:\n\n1. Bruno presents immediately after Anna.\n2. Carla presents before Dario, but not immediately before him.\n3. Elena presents neither first nor last.\n\nHow many different orders are possible?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "3"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "4"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "5"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "6"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "8"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "**What to notice first.** Start from the most rigid condition. Anna and Bruno form a block of two consecutive slots with Anna first, and the block can sit in only four places: slots 1-2, 2-3, 3-4 or 4-5. For each place, three slots are left for Carla, Dario and Elena.\n\n**The step that settles it.** Fill the free slots case by case. Elena cannot take slot 1 or slot 5, and Carla must come before Dario with at least one slot between them.\n\n| Anna and Bruno | Free slots | Possible fillings | Orders |\n|---|---|---|---|\n| 1-2 | 3, 4, 5 | Elena in 4 forces Carla 3 and Dario 5. Elena in 3 would leave Carla 4, Dario 5, next to each other. | 1 |\n| 2-3 | 1, 4, 5 | Elena must take 4; Carla 1, Dario 5. | 1 |\n| 3-4 | 1, 2, 5 | Elena must take 2; Carla 1, Dario 5. | 1 |\n| 4-5 | 1, 2, 3 | Elena in 2 gives Carla 1, Dario 3. Elena in 3 would leave Carla 1, Dario 2, next to each other. | 1 |\n\nThat is 4 orders:\n\n- Anna, Bruno, Carla, Elena, Dario\n- Carla, Anna, Bruno, Elena, Dario\n- Carla, Elena, Anna, Bruno, Dario\n- Carla, Elena, Dario, Anna, Bruno\n\n**How to check it.** Test each listed order against all three conditions, then confirm the case split is complete: the Anna-Bruno block has exactly four positions and each was examined. A full listing of all 120 orders by computer gives the same four.",
+  "distractorRationale": {
+    "a": "Misses the case with Anna and Bruno in the last two slots, usually by assuming Dario must present last. Carla, Elena, Dario, Anna, Bruno satisfies all three conditions.",
+    "c": "Applies only half of condition 3, keeping Elena out of the first slot but not the last. That lets in Carla, Anna, Bruno, Dario, Elena as a fifth order.",
+    "d": "Drops 'not immediately before' from condition 2, which lets in two extra orders with Carla and Dario side by side: Anna, Bruno, Elena, Carla, Dario and Carla, Dario, Elena, Anna, Bruno. (Ignoring condition 3 altogether also gives six.)",
+    "e": "Reads condition 1 as 'Anna and Bruno present next to each other' in either order. Allowing Bruno before Anna doubles every case, from four orders to eight."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": "An arrangement counting question. Five students, Anna, Bruno, Carla, Dario and Elena, present one at a time in five consecutive slots. Condition one: Bruno presents immediately after Anna. Condition two: Carla presents before Dario but not immediately before him. Condition three: Elena presents neither first nor last. The question asks how many different orders are possible. The five choices are 3, 4, 5, 6 and 8. The explanation contains a table with one row for each position of the Anna and Bruno pair, listing the free slots, the possible fillings and the number of orders.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-polito-til-a-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank for the TIL-A Logical reasoning section. Names and setting are invented. The conditions were chosen so that each of the four placements of the Anna-Bruno block allows exactly one order, and so that each distractor count is produced by one named misreading of a condition, each confirmed by script."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-polito-til-a-logic-author",
+    "reviewer": "blind-reviewer-wave7-tila-logic-drawing-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-tila-logic-drawing-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "I listed every position of the AB block. AB in slots 1-2 gives ABCED, 2-3 gives CABED, 3-4 gives CEABD and 4-5 gives CEDAB, one order each, for a total of 4. [A second, separate blind solve (blind-reviewer-wave7-tila-logic-drawing-run1) reached the same answer: There are four places for the AB block. AB in 1-2 gives C3, E4, D5; AB in 2-3 gives C1, E4, D5; AB in 3-4 gives C1, E2, D5; AB in 4-5 gives C1, E2, D3. Every other placement of C, D and E breaks the C-D gap rule or puts Elena first or last, so there are 4 orders.]"
+    },
+    "notes": "Author's uniqueness check: by script, all 120 orders of the five students were tested against the three conditions and exactly four survive: Anna-Bruno-Carla-Elena-Dario, Carla-Anna-Bruno-Elena-Dario, Carla-Elena-Anna-Bruno-Dario and Carla-Elena-Dario-Anna-Bruno. The same script gives 5 when Elena is only kept out of slot 1, 6 when 'not immediately before' is dropped (or condition 3 is dropped), 8 when Anna and Bruno may be adjacent in either order, and 3 for the orders with Dario last. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "arrangements",
+    "counting",
+    "case-analysis",
+    "no-calculator"
+  ]
+}

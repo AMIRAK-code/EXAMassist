@@ -1,0 +1,83 @@
+{
+  "id": "polito-til-a-logic-brick-pyramid-357",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "logical-reasoning",
+  "domainSlug": "tila-logic",
+  "skillSlug": "tila-logic-symbolic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A pyramid of numbered bricks has four rows: four bricks at the bottom, then three, then two, and one at the top. Each brick above the bottom row rests on the two bricks directly below it (the first brick of a row on the first and second bricks of the row below, the second on the second and third, and so on) and carries the **sum** of their two numbers. Some numbers are known:\n\n| Row | Bricks, left to right |\n|---|---|\n| Top (1 brick) | ? |\n| Second from the top (2 bricks) | blank, blank |\n| Second from the bottom (3 bricks) | blank, 14, blank |\n| Bottom (4 bricks) | 3, blank, blank, 8 |\n\nWhat number is on the top brick?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "25"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "53"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "39"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "42"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "It cannot be determined without the two missing numbers in the bottom row."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "**What to notice first.** Two bottom numbers are missing, but the brick marked 14 rests on exactly those two, so their *sum* is known: it is 14. The question is whether the top depends on anything more than that sum.\n\n**The step that settles it.** Call the missing bottom numbers $x$ and $y$, so the bottom row is $3, x, y, 8$ with $x + y = 14$. Build upwards:\n\n- second from the bottom: $3 + x$, then $x + y$, then $y + 8$;\n- second from the top: $(3 + x) + (x + y) = 3 + 2x + y$, and $(x + y) + (y + 8) = x + 2y + 8$;\n- top: $3 + 3x + 3y + 8 = 11 + 3(x + y) = 11 + 3 \\times 14 = 53$.\n\nThe missing numbers reach the top only as $3(x + y)$, so the top is fixed at 53 whatever they are.\n\n**How to check it.** Try two different splits of 14. With $x = 5$ and $y = 9$ the rows read 8, 14, 17, then 22, 31, then 53. With $x = 0$ and $y = 14$ they read 3, 14, 22, then 17, 36, then 53. The top does not change. The weights 1, 3, 3, 1 are the pattern to remember: in a four-row pyramid each end brick reaches the top once and each inner brick three times.",
+  "distractorRationale": {
+    "a": "Adds the three known numbers once each, 3 + 14 + 8. It treats the 14 as if it sat in the bottom row and counts each number a single time, ignoring how the sums build up row by row.",
+    "c": "Copies the end numbers up instead of adding: it takes the row second from the bottom to be 3, 14, 8, then gets 17 and 22 and a top of 39. The end bricks of that row are 3 + x and y + 8, not 3 and 8.",
+    "d": "Finds the right weight for the middle pair, 3 × 14, but leaves out the two end bricks. Each of 3 and 8 still reaches the top once, adding 11.",
+    "e": "Assumes the two blank bottom bricks must be found separately. They reach the top only through their sum, and that sum, 14, is given: every split, such as 5 and 9 or 0 and 14, gives the same top."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "A number pyramid question, laid out as a table with one row per row of bricks. Each brick above the bottom row rests on the two bricks directly below it and carries their sum. Bottom row, four bricks, left to right: 3, blank, blank, 8. Row second from the bottom, three bricks: blank, 14, blank; the 14 rests on the two blank bottom bricks. Row second from the top, two bricks: both blank. Top row, one brick: the unknown. The question asks for the number on the top brick. The five choices are: 25; 53; 39; 42; and it cannot be determined without the two missing numbers in the bottom row.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-polito-til-a-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank for the TIL-A Logical reasoning section, on patterns in tables. The pyramid is under-determined on purpose: the two missing bottom numbers cannot be found, but the top depends only on their sum, and seeing that is the reasoning the item tests. The 'cannot be determined' choice is the natural trap."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-polito-til-a-logic-author",
+    "reviewer": "blind-reviewer-wave7-tila-logic-drawing-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-tila-logic-drawing-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Call the bottom row 3, b, c, 8, with b + c = 14. The row above is then 3 + b, 14, c + 8, the next row is 17 + b and 22 + c, and the top is 39 + b + c = 53. [A second, separate blind solve (blind-reviewer-wave7-tila-logic-drawing-run1) reached the same answer: With a bottom row of a, b, c, d, the top brick is a + 3b + 3c + d = a + d + 3(b + c) = 3 + 8 + 3 x 14 = 53. The two unknowns only appear as b + c, and that sum is given as 14, so E is false.]"
+    },
+    "notes": "Author's uniqueness check: by script, every split of 14 into two integers from -20 to 34 was built up row by row, and the top was 53 every time; algebraically the top is 3 + 3(x + y) + 8 = 53. The numeric distractors 25, 39 and 42 come from the three named slips and differ from 53, and the top being fixed rules out the 'cannot be determined' choice. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "number-pyramid",
+    "pattern",
+    "no-calculator"
+  ]
+}

@@ -82,7 +82,7 @@ export function MobileMenu({
           <ul>
             {primary.map((item) => (
               <li key={item.href}>
-                <NavLink href={item.href} match={item.match} className={ITEM}>
+                <NavLink href={item.href} match={item.match} except={item.except} className={ITEM}>
                   {item.label}
                 </NavLink>
               </li>
@@ -94,7 +94,7 @@ export function MobileMenu({
                 <li key={item.href}>
                   <NavLink
                     href={item.href}
-                    match={item.match}
+                    match={item.match} except={item.except}
                     className={cx(ITEM, 'min-h-11 text-base text-ink-muted')}
                   >
                     {item.label}
@@ -110,21 +110,17 @@ export function MobileMenu({
                 Account
               </Link>
             ) : null}
-            {account === 'guest' ? (
-              <>
-                <p className="text-sm leading-relaxed text-ink-muted">{GUEST_NOTE}</p>
-                <Link href="/sign-up" className={buttonClass({ variant: 'ink', full: true })}>
-                  Keep your progress
-                </Link>
+            {account === 'guest' ? <p className="text-sm leading-relaxed text-ink-muted">{GUEST_NOTE}</p> : null}
+            {account === 'visitor' || account === 'guest' ? (
+              // The same two equal buttons as the desktop bar
+              <div className="grid grid-cols-2 gap-3">
                 <Link href="/sign-in" className={buttonClass({ variant: 'secondary', full: true })}>
-                  Sign in to another account
+                  Sign in
                 </Link>
-              </>
-            ) : null}
-            {account === 'visitor' ? (
-              <Link href="/sign-in" className={buttonClass({ variant: 'secondary', full: true })}>
-                Sign in
-              </Link>
+                <Link href="/sign-up" className={buttonClass({ variant: 'ink', full: true })}>
+                  Create account
+                </Link>
+              </div>
             ) : null}
           </div>
         </nav>

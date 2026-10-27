@@ -28,7 +28,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     const { id } = await params;
     const db = getDb();
 
-    const limit = checkRateLimit(db, 'answerWrite', callerKey(request, user.id));
+    const limit = (await checkRateLimit(db, 'answerWrite', callerKey(request, user.id)));
     if (!limit.allowed) {
       return fail('rate-limited', 'Too many updates at once.', 429, {
         retryAfterSeconds: limit.retryAfterSeconds,
@@ -36,7 +36,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     }
 
     const body = await readJson(request, bodySchema);
-    const result = recordResponse(db, {
+    const result = (await recordResponse(db, {
       attemptId: id,
       userId: user.id,
       partIndex: body.partIndex,
@@ -45,7 +45,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
       elapsedMs: body.elapsedMs,
       reveal: body.reveal,
       clock: body.clock,
-    });
+    }));
     return ok(result);
   } catch (error) {
     return toErrorResponse(error);

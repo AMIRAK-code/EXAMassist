@@ -59,8 +59,8 @@ function shortFormatName(label: string): string {
   return label.replace(/\s*\(.*\)\s*$/, '').replace(/^Timed\s+/i, '').trim();
 }
 
-function snapshot(db: Db, config: ExamConfig): ConfigSnapshot {
-  const pool = getPool(db, config.examKey, null);
+async function snapshot(db: Db, config: ExamConfig): Promise<ConfigSnapshot> {
+  const pool = (await getPool(db, config.examKey, null));
   return { config, questions: pool.length, availability: availabilityFromPool(pool, config) };
 }
 
@@ -106,12 +106,12 @@ export interface HomeData {
   asOf: string;
 }
 
-export function buildHomeData(db: Db, now = new Date()): HomeData {
+export async function buildHomeData(db: Db, now = new Date()): Promise<HomeData> {
   const choices: ExamChoice[] = [];
   const matrix: MatrixRow[] = [];
 
   for (const hub of listHubs()) {
-    const snaps = hub.configKeys.map((key) => snapshot(db, requireExamConfig(key)));
+    const snaps = (await Promise.all(hub.configKeys.map(async (key) => (await snapshot(db, requireExamConfig(key))))));
 
     for (const snap of snaps) {
       const byId = (id: string) => snap.availability.find((entry) => entry.blueprint.id === id);
@@ -171,9 +171,9 @@ export function buildHomeData(db: Db, now = new Date()): HomeData {
 }
 
 /** The initial sample, for whichever exam the page opens on. */
-export function initialSample(db: Db, hubSlug: string): SampleView | null {
+export async function initialSample(db: Db, hubSlug: string): Promise<SampleView | null> {
   const sample = homepageSampleFor(hubSlug);
-  return sample ? loadSampleView(db, sample) : null;
+  return sample ? (await loadSampleView(db, sample)) : null;
 }
 
 export interface SourceExample {

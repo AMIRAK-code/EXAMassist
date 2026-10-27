@@ -1,0 +1,81 @@
+{
+  "id": "bocconi-law-numrsn-interpreting-total-time-413",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-numerical-reasoning",
+  "skillSlug": "law-numrsn-charts-and-tables",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "In 2024, for which language was the **total** time spent interpreting greatest?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Albanian"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Arabic"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Chinese"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Romanian"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Total time is not shown in the table, so it must be built from two columns: total time $=$ number of requests $\\times$ average time per request. Both factors must be from 2024.\n\n**Compute each product, in minutes.**\n\n- Albanian: $300 \\times 40 = 12{,}000$\n- Arabic: $360 \\times 50 = 18{,}000$\n- Chinese: $210 \\times 60 = 12{,}600$\n- Romanian: $400 \\times 40 = 16{,}000$\n- Ukrainian: $90 \\times 30 = 2{,}700$\n\nThe greatest is Arabic, with $18{,}000$ minutes, that is $300$ hours.\n\n**How to check.** Compare the two main contenders without full multiplication. Romanian has $\\frac{400}{360} = \\frac{10}{9}$ times Arabic's requests, about $11\\%$ more, but Arabic's average is $\\frac{50}{40} = 1.25$ times Romanian's, $25\\%$ more. The larger factor wins, so Arabic is ahead. Chinese has the longest average, but its $210$ requests are far too few to catch up.",
+  "distractorRationale": {
+    "a": "Albanian's total is $300 \\times 40 = 12{,}000$ minutes, below Arabic's $18{,}000$ and Romanian's $16{,}000$. It has the same average time as Romanian but fewer requests, so it cannot be the greatest.",
+    "c": "Chinese has the longest average time per request, $60$ minutes, but only $210$ requests: $210 \\times 60 = 12{,}600$ minutes. Choosing it means looking at the average column alone and forgetting to multiply by the number of requests.",
+    "d": "Romanian had the most requests in 2024, $400$, but a short average of $40$ minutes: $400 \\times 40 = 16{,}000$ minutes, less than Arabic's $360 \\times 50 = 18{,}000$. Choosing it means reading the requests column alone."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": {
+    "id": "bocconi-law-table-interpreting-requests-431",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying table of court-interpreting requests at a tribunal by language. For Albanian, Arabic, Chinese, Romanian and Ukrainian it gives the requests in 2023, the requests in 2024 and the average interpreting time per request in 2024 in minutes: Albanian 240, 300, 40; Arabic 420, 360, 50; Chinese 150, 210, 60; Romanian 320, 400, 40; Ukrainian 50, 90, 30. The question asks for which language the total time spent interpreting in 2024 was greatest. The four answer options are Albanian, Arabic, Chinese and Romanian.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave8-author",
+    "aiAssisted": true,
+    "notes": "Original item written against an invented table of court-interpreting requests at a fictional tribunal. The item requires combining two columns: the language with the most requests and the language with the longest average are each different from the language with the greatest total time."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave8-author",
+    "reviewer": "blind-reviewer-wave8-final-quant-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-final-quant-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Requests * avg minutes: Arabic 360*50 = 18,000 > Romanian 400*40 = 16,000 > Chinese 210*60 = 12,600 > Albanian 12,000. Romanian (most requests) and Chinese (longest average) are the traps. [A second, separate blind solve (blind-reviewer-wave8-final-quant-run1) reached the same answer: The 2024 totals are Arabic 360*50=18,000 min, Romanian 16,000, Chinese 12,600 and Albanian 12,000. Romanian has the most requests and Chinese the longest average, but Arabic has the greatest total.]"
+    },
+    "notes": ""
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "numerical-reasoning",
+    "tables",
+    "combining-columns",
+    "multiplication",
+    "no-calculator"
+  ]
+}

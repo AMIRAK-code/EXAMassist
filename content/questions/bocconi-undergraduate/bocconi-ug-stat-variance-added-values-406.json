@@ -1,0 +1,70 @@
+{
+  "id": "bocconi-ug-stat-variance-added-values-406",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-statistics-central-dispersion",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A data set of $10$ values has mean $12$ and variance $16$, where the variance is the mean of the squared deviations from the mean.\n\nTwo further values, **both equal to $12$**, are added to the data set. What is the variance of the resulting $12$ values?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\dfrac{100}{9}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\dfrac{40}{3}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$16$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\dfrac{96}{5}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Work with the **sum of squared deviations** rather than with the variance itself, because that sum is what the new values change (or fail to change).\n\n**Step 1 — the mean does not move.** The original sum is $10 \\times 12 = 120$. Adding $12 + 12$ gives $144$, and $144 / 12 = 12$. The mean is still $12$.\n\n**Step 2 — the sum of squared deviations does not move either.** For the original data,\n\n$$\\sum (x_i - 12)^{2} = n \\times \\text{variance} = 10 \\times 16 = 160$$\n\nEach new value sits exactly at the mean, so it contributes $(12 - 12)^{2} = 0$. Because the mean is unchanged, the old deviations are unchanged too, and the new total is still $160$.\n\n**Step 3 — divide by the new number of values.**\n\n$$\\text{new variance} = \\frac{160}{12} = \\frac{40}{3}$$\n\n**Why it falls.** Variance is an average of squared distances from the mean. The two new values add nothing to the total distance but do add to the count, so they pull the average down: the data become more concentrated around $12$ in relative terms.\n\n**Check with a concrete data set.** Five 8s and five 16s have mean $12$ and variance $\\frac{10 \\times 16}{10} = 16$. Adding two 12s gives a total of squared deviations $5 \\cdot 16 + 5 \\cdot 16 + 0 + 0 = 160$ over $12$ values, which is $\\frac{40}{3}$. ✓",
+  "distractorRationale": {
+    "a": "This rescales the standard deviation instead of the variance: it takes $\\sqrt{16} = 4$, multiplies by $\\frac{10}{12}$ to get $\\frac{10}{3}$, and squares, giving $\\frac{100}{9}$. The quantity that stays fixed is the sum of **squared** deviations, so it is the variance that scales by $\\frac{10}{12}$.",
+    "c": "This assumes the variance cannot change because the mean has not changed. The sum of squared deviations is indeed unchanged, but it is now shared among 12 values instead of 10, so the variance falls.",
+    "d": "This applies the right idea with the ratio upside down, multiplying $16$ by $\\frac{12}{10}$. Adding values at the mean cannot increase the spread; dividing the fixed total $160$ by the new count $12$ gives $\\frac{40}{3}$."
+  },
+  "estimatedSeconds": 95,
+  "stimulusRef": null,
+  "accessibilityText": "Ten values have mean 12 and variance 16, the variance being the mean of the squared deviations from the mean. Two more values, both equal to 12, are added. The question asks for the variance of the twelve values. The choices are the number 16, and the fractions 40 over 3, 96 over 5 and 100 over 9.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. The stem states the population definition of variance so that there is no n versus n - 1 ambiguity. The result was checked by a read-only script on a concrete data set with the stated mean and variance."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-bocconi-math-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author's uniqueness check: the mean remains 12, the sum of squared deviations remains 10 x 16 = 160, and with the stated definition the variance of 12 values is 160 / 12 = 40/3 regardless of what the original ten values were; the other three values are each produced by one named slip. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "variance",
+    "dispersion",
+    "effect-of-added-data"
+  ]
+}

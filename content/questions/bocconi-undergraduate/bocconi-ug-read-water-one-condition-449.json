@@ -1,0 +1,81 @@
+{
+  "id": "bocconi-ug-read-water-one-condition-449",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-reading-comprehension",
+  "skillSlug": "reading-implicit-meaning",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Consider a town whose utility charges exactly the same tariff as Velmora's. Every household in the town has its own meter, but the town's poorer households are, on average, much larger than its richer ones.\n\nWhich one of the following statements about that town is best supported by the passage?",
+  "instructionsMd": "Answer on the basis of the passage only.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Richer households there pay more per cubic metre than poorer ones, as the surveys the author cites found for towns in which each household has its own meter."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Whether richer households there pay more per cubic metre than poorer ones is left open, since it depends on how closely each meter's volume tracks income."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Poorer households there pay more per cubic metre than richer ones, since the larger combined use of their members passes the cheap block sooner."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Setting the cheap block per resident would do nothing for poorer households there, since the author traces the problem to shared meters alone."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The third paragraph names **two** conditions under which the tariff does what it promises: \"each household has its own meter **and** household size varies little with income\". The town in the stem meets the first and fails the second. So the first task is to see what the passage says about a town that meets only one.\n\n**What the passage gives.** It states the general principle directly: the tariff \"sorts consumers by how much passes through their connection, and it is fair only to the extent that this tracks income.\" In the new town, large poor households push water through their meters for reasons unrelated to income, so volume tracks income less closely than in a town meeting both conditions. How much less, and whether enough to reverse the pattern, depends on facts the passage does not supply, such as how much discretionary water richer households use.\n\n**What the passage does not give.** The survey evidence covers only \"towns that meet both conditions\". It says nothing about a town that meets one. So the passage leaves the comparison open, and it tells you what it depends on. That is the choice saying the comparison is left open because it depends on how closely each meter's volume tracks income.\n\n**How to check the answer.** Build two versions of the town with the Velmora prices, both consistent with the stem.\n\n- A poor household of six uses 15 cubic metres and pays $8.00 + 5 \\times 2.40 = 20.00$ euros, about €1.33 per cubic metre. A rich household of two with a garden uses 30 cubic metres and pays $8.00 + 20 \\times 2.40 = 56.00$ euros, about €1.87. Here the richer household pays more per cubic metre.\n- If instead the rich household of two uses only 8 cubic metres, it pays €0.80 per cubic metre, less than the poor household's €1.33. Here the poorer household pays more.\n\nBoth towns fit the stem, and they give opposite answers, so neither definite claim about who pays more is supported.\n\n**What makes this hard.** The passage never discusses a town with only one of the two conditions. The candidate has to notice that the conditions are joined by \"and\", that the survey is limited to towns meeting both, and that the principle about volume tracking income is what governs the new case.",
+  "distractorRationale": {
+    "a": "This extends the survey finding to a town the survey did not cover. The passage limits it to \"towns that meet both conditions\", own meters and household size that varies little with income, and this town fails the second. Treating one of two joint conditions as enough is the error.",
+    "c": "This goes one step beyond the passage. Larger poor households do pass the cheap block sooner, which pushes their average price up, but the passage gives no figures for how much water richer households use. A rich household of two using 30 cubic metres pays about €1.87 per cubic metre, more than a poor household of six using 15 cubic metres at about €1.33, so the claim can fail in a town that fits the stem.",
+    "d": "The passage says the per-resident remedy suits places \"where large low-income households or shared meters are common\". Large low-income households are one of the two cases the author names, and this town has them, so the author does not trace the problem to shared meters alone."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "bocconi-ug-stim-water-tariff-432",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying prose passage on increasing-block water tariffs in Velmora. It describes a town with the same tariff, where every household has its own meter but poorer households are on average much larger than richer ones, and asks which of four statements about that town is best supported by the passage. There is no figure or table.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-verbal-logic-author",
+    "aiAssisted": true,
+    "notes": "Original stretch item written against the original passage bocconi-ug-stim-water-tariff-432. It applies the passage's two joint conditions to a case the passage does not discuss, in which only one holds. The strongest distractor extends the survey finding beyond its stated scope; the next goes one step beyond the passage in the opposite direction; the last misreads 'or' in the remedy sentence as limiting the problem to shared meters."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-bocconi-verbal-logic-author",
+    "reviewer": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The surveys cover only towns meeting both conditions, and this town fails the household-size condition, so A does not carry over. The author says the tariff is fair 'only to the extent' that connection volume tracks income. Here larger poor households push volume up while richer households' discretionary use also pushes it up, so the direction is not settled. D ignores the author's mention of large low-income households. [A second, separate blind solve (blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run1) reached the same answer: The surveys cover towns that meet both conditions (own meters and household size varying little with income). This town fails the second condition, so A's appeal to the surveys does not transfer. The author says the tariff 'is fair only to the extent that this tracks income', and the passage also allows that richer households use more (discretionary) water. So the outcome depends on whether volume per meter tracks income, which is B. C asserts a definite reversal the passage does not establish. D contradicts the author's naming of large low-income households as a problem.]"
+    },
+    "notes": "Stretch: a typical hard Bocconi reading item asks what the passage says or implies about a case it discusses; this one requires the candidate to apply two joint conditions and a scope-limited survey to an unseen case where only one condition holds, and to recognise that the passage then leaves the comparison open rather than reversing it. Author's uniqueness check: the key rests on 'fair only to the extent that this tracks income' and on the survey being limited to 'towns that meet both conditions'. Two households consistent with the stem, checked with a read-only script at Velmora prices (15 cubic metres for 20.00 euros, 1.33 per cubic metre; 30 cubic metres for 56.00 euros, 1.87 per cubic metre; 8 cubic metres at 0.80 per cubic metre), show that both definite claims about who pays more can fail. The per-resident remedy is explicitly offered for large low-income households, which refutes the last option. Solved twice, the second time from the stem and passage alone. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "passage-water-tariff",
+    "scope",
+    "joint-conditions",
+    "application-to-new-case",
+    "stretch"
+  ]
+}

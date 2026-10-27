@@ -1,0 +1,77 @@
+{
+  "id": "digital-sat-math-equivalent-expressions-407",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "advanced-math",
+  "skillSlug": "equivalent-expressions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "$$(ax + 3)(bx - 5) = 12x^2 + cx - 15$$\n\nThe equation above is true for all values of $x$, where $a$, $b$ and $c$ are constants. If $a + b = 7$, what is the sum of all possible values of $c$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$-14$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$-11$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$-3$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$14$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "When two polynomials are equal for all values of $x$, their coefficients must match term by term. Expand the left side:\n\n$$(ax + 3)(bx - 5) = abx^2 - 5ax + 3bx - 15 = abx^2 + (3b - 5a)x - 15$$\n\nMatching coefficients with $12x^2 + cx - 15$:\n\n- $x^2$ terms: $ab = 12$\n- $x$ terms: $c = 3b - 5a$\n- constants: $-15 = -15$, which holds automatically.\n\nNow the condition $a + b = 7$ matters. Two numbers with sum $7$ and product $12$ are the roots of $t^2 - 7t + 12 = 0$, which factors as $(t - 3)(t - 4) = 0$. So $\\{a, b\\} = \\{3, 4\\}$, but the stem does not say which is which, and $c$ is not symmetric in $a$ and $b$. Both cases have to be followed:\n\n- $a = 3$, $b = 4$: $c = 3(4) - 5(3) = 12 - 15 = -3$\n- $a = 4$, $b = 3$: $c = 3(3) - 5(4) = 9 - 20 = -11$\n\nBoth cases are genuine: $(3x + 3)(4x - 5) = 12x^2 - 3x - 15$ and $(4x + 3)(3x - 5) = 12x^2 - 11x - 15$. The sum of all possible values of $c$ is\n\n$$-3 + (-11) = -14$$\n\nThe phrase \"all possible values\" is the signal that more than one case exists. Whenever a pair of unknowns is fixed only by its sum and product, the two numbers can be assigned either way round, and any expression that treats them differently has to be evaluated for both assignments.",
+  "distractorRationale": {
+    "b": "This is the value of $c$ in only one of the two cases, $a = 4$ and $b = 3$. It misses the assignment $a = 3$, $b = 4$, which also satisfies both conditions and gives $c = -3$.",
+    "c": "This is the value of $c$ in only one of the two cases, $a = 3$ and $b = 4$. Swapping the two numbers also satisfies $ab = 12$ and $a + b = 7$ and gives $c = -11$, which must be included in the sum.",
+    "d": "This finds both cases but builds the middle coefficient with the signs reversed, $c = 5a - 3b$, as if the factors were $(ax - 3)(bx + 5)$. That gives $3$ and $11$, whose sum is $14$."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": "The product of a x plus 3 and b x minus 5 equals 12 x squared plus c x minus 15 for all x, where a, b and c are constants. Given a plus b equals 7, find the sum of all possible values of c. The four choices are negative 14, negative 11, negative 3 and 14.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-sat-math-alg-author",
+    "aiAssisted": true,
+    "notes": "Original item. The factors have different constants, 3 and 5, so swapping a and b changes c; the sum-and-product condition has exactly the two real solutions 3 and 4, so there are exactly two cases."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-sat-math-alg-author",
+    "reviewer": "blind-reviewer-wave7-sat-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-sat-math-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Matching coefficients gives ab = 12 and c = -5a + 3b. With a + b = 7, (a,b) is (3,4) or (4,3). These give c = -3 and c = -11, and their sum is -14. [A second, separate blind solve (blind-reviewer-wave7-sat-math-run1) reached the same answer: Expanding gives ab = 12 and c = 3b - 5a. With a + b = 7, (a,b) is (3,4) or (4,3), so c is -3 or -11. The sum of the possible values is -14. B and C are the single values, not the requested sum.]"
+    },
+    "notes": "Author solved twice and checked by script: ab = 12 and a + b = 7 have exactly the solutions (a, b) = (3, 4) and (4, 3) (discriminant 49 - 48 = 1), giving c = -3 and c = -11, sum -14. Both expansions verified. Hard: coefficient matching followed by a case split that the stem signals only through the words 'all possible values'; the two single-case answers are each offered as distractors. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "advanced-math",
+    "polynomial-identity",
+    "case-split"
+  ]
+}

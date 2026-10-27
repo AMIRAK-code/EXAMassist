@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { PAGE_DATES, longDate } from '@/lib/content/page-dates';
 import type { Metadata } from 'next';
 import { SITE, absoluteUrl, siteUrl } from '@/lib/site';
 import { Alert, Breadcrumbs, Card, Container, DefinitionList, PageHeader } from '@/components/ui';
@@ -16,12 +17,12 @@ import { JsonLd, articleSchema, breadcrumbSchema } from '@/components/seo/json-l
 const PATH = '/about/privacy';
 const TITLE = 'Privacy notice (draft)';
 const DESCRIPTION =
-  'Draft privacy notice for Examer, prepared for legal review: one session cookie, optional email and password, practice history, no advertising, no third-party analytics, no payment, and export or deletion from your account page.';
+  'Draft privacy notice for Examer, prepared for legal review: one session cookie, optional email and password, practice history, Premium payments through Stripe, no advertising, no third-party analytics, and export or deletion from your account page.';
 
-/** Real dates: this draft was written on 2026-09-22 and has not been revised since. */
-const PUBLISHED = '2026-09-22';
-const UPDATED = '2026-09-25';
-const PUBLISHED_LABEL = '22 September 2026';
+/** Real dates: this draft was written on 2026-09-22, revised on 2026-10-05 for Premium and on 2026-10-07 for the daily totals. */
+const PUBLISHED = PAGE_DATES.privacy.published;
+const UPDATED = PAGE_DATES.privacy.updated;
+const PUBLISHED_LABEL = longDate(PUBLISHED);
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -51,7 +52,12 @@ const WHAT_WE_HOLD: Array<{ term: string; value: string }> = [
   {
     term: 'Your email address and password, if you create an account',
     value:
-      'The email address is stored as you typed it, lowercased. The password is never stored: we keep a salted scrypt hash of it and compare against that.',
+      'The email address is stored as you typed it, lowercased. The password is never stored: we keep a salted scrypt hash of it and compare against that. We also note when you confirmed the address with a code, if you did.',
+  },
+  {
+    term: 'One-time email codes, if you ask for them',
+    value:
+      'When you ask for a sign-in code or a password reset, or confirm your address, we store what the code is for, the address it went to, when it was sent and expires, how many wrong guesses were made, and whether it was used. The code itself is never stored: only a keyed hash of it. A code works once and expires after 10 minutes. Asking for a new one deletes the previous one, and expired codes are deleted the next time anyone asks for a code once they are more than a day old.',
   },
   {
     term: 'Optional profile and study settings',
@@ -74,30 +80,41 @@ const WHAT_WE_HOLD: Array<{ term: string; value: string }> = [
       'When you press a button asking the optional AI tutor for a hint, a deeper explanation or an after-test guide, we log that you asked, when, and whether it worked, so the daily allowance can be enforced. After-test guides are stored against your account so you can see them again; hints and explanations are about a question rather than about you and are stored without your id.',
   },
   {
+    term: 'Premium billing (only if you buy a plan)',
+    value:
+      'When you choose a Premium plan we create a customer for you at Stripe, our payment provider, with your email address, your display name if you set one, and your account id, and we keep the Stripe customer and subscription ids, the plan, its status and its renewal date. Your card and billing address are entered on Stripe’s own checkout page and go straight to Stripe; they never reach our servers.',
+  },
+  {
     term: 'Rate-limit counters',
     value:
       'To stop abuse we count requests per caller in fixed windows. The counter key is a SHA-256 hash of an identifier, so a raw IP address is never written to the database.',
+  },
+  {
+    term: 'Daily totals (no personal data)',
+    value:
+      'To see whether our exam pages are useful we keep plain daily totals of a few events: views of the exam pages and the plans page, checkouts started and plans bought, each with the exam concerned and a coarse source for page views (search engine, AI assistant, this site, another site, or none). Each total is just a number for a day. No account id, cookie, IP address, browser details or full referring address is recorded, so no total can be linked to you. Whether you started or finished a free test is part of your practice history above.',
   },
 ];
 
 const WHAT_WE_DO_NOT: string[] = [
   'No advertising, and no advertising or tracking pixels of any kind.',
   'No third-party analytics. There is no Google Analytics, no product-analytics SDK, and no session recording.',
-  'No payments. There is no checkout, no card handling and no payment processor, because nothing here is sold.',
-  'No cookies other than the session cookie. Nothing is stored for advertising, measurement or personalisation.',
+  'No card details. Premium is paid on Stripe’s own checkout page, so card numbers and bank details go to Stripe and are never stored or seen by us.',
+  'No cookies other than the session cookie. Nothing is stored on your device for advertising, measurement or personalisation; the daily totals described above are counted on our server and identify nobody.',
   'No selling, renting or sharing of personal data with third parties for their own purposes.',
   'No AI unless you ask for it. The optional AI tutor sends nothing until you press one of its buttons, and it is never needed to practise: every question has its own reviewed explanation.',
-  'No email marketing. We hold your address to let you sign in, not to send you campaigns.',
+  'No email marketing. We hold your address to let you sign in, not to send you campaigns. The only emails we send are the codes described above, as plain text, so they carry no tracking pixel.',
 ];
 
 const OPEN_QUESTIONS: string[] = [
   'The controller: which legal entity operates this service, in which jurisdiction, and what the contact address for privacy requests should be. Nothing below can be finalised until this is settled.',
   'The lawful basis for each processing purpose under the GDPR — most plausibly contract for the account and the practice history, legitimate interests for rate limiting and abuse prevention — and whether that analysis survives review.',
-  'Retention periods. Today nothing expires except sessions (30 days, or 7 for a guest) and rate-limit windows (purged after 24 hours). How long an inactive guest account, a practice history and a resolved question report should be kept needs a decision and then an implementation.',
+  'Retention periods. Today nothing expires except sessions (30 days, or 7 for a guest), rate-limit windows (purged after 24 hours) and email codes (described above). How long an inactive guest account, a practice history and a resolved question report should be kept needs a decision and then an implementation.',
   'Whether deletion should be a hard delete or the soft delete currently implemented. Today deletion marks the account deleted so it stops resolving and stops appearing anywhere; what happens to the underlying attempt rows, and after how long, is an open decision.',
   'Whether users under 16 need verifiable parental consent in each jurisdiction we serve, and whether a self-declared flag is defensible at all. The age flag exists in the code and is self-declared; we do not verify it and we do not currently ask for consent.',
-  'Where the data is hosted, whether any international transfer occurs, and what the transfer mechanism and sub-processor list should say. The application uses one database. The one third-party service is the optional AI tutor, described in the next point.',
+  'Where the data is hosted, whether any international transfer occurs, and what the transfer mechanism and sub-processor list should say. The application uses one database. Three third-party services are involved: the optional AI tutor, described in the next point; the payment provider, Stripe, described after it; and the email provider, Brevo, which delivers the one-time codes. For each code email Brevo receives the recipient address, the subject and the plain-text message, which contains the code. What needs settling for Brevo: its status as a processor and the data-processing terms of the account, its retention of message content and delivery logs, and where it processes data.',
   'The AI tutor. When a learner presses a tutor button, the server sends the question, its choices, our reviewed explanation, which choice the learner picked and - for an after-test guide - the session’s aggregate results to the model provider (Anthropic) through its API. No name, email address, account id or free text typed by the learner is sent. What needs settling: the provider’s status as a processor and the data-processing terms under which the API key is issued; the provider’s retention and use of request content under those terms, which we have not verified and so do not describe here; the international-transfer mechanism, if the provider processes outside the learner’s jurisdiction; whether performance data counts as personal data once separated from the account; and whether learners under 16 may use the tutor without parental consent. Until these are settled, an operator can leave the tutor switched off, and the site works fully without it.',
+  'Payments. When a learner chooses a Premium plan, the server creates a Stripe customer with the account’s email address, display name (if set) and account id, and Stripe collects the card and billing address on its own checkout page. What needs settling: whether Stripe acts as our processor or as an independent controller for payment data; how long billing records must be kept for tax and accounting, which may override a deletion request for those records; the international-transfer mechanism; and whether minors may buy a plan.',
   'Whether the session cookie qualifies as strictly necessary in every jurisdiction served — our view is that it does, which is why no consent banner is shown — and confirmation that nothing else on the site would trigger consent requirements.',
   'The process and deadlines for handling access, rectification, portability, objection and erasure requests, and who is accountable for meeting them.',
   'Breach notification: the threshold, the internal process and the notification timetable.',
@@ -150,8 +167,9 @@ export default function PrivacyPage() {
           guest record that holds no personal data at all. If you do create an account we hold your
           email address, a salted hash of your password, any study settings you set, and your
           practice history. There is one cookie, and it only keeps you signed in. There is no
-          advertising, no third-party analytics and no payment processing anywhere on this site, and
-          you can export or delete your data from your <Link href="/account">account page</Link>.
+          advertising and no third-party analytics. If you buy Premium, Stripe takes the payment on
+          its own pages and we keep only which plan you are on. You can export or delete your data
+          from your <Link href="/account">account page</Link>.
         </p>
       </div>
 
@@ -206,8 +224,12 @@ export default function PrivacyPage() {
                 the open questions below.
               </li>
               <li>
+                <strong>To send the codes you ask for.</strong> A sign-in code, a password reset code,
+                or the code that confirms your address when you create an account.
+              </li>
+              <li>
                 <strong>To stop abuse.</strong> Sign-in attempts, sign-ups, guest creation, attempt
-                starts, answer writes and question reports are all rate limited.
+                starts, answer writes, email codes and question reports are all rate limited.
               </li>
             </ul>
             <p>
@@ -231,6 +253,10 @@ export default function PrivacyPage() {
               <li>
                 Session tokens are stored only as SHA-256 hashes, so a leaked database does not hand
                 over live sessions either.
+              </li>
+              <li>
+                Email codes are stored only as hashes keyed with a secret that is not in the database.
+                Each works once, expires after 10 minutes and stops working after five wrong guesses.
               </li>
               <li>
                 Every private page and every private API route resolves who you are on the server and
@@ -260,8 +286,8 @@ export default function PrivacyPage() {
                 question below about what deletion should mean underneath.
               </li>
               <li>
-                <strong>Sign out everywhere.</strong> Signing out destroys the session; a password
-                change destroys every session for the account.
+                <strong>Sign out everywhere.</strong> Signing out destroys the session; resetting
+                your password destroys every session for the account.
               </li>
               <li>
                 <strong>Stay a guest.</strong> If you never sign up, there is nothing personal to

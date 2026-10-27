@@ -1,4 +1,4 @@
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getDb } from '@/lib/db';
 import { EXAM_CONFIGS, getBlueprint, getExamConfig, getHubForConfig } from '@/lib/exams/registry';
@@ -9,6 +9,8 @@ import { getCurrentUser } from '@/lib/auth/session';
 import { StartPracticeForm, type PresetSkill } from '@/components/practice/start-practice-form';
 import { GUEST_NOTE_SHORT } from '@/components/site/nav-items';
 import { StartBlueprintButton } from '@/components/practice/start-blueprint-button';
+import { billingSettings, startPath } from '@/lib/billing/config';
+import { getAccess } from '@/lib/billing/service';
 import {
   Alert,
   Badge,
@@ -60,10 +62,13 @@ export default async function PracticeSetupPage({
   if (!config) notFound();
 
   const db = getDb();
-  const facets = practiceFacets(db, config);
-  const availability = blueprintAvailability(db, config);
+  const facets = (await practiceFacets(db, config));
+  const availability = (await blueprintAvailability(db, config));
   const hub = getHubForConfig(config.examKey);
   const user = await getCurrentUser();
+  // Every format here is Premium while it is on sale. Anyone else gets the
+  // exam's short introduction, then the plans or the free test.
+  if (billingSettings().enabled && !(user && (await getAccess(db, user.id)).fullAccess)) redirect(startPath(config.examKey));
 
   const others = availability.filter((a) => a.blueprint.id !== 'practice');
   const totalItems = eligibleCount(facets, {});
@@ -74,7 +79,7 @@ export default async function PracticeSetupPage({
   const practiceBlueprint = getBlueprint(config, 'practice');
   const unseenFacets =
     user && practiceBlueprint
-      ? facetsFromPool(getPool(db, config.examKey, user.id).filter((item) => item.lastSeenAt === null), config, practiceBlueprint)
+      ? facetsFromPool((await getPool(db, config.examKey, user.id)).filter((item) => item.lastSeenAt === null), config, practiceBlueprint)
       : null;
   const offerUnseen = unseenFacets && eligibleCount(unseenFacets, {}) < totalItems ? unseenFacets : null;
   const domainChoices = config.domains.map((domain) => ({
@@ -127,6 +132,7 @@ export default async function PracticeSetupPage({
         title={`Practise ${config.name}`}
         lead="Practise by topic, untimed, or choose another format below."
       />
+
 
       {totalItems === 0 ? (
         <Alert tone="caution" title="No reviewed questions yet for this exam">

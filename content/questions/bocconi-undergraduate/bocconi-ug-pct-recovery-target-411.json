@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-pct-recovery-target-411",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-numbers-percentages",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In its first year an investment fund lost $20\\%$ of its value. By what percentage must its value grow in the second year so that, over the two years taken together, it has **gained $8\\%$** on its starting value?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$33\\%$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$35\\%$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$29.6\\%$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$28\\%$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Percentage changes that follow one another **multiply**; they do not add. Write each change as a multiplying factor.\n\n- A loss of $20\\%$ multiplies the value by $0.8$.\n- A gain of $g$ (as a decimal) in the second year multiplies it by $1 + g$.\n- An overall gain of $8\\%$ means the final value is $1.08$ times the starting value.\n\nSo\n\n$$0.8\\,(1 + g) = 1.08 \\;\\Longrightarrow\\; 1 + g = \\frac{1.08}{0.8} = \\frac{108}{80} = \\frac{27}{20} = 1.35$$\n\nand $g = 0.35$, a growth of $35\\%$.\n\n**Check with a concrete amount.** Start with $100$. After the loss the fund is worth $80$. A $35\\%$ gain on $80$ is $28$, bringing it to $108$, which is $8\\%$ above the start. ✓\n\n**Why the answer is larger than it looks.** The second-year growth is applied to a **smaller** base ($80$, not $100$), so it must be a larger percentage to add the same absolute amount. Just getting back to $100$ already needs $\\frac{20}{80} = 25\\%$.",
+  "distractorRationale": {
+    "d": "This adds the percentages, $20 + 8 = 28$, as if both were measured on the same base. The second-year growth is measured on the reduced value $80$, and $28\\%$ of $80$ is only $22.4$, which would leave the fund at $102.4$.",
+    "c": "This assumes a $20\\%$ loss is undone by a $20\\%$ gain and then adds the extra $8\\%$ on top, computing $1.2 \\times 1.08 = 1.296$. A $20\\%$ gain on $80$ only reaches $96$, so the multiplier $1.2$ does not reverse the loss.",
+    "a": "This correctly finds that recovering the loss needs $25\\%$, then adds $8$ percentage points. But the extra $8$ is $8\\%$ of the **starting** value, which is $\\frac{8}{80} = 10\\%$ of the reduced value, so the total is $25\\% + 10\\% = 35\\%$."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "A fund loses 20 per cent of its value in the first year. The question asks what percentage growth in the second year gives an overall gain of 8 per cent over the two years. The choices are 33 per cent, 35 per cent, 29.6 per cent and 28 per cent.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. The numbers make 1.08 / 0.8 an exact decimal so no calculator is needed. Each distractor is the result of one specific additive or wrong-base slip, and all four values were recomputed by a read-only script."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-bocconi-math-author",
+    "reviewer": "blind-reviewer-wave7-bocconi-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-bocconi-math-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "0.8(1+g)=1.08 gives 1+g=1.35, so g=35%. 28% is the naive 20+8, 29.6% is 1.08·1.2 - 1, and 33% is not exact. [A second, separate blind solve (blind-reviewer-wave7-bocconi-math-run1) reached the same answer: 0.8(1+g)=1.08 gives 1+g=1.35, so g=35%. 28% is the additive trap (20+8), 29.6% is 1.08*1.2, and 33% is close but wrong.]"
+    },
+    "notes": "Author's uniqueness check: 0.8(1 + g) = 1.08 has the single solution g = 0.35, and substituting each other choice into 0.8(1 + g) gives 1.024, 1.0368 and 1.064 rather than 1.08. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "successive-percentages",
+    "reverse-percentage",
+    "multiplier"
+  ]
+}

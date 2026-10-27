@@ -153,20 +153,20 @@ export function examLabel(examKey: string): string {
   return hub?.label ?? requireExamConfig(examKey).shortName;
 }
 
-export function examsPractised(db: Db, userId: string): string[] {
+export async function examsPractised(db: Db, userId: string): Promise<string[]> {
   return (
-    db
+    (await db
       .prepare(
         `SELECT exam_key AS examKey, MAX(created_at) AS latest
            FROM attempts WHERE user_id = ? GROUP BY exam_key ORDER BY latest DESC`,
       )
-      .all(userId) as Array<{ examKey: string }>
+      .all(userId)) as Array<{ examKey: string }>
   ).map((row) => row.examKey);
 }
 
-function reviewCounts(db: Db, userId: string, examKey: string, now: Date) {
+async function reviewCounts(db: Db, userId: string, examKey: string, now: Date) {
   const iso = now.toISOString();
-  const row = db
+  const row = (await db
     .prepare(
       `SELECT
          COALESCE(SUM(CASE WHEN due_at <= ? THEN 1 ELSE 0 END), 0) AS dueNow,
@@ -175,24 +175,24 @@ function reviewCounts(db: Db, userId: string, examKey: string, now: Date) {
        FROM review_queue
        WHERE user_id = ? AND exam_key = ? AND last_result <> 'correct'`,
     )
-    .get(iso, iso, iso, userId, examKey) as { dueNow: number; comingLater: number; nextDueAt: string | null };
+    .get(iso, iso, iso, userId, examKey)) as { dueNow: number; comingLater: number; nextDueAt: string | null };
   return row;
 }
 
-function buildExamDashboard(
+async function buildExamDashboard(
   db: Db,
   userId: string,
   examKey: string,
   source: ExamSource,
   unfinished: UnfinishedAttempt[],
   now: Date,
-): ExamDashboard {
+): Promise<ExamDashboard> {
   const config = requireExamConfig(examKey);
   const hub = getHubForConfig(examKey);
-  const facets = practiceFacets(db, config);
+  const facets = (await practiceFacets(db, config));
   const bankSize = eligibleCount(facets, {});
 
-  const finishedRows = db
+  const finishedRows = (await db
     .prepare(
       `SELECT a.id, a.blueprint_id AS blueprintId, a.mode, a.status, a.started_at AS startedAt,
               a.submitted_at AS submittedAt, r.raw_correct AS correct, r.raw_incorrect AS incorrect,
@@ -202,7 +202,7 @@ function buildExamDashboard(
         WHERE a.user_id = ? AND a.exam_key = ? AND a.status <> 'in_progress'
         ORDER BY COALESCE(a.submitted_at, a.started_at) DESC`,
     )
-    .all(userId, examKey) as Array<{
+    .all(userId, examKey)) as Array<{
     id: string;
     blueprintId: string;
     mode: string;
@@ -214,7 +214,7 @@ function buildExamDashboard(
     omitted: number | null;
   }>;
 
-  const performance = skillPerformance(db, userId, examKey);
+  const performance = (await skillPerformance(db, userId, examKey));
   const bySkill = new Map(performance.map((skill) => [skill.skillSlug, skill]));
   const totalScored = performance.reduce((n, skill) => n + skill.answered + skill.omitted, 0);
   const totalCorrect = performance.reduce((n, skill) => n + skill.correct, 0);
@@ -251,11 +251,11 @@ function buildExamDashboard(
   });
 
   const attemptedDomains = new Set(topics.filter((topic) => topic.scored > 0).map((topic) => topic.slug));
-  const untouchedDomains = practisableDomains(db, config)
+  const untouchedDomains = (await practisableDomains(db, config))
     .filter((domain) => !attemptedDomains.has(domain.slug))
     .map((domain) => ({ slug: domain.slug, name: domain.name, count: domain.count }));
 
-  const review = reviewCounts(db, userId, examKey, now);
+  const review = (await reviewCounts(db, userId, examKey, now));
   const recommendations = bankSize === 0
     ? []
     : buildRecommendations({
@@ -315,15 +315,15 @@ function buildExamDashboard(
   };
 }
 
-export function buildDashboard(
+export async function buildDashboard(
   db: Db,
   user: Pick<AuthUser, 'id' | 'isGuest' | 'targetExamKey' | 'sessionExpiresAt'>,
   requested: string | string[] | undefined,
   now = new Date(),
-): DashboardData {
+): Promise<DashboardData> {
   // Closes anything past its deadline before anything else is read.
-  const unfinished = listUnfinishedAttempts(db, user.id, now);
-  const practised = examsPractised(db, user.id);
+  const unfinished = (await listUnfinishedAttempts(db, user.id, now));
+  const practised = (await examsPractised(db, user.id));
   const { examKey, source, unknownExam } = chooseExam(requested, user.targetExamKey, practised[0] ?? null);
 
   const choices: ExamChoice[] = EXAM_CONFIGS.filter(
@@ -349,7 +349,7 @@ export function buildDashboard(
     unfinished,
     unknownExam,
     choices,
-    exam: examKey && source ? buildExamDashboard(db, user.id, examKey, source, unfinished, now) : null,
+    exam: examKey && source ? (await buildExamDashboard(db, user.id, examKey, source, unfinished, now)) : null,
     guest,
   };
 }

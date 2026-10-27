@@ -1,0 +1,61 @@
+{
+  "id": "digital-sat-math-trig-cofunction-spr-439",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "geometry-and-trigonometry",
+  "skillSlug": "right-triangles-and-trigonometry",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The equation $\\sin\\left((4k - 6)^\\circ\\right) = \\cos\\left((2k + 18)^\\circ\\right)$ is true, where $k$ is a constant and both $4k - 6$ and $2k + 18$ are between $0$ and $90$. What is the value of $k$?",
+  "instructionsMd": "Student-produced response. Enter your answer in the box. Do not enter symbols such as a percent sign, comma, or dollar sign.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 13
+      }
+    ],
+    "acceptedStrings": [
+      "13"
+    ]
+  },
+  "explanationMd": "For acute angles, the sine of one angle equals the cosine of another exactly when the two angles are **complementary**, that is, when they add to $90^\\circ$.\n\nThe reason is the right triangle. Its two acute angles add to $90^\\circ$, and the side opposite one of them is the side adjacent to the other, so the sine of each is the cosine of the other: $\\sin x^\\circ = \\cos(90 - x)^\\circ$. Between $0^\\circ$ and $90^\\circ$ the sine takes each value only once, so no other pair of acute angles works.\n\nSet the two angle measures to add to $90$:\n\n$$(4k - 6) + (2k + 18) = 90$$\n\n$$6k + 12 = 90 \\;\\Rightarrow\\; 6k = 78 \\;\\Rightarrow\\; k = 13$$\n\nCheck: the angles are $4(13) - 6 = 46^\\circ$ and $2(13) + 18 = 44^\\circ$. Both are between $0^\\circ$ and $90^\\circ$ and they add to $90^\\circ$, and a calculator confirms $\\sin 46^\\circ \\approx 0.7193 \\approx \\cos 44^\\circ$.\n\nTwo slips are common. Setting the angles **equal**, $4k - 6 = 2k + 18$, gives $k = 12$, but $\\sin 42^\\circ$ is not $\\cos 42^\\circ$; equal angles would only work at $45^\\circ$. Setting the sum to $180$ gives $k = 28$, which makes $4k - 6 = 106$, outside the stated range.",
+  "distractorRationale": {},
+  "estimatedSeconds": 70,
+  "stimulusRef": null,
+  "accessibilityText": "The sine of the angle 4 k minus 6 degrees equals the cosine of the angle 2 k plus 18 degrees, where k is a constant and both 4 k minus 6 and 2 k plus 18 are between 0 and 90. Find the value of k. Enter a number.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-sat-math-data-geo-author",
+    "aiAssisted": true,
+    "notes": "Original item. The expressions were chosen so that k is a whole number and both angles are acute but unequal."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-sat-math-data-geo-author",
+    "reviewer": "blind-reviewer-wave7-sat-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-sat-math-run0",
+      "solvedAnswer": "13",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "For acute angles, sin a = cos b exactly when a + b = 90. So 6k + 12 = 90 and k = 13. The angles are 46 and 44, both in range, and the acute restriction rules out other solutions. [A second, separate blind solve (blind-reviewer-wave7-sat-math-run1) reached the same answer: For acute angles, sin A = cos B forces A + B = 90, so 6k + 12 = 90 and k = 13. The angles are 46 and 44, both between 0 and 90. The answer is unique because sine is one-to-one on (0, 90).]"
+    },
+    "notes": "Author solved twice: for angles between 0 and 90, sin a = cos b forces a + b = 90, so 6k + 12 = 90 gives k = 13; angles 46 and 44 degrees. A read-only script scanned k in half-steps from -100 to 100 and found no other value meeting the equation and the range condition. Awaiting a blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "geometry",
+    "complementary-angles",
+    "trigonometry",
+    "student-produced-response"
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "id": "bocconi-ug-analytic-circle-chord-413",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-analytic-conics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "In the Cartesian plane, a circle passes through the points $(-4, 0)$ and $(8, 0)$, and its centre lies on the line $x + y = 9$.\n\nWhat is the length of the chord that the circle cuts on the $y$-axis?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$9$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$12$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$18$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$2\\sqrt{83}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Two conditions fix the centre; then a right triangle gives the chord.\n\n**Step 1 — first condition on the centre.** The centre is equidistant from the two given points, so it lies on the perpendicular bisector of the segment joining them. Both points are on the $x$-axis, with midpoint $\\left(\\frac{-4 + 8}{2}, 0\\right) = (2, 0)$, so the bisector is the vertical line $x = 2$.\n\n**Step 2 — second condition.** The centre also lies on $x + y = 9$. With $x = 2$ this gives $y = 7$, so the centre is $C = (2, 7)$.\n\n**Step 3 — the radius.** Distance from $C$ to $(8, 0)$:\n\n$$r^{2} = (8 - 2)^{2} + (0 - 7)^{2} = 36 + 49 = 85$$\n\n(The same comes from $(-4, 0)$: $6^{2} + 7^{2} = 85$.)\n\n**Step 4 — the chord on the $y$-axis.** The distance from $C$ to the $y$-axis is $d = 2$. The perpendicular from the centre bisects the chord, so the half-chord $h$ satisfies\n\n$$h^{2} = r^{2} - d^{2} = 85 - 4 = 81 \\;\\Longrightarrow\\; h = 9$$\n\nand the chord has length $2h = 18$.\n\n**Check by direct substitution.** The circle is $(x - 2)^{2} + (y - 7)^{2} = 85$. Setting $x = 0$: $(y - 7)^{2} = 81$, so $y = 16$ or $y = -2$. The chord runs from $(0, -2)$ to $(0, 16)$, and $16 - (-2) = 18$. ✓\n\n**A second route.** Write the circle as $x^{2} + y^{2} + ax + by + c = 0$. On the $x$-axis this becomes $x^{2} + ax + c = 0$, whose roots are $-4$ and $8$, so $a = -4$ and $c = -32$. The centre $\\left(2, -\\frac{b}{2}\\right)$ lies on $x + y = 9$, so $b = -14$. On the $y$-axis, $y^{2} - 14y - 32 = 0$, with roots $16$ and $-2$. ✓",
+  "distractorRationale": {
+    "a": "This is the half-chord $h = \\sqrt{85 - 4}$, reported without doubling. The perpendicular from the centre to the $y$-axis meets the chord at its midpoint, so the full chord is $2h$.",
+    "b": "This is the length of the chord on the $x$-axis, from $-4$ to $8$, assumed to equal the chord on the $y$-axis. The two chords are equal only when the centre is equally far from both axes; here it is 2 units from the $y$-axis and 7 from the $x$-axis.",
+    "d": "This subtracts the distance instead of its square, taking $h^{2} = r^{2} - d = 85 - 2 = 83$. In the right triangle formed by the centre, the chord's midpoint and a chord endpoint, Pythagoras needs $d^{2} = 4$."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "A circle passes through the points minus 4, 0 and 8, 0, and its centre lies on the line x plus y equals 9. The question asks for the length of the chord the circle cuts on the y-axis. No figure is shown. The choices are 9, 12, 18 and 2 times the square root of 83.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. The points and the line were chosen so that r squared minus d squared is the perfect square 81, keeping the arithmetic exact by hand, and so that the centre is not equidistant from the two axes, which makes the tempting symmetry answer wrong. The centre, radius and chord were checked by a read-only script."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-bocconi-math-author",
+    "reviewer": "blind-reviewer-wave7-bocconi-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-bocconi-math-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The perpendicular bisector of (-4,0),(8,0) is x=2, and it meets x+y=9 at centre (2,7), so r^2=36+49=85. Setting x=0 gives (y-7)^2=81, so y=16 or y=-2 and the chord is 18. [A second, separate blind solve (blind-reviewer-wave7-bocconi-math-run1) reached the same answer: The centre lies on the perpendicular bisector x=2, and x+y=9 then gives the centre (2,7), so r^2=36+49=85. Setting x=0 gives (y-7)^2=81, so y=16 or y=-2 and the chord is 18. The other options do not come from any valid reading.]"
+    },
+    "notes": "Stretch item: harder than a typical hard Bocconi circle item because the equation of the circle is not given; the candidate must locate the centre from two separate conditions (perpendicular bisector and a given line), compute the radius, and then apply the chord-distance relation, four linked steps each of which is ordinary. The strongest distractor, 12, is the correct chord on the other axis. Author's uniqueness check: the perpendicular bisector x = 2 meets x + y = 9 in the single point (2, 7), so the circle is unique, (x - 2)^2 + (y - 7)^2 = 85, and it meets x = 0 at y = -2 and y = 16 only, giving a chord of exactly 18. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "stretch",
+    "circle",
+    "chord-length",
+    "perpendicular-bisector"
+  ]
+}

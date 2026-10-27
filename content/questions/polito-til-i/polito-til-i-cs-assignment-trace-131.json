@@ -1,0 +1,82 @@
+{
+  "id": "polito-til-i-cs-assignment-trace-131",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "technical-knowledge",
+  "domainSlug": "tili-computer-science",
+  "skillSlug": "tili-cs-variables-assignment",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "The Python program below is run. The lines execute once each, in order, and `print` writes its two values on one line, separated by a space.\n\n```\np = 6\nq = 9\np = q\nq = p + 1\nprint(p, q)\n```\n\nWhat does it print?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "6 7"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "9 7"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "9 9"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "9 10"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "10 10"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "In a program, `=` is an **assignment**, not an equation: the right-hand side is worked out with the values the variables have at that moment, and the result is stored in the variable on the left. Nothing is linked afterwards.\n\nTrace the two variables line by line:\n\n| after line | p | q |\n| --- | --- | --- |\n| `p = 6` | 6 | not yet set |\n| `q = 9` | 6 | 9 |\n| `p = q` | 9 | 9 |\n| `q = p + 1` | 9 | 10 |\n\nIn the last assignment `p` is already 9, so `q` becomes 10. The program prints `9 10`.\n\n**Check.** The value 6 was overwritten in the third line and nothing puts it back, so no printed value can come from it: outputs showing 6 or 7 (which is 6 + 1) are impossible.",
+  "distractorRationale": {
+    "a": "Ignores the line `p = q`, so `p` stays 6 and `q` becomes 6 + 1. The third line does run, and it replaces the 6 in `p` with the current value of `q`.",
+    "b": "Works out `p + 1` with the old value of `p` (6). By the time the last assignment runs, `p` already holds 9, and the right-hand side uses that current value.",
+    "c": "Copies `p` into `q` but forgets the `+ 1`, so `q` stays 9 after the last assignment. The last assignment stores `p + 1`, which is 10.",
+    "e": "Treats `p = q` as a permanent link, so that `p` changes whenever `q` changes. An assignment copies the value once; after that `p` and `q` are independent, and `p` stays 9."
+  },
+  "estimatedSeconds": 50,
+  "stimulusRef": null,
+  "accessibilityText": "A Python tracing question. The program sets p to 6, sets q to 9, then sets p to the value of q, then sets q to the value of p plus 1, and finally prints p and q separated by a space. The program text is shown in a code block. What it prints is wanted. The choices are: 6 7; 9 7; 9 9; 9 10; and 10 10.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-wave6-physics-technical-author",
+    "aiAssisted": true,
+    "notes": "Original item. Wrong choices: skipped assignment, stale value, dropped +1, and variables treated as linked."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-wave6-physics-technical-author",
+    "reviewer": "blind-reviewer-wave6-tili-phys-tech-run8",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-phys-tech-run8",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "p=6,q=9; p=q gives p=9; q=p+1 gives q=10; prints 9 10. Other options come from misreading the assignments (such as treating p=q as a swap or a link between the names) and none can be defended. [A second, separate blind solve (blind-reviewer-wave6-tili-phys-tech-run9) reached the same answer: p=6,q=9; p=q gives p=9; q=p+1 gives q=10; prints 9 10. Distractors: 6 7 (q=p+1 using old p), 9 9 (stops before last line), 10 10 (thinks p also updates), 9 7 (mix); none defensible under sequential execution.]"
+    },
+    "notes": "Awaiting a blind independent solve. The author recomputed every option and checked the key a second way before saving (see the explanation)."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "assignment",
+    "tracing",
+    "python"
+  ]
+}

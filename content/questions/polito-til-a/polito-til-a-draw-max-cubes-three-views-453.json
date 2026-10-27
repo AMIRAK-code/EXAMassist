@@ -1,0 +1,87 @@
+{
+  "id": "polito-til-a-draw-max-cubes-three-views-453",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "drawing-representation",
+  "domainSlug": "tila-drawing",
+  "skillSlug": "tila-draw-orthographic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "The table describes a solid built from unit cubes only through three orthographic views: its top view (which squares of the floor grid are occupied), its front view (the tallest stack in each column) and its side view (the tallest stack in each row). Several different solids produce exactly these three views.\n\nWhat is the **greatest** number of cubes that a solid with these three views can contain?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "14"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "15"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "16"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "20"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "27"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "**What to notice first.** Each occupied square is limited by two views at once. Its stack cannot be taller than the front-view height of its column, or the front view would show a taller strip there; and it cannot be taller than the side-view height of its row, for the same reason. So the tallest stack a square can hold is the **smaller** of its column's front height and its row's side height. Empty squares hold nothing.\n\n**The step that settles it.** Give every occupied square that largest allowed height. Front heights by column are 3, 2, 3, 1; side heights by row are 1, 3, 2.\n\n- Row 1 (side height 1): Columns 1, 2 and 4 are occupied, each capped at 1. That gives 1 + 1 + 1 = 3.\n- Row 2 (side height 3): Columns 1, 2 and 3 are occupied, capped at 3, 2 and 3. That gives 3 + 2 + 3 = 8.\n- Row 3 (side height 2): Columns 2, 3 and 4 are occupied, capped at 2, 2 and 1. That gives 2 + 2 + 1 = 5.\n\nThe total is 3 + 8 + 5 = **16**.\n\n**How to check it.** A cap is only an upper limit, so confirm that the fullest solid really shows the three stated views. Column maxima: Column 1 has 1 and 3, so 3; Column 2 has 1, 2, 2, so 2; Column 3 has 3 and 2, so 3; Column 4 has 1 and 1, so 1. Row maxima: 1, 3 and 2. Both match the table, and no occupied square has been left empty, so the top view matches too. No stack can be raised further without breaking a view, so 16 is the greatest possible number.",
+  "distractorRationale": {
+    "a": "This is the least number of cubes the views allow, not the greatest: put 3 cubes in Row 2 at Columns 1 and 3, 2 cubes in Row 3 at Column 2, and 1 cube on each of the other six occupied squares, which gives 14. The question asks for the fullest solid.",
+    "b": "Adds up the heights shown in the two views (3 + 2 + 3 + 1 = 9 and 1 + 3 + 2 = 6). The views give the tallest stack in each column and each row, not numbers of cubes, so their sum does not count cubes.",
+    "d": "Applies the right rule, the smaller of the two view heights, but to all 12 squares, including the three the top view shows as empty. The top view forbids any cube on those squares.",
+    "e": "Fills all 9 occupied squares to the tallest height anywhere, 3 cubes. Most of those stacks would stand taller than their row or column allows, so the front and side views would change."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": {
+    "id": "polito-til-a-table-three-views-481",
+    "version": 1
+  },
+  "accessibilityText": "A spatial question posed through a table, with no drawing. A solid of unit cubes on a floor grid of three rows, front to back, and four columns, left to right, is described by three views. Top view: in Row 1, the front row, Columns 1, 2 and 4 are occupied and Column 3 is empty; in Row 2, Columns 1, 2 and 3 are occupied and Column 4 is empty; in Row 3, the back row, Columns 2, 3 and 4 are occupied and Column 1 is empty. Side view, the tallest stack in each row: Row 1, 1; Row 2, 3; Row 3, 2. Front view, the tallest stack in each column: Column 1, 3; Column 2, 2; Column 3, 3; Column 4, 1. The question asks for the greatest number of cubes a solid with these three views can contain. The choices are 14, 15, 16, 20 and 27.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-polito-til-a-drawing-author",
+    "aiAssisted": true,
+    "notes": "Original item. A brute-force script tried every assignment of 1 to 3 cubes to the nine occupied squares and found 5 solids that reproduce all three views, with totals 14 to 16; the greatest is 16. Distractors: the least total (14), the sum of the view heights (15), the cap rule applied to empty squares too (20), every occupied square filled to height 3 (27)."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-polito-til-a-drawing-author",
+    "reviewer": "blind-reviewer-wave7-tila-logic-drawing-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-tila-logic-drawing-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The most cubes a square can hold is the smaller of its row limit and its column limit. Row 1 gives 1+1+1 = 3, Row 2 gives 3+2+3 = 8 and Row 3 gives 2+2+1 = 5, for 16 in total. This arrangement reproduces all three views (column maxima 3, 2, 3, 1 and row maxima 1, 3, 2), so 16 can actually be built. [A second, separate blind solve (blind-reviewer-wave7-tila-logic-drawing-run1) reached the same answer: The maximum height of each occupied cell is min(row max, column max). Row 1 gives 1+1+1 = 3, Row 2 gives 3+2+3 = 8 and Row 3 gives 2+2+1 = 5, a total of 16. Every row and column maximum is still reached (R1 = 1, R2 = 3, R3 = 2; C1 = 3, C2 = 2, C3 = 3, C4 = 1), so all three views are reproduced.]"
+    },
+    "notes": "Author's uniqueness check: exhaustive enumeration confirms 16 is the maximum over all solids consistent with the three views; 14 is the minimum and appears only as a labelled distractor for the least number. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "orthographic-views",
+    "top-front-side",
+    "reconstruction",
+    "volume",
+    "unit-cubes"
+  ]
+}

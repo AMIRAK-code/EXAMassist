@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-chem-ionic-covalent-901",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "chemistry",
+  "domainSlug": "tolcf-chemistry",
+  "skillSlug": "tolcf-chem-atoms-periodic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which of these compounds contains both ionic bonds and covalent bonds?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\mathrm{NaCl}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\mathrm{NH_4Cl}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\mathrm{HCl}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\mathrm{MgO}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\mathrm{CO_2}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Sort the compounds by what kind of particles they are made of.\n\n- Only **non-metal atoms** joined together, with no ions (as in $\\mathrm{CO_2}$ and $\\mathrm{HCl}$): covalent bonds only.\n- A metal and a non-metal that each form a **single-atom ion** (as in $\\mathrm{NaCl}$ and $\\mathrm{MgO}$): ionic bonds only.\n- A **polyatomic ion** paired with an oppositely charged ion: the atoms inside the polyatomic ion are held by covalent bonds, and the ions are held to each other by ionic bonds. That gives both kinds.\n\n$\\mathrm{NH_4Cl}$ is built from the ammonium ion, $\\mathrm{NH_4^+}$, and the chloride ion, $\\mathrm{Cl^-}$. Inside $\\mathrm{NH_4^+}$ the four N-H bonds are covalent (all four are identical once formed). Between $\\mathrm{NH_4^+}$ and $\\mathrm{Cl^-}$ the attraction is ionic.\n\nThe trap is the shortcut \"all non-metals means covalent\": ammonium chloride contains only non-metals yet is ionic. **Check:** a compound with a charge-carrying group inside its formula (ammonium, hydroxide, sulfate, nitrate) is a candidate for having both kinds of bond.",
+  "distractorRationale": {
+    "a": "Sodium chloride is a metal joined to a non-metal, and it is a purely ionic lattice of $\\mathrm{Na^+}$ and $\\mathrm{Cl^-}$ ions. Neither ion contains a covalent bond, because each is a single atom.",
+    "d": "Magnesium oxide is also a purely ionic lattice, of $\\mathrm{Mg^{2+}}$ and $\\mathrm{O^{2-}}$. A metal and a non-metal that form single-atom ions give only ionic bonding.",
+    "e": "Carbon dioxide is a small molecule with two C=O double bonds, all covalent. The bonds are polar, but a polar covalent bond is still a covalent bond; being polar does not make the compound ionic.",
+    "c": "Hydrogen chloride has one polar covalent bond. It produces ions when it dissolves in water, but the bonding inside the compound itself is covalent only."
+  },
+  "estimatedSeconds": 55,
+  "stimulusRef": null,
+  "accessibilityText": "The question asks which one compound has both ionic and covalent bonds. The compounds are sodium chloride, NaCl; magnesium oxide, MgO; carbon dioxide, C O subscript 2; hydrogen chloride, HCl; and ammonium chloride, N H subscript 4 Cl.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-chemistry-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank (Wave 6, TOLC-F chemistry). Each wrong choice comes from one named misconception, recorded in distractorRationale. Numbers chosen for hand calculation with no calculator; every key was recomputed a second way in the build script."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-chemistry-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-chem-run15",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-chem-run15",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "NH4Cl has covalent N-H bonds inside NH4+ and an ionic bond between NH4+ and Cl-. NaCl and MgO are purely ionic; HCl and CO2 are purely covalent molecules. [A second, separate blind solve (blind-reviewer-wave6-tolcf-chem-run18) reached the same answer: NH4Cl has covalent N-H bonds inside NH4+ and an ionic bond between NH4+ and Cl-. NaCl and MgO are purely ionic, and HCl and CO2 are purely covalent molecules.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication. Key check: only the compound containing a polyatomic cation has both bond types; the other four are ionic-only (NaCl, MgO) or covalent-only (CO2, HCl). Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "ionic-bond",
+    "covalent-bond",
+    "polyatomic-ion"
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "id": "gre-quant-ss-triangle-hexagon-407",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-geometry",
+  "skillSlug": "geom-other-polygons",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "An equilateral triangle and a regular hexagon have the same perimeter.\n\nWhat is the ratio of the area of the triangle to the area of the hexagon?",
+  "instructionsMd": "Select one answer choice.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\frac{1}{3}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\frac{1}{2}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\frac{2}{3}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$1$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\frac{3}{2}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Both shapes can be built from the same small equilateral triangle, which turns the question into counting.\n\n**Step 1: match the sides.** Let the hexagon have side $s$, so its perimeter is $6s$. The triangle has the same perimeter spread over $3$ sides, so each side of the triangle is $2s$.\n\n**Step 2: cut both shapes into unit triangles.** Call an equilateral triangle of side $s$ a unit.\n\n- A regular hexagon of side $s$ splits into $6$ units, one for each side, meeting at the centre.\n- An equilateral triangle of side $2s$ splits into $4$ units: join the midpoints of its sides, which gives three corner triangles and one upside-down triangle in the middle, all of side $s$.\n\n**Step 3: compare.** The ratio of the triangle's area to the hexagon's is $\\frac{4}{6} = \\frac{2}{3}$.\n\n**How to check with formulas.** An equilateral triangle of side $t$ has area $\\frac{\\sqrt{3}}{4}t^{2}$. The big triangle has area $\\frac{\\sqrt{3}}{4}(2s)^{2} = \\sqrt{3}\\,s^{2}$, and the hexagon has area $6 \\times \\frac{\\sqrt{3}}{4}s^{2} = \\frac{3\\sqrt{3}}{2}s^{2}$. Dividing gives $\\sqrt{3} \\div \\frac{3\\sqrt{3}}{2} = \\frac{2}{3}$. Notice that doubling the side multiplies the area by $4$, not by $2$; that is where most wrong answers on this item come from. Also, the ratio is less than $1$, as it should be: for a fixed perimeter, a regular polygon with more sides encloses more area.",
+  "distractorRationale": {
+    "a": "Reached by assuming that doubling the side doubles the area, so the big triangle counts as $2$ units against the hexagon's $6$. Area scales with the square of length, so doubling the side multiplies the area by $4$.",
+    "b": "Reached by dividing the big triangle into its three corner triangles and missing the fourth, upside-down triangle in the middle, which gives $\\frac{3}{6}$.",
+    "d": "Reached by assuming that shapes with equal perimeters have equal areas. Perimeter does not fix area; for a fixed perimeter, a regular polygon with more sides encloses more area.",
+    "e": "This is the ratio the other way round, the hexagon's area to the triangle's, $\\frac{6}{4}$. The question asks for the triangle's area first."
+  },
+  "estimatedSeconds": 105,
+  "stimulusRef": null,
+  "accessibilityText": "An equilateral triangle and a regular six-sided hexagon have equal perimeters. Find the ratio of the triangle's area to the hexagon's area. The five choices are 1, 1 over 2, 1 over 3, 2 over 3, and 3 over 2.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-gre-quant-author",
+    "aiAssisted": true,
+    "notes": "Original item written for wave 7. The dissection into unit triangles gives a fast exact route; the distractors come from linear area scaling, an incomplete dissection, equal-perimeter-equal-area, and the inverted ratio. Not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-gre-quant-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved: hexagon side s, triangle side 2s; triangle = 4 unit triangles, hexagon = 6, ratio 2/3. Formula check sqrt(3) s^2 divided by (3 sqrt(3)/2) s^2 = 2/3; a script confirmed 0.6667. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "polygons",
+    "area-ratio",
+    "equilateral-triangle",
+    "regular-hexagon"
+  ]
+}

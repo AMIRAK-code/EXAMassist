@@ -1,0 +1,61 @@
+{
+  "id": "digital-sat-math-area-volume-spr-437",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "geometry-and-trigonometry",
+  "skillSlug": "area-and-volume",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A closed box in the shape of a right rectangular prism has a square base and a height of $10$ inches. The volume of the box is $360$ cubic inches. What is the total surface area, in square inches, of the box?",
+  "instructionsMd": "Student-produced response. Enter your answer in the box. Do not enter symbols such as a percent sign, comma, or dollar sign.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 312
+      }
+    ],
+    "acceptedStrings": [
+      "312"
+    ]
+  },
+  "explanationMd": "The surface area needs the side of the square base, which the stem does not give directly. Recover it from the volume first.\n\nLet $s$ be the side of the base. The volume of a prism is base area times height:\n\n$$s^2 \\times 10 = 360 \\;\\Rightarrow\\; s^2 = 36 \\;\\Rightarrow\\; s = 6$$\n\nA closed box has six faces:\n\n- two square faces (top and bottom), each $6 \\times 6 = 36$ square inches;\n- four rectangular side faces, each $6 \\times 10 = 60$ square inches.\n\n$$\\text{surface area} = 2(36) + 4(60) = 72 + 240 = 312$$\n\nCheck the volume with the side found: $6 \\times 6 \\times 10 = 360$ cubic inches, as given.\n\nThe word *closed* is doing work in the stem. Leaving out the top gives $276$; leaving out both square faces gives $240$. A box that is closed has all six faces.",
+  "distractorRationale": {},
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A closed box shaped like a right rectangular prism has a square base and a height of 10 inches, and its volume is 360 cubic inches. Find its total surface area in square inches. Enter a number.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-sat-math-data-geo-author",
+    "aiAssisted": true,
+    "notes": "Original item. The volume was chosen so that the base side is a whole number found by a square root."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-sat-math-data-geo-author",
+    "reviewer": "blind-reviewer-wave7-sat-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-sat-math-run0",
+      "solvedAnswer": "312",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The base area is 360/10 = 36, so each base side is 6. Surface area = 2(36) + 4(6)(10) = 72 + 240 = 312. [A second, separate blind solve (blind-reviewer-wave7-sat-math-run1) reached the same answer: The base area is 360/10 = 36, so each base side is 6. The surface area is 2(36) + 4(6)(10) = 72 + 240 = 312.]"
+    },
+    "notes": "Author solved twice: s^2 x 10 = 360 gives s = 6 (the positive root); surface area 2(36) + 4(60) = 312. Verified with a read-only script. Awaiting a blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "geometry",
+    "surface-area",
+    "volume",
+    "student-produced-response"
+  ]
+}

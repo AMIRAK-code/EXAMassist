@@ -1,0 +1,82 @@
+{
+  "id": "tolc-i-fun-domain-root-over-linear-122",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-analytic-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the domain of the real function $f(x) = \\dfrac{\\sqrt{4 - x^{2}}}{x - 1}$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$x \\le -2$ or $x \\ge 2$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$-2 < x < 2$ with $x \\ne 1$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$x \\le 2$ with $x \\ne 1$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$-2 \\le x \\le 2$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$-2 \\le x \\le 2$ with $x \\ne 1$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Write down every condition the formula imposes and keep the values of $x$ that satisfy all of them.\n\n**Condition 1 — the square root.** Its argument must be non-negative: $4 - x^{2} \\ge 0$, that is $x^{2} \\le 4$, which holds for $-2 \\le x \\le 2$. The endpoints are allowed, because $\\sqrt{0} = 0$ is defined.\n\n**Condition 2 — the denominator.** It must not be zero: $x \\ne 1$.\n\nTogether: $-2 \\le x \\le 2$ with $x \\ne 1$.\n\n**Check.** $f(2) = \\frac{0}{1} = 0$ is defined; $f(1)$ has a zero denominator; $f(3)$ would need $\\sqrt{-5}$, which is not real.",
+  "distractorRationale": {
+    "b": "Excludes $x = \\pm 2$, treating the condition on the root as strict; at those points the root is $\\sqrt{0} = 0$, which is defined and sits in the numerator.",
+    "d": "Handles the square root but forgets that the denominator $x - 1$ vanishes at $x = 1$.",
+    "c": "Solves $x^{2} \\le 4$ as $x \\le 2$, keeping only one side of the inequality; for $x = -3$ the argument $4 - 9$ is negative.",
+    "a": "Reverses the inequality: $x \\le -2$ or $x \\ge 2$ is where $4 - x^{2} \\le 0$, so apart from $\\pm 2$ the root is not real there."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "What is the domain of the real function f of x equals the square root of 4 minus x squared, all divided by x minus 1? The five choices are: x less than or equal to minus 2 or x greater than or equal to 2; x strictly between minus 2 and 2, with x different from 1; x less than or equal to 2, with x different from 1; x between minus 2 and 2, endpoints included; x between minus 2 and 2, endpoints included, with x different from 1.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-math-b-author",
+    "aiAssisted": true,
+    "notes": "Tests the domain of a function with a square root in the numerator and a linear denominator. Original item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-math-b-author",
+    "reviewer": "blind-reviewer-wave8-tolci-math-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-math-run0",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "4-x^2>=0 gives -2<=x<=2, and x≠1 removes the zero of the denominator. Option D forgets x≠1; option B wrongly excludes the endpoints, where the root is 0 and still defined; A and C are wrong. [A second, separate blind solve (blind-reviewer-wave8-tolci-math-run1) reached the same answer: 4-x^2>=0 gives -2<=x<=2, and the denominator excludes x=1. '-2<=x<=2' alone forgets the denominator, the open interval wrongly drops x=+-2 (where the value is 0 and allowed), and 'x<=-2 or x>=2' inverts the inequality.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "domain",
+    "square-root",
+    "rational-function"
+  ]
+}

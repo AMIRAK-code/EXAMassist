@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-chem-propane-combustion-balance-933",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "chemistry",
+  "domainSlug": "tolcf-chemistry",
+  "skillSlug": "tolcf-chem-stoichiometry-redox",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The equation for the complete combustion of propane, $\\mathrm{C_3H_8}$, in oxygen to give carbon dioxide and water is balanced using the smallest whole-number coefficients. What is the coefficient of $\\mathrm{O_2}$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "3"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "4"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "5"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "7"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "10"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Balance the elements in the order C, then H, then O, leaving the element that appears as a free element ($\\mathrm{O_2}$) until last.\n\n1. **Carbon:** 3 C atoms in propane, so $3\\,\\mathrm{CO_2}$.\n2. **Hydrogen:** 8 H atoms, so $4\\,\\mathrm{H_2O}$.\n3. **Oxygen:** on the right there are $3 \\times 2 + 4 \\times 1 = 10$ O atoms, so $10 \\div 2 = 5$ molecules of $\\mathrm{O_2}$.\n\n$$\\mathrm{C_3H_8} + 5\\,\\mathrm{O_2} \\rightarrow 3\\,\\mathrm{CO_2} + 4\\,\\mathrm{H_2O}$$\n\n**Check:** C $3 = 3$; H $8 = 8$; O $10 = 6 + 4$. The coefficients 1, 5, 3, 4 have no common factor, so they are the smallest whole numbers.",
+  "distractorRationale": {
+    "a": "3 is the coefficient of $\\mathrm{CO_2}$, which comes from balancing carbon. Oxygen must also supply the oxygen in the water.",
+    "b": "4 is the coefficient of $\\mathrm{H_2O}$, from balancing hydrogen, not of $\\mathrm{O_2}$.",
+    "d": "This adds the numbers of product molecules, $3 + 4 = 7$, instead of counting oxygen atoms. A molecule of $\\mathrm{CO_2}$ holds two O atoms and a water molecule only one.",
+    "e": "Ten is the number of oxygen ATOMS needed. Each $\\mathrm{O_2}$ molecule supplies two, so only 5 molecules are required."
+  },
+  "estimatedSeconds": 50,
+  "stimulusRef": null,
+  "accessibilityText": "A short text question. Propane, C 3 H 8, burns completely in oxygen to give carbon dioxide and water, and the equation is balanced with the smallest whole-number coefficients. The question asks the coefficient of O 2. The choices are 3, 4, 5, 7 and 10.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave8-biochem-author",
+    "aiAssisted": true,
+    "notes": "Original item. Tests balancing a hydrocarbon combustion equation by atom counting."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave8-biochem-author",
+    "reviewer": "blind-reviewer-wave8-tolcf-biochem-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolcf-biochem-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "C3H8 + 5 O2 -> 3 CO2 + 4 H2O: O on the right = 6 + 4 = 10 atoms = 5 O2. 3 and 4 are the CO2 and H2O coefficients, 10 is the oxygen atom count, and 7 fits no balancing. [A second, separate blind solve (blind-reviewer-wave8-tolcf-biochem-run1) reached the same answer: C3H8 + 5O2 -> 3CO2 + 4H2O, with 10 O on each side, so the coefficient is 5. 10 would need doubled, non-minimal coefficients; 3, 4 and 7 do not balance O.]"
+    },
+    "notes": ""
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "balancing-equations",
+    "combustion"
+  ]
+}

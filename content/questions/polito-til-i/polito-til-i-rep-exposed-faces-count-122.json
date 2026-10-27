@@ -1,0 +1,86 @@
+{
+  "id": "polito-til-i-rep-exposed-faces-count-122",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "technical-knowledge",
+  "domainSlug": "tili-representation",
+  "skillSlug": "tili-rep-projections",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "The table gives the height map of a solid built from unit cubes. Every face of the solid that is not resting on the floor and is not touching another cube is painted, including faces that look onto an empty square of the grid. Each cube face is one unit square.\n\nHow many unit squares are painted?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "28"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "35"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "42"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "51"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "66"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Count what is exposed, direction by direction.\n\n**Top faces.** Every non-empty square shows exactly one top face. There are 7 non-empty squares, so 7 tops.\n\n**Side faces.** For each stack, a side face is painted only where the neighbouring square, or the outside of the grid, is lower. For each of a stack's four sides add up how much higher the stack is than that neighbour:\n\n- Row 1: the stack of 2 exposes 2 + 2 + 1 + 1 = 6 faces; the stack of 1 exposes 2; the empty square exposes 0.\n- Row 2: the stack of 1 exposes 2; the centre stack of 3 exposes 2 on each of its four sides = 8; the stack of 1 exposes 2.\n- Row 3: the empty square exposes 0; the stack of 1 exposes 2; the stack of 2 exposes 6.\n\nThe sides total 6 + 2 + 2 + 8 + 2 + 2 + 6 = 28, and 28 + 7 = 35 painted squares.\n\n**Check by views.** The top view shows 7 squares. Each of the four side views shows a silhouette of 2 + 3 + 2 = 7 squares (for example the front view, taking the tallest stack in each column, is 2, 3, 2). No row or column of the table falls and then rises again (each one only rises, only falls, or rises and then falls), so along every line the side faces painted in one direction add up exactly to the tallest stack in that line, which is what that side view shows. So 7 + 4 × 7 = 35 agrees.",
+  "distractorRationale": {
+    "a": "Counts only the side faces (28) and forgets the seven top faces, which are also exposed and painted.",
+    "c": "Also counts the seven faces that rest on the floor (35 + 7 = 42). Those are not painted, because the question excludes faces resting on the floor.",
+    "d": "Counts all four side faces of every cube (4 × 11 = 44) plus the 7 tops. This includes side faces that press against a neighbouring stack, which are hidden and so are not painted.",
+    "e": "Counts six faces for each of the 11 cubes (6 × 11 = 66), as if every cube stood alone. Cubes in a stack and in touching stacks hide most of their faces."
+  },
+  "estimatedSeconds": 160,
+  "stimulusRef": {
+    "id": "polito-til-i-rep-heightmap-faces-182",
+    "version": 1
+  },
+  "accessibilityText": "A spatial counting question posed through a table, with no drawing. The table is a height map of a solid made of 11 unit cubes on a grid of three rows and three columns, each number being the cubes stacked on that square. Row 1, front: 2, 1, 0. Row 2: 1, 3, 1. Row 3, back: 0, 1, 2. All faces that are not on the floor and do not touch another cube are painted, including those facing empty squares. The number of painted unit squares is wanted. The choices are 28, 35, 42, 51 and 66.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-wave6-physics-technical-author",
+    "aiAssisted": true,
+    "notes": "Original item, posed as a table because the site cannot show drawings. Checked by an explicit face count and by summing five orthographic views. Wrong choices: no tops, floor faces included, hidden side faces counted, six faces per cube."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-wave6-physics-technical-author",
+    "reviewer": "blind-reviewer-wave6-tili-phys-tech-run8",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-phys-tech-run8",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Top faces: 7 non-empty stacks. Side faces: 12 on the outer boundary + 8 between neighbours in the same row + 8 between neighbours in the same column = 28. Total = 35. 28 counts the side faces only; the stem clearly says faces looking onto empty squares count, and bottom faces are excluded. [A second, separate blind solve (blind-reviewer-wave6-tili-phys-tech-run9) reached the same answer: 7 non-empty stacks give 7 top faces. Side faces = sum of |height differences| across every edge including grid boundary (height 0): rows 4+6+4, columns 4+6+4 = 28. Total 35. 28 is sides only; 42/51/66 overcount (e.g. counting hidden faces or bottoms).]"
+    },
+    "notes": "Awaiting a blind independent solve. The author recomputed every option and checked the key a second way before saving (see the explanation)."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "exposed-faces",
+    "surface-area",
+    "height-map",
+    "orthographic-views"
+  ]
+}

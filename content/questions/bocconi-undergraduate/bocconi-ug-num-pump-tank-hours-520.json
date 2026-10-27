@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-num-pump-tank-hours-520",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-numbers-unit-conversion",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A pump delivers water at a constant rate of $45$ litres per minute. It is used to fill an empty tank with a capacity of $8.1$ cubic metres.\n\nHow many hours does it take to fill the tank?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$0.3$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$3$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$30$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$180$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Put the capacity and the rate in the same volume unit, find the time in minutes, then convert to hours.\n\n**Step 1 — volume in litres.** One cubic metre is $1000$ litres (a cube of side $10$ dm holds $10^{3}$ dm³), so\n\n$$8.1 \\text{ m}^{3} = 8100 \\text{ L}$$\n\n**Step 2 — time in minutes.**\n\n$$\\frac{8100 \\text{ L}}{45 \\text{ L/min}} = 180 \\text{ min}$$\n\n**Step 3 — time in hours.** $180 \\div 60 = 3$ hours.\n\n**Check.** In one hour the pump delivers $45 \\times 60 = 2700$ L $= 2.7$ m³, and $3 \\times 2.7 = 8.1$ m³. ✓",
+  "distractorRationale": {
+    "a": "This uses $1$ m³ $= 100$ L, so the tank seems to hold $810$ L, which takes $18$ minutes, or $0.3$ hours. A cubic metre is $1000$ litres.",
+    "c": "This uses $1$ m³ $= 10\\,000$ L, so the tank seems to hold $81\\,000$ L, which takes $1800$ minutes, or $30$ hours. A cubic metre is $1000$ litres.",
+    "d": "This is the time in **minutes**, $8100 \\div 45$. The question asks for hours, so divide by $60$."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "A pump delivers 45 litres of water per minute and fills an empty tank of capacity 8.1 cubic metres. The question asks how many hours this takes. The choices are the numbers 0.3, 3, 30 and 180.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. It tests converting between cubic metres and litres and between minutes and hours within one rate calculation."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-math-author",
+    "reviewer": "blind-reviewer-wave8-bocug-math-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-bocug-math-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "8.1 m^3 = 8100 L; 8100/45 = 180 min = 3 h. 180 is the minutes value; 0.3 and 30 are factor-of-10 unit slips. [A second, separate blind solve (blind-reviewer-wave8-bocug-math-run1) reached the same answer: 8.1 m^3=8100 L; 8100/45=180 min=3 h. 180 is the answer in minutes, and 0.3 and 30 come from conversion slips by a factor of 10.]"
+    },
+    "notes": "Author's uniqueness check: 8100 / 45 = 180 minutes = 3 hours exactly; the distractors are produced by wrong cubic-metre factors (100 or 10 000 litres) and by leaving the answer in minutes. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "unit-conversion",
+    "volume",
+    "rates"
+  ]
+}

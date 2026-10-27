@@ -25,9 +25,9 @@ const SAT = requireExamConfig('digital-sat');
 let db: Db;
 let learner: string;
 
-beforeEach(() => {
-  db = createTestDb();
-  learner = createUser(db);
+beforeEach(async () => {
+  db = (await createTestDb());
+  learner = (await createUser(db));
 });
 
 describe('the routing rule itself', () => {
@@ -62,42 +62,42 @@ describe('the routing rule itself', () => {
 });
 
 describe('routing inside a real attempt', () => {
-  function startSimulation() {
+  async function startSimulation() {
     // The full simulation needs 98 distinct items across four modules.
-    seedQuestions(db, SAT, { perDomain: 40 });
-    return startAttempt(db, {
+    (await seedQuestions(db, SAT, { perDomain: 40 }));
+    return (await startAttempt(db, {
       userId: learner,
       examKey: SAT.examKey,
       blueprintId: 'simulation-full',
-    }).attemptId;
+    })).attemptId;
   }
 
-  function answerPart(attemptId: string, partIndex: number, correctCount: number) {
-    const state = getAttemptState(db, attemptId, learner);
+  async function answerPart(attemptId: string, partIndex: number, correctCount: number) {
+    const state = (await getAttemptState(db, attemptId, learner));
     const part = state.parts.find((p) => p.partIndex === partIndex);
     if (!part) throw new Error(`part ${partIndex} missing`);
 
-    part.items.forEach((item, index) => {
-      recordResponse(db, {
+    (await Promise.all(part.items.map(async (item, index) => {
+      (await recordResponse(db, {
         attemptId,
         userId: learner,
         partIndex,
         position: item.position,
         // "a" is the seeded correct answer; "b" is wrong.
         response: { type: 'single_select', optionId: index < correctCount ? 'a' : 'b' },
-      });
-    });
+      }));
+    })));
     return part.items.length;
   }
 
-  it('records an upward route after a strong routing module', () => {
-    const attemptId = startSimulation();
-    const total = answerPart(attemptId, 0, 27); // all correct
+  it('records an upward route after a strong routing module', async () => {
+    const attemptId = (await startSimulation());
+    const total = (await answerPart(attemptId, 0, 27)); // all correct
     expect(total).toBe(27);
 
-    submitPart(db, { attemptId, userId: learner, partIndex: 0 });
+    (await submitPart(db, { attemptId, userId: learner, partIndex: 0 }));
 
-    const state = getAttemptState(db, attemptId, learner);
+    const state = (await getAttemptState(db, attemptId, learner));
     const routed = state.parts[1];
     expect(routed.status).toBe('in_progress');
     expect(routed.routing).not.toBeNull();
@@ -106,30 +106,30 @@ describe('routing inside a real attempt', () => {
     expect(routed.routing?.disclosure.length).toBeGreaterThan(20);
   });
 
-  it('records a downward route after a weak routing module', () => {
-    const attemptId = startSimulation();
-    answerPart(attemptId, 0, 0); // all wrong
-    submitPart(db, { attemptId, userId: learner, partIndex: 0 });
+  it('records a downward route after a weak routing module', async () => {
+    const attemptId = (await startSimulation());
+    (await answerPart(attemptId, 0, 0)); // all wrong
+    (await submitPart(db, { attemptId, userId: learner, partIndex: 0 }));
 
-    const routed = getAttemptState(db, attemptId, learner).parts[1];
+    const routed = (await getAttemptState(db, attemptId, learner)).parts[1];
     expect(routed.routing?.route).toBe('lower');
     expect(routed.routing?.accuracy).toBe(0);
   });
 
-  it('actually changes the difficulty of the routed module', () => {
-    const attemptId = startSimulation();
-    answerPart(attemptId, 0, 27);
-    submitPart(db, { attemptId, userId: learner, partIndex: 0 });
+  it('actually changes the difficulty of the routed module', async () => {
+    const attemptId = (await startSimulation());
+    (await answerPart(attemptId, 0, 27));
+    (await submitPart(db, { attemptId, userId: learner, partIndex: 0 }));
 
     const hardCount = (
-      db
+      (await db
         .prepare(
           `SELECT COUNT(*) AS n
            FROM attempt_items ai
            JOIN question_versions qv ON qv.id = ai.question_version_id
            WHERE ai.attempt_id = ? AND ai.part_index = 1 AND qv.difficulty = 'hard'`,
         )
-        .get(attemptId) as { n: number }
+        .get(attemptId)) as { n: number }
     ).n;
 
     // The upper route asks for roughly half hard items; the pool is an even
@@ -137,14 +137,14 @@ describe('routing inside a real attempt', () => {
     expect(hardCount).toBeGreaterThan(8);
   });
 
-  it('never reuses a question from the routing module in the routed module', () => {
-    const attemptId = startSimulation();
-    answerPart(attemptId, 0, 27);
-    submitPart(db, { attemptId, userId: learner, partIndex: 0 });
+  it('never reuses a question from the routing module in the routed module', async () => {
+    const attemptId = (await startSimulation());
+    (await answerPart(attemptId, 0, 27));
+    (await submitPart(db, { attemptId, userId: learner, partIndex: 0 }));
 
-    const rows = db
+    const rows = (await db
       .prepare('SELECT part_index, question_id FROM attempt_items WHERE attempt_id = ? AND part_index IN (0, 1)')
-      .all(attemptId) as Array<{ part_index: number; question_id: string }>;
+      .all(attemptId)) as Array<{ part_index: number; question_id: string }>;
 
     const first = new Set(rows.filter((r) => r.part_index === 0).map((r) => r.question_id));
     const second = rows.filter((r) => r.part_index === 1).map((r) => r.question_id);
@@ -153,14 +153,14 @@ describe('routing inside a real attempt', () => {
     for (const id of second) expect(first.has(id)).toBe(false);
   });
 
-  it('persists the routing decision so results can attribute it to us', () => {
-    const attemptId = startSimulation();
-    answerPart(attemptId, 0, 27);
-    submitPart(db, { attemptId, userId: learner, partIndex: 0 });
+  it('persists the routing decision so results can attribute it to us', async () => {
+    const attemptId = (await startSimulation());
+    (await answerPart(attemptId, 0, 27));
+    (await submitPart(db, { attemptId, userId: learner, partIndex: 0 }));
 
-    const stored = db
+    const stored = (await db
       .prepare('SELECT routing_json FROM attempt_parts WHERE attempt_id = ? AND part_index = 1')
-      .get(attemptId) as { routing_json: string | null };
+      .get(attemptId)) as { routing_json: string | null };
 
     expect(stored.routing_json).not.toBeNull();
     const decision = JSON.parse(stored.routing_json as string) as Record<string, unknown>;
@@ -168,22 +168,22 @@ describe('routing inside a real attempt', () => {
     expect(typeof decision.disclosure).toBe('string');
 
     // The routing event is in the audit trail too.
-    const events = db
+    const events = (await db
       .prepare("SELECT payload_json FROM attempt_events WHERE attempt_id = ? AND type = 'part.started'")
-      .all(attemptId) as Array<{ payload_json: string }>;
+      .all(attemptId)) as Array<{ payload_json: string }>;
     expect(events.some((e) => e.payload_json.includes('"route"'))).toBe(true);
   });
 
-  it('leaves a non-adaptive part with no routing record', () => {
-    seedQuestions(db, SAT, { perDomain: 40 });
-    const attemptId = startAttempt(db, {
+  it('leaves a non-adaptive part with no routing record', async () => {
+    (await seedQuestions(db, SAT, { perDomain: 40 }));
+    const attemptId = (await startAttempt(db, {
       userId: learner,
       examKey: SAT.examKey,
       blueprintId: 'diagnostic',
-    }).attemptId;
+    })).attemptId;
 
-    submitPart(db, { attemptId, userId: learner, partIndex: 0 });
-    const state = getAttemptState(db, attemptId, learner);
+    (await submitPart(db, { attemptId, userId: learner, partIndex: 0 }));
+    const state = (await getAttemptState(db, attemptId, learner));
     expect(state.parts[1].routing).toBeNull();
   });
 });

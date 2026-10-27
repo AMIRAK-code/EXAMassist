@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-prob-committee-restriction-707",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolcf-mathematics",
+  "skillSlug": "tolcf-math-probability",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A committee of 3 people is to be chosen from a group of 6 people. Two of them, Ilaria and Marco, refuse to serve together. In how many ways can the committee be chosen?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$4$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$12$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$16$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$20$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$24$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Count all committees, then remove the forbidden ones.\n\n**Step 1 — all committees.** $\\binom{6}{3} = \\dfrac{6\\cdot 5\\cdot 4}{3\\cdot 2\\cdot 1} = 20$.\n\n**Step 2 — forbidden committees.** Those containing both Ilaria and Marco have one more member, chosen from the other 4 people: 4 committees.\n\n**Step 3 — subtract.** $20 - 4 = 16$.\n\n**How to check it by cases.** Neither of the two: $\\binom{4}{3} = 4$. Exactly one of the two: $2 \\times \\binom{4}{2} = 2\\times 6 = 12$. Total $4 + 12 = 16$ ✓.",
+  "distractorRationale": {
+    "a": "Counts only the forbidden committees: Ilaria and Marco together, plus any one of the other four people.",
+    "b": "Counts the committees with exactly one of the two ($2\\times\\binom{4}{2}=12$) but leaves out the committees with neither, $\\binom{4}{3}=4$.",
+    "d": "Counts all committees of 3 from 6, $\\binom{6}{3}$, and ignores the restriction.",
+    "e": "Finds the 20 unrestricted committees and the 4 forbidden ones, then adds them instead of subtracting."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "A committee of 3 people is chosen from a group of 6 people. Two of the six, Ilaria and Marco, refuse to serve together. The question asks in how many ways the committee can be chosen. The five choices are 4, 12, 16, 20 and 24.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-tolc-f-mathematics-author",
+    "aiAssisted": true,
+    "notes": "Original item. Complement counting; the case-by-case count is given as an independent check. Distractors: only the forbidden set, one case missing, no restriction, and adding instead of subtracting."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-tolc-f-mathematics-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-math-phys-run14",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-math-phys-run14",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "C(6,3) = 20 total, and committees containing both Ilaria and Marco number C(4,1) = 4, so 20-4 = 16. Direct check: 4 with neither + 6 with Ilaria only + 6 with Marco only = 16. Option 20 ignores the restriction and 4 is the excluded count. [A second, separate blind solve (blind-reviewer-wave6-tolcf-math-phys-run16) reached the same answer: C(6,3) = 20 minus the committees containing both of them, C(4,1) = 4, gives 16. Case check: neither of them gives C(4,3) = 4, and exactly one gives 2 x C(4,2) = 12, total 16. 20 ignores the restriction.]"
+    },
+    "notes": "Author check: the key was computed and then confirmed a second way (see the check in the explanation); each wrong choice was tried against the stem and fails for the reason given in its distractor note. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "combinations",
+    "complement-counting"
+  ]
+}

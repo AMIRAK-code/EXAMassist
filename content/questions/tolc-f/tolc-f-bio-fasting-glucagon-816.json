@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-bio-fasting-glucagon-816",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "biology",
+  "domainSlug": "tolcf-biology",
+  "skillSlug": "tolcf-bio-anatomy-physiology",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A student has eaten nothing for twelve hours and her blood glucose concentration has fallen slightly below its usual level. Which hormonal response brings it back up?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The pancreas releases insulin, which makes the liver break down glycogen and release glucose."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The pancreas releases insulin, which makes cells take up glucose from the blood."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The pancreas releases glucagon, which makes the liver break down glycogen and release glucose into the blood."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The posterior pituitary releases antidiuretic hormone, which makes the kidney reabsorb glucose."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The pancreas releases glucagon, which makes muscle and fat cells take up more glucose from the blood."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Blood glucose is kept steady by negative feedback between two pancreatic hormones with opposite effects.\n\n- After a meal, glucose rises. Insulin makes cells take up glucose and makes the liver and muscle store it as glycogen, which lowers the concentration.\n- During fasting, glucose falls. Glucagon from the alpha cells of the pancreas acts on the liver, which breaks down glycogen and releases glucose into the blood, raising the concentration.\n\nAsk two questions: which direction does the hormone push, and is that the direction the situation needs? Here the glucose is low, so the answer must be glucagon acting on the liver. Antidiuretic hormone controls water balance, not glucose.",
+  "distractorRationale": {
+    "a": "Insulin lowers blood glucose. The liver is the right organ, but the hormone that acts on it to release glucose is glucagon.",
+    "e": "Glucagon raises blood glucose. Making cells take up glucose is the effect of insulin, which would lower the concentration further.",
+    "d": "Antidiuretic hormone acts on the kidney to conserve water. It does not regulate blood glucose.",
+    "b": "This describes the correct kind of mechanism for the opposite situation, a high blood glucose after a meal. Here it would lower glucose further."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "A short text question with no figure. A student who has fasted for twelve hours has blood glucose slightly below normal, and the question asks which hormonal response brings it back up. The five choices each name a hormone and its effect: insulin making the liver break down glycogen and release glucose; insulin making cells take up glucose; glucagon making the liver break down glycogen and release glucose into the blood; antidiuretic hormone making the kidney reabsorb glucose; glucagon making muscle and fat cells take up more glucose.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item on blood glucose regulation. The four wrong options pair each wrong hormone or wrong effect, so both the hormone and the direction have to be right."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-bio-run17",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-bio-run17",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Low blood glucose triggers pancreatic alpha cells to release glucagon, which drives liver glycogenolysis and glucose release. A and B name insulin, which lowers glucose. D is wrong because ADH regulates water, not glucose. E gives glucagon an action that belongs to insulin. [A second, separate blind solve (blind-reviewer-wave6-tolcf-bio-run19) reached the same answer: Low blood glucose makes the pancreas release glucagon, which drives glycogenolysis in the liver and glucose release. Options a and b give insulin, which lowers glucose. Option e gives glucagon the wrong effect. ADH has nothing to do with glucose, so d is wrong.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "endocrine",
+    "glucagon",
+    "homeostasis"
+  ]
+}

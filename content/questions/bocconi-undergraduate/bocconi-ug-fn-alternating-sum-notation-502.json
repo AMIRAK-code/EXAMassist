@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-ug-fn-alternating-sum-notation-502",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-functions-notation",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the value of\n\n$$\\sum_{k=2}^{5} (-1)^{k}\\, k \\;?$$",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$-3$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$-2$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$2$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$14$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Read the notation term by term: $k$ takes the whole-number values from $2$ to $5$ inclusive, and each term is $k$ with sign $(-1)^{k}$, which is $+1$ when $k$ is even and $-1$ when $k$ is odd.\n\n| $k$ | $2$ | $3$ | $4$ | $5$ |\n| --- | --- | --- | --- | --- |\n| $(-1)^{k} k$ | $+2$ | $-3$ | $+4$ | $-5$ |\n\nAdding: $2 - 3 + 4 - 5 = -2$.\n\n**Check by pairing.** Group consecutive terms: $(2 - 3) + (4 - 5) = (-1) + (-1) = -2$. ✓",
+  "distractorRationale": {
+    "c": "This reverses every sign, treating $(-1)^{k}$ as negative for even $k$. Since $(-1)^{2} = +1$, the first term is $+2$, and the total is $-2$.",
+    "d": "This ignores the factor $(-1)^{k}$ and simply adds $2 + 3 + 4 + 5$. The factor makes the odd-indexed terms negative.",
+    "a": "This starts the sum at $k = 1$, adding an extra term $(-1)^{1} \\cdot 1 = -1$. The lower limit of the sum is $k = 2$."
+  },
+  "estimatedSeconds": 40,
+  "stimulusRef": null,
+  "accessibilityText": "Find the value of the sum, for k from 2 to 5, of minus 1 to the power k, times k. The choices are the numbers minus 3, minus 2, 2 and 14.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. It tests reading summation notation with an alternating sign factor and a lower limit other than 1."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-math-author",
+    "reviewer": "blind-reviewer-wave8-bocug-math-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-bocug-math-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Terms k=2..5: +2-3+4-5 = -2. +2 has the signs flipped, 14 ignores signs, -3 drops/misindexes a term. [A second, separate blind solve (blind-reviewer-wave8-bocug-math-run1) reached the same answer: 2-3+4-5=-2. 2 has the wrong sign convention (starting with -2), 14 ignores the signs, and -3 is a partial-sum slip.]"
+    },
+    "notes": "Author's uniqueness check: the four terms are +2, -3, +4, -5 with total -2; the other choices come from flipping all signs, dropping the signs, or starting at k = 1. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "sigma-notation",
+    "alternating-sum"
+  ]
+}

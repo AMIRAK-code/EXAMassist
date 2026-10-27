@@ -1,0 +1,77 @@
+{
+  "id": "gre-quant-qc-sd-added-values-404",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-data-analysis",
+  "skillSlug": "data-descriptive-statistics",
+  "subskillSlug": null,
+  "responseType": "quantitative_comparison",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "List $L$ consists of $7$ numbers whose arithmetic mean is $20$ and whose standard deviation is $4$. List $M$ consists of the $7$ numbers in list $L$ together with the two numbers $16$ and $24$.\n\n| Quantity A | Quantity B |\n| --- | --- |\n| The standard deviation of list $L$ | The standard deviation of list $M$ |",
+  "instructionsMd": "Compare Quantity A and Quantity B and select the one statement that is true for every value consistent with the information given.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Quantity A is greater."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Quantity B is greater."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The two quantities are equal."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The relationship cannot be determined from the information given."
+    }
+  ],
+  "answerKey": {
+    "type": "quantitative_comparison",
+    "choice": "C"
+  },
+  "explanationMd": "You do not know the seven numbers in list $L$, but you do not need them. The standard deviation depends only on how far the values sit from the mean, so track two things: the mean, and the total of the squared distances from it.\n\n**Step 1: the mean does not move.** The two new numbers average $\\frac{16 + 24}{2} = 20$, the same as the old mean. So list $M$ still has mean $20$:\n\n$$\\frac{7 \\times 20 + 16 + 24}{9} = \\frac{180}{9} = 20.$$\n\n**Step 2: the squared distances.** The standard deviation is the square root of the average squared distance from the mean. For list $L$, that average is $4^{2} = 16$, so the seven squared distances total $7 \\times 16 = 112$.\n\nEach new number is exactly $4$ from the mean, so each adds a squared distance of $16$. For list $M$:\n\n$$\\text{total} = 112 + 16 + 16 = 144, \\qquad \\text{average} = \\frac{144}{9} = 16, \\qquad \\text{standard deviation} = \\sqrt{16} = 4.$$\n\nBoth lists have standard deviation $4$, so **the two quantities are equal**.\n\n**Why this works.** The standard deviation is a kind of typical distance from the mean. Adding values whose distance from the mean is exactly that typical distance leaves the typical distance unchanged. Values closer to the mean than $4$ would have lowered it, and values farther away would have raised it.\n\n**A note on conventions.** Some texts divide by $n - 1$ instead of $n$. The conclusion is the same: then list $L$ has squared distances totalling $6 \\times 16 = 96$, list $M$ has $96 + 32 = 128$, and $\\frac{128}{8} = 16$ again.",
+  "distractorRationale": {
+    "a": "Reached by reasoning that the new values $16$ and $24$ lie inside the range of the data and are close to the centre, so they must pull the spread in. They are not close to the centre in the relevant sense: each sits exactly one standard deviation from the mean, which leaves the standard deviation unchanged.",
+    "b": "Reached by assuming that adding values away from the mean always increases the spread. It increases only when the new values are more than one standard deviation from the mean; here each is exactly $4$ away, which matches the existing standard deviation.",
+    "d": "Reached by concluding that the standard deviation of list $M$ cannot be found without knowing the seven numbers in list $L$. It can: the mean and standard deviation of $L$ fix the total of the squared distances, which is all the calculation for $M$ needs."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": "List L has 7 numbers with mean 20 and standard deviation 4. List M contains those 7 numbers plus the two numbers 16 and 24. Quantity A is the standard deviation of list L. Quantity B is the standard deviation of list M. Decide which quantity is greater, whether they are equal, or whether the relationship cannot be determined.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-gre-quant-author",
+    "aiAssisted": true,
+    "notes": "Original item written for wave 7. The added values sit exactly one standard deviation either side of the mean, which leaves the standard deviation unchanged under either the divide-by-n or the divide-by-(n - 1) convention, so the key does not depend on which one a learner was taught. Not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-gre-quant-author",
+    "reviewer": "blind-reviewer-wave7-gre-quant-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-gre-quant-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "I used the GRE population standard deviation, which divides by n. For L the sum of squared deviations is 7*16 = 112. Adding 16 and 24 adds 16+16 = 32 and leaves the mean at 20. For M that gives 144/9 = 16, so the SD is 4 again and the quantities are equal. [A second, separate blind solve (blind-reviewer-wave7-gre-quant-run1) reached the same answer: The values 16 and 24 are each 4 from the mean of 20, so M still has mean 20. With population SD, L's sum of squared deviations is 7*16=112 and M's is 112+32=144, so M's variance is 144/9=16 and its SD is 4. With sample SD, L's sum is 6*16=96 and M's is 96+32=128, so M's variance is 128/8=16 and its SD is 4. The SDs are equal under either convention.]"
+    },
+    "notes": "Author solved: new values average 20, so the mean stays 20; squared deviations total 112 + 16 + 16 = 144 over 9 values, variance 16, standard deviation 4, so the quantities are equal. Divide-by-(n-1) check: 96 + 32 = 128 over 8 = 16, equal again. A script built concrete lists with mean 20 and standard deviation 4 under both conventions and confirmed list M keeps standard deviation 4. Stretch: harder than a typical hard standard-deviation comparison because it requires a quantitative model of standard deviation (the sum of squared deviations) rather than the usual qualitative 'values near the mean shrink the spread' heuristic, and the new values are chosen to sit exactly on the boundary where that heuristic flips, so both directional answers are tempting and the unknown list makes 'cannot be determined' tempting too."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "quantitative-comparison",
+    "standard-deviation",
+    "descriptive-statistics",
+    "stretch"
+  ]
+}

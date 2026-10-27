@@ -1,0 +1,83 @@
+{
+  "id": "polito-til-i-phys-atwood-tension-106",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "physics",
+  "domainSlug": "tili-physics",
+  "skillSlug": "tili-phys-dynamics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Two blocks hang from the ends of a light, inextensible string that passes over a fixed, frictionless pulley of negligible mass. One block has a mass of 3 kg and the other 2 kg. They are released from rest. Take g = 10 m/s². What is the tension in the string while the blocks move?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "30 N"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "25 N"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "24 N"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "50 N"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "20 N"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Write Newton's second law separately for each block. The string is inextensible, so both blocks have accelerations of the same size $a$, one down and one up, and the tension $T$ is the same all along the string.\n\n- The heavier block (3 kg) goes down: $30 - T = 3a$.\n- The lighter block (2 kg) goes up: $T - 20 = 2a$.\n\nAdding the two equations removes $T$: $10 = 5a$, so $a = 2\\ \\text{m/s}^2$.\n\nPut this back into the lighter block's equation: $T = 20 + 2\\times2 = 24\\ \\text{N}$.\n\n**Check.** The heavier block's equation gives $T = 30 - 3\\times2 = 24\\ \\text{N}$ as well. The tension must lie strictly between the two weights (20 N and 30 N): it is above 20 N because the light block is accelerating upwards, and below 30 N because the heavy block is accelerating downwards. It is *not* the mean of the two weights, 25 N.",
+  "distractorRationale": {
+    "e": "Takes the tension to be the weight of the lighter block, which would be true only if that block hung at rest or moved at constant velocity. The lighter block accelerates upwards, so the tension must exceed its weight.",
+    "b": "Averages the two weights, (30 + 20) ÷ 2. The tension is a consequence of both blocks accelerating, not a simple mean; solving the two equations of motion gives a different value.",
+    "a": "Takes the tension to be the weight of the heavier block, which would be true only if that block were at rest. It accelerates downwards, so the tension must be smaller than its weight.",
+    "d": "Adds the two weights, as if the string had to carry both blocks at once. The string pulls on each block with the same force, and that force is not the total weight."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": "A dynamics question about two connected masses. Two blocks of mass 3 kilograms and 2 kilograms hang from opposite ends of a light string over a fixed frictionless pulley of negligible mass, and are released from rest. Use g equal to 10 metres per second squared. The tension in the string while they move is wanted. The choices are 20, 24, 25, 30 and 50 newtons.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-wave6-physics-technical-author",
+    "aiAssisted": true,
+    "notes": "Original item. Solved two ways (simultaneous equations, and the harmonic-mean formula 2 m1 m2 g / (m1 + m2) = 24 N). Each wrong choice is a tension guessed from the weights without solving the motion."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-wave6-physics-technical-author",
+    "reviewer": "blind-reviewer-wave6-tili-phys-tech-run8",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-phys-tech-run8",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "a=(3-2)g/5=2 m/s^2; T=m2(g+a)=2*12=24 N (check: 3*(10-2)=24 N). The distractors are 30 N and 20 N (the two weights), 25 N (their average) and 50 N (their sum), and none of them is correct. [A second, separate blind solve (blind-reviewer-wave6-tili-phys-tech-run9) reached the same answer: a=(3-2)g/5=2 m/s^2; T=m2(g+a)=2*12=24 N (check 3*(10-2)=24). 30 and 20 are the static weights, 25 their mean, 50 the total weight.]"
+    },
+    "notes": "Awaiting a blind independent solve. The author recomputed every option and checked the key a second way before saving (see the explanation). Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "pulley",
+    "connected-bodies",
+    "tension",
+    "newtons-second-law"
+  ]
+}

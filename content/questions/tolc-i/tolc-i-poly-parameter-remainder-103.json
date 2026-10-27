@@ -1,0 +1,82 @@
+{
+  "id": "tolc-i-poly-parameter-remainder-103",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-arithmetic-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The polynomial $p(x) = x^{3} - 2x^{2} + ax + 6$, where $a$ is a real number, is divisible by $x - 3$. What is the remainder when $p(x)$ is divided by $x + 1$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$-5$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$-2$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$0$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$8$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$10$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Both conditions are remainder-theorem statements: the remainder on division by $x - c$ is $p(c)$. So first use $p(3) = 0$ to find $a$, then compute $p(-1)$.\n\n**Step 1 — find $a$.** $p(3) = 27 - 18 + 3a + 6 = 15 + 3a$. Divisibility by $x - 3$ means $15 + 3a = 0$, so $a = -5$.\n\n**Step 2 — the remainder.** Division by $x + 1$ is division by $x - (-1)$, so the remainder is $p(-1) = (-1)^{3} - 2(-1)^{2} - 5(-1) + 6 = -1 - 2 + 5 + 6 = 8$.\n\n**How to check it.** With $a = -5$ the polynomial factorises: $x^{3} - 2x^{2} - 5x + 6 = (x-3)(x-1)(x+2)$. At $x = -1$ this is $(-4)(-2)(1) = 8$ ✓.",
+  "distractorRationale": {
+    "a": "Stops after the first step and gives the value of the parameter, $a = -5$, instead of the remainder the question asks for.",
+    "c": "Evaluates $p(1)$ instead of $p(-1)$. Division by $x + 1$ means substituting $x = -1$; the value 0 shows that $x - 1$ is a factor, which is a different divisor.",
+    "b": "Solves $15 + 3a = 0$ as $a = 5$, a sign slip, so the term $ax$ at $x = -1$ becomes $-5$ instead of $+5$ and the total is $-1 - 2 - 5 + 6 = -2$.",
+    "e": "Takes $(-1)^{3}$ as $+1$. An odd power of a negative number is negative, so the first term is $-1$, and the total is $8$, not $1 - 2 + 5 + 6 = 10$."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "The polynomial p of x equals x cubed minus 2 x squared plus a x plus 6, where a is a real number, and it is divisible by x minus 3. What is the remainder when p of x is divided by x plus 1? The five choices are: negative 5; negative 2; 0; 8; and 10.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-math-a-author",
+    "aiAssisted": true,
+    "notes": "Original item. Two-step use of the remainder theorem: fix a parameter from a divisibility condition, then evaluate a remainder. Distractors: stopping at the parameter, wrong substitution, sign slips."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-math-a-author",
+    "reviewer": "blind-reviewer-wave8-tolci-math-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-math-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "p(3)=27-18+3a+6=0 gives a=-5, and p(-1)=-1-2+5+6=8. 0 assumes x+1 is also a factor; the other values come from sign slips. [A second, separate blind solve (blind-reviewer-wave8-tolci-math-run1) reached the same answer: p(3)=27-18+3a+6=0 gives a=-5. Then p(-1)=-1-2+5+6=8. 10, 0, -2 and -5 come from using p(1), from sign slips, or from giving a itself.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "polynomials",
+    "remainder-theorem",
+    "parameter"
+  ]
+}

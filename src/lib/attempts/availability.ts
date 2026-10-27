@@ -32,8 +32,8 @@ export interface BlueprintAvailability {
   shortfall: number;
 }
 
-export function blueprintAvailability(db: Db, config: ExamConfig): BlueprintAvailability[] {
-  return availabilityFromPool(getPool(db, config.examKey, null), config);
+export async function blueprintAvailability(db: Db, config: ExamConfig): Promise<BlueprintAvailability[]> {
+  return availabilityFromPool((await getPool(db, config.examKey, null)), config);
 }
 
 /**
@@ -88,8 +88,8 @@ export interface ExamCoverage {
 }
 
 /** Content coverage for an exam, shown publicly so bank size is never hidden. */
-export function examCoverage(db: Db, config: ExamConfig): ExamCoverage {
-  const pool = getPool(db, config.examKey, null);
+export async function examCoverage(db: Db, config: ExamConfig): Promise<ExamCoverage> {
+  const pool = (await getPool(db, config.examKey, null));
   const covered = new Set(pool.map((item) => item.domainSlug));
   return {
     examKey: config.examKey,
@@ -101,8 +101,8 @@ export function examCoverage(db: Db, config: ExamConfig): ExamCoverage {
 }
 
 /** Domains that currently have at least one reviewed question. */
-export function practisableDomains(db: Db, config: ExamConfig) {
-  const pool = getPool(db, config.examKey, null);
+export async function practisableDomains(db: Db, config: ExamConfig) {
+  const pool = (await getPool(db, config.examKey, null));
   const counts = new Map<string, number>();
   for (const item of pool) {
     counts.set(item.domainSlug, (counts.get(item.domainSlug) ?? 0) + 1);
@@ -122,10 +122,10 @@ export function practisableDomains(db: Db, config: ExamConfig) {
  * form's live counts. Built from the same eligible pool and the same base
  * constraint that `startAttempt` validates a practice request against.
  */
-export function practiceFacets(db: Db, config: ExamConfig, blueprintId = 'practice'): PracticeFacet[] {
+export async function practiceFacets(db: Db, config: ExamConfig, blueprintId = 'practice'): Promise<PracticeFacet[]> {
   const blueprint = getBlueprint(config, blueprintId);
   if (!blueprint) return [];
-  return facetsFromPool(getPool(db, config.examKey, null), config, blueprint);
+  return facetsFromPool((await getPool(db, config.examKey, null)), config, blueprint);
 }
 
 export function facetsFromPool(rawPool: readonly PoolItem[], config: ExamConfig, blueprint: Blueprint): PracticeFacet[] {

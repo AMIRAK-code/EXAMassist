@@ -1,0 +1,78 @@
+{
+  "id": "digital-sat-math-mean-removal-range-508",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "problem-solving-and-data-analysis",
+  "skillSlug": "one-variable-data",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A data set consists of $12$ test scores with a mean of $78$. If the lowest score is removed from the data set, the mean of the remaining $11$ scores is $81$. If instead the highest score is removed from the original data set, the mean of the remaining $11$ scores is $76$. What is the range of the original $12$ scores?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$5$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$55$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$60$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$100$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Means are easiest to work with as **totals**: total $=$ mean $\\times$ number of values.\n\n- All $12$ scores: $12 \\times 78 = 936$.\n- Without the lowest score: $11 \\times 81 = 891$, so the lowest score is $936 - 891 = 45$.\n- Without the highest score: $11 \\times 76 = 836$, so the highest score is $936 - 836 = 100$.\n\nThe range is the highest score minus the lowest:\n\n$$100 - 45 = 55$$\n\nThere is also a one-line route. The highest score minus the lowest score equals (total without the lowest) minus (total without the highest), because the remaining $10$ scores cancel:\n\n$$11 \\times 81 - 11 \\times 76 = 11 \\times 5 = 55$$\n\nCheck that such a data set can exist: the other $10$ scores total $936 - 45 - 100 = 791$, a mean of $79.1$, which sits comfortably between $45$ and $100$.\n\nThe trap is to work with the means directly. The two reduced means differ by $5$, but each is a mean of $11$ scores, so the totals differ by $11 \\times 5$, not $5$ and not $12 \\times 5$.",
+  "distractorRationale": {
+    "a": "This is the difference between the two reduced means, $81 - 76$. Each mean is of $11$ scores, so the corresponding totals, and hence the two removed scores, differ by $11 \\times 5 = 55$.",
+    "c": "This multiplies the difference in means by $12$, the size of the original data set. The two reduced means are each of $11$ scores, so the factor is $11$.",
+    "d": "This is the highest score, $936 - 836 = 100$. The range subtracts the lowest score, $45$, from it."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "Twelve test scores have a mean of 78. Removing the lowest score leaves 11 scores with a mean of 81. Removing instead the highest score leaves 11 scores with a mean of 76. What is the range of the 12 scores? The choices are 5, 55, 60 and 100.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "sat-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Recovers the extreme values of a data set from how the mean changes when each is removed; the insight is that both reduced totals share the same 10 scores."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "sat-wave8-math-author",
+    "reviewer": "blind-reviewer-wave8-sat-math-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-sat-math-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Sum = 12*78 = 936; lowest = 936 - 11*81 = 45; highest = 936 - 11*76 = 100; range = 55. 5 is the difference of means, 100 is the max, 60 is a miscalculation. [A second, separate blind solve (blind-reviewer-wave8-sat-math-run1) reached the same answer: Total = 936; removing lowest leaves 891 so lowest = 45; removing highest leaves 836 so highest = 100; range = 55. 5 is the difference of means; 60 and 100 misuse the values.]"
+    },
+    "notes": ""
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "problem-solving",
+    "mean",
+    "range",
+    "totals"
+  ]
+}

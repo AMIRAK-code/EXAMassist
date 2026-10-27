@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-prob-mean-removed-value-708",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolcf-mathematics",
+  "skillSlug": "tolcf-math-probability",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The arithmetic mean of five numbers is 12. When one of the numbers is removed, the mean of the remaining four is 10. What was the number that was removed?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$2$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$10$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$20$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$22$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$40$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Work with totals, because a mean is a total divided by a count.\n\n- Five numbers with mean 12 have total $5 \\times 12 = 60$.\n- The remaining four have mean 10, so their total is $4 \\times 10 = 40$.\n- The removed number is the difference: $60 - 40 = 20$.\n\n**How to check it.** The removed number 20 is 8 above the old mean of 12. Taking away a number that sits 8 above the mean pulls the mean down by $8 \\div 4 = 2$, from 12 to 10 ✓.",
+  "distractorRationale": {
+    "a": "Subtracts the two means. A change in the mean is shared over several numbers, so the removed number differs from the old mean by more than that.",
+    "b": "Takes the removed number to be the new mean. Removing a number that equals the mean of the rest would not change the mean, but here it dropped from 12 to 10.",
+    "d": "Adds the two means. The sum of two means has no meaning here; compare the totals instead.",
+    "e": "Reports the total of the four numbers that remain, not the number that was taken away."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": null,
+  "accessibilityText": "The arithmetic mean of five numbers is 12. When one of the numbers is removed, the mean of the remaining four numbers is 10. The question asks for the number that was removed. The five choices are 2, 10, 20, 22 and 40.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-tolc-f-mathematics-author",
+    "aiAssisted": true,
+    "notes": "Original item. Totals-based reasoning; distractors are the difference of means, the new mean, the sum of means and the remaining total."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-tolc-f-mathematics-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-math-phys-run14",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-math-phys-run14",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Total of five = 60 and total of four = 40, so the removed number is 20. Option 2 is the difference of the means; 22 and 40 are also wrong. [A second, separate blind solve (blind-reviewer-wave6-tolcf-math-phys-run16) reached the same answer: The total is 5 x 12 = 60 and the remaining total is 4 x 10 = 40, so the removed number is 20. 2 is the difference of the means, 40 is the remaining sum, and 22 is a slip.]"
+    },
+    "notes": "Author check: the key was computed and then confirmed a second way (see the check in the explanation); each wrong choice was tried against the stem and fails for the reason given in its distractor note. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "arithmetic-mean",
+    "totals"
+  ]
+}

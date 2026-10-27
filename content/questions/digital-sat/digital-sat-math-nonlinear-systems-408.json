@@ -1,0 +1,77 @@
+{
+  "id": "digital-sat-math-nonlinear-systems-408",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "advanced-math",
+  "skillSlug": "nonlinear-equations-and-systems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "$$y = x^2 - 6x + 13$$\n$$y = 2x + c$$\n\nIn the system of equations above, $c$ is a constant. The system has exactly one solution, $(a, b)$. What is the value of $b$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$-3$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$4$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$5$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$11$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "A line and a parabola meet in exactly one point when the equation you get by setting them equal has exactly one solution, which for a quadratic means a zero discriminant. The question then asks for the $y$-coordinate of that point, so there are three things to find in order: $c$, then $a$, then $b$.\n\n**Set the expressions for $y$ equal** and collect everything on one side:\n\n$$x^2 - 6x + 13 = 2x + c \\;\\Rightarrow\\; x^2 - 8x + (13 - c) = 0$$\n\n**Exactly one solution** means the discriminant is zero:\n\n$$(-8)^2 - 4(1)(13 - c) = 0 \\;\\Rightarrow\\; 64 - 52 + 4c = 0 \\;\\Rightarrow\\; c = -3$$\n\n**Find the point.** With a zero discriminant the single root is $x = -\\frac{-8}{2(1)} = 4$, so $a = 4$. Then, from the line,\n\n$$b = 2(4) + (-3) = 5$$\n\nCheck with the parabola: $4^2 - 6(4) + 13 = 16 - 24 + 13 = 5$. Both equations give $b = 5$, so $(4, 5)$ is the one point where the line $y = 2x - 3$ touches the parabola. Substituting $c = -3$ back, the quadratic becomes $x^2 - 8x + 16 = (x - 4)^2$, which confirms the repeated root.\n\nA useful shortcut: the $x$-coordinate of the touching point does not depend on $c$ at all. A zero discriminant leaves a repeated root at $x = -\\frac{B}{2A}$ of the combined quadratic, here $x = 4$, so you could find $a$ first and then $b$ from the parabola alone without ever solving for $c$.",
+  "distractorRationale": {
+    "a": "This is the value of the constant $c$, which is an intermediate step. The question asks for $b$, the $y$-coordinate of the single intersection point.",
+    "b": "This is $a$, the $x$-coordinate of the intersection point. The question asks for the $y$-coordinate, which is $2(4) - 3 = 5$.",
+    "d": "This comes from a sign slip in the discriminant, $64 - 4(13 + c) = 0$, which gives $c = 3$ instead of $-3$. The touching point's $x$-coordinate is still $4$, so the slip then gives $b = 2(4) + 3 = 11$; the parabola at $x = 4$ is $5$, not $11$."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": "A system of two equations: y equals x squared minus 6 x plus 13, and y equals 2 x plus c, where c is a constant. The system has exactly one solution, the point a, b. Find b. The four choices are negative 3, 4, 5 and 11.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-sat-math-alg-author",
+    "aiAssisted": true,
+    "notes": "Original item. Asking for the y-coordinate rather than the constant adds a step, so the intermediate values c and a are both available as distractors, and a sign slip in the discriminant produces a fourth distinct value."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-sat-math-alg-author",
+    "reviewer": "blind-reviewer-wave7-sat-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-sat-math-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Setting the equations equal gives x^2 - 8x + (13 - c) = 0. The discriminant 64 - 4(13 - c) = 0 gives c = -3, and the double root is x = 4. Then b = 2(4) - 3 = 5, and the parabola also gives 16 - 24 + 13 = 5. [A second, separate blind solve (blind-reviewer-wave7-sat-math-run1) reached the same answer: Setting the equations equal gives x^2 - 8x + 13 - c = 0. For exactly one solution the discriminant is zero: 64 - 4(13 - c) = 0, so c = -3. Then x = 4 and y = 2(4) - 3 = 5, which checks in the parabola: 16 - 24 + 13 = 5. A is c and B is a, not b.]"
+    },
+    "notes": "Author solved twice and checked by script: x^2 - 8x + (13 - c) = 0 with discriminant 64 - 4(13 - c) = 0 gives c = -3; the repeated root is x = 4 and y = 5 on both the line and the parabola. Distractors: c itself, a itself, and b = 11 from the sign slip c = 3. Hard: a tangency condition reasoned through the discriminant, followed by two further steps to the requested coordinate. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "advanced-math",
+    "nonlinear-system",
+    "discriminant"
+  ]
+}

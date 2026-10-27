@@ -22,7 +22,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     const user = await requireUser();
     const { id } = await params;
     const body = await readJson(request, bodySchema);
-    const result = visitPosition(getDb(), { attemptId: id, userId: user.id, ...body });
+    const result = (await visitPosition(getDb(), { attemptId: id, userId: user.id, ...body }));
     return ok(result);
   } catch (error) {
     return toErrorResponse(error);

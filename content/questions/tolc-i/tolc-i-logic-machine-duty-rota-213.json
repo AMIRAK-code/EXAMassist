@@ -1,0 +1,83 @@
+{
+  "id": "tolc-i-logic-machine-duty-rota-213",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Three technicians, Ivo, Lea and Mira, share the supervision of a machine from Monday to Saturday of one week. On each of these six days exactly one of them is on duty, and each works exactly two of the six days. The following is known.\n\n- Nobody is on duty on two consecutive days.\n- Ivo is on duty on Monday.\n- Lea is on duty on Saturday.\n- Mira is not on duty on Tuesday.\n\nWho is on duty on Thursday?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Mira"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Either Lea or Mira; the information does not decide which."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Lea"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Ivo"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Either Ivo or Mira; the information does not decide which."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Start with the day that has fewest possibilities. On Tuesday, Ivo is ruled out because he works Monday and nobody works two consecutive days, and Mira is ruled out by the last clue. So Lea works Tuesday. Lea now has her two days, Tuesday and Saturday.\n\nThat leaves Wednesday, Thursday and Friday for Ivo's second day and both of Mira's days. Mira cannot work two consecutive days, and the only non-consecutive pair among those three days is Wednesday and Friday. So Mira works Wednesday and Friday, and Ivo works **Thursday**.\n\nCheck the full rota, Monday to Saturday: Ivo, Lea, Mira, Ivo, Mira, Lea. Everyone works twice, nobody works two days in a row, and every clue holds.",
+  "distractorRationale": {
+    "c": "Lea's two days are already fixed as Tuesday and Saturday: Tuesday is the only possible day for anyone except her, and Saturday is given.",
+    "a": "Mira needs two days among Wednesday, Thursday and Friday that are not consecutive. Thursday is next to both of the other two, so it cannot be one of hers.",
+    "e": "The rota is fully determined. Putting Mira on Thursday would force her other day to be Wednesday or Friday, which are consecutive with Thursday.",
+    "b": "Lea cannot be on duty on Thursday because her two days are already Tuesday and Saturday."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "A scheduling problem. Three technicians, Ivo, Lea and Mira, supervise a machine from Monday to Saturday, one person per day, each working exactly two days. Nobody works two consecutive days. Ivo works Monday, Lea works Saturday, and Mira does not work Tuesday. The question asks who works Thursday. The five choices are: Mira; either Lea or Mira, undecided; Lea; Ivo; either Ivo or Mira, undecided.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-logic-author",
+    "aiAssisted": true,
+    "notes": "Tests building a schedule from constraints, starting with the most constrained day. The scenario and wording are original to this bank; no published TOLC or other test item was used or adapted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-logic-author",
+    "reviewer": "blind-reviewer-wave8-tolci-logic-sci-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-logic-sci-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Tuesday cannot be Ivo (consecutive with Monday) or Mira, so Lea; Lea then has Tue and Sat and is used up. Mira needs two non-consecutive days among Wed-Fri, so Wed and Fri, leaving Thursday to Ivo. The rota is unique, so the 'either' options fail. [A second, separate blind solve (blind-reviewer-wave8-tolci-logic-sci-run1) reached the same answer: Tue cannot be Mira or Ivo (Mon), so Lea; Lea then has Tue and Sat. Wed-Fri go to Ivo (1 more) and Mira (2), and Mira's two must be non-consecutive, so Wed and Fri, leaving Ivo on Thu (I L M I M L). The 'either' options fail because the schedule is unique.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "problems",
+    "schedules",
+    "no-calculator"
+  ]
+}

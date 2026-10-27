@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-logic-table-improvement-rate-957",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "logic",
+  "domainSlug": "tolcf-logic",
+  "skillSlug": "tolcf-logic-graphs-tables",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In a trial, the same active ingredient was given in four different forms to four groups of patients, and a fifth group received a placebo. The table shows, for each group, how many patients took part and how many improved.\n\n| Group | Patients | Patients who improved |\n| --- | --- | --- |\n| Tablet | 80 | 52 |\n| Syrup | 50 | 34 |\n| Patch | 120 | 72 |\n| Spray | 60 | 40 |\n| Placebo | 40 | 18 |\n\nWhich group had the highest percentage of patients who improved?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Syrup"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Spray"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Placebo"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Patch"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Tablet"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "**What to notice first.** The groups have different sizes, so the counts of improved patients cannot be compared directly: each must be divided by its group size.\n\n**The computation.**\n\n- Tablet: $52/80=65\\%$\n- Syrup: $34/50=68\\%$\n- Patch: $72/120=60\\%$\n- Spray: $40/60\\approx 66.7\\%$\n- Placebo: $18/40=45\\%$\n\nThe syrup group has the highest rate.\n\n**How to check it.** Compare the two closest rates directly: syrup $34/50=0.68$ against spray $40/60=2/3\\approx 0.667$. Syrup is still ahead.",
+  "distractorRationale": {
+    "e": "The tablet group has the second-largest number of improved patients, but $52/80$ is only $65\\%$.",
+    "d": "The patch group has the most improved patients, $72$, but it is also the largest group: $72/120$ is only $60\\%$.",
+    "b": "The spray rate, $40/60\\approx 66.7\\%$, is close but just below the syrup rate of $68\\%$.",
+    "c": "The placebo group has the highest share of patients who did *not* improve, $22/40=55\\%$; its improvement rate, $45\\%$, is the lowest."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "A table with five rows and three columns: group, patients, and patients who improved. Tablet: 80 patients, 52 improved. Syrup: 50 patients, 34 improved. Patch: 120 patients, 72 improved. Spray: 60 patients, 40 improved. Placebo: 40 patients, 18 improved. The question asks which group had the highest percentage of patients who improved. The five choices are: syrup; spray; placebo; patch; tablet.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave8-mpl-author",
+    "aiAssisted": true,
+    "notes": "Original item with invented trial figures, testing that rates, not counts, must be compared when group sizes differ. The largest count belongs to a group with a low rate, and the runner-up rate is close."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave8-mpl-author",
+    "reviewer": "blind-reviewer-wave8-final-quant-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-final-quant-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Rates: Syrup 34/50 = 68%, Spray 40/60 = 66.7%, Tablet 52/80 = 65%, Patch 72/120 = 60%, Placebo 18/40 = 45%. Patch has the most improvers in absolute terms (trap); Spray is close but lower. [A second, separate blind solve (blind-reviewer-wave8-final-quant-run1) reached the same answer: The rates are Syrup 68%, Spray 66.7%, Tablet 65%, Patch 60% and Placebo 45%. Patch has the largest absolute count (72) but the lowest active rate.]"
+    },
+    "notes": "Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. Stem corrected before publication: it said five treated groups plus a placebo group, but the table has four forms and a placebo. Re-solved blind after the fix."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "table-reading",
+    "percentages",
+    "rates-vs-counts"
+  ]
+}

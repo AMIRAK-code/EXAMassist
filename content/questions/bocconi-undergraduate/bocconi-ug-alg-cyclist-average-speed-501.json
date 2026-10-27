@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-alg-cyclist-average-speed-501",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-algebra-expressing-quantities",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A cyclist rides the first third of a route at constant speed $u$ and the remaining two thirds at constant speed $v$, where $u$ and $v$ are positive.\n\nWhich expression gives the cyclist's average speed over the whole route, in terms of $u$ and $v$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\dfrac{2uv}{u + v}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\dfrac{3uv}{u + 2v}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\dfrac{3uv}{2u + v}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\dfrac{u + 2v}{3}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Average speed is **total distance divided by total time**. It is not the average of the speeds, because the cyclist spends different amounts of time at each speed.\n\n**Step 1 — call the route length $d$.** The distance $d$ will cancel at the end.\n\n**Step 2 — time for each part.** Time is distance divided by speed:\n\n$$t_{1} = \\frac{d/3}{u} = \\frac{d}{3u} \\qquad t_{2} = \\frac{2d/3}{v} = \\frac{2d}{3v}$$\n\n**Step 3 — total time over a common denominator.**\n\n$$t_{1} + t_{2} = \\frac{d}{3u} + \\frac{2d}{3v} = \\frac{d\\,(v + 2u)}{3uv}$$\n\n**Step 4 — divide distance by time.**\n\n$$\\bar{v} = \\frac{d}{\\dfrac{d\\,(2u + v)}{3uv}} = \\frac{3uv}{2u + v}$$\n\n**Check 1 — equal speeds.** If $u = v$, the formula gives $\\frac{3u^{2}}{3u} = u$, as it must.\n\n**Check 2 — numbers.** Take a route of $3$ km, $u = 1$ km/h and $v = 2$ km/h. The first kilometre takes $1$ hour and the next $2$ km take $1$ hour, so the average is $3 / 2 = 1.5$ km/h. The formula gives $\\frac{3 \\cdot 2}{2 + 2} = 1.5$. ✓",
+  "distractorRationale": {
+    "d": "This weights the two speeds by the **fractions of distance**, as if average speed were a weighted arithmetic mean. That is only valid when the weights are fractions of **time**. With $u = 1$, $v = 2$ on a 3 km route it gives $\\frac{5}{3}$, but the true average is $1.5$.",
+    "b": "This has the weights the wrong way round in the denominator, as if the cyclist rode two thirds at speed $u$ and one third at speed $v$. The time on the first third is $\\frac{d}{3u}$, which puts the coefficient $2$ on $u$, not on $v$.",
+    "a": "This is the average speed when the route is split into two **equal** halves. Here the split is one third and two thirds, so the formula for halves does not apply."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "A cyclist rides the first third of a route at constant speed u and the remaining two thirds at constant speed v, both positive. The question asks for the average speed over the whole route in terms of u and v. The choices are: 2 u v over the quantity u plus v; 3 u v over the quantity u plus 2 v; 3 u v over the quantity 2 u plus v; the quantity u plus 2 v, over 3.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. It tests expressing average speed as a function of two given speeds over unequal distance shares, where the arithmetic and equal-halves formulas are tempting but wrong."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-math-author",
+    "reviewer": "blind-reviewer-wave8-bocug-math-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-bocug-math-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Time = D/(3u)+2D/(3v) = D(2u+v)/(3uv), so average speed = 3uv/(2u+v). 3uv/(u+2v) swaps the roles of u and v, 2uv/(u+v) is the equal-halves harmonic mean, (u+2v)/3 is the time-weighted arithmetic mean (wrong weights). [A second, separate blind solve (blind-reviewer-wave8-bocug-math-run1) reached the same answer: For a route of length D the time is D/(3u)+2D/(3v)=D(2u+v)/(3uv), so the average speed is 3uv/(2u+v). 3uv/(u+2v) swaps the weights, 2uv/(u+v) is the equal-halves harmonic mean, and (u+2v)/3 is a time-weighted arithmetic mean that does not apply here.]"
+    },
+    "notes": "Author's uniqueness check: with d = 3, u = 1, v = 2 the true average is 1.5; the four choices evaluate to 1.5, 5/3, 6/5 and 4/3, so only one matches. The keyed expression also returns u when u = v. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expressing-quantities",
+    "average-speed",
+    "rational-expressions"
+  ]
+}

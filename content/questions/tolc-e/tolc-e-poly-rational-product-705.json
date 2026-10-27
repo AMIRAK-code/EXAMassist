@@ -1,0 +1,82 @@
+{
+  "id": "tolc-e-poly-rational-product-705",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-polynomials",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "For every $x$ at which the expression is defined, simplify\n\n$$\\frac{x^{2}-9}{x^{2}+x-6}\\cdot\\frac{x+3}{x-3}.$$",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\dfrac{(x+3)^{2}}{(x+2)(x-3)}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\dfrac{x-3}{x-2}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\dfrac{x+3}{x+2}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\dfrac{(x-3)^{2}}{(x-2)(x+3)}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\dfrac{x+3}{x-2}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Factor everything first, then cancel.\n\n**Step 1 — factor each piece.**\n- $x^{2}-9 = (x-3)(x+3)$ (difference of squares).\n- $x^{2}+x-6 = (x+3)(x-2)$: look for two numbers with product $-6$ and sum $+1$, which are $3$ and $-2$.\n\n**Step 2 — write the product and cancel common factors.**\n\n$$\\frac{(x-3)(x+3)}{(x+3)(x-2)}\\cdot\\frac{x+3}{x-3} = \\frac{x+3}{x-2}.$$\n\nOne factor $x-3$ and one factor $x+3$ cancel, and one factor $x+3$ remains on top.\n\n**How to check it.** Substitute $x = 4$. The original gives $\\dfrac{7}{14}\\cdot\\dfrac{7}{1} = 3.5$, and $\\dfrac{4+3}{4-2} = 3.5$. The other four expressions give $0.5$, about $8.17$, about $1.17$ and about $0.07$ at $x=4$, so none of them agrees.",
+  "distractorRationale": {
+    "b": "Reads $x^{2}-9$ as $(x-3)^{2}$. A difference of squares factors as $(x-3)(x+3)$, and only one factor $x-3$ then cancels.",
+    "a": "Factors $x^{2}+x-6$ as $(x+2)(x-3)$, which expands to $x^{2}-x-6$. The pair with product $-6$ and sum $+1$ is $+3$ and $-2$.",
+    "c": "Gets the factor pair for $x^{2}+x-6$ wrong by a sign, using $(x+3)(x+2)$; that expands to $x^{2}+5x+6$.",
+    "d": "Divides by the second fraction instead of multiplying by it, which puts $x-3$ in the numerator and $x+3$ in the denominator."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "Simplify a product of two fractions, for every x at which it is defined. The first fraction has numerator x squared minus 9 and denominator x squared plus x minus 6. The second fraction has numerator x plus 3 and denominator x minus 3. The five choices are fractions: x plus 3 over x minus 2; x minus 3 over x minus 2; x plus 3 squared over the product of x plus 2 and x minus 3; x plus 3 over x plus 2; and x minus 3 squared over the product of x minus 2 and x plus 3.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-tolc-e-mathematics-author",
+    "aiAssisted": true,
+    "notes": "Original item. Each distractor comes from one factoring or operation error; all five give different values at x = 4."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-tolc-e-mathematics-author",
+    "reviewer": "blind-reviewer-wave6-tolce-math-run12",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolce-math-run12",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "(x-3)(x+3)/((x+3)(x-2)) * (x+3)/(x-3) simplifies to (x+3)/(x-2) wherever the expression is defined (x ≠ -3, 2, 3). A factors x^2+x-6 with the wrong signs. C and B do not match the algebra. D inverts the second factor. [A second, separate blind solve (blind-reviewer-wave6-tolce-math-run13) reached the same answer: (x-3)(x+3)/((x+3)(x-2)) times (x+3)/(x-3) simplifies to (x+3)/(x-2). The other options come from factoring x^2+x-6 as (x-3)(x+2), which is wrong, or from cancelling incorrectly. I checked at x=0: the original is (-9/-6)(3/-3)=-3/2 and (x+3)/(x-2)=-3/2.]"
+    },
+    "notes": "Author check: the key was computed and then confirmed a second way (see the check in the explanation); each wrong choice was tried against the stem and fails for the reason given in its distractor note. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "factorisation",
+    "rational-expressions",
+    "cancelling"
+  ]
+}

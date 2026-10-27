@@ -35,11 +35,11 @@ let alice: string;
 let bob: string;
 const alsoAlice = () => ({ userId: alice, isGuest: false });
 
-beforeEach(() => {
-  db = createTestDb();
-  alice = createUser(db);
-  bob = createUser(db);
-  seedQuestions(db, SAT, { perDomain: 6 });
+beforeEach(async () => {
+  db = (await createTestDb());
+  alice = (await createUser(db));
+  bob = (await createUser(db));
+  (await seedQuestions(db, SAT, { perDomain: 6 }));
 });
 
 afterEach(() => {
@@ -47,22 +47,22 @@ afterEach(() => {
   delete process.env.TUTOR_GLOBAL_DAILY_LIMIT;
 });
 
-function learningSession(userId = alice) {
-  return startAttempt(db, { userId, examKey: SAT.examKey, blueprintId: 'practice' }).attemptId;
+async function learningSession(userId = alice) {
+  return (await startAttempt(db, { userId, examKey: SAT.examKey, blueprintId: 'practice' })).attemptId;
 }
 
 /** Chooses an answer. With `check`, submits it and releases the explanation, as the Check answer button does. */
-function answer(attemptId: string, position: number, optionId = 'b', userId = alice, check = false) {
-  recordResponse(db, {
+async function answer(attemptId: string, position: number, optionId = 'b', userId = alice, check = false) {
+  (await recordResponse(db, {
     attemptId,
     userId,
     partIndex: 0,
     position,
     response: { type: 'single_select', optionId },
     ...(check ? { reveal: true } : {}),
-  });
+  }));
 }
-const checkAnswer = (attemptId: string, position: number, optionId = 'b') => answer(attemptId, position, optionId, alice, true);
+const checkAnswer = async (attemptId: string, position: number, optionId = 'b') => (await answer(attemptId, position, optionId, alice, true));
 
 async function expectTutorError(promise: Promise<unknown>, code: string) {
   await expect(promise).rejects.toBeInstanceOf(TutorError);
@@ -80,7 +80,7 @@ describe('when the tutor is available', () => {
   });
 
   it('refuses to run with no key configured, instead of failing somewhere deeper', async () => {
-    const attemptId = learningSession();
+    const attemptId = (await learningSession());
     const saved = process.env.ANTHROPIC_API_KEY;
     delete process.env.ANTHROPIC_API_KEY;
     try {
@@ -97,7 +97,7 @@ describe('when the tutor is available', () => {
 describe('hints', () => {
   it('are given in an untimed learning session before the learner answers', async () => {
     const model = new FakeModel();
-    const attemptId = learningSession();
+    const attemptId = (await learningSession());
     const reply = await questionHelp(db, alsoAlice(), { attemptId, partIndex: 0, position: 0, kind: 'hint' }, { client: model });
     expect(reply.kind).toBe('hint');
     expect(reply.html).toContain('compare');
@@ -107,7 +107,7 @@ describe('hints', () => {
 
   it('are refused in a timed section, where they would be assistance during a test', async () => {
     const model = new FakeModel();
-    const { attemptId } = startAttempt(db, { userId: alice, examKey: SAT.examKey, blueprintId: 'timed-math-module-1' });
+    const { attemptId } = (await startAttempt(db, { userId: alice, examKey: SAT.examKey, blueprintId: 'timed-math-module-1' }));
     await expectTutorError(
       questionHelp(db, alsoAlice(), { attemptId, partIndex: 0, position: 0, kind: 'hint' }, { client: model }),
       'tutor-not-allowed',
@@ -117,7 +117,7 @@ describe('hints', () => {
 
   it('are refused in a diagnostic', async () => {
     const model = new FakeModel();
-    const { attemptId } = startAttempt(db, { userId: alice, examKey: SAT.examKey, blueprintId: 'diagnostic' });
+    const { attemptId } = (await startAttempt(db, { userId: alice, examKey: SAT.examKey, blueprintId: 'diagnostic' }));
     await expectTutorError(
       questionHelp(db, alsoAlice(), { attemptId, partIndex: 0, position: 0, kind: 'hint' }, { client: model }),
       'tutor-not-allowed',
@@ -127,16 +127,16 @@ describe('hints', () => {
 
   it('are still offered after choosing an answer, which can be changed until it is checked', async () => {
     const model = new FakeModel();
-    const attemptId = learningSession();
-    answer(attemptId, 0);
+    const attemptId = (await learningSession());
+    (await answer(attemptId, 0));
     const reply = await questionHelp(db, alsoAlice(), { attemptId, partIndex: 0, position: 0, kind: 'hint' }, { client: model });
     expect(reply.kind).toBe('hint');
   });
 
   it('are refused once the answer is checked and the explanation is showing', async () => {
     const model = new FakeModel();
-    const attemptId = learningSession();
-    checkAnswer(attemptId, 0);
+    const attemptId = (await learningSession());
+    (await checkAnswer(attemptId, 0));
     await expectTutorError(
       questionHelp(db, alsoAlice(), { attemptId, partIndex: 0, position: 0, kind: 'hint' }, { client: model }),
       'tutor-already-answered',
@@ -147,20 +147,20 @@ describe('hints', () => {
   it('are never served when they give the answer away, and the model is told why on the retry', async () => {
     // The seeded key is option a, whose text is "First option".
     const model = new FakeModel(['The answer is (A).', 'The correct answer is First option.']);
-    const attemptId = learningSession();
+    const attemptId = (await learningSession());
     await expectTutorError(
       questionHelp(db, alsoAlice(), { attemptId, partIndex: 0, position: 0, kind: 'hint' }, { client: model }),
       'tutor-hint-unsafe',
     );
     expect(model.calls).toHaveLength(2);
     expect(model.calls[1].user).toMatch(/gave the answer away/);
-    const stored = db.prepare(`SELECT COUNT(*) AS n FROM tutor_responses`).get() as { n: number };
+    const stored = (await db.prepare(`SELECT COUNT(*) AS n FROM tutor_responses`).get()) as { n: number };
     expect(stored.n).toBe(0);
   });
 
   it('are cached per question version, so the same hint is not paid for twice and never drifts', async () => {
     const model = new FakeModel(['First wording.', 'A different wording.']);
-    const attemptId = learningSession();
+    const attemptId = (await learningSession());
     const one = await questionHelp(db, alsoAlice(), { attemptId, partIndex: 0, position: 0, kind: 'hint' }, { client: model });
     const two = await questionHelp(db, alsoAlice(), { attemptId, partIndex: 0, position: 0, kind: 'hint' }, { client: model });
     expect(two.cached).toBe(true);
@@ -170,7 +170,7 @@ describe('hints', () => {
 
     // The key is the question version, not the learner, so another learner
     // asking about the same version is served the same text.
-    const key = (db.prepare(`SELECT cache_key FROM tutor_responses WHERE id = ?`).get(one.responseId) as { cache_key: string }).cache_key;
+    const key = ((await db.prepare(`SELECT cache_key FROM tutor_responses WHERE id = ?`).get(one.responseId)) as { cache_key: string }).cache_key;
     expect(key).toMatch(/^hint:v2:[0-9a-f-]{36}:1$/);
   });
 });
@@ -178,8 +178,8 @@ describe('hints', () => {
 describe('deeper explanations', () => {
   it('are refused before the learner is entitled to see the answer, even with an answer chosen', async () => {
     const model = new FakeModel();
-    const attemptId = learningSession();
-    answer(attemptId, 1);
+    const attemptId = (await learningSession());
+    (await answer(attemptId, 1));
     await expectTutorError(
       questionHelp(db, alsoAlice(), { attemptId, partIndex: 0, position: 1, kind: 'explain' }, { client: model }),
       'tutor-not-allowed',
@@ -189,8 +189,8 @@ describe('deeper explanations', () => {
 
   it('are refused during a timed section even after answering, because the key is still withheld', async () => {
     const model = new FakeModel();
-    const { attemptId } = startAttempt(db, { userId: alice, examKey: SAT.examKey, blueprintId: 'timed-math-module-1' });
-    answer(attemptId, 0);
+    const { attemptId } = (await startAttempt(db, { userId: alice, examKey: SAT.examKey, blueprintId: 'timed-math-module-1' }));
+    (await answer(attemptId, 0));
     await expectTutorError(
       questionHelp(db, alsoAlice(), { attemptId, partIndex: 0, position: 0, kind: 'explain' }, { client: model }),
       'tutor-not-allowed',
@@ -199,8 +199,8 @@ describe('deeper explanations', () => {
 
   it('are given once the answer is checked in a learning session, grounded in the reviewed solution and the learner’s choice', async () => {
     const model = new FakeModel(['**The idea being tested** is comparison.']);
-    const attemptId = learningSession();
-    checkAnswer(attemptId, 0, 'c');
+    const attemptId = (await learningSession());
+    (await checkAnswer(attemptId, 0, 'c'));
     const reply = await questionHelp(db, alsoAlice(), { attemptId, partIndex: 0, position: 0, kind: 'explain' }, { client: model });
     expect(reply.kind).toBe('explain');
 
@@ -213,16 +213,16 @@ describe('deeper explanations', () => {
 
   it('are available for every question once a timed attempt is over', async () => {
     const model = new FakeModel();
-    const { attemptId } = startAttempt(db, { userId: alice, examKey: SAT.examKey, blueprintId: 'timed-math-module-1' });
-    submitAttempt(db, { attemptId, userId: alice });
+    const { attemptId } = (await startAttempt(db, { userId: alice, examKey: SAT.examKey, blueprintId: 'timed-math-module-1' }));
+    (await submitAttempt(db, { attemptId, userId: alice }));
     const reply = await questionHelp(db, alsoAlice(), { attemptId, partIndex: 0, position: 0, kind: 'explain' }, { client: model });
     expect(reply.kind).toBe('explain');
   });
 
   it('cannot be requested for somebody else’s attempt', async () => {
     const model = new FakeModel();
-    const attemptId = learningSession(alice);
-    checkAnswer(attemptId, 0);
+    const attemptId = (await learningSession(alice));
+    (await checkAnswer(attemptId, 0));
     await expectTutorError(
       questionHelp(db, { userId: bob, isGuest: false }, { attemptId, partIndex: 0, position: 0, kind: 'explain' }, { client: model }),
       'unknown-attempt',
@@ -233,13 +233,13 @@ describe('deeper explanations', () => {
 describe('what is sent to the model provider', () => {
   it('contains no email address, account id or display name', async () => {
     const model = new FakeModel();
-    const attemptId = learningSession();
-    checkAnswer(attemptId, 0);
+    const attemptId = (await learningSession());
+    (await checkAnswer(attemptId, 0));
     await questionHelp(db, alsoAlice(), { attemptId, partIndex: 0, position: 0, kind: 'explain' }, { client: model });
-    submitAttempt(db, { attemptId, userId: alice });
+    (await submitAttempt(db, { attemptId, userId: alice }));
     await debrief(db, alsoAlice(), attemptId, { client: new FakeModel(['### What went well\nPacing.']) });
 
-    const email = (db.prepare(`SELECT email FROM users WHERE id = ?`).get(alice) as { email: string }).email;
+    const email = ((await db.prepare(`SELECT email FROM users WHERE id = ?`).get(alice)) as { email: string }).email;
     for (const call of model.calls) {
       const sent = `${call.system}\n${call.user}`;
       expect(sent).not.toContain(alice);
@@ -251,16 +251,16 @@ describe('what is sent to the model provider', () => {
 
 describe('the after-test guide', () => {
   it('is only available once the session is finished', async () => {
-    const attemptId = learningSession();
+    const attemptId = (await learningSession());
     await expectTutorError(debrief(db, alsoAlice(), attemptId, { client: new FakeModel() }), 'tutor-not-allowed');
   });
 
   it('is built from the session’s results and the questions that were missed', async () => {
     const model = new FakeModel(['### What went well\nYou finished.']);
-    const attemptId = learningSession();
-    answer(attemptId, 0, 'b'); // wrong: the seeded key is a
-    answer(attemptId, 1, 'a'); // right
-    submitAttempt(db, { attemptId, userId: alice });
+    const attemptId = (await learningSession());
+    (await answer(attemptId, 0, 'b')); // wrong: the seeded key is a
+    (await answer(attemptId, 1, 'a')); // right
+    (await submitAttempt(db, { attemptId, userId: alice }));
 
     const reply = await debrief(db, alsoAlice(), attemptId, { client: model });
     expect(reply.kind).toBe('debrief');
@@ -272,8 +272,8 @@ describe('the after-test guide', () => {
   });
 
   it('is withheld when it predicts a score, which we never allow', async () => {
-    const attemptId = learningSession();
-    submitAttempt(db, { attemptId, userId: alice });
+    const attemptId = (await learningSession());
+    (await submitAttempt(db, { attemptId, userId: alice }));
     await expectTutorError(
       debrief(db, alsoAlice(), attemptId, { client: new FakeModel(['You are likely to score 1400 on test day.']) }),
       'tutor-debrief-unsafe',
@@ -281,10 +281,10 @@ describe('the after-test guide', () => {
   });
 
   it('is personal: one learner’s guide is never served to another', async () => {
-    const attemptId = learningSession();
-    submitAttempt(db, { attemptId, userId: alice });
+    const attemptId = (await learningSession());
+    (await submitAttempt(db, { attemptId, userId: alice }));
     const reply = await debrief(db, alsoAlice(), attemptId, { client: new FakeModel(['### What went well\nPacing.']) });
-    expect(() => flagResponse(db, { userId: bob, isGuest: false }, { responseId: reply.responseId })).toThrowError(TutorError);
+    (await expect(async () => (await flagResponse(db, { userId: bob, isGuest: false }, { responseId: reply.responseId }))).rejects.toThrowError(TutorError));
   });
 });
 
@@ -292,7 +292,7 @@ describe('limits', () => {
   it('stop a learner after their daily allowance, counting real model calls only', async () => {
     process.env.TUTOR_ACCOUNT_DAILY_LIMIT = '2';
     const model = new FakeModel();
-    const attemptId = learningSession();
+    const attemptId = (await learningSession());
     await questionHelp(db, alsoAlice(), { attemptId, partIndex: 0, position: 0, kind: 'hint', level: 1 }, { client: model });
     // A cache hit is free.
     await questionHelp(db, alsoAlice(), { attemptId, partIndex: 0, position: 0, kind: 'hint', level: 1 }, { client: model });
@@ -307,8 +307,8 @@ describe('limits', () => {
   it('cap the whole site, so the tutor has a spending ceiling', async () => {
     process.env.TUTOR_GLOBAL_DAILY_LIMIT = '1';
     const model = new FakeModel();
-    await questionHelp(db, alsoAlice(), { attemptId: learningSession(alice), partIndex: 0, position: 0, kind: 'hint' }, { client: model });
-    const bobAttempt = learningSession(bob);
+    await questionHelp(db, alsoAlice(), { attemptId: (await learningSession(alice)), partIndex: 0, position: 0, kind: 'hint' }, { client: model });
+    const bobAttempt = (await learningSession(bob));
     await expectTutorError(
       questionHelp(db, { userId: bob, isGuest: false }, { attemptId: bobAttempt, partIndex: 0, position: 1, kind: 'hint', level: 2 }, { client: model }),
       'tutor-busy',
@@ -319,14 +319,14 @@ describe('limits', () => {
 describe('reports and withdrawal', () => {
   it('files a report against the exact response, and a withdrawn response is never served again', async () => {
     const model = new FakeModel(['First hint text.', 'Replacement hint text.']);
-    const attemptId = learningSession();
+    const attemptId = (await learningSession());
     const first = await questionHelp(db, alsoAlice(), { attemptId, partIndex: 0, position: 0, kind: 'hint' }, { client: model });
 
-    flagResponse(db, alsoAlice(), { responseId: first.responseId, details: 'This is misleading.' });
-    const flag = db.prepare(`SELECT reason, tutor_response_id, details FROM content_flags`).get() as Record<string, string>;
+    (await flagResponse(db, alsoAlice(), { responseId: first.responseId, details: 'This is misleading.' }));
+    const flag = (await db.prepare(`SELECT reason, tutor_response_id, details FROM content_flags`).get()) as Record<string, string>;
     expect(flag).toEqual({ reason: 'ai_response', tutor_response_id: first.responseId, details: 'This is misleading.' });
 
-    expect(withdrawResponse(db, first.responseId)).toBe(true);
+    expect((await withdrawResponse(db, first.responseId))).toBe(true);
     const second = await questionHelp(db, alsoAlice(), { attemptId, partIndex: 0, position: 0, kind: 'hint' }, { client: model });
     expect(second.responseId).not.toBe(first.responseId);
     expect(second.html).toContain('Replacement');

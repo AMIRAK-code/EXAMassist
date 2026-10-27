@@ -71,7 +71,7 @@ describe('readiness on a published raw-scoring rule', () => {
   const NO_TIMES = { timesMs: [], inUntimed: 0, missing: 0 };
 
   const inputFor = (examKey: string, accuracy: number, omissionRate: number, target: number): ReadinessInput => {
-    const config = getDraftExamConfig(examKey)!;
+    const config = (getExamConfig(examKey) ?? getDraftExamConfig(examKey))!;
     const perDomain = 40;
     const omitted = Math.round(perDomain * omissionRate);
     const answered = perDomain - omitted;
