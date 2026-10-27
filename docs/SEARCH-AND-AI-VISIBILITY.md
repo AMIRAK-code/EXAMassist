@@ -37,33 +37,57 @@ sources.
 
 ## In the owners' accounts (not possible from the code)
 
+Done on 2026-10-27 in the owners' browser sessions, unless marked otherwise.
+
 Cloudflare, uniexamer.com zone (Moein's account):
 
-1. **SSL/TLS → Edge Certificates → Always Use HTTPS: on.** Until then
-   `http://uniexamer.com` serves pages over plain HTTP, where sign-in cannot set
-   its secure cookie.
-2. **Security → Bots, and AI Crawl Control:** new zones block AI crawlers by
-   default. Make sure nothing blocks them, or robots.txt's permissions never
-   reach them. This could not be checked from here: the API token has no
-   access to zone settings, and a request that only borrows a crawler's name
-   is not what Cloudflare matches on.
-3. **Managed robots.txt: off.** `https://uniexamer.com/robots.txt` was the
-   site's own file on 2026-10-27; check again after changing bot settings.
-4. Optional: **Caching → Configuration → Crawler Hints** sends IndexNow pings
-   on its own.
+1. **SSL/TLS → Edge Certificates → Always Use HTTPS: on.** `http://` now
+   answers 301 to the same `https://` address. Before, it served pages over
+   plain HTTP, where sign-in cannot set its secure cookie.
+2. **Security → Settings → Bot traffic:** Bot Fight Mode and AI Labyrinth are
+   off. **AI Crawl Control → Security** blocks no crawler. In the previous
+   7 days it had let through Googlebot (102 requests), BingBot, GPTBot,
+   OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-SearchBot, Claude-User,
+   PerplexityBot, Applebot, Amazonbot, CCBot and DuckAssistBot.
+3. **Bot Preference Sync (managed robots.txt): off**, so robots.txt is the
+   site's own file. Check again after changing bot settings.
+4. **Crawler Hints: left off.** Turning it on means accepting Cloudflare's
+   supplemental terms, and it works from cache changes, which these uncached
+   pages never produce. `npm run seo:indexnow` does the same job.
+5. **Workers plan: still Free** at the end of the day. See the 1102 section
+   below: the failures come and go, and Workers Paid is the fix.
 
-Google Search Console ([`GOOGLE_SEARCH_CONSOLE_SETUP.md`](GOOGLE_SEARCH_CONSOLE_SETUP.md)):
+Google Search Console, signed in as farazhaghgoo1@gmail.com
+([`GOOGLE_SEARCH_CONSOLE_SETUP.md`](GOOGLE_SEARCH_CONSOLE_SETUP.md)):
 
-5. Add a Domain property for uniexamer.com (TXT record `@` in the zone) and
-   submit `sitemap.xml`.
-6. If exam.assist365.app was ever verified: Change of address from it to
-   uniexamer.com. Keep the old property and the redirects for at least 180 days.
+6. **Domain property `uniexamer.com`, verified** by the TXT record `@`
+   `google-site-verification=VDiCIeo-…` in the zone. Removing that record
+   unverifies the property.
+7. **`https://uniexamer.com/sitemap.xml` submitted:** Success, 29 pages
+   discovered.
+8. **Indexing requested** for 11 pages: `/`, `/exams`,
+   `/exams/bocconi-online-test` and its `/format`, the three Bocconi guides,
+   and `/exams/` digital-sat, cisia-tolc, politecnico-di-torino-til and lsat.
+   The daily quota then ran out. Still to request, one day at a time:
+   `/exams/gmat`, `/exams/gre`, `/exams/enhanced-act`, `/guides`, and the two
+   remaining guides. The sitemap covers them anyway.
+9. No change of address was needed: exam.assist365.app was never a property
+   in this account.
 
-Bing Webmaster Tools:
+Bing Webmaster Tools, same Google sign-in:
 
-7. Import the site from Search Console, submit the sitemap, and if
-   exam.assist365.app was registered there, use Bing's site move tool for it.
-   Copilot answers come from Bing's index.
+10. **`https://uniexamer.com/` imported from Search Console** (Bing reads it
+    with the read-only `webmasters.readonly` scope), the sitemap submitted,
+    and all 29 public URLs sent through URL Submission (quota 100 a day).
+    exam.assist365.app was never registered there, so no site move is needed.
+    Copilot answers come from Bing's index.
+
+Still open:
+
+11. **Workers Paid** (Workers & Pages → Workers plans → Paid, $5 a month).
+12. **Deploy** the commits since 06f7397 (share images, llms.txt, the IndexNow
+    key file, robots.txt opening the training crawlers, HSTS), then run
+    `npm run seo:indexnow`.
 
 ## Known gap: pages fail under the Free Workers CPU limit
 
@@ -71,9 +95,15 @@ Measured on 2026-10-27: fetching the 29 sitemap pages one after another, 9 to
 15 answered **503 with Cloudflare error 1102** ("Worker exceeded resource
 limits"), and the same page alternated between 200 and 1102 when fetched six
 times in a row. The Worker is on the Free plan, which allows 10 ms of CPU per
-request. Rendering a page often takes longer, and Cloudflare's small burst
-allowance runs out as soon as requests arrive back to back. That is exactly
-how Googlebot and bingbot crawl.
+request, and rendering a page can take longer. The failures came from
+back-to-back requests, which is how Googlebot and bingbot crawl.
+
+About an hour later, still on the Free plan, two repeat crawls of all 29
+pages and eight back-to-back fetches of `/exams/gmat` all answered 200. So
+the failures are intermittent. Cloudflare applies the 10 ms with some leeway,
+and a render's CPU time varies (a freshly started isolate costs more), so
+whether a page goes over changes from one moment to the next. The cause has
+not gone away.
 
 A crawler that keeps getting 503s lowers its crawl rate, and a page that
 keeps failing is eventually dropped. The two fixes are:
