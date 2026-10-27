@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto';
 import type { Db } from '@/lib/db';
+import { onCloudflareWorkers } from '@/lib/runtime';
 
 /**
  * Fixed-window rate limiting, stored in the database so it survives a restart
@@ -24,6 +25,13 @@ export const RATE_LIMITS = {
   contentFlag: { windowSeconds: 3600, max: 20 },
   // Bursts only; the daily AI allowance is counted separately from real model calls.
   tutorRequest: { windowSeconds: 60, max: 12 },
+  // Email codes (migration 009): per caller, and per address so nobody can
+  // flood one inbox. Guessing is also capped per code (MAX_CODE_ATTEMPTS).
+  emailCodeRequest: { windowSeconds: 3600, max: 10 },
+  emailCodeAddress: { windowSeconds: 3600, max: 5 },
+  emailCodeVerify: { windowSeconds: 900, max: 20 },
+  // Each one calls Stripe, so a stuck button or a script cannot run up requests.
+  billingRequest: { windowSeconds: 3600, max: 20 },
 } as const satisfies Record<string, RateLimitRule>;
 
 export interface RateLimitResult {
@@ -36,28 +44,28 @@ function bucketKey(name: string, identifier: string): string {
   return `${name}:${createHash('sha256').update(identifier).digest('hex').slice(0, 32)}`;
 }
 
-export function checkRateLimit(
+export async function checkRateLimit(
   db: Db,
   name: keyof typeof RATE_LIMITS,
   identifier: string,
   now = new Date(),
-): RateLimitResult {
+): Promise<RateLimitResult> {
   const rule = RATE_LIMITS[name];
   const windowStart = Math.floor(now.getTime() / 1000 / rule.windowSeconds) * rule.windowSeconds;
   const bucket = bucketKey(name, identifier);
 
-  const run = db.transaction(() => {
-    db.prepare(
+  const run = db.transaction(async () => {
+    (await db.prepare(
       `INSERT INTO rate_limits (bucket, window_start, count) VALUES (?, ?, 1)
        ON CONFLICT(bucket, window_start) DO UPDATE SET count = count + 1`,
-    ).run(bucket, windowStart);
-    return db.prepare('SELECT count FROM rate_limits WHERE bucket = ? AND window_start = ?').get(
+    ).run(bucket, windowStart));
+    return (await db.prepare('SELECT count FROM rate_limits WHERE bucket = ? AND window_start = ?').get(
       bucket,
       windowStart,
-    ) as { count: number };
+    )) as { count: number };
   });
 
-  const { count } = run();
+  const { count } = (await run());
   const resetAt = (windowStart + rule.windowSeconds) * 1000;
 
   return {
@@ -68,9 +76,9 @@ export function checkRateLimit(
 }
 
 /** Housekeeping: drop windows that can no longer be current. */
-export function purgeRateLimits(db: Db, now = new Date()): number {
+export async function purgeRateLimits(db: Db, now = new Date()): Promise<number> {
   const cutoff = Math.floor(now.getTime() / 1000) - 24 * 60 * 60;
-  return db.prepare('DELETE FROM rate_limits WHERE window_start < ?').run(cutoff).changes;
+  return (await db.prepare('DELETE FROM rate_limits WHERE window_start < ?').run(cutoff)).changes;
 }
 
 /**
@@ -95,8 +103,17 @@ export function callerKey(request: Request, userId?: string | null): string {
  * none, so a deployment that exposes `next start` directly, with no proxy in
  * front, cannot tell a forged header from a real one. Deploy behind a proxy
  * that sets or appends X-Forwarded-For; see docs/HANDOFF.md.
+ *
+ * Cloudflare Workers are the exception: nothing appends to X-Forwarded-For
+ * there, so it arrives exactly as the client wrote it. Use CF-Connecting-IP,
+ * which Cloudflare sets itself and refuses to accept from a client.
  */
-export function clientAddress(headers: Headers, env: Record<string, string | undefined> = process.env): string {
+export function clientAddress(
+  headers: Headers,
+  env: Record<string, string | undefined> = process.env,
+  workers = onCloudflareWorkers,
+): string {
+  if (workers) return headers.get('cf-connecting-ip')?.trim() || 'unknown';
   const hops = Math.max(1, Number.parseInt(env.TRUSTED_PROXY_HOPS ?? '1', 10) || 1);
   const chain = (headers.get('x-forwarded-for') ?? '')
     .split(',')

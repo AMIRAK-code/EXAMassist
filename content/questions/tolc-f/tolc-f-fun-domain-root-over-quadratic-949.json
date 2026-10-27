@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-fun-domain-root-over-quadratic-949",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolcf-mathematics",
+  "skillSlug": "tolcf-math-functions-trig",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the domain of the real function $f(x)=\\dfrac{\\sqrt{x+3}}{x^{2}-4}$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$x>-3$, with $x\\ne -2$ and $x\\ne 2$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$x\\ge -3$, with $x\\ne -2$ and $x\\ne 2$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "All real $x$ except $x=-2$ and $x=2$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$x\\ge -3$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$x\\ge -3$, with $x\\ne 2$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "**Method.** Write one condition for each operation that can fail, then intersect them.\n\n- The square root needs $x+3\\ge 0$, so $x\\ge -3$ (at $x=-3$ the root is $0$, which is allowed).\n- The denominator must not vanish: $x^{2}-4\\ne 0$, so $x\\ne 2$ and $x\\ne -2$.\n\nBoth excluded points lie in $x\\ge -3$, so the domain is $x\\ge -3$ with $x\\ne -2$ and $x\\ne 2$.\n\n**How to check it.** $f(-3)=\\tfrac{0}{5}=0$ exists; $f(-2)$ and $f(2)$ divide by zero; $f(-4)$ needs $\\sqrt{-1}$.",
+  "distractorRationale": {
+    "e": "Solves $x^{2}=4$ but keeps only the positive root, forgetting that $x=-2$ also makes the denominator zero.",
+    "a": "Excludes $x=-3$, but there the root is $\\sqrt{0}=0$ and the denominator is $5$, so $f(-3)=0$ is defined.",
+    "d": "Handles the square root but ignores the denominator, which is zero at $x=\\pm 2$.",
+    "c": "Handles the denominator but ignores the square root, which is not real for $x<-3$."
+  },
+  "estimatedSeconds": 50,
+  "stimulusRef": null,
+  "accessibilityText": "What is the domain of the real function f of x equals the square root of x plus 3, divided by x squared minus 4? The five choices are: x greater than minus 3, with x not equal to minus 2 and not equal to 2; x greater than or equal to minus 3, with x not equal to minus 2 and not equal to 2; all real x except minus 2 and 2; x greater than or equal to minus 3; x greater than or equal to minus 3, with x not equal to 2.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave8-mpl-author",
+    "aiAssisted": true,
+    "notes": "Original item on the domain of a function combining a square root and a fraction. Each distractor drops or mishandles one of the two conditions."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave8-mpl-author",
+    "reviewer": "blind-reviewer-wave8-tolcf-mpl-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolcf-mpl-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Need x+3>=0 and x^2-4 != 0: x>=-3 with x != +-2. 'x>-3' wrongly drops x=-3 (where f=0); the others ignore the root or one of the excluded points. [A second, separate blind solve (blind-reviewer-wave8-tolcf-mpl-run1) reached the same answer: Need x+3>=0 and x^2-4!=0: x>=-3, x!=+-2. Option with x>-3 wrongly drops x=-3 (where f=0/5=0); the others either ignore the root or miss x=-2.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "domain",
+    "square-root",
+    "fraction"
+  ]
+}

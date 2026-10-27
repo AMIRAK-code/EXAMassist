@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-phys-density-unit-conversion-951",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "physics",
+  "domainSlug": "tolcf-physics",
+  "skillSlug": "tolcf-phys-measures",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A cough syrup has a density of $1.3\\ \\text{g/cm}^{3}$. What is its density in $\\text{kg/m}^{3}$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$0.13\\ \\text{kg/m}^{3}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$1.3\\times 10^{6}\\ \\text{kg/m}^{3}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$1.3\\times 10^{3}\\ \\text{kg/m}^{3}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$1.3\\times 10^{-3}\\ \\text{kg/m}^{3}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$1.3\\ \\text{kg/m}^{3}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "**Method.** Convert the numerator and the denominator separately. $1\\ \\text{g}=10^{-3}\\ \\text{kg}$, and since $1\\ \\text{cm}=10^{-2}\\ \\text{m}$, $1\\ \\text{cm}^{3}=(10^{-2})^{3}\\ \\text{m}^{3}=10^{-6}\\ \\text{m}^{3}$. So\n\n$$1.3\\ \\frac{\\text{g}}{\\text{cm}^{3}}=1.3\\cdot\\frac{10^{-3}\\ \\text{kg}}{10^{-6}\\ \\text{m}^{3}}=1.3\\times 10^{3}\\ \\frac{\\text{kg}}{\\text{m}^{3}}.$$\n\n**How to check it.** Water, $1\\ \\text{g/cm}^{3}$, is $1000\\ \\text{kg/m}^{3}$ (a cubic metre of water has a mass of one tonne). A syrup $1.3$ times as dense is $1300\\ \\text{kg/m}^{3}$.",
+  "distractorRationale": {
+    "b": "Converts only the volume, $\\text{cm}^{3}\\to\\text{m}^{3}$, and leaves the mass in grams: $1.3\\times 10^{6}$ is the density in $\\text{g/m}^{3}$.",
+    "d": "Converts only the mass, $\\text{g}\\to\\text{kg}$, and leaves the volume in cubic centimetres: this is the density in $\\text{kg/cm}^{3}$.",
+    "a": "Uses $1\\ \\text{m}^{3}=100\\ \\text{cm}^{3}$, applying the length factor $10^{2}$ instead of cubing it.",
+    "e": "Confuses the cubic metre with the litre: $1.3\\ \\text{g/cm}^{3}$ is $1.3\\ \\text{kg/L}$, but a cubic metre holds $1000$ litres."
+  },
+  "estimatedSeconds": 40,
+  "stimulusRef": null,
+  "accessibilityText": "A cough syrup has a density of 1.3 grams per cubic centimetre. Express it in kilograms per cubic metre. The five choices are: 0.13; 1.3 times 10 to the 6th; 1.3 times 10 to the 3rd; 1.3 times 10 to the minus 3; 1.3; all in kilograms per cubic metre.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave8-mpl-author",
+    "aiAssisted": true,
+    "notes": "Original item on converting a density between units, with the volume factor cubed. Distractors convert only one of the two units, forget to cube, or confuse the litre with the cubic metre."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave8-mpl-author",
+    "reviewer": "blind-reviewer-wave8-tolcf-mpl-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolcf-mpl-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "1 g/cm^3 = 1000 kg/m^3, so 1.3 g/cm^3 = 1.3x10^3 kg/m^3. 10^6 and 10^-3 come from wrong exponents; 1.3 and 0.13 ignore the conversion. [A second, separate blind solve (blind-reviewer-wave8-tolcf-mpl-run1) reached the same answer: 1 g/cm^3 = 10^-3 kg / 10^-6 m^3 = 10^3 kg/m^3, so 1.3x10^3 kg/m^3. 10^6 and 10^-3 come from using only one of the two factors or inverting them.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "unit-conversion",
+    "density",
+    "scientific-notation"
+  ]
+}

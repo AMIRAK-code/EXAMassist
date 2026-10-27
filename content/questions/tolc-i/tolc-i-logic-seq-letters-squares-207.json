@@ -1,0 +1,84 @@
+{
+  "id": "tolc-i-logic-seq-letters-squares-207",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-sequences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Use the English alphabet of 26 letters, A to Z, with no letters left out.\n\nA, D, I, P, ?\n\nWhich letter continues the series?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "V"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Y"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "X"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "W"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Q"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Turn letters into their positions in the alphabet: A = 1, D = 4, I = 9, P = 16. These are the square numbers $1^2, 2^2, 3^2, 4^2$, so the next letter is in position $5^2 = 25$, which is **Y**.\n\nCheck with the gaps: the moves are 3, 5, 7 places (the odd numbers), so the next move is 9 places: 16 + 9 = 25, again Y. Two independent descriptions of the same series give the same letter. Counting from the end of the alphabet is quicker than counting from A: Z is 26, so Y is 25.",
+  "distractorRationale": {
+    "e": "Simply takes the letter after P, ignoring the growing gaps between the letters.",
+    "a": "Moves 6 places: that is the number of letters skipped between I and P (J to O), not the number of places moved, and it is not the next step either.",
+    "d": "Moves 7 places again, repeating the last gap. The gaps grow 3, 5, 7, so the next is 9.",
+    "c": "Moves 8 places. Counting the letters skipped gives 2, 4, 6 and next 8, but the move is one more than the letters skipped, so it should be 9."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "A letter series question using the 26-letter English alphabet. The series gives the letters A, D, I and P in that order, followed by an unknown letter. The question asks which letter continues the series. The five choices are V, Y, X, W and Q.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-logic-author",
+    "aiAssisted": true,
+    "notes": "Tests a letter series whose alphabet positions are the perfect squares (gaps 3, 5, 7, 9). The scenario and wording are original to this bank; no published TOLC or other test item was used or adapted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-logic-author",
+    "reviewer": "blind-reviewer-wave8-tolci-logic-sci-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-logic-sci-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Positions 1, 4, 9, 16 are squares (or gaps 3, 5, 7, 9), so next is 25 = Y. Both readings give Y; V, W, X, Q correspond to no simple rule. [A second, separate blind solve (blind-reviewer-wave8-tolci-logic-sci-run1) reached the same answer: Positions 1, 4, 9, 16 are squares (or gaps 3,5,7,9), next 25 = Y. V, W, X, Q correspond to 22, 23, 24, 17 which match no simple rule.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "sequences",
+    "letters",
+    "squares",
+    "no-calculator"
+  ]
+}

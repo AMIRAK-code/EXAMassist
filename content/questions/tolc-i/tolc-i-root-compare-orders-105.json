@@ -1,0 +1,82 @@
+{
+  "id": "tolc-i-root-compare-orders-105",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-arithmetic-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Let $a = \\sqrt{2}$, $b = \\sqrt[3]{3}$ and $c = \\sqrt[5]{5}$. Which of the following is true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$a < c < b$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$a < b < c$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$c < a < b$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$c < b < a$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$b < a < c$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Roots with different indices cannot be compared directly, but positive numbers keep their order when raised to the same positive power. Choose a power that clears both roots in a pair.\n\n**Compare $a$ and $b$.** Raise both to the 6th power, since 6 is a multiple of 2 and 3: $a^{6} = (2^{1/2})^{6} = 2^{3} = 8$ and $b^{6} = (3^{1/3})^{6} = 3^{2} = 9$. As $8 < 9$, $a < b$.\n\n**Compare $a$ and $c$.** Raise both to the 10th power: $a^{10} = 2^{5} = 32$ and $c^{10} = (5^{1/5})^{10} = 5^{2} = 25$. As $25 < 32$, $c < a$.\n\nPutting the two together, $c < a < b$.\n\n**How to check it.** Compare $b$ and $c$ directly with the 15th power: $b^{15} = 3^{5} = 243$ and $c^{15} = 5^{3} = 125$, so $c < b$, consistent with the chain. Decimal estimates agree too: $a \\approx 1.414$, $b \\approx 1.442$, $c \\approx 1.380$.",
+  "distractorRationale": {
+    "b": "Orders the numbers by their radicands, 2, 3 and 5. A larger radicand does not mean a larger value when the root index is also larger: $c^{10} = 25 < 32 = a^{10}$.",
+    "d": "Assumes that a higher root index always gives a smaller number. That is true for $c$, but $b$ is larger than $a$: $b^{6} = 9 > 8 = a^{6}$.",
+    "a": "Gets $a < b$ right but reverses the comparison of $a$ and $c$, perhaps comparing $a^{10}$ with $c^{10}$ as $2^{10}$ against $5^{2}$. Correctly, $a^{10} = 2^{5} = 32$, which is larger than $c^{10} = 25$.",
+    "e": "Reverses the comparison of $a$ and $b$ and places $c$ last. Raising to the 6th power gives $a^{6} = 8 < 9 = b^{6}$, so $a < b$, and $c$ is the smallest of the three."
+  },
+  "estimatedSeconds": 140,
+  "stimulusRef": null,
+  "accessibilityText": "Let a be the square root of 2, b the cube root of 3, and c the fifth root of 5. Which of the following is true? The five choices are: a less than c less than b; a less than b less than c; c less than a less than b; c less than b less than a; and b less than a less than c.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-math-a-author",
+    "aiAssisted": true,
+    "notes": "Original item. Tests comparing roots of different index by raising to a common power, with no calculator. Distractors encode ordering by radicand, by index, and single reversed comparisons."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-math-a-author",
+    "reviewer": "blind-reviewer-wave8-tolci-math-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-math-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Sixth powers: a^6=8 < b^6=9, so a<b. Tenth powers: a^10=32 > c^10=25, so c<a. That gives c<a<b (numerically 1.380<1.414<1.442). [A second, separate blind solve (blind-reviewer-wave8-tolci-math-run1) reached the same answer: Raising to the 30th power gives a^30=2^15=32768, b^30=3^10=59049 and c^30=5^6=15625, so c<a<b. Every other ordering contradicts these values.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "radicals",
+    "fractional-exponents",
+    "comparison"
+  ]
+}

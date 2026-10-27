@@ -1,5 +1,9 @@
 # Handoff
 
+> **Newer:** `docs/STATUS-2026-09-30.md` covers the PoliTo and CISIA exams,
+> the expanded Bocconi, SAT and GRE banks, and what is still in review. This
+> document describes the platform as of 23 September.
+
 State of the platform at the end of the build session, what is verified, what is
 missing, and what to do next.
 
@@ -212,7 +216,8 @@ asked for are instead enforced on everything *we* author.
 2. **Whether to port to PostgreSQL now.** Advisable before multi-instance
    hosting.
 3. **The brand.** "Examer" is a placeholder in one constant
-   (`src/lib/site.ts`). Renaming is a single edit plus a favicon.
+   (`src/lib/site.ts`). Renaming is a single edit plus the logo files in
+   `public/brand` and the favicon (`src/app/icon.svg`).
 4. **Legal review** of the privacy and terms drafts, and a decision on the
    contracting entity and jurisdiction.
 5. **Whether to offer an AI tutor.** Not implemented. The brief's constraints

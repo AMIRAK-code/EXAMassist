@@ -1,0 +1,82 @@
+{
+  "id": "tolc-i-phys-hoist-power-302",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "sciences",
+  "domainSlug": "tolci-sciences",
+  "skillSlug": "tolci-sci-mechanics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "An electric hoist lifts a $50\\ \\text{kg}$ crate vertically through $12\\ \\text{m}$ at constant speed, taking $20\\ \\text{s}$. Take $g = 10\\ \\text{m/s}^2$ and ignore friction and losses. What average power does the hoist deliver to the crate?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$30\\ \\text{W}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$300\\ \\text{W}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$15\\ \\text{W}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$6000\\ \\text{W}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$600\\ \\text{W}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "**What to notice first.** At constant speed the kinetic energy does not change, so all the work done by the hoist goes into gravitational potential energy. Power is that work divided by the time taken.\n\n**The steps.**\n\n$$W = mgh = 50 \\times 10 \\times 12 = 6000\\ \\text{J}, \\qquad P = \\frac{W}{t} = \\frac{6000\\ \\text{J}}{20\\ \\text{s}} = 300\\ \\text{W}.$$\n\n**How to check it.** Use $P = Fv$. At constant speed the hoist pulls with a force equal to the weight, $F = mg = 500\\ \\text{N}$, and the speed is $v = 12/20 = 0.6\\ \\text{m/s}$. Then $P = 500 \\times 0.6 = 300\\ \\text{W}$, the same result. Units: $\\text{J/s} = \\text{W}$.",
+  "distractorRationale": {
+    "a": "Leaves out $g$, using $mh/t = 50 \\times 12 / 20 = 30$. The force needed to lift the crate is its weight, $mg = 500\\ \\text{N}$, not its mass.",
+    "d": "Stops at the work, $mgh = 6000\\ \\text{J}$, and labels it as a power. Power is work per unit time, so the $6000\\ \\text{J}$ must still be divided by $20\\ \\text{s}$.",
+    "c": "Divides the work by the square of the time, $6000 / 400 = 15$. That gives units of $\\text{J/s}^2$, which is not a power.",
+    "e": "Uses $P = Fv$ with a speed of $1.2\\ \\text{m/s}$, twice $12/20$, as if the crate started from rest and accelerated uniformly. The stem says the speed is constant, so the speed is simply $0.6\\ \\text{m/s}$."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "An electric hoist lifts a 50 kilogram crate vertically through 12 metres at constant speed, taking 20 seconds. Take g equal to 10 metres per second squared and ignore friction and losses. What average power does the hoist deliver to the crate? The choices are 30 watts, 300 watts, 15 watts, 6000 watts and 600 watts.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-sciences-author",
+    "aiAssisted": true,
+    "notes": "Original item testing work against gravity and average power, with a cross-check by P = Fv. Situation and numbers invented for this bank."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-sciences-author",
+    "reviewer": "blind-reviewer-wave8-tolci-logic-sci-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-logic-sci-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "P = mgh/t = 50*10*12/20 = 300 W. 6000 W is the work, 30 W forgets g, 600 W halves the time. [A second, separate blind solve (blind-reviewer-wave8-tolci-logic-sci-run1) reached the same answer: P = mgh/t = 50*10*12/20 = 300 W. 6000 W is the work (J), 30 W omits g, 600 W doubles.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "work",
+    "power",
+    "potential-energy"
+  ]
+}

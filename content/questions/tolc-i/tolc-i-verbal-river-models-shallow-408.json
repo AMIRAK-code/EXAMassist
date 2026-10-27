@@ -1,0 +1,87 @@
+{
+  "id": "tolc-i-verbal-river-models-shallow-408",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "verbal-comprehension",
+  "domainSlug": "tolci-verbal",
+  "skillSlug": "tolci-verbal-stated",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "According to the passage, which of the following is a reason why a model built to one scale in every direction could give the wrong answer?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "In such shallow water, surface tension and stickiness affect the flow."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Ordinary sand was too light for the model's currents to hold in place."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Its concrete bed slowly changed shape as it absorbed water."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Its pumps could not reproduce tides in less than the real time."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The survey maps it was shaped from were not accurate enough."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The question paraphrases a phrase from the second paragraph, so start there: \"A model built faithfully to one scale in every direction could therefore give the wrong answer\". The word \"therefore\" points back to the reason, given in the sentence before: in a sheet of water \"a few millimetres deep\", \"surface tension and the water's own stickiness, negligible in nature, begin to matter\", and turbulent flow can become smooth. Shallow water behaves differently, and that is the reason.\n\nCheck the trap about sand: the third paragraph says sand was replaced by \"lighter grains that the model's gentler currents could still pick up and carry\". Sand was the heavier material, too heavy for weak currents to move, so a choice calling it too light reverses the text. The pumps are said to reproduce tides \"in a fraction of the real time\", and nothing is said against the concrete or the maps.",
+  "distractorRationale": {
+    "c": "The passage never says the concrete absorbed water or changed shape. The reason it gives concerns how very shallow water flows.",
+    "d": "The first paragraph says the pumps and gates could reproduce a flood or tides \"in a fraction of the real time\", which contradicts this choice.",
+    "e": "The models were \"shaped from survey maps\", but the passage never questions the maps. The problem it describes is physical: some properties of water do not shrink with the model.",
+    "b": "This reverses the text. Sand was replaced by \"lighter grains\" that gentle currents could still carry, so sand was too heavy, not too light, and the sand problem is not what the second paragraph gives as the reason."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": {
+    "id": "tolc-i-passage-river-models-492",
+    "version": 1
+  },
+  "accessibilityText": "A stated-information question about the river models passage. It asks which is a reason why a model built to one scale in every direction could give the wrong answer. The five choices: In such shallow water, surface tension and stickiness affect the flow; Ordinary sand was too light for the model's currents to hold in place; Its concrete bed slowly changed shape as it absorbed water; Its pumps could not reproduce tides in less than the real time; The survey maps it was shaped from were not accurate enough.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-verbal-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank against an original passage; it tests locating a stated reason signalled by \"therefore\", with a distractor that reverses a detail from another paragraph. Every option is answerable, or refutable, from the passage text alone."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-verbal-author",
+    "reviewer": "blind-reviewer-wave8-tolci-verbal-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-verbal-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Paragraph 2 says that in water a few millimetres deep, surface tension and stickiness begin to matter, so a uniformly scaled model can mislead. The sand option reverses the passage: sand was replaced by lighter grains the gentle currents could still move, and it is not given as the reason for the wrong answer. The passage never mentions concrete absorbing water, slow pumps (tides ran in a fraction of real time) or inaccurate maps. [A second, separate blind solve (blind-reviewer-wave8-tolci-verbal-run1) reached the same answer: Stated: in water a few millimetres deep, surface tension and stickiness begin to matter. Sand was replaced because it was too heavy for gentle currents to move, not too light (B reversed); concrete absorbing water and inaccurate maps are not mentioned; the pumps did reproduce tides in a fraction of the real time.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "verbal",
+    "reading",
+    "stated",
+    "science-method",
+    "no-calculator"
+  ]
+}

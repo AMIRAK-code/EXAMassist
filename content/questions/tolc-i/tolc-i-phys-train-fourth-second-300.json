@@ -1,0 +1,82 @@
+{
+  "id": "tolc-i-phys-train-fourth-second-300",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "sciences",
+  "domainSlug": "tolci-sciences",
+  "skillSlug": "tolci-sci-mechanics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A train starts from rest and moves along a straight track with a constant acceleration of $2\\ \\text{m/s}^2$. How far does it travel during the fourth second of its motion, that is, between $t = 3\\ \\text{s}$ and $t = 4\\ \\text{s}$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$8\\ \\text{m}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$16\\ \\text{m}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$9\\ \\text{m}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$7\\ \\text{m}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$14\\ \\text{m}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "**What to notice first.** The question asks for the distance covered *in one particular second*, not the distance from the start. Find the distance from the start at both ends of that second and subtract.\n\n**The steps.** Starting from rest, $s = \\tfrac12 a t^2 = \\tfrac12 \\cdot 2 \\cdot t^2 = t^2$ (in metres, with $t$ in seconds).\n\n- At $t = 4\\ \\text{s}$: $s = 16\\ \\text{m}$.\n- At $t = 3\\ \\text{s}$: $s = 9\\ \\text{m}$.\n\nDistance during the fourth second: $16 - 9 = 7\\ \\text{m}$.\n\n**How to check it.** The speed is $v = at$, so it is $6\\ \\text{m/s}$ at $t = 3\\ \\text{s}$ and $8\\ \\text{m/s}$ at $t = 4\\ \\text{s}$. With constant acceleration the average speed over that second is the mean of the two, $7\\ \\text{m/s}$, and $7\\ \\text{m/s} \\times 1\\ \\text{s} = 7\\ \\text{m}$.",
+  "distractorRationale": {
+    "a": "Multiplies the speed at the end of the fourth second, $8\\ \\text{m/s}$, by $1\\ \\text{s}$, as if the train moved at its final speed for the whole second. It was speeding up from $6$ to $8\\ \\text{m/s}$, so its average speed in that second is $7\\ \\text{m/s}$.",
+    "c": "This is the distance covered in the first three seconds, $s(3) = 9\\ \\text{m}$, which is where the fourth second starts, not how far the train goes during it.",
+    "e": "Drops the factor $\\tfrac12$ in $s = \\tfrac12 a t^2$ and computes $2 \\times (16 - 9) = 14$. The method of subtracting is right, but every distance is doubled.",
+    "b": "This is the total distance from the start to $t = 4\\ \\text{s}$, $s(4) = 16\\ \\text{m}$. The question asks only for the part covered during the fourth second."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "A train starts from rest and moves along a straight track with a constant acceleration of 2 metres per second squared. How far does it travel during the fourth second of its motion, that is, between t equals 3 seconds and t equals 4 seconds? The choices are 8 metres, 16 metres, 9 metres, 7 metres and 14 metres.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-sciences-author",
+    "aiAssisted": true,
+    "notes": "Original item testing uniformly accelerated motion: the distance covered in a single second rather than from the start. Situation and numbers invented for this bank."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-sciences-author",
+    "reviewer": "blind-reviewer-wave8-tolci-logic-sci-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-logic-sci-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "s = (1/2)at^2 = t^2: s(4) - s(3) = 16 - 9 = 7 m. 16 m is total distance in 4 s, 9 m in 3 s, 8 m is the speed at t = 4 s. [A second, separate blind solve (blind-reviewer-wave8-tolci-logic-sci-run1) reached the same answer: s = t^2 (a/2 = 1): s(4) - s(3) = 16 - 9 = 7 m. 16 m is the total to t = 4, 9 m to t = 3, 8 m is v at t = 4, 14 m doubles.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "kinematics",
+    "uniform-acceleration",
+    "distance-in-nth-second"
+  ]
+}

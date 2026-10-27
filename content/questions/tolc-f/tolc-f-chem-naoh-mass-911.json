@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-chem-naoh-mass-911",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "chemistry",
+  "domainSlug": "tolcf-chemistry",
+  "skillSlug": "tolcf-chem-solutions-acids-bases",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "The molar mass of sodium hydroxide, $\\mathrm{NaOH}$, is 40 g/mol. What mass of $\\mathrm{NaOH}$ is needed to prepare 250 mL of a 0.20 mol/L solution?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "2.0 g"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "8.0 g"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "0.050 g"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "20 g"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "50 g"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Moles from concentration and volume, then mass from moles. Use litres for the volume.\n\n1. **Volume in litres:** $250\\ \\mathrm{mL} = 0.250\\ \\mathrm{L}$.\n2. **Moles:** $n = c \\times V = 0.20\\ \\mathrm{mol/L} \\times 0.250\\ \\mathrm{L} = 0.050\\ \\mathrm{mol}$.\n3. **Mass:** $m = n \\times M = 0.050\\ \\mathrm{mol} \\times 40\\ \\mathrm{g/mol} = 2.0\\ \\mathrm{g}$.\n\n**Check a second way.** A 0.20 mol/L solution holds $0.20 \\times 40 = 8.0$ g in each litre. A quarter of a litre needs a quarter of that: $8.0 \\div 4 = 2.0$ g.",
+  "distractorRationale": {
+    "c": "This finds the number of moles correctly, $0.20 \\times 0.25 = 0.050$ mol, but reports that number as grams. Moles must still be multiplied by the molar mass, 40 g/mol.",
+    "b": "This is the mass in a full litre, $0.20 \\times 40 = 8.0$ g. It forgets that only 250 mL, a quarter of a litre, is being prepared.",
+    "d": "This converts 250 mL to 2.5 L, a slip of one decimal place, and then computes $0.20 \\times 2.5 \\times 40 = 20$ g. 250 mL is 0.250 L.",
+    "e": "This multiplies the concentration by the volume in millilitres, $0.20 \\times 250 = 50$, and reads the result as grams. That product is in millimoles, and the molar mass is never used."
+  },
+  "estimatedSeconds": 55,
+  "stimulusRef": null,
+  "accessibilityText": "The question gives the molar mass of sodium hydroxide, N a O H, as 40 grams per mole, and asks what mass is needed to prepare 250 millilitres of a solution with a concentration of 0.20 moles per litre. The choices are masses in grams.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-chemistry-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank (Wave 6, TOLC-F chemistry). Each wrong choice comes from one named misconception, recorded in distractorRationale. Numbers chosen for hand calculation with no calculator; every key was recomputed a second way in the build script."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-chemistry-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-chem-run15",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-chem-run15",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "n = 0.250 L x 0.20 mol/L = 0.050 mol, and 0.050 x 40 = 2.0 g. 0.050 g confuses moles with grams, 20 g comes from using 250 mL as 2.5 L, and 8.0 g from using 1 L. [A second, separate blind solve (blind-reviewer-wave6-tolcf-chem-run18) reached the same answer: 0.250 L x 0.20 mol/L = 0.050 mol, and 0.050 x 40 = 2.0 g. 0.050 g is the mole number written as a mass. 8.0 g is 0.20 x 40, which forgets the volume. 20 g and 50 g come from mistakes with the mL units.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication. Key check: 0.20 x 0.250 = 0.050 mol; x 40 = 2.0 g; per litre 8.0 g, a quarter of a litre is 2.0 g. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "molarity",
+    "concentration",
+    "mass-mole-conversion"
+  ]
+}

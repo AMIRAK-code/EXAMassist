@@ -1,0 +1,71 @@
+{
+  "id": "digital-sat-math-linear-functions-405",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "algebra",
+  "skillSlug": "linear-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In the $xy$-plane, the graph of the linear function $f$ is parallel to the line $5x - 2y = 20$ and passes through the point $(4, -3)$. What is the value of $f(0)$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$-23$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$-13$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$-10$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$-\\frac{7}{5}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Parallel lines share a slope, so first read the slope off the given line, then use the given point to find where the graph of $f$ meets the $y$-axis. The value $f(0)$ is that $y$-intercept.\n\nRewrite the given line in slope-intercept form:\n\n$$5x - 2y = 20 \\;\\Rightarrow\\; -2y = -5x + 20 \\;\\Rightarrow\\; y = \\frac{5}{2}x - 10$$\n\nIts slope is $\\frac{5}{2}$, so $f(x) = \\frac{5}{2}x + b$ for some $b$. The graph passes through $(4, -3)$:\n\n$$-3 = \\frac{5}{2}(4) + b = 10 + b \\;\\Rightarrow\\; b = -13$$\n\nSo $f(0) = -13$.\n\nA second way to see it: moving from $x = 4$ back to $x = 0$ is $4$ steps to the left, and each step lowers the value by $\\frac{5}{2}$, so $f(0) = -3 - 4 \\cdot \\frac{5}{2} = -3 - 10 = -13$.\n\nCheck: $f(x) = \\frac{5}{2}x - 13$ gives $f(4) = 10 - 13 = -3$, and its slope matches the given line, while its intercept differs from $-10$, so the two lines are parallel and distinct, as they should be.",
+  "distractorRationale": {
+    "a": "This reads the slope of $5x - 2y = 20$ as $5$, the coefficient of $x$, without solving for $y$ first. Then $-3 = 5(4) + b$ gives $b = -23$. In standard form the slope is $-\\frac{5}{-2} = \\frac{5}{2}$.",
+    "c": "This is the $y$-intercept of the given line $5x - 2y = 20$, not of the parallel line through $(4, -3)$. Parallel lines share a slope, not an intercept.",
+    "d": "This uses the perpendicular slope, $-\\frac{2}{5}$, instead of the parallel one: $-3 = -\\frac{2}{5}(4) + b$ gives $b = -3 + \\frac{8}{5} = -\\frac{7}{5}$."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "In the coordinate plane, the graph of a linear function f is parallel to the line 5 x minus 2 y equals 20 and passes through the point 4, negative 3. Find f of 0. The four choices are negative seven fifths, negative 23, negative 13 and negative 10.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-sat-math-alg-author",
+    "aiAssisted": true,
+    "notes": "Original item. The given line is in standard form so the slope has to be extracted, and the point was chosen so that the parallel, perpendicular, unconverted-slope and copied-intercept answers are all different."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-sat-math-alg-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved twice and checked by script: slope 5/2, -3 = 10 + b gives b = -13. Distractors recomputed: -10 is the given line's intercept, -7/5 comes from the perpendicular slope, -23 from reading the x-coefficient 5 as the slope. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "algebra",
+    "linear-function",
+    "parallel-lines"
+  ]
+}

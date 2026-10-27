@@ -11,6 +11,8 @@ import { politoTilAConfig } from './configs/polito-til-a';
 import { politoTilIConfig } from './configs/polito-til-i';
 import { tolcEConfig } from './configs/tolc-e';
 import { imatConfig } from './configs/imat';
+import { tolcFConfig } from './configs/tolc-f';
+import { tolcIConfig } from './configs/tolc-i';
 
 /**
  * The exam registry.
@@ -33,6 +35,11 @@ export const EXAM_CONFIGS: readonly ExamConfig[] = [
   bocconiUndergraduateConfig,
   bocconiLawConfig,
   bocconiGraduateConfig,
+  politoTilIConfig,
+  politoTilAConfig,
+  tolcEConfig,
+  tolcFConfig,
+  tolcIConfig,
 ];
 
 /**
@@ -44,7 +51,7 @@ export const EXAM_CONFIGS: readonly ExamConfig[] = [
  * docs/research/ and its `unverified` list holds only what the official
  * sources genuinely leave open.
  */
-export const DRAFT_EXAM_CONFIGS: readonly ExamConfig[] = [tolcEConfig, politoTilIConfig, politoTilAConfig, imatConfig];
+export const DRAFT_EXAM_CONFIGS: readonly ExamConfig[] = [imatConfig];
 
 export type Audience = 'undergraduate' | 'law' | 'graduate';
 
@@ -208,6 +215,32 @@ export const EXAM_HUBS: readonly ExamHub[] = [
     configKeys: ['gre'],
     order: 7,
   },
+  {
+    slug: 'politecnico-di-torino-til',
+    name: 'Politecnico di Torino TIL',
+    shortName: 'PoliTo TIL',
+    label: 'PoliTo',
+    variantLabels: { 'polito-til-i': 'Engineering (TIL-I)', 'polito-til-a': 'Architecture (TIL-A)' },
+    publisher: 'Politecnico di Torino',
+    tagline:
+      'Politecnico di Torino’s in-person admission tests: TIL-I for Engineering, 42 questions in 90 minutes, and TIL-A for Architecture, 50 questions in 100 minutes, both with a penalty for wrong answers.',
+    audiences: ['undergraduate'],
+    configKeys: ['polito-til-i', 'polito-til-a'],
+    order: 8,
+  },
+  {
+    slug: 'cisia-tolc',
+    name: 'CISIA TOLC',
+    shortName: 'TOLC',
+    label: 'TOLC',
+    variantLabels: { 'tolc-e': 'Economics (TOLC-E)', 'tolc-f': 'Pharmacy (TOLC-F)', 'tolc-i': 'Engineering (TOLC-I)' },
+    publisher: 'CISIA',
+    tagline:
+      'The online admission tests many Italian universities use: TOLC-E for economics, 36 questions in 90 minutes; TOLC-F for pharmacy, 50 questions in 72 minutes; and TOLC-I for engineering, 50 questions in 110 minutes. Each university sets its own pass mark.',
+    audiences: ['undergraduate'],
+    configKeys: ['tolc-e', 'tolc-f', 'tolc-i'],
+    order: 9,
+  },
 ];
 
 /**
@@ -239,7 +272,7 @@ export const DRAFT_EXAM_HUBS: readonly ExamHub[] = [
         note: 'SAA appears to run its own selection for its MBA programmes. Whether it asks for or accepts a GMAT or GRE score is unverified; until SAA’s own pages are read, no test is linked here.',
       },
     ],
-    order: 8,
+    order: 10,
   },
 ];
 
@@ -258,6 +291,14 @@ export function getExamConfig(examKey: string): ExamConfig | undefined {
 /** A draft config, for content validation only. Never use this to serve learners. */
 export function getDraftExamConfig(examKey: string): ExamConfig | undefined {
   return draftConfigByKey.get(examKey);
+}
+
+/**
+ * The name to put before "test": "Bocconi" for the Bocconi Test, so a page
+ * says "your free Bocconi test" rather than "your free Bocconi Test test".
+ */
+export function examTestName(config: Pick<ExamConfig, 'shortName'>): string {
+  return config.shortName.replace(/\s+test$/i, '');
 }
 
 /** Throws rather than returning undefined, for call sites that cannot continue. */

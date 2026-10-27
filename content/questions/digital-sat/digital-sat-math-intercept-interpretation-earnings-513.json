@@ -1,0 +1,78 @@
+{
+  "id": "digital-sat-math-intercept-interpretation-earnings-513",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "algebra",
+  "skillSlug": "linear-equations-two-variables",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Maya earns $\\$45$ per hour tutoring and $\\$30$ per hour working at a cafe. The equation $45x + 30y = 1{,}800$ represents the situation in which she earns a total of $\\$1{,}800$ from $x$ hours of tutoring and $y$ hours at the cafe. Which statement is the best interpretation of the $x$-intercept of the graph of this equation in the $xy$-plane?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "If Maya works no hours at the cafe, she must tutor for $40$ hours to earn $\\$1{,}800$."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "If Maya does no tutoring, she must work $60$ hours at the cafe to earn $\\$1{,}800$."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "For each additional hour of tutoring, Maya can work $1.5$ fewer hours at the cafe."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Maya works a total of $40$ hours at the two jobs."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The $x$-intercept is the point where $y = 0$. Substitute and solve:\n\n$$45x + 30(0) = 1{,}800 \\;\\Rightarrow\\; x = 40$$\n\nThe intercept is $(40, 0)$. In context, $y = 0$ means no hours at the cafe and $x = 40$ means $40$ hours of tutoring. So if Maya works no hours at the cafe, she must tutor for $40$ hours to earn $\\$1{,}800$.\n\nCheck: $40 \\times \\$45 = \\$1{,}800$.\n\nThe other statements describe different features. Sixty hours at the cafe with no tutoring is the $y$-intercept, $(0, 60)$. One and a half fewer cafe hours per extra tutoring hour is the slope, $-\\frac{45}{30} = -1.5$. And $40$ is not a total of both kinds of hours: at the $x$-intercept, all $40$ hours are tutoring.",
+  "distractorRationale": {
+    "b": "This describes the $y$-intercept, $(0, 60)$, where $x = 0$. The $x$-intercept is where $y = 0$, meaning no cafe hours.",
+    "d": "At the $x$-intercept, $y = 0$, so all $40$ hours are tutoring hours. The intercept does not give a total of the two kinds of hours, which varies along the line.",
+    "c": "This is a correct description of the slope, $-\\frac{45}{30} = -1.5$, not of the $x$-intercept."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "Maya earns 45 dollars per hour tutoring and 30 dollars per hour at a cafe. The equation 45 x plus 30 y equals 1,800 represents earning 1,800 dollars from x hours of tutoring and y hours at the cafe. Which is the best interpretation of the x-intercept of its graph? The choices are: if Maya works no hours at the cafe, she must tutor for 40 hours to earn 1,800 dollars; if Maya does no tutoring, she must work 60 hours at the cafe to earn 1,800 dollars; for each additional hour of tutoring, Maya can work 1.5 fewer hours at the cafe; Maya works a total of 40 hours at the two jobs.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "sat-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Interprets the x-intercept of a linear equation in two variables in context, with distractors that describe the y-intercept, a misread total, and the slope."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "sat-wave8-math-author",
+    "reviewer": "blind-reviewer-wave8-sat-math-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-sat-math-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "x-intercept has y=0: 45x=1800, x=40, i.e., with no cafe hours she tutors 40 hours. 60 cafe hours is the y-intercept, 1.5 fewer hours is the slope magnitude, and 'total of 40 hours' misreads the intercept. [A second, separate blind solve (blind-reviewer-wave8-sat-math-run1) reached the same answer: x-intercept: y=0 gives x=40, i.e., 40 hours tutoring with no cafe hours. 60 hours at cafe is the y-intercept; the 1.5 trade-off is the slope; 'total 40 hours' misreads the intercept.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "algebra",
+    "linear-equation",
+    "intercept",
+    "interpretation"
+  ]
+}

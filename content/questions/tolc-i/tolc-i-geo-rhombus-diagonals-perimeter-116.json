@@ -1,0 +1,82 @@
+{
+  "id": "tolc-i-geo-rhombus-diagonals-perimeter-116",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "The diagonals of a rhombus are $12$ cm and $16$ cm long. What is the perimeter of the rhombus?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$80$ cm"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$28$ cm"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$40$ cm"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$10$ cm"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$56$ cm"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The diagonals of a rhombus bisect each other at right angles, so they cut the rhombus into four congruent right triangles.\n\n**Step 1 — one right triangle.** Its legs are half of each diagonal, $6$ cm and $8$ cm, and its hypotenuse is a side of the rhombus: $\\sqrt{6^{2}+8^{2}} = \\sqrt{36+64} = \\sqrt{100} = 10$ cm.\n\n**Step 2 — the perimeter.** All four sides of a rhombus are equal, so the perimeter is $4\\cdot 10 = 40$ cm.\n\n**Check.** The area from the diagonals is $\\frac{12\\cdot 16}{2} = 96\\ \\text{cm}^{2}$, and four triangles of area $\\frac{6\\cdot 8}{2} = 24$ give $4\\cdot 24 = 96$ ✓, so the triangles are the right ones.",
+  "distractorRationale": {
+    "d": "Finds the side, $10$ cm, and stops: the question asks for the perimeter, four sides.",
+    "b": "Adds the two diagonals, $12+16$, as if the perimeter were made of the diagonals.",
+    "e": "Doubles the sum of the diagonals, $2(12+16)$, treating the diagonals like the sides of a rectangle.",
+    "a": "Uses the whole diagonals, $12$ and $16$, as the legs of the right triangle, giving a side of $20$ cm; each leg is only half a diagonal."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "The diagonals of a rhombus are 12 centimetres and 16 centimetres long. What is the perimeter of the rhombus? The five choices are: 80 centimetres; 28 centimetres; 40 centimetres; 10 centimetres; 56 centimetres.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-math-b-author",
+    "aiAssisted": true,
+    "notes": "Tests that the diagonals of a rhombus bisect each other at right angles, then Pythagoras with a 6-8-10 triple. Original item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-math-b-author",
+    "reviewer": "blind-reviewer-wave8-tolci-math-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-math-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The half-diagonals 6 and 8 give side 10, so the perimeter is 40. 10 is the side, 56 is twice the sum of the diagonals, and 28 is their sum. [A second, separate blind solve (blind-reviewer-wave8-tolci-math-run1) reached the same answer: The half-diagonals are 6 and 8, so the side is 10 and the perimeter is 40. 10 is the side, 28 is the sum of the diagonals, 56 is twice that, and 80 doubles the perimeter.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "rhombus",
+    "pythagoras",
+    "perimeter"
+  ]
+}

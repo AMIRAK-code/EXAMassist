@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-chem-isoelectronic-radius-903",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "chemistry",
+  "domainSlug": "tolcf-chemistry",
+  "skillSlug": "tolcf-chem-atoms-periodic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "The ions $\\mathrm{O^{2-}}$, $\\mathrm{F^{-}}$, $\\mathrm{Na^{+}}$, $\\mathrm{Mg^{2+}}$ and $\\mathrm{Al^{3+}}$ all have the same electron configuration, $1s^2\\,2s^2\\,2p^6$. Which of them has the largest radius?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\mathrm{Na^{+}}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\mathrm{O^{2-}}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\mathrm{Al^{3+}}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\mathrm{F^{-}}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\mathrm{Mg^{2+}}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Do not compare the parent atoms. Notice what the five ions share: each has **10 electrons in the same shells** ($1s^2\\,2s^2\\,2p^6$). Electron-electron repulsion and shielding are therefore essentially the same in all of them, and the only thing that differs is the **nuclear charge**, that is, the number of protons.\n\n| Ion | Protons | Electrons |\n| --- | --- | --- |\n| $\\mathrm{O^{2-}}$ | 8 | 10 |\n| $\\mathrm{F^{-}}$ | 9 | 10 |\n| $\\mathrm{Na^{+}}$ | 11 | 10 |\n| $\\mathrm{Mg^{2+}}$ | 12 | 10 |\n| $\\mathrm{Al^{3+}}$ | 13 | 10 |\n\nThe more protons pulling on the same ten electrons, the tighter the electron cloud and the smaller the ion. So the radius decreases from oxide to aluminium: $\\mathrm{O^{2-}} > \\mathrm{F^-} > \\mathrm{Na^+} > \\mathrm{Mg^{2+}} > \\mathrm{Al^{3+}}$. The largest is the oxide ion, which has the fewest protons.\n\n**Check:** the ion with the most negative charge (fewest protons per electron) should be the most swollen, and the most positive charge the most compressed.",
+  "distractorRationale": {
+    "e": "This compares the parent atoms, where magnesium is larger than oxygen. Once the ions have the same ten electrons, the atom-size trend no longer applies and $\\mathrm{Mg^{2+}}$ is one of the smallest, because it has 12 protons pulling on them.",
+    "d": "This sees correctly that the anions are larger than the cations, but stops short. Fluoride has 9 protons against oxide's 8, so it holds the same ten electrons a little more tightly and is slightly smaller.",
+    "c": "This assumes the ion with the most protons, or the largest charge, is the biggest. With the same ten electrons, more protons pull them in closer, so $\\mathrm{Al^{3+}}$ with 13 protons is the smallest of the five.",
+    "a": "Sodium is the largest atom on the list, but the ion has lost its outer shell and is isoelectronic with the others. Its 11 protons pull the ten electrons in more than the 8 protons of oxide do."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "The five ions are oxide, O with charge two minus; fluoride, F with charge one minus; sodium, Na with charge one plus; magnesium, Mg with charge two plus; and aluminium, Al with charge three plus. All have ten electrons arranged as 1s squared, 2s squared, 2p to the sixth. The question asks which ion has the largest radius.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-chemistry-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank (Wave 6, TOLC-F chemistry). Each wrong choice comes from one named misconception, recorded in distractorRationale. Numbers chosen for hand calculation with no calculator; every key was recomputed a second way in the build script."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-chemistry-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-chem-run15",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-chem-run15",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "In an isoelectronic series, radius falls as nuclear charge rises. O2- has the lowest Z (8), so it is the largest. The order is O2- > F- > Na+ > Mg2+ > Al3+. [A second, separate blind solve (blind-reviewer-wave6-tolcf-chem-run18) reached the same answer: In an isoelectronic series the radius falls as nuclear charge rises. O2- has the fewest protons (8), so it is the largest. F- comes second, and Al3+ is the smallest.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication. Key check: isoelectronic series, radius decreases with rising proton number; O(8) < F(9) < Na(11) < Mg(12) < Al(13) protons, so O2- is largest. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "isoelectronic",
+    "ionic-radius",
+    "periodic-trends"
+  ]
+}

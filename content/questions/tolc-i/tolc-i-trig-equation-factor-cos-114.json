@@ -1,0 +1,82 @@
+{
+  "id": "tolc-i-trig-equation-factor-cos-114",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-trigonometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the sum of all solutions of $\\sin 2x = \\cos x$ in the interval $0 \\le x < 2\\pi$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$5\\pi$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\pi$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$3\\pi$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$2\\pi$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\dfrac{13\\pi}{6}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Use $\\sin 2x = 2\\sin x\\cos x$, then bring everything to one side and **factor** — never divide by $\\cos x$, because that throws away every solution with $\\cos x = 0$.\n\n**Step 1 — factor.** $2\\sin x\\cos x - \\cos x = 0$, so $\\cos x\\,(2\\sin x - 1) = 0$.\n\n**Step 2 — first factor.** $\\cos x = 0$ gives $x = \\dfrac{\\pi}{2}$ and $x = \\dfrac{3\\pi}{2}$.\n\n**Step 3 — second factor.** $\\sin x = \\dfrac12$ gives $x = \\dfrac{\\pi}{6}$ and $x = \\dfrac{5\\pi}{6}$.\n\n**Step 4 — sum.** $\\dfrac{\\pi}{6} + \\dfrac{\\pi}{2} + \\dfrac{5\\pi}{6} + \\dfrac{3\\pi}{2} = \\dfrac{\\pi + 3\\pi + 5\\pi + 9\\pi}{6} = \\dfrac{18\\pi}{6} = 3\\pi$.\n\n**How to check it.** At $x = \\dfrac{\\pi}{6}$: $\\sin\\dfrac{\\pi}{3} = \\dfrac{\\sqrt3}{2} = \\cos\\dfrac{\\pi}{6}$ ✓. At $x = \\dfrac{3\\pi}{2}$: $\\sin 3\\pi = 0 = \\cos\\dfrac{3\\pi}{2}$ ✓.",
+  "distractorRationale": {
+    "b": "Divides both sides by $\\cos x$, leaving only $\\sin x = \\tfrac12$ and the two solutions $\\tfrac{\\pi}{6}$ and $\\tfrac{5\\pi}{6}$. Dividing by $\\cos x$ loses $\\tfrac{\\pi}{2}$ and $\\tfrac{3\\pi}{2}$, where both sides are zero.",
+    "d": "Keeps only the solutions of $\\cos x = 0$ and drops the factor $2\\sin x - 1$.",
+    "e": "Finds only one solution of $\\sin x = \\tfrac12$, namely $\\tfrac{\\pi}{6}$, and misses $\\tfrac{5\\pi}{6}$ in the second quadrant, where the sine is also positive.",
+    "a": "Factors with the wrong sign, solving $\\sin x = -\\tfrac12$ (giving $\\tfrac{7\\pi}{6}$ and $\\tfrac{11\\pi}{6}$) instead of $\\sin x = \\tfrac12$. At $x = \\tfrac{7\\pi}{6}$, $\\sin\\tfrac{7\\pi}{3} = \\tfrac{\\sqrt3}{2}$ but $\\cos\\tfrac{7\\pi}{6} = -\\tfrac{\\sqrt3}{2}$."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "What is the sum of all solutions of the equation sine of 2 x equals cosine of x, in the interval from 0 included to 2 pi excluded? The five choices are: 5 pi; pi; 3 pi; 2 pi; and 13 pi over 6.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-math-a-author",
+    "aiAssisted": true,
+    "notes": "Original item. Tests a trigonometric equation solved with the double-angle formula and factoring rather than division; distractors come from lost or misplaced solutions."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-math-a-author",
+    "reviewer": "blind-reviewer-wave8-tolci-math-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-math-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "cos x(2sin x-1)=0 gives x=pi/2, 3pi/2, pi/6 and 5pi/6, whose sum is 3pi. pi takes only the sin branch (dividing by cos x); 2pi takes only the cos branch. [A second, separate blind solve (blind-reviewer-wave8-tolci-math-run1) reached the same answer: cos x(2sin x-1)=0 gives x=pi/2, 3pi/2, pi/6 and 5pi/6, which sum to 2pi+pi=3pi. pi drops the cos x=0 branch, 2pi drops the sine branch, and 13pi/6 and 5pi are miscounts.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "trigonometric-equation",
+    "double-angle",
+    "factoring"
+  ]
+}

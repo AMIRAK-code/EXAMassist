@@ -1,0 +1,77 @@
+{
+  "id": "digital-sat-math-conditional-probability-shifts-510",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "problem-solving-and-data-analysis",
+  "skillSlug": "probability-and-conditional-probability",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A factory inspected $400$ parts made during its day shift and its night shift. Each part either passed or failed inspection. The table shows some of the results; four entries are missing.\n\n| Shift | Passed | Failed | Total |\n|---|---|---|---|\n| Day | | | $240$ |\n| Night | | | $160$ |\n| Total | $350$ | $50$ | $400$ |\n\nIf a part that failed inspection is selected at random, the probability that it was made during the night shift is $0.6$. If a part made during the night shift is selected at random, what is the probability that it passed inspection?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\frac{3}{16}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\frac{13}{35}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\frac{3}{5}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\frac{13}{16}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Two conditional probabilities appear, and they have different denominators. The given one is out of the **failed** parts; the one asked for is out of the **night-shift** parts. Use the first to fill in the table, then compute the second.\n\n**Fill in the missing cell.** $60\\%$ of the $50$ failed parts came from the night shift:\n\n$$0.6 \\times 50 = 30 \\text{ night-shift parts failed}$$\n\nThe night shift made $160$ parts, so $160 - 30 = 130$ of them passed. (For completeness, the day shift had $50 - 30 = 20$ failures and $240 - 20 = 220$ passes, and $220 + 130 = 350$ matches the Passed total.)\n\n**Answer the question asked.** Out of the $160$ night-shift parts, $130$ passed:\n\n$$\\frac{130}{160} = \\frac{13}{16}$$\n\nThe distractors each use the right numbers with the wrong denominator or the wrong cell: $\\frac{3}{16}$ is the probability that a night-shift part **failed**; $\\frac{13}{35}$ is $\\frac{130}{350}$, the probability that a part that **passed** came from the night shift; and $\\frac{3}{5}$ is the given probability, whose denominator is the failed parts.",
+  "distractorRationale": {
+    "a": "This is $\\frac{30}{160}$, the probability that a night-shift part **failed**. The question asks for the night-shift parts that passed, $160 - 30 = 130$.",
+    "b": "This is $\\frac{130}{350}$, which divides by all the parts that passed. That is the probability that a part that passed came from the night shift; the question conditions on the night shift, so the denominator is $160$.",
+    "c": "This repeats the given probability, $0.6$, which is out of the $50$ failed parts. It describes where failures came from, not how night-shift parts fared."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "A factory inspected 400 parts. A two-way table by shift and result shows: day shift total 240, night shift total 160, passed total 350, failed total 50; the four counts for each shift and result are missing. If a failed part is chosen at random, the probability it came from the night shift is 0.6. If a night-shift part is chosen at random, what is the probability it passed? The choices are 3 sixteenths, 13 thirty-fifths, 3 fifths and 13 sixteenths.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "sat-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. A two-way table with the interior missing, completed from one conditional probability and then used for a different conditional probability with a different denominator."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "sat-wave8-math-author",
+    "reviewer": "blind-reviewer-wave8-sat-math-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-sat-math-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Night failed = 0.6 x 50 = 30, so night passed = 160 - 30 = 130; P(passed | night) = 130/160 = 13/16. 3/16 is P(failed | night), 13/35 is P(night | passed), 3/5 is the given conditional. [A second, separate blind solve (blind-reviewer-wave8-sat-math-run1) reached the same answer: Night failed = 0.6 x 50 = 30, so night passed = 160 - 30 = 130; P(passed | night) = 130/160 = 13/16. 3/16 is P(failed | night); 13/35 is P(night | passed); 3/5 is the given P(night | failed).]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "problem-solving",
+    "conditional-probability",
+    "two-way-table"
+  ]
+}

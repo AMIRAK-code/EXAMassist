@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-law-math-units-courier-speed-407",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-mathematics",
+  "skillSlug": "law-math-units-conversion",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A court courier cycles at a constant speed of $18$ km/h. How many metres does the courier cover in $40$ seconds?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$720$ m"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$300$ m"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$200$ m"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$2000$ m"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Convert the speed into the units of the question — metres and seconds — before multiplying.\n\n**Convert km/h to m/s.** $1$ km $= 1000$ m and $1$ h $= 3600$ s, so\n\n$$18 \\text{ km/h} = \\frac{18 \\times 1000 \\text{ m}}{3600 \\text{ s}} = \\frac{18000}{3600} \\text{ m/s} = 5 \\text{ m/s}$$\n\n(A quick rule: divide km/h by $3.6$ to get m/s, and $18 \\div 3.6 = 5$.)\n\n**Multiply by the time.** In $40$ s the courier covers $5 \\times 40 = 200$ m.\n\n**How to check.** Work the other way round. $200$ m in $40$ s is $5$ m every second; in an hour ($3600$ s) that is $18000$ m, which is $18$ km. That is the stated speed.",
+  "distractorRationale": {
+    "b": "This is $18000 \\div 60 = 300$ m, the distance covered in one **minute**. The time in the question is $40$ seconds, two thirds of a minute.",
+    "a": "This is $18 \\times 40 = 720$: the speed and the time were multiplied without converting either. The units do not match — kilometres per hour times seconds — so the product is meaningless as a distance in metres.",
+    "d": "This divides $18000$ m by $360$ instead of by $3600$ seconds, getting $50$ m/s instead of $5$ m/s, and so a distance ten times too large. $50$ m/s would be $180$ km/h, far beyond a bicycle."
+  },
+  "estimatedSeconds": 55,
+  "stimulusRef": null,
+  "accessibilityText": "A court courier cycles at a constant speed of 18 kilometres per hour. The question asks how many metres the courier covers in 40 seconds. The four answer options are 720 metres, 300 metres, 200 metres and 2000 metres.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave8-author",
+    "aiAssisted": true,
+    "notes": "Original item on unit conversion (kilometres per hour to metres per second), distinct from the area-conversion item already in the bank. Numbers chosen so the conversion is exact."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave8-author",
+    "reviewer": "blind-reviewer-wave8-final-quant-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-final-quant-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "18 km/h = 5 m/s, times 40 s = 200 m. 720 multiplies 18*40 without conversion; 300 and 2000 come from wrong conversion factors. [A second, separate blind solve (blind-reviewer-wave8-final-quant-run1) reached the same answer: 18 km/h is 5 m/s, and 5 m/s for 40 s is 200 m. 720 is 18*40 and 2000 is a factor-of-10 error.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "mathematics",
+    "units-of-measure",
+    "speed",
+    "conversion",
+    "no-calculator"
+  ]
+}

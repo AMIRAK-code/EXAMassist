@@ -1,0 +1,82 @@
+{
+  "id": "tolc-e-ag-perpendicular-intercept-709",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-analytic-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The line $r$ has equation $2x + y = 3$. The line $s$ passes through the point $P(4, 1)$ and is perpendicular to $r$. At what value of $x$ does $s$ cross the $x$-axis?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$-2$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$2$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$6$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\dfrac{7}{2}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\dfrac{9}{2}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Find the slope of $r$, turn it into the perpendicular slope, build the line through $P$, and set $y=0$.\n\n**Step 1 — slope of $r$.** $2x + y = 3$ gives $y = -2x + 3$, so the slope is $-2$.\n\n**Step 2 — perpendicular slope.** Slopes of perpendicular lines multiply to $-1$, so the slope of $s$ is $\\dfrac{1}{2}$.\n\n**Step 3 — the line through $P$.** $y - 1 = \\tfrac12 (x - 4)$, which simplifies to $y = \\tfrac12 x - 1$.\n\n**Step 4 — the $x$-axis.** Put $y = 0$: $\\tfrac12 x = 1$, so $x = 2$.\n\n**How to check it.** The point $(4,1)$ is on the line: $\\tfrac12\\cdot 4 - 1 = 1$ ✓. The slopes multiply to $(-2)\\cdot\\tfrac12 = -1$ ✓. The point $(2, 0)$ is on the line: $\\tfrac12 \\cdot 2 - 1 = 0$ ✓.",
+  "distractorRationale": {
+    "a": "Finds the line $y=\\tfrac12 x-1$ correctly but solves $\\tfrac12 x - 1 = 0$ with a sign slip, moving the $-1$ across as $-1$ instead of $+1$.",
+    "d": "Uses slope $2$ for $s$, changing the sign of $-2$ but not taking the reciprocal. Perpendicular slopes are negative reciprocals, so both steps are needed.",
+    "e": "Uses the slope $-2$ of $r$ itself, which builds a line parallel to $r$ rather than perpendicular to it.",
+    "c": "Uses slope $-\\tfrac12$, taking the reciprocal of $-2$ but not changing the sign."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": null,
+  "accessibilityText": "In the Cartesian plane, the line r has equation 2 x plus y equals 3. The line s passes through the point P with coordinates 4 and 1 and is perpendicular to r. The question asks for the x value where s crosses the x-axis. The five choices are negative 2, 2, seven halves, nine halves and 6.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-tolc-e-mathematics-author",
+    "aiAssisted": true,
+    "notes": "Original item. Distractors are the four ways of getting the perpendicular slope or the intercept wrong (only negate, only invert, parallel, sign slip)."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-tolc-e-mathematics-author",
+    "reviewer": "blind-reviewer-wave6-tolce-math-run12",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolce-math-run12",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "r has slope -2, so s has slope 1/2 through (4,1): y-1=(x-4)/2. Setting y=0 gives x=2. The other options come from wrong slopes: -1/2 gives 6, 2 gives 7/2, -2 gives 9/2. None of them fits the stem. [A second, separate blind solve (blind-reviewer-wave6-tolce-math-run13) reached the same answer: r has slope -2, so s has slope 1/2 through (4,1): y-1=(x-4)/2. Setting y=0 gives x=2. Distractors come from sign or slope slips: slope -1/2 gives 6, slope -2 gives 9/2, and none of them survives.]"
+    },
+    "notes": "Author check: the key was computed and then confirmed a second way (see the check in the explanation); each wrong choice was tried against the stem and fails for the reason given in its distractor note. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "perpendicular-lines",
+    "line-equation",
+    "intercepts"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "tolc-i-ag-circle-chord-on-y-axis-124",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-analytic-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The circle $x^{2} + y^{2} - 6x + 4y - 12 = 0$ cuts the $y$-axis at two points. How far apart are they?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$10$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$2\\sqrt{3}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$4$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$8$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$2\\sqrt{21}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The points on the $y$-axis have $x = 0$, so substitute and solve.\n\n**Step 1 — substitute $x = 0$.** $y^{2} + 4y - 12 = 0$, which factors as $(y + 6)(y - 2) = 0$, so $y = 2$ or $y = -6$.\n\n**Step 2 — the distance.** The points are $(0, 2)$ and $(0, -6)$, so they are $2 - (-6) = 8$ apart.\n\n**Check by geometry.** Completing the squares, $(x-3)^{2} + (y+2)^{2} = 9 + 4 + 12 = 25$: centre $(3, -2)$, radius $5$. The centre is $3$ from the $y$-axis, so the half-chord is $\\sqrt{5^{2} - 3^{2}} = 4$ and the chord is $8$ ✓.",
+  "distractorRationale": {
+    "b": "Takes the constant term as giving $r^{2} = 12$, so the half-chord is $\\sqrt{12 - 9} = \\sqrt{3}$; completing the squares gives $r^{2} = 9 + 4 + 12 = 25$.",
+    "c": "Finds the half-chord, $\\sqrt{25 - 9} = 4$, and does not double it.",
+    "a": "Gives the diameter of the circle; the $y$-axis does not pass through the centre $(3, -2)$, so the chord is shorter than a diameter.",
+    "e": "Substitutes $y = 0$ instead of $x = 0$, finding the chord on the $x$-axis: $x^{2} - 6x - 12 = 0$ has roots $3 \\pm \\sqrt{21}$."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "The circle x squared plus y squared minus 6 x plus 4 y minus 12 equals 0 cuts the y-axis at two points. How far apart are they? The five choices are: 10; 2 times the square root of 3; 4; 8; 2 times the square root of 21.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-math-b-author",
+    "aiAssisted": true,
+    "notes": "Tests intersecting a circle in general form with a coordinate axis, checked by completing the square and the half-chord. Original item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-math-b-author",
+    "reviewer": "blind-reviewer-wave8-tolci-math-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-math-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Setting x=0 gives y^2+4y-12=0, so y=2 and y=-6, which are 8 apart. 10 is the diameter (r=5), and 4 or 2*sqrt(21) come from sign or radius slips. [A second, separate blind solve (blind-reviewer-wave8-tolci-math-run1) reached the same answer: Setting x=0 gives y^2+4y-12=0, so y=-6 or y=2, and the points are 8 apart (check: centre (3,-2), r=5, half-chord sqrt(25-9)=4). 10 is the diameter; 2sqrt(21) and 2sqrt(3) come from sign or completing-square slips; 4 is the half-chord.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "circle",
+    "chord",
+    "completing-the-square"
+  ]
+}

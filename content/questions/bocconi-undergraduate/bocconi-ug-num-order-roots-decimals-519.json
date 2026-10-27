@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-num-order-roots-decimals-519",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-numbers-ordering",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Consider the four numbers\n\n$$\\sqrt{0.5}, \\qquad 0.7, \\qquad \\frac{3}{4}, \\qquad 0.8^{2}$$\n\nWhich list puts them in order from smallest to largest?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$0.7 < \\sqrt{0.5} < \\dfrac{3}{4} < 0.8^{2}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$0.8^{2} < 0.7 < \\sqrt{0.5} < \\dfrac{3}{4}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\sqrt{0.5} < 0.8^{2} < 0.7 < \\dfrac{3}{4}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$0.8^{2} < \\sqrt{0.5} < 0.7 < \\dfrac{3}{4}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Turn each number into a decimal you can compare, and settle the close call between $\\sqrt{0.5}$ and its neighbours by squaring, which preserves order for positive numbers.\n\n**Easy values.** $\\frac{3}{4} = 0.75$ and $0.8^{2} = 0.64$. Note that squaring a number between $0$ and $1$ makes it **smaller**, so $0.8^{2}$ is well below $0.8$.\n\n**Placing $\\sqrt{0.5}$.** Compare squares:\n\n- $0.7^{2} = 0.49 < 0.5$, so $0.7 < \\sqrt{0.5}$.\n- $0.75^{2} = 0.5625 > 0.5$, so $\\sqrt{0.5} < 0.75$.\n\nSo $\\sqrt{0.5}$ lies between $0.7$ and $0.75$ (it is about $0.707$).\n\n**Order.**\n\n$$0.64 < 0.7 < 0.707\\ldots < 0.75$$\n\nthat is, $0.8^{2} < 0.7 < \\sqrt{0.5} < \\frac{3}{4}$.\n\n**Check.** Squaring all four positive numbers keeps the order: $0.4096 < 0.49 < 0.5 < 0.5625$. ✓",
+  "distractorRationale": {
+    "a": "This puts $0.8^{2}$ last, as if squaring made $0.8$ larger. For a number between $0$ and $1$, squaring makes it smaller: $0.8^{2} = 0.64$, the smallest of the four.",
+    "d": "This places $\\sqrt{0.5}$ below $0.7$. Squaring settles it: $0.7^{2} = 0.49$ is less than $0.5$, so $0.7 < \\sqrt{0.5}$.",
+    "c": "This treats $\\sqrt{0.5}$ as if it were about $0.25$ or $0.5$, taking the square root of a number below $1$ to be smaller than the number. In fact $\\sqrt{0.5} > 0.5$, and it is about $0.707$."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "Consider the four numbers: the square root of 0.5; 0.7; 3 quarters; and 0.8 squared. The question asks which list orders them from least to greatest. The choices are: 0.7, then the square root of 0.5, then 3 quarters, then 0.8 squared; 0.8 squared, then 0.7, then the square root of 0.5, then 3 quarters; the square root of 0.5, then 0.8 squared, then 0.7, then 3 quarters; 0.8 squared, then the square root of 0.5, then 0.7, then 3 quarters.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. It tests ordering real numbers given in different forms, using the fact that squaring preserves order for positive numbers and shrinks numbers between 0 and 1."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-math-author",
+    "reviewer": "blind-reviewer-wave8-bocug-math-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-bocug-math-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "0.8^2=0.64, 0.7, sqrt0.5~0.7071 (since 0.7^2=0.49<0.5), 3/4=0.75: 0.64<0.7<sqrt0.5<0.75. Other lists either treat 0.8^2 as large, or put sqrt0.5 below 0.7. [A second, separate blind solve (blind-reviewer-wave8-bocug-math-run1) reached the same answer: The values are sqrt0.5=0.7071, 0.7, 0.75 and 0.8^2=0.64, so the order is 0.64<0.7<0.7071<0.75, which is option B. The other options misplace 0.8^2=0.64 or sqrt0.5 (for example, they put sqrt0.5 below 0.7).]"
+    },
+    "notes": "Author's uniqueness check: the values are 0.64, 0.7, about 0.7071 and 0.75, all distinct, so exactly one listed order is correct. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "ordering",
+    "square-roots",
+    "decimals"
+  ]
+}

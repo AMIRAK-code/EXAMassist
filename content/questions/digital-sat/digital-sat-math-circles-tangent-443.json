@@ -1,0 +1,72 @@
+{
+  "id": "digital-sat-math-circles-tangent-443",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "geometry-and-trigonometry",
+  "skillSlug": "circles",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "In the $xy$-plane, the graph of $x^2 + y^2 - 6x + 8y = 0$ is a circle. The circle intersects the $x$-axis at the origin and at point $P$. Line $\\ell$ is tangent to the circle at $P$. What is the $y$-intercept of line $\\ell$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$-8$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$-\\frac{9}{2}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\frac{9}{2}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$8$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "A tangent line is perpendicular to the radius drawn to the point of tangency. So the plan is: find the center, find $P$, find the slope of the radius to $P$, and take the perpendicular slope.\n\n**Center.** Complete the square in $x$ and in $y$:\n\n$$(x^2 - 6x + 9) + (y^2 + 8y + 16) = 9 + 16$$\n\n$$(x - 3)^2 + (y + 4)^2 = 25$$\n\nThe center is $(3, -4)$ and the radius is $5$.\n\n**Point $P$.** On the $x$-axis, $y = 0$, so $x^2 - 6x = 0$, giving $x = 0$ or $x = 6$. The origin is one intersection, so $P = (6, 0)$.\n\n**Slopes.** The radius from $(3, -4)$ to $(6, 0)$ has slope\n\n$$\\frac{0 - (-4)}{6 - 3} = \\frac{4}{3}$$\n\nThe tangent is perpendicular to it, so its slope is the negative reciprocal, $-\\frac{3}{4}$.\n\n**Line $\\ell$.** Through $(6, 0)$ with slope $-\\frac{3}{4}$:\n\n$$y = -\\frac{3}{4}(x - 6) = -\\frac{3}{4}x + \\frac{9}{2}$$\n\nThe $y$-intercept is $\\frac{9}{2}$.\n\nCheck that the line really is tangent: its distance from the center should equal the radius. Written as $3x + 4y - 18 = 0$, its distance from $(3, -4)$ is $\\frac{|9 - 16 - 18|}{\\sqrt{3^2 + 4^2}} = \\frac{25}{5} = 5$, the radius.\n\nEach wrong choice comes from an incomplete perpendicular slope: the radius slope itself, its negative without the reciprocal, or its reciprocal without the negative.",
+  "distractorRationale": {
+    "a": "This uses the slope of the radius, $\\frac{4}{3}$, as the slope of the tangent: $y = \\frac{4}{3}(x - 6)$ has $y$-intercept $-8$. That line passes through the center and crosses the circle; the tangent must be perpendicular to it.",
+    "b": "This takes the reciprocal of the radius slope but not the negative, using $\\frac{3}{4}$: $y = \\frac{3}{4}(x - 6)$ has $y$-intercept $-\\frac{9}{2}$. Perpendicular slopes multiply to $-1$, so the sign must change too.",
+    "d": "This changes the sign of the radius slope but does not take the reciprocal, using $-\\frac{4}{3}$: $y = -\\frac{4}{3}(x - 6)$ has $y$-intercept $8$. Perpendicular slopes multiply to $-1$, and $\\frac{4}{3} \\times \\left(-\\frac{4}{3}\\right)$ does not."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": "In the x y plane, the equation x squared plus y squared minus 6 x plus 8 y equals 0 is a circle. It crosses the x-axis at the origin and at a point P. Line l is tangent to the circle at P. Find the y-intercept of line l. The choices are negative nine halves, negative 8, 8 and nine halves.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-sat-math-data-geo-author",
+    "aiAssisted": true,
+    "notes": "Original item. The circle passes through the origin so that the second x-intercept is found by factoring, and the 3-4-5 geometry makes every slope a clean fraction; the three distractors are the three incomplete forms of a perpendicular slope."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-sat-math-data-geo-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Stretch: a typical hard SAT circle item stops at the center or radius after completing the square; this one chains four steps (center by completing the square, the second x-intercept, the radius slope, the perpendicular tangent line) before the intercept can be read, and each distractor is one specific slip in the perpendicular-slope step. Author solved twice: center (3, -4), P = (6, 0), radius slope 4/3, tangent slope -3/4, y-intercept 9/2; confirmed the line 3x + 4y = 18 is at distance 5 from the center. Verified with a read-only script. Awaiting a blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "geometry",
+    "circle-equation",
+    "tangent-line",
+    "completing-the-square"
+  ]
+}

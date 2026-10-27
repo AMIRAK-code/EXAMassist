@@ -27,7 +27,7 @@ export async function POST(request: Request) {
     const db = getDb();
     const user = await getCurrentUser();
 
-    const limit = checkRateLimit(db, 'contentFlag', callerKey(request, user?.id ?? null));
+    const limit = (await checkRateLimit(db, 'contentFlag', callerKey(request, user?.id ?? null)));
     if (!limit.allowed) {
       return fail('rate-limited', 'You have sent several reports already. Please try again later.', 429, {
         retryAfterSeconds: limit.retryAfterSeconds,
@@ -37,21 +37,21 @@ export async function POST(request: Request) {
     const body = await readJson(request, bodySchema);
 
     // Record the version the reporter was actually looking at, when we can.
-    const version = db
+    const version = (await db
       .prepare(
         `SELECT qv.id AS id
          FROM question_versions qv
          JOIN questions q ON q.id = qv.question_id AND q.current_version = qv.version
          WHERE qv.question_id = ?`,
       )
-      .get(body.questionId) as { id: string } | undefined;
+      .get(body.questionId)) as { id: string } | undefined;
 
     if (!version) {
       return fail('unknown-question', 'We could not find that question.', 404);
     }
 
     const now = new Date().toISOString();
-    db.prepare(
+    (await db.prepare(
       `INSERT INTO content_flags (id, question_id, question_version_id, user_id, reason, details,
                                   status, resolution, created_at, resolved_at)
        VALUES (?, ?, ?, ?, ?, ?, 'open', NULL, ?, NULL)`,
@@ -63,7 +63,7 @@ export async function POST(request: Request) {
       body.reason,
       body.details ?? null,
       now,
-    );
+    ));
 
     return ok({ received: true }, { status: 201 });
   } catch (error) {

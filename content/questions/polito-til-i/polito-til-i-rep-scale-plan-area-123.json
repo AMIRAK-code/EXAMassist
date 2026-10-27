@@ -1,0 +1,82 @@
+{
+  "id": "polito-til-i-rep-scale-plan-area-123",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "technical-knowledge",
+  "domainSlug": "tili-representation",
+  "skillSlug": "tili-rep-conventions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "On a plan drawn at a scale of 1:50, a rectangular room measures 8 cm by 6 cm. What is the real floor area of the room?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$48\\ \\text{m}^2$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$1200\\ \\text{m}^2$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$0.24\\ \\text{m}^2$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$12\\ \\text{m}^2$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$14\\ \\text{m}^2$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "A scale of 1:50 means that 1 cm on the plan stands for 50 cm in the building. Lengths are multiplied by 50.\n\n**Real sides.** $8\\ \\text{cm}\\times50 = 400\\ \\text{cm} = 4\\ \\text{m}$ and $6\\ \\text{cm}\\times50 = 300\\ \\text{cm} = 3\\ \\text{m}$.\n\n**Area.** $4\\ \\text{m}\\times3\\ \\text{m} = 12\\ \\text{m}^2$.\n\n**Check.** An area scales with the *square* of the length scale, $50^{2} = 2500$. The plan area is $8\\times6 = 48\\ \\text{cm}^2$, and $48\\times2500 = 120\\,000\\ \\text{cm}^2$. Since $1\\ \\text{m}^2 = 10\\,000\\ \\text{cm}^2$, that is $12\\ \\text{m}^2$.",
+  "distractorRationale": {
+    "c": "Multiplies the plan area of 48 cm² by 50 instead of by 50², which gives 2400 cm² or 0.24 m². The scale applies to each side, so it applies twice to an area.",
+    "e": "Gives the perimeter of the room, $2\\times(4+3) = 14$ m, instead of its area.",
+    "a": "Reads the plan area (48 cm²) as if it were square metres and never applies the scale.",
+    "b": "Scales the area correctly to 120 000 cm² but then divides by 100 instead of by 10 000 to reach square metres, because a square metre is 100 cm by 100 cm."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "A scale question. A plan is drawn at a scale of 1 to 50, and a rectangular room on it measures 8 centimetres by 6 centimetres. The real floor area is wanted. The choices are 0.24 square metres, 12 square metres, 14 square metres, 48 square metres and 1200 square metres.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-wave6-physics-technical-author",
+    "aiAssisted": true,
+    "notes": "Original item. Real room is 4 m by 3 m. Wrong choices: scale applied once to an area, perimeter, no scale applied, wrong square-metre conversion."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-wave6-physics-technical-author",
+    "reviewer": "blind-reviewer-wave6-tili-phys-tech-run8",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-phys-tech-run8",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "8 cm -> 4 m and 6 cm -> 3 m, so the area is 12 m^2. The area scales with the square of 50. 1200 m^2 and 48 m^2 come from unit or scaling errors, and 14 m^2 is the sum 4+3 doubled (the perimeter's half-sum times two), not an area. [A second, separate blind solve (blind-reviewer-wave6-tili-phys-tech-run9) reached the same answer: Real sides 8*50=400 cm=4 m and 6*50=300 cm=3 m; area 12 m^2. 0.24 m^2 scales area linearly (48 cm^2*50), 48 and 1200 are unit/scale slips, 14 is perimeter-like.]"
+    },
+    "notes": "Awaiting a blind independent solve. The author recomputed every option and checked the key a second way before saving (see the explanation). Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "scale",
+    "plan",
+    "area-scaling"
+  ]
+}

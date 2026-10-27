@@ -1,0 +1,84 @@
+{
+  "id": "tolc-e-logic-negated-conditional-604",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "In this question, a statement of the form \"if P, then Q\" is read as in formal logic: it is false only when P is true and Q is false.\n\nA columnist writes: \"It is not true that if the central bank lowered interest rates last year, household savings fell.\" Assume the columnist is right.\n\nWhich of the following must be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Household savings fell in every year in which the central bank lowered interest rates."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The central bank lowered interest rates last year, and household savings fell."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The central bank did not lower interest rates last year, and household savings did not fall."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The central bank lowered interest rates last year, and household savings did not fall."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The central bank did not lower interest rates last year, and household savings fell."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "A conditional \"if P, then Q\" is false in exactly one case: P true and Q false. So to say that the conditional is **not** true is to say that we are in that one case. Here P is \"the bank lowered rates last year\" and Q is \"household savings fell\". The columnist being right therefore means that the bank did lower rates and savings did not fall.\n\nDo not read the denial as \"P is false\" or as \"P and Q are both true\": a false condition makes a conditional true, and a true condition with a true result also makes it true, so neither situation could be what the columnist denies. Test any choice by asking whether the conditional would be true or false in the situation it describes; only a situation that makes the conditional false is compatible with the columnist being right.",
+  "distractorRationale": {
+    "c": "It treats \"not (if P then Q)\" as if it said \"P is false\". In formal logic a conditional with a false condition is true, not false, so this situation would make the columnist wrong.",
+    "e": "With P false the conditional \"if the bank lowered rates, savings fell\" is automatically true, so the columnist, who says it is not true, could not be right. Both parts are wrong.",
+    "b": "This is the situation in which the conditional is true, which is exactly what the columnist denies. It keeps the condition but gets the result the wrong way round.",
+    "a": "This asserts the conditional in general form, the opposite of what the columnist says. Last year, on the columnist's account, provides a year in which rates were cut and savings did not fall."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": null,
+  "accessibilityText": "A deduction question about a negated conditional. The stem states that \"if P, then Q\" is read as in formal logic and is false only when P is true and Q is false. A columnist says it is not true that if the central bank lowered interest rates last year, household savings fell. The question asks which of five statements must be true if the columnist is right. They say: the bank did not lower rates and savings did not fall; the bank did not lower rates and savings fell; the bank lowered rates and savings fell; savings fell in every year in which the bank lowered rates; the bank lowered rates and savings did not fall.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-e-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Scenario, names and figures are invented; no published TOLC or other test item was used or adapted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-e-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolce-logic-run3",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolce-logic-run3",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Not(P->Q) is equivalent to P and not-Q: rates were lowered and savings did not fall (D). B, C and E each make the conditional true, so they are ruled out. A is a general claim that is also inconsistent. [A second, separate blind solve (blind-reviewer-wave6-tolce-logic-run5) reached the same answer: With the stated material reading, not(P->Q) is P and not-Q: rates were lowered and savings did not fall. B, C and E each make the conditional true. A is a generalisation that actually conflicts with last year.]"
+    },
+    "notes": "Uniqueness check: not(P implies Q) is equivalent to P and not Q. The stem states the formal reading so the natural-language ambiguity is removed. Every wrong choice is false whenever P is true and Q is false. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "deduction",
+    "conditions",
+    "negation-of-conditional",
+    "no-calculator"
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "id": "tolc-f-bio-pedigree-both-parents-affected-930",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "biology",
+  "domainSlug": "tolcf-biology",
+  "skillSlug": "tolcf-bio-genetics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A trait is controlled by a single autosomal gene with two alleles, one completely dominant over the other. In a family pedigree, a man and a woman who both show the trait have three children: two show the trait and one daughter does not. What is the probability that their next child will show the trait?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "1/4"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "1/2"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "2/3"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "3/4"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "1"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "First decide whether the trait is dominant or recessive; the pedigree tells you.\n\n- If the trait were **recessive**, both parents showing it would be $aa$, and every child would be $aa$ and show it. The daughter without the trait rules this out.\n- So the trait is **dominant**. The daughter without it is $aa$, so she received an $a$ from each parent. Each parent shows the trait and carries $a$: both are $Aa$.\n\nCross $Aa \\times Aa$: the children are $AA$, $Aa$, $Aa$, $aa$ with probability $\\frac{1}{4}$ each. Every genotype except $aa$ shows the trait, so the probability is $1 - \\frac{1}{4} = \\frac{3}{4}$.\n\nThe three children already born do not change this: each child is an independent outcome of the same cross. They served only to reveal the parents' genotypes.\n\n**Check:** the observed family (two with the trait, one without) is a perfectly ordinary result of a 3 : 1 expectation in a small sample.",
+  "distractorRationale": {
+    "a": "$\\frac{1}{4}$ is the probability of the child NOT showing the trait ($aa$). It answers the opposite question, or treats the trait as the recessive one.",
+    "b": "$\\frac{1}{2}$ would apply if only one parent were $Aa$ and the other $aa$. Here both parents show the dominant trait and both must carry $a$, so it is an $Aa \\times Aa$ cross.",
+    "c": "$\\frac{2}{3}$ is the probability that a child who shows the trait is heterozygous, or the fraction of this family's children who show it. Neither is the chance for the next birth, which follows the cross: $\\frac{3}{4}$.",
+    "e": "Every child would show the trait only if it were recessive and both parents were $aa$, or if one parent were $AA$. The daughter without the trait rules out both."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A short text question with no figure. A trait is controlled by a single autosomal gene with complete dominance. A man and a woman who both show the trait have three children: two show it and one daughter does not. The question asks the probability that the next child will show the trait. The choices are one quarter, one half, two thirds, three quarters and one. In the explanation, alleles are written capital A and lowercase a.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave8-biochem-author",
+    "aiAssisted": true,
+    "notes": "Original item. Requires deducing from a described pedigree that the trait is dominant and both parents heterozygous, then applying the cross."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave8-biochem-author",
+    "reviewer": "blind-reviewer-wave8-tolcf-biochem-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolcf-biochem-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Two affected parents having an unaffected child means the trait is dominant and both parents are heterozygous Aa; each child has a 3/4 chance of showing it. 2/3 is the probability an affected child is a carrier, 1/4 the recessive-phenotype chance, and 1 or 1/2 do not fit Aa x Aa. [A second, separate blind solve (blind-reviewer-wave8-tolcf-biochem-run1) reached the same answer: Two affected parents have an unaffected child, so the trait is dominant and both parents must be heterozygous (Aa). Aa x Aa gives a 3/4 chance that a child shows the trait, and earlier children do not change this. 2/3 is the probability that an affected child is a carrier, not this probability; 1/4 is the unaffected chance.]"
+    },
+    "notes": ""
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "pedigree",
+    "dominance",
+    "probability",
+    "monohybrid-cross"
+  ]
+}

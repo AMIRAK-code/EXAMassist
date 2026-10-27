@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-ug-crit-office-transfer-averages-542",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-critical-thinking",
+  "skillSlug": "critical-thinking-draw-conclusions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A consulting firm moved five employees from its Milan office to its Turin office. Nobody else joined or left either office, and nobody's salary changed. After the move, the average salary of the employees in the Milan office was higher than before the move, and so was the average salary of the employees in the Turin office.\n\nWhich one of the following must be true?",
+  "instructionsMd": "Answer on the basis of the information given only.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Each of the five employees who moved earned more than every employee already working in Turin."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Before the move, the average salary in the Milan office was higher than the average salary in the Turin office."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "After the move, the average salary in the Turin office was higher than the average salary in the Milan office."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The average salary of all the employees of the two offices taken together rose."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Removing a group from an office raises the office's average only if the group's own average was **below** the office's average. Adding a group to an office raises its average only if the group's own average was **above** the office's average.\n\nApply both rules to the five employees who moved, and call their average salary $t$.\n\n- Milan's average rose when they left, so $t$ was below Milan's old average.\n- Turin's average rose when they arrived, so $t$ was above Turin's old average.\n\nTogether: Turin's old average $< t <$ Milan's old average. So before the move, Milan's average salary was higher than Turin's.\n\n**How to check the answer.** Try a small example, with salaries in thousands of euros. Milan has ten people: five earning 40 and five earning 80, average 60. Turin has four people earning 20, 20, 20 and 60, average 30. Move the five Milan employees earning 40. Milan is left with five people on 80, average 80, which is higher. Turin now has 20, 20, 20, 60 and five salaries of 40, a total of 320 over 9 people, about 35.6, which is also higher. As the reasoning requires, Milan's old average (60) was above Turin's (30). The same example shows that two of the other choices need not hold: each mover earned 40, less than the Turin colleague on 60, and after the move Milan (80) is still above Turin (about 35.6). The combined average cannot change at all, because the same people keep the same salaries.",
+  "distractorRationale": {
+    "d": "The two offices together contain the same people on the same salaries before and after the move, so their combined average is exactly unchanged. Both office averages can rise while the overall average stays still, because people were moved from one group to the other.",
+    "a": "Only the movers' average has to be above Turin's old average. Individual movers can earn less than, or the same as, some people already in Turin, as long as the group's average is high enough.",
+    "c": "The move does not settle which office ends up higher. The movers earned less on average than Milan's old average, and Milan can easily remain the better-paid office: in the example where five Milan employees on 40 move to a Turin office averaging 30, Milan ends at 80 and Turin at about 35.6."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "A critical thinking question. A consulting firm moved five employees from its Milan office to its Turin office, with no other changes in staff or salaries. Afterwards the average salary rose in both offices. The question asks which statement must be true. The four choices, in the order shown, are: each of the five employees who moved earned more than every employee already working in Turin; before the move, the average salary in Milan was higher than in Turin; after the move, the average salary in Turin was higher than in Milan; the average salary of all the employees of the two offices taken together rose. The explanation uses t for the average salary of the employees who moved.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-verbal-author",
+    "aiAssisted": true,
+    "notes": "Original item on the effect of moving members between groups on group averages. The key follows from two inequalities on the movers' average; the distractors confuse group averages with the overall average, with individual salaries, and with the final ranking of the offices."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-verbal-author",
+    "reviewer": "blind-reviewer-wave8-bocug-verbal-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-bocug-verbal-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Milan's average rose when the movers left, so the movers' average was below Milan's old average. Turin's average rose when they joined, so it was above Turin's old average; hence Milan's old average was higher than Turin's. 'Each mover out-earned every Turin employee' confuses the average with every individual. 'Turin higher after' is actually false (Turin after < movers' average < Milan before < Milan after). The combined average is unchanged because it covers the same people with the same salaries. [A second, separate blind solve (blind-reviewer-wave8-bocug-verbal-run1) reached the same answer: Milan's average rising means the movers' average was below Milan's old average. Turin's rising means it was above Turin's old average. So Milan's old average was higher than Turin's. 'Each mover earned more than every Turin employee' is too strong. 'Turin after > Milan after' is in fact impossible. The combined average is unchanged because nobody joined, left or changed salary.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "averages",
+    "composition-effect"
+  ]
+}

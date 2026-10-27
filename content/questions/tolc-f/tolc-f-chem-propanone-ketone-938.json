@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-chem-propanone-ketone-938",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "chemistry",
+  "domainSlug": "tolcf-chemistry",
+  "skillSlug": "tolcf-chem-organic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Propanone (acetone), $\\mathrm{CH_3{-}CO{-}CH_3}$, is a common solvent. To which class of organic compounds does it belong?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Esters"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Aldehydes"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Alcohols"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Ketones"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Carboxylic acids"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Find the functional group. In $\\mathrm{CH_3{-}CO{-}CH_3}$ the middle carbon carries a double-bonded oxygen, a **carbonyl group** $\\mathrm{C{=}O}$, and is bonded to two other carbon atoms.\n\n- Carbonyl between two carbons: **ketone** (name ends in *-one*, as in propan**one**).\n- Carbonyl at the end of the chain, bonded to an H: aldehyde ($\\mathrm{-CHO}$, ending *-al*).\n- Carbonyl with an $\\mathrm{-OH}$ on the same carbon: carboxylic acid ($\\mathrm{-COOH}$).\n- Carbonyl with $\\mathrm{-O{-}C}$ on the same carbon: ester ($\\mathrm{-COO-}$).\n\n**Check:** the name itself confirms it: the suffix *-one* is reserved for ketones.",
+  "distractorRationale": {
+    "b": "An aldehyde has the carbonyl at the end of the chain, bonded to a hydrogen ($\\mathrm{-CHO}$). In propanone the carbonyl carbon is bonded to two carbons and has no H.",
+    "e": "A carboxylic acid has $\\mathrm{-COOH}$: a carbonyl and a hydroxyl on the same carbon. Propanone has only one oxygen atom, so it cannot be an acid of this kind.",
+    "a": "An ester has two oxygens, $\\mathrm{-COO-}$, linking two carbon parts. Propanone contains a single oxygen.",
+    "c": "An alcohol has an $\\mathrm{-OH}$ group on a carbon with only single bonds. Propanone's oxygen is double-bonded to carbon and carries no hydrogen."
+  },
+  "estimatedSeconds": 30,
+  "stimulusRef": null,
+  "accessibilityText": "A short text question. Propanone, also called acetone, has the structure C H 3, then C O, then C H 3: a carbonyl carbon bonded to two methyl groups. The question asks its class of organic compounds. The choices are esters, aldehydes, alcohols, ketones and carboxylic acids.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave8-biochem-author",
+    "aiAssisted": true,
+    "notes": "Original item. Tests recognition of the ketone functional group."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave8-biochem-author",
+    "reviewer": "blind-reviewer-wave8-tolcf-biochem-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolcf-biochem-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Propanone has a carbonyl bonded to two carbon atoms, so it is a ketone. Aldehydes need a carbonyl bonded to H, while esters, alcohols and carboxylic acids need -COO-, -OH or -COOH groups that it lacks. [A second, separate blind solve (blind-reviewer-wave8-tolcf-biochem-run1) reached the same answer: The C=O group is bonded to two carbons, which makes propanone a ketone. An aldehyde needs C=O at the chain end with an H; esters and carboxylic acids need -COO-; alcohols need -OH.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "functional-groups",
+    "ketones"
+  ]
+}

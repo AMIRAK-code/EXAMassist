@@ -5,6 +5,7 @@ import type { UserRow } from '@/lib/db/rows';
 import { assertSameOrigin, fail, ok, readJson, toErrorResponse } from '@/lib/api/http';
 import { SESSION_COOKIE, requireUser, toAuthUser } from '@/lib/auth/session';
 import { getExamConfig } from '@/lib/exams/registry';
+import { cancelBeforeDeletion } from '@/lib/billing/service';
 
 /**
  * The acting learner's own account.
@@ -77,14 +78,14 @@ export async function PATCH(request: Request) {
     fields.push('updated_at = ?');
     values.push(new Date().toISOString());
 
-    db.prepare(`UPDATE users SET ${fields.join(', ')} WHERE id = ? AND deleted_at IS NULL`).run(
+    (await db.prepare(`UPDATE users SET ${fields.join(', ')} WHERE id = ? AND deleted_at IS NULL`).run(
       ...values,
       user.id,
-    );
+    ));
 
-    const updated = db
+    const updated = (await db
       .prepare('SELECT * FROM users WHERE id = ? AND deleted_at IS NULL')
-      .get(user.id) as UserRow | undefined;
+      .get(user.id)) as UserRow | undefined;
     if (!updated) {
       return fail('not-found', 'That account no longer exists.', 404);
     }
@@ -126,11 +127,14 @@ export async function DELETE(request: Request) {
     }
 
     const db = getDb();
-    const purge = db.transaction((userId: string) => {
-      db.prepare('UPDATE content_flags SET user_id = NULL WHERE user_id = ?').run(userId);
-      db.prepare('DELETE FROM users WHERE id = ?').run(userId);
+    // End any Premium subscription first: nobody is billed for an account that
+    // no longer exists. If Stripe cannot confirm it, nothing is deleted.
+    await cancelBeforeDeletion(db, user.id);
+    const purge = db.transaction(async (userId: string) => {
+      (await db.prepare('UPDATE content_flags SET user_id = NULL WHERE user_id = ?').run(userId));
+      (await db.prepare('DELETE FROM users WHERE id = ?').run(userId));
     });
-    purge(user.id);
+    (await purge(user.id));
 
     const store = await cookies();
     store.delete(SESSION_COOKIE);

@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-bio-lactate-nad-regeneration-812",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "biology",
+  "domainSlug": "tolcf-biology",
+  "skillSlug": "tolcf-bio-bioenergetics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "During a sprint, when oxygen supply to a muscle cell is limited, the cell converts pyruvate to lactate. What is the main metabolic benefit of this step?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "It stores oxygen in the lactate molecule for use after the sprint."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "It oxidises pyruvate completely to carbon dioxide and water."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "It regenerates NAD+ from NADH, so glycolysis can keep making a small amount of ATP."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "It converts lactate back into glucose, which the muscle stores as glycogen."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "It produces more ATP per glucose than aerobic respiration does."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Glycolysis turns glucose into two pyruvate and nets two ATP, but it reduces NAD+ to NADH on the way. The cell holds only a small supply of NAD+. In aerobic conditions the mitochondria re-oxidise NADH; when oxygen is scarce that route is limited, and without NAD+ glycolysis would stop.\n\nReducing pyruvate to lactate re-oxidises NADH to NAD+, so glycolysis can continue and go on producing ATP, even though the yield is only two ATP per glucose. This is the key point of fermentation: the lactate step makes no ATP itself, it keeps glycolysis running.\n\nCheck each alternative: fermentation yields much less ATP than aerobic respiration, lactate does not store oxygen, the step does not oxidise pyruvate to carbon dioxide, and turning lactate back into glucose is a separate process that happens mainly in the liver, after the sprint.",
+  "distractorRationale": {
+    "d": "This describes the reverse process. The step in the stem turns pyruvate into lactate; converting lactate back into glucose happens later, mainly in the liver, and costs ATP rather than helping the sprinting muscle.",
+    "e": "Aerobic respiration yields far more ATP per glucose than glycolysis followed by lactate formation, which nets only two ATP.",
+    "a": "Lactate is not an oxygen store. Oxygen is carried by haemoglobin and stored by myoglobin.",
+    "b": "Complete oxidation of pyruvate needs oxygen and takes place in the mitochondria. Lactate formation is the alternative when that route is limited."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "A short text question with no figure. A muscle cell with limited oxygen converts pyruvate to lactate during a sprint. The question asks for the main metabolic benefit of this step. The five choices are: storing oxygen in lactate; oxidising pyruvate completely to carbon dioxide and water; regenerating NAD plus from NADH so glycolysis can keep making a small amount of ATP; converting lactate back into glucose stored as glycogen; producing more ATP than aerobic respiration.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item on the role of lactic fermentation. The key idea is NAD+ regeneration; the four distractors are common misreadings of what fermentation does."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-bio-run17",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-bio-run17",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Lactate dehydrogenase oxidises NADH back to NAD+, so glycolysis (which needs NAD+) keeps producing 2 ATP per glucose. Lactate does not store O2. The step does not oxidise pyruvate completely. Lactate-to-glucose conversion happens in the liver (Cori cycle), not at this step. Anaerobic yield is lower than aerobic, not higher. [A second, separate blind solve (blind-reviewer-wave6-tolcf-bio-run19) reached the same answer: Lactate dehydrogenase oxidises NADH back to NAD+, so glyceraldehyde-3-phosphate dehydrogenase, and therefore glycolysis, can keep going. Option d describes the Cori cycle, which happens in the liver and is not the benefit of this step. Options a, b and e are false.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "glycolysis",
+    "fermentation",
+    "nad"
+  ]
+}

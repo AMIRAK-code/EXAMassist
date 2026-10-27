@@ -1,0 +1,79 @@
+{
+  "id": "bocconi-ug-read-lottery-expansion-451",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-reading-comprehension",
+  "skillSlug": "reading-implicit-meaning",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Suppose the city's education authority proposes to double the size of one of the three schools, filling the new places by lottery from a wider pool of applicants that would include many families who have never applied before. Citing the Varga and Ederra study, a councillor argues that winning one of the new places will make no difference to a child's examination results.\n\nThe author of the passage would most likely respond that",
+  "instructionsMd": "Answer on the basis of the passage only.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "the councillor is right, since the study found that a place at one of these schools made no difference to lottery winners."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "the study will still apply to the enlarged school, since its new places, like the old ones, will be allocated by drawing lots."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "the study cannot settle the claim, since both the pupils and the school would differ from those that the study observed."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "a new place will matter more to the new applicants than it did in the study, since their families lack good alternatives."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The councillor does exactly what the last sentence of the passage warns against: carrying the study's answer over to a question it \"was never designed to address\". The proposal changes two things the study held fixed, and the passage names both.\n\n1. **Different pupils.** The study measured the effect of a place \"on such children\", those from families who applied. The new pool includes families who never applied before, and for them the passage says a place \"might matter more, or less; on that the lottery is silent.\"\n2. **A different school.** The passage lists, among the questions the lottery cannot answer, whether the schools would achieve the same results \"if they were enlarged\". Doubling the school is that case.\n\nSo the author would say the study cannot settle the councillor's claim: both the pupils and the school would differ from those the study observed.\n\n**How to check the answer.** For a \"would most likely respond\" item, the right choice should follow from sentences the author actually wrote, and a wrong one should need a claim the author never makes. The keyed response needs only the two quoted limits. The response predicting that a place will matter **more** needs the author to choose between \"more\" and \"less\", and the passage explicitly declines to.\n\n**What makes this hard.** The strongest wrong choice is built from a true detail: the passage does say that applicant families can usually \"secure a good alternative\", which invites the thought that families without one would gain more. But the author treats that as a reason the finding may not transfer, not as a prediction of which way it would change.",
+  "distractorRationale": {
+    "a": "This is the councillor's own inference, and it is the error the passage describes: applying a finding about the children of families who applied to children from families who did not, and to a school of a different size. The study's result holds for the population and the school it studied.",
+    "d": "This goes one step beyond the passage. The author notes that applicant families can usually secure a good alternative, which makes this prediction tempting, but says of other children that a place \"might matter more, or less; on that the lottery is silent\". The author refuses to predict the direction, so would not assert that it will matter more.",
+    "b": "This confuses the method with its scope. Drawing lots makes winners and losers comparable within one pool of applicants, which is why the original study is clean; it does not make a finding about one pool and one size of school apply to a different pool and a larger school."
+  },
+  "estimatedSeconds": 105,
+  "stimulusRef": {
+    "id": "bocconi-ug-stim-school-lottery-433",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying prose passage on what school admission lotteries can and cannot tell us. It describes a proposal to double one of the three schools and fill the new places by lottery from a wider pool including families who have never applied, and a councillor who, citing the study, argues that winning a new place will make no difference to a child's examination results. It asks how the author would most likely respond. There is no figure or table; the options complete the sentence stem.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-verbal-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item written against the original passage bocconi-ug-stim-school-lottery-433. It applies the passage's two stated limits, different pupils and an enlarged school, to a new proposal. The strongest distractor predicts a direction the author explicitly declines to predict; the other two are the councillor's over-extension and a confusion of method with scope. Option texts are of similar length."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-bocconi-verbal-logic-author",
+    "reviewer": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The final paragraph says the error lies in carrying the result over to questions such as whether the schools would get the same results with a different kind of pupil or if they were enlarged, and here both change. D contradicts the passage, which says a place 'might matter more, or less; on that the lottery is silent'. [A second, separate blind solve (blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run1) reached the same answer: The author says the lottery is silent about children from families that never applied, and that it is an error to carry the result over to schools that admit different pupils or are enlarged. The councillor's case involves both, so C. D asserts 'more', but the author explicitly says 'more, or less'. A and B commit the error the author criticises.]"
+    },
+    "notes": "Author's uniqueness check: the keyed response follows from 'on that the lottery is silent' and from the listed question 'if they were enlarged'. The councillor's claim is the over-extension the last sentence names; the 'matter more' response is refuted by 'might matter more, or less'; the lottery-method response is refuted by the passage's distinction between the question a lottery answers and neighbouring questions. Hard rather than stretch: both limits are stated in the passage, though in different paragraphs. Solved twice, the second time from the stem and passage alone. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "passage-school-lottery",
+    "scope",
+    "application-to-new-case"
+  ]
+}

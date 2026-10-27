@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-bio-shared-structure-ribosome-922",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "biology",
+  "domainSlug": "tolcf-biology",
+  "skillSlug": "tolcf-bio-cell",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which of the following structures is found both in a bacterial cell, such as *Escherichia coli*, and in a human liver cell?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "A nucleus enclosed by a nuclear envelope"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Ribosomes"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Mitochondria"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The Golgi apparatus"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The rough endoplasmic reticulum"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Sort the choices into **membrane-bound organelles** and structures that are not enclosed by membranes. Prokaryotes such as bacteria have no membrane-bound organelles at all: no nuclear envelope, no mitochondria, no endoplasmic reticulum, no Golgi apparatus. Their DNA lies free in the cytoplasm in a region called the nucleoid.\n\n**Ribosomes** are not enclosed by a membrane, and every cell needs them to make proteins, so they are present in both prokaryotic and eukaryotic cells. (Bacterial ribosomes are smaller, 70S against the 80S ribosomes of the human cytoplasm, but they are ribosomes in both cases.)\n\n**Check:** the other four choices are all membrane-bound compartments, the defining feature of eukaryotic cells, so none of them can be in a bacterium.",
+  "distractorRationale": {
+    "a": "A nucleus surrounded by a nuclear envelope is the defining feature of eukaryotes. A bacterium's DNA lies in the cytoplasm, in the nucleoid, with no membrane around it.",
+    "c": "Mitochondria are membrane-bound organelles found only in eukaryotic cells. Bacteria carry out respiration using enzymes on their plasma membrane.",
+    "d": "The Golgi apparatus is a system of membrane sacs found only in eukaryotic cells; bacteria have no internal membrane system of this kind.",
+    "e": "The rough endoplasmic reticulum is a membrane network studded with ribosomes, found only in eukaryotes. Bacteria have the ribosomes but not the membrane network."
+  },
+  "estimatedSeconds": 30,
+  "stimulusRef": null,
+  "accessibilityText": "A short text question with no figure. The question asks which structure is found both in a bacterial cell, such as Escherichia coli, and in a human liver cell. The choices are: a nucleus enclosed by a nuclear envelope; ribosomes; mitochondria; the Golgi apparatus; the rough endoplasmic reticulum.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave8-biochem-author",
+    "aiAssisted": true,
+    "notes": "Original item. Tests the distinction between prokaryotic and eukaryotic cells through the one structure they share."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave8-biochem-author",
+    "reviewer": "blind-reviewer-wave8-tolcf-biochem-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolcf-biochem-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Ribosomes (70S in bacteria, 80S in eukaryotes) occur in both cell types. Bacteria lack a nuclear envelope, mitochondria, Golgi and rough ER, all membrane-bound organelles. [A second, separate blind solve (blind-reviewer-wave8-tolcf-biochem-run1) reached the same answer: Ribosomes are present in both prokaryotes (70S) and eukaryotes (80S). The nucleus, mitochondria, Golgi apparatus and rough ER are membrane-bound organelles that bacteria lack.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "prokaryote-eukaryote",
+    "ribosomes",
+    "organelles"
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "id": "digital-sat-rw-evidence-quant-wheat-protein-465",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "rw-module-1",
+  "domainSlug": "information-and-ideas",
+  "skillSlug": "command-of-evidence-quantitative",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Hyvönen reports that the variety whose grain was richest in protein was also the least productive of the four. Which choice best describes data from the table that support Hyvönen's report?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Einmark had both the highest protein content (15.1%) and the lowest yield (2.6 tonnes per hectare) of the four."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Lysvik produced 3.7 tonnes per hectare, more than Einmark's 2.6 tonnes per hectare, though its protein content was lower."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Einmark's grain had a protein content of 15.1%, higher than that of Rødkorn (14.2%), the next richest variety."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Hallstatt Red had the highest yield, 4.0 tonnes per hectare, and the lowest protein content, 11.8%."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Hyvönen's report joins two facts about one variety: it has the *highest* protein content, and it is the *least* productive, meaning it has the lowest yield. Supporting data must establish both, for the same variety, against all four.\n\nRead the protein column first: $14.2$, $11.8$, $15.1$, $12.9$. The highest is Einmark at $15.1\\%$. Then read Einmark's yield, $2.6$ tonnes per hectare, against the others ($3.1$, $4.0$, $3.7$). It is the lowest. The choice stating both facts about Einmark is the only one that covers the whole report.\n\nThe other choices are all true readings of the table, which is what makes them tempting. Each one, though, gives only part of the report, or describes a different variety.",
+  "distractorRationale": {
+    "d": "This is an accurate description of Hallstatt Red, the mirror image of what the report describes. The report is about the richest-protein variety, and Hallstatt Red has the poorest.",
+    "c": "This establishes only half of the report: that Einmark was the richest in protein. It says nothing about yield, so it cannot show that Einmark was also the least productive.",
+    "b": "This shows Einmark out-yielded by one variety that is also lower in protein, which is consistent with the report, but it compares only two of the four varieties, so it cannot show that Einmark had the lowest yield or the highest protein content of all."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": {
+    "id": "digital-sat-stim-wheat-protein-465",
+    "version": 1
+  },
+  "accessibilityText": "Using the table of grain yield and protein content for four heritage wheat varieties, choose the data that support the report that the variety richest in protein was also the least productive. Yields in tonnes per hectare and protein percentages are: Rødkorn 3.1 and 14.2, Hallstatt Red 4.0 and 11.8, Einmark 2.6 and 15.1, Lysvik 3.7 and 12.9.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-sat-rw-ideas-craft-author",
+    "aiAssisted": true,
+    "notes": "Original item. Every choice is a true reading of the table; only one covers both halves of the report for all four varieties."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-sat-rw-ideas-craft-author",
+    "reviewer": "blind-reviewer-wave7-sat-rw-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-sat-rw-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Einmark has the highest protein (15.1, against 14.2, 12.9 and 11.8) and the lowest yield (2.6, against 3.1, 3.7 and 4.0). A states both halves of the report. [A second, separate blind solve (blind-reviewer-wave7-sat-rw-run1) reached the same answer: Einmark's protein of 15.1 is the highest in the table and its yield of 2.6 t/ha the lowest, so A states both halves of the report. C gives only the protein half. B and D compare other varieties without establishing that the richest variety is the least productive.]"
+    },
+    "notes": "Author's own solve and uniqueness check: highest protein is Einmark (15.1) and lowest yield is Einmark (2.6), verified by script; only the option naming both about Einmark supports the whole report. The Hallstatt Red option is the reverse case; the protein comparison with Rødkorn (the next richest) establishes only the protein half, and the Lysvik comparison covers only two of the four varieties. Options were rebalanced in length on the final pass so that the key is not the longest choice. Re-solved from the stem alone with the same result. Easy: a direct two-column reading with no calculation. Not published: awaiting a blind independent solve by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "reading",
+    "command-of-evidence",
+    "quantitative",
+    "table"
+  ]
+}

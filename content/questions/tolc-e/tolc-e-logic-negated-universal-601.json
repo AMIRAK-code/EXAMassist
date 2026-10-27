@@ -1,0 +1,84 @@
+{
+  "id": "tolc-e-logic-negated-universal-601",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A regional rail operator states: \"Every train on the Turin-Cuneo line last Monday ran on time.\" An inspection report shows that this statement is false.\n\nWhich of the following must be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Exactly one train on the Turin-Cuneo line last Monday did not run on time."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "No train on the Turin-Cuneo line last Monday ran on time."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "At least one train on the Turin-Cuneo line last Monday did not run on time."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Most trains on the Turin-Cuneo line last Monday did not run on time."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "At least one train on the Turin-Cuneo line last Monday ran on time."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "A statement of the form \"every X does Y\" is false as soon as one X fails to do Y, and for no other reason. So the only thing the report guarantees is that **at least one train did not run on time**.\n\nTo test a choice, ask whether you can describe a Monday that is consistent with the report but makes the choice false. Suppose 3 of 40 trains were late: that defeats the choice about no train being punctual, the one about most trains being late and the one about exactly one train being late. Suppose all 40 were late: that defeats the choice claiming that some train was on time. No such Monday exists for the weakest statement, that at least one train was late, so it is the only one that must be true.\n\nA useful habit: the denial of \"every\" is \"at least one does not\", and the denial of \"at least one does\" is \"none do\". Do not swap them.",
+  "distractorRationale": {
+    "b": "This turns \"not every train was on time\" into \"no train was on time\". The opposite of \"every\" is not \"none\": the statement fails as soon as a single train is late, so the report is compatible with most trains having been punctual.",
+    "d": "The report says the claim is false, not how many trains were late. One late train out of forty is enough to make \"every train was on time\" false, so nothing about a majority follows.",
+    "a": "A false \"every\" guarantees at least one exception, not exactly one. Three or ten late trains would make the operator's statement false just as surely.",
+    "e": "This reads the false claim as \"some were on time, some were not\". If every train had been late, the operator's statement would still be false, yet no train would have run on time, so this is not guaranteed."
+  },
+  "estimatedSeconds": 50,
+  "stimulusRef": null,
+  "accessibilityText": "A deduction question. A rail operator claims that every train on the Turin-Cuneo line last Monday ran on time, and an inspection report shows the claim is false. The question asks which of five statements about that Monday must be true. The statements say, in turn: no train ran on time; at least one train did not run on time; most trains did not run on time; exactly one train did not run on time; at least one train ran on time.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-e-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Scenario, names and figures are invented; no published TOLC or other test item was used or adapted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-e-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolce-logic-run3",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolce-logic-run3",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The negation of 'every train ran on time' is that at least one train did not run on time (C). A, B and D are stronger than the negation and are not forced. E is not forced either, because every train could have been late. [A second, separate blind solve (blind-reviewer-wave6-tolce-logic-run5) reached the same answer: The negation of 'every train ran on time' is 'at least one train did not run on time'. A, B and D are stronger than the negation. E is not guaranteed, because all trains could have been late.]"
+    },
+    "notes": "Uniqueness check: only the statement that at least one train was late holds in every situation consistent with a false \"every train was on time\"; each other statement fails for some number of late trains between 1 and all of them. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "deduction",
+    "quantifiers",
+    "negation",
+    "no-calculator"
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-ug-crit-business-closures-restate-540",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-critical-thinking",
+  "skillSlug": "critical-thinking-interpret-text",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A chamber of commerce report on the province of Serrano contains the following sentence.\n\n> Of the new businesses in Serrano that close within five years of opening, two out of three close during their first year.\n\nIf the sentence is accurate, which one of the following must also be true?",
+  "instructionsMd": "Answer on the basis of the quoted sentence alone.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "A new business in Serrano that survives its first year will probably still be open five years after opening."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Among new businesses that close within five years, twice as many close in the first year as in years two to five combined."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Most new businesses in Serrano close at some point within five years of opening."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Two out of every three new businesses in Serrano close during their first year of trading."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The first thing to find in a statistical sentence is its **base**: two out of three of what? Here the base is not all new businesses but only those that close within five years. The sentence divides that group into two parts: those that close in year one (two thirds) and those that close in years two to five (one third).\n\nTwo thirds is twice one third, so in that group the first-year closures outnumber the later closures two to one. That is exactly the choice saying that, among businesses that close within five years, twice as many close in the first year as in years two to five combined.\n\n**How to check the answer.** Invent numbers that fit the sentence and test the other choices. Say 1,000 businesses open and 150 close within five years: 100 in year one and 50 later. The sentence holds. Then only 10 per cent close in year one, not two thirds; only 15 per cent close within five years, not most. Now say 900 close within five years: 600 in year one and 300 later. Of the 400 that survive year one, 300 close by year five, so a survivor is unlikely to reach year five. The sentence fits both cases, so none of the other choices is guaranteed.",
+  "distractorRationale": {
+    "d": "This changes the base from \"businesses that close within five years\" to \"all new businesses\". If only 150 of 1,000 new businesses closed within five years, 100 of them in year one, the sentence would hold while only one in ten closed in its first year.",
+    "c": "The sentence says nothing about how many businesses close within five years in the first place; it only describes when, among those that do close, the closures happen. The proportion closing could be small or large.",
+    "a": "Survival after the first year depends on how many businesses close in total, which the sentence does not give. If 900 of 1,000 closed within five years, 300 of them after year one, three in four of the first-year survivors would still close by year five."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "A critical thinking question quoting a sentence from a chamber of commerce report: of the new businesses in Serrano that close within five years of opening, two out of three close during their first year. It asks which statement must also be true. The four choices, in the order shown, are: a new business in Serrano that survives its first year will probably still be open five years after opening; among new businesses that close within five years, twice as many close in the first year as in years two to five combined; most new businesses in Serrano close at some point within five years of opening; two out of every three new businesses in Serrano close during their first year of trading.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-verbal-author",
+    "aiAssisted": true,
+    "notes": "Original item on reading the base of a conditional proportion. The key restates the sentence as a ratio within its own base; each distractor silently changes the base to all new businesses or to first-year survivors."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-verbal-author",
+    "reviewer": "blind-reviewer-wave8-bocug-verbal-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-bocug-verbal-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Among closures within five years, 2/3 happen in year 1 and 1/3 in years 2-5, so year 1 is twice years 2-5 combined. The sentence gives no base rate of closure, so 'most close within five years', 'two out of three of all new businesses close in year one' and 'survivors of year one will probably last five years' do not follow. [A second, separate blind solve (blind-reviewer-wave8-bocug-verbal-run1) reached the same answer: Among businesses that close within five years, 2/3 close in year one and 1/3 in years two to five, a 2:1 ratio. 'Two out of every three new businesses close in year one' confuses the conditional base. 'Most close within five years' and 'survivors of year one will probably last' need the overall closure rate, which is not given.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "base-of-a-proportion",
+    "statistical-language"
+  ]
+}

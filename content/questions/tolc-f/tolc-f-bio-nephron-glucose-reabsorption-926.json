@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-bio-nephron-glucose-reabsorption-926",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "biology",
+  "domainSlug": "tolcf-biology",
+  "skillSlug": "tolcf-bio-anatomy-physiology",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "In a healthy person, glucose passes from the blood into the filtrate in the nephron, yet the urine normally contains almost no glucose. In which part of the urinary system is the filtered glucose reabsorbed into the blood?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The urinary bladder"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The collecting duct"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The glomerulus"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The loop of Henle, in the medulla"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The proximal convoluted tubule"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Trace the filtrate through the nephron and ask what each part does.\n\n1. **Glomerulus and Bowman's capsule:** filtration. Blood pressure pushes water and small solutes, including glucose, out of the capillaries into the capsule.\n2. **Proximal convoluted tubule:** bulk reabsorption. Its cells, with microvilli and many mitochondria, take back nearly all the glucose and amino acids by carrier proteins (co-transport with $\\mathrm{Na^+}$), together with most of the water and salts.\n3. **Loop of Henle:** builds the salt gradient in the medulla that lets the kidney concentrate urine.\n4. **Collecting duct:** fine-tunes water reabsorption under the control of ADH.\n\nSo glucose is recovered in the **proximal convoluted tubule**. When blood glucose is very high, as in untreated diabetes, these carriers are saturated and glucose appears in the urine.\n\n**Check:** by the time the filtrate reaches the loop of Henle it no longer contains glucose in a healthy person, so no later segment could be responsible.",
+  "distractorRationale": {
+    "c": "The glomerulus is where glucose is filtered out of the blood, the opposite of reabsorption.",
+    "d": "The loop of Henle handles salt and water to create the concentration gradient of the medulla; by the time filtrate reaches it, the glucose has already been recovered.",
+    "b": "The collecting duct adjusts water reabsorption under ADH. This is a common confusion with the hormone-controlled final step; glucose is recovered much earlier.",
+    "a": "The bladder only stores urine; its wall does not reabsorb solutes into the blood."
+  },
+  "estimatedSeconds": 50,
+  "stimulusRef": null,
+  "accessibilityText": "A short text question with no figure. In a healthy person glucose is filtered into the nephron but the urine contains almost none. The question asks in which part of the urinary system filtered glucose is reabsorbed. The choices are: the urinary bladder; the collecting duct; the glomerulus; the loop of Henle, in the medulla; the proximal convoluted tubule.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave8-biochem-author",
+    "aiAssisted": true,
+    "notes": "Original item. Tests the functions of the nephron segments and the site of glucose reabsorption."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave8-biochem-author",
+    "reviewer": "blind-reviewer-wave8-tolcf-biochem-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolcf-biochem-run0",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Essentially all filtered glucose is reabsorbed by active co-transport in the proximal convoluted tubule. The glomerulus is the filtration site, the loop of Henle and collecting duct handle water/salts, and the bladder only stores urine. [A second, separate blind solve (blind-reviewer-wave8-tolcf-biochem-run1) reached the same answer: Essentially all filtered glucose is reabsorbed by active transport in the proximal convoluted tubule. The glomerulus is where filtration happens, the loop of Henle and collecting duct mainly handle water and salts, and the bladder only stores urine.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "kidney",
+    "nephron",
+    "reabsorption"
+  ]
+}

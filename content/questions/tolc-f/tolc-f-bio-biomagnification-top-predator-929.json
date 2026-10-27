@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-bio-biomagnification-top-predator-929",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "biology",
+  "domainSlug": "tolcf-biology",
+  "skillSlug": "tolcf-bio-ecology",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A fat-soluble insecticide, which organisms can neither break down nor excrete easily, reaches a lake at a very low concentration in the water. The lake's food chain is: phytoplankton, then zooplankton, then small fish, then pike, then ospreys, which eat the pike. Some years later, in which organisms is the concentration of the insecticide per kilogram of body tissue expected to be highest?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "It is the same in every organism, equal to its concentration in the water"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Pike"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Ospreys"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Phytoplankton"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Zooplankton"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The key words are **fat-soluble** and **not broken down or excreted**. Such a substance is stored in body fat and stays there, so it builds up over an organism's life (bioaccumulation).\n\nNow think about the food chain. Each consumer eats a much larger mass of the level below it over its lifetime: only about 10% of the energy, and so of the biomass, passes from one level to the next, but the persistent insecticide in all that eaten tissue is retained. The concentration therefore rises at every step. This is **biomagnification**, and it is highest at the **top of the chain**, in the ospreys.\n\n**Check:** this is the pattern documented for DDT, which thinned the eggshells of fish-eating birds of prey while the concentration in the water stayed tiny.",
+  "distractorRationale": {
+    "d": "Phytoplankton take the insecticide directly from the water, so their concentration is the lowest in the chain. They are where the build-up starts, not where it peaks.",
+    "e": "Zooplankton concentrate the insecticide above the level in phytoplankton, but they are near the bottom of the chain; every later level concentrates it further.",
+    "b": "The pike accumulate a lot, but they are eaten by the ospreys, which concentrate the insecticide one step further. The top predator, not the one below it, has the highest level.",
+    "a": "This would hold only for a substance that is excreted or broken down as fast as it is taken in. The stem says this one is persistent, so it accumulates and magnifies along the chain."
+  },
+  "estimatedSeconds": 45,
+  "stimulusRef": null,
+  "accessibilityText": "A short text question with no figure. A fat-soluble insecticide that organisms cannot break down or excrete easily reaches a lake at a very low concentration. The food chain is phytoplankton, then zooplankton, then small fish, then pike, then ospreys that eat the pike. The question asks in which organisms the concentration per kilogram of tissue is expected to be highest years later. The choices are: the same in every organism, equal to the concentration in the water; pike; ospreys; phytoplankton; zooplankton.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave8-biochem-author",
+    "aiAssisted": true,
+    "notes": "Original item. Tests biomagnification of a persistent pollutant along a food chain."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave8-biochem-author",
+    "reviewer": "blind-reviewer-wave8-tolcf-biochem-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolcf-biochem-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "A persistent fat-soluble pollutant biomagnifies up the food chain, so the top predator (ospreys) has the highest tissue concentration. Pike, zooplankton and phytoplankton are lower trophic levels; equal concentration everywhere ignores bioaccumulation. [A second, separate blind solve (blind-reviewer-wave8-tolcf-biochem-run1) reached the same answer: A persistent, fat-soluble compound biomagnifies up the food chain, so the top consumer (ospreys) has the highest concentration per kg of tissue. Pike are one level lower; phytoplankton and zooplankton are lowest; 'same everywhere' ignores bioaccumulation.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "food-chain",
+    "biomagnification",
+    "pollution"
+  ]
+}
