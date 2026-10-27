@@ -78,5 +78,48 @@
     "annulus",
     "tangent-chord",
     "pythagoras"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Due circonferenze hanno lo stesso centro. La circonferenza maggiore ha raggio 10 cm. Una corda della circonferenza maggiore è lunga 16 cm e tocca la circonferenza minore in un solo punto. Qual è l'area della corona circolare compresa tra le due circonferenze?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$36\\pi\\ \\text{cm}^{2}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$100\\pi\\ \\text{cm}^{2}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$16\\pi\\ \\text{cm}^{2}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$64\\pi\\ \\text{cm}^{2}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$96\\pi\\ \\text{cm}^{2}$"
+        }
+      ],
+      "explanationMd": "Traccia il raggio della circonferenza minore fino al punto in cui la corda la tocca. Un raggio condotto al punto di tangenza è perpendicolare alla retta tangente, quindi questo raggio incontra la corda ad angolo retto, e la perpendicolare condotta dal centro a una corda la divide a metà.\n\n**Passo 1 — il triangolo rettangolo.** I suoi cateti sono il raggio minore $r$ e metà della corda, 8 cm. La sua ipotenusa è un raggio della circonferenza maggiore, 10 cm. Quindi $r^{2} + 8^{2} = 10^{2}$ e $r^{2} = 100 - 64 = 36$ (un triangolo 6-8-10).\n\n**Passo 2 — la corona.** Area $= \\pi R^{2} - \\pi r^{2} = \\pi(100 - 36) = 64\\pi\\ \\text{cm}^{2}$.\n\n**Osserva.** L'area è $\\pi(R^{2}-r^{2}) = \\pi\\cdot 8^{2}$: l'area della corona dipende solo dalla semicorda, quindi il valore di $r$ non serve mai.\n\n**Come verificare.** Con $r=6$ la circonferenza minore tocca davvero la corda: la distanza dal centro alla corda è 6, e $\\sqrt{10^{2}-6^{2}} = 8$ è la metà di 16 ✓.",
+      "distractorRationale": {
+        "c": "Eleva al quadrato la *differenza* dei raggi, $\\pi(10-6)^{2}$. L'area di una corona circolare è la differenza delle aree dei due cerchi, $\\pi(R^{2}-r^{2})$.",
+        "a": "Dà l'area del cerchio minore ($r=6$) e non la sottrae mai da quella del maggiore.",
+        "e": "Prende come raggio minore $10-8=2$, come se la semicorda fosse la distanza tra le due circonferenze, e calcola $\\pi(100-4)$. La semicorda è un cateto di un triangolo rettangolo, non la distanza tra le circonferenze.",
+        "b": "Dà l'area del cerchio maggiore e non toglie quella del minore."
+      },
+      "accessibilityText": "Due circonferenze concentriche, cioè con lo stesso centro. La maggiore ha raggio 10 centimetri. Una corda della circonferenza maggiore, lunga 16 centimetri, tocca la circonferenza minore in un solo punto. La domanda chiede l'area della corona circolare compresa tra le due circonferenze. Le cinque alternative sono 16 pi greco, 36 pi greco, 64 pi greco, 96 pi greco e 100 pi greco centimetri quadrati. Non serve alcuna figura.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-e",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }
