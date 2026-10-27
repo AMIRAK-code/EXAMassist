@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { headers } from 'next/headers';
 import { getDb } from '@/lib/db';
 import { SITE, absoluteUrl, googleSiteVerification, indexingEnabled, shareImages, siteUrl } from '@/lib/site';
 import { getHub, listHubs } from '@/lib/exams/registry';
@@ -12,6 +13,8 @@ import { JsonLd, organizationSchema, webSiteSchema } from '@/components/seo/json
 import { getCurrentUser } from '@/lib/auth/session';
 import { continueStudying } from '@/lib/learning/continue';
 import { ContinueStrip } from '@/components/home/continue-strip';
+import { ContinueStripLoader } from '@/components/home/continue-strip-loader';
+import { isSnapshotRequest } from '@/lib/seo/static-pages';
 import { accent } from './_fonts/accent';
 
 export const dynamic = 'force-dynamic';
@@ -85,8 +88,11 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
   // A returning learner's way back in. Rendered here, per request, for the
   // learner the cookie names; the page is dynamic and sent as private and
   // uncacheable, so it can never be served to anyone else.
+  // Saved as a static file for everyone, the page asks for the line from the
+  // browser instead (src/lib/seo/static-pages.ts).
   const user = await getCurrentUser();
   const strip = user ? (await continueStudying(db, user.id)) : null;
+  const snapshot = isSnapshotRequest(await headers());
 
   return (
     <div className={accent.variable}>
@@ -97,7 +103,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
         ]}
       />
 
-      {strip ? <ContinueStrip strip={strip} /> : null}
+      {strip ? <ContinueStrip strip={strip} /> : snapshot ? <ContinueStripLoader /> : null}
 
       {/* --- 1. Hero: headline, exam selector, a real sample question ------ */}
       <section id="top" className="mx-auto max-w-6xl scroll-mt-20 px-4 pb-20 pt-10 sm:px-6 sm:pt-14 lg:pb-24">

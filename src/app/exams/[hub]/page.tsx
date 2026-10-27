@@ -26,6 +26,8 @@ import { getAccess } from '@/lib/billing/service';
 import { BOCCONI_HUB_SLUG, bocconiLandingData } from '@/lib/exams/bocconi-landing';
 import { BOCCONI_FACTS_CHECKED_ON } from '@/lib/exams/bocconi-facts';
 import { BocconiLanding } from '@/components/exams/bocconi-landing';
+import { ViewBeacon } from '@/components/exams/view-beacon';
+import { isSnapshotRequest } from '@/lib/seo/static-pages';
 
 export const dynamic = 'force-dynamic';
 
@@ -104,7 +106,11 @@ export default async function ExamHubPage({ params }: { params: Promise<{ hub: s
     { label: hub.name },
   ];
   // A daily total of views, by coarse source; nothing about the visitor is kept.
-  await countPageView(db, 'landing_view', hub.slug, await headers());
+  // The copy saved as a static file reports its own views from the browser.
+  const requestHeaders = await headers();
+  const snapshot = isSnapshotRequest(requestHeaders);
+  if (!snapshot) await countPageView(db, 'landing_view', hub.slug, requestHeaders);
+  const beacon = snapshot ? <ViewBeacon subject={hub.slug} /> : null;
 
   if (hub.slug === BOCCONI_HUB_SLUG) {
     const user = await getCurrentUser();
@@ -129,6 +135,7 @@ export default async function ExamHubPage({ params }: { params: Promise<{ hub: s
           ]}
         />
         <Breadcrumbs trail={trail} />
+        {beacon}
         <BocconiLanding data={data} hasFullAccess={fullAccess} billingOn={billing.enabled} />
       </Container>
     );
@@ -155,6 +162,7 @@ export default async function ExamHubPage({ params }: { params: Promise<{ hub: s
         ]}
       />
       <Breadcrumbs trail={trail} />
+      {beacon}
 
       {/*
         No lead: the tagline repeated the summary below it, and gained a line

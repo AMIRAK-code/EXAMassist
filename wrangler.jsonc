@@ -8,9 +8,13 @@
   "main": ".open-next/worker.js",
   "compatibility_date": "2026-09-01",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  // A request that matches a file here is answered before the Worker runs. That
+  // includes the public pages `npm run cf:deploy` saves (scripts/snapshot-pages.ts):
+  // /exams/gmat is exams/gmat.html and / is index.html, with no redirect.
   "assets": {
     "directory": ".open-next/assets",
-    "binding": "ASSETS"
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash"
   },
   "services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "examer" }],
   // Cloudflare creates and maintains the DNS records and certificates for these.

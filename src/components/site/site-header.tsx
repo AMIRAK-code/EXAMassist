@@ -1,4 +1,8 @@
+'use client';
+
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { browserStorage, readAccountHint, rememberAccount } from '@/lib/auth/account-hint';
 import { SITE } from '@/lib/site';
 import { buttonClass } from '@/components/ui';
 import { MobileMenu } from './mobile-menu';
@@ -16,8 +20,21 @@ const LINK =
  * The site header. Visitors see the public pages and a way in; anyone with a
  * session sees the learner's destinations. Below the large breakpoint the
  * destinations collapse into one menu, so nothing overflows a phone.
+ *
+ * `deferred` marks a page saved as a static file (src/lib/seo/static-pages.ts):
+ * the server saw no session, so the browser's remembered state decides, after
+ * hydration. Otherwise the server's answer stands and is remembered.
  */
-export function SiteHeader({ account }: { account: AccountState }) {
+export function SiteHeader({ account: served, deferred = false }: { account: AccountState; deferred?: boolean }) {
+  const [account, setAccount] = useState<AccountState>(served);
+  useEffect(() => {
+    if (deferred) setAccount(readAccountHint(browserStorage()) ?? served);
+    else {
+      setAccount(served);
+      rememberAccount(browserStorage(), served);
+    }
+  }, [served, deferred]);
+
   const learner = account !== 'visitor';
   const primary = learner ? LEARNER_NAV : PUBLIC_NAV;
 
