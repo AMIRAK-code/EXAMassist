@@ -65,6 +65,31 @@ Bing Webmaster Tools:
    exam.assist365.app was registered there, use Bing's site move tool for it.
    Copilot answers come from Bing's index.
 
+## Known gap: pages fail under the Free Workers CPU limit
+
+Measured on 2026-10-27: fetching the 29 sitemap pages one after another, 9 to
+15 answered **503 with Cloudflare error 1102** ("Worker exceeded resource
+limits"), and the same page alternated between 200 and 1102 when fetched six
+times in a row. The Worker is on the Free plan, which allows 10 ms of CPU per
+request. Rendering a page often takes longer, and Cloudflare's small burst
+allowance runs out as soon as requests arrive back to back. That is exactly
+how Googlebot and bingbot crawl.
+
+A crawler that keeps getting 503s lowers its crawl rate, and a page that
+keeps failing is eventually dropped. The two fixes are:
+
+1. **Workers Paid** ($5 a month in the account that holds the Worker): the CPU
+   limit becomes 30 s per request. This is the immediate fix, and sign-in's
+   scrypt needs it anyway.
+2. Serving public pages from a cache (next section), so most requests do not
+   render at all.
+
+Check after either fix (expect only 200s):
+
+```bash
+for i in 1 2 3 4 5 6 7 8; do curl -s -o /dev/null -w "%{http_code} " https://uniexamer.com/exams/gmat; done
+```
+
 ## Known gap: speed
 
 Measured on 2026-10-27 from Italy, time to first byte on uniexamer.com varied
