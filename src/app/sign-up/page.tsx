@@ -113,9 +113,10 @@ function describeNext(next: string | null): string | null {
     const config = getExamConfig(freeTest[1]);
     return config ? `Next: your free ${examTestName(config)} test.` : null;
   }
-  if (path === '/premium') {
+  if (path === '/pricing' || path === '/checkout') {
     const config = getExamConfig(new URLSearchParams(search).get('exam') ?? '');
-    return config ? `Next: the Premium plans for your ${examTestName(config)} preparation.` : null;
+    if (path === '/checkout') return config ? `Next: checkout for your ${examTestName(config)} plan.` : 'Next: checkout.';
+    return config ? `Next: the plans for your ${examTestName(config)} preparation.` : null;
   }
   return null;
 }
