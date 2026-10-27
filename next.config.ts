@@ -17,7 +17,10 @@ const REDIRECTED_HOSTS = ['exam.assist365.app', 'www.uniexamer.com'];
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   // better-sqlite3 is a native module: never bundle it into the server build.
-  serverExternalPackages: ['better-sqlite3'],
+  // pg-cloudflare is listed so OpenNext copies the whole package into the
+  // Worker: Turbopack's file tracing keeps only its Node stub (dist/empty.js),
+  // not the "workerd" build that pg loads on Cloudflare.
+  serverExternalPackages: ['better-sqlite3', 'pg-cloudflare'],
   poweredByHeader: false,
   /*
    * Pin the workspace root to this project.
