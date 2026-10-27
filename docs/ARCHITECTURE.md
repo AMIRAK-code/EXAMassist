@@ -74,6 +74,14 @@ src/lib/content/        The question bank.
 
 src/lib/auth/           Sessions, password hashing, rate limiting.
 src/lib/learning/       Recommendations and study plans.
+
+src/lib/billing/        Paid plans through Stripe (docs/BILLING.md).
+  plans.ts              Plans, prices and the free/paid feature matrix: the
+                        one place to change them.
+  entitlements.ts       The one access helper. Server code asks it before a
+                        paid session, the study plan or the AI tutor.
+  service.ts, store.ts  Stripe customers and subscriptions, webhooks, and the
+                        local copy they keep in step.
 ```
 
 The dependency direction is one-way: `assessment` knows nothing about the
