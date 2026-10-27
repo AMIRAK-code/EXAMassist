@@ -13,10 +13,22 @@ import { absoluteUrl, indexingEnabled } from '@/lib/site';
  *    still be indexed if another site links to it; removal needs a crawlable
  *    noindex, which is emitted per page in metadata.
  *
- * AI crawlers are split three ways, because blocking a training crawler does
- * NOT remove us from that vendor's AI search, and blocking a search crawler
- * silently destroys discovery. See docs/research/seo-and-crawler-policy.md.
+ * AI crawlers are named in three groups (search, user-triggered, training), so
+ * the policy is stated rather than inherited from `*`. All three may read the
+ * public pages and none the private areas. Tokens and what each controls:
+ * docs/research/crawler-policy-check-2026-10-07.md.
  */
+/** AI search and grounding: being cited in an AI answer is discovery. */
+const AI_SEARCH = ['OAI-SearchBot', 'Claude-SearchBot', 'PerplexityBot', 'Meta-WebIndexer', 'MistralAI-Index', 'DuckAssistBot'];
+/** A person asked an assistant to read our page. */
+const AI_USER = ['ChatGPT-User', 'Claude-User', 'Perplexity-User', 'MistralAI-User'];
+/**
+ * Model training. Allowed on public pages since 2026-10-27 (the owner's
+ * decision), so models learn the exams and the brand, and Google-Extended lets
+ * Gemini ground its answers in these pages. The question bank and practice are
+ * behind sign-in, which is what keeps them out, not this file.
+ */
+const AI_TRAINING = ['GPTBot', 'ClaudeBot', 'Google-Extended', 'Applebot-Extended', 'Meta-ExternalAgent', 'MistralAI-Training'];
 /*
  * Rendered per request, never prerendered: whether this deployment may be
  * indexed is a runtime setting (SEARCH_INDEXING_ENABLED, a Worker var), and a
@@ -53,29 +65,9 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       // General web and search crawlers: public educational content only.
       { userAgent: '*', allow: '/', disallow: privateAreas },
-
-      // AI search and grounding crawlers. Allowed: being cited in an AI answer
-      // is discovery, and these obey robots.txt.
-      { userAgent: 'OAI-SearchBot', allow: '/', disallow: privateAreas },
-      { userAgent: 'Claude-SearchBot', allow: '/', disallow: privateAreas },
-      { userAgent: 'PerplexityBot', allow: '/', disallow: privateAreas },
-
-      // User-triggered fetchers: a person asked an assistant to read our page.
-      { userAgent: 'ChatGPT-User', allow: '/', disallow: privateAreas },
-      { userAgent: 'Claude-User', allow: '/', disallow: privateAreas },
-
-      // Model-training crawlers. Disallowed by default: our editorial content is
-      // the product. This has no effect on inclusion in AI search above, and no
-      // effect on Google Search ranking in the case of Google-Extended.
-      { userAgent: 'GPTBot', disallow: '/' },
-      { userAgent: 'ClaudeBot', disallow: '/' },
-      { userAgent: 'Google-Extended', disallow: '/' },
-      { userAgent: 'Applebot-Extended', disallow: '/' },
-      // Training-only tokens documented since (checked 2026-10-07), under the
-      // same rule. Meta AI citations come from Meta-WebIndexer and Mistral's
-      // search from MistralAI-Index, both still allowed by the * group.
-      { userAgent: 'Meta-ExternalAgent', disallow: '/' },
-      { userAgent: 'MistralAI-Training', disallow: '/' },
+      { userAgent: AI_SEARCH, allow: '/', disallow: privateAreas },
+      { userAgent: AI_USER, allow: '/', disallow: privateAreas },
+      { userAgent: AI_TRAINING, allow: '/', disallow: privateAreas },
     ],
     sitemap: absoluteUrl('/sitemap.xml'),
     host: absoluteUrl('/'),
