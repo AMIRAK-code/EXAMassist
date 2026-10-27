@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { Link, useRouter } from '@/i18n/navigation';
+
 import type { Response } from '@/lib/assessment/types';
 import type { PlayerItem, PlayerModel } from '@/lib/attempts/view-model';
 import { formatRemaining } from '@/lib/assessment/timing';

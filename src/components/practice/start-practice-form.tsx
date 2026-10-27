@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/i18n/navigation';
 import { Alert, Button, cx } from '@/components/ui';
 import { upgradeTarget } from '@/lib/billing/upgrade';
 import {

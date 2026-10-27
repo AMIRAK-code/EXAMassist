@@ -1,11 +1,11 @@
 'use client';
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
+import { Link, usePathname } from '@/i18n/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { buttonClass, cx } from '@/components/ui';
 import { NavLink } from './nav-link';
-import { GUEST_NOTE, type AccountState, type NavItem } from './nav-items';
+import type { AccountState, NavItem } from './nav-items';
 
 const ITEM =
   'flex min-h-12 items-center border-b border-line px-1 text-lg text-ink no-underline hover:text-ink ' +
@@ -25,6 +25,7 @@ export function MobileMenu({
   secondary: NavItem[];
   account: AccountState;
 }) {
+  const t = useTranslations('common');
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const button = useRef<HTMLButtonElement>(null);
@@ -69,7 +70,7 @@ export function MobileMenu({
             <path d="M2.5 5h13M2.5 9h13M2.5 13h13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
           )}
         </svg>
-        {open ? 'Close' : 'Menu'}
+        {open ? t('nav.close') : t('nav.menu')}
       </button>
 
       <div
@@ -78,12 +79,12 @@ export function MobileMenu({
         hidden={!open}
         className="absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-b-[1.5px] border-ink bg-surface shadow-raised lg:hidden"
       >
-        <nav aria-label="Main" className="mx-auto max-w-6xl px-4 pb-6 pt-2 sm:px-6">
+        <nav aria-label={t('nav.mainLabel')} className="mx-auto max-w-6xl px-4 pb-6 pt-2 sm:px-6">
           <ul>
             {primary.map((item) => (
               <li key={item.href}>
                 <NavLink href={item.href} match={item.match} except={item.except} className={ITEM}>
-                  {item.label}
+                  {t(`nav.${item.labelKey}`)}
                 </NavLink>
               </li>
             ))}
@@ -97,7 +98,7 @@ export function MobileMenu({
                     match={item.match} except={item.except}
                     className={cx(ITEM, 'min-h-11 text-base text-ink-muted')}
                   >
-                    {item.label}
+                    {t(`nav.${item.labelKey}`)}
                   </NavLink>
                 </li>
               ))}
@@ -107,18 +108,18 @@ export function MobileMenu({
           <div className="mt-5 flex flex-col gap-3">
             {account === 'registered' ? (
               <Link href="/account" className={buttonClass({ variant: 'secondary', full: true })}>
-                Account
+                {t('nav.account')}
               </Link>
             ) : null}
-            {account === 'guest' ? <p className="text-sm leading-relaxed text-ink-muted">{GUEST_NOTE}</p> : null}
+            {account === 'guest' ? <p className="text-sm leading-relaxed text-ink-muted">{t('guest.note')}</p> : null}
             {account === 'visitor' || account === 'guest' ? (
               // The same two equal buttons as the desktop bar
               <div className="grid grid-cols-2 gap-3">
                 <Link href="/sign-in" className={buttonClass({ variant: 'secondary', full: true })}>
-                  Sign in
+                  {t('nav.signIn')}
                 </Link>
                 <Link href="/sign-up" className={buttonClass({ variant: 'ink', full: true })}>
-                  Create account
+                  {t('nav.createAccount')}
                 </Link>
               </div>
             ) : null}

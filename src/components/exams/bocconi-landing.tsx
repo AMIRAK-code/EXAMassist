@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import type { BocconiLandingData, BocconiTestSummary } from '@/lib/exams/bocconi-landing';
 import { BOCCONI_ADVICE, BOCCONI_FACTS_CHECKED_ON, BOCCONI_FAQ, BOCCONI_SOURCES } from '@/lib/exams/bocconi-facts';
 import { checkoutPath, freeTestPath, pricingPath } from '@/lib/billing/config';
