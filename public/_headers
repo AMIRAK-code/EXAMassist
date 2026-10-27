@@ -10,3 +10,9 @@
 # Build output is content-hashed, so it can be cached forever.
 /_next/static/*
   Cache-Control: public, max-age=31536000, immutable
+
+# The interface font, fetched by Stripe's card-field iframes so the Payment
+# Element matches the site's own fields (src/components/billing/stripe-appearance.ts).
+/fonts/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=31536000, immutable

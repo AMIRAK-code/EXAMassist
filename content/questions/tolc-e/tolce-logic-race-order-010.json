@@ -1,0 +1,125 @@
+{
+  "id": "tolce-logic-race-order-010",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Five runners, P, Q, R, S and T, finish a race. There are no ties.\n\n- Q finishes ahead of R.\n- R finishes ahead of T.\n- S finishes immediately after P.\n- T finishes neither first nor last.\n\nWhich of the following must be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "T finishes fourth."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "S finishes third."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "P finishes fourth."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "R finishes first."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Q finishes second."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Combine the first two conditions into one order: Q ahead of R ahead of T. Two runners finish ahead of T, so T is at least third. T is not last, so T is third or fourth.\n\n- **T fourth.** The remaining places are 1st, 2nd, 3rd and 5th. P and S need two consecutive places, which can only be 1st and 2nd or 2nd and 3rd. Either way, one of Q and R is pushed into 5th place, behind T, which breaks the order Q, R, T. This case fails.\n- **T third.** Q and R must take 1st and 2nd, in that order, and P and S take 4th and 5th, with S immediately after P.\n\nThe only possible finishing order is Q, R, T, P, S. So P finishes fourth.\n\nWhat to notice first: chain the \"ahead of\" conditions into a single line, then use it to limit where the last runner in the chain can go.",
+  "distractorRationale": {
+    "e": "Q must be ahead of both R and T, and T is third, so Q is first. Second place belongs to R.",
+    "d": "R must finish behind Q, so R can never be first.",
+    "b": "Third place is taken by T in the only valid order. S finishes fifth, immediately after P.",
+    "a": "T in fourth place forces P and S into two consecutive places among 1st to 3rd, which pushes Q or R behind T. T must be third."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "Five runners named by the letters P, Q, R, S and T finish a race with no ties. Q is ahead of R; R is ahead of T; S finishes immediately after P; T is neither first nor last. The question asks which statement about finishing positions must be true. Five answer choices.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-logic-author",
+    "aiAssisted": true,
+    "notes": "Original five-runner ordering with a unique solution. Not derived from any CISIA or other published item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-logic-author",
+    "reviewer": "tolce-blind-reviewer-1",
+    "reviewedOn": "2026-10-21",
+    "independentSolve": {
+      "solvedBy": "tolce-blind-reviewer-1",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Q>R>T with T not first/last forces T=3 or 4. T=4: Q,R and the P-S block cannot fit (position 5 isolated would need Q or R, contradiction). So T=3, Q1, R2, P4, S5. Only C (P fourth) holds."
+    },
+    "notes": "Author solved the item and then tried to defend each wrong choice; none survives. Awaiting blind independent solve and uniqueness check by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "arrangements",
+    "linear-order",
+    "ranking"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Cinque corridori, P, Q, R, S e T, terminano una gara. Non ci sono arrivi a pari merito.\n\n- Q arriva prima di R.\n- R arriva prima di T.\n- S arriva immediatamente dopo P.\n- T non arriva né primo né ultimo.\n\nQuale delle seguenti affermazioni è necessariamente vera?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "T arriva quarto."
+        },
+        {
+          "id": "b",
+          "textMd": "S arriva terzo."
+        },
+        {
+          "id": "c",
+          "textMd": "P arriva quarto."
+        },
+        {
+          "id": "d",
+          "textMd": "R arriva primo."
+        },
+        {
+          "id": "e",
+          "textMd": "Q arriva secondo."
+        }
+      ],
+      "explanationMd": "Combina le prime due condizioni in un unico ordine: Q prima di R prima di T. Due corridori arrivano prima di T, quindi T è almeno terzo. T non è ultimo, quindi T è terzo o quarto.\n\n- **T quarto.** Restano il 1°, il 2°, il 3° e il 5° posto. P e S hanno bisogno di due posizioni consecutive, che possono essere solo 1° e 2° oppure 2° e 3°. In entrambi i casi uno tra Q e R finisce al 5° posto, dietro a T, e l'ordine Q, R, T non è rispettato. Questo caso non funziona.\n- **T terzo.** Q e R devono occupare il 1° e il 2° posto, in quest'ordine, e P e S occupano il 4° e il 5°, con S immediatamente dopo P.\n\nL'unico ordine di arrivo possibile è Q, R, T, P, S. Quindi P arriva quarto.\n\nDa notare subito: concatena le condizioni «arriva prima di» in un'unica fila, poi usala per limitare la posizione dell'ultimo corridore della catena.",
+      "distractorRationale": {
+        "e": "Q deve arrivare prima sia di R sia di T, e T è terzo, quindi Q è primo. Il secondo posto spetta a R.",
+        "d": "R deve arrivare dietro a Q, quindi R non può mai essere primo.",
+        "b": "Nell'unico ordine valido il terzo posto è occupato da T. S arriva quinto, immediatamente dopo P.",
+        "a": "T al quarto posto costringe P e S in due posizioni consecutive tra il 1° e il 3°, il che spinge Q o R dietro a T. T deve essere terzo."
+      },
+      "accessibilityText": "Cinque corridori indicati con le lettere P, Q, R, S e T terminano una gara senza arrivi a pari merito. Q arriva prima di R; R arriva prima di T; S arriva immediatamente dopo P; T non è né primo né ultimo. La domanda chiede quale affermazione sulle posizioni d'arrivo è necessariamente vera. Cinque alternative di risposta.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": "tolce-italian-checker",
+        "checkedOn": "2026-10-23",
+        "answerPreserved": true,
+        "notes": "Only order Q,R,T,P,S. 'arriva prima di' = finishes ahead of; 'immediatamente dopo' faithful."
+      }
+    }
+  }
+}

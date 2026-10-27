@@ -1,0 +1,79 @@
+{
+  "id": "bocconi-grad-data-cowork-revenue-018",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-data-insight",
+  "skillSlug": "grad-data-derived-conclusions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Assuming every member paid the listed monthly fee, what was the total membership fee revenue across the four sites in March?",
+  "instructionsMd": "Use only the figures shown. Work by hand.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "€132,900"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "€99,300"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "€76,100"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "€136,275"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Revenue at each site is members times the fee, and the total is the sum of the four:\n\n$$210 \\times 180 = 37{,}800 \\qquad 150 \\times 220 = 33{,}000$$\n$$190 \\times 150 = 28{,}500 \\qquad 140 \\times 240 = 33{,}600$$\n$$37{,}800 + 33{,}000 + 28{,}500 + 33{,}600 = 132{,}900$$\n\n**Doing it by hand.** Split awkward products: $210 \\times 180 = 200 \\times 180 + 10 \\times 180 = 36{,}000 + 1{,}800$. Add in pairs to keep the sums tidy: $37{,}800 + 33{,}000 = 70{,}800$ and $28{,}500 + 33{,}600 = 62{,}100$, then $70{,}800 + 62{,}100 = 132{,}900$.\n\n**The traps.** Fees are paid by MEMBERS, not by desks. And the total of the products is not the total members times an average fee, because the sites with higher fees do not have the same number of members as the others.",
+  "distractorRationale": {
+    "c": "This multiplies each fee by the number of DESKS instead of members: $120 \\times 180 + 80 \\times 220 + 150 \\times 150 + 60 \\times 240 = 76{,}100$. Fees are paid per membership.",
+    "b": "This is the correct method with one site left out: it is the total without Dunmere's $33{,}600$. Every site must be included.",
+    "d": "This multiplies the total number of members, 690, by the simple average of the four fees, 197.50. That average gives each site equal weight, but the sites have different numbers of members."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": {
+    "id": "bocconi-grad-stim-coworking-004",
+    "version": 1
+  },
+  "accessibilityText": "A question about the table of four co-working sites. It asks for total membership fee revenue in March, assuming every member paid the listed fee. The options are 76,100 euros, 99,300 euros, 132,900 euros and 136,275 euros.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-graduate-author",
+    "aiAssisted": true,
+    "notes": "Original item. Distractors are the members-versus-desks confusion, an omitted row, and an unweighted average."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-graduate-author",
+    "reviewer": "bocconi-graduate-blind-reviewer",
+    "reviewedOn": "2026-10-27",
+    "independentSolve": {
+      "solvedBy": "bocconi-graduate-blind-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Members x fee: Arden 210x180=37,800; Belmont 150x220=33,000; Corvo 190x150=28,500; Dunmere 140x240=33,600. Total 132,900. Other totals do not match any combination."
+    },
+    "notes": "Author checked that exactly one option is defensible. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "table-coworking",
+    "weighted-total"
+  ],
+  "translations": {}
+}

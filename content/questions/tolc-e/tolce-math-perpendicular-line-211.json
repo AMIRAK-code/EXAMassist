@@ -1,0 +1,126 @@
+{
+  "id": "tolce-math-perpendicular-line-211",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-analytic-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In the Cartesian plane, line $r$ has equation $2x - 3y + 6 = 0$. Line $s$ is perpendicular to $r$ and passes through the point $(1, 4)$. At what value of $y$ does line $s$ cross the $y$-axis?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$2$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\dfrac{5}{2}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\dfrac{10}{3}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\dfrac{11}{2}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\dfrac{14}{3}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Get the slope of $r$ by solving its equation for $y$:\n\n$$3y = 2x + 6 \\iff y = \\frac{2}{3}x + 2$$\n\nSo $r$ has slope $\\frac{2}{3}$. Perpendicular slopes multiply to $-1$, so $s$ has slope $-\\frac{3}{2}$: the reciprocal **and** the opposite sign.\n\nLine $s$ passes through $(1, 4)$:\n\n$$y - 4 = -\\frac{3}{2}(x - 1)$$\n\nAt the $y$-axis $x = 0$, so $y = 4 + \\frac{3}{2} = \\frac{11}{2}$.\n\nCheck: $s$ is $y = -\\frac{3}{2}x + \\frac{11}{2}$; at $x = 1$ it gives $-\\frac{3}{2} + \\frac{11}{2} = 4$, and $\\frac{2}{3} \\cdot \\left(-\\frac{3}{2}\\right) = -1$, so the lines are perpendicular.",
+  "distractorRationale": {
+    "a": "This is where line $r$ crosses the $y$-axis. The question asks about the new line $s$.",
+    "b": "This takes the reciprocal of the slope but keeps its sign, using $+\\frac{3}{2}$, so $y = 4 - \\frac{3}{2}$ at $x = 0$. A line with slope $\\frac{3}{2}$ is not perpendicular to one with slope $\\frac{2}{3}$, because their product is $1$, not $-1$.",
+    "c": "This uses the slope of $r$ itself, $\\frac{2}{3}$, which gives the line through $(1, 4)$ parallel to $r$, not perpendicular to it.",
+    "e": "This changes the sign of the slope but forgets to take the reciprocal, using $-\\frac{2}{3}$. Perpendicularity needs both: the slopes must multiply to $-1$."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "In the coordinate plane, line r has equation 2 x minus 3 y plus 6 equals 0. Line s is perpendicular to r and passes through the point 1, 4. The question asks for the y-intercept of s. The answer choices are 2, five halves, ten thirds, fourteen thirds, and eleven halves.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Perpendicular slope and point-slope form; distractors model the original intercept, a missing sign change, the parallel slope, and a missing reciprocal."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-math-author",
+    "reviewer": "tolce-blind-reviewer-2",
+    "reviewedOn": "2026-10-21",
+    "independentSolve": {
+      "solvedBy": "tolce-blind-reviewer-2",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Slope of r = 2/3, so slope of s = -3/2. s: y - 4 = -3/2 (x - 1); at x = 0, y = 4 + 3/2 = 11/2."
+    },
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "analytic-geometry",
+    "perpendicular-lines",
+    "slope"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Nel piano cartesiano la retta $r$ ha equazione $2x - 3y + 6 = 0$. La retta $s$ è perpendicolare a $r$ e passa per il punto $(1, 4)$. Qual è l'ordinata del punto in cui la retta $s$ interseca l'asse $y$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$2$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\dfrac{5}{2}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$\\dfrac{10}{3}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\dfrac{11}{2}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\dfrac{14}{3}$"
+        }
+      ],
+      "explanationMd": "Ricava il coefficiente angolare di $r$ risolvendo la sua equazione rispetto a $y$:\n\n$$3y = 2x + 6 \\iff y = \\frac{2}{3}x + 2$$\n\nQuindi $r$ ha coefficiente angolare $\\frac{2}{3}$. I coefficienti angolari di due rette perpendicolari hanno prodotto $-1$, quindi $s$ ha coefficiente angolare $-\\frac{3}{2}$: il reciproco **e** con il segno opposto.\n\nLa retta $s$ passa per $(1, 4)$:\n\n$$y - 4 = -\\frac{3}{2}(x - 1)$$\n\nSull'asse $y$ si ha $x = 0$, quindi $y = 4 + \\frac{3}{2} = \\frac{11}{2}$.\n\nVerifica: $s$ è $y = -\\frac{3}{2}x + \\frac{11}{2}$; per $x = 1$ dà $-\\frac{3}{2} + \\frac{11}{2} = 4$, e $\\frac{2}{3} \\cdot \\left(-\\frac{3}{2}\\right) = -1$, quindi le rette sono perpendicolari.",
+      "distractorRationale": {
+        "a": "È il punto in cui la retta $r$ interseca l'asse $y$. La domanda riguarda la nuova retta $s$.",
+        "b": "Prende il reciproco del coefficiente angolare ma ne mantiene il segno, usando $+\\frac{3}{2}$, quindi $y = 4 - \\frac{3}{2}$ per $x = 0$. Una retta con coefficiente angolare $\\frac{3}{2}$ non è perpendicolare a una con coefficiente angolare $\\frac{2}{3}$, perché il loro prodotto è $1$, non $-1$.",
+        "c": "Usa il coefficiente angolare di $r$ stessa, $\\frac{2}{3}$, che dà la retta per $(1, 4)$ parallela a $r$, non perpendicolare.",
+        "e": "Cambia il segno del coefficiente angolare ma dimentica di prenderne il reciproco, usando $-\\frac{2}{3}$. La perpendicolarità richiede entrambe le cose: i coefficienti angolari devono avere prodotto $-1$."
+      },
+      "accessibilityText": "Nel piano cartesiano la retta r ha equazione 2 x meno 3 y più 6 uguale a 0. La retta s è perpendicolare a r e passa per il punto di coordinate 1, 4. La domanda chiede l'ordinata del punto in cui s interseca l'asse y. Le alternative di risposta sono 2, cinque mezzi, dieci terzi, quattordici terzi e undici mezzi.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": "tolce-italian-checker",
+        "checkedOn": "2026-10-23",
+        "answerPreserved": true,
+        "notes": "s: slope -3/2 through (1,4) -> y-intercept 11/2. 'ordinata del punto in cui s interseca l'asse y' is the natural Italian equivalent."
+      }
+    }
+  }
+}

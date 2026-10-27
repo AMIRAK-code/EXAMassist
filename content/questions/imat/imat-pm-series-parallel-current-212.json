@@ -1,0 +1,126 @@
+{
+  "id": "imat-pm-series-parallel-current-212",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-physics-maths",
+  "skillSlug": "imat-phys-electricity",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A $6\\ \\Omega$ resistor and a $3\\ \\Omega$ resistor are connected in parallel. This combination is connected in series with a $4\\ \\Omega$ resistor across an ideal $12\\ \\text{V}$ battery. What is the current in the $3\\ \\Omega$ resistor?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\frac{12}{13}\\ \\text{A}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\frac{4}{3}\\ \\text{A}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$2\\ \\text{A}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\frac{2}{3}\\ \\text{A}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$4\\ \\text{A}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Reduce the circuit to a single resistance, find the total current, then work back out to the branch you need.\n\n- Parallel pair: $R_p = \\frac{6 \\times 3}{6 + 3} = 2\\ \\Omega$.\n- Total resistance: $2 + 4 = 6\\ \\Omega$.\n- Current from the battery: $I = \\frac{12\\ \\text{V}}{6\\ \\Omega} = 2\\ \\text{A}$.\n\nThe voltage across the $4\\ \\Omega$ resistor is $2 \\times 4 = 8\\ \\text{V}$, so the voltage across the parallel pair is $12 - 8 = 4\\ \\text{V}$. Both parallel resistors have this same $4\\ \\text{V}$ across them, so the current in the $3\\ \\Omega$ resistor is\n\n$$I_3 = \\frac{4\\ \\text{V}}{3\\ \\Omega} = \\frac{4}{3}\\ \\text{A}$$\n\nCheck: the $6\\ \\Omega$ resistor carries $\\frac{4}{6} = \\frac{2}{3}\\ \\text{A}$, and $\\frac{4}{3} + \\frac{2}{3} = 2\\ \\text{A}$, the total current. As expected, the smaller resistance takes the larger share, in inverse proportion to resistance.",
+  "distractorRationale": {
+    "d": "This is the current in the $6\\ \\Omega$ resistor. The split was done the wrong way round: in parallel, the smaller resistance carries the larger current.",
+    "a": "This adds all three resistances as if they were in series, $6 + 3 + 4 = 13\\ \\Omega$. The $6\\ \\Omega$ and $3\\ \\Omega$ resistors are in parallel and combine to $2\\ \\Omega$.",
+    "c": "This is the total current from the battery. At the parallel junction it divides between the two branches, so the $3\\ \\Omega$ resistor carries only part of it.",
+    "e": "This applies the whole $12\\ \\text{V}$ across the $3\\ \\Omega$ resistor, ignoring the $8\\ \\text{V}$ dropped across the $4\\ \\Omega$ resistor in series."
+  },
+  "estimatedSeconds": 95,
+  "stimulusRef": null,
+  "accessibilityText": "Circuit described in words: a 6 ohm resistor and a 3 ohm resistor are in parallel; that pair is in series with a 4 ohm resistor, and the whole arrangement is connected across an ideal 12 volt battery. Find the current in the 3 ohm resistor. The five choices, in amperes, are 2 thirds, 12 thirteenths, 4 thirds, 2 and 4.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "imat-physmaths-author",
+    "aiAssisted": true,
+    "notes": "Original item. Series-parallel reduction and current division; circuit given in words so no figure is needed."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "imat-physmaths-author",
+    "reviewer": "imat-blind-reviewer-2",
+    "reviewedOn": "2026-10-23",
+    "independentSolve": {
+      "solvedBy": "imat-blind-reviewer-2",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "6||3 = 2 ohm; total 6 ohm; I = 2 A; V across parallel = 4 V; I(3 ohm) = 4/3 A. C is total current, D is the 6-ohm branch."
+    },
+    "notes": "Author solved the item twice by independent routes and argued for each wrong choice; each fails on a specific, named error. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "physics",
+    "electric-circuits",
+    "series-and-parallel",
+    "ohms-law"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un resistore da $6\\ \\Omega$ e un resistore da $3\\ \\Omega$ sono collegati in parallelo. Questo gruppo è collegato in serie a un resistore da $4\\ \\Omega$ ai capi di una batteria ideale da $12\\ \\text{V}$. Qual è l'intensità di corrente nel resistore da $3\\ \\Omega$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\frac{12}{13}\\ \\text{A}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\frac{4}{3}\\ \\text{A}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$2\\ \\text{A}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\frac{2}{3}\\ \\text{A}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$4\\ \\text{A}$"
+        }
+      ],
+      "explanationMd": "Si riduce il circuito a un'unica resistenza equivalente, si trova la corrente totale e poi si torna indietro fino al ramo che interessa.\n\n- Coppia in parallelo: $R_p = \\frac{6 \\times 3}{6 + 3} = 2\\ \\Omega$.\n- Resistenza totale: $2 + 4 = 6\\ \\Omega$.\n- Corrente erogata dalla batteria: $I = \\frac{12\\ \\text{V}}{6\\ \\Omega} = 2\\ \\text{A}$.\n\nLa tensione ai capi del resistore da $4\\ \\Omega$ è $2 \\times 4 = 8\\ \\text{V}$, quindi la tensione ai capi della coppia in parallelo è $12 - 8 = 4\\ \\text{V}$. Entrambi i resistori in parallelo hanno ai capi la stessa tensione di $4\\ \\text{V}$, quindi la corrente nel resistore da $3\\ \\Omega$ è\n\n$$I_3 = \\frac{4\\ \\text{V}}{3\\ \\Omega} = \\frac{4}{3}\\ \\text{A}$$\n\nVerifica: il resistore da $6\\ \\Omega$ è percorso da $\\frac{4}{6} = \\frac{2}{3}\\ \\text{A}$, e $\\frac{4}{3} + \\frac{2}{3} = 2\\ \\text{A}$, la corrente totale. Come previsto, la resistenza minore riceve la quota maggiore, in proporzione inversa alla resistenza.",
+      "distractorRationale": {
+        "d": "Questa è la corrente nel resistore da $6\\ \\Omega$. La ripartizione è stata fatta al contrario: in parallelo, la resistenza minore è percorsa dalla corrente maggiore.",
+        "a": "Qui si sommano tutte e tre le resistenze come se fossero in serie, $6 + 3 + 4 = 13\\ \\Omega$. I resistori da $6\\ \\Omega$ e da $3\\ \\Omega$ sono in parallelo e si combinano in $2\\ \\Omega$.",
+        "c": "Questa è la corrente totale erogata dalla batteria. Al nodo del parallelo si divide tra i due rami, quindi il resistore da $3\\ \\Omega$ ne riceve solo una parte.",
+        "e": "Qui si applicano tutti i $12\\ \\text{V}$ al resistore da $3\\ \\Omega$, ignorando gli $8\\ \\text{V}$ di caduta di tensione sul resistore da $4\\ \\Omega$ in serie."
+      },
+      "accessibilityText": "Circuito descritto a parole: un resistore da 6 ohm e uno da 3 ohm sono in parallelo; questa coppia è in serie con un resistore da 4 ohm, e l'insieme è collegato ai capi di una batteria ideale da 12 volt. Trovare l'intensità di corrente nel resistore da 3 ohm. Le cinque alternative, in ampere, sono 2 terzi, 12 tredicesimi, 4 terzi, 2 e 4.",
+      "check": {
+        "translatedBy": "imat-physmaths-author",
+        "checkedBy": "imat-italian-checker",
+        "checkedOn": "2026-10-23",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities, units, negations and options match; terminology correct."
+      }
+    }
+  }
+}

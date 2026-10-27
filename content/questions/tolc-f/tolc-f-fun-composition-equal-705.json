@@ -77,5 +77,48 @@
   "tags": [
     "composition",
     "quadratic-equation"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Siano $f(x) = 3x - 2$ e $g(x) = x^{2}$. Per quali valori reali di $x$ si ha $g(f(x)) = f(g(x))$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$x = 0$ e $x = 2$"
+        },
+        {
+          "id": "b",
+          "textMd": "Solo $x = 1$"
+        },
+        {
+          "id": "c",
+          "textMd": "Solo $x = \\dfrac{1}{2}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$x = \\pm\\dfrac{\\sqrt{3}}{3}$"
+        },
+        {
+          "id": "e",
+          "textMd": "Nessun valore reale di $x$"
+        }
+      ],
+      "explanationMd": "Scrivi separatamente le due composizioni. In $g(f(x))$ agisce prima la funzione $f$; in $f(g(x))$ agisce prima la funzione $g$.\n\n$$g(f(x)) = (3x - 2)^{2} = 9x^{2} - 12x + 4, \\qquad f(g(x)) = 3x^{2} - 2.$$\n\n**Uguagliale.** $9x^{2} - 12x + 4 = 3x^{2} - 2$ dà $6x^{2} - 12x + 6 = 0$, cioè $6(x-1)^{2} = 0$. L'unica soluzione è $x = 1$ (radice doppia).\n\n**Come verificarlo.** Per $x = 1$: $f(1) = 1$ e $g(1) = 1$, quindi entrambe le composizioni valgono 1 ✓. Per $x = 0$ i due membri valgono 4 e $-2$, quindi $x=0$ non va bene.",
+      "distractorRationale": {
+        "c": "Calcola $f(g(x))$ come $(3x)^{2} - 2 = 9x^{2} - 2$, elevando al quadrato anche il 3. La funzione $f$ applicata a $x^{2}$ dà $3x^{2} - 2$.",
+        "a": "Perde il termine noto nel raccogliere i termini, arrivando a $6x^{2} - 12x = 0$ invece di $6x^{2} - 12x + 6 = 0$. Qui resta $4 - (-2) = 6$.",
+        "d": "Sviluppa $(3x-2)^{2}$ come $9x^{2} - 4$, tralasciando il doppio prodotto $-12x$.",
+        "e": "Sviluppa $(3x-2)^{2}$ come $9x^{2} + 4$, tralasciando il doppio prodotto e sommando i quadrati, il che porta a $6x^{2} = -6$."
+      },
+      "accessibilityText": "Sia f di x uguale a 3 x meno 2 e g di x uguale a x al quadrato. La domanda chiede per quali valori reali di x la composizione g di f di x è uguale a f di g di x. Le cinque alternative sono: x uguale a 0 e x uguale a 2; solo x uguale a 1; solo x uguale a un mezzo; x uguale a più o meno la radice quadrata di 3, diviso 3; nessun valore reale di x.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f2",
+        "checkedBy": "tolc-italian-checker-f2",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities and options match the English."
+      }
+    }
+  }
 }

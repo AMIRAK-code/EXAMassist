@@ -1,7 +1,8 @@
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import type { BocconiLandingData, BocconiTestSummary } from '@/lib/exams/bocconi-landing';
 import { BOCCONI_ADVICE, BOCCONI_FACTS_CHECKED_ON, BOCCONI_FAQ, BOCCONI_SOURCES } from '@/lib/exams/bocconi-facts';
-import { PLANS, formatEuros, freeTestPath } from '@/lib/billing/config';
+import { checkoutPath, freeTestPath, pricingPath } from '@/lib/billing/config';
+import { PLANS, PLAN_COPY, formatPrice } from '@/lib/billing/plans';
 import { INDEPENDENCE_NOTICE } from '@/lib/site';
 import { Badge, ButtonLink, Card, FidelityBadge, StatusBadge, cx } from '@/components/ui';
 
@@ -17,7 +18,7 @@ import { Badge, ButtonLink, Card, FidelityBadge, StatusBadge, cx } from '@/compo
 
 export interface BocconiLandingProps {
   data: BocconiLandingData;
-  /** Signed in with Premium (or no paywall): the free-test call to action becomes "continue". */
+  /** Both Bocconi tests are open to this visitor (a plan, or no paywall): the free-test call to action becomes "continue". */
   hasFullAccess: boolean;
   billingOn: boolean;
 }
@@ -55,10 +56,6 @@ function Sources({ sources }: { sources: Array<{ label: string; url: string }> }
 export function BocconiLanding({ data, hasFullAccess, billingOn }: BocconiLandingProps) {
   const ug = data.tests.find((t) => t.config.examKey === UG);
   const law = data.tests.find((t) => t.config.examKey === LAW);
-  const quarterly = PLANS.quarterly;
-  const monthly = PLANS.monthly;
-  const yearly = PLANS.yearly;
-  const quarterlySaving = Math.floor((1 - quarterly.perMonth / monthly.perMonth) * 100);
   const checked = longDate(BOCCONI_FACTS_CHECKED_ON);
 
   return (
@@ -96,10 +93,10 @@ export function BocconiLanding({ data, hasFullAccess, billingOn }: BocconiLandin
         </div>
         {!hasFullAccess && ug?.freeTest ? (
           <p className="mt-3 text-sm text-ink-muted">
-            Free with an account, no card needed: one {ug.freeTest.questions}-question test
+            Free with an account, no card needed: one {ug.freeTest.questions}-question diagnostic
             {ug.freeTest.minutes ? ` (about ${ug.freeTest.minutes} minutes)` : ''} across the four Bocconi areas, the
             same questions for everyone, with your results by area and every explanation.
-            {billingOn ? ' Premium opens everything else.' : ''}
+            {billingOn ? ' A plan opens everything else.' : ''}
           </p>
         ) : null}
 
@@ -283,49 +280,53 @@ export function BocconiLanding({ data, hasFullAccess, billingOn }: BocconiLandin
         </div>
       </section>
 
-      {/* --- 6. Premium -------------------------------------------------------------- */}
-      <section aria-labelledby="premium-heading" className="mb-14">
-        <h2 id="premium-heading" className="font-heading text-2xl font-semibold sm:text-3xl">
-          Premium for Bocconi applicants
+      {/* --- 6. Plans ---------------------------------------------------------------- */}
+      <section aria-labelledby="plans-heading" className="mb-14">
+        <h2 id="plans-heading" className="font-heading text-2xl font-semibold sm:text-3xl">
+          Plans for Bocconi applicants
         </h2>
         <p className="mt-2 max-w-3xl text-ink-muted">
-          The free test shows you where you stand. Premium is for the weeks after it: every Bocconi format for both
-          tests, a fresh selection of questions in each session, retries of what you missed, results by area after
-          every session and a plan that runs to your test date. It also includes every other exam on the site, at no
-          extra cost.
+          The free diagnostic shows you where you stand. A plan is for the weeks after it: every Bocconi format, a fresh
+          selection of questions in each session, retries of what you missed, results by area after every session and a
+          study plan that runs to your test date.
         </p>
-        <ul className="mt-6 grid max-w-3xl gap-4 sm:grid-cols-2" aria-label="Premium plans">
+        <ul className="mt-6 grid max-w-3xl gap-4 sm:grid-cols-2" aria-label="Plans">
           <Card as="li" padding="lg" className="border-2 border-accent">
             <div className="flex items-center justify-between gap-2">
-              <h3 className="font-heading text-xl font-semibold">3 months</h3>
-              <Badge tone="accent">A 3-month run-up</Badge>
+              <h3 className="font-heading text-xl font-semibold">{PLAN_COPY.plans.single_exam.name}</h3>
+              <Badge tone="accent">One Bocconi test</Badge>
             </div>
             <p className="mt-3">
-              <span className="font-heading text-4xl font-semibold tracking-tight">{formatEuros(quarterly.perMonth)}</span>
+              <span className="font-heading text-4xl font-semibold tracking-tight">{formatPrice(PLANS.single_exam.amount)}</span>
               <span className="text-ink-muted"> / month</span>
             </p>
             <p className="mt-1 text-sm text-ink-muted">
-              {formatEuros(quarterly.amount)} billed every 3 months, VAT included. Save {quarterlySaving}% against
-              monthly. Renews every 3 months until you cancel.
+              The undergraduate test or the Law test; take both if you sit both. VAT included. Renews monthly until you
+              cancel.
             </p>
           </Card>
           <Card as="li" padding="lg">
-            <h3 className="font-heading text-xl font-semibold">Monthly</h3>
+            <h3 className="font-heading text-xl font-semibold">{PLAN_COPY.plans.all_access.name}</h3>
             <p className="mt-3">
-              <span className="font-heading text-4xl font-semibold tracking-tight">{formatEuros(monthly.perMonth)}</span>
+              <span className="font-heading text-4xl font-semibold tracking-tight">{formatPrice(PLANS.all_access.amount)}</span>
               <span className="text-ink-muted"> / month</span>
             </p>
-            <p className="mt-1 text-sm text-ink-muted">Billed every month, VAT included. Renews monthly until you cancel.</p>
+            <p className="mt-1 text-sm text-ink-muted">
+              Both Bocconi tests, every other exam on the site and the AI tutor. VAT included. Renews monthly until you
+              cancel.
+            </p>
           </Card>
         </ul>
         <p className="mt-3 max-w-3xl text-sm text-ink-muted">
-          A yearly plan is also available at {formatEuros(yearly.perMonth)} a month ({formatEuros(yearly.amount)} billed
-          once a year). Cancel any time from your account; Premium stays on until the end of the period you paid for.
+          Cancel any time from your account; your plan stays on until the end of the month you paid for.
         </p>
         <div className="mt-5 flex flex-wrap gap-3">
-          <ButtonLink href={`/premium?exam=${UG}`}>See Premium for the Bocconi test</ButtonLink>
-          <ButtonLink href={`/premium?exam=${LAW}`} variant="secondary">
-            Premium for the Law test
+          <ButtonLink href={checkoutPath('single_exam', UG)}>Choose the Bocconi test</ButtonLink>
+          <ButtonLink href={checkoutPath('single_exam', LAW)} variant="secondary">
+            Choose the Law test
+          </ButtonLink>
+          <ButtonLink href={pricingPath(UG)} variant="quiet">
+            Compare plans
           </ButtonLink>
         </div>
       </section>

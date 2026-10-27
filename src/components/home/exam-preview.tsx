@@ -1,12 +1,12 @@
 'use client';
 
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { useEffect, useRef, useState, useTransition, type ReactNode } from 'react';
 import type { ExamChoice } from '@/lib/home/home-data';
 import type { SampleView } from '@/lib/content/sample-view';
 import { StimulusView } from '@/components/stimulus-view';
 import { Button, buttonClass, cx } from '@/components/ui';
-import { GUEST_NOTE_SHORT } from '@/components/site/nav-items';
+import { useTranslations } from 'next-intl';
 
 /**
  * The homepage's exam selector and sample question.
@@ -45,6 +45,7 @@ export function ExamPreview({
   initialSample: Loaded;
   intro: ReactNode;
 }) {
+  const tGuest = useTranslations('common.guest');
   // The chips and the destination follow `selectedHub` at once. The sample card
   // follows `hub` in a transition, so the click paints before the heavier swap.
   const [selectedHub, setSelectedHub] = useState(initialHub);
@@ -181,7 +182,7 @@ export function ExamPreview({
           <p className="max-w-[46ch] text-[0.9375rem] leading-relaxed text-ink-muted">
             {choice.facts.join(' · ').replace(/^./, (c) => c.toUpperCase())}
           </p>
-          <p className="max-w-[52ch] text-sm leading-relaxed text-ink-subtle">{GUEST_NOTE_SHORT}</p>
+          <p className="max-w-[52ch] text-sm leading-relaxed text-ink-subtle">{tGuest('noteShort')}</p>
         </div>
       </div>
 

@@ -1,0 +1,83 @@
+{
+  "id": "bocconi-grad-verbal-arg-coding-course-016",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-verbal-reasoning",
+  "skillSlug": "grad-verbal-argument-analysis",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Every graduate of the Fenwick coding course who applied for a developer job last year received at least one offer. Therefore, completing the Fenwick course is enough to secure a developer job.\n\nThe reasoning above is most vulnerable to criticism on the grounds that it",
+  "instructionsMd": "Choose the one best answer.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "ignores the possibility that the offers were for jobs with low salaries"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "overlooks the possibility that graduates who did not expect an offer chose not to apply"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "relies on the opinions of the course's own instructors"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "assumes that a developer job is the only kind of job a graduate would want"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "fails to consider that some developers never took the Fenwick course"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The conclusion is about ALL graduates: completing the course is \"enough\". The evidence is about only those graduates who APPLIED. The gap is who chose to apply. If weaker graduates, expecting rejection, simply did not apply, then a 100 per cent success rate among applicants says nothing about whether the course is enough for everyone.\n\n**How to check.** A good criticism names a gap between evidence and conclusion. Developers who never took the course are irrelevant to whether the course is ENOUGH: that would be relevant only to a claim that the course is necessary. Salary and the kind of job wanted do not affect whether a job was secured. And the argument cites outcomes, not instructors' opinions.",
+  "distractorRationale": {
+    "d": "The argument does not assume graduates want only developer jobs. It concerns those who applied for developer jobs, and its conclusion is about securing one, whatever else they might want.",
+    "e": "This would matter if the argument claimed the course is NECESSARY for a developer job. It claims the course is sufficient, so developers who never took it do not bear on it.",
+    "a": "The conclusion is about securing a developer job, not a well-paid one. Low salaries would not make the offers any less real.",
+    "c": "The argument rests on a reported outcome, offers to applicants, not on anyone's opinion. This criticism describes reasoning the argument does not use."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "An argument-analysis question. Every Fenwick coding course graduate who applied for a developer job last year received an offer, so the argument concludes that completing the course is enough to secure a developer job. The question asks for the criticism the reasoning is most vulnerable to. The options complete the sentence: overlooks that graduates not expecting an offer may not have applied; assumes developer jobs are the only jobs wanted; fails to consider developers who never took the course; ignores that offers may have had low salaries; relies on instructors' opinions.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-graduate-author",
+    "aiAssisted": true,
+    "notes": "Original flaw item. The key is self-selection among applicants; one distractor confuses sufficient with necessary, the rest describe reasoning the argument does not use."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-graduate-author",
+    "reviewer": "bocconi-graduate-blind-reviewer",
+    "reviewedOn": "2026-10-27",
+    "independentSolve": {
+      "solvedBy": "bocconi-graduate-blind-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Conclusion: completing the course is sufficient for a developer job. Evidence covers only graduates who applied, a self-selected group; B identifies that those who expected no offer may not have applied, so the sample is unrepresentative. A (salary) is irrelevant to securing a job; C (instructors' opinions) is not in the argument; D is not assumed; E addresses necessity, not sufficiency."
+    },
+    "notes": "Author checked that exactly one option is defensible. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "flaw",
+    "sufficiency",
+    "selection-effect"
+  ],
+  "translations": {}
+}

@@ -1,3 +1,4 @@
+import { withIntl } from './helpers/intl';
 import { beforeEach, describe, expect, it } from 'vitest';
 import type { Db } from '@/lib/db';
 import { getResult, recordResponse, startAttempt, startRetry, submitAttempt } from '@/lib/attempts/service';
@@ -274,10 +275,10 @@ describe('failed-load states', () => {
   it('say results and the notebook could not be loaded, and offer a retry', async () => {
     const { createElement } = await import('react');
     const { renderToStaticMarkup } = await import('react-dom/server');
-    const { default: ResultsError } = await import('@/app/attempt/[id]/results/error');
-    const { default: NotebookError } = await import('@/app/review/error');
-    const results = renderToStaticMarkup(createElement(ResultsError, { error: new Error('boom'), reset: () => {} }));
-    const notebook = renderToStaticMarkup(createElement(NotebookError, { error: new Error('boom'), reset: () => {} }));
+    const { default: ResultsError } = await import('@/app/[locale]/attempt/[id]/results/error');
+    const { default: NotebookError } = await import('@/app/[locale]/review/error');
+    const results = renderToStaticMarkup(withIntl(createElement(ResultsError, { error: new Error('boom'), reset: () => {} })));
+    const notebook = renderToStaticMarkup(withIntl(createElement(NotebookError, { error: new Error('boom'), reset: () => {} })));
     expect(results).toContain('These results could not be loaded');
     expect(notebook).toContain('Your notebook could not be loaded');
     for (const html of [results, notebook]) {

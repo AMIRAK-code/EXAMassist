@@ -78,5 +78,48 @@
     "polynomials",
     "remainder-theorem",
     "parameter"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Il polinomio $p(x) = x^{3} - 2x^{2} + ax + 6$, dove $a$ è un numero reale, è divisibile per $x - 3$. Qual è il resto della divisione di $p(x)$ per $x + 1$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$-5$"
+        },
+        {
+          "id": "b",
+          "textMd": "$-2$"
+        },
+        {
+          "id": "c",
+          "textMd": "$0$"
+        },
+        {
+          "id": "d",
+          "textMd": "$8$"
+        },
+        {
+          "id": "e",
+          "textMd": "$10$"
+        }
+      ],
+      "explanationMd": "Entrambe le condizioni sono applicazioni del teorema del resto: il resto della divisione per $x - c$ è $p(c)$. Quindi prima si usa $p(3) = 0$ per trovare $a$, poi si calcola $p(-1)$.\n\n**Passo 1 — trovare $a$.** $p(3) = 27 - 18 + 3a + 6 = 15 + 3a$. La divisibilità per $x - 3$ significa $15 + 3a = 0$, quindi $a = -5$.\n\n**Passo 2 — il resto.** Dividere per $x + 1$ significa dividere per $x - (-1)$, quindi il resto è $p(-1) = (-1)^{3} - 2(-1)^{2} - 5(-1) + 6 = -1 - 2 + 5 + 6 = 8$.\n\n**Come verificarlo.** Con $a = -5$ il polinomio si scompone: $x^{3} - 2x^{2} - 5x + 6 = (x-3)(x-1)(x+2)$. Per $x = -1$ vale $(-4)(-2)(1) = 8$ ✓.",
+      "distractorRationale": {
+        "a": "Si ferma dopo il primo passo e dà il valore del parametro, $a = -5$, invece del resto richiesto dalla domanda.",
+        "c": "Calcola $p(1)$ invece di $p(-1)$. Dividere per $x + 1$ significa sostituire $x = -1$; il valore 0 mostra che $x - 1$ è un fattore, cioè riguarda un divisore diverso.",
+        "b": "Risolve $15 + 3a = 0$ come $a = 5$, un errore di segno, così il termine $ax$ in $x = -1$ diventa $-5$ invece di $+5$ e il totale è $-1 - 2 - 5 + 6 = -2$.",
+        "e": "Prende $(-1)^{3}$ come $+1$. Una potenza dispari di un numero negativo è negativa, quindi il primo termine è $-1$, e il totale è $8$, non $1 - 2 + 5 + 6 = 10$."
+      },
+      "accessibilityText": "Il polinomio p di x uguale x al cubo meno 2 x al quadrato più a x più 6, dove a è un numero reale, è divisibile per x meno 3. Qual è il resto della divisione di p di x per x più 1? Le cinque alternative sono: meno 5; meno 2; 0; 8; 10.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i2",
+        "checkedBy": "tolc-italian-checker-i2",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful. a=-5, p(-1)=8."
+      }
+    }
+  }
 }

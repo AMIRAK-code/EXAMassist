@@ -78,5 +78,48 @@
     "isoelectronic",
     "ionic-radius",
     "periodic-trends"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Gli ioni $\\mathrm{O^{2-}}$, $\\mathrm{F^{-}}$, $\\mathrm{Na^{+}}$, $\\mathrm{Mg^{2+}}$ e $\\mathrm{Al^{3+}}$ hanno tutti la stessa configurazione elettronica, $1s^2\\,2s^2\\,2p^6$. Quale di essi ha il raggio maggiore?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\mathrm{Na^{+}}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\mathrm{O^{2-}}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$\\mathrm{Al^{3+}}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\mathrm{F^{-}}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\mathrm{Mg^{2+}}$"
+        }
+      ],
+      "explanationMd": "Non confrontare gli atomi di partenza. Nota che cosa hanno in comune i cinque ioni: ciascuno ha **10 elettroni negli stessi livelli** ($1s^2\\,2s^2\\,2p^6$). La repulsione tra elettroni e lo schermo sono quindi praticamente gli stessi in tutti, e l'unica cosa che cambia è la **carica nucleare**, cioè il numero di protoni.\n\n| Ione | Protoni | Elettroni |\n| --- | --- | --- |\n| $\\mathrm{O^{2-}}$ | 8 | 10 |\n| $\\mathrm{F^{-}}$ | 9 | 10 |\n| $\\mathrm{Na^{+}}$ | 11 | 10 |\n| $\\mathrm{Mg^{2+}}$ | 12 | 10 |\n| $\\mathrm{Al^{3+}}$ | 13 | 10 |\n\nPiù protoni attraggono gli stessi dieci elettroni, più la nube elettronica è compatta e più lo ione è piccolo. Quindi il raggio diminuisce dall'ossido all'alluminio: $\\mathrm{O^{2-}} > \\mathrm{F^-} > \\mathrm{Na^+} > \\mathrm{Mg^{2+}} > \\mathrm{Al^{3+}}$. Il più grande è lo ione ossido, che ha meno protoni.\n\n**Verifica:** lo ione con la carica più negativa (meno protoni per elettrone) dovrebbe essere il più espanso, e quello con la carica più positiva il più compresso.",
+      "distractorRationale": {
+        "e": "Confronta gli atomi di partenza, tra i quali il magnesio è più grande dell'ossigeno. Una volta che gli ioni hanno gli stessi dieci elettroni, l'andamento delle dimensioni atomiche non vale più e $\\mathrm{Mg^{2+}}$ è tra i più piccoli, perché ha 12 protoni che li attraggono.",
+        "d": "Vede correttamente che gli anioni sono più grandi dei cationi, ma si ferma troppo presto. Il fluoruro ha 9 protoni contro gli 8 dell'ossido, quindi trattiene gli stessi dieci elettroni un po' più strettamente ed è leggermente più piccolo.",
+        "c": "Presuppone che lo ione con più protoni, o con la carica maggiore, sia il più grande. Con gli stessi dieci elettroni, più protoni li attirano più vicino, quindi $\\mathrm{Al^{3+}}$, con 13 protoni, è il più piccolo dei cinque.",
+        "a": "Il sodio è l'atomo più grande della lista, ma lo ione ha perso il suo livello esterno ed è isoelettronico con gli altri. I suoi 11 protoni attirano i dieci elettroni più di quanto facciano gli 8 protoni dell'ossido."
+      },
+      "accessibilityText": "I cinque ioni sono ossido, O con carica due meno; fluoruro, F con carica uno meno; sodio, Na con carica uno più; magnesio, Mg con carica due più; e alluminio, Al con carica tre più. Tutti hanno dieci elettroni disposti come 1s al quadrato, 2s al quadrato, 2p alla sesta. La domanda chiede quale ione ha il raggio maggiore.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f1",
+        "checkedBy": "tolc-italian-checker-f1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities and options match the English."
+      }
+    }
+  }
 }

@@ -1,0 +1,79 @@
+{
+  "id": "bocconi-grad-verbal-defaults-mainpoint-005",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-verbal-reasoning",
+  "skillSlug": "grad-verbal-passage-reasoning",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which of the following best expresses the main point of the passage?",
+  "instructionsMd": "Answer on the basis of the passage only.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Automatic enrolment raises participation, but because a default can be read as a recommendation it can also lower what some workers would have saved."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Automatic enrolment should be abandoned because it reduces average pension contributions."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Economists were right to assume that the choice of default makes little difference to saving."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Workers fail to join pension schemes mainly because the paperwork is too complicated."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Track the argument from start to finish. The first paragraph reports that automatic enrolment raised participation sharply. The second offers two explanations. The third shows they predict different things for workers who would have joined anyway, and reports evidence for the advice reading: contributions fell for those workers. The fourth draws the conclusion: enrolment is not a mistake, but the default rate is \"a message\", and counting enrolments alone can hide lower saving.\n\nThe main point therefore has two halves: participation rises, and the default can lower some workers' saving because it is read as a recommendation.\n\n**How to check.** A main-point answer must agree with the last paragraph, where the author states the conclusion. Any option that rejects automatic enrolment, or that sides with the old assumption, contradicts it.",
+  "distractorRationale": {
+    "b": "The final paragraph says plainly that \"None of this makes automatic enrolment a mistake\". The author wants the default rate chosen with care, not the policy abandoned.",
+    "d": "Putting off paperwork is one of two readings the passage describes, and the evidence it reports favours the other. It is not the passage's conclusion.",
+    "c": "The passage reports that this assumption was contradicted: participation rose from under half to over ninety per cent when only the default changed."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": {
+    "id": "bocconi-grad-stim-defaults-002",
+    "version": 1
+  },
+  "accessibilityText": "A question about the passage on automatic pension enrolment. It asks for the main point. The four options are full sentences: enrolment raises participation but a default read as a recommendation can lower some saving; automatic enrolment should be abandoned; workers fail to join mainly because of paperwork; economists were right that defaults make little difference.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-graduate-author",
+    "aiAssisted": true,
+    "notes": "Original item. Distractors contradict the final paragraph, promote one of two readings to the conclusion, or restate the assumption the passage refutes."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-graduate-author",
+    "reviewer": "bocconi-graduate-blind-reviewer",
+    "reviewedOn": "2026-10-27",
+    "independentSolve": {
+      "solvedBy": "bocconi-graduate-blind-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Passage: auto-enrolment raises participation; the default can be read as advice; lower default can lower contributions of those who would have joined anyway; not a mistake but not neutral. A captures this. B contradicts 'None of this makes automatic enrolment a mistake'. C contradicts the evidence. D is one reading (inertia) only, and not about paperwork complexity."
+    },
+    "notes": "Author checked that exactly one option is defensible. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "passage-defaults",
+    "main-point"
+  ],
+  "translations": {}
+}

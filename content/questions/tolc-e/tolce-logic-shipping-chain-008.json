@@ -1,0 +1,127 @@
+{
+  "id": "tolce-logic-shipping-chain-008",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "At a factory the following rules always hold:\n\n- If an order is received by Monday, it is shipped by Friday.\n- An order is shipped by Friday only if it has been packed by Wednesday.\n- Unless its parts arrive on time, an order cannot be packed by Wednesday.\n\nThe parts for order 417 did not arrive on time. Which of the following must be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Order 417 was packed by Wednesday."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "If the parts for order 417 had arrived on time, it would have been shipped by Friday."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Order 417 was not received by Monday."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Order 417 was received at some point after Monday."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Order 417 was received by Monday but was not shipped by Friday."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Rewrite every rule as \"if ..., then ...\" before combining them.\n\n- Rule 1: received by Monday → shipped by Friday.\n- Rule 2: \"shipped by Friday **only if** packed by Wednesday\" means shipped by Friday → packed by Wednesday. \"Only if\" introduces the necessary condition, so it goes after the arrow.\n- Rule 3: \"unless the parts arrive on time, it cannot be packed by Wednesday\" means not on time → not packed, which is the same as packed by Wednesday → parts on time.\n\nThe rules form one chain: received by Monday → shipped by Friday → packed by Wednesday → parts on time.\n\nThe parts were not on time. Moving backwards along the chain (the contrapositive), the order was not packed by Wednesday, so it was not shipped by Friday, so it was not received by Monday.\n\nThe chain says nothing about what would happen if the parts *had* arrived on time: arriving on time is necessary for the earlier steps, not sufficient for them.\n\nWhat to notice first: translate \"only if\" and \"unless\" into arrows before reasoning. A false final link lets you deny every earlier link, never the reverse.",
+  "distractorRationale": {
+    "e": "This is impossible under the rules. Rule 1 says any order received by Monday is shipped by Friday, so the two halves of this statement cannot hold together.",
+    "b": "This runs the chain forwards from its last link. Parts arriving on time is a necessary condition for packing by Wednesday, not a guarantee of it, so the rules do not support this conditional.",
+    "a": "This contradicts Rule 3: without the parts arriving on time, the order cannot be packed by Wednesday.",
+    "d": "The rules tell us only that the order was not received by Monday. They do not say it was received at all; it might, for instance, never have arrived. This choice adds a fact the rules do not supply."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "Three rules about orders at a factory: an order received by Monday is shipped by Friday; an order is shipped by Friday only if it was packed by Wednesday; unless its parts arrive on time, an order cannot be packed by Wednesday. For order 417 the parts did not arrive on time. The question asks what must be true. Five answer choices.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-logic-author",
+    "aiAssisted": true,
+    "notes": "Original conditional chain using 'only if' and 'unless', solved by the contrapositive. Not derived from any CISIA or other published item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-logic-author",
+    "reviewer": "tolce-blind-reviewer-1",
+    "reviewedOn": "2026-10-21",
+    "independentSolve": {
+      "solvedBy": "tolce-blind-reviewer-1",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Received by Mon -> shipped by Fri -> packed by Wed -> parts on time. Parts not on time, so by contraposition chain: not packed, not shipped, not received by Monday. B is an invalid counterfactual (on-time parts only necessary). D presupposes the order was received at all, so it is not strictly forced; C is the clean conclusion."
+    },
+    "notes": "Author solved the item and then tried to defend each wrong choice; none survives. Awaiting blind independent solve and uniqueness check by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "deduction",
+    "conditionals",
+    "contrapositive",
+    "only-if",
+    "unless"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "In una fabbrica valgono sempre le seguenti regole:\n\n- Se un ordine viene ricevuto entro lunedì, viene spedito entro venerdì.\n- Un ordine viene spedito entro venerdì solo se è stato imballato entro mercoledì.\n- A meno che i suoi componenti non arrivino in tempo, un ordine non può essere imballato entro mercoledì.\n\nI componenti dell'ordine 417 non sono arrivati in tempo. Quale delle seguenti affermazioni è necessariamente vera?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "L'ordine 417 è stato imballato entro mercoledì."
+        },
+        {
+          "id": "b",
+          "textMd": "Se i componenti dell'ordine 417 fossero arrivati in tempo, l'ordine sarebbe stato spedito entro venerdì."
+        },
+        {
+          "id": "c",
+          "textMd": "L'ordine 417 non è stato ricevuto entro lunedì."
+        },
+        {
+          "id": "d",
+          "textMd": "L'ordine 417 è stato ricevuto in un momento successivo a lunedì."
+        },
+        {
+          "id": "e",
+          "textMd": "L'ordine 417 è stato ricevuto entro lunedì ma non è stato spedito entro venerdì."
+        }
+      ],
+      "explanationMd": "Riscrivi ogni regola nella forma «se ..., allora ...» prima di combinarle.\n\n- Regola 1: ricevuto entro lunedì → spedito entro venerdì.\n- Regola 2: «spedito entro venerdì **solo se** imballato entro mercoledì» significa spedito entro venerdì → imballato entro mercoledì. «Solo se» introduce la condizione necessaria, che quindi va dopo la freccia.\n- Regola 3: «a meno che i componenti non arrivino in tempo, non può essere imballato entro mercoledì» significa componenti non in tempo → non imballato, che equivale a imballato entro mercoledì → componenti in tempo.\n\nLe regole formano un'unica catena: ricevuto entro lunedì → spedito entro venerdì → imballato entro mercoledì → componenti in tempo.\n\nI componenti non sono arrivati in tempo. Percorrendo la catena all'indietro (la contronominale), l'ordine non è stato imballato entro mercoledì, quindi non è stato spedito entro venerdì, quindi non è stato ricevuto entro lunedì.\n\nLa catena non dice nulla su che cosa sarebbe successo se i componenti *fossero* arrivati in tempo: l'arrivo in tempo è necessario per i passaggi precedenti, non sufficiente.\n\nDa notare subito: traduci «solo se» e «a meno che» in frecce prima di ragionare. Un ultimo anello falso permette di negare tutti gli anelli precedenti, mai il contrario.",
+      "distractorRationale": {
+        "e": "È impossibile secondo le regole. La Regola 1 dice che ogni ordine ricevuto entro lunedì viene spedito entro venerdì, quindi le due metà di questa affermazione non possono essere vere insieme.",
+        "b": "Percorre la catena in avanti a partire dal suo ultimo anello. L'arrivo in tempo dei componenti è una condizione necessaria per l'imballaggio entro mercoledì, non una sua garanzia, quindi le regole non giustificano questo condizionale.",
+        "a": "Contraddice la Regola 3: se i componenti non arrivano in tempo, l'ordine non può essere imballato entro mercoledì.",
+        "d": "Le regole dicono soltanto che l'ordine non è stato ricevuto entro lunedì. Non dicono che sia stato ricevuto in assoluto; potrebbe, per esempio, non essere mai arrivato. Questa alternativa aggiunge un fatto che le regole non forniscono."
+      },
+      "accessibilityText": "Tre regole sugli ordini in una fabbrica: un ordine ricevuto entro lunedì viene spedito entro venerdì; un ordine viene spedito entro venerdì solo se è stato imballato entro mercoledì; a meno che i suoi componenti non arrivino in tempo, un ordine non può essere imballato entro mercoledì. Per l'ordine 417 i componenti non sono arrivati in tempo. La domanda chiede che cosa è necessariamente vero. Cinque alternative di risposta.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": "tolce-italian-checker",
+        "checkedOn": "2026-10-23",
+        "answerPreserved": true,
+        "notes": "'A meno che ... non arrivino' uses expletive non = 'unless they arrive' (correct). 'solo se' preserved; 'entro' = by. Contrapositive chain gives c."
+      }
+    }
+  }
+}

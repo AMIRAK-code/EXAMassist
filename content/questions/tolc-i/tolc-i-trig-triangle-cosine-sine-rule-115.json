@@ -78,5 +78,48 @@
     "law-of-cosines",
     "law-of-sines",
     "triangle"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Nel triangolo $PQR$ si ha $PQ = 3$, $PR = 5$ e l'angolo in $P$ misura $120^\\circ$. Qual è il valore di $\\sin\\widehat{Q}$, il seno dell'angolo in $Q$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\dfrac{5}{14}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\dfrac{7\\sqrt{3}}{10}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$\\dfrac{3\\sqrt{3}}{14}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\dfrac{5\\sqrt{3}}{14}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\dfrac{5\\sqrt{3}}{2\\sqrt{19}}$"
+        }
+      ],
+      "explanationMd": "Sono dati due lati e l'angolo compreso, quindi il teorema del coseno (di Carnot) dà il terzo lato; poi il teorema dei seni dà l'angolo. Si associa ogni seno al lato **opposto** al suo angolo.\n\n**Passo 1 — teorema del coseno.** $QR^{2} = PQ^{2} + PR^{2} - 2\\cdot PQ\\cdot PR\\cos 120^\\circ = 9 + 25 - 2\\cdot 3\\cdot 5\\cdot\\left(-\\tfrac12\\right) = 34 + 15 = 49$, quindi $QR = 7$.\n\n**Passo 2 — teorema dei seni.** Il lato opposto all'angolo in $Q$ è $PR = 5$, e il lato opposto all'angolo in $P$ è $QR = 7$: $$\\frac{\\sin\\widehat{Q}}{PR} = \\frac{\\sin 120^\\circ}{QR} \\quad\\Rightarrow\\quad \\sin\\widehat{Q} = \\frac{5\\cdot\\frac{\\sqrt3}{2}}{7} = \\frac{5\\sqrt3}{14}.$$\n\n**Come verificarlo.** La stessa regola dà $\\sin\\widehat{R} = \\dfrac{3\\sqrt3}{14}$. Entrambi i valori sono minori di 1, e poiché $\\sin\\widehat{Q} > \\sin\\widehat{R}$ l'angolo in $Q$ è il maggiore dei due angoli acuti, come deve essere, perché è opposto al lato più lungo, $5 > 3$.",
+      "distractorRationale": {
+        "c": "Associa all'angolo in $Q$ il lato $PQ = 3$, che gli è adiacente. Il lato opposto all'angolo in $Q$ è $PR = 5$; il valore $\\tfrac{3\\sqrt3}{14}$ è il seno dell'angolo in $R$.",
+        "b": "Inverte il rapporto nel teorema dei seni, calcolando $\\dfrac{QR\\sin 120^\\circ}{PR}$. Il risultato è circa $1.21$, maggiore di 1, valore che nessun seno può assumere.",
+        "a": "Usa $\\sin 120^\\circ = \\tfrac12$, che è il valore di $\\sin 30^\\circ$ (e di $-\\cos 120^\\circ$). L'angolo di riferimento di $120^\\circ$ è $60^\\circ$, quindi $\\sin 120^\\circ = \\tfrac{\\sqrt3}{2}$.",
+        "e": "Prende $\\cos 120^\\circ$ come $+\\tfrac12$ nel teorema del coseno, ottenendo $QR^{2} = 34 - 15 = 19$. Un angolo ottuso ha coseno negativo, il che rende più lungo il lato opposto, non più corto."
+      },
+      "accessibilityText": "Nel triangolo P Q R il lato P Q misura 3, il lato P R misura 5 e l'angolo nel vertice P misura 120 gradi. Qual è il seno dell'angolo nel vertice Q? Le cinque alternative sono: cinque quattordicesimi; 7 per la radice quadrata di 3, fratto 10; 3 per la radice quadrata di 3, fratto 14; 5 per la radice quadrata di 3, fratto 14; 5 per la radice quadrata di 3, fratto 2 per la radice quadrata di 19.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i2",
+        "checkedBy": "tolc-italian-checker-i2",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful. QR=7, sinQ=5sqrt3/14."
+      }
+    }
+  }
 }

@@ -1,0 +1,79 @@
+{
+  "id": "bocconi-grad-data-cowork-statement-019",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-data-insight",
+  "skillSlug": "grad-data-derived-conclusions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which of the following statements is supported by the table?",
+  "instructionsMd": "Use only the figures shown. Work by hand.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "At every site, members outnumbered desks occupied on an average weekday by at least 100."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The site with the most desks also had the most members."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The site with the most members per desk also charged the highest monthly fee."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Fee revenue per desk was highest at Belmont."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Check each statement against the figures.\n\n**Members per desk.** Arden $\\frac{210}{120} = 1.75$, Belmont $\\frac{150}{80} = 1.875$, Corvo $\\frac{190}{150} \\approx 1.27$, Dunmere $\\frac{140}{60} \\approx 2.33$. Dunmere is highest, and Dunmere's fee of 240 euros is also the highest. The statement holds.\n\n**Most desks and most members.** Corvo has the most desks (150), but Arden has the most members (210). False.\n\n**Members minus occupied desks.** Arden $210 - 84 = 126$, but Belmont $150 - 68 = 82$, which is under 100. False.\n\n**Revenue per desk.** Belmont $\\frac{150 \\times 220}{80} = 412.50$ euros, but Dunmere $\\frac{140 \\times 240}{60} = 560$ euros. False.\n\n**How to check.** For a statement about every site, one counter-example is enough to reject it.",
+  "distractorRationale": {
+    "b": "Corvo has the most desks, 150, but Arden has the most members, 210 against Corvo's 190.",
+    "a": "Arden (126) and Corvo (118) clear 100, but Belmont has only $150 - 68 = 82$ more members than desks in use, and Dunmere only $140 - 48 = 92$. A statement about every site fails on a single exception.",
+    "d": "Belmont's revenue per desk is $33{,}000 \\div 80 = 412.50$ euros, but Dunmere's is $33{,}600 \\div 60 = 560$ euros. Belmont has the highest occupancy RATE, which is a different measure."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": {
+    "id": "bocconi-grad-stim-coworking-004",
+    "version": 1
+  },
+  "accessibilityText": "A question about the table of four co-working sites. It asks which statement the table supports. The options are: the site with the most members per desk also charged the highest fee; the site with the most desks had the most members; at every site members outnumbered desks occupied by at least 100; fee revenue per desk was highest at Belmont.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-graduate-author",
+    "aiAssisted": true,
+    "notes": "Original item. Each false statement fails on one specific row; the key requires a derived ratio."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-graduate-author",
+    "reviewer": "bocconi-graduate-blind-reviewer",
+    "reviewedOn": "2026-10-27",
+    "independentSolve": {
+      "solvedBy": "bocconi-graduate-blind-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Members per desk: Arden 1.75, Belmont 1.875, Corvo 1.27, Dunmere 2.33 -> Dunmere, which also has the highest fee (240): C true. A false: Belmont 150-68=82 and Dunmere 140-48=92 are below 100. B false: most desks Corvo (150), most members Arden (210). D false: revenue per desk Arden 315, Belmont 412.5, Corvo 190, Dunmere 560 -> Dunmere highest."
+    },
+    "notes": "Author checked that exactly one option is defensible. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "table-coworking",
+    "evaluate-statements"
+  ],
+  "translations": {}
+}

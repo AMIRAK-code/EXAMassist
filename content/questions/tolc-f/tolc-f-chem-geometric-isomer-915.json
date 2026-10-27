@@ -78,5 +78,48 @@
     "isomerism",
     "cis-trans",
     "alkenes"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Quale dei seguenti alcheni può esistere come due isomeri geometrici (cis-trans)?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "3-metilbut-1-ene, $\\mathrm{(CH_3)_2CH{-}CH{=}CH_2}$"
+        },
+        {
+          "id": "b",
+          "textMd": "pent-1-ene, $\\mathrm{CH_2{=}CH{-}CH_2{-}CH_2{-}CH_3}$"
+        },
+        {
+          "id": "c",
+          "textMd": "2-metilbut-2-ene, $\\mathrm{(CH_3)_2C{=}CH{-}CH_3}$"
+        },
+        {
+          "id": "d",
+          "textMd": "2-metilpropene, $\\mathrm{(CH_3)_2C{=}CH_2}$"
+        },
+        {
+          "id": "e",
+          "textMd": "pent-2-ene, $\\mathrm{CH_3{-}CH{=}CH{-}CH_2{-}CH_3}$"
+        }
+      ],
+      "explanationMd": "L'isomeria cis-trans attorno a un legame $\\mathrm{C{=}C}$ esiste solo quando **ciascuno** dei due atomi di carbonio del doppio legame porta due gruppi **diversi**. La rotazione attorno al doppio legame è impedita, quindi le due disposizioni non possono trasformarsi l'una nell'altra. Esamina i due atomi di carbonio separatamente.\n\n- **pent-1-ene:** un carbonio è un $\\mathrm{CH_2}$, con due atomi di idrogeno. No.\n- **2-metilbut-2-ene:** un carbonio ha due gruppi metile. No.\n- **3-metilbut-1-ene:** un carbonio è un $\\mathrm{CH_2}$, con due atomi di idrogeno. No.\n- **2-metilpropene:** un carbonio ha due metili e l'altro ha due atomi di idrogeno. No.\n- **pent-2-ene:** il secondo carbonio porta H e $\\mathrm{CH_3}$, e il terzo carbonio porta H e $\\mathrm{CH_2CH_3}$. Entrambi i carboni hanno due gruppi diversi. Sì.\n\nNel pent-2-ene i due gruppi più grandi, $\\mathrm{CH_3}$ e $\\mathrm{C_2H_5}$, possono trovarsi dalla stessa parte del doppio legame (cis) o da parti opposte (trans).\n\n**Verifica:** copri un carbonio del doppio legame e chiediti se i due gruppi sull'altro sono diversi; poi ripeti sull'altro carbonio. Solo il pent-2-ene supera entrambe le prove.",
+      "distractorRationale": {
+        "b": "Un carbonio del doppio legame è il $\\mathrm{CH_2}$ terminale, che porta due atomi di idrogeno identici. Scambiarli dà la stessa molecola, quindi non esiste una forma cis-trans.",
+        "c": "Sembra promettente perché entrambe le estremità del doppio legame portano gruppi carboniosi, ma il carbonio con due gruppi metile ha due sostituenti identici. Basta una coppia identica per escludere l'isomeria cis-trans.",
+        "a": "La ramificazione è sulla catena laterale e non conta. Il $\\mathrm{CH_2}$ terminale ha di nuovo due atomi di idrogeno identici, quindi non esiste una forma cis-trans.",
+        "d": "Entrambe le estremità del doppio legame portano una coppia identica (due metili su un carbonio, due atomi di idrogeno sull'altro), quindi non esiste una forma cis-trans."
+      },
+      "accessibilityText": "La domanda chiede quale alchene può esistere come isomeri geometrici cis e trans. Le alternative danno un nome e una formula di struttura. Il pent-1-ene è una catena lineare di cinque atomi di carbonio con il doppio legame all'estremità: CH2 doppio legame CH, poi CH2, CH2, CH3. Il 2-metilbut-2-ene è un carbonio che porta due gruppi metile, legato con doppio legame a un carbonio CH che porta un altro gruppo metile. Il 3-metilbut-1-ene è un carbonio CH che porta due gruppi metile, unito con legame semplice a CH doppio legame CH2. Il pent-2-ene è CH3, poi CH doppio legame CH, poi CH2 e CH3. Il 2-metilpropene è un carbonio che porta due gruppi metile, legato con doppio legame a CH2.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f1",
+        "checkedBy": "tolc-italian-checker-f1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities and options match the English."
+      }
+    }
+  }
 }

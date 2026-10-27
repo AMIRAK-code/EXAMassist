@@ -80,5 +80,48 @@
     "figures",
     "rotation",
     "no-calculator"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Una successione di figure è descritta a parole. Ogni figura è il quadrante di un orologio con le dodici tacche delle ore e una sola lancetta. Nelle prime cinque figure la lancetta indica\n\n12, 2, 6, 12, 8\n\ne la lancetta è colorata nera, bianca, nera, bianca, nera, in quest'ordine. Le figure seguono una regola fissa.\n\nCome è fatta la sesta figura?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "La lancetta indica il 4 ed è bianca."
+        },
+        {
+          "id": "b",
+          "textMd": "La lancetta indica il 10 ed è bianca."
+        },
+        {
+          "id": "c",
+          "textMd": "La lancetta indica il 6 ed è bianca."
+        },
+        {
+          "id": "d",
+          "textMd": "La lancetta indica il 6 ed è nera."
+        },
+        {
+          "id": "e",
+          "textMd": "La lancetta indica il 4 ed è nera."
+        }
+      ],
+      "explanationMd": "Tratta separatamente le due caratteristiche.\n\n**Posizione.** Misura di quanto si sposta ogni volta la lancetta in senso orario, in ore: da 12 a 2 sono 2, da 2 a 6 sono 4, da 6 a 12 sono 6, da 12 a 8 sono 8. Gli spostamenti crescono di 2 ogni volta, quindi il prossimo spostamento è di 10 ore. Spostandosi di 10 ore in senso orario a partire da 8 si supera il 12 e si arriva al 6 (8 + 10 = 18, e 18 - 12 = 6).\n\n**Colore.** Il colore semplicemente si alterna, nero e poi bianco. La quinta lancetta è nera, quindi la sesta è bianca.\n\nVerifica: lo spostamento totale della lancetta a partire dal 12 è di 2, 6, 12, 20 e poi 30 ore; 30 ore sono due giri completi più 6 ore, quindi la lancetta indica il 6.",
+      "distractorRationale": {
+        "d": "Trova la posizione giusta ma prosegue il colore in modo sbagliato: i colori si alternano, e dopo una quinta lancetta nera ne viene una bianca.",
+        "a": "Sposta di nuovo la lancetta di 8 ore, ripetendo l'ultimo spostamento invece di aumentarlo di 2.",
+        "e": "Ripete l'ultimo spostamento di 8 ore e sbaglia anche l'alternanza del colore.",
+        "b": "Usa l'ampiezza del prossimo spostamento, 10 ore, come se fosse la posizione, invece di aggiungerla alla posizione attuale, l'8."
+      },
+      "accessibilityText": "Una successione di figure descritta a parole. Ogni figura è il quadrante di un orologio con dodici tacche delle ore e una lancetta. Nelle prime cinque figure la lancetta indica 12, 2, 6, 12 e 8, e il suo colore è nero, bianco, nero, bianco, nero. La domanda chiede come è fatta la sesta figura. Le cinque alternative sono: lancetta che indica il 4, bianca; lancetta che indica il 10, bianca; lancetta che indica il 6, bianca; lancetta che indica il 6, nera; lancetta che indica il 4, nera.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": "tolc-italian-checker-i1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; steps +2,+4,+6,+8,+10 and alternating colour -> 6, white."
+      }
+    }
+  }
 }

@@ -51,6 +51,12 @@ export default defineConfig({
       ANTHROPIC_API_KEY: 'e2e-dummy-key-not-a-real-credential',
       ANTHROPIC_BASE_URL: 'http://127.0.0.1:9',
       TUTOR_TIMEOUT_MS: '3000',
+      // Everything stays free in the browser tests, as before billing existed,
+      // and no Stripe key is needed (docs/BILLING.md).
+      BILLING_ENFORCED: 'false',
+      STRIPE_SECRET_KEY: '',
+      NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: '',
+      STRIPE_WEBHOOK_SECRET: '',
     },
   },
 });

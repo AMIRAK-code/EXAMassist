@@ -79,5 +79,48 @@
     "buoyancy",
     "density",
     "apparent-weight"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Una pallina piena pesa $8\\ \\text{N}$ in aria. Quando è appesa a un dinamometro ed è completamente immersa in acqua, il dinamometro segna $6\\ \\text{N}$. Quante volte la pallina è più densa dell'acqua?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$2$"
+        },
+        {
+          "id": "b",
+          "textMd": "$3$"
+        },
+        {
+          "id": "c",
+          "textMd": "$4$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\dfrac14$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\dfrac43$"
+        }
+      ],
+      "explanationMd": "**Da notare subito.** Sott'acqua il dinamometro segna meno a causa della spinta verso l'alto. Per il principio di Archimede questa spinta è uguale al peso dell'acqua spostata dalla pallina, e la pallina è completamente immersa, quindi sposta un volume pari al proprio volume $V$.\n\n**I passaggi decisivi.** Spinta di Archimede $=8-6=2$ N $=\\rho_{\\text{acqua}}Vg$. Peso in aria $=8$ N $=\\rho_{\\text{pallina}}Vg$. Dividi l'una per l'altro; $V$ e $g$ si semplificano:\n\n$$\\frac{\\rho_{\\text{pallina}}}{\\rho_{\\text{acqua}}}=\\frac{8\\ \\text{N}}{2\\ \\text{N}}=4 .$$\n\n**Come verificarlo.** Se la pallina è quattro volte più densa dell'acqua, un volume d'acqua uguale al suo pesa un quarto della pallina: $8/4=2$ N, che è esattamente la spinta trovata.",
+      "distractorRationale": {
+        "d": "Inverte il rapporto, dando la densità dell'acqua rispetto alla pallina. Una pallina che affonda e pesa 6 N sott'acqua è più densa dell'acqua, quindi il rapporto deve essere maggiore di 1.",
+        "e": "Divide il peso in aria per il peso apparente, $8/6$. Il peso apparente è ciò che resta dopo aver sottratto la spinta; non è il peso dell'acqua spostata.",
+        "a": "Prende la spinta, $8-6=2\\ \\text{N}$, come se fosse il rapporto tra le densità. Una forza in newton non è un rapporto tra densità.",
+        "b": "Divide il peso apparente per la spinta, $6/2$. Il rapporto tra le densità confronta il peso *reale* della pallina con il peso dell'acqua spostata."
+      },
+      "accessibilityText": "Una pallina piena pesa otto newton in aria. Completamente immersa in acqua e appesa a un dinamometro, il dinamometro segna sei newton. Quante volte la pallina è più densa dell'acqua? Le alternative sono due, tre, quattro, un quarto e quattro terzi.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f2",
+        "checkedBy": "tolc-italian-checker-f2",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities and options match the English."
+      }
+    }
+  }
 }

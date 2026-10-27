@@ -80,5 +80,48 @@
     "tournament",
     "case-analysis",
     "no-calculator"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Quattro squadre di robotica, Alfa, Beta, Gamma e Delta, disputano un campionato in cui ogni squadra incontra ciascuna delle altre esattamente una volta. Una vittoria vale 3 punti, un pareggio vale 1 punto a ciascuna squadra e una sconfitta vale 0 punti. Alla fine del campionato i punti sono:\n\nAlfa 7, Beta 5, Gamma 3, Delta 1.\n\nQuale delle seguenti affermazioni è necessariamente vera?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Beta ha battuto Gamma."
+        },
+        {
+          "id": "b",
+          "textMd": "Gamma ha pareggiato con Delta."
+        },
+        {
+          "id": "c",
+          "textMd": "Delta ha perso tutte e tre le sue partite."
+        },
+        {
+          "id": "d",
+          "textMd": "Alfa ha battuto Beta."
+        },
+        {
+          "id": "e",
+          "textMd": "Gamma ha battuto Alfa."
+        }
+      ],
+      "explanationMd": "Conta prima le partite e i punti. Quattro squadre che si incontrano una volta ciascuna giocano 6 partite. Una partita con un vincitore assegna 3 punti in totale, un pareggio ne assegna 2. I punti sommati danno 7 + 5 + 3 + 1 = 16. Se $w$ partite hanno un vincitore e $d$ sono pareggiate, allora $w + d = 6$ e $3w + 2d = 16$, quindi $w = 4$ e $d = 2$.\n\nOgni squadra gioca 3 partite, quindi i suoi punti ne determinano i risultati:\n\n- Alfa 7: due vittorie e un pareggio.\n- Beta 5: una vittoria e due pareggi.\n- Delta 1: un pareggio e due sconfitte.\n- Gamma 3: o una vittoria e due sconfitte, o tre pareggi.\n\nDue partite pareggiate danno in totale 4 pareggi conteggiati per squadra. Alfa, Beta e Delta ne totalizzano già 1 + 2 + 1 = 4, quindi Gamma non ha pareggi: una vittoria e due sconfitte. I due pareggi di Beta sono perciò le due partite pareggiate del campionato, contro le sole altre squadre con un pareggio, Alfa e Delta. L'unica vittoria di Beta deve quindi essere contro l'avversaria rimanente, Gamma.\n\nVerifica l'intera classifica: Alfa ha pareggiato con Beta e battuto Gamma e Delta; Beta ha battuto Gamma e pareggiato con Delta; Gamma ha battuto Delta. Si ottengono 7, 5, 3 e 1 punti.",
+      "distractorRationale": {
+        "d": "I due pareggi di Beta devono essere contro Alfa e Delta, quindi la partita tra Alfa e Beta è finita in pareggio, non con una vittoria di Alfa.",
+        "b": "Gamma non ha pareggi: le due partite pareggiate sono entrambe di Beta. I 3 punti di Gamma vengono da una vittoria su Delta.",
+        "c": "L'unico punto di Delta viene da un pareggio, contro Beta, quindi Delta non ha perso tutte e tre le partite.",
+        "e": "I 7 punti di Alfa significano due vittorie e un pareggio, senza sconfitte, quindi nessuna squadra ha battuto Alfa."
+      },
+      "accessibilityText": "Un problema di logica su un campionato di quattro squadre di robotica, Alfa, Beta, Gamma e Delta, in cui ogni squadra incontra ciascuna delle altre una volta. Una vittoria vale 3 punti, un pareggio 1 punto a ciascuna, una sconfitta 0. Punti finali: Alfa 7, Beta 5, Gamma 3, Delta 1. La domanda chiede quale affermazione è necessariamente vera. Le cinque alternative sono: Beta ha battuto Gamma; Gamma ha pareggiato con Delta; Delta ha perso tutte e tre le sue partite; Alfa ha battuto Beta; Gamma ha battuto Alfa.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": "tolc-italian-checker-i1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; unique results table, Beta beat Gamma."
+      }
+    }
+  }
 }

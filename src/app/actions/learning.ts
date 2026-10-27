@@ -8,7 +8,7 @@ import { checkRateLimit } from '@/lib/auth/rate-limit';
 import { AttemptError, startAttempt, startRetry } from '@/lib/attempts/service';
 import { getExamConfig } from '@/lib/exams/registry';
 import { setMistakeLabels } from '@/lib/learning/mistakes';
-import { PREMIUM_PATH } from '@/lib/billing/config';
+import { upgradeTarget } from '@/lib/billing/upgrade';
 
 /**
  * Form actions for results and the mistake notebook. Each re-authenticates,
@@ -53,9 +53,10 @@ export async function startRetryAction(formData: FormData): Promise<void> {
     attemptId = (await startRetry(db, { userId: user.id, examKey, questionIds, sourceAttemptId })).attemptId;
   } catch (error) {
     if (!(error instanceof AttemptError)) throw error;
+    const upgrade = upgradeTarget(error);
+    if (upgrade) redirect(upgrade);
     failure = error.code;
   }
-  if (failure === 'premium-required') redirect(PREMIUM_PATH);
   redirect(attemptId ? `/attempt/${attemptId}` : withNotice(back, failure ?? 'nothing-to-retry'));
 }
 
@@ -98,9 +99,10 @@ export async function practiseNewAction(formData: FormData): Promise<void> {
     })).attemptId;
   } catch (error) {
     if (!(error instanceof AttemptError)) throw error;
+    const upgrade = upgradeTarget(error);
+    if (upgrade) redirect(upgrade);
     failure = error.code;
   }
-  if (failure === 'premium-required') redirect(PREMIUM_PATH);
   redirect(attemptId ? `/attempt/${attemptId}` : withNotice(back, failure ?? 'insufficient-content'));
 }
 

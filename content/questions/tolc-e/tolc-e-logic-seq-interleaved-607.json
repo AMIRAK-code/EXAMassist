@@ -79,5 +79,48 @@
     "sequences",
     "interleaved",
     "no-calculator"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "I termini di una successione numerica sono\n\n3, 30, 7, 26, 11, 22, 15, ...\n\nQual è il termine successivo?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "11"
+        },
+        {
+          "id": "b",
+          "textMd": "18"
+        },
+        {
+          "id": "c",
+          "textMd": "19"
+        },
+        {
+          "id": "d",
+          "textMd": "22"
+        },
+        {
+          "id": "e",
+          "textMd": "26"
+        }
+      ],
+      "explanationMd": "Quando termini vicini salgono e scendono alternativamente, sospetta due successioni intrecciate. Separa i termini di posto dispari da quelli di posto pari.\n\nTermini di posto dispari: 3, 7, 11, 15, che crescono di 4 ogni volta. Termini di posto pari: 30, 26, 22, che diminuiscono di 4 ogni volta. Il termine successivo è all'ottavo posto, un posto pari, quindi prosegue la sequenza decrescente: 22 - 4 = **18**.\n\nVerifica guardando le differenze successive dell'intera lista: +27, -23, +19, -15, +11, -7, e la successiva sarebbe +3, che dà 15 + 3 = 18. Due letture diverse della lista concordano.",
+      "distractorRationale": {
+        "a": "Sottrae 4 all'ultimo termine, trattando l'intera lista come un'unica successione decrescente. Un termine sì e uno no cresce, quindi l'ultimo termine, 15, appartiene alla sequenza crescente e il termine successivo deve venire da quella decrescente.",
+        "c": "Aggiunge 4 all'ultimo termine, trattando l'intera lista come un'unica successione crescente. I termini si alternano tra due sequenze; il termine dopo 15 appartiene a quella che scende.",
+        "d": "Ripete il termine precedente della sequenza decrescente invece di proseguirla. Ogni termine di quella sequenza è minore di 4 rispetto al precedente, quindi non può ripetersi.",
+        "e": "Sposta la sequenza decrescente di 4 verso l'alto invece che verso il basso. I termini 30, 26, 22 diminuiscono, quindi il successivo è minore di 22."
+      },
+      "accessibilityText": "Una domanda su una successione numerica. I termini sono 3, 30, 7, 26, 11, 22, 15 e la successione continua. La domanda chiede il termine successivo. Le cinque alternative sono 11, 18, 19, 22 e 26.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-e",
+        "checkedBy": "tolc-italian-checker-e",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful. Even-position subsequence 30,26,22,18."
+      }
+    }
+  }
 }

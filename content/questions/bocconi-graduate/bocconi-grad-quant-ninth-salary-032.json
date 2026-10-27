@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-grad-quant-ninth-salary-032",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-quantitative-reasoning",
+  "skillSlug": "grad-quant-numbers-percentages",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The average monthly salary of 8 employees is €3,000. When a ninth employee joins, the average monthly salary of all 9 becomes €3,200. What is the ninth employee's monthly salary?",
+  "instructionsMd": "Work by hand.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "€4,800"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "€4,600"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "€3,400"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "€5,000"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Turn averages into totals, because totals can be added.\n\n$$8 \\times 3{,}000 = 24{,}000 \\qquad 9 \\times 3{,}200 = 28{,}800$$\n\nThe ninth salary is the difference: $28{,}800 - 24{,}000 = 4{,}800$ euros.\n\n**A faster route.** The newcomer's salary must equal the new average, 3,200, plus enough to lift the other 8 employees' average by 200 each: $3{,}200 + 8 \\times 200 = 4{,}800$.\n\n**How to check.** $\\frac{24{,}000 + 4{,}800}{9} = \\frac{28{,}800}{9} = 3{,}200$.",
+  "distractorRationale": {
+    "c": "This adds the 200 rise in the average to the new average once. The newcomer has to cover the rise for all 8 existing employees, not just one.",
+    "b": "This adds $8 \\times 200$ to the OLD average, 3,000. The newcomer's own salary has to reach the NEW average, 3,200, before covering the others' rise.",
+    "d": "This adds $9 \\times 200$ to the new average, counting the newcomer's own share of the rise twice: $3{,}200 + 1{,}800$."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "A quantitative question. Eight employees average 3,000 euros a month; after a ninth joins, the average of nine is 3,200 euros. It asks the ninth employee's salary. The options are 3,400 euros, 4,600 euros, 4,800 euros and 5,000 euros.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-graduate-author",
+    "aiAssisted": true,
+    "notes": "Original item. Distractors are three different mis-countings of the rise in the average."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-graduate-author",
+    "reviewer": "bocconi-graduate-blind-reviewer",
+    "reviewedOn": "2026-10-27",
+    "independentSolve": {
+      "solvedBy": "bocconi-graduate-blind-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "9x3,200 = 28,800; 8x3,000 = 24,000; ninth salary = 4,800. Other values give averages of 3,178, 3,044, 3,222."
+    },
+    "notes": "Author checked that exactly one option is defensible. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "averages"
+  ],
+  "translations": {}
+}

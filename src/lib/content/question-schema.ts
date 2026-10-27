@@ -57,6 +57,42 @@ export const reviewSchema = z.object({
   notes: z.string().default(''),
 });
 
+/**
+ * Languages question content may be offered in besides English. Only exams
+ * whose config lists a language in `contentLocales` may carry it.
+ */
+export const contentLocaleSchema = z.enum(['it']);
+export type ContentLocale = z.infer<typeof contentLocaleSchema>;
+
+/**
+ * Evidence that a translation was checked by someone other than its
+ * translator: that it says the same thing, and that the keyed answer is still
+ * the one defensible answer in the translated wording. An unchecked
+ * translation is never served.
+ */
+export const translationCheckSchema = z.object({
+  translatedBy: z.string().min(1),
+  checkedBy: z.string().nullable(),
+  checkedOn: z.string().nullable(),
+  /** The checker solved the translated item and reached the keyed answer. */
+  answerPreserved: z.boolean().nullable(),
+  notes: z.string().default(''),
+});
+
+/** One language version of a question. Option ids must match the original exactly. */
+export const questionTranslationSchema = z
+  .object({
+    stemMd: z.string().min(1),
+    instructionsMd: z.string().nullable().default(null),
+    options: z.array(z.object({ id: z.string().min(1), textMd: z.string().min(1) })).default([]),
+    explanationMd: z.string().min(40),
+    distractorRationale: z.record(z.string(), z.string()).default({}),
+    accessibilityText: z.string().nullable().default(null),
+    check: translationCheckSchema,
+  })
+  .strict();
+export type QuestionTranslation = z.infer<typeof questionTranslationSchema>;
+
 export const questionSchema = z
   .object({
     id: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, 'question ids are kebab-case'),
@@ -91,10 +127,33 @@ export const questionSchema = z
       .nullable()
       .default(null),
     tags: z.array(z.string()).default([]),
+    /** Other-language versions, keyed by locale. English is the original. */
+    translations: z.partialRecord(contentLocaleSchema, questionTranslationSchema).default({}),
   })
   .strict();
 
 export type Question = z.infer<typeof questionSchema>;
+
+/** A stimulus in another language. Data values are not translated; labels are. */
+export const stimulusTranslationSchema = z
+  .object({
+    title: z.string().nullable().default(null),
+    bodyMd: z.string().nullable().default(null),
+    accessibilityText: z.string().min(1),
+    /** Column key -> translated label, plus translated caption and axis labels. */
+    dataLabels: z
+      .object({
+        columns: z.record(z.string(), z.string()).default({}),
+        caption: z.string().default(''),
+        xLabel: z.string().nullable().default(null),
+        yLabel: z.string().nullable().default(null),
+      })
+      .nullable()
+      .default(null),
+    check: translationCheckSchema,
+  })
+  .strict();
+export type StimulusTranslation = z.infer<typeof stimulusTranslationSchema>;
 
 export const stimulusSchema = z
   .object({
@@ -127,6 +186,7 @@ export const stimulusSchema = z
     provenance: provenanceSchema,
     rightsStatus: z.enum(['original-owned']),
     state: publicationStateSchema,
+    translations: z.partialRecord(contentLocaleSchema, stimulusTranslationSchema).default({}),
   })
   .strict();
 
@@ -502,6 +562,31 @@ export function validateQuestion(
         'explanation-cites-position',
         'The explanation refers to a choice by its position ("the first choice"). Positions move when options are reordered; name what the choice says instead.',
       );
+    }
+  }
+
+  // Translations must describe exactly the same choices as the original, and
+  // follow the same rules on letters, or the key would point at a different
+  // statement in another language.
+  for (const [locale, translation] of Object.entries(question.translations ?? {})) {
+    const ids = translation.options.map((o) => o.id).sort().join(',');
+    if (ids !== [...optionIds].sort().join(',')) {
+      err('translation-options-mismatch', `The ${locale} translation must have exactly the original option ids (${optionIds.join(', ')}).`);
+    }
+    const notes = Object.keys(translation.distractorRationale).sort().join(',');
+    if (notes !== Object.keys(question.distractorRationale ?? {}).sort().join(',')) {
+      err('translation-rationale-mismatch', `The ${locale} translation must have a distractor note for exactly the same options as the original.`);
+    }
+    const prose = [translation.explanationMd, ...Object.values(translation.distractorRationale)].join(' ');
+    const labels = new Set(question.options.map((o) => o.label.toUpperCase()));
+    if (citedOptionLetters(prose).some((letter) => labels.has(letter))) {
+      err('translation-cites-letters', `The ${locale} translation refers to choices by letter; name what the choice says instead.`);
+    }
+    if (translation.check.checkedBy && translation.check.checkedBy === translation.check.translatedBy) {
+      err('translation-self-check', `The ${locale} translation must be checked by someone other than its translator.`);
+    }
+    if (translation.check.checkedBy && translation.check.answerPreserved === false) {
+      err('translation-changes-answer', `The ${locale} checker did not reach the keyed answer from the translated wording.`);
     }
   }
 

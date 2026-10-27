@@ -80,5 +80,48 @@
     "letters",
     "squares",
     "no-calculator"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Si usi l'alfabeto inglese di 26 lettere, dalla A alla Z, senza omettere alcuna lettera.\n\nA, D, I, P, ?\n\nQuale lettera continua la serie?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "V"
+        },
+        {
+          "id": "b",
+          "textMd": "Y"
+        },
+        {
+          "id": "c",
+          "textMd": "X"
+        },
+        {
+          "id": "d",
+          "textMd": "W"
+        },
+        {
+          "id": "e",
+          "textMd": "Q"
+        }
+      ],
+      "explanationMd": "Trasforma le lettere nelle loro posizioni nell'alfabeto: A = 1, D = 4, I = 9, P = 16. Sono i quadrati perfetti $1^2, 2^2, 3^2, 4^2$, quindi la lettera successiva è quella in posizione $5^2 = 25$, cioè **Y**.\n\nVerifica con gli intervalli: gli spostamenti sono di 3, 5, 7 posizioni (i numeri dispari), quindi il prossimo spostamento è di 9 posizioni: 16 + 9 = 25, di nuovo Y. Due descrizioni indipendenti della stessa serie danno la stessa lettera. Contare dalla fine dell'alfabeto è più rapido che contare dalla A: la Z è la 26ª, quindi la Y è la 25ª.",
+      "distractorRationale": {
+        "e": "Prende semplicemente la lettera che segue la P, ignorando gli intervalli crescenti tra le lettere.",
+        "a": "Si sposta di 6 posizioni: questo è il numero di lettere saltate tra la I e la P (dalla J alla O), non il numero di posizioni di cui ci si sposta, e non è nemmeno il passo successivo.",
+        "d": "Si sposta di nuovo di 7 posizioni, ripetendo l'ultimo intervallo. Gli intervalli crescono 3, 5, 7, quindi il prossimo è 9.",
+        "c": "Si sposta di 8 posizioni. Contando le lettere saltate si ottiene 2, 4, 6 e poi 8, ma lo spostamento è sempre uno in più delle lettere saltate, quindi deve essere 9."
+      },
+      "accessibilityText": "Una domanda su una serie di lettere che usa l'alfabeto inglese di 26 lettere. La serie dà le lettere A, D, I e P in quest'ordine, seguite da una lettera incognita. La domanda chiede quale lettera continua la serie. Le cinque alternative sono V, Y, X, W e Q.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": "tolc-italian-checker-i1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Intentionally English alphabet; Italian instruction faithfully specifies 26-letter English alphabet. A,D,I,P,Y = squares."
+      }
+    }
+  }
 }

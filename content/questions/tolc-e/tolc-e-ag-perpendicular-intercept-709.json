@@ -78,5 +78,48 @@
     "perpendicular-lines",
     "line-equation",
     "intercepts"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "La retta $r$ ha equazione $2x + y = 3$. La retta $s$ passa per il punto $P(4, 1)$ ed è perpendicolare a $r$. Per quale valore di $x$ la retta $s$ interseca l'asse $x$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$-2$"
+        },
+        {
+          "id": "b",
+          "textMd": "$2$"
+        },
+        {
+          "id": "c",
+          "textMd": "$6$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\dfrac{7}{2}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\dfrac{9}{2}$"
+        }
+      ],
+      "explanationMd": "Trova il coefficiente angolare di $r$, ricava da esso il coefficiente angolare della perpendicolare, scrivi la retta per $P$ e poni $y=0$.\n\n**Passo 1 — coefficiente angolare di $r$.** $2x + y = 3$ dà $y = -2x + 3$, quindi il coefficiente angolare è $-2$.\n\n**Passo 2 — coefficiente angolare della perpendicolare.** I coefficienti angolari di due rette perpendicolari hanno prodotto $-1$, quindi il coefficiente angolare di $s$ è $\\dfrac{1}{2}$.\n\n**Passo 3 — la retta per $P$.** $y - 1 = \\tfrac12 (x - 4)$, che si semplifica in $y = \\tfrac12 x - 1$.\n\n**Passo 4 — l'asse $x$.** Poniamo $y = 0$: $\\tfrac12 x = 1$, quindi $x = 2$.\n\n**Come verificare.** Il punto $(4,1)$ sta sulla retta: $\\tfrac12\\cdot 4 - 1 = 1$ ✓. Il prodotto dei coefficienti angolari è $(-2)\\cdot\\tfrac12 = -1$ ✓. Il punto $(2, 0)$ sta sulla retta: $\\tfrac12 \\cdot 2 - 1 = 0$ ✓.",
+      "distractorRationale": {
+        "a": "Trova correttamente la retta $y=\\tfrac12 x-1$ ma risolve $\\tfrac12 x - 1 = 0$ con un errore di segno, portando il $-1$ dall'altra parte come $-1$ anziché come $+1$.",
+        "d": "Usa il coefficiente angolare $2$ per $s$, cambiando il segno di $-2$ ma senza farne il reciproco. I coefficienti angolari di due rette perpendicolari sono l'uno l'antireciproco dell'altro, quindi servono entrambi i passaggi.",
+        "e": "Usa il coefficiente angolare $-2$ della retta $r$ stessa, il che produce una retta parallela a $r$ anziché perpendicolare.",
+        "c": "Usa il coefficiente angolare $-\\tfrac12$, facendo il reciproco di $-2$ ma senza cambiarne il segno."
+      },
+      "accessibilityText": "Nel piano cartesiano, la retta r ha equazione 2 x più y uguale a 3. La retta s passa per il punto P di coordinate 4 e 1 ed è perpendicolare a r. La domanda chiede il valore di x in cui s interseca l'asse x. Le cinque alternative sono meno 2, 2, sette mezzi, nove mezzi e 6.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-e",
+        "checkedBy": "tolc-italian-checker-e",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful. s: y-1=(x-4)/2, x-intercept x=2."
+      }
+    }
+  }
 }

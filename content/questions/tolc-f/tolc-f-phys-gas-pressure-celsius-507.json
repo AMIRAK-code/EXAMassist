@@ -78,5 +78,48 @@
     "ideal-gas",
     "gay-lussac",
     "kelvin"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Una bombola d'acciaio rigida e sigillata contiene un gas a $27\\ ^{\\circ}\\text{C}$ e alla pressione di $1.0\\ \\text{bar}$. La bombola viene riscaldata fino a $327\\ ^{\\circ}\\text{C}$. Considerando il gas come ideale, qual è ora la sua pressione?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$0.5\\ \\text{bar}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$2.0\\ \\text{bar}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$1.0\\ \\text{bar}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$12\\ \\text{bar}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$4.0\\ \\text{bar}$"
+        }
+      ],
+      "explanationMd": "**Da notare subito.** Il volume è fisso, quindi per un gas ideale la pressione è proporzionale alla temperatura *assoluta*: $p/T=\\text{costante}$. Converti in kelvin prima di fare qualsiasi altra cosa.\n\n**Il passaggio decisivo.** $27\\ ^{\\circ}\\text{C}=300\\ \\text{K}$ e $327\\ ^{\\circ}\\text{C}=600\\ \\text{K}$. La temperatura assoluta raddoppia, quindi la pressione raddoppia:\n\n$$p_{2}=p_{1}\\cdot\\frac{T_{2}}{T_{1}}=1.0\\cdot\\frac{600}{300}=2.0\\ \\text{bar}.$$\n\n**Come verificarlo.** I valori in gradi Celsius, 27 e 327, fanno pensare a una variazione di dodici volte, ma le temperature Celsius non sono proporzionali all'energia delle molecole. Lo sono solo i kelvin. Un aumento di pressione di dodici volte richiederebbe un aumento di dodici volte della temperatura assoluta, e qui la temperatura assoluta raddoppia soltanto.",
+      "distractorRationale": {
+        "a": "Inverte il rapporto tra le temperature, $300/600$. Riscaldare un gas a volume costante ne aumenta la pressione, non la diminuisce.",
+        "c": "Ragiona che, siccome il volume non può cambiare, non cambia nient'altro. A volume costante la pressione è proporzionale alla temperatura assoluta, e la temperatura è cambiata.",
+        "e": "Tratta una temperatura raddoppiata come una velocità molecolare raddoppiata e fa crescere la pressione con il quadrato della velocità. Il valor medio del quadrato della velocità è proporzionale a $T$ stessa, quindi la pressione raddoppia soltanto.",
+        "d": "Usa il rapporto tra le temperature in gradi Celsius, $327/27 \\approx 12$. La legge dei gas richiede la scala assoluta (kelvin), che ha lo zero allo zero assoluto, non al punto di congelamento dell'acqua."
+      },
+      "accessibilityText": "Una bombola d'acciaio rigida e sigillata contiene un gas ideale a ventisette gradi Celsius e a un bar. Viene riscaldata fino a trecentoventisette gradi Celsius. Trova la nuova pressione. Le alternative sono zero virgola cinque bar, due bar, un bar, dodici bar e quattro bar.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f2",
+        "checkedBy": "tolc-italian-checker-f2",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities and options match the English."
+      }
+    }
+  }
 }

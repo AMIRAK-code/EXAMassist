@@ -1,0 +1,126 @@
+{
+  "id": "imat-bio-osmosis-tonicity-002",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-biology",
+  "skillSlug": "imat-bio-molecules-cells",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The cytoplasm of an animal cell contains dissolved particles at a total concentration of 0.30 mol/L. The cell's plasma membrane is permeable to water but not to sodium ions, chloride ions or sucrose. The cell is placed in each of the solutions below. Assuming sodium chloride dissociates completely, in which solution will the cell gain water by osmosis?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "0.30 mol/L sucrose"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "0.20 mol/L sodium chloride"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "0.40 mol/L sucrose"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "0.10 mol/L sodium chloride"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "0.15 mol/L sodium chloride"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Osmosis depends on the concentration of **dissolved particles**, not on the number of moles of compound written on the label. So first convert every solution into particles per litre.\n\n- Sodium chloride dissociates into two ions, $\\text{Na}^+$ and $\\text{Cl}^-$, so each mole gives two moles of particles.\n- Sucrose does not dissociate, so each mole gives one mole of particles.\n\nThat gives: 0.10 mol/L NaCl → 0.20 mol/L of particles; 0.15 mol/L NaCl → 0.30; 0.20 mol/L NaCl → 0.40; 0.30 mol/L sucrose → 0.30; 0.40 mol/L sucrose → 0.40.\n\nWater moves by osmosis from the side with the lower particle concentration to the side with the higher one. The cell gains water only if the outside solution is **hypotonic**, that is below 0.30 mol/L of particles. Only 0.10 mol/L sodium chloride (0.20 mol/L of particles) qualifies. The 0.15 mol/L NaCl and 0.30 mol/L sucrose solutions are isotonic (no net movement), and the other two are hypertonic, so the cell would lose water in them.",
+  "distractorRationale": {
+    "e": "This solution looks hypotonic if sodium chloride is counted as one particle, but its two ions give 0.30 mol/L of particles, the same as the cytoplasm. It is isotonic, so there is no net gain of water.",
+    "c": "This is the reverse of the direction of osmosis. At 0.40 mol/L of particles the solution is hypertonic to the cell, so water leaves the cell and it shrinks.",
+    "a": "This sucrose solution has exactly the cell's particle concentration, 0.30 mol/L, so it is isotonic and causes no net movement of water.",
+    "b": "This forgets that sodium chloride gives two particles per formula unit: 0.20 mol/L of NaCl is 0.40 mol/L of particles, which is hypertonic, so the cell loses water."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A cell whose cytoplasm has 0.30 moles of dissolved particles per litre, with a membrane permeable only to water, is placed in five solutions: sodium chloride at 0.10, 0.15 and 0.20 moles per litre, and sucrose at 0.30 and 0.40 moles per litre. The question asks in which solution the cell gains water. Na plus and Cl minus denote sodium and chloride ions.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "imat-biology-author",
+    "aiAssisted": true,
+    "notes": "Original item. Tests conversion of molar concentration to particle concentration before judging tonicity; two isotonic and two hypertonic distractors."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "imat-biology-author",
+    "reviewer": "imat-blind-reviewer-1",
+    "reviewedOn": "2026-10-23",
+    "independentSolve": {
+      "solvedBy": "imat-blind-reviewer-1",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Effective osmolarity: 0.30 sucrose = 0.30 (iso); 0.20 NaCl = 0.40 (hyper); 0.40 sucrose (hyper); 0.10 NaCl = 0.20 (hypotonic -> cell gains water); 0.15 NaCl = 0.30 (iso). Only D."
+    },
+    "notes": "Author solved the item twice independently and argued for each wrong choice; no second choice was found defensible. Awaiting blind independent solve and a check of the Italian translation by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "biology",
+    "osmosis",
+    "tonicity",
+    "membrane-transport"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Il citoplasma di una cellula animale contiene particelle disciolte a una concentrazione totale di 0,30 mol/L. La membrana plasmatica della cellula è permeabile all'acqua ma non agli ioni sodio, agli ioni cloruro o al saccarosio. La cellula viene posta in ciascuna delle soluzioni seguenti. Supponendo che il cloruro di sodio sia completamente dissociato, in quale soluzione la cellula acquista acqua per osmosi?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Saccarosio 0,30 mol/L"
+        },
+        {
+          "id": "b",
+          "textMd": "Cloruro di sodio 0,20 mol/L"
+        },
+        {
+          "id": "c",
+          "textMd": "Saccarosio 0,40 mol/L"
+        },
+        {
+          "id": "d",
+          "textMd": "Cloruro di sodio 0,10 mol/L"
+        },
+        {
+          "id": "e",
+          "textMd": "Cloruro di sodio 0,15 mol/L"
+        }
+      ],
+      "explanationMd": "L'osmosi dipende dalla concentrazione di **particelle disciolte**, non dal numero di moli di composto indicato sull'etichetta. Per prima cosa si converta quindi ogni soluzione in particelle per litro.\n\n- Il cloruro di sodio si dissocia in due ioni, $\\text{Na}^+$ e $\\text{Cl}^-$, quindi ogni mole dà due moli di particelle.\n- Il saccarosio non si dissocia, quindi ogni mole dà una mole di particelle.\n\nSi ottiene: NaCl 0,10 mol/L → 0,20 mol/L di particelle; NaCl 0,15 mol/L → 0,30; NaCl 0,20 mol/L → 0,40; saccarosio 0,30 mol/L → 0,30; saccarosio 0,40 mol/L → 0,40.\n\nL'acqua si sposta per osmosi dal lato con concentrazione di particelle minore a quello con concentrazione maggiore. La cellula acquista acqua solo se la soluzione esterna è **ipotonica**, cioè sotto 0,30 mol/L di particelle. Soltanto il cloruro di sodio 0,10 mol/L (0,20 mol/L di particelle) soddisfa la condizione. Le soluzioni di NaCl 0,15 mol/L e di saccarosio 0,30 mol/L sono isotoniche (nessun movimento netto) e le altre due sono ipertoniche, quindi in esse la cellula perderebbe acqua.",
+      "distractorRationale": {
+        "e": "Questa soluzione sembra ipotonica se si conta il cloruro di sodio come una sola particella, ma i suoi due ioni danno 0,30 mol/L di particelle, come il citoplasma. È isotonica, quindi non c'è acquisto netto di acqua.",
+        "c": "Inverte il verso dell'osmosi. Con 0,40 mol/L di particelle la soluzione è ipertonica rispetto alla cellula, quindi l'acqua esce e la cellula si raggrinzisce.",
+        "a": "Questa soluzione di saccarosio ha esattamente la concentrazione di particelle della cellula, 0,30 mol/L, quindi è isotonica e non provoca movimento netto di acqua.",
+        "b": "Dimentica che il cloruro di sodio dà due particelle per unità formula: 0,20 mol/L di NaCl corrispondono a 0,40 mol/L di particelle, una soluzione ipertonica, quindi la cellula perde acqua."
+      },
+      "accessibilityText": "Una cellula il cui citoplasma contiene 0,30 moli di particelle disciolte per litro, con una membrana permeabile solo all'acqua, viene posta in cinque soluzioni: cloruro di sodio a 0,10, 0,15 e 0,20 moli per litro e saccarosio a 0,30 e 0,40 moli per litro. La domanda chiede in quale soluzione la cellula acquista acqua. Na più e Cl meno indicano gli ioni sodio e cloruro.",
+      "check": {
+        "translatedBy": "imat-biology-author",
+        "checkedBy": "imat-italian-checker",
+        "checkedOn": "2026-10-23",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities, units, negations and options match; terminology correct."
+      }
+    }
+  }
+}

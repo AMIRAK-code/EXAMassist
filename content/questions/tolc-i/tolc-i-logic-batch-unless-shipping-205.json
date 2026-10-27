@@ -81,5 +81,48 @@
     "only-if",
     "unless",
     "no-calculator"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "In un impianto di imbottigliamento valgono due regole.\n\n- Un lotto viene spedito solo se è stato collaudato.\n- Un lotto viene collaudato a meno che il responsabile di linea non sia assente il giorno in cui il lotto viene prodotto.\n\nIl lotto 17 non è stato collaudato. Quale delle seguenti affermazioni è necessariamente vera?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Il responsabile era presente il giorno in cui è stato prodotto il lotto 17, e il lotto 17 non è stato spedito."
+        },
+        {
+          "id": "b",
+          "textMd": "Il responsabile era assente il giorno in cui è stato prodotto il lotto 17, e il lotto 17 non è stato spedito."
+        },
+        {
+          "id": "c",
+          "textMd": "Il lotto 17 non è stato spedito, ma non si può stabilire se quel giorno il responsabile fosse presente."
+        },
+        {
+          "id": "d",
+          "textMd": "Il responsabile era assente il giorno in cui è stato prodotto il lotto 17, e il lotto 17 è stato spedito."
+        },
+        {
+          "id": "e",
+          "textMd": "Il responsabile era assente il giorno in cui è stato prodotto il lotto 17, ma non si può stabilire se il lotto 17 sia stato spedito."
+        }
+      ],
+      "explanationMd": "Per prima cosa riscrivi ciascuna regola nella forma «se ..., allora ...».\n\n- «Spedito solo se collaudato» significa: se un lotto viene spedito, allora è stato collaudato.\n- «Collaudato a meno che il responsabile non sia assente» significa: se il responsabile **non** è assente, allora il lotto viene collaudato.\n\nIl lotto 17 non è stato collaudato, cioè è negata la conseguenza di entrambe le regole; applica quindi la contronominale di ciascuna. Dalla seconda regola: se un lotto non viene collaudato, quel giorno il responsabile era assente. Dalla prima regola: se un lotto non viene collaudato, non viene spedito. Entrambe le conclusioni sono certe: il responsabile era assente e il lotto 17 non è stato spedito.\n\nVerifica cercando di smentirlo: se il responsabile fosse stato presente, la seconda regola obbligherebbe a collaudare il lotto 17, cosa che non è avvenuta; se il lotto 17 fosse stato spedito, la prima regola richiederebbe che fosse stato collaudato. Nessuna delle due vie d'uscita funziona.",
+      "distractorRationale": {
+        "a": "Un responsabile presente, per la seconda regola, comporterebbe che il lotto fosse collaudato. Poiché il lotto 17 non è stato collaudato, il responsabile non può essere stato presente.",
+        "d": "La prima regola dice che vengono spediti solo i lotti collaudati. Un lotto non collaudato quindi non può essere stato spedito.",
+        "c": "Tratta «a meno che» come se non desse alcuna informazione quando il lotto non è collaudato. In realtà «collaudato a meno che non sia assente» significa «se presente, allora collaudato», quindi un lotto non collaudato mostra che il responsabile era assente.",
+        "e": "Fraintende «solo se». «Spedito solo se collaudato» fa del collaudo un requisito per la spedizione, quindi un lotto non collaudato certamente non viene spedito."
+      },
+      "accessibilityText": "Una domanda di deduzione su due regole in un impianto di imbottigliamento. Prima regola: un lotto viene spedito solo se è stato collaudato. Seconda regola: un lotto viene collaudato a meno che il responsabile di linea non sia assente il giorno in cui il lotto viene prodotto. Il lotto 17 non è stato collaudato. La domanda chiede che cosa è necessariamente vero. Le cinque alternative sono: il responsabile era presente quel giorno e il lotto 17 non è stato spedito; il responsabile era assente quel giorno e il lotto 17 non è stato spedito; il lotto 17 non è stato spedito, ma non si può stabilire se il responsabile fosse presente; il responsabile era assente quel giorno e il lotto 17 è stato spedito; il responsabile era assente, ma non si può stabilire se il lotto 17 sia stato spedito.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": "tolc-italian-checker-i1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; 'a meno che ... non sia assente' uses standard pleonastic non, meaning preserved (present -> tested)."
+      }
+    }
+  }
 }

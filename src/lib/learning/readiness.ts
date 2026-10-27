@@ -16,8 +16,9 @@ import type { SkillPerformance } from './recommend';
  *     terms of a predicted score.
  *  3. Where — and only where — the exam publishes its complete raw scoring
  *     rules, converts the target into what it would actually require, and
- *     projects the learner's raw score. Today that is the Bocconi test, whose
- *     +1 / 0 / -0.2 scheme and 50-item blueprint are both published.
+ *     projects the learner's raw score. Today that is the Online Bocconi test,
+ *     whose penalty (-0.2 for the bachelor and law forms, -0.25 for the
+ *     graduate form) and 50-item blueprint are both published.
  *
  * Everything else reports the target back as the learner's own stated goal and
  * says plainly why we cannot map our measurements onto it.
@@ -170,9 +171,10 @@ const lowerOf = (a: Band, b: Band) =>
 // ---------------------------------------------------------------------------
 
 /**
- * Bocconi is the one exam whose scoring is fully published: 50 items, +1 for a
- * correct answer, 0 for a blank and -0.2 for a wrong one, with an official
- * eligibility floor. So a target there can be reasoned about with arithmetic
+ * Bocconi publishes its scoring in full: 50 items, +1 for a correct answer, 0
+ * for a blank and a fixed penalty for a wrong one (-0.2, or -0.25 on the
+ * graduate form), with an official eligibility floor (17, or 15 on the
+ * graduate form). So a target there can be reasoned about with arithmetic
  * rather than guesswork.
  */
 function bocconiProjection(
@@ -198,10 +200,25 @@ function bocconiProjection(
     wrong * config.scoring.pointsIncorrect +
     omitted * config.scoring.pointsOmitted;
 
-  // The published eligibility floor, if the config records one in its notes.
+  // The published eligibility floor, if the config records one in its notes:
+  // 17 for the bachelor and law forms, "lower than 15 out of 50" for the
+  // graduate form.
   const floorNote = config.scoring.notes.find((note) => /lower than (\d+)/i.test(note));
   const floorMatch = floorNote ? /lower than (\d+)/i.exec(floorNote) : null;
   const officialFloor = floorMatch ? Number(floorMatch[1]) : null;
+
+  // Test-day conditions, from what this config verifies. The graduate form
+  // publishes neither a calculator rule nor a navigation rule, so neither is
+  // assumed for it.
+  const sections = config.sections;
+  const minutes = sections.reduce((total, section) => total + (section.officialTimeMinutes ?? 0), 0);
+  const conditions = [
+    sections.every((section) => section.calculator === 'none') ? 'no calculator' : null,
+    minutes > 0 ? `${minutes} minutes` : null,
+    sections.every((section) => !section.navigation.allowBackWithinPart && section.navigation.source !== 'unverified')
+      ? 'no going back'
+      : null,
+  ].filter((condition): condition is string => condition !== null);
 
   return {
     projectedRaw: Math.round(projectedRaw * 10) / 10,
@@ -218,8 +235,8 @@ function bocconiProjection(
       `${config.scoring.pointsIncorrect} wrong.`,
     assumptions: [
       'It assumes our questions are as hard as the real ones. Their difficulty is our editorial judgement, not calibrated against test-taker data.',
-      'It assumes you answer under the same conditions: no calculator, 75 minutes, no going back.',
-      'It ignores the larger penalty on three-option critical-thinking items, so a real form could score slightly lower.',
+      `It assumes you answer under the same conditions: ${conditions.join(', ')}.`,
+      `It scores every wrong answer at ${config.scoring.pointsIncorrect} and ignores the larger −0.33 penalty Bocconi applies to some items, so a real form could score slightly lower.`,
       'It is arithmetic on your own practice, not a prediction of test day.',
     ],
   };

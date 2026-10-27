@@ -222,4 +222,7 @@ export const tolcFConfig: ExamConfig = {
   },
 
   unverified: [...TOLC_UNVERIFIED],
+  // CISIA delivers the TOLC-F in Italian; questions with a checked Italian
+  // translation are offered in Italian as well as English.
+  contentLocales: ['en', 'it'],
 };

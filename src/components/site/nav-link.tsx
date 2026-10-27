@@ -1,7 +1,6 @@
 'use client';
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Link, usePathname } from '@/i18n/navigation';
 import type { ReactNode } from 'react';
 
 /**
@@ -38,6 +37,7 @@ export function NavLink({
   className?: string;
   children: ReactNode;
 }) {
+  // The path without its locale prefix, so "/it/exams" matches "/exams".
   const pathname = usePathname() ?? '/';
   const active = isActivePath(pathname, href, match, except);
   return (
