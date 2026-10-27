@@ -82,12 +82,18 @@ Bing Webmaster Tools, same Google sign-in:
     exam.assist365.app was never registered there, so no site move is needed.
     Copilot answers come from Bing's index.
 
+11. **Deployed** on the afternoon of 2026-10-27: share images on all 29
+    pages, llms.txt, the IndexNow key file, robots.txt opening the training
+    crawlers, and HSTS are live. `npm run seo:indexnow` then got HTTP 202
+    for all 29 URLs.
+
 Still open:
 
-11. **Workers Paid** (Workers & Pages → Workers plans → Paid, $5 a month).
-12. **Deploy** the commits since 06f7397 (share images, llms.txt, the IndexNow
-    key file, robots.txt opening the training crawlers, HSTS), then run
-    `npm run seo:indexnow`.
+12. **Workers Paid** (Workers & Pages → Workers plans → Paid, $5 a month) in
+    Moein's account. After an attempt to upgrade, the plans page still said
+    "Current plan: Free" and Billing → Subscriptions listed only "Workers
+    Free". A member without billing rights may be unable to finish the
+    checkout, in which case the account owner has to do it.
 
 ## Known gap: pages fail under the Free Workers CPU limit
 
@@ -104,7 +110,10 @@ the failures are intermittent. Cloudflare applies the 10 ms with some leeway,
 and a render's CPU time varies (a freshly started isolate costs more), so
 whether a page goes over changes from one moment to the next. The cause has
 not gone away: a crawl at 13:30 UTC, still on Free, got 1102 again on 9 of
-the 29 pages.
+the 29 pages. After the deploy, two crawls in a row got 0 and then 8
+failures, and 9 of 12 rapid fetches of `/exams/gmat` failed. Every failure
+came from the Rome data centre (`CF-RAY …-FCO`), and every success in that
+sample from Frankfurt (`-FRA`).
 
 A crawler that keeps getting 503s lowers its crawl rate, and a page that
 keeps failing is eventually dropped. The two fixes are:
