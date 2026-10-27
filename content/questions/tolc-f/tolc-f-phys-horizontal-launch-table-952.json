@@ -78,5 +78,48 @@
     "projectile",
     "horizontal-launch",
     "kinematics"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Una biglia rotola oltre il bordo di un tavolo orizzontale alto $0.80\\ \\text{m}$ con una velocità orizzontale di $3.0\\ \\text{m/s}$. Trascurando la resistenza dell'aria e assumendo $g=10\\ \\text{m/s}^{2}$, a quale distanza dal piede del tavolo, misurata orizzontalmente, tocca il pavimento?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$1.2\\ \\text{m}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$12\\ \\text{m}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$0.60\\ \\text{m}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$0.40\\ \\text{m}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$0.48\\ \\text{m}$"
+        }
+      ],
+      "explanationMd": "**Da notare subito.** Il moto orizzontale e quello verticale sono indipendenti. In verticale la biglia parte con velocità verticale nulla e cade liberamente; in orizzontale mantiene i suoi $3.0\\ \\text{m/s}$.\n\n**Il calcolo.** Tempo di caduta da $h=\\tfrac12 g t^{2}$:\n\n$$t=\\sqrt{\\frac{2h}{g}}=\\sqrt{\\frac{2\\cdot 0.80}{10}}=\\sqrt{0.16}=0.40\\ \\text{s}.$$\n\nDistanza orizzontale: $x=v\\,t=3.0\\cdot 0.40=1.2\\ \\text{m}$.\n\n**Come verificarlo.** In $0.40\\ \\text{s}$ un corpo in caduta libera percorre $\\tfrac12\\cdot 10\\cdot 0.16=0.80\\ \\text{m}$, esattamente l'altezza del tavolo.",
+      "distractorRationale": {
+        "e": "Si ferma a $t^{2}=0.16$ e lo usa come tempo: $3.0\\cdot 0.16=0.48$. Manca la radice quadrata.",
+        "c": "Sbaglia la posizione del fattore $2$, usando $t=\\sqrt{h/(2g)}=0.20\\ \\text{s}$, metà del vero tempo di caduta.",
+        "b": "Usa $\\sqrt{2gh}=4$, che è la velocità verticale all'impatto in $\\text{m/s}$, come se fosse il tempo di caduta.",
+        "d": "Riporta il tempo di caduta, $0.40\\ \\text{s}$, come distanza, senza moltiplicarlo per la velocità orizzontale."
+      },
+      "accessibilityText": "Una biglia rotola oltre il bordo di un tavolo orizzontale alto 0,80 metri con una velocità orizzontale di 3,0 metri al secondo. Si trascura la resistenza dell'aria; g vale 10 metri al secondo quadrato. A quale distanza orizzontale dal piede del tavolo atterra? Le cinque alternative sono: 1,2 metri; 12 metri; 0,60 metri; 0,40 metri; 0,48 metri.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f2",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }
