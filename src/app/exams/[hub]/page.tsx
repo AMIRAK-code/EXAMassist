@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import { getDb } from '@/lib/db';
 import { EXAM_HUBS, getConfigsForHub, getHub } from '@/lib/exams/registry';
 import { blueprintAvailability, examCoverage } from '@/lib/attempts/availability';
-import { SITE, absoluteUrl, siteUrl } from '@/lib/site';
+import { SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
 import {
   Alert,
   Badge,
@@ -54,6 +54,7 @@ export async function generateMetadata({
       title: `${title} | ${SITE.shortName}`,
       description,
       type: 'article',
+      images: shareImages(`exam-${hub.slug}`, title),
     },
   };
 }
@@ -74,7 +75,13 @@ async function bocconiMetadata(): Promise<Metadata> {
     title,
     description,
     alternates: { canonical: url },
-    openGraph: { url, title: `${title} | ${SITE.shortName}`, description, type: 'website' },
+    openGraph: {
+      url,
+      title: `${title} | ${SITE.shortName}`,
+      description,
+      type: 'website',
+      images: shareImages(`exam-${BOCCONI_HUB_SLUG}`, title),
+    },
   };
 }
 

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { listGuides } from '@/lib/content/guides';
 import { getHub } from '@/lib/exams/registry';
-import { SITE, absoluteUrl, siteUrl } from '@/lib/site';
+import { SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
 import { Breadcrumbs, Card, Container, PageHeader } from '@/components/ui';
 import { JsonLd, breadcrumbSchema } from '@/components/seo/json-ld';
 
@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     url: absoluteUrl('/guides'),
     title: `${TITLE} | ${SITE.shortName}`,
     description: DESCRIPTION,
+    images: shareImages('site', TITLE),
   },
 };
 

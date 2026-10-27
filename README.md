@@ -114,6 +114,9 @@ reset can fail there (error 1102) until the account is on Workers Paid.
   [`docs/BOCCONI-SEARCH.md`](docs/BOCCONI-SEARCH.md); recording a human expert
   review is in [`docs/EXPERT-REVIEW.md`](docs/EXPERT-REVIEW.md); Search Console setup and the indexing
   audit are in [`docs/GOOGLE_SEARCH_CONSOLE_SETUP.md`](docs/GOOGLE_SEARCH_CONSOLE_SETUP.md).
+- **Search and AI visibility** — robots policy, share images, llms.txt,
+  IndexNow, what to run after a deploy and what needs the owners' accounts:
+  [`docs/SEARCH-AND-AI-VISIBILITY.md`](docs/SEARCH-AND-AI-VISIBILITY.md).
 
 See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the design and
 [`docs/HANDOFF.md`](docs/HANDOFF.md) for the current state, what is verified and

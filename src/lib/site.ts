@@ -11,9 +11,14 @@ export const SITE = {
   name: 'Examer',
   /** Used in titles: "<page> | <tagline-safe short name>". */
   shortName: 'Examer',
+  /**
+   * Other names people may search for: the domain is uniexamer.com. Offered to
+   * search engines as WebSite and Organization `alternateName`.
+   */
+  alternateNames: ['UniExamer', 'uniexamer.com'],
   tagline: 'Admission test preparation, verified against official sources',
   description:
-    'Practice questions, exam format guides and timed practice for the Bocconi Online Test, Digital SAT, Enhanced ACT, LSAT, GMAT and GRE, with a free test for every account. Every format claim is sourced to the test maker.',
+    'Practice questions, exam format guides and timed practice for the Bocconi Online Test, Digital SAT, Enhanced ACT, LSAT, GMAT, GRE, Politecnico di Torino TIL and CISIA TOLC, with a free test for every account. Every format claim is sourced to the test maker.',
   locale: 'en',
   /**
    * Publisher identity shown on public content and in structured data. Not
@@ -32,6 +37,16 @@ export function siteUrl(): string {
 export function absoluteUrl(path: string): string {
   const suffix = path.startsWith('/') ? path : `/${path}`;
   return `${siteUrl()}${suffix}`;
+}
+
+/**
+ * The share image for a page (Open Graph, and X through its og:image
+ * fallback): public/og/<key>.png, 1200 × 630, made by `npm run seo:og-images`.
+ * Keys are `site`, `exam-<hub slug>` and `guide-<guide slug>`; a page whose
+ * metadata sets `openGraph` replaces the layout's, so it must pass one too.
+ */
+export function shareImages(key: string, alt: string) {
+  return [{ url: `/og/${key}.png`, width: 1200, height: 630, alt }];
 }
 
 /**

@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getGuide, listGuides } from '@/lib/content/guides';
 import { getHub } from '@/lib/exams/registry';
-import { SITE, absoluteUrl, siteUrl } from '@/lib/site';
+import { SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
 import { Markdown } from '@/components/content';
 import { freeTestPath } from '@/lib/billing/config';
 import { Breadcrumbs, ButtonLink, Callout, Card, Container, PageHeader } from '@/components/ui';
@@ -31,6 +31,7 @@ export async function generateMetadata({
       description: guide.description,
       publishedTime: guide.publishedOn,
       modifiedTime: guide.updatedOn,
+      images: shareImages(`guide-${guide.slug}`, guide.title),
     },
   };
 }
