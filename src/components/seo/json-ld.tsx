@@ -19,12 +19,13 @@ export function JsonLd({ data }: { data: Record<string, unknown> | Array<Record<
   );
 }
 
-export function organizationSchema(siteUrl: string, name: string, description: string) {
+export function organizationSchema(siteUrl: string, name: string, description: string, alternateNames: readonly string[] = []) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     '@id': `${siteUrl}#organization`,
     name,
+    ...(alternateNames.length > 0 ? { alternateName: [...alternateNames] } : {}),
     url: siteUrl,
     logo: `${siteUrl}/brand/examer-symbol.svg`,
     description,
@@ -34,12 +35,17 @@ export function organizationSchema(siteUrl: string, name: string, description: s
   };
 }
 
-export function webSiteSchema(siteUrl: string, name: string) {
+/**
+ * On the home page, this is what Google reads for the site name shown in
+ * results; `alternateName` is its fallback if it cannot use `name`.
+ */
+export function webSiteSchema(siteUrl: string, name: string, alternateNames: readonly string[] = []) {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     '@id': `${siteUrl}#website`,
     name,
+    ...(alternateNames.length > 0 ? { alternateName: [...alternateNames] } : {}),
     url: siteUrl,
     publisher: { '@id': `${siteUrl}#organization` },
     inLanguage: 'en',

@@ -3,6 +3,17 @@ import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
+/*
+ * The site moved from exam.assist365.app to uniexamer.com on 27 October 2026,
+ * and the apex is the one address it uses. The Worker still answers for these
+ * hosts (wrangler.jsonc) only to send each request to the same path on the
+ * apex, so old links, bookmarks and search results keep working. A 301 rather
+ * than Next's default 308, because that is the code Search Console's Change of
+ * Address tool looks for.
+ */
+const CANONICAL_ORIGIN = 'https://uniexamer.com';
+const REDIRECTED_HOSTS = ['exam.assist365.app', 'www.uniexamer.com'];
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   // better-sqlite3 is a native module: never bundle it into the server build.
@@ -23,6 +34,17 @@ const nextConfig: NextConfig = {
    */
   async redirects() {
     return [
+      // The home page needs its own rule: on Cloudflare, OpenNext uses the
+      // destination verbatim when a match has no parameters, so `/` against
+      // `/:path*` would redirect to the literal ".../:path*".
+      ...REDIRECTED_HOSTS.flatMap((host) =>
+        ['/', '/:path*'].map((source) => ({
+          source,
+          has: [{ type: 'host' as const, value: host }],
+          destination: `${CANONICAL_ORIGIN}${source}`,
+          statusCode: 301 as const,
+        })),
+      ),
       { source: '/readiness', destination: '/study-plan/progress', permanent: true },
       // Plans moved from /premium (hosted Stripe Checkout) to /pricing and our
       // own /checkout (docs/BILLING.md). Old links keep working, query and all.

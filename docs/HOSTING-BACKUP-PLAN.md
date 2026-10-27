@@ -8,8 +8,8 @@ before relying on Vercel as a second host.
 
 | | Cloudflare (primary) | Vercel (secondary) |
 | --- | --- | --- |
-| Address | https://exam.assist365.app | https://exa-massist.vercel.app |
-| Account | Worker `examer` in M.a.moein1380@gmail.com's Cloudflare account (holds the assist365.app zone) | Project `exa-massist` in amirhosseinakbari-7788s-projects |
+| Address | https://uniexamer.com | https://exa-massist.vercel.app |
+| Account | Worker `examer` in M.a.moein1380@gmail.com's Cloudflare account (holds the uniexamer.com zone) | Project `exa-massist` in amirhosseinakbari-7788s-projects |
 | Deploys | `npm run cf:deploy` from a clean checkout (README, "Cloudflare Workers") | Every push to `main` (`vercel.json`) |
 | Plan | Workers Free | Hobby |
 | Database | Supabase via Hyperdrive `examer-db` (session pooler, port 5432) | Supabase via `DATABASE_URL` (transaction pooler, port 6543), **if** it has been set there; check |
@@ -26,7 +26,7 @@ A Vercel `DATABASE_URL` set before that date still points at the old copy.
   token; Postgres stores only its SHA-256. Any host connected to the database
   recognises a signed-in user. No signing key is involved.
 - **The cookie has no Domain attribute,** so it belongs to whatever address the
-  browser sees. As long as the browser only ever sees exam.assist365.app, the
+  browser sees. As long as the browser only ever sees uniexamer.com, the
   cookie follows the user whichever host answers.
 - **Rate limits are rows in the database,** so both hosts count against the
   same buckets.
@@ -61,7 +61,7 @@ Vercel instead. A Worker that goes over its CPU limit cannot catch its own
 error, which is why the router has to be a separate Worker.
 
 ```
-browser ── exam.assist365.app ── examer-router ──(service binding)── examer
+browser ── uniexamer.com ── examer-router ──(service binding)── examer
                                         │
                                         └── on failure ── exa-massist.vercel.app
 ```
@@ -108,7 +108,7 @@ export default {
 Vercel must have, before this is useful:
 
 1. `DATABASE_URL` (the transaction-pooler URL), `SESSION_SECRET` (same value as
-   the Worker secret), `NEXT_PUBLIC_SITE_URL=https://exam.assist365.app`,
+   the Worker secret), `NEXT_PUBLIC_SITE_URL=https://uniexamer.com`,
    `SEARCH_INDEXING_ENABLED=false`, all for Production.
 2. A deployment built from the same commit as Cloudflare.
 3. Deployment Protection off for the production address, or the router gets
@@ -128,12 +128,12 @@ sends the three endpoints that run scrypt to Vercel and everything else to
 
 The page stays on Cloudflare; only its form submission goes to Vercel. Vercel's
 `Set-Cookie` passes through the router, so the browser gets the session for
-exam.assist365.app. Everything from Plan A's Vercel list applies, plus two
+uniexamer.com. Everything from Plan A's Vercel list applies, plus two
 more points:
 
 - **`NEXT_PUBLIC_SITE_URL` on Vercel is required here,** not optional. The
   cross-site check (`assertSameOrigin`) compares the browser's Origin
-  (exam.assist365.app) against it, because the Host Vercel sees is
+  (uniexamer.com) against it, because the Host Vercel sees is
   exa-massist.vercel.app.
 - **Rate limits need the real visitor address, and this needs a code change
   first.** These endpoints are rate-limited per IP. Vercel appends the router's
@@ -155,7 +155,7 @@ each database migration run once, since they share the database.
 - **A weighted split on one hostname breaks pages.** A user's requests would
   land on both builds at random, so pages would load script files and Server
   Actions that only exist on the other host.
-- **It removes Cloudflare from the subdomain.** Delegating exam.assist365.app
+- **It removes Cloudflare from the subdomain.** Delegating uniexamer.com
   to Route 53 ends the Workers custom domain, and two hosts needing a
   certificate for one name interfere with each other (Vercel's HTTP check would
   reach Cloudflare part of the time).
