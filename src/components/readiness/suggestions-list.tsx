@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import type { Suggestion } from '@/lib/learning/suggestions';
 import { startSuggestionAction } from '@/app/actions/planning';
 import { Badge, Button, Card, SectionHeading, buttonClass } from '@/components/ui';

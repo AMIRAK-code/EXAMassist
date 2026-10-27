@@ -79,5 +79,48 @@
     "problems",
     "schedules",
     "no-calculator"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Tre tecnici, Ivo, Lea e Mira, si dividono la sorveglianza di una macchina da lunedì a sabato di una settimana. In ciascuno di questi sei giorni è di turno esattamente uno di loro, e ciascuno lavora esattamente due dei sei giorni. Si sa che:\n\n- Nessuno è di turno in due giorni consecutivi.\n- Ivo è di turno il lunedì.\n- Lea è di turno il sabato.\n- Mira non è di turno il martedì.\n\nChi è di turno il giovedì?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Mira"
+        },
+        {
+          "id": "b",
+          "textMd": "Lea oppure Mira; le informazioni non permettono di stabilire chi delle due."
+        },
+        {
+          "id": "c",
+          "textMd": "Lea"
+        },
+        {
+          "id": "d",
+          "textMd": "Ivo"
+        },
+        {
+          "id": "e",
+          "textMd": "Ivo oppure Mira; le informazioni non permettono di stabilire chi dei due."
+        }
+      ],
+      "explanationMd": "Parti dal giorno con meno possibilità. Il martedì Ivo è escluso, perché lavora il lunedì e nessuno lavora in due giorni consecutivi, e Mira è esclusa dall'ultimo indizio. Quindi il martedì lavora Lea. Lea ha ora i suoi due giorni, martedì e sabato.\n\nRestano mercoledì, giovedì e venerdì per il secondo giorno di Ivo e per entrambi i giorni di Mira. Mira non può lavorare in due giorni consecutivi, e l'unica coppia di giorni non consecutivi fra questi tre è mercoledì e venerdì. Quindi Mira lavora mercoledì e venerdì, e Ivo lavora il **giovedì**.\n\nVerifica il turno completo, da lunedì a sabato: Ivo, Lea, Mira, Ivo, Mira, Lea. Ognuno lavora due volte, nessuno lavora due giorni di fila, e ogni indizio è rispettato.",
+      "distractorRationale": {
+        "c": "I due giorni di Lea sono già fissati, martedì e sabato: il martedì non è possibile per nessun altro tranne lei, e il sabato è dato.",
+        "a": "Mira ha bisogno di due giorni non consecutivi tra mercoledì, giovedì e venerdì. Il giovedì è adiacente a entrambi gli altri due, quindi non può essere uno dei suoi.",
+        "e": "Il turno è completamente determinato. Mettere Mira di giovedì obbligherebbe il suo altro giorno a essere mercoledì o venerdì, che sono consecutivi al giovedì.",
+        "b": "Lea non può essere di turno il giovedì, perché i suoi due giorni sono già martedì e sabato."
+      },
+      "accessibilityText": "Un problema di turni. Tre tecnici, Ivo, Lea e Mira, sorvegliano una macchina da lunedì a sabato, una persona al giorno, e ciascuno lavora esattamente due giorni. Nessuno lavora in due giorni consecutivi. Ivo lavora il lunedì, Lea lavora il sabato e Mira non lavora il martedì. La domanda chiede chi lavora il giovedì. Le cinque alternative sono: Mira; Lea oppure Mira, non determinato; Lea; Ivo; Ivo oppure Mira, non determinato.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": "English rationale for Lea ('Tuesday is the only possible day for anyone except her') is garbled; rendered with the intended meaning: nobody but Lea can work Tuesday."
+      }
+    }
+  }
 }

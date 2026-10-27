@@ -81,5 +81,48 @@
     "table-reading",
     "ratios",
     "statement-checking"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Quale delle seguenti affermazioni è sostenuta dalla tabella?",
+      "instructionsMd": "Usa solo le informazioni riportate nella tabella.",
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Gli antistaminici sono stati l'unica classe il cui dato di marzo è stato almeno il triplo del dato di gennaio."
+        },
+        {
+          "id": "b",
+          "textMd": "In ogni mese, gli antipertensivi hanno rappresentato più della metà di tutte le prescrizioni."
+        },
+        {
+          "id": "c",
+          "textMd": "Le prescrizioni di antibiotici si sono dimezzate tra gennaio e febbraio."
+        },
+        {
+          "id": "d",
+          "textMd": "Antibiotici e antistaminici insieme hanno totalizzato lo stesso numero di prescrizioni in tutti e tre i mesi."
+        },
+        {
+          "id": "e",
+          "textMd": "Le prescrizioni di analgesici sono aumentate di più di un quarto tra gennaio e marzo."
+        }
+      ],
+      "explanationMd": "Controlla ogni affermazione sulle righe che cita, e scartala appena un numero non torna.\n\n- Gli antistaminici sono passati da 30 a 120, un fattore 4. Gli antibiotici sono diminuiti, gli antipertensivi sono rimasti a 200 e gli analgesici sono saliti solo da 100 a 120. Quindi gli antistaminici sono l'unica classe il cui dato di marzo è almeno il triplo del dato di gennaio. Questa affermazione è sostenuta.\n- Gli antibiotici sono calati di un quarto da gennaio a febbraio, e si sono dimezzati solo a marzo.\n- Gli antipertensivi erano 200 su 450, 460 e 500: al massimo il 44% del totale.\n- Gli analgesici sono aumentati del 20%, meno del quarto richiesto dall'affermazione.\n- Antibiotici più antistaminici: 150, 150, 180. Marzo rompe l'uguaglianza.\n\nLe trappole sono affermazioni vere per due mesi e false per il terzo, e affermazioni che usano i numeri giusti sull'intervallo di tempo sbagliato.",
+      "distractorRationale": {
+        "c": "Gli antibiotici sono scesi da 120 a 90, un calo di 30, cioè di un quarto. Il dimezzamento avviene in due mesi, da gennaio a marzo (da 120 a 60).",
+        "b": "Gli antipertensivi erano 200 su 450, 460 e 500 prescrizioni nei tre mesi, cioè il 44%, il 43% e il 40%, mai più della metà.",
+        "e": "Gli analgesici sono saliti da 100 a 120, un aumento di 20 su una base di 100, cioè il 20%, meno di un quarto.",
+        "d": "Le due classi insieme erano 150 a gennaio e 150 a febbraio, ma 180 a marzo. L'uguaglianza vale per due mesi, non per tre."
+      },
+      "accessibilityText": "Una domanda sulla tabella descritta insieme a essa: prescrizioni per classe nei mesi di gennaio, febbraio e marzo. Le cinque alternative sono affermazioni: gli antibiotici si sono dimezzati tra gennaio e febbraio; gli antipertensivi sono stati più della metà di tutte le prescrizioni in ogni mese; gli analgesici sono aumentati di più di un quarto tra gennaio e marzo; antibiotici e antistaminici insieme sono stati uguali in tutti e tre i mesi; gli antistaminici sono stati l'unica classe il cui dato di marzo è stato almeno il triplo del dato di gennaio.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f2",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

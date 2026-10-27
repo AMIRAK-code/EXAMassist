@@ -78,5 +78,48 @@
     "irrational-equation",
     "radicals",
     "squaring"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Risolvere nell'insieme dei numeri reali l'equazione $\\sqrt{x+4} + \\sqrt{x-1} = 5$.",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$x = 4$"
+        },
+        {
+          "id": "b",
+          "textMd": "$x = 11$"
+        },
+        {
+          "id": "c",
+          "textMd": "$x = 1$"
+        },
+        {
+          "id": "d",
+          "textMd": "$x = 3$"
+        },
+        {
+          "id": "e",
+          "textMd": "$x = 5$"
+        }
+      ],
+      "explanationMd": "Con due radici quadrate, se ne isola una prima di elevare al quadrato; elevando direttamente al quadrato una somma di due radici resta un doppio prodotto. Il dominio è $x \\ge 1$, e ogni candidato va verificato nell'equazione di partenza.\n\n**Passo 1 — isolare ed elevare al quadrato.** $\\sqrt{x+4} = 5 - \\sqrt{x-1}$. Elevando al quadrato: $x + 4 = 25 - 10\\sqrt{x-1} + (x - 1)$.\n\n**Passo 2 — semplificare.** I termini in $x$ si eliminano: $10\\sqrt{x-1} = 25 - 1 - 4 = 20$, quindi $\\sqrt{x-1} = 2$.\n\n**Passo 3 — risolvere.** $x - 1 = 4$, quindi $x = 5$.\n\n**Come verificarlo.** $\\sqrt{9} + \\sqrt{4} = 3 + 2 = 5$ ✓. Il primo membro cresce al crescere di $x$, quindi questa è l'unica soluzione.",
+      "distractorRationale": {
+        "c": "Dimentica di elevare al quadrato il 5 a destra, scrivendo $x + 4 = 5 - 10\\sqrt{x-1} + x - 1$, che porta a $\\sqrt{x-1} = 0$. Per $x = 1$ il primo membro vale $\\sqrt5 + 0$, non 5.",
+        "d": "Arriva a $\\sqrt{x-1} = 2$ ma poi scrive $x - 1 = 2$, dimenticando di elevare al quadrato. Per $x = 3$ il primo membro vale $\\sqrt7 + \\sqrt2 \\approx 4.06$.",
+        "a": "Arriva a $\\sqrt{x-1} = 2$ ed eleva al quadrato, ma poi dimentica di aggiungere 1, prendendo $x = 4$. Per $x = 4$ il primo membro vale $\\sqrt8 + \\sqrt3 \\approx 4.56$.",
+        "b": "Eleva al quadrato ciascuna radice separatamente, $(x + 4) + (x - 1) = 25$, come se fosse $(p + q)^{2} = p^{2} + q^{2}$. Manca il doppio prodotto $2pq$; per $x = 11$ il primo membro vale $\\sqrt{15} + \\sqrt{10} \\approx 7.0$."
+      },
+      "accessibilityText": "Risolvere nell'insieme dei numeri reali: la radice quadrata di x più 4, più la radice quadrata di x meno 1, uguale 5. Le cinque alternative sono: x uguale 4; x uguale 11; x uguale 1; x uguale 3; x uguale 5.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i2",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

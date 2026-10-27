@@ -78,5 +78,48 @@
     "sine",
     "radians",
     "reference-angle"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Qual è il valore di $\\sin\\dfrac{5\\pi}{6}$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$-\\dfrac{\\sqrt{3}}{2}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$-\\dfrac{1}{2}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$0$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\dfrac{1}{2}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\dfrac{\\sqrt{3}}{2}$"
+        }
+      ],
+      "explanationMd": "Converti in gradi: $\\pi$ corrisponde a 180 gradi, quindi $\\tfrac{\\pi}{6}$ corrisponde a 30 gradi e $\\tfrac{5\\pi}{6}$ a 150 gradi.\n\n150 gradi è nel secondo quadrante, dove il seno è positivo. Il suo angolo di riferimento è $180^\\circ - 150^\\circ = 30^\\circ$, cioè $\\pi - \\tfrac{5\\pi}{6} = \\tfrac{\\pi}{6}$. Quindi $\\sin\\tfrac{5\\pi}{6} = \\sin\\tfrac{\\pi}{6} = \\tfrac12$.\n\n**Come verificarlo.** Sulla circonferenza goniometrica i punti a 30 e a 150 gradi sono simmetrici rispetto all'asse verticale, quindi hanno la stessa ordinata, e l'ordinata del punto a 30 gradi è $\\tfrac12$.",
+      "distractorRationale": {
+        "a": "Dà il coseno dell'angolo, che nel secondo quadrante è negativo, invece del seno.",
+        "b": "Ha il valore assoluto giusto ma il segno sbagliato. Il seno è l'ordinata del punto sulla circonferenza goniometrica, e nel secondo quadrante questa ordinata è positiva.",
+        "c": "Arrotonda l'angolo a $\\pi$, dove il seno è zero. Ma $\\tfrac{5\\pi}{6}$ è 150 gradi, 30 gradi in meno di un angolo piatto, e lì il seno vale ancora $\\tfrac12$.",
+        "e": "Prende come angolo di riferimento 60 gradi invece di 30, oppure scambia seno e coseno di 30 gradi: $\\tfrac{\\sqrt{3}}{2}$ è $\\sin 60^\\circ$, che è uguale a $\\cos 30^\\circ$. L'angolo di riferimento per 150 gradi è $180^\\circ - 150^\\circ = 30^\\circ$, il cui seno è $\\tfrac12$."
+      },
+      "accessibilityText": "La domanda chiede il valore del seno di 5 pi greco sesti radianti. Le cinque alternative sono: meno radice quadrata di 3 fratto 2; meno un mezzo; 0; un mezzo; radice quadrata di 3 fratto 2.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f2",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

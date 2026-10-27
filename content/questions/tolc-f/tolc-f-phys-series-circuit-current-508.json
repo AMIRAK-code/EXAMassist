@@ -77,5 +77,48 @@
   "tags": [
     "ohms-law",
     "series-circuit"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Una batteria da $12\\ \\text{V}$ è collegata in serie con un resistore da $4\\ \\Omega$ e un resistore da $2\\ \\Omega$. Quale corrente circola nel circuito?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$0.5\\ \\text{A}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$9\\ \\text{A}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$2\\ \\text{A}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$6\\ \\text{A}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$3\\ \\text{A}$"
+        }
+      ],
+      "explanationMd": "**Da notare subito.** «In serie» significa un solo percorso, una sola corrente e resistenze che si sommano semplicemente.\n\n**Il passaggio decisivo.** La resistenza totale è $4+2=6\\ \\Omega$, e per la legge di Ohm\n\n$$I=\\frac{V}{R}=\\frac{12\\ \\text{V}}{6\\ \\Omega}=2\\ \\text{A}.$$\n\n**Come verificarlo.** Le cadute di tensione ai capi dei due resistori sono $2\\times4=8$ V e $2\\times2=4$ V, che sommate danno i 12 V della batteria. Inoltre, con due resistori in serie la corrente deve essere *minore* di quella che si avrebbe con uno solo dei due (3 A o 6 A), il che esclude i valori più grandi.",
+      "distractorRationale": {
+        "a": "Capovolge la legge di Ohm, dividendo la resistenza totale per la tensione, $6/12$. La corrente è la tensione divisa per la resistenza.",
+        "e": "Usa solo il resistore da $4\\ \\Omega$, $12/4$, come se il resistore da $2\\ \\Omega$ non facesse parte del circuito. In serie entrambi i resistori si oppongono alla stessa corrente.",
+        "d": "Usa solo il resistore da $2\\ \\Omega$, $12/2$, ignorando il resistore da $4\\ \\Omega$ in serie con esso.",
+        "b": "Combina i resistori come se fossero in parallelo, $\\tfrac{4\\cdot2}{4+2}=\\tfrac43\\ \\Omega$, e divide 12 per quel valore. In serie le resistenze si sommano e il totale è maggiore di ciascuna delle due."
+      },
+      "accessibilityText": "Una batteria da dodici volt è collegata in serie con un resistore da quattro ohm e un resistore da due ohm. Trova la corrente nel circuito. Le alternative sono zero virgola cinque, nove, due, sei e tre ampere.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f2",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { GUEST_TTL_DAYS } from '@/lib/auth/session';
-import { GUEST_NOTE, GUEST_NOTE_SHORT } from '@/components/site/nav-items';
+import fs from 'node:fs';
+import path from 'node:path';
+import { LOCALES } from '@/i18n/locales';
 import { INDEPENDENCE_NOTICE, SITE } from '@/lib/site';
 
 /**
@@ -8,15 +10,27 @@ import { INDEPENDENCE_NOTICE, SITE } from '@/lib/site';
  * These are claims a learner relies on, so they must not drift from the code.
  */
 
+/** The guest notes in every language that has a common catalogue. */
+function guestNotes(): Array<{ locale: string; note: string }> {
+  return LOCALES.flatMap((locale) => {
+    const file = path.resolve(`messages/${locale}/common.json`);
+    if (!fs.existsSync(file)) return [];
+    const guest = (JSON.parse(fs.readFileSync(file, 'utf8')) as { guest?: Record<string, string> }).guest ?? {};
+    return Object.values(guest).map((note) => ({ locale, note }));
+  });
+}
+
 describe('guest messaging', () => {
-  it('states the guest session lifetime the server actually applies', () => {
-    for (const note of [GUEST_NOTE, GUEST_NOTE_SHORT]) {
-      expect(note).toContain(`${GUEST_TTL_DAYS} days`);
+  it('states the guest session lifetime the server actually applies, in every language', () => {
+    const notes = guestNotes();
+    expect(notes.length).toBeGreaterThanOrEqual(2);
+    for (const { locale, note } of notes) {
+      expect(note, locale).toMatch(new RegExp(`\\b${GUEST_TTL_DAYS}\\b`));
     }
   });
 
   it('never promises that signing in merges guest history', () => {
-    for (const note of [GUEST_NOTE, GUEST_NOTE_SHORT]) {
+    for (const { note } of guestNotes().filter((n) => n.locale === 'en')) {
       expect(note.toLowerCase()).not.toMatch(/sign(ing)? in .*(keep|merge|move|bring)/);
     }
   });

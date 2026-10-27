@@ -77,5 +77,48 @@
   "tags": [
     "logarithmic-equation",
     "domain"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Quali numeri reali $x$ soddisfano $\\log_{2}x+\\log_{2}(x-2)=3$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Solo $x=5$"
+        },
+        {
+          "id": "b",
+          "textMd": "Solo $x=-2$"
+        },
+        {
+          "id": "c",
+          "textMd": "Solo $x=4$"
+        },
+        {
+          "id": "d",
+          "textMd": "$x=-2$ e $x=4$"
+        },
+        {
+          "id": "e",
+          "textMd": "Solo $x=3$"
+        }
+      ],
+      "explanationMd": "**Da notare subito.** Prima di risolvere, fissa il dominio: entrambi i logaritmi richiedono argomenti positivi, quindi $x>0$ e $x>2$, cioè $x>2$.\n\n**Il calcolo.** La somma di logaritmi è il logaritmo del prodotto: $\\log_{2}[x(x-2)]=3$, quindi $x(x-2)=2^{3}=8$. Allora $x^{2}-2x-8=0$, che si scompone in $(x-4)(x+2)=0$, da cui $x=4$ oppure $x=-2$. Solo $x=4$ soddisfa $x>2$.\n\n**Come verificarlo.** $\\log_{2}4+\\log_{2}2=2+1=3$. Per $x=-2$, $\\log_{2}(-2)$ non è definito, quindi non è una soluzione.",
+      "distractorRationale": {
+        "d": "Risolve correttamente l'equazione di secondo grado ma dimentica che entrambi i logaritmi richiedono argomenti positivi, il che esclude $x=-2$.",
+        "a": "Somma gli argomenti invece di moltiplicarli: $\\log_{2}(2x-2)=3$ dà $2x-2=8$.",
+        "e": "Pone il prodotto uguale a $3$ invece che a $2^{3}$: $x^{2}-2x-3=0$ dà $x=3$ oppure $x=-1$. In realtà $\\log_{2}3+\\log_{2}1=\\log_{2}3\\ne 3$.",
+        "b": "Tiene la radice sbagliata dell'equazione di secondo grado: per $x=-2$ nessuno dei due logaritmi è definito."
+      },
+      "accessibilityText": "Quali numeri reali x soddisfano: logaritmo in base 2 di x, più logaritmo in base 2 di x meno 2, uguale a 3? Le cinque alternative sono: solo x uguale a 5; solo x uguale a meno 2; solo x uguale a 4; x uguale a meno 2 e x uguale a 4; solo x uguale a 3.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f2",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

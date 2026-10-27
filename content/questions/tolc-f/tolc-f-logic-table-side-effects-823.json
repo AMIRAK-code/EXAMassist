@@ -81,5 +81,48 @@
     "weighted-proportion",
     "percentages",
     "table-reading"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Tra tutti i pazienti che hanno segnalato effetti collaterali, quale proporzione aveva 60 anni o più?",
+      "instructionsMd": "Le percentuali nell'ultima colonna della tabella si riferiscono ai pazienti di ciascuna fascia d'età, non a tutti gli 800 pazienti.",
+      "options": [
+        {
+          "id": "a",
+          "textMd": "50%"
+        },
+        {
+          "id": "b",
+          "textMd": "Circa il 33%"
+        },
+        {
+          "id": "c",
+          "textMd": "30%"
+        },
+        {
+          "id": "d",
+          "textMd": "Circa il 67%"
+        },
+        {
+          "id": "e",
+          "textMd": "20%"
+        }
+      ],
+      "explanationMd": "Trasforma le percentuali in numeri di pazienti, poi calcola il rapporto.\n\n1. Numerosità dei gruppi su 800: meno di 40 anni è il 25% (200 pazienti), da 40 a 59 anni il 25% (200), 60 anni e oltre il 50% (400).\n2. Pazienti che segnalano effetti collaterali: il 10% di 200 = 20; il 20% di 200 = 40; il 30% di 400 = 120. In tutto, 20 + 40 + 120 = 180.\n3. Il gruppo più anziano fornisce 120 delle 180 segnalazioni, e $\\frac{120}{180} = \\frac{2}{3}$, circa il 67%.\n\nVerifica con i pesi: il gruppo più anziano è metà del campione e ha la percentuale più alta, quindi la sua quota delle segnalazioni deve superare il 50%. Le percentuali di effetti collaterali nell'ultima colonna sono calcolate ciascuna su un gruppo diverso, di dimensione diversa, ed è per questo che non si possono semplicemente mediare o confrontare direttamente.",
+      "distractorRationale": {
+        "e": "È la media semplice delle tre percentuali dell'ultima colonna (10, 20 e 30). Ignora che i gruppi hanno dimensioni diverse.",
+        "b": "Un terzo delle segnalazioni proviene dai due gruppi più giovani insieme (60 su 180). Risponde alla domanda per il gruppo sbagliato.",
+        "c": "È la percentuale di effetti collaterali all'interno del gruppo più anziano. La domanda chiede la quota di tutte le segnalazioni che spetta al gruppo più anziano.",
+        "a": "È la quota del gruppo più anziano su tutti gli 800 pazienti. Il gruppo ha una percentuale più alta degli altri, quindi la sua quota delle segnalazioni è maggiore della sua quota dei pazienti."
+      },
+      "accessibilityText": "Una domanda sulla tabella descritta insieme a essa: tre fasce d'età con la loro quota degli 800 pazienti (25, 25 e 50 per cento) e la percentuale di ciascun gruppo che ha segnalato effetti collaterali (10, 20 e 30 per cento). La domanda chiede quale proporzione di tutti i pazienti che hanno segnalato effetti collaterali aveva 60 anni o più. Le cinque alternative sono 20 per cento, circa il 33 per cento, 30 per cento, 50 per cento e circa il 67 per cento.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f2",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }
