@@ -24,8 +24,8 @@ conditions that make them possible, and the way to see what actually happens.
   homepage. No FAQPage (Google stopped showing FAQ rich results in May 2026),
   no ratings, no Product or Course markup.
 - **Crawlers:** search and user-triggered AI crawlers are allowed on public
-  pages; training crawlers stay blocked, plus the two training-only tokens
-  documented since (`Meta-ExternalAgent`, `MistralAI-Training`). See
+  pages, and since 2026-10-27 so are training crawlers, on public pages only
+  (see [`SEARCH-AND-AI-VISIBILITY.md`](SEARCH-AND-AI-VISIBILITY.md)). Tokens:
   `docs/research/crawler-policy-check-2026-10-07.md`.
 - **No hreflang:** there is no Italian version of any page. Add hreflang only
   when a real Italian translation exists, on distinct URLs, with reciprocal tags.
@@ -67,13 +67,14 @@ canonical and must stay out of the index.
 - **AI crawler blocking:** in the uniexamer.com zone, check Security → Bots /
   AI Crawl Control. If Cloudflare is set to block "AI bots", it blocks search
   crawlers such as OAI-SearchBot, Claude-SearchBot and PerplexityBot at the
-  edge, whatever `robots.txt` says. Allow those; keep training crawlers blocked
-  if the managed rules allow the distinction.
+  edge, whatever `robots.txt` says. Turn the block off: `robots.txt` now
+  allows every AI crawler on public pages.
 - **Managed robots.txt:** Cloudflare can serve its own content-signals
   robots.txt for a zone (the assist365.app apex does). After deploying, confirm
   that `uniexamer.com/robots.txt` is the site's own file.
 - **Crawler Hints (IndexNow):** Caching → Configuration → Crawler Hints. On every
-  plan; it notifies Bing and other IndexNow engines when pages change.
+  plan; it notifies Bing and other IndexNow engines when pages change. Optional:
+  `npm run seo:indexnow` submits the whole sitemap directly.
 
 ## Search Console (needs owner access; not set up from here)
 

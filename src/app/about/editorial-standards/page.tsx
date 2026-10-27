@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { PAGE_DATES, longDate } from '@/lib/content/page-dates';
 import type { Metadata } from 'next';
-import { SITE, absoluteUrl, siteUrl } from '@/lib/site';
+import { SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
 import { Badge, Breadcrumbs, Card, Container, DefinitionList, PageHeader } from '@/components/ui';
 import { JsonLd, articleSchema, breadcrumbSchema } from '@/components/seo/json-ld';
 
@@ -38,6 +38,7 @@ export const metadata: Metadata = {
     url: absoluteUrl(PATH),
     title: `${TITLE} | ${SITE.shortName}`,
     description: DESCRIPTION,
+    images: shareImages('site', TITLE),
     publishedTime: PUBLISHED,
     modifiedTime: UPDATED,
   },

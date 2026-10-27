@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getCurrentUser } from '@/lib/auth/session';
 import { getDb } from '@/lib/db';
-import { absoluteUrl, SITE, siteUrl } from '@/lib/site';
+import { absoluteUrl, SITE, shareImages, siteUrl } from '@/lib/site';
 import { JsonLd, breadcrumbSchema } from '@/components/seo/json-ld';
 import { headers } from 'next/headers';
 import { EXAM_CONFIGS, examTestName, getConfigsForHub, getExamConfig, getHubForConfig } from '@/lib/exams/registry';
@@ -24,7 +24,12 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: absoluteUrl('/premium') },
-  openGraph: { url: absoluteUrl('/premium'), title: `${TITLE} | ${SITE.shortName}`, description: DESCRIPTION },
+  openGraph: {
+    url: absoluteUrl('/premium'),
+    title: `${TITLE} | ${SITE.shortName}`,
+    description: DESCRIPTION,
+    images: shareImages('site', TITLE),
+  },
 };
 
 const PREMIUM_TRAIL = [{ href: '/', label: 'Home' }, { label: 'Premium' }];

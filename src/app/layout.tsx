@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { SITE, indexingEnabled, siteUrl } from '@/lib/site';
+import { SITE, indexingEnabled, shareImages, siteUrl } from '@/lib/site';
 import { getCurrentUser } from '@/lib/auth/session';
 import { SiteFooter } from '@/components/site/site-footer';
 import { SiteHeader } from '@/components/site/site-header';
@@ -25,6 +25,7 @@ export const metadata: Metadata = {
     locale: 'en',
     title: `${SITE.name} — ${SITE.tagline}`,
     description: SITE.description,
+    images: shareImages('site', `${SITE.name}: ${SITE.tagline}`),
   },
   twitter: { card: 'summary_large_image' },
 };
