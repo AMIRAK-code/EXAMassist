@@ -27,19 +27,17 @@ export function SiteHeader({ account }: { account: AccountState }) {
         <Link
           href="/"
           aria-label={`${SITE.name} home`}
-          className="shrink-0 text-2xl font-extrabold tracking-[-0.04em] text-ink no-underline hover:text-ink"
+          className="flex min-h-11 shrink-0 items-center no-underline"
         >
-          {SITE.name}
-          <span aria-hidden="true" className="text-accent">
-            .
-          </span>
+          {/* The brand files in public/brand are the source of truth; never redraw the mark in text. */}
+          <img src="/brand/examer-wordmark.svg" alt="" width={99} height={28} className="block" />
         </Link>
 
         <nav aria-label="Main" className="ms-4 hidden lg:block">
           <ul className="flex items-center gap-1">
             {primary.map((item) => (
               <li key={item.href}>
-                <NavLink href={item.href} match={item.match} className={`inline-flex ${LINK}`}>
+                <NavLink href={item.href} match={item.match} except={item.except} className={`inline-flex ${LINK}`}>
                   {item.label}
                 </NavLink>
               </li>
@@ -48,28 +46,22 @@ export function SiteHeader({ account }: { account: AccountState }) {
         </nav>
 
         <div className="ms-auto flex items-center gap-2">
-          {account === 'visitor' ? (
-            <>
-              <NavLink href="/sign-in" className={`${LINK} hidden lg:inline-flex`}>
+          {account === 'visitor' || account === 'guest' ? (
+            // Signing in and creating an account sit side by side, as equals
+            <div className="hidden items-center gap-2 lg:flex">
+              <Link href="/sign-in" className={buttonClass({ variant: 'secondary', size: 'sm' })}>
                 Sign in
-              </NavLink>
-              <Link href="/exams" className={buttonClass({ variant: 'ink', size: 'sm' })}>
-                <span className="lg:hidden">Start</span>
-                <span className="hidden lg:inline">Start practising</span>
               </Link>
-            </>
+              <Link href="/sign-up" className={buttonClass({ variant: 'ink', size: 'sm' })}>
+                Create account
+              </Link>
+            </div>
           ) : null}
-          {account === 'guest' ? (
-            <>
-              <NavLink href="/sign-in" className={`${LINK} hidden lg:inline-flex`}>
-                Sign in
-              </NavLink>
-              <div className="hidden lg:block">
-                <Link href="/sign-up" className={buttonClass({ variant: 'ink', size: 'sm' })}>
-                  Keep your progress
-                </Link>
-              </div>
-            </>
+          {account === 'visitor' ? (
+            <Link href="/exams" className={buttonClass({ variant: 'primary', size: 'sm' })}>
+              <span className="lg:hidden">Start</span>
+              <span className="hidden lg:inline">Start practising</span>
+            </Link>
           ) : null}
           {account === 'registered' ? (
             <NavLink href="/account" className={`${LINK} hidden lg:inline-flex`}>

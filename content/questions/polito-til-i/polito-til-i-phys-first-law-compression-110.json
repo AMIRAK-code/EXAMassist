@@ -1,0 +1,82 @@
+{
+  "id": "polito-til-i-phys-first-law-compression-110",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "physics",
+  "domainSlug": "tili-physics",
+  "skillSlug": "tili-phys-thermal",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A gas in a cylinder is compressed by a piston, and the piston does 250 J of work on the gas. During the compression the gas loses 400 J of heat to its surroundings. What is the change in the internal energy of the gas?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$-150\\ \\text{J}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$+150\\ \\text{J}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$-650\\ \\text{J}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$+250\\ \\text{J}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$+650\\ \\text{J}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The first law of thermodynamics says the internal energy of the gas changes by the energy that enters it minus the energy that leaves it. Take the gas as the system and give each transfer its sign from the gas's point of view.\n\n- Heat **leaves** the gas: it lowers the internal energy, so $Q = -400\\ \\text{J}$.\n- Work is done **on** the gas by the piston: it raises the internal energy, so the work received is $+250\\ \\text{J}$.\n\n$$\\Delta U = Q + W_{\\text{on gas}} = -400 + 250 = -150\\ \\text{J}.$$\n\n**Check.** If you prefer the convention $\\Delta U = Q - W$ with $W$ the work done *by* the gas, then $W = -250\\ \\text{J}$ (the gas does negative work when it is compressed), and $\\Delta U = -400 - (-250) = -150\\ \\text{J}$. Either way, the gas loses more energy as heat (400 J) than it gains as work (250 J), so the internal energy must fall.",
+  "distractorRationale": {
+    "c": "Treats both transfers as losses, -400 - 250. Work done on the gas by the piston adds energy to the gas, so it enters with a positive sign.",
+    "b": "Uses $\\Delta U = Q - W$ with both numbers entered as positive, $Q = 400$ and $W = 250$, which gets both signs wrong. The heat is lost, so $Q = -400$ J, and in this convention $W$ is the work done by the gas, which is $-250$ J during a compression. The result has the right size but the wrong sign.",
+    "d": "Ignores the heat loss and counts only the work done on the gas. The gas also gives up 400 J of heat, which must be included.",
+    "e": "Treats both transfers as gains, +400 + 250. The heat leaves the gas, so it lowers the internal energy."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "A thermodynamics question. A gas in a cylinder is compressed by a piston that does 250 joules of work on the gas, and the gas loses 400 joules of heat to its surroundings during the compression. The change in internal energy of the gas is wanted. The choices are minus 650 joules, minus 150 joules, plus 150 joules, plus 250 joules and plus 650 joules.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-wave6-physics-technical-author",
+    "aiAssisted": true,
+    "notes": "Original item. Signs are stated in words, not through a sign convention the candidate must remember. Wrong choices: both losses, sign of heat reversed, heat ignored, both gains."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-wave6-physics-technical-author",
+    "reviewer": "blind-reviewer-wave6-tili-phys-tech-run8",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-phys-tech-run8",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "ΔU = Q + W_on = -400 + 250 = -150 J. The stem states the signs clearly (work done on the gas, heat lost), so +150 J and ±650 J are sign errors. [A second, separate blind solve (blind-reviewer-wave6-tili-phys-tech-run9) reached the same answer: dU = Q + W_on = -400 + 250 = -150 J. +150 is sign flip; -650/+650 add magnitudes with wrong sign convention; +250 ignores heat. Stem wording (work done ON the gas, gas LOSES heat) is unambiguous under either sign convention.]"
+    },
+    "notes": "Awaiting a blind independent solve. The author recomputed every option and checked the key a second way before saving (see the explanation). Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "first-law",
+    "sign-convention",
+    "compression"
+  ]
+}

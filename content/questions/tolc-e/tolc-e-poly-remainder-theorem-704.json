@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-poly-remainder-theorem-704",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-polynomials",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the remainder when $p(x) = x^{3} - 2x^{2} + x - 5$ is divided by $x - 2$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$-23$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$-5$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$-3$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$2$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$7$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Use the **remainder theorem**: the remainder on division of $p(x)$ by $x - c$ is $p(c)$. Here $x - 2$ means $c = 2$, so no long division is needed.\n\n$$p(2) = 2^{3} - 2\\cdot 2^{2} + 2 - 5 = 8 - 8 + 2 - 5 = -3.$$\n\n**How to check it.** Synthetic division by 2 on the coefficients $1, -2, 1, -5$: bring down 1; then $-2+2=0$; then $1+0=1$; then $-5+2=-3$. The last number is the remainder, $-3$.",
+  "distractorRationale": {
+    "a": "Evaluates $p(-2)$ instead of $p(2)$. Dividing by $x-2$ corresponds to the value $x=2$; dividing by $x+2$ would correspond to $-2$.",
+    "b": "Takes the constant term as the remainder. That is $p(0)$, the remainder on division by $x$, not by $x-2$.",
+    "d": "Evaluates the cubic, quadratic and linear terms at 2 ($8-8+2$) and leaves out the constant $-5$.",
+    "e": "Evaluates correctly at 2 but takes the constant term as $+5$: $8-8+2+5$. The last term of $p$ is $-5$."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "The polynomial p of x equals x cubed minus 2 x squared plus x minus 5. The question asks for the remainder when it is divided by x minus 2. The five choices are the numbers negative 23, negative 5, negative 3, 2 and 7.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-tolc-e-mathematics-author",
+    "aiAssisted": true,
+    "notes": "Original item. Distractors: p(-2), the constant term, a dropped constant, and a sign slip on the constant."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-tolc-e-mathematics-author",
+    "reviewer": "blind-reviewer-wave6-tolce-math-run12",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolce-math-run12",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "p(2)=8-8+2-5=-3. p(-2)=-8-8-2-5=-23 gives distractor A, and -5 is the constant term. Only -3 is correct. [A second, separate blind solve (blind-reviewer-wave6-tolce-math-run13) reached the same answer: By the remainder theorem the remainder is p(2)=8-8+2-5=-3. A is p(-2)=-23, the sign-slip distractor, and B is the constant term. D and E do not match any natural slip.]"
+    },
+    "notes": "Author check: the key was computed and then confirmed a second way (see the check in the explanation); each wrong choice was tried against the stem and fails for the reason given in its distractor note. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "remainder-theorem",
+    "polynomial-division"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-geo-right-triangle-inradius-944",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolcf-mathematics",
+  "skillSlug": "tolcf-math-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A right triangle has legs of length $6$ and $8$. What is the radius of the circle inscribed in it?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$1$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$2$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$4$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$4.8$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$5$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "**What to notice first.** For any triangle, area $=$ inradius $\\times$ semiperimeter, because the incentre splits the triangle into three triangles whose heights are all the inradius $r$.\n\n**The computation.** The hypotenuse is $\\sqrt{6^{2}+8^{2}}=\\sqrt{100}=10$. The area is $\\tfrac12\\cdot 6\\cdot 8=24$ and the semiperimeter is $\\tfrac{6+8+10}{2}=12$, so $r=\\dfrac{24}{12}=2$.\n\n**How to check it.** For a right triangle there is a shortcut: $r=\\dfrac{a+b-c}{2}=\\dfrac{6+8-10}{2}=2$, where $c$ is the hypotenuse. Both routes agree.",
+  "distractorRationale": {
+    "a": "Divides the area by the whole perimeter, $24/24$, instead of by the semiperimeter $12$.",
+    "c": "Uses $a+b-c=4$ from the right-triangle shortcut but forgets to halve it.",
+    "d": "Gives the altitude to the hypotenuse, $\\tfrac{6\\cdot 8}{10}=4.8$, a different segment from the inradius.",
+    "e": "Gives the radius of the circumscribed circle, half the hypotenuse, instead of the inscribed one."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "A right triangle has legs of length 6 and 8. The question asks for the radius of the circle inscribed in the triangle. The five choices are: 1; 2; 4; 4.8; 5.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave8-mpl-author",
+    "aiAssisted": true,
+    "notes": "Original item on the inradius of a right triangle via area equals inradius times semiperimeter. Distractors are the circumradius, the altitude to the hypotenuse and two slips in the formula."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave8-mpl-author",
+    "reviewer": "blind-reviewer-wave8-tolcf-mpl-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolcf-mpl-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Hypotenuse 10; r=(6+8-10)/2=2 (or area 24 / semiperimeter 12). 4.8 is the altitude to the hypotenuse, 5 the circumradius, 4 is (a+b-c), 1 a halving slip. [A second, separate blind solve (blind-reviewer-wave8-tolcf-mpl-run1) reached the same answer: Hypotenuse 10; r=(a+b-c)/2=(6+8-10)/2=2 (also area/semiperimeter=24/12). 4.8 is the altitude to the hypotenuse, 5 the circumradius, 4 the diameter.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "inradius",
+    "right-triangle",
+    "area"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "tolc-i-eq-two-radicals-sum-109",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Solve $\\sqrt{x+4} + \\sqrt{x-1} = 5$ over the real numbers.",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$x = 4$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$x = 11$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$x = 1$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$x = 3$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$x = 5$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "With two square roots, isolate one of them before squaring; squaring a sum of two roots directly leaves a cross term. The domain is $x \\ge 1$, and any candidate must be checked in the original equation.\n\n**Step 1 — isolate and square.** $\\sqrt{x+4} = 5 - \\sqrt{x-1}$. Squaring: $x + 4 = 25 - 10\\sqrt{x-1} + (x - 1)$.\n\n**Step 2 — simplify.** The $x$ terms cancel: $10\\sqrt{x-1} = 25 - 1 - 4 = 20$, so $\\sqrt{x-1} = 2$.\n\n**Step 3 — solve.** $x - 1 = 4$, so $x = 5$.\n\n**How to check it.** $\\sqrt{9} + \\sqrt{4} = 3 + 2 = 5$ ✓. The left side increases with $x$, so this is the only solution.",
+  "distractorRationale": {
+    "c": "Forgets to square the 5 on the right, writing $x + 4 = 5 - 10\\sqrt{x-1} + x - 1$, which leads to $\\sqrt{x-1} = 0$. At $x = 1$ the left side is $\\sqrt5 + 0$, not 5.",
+    "d": "Reaches $\\sqrt{x-1} = 2$ but then writes $x - 1 = 2$, forgetting to square. At $x = 3$ the left side is $\\sqrt7 + \\sqrt2 \\approx 4.06$.",
+    "a": "Reaches $\\sqrt{x-1} = 2$ and squares it, but then forgets to add the 1, taking $x = 4$. At $x = 4$ the left side is $\\sqrt8 + \\sqrt3 \\approx 4.56$.",
+    "b": "Squares each root separately, $(x + 4) + (x - 1) = 25$, as if $(p + q)^{2} = p^{2} + q^{2}$. The cross term $2pq$ is missing; at $x = 11$ the left side is $\\sqrt{15} + \\sqrt{10} \\approx 7.0$."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": null,
+  "accessibilityText": "Solve over the real numbers: the square root of x plus 4, plus the square root of x minus 1, equals 5. The five choices are: x equals 4; x equals 11; x equals 1; x equals 3; and x equals 5.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-math-a-author",
+    "aiAssisted": true,
+    "notes": "Original item. Tests an irrational equation with two radicals: isolating one root before squaring and checking the result. Distractors come from squaring term by term and from dropping a square."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-math-a-author",
+    "reviewer": "blind-reviewer-wave8-tolci-math-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-math-run0",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "x=5 gives 3+2=5. The left side is strictly increasing on x>=1, so the solution is unique. x=4, 3 and 1 give sums below 5; 11 gives sqrt15+sqrt10>5. [A second, separate blind solve (blind-reviewer-wave8-tolci-math-run1) reached the same answer: x=5 gives 3+2=5. The left side is strictly increasing, so the solution is unique. Squaring gives sqrt((x+4)(x-1))=11-x, so x^2+3x-4=121-22x+x^2 and x=5. 4, 11, 1 and 3 all fail substitution.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "irrational-equation",
+    "radicals",
+    "squaring"
+  ]
+}

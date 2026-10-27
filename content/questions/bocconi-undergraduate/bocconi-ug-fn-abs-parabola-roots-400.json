@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-fn-abs-parabola-roots-400",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-functions-graphs",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "For which real values of $k$ does the equation\n\n$$\\left| x^{2} - 4x \\right| = k$$\n\nhave **exactly four** distinct real solutions?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$k > 0$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$0 < k \\le 4$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$0 < k < 4$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$0 < k < 2$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "**Read the equation as a picture.** The solutions are the $x$-coordinates of the points where the graph of $y = \\left| x^{2} - 4x \\right|$ meets the horizontal line $y = k$. So first sketch the graph, then slide the line up and down.\n\n**Step 1 — the parabola underneath.** Completing the square,\n\n$$x^{2} - 4x = (x - 2)^{2} - 4$$\n\nso $y = x^{2} - 4x$ is an upward parabola with zeros at $x = 0$ and $x = 4$ and vertex $(2, -4)$.\n\n**Step 2 — apply the absolute value.** Taking $|\\cdot|$ leaves the parts above the $x$-axis alone and reflects the part between $x = 0$ and $x = 4$ upwards. The vertex $(2, -4)$ becomes a local peak at $(2, 4)$. The graph is therefore a \"W\" shape: it touches the $x$-axis at $x = 0$ and $x = 4$, rises to a hump of height $4$ at $x = 2$, and climbs without bound on both outer sides.\n\n**Step 3 — count intersections for each height $k$.**\n\n- $k < 0$: no solutions, because an absolute value is never negative.\n- $k = 0$: two solutions, $x = 0$ and $x = 4$.\n- $0 < k < 4$: the line cuts both outer arms (two points) **and** the hump (two more points): **four** solutions.\n- $k = 4$: the line is tangent to the top of the hump, which contributes the single point $x = 2$; with the two outer points that makes **three**.\n- $k > 4$: the line passes above the hump and meets only the two outer arms: two solutions.\n\nSo exactly four solutions occur precisely when $0 < k < 4$.\n\n**Algebraic check.** The equation splits into $x^{2} - 4x = k$ and $x^{2} - 4x = -k$. Their discriminants are $16 + 4k$ and $16 - 4k$. For four distinct roots both must be positive and the two equations must share no root (they cannot, because $k \\neq -k$ when $k \\neq 0$). This needs $k > 0$ and $16 - 4k > 0$, that is $0 < k < 4$. At $k = 4$ the second discriminant is zero, which is exactly the tangency seen in the sketch.",
+  "distractorRationale": {
+    "d": "This confuses the $x$-coordinate of the hump, $2$, with its height. The peak of the reflected arc is the point $(2, 4)$; the line $y = k$ still crosses the hump for every $k$ between $2$ and $4$, so the interval stops at $4$, not at $2$.",
+    "b": "This includes the boundary value $k = 4$. There the line only touches the top of the hump, so the second equation $x^{2} - 4x = -4$ has the double root $x = 2$, and the total is three distinct solutions, not four.",
+    "a": "This forgets that the reflected hump has a finite height. Every positive $k$ does meet the two outer arms, but only values below $4$ also meet the hump; for $k > 4$ there are just two solutions."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": null,
+  "accessibilityText": "The question asks for which real values of k the equation absolute value of x squared minus four x equals k has exactly four distinct real solutions. No figure is shown. The choices are: k greater than 0; k greater than 0 and at most 4; k between 0 and 4, both excluded; and k between 0 and 2, both excluded.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. The parabola was chosen so the reflected vertex lands at the whole-number height 4, and the root counts for every k were checked by a read-only script (k = 0 gives 2, 0 < k < 4 gives 4, k = 4 gives 3, k > 4 gives 2). Each distractor is the interval produced by one named slip."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-bocconi-math-author",
+    "reviewer": "blind-reviewer-wave7-bocconi-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-bocconi-math-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The graph of |x^2-4x| has zeros at 0 and 4 and a local maximum of 4 at x=2 (the reflected vertex). A horizontal line y=k meets it 4 times exactly when 0<k<4. At k=4 the solutions are 2±2√2 and the double root 2, which is 3 solutions, so B is wrong. For k>4 there are 2. [A second, separate blind solve (blind-reviewer-wave7-bocconi-math-run1) reached the same answer: The graph of |x^2-4x| is W-shaped: zeros at 0 and 4, with a local maximum of 4 at x=2. A horizontal line y=k meets it 4 times exactly when 0<k<4. At k=4 there are 3 solutions (2±2√2 and 2), so B is wrong. A fails for k>4, and D is too narrow.]"
+    },
+    "notes": "Author's uniqueness check: the two component quadratics have discriminants 16 + 4k and 16 - 4k, both positive exactly when -4 < k < 4, and k must be positive for the absolute value to reach it; at k = 0 the roots coincide in pairs and at k = 4 one pair collapses to x = 2. So the set of k giving four distinct roots is exactly 0 < k < 4, and no other choice describes that set. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "absolute-value-graph",
+    "parameter",
+    "number-of-solutions"
+  ]
+}

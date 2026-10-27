@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-phys-water-mixing-temperature-954",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "physics",
+  "domainSlug": "tolcf-physics",
+  "skillSlug": "tolcf-phys-fluids-thermo",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "In an insulated container, $200\\ \\text{g}$ of water at $80\\ ^{\\circ}\\text{C}$ is mixed with $600\\ \\text{g}$ of water at $20\\ ^{\\circ}\\text{C}$. Assuming no heat is exchanged with the container or the surroundings, what is the final temperature of the mixture?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$50\\ ^{\\circ}\\text{C}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$45\\ ^{\\circ}\\text{C}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$65\\ ^{\\circ}\\text{C}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$35\\ ^{\\circ}\\text{C}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$15\\ ^{\\circ}\\text{C}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "**What to notice first.** The heat lost by the hot water equals the heat gained by the cold water, and with the same specific heat on both sides it cancels: the final temperature is a mass-weighted average.\n\n**The computation.**\n\n$$T=\\frac{200\\cdot 80+600\\cdot 20}{200+600}=\\frac{16000+12000}{800}=35\\ ^{\\circ}\\text{C}.$$\n\n**How to check it.** The hot water cools by $45\\ ^{\\circ}\\text{C}$ and the cold water warms by $15\\ ^{\\circ}\\text{C}$. The cold mass is three times the hot mass, so its temperature change is one third as large: $45=3\\cdot 15$.",
+  "distractorRationale": {
+    "a": "Takes the plain average of $80$ and $20$, as if the two masses were equal.",
+    "c": "Swaps the masses, giving the larger weight to the hot water: $\\tfrac{600\\cdot 80+200\\cdot 20}{800}$.",
+    "e": "Reports the temperature rise of the cold water, $15\\ ^{\\circ}\\text{C}$, as the final temperature.",
+    "b": "Reports the temperature drop of the hot water, $45\\ ^{\\circ}\\text{C}$, as the final temperature."
+  },
+  "estimatedSeconds": 50,
+  "stimulusRef": null,
+  "accessibilityText": "In an insulated container, 200 grams of water at 80 degrees Celsius is mixed with 600 grams of water at 20 degrees Celsius, with no heat exchanged with the container or surroundings. Find the final temperature. The five choices are: 50, 45, 65, 35 and 15 degrees Celsius.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave8-mpl-author",
+    "aiAssisted": true,
+    "notes": "Original item on thermal equilibrium of two masses of water as a mass-weighted average. Distractors: unweighted average, swapped weights, and the two temperature changes."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave8-mpl-author",
+    "reviewer": "blind-reviewer-wave8-tolcf-mpl-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolcf-mpl-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Weighted mean: (200*80+600*20)/800 = 28000/800 = 35 C. 50 C is the unweighted mean; 65 C weights the wrong way round; 45 C and 15 C come from arithmetic slips. [A second, separate blind solve (blind-reviewer-wave8-tolcf-mpl-run1) reached the same answer: T = (200*80 + 600*20)/800 = 28000/800 = 35 C. 50 C is the unweighted mean, 65 C reverses the weights.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "calorimetry",
+    "thermal-equilibrium"
+  ]
+}

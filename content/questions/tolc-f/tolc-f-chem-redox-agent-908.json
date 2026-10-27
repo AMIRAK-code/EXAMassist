@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-chem-redox-agent-908",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "chemistry",
+  "domainSlug": "tolcf-chemistry",
+  "skillSlug": "tolcf-chem-stoichiometry-redox",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Consider the reaction\n\n$$2\\,\\mathrm{H_2S} + \\mathrm{SO_2} \\rightarrow 3\\,\\mathrm{S} + 2\\,\\mathrm{H_2O}$$\n\nWhich statement about it is correct?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\mathrm{SO_2}$ is the oxidising agent, because sulfur goes from $+4$ to $0$."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\mathrm{H_2S}$ is the oxidising agent, because sulfur goes from $-2$ to $0$."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Oxygen is oxidised, because it ends up in water."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Hydrogen is reduced, because it ends up in water."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "It is not a redox reaction, because sulfur is present on both sides of the equation."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Assign an oxidation number to every element on each side and see which ones change.\n\n| Species | Element | Oxidation number |\n| --- | --- | --- |\n| $\\mathrm{H_2S}$ | S | $-2$ (H is $+1$) |\n| $\\mathrm{SO_2}$ | S | $+4$ (O is $-2$) |\n| $\\mathrm{S}$ | S | $0$ |\n| $\\mathrm{H_2O}$ | H, O | $+1$, $-2$ |\n\nHydrogen stays at $+1$ and oxygen stays at $-2$. Only sulfur changes:\n\n- In $\\mathrm{H_2S}$, sulfur rises from $-2$ to $0$: it is **oxidised**, so $\\mathrm{H_2S}$ is the reducing agent.\n- In $\\mathrm{SO_2}$, sulfur falls from $+4$ to $0$: it is **reduced**, so $\\mathrm{SO_2}$ is the oxidising agent.\n\n**Check by counting electrons.** Two sulfurs go from $-2$ to $0$, losing $2 \\times 2 = 4$ electrons. One sulfur goes from $+4$ to $0$, gaining 4. The electrons balance, which confirms the coefficients. The oxidising agent is always the species that gets reduced.",
+  "distractorRationale": {
+    "b": "This gets the numbers right and the conclusion backwards. Sulfur rising from $-2$ to $0$ loses electrons, so it is oxidised and $\\mathrm{H_2S}$ is the reducing agent. The oxidising agent is the species that is reduced.",
+    "c": "Ending up in a new compound does not change an oxidation number. Oxygen is $-2$ in $\\mathrm{SO_2}$ and $-2$ in $\\mathrm{H_2O}$, so it is neither oxidised nor reduced.",
+    "d": "Hydrogen is $+1$ in $\\mathrm{H_2S}$ and $+1$ in $\\mathrm{H_2O}$: no change, so it is not reduced. Only sulfur changes oxidation number.",
+    "e": "The same element on both sides says nothing. What counts is its oxidation number, which is $-2$ and $+4$ on the left and $0$ on the right. Electrons are transferred, so it is a redox reaction."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "The reaction is: two molecules of hydrogen sulfide, H subscript 2 S, plus one molecule of sulfur dioxide, S O subscript 2, give three atoms of sulfur and two molecules of water, H subscript 2 O. The question asks which statement about the reaction is correct. The choices are statements about which species is the oxidising agent and which elements are oxidised or reduced.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-chemistry-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank (Wave 6, TOLC-F chemistry). Each wrong choice comes from one named misconception, recorded in distractorRationale. Numbers chosen for hand calculation with no calculator; every key was recomputed a second way in the build script."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-chemistry-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-chem-run15",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-chem-run15",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "In SO2, S goes from +4 to 0, so it is reduced and SO2 is the oxidising agent. In H2S, S goes from -2 to 0, so it is oxidised and H2S is the reducing agent, which makes B wrong. H stays at +1 and O at -2 throughout, so C and D are false. It is a comproportionation redox reaction, so E is false. [A second, separate blind solve (blind-reviewer-wave6-tolcf-chem-run18) reached the same answer: S in SO2 goes from +4 to 0, so it is reduced and SO2 is the oxidising agent. H2S sulfur goes from -2 to 0, so it is oxidised, which makes H2S the reducing agent and B wrong. O (-2) and H (+1) do not change oxidation state, so C and D are wrong. Sulfur appearing on both sides does not stop this being a comproportionation redox, so E is wrong.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication. Key check: S in H2S -2 -> 0 (oxidised), S in SO2 +4 -> 0 (reduced) so SO2 is the oxidising agent; H stays +1, O stays -2; electrons 2x2 = 4 lost, 4 gained. Atoms balance: H 4=4, S 3=3, O 2=2."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "redox",
+    "oxidising-agent",
+    "oxidation-numbers"
+  ]
+}

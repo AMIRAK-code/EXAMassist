@@ -1,0 +1,82 @@
+{
+  "id": "tolc-e-ag-tangent-line-circle-710",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-analytic-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "For which values of $k$ is the line $y = x + k$ tangent to the circle $x^{2} + y^{2} = 8$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$k = \\pm 2\\sqrt{2}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$k = \\pm 4\\sqrt{2}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$k = \\pm 8$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$k = \\pm 2$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$k = \\pm 4$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "A line is tangent to a circle exactly when its distance from the centre equals the radius. The circle $x^{2}+y^{2}=8$ has centre $(0,0)$ and radius $\\sqrt8 = 2\\sqrt2$.\n\n**Method 1 — distance.** Write the line as $x - y + k = 0$. Its distance from the origin is $\\dfrac{|k|}{\\sqrt{1^{2}+(-1)^{2}}} = \\dfrac{|k|}{\\sqrt2}$. Setting this equal to $2\\sqrt2$ gives $|k| = 2\\sqrt2\\cdot\\sqrt2 = 4$, so $k = \\pm 4$.\n\n**Method 2 — discriminant (an independent check).** Substitute $y = x+k$: $x^{2} + (x+k)^{2} = 8$, that is $2x^{2} + 2kx + k^{2} - 8 = 0$. A tangent line meets the circle once, so the discriminant is zero: $4k^{2} - 8(k^{2} - 8) = 64 - 4k^{2} = 0$, so $k^{2}=16$ and $k = \\pm 4$.\n\nFor $k=4$ the equation becomes $2(x+2)^{2}=0$, a double root at $x=-2$, the single point $(-2, 2)$, and indeed $(-2)^{2}+2^{2}=8$.",
+  "distractorRationale": {
+    "d": "Multiplies by $\\sqrt2$ where the distance formula divides: $|k|\\sqrt2 = 2\\sqrt2$ gives $|k| = 2$.",
+    "a": "Sets $|k|$ equal to the radius, forgetting that the distance from the centre to the line $x - y + k = 0$ is $\\dfrac{|k|}{\\sqrt{2}}$, not $|k|$.",
+    "b": "Takes the radius to be 4, half of 8, instead of $\\sqrt{8}=2\\sqrt2$. The correct distance condition $\\dfrac{|k|}{\\sqrt2} = 4$ then gives $|k| = 4\\sqrt2$.",
+    "c": "Makes two slips at once: takes the number 8 on the right of the equation as the radius (it is $r^{2}$, so $r=\\sqrt8$), and uses $|k|$ as the distance from the centre instead of $\\dfrac{|k|}{\\sqrt2}$, so the condition becomes $|k| = 8$."
+  },
+  "estimatedSeconds": 140,
+  "stimulusRef": null,
+  "accessibilityText": "For which values of k is the line y equals x plus k tangent to the circle x squared plus y squared equals 8. The five choices are: k equals plus or minus 2; k equals plus or minus 2 times the square root of 2; k equals plus or minus 4; k equals plus or minus 4 times the square root of 2; and k equals plus or minus 8.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-tolc-e-mathematics-author",
+    "aiAssisted": true,
+    "notes": "Original item. Solved two ways (distance from the centre and zero discriminant). Distractors: distance formula without or inverted square root, radius read as 4, and radius read as 8."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-tolc-e-mathematics-author",
+    "reviewer": "blind-reviewer-wave6-tolce-math-run12",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolce-math-run12",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The distance from the origin to x-y+k=0 is |k|/sqrt2. Setting it equal to the radius sqrt8=2sqrt2 gives |k|=4. Substituting also works: 2x^2+2kx+k^2-8=0 has discriminant 0 when k^2=16. ±2sqrt2 is the radius, not k, and ±8 is r^2. [A second, separate blind solve (blind-reviewer-wave6-tolce-math-run13) reached the same answer: Distance from the origin to x-y+k=0 is |k|/sqrt2, which must equal the radius 2sqrt2, so |k|=4. Checked by substitution too: 2x^2+2kx+k^2-8=0 has discriminant 0 when k^2=16. The other options confuse the radius (2sqrt2) or r^2 (8) with k.]"
+    },
+    "notes": "Author check: the key was computed and then confirmed a second way (see the check in the explanation); each wrong choice was tried against the stem and fails for the reason given in its distractor note. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "tangent",
+    "circle",
+    "point-line-distance"
+  ]
+}

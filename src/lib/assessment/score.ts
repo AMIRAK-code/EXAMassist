@@ -151,7 +151,7 @@ export function scoreResponse(
   key: AnswerKey,
   response: Response | null | undefined,
   policy: ScoringPolicy,
-  item?: ItemTraits,
+  item?: ScoringItem,
 ): ScoreOutcome {
   if (key.type === 'essay') {
     return { status: 'not_auto_scored', points: 0, pointsPossible: 0 };
@@ -164,23 +164,25 @@ export function scoreResponse(
   const correct = isResponseCorrect(key, response as Response);
   return correct
     ? { status: 'correct', points: policy.pointsCorrect, pointsPossible: policy.pointsCorrect }
-    : { status: 'incorrect', points: penaltyFor(policy, item), pointsPossible: policy.pointsCorrect };
+    : { status: 'incorrect', points: incorrectPoints(policy, item), pointsPossible: policy.pointsCorrect };
 }
 
-/** What an item-level penalty rule needs to know about the item. */
-export interface ItemTraits {
+/** What the scorer needs to know about an item beyond its key. */
+export interface ScoringItem {
   domainSlug: string;
+  /** Options offered on screen; 0 for a response type without options. */
   optionCount: number;
 }
 
 /**
- * The points a wrong answer costs on this item: the exam's penalty, unless a
- * published item-level exception matches. Without traits, the exam's penalty.
+ * The points for a wrong answer to this item: the exam's rule, unless a
+ * published per-item exception (`itemPenaltyOverrides`) matches it. Without
+ * the item, the exam's rule.
  */
-export function penaltyFor(policy: ScoringPolicy, item?: ItemTraits): number {
+export function incorrectPoints(policy: ScoringPolicy, item?: ScoringItem): number {
   if (!item) return policy.pointsIncorrect;
-  const override = (policy.penaltyOverrides ?? []).find(
-    (rule) => rule.domainSlugs.includes(item.domainSlug) && rule.optionCount === item.optionCount,
+  const override = policy.itemPenaltyOverrides?.find(
+    (rule) => rule.optionCount === item.optionCount && rule.domains.includes(item.domainSlug),
   );
   return override ? override.pointsIncorrect : policy.pointsIncorrect;
 }

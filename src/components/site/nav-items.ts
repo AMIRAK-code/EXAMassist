@@ -8,11 +8,17 @@ export interface NavItem {
   label: string;
   /** Other path prefixes under which this item counts as current. */
   match?: string[];
+  /** Path prefixes under `href` that have their own item, so this one is not current there. */
+  except?: string[];
 }
+
+/** The Bocconi test page has its own place in the navigation. */
+const BOCCONI = '/exams/bocconi-online-test';
 
 /** For visitors without a session. */
 export const PUBLIC_NAV: NavItem[] = [
-  { href: '/exams', label: 'Exams', match: ['/practice'] },
+  { href: '/exams', label: 'Exams', match: ['/practice'], except: [BOCCONI] },
+  { href: BOCCONI, label: 'Bocconi test' },
   { href: '/guides', label: 'Guides' },
   { href: '/about/how-scoring-works', label: 'How scoring works' },
 ];
@@ -20,7 +26,7 @@ export const PUBLIC_NAV: NavItem[] = [
 /** For anyone with a session, guest or registered. */
 export const LEARNER_NAV: NavItem[] = [
   { href: '/dashboard', label: 'Dashboard' },
-  { href: '/exams', label: 'Exams', match: ['/practice'] },
+  { href: '/exams', label: 'Exams', match: ['/practice'], except: [BOCCONI] },
   { href: '/review', label: 'Mistake notebook' },
   // One planning destination, with Plan and Progress & readiness views.
   { href: '/study-plan', label: 'Study plan', match: ['/readiness'] },
@@ -28,6 +34,7 @@ export const LEARNER_NAV: NavItem[] = [
 
 /** Reference pages a learner still needs, kept out of the main bar. */
 export const LEARNER_SECONDARY: NavItem[] = [
+  { href: BOCCONI, label: 'Bocconi test' },
   { href: '/guides', label: 'Guides' },
   { href: '/about/how-scoring-works', label: 'How scoring works' },
 ];

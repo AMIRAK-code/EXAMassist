@@ -1,3 +1,5 @@
+import { readdirSync } from 'node:fs';
+import { join } from 'node:path';
 import { expect, test, type Page } from '@playwright/test';
 import { resetRateLimits } from './helpers';
 
@@ -82,8 +84,10 @@ test.describe('homepage sample question', () => {
   test('the homepage summarises what each exam can start and links to every format', async ({ page }) => {
     await page.goto('/');
     const formats = page.locator('section#formats');
-    // One entry per exam configuration, each naming what is open now.
-    await expect(formats.getByRole('listitem')).toHaveCount(7);
+    // One entry per exam configuration, each naming what is open now. Counted
+    // from the configs themselves, so adding an exam does not break this.
+    const configCount = readdirSync(join(process.cwd(), 'src/lib/exams/configs')).filter((f) => f.endsWith('.ts')).length;
+    await expect(formats.getByRole('listitem')).toHaveCount(configCount);
     await expect(formats.getByRole('listitem').first()).toContainText('Open:');
     await formats.getByRole('link', { name: 'Every format, and what each still needs' }).click();
     await expect(page).toHaveURL(/\/exams#formats$/);
@@ -99,7 +103,7 @@ test.describe('navigation', () => {
 
     const menu = page.getByRole('button', { name: 'Menu' });
     if (await menu.isVisible()) await menu.click();
-    const keep = page.getByRole('link', { name: 'Keep your progress' }).filter({ visible: true });
+    const keep = page.getByRole('link', { name: 'Create account' }).filter({ visible: true });
     await expect(keep.first()).toHaveAttribute('href', '/sign-up');
     expect(await horizontalOverflow(page)).toBeLessThanOrEqual(1);
   });
@@ -131,9 +135,14 @@ test.describe('navigation', () => {
   });
 });
 
+// These tests need a Craft and Structure skill with fewer than five reviewed
+// questions, so that the page shows its shortfall state. Cross-Text
+// Connections has four; when it grows past that, pick another small skill.
+const SMALL_SKILL = 'cross-text-connections';
+
 test.describe('practice setup', () => {
   test('a preset skill is shown and the length follows what the bank holds', async ({ page }) => {
-    await page.goto('/practice/digital-sat?skill=words-in-context');
+    await page.goto(`/practice/digital-sat?skill=${SMALL_SKILL}`);
     await expect(page.getByRole('button', { name: 'Remove skill filter' })).toBeVisible();
     await expect(page.getByText(/Only \d+ reviewed questions? match(es)? these settings/)).toBeVisible();
 
@@ -148,7 +157,7 @@ test.describe('practice setup', () => {
   });
 
   test('broader practice is an explicit choice', async ({ page }) => {
-    await page.goto('/practice/digital-sat?skill=words-in-context');
+    await page.goto(`/practice/digital-sat?skill=${SMALL_SKILL}`);
     await page.getByRole('button', { name: /^Practise all of Craft and Structure/ }).click();
     await expect(page.getByRole('button', { name: 'Remove skill filter' })).toHaveCount(0);
     await expect(page.getByLabel('Topic')).toHaveValue('craft-and-structure');

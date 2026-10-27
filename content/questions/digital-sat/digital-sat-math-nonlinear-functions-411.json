@@ -1,0 +1,77 @@
+{
+  "id": "digital-sat-math-nonlinear-functions-411",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "advanced-math",
+  "skillSlug": "nonlinear-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "The function $f$ is defined by $f(x) = -2(x - 3)^2 + 8$. What is the maximum value of $f(x)$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$-10$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$-2$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$3$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$8$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The function is written in vertex form, $f(x) = a(x - h)^2 + k$, where the vertex is $(h, k)$. Here $a = -2$, $h = 3$ and $k = 8$.\n\nBecause $a$ is negative, the parabola opens downward, so the vertex is the highest point and its $y$-coordinate is the maximum value.\n\nYou can also see it without the formula. The square $(x - 3)^2$ is never negative, so $-2(x - 3)^2$ is never positive: it is $0$ when $x = 3$ and negative for every other $x$. The largest value of $f(x)$ is therefore $0 + 8 = 8$, reached at $x = 3$.\n\nCheck a nearby value: $f(4) = -2(1)^2 + 8 = 6$, which is less than $8$, as expected.\n\nKeep the two coordinates of the vertex apart: $3$ tells you *where* the maximum happens, and $8$ is the maximum *value*.",
+  "distractorRationale": {
+    "a": "This is $f(0) = -2(9) + 8 = -10$, the $y$-intercept of the graph. The graph crosses the $y$-axis there, but it rises higher at $x = 3$.",
+    "b": "This is the leading coefficient $a$. It tells you the parabola opens downward and how steep it is, but it is not a value the function reaches at its peak.",
+    "c": "This is the $x$-coordinate of the vertex, the input at which the maximum occurs. The question asks for the maximum value of $f(x)$, which is the output there, $f(3) = 8$."
+  },
+  "estimatedSeconds": 45,
+  "stimulusRef": null,
+  "accessibilityText": "The function f of x equals negative 2 times the quantity x minus 3 squared, plus 8. Find the maximum value of f of x. The four choices are negative 10, negative 2, 3 and 8.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-sat-math-alg-author",
+    "aiAssisted": true,
+    "notes": "Original item. Each distractor is another number visible in or directly computed from the vertex form, so the item tests reading vertex form rather than arithmetic."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-sat-math-alg-author",
+    "reviewer": "blind-reviewer-wave7-sat-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-sat-math-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The parabola opens downward with vertex (3,8), so the maximum value is 8. Choice C (3) is the x-value where the maximum occurs, a deliberate distractor. [A second, separate blind solve (blind-reviewer-wave7-sat-math-run1) reached the same answer: The function is in vertex form with vertex (3, 8) and a negative leading coefficient, so the maximum value is 8. C (3) is the x-coordinate of the vertex, a common trap.]"
+    },
+    "notes": "Author solved twice and checked by script (grid search of f on [-10, 10] gives a maximum of 8 at x = 3; f(0) = -10). Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "advanced-math",
+    "quadratic",
+    "vertex-form"
+  ]
+}

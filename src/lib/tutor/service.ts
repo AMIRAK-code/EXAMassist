@@ -75,21 +75,21 @@ function startOfUtcDay(now: Date): string {
 }
 
 /** Model calls actually made - cache hits are free and do not count. */
-function modelCallsToday(db: Db, now: Date, userId?: string): number {
+async function modelCallsToday(db: Db, now: Date, userId?: string): Promise<number> {
   const since = startOfUtcDay(now);
   const row = userId
-    ? (db
+    ? ((await db
         .prepare(
           `SELECT COUNT(*) AS n FROM tutor_usage
            WHERE user_id = ? AND created_at >= ? AND cache_hit = 0 AND outcome <> 'blocked'`,
         )
-        .get(userId, since) as { n: number })
-    : (db
+        .get(userId, since)) as { n: number })
+    : ((await db
         .prepare(
           `SELECT COUNT(*) AS n FROM tutor_usage
            WHERE created_at >= ? AND cache_hit = 0 AND outcome <> 'blocked'`,
         )
-        .get(since) as { n: number });
+        .get(since)) as { n: number });
   return row.n;
 }
 
@@ -99,23 +99,23 @@ export interface TutorQuota {
   remaining: number;
 }
 
-export function quotaFor(db: Db, caller: Caller, now = new Date()): TutorQuota {
+export async function quotaFor(db: Db, caller: Caller, now = new Date()): Promise<TutorQuota> {
   const { limits } = tutorSettings();
   const dailyLimit = caller.isGuest ? limits.perGuestDaily : limits.perAccountDaily;
-  const usedToday = modelCallsToday(db, now, caller.userId);
+  const usedToday = (await modelCallsToday(db, now, caller.userId));
   return { usedToday, dailyLimit, remaining: Math.max(0, dailyLimit - usedToday) };
 }
 
-function assertWithinLimits(db: Db, caller: Caller, now: Date): void {
+async function assertWithinLimits(db: Db, caller: Caller, now: Date): Promise<void> {
   const { limits } = tutorSettings();
-  if (modelCallsToday(db, now) >= limits.globalDaily) {
+  if ((await modelCallsToday(db, now)) >= limits.globalDaily) {
     throw new TutorError(
       'tutor-busy',
       'The AI tutor has reached its limit for today. Every question still has its full reviewed explanation.',
       429,
     );
   }
-  const quota = quotaFor(db, caller, now);
+  const quota = (await quotaFor(db, caller, now));
   if (quota.remaining <= 0) {
     throw new TutorError(
       'tutor-quota',
@@ -128,7 +128,7 @@ function assertWithinLimits(db: Db, caller: Caller, now: Date): void {
   }
 }
 
-function recordUsage(
+async function recordUsage(
   db: Db,
   caller: Caller,
   kind: TutorKind,
@@ -136,11 +136,11 @@ function recordUsage(
   cacheHit: boolean,
   responseId: string | null,
   now: Date,
-): void {
-  db.prepare(
+): Promise<void> {
+  (await db.prepare(
     `INSERT INTO tutor_usage (user_id, kind, response_id, cache_hit, outcome, created_at)
      VALUES (?, ?, ?, ?, ?, ?)`,
-  ).run(caller.userId, kind, responseId, cacheHit ? 1 : 0, outcome, now.toISOString());
+  ).run(caller.userId, kind, responseId, cacheHit ? 1 : 0, outcome, now.toISOString()));
 }
 
 // ---------------------------------------------------------------------------
@@ -152,7 +152,7 @@ interface StoredResponse {
   body_md: string;
 }
 
-function cached(db: Db, cacheKey: string, userId: string | null): StoredResponse | undefined {
+async function cached(db: Db, cacheKey: string, userId: string | null): Promise<StoredResponse | undefined> {
   // Debriefs are personal: only ever served back to the learner they describe.
   const sql = userId
     ? `SELECT id, body_md FROM tutor_responses
@@ -161,12 +161,12 @@ function cached(db: Db, cacheKey: string, userId: string | null): StoredResponse
     : `SELECT id, body_md FROM tutor_responses
        WHERE cache_key = ? AND withdrawn_at IS NULL
        ORDER BY created_at DESC LIMIT 1`;
-  return (userId ? db.prepare(sql).get(cacheKey, userId) : db.prepare(sql).get(cacheKey)) as
+  return (userId ? (await db.prepare(sql).get(cacheKey, userId)) : (await db.prepare(sql).get(cacheKey))) as
     | StoredResponse
     | undefined;
 }
 
-function store(
+async function store(
   db: Db,
   input: {
     kind: TutorKind;
@@ -181,9 +181,9 @@ function store(
     outputTokens: number;
   },
   now: Date,
-): string {
+): Promise<string> {
   const id = randomUUID();
-  db.prepare(
+  (await db.prepare(
     `INSERT INTO tutor_responses (id, kind, cache_key, question_id, question_version_id, attempt_id,
                                   user_id, model, body_md, input_tokens, output_tokens, created_at)
      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -203,7 +203,7 @@ function store(
     input.inputTokens,
     input.outputTokens,
     now.toISOString(),
-  );
+  ));
   return id;
 }
 
@@ -375,15 +375,15 @@ function findItem(state: AttemptState, partIndex: number, position: number): Att
   return item;
 }
 
-function loadReviewable(db: Db, item: AttemptItemState): ReviewableQuestion {
-  const version = getQuestionVersion(db, item.questionVersionId);
+async function loadReviewable(db: Db, item: AttemptItemState): Promise<ReviewableQuestion> {
+  const version = (await getQuestionVersion(db, item.questionVersionId));
   if (!version) throw new TutorError('unknown-item', 'That question could not be found.', 404);
-  return toReviewable(db, version);
+  return (await toReviewable(db, version));
 }
 
-function loadState(db: Db, attemptId: string, userId: string): AttemptState {
+async function loadState(db: Db, attemptId: string, userId: string): Promise<AttemptState> {
   try {
-    return getAttemptState(db, attemptId, userId);
+    return (await getAttemptState(db, attemptId, userId));
   } catch (error) {
     // Someone else's attempt looks exactly like a missing one.
     if (error instanceof AttemptError && (error.status === 404 || error.status === 403)) {
@@ -416,14 +416,14 @@ export async function questionHelp(
   const settings = tutorSettings();
   if (!settings.enabled && !options.client) throw failure('disabled');
 
-  const state = loadState(db, input.attemptId, caller.userId);
+  const state = (await loadState(db, input.attemptId, caller.userId));
   const item = findItem(state, input.partIndex, input.position);
 
   if (input.kind === 'hint') {
     const live = state.status === 'in_progress';
     const onThisPart = state.currentPartIndex === input.partIndex;
     if (!live || !state.immediateFeedback || !onThisPart) {
-      recordUsage(db, caller, 'hint', 'blocked', false, null, now);
+      (await recordUsage(db, caller, 'hint', 'blocked', false, null, now));
       throw new TutorError(
         'tutor-not-allowed',
         'Hints are available only in untimed learning sessions, never in timed sections, diagnostics or simulations.',
@@ -442,7 +442,7 @@ export async function questionHelp(
     }
   } else if (!item.review) {
     // Exactly the rule that withholds the answer key.
-    recordUsage(db, caller, 'explain', 'blocked', false, null, now);
+    (await recordUsage(db, caller, 'explain', 'blocked', false, null, now));
     throw new TutorError(
       'tutor-not-allowed',
       'An explanation is available once you are allowed to see the answer: after checking your answer in a learning session, or when the session is over.',
@@ -450,20 +450,20 @@ export async function questionHelp(
     );
   }
 
-  const question = loadReviewable(db, item);
+  const question = (await loadReviewable(db, item));
   const level = input.level ?? 1;
   const cacheKey =
     input.kind === 'hint'
       ? `hint:v2:${question.questionVersionId}:${level}`
       : `explain:v2:${question.questionVersionId}:${responseFingerprint(item.response)}`;
 
-  const hit = cached(db, cacheKey, null);
+  const hit = (await cached(db, cacheKey, null));
   if (hit) {
-    recordUsage(db, caller, input.kind, 'ok', true, hit.id, now);
+    (await recordUsage(db, caller, input.kind, 'ok', true, hit.id, now));
     return reply(input.kind, hit.id, hit.body_md, true);
   }
 
-  assertWithinLimits(db, caller, now);
+  (await assertWithinLimits(db, caller, now));
 
   const promptQuestion = tutorQuestion(state, question);
   const solution = tutorSolution(question);
@@ -484,7 +484,7 @@ export async function questionHelp(
         maxTokens: MAX_OUTPUT_TOKENS.hint,
       });
       if (!result.ok) {
-        recordUsage(db, caller, 'hint', result.kind === 'refused' ? 'refused' : 'error', false, null, now);
+        (await recordUsage(db, caller, 'hint', result.kind === 'refused' ? 'refused' : 'error', false, null, now));
         throw failure(result.kind);
       }
       const check = checkHintForLeaks({
@@ -494,10 +494,10 @@ export async function questionHelp(
         visibleText,
       });
       if (!check.safe) {
-        recordUsage(db, caller, 'hint', 'unsafe', false, null, now);
+        (await recordUsage(db, caller, 'hint', 'unsafe', false, null, now));
         continue;
       }
-      const id = store(
+      const id = (await store(
         db,
         {
           kind: 'hint',
@@ -512,8 +512,8 @@ export async function questionHelp(
           outputTokens: result.outputTokens,
         },
         now,
-      );
-      recordUsage(db, caller, 'hint', 'ok', false, id, now);
+      ));
+      (await recordUsage(db, caller, 'hint', 'ok', false, id, now));
       return reply('hint', id, result.text, false, result.truncated);
     }
 
@@ -532,10 +532,10 @@ export async function questionHelp(
   });
   const result = await client.complete({ system: prompt.system, user: prompt.user, maxTokens: MAX_OUTPUT_TOKENS.explain });
   if (!result.ok) {
-    recordUsage(db, caller, 'explain', result.kind === 'refused' ? 'refused' : 'error', false, null, now);
+    (await recordUsage(db, caller, 'explain', result.kind === 'refused' ? 'refused' : 'error', false, null, now));
     throw failure(result.kind);
   }
-  const id = store(
+  const id = (await store(
     db,
     {
       kind: 'explain',
@@ -550,8 +550,8 @@ export async function questionHelp(
       outputTokens: result.outputTokens,
     },
     now,
-  );
-  recordUsage(db, caller, 'explain', 'ok', false, id, now);
+  ));
+  (await recordUsage(db, caller, 'explain', 'ok', false, id, now));
   return reply('explain', id, result.text, false, result.truncated);
 }
 
@@ -561,8 +561,8 @@ function excerpt(text: string, max = 280): string {
 }
 
 /** Builds the debrief's input from the stored result. Exported for tests. */
-export function buildDebriefInput(db: Db, state: AttemptState, userId: string): DebriefInput {
-  const result = getResult(db, state.id, userId);
+export async function buildDebriefInput(db: Db, state: AttemptState, userId: string): Promise<DebriefInput> {
+  const result = (await getResult(db, state.id, userId));
   if (!result) throw new TutorError('tutor-no-result', 'This session has no results yet.', 409);
 
   const config = requireExamConfig(state.examKey);
@@ -595,12 +595,12 @@ export function buildDebriefInput(db: Db, state: AttemptState, userId: string): 
   // Wrong answers first - they carry an editor's note on the specific
   // misreading - then blanks. Eight is enough to find patterns without
   // sending the whole session.
-  const missed = items
+  const missed = (await Promise.all(items
     .filter((item) => item.review && item.review.correct !== true && item.question.responseType !== 'essay')
     .sort((a, b) => Number(b.answered) - Number(a.answered))
     .slice(0, 8)
-    .map((item) => {
-      const question = loadReviewable(db, item);
+    .map(async (item) => {
+      const question = (await loadReviewable(db, item));
       const chosenId = item.response?.type === 'single_select' ? item.response.optionId : null;
       return {
         skill: labels.skills[question.skillSlug] ?? question.skillSlug,
@@ -609,7 +609,7 @@ export function buildDebriefInput(db: Db, state: AttemptState, userId: string): 
         correctAnswer: answerSummary(question),
         editorNote: chosenId ? (question.distractorRationale[chosenId] ?? null) : null,
       };
-    });
+    })));
 
   const limits = state.parts.map((p) => p.timeLimitSeconds).filter((s): s is number => typeof s === 'number');
   const scoring = config.scoring;
@@ -648,31 +648,31 @@ export async function debrief(
   const client = options.client ?? anthropicTutorClient;
   if (!tutorSettings().enabled && !options.client) throw failure('disabled');
 
-  const state = loadState(db, attemptId, caller.userId);
+  const state = (await loadState(db, attemptId, caller.userId));
   if (state.status === 'in_progress') {
-    recordUsage(db, caller, 'debrief', 'blocked', false, null, now);
+    (await recordUsage(db, caller, 'debrief', 'blocked', false, null, now));
     throw new TutorError('tutor-not-allowed', 'The after-test guide is available once the session is finished.', 403);
   }
 
   const cacheKey = `debrief:v2:${attemptId}`;
-  const hit = cached(db, cacheKey, caller.userId);
+  const hit = (await cached(db, cacheKey, caller.userId));
   if (hit) {
-    recordUsage(db, caller, 'debrief', 'ok', true, hit.id, now);
+    (await recordUsage(db, caller, 'debrief', 'ok', true, hit.id, now));
     return reply('debrief', hit.id, hit.body_md, true);
   }
 
-  assertWithinLimits(db, caller, now);
+  (await assertWithinLimits(db, caller, now));
 
-  const prompt = debriefPrompt(buildDebriefInput(db, state, caller.userId));
+  const prompt = debriefPrompt((await buildDebriefInput(db, state, caller.userId)));
   const result = await client.complete({ system: prompt.system, user: prompt.user, maxTokens: MAX_OUTPUT_TOKENS.debrief });
   if (!result.ok) {
-    recordUsage(db, caller, 'debrief', result.kind === 'refused' ? 'refused' : 'error', false, null, now);
+    (await recordUsage(db, caller, 'debrief', result.kind === 'refused' ? 'refused' : 'error', false, null, now));
     throw failure(result.kind);
   }
 
   const check = checkDebriefForForecasts(result.text);
   if (!check.safe) {
-    recordUsage(db, caller, 'debrief', 'unsafe', false, null, now);
+    (await recordUsage(db, caller, 'debrief', 'unsafe', false, null, now));
     console.warn('[tutor] withheld a debrief that', check.reason);
     throw new TutorError(
       'tutor-debrief-unsafe',
@@ -681,7 +681,7 @@ export async function debrief(
     );
   }
 
-  const id = store(
+  const id = (await store(
     db,
     {
       kind: 'debrief',
@@ -696,8 +696,8 @@ export async function debrief(
       outputTokens: result.outputTokens,
     },
     now,
-  );
-  recordUsage(db, caller, 'debrief', 'ok', false, id, now);
+  ));
+  (await recordUsage(db, caller, 'debrief', 'ok', false, id, now));
   return reply('debrief', id, result.text, false, result.truncated);
 }
 
@@ -705,15 +705,15 @@ export async function debrief(
 // Reports about an AI response
 // ---------------------------------------------------------------------------
 
-export function flagResponse(
+export async function flagResponse(
   db: Db,
   caller: Caller,
   input: { responseId: string; details?: string },
   now = new Date(),
-): void {
-  const row = db
+): Promise<void> {
+  const row = (await db
     .prepare(`SELECT id, kind, question_id, question_version_id, attempt_id, user_id FROM tutor_responses WHERE id = ?`)
-    .get(input.responseId) as
+    .get(input.responseId)) as
     | { id: string; kind: string; question_id: string | null; question_version_id: string | null; attempt_id: string | null; user_id: string | null }
     | undefined;
   // A debrief belongs to one learner; nobody else can see it, so nobody else
@@ -722,7 +722,7 @@ export function flagResponse(
     throw new TutorError('unknown-response', 'We could not find that AI response.', 404);
   }
 
-  db.prepare(
+  (await db.prepare(
     `INSERT INTO content_flags (id, question_id, question_version_id, user_id, reason, details,
                                 status, resolution, created_at, resolved_at, tutor_response_id)
      VALUES (?, ?, ?, ?, 'ai_response', ?, 'open', NULL, ?, NULL, ?)`,
@@ -734,14 +734,14 @@ export function flagResponse(
     input.details?.trim() || null,
     now.toISOString(),
     row.id,
-  );
+  ));
 }
 
 /** Editors withdraw a response after a report; the next request makes a new one. */
-export function withdrawResponse(db: Db, responseId: string, now = new Date()): boolean {
+export async function withdrawResponse(db: Db, responseId: string, now = new Date()): Promise<boolean> {
   return (
-    db
+    (await db
       .prepare(`UPDATE tutor_responses SET withdrawn_at = ? WHERE id = ? AND withdrawn_at IS NULL`)
-      .run(now.toISOString(), responseId).changes > 0
+      .run(now.toISOString(), responseId)).changes > 0
   );
 }

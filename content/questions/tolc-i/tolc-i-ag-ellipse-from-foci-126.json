@@ -1,0 +1,82 @@
+{
+  "id": "tolc-i-ag-ellipse-from-foci-126",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-analytic-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "An ellipse has its centre at the origin and its foci on the $x$-axis, $8$ units apart. It passes through the point $(0, 3)$. Which is its equation?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\dfrac{x^{2}}{7} + \\dfrac{y^{2}}{9} = 1$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\dfrac{x^{2}}{9} + \\dfrac{y^{2}}{25} = 1$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\dfrac{x^{2}}{73} + \\dfrac{y^{2}}{9} = 1$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\dfrac{x^{2}}{25} + \\dfrac{y^{2}}{9} = 1$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\dfrac{x^{2}}{16} + \\dfrac{y^{2}}{9} = 1$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "With foci on the $x$-axis the equation is $\\dfrac{x^{2}}{a^{2}} + \\dfrac{y^{2}}{b^{2}} = 1$ with $a > b$, and the foci are at $(\\pm c, 0)$ where $c^{2} = a^{2} - b^{2}$.\n\n**Step 1 — $c$.** The foci are $8$ apart, so $2c = 8$ and $c = 4$.\n\n**Step 2 — $b$.** The point $(0, 3)$ is on the $y$-axis: substituting gives $\\frac{9}{b^{2}} = 1$, so $b^{2} = 9$ (it is an endpoint of the minor axis).\n\n**Step 3 — $a$.** $a^{2} = b^{2} + c^{2} = 9 + 16 = 25$, so the equation is $\\dfrac{x^{2}}{25} + \\dfrac{y^{2}}{9} = 1$.\n\n**Check.** From $(0, 3)$ to each focus $(\\pm 4, 0)$ is $\\sqrt{16 + 9} = 5$, so the sum of distances is $10 = 2a$ ✓, the defining property of the ellipse.",
+  "distractorRationale": {
+    "a": "Uses $a^{2} = c^{2} - b^{2} = 16 - 9$, the hyperbola relation; with $7 < 9$ the major axis would be vertical and the foci on the $y$-axis.",
+    "b": "Swaps the roles of the axes, putting $25$ under $y^{2}$; that ellipse has its foci on the $y$-axis and does not pass through $(0, 3)$.",
+    "e": "Takes the semi-major axis equal to the focal half-distance, $a = c = 4$; then $c^{2} = 16 - 9 = 7$ and the foci would be only $2\\sqrt{7}$ apart.",
+    "c": "Uses the full distance $8$ as $c$, so $a^{2} = 64 + 9$; the foci would then be $16$ apart."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": "An ellipse has its centre at the origin and its foci on the x-axis, 8 units apart. It passes through the point with coordinates 0 and 3. Which is its equation? The five choices are: x squared over 7 plus y squared over 9 equals 1; x squared over 9 plus y squared over 25 equals 1; x squared over 73 plus y squared over 9 equals 1; x squared over 25 plus y squared over 9 equals 1; x squared over 16 plus y squared over 9 equals 1.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-math-b-author",
+    "aiAssisted": true,
+    "notes": "Tests the canonical equation of an ellipse and the relation a squared equals b squared plus c squared. Original item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-math-b-author",
+    "reviewer": "blind-reviewer-wave8-tolci-math-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-math-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Foci 8 apart gives c=4. Passing through (0,3) on the minor axis gives b=3, so a^2=b^2+c^2=25 and the equation is x^2/25+y^2/9=1. Using x^2/16 takes a=c; x^2/7 uses a^2=b^2-c^2 with the axes swapped; x^2/73 uses 64 instead of 16. [A second, separate blind solve (blind-reviewer-wave8-tolci-math-run1) reached the same answer: Foci 8 apart give c=4. (0,3) on the minor axis gives b=3, so a^2=b^2+c^2=25 and the equation is x^2/25+y^2/9=1. 16 (taking a=c), 73 (c=8) and the options with the major axis on y all fail, because their foci are not on the x-axis 8 apart.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "ellipse",
+    "foci",
+    "conics"
+  ]
+}

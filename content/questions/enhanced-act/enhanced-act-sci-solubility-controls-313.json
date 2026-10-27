@@ -1,6 +1,6 @@
 {
   "id": "enhanced-act-sci-solubility-controls-313",
-  "version": 1,
+  "version": 2,
   "examKey": "enhanced-act",
   "sectionKey": "science",
   "domainSlug": "act-science-scientific-investigation",
@@ -15,22 +15,22 @@
     {
       "id": "a",
       "label": "A",
-      "textMd": "remove the need to measure the mass of water used in each trial."
+      "textMd": "remove the need to weigh the water in each trial, since every beaker was filled to the same level."
     },
     {
       "id": "b",
       "label": "B",
-      "textMd": "make it likely that any difference in the mass dissolved was due to the water temperature or to which salt was used."
+      "textMd": "make any difference in the mass dissolved traceable to the water temperature or to the salt used."
     },
     {
       "id": "c",
       "label": "C",
-      "textMd": "allow all five temperatures to be tested in a single beaker at the same time."
+      "textMd": "allow all five temperatures to be tested in a single beaker of distilled water at the same time."
     },
     {
       "id": "d",
       "label": "D",
-      "textMd": "increase the total mass of salt that could dissolve at each temperature."
+      "textMd": "increase the total mass of each salt that could dissolve before the solution became saturated."
     }
   ],
   "answerKey": {
@@ -39,9 +39,9 @@
   },
   "explanationMd": "An experiment can only attribute a difference in its results to the things it deliberately changed if everything else is held fixed. Here the student deliberately changed exactly two things: the **water temperature** and the **identity of the salt**. Everything named in the stem is one of the things held constant:\n\n- *distilled water* — tap water carries dissolved minerals that vary from day to day and could change how much salt dissolves;\n- *the same stirring rate* — stirring affects how quickly a portion dissolves, so a faster stir in one trial could make the student stop adding salt too late;\n- *the same 5-minute rule* — this fixes what counts as \"saturated\", so the endpoint means the same thing in every trial.\n\nWith those three fixed, a difference between two numbers in Table 4 can be traced back to temperature or to the salt, which is exactly what the study set out to compare.\n\nCheck the answer by imagining the control removed. Suppose the student had stirred the $70\\;^{\\circ}\\text{C}$ trials harder than the $10\\;^{\\circ}\\text{C}$ trials. Salt P's rise from $21.0$ g to $138.0$ g would then have two possible causes — the heat and the stirring — and the table could not tell them apart. That is precisely the confusion the controls prevent.",
   "distractorRationale": {
-    "d": "Confuses the rate of dissolving with the amount that can dissolve. Stirring makes a portion dissolve faster, but the saturation mass is a property of the salt and the temperature; stirring harder does not let a saturated solution hold more. In any case a feature held *constant* across trials cannot explain differences between them.",
-    "c": "Contradicts the procedure. The study used a water bath to hold each beaker at one of five temperatures; a single beaker cannot be at five temperatures at once, and Table 4 reports a separate saturation mass for each temperature.",
-    "a": "Contradicts the procedure and misunderstands the units. The student weighed out $100.0$ g of water for every trial, and the whole table is reported *per $100.0$ g of water* — without that measurement the numbers could not be compared at all."
+    "d": "Confuses the rate of dissolving with the amount that can dissolve. Stirring makes a portion dissolve faster, but the saturation mass is a property of the salt and the temperature; stirring harder does not let a solution hold more before it is saturated. In any case a feature held *constant* across trials cannot explain differences between them.",
+    "c": "Contradicts the procedure. The study used a water bath to hold each beaker of distilled water at one of five temperatures; a single beaker cannot be at five temperatures at once, and Table 4 reports a separate saturation mass for each temperature.",
+    "a": "Contradicts the procedure and misunderstands the units. The passage never mentions filling beakers to a level: the student weighed out $100.0$ g of water for every trial, and the whole table is reported *per $100.0$ g of water* — without that measurement the numbers could not be compared at all."
   },
   "estimatedSeconds": 50,
   "stimulusRef": {
@@ -58,16 +58,16 @@
   "rightsStatus": "original-owned",
   "review": {
     "author": "enhanced-act-wave4-author",
-    "reviewer": "blind-reviewer-wave5-C",
-    "reviewedOn": "2026-09-28",
+    "reviewer": "blind-reviewer-cue-batch1-run0",
+    "reviewedOn": "2026-09-30",
     "independentSolve": {
-      "solvedBy": "blind-reviewer-wave5-C",
+      "solvedBy": "blind-reviewer-cue-batch1-run0",
       "solvedAnswer": "b",
       "agreesWithKey": true,
       "uniquenessChecked": true,
-      "workingNotes": "Holding the solvent, stirring rate and stopping rule constant is standard control of variables, so differences in mass dissolved can be put down to the two things that were varied: temperature and salt. A is wrong because the water was still weighed (100.0 g). C is wrong because each trial used one beaker at one temperature. D is wrong because the controls do not raise solubility."
+      "workingNotes": "Using the same water type, stirring rate and stopping rule in every trial removes those as sources of variation, so differences in mass dissolved can be tied to temperature or salt identity, the two manipulated variables. The water was in fact weighed (100.0 g) each trial, trials were at one temperature per beaker, and controls do not increase solubility. [A second, separate blind solve (blind-reviewer-cue-batch1-run1) reached the same answer: Keeping the water type, stirring rate and stopping rule constant is a control: it makes temperature and salt identity the only things that vary, so differences in mass dissolved can be traced to them. The water was weighed in every trial (100.0 g), so the weighing option is false. Each trial held one beaker at one temperature, so the single-beaker option is false. Controls do not increase solubility.]"
     },
-    "notes": "Author solved the item and then tried to defend each distractor. Only D states the function of a control variable; A is refuted both by the distinction between rate and saturation and by the fact that a constant cannot explain a difference, and B and C each contradict an explicit sentence of the procedure. Exactly one option survives. Awaiting an independent blind solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": "Author solved the item and then tried to defend each distractor. Only the choice about tracing differences to temperature or salt states the function of a control variable; the increase-the-mass choice is refuted both by the distinction between rate and saturation and by the fact that a constant cannot explain a difference, and the no-need-to-weigh and single-beaker choices each contradict an explicit sentence of the procedure. Exactly one option survives. Awaiting an independent blind solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. Choices rebalanced on 2026-09-29 to remove an answer-length cue; the key is unchanged."
   },
   "state": "published",
   "quarantine": null,

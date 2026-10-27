@@ -4,6 +4,7 @@ import { listHubs } from '@/lib/exams/registry';
 import { EditorialLine } from './editorial-line';
 
 const LEARN = [
+  { href: '/premium', label: 'Premium' },
   { href: '/guides', label: 'Guides' },
   { href: '/about/how-scoring-works', label: 'How our scoring works' },
   { href: '/about/editorial-standards', label: 'Editorial standards' },
@@ -41,11 +42,9 @@ export function SiteFooter() {
       <div className="mx-auto max-w-6xl px-4 py-14 text-sm sm:px-6">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <p className="text-2xl font-extrabold tracking-[-0.04em]">
-              {SITE.name}
-              <span aria-hidden="true" className="text-accent-on-ink">
-                .
-              </span>
+            <p>
+              {/* The reversed mark's own ground is the footer's ink, so it sits flush. */}
+              <img src="/brand/examer-wordmark-reversed.svg" alt={SITE.name} width={99} height={28} className="block" />
             </p>
             <EditorialLine onInk className="mt-3 max-w-xs leading-relaxed text-ink-inverse-muted" />
           </div>

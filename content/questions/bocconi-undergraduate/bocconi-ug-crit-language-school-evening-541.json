@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-ug-crit-language-school-evening-541",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-critical-thinking",
+  "skillSlug": "critical-thinking-draw-conclusions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "The following statements about the Lingua Viva language school are all true.\n\n> Every course at the school is held either in the morning or in the evening.\n>\n> Every evening course has fewer than 12 students enrolled.\n>\n> The Advanced Portuguese course has 15 students enrolled.\n\nWhich one of the following can be concluded from these statements?",
+  "instructionsMd": "Answer on the basis of the three statements alone.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Every morning course at the school has at least 12 students enrolled."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The Advanced Portuguese course is held in the morning."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The Advanced Portuguese course is the largest course at the school."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "No course at the school with fewer than 12 students is held in the morning."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Follow the one course the statements tell you something specific about. Advanced Portuguese has 15 students. If it were an evening course it would have fewer than 12, and 15 is not fewer than 12, so it is not an evening course. Every course is held either in the morning or in the evening, so Advanced Portuguese is held in the morning.\n\n**How to check the answer.** The second statement runs one way only: evening leads to fewer than 12. It does not say that a course with fewer than 12 must be in the evening, nor that a morning course must be large. A small morning course with 8 students breaks no statement, and it rules out the two choices that reverse the second statement. Nothing at all is said about the sizes of the other morning courses, so Advanced Portuguese may or may not be the largest.",
+  "distractorRationale": {
+    "a": "This reverses the second statement. The statements put an upper limit on evening courses only; a morning course with 8 students contradicts none of them.",
+    "d": "This also reads the second statement backwards, as if fewer than 12 students meant the course must be in the evening. A small morning course is perfectly consistent with the statements.",
+    "c": "The statements give the size of only one course. Another morning course could have 20 students, so nothing shows Advanced Portuguese is the largest."
+  },
+  "estimatedSeconds": 50,
+  "stimulusRef": null,
+  "accessibilityText": "A critical thinking question. Three statements about a language school are all true: every course is held either in the morning or in the evening; every evening course has fewer than 12 students enrolled; the Advanced Portuguese course has 15 students enrolled. It asks which conclusion follows. The four choices, in the order shown, are: every morning course has at least 12 students enrolled; the Advanced Portuguese course is held in the morning; the Advanced Portuguese course is the largest course at the school; no course with fewer than 12 students is held in the morning.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-verbal-author",
+    "aiAssisted": true,
+    "notes": "Original item on drawing a conclusion by eliminating one of two exhaustive alternatives. Two distractors reverse the one-way conditional; the third is unsupported."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-verbal-author",
+    "reviewer": "blind-reviewer-wave8-bocug-verbal-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-bocug-verbal-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Advanced Portuguese has 15 students. Every evening course has fewer than 12, so this course is not in the evening and must be in the morning. Nothing constrains the size of morning courses, so 'every morning course has at least 12' and 'no small course is in the morning' do not follow. 'Largest course' is not supported. [A second, separate blind solve (blind-reviewer-wave8-bocug-verbal-run1) reached the same answer: 15 students means the course cannot be an evening course (all have fewer than 12), so it is held in the morning. 'All morning courses have 12 or more' and 'no small course is held in the morning' wrongly reverse the conditional. 'Largest course' is unsupported.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "conditional",
+    "elimination"
+  ]
+}

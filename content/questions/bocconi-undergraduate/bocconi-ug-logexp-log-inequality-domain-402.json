@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-logexp-log-inequality-domain-402",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-logexp-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the set of all real $x$ satisfying\n\n$$\\log_{2}\\left(x^{2} - 3x\\right) \\le 2 \\;?$$",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$-1 \\le x < 0 \\ \\text{ or } \\ 3 < x \\le 4$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$x \\le -1 \\ \\text{ or } \\ x \\ge 4$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$-1 \\le x \\le 4$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$3 < x \\le 4$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "A logarithmic inequality always carries **two** conditions: the argument must be positive, and the inequality itself must hold. Solve each and intersect.\n\n**Condition 1 — the domain.** The argument must be strictly positive:\n\n$$x^{2} - 3x > 0 \\iff x(x - 3) > 0 \\iff x < 0 \\ \\text{ or } \\ x > 3$$\n\n**Condition 2 — the inequality.** Since $2 = \\log_{2} 4$ and the base $2$ is greater than 1, $\\log_{2}$ is increasing, so the direction of the inequality is kept:\n\n$$\\log_{2}\\left(x^{2} - 3x\\right) \\le \\log_{2} 4 \\iff x^{2} - 3x \\le 4$$\n\n$$x^{2} - 3x - 4 \\le 0 \\iff (x - 4)(x + 1) \\le 0 \\iff -1 \\le x \\le 4$$\n\n**Intersect.** On a number line, $[-1, 4]$ overlaps the domain in two separate pieces:\n\n$$-1 \\le x < 0 \\qquad \\text{or} \\qquad 3 < x \\le 4$$\n\nThe endpoints $0$ and $3$ are excluded because the argument is zero there, and $\\log_{2} 0$ is undefined; the endpoints $-1$ and $4$ are included because the argument equals $4$ there and $\\log_{2} 4 = 2$ satisfies the non-strict inequality.\n\n**Check with sample values.** $x = -\\tfrac{1}{2}$: the argument is $\\tfrac{1}{4} + \\tfrac{3}{2} = \\tfrac{7}{4}$, and $\\log_{2}\\tfrac{7}{4} < 2$. ✓ $x = 1$: the argument is $1 - 3 = -2$, so the logarithm does not exist. ✓ (correctly excluded) $x = 5$: the argument is $10$, and $\\log_{2} 10 > 2$. ✓ (correctly excluded)\n\n**The trap to name.** It is tempting to rewrite $\\log_{2}(x^{2} - 3x)$ as $\\log_{2} x + \\log_{2}(x - 3)$. That rewriting is only valid when $x$ and $x - 3$ are **each** positive, so it silently discards every negative $x$, including the whole piece $-1 \\le x < 0$ where the original inequality is perfectly well defined.",
+  "distractorRationale": {
+    "c": "This solves the inequality $x^{2} - 3x \\le 4$ correctly but never imposes the domain. Values such as $x = 1$ or $x = 2$ lie in this interval, yet there $x^{2} - 3x$ is negative and the logarithm does not exist.",
+    "d": "This splits the logarithm of a product into $\\log_{2} x + \\log_{2}(x - 3)$, which requires $x > 0$ and $x > 3$ separately. The original argument $x(x - 3)$ is also positive when both factors are negative, so the piece $-1 \\le x < 0$ is lost.",
+    "b": "This reverses the solution of the quadratic inequality, taking the region outside the roots. A product $(x - 4)(x + 1)$ is less than or equal to zero between its roots, not outside them. Every point of this set does lie in the domain, so checking the domain alone will not catch the slip: $x = 5$ gives the argument $10$, and $\\log_{2} 10 > 2$."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "Find all real x such that the base 2 logarithm of x squared minus 3 x is less than or equal to 2. The choices are: x from minus 1 included to 0 excluded, or x greater than 3 and at most 4; x at most minus 1 or at least 4; x from minus 1 to 4, both included; and x greater than 3 and at most 4.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. The argument factors as x(x - 3) so that its positivity region has two pieces, and the bound 2 = log base 2 of 4 makes the quadratic factor over the integers. Membership of the endpoints and of sample points in each piece was checked by a read-only script."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-bocconi-math-author",
+    "reviewer": "blind-reviewer-wave7-bocconi-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-bocconi-math-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The domain x^2-3x>0 gives x<0 or x>3. The inequality x^2-3x<=4 gives -1<=x<=4. Their intersection is [-1,0) ∪ (3,4]. C ignores the domain, D drops the negative branch, and B reverses the inequality. [A second, separate blind solve (blind-reviewer-wave7-bocconi-math-run1) reached the same answer: Domain: x^2-3x>0, so x<0 or x>3. The inequality x^2-3x<=4 gives -1<=x<=4. Their intersection is [-1,0) ∪ (3,4]. C ignores the domain, D drops the negative branch, and B reverses the inequality.]"
+    },
+    "notes": "Stretch item: harder than a typical hard Bocconi log equation because the domain condition does not merely delete one root, it cuts the solution interval into two disjoint pieces, and the most natural simplification (splitting the log of a product) silently deletes one of those pieces. The candidate must intersect two quadratic inequalities and handle four endpoints correctly. Author's uniqueness check: the domain is x < 0 or x > 3, the inequality is -1 <= x <= 4, and their intersection [-1, 0) union (3, 4] is stated by exactly one choice; each other choice either omits the domain, loses the negative piece, or inverts the quadratic inequality. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "stretch",
+    "logarithmic-inequality",
+    "domain-condition"
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "id": "tolc-f-chem-name-formula-904",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "chemistry",
+  "domainSlug": "tolcf-chemistry",
+  "skillSlug": "tolcf-chem-inorganic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which of the following pairs gives a correct name for the formula beside it?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "copper(I) oxide, $\\mathrm{CuO}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "iron(III) chloride, $\\mathrm{FeCl_3}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "sodium sulfite, $\\mathrm{Na_2SO_4}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "magnesium hydroxide, $\\mathrm{MgOH}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "ammonium nitrate, $\\mathrm{NH_4NO_2}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "For each pair, turn the name into ions with their charges, then balance the charges to see the formula the name demands.\n\n- **Iron(III) chloride:** the Roman numeral says $\\mathrm{Fe^{3+}}$; chloride is $\\mathrm{Cl^-}$. Three chlorides balance one iron ion: $\\mathrm{FeCl_3}$. This pair is correct.\n- **Sodium sulfite:** sulfite is $\\mathrm{SO_3^{2-}}$, so the formula is $\\mathrm{Na_2SO_3}$. The formula given, $\\mathrm{Na_2SO_4}$, is sodium sulfate.\n- **Copper(I) oxide:** $\\mathrm{Cu^+}$ with $\\mathrm{O^{2-}}$ gives $\\mathrm{Cu_2O}$. $\\mathrm{CuO}$ is copper(II) oxide.\n- **Ammonium nitrate:** $\\mathrm{NH_4^+}$ with nitrate, $\\mathrm{NO_3^-}$, gives $\\mathrm{NH_4NO_3}$. The formula given is the nitrite.\n- **Magnesium hydroxide:** $\\mathrm{Mg^{2+}}$ with $\\mathrm{OH^-}$ gives $\\mathrm{Mg(OH)_2}$, with brackets around the hydroxide.\n\n**Check:** in a correct formula the positive and negative charges sum to zero. Also remember the pairing \"-ite\" for the oxyanion with one less oxygen and \"-ate\" for the one with more.",
+  "distractorRationale": {
+    "c": "This mixes up the two oxyanions. $\\mathrm{SO_4^{2-}}$ is sulfate, so $\\mathrm{Na_2SO_4}$ is sodium sulfate; sodium sulfite is $\\mathrm{Na_2SO_3}$.",
+    "a": "The Roman numeral gives the charge of copper. Copper(I) is $\\mathrm{Cu^+}$, so two of them balance one $\\mathrm{O^{2-}}$, giving $\\mathrm{Cu_2O}$. The formula $\\mathrm{CuO}$ contains $\\mathrm{Cu^{2+}}$ and is copper(II) oxide.",
+    "e": "This confuses nitrate with nitrite. Nitrate is $\\mathrm{NO_3^-}$, so ammonium nitrate is $\\mathrm{NH_4NO_3}$; $\\mathrm{NH_4NO_2}$ is ammonium nitrite.",
+    "d": "This forgets that magnesium forms $\\mathrm{Mg^{2+}}$, which needs two $\\mathrm{OH^-}$ to balance the charge. The formula is $\\mathrm{Mg(OH)_2}$."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "Each choice pairs a compound name with a formula. The pairs are: sodium sulfite with Na subscript 2 S O subscript 4; copper one oxide with C u O; ammonium nitrate with N H subscript 4 N O subscript 2; iron three chloride with Fe Cl subscript 3; and magnesium hydroxide with Mg O H. Exactly one pair matches correctly.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-chemistry-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank (Wave 6, TOLC-F chemistry). Each wrong choice comes from one named misconception, recorded in distractorRationale. Numbers chosen for hand calculation with no calculator; every key was recomputed a second way in the build script."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-chemistry-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-chem-run15",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-chem-run15",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "FeCl3 is iron(III) chloride. The rest are wrong: CuO is copper(II) oxide, Na2SO4 is sulfate not sulfite, magnesium hydroxide is Mg(OH)2, and NH4NO2 is ammonium nitrite. [A second, separate blind solve (blind-reviewer-wave6-tolcf-chem-run18) reached the same answer: FeCl3 is iron(III) chloride, which is correct. CuO is copper(II) oxide, sodium sulfite is Na2SO3, magnesium hydroxide is Mg(OH)2, and ammonium nitrate is NH4NO3 (NH4NO2 is the nitrite). So every other pair is wrong.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication. Key check: FeCl3 = Fe3+ with 3 Cl-. Sulfite is SO3 2-, nitrate NO3-, copper(I) oxide is Cu2O, magnesium hydroxide is Mg(OH)2, so the other four pairs are mismatched. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "nomenclature",
+    "formulas",
+    "oxyanions",
+    "oxidation-state-naming"
+  ]
+}

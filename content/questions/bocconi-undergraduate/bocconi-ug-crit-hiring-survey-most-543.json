@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-crit-hiring-survey-most-543",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-critical-thinking",
+  "skillSlug": "critical-thinking-exclude-implications",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A business association surveyed all 500 manufacturing firms in the Brenta district. It reports:\n\n> 70 per cent of the firms said they planned to hire new staff in 2026. Most of the firms that said so also said they expected difficulty in finding qualified technicians.\n\nOnly firms that planned to hire were asked about technicians. Here \"most\" means \"more than half\".\n\nWhich one of the following does NOT follow from the report?",
+  "instructionsMd": "Answer on the basis of the report only. No calculator.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "More than 175 of the surveyed firms said they expected difficulty in finding qualified technicians."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Among the firms that planned to hire, those expecting difficulty outnumbered those that did not."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Exactly 350 of the surveyed firms said they planned to hire new staff in 2026."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "More than half of all 500 surveyed firms said they expected difficulty in finding qualified technicians."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Turn each percentage and \"most\" into numbers, and keep track of which group each one is a share **of**.\n\n- 70 per cent of 500 firms is 350 firms that said they planned to hire.\n- \"Most\" of those 350 is more than 175. So more than 175 firms said they expected difficulty, and within the 350 the firms expecting difficulty outnumber the rest.\n\nThe statement that more than half of **all 500** firms expected difficulty needs more than 250 such firms. The report guarantees only more than 175. The true figure could be 180, which fits the report and is well under half of 500. So that statement does not follow.\n\n**How to check the answer.** \"Most of most\" is not \"most\". A majority of a majority can be as little as a quarter of the whole: just over half of 350 is just over 35 per cent of 500. Every other statement is either the 350 figure itself or a restatement of \"most\" inside the group of 350.",
+  "distractorRationale": {
+    "c": "This follows directly: 70 per cent of 500 is 350, and the report states the 70 per cent as a fact about the firms surveyed.",
+    "a": "This follows: more than half of the 350 hiring firms is more than 175 firms, and those are all among the 500 surveyed.",
+    "b": "This is simply what \"most\" means within the group of 350 hiring firms, so it follows from the report."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "A critical thinking question. A business association surveyed all 500 manufacturing firms in a district and reports that 70 per cent said they planned to hire in 2026, and that most of those also said they expected difficulty finding qualified technicians. Only firms planning to hire were asked about technicians, and most means more than half. The question asks which statement does not follow. The four choices, in the order shown, are: more than 175 of the surveyed firms said they expected difficulty finding technicians; among the firms that planned to hire, those expecting difficulty outnumbered those that did not; exactly 350 of the surveyed firms said they planned to hire; more than half of all 500 surveyed firms said they expected difficulty finding technicians.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-verbal-author",
+    "aiAssisted": true,
+    "notes": "Original item on excluding an unsupported implication: a majority of a majority is not a majority of the whole. The three statements that do follow are numerical restatements of the report."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-verbal-author",
+    "reviewer": "blind-reviewer-wave8-bocug-verbal-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-bocug-verbal-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "70% of 500 = 350 firms plan to hire. 'Most' of them means more than 175 expect difficulty, so the options 'more than 175', 'difficulty outnumbered no difficulty among hirers' and 'exactly 350 plan to hire' all follow. 'More than half of all 500' would need more than 250, which is not guaranteed. [A second, separate blind solve (blind-reviewer-wave8-bocug-verbal-run1) reached the same answer: 70% of 500 = 350 firms planned to hire, and more than half of them (>175) expect difficulty, so 'more than 175', 'difficulty outnumbered no difficulty among hirers' and 'exactly 350' all follow. 'More than half of all 500 (>250)' does not follow.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "quantifiers",
+    "most",
+    "base-of-a-proportion"
+  ]
+}

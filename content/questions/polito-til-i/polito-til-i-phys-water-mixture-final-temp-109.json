@@ -1,0 +1,82 @@
+{
+  "id": "polito-til-i-phys-water-mixture-final-temp-109",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "physics",
+  "domainSlug": "tili-physics",
+  "skillSlug": "tili-phys-thermal",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In a laboratory in Turin, 300 g of water at 10 °C is poured into 200 g of water at 60 °C in a well-insulated container. Ignore any heat exchanged with the container and the surroundings. What is the final temperature of the mixture?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "40 °C"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "35 °C"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "20 °C"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "50 °C"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "30 °C"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "With no heat lost, the heat given up by the hot water equals the heat taken in by the cold water. Both are water, so the specific heat $c$ cancels and the equation only needs masses and temperature changes.\n\n$$300\\,(T-10) = 200\\,(60-T)$$\n\n$$300T - 3000 = 12000 - 200T \\;\\Rightarrow\\; 500T = 15000 \\;\\Rightarrow\\; T = 30\\ ^{\\circ}\\text{C}.$$\n\n**Check.** The cold water warms by 20 °C, and 300 × 20 = 6000. The hot water cools by 30 °C, and 200 × 30 = 6000. The exchanges match. The result is also closer to 10 °C than to 60 °C, as it must be, because there is more cold water than hot water.",
+  "distractorRationale": {
+    "c": "Gives the temperature rise of the cold water (30 - 10 = 20 °C) rather than the final temperature. The question asks for the temperature the mixture reaches.",
+    "b": "Takes the plain average of 10 °C and 60 °C. That would be right only for equal masses; here the larger mass of cold water pulls the result below 35 °C.",
+    "a": "Swaps the masses, so that the 200 g is treated as the cold water. The final temperature lies nearer the temperature of the larger mass, which is the cold one.",
+    "d": "Gives the difference between the two starting temperatures (60 - 10 = 50 °C). That is a gap between temperatures, not the temperature the mixture settles at."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": null,
+  "accessibilityText": "A calorimetry question. 300 grams of water at 10 degrees Celsius are poured into 200 grams of water at 60 degrees Celsius in a well insulated container, with no heat exchanged with the surroundings. The final temperature is wanted. The choices are 20, 30, 35, 40 and 50 degrees Celsius.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-wave6-physics-technical-author",
+    "aiAssisted": true,
+    "notes": "Original item. Answer 30 degrees Celsius; every wrong choice is a real slip (temperature rise, plain mean, swapped masses, temperature difference)."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-wave6-physics-technical-author",
+    "reviewer": "blind-reviewer-wave6-tili-phys-tech-run8",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-phys-tech-run8",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "T = (300*10 + 200*60)/500 = 15000/500 = 30 °C. 35 °C is the plain average of the two temperatures, and 40 °C weights the masses the wrong way round. [A second, separate blind solve (blind-reviewer-wave6-tili-phys-tech-run9) reached the same answer: Weighted mean: (300*10+200*60)/500 = 15000/500 = 30 C. 35 is the simple average; 40 swaps masses; 20 and 50 are other slips.]"
+    },
+    "notes": "Awaiting a blind independent solve. The author recomputed every option and checked the key a second way before saving (see the explanation). Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "calorimetry",
+    "heat-balance",
+    "mixtures"
+  ]
+}

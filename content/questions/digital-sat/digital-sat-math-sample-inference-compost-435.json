@@ -1,0 +1,77 @@
+{
+  "id": "digital-sat-math-sample-inference-compost-435",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "problem-solving-and-data-analysis",
+  "skillSlug": "inference-from-sample-statistics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A town has $12{,}000$ households. A researcher selected $400$ of these households at random and asked whether the household composts its food waste. Of the households surveyed, $28\\%$ said yes. The margin of error associated with this estimate is $4$ percentage points. Which of the following conclusions is best supported by these results?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "It is plausible that between $96$ and $128$ of the town's households compost their food waste."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "If the survey were repeated with $800$ randomly selected households, the margin of error would be $2$ percentage points."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Exactly $3{,}360$ of the town's households compost their food waste."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "It is plausible that between $2{,}880$ and $3{,}840$ of the town's households compost their food waste."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "A margin of error turns a sample percentage into a plausible range for the **population** percentage. Build that range, then apply it to the population, not to the sample.\n\nThe plausible range for the percent of all the town's households that compost is\n\n$$28\\% - 4\\% = 24\\% \\quad\\text{to}\\quad 28\\% + 4\\% = 32\\%$$\n\nApplied to the town's $12{,}000$ households:\n\n$$0.24 \\times 12{,}000 = 2{,}880 \\qquad 0.32 \\times 12{,}000 = 3{,}840$$\n\nSo it is plausible that between $2{,}880$ and $3{,}840$ of the town's households compost. The word *plausible* matters: a margin of error describes a likely range, not a guarantee.\n\nThe other conclusions each overreach in a different way. One applies the range to the $400$ surveyed households instead of the town. One treats the sample estimate, $0.28 \\times 12{,}000 = 3{,}360$, as an exact count, which a sample cannot give. And one assumes that doubling the sample size halves the margin of error. A larger random sample does tend to give a smaller margin of error, but the margin shrinks roughly with the square root of the sample size, so doubling the sample would be expected to bring $4$ points down to about $2.8$, not to $2$.",
+  "distractorRationale": {
+    "a": "This applies the $24\\%$ to $32\\%$ range to the $400$ households in the sample ($0.24 \\times 400 = 96$ and $0.32 \\times 400 = 128$). The margin of error describes the whole town of $12{,}000$ households, and the sample's own count is already known: $28\\%$ of $400$ is $112$.",
+    "c": "This treats the sample estimate as exact. $28\\%$ of $12{,}000$ is $3{,}360$, but the margin of error of $4$ percentage points says the true figure could plausibly be anywhere from $2{,}880$ to $3{,}840$.",
+    "b": "A larger sample does tend to reduce the margin of error, but not in proportion to the sample size. The margin shrinks roughly with the square root of the sample size, so doubling the sample would be expected to give about $2.8$ points, not $2$; and no second survey has been carried out, so its margin cannot be stated as a fact."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A random sample of 400 of a town's 12,000 households found that 28 percent compost food waste, with a margin of error of 4 percentage points. Choose the best-supported conclusion from four statements: a plausible range of 96 to 128 town households; a margin of error of 2 points for a repeated survey of 800 households; exactly 3,360 town households; or a plausible range of 2,880 to 3,840 town households.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-sat-math-data-geo-author",
+    "aiAssisted": true,
+    "notes": "Original item. The town and sample sizes were chosen so that the population range and the sample range are both whole numbers, making the population-versus-sample slip a clean distractor."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-sat-math-data-geo-author",
+    "reviewer": "blind-reviewer-wave7-sat-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-sat-math-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The interval 24% to 32% of 12,000 households is 2,880 to 3,840. A applies the interval to the 400 surveyed households, not the town. For B, doubling the sample divides the margin by about sqrt(2), not 2. C wrongly treats the estimate as exact. [A second, separate blind solve (blind-reviewer-wave7-sat-math-run1) reached the same answer: The interval is 28% +/- 4, or 24% to 32%. Applied to the 12,000 households, that is 2,880 to 3,840. A applies the interval to the 400 sampled households, B wrongly assumes the margin of error halves when the sample doubles (it shrinks by about a factor of sqrt 2), and C treats the estimate as exact.]"
+    },
+    "notes": "Author solved twice: 24 to 32 percent of 12,000 is 2,880 to 3,840. Each distractor overreaches in one named way (sample instead of population, estimate as exact count, margin of error assumed inversely proportional to sample size; the expected margin at n = 800 is 4 divided by the square root of 2, about 2.83). Verified with a read-only script. Awaiting a blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "problem-solving",
+    "margin-of-error",
+    "sampling"
+  ]
+}

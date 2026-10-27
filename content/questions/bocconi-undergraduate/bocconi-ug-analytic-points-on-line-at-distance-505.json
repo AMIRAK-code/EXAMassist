@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-analytic-points-on-line-at-distance-505",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-analytic-points-distances",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "In the Cartesian plane, exactly two points of the line $y = 2x$ lie at distance $5$ from the point $A = (3,\\, 1)$.\n\nWhat is the distance between these two points?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$8$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$4$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$10$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$4\\sqrt{5}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Every point of the line can be written with one parameter, so the distance condition becomes an equation in that parameter.\n\n**Step 1 — parametrise the line.** A point of $y = 2x$ has the form $P = (t,\\, 2t)$.\n\n**Step 2 — impose $PA = 5$.** Square both sides to avoid the root:\n\n$$(t - 3)^{2} + (2t - 1)^{2} = 25$$\n$$t^{2} - 6t + 9 + 4t^{2} - 4t + 1 = 25$$\n$$5t^{2} - 10t - 15 = 0 \\;\\Longrightarrow\\; t^{2} - 2t - 3 = 0 \\;\\Longrightarrow\\; (t - 3)(t + 1) = 0$$\n\nSo $t = 3$ or $t = -1$, giving the points $P_{1} = (3,\\, 6)$ and $P_{2} = (-1,\\, -2)$.\n\n**Check that both really are at distance 5.** $P_{1}A$: gaps $0$ and $5$, so $5$. $P_{2}A$: gaps $4$ and $3$, so $5$. ✓\n\n**Step 3 — distance between them.** The gaps are $3 - (-1) = 4$ and $6 - (-2) = 8$:\n\n$$P_{1}P_{2} = \\sqrt{4^{2} + 8^{2}} = \\sqrt{80} = 4\\sqrt{5}$$\n\n**A second check.** The two points are where the line cuts the circle of centre $A$ and radius $5$. The midpoint of the chord is $(1, 2)$, at distance $\\sqrt{2^{2} + 1^{2}} = \\sqrt{5}$ from $A$, so the half-chord is $\\sqrt{25 - 5} = \\sqrt{20} = 2\\sqrt{5}$ and the chord is $4\\sqrt{5}$. ✓",
+  "distractorRationale": {
+    "b": "This is only the difference of the $x$-coordinates, $3 - (-1)$. Because the line is not horizontal, the two points also differ in $y$, by $8$.",
+    "a": "This is only the difference of the $y$-coordinates, $6 - (-2)$. The points also differ horizontally, by $4$, so the distance is $\\sqrt{4^{2} + 8^{2}}$.",
+    "c": "This assumes the two points are the ends of a **diameter** of the circle of radius $5$ around $A$, giving $2 \\times 5$. That would require the line to pass through $A$, but $A = (3, 1)$ is not on $y = 2x$ (since $2 \\cdot 3 \\neq 1$), so the segment is a shorter chord."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "In the Cartesian plane, exactly two points of the line y equals 2 x lie at distance 5 from the point A, at 3 comma 1. The question asks for the distance between these two points. The choices are: 8; 4; 10; 4 times the square root of 5.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-ug-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. It tests the distance formula used as a condition on a parametrised point of a line, followed by a second distance computation; the diameter distractor targets a geometric over-assumption."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-ug-wave8-math-author",
+    "reviewer": "blind-reviewer-wave8-bocug-math-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-bocug-math-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Distance from A(3,1) to 2x-y=0 is 5/sqrt5=sqrt5; half-chord sqrt(25-5)=2sqrt5, so the points are 4sqrt5 apart (check: 5x^2-10x-15=0 gives x=3,-1, points (3,6),(-1,-2), distance sqrt80). 10 is the diameter, 8 and 4 have no derivation. [A second, separate blind solve (blind-reviewer-wave8-bocug-math-run1) reached the same answer: The distance from A to the line 2x-y=0 is |6-1|/sqrt5=sqrt5, so the half-chord is sqrt(25-5)=2sqrt5 and the chord is 4sqrt5. Check: the intersection points are x=1+-2, i.e. (3,6) and (-1,-2), which are 4sqrt5 apart. 10 is the diameter, while 8 and 4 come from arithmetic errors.]"
+    },
+    "notes": "Author's uniqueness check: the condition reduces to (t - 3)(t + 1) = 0, giving exactly (3, 6) and (-1, -2), at distance sqrt(80) = 4 sqrt(5), about 8.94; this differs from 4, 8 and 10. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "distance-formula",
+    "parametrisation",
+    "quadratic"
+  ]
+}

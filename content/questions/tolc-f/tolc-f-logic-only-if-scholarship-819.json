@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-logic-only-if-scholarship-819",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "logic",
+  "domainSlug": "tolcf-logic",
+  "skillSlug": "tolcf-logic-propositions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A university rule states: \"A student obtains the scholarship only if her average grade is at least 27.\" Assuming the rule is respected, which of the following statements must be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Every student whose average is at least 27 obtains the scholarship."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "A student who does not obtain the scholarship has an average below 27."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "At least one student whose average is at least 27 does not obtain the scholarship."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Only students whose average is exactly 27 can obtain the scholarship."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "A student whose average is below 27 does not obtain the scholarship."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "\"P only if Q\" says that Q is a necessary condition for P: whenever P holds, Q holds. Here P is \"obtains the scholarship\" and Q is \"average at least 27\", so the rule is \"scholarship implies average at least 27\".\n\nAn implication and its contrapositive say the same thing. The contrapositive is \"average below 27 implies no scholarship\", and that is the statement that must be true.\n\nThe converse (\"average at least 27 implies scholarship\") and the inverse (\"no scholarship implies average below 27\") are not consequences of the rule. To see it, imagine a student with an average of 28 who is refused for lack of funds: the rule is not broken.",
+  "distractorRationale": {
+    "a": "This turns \"only if\" into \"if\". The rule makes an average of 27 necessary, not sufficient; it does not promise the scholarship to everyone who reaches it.",
+    "b": "This is the inverse: it negates both parts of the rule without swapping them, which makes it equivalent to the converse, \"average at least 27 implies scholarship\", not to the rule. A student with an average of 28 might be refused for another reason and the rule would still hold.",
+    "d": "The rule sets a minimum, \"at least 27\", not an exact value. Averages above 27 are allowed.",
+    "c": "The rule allows this but does not force it. It could be that every student with an average of 27 or more gets the scholarship."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": null,
+  "accessibilityText": "A short text question with no figure. The rule reads: a student obtains the scholarship only if her average grade is at least 27. The question asks which statement must be true if the rule is respected. The five choices are: every student with an average of at least 27 gets the scholarship; a student who does not get it has an average below 27; a student with an average below 27 does not get it; only students with an average of exactly 27 can get it; at least one student with an average of at least 27 does not get it.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item on necessary conditions. The distractors are the converse, the inverse, a misreading of at least as exactly, and a statement the rule permits but does not force."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-logic-run10",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-logic-run10",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The rule means scholarship implies average >= 27. Its contrapositive is: average < 27 implies no scholarship, which is option E. A is the converse and B is the inverse, so neither is valid. C is not forced, because every eligible student might get one. D is false. [A second, separate blind solve (blind-reviewer-wave6-tolcf-logic-run11) reached the same answer: 'S only if A>=27' means S -> A>=27. Its contrapositive is A<27 -> not S, which is option E.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "necessary-condition",
+    "contrapositive",
+    "only-if"
+  ]
+}

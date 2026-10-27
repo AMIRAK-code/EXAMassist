@@ -1,0 +1,84 @@
+{
+  "id": "tolc-e-logic-club-syllogism-603",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Two statements about the Città Alta athletics club are true.\n\n- Every runner in the Tuesday training group is a member of the club.\n- No member of the club has ever run a marathon.\n\nWhich of the following must be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Some marathon runners are runners in the Tuesday training group."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Anyone who is not in the Tuesday training group has run a marathon."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Every member of the club is a runner in the Tuesday training group."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "No runner in the Tuesday training group has ever run a marathon."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Some members of the club do not train on Tuesdays."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Picture the sets as circles. The first statement puts the Tuesday group entirely inside the club circle. The second says that the marathon runners have no overlap with the club circle at all. A circle inside the club cannot overlap a circle that lies wholly outside it, so **no runner in the Tuesday group has run a marathon**.\n\nCheck each remaining choice by asking whether a drawing consistent with both statements can make it false. The choice claiming that every member trains on Tuesdays fails if the club has a member who does not; the choice about some marathon runners being in the group fails because of the overlap just ruled out; the choice about anyone outside the group having run a marathon fails for a person outside both group and club who has not; and the choice that some members skip Tuesdays fails if the group is the whole club.",
+  "distractorRationale": {
+    "c": "This reverses the first statement. All Tuesday runners belong to the club, but the club may have many members who never train on Tuesdays.",
+    "a": "It applies the second statement only to club members in general and forgets that every Tuesday runner is one of them. This contradicts the conclusion that follows. The Tuesday group sits inside the club, and the club contains no marathon runner, so the group contains none either.",
+    "b": "Nothing links \"outside the group\" to marathon running. It treats the group as the only place where non-marathon runners can be found. In fact any club member outside the group has, by the second statement, never run a marathon, and the statements say nothing at all about people outside the club, so this claim can easily be false.",
+    "e": "It reads \"every Tuesday runner is a member\" as if it also meant that the club is larger than the group. The statements allow the Tuesday group to be the whole club; nothing forces a member outside the group, so this is possible but not certain."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "A deduction question with two statements about the Città Alta athletics club: every runner in the Tuesday training group is a member of the club, and no member of the club has ever run a marathon. The question asks which of five statements must be true. They say: every club member is in the Tuesday group; some marathon runners are in the Tuesday group; anyone outside the Tuesday group has run a marathon; no runner in the Tuesday group has run a marathon; some club members do not train on Tuesdays.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-e-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Scenario, names and figures are invented; no published TOLC or other test item was used or adapted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-e-wave6-author",
+    "reviewer": "blind-reviewer-wave7-resolve-held-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-resolve-held-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Tuesday runners ⊆ club members, and club members ∩ marathon runners = ∅, so no Tuesday runner has run a marathon (D). A contradicts this. B and C are unsupported converses or complements. E does not follow because the club could consist only of Tuesday runners. [A second, separate blind solve (blind-reviewer-wave7-resolve-held-run1) reached the same answer: The Tuesday group is a subset of the club, and the club has no marathon runners, so no one in the Tuesday group has run a marathon. D follows (trivially true if the group is empty). E fails because the club could consist of the Tuesday group alone. C reverses the inclusion. B is not implied. A contradicts the premises.]"
+    },
+    "notes": "Uniqueness check: the Tuesday group is a subset of the club, and the club is disjoint from marathon runners, so the group is disjoint from marathon runners. Every other choice has a counter-model. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "deduction",
+    "quantifiers",
+    "syllogism",
+    "no-calculator"
+  ]
+}

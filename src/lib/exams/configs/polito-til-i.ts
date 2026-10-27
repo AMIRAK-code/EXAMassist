@@ -1,17 +1,13 @@
 import type { ExamConfig, NavigationPolicy } from '@/lib/assessment/types';
-import { sectionedBlueprints, type SectionSpec } from './_sectioned';
+import { sectionedBlueprints, type SectionSpec } from '../sectioned-blueprints';
 
 /**
  * Politecnico di Torino - TIL-I (Test In Laib, Ingegneria), a.y. 2026/27.
  *
  * The admission test for PoliTo's Engineering-area bachelor's programmes.
- *
- * DRAFT. The rules below were drafted from the official call for applications
- * for a.y. 2026/27 and the admission test page, but the draft recorded them as
- * read on 29 September 2026, a date after it was written, and no research
- * record exists. polito.it was unreachable from the build environment. The
- * config stays in `DRAFT_EXAM_CONFIGS` until every rule is re-read first-hand
- * and recorded in docs/research/polito-til.md.
+ * Every rule below was read first-hand on 29 September 2026 from the official
+ * call for applications (bando) for a.y. 2026/27 and the official admission
+ * test page; the research record is docs/research/polito-til.md.
  *
  * Distinctive behaviours encoded:
  *  - four consecutive sections, each with its own clock (36, 20, 22, 12 min);
@@ -77,7 +73,7 @@ export const politoTilIConfig: ExamConfig = {
   versionLabel:
     'TIL-I for admission to the Engineering-area bachelor’s programmes, a.y. 2026/27. Structure, timing, scoring and thresholds verified from the official 2026/27 call for applications and the official admission test page.',
   admissionsCycle: 'Academic year 2026/27 (the score is valid only for enrolment in 2026/27)',
-  verifiedOn: 'not yet verified',
+  verifiedOn: '2026-09-29',
   audience: ['undergraduate'],
   summary:
     "Politecnico di Torino's own admission test for its Engineering-area bachelor's programmes, taken in person on the university's computers. It is 42 questions in four consecutive, separately timed sections - Mathematics 16 questions in 36 minutes, Reading comprehension and logic 10 in 20, Physics 10 in 22, Basic technical knowledge 6 in 12 - 90 minutes in all. Each question has five options, one correct; a correct answer scores 1, a blank 0 and a wrong answer -0.25. The score is reported out of 100. PoliTo publishes two thresholds: 30/100 to be placed in the ranking, and 60/100 to be admitted straight to the programme of first preference. The test can be taken up to three times, once per session, and the best result counts. No calculator is allowed. The test is available in Italian and in English.",
@@ -87,13 +83,13 @@ export const politoTilIConfig: ExamConfig = {
       label: 'Call for applications, Engineering area, a.y. 2026/27 (arts. 3, 5, 7, 8, 9: thresholds, attempts, content, scoring, conduct)',
       url: CALL_2026_27,
       publisher: 'Politecnico di Torino',
-      verifiedOn: 'not yet verified',
+      verifiedOn: '2026-09-29',
     },
     {
       label: 'Admission test (TIL) page: TIL-I format, scoring and macro-topics',
       url: TEST_PAGE,
       publisher: 'Politecnico di Torino',
-      verifiedOn: 'not yet verified',
+      verifiedOn: '2026-09-29',
     },
   ],
 
@@ -258,7 +254,7 @@ export const politoTilIConfig: ExamConfig = {
     diagnosticSecondsPerItem: 180,
     responseTypes: ['single_select'],
     simulationFidelityNote:
-      'Matches the published TIL-I: four sections in the published order with their published lengths and clocks, 90 minutes in all, five options per question, +1 / 0 / -0.25, no calculator, and no return to a closed section. What differs: our questions are original, not PoliTo items, and their difficulty is our editorial judgement; PoliTo does not describe moving between questions within a section, so we let you move back and change answers inside the open section; and PoliTo does not fix how the ten reading-and-logic questions divide between the two, so ours may split differently.',
+      'Matches the published TIL-I: four sections in the published order with their published lengths and clocks, 90 minutes in all, five options per question, +1 / 0 / -0.25, no calculator, and no return to a closed section. What differs: our questions are original, not PoliTo items, and their difficulty is our editorial judgement; PoliTo does not describe moving between questions within a section, so we let you move back and change answers inside the open section; PoliTo does not fix how the ten reading-and-logic questions divide between the two, so ours may split differently; and the real Representation questions show drawings, while ours pose the same spatial problems through tables and text, because this site does not yet render figures.',
     timedFidelityNote: (section) =>
       `The published length and clock of the TIL-I ${section.name} section, with the published scoring. Our questions are original and their difficulty is editorial; moving back within the section is allowed here, a rule PoliTo does not describe.`,
     diagnosticFidelityNote:

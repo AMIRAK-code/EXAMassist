@@ -1,0 +1,82 @@
+{
+  "id": "tolc-i-chem-mixing-concentration-313",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "sciences",
+  "domainSlug": "tolci-sciences",
+  "skillSlug": "tolci-sci-chemistry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "$200\\ \\text{mL}$ of a $0.30\\ \\text{mol/L}$ sodium chloride solution is mixed with $300\\ \\text{mL}$ of a $0.10\\ \\text{mol/L}$ sodium chloride solution. Assuming the volumes add, what is the molar concentration of sodium chloride in the mixture?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$0.22\\ \\text{mol/L}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$0.18\\ \\text{mol/L}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$0.20\\ \\text{mol/L}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$0.09\\ \\text{mol/L}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$0.40\\ \\text{mol/L}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "**What to notice first.** Concentrations cannot simply be averaged or added. Moles of solute *can* be added, so find the moles in each solution, add them, and divide by the total volume in litres.\n\n**The steps.**\n\n- First solution: $0.200\\ \\text{L} \\times 0.30\\ \\text{mol/L} = 0.060\\ \\text{mol}$.\n- Second solution: $0.300\\ \\text{L} \\times 0.10\\ \\text{mol/L} = 0.030\\ \\text{mol}$.\n- Total: $0.090\\ \\text{mol}$ in $0.200 + 0.300 = 0.500\\ \\text{L}$.\n\n$$c = \\frac{0.090\\ \\text{mol}}{0.500\\ \\text{L}} = 0.18\\ \\text{mol/L}.$$\n\n**How to check it.** The result must lie between the two starting concentrations, $0.10$ and $0.30$, and nearer to $0.10$ because there is more of the dilute solution. $0.18$ is below the simple midpoint $0.20$, as it should be.",
+  "distractorRationale": {
+    "c": "Takes the simple average of the two concentrations, $(0.30 + 0.10)/2$. That works only for equal volumes; here there is more of the dilute solution, so the mixture is below the midpoint.",
+    "e": "Adds the two concentrations. Mixing two solutions cannot give a concentration higher than both of them.",
+    "d": "Correctly adds the moles, $0.090\\ \\text{mol}$, but then reports that number as the concentration, as if the volume were $1\\ \\text{L}$. The total volume is $0.500\\ \\text{L}$.",
+    "a": "Pairs each concentration with the other solution's volume, $(0.300 \\times 0.30 + 0.200 \\times 0.10)/0.500$. The $0.30\\ \\text{mol/L}$ solution is the $200\\ \\text{mL}$ one."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": null,
+  "accessibilityText": "200 millilitres of a 0.30 moles per litre sodium chloride solution is mixed with 300 millilitres of a 0.10 moles per litre sodium chloride solution. Assuming the volumes add, what is the molar concentration of sodium chloride in the mixture? The choices are 0.22, 0.18, 0.20, 0.09 and 0.40 moles per litre.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-sciences-author",
+    "aiAssisted": true,
+    "notes": "Original item testing molar concentration when two solutions of the same solute are mixed. Numbers and distractors written for this bank."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-sciences-author",
+    "reviewer": "blind-reviewer-wave8-tolci-logic-sci-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-logic-sci-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Moles = 0.2*0.30 + 0.3*0.10 = 0.09 mol in 0.5 L gives 0.18 mol/L. 0.20 is the unweighted mean, 0.09 forgets to divide by volume, 0.40 adds the concentrations. [A second, separate blind solve (blind-reviewer-wave8-tolci-logic-sci-run1) reached the same answer: Moles = 0.2*0.30 + 0.3*0.10 = 0.09 mol in 0.5 L gives 0.18 mol/L. 0.20 is the unweighted mean, 0.09 is the moles number, 0.22 and 0.40 have no consistent basis.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "solutions",
+    "molarity",
+    "mixing"
+  ]
+}

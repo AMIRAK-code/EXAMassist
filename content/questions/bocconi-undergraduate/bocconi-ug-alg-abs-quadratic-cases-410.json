@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-ug-alg-abs-quadratic-cases-410",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-algebra-absolute-values",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the **sum of all real solutions** of the equation\n\n$$\\left| x^{2} - 4 \\right| = 3x \\;?$$",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$0$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$3$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$4$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$5$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "**Notice the hidden condition first.** The left-hand side is an absolute value, so it is never negative. The equation can therefore only hold where the right-hand side is non-negative: $3x \\ge 0$, that is $x \\ge 0$. Any root found below that must be discarded.\n\n**Case 1 — the inside is non-negative**, $x^{2} - 4 = 3x$:\n\n$$x^{2} - 3x - 4 = 0 \\;\\Longrightarrow\\; (x - 4)(x + 1) = 0 \\;\\Longrightarrow\\; x = 4 \\ \\text{ or } \\ x = -1$$\n\n$x = -1$ fails $x \\ge 0$, so only $x = 4$ survives.\n\n**Case 2 — the inside is negative**, $-(x^{2} - 4) = 3x$:\n\n$$x^{2} + 3x - 4 = 0 \\;\\Longrightarrow\\; (x + 4)(x - 1) = 0 \\;\\Longrightarrow\\; x = 1 \\ \\text{ or } \\ x = -4$$\n\n$x = -4$ fails $x \\ge 0$, so only $x = 1$ survives.\n\n**Answer the question asked.** The real solutions are $x = 1$ and $x = 4$, and their sum is $5$.\n\n**Check by substitution.**\n\n- $x = 4$: $|16 - 4| = 12$ and $3 \\cdot 4 = 12$. ✓\n- $x = 1$: $|1 - 4| = 3$ and $3 \\cdot 1 = 3$. ✓\n- $x = -1$: $|1 - 4| = 3$ but $3 \\cdot (-1) = -3$. ✗\n- $x = -4$: $|16 - 4| = 12$ but $3 \\cdot (-4) = -12$. ✗\n\nThe same result follows if you split instead by the sign of $x^{2} - 4$: Case 1 needs $|x| \\ge 2$, which keeps $4$ and drops $-1$; Case 2 needs $|x| < 2$, which keeps $1$ and drops $-4$.",
+  "distractorRationale": {
+    "a": "This keeps all four roots of the two quadratics, $4 - 1 + 1 - 4 = 0$, without checking them. The roots $-1$ and $-4$ make the right-hand side $3x$ negative, which an absolute value can never equal, so they are not solutions.",
+    "b": "This solves only the case $x^{2} - 4 = 3x$ and keeps both of its roots, $4 + (-1) = 3$. It misses the case in which $x^{2} - 4$ is negative, which produces the solution $x = 1$, and it also keeps the invalid root $-1$.",
+    "c": "This solves only the case $x^{2} - 4 = 3x$ and correctly discards $x = -1$, leaving $x = 4$. The second case, $4 - x^{2} = 3x$, gives the further valid solution $x = 1$, so the sum is $5$."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": null,
+  "accessibilityText": "Find the sum of all real solutions of the equation absolute value of x squared minus 4 equals 3 x. The choices are the numbers 0, 3, 4 and 5.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-math-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Both case quadratics factor over the integers and each produces exactly one root that must be rejected, so the item tests the case split and the sign condition together. The roots were checked by substitution and by a sign-change scan in a read-only script."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-bocconi-math-author",
+    "reviewer": "blind-reviewer-wave7-bocconi-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-bocconi-math-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The right side must be non-negative, so x >= 0. For x >= 2, x^2-3x-4=0 gives 4 and -1, and only 4 is valid. For 0 <= x < 2, 4-x^2=3x gives x^2+3x-4=0, so 1 or -4, and only 1 is valid. The sum is 4+1=5. [A second, separate blind solve (blind-reviewer-wave7-bocconi-math-run1) reached the same answer: The right-hand side forces x >= 0. For x >= 2, x^2-3x-4=0 gives x=4 (x=-1 is rejected). For 0 <= x < 2, x^2+3x-4=0 gives x=1 (x=-4 is rejected). So the solutions are 1 and 4, and their sum is 5.]"
+    },
+    "notes": "Author's uniqueness check: every real solution must satisfy one of the two case quadratics, whose roots are 4, -1, 1 and -4; only 1 and 4 satisfy the original equation, and a numerical scan of the interval from -10 to 10 finds exactly two sign changes of |x^2 - 4| - 3x (for x < 0 the expression is positive, and for large x the square dominates). The sum is therefore exactly 5. Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "absolute-value-equation",
+    "case-analysis",
+    "extraneous-roots"
+  ]
+}

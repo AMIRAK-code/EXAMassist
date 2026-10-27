@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-law-math-percentages-international-share-406",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-mathematics",
+  "skillSlug": "law-math-percentages",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In a law faculty, $40\\%$ of the students are in their first year. Among first-year students, $15\\%$ are international students; among all the other students, $10\\%$ are international students. What percentage of the faculty's international students are in their first year?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$50\\%$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$15\\%$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$40\\%$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$60\\%$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The question asks for a share **of the international students**, not of all students, so first find how large each group of international students is as a share of the whole faculty.\n\n**Work with a convenient total.** Suppose the faculty has $100$ students.\n\n- First-years: $40$ students, of whom $15\\%$ are international: $0.15 \\times 40 = 6$.\n- Other students: $60$ students, of whom $10\\%$ are international: $0.10 \\times 60 = 6$.\n\nSo there are $6 + 6 = 12$ international students in all.\n\n**Take the share.** Of these $12$, the first-years are $6$, so the percentage is\n\n$$\\frac{6}{12} = 50\\%$$\n\n**How to check.** The answer must not depend on the total chosen. With $1{,}000$ students: $60$ international first-years and $60$ international others, so again exactly half. The two groups balance because the smaller group ($40\\%$) has the higher rate ($15\\%$) in just the right proportion: $40 \\times 15 = 60 \\times 10$.",
+  "distractorRationale": {
+    "b": "This is the rate of international students among first-years. It answers \"what share of first-years are international\", which is the reverse of the question asked.",
+    "c": "This is the first-years' share of **all** students. It would be the answer only if international students were spread at the same rate in both groups, but first-years have the higher rate.",
+    "d": "This is $\\frac{15}{15 + 10} = 60\\%$: the two rates were compared directly, as if both groups were the same size. Each rate must first be weighted by its group's size, and the other students outnumber the first-years."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": null,
+  "accessibilityText": "In a law faculty, 40 percent of students are in their first year. Among first-year students, 15 percent are international; among all other students, 10 percent are international. The question asks what percentage of the international students are in their first year. The four answer options are 50 percent, 15 percent, 40 percent and 60 percent.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-law-wave8-author",
+    "aiAssisted": true,
+    "notes": "Original item on percentage reasoning with weighted groups (a percentage of a percentage, then a share of a sub-total). The figures are invented and chosen so the two subgroups come out equal, making the trap answers clearly separable."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-law-wave8-author",
+    "reviewer": "blind-reviewer-wave8-final-quant-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-final-quant-run0",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "First-year internationals = 0.40*0.15 = 6%, others = 0.60*0.10 = 6% of all students, so first-years are 6/12 = 50% of internationals. 15%, 40%, 60% are the given rates/shares misread. [A second, separate blind solve (blind-reviewer-wave8-final-quant-run1) reached the same answer: First-year international students are 0.40*0.15=6% of the faculty and the others are 0.60*0.10=6%, so the first-year share is 6/12=50%. 15%, 40% and 60% are raw figures read from the stem.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "mathematics",
+    "percentages",
+    "weighted-average",
+    "conditional-share",
+    "no-calculator"
+  ]
+}

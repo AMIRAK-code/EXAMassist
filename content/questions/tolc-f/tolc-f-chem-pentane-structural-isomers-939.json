@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-chem-pentane-structural-isomers-939",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "chemistry",
+  "domainSlug": "tolcf-chemistry",
+  "skillSlug": "tolcf-chem-organic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "How many structural isomers, compounds with different carbon skeletons, have the molecular formula $\\mathrm{C_5H_{12}}$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "1"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "2"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "3"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "4"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "5"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "$\\mathrm{C_5H_{12}}$ fits $\\mathrm{C_nH_{2n+2}}$, so these are alkanes, with no rings and no double bonds. Draw the possible skeletons systematically, starting from the longest chain and shortening it by one carbon at a time.\n\n1. **Five carbons in a row:** pentane, $\\mathrm{CH_3CH_2CH_2CH_2CH_3}$.\n2. **Four-carbon chain + one branch:** the methyl can only go on the second carbon: 2-methylbutane, $\\mathrm{(CH_3)_2CHCH_2CH_3}$. Putting it on the third carbon gives the same molecule read from the other end; on an end carbon it just lengthens the chain back to pentane.\n3. **Three-carbon chain + two branches:** both methyls must go on the middle carbon: 2,2-dimethylpropane, $\\mathrm{C(CH_3)_4}$.\n\nA two-carbon chain cannot carry three more carbons without creating a longer chain. So there are **3** isomers.\n\n**Check:** the count for alkanes grows 1, 1, 1, 2, 3 for one to five carbons: butane has 2 isomers and pentane 3.",
+  "distractorRationale": {
+    "a": "A molecular formula alone does not fix the structure: the same five carbons can be joined in a straight chain or in branched ways.",
+    "b": "Two is the number of isomers of butane, $\\mathrm{C_4H_{10}}$. Pentane has one more possibility, the doubly branched 2,2-dimethylpropane.",
+    "d": "This counts 2-methylbutane and '3-methylbutane' as different. They are the same molecule numbered from opposite ends, so they count once.",
+    "e": "Five is the number of carbon atoms, not of skeletons. Methyl groups on the end carbons do not create new isomers; they only extend the main chain."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "A short text question. The question asks how many structural isomers, compounds with different carbon skeletons, have the molecular formula C 5 H 12. The choices are 1, 2, 3, 4 and 5.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave8-biochem-author",
+    "aiAssisted": true,
+    "notes": "Original item. Tests systematic enumeration of the constitutional isomers of pentane."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave8-biochem-author",
+    "reviewer": "blind-reviewer-wave8-tolcf-biochem-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolcf-biochem-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "C5H12 has three skeletal isomers: n-pentane, 2-methylbutane and 2,2-dimethylpropane. Other branchings (e.g. 3-methylbutane) duplicate these, so 4 or 5 overcount and 1 or 2 undercount. [A second, separate blind solve (blind-reviewer-wave8-tolcf-biochem-run1) reached the same answer: C5H12 has three structural isomers: n-pentane, 2-methylbutane and 2,2-dimethylpropane. Any other branching repeats one of these, so 4 or 5 overcounts and 1 or 2 undercounts.]"
+    },
+    "notes": ""
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "structural-isomerism",
+    "alkanes"
+  ]
+}

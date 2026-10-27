@@ -1,0 +1,79 @@
+{
+  "id": "bocconi-ug-num-exports-largest-rise-442",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-numerical-reasoning",
+  "skillSlug": "numerical-reasoning-data-analysis",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Between 2024 and 2025, the exports of which sector increased by the largest amount in euros?",
+  "instructionsMd": "Use only the figures in the table. No calculator.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Machinery"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Chemicals"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Food and drink"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Textiles"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "An increase **in euros** is the percentage change applied to the sector's own 2024 value. A large percentage on a small base can be a smaller amount than a modest percentage on a large base, so every sector has to be worked out. The exporting-firms column plays no part.\n\n$$\\text{Machinery: } 12\\% \\text{ of } 700 = 84$$\n\n$$\\text{Food and drink: } 30\\% \\text{ of } 300 = 90$$\n\n$$\\text{Textiles: } -22\\% \\text{ of } 500 = -110$$\n\n$$\\text{Chemicals: } 20\\% \\text{ of } 500 = 100$$\n\nAll figures are in millions of euros. Chemicals rose by 100 million, the largest increase, so **Chemicals** is the answer.\n\n**Doing it by hand.** Each product is quick if you take 10 per cent first: 10 per cent of 500 is 50, so 20 per cent is 100; 10 per cent of 300 is 30, so 30 per cent is 90; 10 per cent of 700 is 70 and 2 per cent is 14, so 12 per cent is 84.\n\n**How to check the answer.** The runner-up, Food and drink, would need its rate applied to a base of more than $\\frac{100}{0.3} \\approx 333$ million to beat Chemicals, and its base is 300. Machinery would need more than $\\frac{100}{0.12} \\approx 833$ million, and its base is 700.\n\n**The traps.** The largest percentage belongs to Food and drink, the largest base to Machinery, and the largest change of any kind to Textiles, but that change is a fall. The question asks for the largest **increase** in **euros**, and only one sector satisfies both words.",
+  "distractorRationale": {
+    "a": "Machinery has by far the largest exports, 700 million euros in 2024 and 784 million in 2025, and the tallest bar in the chart. This reads the size of the sector as the size of its increase. Its 12 per cent rise is 84 million euros, the smallest of the three rises.",
+    "c": "Food and drink has the largest percentage change in the table, 30 per cent, which is the column a reader reaches for first. On a base of only 300 million euros that is 90 million, 10 million less than Chemicals.",
+    "d": "Textiles has the largest change in euros of any sector, 110 million, but it is a fall of 22 per cent. A candidate who compares the sizes of the changes and forgets the minus sign picks this sector, although the question asks which exports increased."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": {
+    "id": "bocconi-ug-stim-calvenza-exports-430",
+    "version": 1
+  },
+  "accessibilityText": "A question about the accompanying table of exports by sector for the Calvenza region. It asks which sector's exports increased by the largest amount in euros between 2024 and 2025. The four answer options are sector names: Machinery, Chemicals, Food and drink, Textiles.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-bocconi-verbal-logic-author",
+    "aiAssisted": true,
+    "notes": "Original item written against the original table bocconi-ug-stim-calvenza-exports-430. Each wrong sector leads a different reading of the table: the largest base, the largest percentage and the largest change in magnitude, which is a fall."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-bocconi-verbal-logic-author",
+    "reviewer": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Changes in euros: Machinery +84m, Food and drink +90m, Textiles -110m, Chemicals +100m. Chemicals rose the most in absolute terms; Food and drink has the largest percentage but not the largest amount. [A second, separate blind solve (blind-reviewer-wave7-bocconi-verbal-logic-tila-reading-run1) reached the same answer: Rises in euros: Machinery 700 x 12% = 84, Food and drink 300 x 30% = 90, Chemicals 500 x 20% = 100, and Textiles fell. Chemicals has the largest rise. Food and drink, the trap, has the largest percentage but not the largest amount.]"
+    },
+    "notes": "Author's uniqueness check: the increments are Machinery +84, Food and drink +90, Textiles -110 and Chemicals +100 million euros, confirmed with a read-only script. Chemicals is the unique largest increase, 10 million ahead of the next. Solved twice, the second time from the stem and table alone. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "table-calvenza-exports",
+    "rate-versus-base",
+    "percentages"
+  ]
+}

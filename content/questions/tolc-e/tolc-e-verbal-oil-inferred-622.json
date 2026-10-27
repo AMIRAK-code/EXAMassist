@@ -1,0 +1,87 @@
+{
+  "id": "tolc-e-verbal-oil-inferred-622",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "verbal-comprehension",
+  "domainSlug": "tolce-verbal",
+  "skillSlug": "tolce-verbal-inferred",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which of the following can most reasonably be inferred from the passage?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Large producers deliberately design certification schemes to keep small producers out."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Most shoppers check the harvest date before buying a bottle of oil."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Certification makes shoppers worse off whenever it reduces the number of independent producers."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "When a bottle names only its region, one mill's poor oil can damage the reputation of every producer in that region."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Cooperatives that do not use tasting panels sell oil of lower quality than those that do."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "An inference must be something the text makes very likely without stating it. Look for a sentence whose point depends on an unstated fact.\n\nThe third paragraph says some cooperatives print the harvest date and the name of the mill \"so that a disappointed customer can blame a mill rather than a whole region\". That remedy only makes sense if, without it, a disappointed customer blames the whole region. It follows that when a bottle names only its region, one mill's poor oil can damage the reputation of every producer there.\n\nTest the others against the text. The claim about large producers adds an intention; the passage says only that costs and paperwork favour them. The claim that certification makes shoppers worse off whenever producers become fewer contradicts the last sentence, which says the verdict depends on whether shoppers value certainty more than variety. The comparison of oil from cooperatives with and without panels is never made, and the passage says a label does not make the oil better. The claim about most shoppers checking the harvest date is a fact about behaviour the passage never gives. Words like \"deliberately\", \"whenever\" and \"most\" are a signal to demand explicit support.",
+  "distractorRationale": {
+    "c": "The final sentence says whether shoppers are better off depends on whether they value certainty more than variety. A blanket claim of harm ignores that condition.",
+    "e": "The passage never compares cooperatives with and without panels, and it says a label does not make the oil better; it only makes quality visible. Nothing follows about the oil itself.",
+    "a": "The passage says the costs and paperwork favour large producers, which is a matter of effect. Reading design and motive into that effect goes beyond the text.",
+    "b": "The passage says some cooperatives print the date; it gives no information about how many shoppers read it, let alone most."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": {
+    "id": "tolc-e-passage-oil-labels-691",
+    "version": 1
+  },
+  "accessibilityText": "An inference question about the olive oil passage. It asks which statement can most reasonably be inferred. The five choices say: large producers deliberately design certification schemes to keep small producers out; most shoppers check the harvest date before buying; certification makes shoppers worse off whenever it reduces the number of independent producers; when a bottle names only its region, one mill's poor oil can damage the reputation of every producer in that region; cooperatives that do not use tasting panels sell lower-quality oil than those that do.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-e-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank against an original passage. Every option is answerable, or refutable, from the passage text alone."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-e-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolce-verbal-run1",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolce-verbal-run1",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Printing the mill name lets 'a disappointed customer blame a mill rather than a whole region'. This implies that without the mill name, blame for one mill's poor oil falls on the whole region. C contradicts the passage's open question about certainty versus variety. A adds intent ('deliberately') the passage does not give. B and E are not supported. [A second, separate blind solve (blind-reviewer-wave6-tolce-verbal-run2) reached the same answer: The mill name is printed 'so that a disappointed customer can blame a mill rather than a whole region', which implies that without it the whole region gets the blame for one mill's poor oil. A invents intent: the costs fall unevenly, but no design against small producers is described. B has no support. C is contradicted: whether shoppers are better off 'depends' on whether they value certainty or variety. E is an unsupported generalisation.]"
+    },
+    "notes": "Uniqueness check: the mill-versus-region remark in the third paragraph supports the correct choice. The others need intent, a blanket judgement, a quality comparison or shopper statistics that the passage never supplies. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "verbal",
+    "reading",
+    "inference",
+    "economics",
+    "no-calculator"
+  ]
+}

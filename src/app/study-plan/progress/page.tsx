@@ -30,7 +30,7 @@ export default async function ReadinessPage({ searchParams }: { searchParams: Pr
   const user = await requireSignedIn('/study-plan/progress');
   const query = await searchParams;
   const db = getDb();
-  const { examKey, choices } = planningExam(db, user, query.exam, 'progress');
+  const { examKey, choices } = (await planningExam(db, user, query.exam, 'progress'));
 
   const trail = [
     { href: '/', label: 'Home' },
@@ -63,20 +63,20 @@ export default async function ReadinessPage({ searchParams }: { searchParams: Pr
   }
 
   const config = requireExamConfig(examKey);
-  const target = getExamTarget(db, user.id, config.examKey);
-  const dates = examDateFor(db, user.id, config.examKey);
-  const assessment = buildReadiness(db, user.id, config, target?.targetScore ?? null);
+  const target = (await getExamTarget(db, user.id, config.examKey));
+  const dates = (await examDateFor(db, user.id, config.examKey));
+  const assessment = (await buildReadiness(db, user.id, config, target?.targetScore ?? null));
   const hub = getHubForConfig(config.examKey);
 
   // Suggestions are built from what can be practised now.
   const practice = getBlueprint(config, 'practice');
-  const timed = blueprintAvailability(db, config).find((a) => a.available && a.blueprint.timing !== 'untimed' && a.blueprint.mode !== 'review');
+  const timed = (await blueprintAvailability(db, config)).find((a) => a.available && a.blueprint.timing !== 'untimed' && a.blueprint.mode !== 'review');
   const suggestions = buildSuggestions({
     config,
     assessment,
-    allFacets: practiceFacets(db, config),
-    unseenFacets: practice ? facetsFromPool(getPool(db, config.examKey, user.id).filter((item) => item.lastSeenAt === null), config, practice) : [],
-    retryable: retryableMissed(db, user.id, config.examKey).length,
+    allFacets: (await practiceFacets(db, config)),
+    unseenFacets: practice ? facetsFromPool((await getPool(db, config.examKey, user.id)).filter((item) => item.lastSeenAt === null), config, practice) : [],
+    retryable: (await retryableMissed(db, user.id, config.examKey)).length,
     timedFormat: timed ? { label: timed.blueprint.label } : null,
   });
 

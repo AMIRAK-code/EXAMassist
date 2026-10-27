@@ -1,0 +1,77 @@
+{
+  "id": "digital-sat-math-one-variable-data-spread-432",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "problem-solving-and-data-analysis",
+  "skillSlug": "one-variable-data",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A data set consists of $15$ different numbers. The mean of the data set is $40$ and the median is $38$. A new data set is formed by adding $10$ to each of the $5$ greatest numbers and subtracting $10$ from each of the $5$ least numbers; the other $5$ numbers are unchanged. Which of the following statements about the new data set, compared with the original data set, must be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The mean and the standard deviation are unchanged, and the range is greater by $20$."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The mean and the median are unchanged, but whether the standard deviation is greater or less cannot be determined without the individual numbers."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The mean and the median are unchanged, and the standard deviation is greater."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The mean, the median, and the standard deviation are all unchanged."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Handle the three measures one at a time. The first two are quick; the standard deviation needs an argument, because the individual numbers are not given.\n\n**Mean.** The total changes by $5(10) - 5(10) = 0$, and there are still $15$ numbers, so the mean stays $40$.\n\n**Median.** The median of $15$ ordered numbers is the $8$th, which is one of the middle $5$ and is not changed. The $5$ greatest numbers only get larger and the $5$ least only get smaller, so the order is kept and the $8$th number is still $38$.\n\n**Standard deviation.** The standard deviation measures how far the numbers sit from the mean, and the mean is still $40$. So it is enough to check whether each changed number moved farther from $40$.\n\n- Each of the $5$ greatest numbers is above the median, so it is greater than $38$. If such a number $x$ is at least $40$, its distance from $40$ grows from $x - 40$ to $x - 30$, which is $10$ more. If $x$ is between $38$ and $40$, its old distance is less than $2$, while its new value $x + 10$ is more than $48$, so its new distance is more than $8$. Either way the distance grows.\n- Each of the $5$ least numbers is below the median, so it is less than $38$ and therefore less than $40$. Its distance from $40$ grows from $40 - x$ to $40 - (x - 10) = 50 - x$, which is $10$ more.\n\nTen numbers move farther from the unchanged mean and five do not move, so the standard deviation must be greater.\n\nThe median makes this number-by-number check quick, but the conclusion is more general than that. Pushing the $5$ greatest numbers up and the $5$ least numbers down, by the same amount, always spreads a data set out, because every raised number is larger than every lowered number. In terms of the squared distances from the unchanged mean, each raised number $x$ adds $(x + 10 - 40)^2 - (x - 40)^2 = 20(x - 40) + 100$ and each lowered number $w$ adds $20(40 - w) + 100$. The total change is $20$ times (the sum of the raised numbers minus the sum of the lowered numbers) plus $1{,}000$, which is positive for any such data set. So choosing the answer that says the change cannot be determined is stopping one step too early.",
+  "distractorRationale": {
+    "d": "This assumes that because the additions and subtractions cancel in the total, they also cancel in the spread. They cancel for the mean only; every changed number moves away from the mean, so the spread grows.",
+    "b": "This is right about the mean and the median but stops too soon on the spread. The median of $38$ guarantees that each raised number is greater than $38$ and each lowered number is less than $38$, and that is enough to show every changed number ends up farther from the mean of $40$.",
+    "a": "The range does grow by $20$, since the greatest number rises by $10$ and the least falls by $10$, but the standard deviation is not unchanged. Ten of the fifteen numbers move farther from the mean, so the standard deviation is greater."
+  },
+  "estimatedSeconds": 140,
+  "stimulusRef": null,
+  "accessibilityText": "A data set has 15 different numbers with mean 40 and median 38. Add 10 to each of the 5 greatest numbers and subtract 10 from each of the 5 least numbers, leaving the middle 5 unchanged. Choose the statement about the new data set that must be true. The choices are: the mean and the standard deviation are unchanged, and the range is greater by 20; the mean and the median are unchanged, but whether the standard deviation is greater or less cannot be determined without the individual numbers; the mean and the median are unchanged, and the standard deviation is greater; the mean, the median and the standard deviation are all unchanged.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-sat-math-data-geo-author",
+    "aiAssisted": true,
+    "notes": "Original item. The median was set 2 below the mean so that the direction of the change in standard deviation is forced, but only after an argument from the median."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-sat-math-data-geo-author",
+    "reviewer": "blind-reviewer-wave7-sat-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-sat-math-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The sum is unchanged, so the mean stays 40. The order is kept (the lowest five fall, the highest five rise), so the 8th value, the median, is unchanged. Measuring deviations d from the mean, the sum of squared deviations changes by 20(sum of high d - sum of low d) + 1000, which is positive because every high value exceeds every low value. So the SD must increase. A and D wrongly say the SD is unchanged, and B's claim that it cannot be determined is false. [A second, separate blind solve (blind-reviewer-wave7-sat-math-run1) reached the same answer: The sum is unchanged, so the mean stays 40. The shifted values keep their order relative to the middle five, so the 8th value (the median, 38) is unchanged. The change in the sum of squared deviations is 20(sum of the top five deviations - sum of the bottom five deviations) + 1000, which is positive because every top value exceeds every bottom value. So the standard deviation must increase. A and D claim the SD is unchanged, and B's 'cannot be determined' is refuted by this identity.]"
+    },
+    "notes": "Stretch: a typical hard SAT spread item changes values in a visible list; here no values are given, and the candidate must prove the direction of the standard-deviation change from the mean and median alone (raised values all exceed 38 > 35, lowered values all fall below 38 < 45, so every changed value moves farther from the unchanged mean). The strongest distractor says the change cannot be determined, which a capable candidate reaches by stopping one step early. Author solved twice and checked with a read-only script that generated 166,149 random data sets satisfying the stem: in every one the mean stayed 40, the median stayed 38 and the standard deviation rose. Awaiting a blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "problem-solving",
+    "standard-deviation",
+    "mean-and-median"
+  ]
+}

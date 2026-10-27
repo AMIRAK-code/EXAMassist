@@ -110,162 +110,162 @@ let db: Db;
 let alice: string;
 let bob: string;
 
-beforeEach(() => {
-  db = createTestDb();
-  alice = createUser(db);
-  bob = createUser(db);
+beforeEach(async () => {
+  db = (await createTestDb());
+  alice = (await createUser(db));
+  bob = (await createUser(db));
 });
 
-function startSatPractice(userId = alice) {
-  seedQuestions(db, SAT, { perDomain: 6 });
-  return startAttempt(db, { userId, examKey: SAT.examKey, blueprintId: 'practice' }).attemptId;
+async function startSatPractice(userId = alice) {
+  (await seedQuestions(db, SAT, { perDomain: 6 }));
+  return (await startAttempt(db, { userId, examKey: SAT.examKey, blueprintId: 'practice' })).attemptId;
 }
 
 describe('saving the position', () => {
-  it('stores a move and reopens there', () => {
-    const attemptId = startSatPractice();
-    const result = visitPosition(db, { attemptId, userId: alice, partIndex: 0, position: 6, clock: Date.now() });
+  it('stores a move and reopens there', async () => {
+    const attemptId = (await startSatPractice());
+    const result = (await visitPosition(db, { attemptId, userId: alice, partIndex: 0, position: 6, clock: Date.now() }));
     expect(result).toEqual({ position: 6, recorded: true });
-    expect(getAttemptState(db, attemptId, alice).resume).toEqual({ partIndex: 0, position: 6, reason: 'stored' });
+    expect((await getAttemptState(db, attemptId, alice)).resume).toEqual({ partIndex: 0, position: 6, reason: 'stored' });
   });
 
-  it('does not let a late request overwrite a newer position', () => {
-    const attemptId = startSatPractice();
+  it('does not let a late request overwrite a newer position', async () => {
+    const attemptId = (await startSatPractice());
     const now = Date.now();
-    visitPosition(db, { attemptId, userId: alice, partIndex: 0, position: 7, clock: now });
+    (await visitPosition(db, { attemptId, userId: alice, partIndex: 0, position: 7, clock: now }));
     // An older move arriving afterwards (slow network, retry, second tab).
-    const late = visitPosition(db, { attemptId, userId: alice, partIndex: 0, position: 2, clock: now - 500 });
+    const late = (await visitPosition(db, { attemptId, userId: alice, partIndex: 0, position: 2, clock: now - 500 }));
     expect(late.recorded).toBe(false);
     // The same clock does not win either.
-    expect(visitPosition(db, { attemptId, userId: alice, partIndex: 0, position: 3, clock: now }).recorded).toBe(false);
-    expect(getAttemptState(db, attemptId, alice).resume?.position).toBe(7);
+    expect((await visitPosition(db, { attemptId, userId: alice, partIndex: 0, position: 3, clock: now })).recorded).toBe(false);
+    expect((await getAttemptState(db, attemptId, alice)).resume?.position).toBe(7);
   });
 
-  it('counts the move but does not store a clock running far ahead of the server', () => {
-    const attemptId = startSatPractice();
+  it('counts the move but does not store a clock running far ahead of the server', async () => {
+    const attemptId = (await startSatPractice());
     const now = new Date('2026-09-26T12:00:00.000Z');
-    const ahead = visitPosition(db, {
+    const ahead = (await visitPosition(db, {
       attemptId,
       userId: alice,
       partIndex: 0,
       position: 5,
       clock: now.getTime() + RESUME_CLOCK_TOLERANCE_MS + 1,
       now,
-    });
+    }));
     expect(ahead.recorded).toBe(false);
-    const row = db.prepare('SELECT resume_position AS p FROM attempts WHERE id = ?').get(attemptId) as { p: number | null };
+    const row = (await db.prepare('SELECT resume_position AS p FROM attempts WHERE id = ?').get(attemptId)) as { p: number | null };
     expect(row.p).toBeNull();
     // Within tolerance is fine.
     expect(
-      visitPosition(db, { attemptId, userId: alice, partIndex: 0, position: 5, clock: now.getTime() + 1000, now }).recorded,
+      (await visitPosition(db, { attemptId, userId: alice, partIndex: 0, position: 5, clock: now.getTime() + 1000, now })).recorded,
     ).toBe(true);
   });
 
-  it("refuses another learner's attempt as if it did not exist", () => {
-    const attemptId = startSatPractice();
+  it("refuses another learner's attempt as if it did not exist", async () => {
+    const attemptId = (await startSatPractice());
     try {
-      visitPosition(db, { attemptId, userId: bob, partIndex: 0, position: 3, clock: Date.now() });
+      (await visitPosition(db, { attemptId, userId: bob, partIndex: 0, position: 3, clock: Date.now() }));
       expect.unreachable();
     } catch (error) {
       expect((error as AttemptError).status).toBe(404);
     }
-    const row = db.prepare('SELECT resume_position AS p FROM attempts WHERE id = ?').get(attemptId) as { p: number | null };
+    const row = (await db.prepare('SELECT resume_position AS p FROM attempts WHERE id = ?').get(attemptId)) as { p: number | null };
     expect(row.p).toBeNull();
   });
 
-  it('refuses a move in a finished attempt', () => {
-    const attemptId = startSatPractice();
-    submitAttempt(db, { attemptId, userId: alice });
-    expect(() => visitPosition(db, { attemptId, userId: alice, partIndex: 0, position: 3 })).toThrowError(
+  it('refuses a move in a finished attempt', async () => {
+    const attemptId = (await startSatPractice());
+    (await submitAttempt(db, { attemptId, userId: alice }));
+    (await expect(async () => (await visitPosition(db, { attemptId, userId: alice, partIndex: 0, position: 3 }))).rejects.toThrowError(
       expect.objectContaining({ code: 'attempt-closed', status: 409 }),
-    );
+    ));
   });
 
-  it('refuses a move in a section that has not opened', () => {
-    seedQuestions(db, SAT, { perDomain: 6 });
-    const { attemptId } = startAttempt(db, { userId: alice, examKey: SAT.examKey, blueprintId: 'diagnostic' });
-    expect(() => visitPosition(db, { attemptId, userId: alice, partIndex: 1, position: 0 })).toThrowError(
+  it('refuses a move in a section that has not opened', async () => {
+    (await seedQuestions(db, SAT, { perDomain: 6 }));
+    const { attemptId } = (await startAttempt(db, { userId: alice, examKey: SAT.examKey, blueprintId: 'diagnostic' }));
+    (await expect(async () => (await visitPosition(db, { attemptId, userId: alice, partIndex: 1, position: 0 }))).rejects.toThrowError(
       expect.objectContaining({ code: 'wrong-part' }),
-    );
+    ));
     // Nothing in the pending section was marked as seen.
-    const seen = db
+    const seen = (await db
       .prepare('SELECT COUNT(*) AS n FROM attempt_items WHERE attempt_id = ? AND part_index = 1 AND first_seen_at IS NOT NULL')
-      .get(attemptId) as { n: number };
+      .get(attemptId)) as { n: number };
     expect(seen.n).toBe(0);
   });
 });
 
 describe('forward-only sections (Bocconi, screens of three)', () => {
-  function startBocconi() {
-    seedQuestions(db, BOCCONI, { perDomain: 20 });
-    return startAttempt(db, { userId: alice, examKey: BOCCONI.examKey, blueprintId: 'timed-online-test' }).attemptId;
+  async function startBocconi() {
+    (await seedQuestions(db, BOCCONI, { perDomain: 20 }));
+    return (await startAttempt(db, { userId: alice, examKey: BOCCONI.examKey, blueprintId: 'timed-online-test' })).attemptId;
   }
 
-  it('refuses to store a move back to a committed screen', () => {
-    const attemptId = startBocconi();
-    for (const position of [0, 1, 2]) recordResponse(db, { attemptId, userId: alice, partIndex: 0, position, response: single });
-    visitPosition(db, { attemptId, userId: alice, partIndex: 0, position: 3, clock: Date.now() });
-    expect(() => visitPosition(db, { attemptId, userId: alice, partIndex: 0, position: 1, clock: Date.now() + 10 })).toThrowError(
+  it('refuses to store a move back to a committed screen', async () => {
+    const attemptId = (await startBocconi());
+    for (const position of [0, 1, 2]) (await recordResponse(db, { attemptId, userId: alice, partIndex: 0, position, response: single }));
+    (await visitPosition(db, { attemptId, userId: alice, partIndex: 0, position: 3, clock: Date.now() }));
+    (await expect(async () => (await visitPosition(db, { attemptId, userId: alice, partIndex: 0, position: 1, clock: Date.now() + 10 }))).rejects.toThrowError(
       expect.objectContaining({ code: 'no-backward-navigation' }),
-    );
-    expect(getAttemptState(db, attemptId, alice).resume).toEqual({ partIndex: 0, position: 3, reason: 'stored' });
+    ));
+    expect((await getAttemptState(db, attemptId, alice)).resume).toEqual({ partIndex: 0, position: 3, reason: 'stored' });
   });
 
-  it('reopens at the reached screen even if the stored position points at a committed one', () => {
-    const attemptId = startBocconi();
-    for (const position of [0, 1, 2]) recordResponse(db, { attemptId, userId: alice, partIndex: 0, position, response: single });
-    visitPosition(db, { attemptId, userId: alice, partIndex: 0, position: 3, clock: Date.now() });
+  it('reopens at the reached screen even if the stored position points at a committed one', async () => {
+    const attemptId = (await startBocconi());
+    for (const position of [0, 1, 2]) (await recordResponse(db, { attemptId, userId: alice, partIndex: 0, position, response: single }));
+    (await visitPosition(db, { attemptId, userId: alice, partIndex: 0, position: 3, clock: Date.now() }));
     // A stored value that no longer matches the rules, however it got there.
-    db.prepare('UPDATE attempts SET resume_position = 0 WHERE id = ?').run(attemptId);
-    expect(getAttemptState(db, attemptId, alice).resume).toEqual({ partIndex: 0, position: 3, reason: 'frontier' });
+    (await db.prepare('UPDATE attempts SET resume_position = 0 WHERE id = ?').run(attemptId));
+    expect((await getAttemptState(db, attemptId, alice)).resume).toEqual({ partIndex: 0, position: 3, reason: 'frontier' });
   });
 });
 
 describe('expiry', () => {
-  it('moves the resume point to the next section when a timed section runs out', () => {
-    seedQuestions(db, SAT, { perDomain: 6 });
+  it('moves the resume point to the next section when a timed section runs out', async () => {
+    (await seedQuestions(db, SAT, { perDomain: 6 }));
     const started = new Date('2026-09-26T10:00:00.000Z');
-    const { attemptId } = startAttempt(db, { userId: alice, examKey: SAT.examKey, blueprintId: 'diagnostic', now: started });
-    visitPosition(db, { attemptId, userId: alice, partIndex: 0, position: 3, clock: started.getTime() + 1000, now: new Date(started.getTime() + 1000) });
+    const { attemptId } = (await startAttempt(db, { userId: alice, examKey: SAT.examKey, blueprintId: 'diagnostic', now: started }));
+    (await visitPosition(db, { attemptId, userId: alice, partIndex: 0, position: 3, clock: started.getTime() + 1000, now: new Date(started.getTime() + 1000) }));
 
     // Well past the first module's clock.
     const later = new Date(started.getTime() + 60 * 60 * 1000 * 0.2);
-    const state = getAttemptState(db, attemptId, alice, later);
+    const state = (await getAttemptState(db, attemptId, alice, later));
     expect(state.parts[0].status).toBe('expired');
     expect(state.resume?.partIndex).toBe(state.currentPartIndex);
     expect(state.resume?.partIndex).toBeGreaterThan(0);
     expect(state.resume).toEqual({ partIndex: state.currentPartIndex, position: 0, reason: 'frontier' });
   });
 
-  it('closes an expired attempt before listing, so it is never offered to continue', () => {
-    seedQuestions(db, SAT, { perDomain: 6 });
+  it('closes an expired attempt before listing, so it is never offered to continue', async () => {
+    (await seedQuestions(db, SAT, { perDomain: 6 }));
     const started = new Date('2026-09-26T10:00:00.000Z');
-    const { attemptId } = startAttempt(db, { userId: alice, examKey: SAT.examKey, blueprintId: 'timed-math-module-1', now: started });
-    expect(listUnfinishedAttempts(db, alice, new Date(started.getTime() + 60_000)).map((a) => a.id)).toEqual([attemptId]);
+    const { attemptId } = (await startAttempt(db, { userId: alice, examKey: SAT.examKey, blueprintId: 'timed-math-module-1', now: started }));
+    expect((await listUnfinishedAttempts(db, alice, new Date(started.getTime() + 60_000))).map((a) => a.id)).toEqual([attemptId]);
 
     const afterDeadline = new Date(started.getTime() + 36 * 60 * 1000);
-    expect(listUnfinishedAttempts(db, alice, afterDeadline)).toEqual([]);
-    const row = db.prepare('SELECT status FROM attempts WHERE id = ?').get(attemptId) as { status: string };
+    expect((await listUnfinishedAttempts(db, alice, afterDeadline))).toEqual([]);
+    const row = (await db.prepare('SELECT status FROM attempts WHERE id = ?').get(attemptId)) as { status: string };
     expect(row.status).toBe('expired');
   });
 });
 
 describe('listing unfinished attempts', () => {
-  it('lists every exam, newest activity first, and only the learner’s own', () => {
-    seedQuestions(db, SAT, { perDomain: 6 });
-    seedQuestions(db, GMAT, { perDomain: 6 });
+  it('lists every exam, newest activity first, and only the learner’s own', async () => {
+    (await seedQuestions(db, SAT, { perDomain: 6 }));
+    (await seedQuestions(db, GMAT, { perDomain: 6 }));
     const t0 = new Date('2026-09-26T09:00:00.000Z');
-    const sat = startAttempt(db, { userId: alice, examKey: SAT.examKey, blueprintId: 'practice', now: t0 }).attemptId;
-    const gmat = startAttempt(db, { userId: alice, examKey: GMAT.examKey, blueprintId: 'practice', now: new Date(t0.getTime() + 1000) }).attemptId;
-    startAttempt(db, { userId: bob, examKey: SAT.examKey, blueprintId: 'practice', now: t0 });
+    const sat = (await startAttempt(db, { userId: alice, examKey: SAT.examKey, blueprintId: 'practice', now: t0 })).attemptId;
+    const gmat = (await startAttempt(db, { userId: alice, examKey: GMAT.examKey, blueprintId: 'practice', now: new Date(t0.getTime() + 1000) })).attemptId;
+    (await startAttempt(db, { userId: bob, examKey: SAT.examKey, blueprintId: 'practice', now: t0 }));
 
     // Alice last worked in the SAT session.
-    visitPosition(db, { attemptId: sat, userId: alice, partIndex: 0, position: 4, now: new Date(t0.getTime() + 5000) });
+    (await visitPosition(db, { attemptId: sat, userId: alice, partIndex: 0, position: 4, now: new Date(t0.getTime() + 5000) }));
 
-    const list = listUnfinishedAttempts(db, alice, new Date(t0.getTime() + 6000));
+    const list = (await listUnfinishedAttempts(db, alice, new Date(t0.getTime() + 6000)));
     expect(list.map((a) => a.id)).toEqual([sat, gmat]);
     expect(list[0]).toMatchObject({ examKey: 'digital-sat', resumeQuestion: 5, questionCount: 10, resumeReason: 'stored' });
     expect(list[1]).toMatchObject({ examKey: 'gmat', resumeQuestion: 1, resumeReason: 'frontier' });
-    expect(listUnfinishedAttempts(db, bob).every((a) => a.examKey === 'digital-sat')).toBe(true);
+    expect((await listUnfinishedAttempts(db, bob)).every((a) => a.examKey === 'digital-sat')).toBe(true);
   });
 });

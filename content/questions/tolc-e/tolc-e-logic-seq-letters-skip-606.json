@@ -1,0 +1,84 @@
+{
+  "id": "tolc-e-logic-seq-letters-skip-606",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-sequences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In the series below, each letter comes from the one before it by moving forward a number of places in the English alphabet of 26 letters (with no letters left out). The number of places moved follows a regular rule.\n\nB, D, G, K, P, ?\n\nWhich letter comes next in the series?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "U"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "V"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "W"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "T"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "X"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "For letter series, convert to positions first: A = 1, B = 2, and so on.\n\nThe letters sit at positions 2, 4, 7, 11 and 16. The jumps between them are 2, 3, 4 and 5, so the next jump is 6 and the next position is 16 + 6 = 22. Counting from the start of the alphabet (Q = 17, R = 18, S = 19, T = 20, U = 21), position 22 is the letter **V**.\n\nCheck: from P, six steps forward runs through Q, R, S, T, U and lands on V.",
+  "distractorRationale": {
+    "d": "Moves forward 4 places, reusing a step that appeared earlier in the series (from G to K). The steps between the letters get longer each time, so the next step cannot be a shorter one.",
+    "a": "Moves forward 5 places, repeating the last step from K to P. The step must grow by one each time, so the next move is 6, not 5.",
+    "c": "Moves forward 7 places, growing the step by two. The steps go 2, 3, 4, 5, each one larger than the last by exactly 1.",
+    "e": "Moves forward 8 places, as if the steps sped up in the way of the pattern 2, 3, 5, 8, where each step is the sum of the two before it. The actual steps are 2, 3, 4, 5, each exactly one more than the last, so the next step is 6."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A letter series question. The series is the letters B, D, G, K and P, followed by a question mark. Each letter is a number of places further along the 26-letter English alphabet than the one before, and the number of places follows a rule. The question asks which letter comes next. The five choices are the letters T, U, V, W and X.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-e-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item written for this bank. Scenario, names and figures are invented; no published TOLC or other test item was used or adapted."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-e-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolce-logic-run3",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolce-logic-run3",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Letter positions are B2, D4, G7, K11, P16, with gaps 2, 3, 4, 5. The next gap is 6, giving position 22 = V. U and W are off by one. No consistent rule gives T or X. [A second, separate blind solve (blind-reviewer-wave6-tolce-logic-run5) reached the same answer: The letter positions are 2, 4, 7, 11, 16, with steps 2, 3, 4, 5. The next step is 6, giving position 22, which is V. U would be a step of 5 and W a step of 7, so neither fits the rule.]"
+    },
+    "notes": "Uniqueness check: positions 2, 4, 7, 11, 16 have increments 2, 3, 4, 5, so the next increment is 6 and the next letter is the twenty-second. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "logic",
+    "sequences",
+    "letters",
+    "alphabet-positions",
+    "no-calculator"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "polito-til-i-math-numbers-fraction-of-remainder-001",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tili-mathematics",
+  "skillSlug": "tili-math-numbers",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Giulia is reading a novel for her literature class at a Turin *liceo*. On Monday she reads $\\frac{2}{5}$ of the pages. On Tuesday she reads $\\frac{1}{3}$ of the pages that were still unread after Monday. After Tuesday, 48 pages remain. How many pages does the novel have?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "80"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "120"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "144"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "180"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "240"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "**What to notice first.** Tuesday's fraction is a fraction *of the pages still unread*, so it must be applied to what Monday left, not to the whole book.\n\n**Step 1 - after Monday.** Two fifths are read, so $\\frac{3}{5}$ of the book is unread.\n\n**Step 2 - Tuesday's reading.** One third of the unread part: $\\frac{1}{3}\\cdot\\frac{3}{5}=\\frac{1}{5}$ of the whole book.\n\n**Step 3 - what remains.** $\\frac{3}{5}-\\frac{1}{5}=\\frac{2}{5}$ of the book, and this is 48 pages. One fifth is therefore 24 pages, and the novel has $5\\cdot 24=120$ pages.\n\n**Check page by page.** Monday: $\\frac{2}{5}\\cdot120=48$ pages read, so 72 unread. Tuesday: one third of 72 is 24. Left over: $72-24=48$, which matches the statement.",
+  "distractorRationale": {
+    "a": "This treats the 48 pages as what was left after Monday alone, which is $\\frac{3}{5}$ of the book, and so gives $48\\div\\frac{3}{5}=80$. Tuesday's reading is never subtracted, yet the 48 pages remain after both days.",
+    "c": "This takes the 48 pages to be the $\\frac{1}{3}$ mentioned in the Tuesday step and multiplies by 3. That fraction describes how much of the unread part Giulia read on Tuesday; it says nothing about how the 48 pages relate to the whole book.",
+    "d": "This applies Tuesday's $\\frac{1}{3}$ to the whole book instead of to the pages still unread. Then $\\frac{2}{5}+\\frac{1}{3}=\\frac{11}{15}$ is read, $\\frac{4}{15}$ is left, and $48\\div\\frac{4}{15}=180$. The wording \"of the pages that were still unread\" makes the second fraction a fraction of what Monday left.",
+    "e": "This reads \"one third of the unread pages\" as the part that is left rather than the part that is read on Tuesday. Then $\\frac{1}{3}\\cdot\\frac{3}{5}=\\frac{1}{5}$ of the book remains and $48\\div\\frac{1}{5}=240$. The one third is what Giulia reads, so two thirds of the unread pages survive Tuesday."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": null,
+  "accessibilityText": "Giulia reads two fifths of a novel on Monday. On Tuesday she reads one third of the pages that were still unread after Monday. Forty-eight pages remain after Tuesday. Find the total number of pages in the novel.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "polito-til-i-mathematics-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item. Distractors come from four named slips: dropping the second day, using the second fraction as the multiplier of the total, applying it to the whole book, and reading the fraction read as the fraction left."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "polito-til-i-mathematics-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tili-math-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tili-math-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "After Monday 3/5 of the book is left. Tuesday reads 1/3 of that, which leaves (2/3)(3/5) = 2/5 of the total. 2/5 of N = 48, so N = 120. Check with 80: 80*(2/5) = 32, not 48, so A is wrong. No other option works. [A second, separate blind solve (blind-reviewer-wave6-tili-math-run7) reached the same answer: After Monday 3/5 N is left. Tuesday reads (1/3)(3/5)N = N/5, so 2/5 N = 48 and N = 120. Check: 48 read, then 24 read, leaving 48. Option D (180) comes from wrongly taking 1/3 of the whole book.]"
+    },
+    "notes": "Awaiting a blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "fractions",
+    "multi-step",
+    "word-problem"
+  ]
+}

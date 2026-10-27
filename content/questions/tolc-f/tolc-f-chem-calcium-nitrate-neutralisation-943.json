@@ -1,0 +1,82 @@
+{
+  "id": "tolc-f-chem-calcium-nitrate-neutralisation-943",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "chemistry",
+  "domainSlug": "tolcf-chemistry",
+  "skillSlug": "tolcf-chem-inorganic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which equation correctly represents the **complete** neutralisation of calcium hydroxide by nitric acid?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\mathrm{Ca(OH)_2} + \\mathrm{HNO_3} \\rightarrow \\mathrm{Ca(OH)NO_3} + \\mathrm{H_2O}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\mathrm{Ca(OH)_2} + \\mathrm{HNO_3} \\rightarrow \\mathrm{CaNO_3} + \\mathrm{H_2O}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\mathrm{Ca(OH)_2} + 2\\,\\mathrm{HNO_2} \\rightarrow \\mathrm{Ca(NO_2)_2} + 2\\,\\mathrm{H_2O}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\mathrm{Ca(OH)_2} + 2\\,\\mathrm{HNO_3} \\rightarrow \\mathrm{Ca(NO_3)_2} + 2\\,\\mathrm{H_2O}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\mathrm{Ca(OH)_2} + 2\\,\\mathrm{HNO_3} \\rightarrow \\mathrm{Ca(NO_3)_2} + \\mathrm{H_2O}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Check three things in turn: the right reagents, the right salt, and the balance.\n\n1. **Reagents.** Nitric acid is $\\mathrm{HNO_3}$; $\\mathrm{HNO_2}$ is nitrous acid.\n2. **Salt.** Complete neutralisation replaces every $\\mathrm{OH^-}$ of the base. Calcium forms $\\mathrm{Ca^{2+}}$ and nitrate is $\\mathrm{NO_3^-}$, so the neutral salt is $\\mathrm{Ca(NO_3)_2}$, calcium nitrate. Two $\\mathrm{OH^-}$ need two $\\mathrm{H^+}$, so **2** $\\mathrm{HNO_3}$.\n3. **Balance.** Each $\\mathrm{H^+}$ combines with one $\\mathrm{OH^-}$ to make one water molecule, so **2** $\\mathrm{H_2O}$.\n\n$$\\mathrm{Ca(OH)_2} + 2\\,\\mathrm{HNO_3} \\rightarrow \\mathrm{Ca(NO_3)_2} + 2\\,\\mathrm{H_2O}$$\n\n**Check by atom count:** Ca $1 = 1$; N $2 = 2$; H $2 + 2 = 4$ on the left, $2 \\times 2 = 4$ on the right; O $2 + 6 = 8$ on the left, $6 + 2 = 8$ on the right.",
+  "distractorRationale": {
+    "b": "$\\mathrm{CaNO_3}$ is not a valid formula: $\\mathrm{Ca^{2+}}$ with one $\\mathrm{NO_3^-}$ leaves a charge of $+1$. The equation is also unbalanced (3 H on the left, 2 on the right).",
+    "c": "This equation is balanced, but it uses nitrous acid, $\\mathrm{HNO_2}$, and gives calcium nitrite. Nitric acid is $\\mathrm{HNO_3}$ and its salts are nitrates.",
+    "a": "This equation is balanced, but it replaces only one of the two hydroxide ions, giving a basic salt. That is partial neutralisation, not the complete neutralisation the stem asks for.",
+    "e": "Reagents and salt are right, but there is only one water molecule: the left has 4 H and 8 O, the right 2 H and 7 O. Two $\\mathrm{H^+}$ meeting two $\\mathrm{OH^-}$ make two waters."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "The question asks which equation represents the complete neutralisation of calcium hydroxide by nitric acid. The choices are: C a O H twice plus H N O 3 gives C a O H N O 3 plus H 2 O; C a O H twice plus H N O 3 gives C a N O 3 plus H 2 O; C a O H twice plus 2 H N O 2 gives C a N O 2 twice plus 2 H 2 O; C a O H twice plus 2 H N O 3 gives C a N O 3 twice plus 2 H 2 O; C a O H twice plus 2 H N O 3 gives C a N O 3 twice plus H 2 O. Here \"C a O H twice\" means calcium hydroxide, C a with O H in brackets, subscript 2, and \"C a N O 3 twice\" means calcium nitrate.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave8-biochem-author",
+    "aiAssisted": true,
+    "notes": "Original item. Tests writing and balancing a complete acid-base neutralisation that forms a ternary salt, set against partial neutralisation and the nitrite/nitrate confusion."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave8-biochem-author",
+    "reviewer": "blind-reviewer-wave8-tolcf-biochem-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolcf-biochem-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Complete neutralisation of the diprotic base needs 2 HNO3: Ca(OH)2 + 2 HNO3 -> Ca(NO3)2 + 2 H2O, balanced. The 1:1 options give a basic salt or the wrong formula CaNO3; the HNO2 option uses nitrous rather than nitric acid; the last option is unbalanced in H and O (only one H2O). [A second, separate blind solve (blind-reviewer-wave8-tolcf-biochem-run1) reached the same answer: The complete reaction is Ca(OH)2 + 2HNO3 -> Ca(NO3)2 + 2H2O, which is balanced. The 1:1 options are partial neutralisation or wrongly formulated (CaNO3), the same equation with 1 H2O is unbalanced for H and O, and the remaining option uses nitrous acid (HNO2) instead of nitric acid.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "neutralisation",
+    "salts",
+    "balancing-equations"
+  ]
+}

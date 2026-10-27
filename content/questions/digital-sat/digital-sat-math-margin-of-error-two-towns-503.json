@@ -1,0 +1,77 @@
+{
+  "id": "digital-sat-math-margin-of-error-two-towns-503",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "problem-solving-and-data-analysis",
+  "skillSlug": "inference-from-sample-statistics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Two independent surveys were conducted, each using a random sample of residents, to estimate the percentage of residents who support building a new bike lane. In Town P, $48\\%$ of the sample supported it, with an associated margin of error of $3$ percentage points. In Town Q, $52\\%$ of the sample supported it, with an associated margin of error of $4$ percentage points. Which statement is best supported by these results?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The percentage of all Town Q residents who support the bike lane is greater than the percentage of all Town P residents who support it."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "It is plausible that the percentage of all Town P residents who support the bike lane is greater than the percentage of all Town Q residents who support it."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Fewer than half of all Town P residents support the bike lane."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "More than half of all Town Q residents support the bike lane."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Turn each estimate into the range of plausible values for the whole town before comparing anything.\n\n$$\\text{Town P: } 48\\% \\pm 3 \\;\\Rightarrow\\; 45\\% \\text{ to } 51\\%$$\n\n$$\\text{Town Q: } 52\\% \\pm 4 \\;\\Rightarrow\\; 48\\% \\text{ to } 56\\%$$\n\nA statement about the towns is supported only if it holds for **every** plausible value, and a statement that something is *plausible* is supported if it holds for **some** pair of plausible values.\n\n- The two ranges overlap from $48\\%$ to $51\\%$. Town P could plausibly be at $50\\%$ while Town Q is at $49\\%$, so it is plausible that Town P's percentage is the greater one. That is the supported statement.\n- Because of that same overlap, the data do not establish that Town Q's percentage is greater than Town P's, even though Town Q's sample percentage is higher.\n- Town Q's range includes values below $50\\%$, so it is not established that more than half of Town Q supports the lane.\n- Town P's range includes values above $50\\%$ (up to $51\\%$), so it is not established that fewer than half of Town P supports it.\n\nThe lesson: when two margin-of-error ranges overlap, the samples do not show which population percentage is larger.",
+  "distractorRationale": {
+    "a": "This compares only the sample percentages. The plausible ranges, $45\\%$ to $51\\%$ for Town P and $48\\%$ to $56\\%$ for Town Q, overlap, so the data do not show which town's true percentage is higher.",
+    "d": "Town Q's plausible range is $48\\%$ to $56\\%$, which includes values below $50\\%$, so the results do not establish that more than half of Town Q supports the lane.",
+    "c": "Town P's plausible range is $45\\%$ to $51\\%$, which includes values above $50\\%$, so the results do not establish that fewer than half of Town P supports the lane."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "Random-sample surveys in two towns estimated support for a new bike lane. Town P: 48 percent, margin of error 3 percentage points. Town Q: 52 percent, margin of error 4 percentage points. Which statement is best supported? The choices are: the percentage of all Town Q residents who support the lane is greater than the percentage for Town P; it is plausible that the percentage of all Town P residents who support the lane is greater than the percentage for Town Q; fewer than half of all Town P residents support the lane; more than half of all Town Q residents support the lane.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "sat-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Two margin-of-error intervals that overlap and that each straddle 50 percent, so only the 'plausible' comparison survives; tests reading intervals rather than point estimates."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "sat-wave8-math-author",
+    "reviewer": "blind-reviewer-wave8-sat-math-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-sat-math-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "P interval 45-51%, Q interval 48-56%; they overlap, so P > Q is plausible. A asserts a difference not established; C fails because P's interval reaches 51%; D fails because Q's interval goes down to 48%. [A second, separate blind solve (blind-reviewer-wave8-sat-math-run1) reached the same answer: Intervals: P 45-51%, Q 48-56%; they overlap, so P > Q is plausible. A is not established (overlap); C and D fail because both intervals contain 50%.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "problem-solving",
+    "margin-of-error",
+    "comparing-estimates"
+  ]
+}

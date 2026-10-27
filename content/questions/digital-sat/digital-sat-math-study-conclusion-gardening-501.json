@@ -1,0 +1,77 @@
+{
+  "id": "digital-sat-math-study-conclusion-gardening-501",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "problem-solving-and-data-analysis",
+  "skillSlug": "evaluating-statistical-claims",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A researcher selected $500$ adults at random from all adults living in Marlow County. The researcher asked each adult how many hours per week they spend gardening and measured each adult's resting blood pressure. Adults who reported more hours of gardening tended to have lower blood pressure. Which conclusion is best supported by these results?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Gardening more hours per week causes lower blood pressure for adults in Marlow County."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Among adults in Marlow County, more hours of gardening are associated with lower blood pressure."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Gardening more hours per week causes lower blood pressure for all adults."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Among all adults in the country, more hours of gardening are associated with lower blood pressure."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Start by asking how the data were collected. The researcher **observed** gardening habits; nobody was assigned to garden more or less. That makes this an observational study, and an observational study can show an **association** but not that one variable causes the other. Adults who garden more may also walk more, be retired, or eat differently, and any of these could explain the lower blood pressure.\n\nNext, ask who the results describe. The $500$ adults were chosen **at random from Marlow County**, so the association found in the sample can be generalised to adults in Marlow County, and no further.\n\nPutting the two together: among adults in Marlow County, more hours of gardening are associated with lower blood pressure.\n\nThe other statements each claim too much. Two of them claim that gardening *causes* lower blood pressure, which needs random assignment. The third extends the association to every adult in the country, but the sample was drawn only from one county.",
+  "distractorRationale": {
+    "a": "This claims cause and effect. The researcher only observed gardening habits and did not randomly assign anyone to garden, so other differences between the adults could explain the lower blood pressure.",
+    "c": "This makes two errors: it claims cause and effect from an observational study, and it extends the result to all adults when the sample came only from Marlow County.",
+    "d": "The association is the right kind of conclusion, but the population is wrong. The random sample was drawn from Marlow County, so the result generalises only to adults in that county."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "A researcher randomly selected 500 adults from all adults in Marlow County, asked how many hours per week each spends gardening, and measured each one's resting blood pressure. Adults who gardened more tended to have lower blood pressure. Which conclusion is best supported? The choices are: gardening more hours per week causes lower blood pressure for adults in Marlow County; among adults in Marlow County, more hours of gardening are associated with lower blood pressure; gardening more hours per week causes lower blood pressure for all adults; among all adults in the country, more hours of gardening are associated with lower blood pressure.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "sat-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. An observational study with a random sample from one county: the learner must claim association rather than causation and limit it to the sampled population."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "sat-wave8-math-author",
+    "reviewer": "blind-reviewer-wave8-sat-math-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-sat-math-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Random sample from Marlow County licenses generalising to county adults, but no random assignment (observational), so only association. A and C claim causation; D generalises beyond the sampled population. [A second, separate blind solve (blind-reviewer-wave8-sat-math-run1) reached the same answer: Random sample from Marlow County adults supports generalising an association to that county; no random assignment, so no causation (A, C). D extends beyond the sampled population.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "problem-solving",
+    "observational-study",
+    "association-vs-causation"
+  ]
+}

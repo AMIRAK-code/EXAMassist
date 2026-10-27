@@ -1,0 +1,60 @@
+{
+  "id": "digital-sat-math-linear-one-variable-spr-511",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "algebra",
+  "skillSlug": "linear-equations-one-variable",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "$$3(x - 4) + 2x = 18$$\n\nWhat value of $x$ is the solution to the equation above?",
+  "instructionsMd": "Student-produced response. Enter your answer in the box. Do not enter symbols such as a percent sign, comma, or dollar sign.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 6
+      }
+    ],
+    "acceptedStrings": [
+      "6"
+    ]
+  },
+  "explanationMd": "Distribute, collect like terms, then isolate $x$.\n\n$$3x - 12 + 2x = 18$$\n\n$$5x - 12 = 18$$\n\n$$5x = 30 \\;\\Rightarrow\\; x = 6$$\n\nCheck by substituting: $3(6 - 4) + 2(6) = 3(2) + 12 = 6 + 12 = 18$.\n\nThe usual slip is distributing the $3$ to the $x$ only, giving $3x - 4 + 2x = 18$ and $x = 4.4$. Substituting $4.4$ back gives $3(0.4) + 8.8 = 10$, not $18$, which catches the error.",
+  "distractorRationale": {},
+  "estimatedSeconds": 45,
+  "stimulusRef": null,
+  "accessibilityText": "Solve the equation 3 times the quantity x minus 4, plus 2 x, equals 18. Enter the value of x.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "sat-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. A routine one-variable linear equation requiring distribution and collecting like terms."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "sat-wave8-math-author",
+    "reviewer": "blind-reviewer-wave8-sat-math-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-sat-math-run0",
+      "solvedAnswer": "6",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "3x - 12 + 2x = 18 gives 5x = 30, x = 6. [A second, separate blind solve (blind-reviewer-wave8-sat-math-run1) reached the same answer: 3x - 12 + 2x = 18, 5x = 30, x = 6.]"
+    },
+    "notes": ""
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "algebra",
+    "linear-equation",
+    "student-produced-response"
+  ]
+}

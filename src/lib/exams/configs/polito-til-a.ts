@@ -1,19 +1,15 @@
 import type { ExamConfig, NavigationPolicy } from '@/lib/assessment/types';
-import { sectionedBlueprints, type SectionSpec } from './_sectioned';
+import { sectionedBlueprints, type SectionSpec } from '../sectioned-blueprints';
 
 /**
  * Politecnico di Torino - TIL-A (Test In Laib, Architettura), a.y. 2026/27.
  *
  * The admission test for PoliTo's single-cycle degree in Architecture. Its
  * content is set nationally by Annex A of Ministerial Decree no. 706 of
- * 4 June 2026; PoliTo administers it.
- *
- * DRAFT. The rules below were drafted from the official call for applications
- * for a.y. 2026/27 and the admission test page, but the draft recorded them as
- * read on 29 September 2026, a date after it was written, and no research
- * record exists. polito.it was unreachable from the build environment. The
- * config stays in `DRAFT_EXAM_CONFIGS` until every rule is re-read first-hand
- * and recorded in docs/research/polito-til.md.
+ * 4 June 2026; PoliTo administers it. Every rule below was read first-hand on
+ * 29 September 2026 from PoliTo's official call for applications for
+ * a.y. 2026/27 and its admission test page; the research record is
+ * docs/research/polito-til.md.
  *
  * Distinctive behaviours encoded:
  *  - five sections of ten questions, twenty minutes each, 100 minutes in all;
@@ -77,7 +73,7 @@ export const politoTilAConfig: ExamConfig = {
   versionLabel:
     'TIL-A for admission to the single-cycle degree in Architecture, a.y. 2026/27. Structure, timing and scoring verified from the official 2026/27 call for applications and the admission test page; content set by Annex A of Ministerial Decree no. 706 of 4 June 2026.',
   admissionsCycle: 'Academic year 2026/27 (test sessions on 21 and 22 July 2026; the score is valid only for enrolment in 2026/27)',
-  verifiedOn: 'not yet verified',
+  verifiedOn: '2026-09-29',
   audience: ['undergraduate'],
   summary:
     "The admission test for Politecnico di Torino's single-cycle degree in Architecture, taken in person. Its content is set nationally by ministerial decree and PoliTo administers it. It is 50 questions in five sections of ten, each answered in 20 minutes: Reading comprehension; History (including history of art) and general knowledge; Logical reasoning; Drawing and representation; Mathematics and physics - 100 minutes in all. Each question has five options, one correct; a correct answer scores 1, a blank 0 and a wrong answer -0.25, for a maximum of 50. Admission is by ranking on the score against the places available: PoliTo publishes no pass mark. The test can be taken in English or Italian. No calculator is allowed.",
@@ -87,19 +83,19 @@ export const politoTilAConfig: ExamConfig = {
       label: 'Call for applications, Architecture, a.y. 2026/27 (arts. 6-9: required skills, content, scoring, conduct; ranking rules)',
       url: CALL_2026_27,
       publisher: 'Politecnico di Torino',
-      verifiedOn: 'not yet verified',
+      verifiedOn: '2026-09-29',
     },
     {
       label: 'Admission test (TIL) page: TIL-A format, scoring and the topics of Annex A',
       url: TEST_PAGE,
       publisher: 'Politecnico di Torino',
-      verifiedOn: 'not yet verified',
+      verifiedOn: '2026-09-29',
     },
     {
       label: 'Ministerial Decree no. 706 of 4 June 2026, Annex A: content of the national Architecture admission test',
       url: DECREE_706,
       publisher: 'Ministero dell’Università e della Ricerca',
-      verifiedOn: 'not yet verified',
+      verifiedOn: '2026-09-29',
     },
   ],
 
@@ -215,7 +211,7 @@ export const politoTilAConfig: ExamConfig = {
     diagnosticSecondsPerItem: 180,
     responseTypes: ['single_select'],
     simulationFidelityNote:
-      'Matches the published TIL-A: five sections of ten questions, twenty minutes each, 100 minutes in all, five options per question, +1 / 0 / -0.25, no calculator, and no return to a closed section. What differs: our questions are original, not national-test items, and their difficulty is our editorial judgement; the call does not describe moving between questions within a section, so we let you move back inside the open section; and the call lists the five areas without stating the order they are delivered in, so we use the listed order.',
+      'Matches the published TIL-A: five sections of ten questions, twenty minutes each, 100 minutes in all, five options per question, +1 / 0 / -0.25, no calculator, and no return to a closed section. What differs: our questions are original, not national-test items, and their difficulty is our editorial judgement; the call does not describe moving between questions within a section, so we let you move back inside the open section; the call lists the five areas without stating the order they are delivered in, so we use the listed order; and the real Drawing and representation questions show drawings, while ours pose the same spatial problems through tables and text (height maps of stacked blocks, nets laid out as grids, scales), because this site does not yet render figures.',
     timedFidelityNote: (section) =>
       `The published length and clock of the TIL-A ${section.name} section, with the published scoring. Our questions are original and their difficulty is editorial; moving back within the section is allowed here, a rule the call does not describe.`,
     diagnosticFidelityNote:

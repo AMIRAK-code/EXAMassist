@@ -1,0 +1,84 @@
+{
+  "id": "tolc-f-logic-chart-telepharmacy-822",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "logic",
+  "domainSlug": "tolcf-logic",
+  "skillSlug": "tolcf-logic-graphs-tables",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "According to the chart, in which year was the percentage increase in the number of users, compared with the previous year, the greatest?",
+  "instructionsMd": "Compare percentage increases, not the number of users added.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "2020"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "2021"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "2022"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "2023"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "2024"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "A percentage increase compares the rise with the starting value, so it is not the same as the biggest jump in the chart. Work out the ratio to the previous year.\n\n- 2020: from 20 to 40 thousand, +100% (the number doubled).\n- 2021: from 40 to 60, +50%.\n- 2022: from 60 to 100, about +67%.\n- 2023: from 100 to 130, +30%.\n- 2024: from 130 to 156, +20%.\n\nThe number doubled only in 2020, so that is the year with the greatest percentage increase. The largest absolute rise was in 2022, and the highest level was in 2024, which are the two most common wrong answers.",
+  "distractorRationale": {
+    "b": "Users rose by 20 thousand in 2021, the same number as in 2020, but from a base of 40 thousand instead of 20 thousand, so the increase was 50%, not 100%.",
+    "c": "This is the year with the largest number of users added (40 thousand), but it was added to a base of 60 thousand, an increase of about 67%.",
+    "d": "The rise into 2023, 30 thousand, is the second-largest number of users added, so it attracts anyone ranking years by users added rather than by percentage. Relative to that base of 100 thousand it is only a 30% increase.",
+    "e": "This year has the highest number of users, 156 thousand, but the increase from 130 thousand was 20%, the smallest of the five years."
+  },
+  "estimatedSeconds": 55,
+  "stimulusRef": {
+    "id": "tolc-f-chart-telepharmacy-827",
+    "version": 1
+  },
+  "accessibilityText": "A question about the line chart described with it, showing users of a telepharmacy service in thousands from 2019 to 2024: 20, 40, 60, 100, 130 and 156. The five choices are the years 2020, 2021, 2022, 2023 and 2024.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave6-author",
+    "aiAssisted": true,
+    "notes": "Original item. The absolute-rise and highest-level traps are built into the data (largest rise in 2022, highest level in 2024)."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave6-author",
+    "reviewer": "blind-reviewer-wave6-tolcf-logic-run10",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave6-tolcf-logic-run10",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Year-on-year increases: 2020 +100% (20 to 40), 2021 +50%, 2022 +66.7%, 2023 +30%, 2024 +20%. 2020 is the clear maximum. 2022 has the largest absolute gain (+40k), which is the trap the instruction points out. [A second, separate blind solve (blind-reviewer-wave6-tolcf-logic-run11) reached the same answer: Year-on-year increases: 2020 20->40 = +100%; 2021 40->60 = +50%; 2022 60->100 = +66.7%; 2023 100->130 = +30%; 2024 130->156 = +20%. The largest is 2020.]"
+    },
+    "notes": ""
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "chart-reading",
+    "percentage-change"
+  ]
+}

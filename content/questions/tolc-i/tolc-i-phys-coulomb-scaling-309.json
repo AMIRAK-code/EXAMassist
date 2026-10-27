@@ -1,0 +1,83 @@
+{
+  "id": "tolc-i-phys-coulomb-scaling-309",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "sciences",
+  "domainSlug": "tolci-sciences",
+  "skillSlug": "tolci-sci-electromagnetism-optics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Two small charged spheres, a distance $d$ apart, repel each other with a force of magnitude $F$. The charge on **each** sphere is then doubled and the spheres are moved to a distance $3d$ apart. What is the magnitude of the new force?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\dfrac{2}{9}F$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\dfrac{9}{4}F$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\dfrac{2}{3}F$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\dfrac{4}{9}F$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\dfrac{4}{3}F$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "**What to notice first.** Coulomb's law, $F = k\\dfrac{q_1 q_2}{d^2}$, is proportional to the *product* of the charges and inversely proportional to the *square* of the distance. Scale each factor separately.\n\n**The steps.**\n\n- Both charges doubled: the product $q_1 q_2$ becomes $2 \\times 2 = 4$ times larger.\n- Distance tripled: $d^2$ becomes $9$ times larger, so the force is divided by $9$.\n\n$$F' = \\frac{4}{9}F.$$\n\n**How to check it.** Write it out: $F' = k\\dfrac{(2q_1)(2q_2)}{(3d)^2} = \\dfrac{4}{9}\\,k\\dfrac{q_1 q_2}{d^2} = \\dfrac49 F$.",
+  "distractorRationale": {
+    "e": "Divides by $3$ instead of $3^2 = 9$. Coulomb's law is an inverse-square law, so tripling the distance cuts the force to one ninth.",
+    "a": "Doubles the force only once, as if a single charge had changed. Both charges are doubled, so the product of the charges is four times larger.",
+    "b": "Inverts the result, multiplying by the distance factor and dividing by the charge factor. A larger separation must weaken the force, and here the distance effect wins.",
+    "c": "Makes both slips at once: counts the charge factor as $2$ instead of $4$ and the distance factor as $3$ instead of $9$."
+  },
+  "estimatedSeconds": 45,
+  "stimulusRef": null,
+  "accessibilityText": "Two small charged spheres, a distance d apart, repel each other with a force of magnitude F. The charge on each sphere is then doubled and the spheres are moved to a distance 3 d apart. What is the magnitude of the new force? The choices are two ninths F, nine quarters F, two thirds F, four ninths F and four thirds F.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-i-wave8-sciences-author",
+    "aiAssisted": true,
+    "notes": "Original item testing proportional reasoning with Coulomb's law. Situation invented for this bank."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-i-wave8-sciences-author",
+    "reviewer": "blind-reviewer-wave8-tolci-logic-sci-run0",
+    "reviewedOn": "2026-10-11",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolci-logic-sci-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "F proportional to q1 q2 / r^2: (2*2)/3^2 = 4/9, so 4/9 F. 2/9 doubles only one charge, 4/3 forgets to square the distance, 9/4 inverts. [A second, separate blind solve (blind-reviewer-wave8-tolci-logic-sci-run1) reached the same answer: F ∝ q1q2/r^2: charges factor 2*2 = 4, distance factor 1/9, so 4F/9. 2/9 doubles only one charge; 4/3 and 2/3 forget to square the distance; 9/4 inverts.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "coulomb",
+    "electrostatics",
+    "inverse-square",
+    "proportional-reasoning"
+  ]
+}

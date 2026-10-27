@@ -1,0 +1,80 @@
+{
+  "id": "digital-sat-rw-evidence-textual-free-buses-463",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "rw-module-1",
+  "domainSlug": "information-and-ideas",
+  "skillSlug": "command-of-evidence-textual",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which finding, if true, would most directly support Dahl's claim about where the increase in weekend ridership came from?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Weekend ridership rose by a similar percentage in the year after a nearby city also stopped charging weekend fares."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Among weekend riders who had already used Aldermoor's buses before 2023, most reported riding more often once weekend fares were dropped."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Of the 40 first-time weekend riders whom Dahl interviewed, 12 said that they had previously made the same trips by car."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "A survey of 600 first-time weekend riders on Aldermoor's buses found that 410 had previously made the same trips by car."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "First pin down exactly which claim the question is about. Dahl makes two: a claim about the *source* of the new riders (they came *mainly* from people who used to drive) and a conclusion drawn from it (car traffic fell). The question asks only about the source, and the source claim contains a scope word, *mainly*. Evidence that supports it has to show that most of the increase came from former drivers.\n\nThe survey of 600 first-time weekend riders does that directly: $410$ of $600$ is about $68\\%$, a clear majority of new riders who used to drive.\n\nThe near miss is the interview finding that $12$ of $40$ new riders used to drive. It is the right kind of evidence, and a reader who stops at *previously made the same trips by car* will take it. But $12$ of $40$ is only $30\\%$: on those figures most new riders did *not* come from cars, so the increase could have come mostly from walkers, cyclists or people who stayed home. When a claim says *most* or *mainly*, work out the proportion the evidence gives and check that it reaches that threshold, not merely that it contains examples.",
+  "distractorRationale": {
+    "c": "This is the right kind of evidence, chosen by a reader who checks what the riders said but not how many said it. Twelve of 40 is 30 percent, a minority, so this finding suggests former drivers were not the main source of the increase, the opposite of what 'mainly' requires.",
+    "b": "This identifies a different source of the increase: existing riders riding more. If anything, it suggests part of the rise did not come from former drivers, so it does not support Dahl's claim.",
+    "a": "This suggests that dropping weekend fares reliably raises ridership, but it says nothing about who the new riders were or how they travelled before, which is the whole of Dahl's claim."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": {
+    "id": "digital-sat-stim-free-buses-463",
+    "version": 1
+  },
+  "accessibilityText": "Using the passage about Aldermoor's free weekend buses and transport economist Sunniva Dahl's claim that the rise in weekend ridership came mainly from former drivers, choose the finding that would most directly support that claim.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-sat-rw-ideas-craft-author",
+    "aiAssisted": true,
+    "notes": "Original item. The claim carries the scope word 'mainly'; the strongest distractor is evidence of the right kind that does not reach that threshold."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-sat-rw-ideas-craft-author",
+    "reviewer": "blind-reviewer-wave7-sat-rw-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-sat-rw-run0",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Dahl claims the increase came mainly from former drivers. In D, 410 of 600 first-time riders (68%) previously drove, so they were mostly drivers. In C, 12 of 40 (30%) is a minority and would undercut her. [A second, separate blind solve (blind-reviewer-wave7-sat-rw-run1) reached the same answer: Dahl claims the increase came mainly from former drivers. In D, 410 of 600 new riders (68%) previously drove, which is a majority from a large sample. C's 12 of 40 (30%) would undercut 'mainly'. B concerns existing riders, not where the new riders came from. A shows only that ridership rose.]"
+    },
+    "notes": "Author's own solve and uniqueness check: the claim is that the increase came mainly from former drivers, so support must show a majority of new riders previously drove. The 600-rider survey (410 of 600, about 68 percent) is the only option that does. The 'several riders' option is the right direction but cannot establish 'mainly'; the existing-riders option points to a different source; the nearby-city option is about the size of the effect, not its source. Arithmetic checked by script: 410 / 600 = 0.683. Re-solved from the stem alone with the same result. Hard: the learner must separate the source claim from the traffic conclusion and apply the scope word, and the best distractor is the same kind of evidence at insufficient strength. Not published: awaiting a blind independent solve by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "reading",
+    "command-of-evidence",
+    "textual",
+    "social-science"
+  ]
+}

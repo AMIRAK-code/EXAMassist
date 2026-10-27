@@ -1,0 +1,77 @@
+{
+  "id": "digital-sat-math-percentages-enrollment-431",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "problem-solving-and-data-analysis",
+  "skillSlug": "percentages",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Every student at a college is enrolled either part-time or full-time. From $2024$ to $2025$, the number of part-time students increased by $20\\%$, the number of full-time students increased by $5\\%$, and the total number of students increased by $8\\%$. To the nearest tenth of a percent, what percent of the students enrolled in $2025$ were part-time?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$20.0\\%$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$22.2\\%$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$24.0\\%$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$25.0\\%$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The $8\\%$ overall increase is a weighted average of the $20\\%$ and $5\\%$ increases, and the weights are the $2024$ shares. Find those shares first, then move to $2025$.\n\nLet $p$ be the fraction of $2024$ students who were part-time, so $1 - p$ were full-time. Expressing the $2025$ total in two ways:\n\n$$1.20p + 1.05(1 - p) = 1.08$$\n\n$$0.15p = 0.03 \\;\\Rightarrow\\; p = 0.2$$\n\nSo in $2024$, $20\\%$ of students were part-time. That is not yet the answer: the question asks about $2025$.\n\nTake $100$ students in $2024$: $20$ part-time and $80$ full-time. In $2025$ there are $20 \\times 1.20 = 24$ part-time and $80 \\times 1.05 = 84$ full-time, $108$ students in all (the stated $8\\%$ increase, which confirms $p$). The $2025$ part-time share is\n\n$$\\frac{24}{108} = \\frac{2}{9} \\approx 0.2222$$\n\nwhich is $22.2\\%$ to the nearest tenth of a percent.\n\nTwo checks are worth making. The $2025$ share must be above $20\\%$, because the part-time group grew faster than the college as a whole. And it must be computed against the $2025$ total of $108$, not the old total of $100$.",
+  "distractorRationale": {
+    "a": "This is the part-time share in $2024$, the intermediate result. The part-time group grew faster than the whole college, so its share in $2025$ is larger than $20\\%$.",
+    "c": "This finds the $24$ part-time students in $2025$ but divides by the $2024$ total of $100$. The $2025$ total is $108$, so the share is $\\frac{24}{108}$.",
+    "d": "This is the $2024$ ratio of part-time to full-time students, $20:80$, or $0.25$, reported as a percent of all students. A percent of the total must divide by all $100$ students, not by the $80$ full-time students."
+  },
+  "estimatedSeconds": 130,
+  "stimulusRef": null,
+  "accessibilityText": "Every student at a college is either part-time or full-time. From 2024 to 2025 the number of part-time students rose 20 percent, full-time students rose 5 percent, and the total rose 8 percent. Find, to the nearest tenth of a percent, the percent of 2025 students who were part-time. The choices are 20.0, 22.2, 24.0 and 25.0 percent.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-sat-math-data-geo-author",
+    "aiAssisted": true,
+    "notes": "Original item. The growth rates were chosen so that the 2024 share is exactly 20 percent, making the intermediate result the strongest distractor."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-sat-math-data-geo-author",
+    "reviewer": "blind-reviewer-wave7-sat-math-run0",
+    "reviewedOn": "2026-09-30",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-sat-math-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "1.2P + 1.05F = 1.08(P + F) gives 0.12P = 0.03F, so F = 4P. In 2025 there are 1.2P part-time students out of 5.4P, which is 22.2%. Choice A (20%) is the 2024 share. [A second, separate blind solve (blind-reviewer-wave7-sat-math-run1) reached the same answer: From 1.2P + 1.05F = 1.08(P + F) we get 0.12P = 0.03F, so F = 4P. In 2025 the part-time share is 1.2P / (1.08 x 5P) = 1.2/5.4 = 22.2%. A (20%) is the 2024 share.]"
+    },
+    "notes": "Hard: two linked steps (a weighted-average equation for the 2024 share, then a new share against the 2025 total), and the best distractor is the answer to the 2024 version of the question. Author solved twice: 1.2p + 1.05(1 - p) = 1.08 gives p = 0.2; 24/108 = 22.22 percent. Verified with a read-only script. Awaiting a blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "problem-solving",
+    "percent-change",
+    "weighted-average"
+  ]
+}

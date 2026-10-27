@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-bio-glycolysis-net-yield-925",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "biology",
+  "domainSlug": "tolcf-biology",
+  "skillSlug": "tolcf-bio-bioenergetics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Glycolysis takes place in the cytoplasm and converts one molecule of glucose into pyruvate. What are the **net** products of glycolysis for each molecule of glucose?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "2 lactate and 2 ATP"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "2 pyruvate, 2 ATP and 2 $\\mathrm{FADH_2}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "2 pyruvate, 2 ATP and 2 NADH"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "2 pyruvate, 4 ATP and 2 NADH"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "2 pyruvate and 2 ATP, with no NADH"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Keep the accounts in two phases.\n\n- **Investment phase:** the six-carbon sugar is phosphorylated twice, using **2 ATP**, and is split into two three-carbon molecules.\n- **Payoff phase:** each three-carbon molecule is oxidised, reducing one $\\mathrm{NAD^+}$ to NADH, and yields 2 ATP. For two of them: **2 NADH** and **4 ATP**.\n\nNet: $4 - 2 = 2$ ATP, plus 2 NADH and 2 pyruvate. The word *net* in the stem is the warning: the 4 ATP made is a gross figure.\n\n**Check by carbon:** 6 carbons in glucose end up as $2 \\times 3$ carbons in pyruvate, with no $\\mathrm{CO_2}$ released, which matches a pathway that oxidises glucose only a little and so yields only a little energy.",
+  "distractorRationale": {
+    "d": "4 ATP is the gross yield of the payoff phase. It ignores the 2 ATP spent at the start to phosphorylate glucose, so the net gain is 2.",
+    "e": "Glycolysis is an oxidation: one step transfers electrons to $\\mathrm{NAD^+}$, producing 2 NADH per glucose. That NADH is exactly why cells must regenerate $\\mathrm{NAD^+}$, by respiration or fermentation.",
+    "b": "$\\mathrm{FADH_2}$ is produced in the Krebs cycle, in the mitochondria, not in glycolysis. The electron carrier reduced in glycolysis is NAD.",
+    "a": "Lactate is made only when pyruvate is reduced in lactic fermentation, a separate step after glycolysis. The stem asks about glycolysis, which ends at pyruvate."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "A short text question with no figure. Glycolysis, in the cytoplasm, converts one glucose molecule into pyruvate. The question asks for the net products per glucose. The choices are: 2 lactate and 2 A T P; 2 pyruvate, 2 A T P and 2 F A D H 2; 2 pyruvate, 2 A T P and 2 N A D H; 2 pyruvate, 4 A T P and 2 N A D H; 2 pyruvate and 2 A T P with no N A D H.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolc-f-wave8-biochem-author",
+    "aiAssisted": true,
+    "notes": "Original item. Tests the net ATP and NADH balance of glycolysis and its separation from fermentation and the Krebs cycle."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolc-f-wave8-biochem-author",
+    "reviewer": "blind-reviewer-wave8-tolcf-biochem-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-tolcf-biochem-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Per glucose glycolysis nets 2 pyruvate, 2 ATP (4 made minus 2 used) and 2 NADH. 4 ATP is the gross figure, FADH2 belongs to the Krebs cycle, lactate is a fermentation product, and 'no NADH' ignores the G3P dehydrogenase step. [A second, separate blind solve (blind-reviewer-wave8-tolcf-biochem-run1) reached the same answer: Net glycolysis gives 2 pyruvate, 2 ATP (4 made minus 2 used) and 2 NADH. '4 ATP' is the gross yield, FADH2 comes from the Krebs cycle, lactate is a fermentation product, and 'no NADH' ignores the glyceraldehyde-3-phosphate dehydrogenase step.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "glycolysis",
+    "atp-yield"
+  ]
+}

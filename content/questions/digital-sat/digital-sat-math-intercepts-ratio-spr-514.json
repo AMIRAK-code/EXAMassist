@@ -1,0 +1,63 @@
+{
+  "id": "digital-sat-math-intercepts-ratio-spr-514",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "algebra",
+  "skillSlug": "linear-equations-two-variables",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "In the $xy$-plane, line $\\ell$ passes through the point $(3, 4)$. Line $\\ell$ has $x$-intercept $(r, 0)$ and $y$-intercept $(0, s)$, where $r$ and $s$ are nonzero constants and $r = 2s$. What is the value of $s$?",
+  "instructionsMd": "Student-produced response. Enter your answer in the box. Do not enter symbols such as a percent sign, comma, or dollar sign. If your answer is a fraction that does not fit in the box, enter its decimal equivalent instead.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 5.5
+      }
+    ],
+    "acceptedStrings": [
+      "11/2",
+      "5.5"
+    ]
+  },
+  "explanationMd": "Neither the slope nor an intercept is given, but the relation $r = 2s$ fixes the slope. A line through $(r, 0)$ and $(0, s)$ has slope\n\n$$\\frac{s - 0}{0 - r} = -\\frac{s}{r} = -\\frac{s}{2s} = -\\frac{1}{2}$$\n\nSo line $\\ell$ is $y = -\\frac{1}{2}x + s$. It passes through $(3, 4)$:\n\n$$4 = -\\frac{1}{2}(3) + s \\;\\Rightarrow\\; s = 4 + \\frac{3}{2} = \\frac{11}{2}$$\n\nEnter $11/2$ or $5.5$.\n\nCheck: the line is $y = -\\frac{1}{2}x + 5.5$. Its $x$-intercept solves $0 = -\\frac{1}{2}x + 5.5$, so $r = 11$, which is indeed $2 \\times 5.5$. At $x = 3$, $y = -1.5 + 5.5 = 4$.\n\nAn alternative route uses intercept form, $\\frac{x}{r} + \\frac{y}{s} = 1$. With $r = 2s$ and the point $(3, 4)$: $\\frac{3}{2s} + \\frac{4}{s} = 1$, so $\\frac{3 + 8}{2s} = 1$ and $s = \\frac{11}{2}$.\n\nThe common slip is taking the slope as $-2$ because the $x$-intercept is twice the $y$-intercept. That line, $y = -2x + 10$, has $x$-intercept $5$ and $y$-intercept $10$: the $x$-intercept is half the $y$-intercept, the reverse of what is required. (The nonzero condition rules out the line through the origin, $y = \\frac{4}{3}x$, whose intercepts are both $0$.)",
+  "distractorRationale": {},
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": "In the coordinate plane, line l passes through the point 3 comma 4. Its x-intercept is r comma 0 and its y-intercept is 0 comma s, where r and s are nonzero constants and r equals 2 s. Find s. Enter a number.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "sat-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. The intercept relation determines the slope indirectly; the solver must translate r = 2s into a slope of negative one half (or use intercept form) before using the given point."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "sat-wave8-math-author",
+    "reviewer": "blind-reviewer-wave8-sat-math-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-sat-math-run0",
+      "solvedAnswer": "11/2",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Intercept form x/(2s) + y/s = 1 through (3,4): 3/(2s) + 4/s = 11/(2s) = 1, so s = 11/2 = 5.5. s is nonzero as required; unique. [A second, separate blind solve (blind-reviewer-wave8-sat-math-run1) reached the same answer: Intercept form x/(2s) + y/s = 1 through (3,4): 3/(2s) + 4/s = 11/(2s) = 1, so s = 11/2 = 5.5.]"
+    },
+    "notes": ""
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "algebra",
+    "linear-equation",
+    "intercepts",
+    "slope",
+    "student-produced-response"
+  ]
+}

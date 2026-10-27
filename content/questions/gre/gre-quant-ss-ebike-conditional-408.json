@@ -1,0 +1,76 @@
+{
+  "id": "gre-quant-ss-ebike-conditional-408",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-data-analysis",
+  "skillSlug": "data-conditional-probability",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Of the members of a cycling club, $60$ percent are students. Of the members who are students, $25$ percent own an electric bike. Of the members who are not students, $40$ percent own an electric bike.\n\nIf one of the club members who own an electric bike is selected at random, what is the probability that the member selected is a student?",
+  "instructionsMd": "Select one answer choice.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\frac{3}{20}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\frac{1}{4}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\frac{15}{31}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\frac{16}{31}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\frac{3}{5}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Read the last sentence first: the selection is made **from the electric-bike owners only**. So the answer is a fraction whose denominator is the number of owners, not the number of members.\n\n**Step 1: pick a convenient club size.** Suppose the club has $100$ members. Then $60$ are students and $40$ are not.\n\n**Step 2: count the owners in each group.**\n\n- Students who own an electric bike: $25$ percent of $60$ is $15$.\n- Non-students who own an electric bike: $40$ percent of $40$ is $16$.\n\nSo $15 + 16 = 31$ members own an electric bike.\n\n**Step 3: restrict to the owners.** Of those $31$ owners, $15$ are students, so the probability is\n\n$$\\frac{15}{31}.$$\n\n**How to check.** The answer should be a little below one half. Students outnumber non-students, but a smaller share of them own electric bikes, and the two effects nearly cancel: $15$ owners against $16$. A result close to $\\frac{3}{5}$ would ignore the lower ownership rate among students, and a result close to $\\frac{1}{4}$ would answer the reverse question. In symbols, the calculation is $P(\\text{student} \\mid \\text{owner}) = \\dfrac{0.6 \\times 0.25}{0.6 \\times 0.25 + 0.4 \\times 0.4} = \\dfrac{0.15}{0.31}$.",
+  "distractorRationale": {
+    "a": "This is $0.6 \\times 0.25 = 0.15$, the probability that a member chosen from the whole club is a student who owns an electric bike. It uses the whole club as the denominator instead of only the owners.",
+    "b": "This is the probability that a student owns an electric bike, the conditional probability in the reverse direction. The question gives ownership and asks about being a student.",
+    "d": "This is the probability that the selected owner is not a student, $\\frac{16}{31}$. It comes from correctly counting both groups of owners and then taking the wrong group as the numerator.",
+    "e": "This is the share of students in the whole club. It ignores the information that the member is chosen from the electric-bike owners, among whom students are relatively fewer."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "In a cycling club, 60 percent of members are students. 25 percent of the students own an electric bike, and 40 percent of the non-students own an electric bike. One electric-bike owner is chosen at random. Find the probability that this member is a student. The five choices are 1 over 4, 3 over 5, 3 over 20, 15 over 31, and 16 over 31.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave7-gre-quant-author",
+    "aiAssisted": true,
+    "notes": "Original item written for wave 7. The rates were chosen so that the two owner groups (15 and 16 per 100 members) nearly balance, which makes the prior share of students a strong trap. Not adapted from any ETS question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave7-gre-quant-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solved with 100 members: 15 student owners and 16 non-student owners, so 15/31. A script computed 0.15 / 0.31 = 0.4839 and matched each distractor (0.15 joint, 0.25 reverse conditional, 16/31 complement, 0.6 prior). Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "conditional-probability",
+    "two-way-table",
+    "probability"
+  ]
+}

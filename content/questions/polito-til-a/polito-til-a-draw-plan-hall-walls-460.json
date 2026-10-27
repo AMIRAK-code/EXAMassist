@@ -1,0 +1,86 @@
+{
+  "id": "polito-til-a-draw-plan-hall-walls-460",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "drawing-representation",
+  "domainSlug": "tila-drawing",
+  "skillSlug": "tila-draw-graphs-diagrams",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The table is the floor plan of a flat drawn on a grid of squares, each $1.5\\ \\text{m}$ by $1.5\\ \\text{m}$, with every square named after the room it belongs to. An internal wall runs wherever two squares of different rooms share a side; the edge of the grid is the outside wall.\n\nWhat is the total length of internal wall that separates the hall from the other rooms?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$18\\ \\text{m}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$16.5\\ \\text{m}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$15\\ \\text{m}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$7.5\\ \\text{m}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$11\\ \\text{m}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "**What to notice first.** Walls lie on the **sides** of squares, not in the squares themselves. So count the sides of the hall's squares that face a square of another room, then multiply by $1.5\\ \\text{m}$. The hall is an L shape of five squares: four along Row 3 (Columns 1 to 4) and one more below the end, in Row 4, Column 4.\n\n**The step that settles it.** Go square by square:\n\n- Row 3, Column 1: living room to the north, bedroom to the south. Its west side is the outside wall, which does not count. **2**\n- Row 3, Column 2: living room north, bedroom south. **2**\n- Row 3, Column 3: living room north, bedroom south. **2**\n- Row 3, Column 4: kitchen north, bathroom east; its south side faces more hall. **2**\n- Row 4, Column 4: bedroom west, bathroom east, store south. **3**\n\nThat is $2 + 2 + 2 + 2 + 3 = 11$ sides, and $11 \\times 1.5 = 16.5\\ \\text{m}$.\n\n**How to check it.** Count by neighbour instead: 3 sides with the living room, 4 with the bedroom, 1 with the kitchen, 2 with the bathroom and 1 with the store, again 11. Or start from the hall's whole outline: it has 12 sides (18 m), and exactly one of them lies on the outside wall, leaving 11.",
+  "distractorRationale": {
+    "d": "Counts one wall for each of the hall's five squares. Walls run along the sides of squares, and most hall squares have two or three sides against other rooms.",
+    "e": "Counts the 11 shared sides correctly but stops there, as if each side were 1 m long. Each side of a square is 1.5 m.",
+    "c": "Counts only 10 sides, missing one of the three walls round the hall's square in Row 4: that square is enclosed by the bedroom, the bathroom and the store.",
+    "a": "Gives the length of the hall's whole outline, including the 1.5 m at its west end that lies on the outside wall. That side does not separate the hall from another room."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": {
+    "id": "polito-til-a-table-flat-plan-484",
+    "version": 1
+  },
+  "accessibilityText": "A plan-reading question posed through a table, with no drawing. The table is a floor plan of a flat on a grid of five rows, north to south, and five columns, west to east, each square 1.5 metres on a side. Rows 1 and 2: living room in Columns 1 to 3, kitchen in Columns 4 and 5. Row 3: hall in Columns 1 to 4, bathroom in Column 5. Row 4: bedroom in Columns 1 to 3, hall in Column 4, bathroom in Column 5. Row 5: bedroom in Columns 1 to 3, store in Columns 4 and 5. Internal walls run wherever squares of different rooms meet, and the grid edge is the outside wall. The question asks for the total length of internal wall separating the hall from the other rooms. The choices are eighteen, sixteen point five, fifteen, seven point five and eleven metres.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "wave6-polito-til-a-drawing-author",
+    "aiAssisted": true,
+    "notes": "Original invented plan. A script visited the four sides of every hall square and counted 11 sides against other rooms and 1 on the outside wall; 11 x 1.5 = 16.5 m."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "wave6-polito-til-a-drawing-author",
+    "reviewer": "blind-reviewer-wave7-tila-logic-drawing-run0",
+    "reviewedOn": "2026-09-29",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave7-tila-logic-drawing-run0",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The hall squares are R3C1 to R3C4 and R4C4. Their internal wall segments number 2 + 2 + 2 + 2 (kitchen and bathroom) + 3 (bedroom, bathroom and store), which is 11. Each is 1.5 m, so the total is 16.5 m. The outside wall on the west side of R3C1 is excluded. [A second, separate blind solve (blind-reviewer-wave7-tila-logic-drawing-run1) reached the same answer: The hall cells are (3,1)-(3,4) and (4,4). Counting the sides they share with other rooms: (3,1), (3,2) and (3,3) each have 2 (living room to the north, bedroom to the south); (3,4) has 2 (kitchen, bathroom); (4,4) has 3 (bedroom, bathroom, store). That is 11 sides x 1.5 m = 16.5 m. E gives the raw count of 11 as if it were metres.]"
+    },
+    "notes": "Author's uniqueness check: the plan fixes 11 shared sides; every other choice comes from a different count (5, 10 or 12 sides) or omits the 1.5 m factor. Awaiting a blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "floor-plan",
+    "grid-plan",
+    "perimeter",
+    "internal-walls"
+  ]
+}

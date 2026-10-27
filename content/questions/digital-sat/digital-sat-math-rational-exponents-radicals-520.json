@@ -1,0 +1,77 @@
+{
+  "id": "digital-sat-math-rational-exponents-radicals-520",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "advanced-math",
+  "skillSlug": "equivalent-expressions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "For $x > 0$, which expression is equivalent to $\\dfrac{\\sqrt[3]{x^4} \\cdot \\sqrt{x^3}}{x^2}$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$x^2\\sqrt[6]{x^5}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\sqrt[4]{x}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\sqrt[6]{x^5}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$1$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Rewrite every radical as a power with a fractional exponent, then use the exponent rules: multiplying powers of $x$ **adds** exponents, and dividing **subtracts** them.\n\n$$\\sqrt[3]{x^4} = x^{\\frac{4}{3}} \\qquad \\sqrt{x^3} = x^{\\frac{3}{2}}$$\n\n$$\\frac{x^{\\frac{4}{3}} \\cdot x^{\\frac{3}{2}}}{x^2} = x^{\\frac{4}{3} + \\frac{3}{2} - 2} = x^{\\frac{8}{6} + \\frac{9}{6} - \\frac{12}{6}} = x^{\\frac{5}{6}}$$\n\nA fractional exponent $\\frac{m}{n}$ means the $n$th root of the $m$th power, so $x^{\\frac{5}{6}} = \\sqrt[6]{x^5}$.\n\nCheck with a value that makes every root exact, $x = 64 = 2^6$. The original expression is $\\frac{\\sqrt[3]{64^4} \\cdot \\sqrt{64^3}}{64^2} = \\frac{2^8 \\cdot 2^9}{2^{12}} = 2^5 = 32$, and $\\sqrt[6]{64^5} = \\sqrt[6]{2^{30}} = 2^5 = 32$.\n\nThe wrong choices come from three different exponent slips: forgetting to divide by $x^2$; writing $\\sqrt[3]{x^4}$ as $x^{\\frac{3}{4}}$, with the fraction upside down; and multiplying the exponents $\\frac{4}{3}$ and $\\frac{3}{2}$ instead of adding them.",
+  "distractorRationale": {
+    "a": "This is the numerator alone: $x^{\\frac{4}{3} + \\frac{3}{2}} = x^{\\frac{17}{6}} = x^2 \\sqrt[6]{x^5}$. Dividing by $x^2$ subtracts $2$ from the exponent, leaving $x^{\\frac{5}{6}}$.",
+    "b": "This writes $\\sqrt[3]{x^4}$ as $x^{\\frac{3}{4}}$, inverting the fraction, so the exponent becomes $\\frac{3}{4} + \\frac{3}{2} - 2 = \\frac{1}{4}$. The power goes in the numerator and the root index in the denominator: $x^{\\frac{4}{3}}$.",
+    "d": "This multiplies the exponents of the two radicals, $\\frac{4}{3} \\cdot \\frac{3}{2} = 2$, so the expression appears to be $\\frac{x^2}{x^2} = 1$. When powers of $x$ are multiplied, their exponents add."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "For x greater than 0, which expression is equivalent to the cube root of x to the fourth, times the square root of x cubed, all divided by x squared? The choices are: x squared times the sixth root of x to the fifth; the fourth root of x; the sixth root of x to the fifth; 1.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "sat-wave8-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Converts two radicals to rational exponents and combines them with a quotient; each distractor is a distinct exponent-rule slip."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "sat-wave8-math-author",
+    "reviewer": "blind-reviewer-wave8-sat-math-run0",
+    "reviewedOn": "2026-10-12",
+    "independentSolve": {
+      "solvedBy": "blind-reviewer-wave8-sat-math-run0",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "x^(4/3) * x^(3/2) / x^2 = x^(8/6 + 9/6 - 12/6) = x^(5/6) = sixth root of x^5. x^2 * root6(x^5) forgets to divide by x^2; fourth root of x and 1 are exponent-arithmetic errors. [A second, separate blind solve (blind-reviewer-wave8-sat-math-run1) reached the same answer: x^(4/3) * x^(3/2) / x^2 = x^(8/6 + 9/6 - 12/6) = x^(5/6) = sixth root of x^5. x^2 times it forgets the division; fourth root of x and 1 come from exponent arithmetic errors.]"
+    },
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "advanced-math",
+    "rational-exponents",
+    "radicals"
+  ]
+}
