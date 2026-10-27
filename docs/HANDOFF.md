@@ -215,9 +215,11 @@ asked for are instead enforced on everything *we* author.
    filesystem is required. Serverless platforms need the PostgreSQL port first.
 2. **Whether to port to PostgreSQL now.** Advisable before multi-instance
    hosting.
-3. **The brand.** "Examer" is a placeholder in one constant
-   (`src/lib/site.ts`). Renaming is a single edit plus the logo files in
-   `public/brand` and the favicon (`src/app/icon.svg`).
+3. **The brand.** Decided in October 2026: UniExamer, from the UniExamer logo
+   pack. The name is one constant (`src/lib/site.ts`), with "Examer" kept as
+   an alternate name; the logo files are in `public/brand`, with the favicon
+   (`src/app/favicon.ico`, `src/app/icon.svg`), the Apple touch icon and the
+   app icons in `public/manifest.webmanifest`.
 4. **Legal review** of the privacy and terms drafts, and a decision on the
    contracting entity and jurisdiction.
 5. **Whether to offer an AI tutor.** Not implemented. The brief's constraints

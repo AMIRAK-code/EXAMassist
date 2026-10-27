@@ -40,8 +40,9 @@ export async function SiteHeader({ account, locale, deferred = false }: { accoun
           aria-label={t('site.homeLabel', { name: SITE.name })}
           className="flex min-h-11 shrink-0 items-center no-underline"
         >
-          {/* The brand files in public/brand are the source of truth; never redraw the mark in text. */}
-          <img src="/brand/examer-wordmark.svg" alt="" width={99} height={28} className="block" />
+          {/* The brand files in public/brand are the source of truth; never redraw the mark in text.
+              PNG, not SVG: the SVG's lettering is live Arial text, which a device without Arial would redraw. */}
+          <img src="/brand/uniexamer-logo.png" alt="" width={125} height={30} className="block" />
         </Link>
 
         <nav aria-label={t('nav.mainLabel')} className="ms-4 hidden lg:block">

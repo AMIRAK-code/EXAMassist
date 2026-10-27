@@ -44,7 +44,7 @@ const BREVO_ENDPOINT = 'https://api.brevo.com/v3/smtp/email';
 export function emailSettings(env: Record<string, string | undefined> = process.env): EmailSettings {
   const apiKey = env.BREVO_API_KEY?.trim() || null;
   const fromAddress = env.EMAIL_FROM_ADDRESS?.trim() || null;
-  const fromName = env.EMAIL_FROM_NAME?.trim() || 'Examer';
+  const fromName = env.EMAIL_FROM_NAME?.trim() || 'UniExamer';
   const timeoutMs = Number.parseInt(env.EMAIL_TIMEOUT_MS ?? '', 10) || 10_000;
 
   let mode: EmailSettings['mode'];

@@ -188,8 +188,8 @@ describe('llms.txt in production', () => {
   it('names the site and its other names, and says it is independent', async () => {
     production();
     const text = await llmsTxtRoute().text();
-    expect(text.startsWith('# Examer\n')).toBe(true);
-    expect(text).toContain('UniExamer');
+    expect(text.startsWith('# UniExamer\n')).toBe(true);
+    expect(text).toContain('Also known as Examer and uniexamer.com.');
     expect(text).toContain('not affiliated with');
   });
 
@@ -200,10 +200,11 @@ describe('llms.txt in production', () => {
 });
 
 describe('site name in structured data', () => {
-  it('offers UniExamer and the domain as alternate names', () => {
-    expect(webSiteSchema(SITE, 'Examer', ['UniExamer', 'uniexamer.com']).alternateName).toEqual(['UniExamer', 'uniexamer.com']);
-    expect(organizationSchema(SITE, 'Examer', 'd', ['UniExamer']).alternateName).toEqual(['UniExamer']);
-    expect(webSiteSchema(SITE, 'Examer')).not.toHaveProperty('alternateName');
+  it('offers the former name, Examer, and the domain as alternate names', () => {
+    expect(webSiteSchema(SITE, 'UniExamer', ['Examer', 'uniexamer.com']).alternateName).toEqual(['Examer', 'uniexamer.com']);
+    expect(organizationSchema(SITE, 'UniExamer', 'd', ['Examer']).alternateName).toEqual(['Examer']);
+    expect(organizationSchema(SITE, 'UniExamer', 'd').logo).toBe(`${SITE}/brand/uniexamer-symbol.png`);
+    expect(webSiteSchema(SITE, 'UniExamer')).not.toHaveProperty('alternateName');
   });
 });
 

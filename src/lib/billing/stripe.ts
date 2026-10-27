@@ -49,7 +49,7 @@ export function stripeClient(settings: BillingSettings = billingSettings()): Str
         httpClient: Stripe.createFetchHttpClient(),
         maxNetworkRetries: 1,
         timeout: 15_000,
-        appInfo: { name: 'Examer', url: 'https://uniexamer.com' },
+        appInfo: { name: 'UniExamer', url: 'https://uniexamer.com' },
       }),
     };
   }
