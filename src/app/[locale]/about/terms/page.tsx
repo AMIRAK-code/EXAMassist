@@ -1,7 +1,7 @@
 import { Link } from '@/i18n/navigation';
 import { PAGE_DATES } from '@/lib/content/page-dates';
 import type { Metadata } from 'next';
-import { INDEPENDENCE_NOTICE, SITE, absoluteUrl, siteUrl } from '@/lib/site';
+import { INDEPENDENCE_NOTICE, SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
 import { Alert, Breadcrumbs, Card, Container } from '@/components/ui';
 import { JsonLd, breadcrumbSchema } from '@/components/seo/json-ld';
 
@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     url: absoluteUrl('/about/terms'),
     title: `${TITLE} | ${SITE.shortName}`,
     description: DESCRIPTION,
+    images: shareImages('site', TITLE),
   },
 };
 
