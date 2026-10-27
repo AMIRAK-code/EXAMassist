@@ -78,5 +78,48 @@
     "tangent",
     "circle",
     "point-line-distance"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Per quali valori di $k$ la retta $y = x + k$ è tangente alla circonferenza $x^{2} + y^{2} = 8$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$k = \\pm 2\\sqrt{2}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$k = \\pm 4\\sqrt{2}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$k = \\pm 8$"
+        },
+        {
+          "id": "d",
+          "textMd": "$k = \\pm 2$"
+        },
+        {
+          "id": "e",
+          "textMd": "$k = \\pm 4$"
+        }
+      ],
+      "explanationMd": "Una retta è tangente a una circonferenza esattamente quando la sua distanza dal centro è uguale al raggio. La circonferenza $x^{2}+y^{2}=8$ ha centro $(0,0)$ e raggio $\\sqrt8 = 2\\sqrt2$.\n\n**Metodo 1 — distanza.** Scriviamo la retta come $x - y + k = 0$. La sua distanza dall'origine è $\\dfrac{|k|}{\\sqrt{1^{2}+(-1)^{2}}} = \\dfrac{|k|}{\\sqrt2}$. Ponendola uguale a $2\\sqrt2$ si ottiene $|k| = 2\\sqrt2\\cdot\\sqrt2 = 4$, quindi $k = \\pm 4$.\n\n**Metodo 2 — discriminante (una verifica indipendente).** Sostituiamo $y = x+k$: $x^{2} + (x+k)^{2} = 8$, cioè $2x^{2} + 2kx + k^{2} - 8 = 0$. Una retta tangente incontra la circonferenza in un solo punto, quindi il discriminante è nullo: $4k^{2} - 8(k^{2} - 8) = 64 - 4k^{2} = 0$, quindi $k^{2}=16$ e $k = \\pm 4$.\n\nPer $k=4$ l'equazione diventa $2(x+2)^{2}=0$, con la radice doppia $x=-2$, cioè l'unico punto $(-2, 2)$, e infatti $(-2)^{2}+2^{2}=8$.",
+      "distractorRationale": {
+        "d": "Moltiplica per $\\sqrt2$ dove la formula della distanza divide: $|k|\\sqrt2 = 2\\sqrt2$ dà $|k| = 2$.",
+        "a": "Pone $|k|$ uguale al raggio, dimenticando che la distanza del centro dalla retta $x - y + k = 0$ è $\\dfrac{|k|}{\\sqrt{2}}$, non $|k|$.",
+        "b": "Prende come raggio 4, la metà di 8, invece di $\\sqrt{8}=2\\sqrt2$. La condizione corretta sulla distanza $\\dfrac{|k|}{\\sqrt2} = 4$ dà allora $|k| = 4\\sqrt2$.",
+        "c": "Commette due errori insieme: prende come raggio il numero 8 a secondo membro dell'equazione (che è $r^{2}$, quindi $r=\\sqrt8$) e usa $|k|$ come distanza dal centro invece di $\\dfrac{|k|}{\\sqrt2}$, così la condizione diventa $|k| = 8$."
+      },
+      "accessibilityText": "Per quali valori di k la retta y uguale a x più k è tangente alla circonferenza x al quadrato più y al quadrato uguale a 8? Le cinque alternative sono: k uguale a più o meno 2; k uguale a più o meno 2 per la radice quadrata di 2; k uguale a più o meno 4; k uguale a più o meno 4 per la radice quadrata di 2; k uguale a più o meno 8.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-e",
+        "checkedBy": "tolc-italian-checker-e",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful. |k|/sqrt2 = 2sqrt2 -> k=+-4."
+      }
+    }
+  }
 }

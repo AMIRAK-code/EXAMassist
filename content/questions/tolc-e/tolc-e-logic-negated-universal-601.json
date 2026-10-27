@@ -80,5 +80,48 @@
     "quantifiers",
     "negation",
     "no-calculator"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un'azienda ferroviaria regionale dichiara: «Lunedì scorso ogni treno della linea Torino-Cuneo ha viaggiato in orario.» Un rapporto di ispezione mostra che questa affermazione è falsa.\n\nQuale delle seguenti affermazioni deve essere vera?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Lunedì scorso esattamente un treno della linea Torino-Cuneo non ha viaggiato in orario."
+        },
+        {
+          "id": "b",
+          "textMd": "Lunedì scorso nessun treno della linea Torino-Cuneo ha viaggiato in orario."
+        },
+        {
+          "id": "c",
+          "textMd": "Lunedì scorso almeno un treno della linea Torino-Cuneo non ha viaggiato in orario."
+        },
+        {
+          "id": "d",
+          "textMd": "Lunedì scorso la maggior parte dei treni della linea Torino-Cuneo non ha viaggiato in orario."
+        },
+        {
+          "id": "e",
+          "textMd": "Lunedì scorso almeno un treno della linea Torino-Cuneo ha viaggiato in orario."
+        }
+      ],
+      "explanationMd": "Un'affermazione della forma «ogni X fa Y» è falsa non appena un X non fa Y, e per nessun altro motivo. Quindi l'unica cosa che il rapporto garantisce è che **almeno un treno non ha viaggiato in orario**.\n\nPer verificare un'alternativa, chiediti se puoi descrivere un lunedì compatibile con il rapporto che la renda falsa. Supponi che 3 treni su 40 siano stati in ritardo: questo smentisce l'alternativa secondo cui nessun treno è stato puntuale, quella secondo cui la maggior parte dei treni è stata in ritardo e quella secondo cui esattamente un treno è stato in ritardo. Supponi che tutti e 40 siano stati in ritardo: questo smentisce l'alternativa secondo cui qualche treno è stato in orario. Per l'affermazione più debole, cioè che almeno un treno sia stato in ritardo, un lunedì del genere non esiste, quindi è l'unica che deve essere vera.\n\nUn'abitudine utile: la negazione di «ogni» è «almeno uno non», e la negazione di «almeno uno sì» è «nessuno». Non scambiarle.",
+      "distractorRationale": {
+        "b": "Trasforma «non tutti i treni sono stati in orario» in «nessun treno è stato in orario». L'opposto di «ogni» non è «nessuno»: l'affermazione è falsa non appena un solo treno è in ritardo, quindi il rapporto è compatibile con il fatto che la maggior parte dei treni sia stata puntuale.",
+        "d": "Il rapporto dice che l'affermazione è falsa, non quanti treni siano stati in ritardo. Un solo treno in ritardo su quaranta basta a rendere falsa l'affermazione «ogni treno ha viaggiato in orario», quindi non segue nulla su una maggioranza.",
+        "a": "Un «ogni» falso garantisce almeno un'eccezione, non esattamente una. Tre o dieci treni in ritardo renderebbero falsa l'affermazione dell'azienda allo stesso modo.",
+        "e": "Legge l'affermazione falsa come «alcuni erano in orario, altri no». Se tutti i treni fossero stati in ritardo, l'affermazione dell'azienda sarebbe comunque falsa, eppure nessun treno avrebbe viaggiato in orario, quindi questa alternativa non è garantita."
+      },
+      "accessibilityText": "Una domanda di deduzione. Un'azienda ferroviaria afferma che lunedì scorso ogni treno della linea Torino-Cuneo ha viaggiato in orario, e un rapporto di ispezione mostra che l'affermazione è falsa. La domanda chiede quale di cinque affermazioni su quel lunedì deve essere vera. Le affermazioni dicono, nell'ordine: nessun treno ha viaggiato in orario; almeno un treno non ha viaggiato in orario; la maggior parte dei treni non ha viaggiato in orario; esattamente un treno non ha viaggiato in orario; almeno un treno ha viaggiato in orario.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-e",
+        "checkedBy": "tolc-italian-checker-e",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; 'almeno un', 'esattamente un', 'nessun', 'la maggior parte' preserved."
+      }
+    }
+  }
 }

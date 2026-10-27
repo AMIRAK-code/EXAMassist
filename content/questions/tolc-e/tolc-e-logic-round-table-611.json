@@ -79,5 +79,48 @@
     "arrangements",
     "circular-seating",
     "no-calculator"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Sei colleghi, Anna, Bruno, Carla, Dario, Elisa e Fabio, siedono a un tavolo rotondo con sei posti equidistanti, in modo che ciascuno sieda esattamente di fronte a una sola altra persona. Si sa quanto segue.\n\n- Anna siede esattamente di fronte a Carla.\n- Bruno siede accanto ad Anna.\n- Dario non siede accanto ad Anna.\n- Bruno e Dario non siedono uno accanto all'altro.\n\nChi siede esattamente di fronte a Elisa?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Carla"
+        },
+        {
+          "id": "b",
+          "textMd": "Bruno"
+        },
+        {
+          "id": "c",
+          "textMd": "Fabio"
+        },
+        {
+          "id": "d",
+          "textMd": "Dario"
+        },
+        {
+          "id": "e",
+          "textMd": "Anna"
+        }
+      ],
+      "explanationMd": "Numera i posti da 1 a 6 in senso orario. I posti opposti differiscono di tre, quindi le coppie di posti opposti sono 1 e 4, 2 e 5, 3 e 6. Poiché il tavolo è rotondo, si può mettere Anna al posto 1 senza perdere di generalità. Carla è allora di fronte a lei, al posto 4.\n\nBruno è accanto ad Anna, al posto 2 o al posto 6. Ribaltare il tavolo come in uno specchio scambia questi due posti e lascia invariata ogni affermazione su chi sta di fronte a chi, quindi prendiamo il posto 2. Dario non può sedere ai posti 2 o 6, che sono accanto ad Anna, né ai posti 1 o 3, che sono accanto a Bruno, e il posto 4 è di Carla. Resta il posto 5 per Dario, esattamente di fronte a Bruno.\n\nElisa e Fabio si dividono i posti 3 e 6, che sono uno di fronte all'altro. Quindi Elisa siede di fronte a **Fabio**, qualunque dei due posti occupi.\n\nVerifica: le coppie una di fronte all'altra sono Anna e Carla, Bruno e Dario, Elisa e Fabio, e tutti e quattro gli indizi sono rispettati.",
+      "distractorRationale": {
+        "e": "Scegliere Anna significa dimenticare che ciascuno ha esattamente una persona di fronte. Anna siede di fronte a Carla per il primo indizio, quindi non può essere anche di fronte a Elisa.",
+        "b": "È ciò che succede se si trascura l'ultimo indizio: Dario potrebbe allora sedere accanto a Bruno, ed Elisa potrebbe occupare il posto di fronte a Bruno. Applicando l'indizio, Dario è costretto a occupare quel posto, quindi Bruno è di fronte a Dario, non a Elisa.",
+        "a": "Scegliere Carla significa dimenticare che ciascuno ha esattamente una persona di fronte. Carla siede di fronte ad Anna per il primo indizio, quindi non può essere anche di fronte a Elisa.",
+        "d": "È ciò che succede se si trascura uno dei due indizi su Dario: potrebbe allora sedere in un posto che Elisa potrebbe avere di fronte. Applicando entrambi gli indizi, il suo unico posto possibile è quello di fronte a Bruno, quindi non è di fronte a Elisa."
+      },
+      "accessibilityText": "Un problema di logica sulla disposizione attorno a un tavolo rotondo con sei posti equidistanti, in modo che ciascuno sia esattamente di fronte a una sola altra persona. Le sei persone sono Anna, Bruno, Carla, Dario, Elisa e Fabio. Anna siede di fronte a Carla; Bruno siede accanto ad Anna; Dario non siede accanto ad Anna; Bruno e Dario non siedono uno accanto all'altro. La domanda chiede chi siede di fronte a Elisa. Le cinque alternative sono Anna, Bruno, Carla, Dario e Fabio.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-e",
+        "checkedBy": "tolc-italian-checker-e",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; in all valid arrangements Fabio is opposite Elisa."
+      }
+    }
+  }
 }
