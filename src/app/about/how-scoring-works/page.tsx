@@ -253,8 +253,10 @@ export default function HowScoringWorksPage() {
                 Bocconi publishes its scoring outright: a correct answer scores +1, an omitted answer
                 scores 0, and a wrong answer costs 0.2 points — 0.33 points on critical-thinking
                 items presented with only three options. The penalty belongs to the item, not to the
-                exam, which is why the table below records the exam-level rule and our engine applies
-                the heavier penalty to the items that carry it.
+                exam, which is why the table below records the exam-level rule. On the bachelor form
+                our engine applies the heavier penalty to every three-option critical-thinking item.
+                On the law form Bocconi does not say whether the rule reaches its “logic and critical
+                thinking” area, so there we score every wrong answer at 0.2.
               </p>
               <p>
                 Two consequences follow, and both are practical rather than theoretical. First,
@@ -366,9 +368,10 @@ export default function HowScoringWorksPage() {
           </div>
 
           <p className="mt-3 text-sm text-ink-muted">
-            One exception the table cannot hold: on the bachelor and law forms of the Bocconi test,
+            One exception the table cannot hold: on the bachelor form of the Bocconi test,
             critical-thinking items offered with three answer options carry a heavier penalty of 0.33
-            points instead of 0.2. The master’s form gives its penalty as 0.25 or 0.33 without
+            points instead of 0.2, and we apply it. Bocconi does not say whether the law form’s
+            “logic and critical thinking” area follows the same rule, so we score it at 0.2. The master’s form gives its penalty as 0.25 or 0.33 without
             saying which items carry 0.33, so we score every wrong answer there at 0.25. Those
             penalties attach to individual items, so the column above shows the exam-level rule.
           </p>
