@@ -39,6 +39,7 @@ CREATE TABLE stimuli (
   provenance          TEXT NOT NULL,
   rights_status       TEXT NOT NULL,
   created_at          TEXT NOT NULL,
+  translations_json   TEXT,                              -- checked translations by locale (013)
   PRIMARY KEY (id, version)
 );
 
@@ -82,7 +83,8 @@ CREATE TABLE question_versions (
   state                      TEXT NOT NULL,
   content_hash               TEXT NOT NULL,
   created_at                 TEXT NOT NULL,
-  UNIQUE (question_id, version)
+  UNIQUE (question_id, version),
+  translations_json          TEXT                        -- checked translations by locale (013)
 );
 
 CREATE TABLE exam_configs (
@@ -111,7 +113,8 @@ CREATE TABLE attempts (
   idempotency_key      TEXT,
   created_at           TEXT NOT NULL,
   updated_at           TEXT NOT NULL
-, resume_part_index BIGINT, resume_position BIGINT, resume_clock BIGINT, resume_saved_at TEXT);
+, resume_part_index BIGINT, resume_position BIGINT, resume_clock BIGINT, resume_saved_at TEXT,
+  content_locale TEXT NOT NULL DEFAULT 'en');
 
 CREATE TABLE attempt_parts (
   id                  TEXT PRIMARY KEY,
@@ -488,6 +491,7 @@ INSERT INTO _migrations (name, applied_at) VALUES
 ('009_email_codes.sql', '2026-10-01T00:00:00.000Z'),
 ('010_billing.sql', '2026-10-05T00:00:00.000Z'),
 ('011_funnel_counts.sql', '2026-10-07T00:00:00.000Z'),
-('012_stripe_subscriptions.sql', '2026-10-23T00:00:00.000Z');
+('012_stripe_subscriptions.sql', '2026-10-23T00:00:00.000Z'),
+('013_content_translations.sql', '2026-10-27T00:00:00.000Z');
 ALTER TABLE examer._migrations ENABLE ROW LEVEL SECURITY;
 COMMIT;
