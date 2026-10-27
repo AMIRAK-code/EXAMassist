@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { GET as llmsTxtRoute } from '@/app/llms.txt/route';
 import robots from '@/app/robots';
@@ -6,6 +8,8 @@ import { organizationSchema, webSiteSchema } from '@/components/seo/json-ld';
 import { listGuides } from '@/lib/content/guides';
 import { EXAM_HUBS } from '@/lib/exams/registry';
 import { googleSiteVerification } from '@/lib/site';
+import { LOCALES, localizePath, splitLocale } from '@/i18n/locales';
+import { pageAlternates } from '@/i18n/alternates';
 
 /**
  * What search engines are told in production: robots.txt, the sitemap and the
@@ -78,7 +82,7 @@ describe('robots.txt in production', () => {
 });
 
 describe('the sitemap in production', () => {
-  it('lists every public hub, format guide, guide and fixed page once, on the production domain', () => {
+  it('lists every public hub, format guide, guide and fixed page once per language, on the production domain', () => {
     production();
     const urls = sitemap().map((entry) => entry.url);
     expect(new Set(urls).size).toBe(urls.length);
@@ -87,8 +91,18 @@ describe('the sitemap in production', () => {
       '/about/editorial-standards', '/about/how-scoring-works', '/about/privacy', '/about/terms',
       ...EXAM_HUBS.flatMap((hub) => [`/exams/${hub.slug}`, `/exams/${hub.slug}/format`]),
       ...listGuides().map((guide) => `/guides/${guide.slug}`),
-    ];
+    ].flatMap((path) => LOCALES.map((locale) => localizePath(path, locale)));
     expect(urls.sort()).toEqual(expected.map((path) => `${SITE}${path}`).sort());
+  });
+
+  it('names every language version, itself included, and English as x-default, on each entry', () => {
+    production();
+    for (const entry of sitemap()) {
+      const languages = entry.alternates?.languages as Record<string, string>;
+      expect(Object.keys(languages).sort(), entry.url).toEqual([...LOCALES, 'x-default'].sort());
+      expect(Object.values(languages), entry.url).toContain(entry.url);
+      expect(languages['x-default'], entry.url).toBe(languages.en);
+    }
   });
 
   it('never lists a private route', () => {
@@ -116,6 +130,44 @@ describe('the sitemap in production', () => {
   });
 });
 
+describe('canonical and hreflang on the pages', () => {
+  it('makes each language version its own canonical, and lists them all with English as x-default', async () => {
+    production();
+    const italian = await pageAlternates(Promise.resolve({ locale: 'it' }), '/exams/gmat');
+    expect(italian).toEqual({
+      canonical: `${SITE}/it/exams/gmat`,
+      languages: {
+        en: `${SITE}/exams/gmat`,
+        it: `${SITE}/it/exams/gmat`,
+        tr: `${SITE}/tr/exams/gmat`,
+        es: `${SITE}/es/exams/gmat`,
+        pl: `${SITE}/pl/exams/gmat`,
+        'x-default': `${SITE}/exams/gmat`,
+      },
+    });
+    expect((await pageAlternates(Promise.resolve({ locale: 'en' }), '/')).canonical).toBe(`${SITE}/`);
+    expect((await pageAlternates(Promise.resolve({ locale: 'pl' }), '/')).canonical).toBe(`${SITE}/pl`);
+    // An unknown locale never reaches a page (the layout answers 404), but it would fall back to English.
+    expect((await pageAlternates(Promise.resolve({ locale: 'xx' }), '/guides')).canonical).toBe(`${SITE}/guides`);
+  });
+
+  it('is what every page that sets its own canonical uses', () => {
+    // A page's `alternates` replaces the layout's, so a fixed English canonical
+    // here would make every translation point at the English page again.
+    const pages = fs
+      .readdirSync(path.join('src', 'app', '[locale]'), { recursive: true, encoding: 'utf8' })
+      .filter((file) => file.endsWith('page.tsx'))
+      .map((file) => path.join('src', 'app', '[locale]', file));
+    const withAlternates = pages.filter((file) => /\balternates\b/.test(fs.readFileSync(file, 'utf8')));
+    expect(withAlternates.length).toBeGreaterThanOrEqual(11);
+    for (const file of withAlternates) {
+      const source = fs.readFileSync(file, 'utf8');
+      expect(source, file).toContain('pageAlternates(params');
+      expect(source, file).not.toMatch(/canonical:\s*absoluteUrl/);
+    }
+  });
+});
+
 describe('llms.txt in production', () => {
   it('links only pages from the sitemap, and every page in it below the listings', async () => {
     production();
@@ -124,7 +176,10 @@ describe('llms.txt in production', () => {
     expect(response.headers.get('content-type')).toContain('text/plain');
     const text = await response.text();
     const linked = [...text.matchAll(/\]\((https?:[^)]+)\)/g)].map((match) => match[1]);
-    const listed = sitemap().map((entry) => entry.url);
+    // llms.txt maps the English pages; the sitemap also lists every translation.
+    const listed = sitemap()
+      .map((entry) => entry.url)
+      .filter((url) => splitLocale(new URL(url).pathname).locale === 'en');
     for (const url of linked) expect(listed, url).toContain(url);
     const listings = ['/', '/exams', '/guides'].map((p) => `${SITE}${p}`);
     for (const url of listed.filter((u) => !listings.includes(u))) expect(linked, url).toContain(url);

@@ -1,7 +1,8 @@
 import { Link } from '@/i18n/navigation';
 import { PAGE_DATES } from '@/lib/content/page-dates';
 import type { Metadata } from 'next';
-import { INDEPENDENCE_NOTICE, SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
+import { INDEPENDENCE_NOTICE, SITE, shareImages, siteUrl } from '@/lib/site';
+import { pageAlternates } from '@/i18n/alternates';
 import { Alert, Breadcrumbs, Card, Container } from '@/components/ui';
 import { JsonLd, breadcrumbSchema } from '@/components/seo/json-ld';
 
@@ -9,17 +10,20 @@ const TITLE = 'Terms of use (draft)';
 const DESCRIPTION =
   'Draft terms of use for this exam preparation site, prepared for legal review. Includes the open questions a lawyer still needs to settle.';
 
-export const metadata: Metadata = {
-  title: TITLE,
-  description: DESCRIPTION,
-  alternates: { canonical: absoluteUrl('/about/terms') },
-  openGraph: {
-    url: absoluteUrl('/about/terms'),
-    title: `${TITLE} | ${SITE.shortName}`,
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const alternates = await pageAlternates(params, '/about/terms');
+  return {
+    title: TITLE,
     description: DESCRIPTION,
-    images: shareImages('site', TITLE),
-  },
-};
+    alternates,
+    openGraph: {
+      url: alternates.canonical,
+      title: `${TITLE} | ${SITE.shortName}`,
+      description: DESCRIPTION,
+      images: shareImages('site', TITLE),
+    },
+  };
+}
 
 const LAST_REVIEWED = PAGE_DATES.terms.updated;
 

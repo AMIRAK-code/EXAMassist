@@ -6,6 +6,7 @@ import { EXAM_HUBS, getConfigsForHub, getHub } from '@/lib/exams/registry';
 import type { SectionConfig } from '@/lib/assessment/types';
 import { blueprintAvailability, examCoverage } from '@/lib/attempts/availability';
 import { SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
+import { pageAlternates } from '@/i18n/alternates';
 import {
   Alert,
   Breadcrumbs,
@@ -89,21 +90,22 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ hub: string }>;
+  params: Promise<{ locale: string; hub: string }>;
 }): Promise<Metadata> {
   const { hub: slug } = await params;
   const hub = getHub(slug);
   if (!hub) return { title: copy.fallbackTitle };
-  if (hub.slug === BOCCONI_HUB_SLUG) return bocconiMetadata();
+  const alternates = await pageAlternates(params, `/exams/${hub.slug}`);
+  if (hub.slug === BOCCONI_HUB_SLUG) return bocconiMetadata(alternates);
 
   const title = copy.title(hub.name);
   const description = hub.tagline;
   return {
     title,
     description,
-    alternates: { canonical: absoluteUrl(`/exams/${hub.slug}`) },
+    alternates,
     openGraph: {
-      url: absoluteUrl(`/exams/${hub.slug}`),
+      url: alternates.canonical,
       title: `${title} | ${SITE.shortName}`,
       description,
       type: 'article',
@@ -116,20 +118,19 @@ export async function generateMetadata({
  * The Bocconi page is the site's page for Bocconi test preparation, so its
  * title and description say that, with the live question count.
  */
-async function bocconiMetadata(): Promise<Metadata> {
+async function bocconiMetadata(alternates: Awaited<ReturnType<typeof pageAlternates>>): Promise<Metadata> {
   const counts = (await Promise.all(getConfigsForHub(BOCCONI_HUB_SLUG).map((c) => examCoverage(getDb(), c)))).reduce(
     (sum, c) => sum + c.publishedItems,
     0,
   );
   const title = BOCCONI_TITLE;
   const description = `Prepare for the Bocconi Online Test, undergraduate or Law, with ${counts} original practice questions, worked explanations, timed 50-question sets and a free test. Independent of Bocconi.`;
-  const url = absoluteUrl(`/exams/${BOCCONI_HUB_SLUG}`);
   return {
     title,
     description,
-    alternates: { canonical: url },
+    alternates,
     openGraph: {
-      url,
+      url: alternates.canonical,
       title: `${title} | ${SITE.shortName}`,
       description,
       type: 'website',

@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { EXAM_HUBS, getConfigsForHub, getHub } from '@/lib/exams/registry';
 import { describePolicy } from '@/lib/assessment/navigation';
 import { SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
+import { pageAlternates } from '@/i18n/alternates';
 import { guidesForHub } from '@/lib/content/guides';
 import { Callout, Alert, Breadcrumbs, ButtonLink, Card, Container } from '@/components/ui';
 import { JsonLd, articleSchema, breadcrumbSchema } from '@/components/seo/json-ld';
@@ -15,7 +16,7 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ hub: string }>;
+  params: Promise<{ locale: string; hub: string }>;
 }): Promise<Metadata> {
   const { hub: slug } = await params;
   const hub = getHub(slug);
@@ -24,14 +25,15 @@ export async function generateMetadata({
   const configs = getConfigsForHub(slug);
   const title = `${hub.name} format and scoring guide`;
   const description = `Sections, question counts, timing, navigation rules, calculator policy and scoring for the ${hub.name}, verified against ${hub.publisher} on ${configs[0]?.verifiedOn ?? 'our last check'}.`;
+  const alternates = await pageAlternates(params, `/exams/${hub.slug}/format`);
 
   return {
     title,
     description,
-    alternates: { canonical: absoluteUrl(`/exams/${hub.slug}/format`) },
+    alternates,
     openGraph: {
       type: 'article',
-      url: absoluteUrl(`/exams/${hub.slug}/format`),
+      url: alternates.canonical,
       title: `${title} | ${SITE.shortName}`,
       description,
       // The exam's own image: the format guide is about the same exam.
