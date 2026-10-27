@@ -78,5 +78,48 @@
     "work",
     "power",
     "potential-energy"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un paranco elettrico solleva verticalmente una cassa di $50\\ \\text{kg}$ di $12\\ \\text{m}$ a velocità costante, impiegando $20\\ \\text{s}$. Si assuma $g = 10\\ \\text{m/s}^2$ e si trascurino attriti e perdite. Quale potenza media fornisce il paranco alla cassa?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$30\\ \\text{W}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$300\\ \\text{W}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$15\\ \\text{W}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$6000\\ \\text{W}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$600\\ \\text{W}$"
+        }
+      ],
+      "explanationMd": "**Che cosa notare per prima cosa.** A velocità costante l'energia cinetica non cambia, quindi tutto il lavoro compiuto dal paranco si trasforma in energia potenziale gravitazionale. La potenza è quel lavoro diviso per il tempo impiegato.\n\n**I passaggi.**\n\n$$W = mgh = 50 \\times 10 \\times 12 = 6000\\ \\text{J}, \\qquad P = \\frac{W}{t} = \\frac{6000\\ \\text{J}}{20\\ \\text{s}} = 300\\ \\text{W}.$$\n\n**Come verificarlo.** Usa $P = Fv$. A velocità costante il paranco tira con una forza uguale al peso, $F = mg = 500\\ \\text{N}$, e la velocità è $v = 12/20 = 0.6\\ \\text{m/s}$. Allora $P = 500 \\times 0.6 = 300\\ \\text{W}$, lo stesso risultato. Unità di misura: $\\text{J/s} = \\text{W}$.",
+      "distractorRationale": {
+        "a": "Omette $g$, usando $mh/t = 50 \\times 12 / 20 = 30$. La forza necessaria per sollevare la cassa è il suo peso, $mg = 500\\ \\text{N}$, non la sua massa.",
+        "d": "Si ferma al lavoro, $mgh = 6000\\ \\text{J}$, e lo presenta come una potenza. La potenza è lavoro per unità di tempo, quindi i $6000\\ \\text{J}$ vanno ancora divisi per $20\\ \\text{s}$.",
+        "c": "Divide il lavoro per il quadrato del tempo, $6000 / 400 = 15$. Si ottengono unità $\\text{J/s}^2$, che non sono quelle di una potenza.",
+        "e": "Usa $P = Fv$ con una velocità di $1.2\\ \\text{m/s}$, il doppio di $12/20$, come se la cassa partisse da ferma con accelerazione uniforme. Il testo dice che la velocità è costante, quindi la velocità è semplicemente $0.6\\ \\text{m/s}$."
+      },
+      "accessibilityText": "Un paranco elettrico solleva verticalmente una cassa di 50 chilogrammi di 12 metri a velocità costante, impiegando 20 secondi. Si assuma g uguale a 10 metri al secondo quadrato e si trascurino attriti e perdite. Quale potenza media fornisce il paranco alla cassa? Le alternative sono 30 watt, 300 watt, 15 watt, 6000 watt e 600 watt.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

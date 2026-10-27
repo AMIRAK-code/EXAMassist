@@ -79,5 +79,48 @@
     "isobaric",
     "work",
     "unit-conversion"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un gas in un cilindro con un pistone libero di muoversi è mantenuto a una pressione costante di $2.0 \\times 10^{5}\\ \\text{Pa}$. Assorbe $1000\\ \\text{J}$ di calore e si espande da $3.0\\ \\text{L}$ a $5.0\\ \\text{L}$. Qual è la variazione dell'energia interna del gas?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$+1000\\ \\text{J}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$+600\\ \\text{J}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$+1400\\ \\text{J}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$-399\\,000\\ \\text{J}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$+400\\ \\text{J}$"
+        }
+      ],
+      "explanationMd": "**Che cosa notare per prima cosa.** Due cose: a pressione costante il lavoro compiuto *dal* gas è $W = p\\,\\Delta V$, e $\\Delta V$ va espresso in metri cubi prima di moltiplicarlo per una pressione in pascal ($1\\ \\text{L} = 10^{-3}\\ \\text{m}^3$).\n\n**I passaggi.**\n\n- $\\Delta V = 5.0 - 3.0 = 2.0\\ \\text{L} = 2.0 \\times 10^{-3}\\ \\text{m}^3$.\n- Lavoro compiuto dal gas: $W = 2.0 \\times 10^{5} \\times 2.0 \\times 10^{-3} = 400\\ \\text{J}$.\n- Primo principio, con $Q$ il calore assorbito e $W$ il lavoro compiuto dal gas: $\\Delta U = Q - W = 1000 - 400 = +600\\ \\text{J}$.\n\n**Come verificarlo.** Segui l'energia. Entrano $1000\\ \\text{J}$ sotto forma di calore; il gas, espandendosi, spinge fuori il pistone e ne spende $400\\ \\text{J}$ come lavoro sull'ambiente. Ciò che resta nel gas sono $600\\ \\text{J}$. Unità di misura: $\\text{Pa} \\cdot \\text{m}^3 = \\text{N/m}^2 \\cdot \\text{m}^3 = \\text{N·m} = \\text{J}$.",
+      "distractorRationale": {
+        "c": "Somma il lavoro al calore. Il lavoro compiuto *da* un gas che si espande esce dal gas, quindi va sottratto al calore assorbito.",
+        "a": "Ignora il lavoro. Il gas si espande contro il pistone, quindi parte del calore che assorbe viene spesa per spingere fuori il pistone.",
+        "e": "È il lavoro compiuto dal gas, $p\\,\\Delta V = 400\\ \\text{J}$, non la variazione di energia interna, che è il calore meno quel lavoro.",
+        "d": "Moltiplica la pressione per $2.0$ litri come se fossero $2.0\\ \\text{m}^3$, ottenendo $400\\,000\\ \\text{J}$ di lavoro. Un litro è $10^{-3}\\ \\text{m}^3$, quindi il lavoro è mille volte più piccolo."
+      },
+      "accessibilityText": "Un gas in un cilindro con un pistone libero di muoversi è mantenuto a una pressione costante di 2,0 per 10 alla quinta pascal. Assorbe 1000 joule di calore e si espande da 3,0 litri a 5,0 litri. Qual è la variazione dell'energia interna del gas? Le alternative sono più 1000 joule, più 600 joule, più 1400 joule, meno 399 mila joule e più 400 joule.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }
