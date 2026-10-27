@@ -79,6 +79,23 @@ On the Workers Free plan a request may use 10 ms of CPU. One scrypt password
 check takes about 50 ms on a desktop CPU, so sign-in, sign-up and password
 reset can fail there (error 1102) until the account is on Workers Paid.
 
+Rendering any page costs more than 10 ms too (a median of 28 ms, and 381 ms
+for the home page, measured in Workers Observability on 2026-10-27). So
+`cf:deploy` uploads twice: after the first upload it fetches every public page
+from the live site and saves it into `.open-next/assets`, and the second upload
+serves those files without running the Worker at all
+(`scripts/snapshot-pages.ts`, `src/lib/seo/static-pages.ts`). `/premium` and
+everything behind sign-in stay dynamic. The saved pages change only when you
+deploy, so deploy again after publishing questions straight to the database.
+
+Static files are answered for any hostname before the Worker's own redirects
+run, so the snapshot step needs two Single Redirects in Cloudflare (Rules →
+Redirect Rules): `www.uniexamer.com/*` to `https://uniexamer.com/${1}` in the
+uniexamer.com zone, and hostname `exam.assist365.app` to
+`concat("https://uniexamer.com", http.request.uri.path)` in the assist365.app
+zone, both 301 and keeping the query string. Without them `cf:deploy` warns
+and leaves every page dynamic.
+
 ### Commands
 
 | Command | What it does |

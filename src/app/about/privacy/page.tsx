@@ -101,7 +101,7 @@ const WHAT_WE_DO_NOT: string[] = [
   'No advertising, and no advertising or tracking pixels of any kind.',
   'No third-party analytics. There is no Google Analytics, no product-analytics SDK, and no session recording.',
   'No card details. Premium is paid on Stripe’s own checkout page, so card numbers and bank details go to Stripe and are never stored or seen by us.',
-  'No cookies other than the session cookie. Nothing is stored on your device for advertising, measurement or personalisation; the daily totals described above are counted on our server and identify nobody.',
+  'No cookies other than the session cookie. Nothing is stored on your device for advertising, measurement or personalisation; the daily totals described above are counted on our server and identify nobody. The browser’s own storage keeps two working notes that never leave it: answers still waiting to reach our server, and whether this browser is signed in (as a guest or with an account), so pages we serve as ready-made files can show you your own menu. Signing out clears both.',
   'No selling, renting or sharing of personal data with third parties for their own purposes.',
   'No AI unless you ask for it. The optional AI tutor sends nothing until you press one of its buttons, and it is never needed to practise: every question has its own reviewed explanation.',
   'No email marketing. We hold your address to let you sign in, not to send you campaigns. The only emails we send are the codes described above, as plain text, so they carry no tracking pixel.',
