@@ -222,4 +222,7 @@ export const tolcIConfig: ExamConfig = {
     ...TOLC_UNVERIFIED,
     'The TOLC-I structure page itself was not read first-hand: cisiaonline.it could not be reached from the build environment on 11 October 2026, and the section counts and clocks were confirmed through search results quoting CISIA’s pages. Re-read the page before relying on the syllabus detail.',
   ],
+  // CISIA delivers the TOLC-I in Italian; questions with a checked Italian
+  // translation are offered in Italian as well as English.
+  contentLocales: ['en', 'it'],
 };
