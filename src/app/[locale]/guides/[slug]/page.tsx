@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { getGuide, listGuides } from '@/lib/content/guides';
 import { getHub } from '@/lib/exams/registry';
 import { SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
+import { pageAlternates } from '@/i18n/alternates';
 import { Markdown } from '@/components/content';
 import { freeTestPath } from '@/lib/billing/config';
 import { Breadcrumbs, ButtonLink, Callout, Card, Container, PageHeader } from '@/components/ui';
@@ -15,18 +16,19 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
   const guide = getGuide(slug);
   if (!guide) return { title: 'Guide' };
+  const alternates = await pageAlternates(params, `/guides/${guide.slug}`);
   return {
     title: guide.title,
     description: guide.description,
-    alternates: { canonical: absoluteUrl(`/guides/${guide.slug}`) },
+    alternates,
     openGraph: {
       type: 'article',
-      url: absoluteUrl(`/guides/${guide.slug}`),
+      url: alternates.canonical,
       title: `${guide.title} | ${SITE.shortName}`,
       description: guide.description,
       publishedTime: guide.publishedOn,
