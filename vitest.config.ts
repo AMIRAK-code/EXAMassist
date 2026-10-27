@@ -7,6 +7,9 @@ export default defineConfig({
     environment: 'node',
     globals: false,
     reporters: ['default'],
+    // next-intl imports next/navigation without an extension, which Node's
+    // ESM loader cannot resolve; bundling it through Vite lets it resolve.
+    server: { deps: { inline: ['next-intl'] } },
   },
   resolve: {
     alias: { '@': path.resolve(process.cwd(), 'src') },

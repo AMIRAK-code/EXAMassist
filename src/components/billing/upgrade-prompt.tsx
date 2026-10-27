@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { ButtonLink, Card, cx } from '@/components/ui';
 import { checkoutPath, freeTestPath, pricingPath } from '@/lib/billing/config';
 import { PLANS, PLAN_COPY, PLAN_KEYS, formatPrice, type Feature } from '@/lib/billing/plans';
