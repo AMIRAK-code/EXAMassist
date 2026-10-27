@@ -22,6 +22,7 @@ import {
   type TutorSolution,
 } from './prompts';
 import { checkDebriefForForecasts, checkHintForLeaks } from './safety';
+import { EntitlementError, requireEntitlement } from '@/lib/billing/entitlements';
 
 /**
  * The AI tutor's server side.
@@ -381,6 +382,22 @@ async function loadReviewable(db: Db, item: AttemptItemState): Promise<Reviewabl
   return (await toReviewable(db, version));
 }
 
+/**
+ * The tutor is a paid feature (All access, src/lib/billing/plans.ts), checked
+ * for the exam of the session it is asked about. A refusal carries the
+ * pricing page for that exam, so the panel can offer the upgrade.
+ */
+async function assertTutorAllowed(db: Db, userId: string, examKey: string): Promise<void> {
+  try {
+    await requireEntitlement(db, userId, 'ai_tutor', examKey);
+  } catch (error) {
+    if (error instanceof EntitlementError) {
+      throw new TutorError(error.code, error.message, error.status, { ...error.detail });
+    }
+    throw error;
+  }
+}
+
 async function loadState(db: Db, attemptId: string, userId: string): Promise<AttemptState> {
   try {
     return (await getAttemptState(db, attemptId, userId));
@@ -417,6 +434,7 @@ export async function questionHelp(
   if (!settings.enabled && !options.client) throw failure('disabled');
 
   const state = (await loadState(db, input.attemptId, caller.userId));
+  await assertTutorAllowed(db, caller.userId, state.examKey);
   const item = findItem(state, input.partIndex, input.position);
 
   if (input.kind === 'hint') {
@@ -649,6 +667,7 @@ export async function debrief(
   if (!tutorSettings().enabled && !options.client) throw failure('disabled');
 
   const state = (await loadState(db, attemptId, caller.userId));
+  await assertTutorAllowed(db, caller.userId, state.examKey);
   if (state.status === 'in_progress') {
     (await recordUsage(db, caller, 'debrief', 'blocked', false, null, now));
     throw new TutorError('tutor-not-allowed', 'The after-test guide is available once the session is finished.', 403);

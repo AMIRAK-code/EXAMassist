@@ -44,7 +44,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page('/', homeDate, 'weekly', 1),
     page('/exams', examsDate, 'weekly', 0.9),
     page('/guides', guidesDate, 'weekly', 0.7),
-    page('/premium', PAGE_DATES.premium.updated, 'monthly', 0.6),
+    page('/pricing', PAGE_DATES.pricing.updated, 'monthly', 0.6),
     page('/about/editorial-standards', PAGE_DATES.editorialStandards.updated, 'monthly', 0.5),
     page('/about/how-scoring-works', PAGE_DATES.howScoringWorks.updated, 'monthly', 0.5),
     page('/about/privacy', PAGE_DATES.privacy.updated, 'yearly', 0.3),

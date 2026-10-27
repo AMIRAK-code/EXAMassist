@@ -13,9 +13,9 @@ export interface OnboardingStep {
 
 /**
  * Four short screens before an exam: what it is, how practice works, what the
- * results show, and the choice between Premium and the free test. "Skip" is
- * always there and goes straight to the free test; finishing goes to the
- * plans. Nothing is asked or stored.
+ * results show, and the choice between a plan and the free diagnostic. "Skip"
+ * is always there and goes straight to the free diagnostic; finishing goes to
+ * the plans. Nothing is asked or stored.
  */
 export function Onboarding({
   steps,
@@ -24,7 +24,7 @@ export function Onboarding({
   freeTestHref,
 }: {
   steps: OnboardingStep[];
-  choice: { free: string[]; premium: string[]; freeLabel: string };
+  choice: { free: string[]; paid: string[]; freeLabel: string };
   plansHref: string;
   freeTestHref: string;
 }) {
@@ -55,7 +55,7 @@ export function Onboarding({
         </p>
         {!last ? (
           <Link href={freeTestHref} className="text-sm font-semibold">
-            Skip to the free test
+            Skip to the free diagnostic
           </Link>
         ) : null}
       </div>
@@ -89,18 +89,18 @@ export function Onboarding({
           </h1>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
             <Card padding="lg" className="border-2 border-accent">
-              <h2 className="font-heading text-xl font-semibold">Premium</h2>
+              <h2 className="font-heading text-xl font-semibold">A plan</h2>
               <ul className="mt-3 list-disc space-y-1.5 ps-5 text-sm">
-                {choice.premium.map((line) => (
+                {choice.paid.map((line) => (
                   <li key={line}>{line}</li>
                 ))}
               </ul>
               <ButtonLink href={plansHref} full className="mt-5">
-                See Premium plans
+                See plans
               </ButtonLink>
             </Card>
             <Card padding="lg">
-              <h2 className="font-heading text-xl font-semibold">Free test</h2>
+              <h2 className="font-heading text-xl font-semibold">Free diagnostic</h2>
               <ul className="mt-3 list-disc space-y-1.5 ps-5 text-sm">
                 {choice.free.map((line) => (
                   <li key={line}>{line}</li>

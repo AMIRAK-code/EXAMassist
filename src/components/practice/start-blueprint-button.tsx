@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui';
-import { startPath } from '@/lib/billing/config';
+import { upgradeTarget } from '@/lib/billing/upgrade';
 
 /**
  * Starts a fixed blueprint (diagnostic, timed section, simulation).
@@ -50,8 +50,10 @@ export function StartBlueprintButton({
 
     const data = await response?.json().catch(() => null);
 
-    if (data?.error?.code === 'premium-required' || data?.error?.code === 'account-required') {
-      window.location.assign(startPath(examKey));
+    // No plan for this format: the pricing page for this exam, never an error.
+    const upgrade = data?.error ? upgradeTarget(data.error) : null;
+    if (upgrade) {
+      window.location.assign(upgrade);
       return;
     }
     if (!response?.ok) {

@@ -127,7 +127,7 @@ export async function DELETE(request: Request) {
     }
 
     const db = getDb();
-    // End any Premium subscription first: nobody is billed for an account that
+    // End any paid subscription first: nobody is billed for an account that
     // no longer exists. If Stripe cannot confirm it, nothing is deleted.
     await cancelBeforeDeletion(db, user.id);
     const purge = db.transaction(async (userId: string) => {

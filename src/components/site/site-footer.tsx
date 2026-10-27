@@ -4,7 +4,7 @@ import { listHubs } from '@/lib/exams/registry';
 import { EditorialLine } from './editorial-line';
 
 const LEARN = [
-  { href: '/premium', label: 'Premium' },
+  { href: '/pricing', label: 'Pricing' },
   { href: '/guides', label: 'Guides' },
   { href: '/about/how-scoring-works', label: 'How our scoring works' },
   { href: '/about/editorial-standards', label: 'Editorial standards' },

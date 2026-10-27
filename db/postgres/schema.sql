@@ -340,18 +340,36 @@ CREATE TABLE email_codes (
   consumed_at  TEXT
 );
 
-CREATE TABLE subscriptions (
-  user_id                TEXT PRIMARY KEY REFERENCES users (id) ON DELETE CASCADE,
-  stripe_customer_id     TEXT NOT NULL UNIQUE,
-  stripe_subscription_id TEXT,
-  -- 'monthly' | 'quarterly' | 'yearly'; NULL until a checkout completes
-  plan                   TEXT,
+CREATE TABLE billing_customers (
+  user_id            TEXT PRIMARY KEY REFERENCES users (id) ON DELETE CASCADE,
+  stripe_customer_id TEXT NOT NULL UNIQUE,
+  created_at         TEXT NOT NULL,
+  updated_at         TEXT NOT NULL
+);
+
+CREATE TABLE billing_subscriptions (
+  stripe_subscription_id TEXT PRIMARY KEY,
+  user_id                TEXT NOT NULL REFERENCES users (id) ON DELETE CASCADE,
+  stripe_customer_id     TEXT NOT NULL,
+  -- 'all_access' | 'single_exam' (src/lib/billing/plans.ts)
+  plan                   TEXT NOT NULL,
+  exam_key               TEXT,
   -- Stripe's subscription status: active, trialing, past_due, canceled, ...
-  status                 TEXT,
+  status                 TEXT NOT NULL,
+  price_lookup_key       TEXT,
   current_period_end     TEXT,
   cancel_at_period_end   BIGINT NOT NULL DEFAULT 0,
+  withdrawal_waiver_at   TEXT,
+  stripe_synced_at       BIGINT NOT NULL DEFAULT 0,
   created_at             TEXT NOT NULL,
   updated_at             TEXT NOT NULL
+);
+
+CREATE TABLE billing_events (
+  id          TEXT PRIMARY KEY,
+  type        TEXT NOT NULL,
+  handled     BIGINT NOT NULL DEFAULT 0,
+  received_at TEXT NOT NULL
 );
 
 CREATE TABLE funnel_counts (
@@ -424,6 +442,10 @@ CREATE INDEX idx_email_codes_user ON email_codes (user_id, purpose, created_at);
 
 CREATE INDEX idx_email_codes_expires ON email_codes (expires_at);
 
+CREATE INDEX idx_billing_subscriptions_user ON billing_subscriptions (user_id, status);
+
+CREATE INDEX idx_billing_subscriptions_customer ON billing_subscriptions (stripe_customer_id);
+
 ALTER TABLE examer.users ENABLE ROW LEVEL SECURITY;
 ALTER TABLE examer.sessions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE examer.stimuli ENABLE ROW LEVEL SECURITY;
@@ -448,7 +470,9 @@ ALTER TABLE examer.plan_sessions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE examer.tutor_responses ENABLE ROW LEVEL SECURITY;
 ALTER TABLE examer.tutor_usage ENABLE ROW LEVEL SECURITY;
 ALTER TABLE examer.email_codes ENABLE ROW LEVEL SECURITY;
-ALTER TABLE examer.subscriptions ENABLE ROW LEVEL SECURITY;
+ALTER TABLE examer.billing_customers ENABLE ROW LEVEL SECURITY;
+ALTER TABLE examer.billing_subscriptions ENABLE ROW LEVEL SECURITY;
+ALTER TABLE examer.billing_events ENABLE ROW LEVEL SECURITY;
 ALTER TABLE examer.funnel_counts ENABLE ROW LEVEL SECURITY;
 REVOKE ALL ON SCHEMA examer FROM PUBLIC, anon, authenticated;
 CREATE TABLE _migrations (name TEXT PRIMARY KEY, applied_at TEXT NOT NULL);
@@ -463,6 +487,7 @@ INSERT INTO _migrations (name, applied_at) VALUES
 ('008_tutor.sql', '2026-09-30T10:28:36.293Z'),
 ('009_email_codes.sql', '2026-10-01T00:00:00.000Z'),
 ('010_billing.sql', '2026-10-05T00:00:00.000Z'),
-('011_funnel_counts.sql', '2026-10-07T00:00:00.000Z');
+('011_funnel_counts.sql', '2026-10-07T00:00:00.000Z'),
+('012_stripe_subscriptions.sql', '2026-10-23T00:00:00.000Z');
 ALTER TABLE examer._migrations ENABLE ROW LEVEL SECURITY;
 COMMIT;
