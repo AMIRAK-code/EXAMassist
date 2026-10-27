@@ -77,5 +77,48 @@
   "tags": [
     "weighted-mean",
     "arithmetic-mean"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Due gruppi di studenti hanno sostenuto la stessa prova. Il gruppo A è formato da $12$ studenti e il loro voto medio è $7.5$. Il gruppo B è formato da $18$ studenti. Il voto medio di tutti i $30$ studenti insieme è $6.9$. Qual è il voto medio del gruppo B?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$3.9$"
+        },
+        {
+          "id": "b",
+          "textMd": "$6$"
+        },
+        {
+          "id": "c",
+          "textMd": "$6.3$"
+        },
+        {
+          "id": "d",
+          "textMd": "$6.5$"
+        },
+        {
+          "id": "e",
+          "textMd": "$9.75$"
+        }
+      ],
+      "explanationMd": "Quando i gruppi hanno numerosità diverse, le medie non si combinano facendone la semplice media; conviene lavorare con i totali.\n\n**Passo 1 — totale di tutti.** $30 \\cdot 6.9 = 207$.\n\n**Passo 2 — totale del gruppo A.** $12 \\cdot 7.5 = 90$.\n\n**Passo 3 — gruppo B.** Il suo totale è $207 - 90 = 117$, ripartito su $18$ studenti: $\\frac{117}{18} = 6.5$.\n\n**Verifica.** $\\frac{12\\cdot 7.5 + 18\\cdot 6.5}{30} = \\frac{90 + 117}{30} = \\frac{207}{30} = 6.9$ ✓. La media complessiva è più vicina alla media del gruppo B perché B è il gruppo più numeroso.",
+      "distractorRationale": {
+        "a": "Trova il totale del gruppo B, $117$, ma lo divide per tutti i $30$ studenti invece che per i $18$ del gruppo B.",
+        "b": "Scambia le numerosità dei gruppi, attribuendo al gruppo A $18$ studenti: $(207 - 18\\cdot 7.5)/12 = 72/12 = 6$.",
+        "c": "Tratta la media complessiva come la semplice media delle due medie di gruppo, $\\frac{7.5 + x}{2} = 6.9$; questo vale solo per gruppi con lo stesso numero di studenti.",
+        "e": "Trova il totale del gruppo B, $117$, ma lo divide per $12$, il numero di studenti del gruppo A."
+      },
+      "accessibilityText": "Due gruppi di studenti hanno sostenuto la stessa prova. Il gruppo A è formato da 12 studenti e il loro voto medio è 7,5. Il gruppo B è formato da 18 studenti. Il voto medio di tutti i 30 studenti insieme è 6,9. Qual è il voto medio del gruppo B? Le cinque alternative sono: 3,9; 6; 6,3; 6,5; 9,75.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i2",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": "Decimal points kept inside KaTeX (stem, options, working) per brief; accessibility text uses decimal commas."
+      }
+    }
+  }
 }

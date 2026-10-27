@@ -78,5 +78,48 @@
     "domain",
     "square-root",
     "rational-function"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Qual è il dominio della funzione reale $f(x) = \\dfrac{\\sqrt{4 - x^{2}}}{x - 1}$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$x \\le -2$ oppure $x \\ge 2$"
+        },
+        {
+          "id": "b",
+          "textMd": "$-2 < x < 2$ con $x \\ne 1$"
+        },
+        {
+          "id": "c",
+          "textMd": "$x \\le 2$ con $x \\ne 1$"
+        },
+        {
+          "id": "d",
+          "textMd": "$-2 \\le x \\le 2$"
+        },
+        {
+          "id": "e",
+          "textMd": "$-2 \\le x \\le 2$ con $x \\ne 1$"
+        }
+      ],
+      "explanationMd": "Si scrivono tutte le condizioni imposte dalla formula e si tengono i valori di $x$ che le soddisfano tutte.\n\n**Condizione 1 — la radice quadrata.** Il radicando deve essere non negativo: $4 - x^{2} \\ge 0$, cioè $x^{2} \\le 4$, che vale per $-2 \\le x \\le 2$. Gli estremi sono ammessi, perché $\\sqrt{0} = 0$ è definita.\n\n**Condizione 2 — il denominatore.** Non deve essere zero: $x \\ne 1$.\n\nInsieme: $-2 \\le x \\le 2$ con $x \\ne 1$.\n\n**Verifica.** $f(2) = \\frac{0}{1} = 0$ è definita; $f(1)$ ha denominatore nullo; $f(3)$ richiederebbe $\\sqrt{-5}$, che non è reale.",
+      "distractorRationale": {
+        "b": "Esclude $x = \\pm 2$, trattando come stretta la condizione sulla radice; in quei punti la radice vale $\\sqrt{0} = 0$, che è definita e si trova al numeratore.",
+        "d": "Tratta correttamente la radice quadrata ma dimentica che il denominatore $x - 1$ si annulla per $x = 1$.",
+        "c": "Risolve $x^{2} \\le 4$ come $x \\le 2$, tenendo un solo lato della disuguaglianza; per $x = -3$ il radicando $4 - 9$ è negativo.",
+        "a": "Inverte la disuguaglianza: $x \\le -2$ oppure $x \\ge 2$ è dove $4 - x^{2} \\le 0$, quindi lì, a parte $\\pm 2$, la radice non è reale."
+      },
+      "accessibilityText": "Qual è il dominio della funzione reale f di x uguale alla radice quadrata di 4 meno x al quadrato, il tutto diviso x meno 1? Le cinque alternative sono: x minore o uguale a meno 2 oppure x maggiore o uguale a 2; x strettamente compreso tra meno 2 e 2, con x diverso da 1; x minore o uguale a 2, con x diverso da 1; x compreso tra meno 2 e 2, estremi inclusi; x compreso tra meno 2 e 2, estremi inclusi, con x diverso da 1.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i2",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

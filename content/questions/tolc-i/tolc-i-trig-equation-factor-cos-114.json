@@ -78,5 +78,48 @@
     "trigonometric-equation",
     "double-angle",
     "factoring"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Qual è la somma di tutte le soluzioni dell'equazione $\\sin 2x = \\cos x$ nell'intervallo $0 \\le x < 2\\pi$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$5\\pi$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\pi$"
+        },
+        {
+          "id": "c",
+          "textMd": "$3\\pi$"
+        },
+        {
+          "id": "d",
+          "textMd": "$2\\pi$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\dfrac{13\\pi}{6}$"
+        }
+      ],
+      "explanationMd": "Si usa $\\sin 2x = 2\\sin x\\cos x$, poi si porta tutto al primo membro e si **raccoglie a fattor comune**: non si deve mai dividere per $\\cos x$, perché così si perdono tutte le soluzioni con $\\cos x = 0$.\n\n**Passo 1 — raccogliere.** $2\\sin x\\cos x - \\cos x = 0$, quindi $\\cos x\\,(2\\sin x - 1) = 0$.\n\n**Passo 2 — primo fattore.** $\\cos x = 0$ dà $x = \\dfrac{\\pi}{2}$ e $x = \\dfrac{3\\pi}{2}$.\n\n**Passo 3 — secondo fattore.** $\\sin x = \\dfrac12$ dà $x = \\dfrac{\\pi}{6}$ e $x = \\dfrac{5\\pi}{6}$.\n\n**Passo 4 — somma.** $\\dfrac{\\pi}{6} + \\dfrac{\\pi}{2} + \\dfrac{5\\pi}{6} + \\dfrac{3\\pi}{2} = \\dfrac{\\pi + 3\\pi + 5\\pi + 9\\pi}{6} = \\dfrac{18\\pi}{6} = 3\\pi$.\n\n**Come verificarlo.** Per $x = \\dfrac{\\pi}{6}$: $\\sin\\dfrac{\\pi}{3} = \\dfrac{\\sqrt3}{2} = \\cos\\dfrac{\\pi}{6}$ ✓. Per $x = \\dfrac{3\\pi}{2}$: $\\sin 3\\pi = 0 = \\cos\\dfrac{3\\pi}{2}$ ✓.",
+      "distractorRationale": {
+        "b": "Divide entrambi i membri per $\\cos x$, lasciando solo $\\sin x = \\tfrac12$ e le due soluzioni $\\tfrac{\\pi}{6}$ e $\\tfrac{5\\pi}{6}$. Dividendo per $\\cos x$ si perdono $\\tfrac{\\pi}{2}$ e $\\tfrac{3\\pi}{2}$, dove entrambi i membri sono nulli.",
+        "d": "Tiene solo le soluzioni di $\\cos x = 0$ e trascura il fattore $2\\sin x - 1$.",
+        "e": "Trova una sola soluzione di $\\sin x = \\tfrac12$, cioè $\\tfrac{\\pi}{6}$, e perde $\\tfrac{5\\pi}{6}$ nel secondo quadrante, dove anche il seno è positivo.",
+        "a": "Raccoglie con il segno sbagliato, risolvendo $\\sin x = -\\tfrac12$ (che dà $\\tfrac{7\\pi}{6}$ e $\\tfrac{11\\pi}{6}$) invece di $\\sin x = \\tfrac12$. Per $x = \\tfrac{7\\pi}{6}$, $\\sin\\tfrac{7\\pi}{3} = \\tfrac{\\sqrt3}{2}$ ma $\\cos\\tfrac{7\\pi}{6} = -\\tfrac{\\sqrt3}{2}$."
+      },
+      "accessibilityText": "Qual è la somma di tutte le soluzioni dell'equazione seno di 2 x uguale coseno di x, nell'intervallo da 0 incluso a 2 pi greco escluso? Le cinque alternative sono: 5 pi greco; pi greco; 3 pi greco; 2 pi greco; 13 pi greco fratto 6.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i2",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }
