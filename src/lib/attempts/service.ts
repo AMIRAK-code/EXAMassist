@@ -44,8 +44,8 @@ import {
   type SelectionConstraint,
 } from '@/lib/assessment/types';
 import { getBlueprint, getExamConfig, getSection, labelsFor, requireExamConfig } from '@/lib/exams/registry';
-import { FREE_SESSIONS } from '@/lib/billing/config';
-import { getAccess, sessionBlock, type Access, type SessionBlock } from '@/lib/billing/service';
+import { EntitlementError, requireEntitlement } from '@/lib/billing/entitlements';
+import { featureForSession, type Feature } from '@/lib/billing/plans';
 import { eligiblePool } from './eligibility';
 import { resolveResume, type ResumeDestination, type ResumeReason } from './resume';
 import { MAX_RETRY_QUESTIONS, RETRY_BLUEPRINT_ID, blueprintForAttempt, retryBlueprint } from './retry';
@@ -76,25 +76,19 @@ export class AttemptError extends Error {
 
 export const notFound = () => new AttemptError('not-found', 'Attempt not found.', 404);
 
-/** Beyond the free test: Premium (src/lib/billing). */
-export const premiumRequired = (access: Access) =>
-  new AttemptError(
-    'premium-required',
-    access.sessionsUsed > 0
-      ? 'You have taken your free test. Premium opens every exam and every practice format.'
-      : 'This format is part of Premium. A free account can take the free test.',
-    402,
-    { sessionsUsed: access.sessionsUsed, freeSessions: FREE_SESSIONS },
-  );
-
-/** Guests get no sessions while Premium is on sale; a free account gets the free test. */
-export const accountRequired = () =>
-  new AttemptError('account-required', 'Create a free account to take the free test.', 403);
-
-function blocked(reason: SessionBlock, access: Access): AttemptError | null {
-  if (reason === 'premium-required') return premiumRequired(access);
-  if (reason === 'account-required') return accountRequired();
-  return null;
+/**
+ * Paid formats need an entitlement to the exam (src/lib/billing/entitlements.ts).
+ * A refusal is an AttemptError like any other, so every caller handles it in
+ * one place: code 'upgrade-required' (402) or 'account-required' (403), with
+ * the pricing page for this exam in `detail.upgradeHref`.
+ */
+export async function assertSessionAllowed(db: Db, userId: string, feature: Feature, examKey: string): Promise<void> {
+  try {
+    await requireEntitlement(db, userId, feature, examKey);
+  } catch (error) {
+    if (error instanceof EntitlementError) throw new AttemptError(error.code, error.message, error.status, error.detail);
+    throw error;
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -152,6 +146,22 @@ export async function freeTestPreview(db: Db, examKey: string) {
     minutes: seconds ? Math.round(seconds / 60) : null,
     sections: parts.length,
   };
+}
+
+/** The learner's free diagnostic for one exam, if they have started it. */
+export async function freeTestFor(
+  db: Db,
+  userId: string,
+  examKey: string,
+): Promise<{ id: string; status: AttemptRow['status'] } | null> {
+  const row = (await db
+    .prepare(
+      `SELECT id, status FROM attempts
+       WHERE user_id = ? AND exam_key = ? AND settings_json LIKE '%"freeTest":true%'
+       ORDER BY created_at, id LIMIT 1`,
+    )
+    .get(userId, examKey)) as { id: string; status: AttemptRow['status'] } | undefined;
+  return row ?? null;
 }
 
 // ---------------------------------------------------------------------------
@@ -344,13 +354,14 @@ export async function startAttempt(db: Db, input: StartAttemptInput): Promise<St
     if (existing) return { attemptId: existing.id, reused: true, notes: [] };
   }
 
-  // Without Premium there is only the free test, and only for an account.
-  // Checked again where the session is written, so two tabs cannot both
-  // spend it.
-  const access = await getAccess(db, input.userId);
-  const kind = freeTest ? 'free-test' : 'session';
-  const refusal = blocked(await sessionBlock(db, input.userId, access, kind), access);
-  if (refusal) throw refusal;
+  // Paid formats need a plan that covers this exam; the free diagnostic needs
+  // only an account (src/lib/billing/plans.ts).
+  await assertSessionAllowed(
+    db,
+    input.userId,
+    freeTest ? 'diagnostic' : featureForSession(requested!),
+    config.examKey,
+  );
 
   const rawPool = await getPool(db, input.examKey, input.userId);
   let blueprint: Blueprint;
@@ -412,8 +423,6 @@ export async function startAttempt(db: Db, input: StartAttemptInput): Promise<St
   }
 
   const insert = db.transaction(async () => {
-    const late = blocked(await sessionBlock(db, input.userId, access, kind), access);
-    if (late) throw late;
     (await db.prepare(
       `INSERT INTO attempts (
          id, user_id, exam_key, exam_config_version, blueprint_id, mode, status, seed,
@@ -576,10 +585,8 @@ export async function startRetry(db: Db, input: StartRetryInput): Promise<StartR
     if (!owned) throw notFound();
   }
 
-  // Retries are part of Premium: the free test is the only free session.
-  const access = await getAccess(db, input.userId);
-  const refusal = blocked(await sessionBlock(db, input.userId, access, 'session'), access);
-  if (refusal) throw refusal;
+  // Retries are practice: part of a paid plan for this exam.
+  await assertSessionAllowed(db, input.userId, 'practice', config.examKey);
 
   const { available, unavailable } = (await retryCandidates(db, input.userId, input.examKey, input.questionIds));
   const chosen = available.slice(0, MAX_RETRY_QUESTIONS);
@@ -605,8 +612,6 @@ export async function startRetry(db: Db, input: StartRetryInput): Promise<StartR
   };
 
   const insert = db.transaction(async () => {
-    const late = blocked(await sessionBlock(db, input.userId, access, 'session'), access);
-    if (late) throw late;
     (await db.prepare(
       `INSERT INTO attempts (
          id, user_id, exam_key, exam_config_version, blueprint_id, mode, status, seed,

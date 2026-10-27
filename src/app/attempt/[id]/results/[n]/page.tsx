@@ -15,6 +15,14 @@ import { SubmitButton } from '@/components/submit-button';
 import { Alert, Badge, Breadcrumbs, ButtonLink, Container } from '@/components/ui';
 import { QuestionTutor } from '@/components/tutor/tutor-panel';
 import { tutorEnabled } from '@/lib/tutor/config';
+import { loadEntitlements } from '@/lib/billing/entitlements';
+import { pricingPath } from '@/lib/billing/config';
+
+/** Shown where the AI tutor would be, for learners whose plan does not include it. */
+const TUTOR_UPGRADE = {
+  lead: 'A deeper AI explanation of this question is part of All access.',
+  link: 'See plans',
+} as const;
 import { expertReviewFor } from '@/lib/content/expert-reviews';
 
 /**
@@ -58,6 +66,8 @@ export default async function QuestionReviewPage({
     ...Object.values(question.distractorRationale),
   ]);
   const missed = isMiss(item.outcome);
+  const tutorOn = tutorEnabled();
+  const tutorAllowed = tutorOn && (await loadEntitlements(getDb(), user.id)).can('ai_tutor', review.examKey);
   const keyIds = keyOptionIds(question.answerKey);
   const chosen = chosenOptionIds(response);
   const trail = [
@@ -154,8 +164,12 @@ export default async function QuestionReviewPage({
         </section>
 
         {/* Optional AI tutor: a second, labelled explanation built on the reviewed one above. */}
-        {tutorEnabled() ? (
+        {tutorAllowed ? (
           <QuestionTutor attemptId={id} partIndex={item.partIndex} position={item.position} canHint={false} canExplain />
+        ) : tutorOn ? (
+          <p className="text-sm text-ink-muted">
+            {TUTOR_UPGRADE.lead} <a href={pricingPath(review.examKey, 'ai_tutor')}>{TUTOR_UPGRADE.link}</a>
+          </p>
         ) : null}
       </article>
 
