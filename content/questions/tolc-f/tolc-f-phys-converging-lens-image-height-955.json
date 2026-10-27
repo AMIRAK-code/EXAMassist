@@ -78,5 +78,48 @@
     "thin-lens",
     "magnification",
     "optics"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un oggetto alto $2.0\\ \\text{cm}$ è posto verticalmente sull'asse di una lente sottile convergente di distanza focale $10\\ \\text{cm}$, a una distanza di $15\\ \\text{cm}$ dalla lente. Qual è l'altezza dell'immagine formata dalla lente?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\dfrac{2}{3}\\ \\text{cm}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$6.0\\ \\text{cm}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$4.0\\ \\text{cm}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$0.80\\ \\text{cm}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$1.0\\ \\text{cm}$"
+        }
+      ],
+      "explanationMd": "**Metodo.** Trova la distanza dell'immagine $q$ con l'equazione delle lenti sottili $\\dfrac1p+\\dfrac1q=\\dfrac1f$, poi l'ingrandimento $\\dfrac{q}{p}$.\n\n**Il calcolo.**\n\n$$\\frac1q=\\frac1{10}-\\frac1{15}=\\frac{3-2}{30}=\\frac1{30}\\quad\\Rightarrow\\quad q=30\\ \\text{cm}.$$\n\nL'ingrandimento è $\\dfrac{q}{p}=\\dfrac{30}{15}=2$, quindi l'immagine è alta $2\\cdot 2.0=4.0\\ \\text{cm}$ (reale e capovolta).\n\n**Come verificarlo.** Un oggetto posto tra $f$ e $2f$ dà sempre un'immagine reale oltre $2f$, più grande dell'oggetto. Qui $10<15<20$ e $q=30>20$, e l'immagine è effettivamente ingrandita.",
+      "distractorRationale": {
+        "e": "Inverte l'ingrandimento, usando $\\tfrac{p}{q}=\\tfrac12$ invece di $\\tfrac{q}{p}$, e così rimpicciolisce l'immagine.",
+        "d": "Somma i reciproci, $\\tfrac1q=\\tfrac1{10}+\\tfrac1{15}=\\tfrac16$, ottenendo $q=6\\ \\text{cm}$ e un ingrandimento di $0.4$.",
+        "b": "Usa $\\tfrac{q}{f}=3$ come ingrandimento invece di $\\tfrac{q}{p}$.",
+        "a": "Prende come distanza dell'immagine $p-f=5\\ \\text{cm}$ invece di usare l'equazione delle lenti, ottenendo un ingrandimento di $\\tfrac13$."
+      },
+      "accessibilityText": "Un oggetto alto 2,0 centimetri è posto sull'asse di una lente sottile convergente di distanza focale 10 centimetri, a 15 centimetri dalla lente. Trova l'altezza dell'immagine. Le cinque alternative sono: due terzi di centimetro; 6,0 centimetri; 4,0 centimetri; 0,80 centimetri; 1,0 centimetro.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f2",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

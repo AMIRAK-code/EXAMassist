@@ -80,5 +80,48 @@
     "syllogism",
     "quantifiers",
     "no-calculator"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Le tre affermazioni seguenti sui droni di un'azienda di consegne sono vere.\n\n- Ogni drone custodito nel magazzino nord ha un modulo GPS.\n- Alcuni droni con un modulo GPS sono certificati per il volo sotto la pioggia.\n- Nessun drone certificato per il volo sotto la pioggia pesa più di 2 kg.\n\nQuale delle seguenti affermazioni è necessariamente vera?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Alcuni droni con un modulo GPS pesano non più di 2 kg."
+        },
+        {
+          "id": "b",
+          "textMd": "Ogni drone che pesa non più di 2 kg è certificato per il volo sotto la pioggia."
+        },
+        {
+          "id": "c",
+          "textMd": "Ogni drone con un modulo GPS è custodito nel magazzino nord."
+        },
+        {
+          "id": "d",
+          "textMd": "Alcuni droni custoditi nel magazzino nord pesano non più di 2 kg."
+        },
+        {
+          "id": "e",
+          "textMd": "Alcuni droni custoditi nel magazzino nord sono certificati per il volo sotto la pioggia."
+        }
+      ],
+      "explanationMd": "Segui la catena che si collega davvero. La seconda affermazione garantisce che esiste almeno un drone che ha un modulo GPS **e** è certificato per la pioggia. La terza affermazione dice che ogni drone certificato per la pioggia pesa non più di 2 kg. Quindi quel drone ha un modulo GPS e pesa non più di 2 kg: alcuni droni con un modulo GPS pesano non più di 2 kg.\n\nLa prima affermazione non aiuta a dire nulla sul magazzino. Colloca i droni del magazzino all'interno del gruppo dei droni con GPS, ma i droni con GPS certificati per la pioggia potrebbero essere tutti custoditi altrove. Per verificare un'alternativa, prova a costruire una flotta che soddisfi le tre affermazioni e renda falsa l'alternativa. Per esempio: il magazzino contiene un drone pesante con GPS e senza certificazione per la pioggia, e un drone leggero con GPS e certificato per la pioggia è custodito in un altro deposito. Tutte e tre le affermazioni valgono, eppure nessun drone del magazzino è certificato per la pioggia o leggero, e non tutti i droni con GPS sono nel magazzino. Nessuna flotta di questo tipo può rendere falsa l'affermazione corretta.",
+      "distractorRationale": {
+        "e": "Dei droni certificati per la pioggia si sa solo che sono tra i droni con GPS, e anche i droni del magazzino sono tra i droni con GPS; due sottogruppi dello stesso gruppo non devono necessariamente sovrapporsi. I droni certificati potrebbero trovarsi tutti altrove.",
+        "d": "Presuppone che i droni leggeri con GPS certificati per la pioggia debbano trovarsi nel magazzino. La prima affermazione dice solo che i droni del magazzino hanno il GPS, non che i droni con GPS siano nel magazzino.",
+        "b": "Inverte la terza affermazione. Essere certificato per la pioggia garantisce un peso di 2 kg o meno, ma un drone leggero può essere privo della certificazione.",
+        "c": "Inverte la prima affermazione. Ogni drone del magazzino ha il GPS, ma i droni con GPS possono essere custoditi ovunque."
+      },
+      "accessibilityText": "Una domanda di deduzione con tre affermazioni vere sui droni per le consegne. Ogni drone custodito nel magazzino nord ha un modulo GPS. Alcuni droni con un modulo GPS sono certificati per il volo sotto la pioggia. Nessun drone certificato per il volo sotto la pioggia pesa più di 2 chilogrammi. La domanda chiede quale affermazione è necessariamente vera. Le cinque alternative sono: alcuni droni con un modulo GPS pesano non più di 2 chilogrammi; ogni drone che pesa non più di 2 chilogrammi è certificato per il volo sotto la pioggia; ogni drone con un modulo GPS è custodito nel magazzino nord; alcuni droni del magazzino nord pesano non più di 2 chilogrammi; alcuni droni del magazzino nord sono certificati per il volo sotto la pioggia.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

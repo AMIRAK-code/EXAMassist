@@ -78,5 +78,48 @@
     "mole",
     "stoichiometry",
     "mass-mole-conversion"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "L'ammoniaca si ottiene con la reazione\n\n$$\\mathrm{N_2} + 3\\,\\mathrm{H_2} \\rightarrow 2\\,\\mathrm{NH_3}$$\n\nMasse molari: $\\mathrm{H_2} = 2\\ \\mathrm{g/mol}$ e $\\mathrm{NH_3} = 17\\ \\mathrm{g/mol}$. Quale massa di ammoniaca si forma quando 6 g di idrogeno reagiscono completamente con un eccesso di azoto?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "51 g"
+        },
+        {
+          "id": "b",
+          "textMd": "34 g"
+        },
+        {
+          "id": "c",
+          "textMd": "17 g"
+        },
+        {
+          "id": "d",
+          "textMd": "102 g"
+        },
+        {
+          "id": "e",
+          "textMd": "68 g"
+        }
+      ],
+      "explanationMd": "Passa sempre per le moli: grammi, poi moli, poi il rapporto dell'equazione, poi di nuovo grammi.\n\n1. **Moli di idrogeno:** $6\\ \\mathrm{g} \\div 2\\ \\mathrm{g/mol} = 3\\ \\mathrm{mol}$.\n2. **Usa i coefficienti.** L'equazione dà 3 mol di $\\mathrm{H_2}$ per 2 mol di $\\mathrm{NH_3}$. Con esattamente 3 mol di idrogeno si formano 2 mol di ammoniaca.\n3. **Converti in massa:** $2\\ \\mathrm{mol} \\times 17\\ \\mathrm{g/mol} = 34\\ \\mathrm{g}$.\n\n**Verifica con la conservazione della massa.** Per produrre 2 mol di $\\mathrm{NH_3}$ si consuma 1 mol di $\\mathrm{N_2}$, cioè 28 g (usando $\\mathrm{N_2} = 28\\ \\mathrm{g/mol}$). Reagenti: $28\\ \\mathrm{g} + 6\\ \\mathrm{g} = 34\\ \\mathrm{g}$, uguale al prodotto.",
+      "distractorRationale": {
+        "c": "Ricava correttamente le 3 mol di idrogeno, ma poi legge l'equazione come tre idrogeni per un'ammoniaca, ignorando il coefficiente 2. Così ottiene 1 mol di ammoniaca, cioè 17 g.",
+        "a": "Considera il rapporto come una mole di ammoniaca per ogni mole di idrogeno, ignorando i coefficienti. Così ottiene 3 mol di ammoniaca, cioè 51 g. L'equazione dice che 3 mol di idrogeno producono solo 2 mol di ammoniaca.",
+        "e": "Tratta 6 g di idrogeno come 6 mol, saltando la conversione tramite la massa molare. Sei moli di idrogeno darebbero 4 mol di ammoniaca, cioè 68 g.",
+        "d": "Commette entrambi gli errori insieme: tratta 6 g come 6 mol e il rapporto come uno a uno, ottenendo 6 mol di ammoniaca. La massa in grammi va prima divisa per 2 g/mol, e poi vanno usati i coefficienti."
+      },
+      "accessibilityText": "L'equazione bilanciata è: una N pedice 2 più tre H pedice 2 dà due N H pedice 3. Le masse molari sono 2 grammi per mole per H pedice 2 e 17 grammi per mole per N H pedice 3. La domanda chiede quale massa di ammoniaca si forma da 6 grammi di idrogeno con un eccesso di azoto. Le alternative sono masse in grammi.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f1",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

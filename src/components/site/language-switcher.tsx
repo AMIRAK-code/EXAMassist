@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useId, useRef, useState } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname } from '@/i18n/navigation';
 import { LOCALES, LOCALE_INFO, localizePath, splitLocale, type Locale } from '@/i18n/locales';
 import { Flag } from './flags';
 

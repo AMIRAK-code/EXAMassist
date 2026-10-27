@@ -79,5 +79,48 @@
     "valence-electrons",
     "ions",
     "periodic-table"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Nel suo stato fondamentale, un atomo dell'elemento X ha la configurazione elettronica $1s^2\\,2s^2\\,2p^6\\,3s^2\\,3p^4$. Quale ione monoatomico semplice è più probabile che formi X?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\mathrm{X^{2+}}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\mathrm{X^{6-}}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$\\mathrm{X^{4-}}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\mathrm{X^{2-}}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\mathrm{X^{4+}}$"
+        }
+      ],
+      "explanationMd": "**Che cosa notare per prima cosa.** Conta gli elettroni nel livello più esterno ($n = 3$): $3s^2\\,3p^4$ dà $6$ elettroni di valenza. A un atomo con $6$ elettroni di valenza mancano due elettroni per completare l'ottetto.\n\n**I passaggi.** Il modo più facile per raggiungere la configurazione stabile del gas nobile successivo (l'argon, $3s^2\\,3p^6$) è *acquistare* due elettroni. Acquistando due cariche negative si forma lo ione $\\mathrm{X^{2-}}$. (X ha $2 + 8 + 6 = 16$ elettroni, quindi è lo zolfo, che forma lo ione solfuro $\\mathrm{S^{2-}}$.)\n\n**Come verificarlo.** Gli elementi del gruppo 16, come l'ossigeno e lo zolfo, si trovano due posti prima dei gas nobili e formano ioni $2-$: l'ossido $\\mathrm{O^{2-}}$ e il solfuro $\\mathrm{S^{2-}}$.",
+      "distractorRationale": {
+        "c": "Interpreta l'esponente $4$ di $3p^4$ come il numero di elettroni da acquistare. Un sottolivello $p$ contiene sei elettroni, quindi a $3p^4$ ne mancano solo due per essere completo.",
+        "a": "Toglie i due elettroni $3s$, come fa un metallo del gruppo 2 quale il magnesio. Perdendo due elettroni ne resterebbero quattro di valenza, non una configurazione da gas nobile.",
+        "e": "Toglie i quattro elettroni $3p$. Resterebbe comunque $3s^2$ nel livello esterno, e togliere quattro elettroni richiede molta più energia che acquistarne due.",
+        "b": "Prende il numero di elettroni di valenza, sei, come carica. La carica è determinata da quanti elettroni servono per completare l'ottetto, cioè due."
+      },
+      "accessibilityText": "Nel suo stato fondamentale, un atomo dell'elemento X ha la configurazione elettronica 1 s 2, 2 s 2, 2 p 6, 3 s 2, 3 p 4, dove ogni numero dopo la lettera è il numero di elettroni in quel sottolivello. Quale ione monoatomico semplice è più probabile che formi X? Le alternative sono X due più, X sei meno, X quattro meno, X due meno e X quattro più.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

@@ -1,3 +1,4 @@
+import { withIntl } from './helpers/intl';
 import { beforeEach, describe, expect, it } from 'vitest';
 import type { Db } from '@/lib/db';
 import { recordResponse, startAttempt, submitAttempt } from '@/lib/attempts/service';
@@ -189,8 +190,8 @@ describe('the failed-load state', () => {
   it('says the dashboard could not be loaded and offers a retry, never an empty dashboard', async () => {
     const { createElement } = await import('react');
     const { renderToStaticMarkup } = await import('react-dom/server');
-    const { default: DashboardError } = await import('@/app/dashboard/error');
-    const html = renderToStaticMarkup(createElement(DashboardError, { error: new Error('boom'), reset: () => {} }));
+    const { default: DashboardError } = await import('@/app/[locale]/dashboard/error');
+    const html = renderToStaticMarkup(withIntl(createElement(DashboardError, { error: new Error('boom'), reset: () => {} })));
     expect(html).toContain('Your dashboard could not be loaded');
     expect(html).toContain('role="alert"');
     expect(html).toContain('Try again');

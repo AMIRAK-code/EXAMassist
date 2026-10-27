@@ -79,5 +79,48 @@
     "isomerism",
     "alcohols",
     "ethers"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Quale dei seguenti composti è un isomero di struttura del propan-1-olo, $\\mathrm{CH_3CH_2CH_2OH}$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\mathrm{CH_3CH_2CH_2CH_2OH}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\mathrm{CH_3CH_2COOH}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$\\mathrm{CH_3CH_2CHO}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\mathrm{CH_3COCH_3}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\mathrm{CH_3OCH_2CH_3}$"
+        }
+      ],
+      "explanationMd": "**Che cosa notare per prima cosa.** Gli isomeri di struttura hanno la **stessa formula molecolare** ma gli atomi legati in un ordine diverso. Trova quindi prima la formula molecolare del propan-1-olo, poi quella di ciascun candidato.\n\n**I passaggi.** Il propan-1-olo, $\\mathrm{CH_3CH_2CH_2OH}$, ha $3$ C, $8$ H e $1$ O: $\\mathrm{C_3H_8O}$.\n\n- $\\mathrm{CH_3OCH_2CH_3}$ (metossietano, un etere): $3$ C, $3 + 2 + 3 = 8$ H, $1$ O, quindi $\\mathrm{C_3H_8O}$. Stessa formula, ma l'ossigeno si trova tra due atomi di carbonio invece di far parte di un gruppo OH: è un isomero.\n- $\\mathrm{CH_3CH_2CHO}$ (propanale) e $\\mathrm{CH_3COCH_3}$ (propanone): $\\mathrm{C_3H_6O}$, con due idrogeni in meno.\n- $\\mathrm{CH_3CH_2COOH}$ (acido propanoico): $\\mathrm{C_3H_6O_2}$.\n- $\\mathrm{CH_3CH_2CH_2CH_2OH}$ (butan-1-olo): $\\mathrm{C_4H_{10}O}$.\n\n**Come verificarlo.** Conta gli idrogeni che può avere una molecola completamente satura con tre atomi di carbonio: $2n + 2 = 8$. Sia il propan-1-olo sia l'etere sono saturi, senza doppio legame C=O, quindi entrambi ne hanno otto; ogni composto carbonilico dell'elenco ne ha due in meno.",
+      "distractorRationale": {
+        "c": "Il propanale ha gli stessi tre atomi di carbonio e un ossigeno, ma il suo doppio legame C=O gli lascia sei idrogeni, $\\mathrm{C_3H_6O}$. È il prodotto di ossidazione del propan-1-olo, non un suo isomero.",
+        "d": "Anche il propanone ha tre atomi di carbonio e un ossigeno, ma il suo gruppo carbonilico gli lascia sei idrogeni, $\\mathrm{C_3H_6O}$. È un isomero del propanale, non del propan-1-olo.",
+        "b": "L'acido propanoico ha due atomi di ossigeno e sei idrogeni, $\\mathrm{C_3H_6O_2}$. Avere in comune la catena di tre atomi di carbonio non lo rende un isomero.",
+        "a": "Il butan-1-olo ha lo stesso gruppo funzionale ma un $\\mathrm{CH_2}$ in più, $\\mathrm{C_4H_{10}O}$. È il termine successivo della stessa serie omologa, non un isomero."
+      },
+      "accessibilityText": "Quale dei seguenti composti è un isomero di struttura del propan-1-olo, scritto C H 3, C H 2, C H 2, O H? Le alternative sono: C H 3, C H 2, C H 2, C H 2, O H; C H 3, C H 2, C O O H; C H 3, C H 2, C H O; C H 3, C O, C H 3; e C H 3, O, C H 2, C H 3.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

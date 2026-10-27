@@ -78,5 +78,48 @@
     "polarity",
     "electronegativity",
     "molecular-shape"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Quale delle seguenti molecole ha legami polari ma è apolare nel suo complesso?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\mathrm{Cl_2}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\mathrm{HF}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$\\mathrm{NH_3}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\mathrm{H_2O}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\mathrm{CO_2}$"
+        }
+      ],
+      "explanationMd": "Due domande distinte stabiliscono se una molecola è polare. **Prima:** i legami sono polari? Dipende dalla differenza di elettronegatività tra i due atomi legati. **Seconda:** i dipoli di legame si annullano? Dipende dalla forma della molecola.\n\n- $\\mathrm{Cl_2}$: atomi identici, differenza di elettronegatività nulla. Il legame è apolare, quindi non soddisfa il requisito dei legami polari.\n- $\\mathrm{HF}$: un solo legame polare, nessun dipolo che lo compensi, quindi la molecola è polare.\n- $\\mathrm{H_2O}$: due legami polari in una forma angolata; i dipoli si sommano, quindi la molecola è polare.\n- $\\mathrm{NH_3}$: tre legami polari in una piramide; i dipoli si sommano, quindi la molecola è polare.\n- $\\mathrm{CO_2}$: l'ossigeno è più elettronegativo del carbonio, quindi ogni legame C=O è polare. Ma la molecola è lineare, O=C=O, e i due dipoli uguali puntano in direzioni esattamente opposte e si annullano.\n\nQuindi il diossido di carbonio ha legami polari ed è apolare nel complesso. **Verifica:** immagina la molecola; se una disposizione simmetrica fa sì che ogni dipolo ne abbia di fronte uno uguale e opposto, la molecola è apolare.",
+      "distractorRationale": {
+        "d": "I legami O-H sono polari, ma la molecola è angolata (circa $104.5^\\circ$), quindi i due dipoli di legame si sommano invece di annullarsi. L'acqua è una molecola polare.",
+        "c": "I legami N-H sono polari e la molecola è una piramide trigonale, non una forma piana simmetrica. I tre dipoli si sommano in un dipolo netto, quindi l'ammoniaca è polare.",
+        "b": "Il fluoruro di idrogeno ha un solo legame, fortemente polare. Con un solo dipolo di legame non c'è nulla che lo annulli, quindi la molecola è polare.",
+        "a": "Questa molecola è apolare, ma non per il motivo richiesto: i due atomi sono identici, quindi è il legame stesso a essere apolare. La domanda richiede legami polari che si annullano."
+      },
+      "accessibilityText": "La domanda chiede quale molecola ha legami polari ma è apolare nel complesso. Le molecole sono acqua, H pedice 2 O; ammoniaca, N H pedice 3; diossido di carbonio, C O pedice 2; fluoruro di idrogeno, HF; e cloro, Cl pedice 2.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f1",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

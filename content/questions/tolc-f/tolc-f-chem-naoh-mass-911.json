@@ -78,5 +78,48 @@
     "molarity",
     "concentration",
     "mass-mole-conversion"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "La massa molare dell'idrossido di sodio, $\\mathrm{NaOH}$, è 40 g/mol. Quale massa di $\\mathrm{NaOH}$ serve per preparare 250 mL di una soluzione 0,20 mol/L?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "2,0 g"
+        },
+        {
+          "id": "b",
+          "textMd": "8,0 g"
+        },
+        {
+          "id": "c",
+          "textMd": "0,050 g"
+        },
+        {
+          "id": "d",
+          "textMd": "20 g"
+        },
+        {
+          "id": "e",
+          "textMd": "50 g"
+        }
+      ],
+      "explanationMd": "Le moli dalla concentrazione e dal volume, poi la massa dalle moli. Esprimi il volume in litri.\n\n1. **Volume in litri:** $250\\ \\mathrm{mL} = 0.250\\ \\mathrm{L}$.\n2. **Moli:** $n = c \\times V = 0.20\\ \\mathrm{mol/L} \\times 0.250\\ \\mathrm{L} = 0.050\\ \\mathrm{mol}$.\n3. **Massa:** $m = n \\times M = 0.050\\ \\mathrm{mol} \\times 40\\ \\mathrm{g/mol} = 2.0\\ \\mathrm{g}$.\n\n**Verifica in un secondo modo.** Una soluzione 0,20 mol/L contiene $0.20 \\times 40 = 8.0$ g in ogni litro. Un quarto di litro ne richiede un quarto: $8.0 \\div 4 = 2.0$ g.",
+      "distractorRationale": {
+        "c": "Trova correttamente il numero di moli, $0.20 \\times 0.25 = 0.050$ mol, ma riporta quel numero come grammi. Le moli vanno ancora moltiplicate per la massa molare, 40 g/mol.",
+        "b": "È la massa contenuta in un litro intero, $0.20 \\times 40 = 8.0$ g. Dimentica che se ne preparano solo 250 mL, un quarto di litro.",
+        "d": "Converte 250 mL in 2,5 L, un errore di una cifra decimale, e poi calcola $0.20 \\times 2.5 \\times 40 = 20$ g. 250 mL sono 0,250 L.",
+        "e": "Moltiplica la concentrazione per il volume in millilitri, $0.20 \\times 250 = 50$, e legge il risultato come grammi. Quel prodotto è in millimoli, e la massa molare non viene mai usata."
+      },
+      "accessibilityText": "La domanda indica la massa molare dell'idrossido di sodio, N a O H, pari a 40 grammi per mole, e chiede quale massa serve per preparare 250 millilitri di una soluzione con concentrazione 0,20 moli per litro. Le alternative sono masse in grammi.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f1",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": "Plain-text option values use decimal commas (2,0 g; 8,0 g; 0,050 g) as an Italian candidate would read them; KaTeX working keeps decimal points (2.0, 0.050) unchanged."
+      }
+    }
+  }
 }

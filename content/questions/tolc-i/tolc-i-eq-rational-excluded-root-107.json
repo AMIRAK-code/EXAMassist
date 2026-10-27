@@ -78,5 +78,48 @@
     "rational-equation",
     "domain",
     "extraneous-root"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Determinare tutte le soluzioni reali di $\\dfrac{2}{x-1} + \\dfrac{x}{x+1} = \\dfrac{4}{x^{2}-1}$.",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\{-1,\\ 2\\}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\{-2\\}$"
+        },
+        {
+          "id": "c",
+          "textMd": "nessuna soluzione reale"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\{-2,\\ 1\\}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\{1\\}$"
+        }
+      ],
+      "explanationMd": "In un'equazione fratta si scrivono prima i valori che annullano un denominatore, poi si eliminano i denominatori usando il minimo comune denominatore e infine si scarta ogni candidato escluso.\n\n**Passo 1 — condizioni di esistenza.** $x^{2} - 1 = (x-1)(x+1)$, quindi $x \\neq 1$ e $x \\neq -1$.\n\n**Passo 2 — eliminare i denominatori.** Moltiplicando per $(x-1)(x+1)$: $2(x+1) + x(x-1) = 4$, cioè $x^{2} + x + 2 = 4$, quindi $x^{2} + x - 2 = 0$.\n\n**Passo 3 — risolvere e scartare.** $(x+2)(x-1) = 0$ dà $x = -2$ oppure $x = 1$. Il valore $x = 1$ annulla due denominatori, quindi va scartato. L'unica soluzione è $x = -2$.\n\n**Come verificarlo.** Per $x = -2$: $\\dfrac{2}{-3} + \\dfrac{-2}{-1} = -\\dfrac23 + 2 = \\dfrac43$, e $\\dfrac{4}{4-1} = \\dfrac43$ ✓.",
+      "distractorRationale": {
+        "d": "Risolve correttamente l'equazione di secondo grado ma tiene entrambe le radici. Il valore $x = 1$ annulla $x - 1$ e $x^{2} - 1$, quindi l'equazione di partenza non è nemmeno definita in quel punto.",
+        "e": "Tiene il valore escluso e scarta la radice vera. È $x = 1$ che va eliminato; $x = -2$ soddisfa l'equazione, come mostra la sostituzione.",
+        "a": "Scompone $x^{2} + x - 2$ con i segni invertiti, come $(x-2)(x+1)$. Sviluppando si ottiene $x^{2} - x - 2$; la scomposizione corretta è $(x+2)(x-1)$.",
+        "c": "Perde il secondo membro eliminando i denominatori, ottenendo $x^{2} + x + 2 = 0$, che ha discriminante negativo. Moltiplicando il secondo membro $\\dfrac{4}{x^{2}-1}$ per $x^{2}-1$ rimane $4$, che deve restare nell'equazione."
+      },
+      "accessibilityText": "Determinare tutte le soluzioni reali dell'equazione: 2 fratto x meno 1, più x fratto x più 1, uguale 4 fratto x al quadrato meno 1. Le cinque alternative sono: l'insieme che contiene meno 1 e 2; l'insieme che contiene meno 2; nessuna soluzione reale; l'insieme che contiene meno 2 e 1; l'insieme che contiene 1.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i2",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

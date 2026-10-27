@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import type { Audience, HubRoute } from '@/lib/exams/registry';
 import { getExamConfig, getHubForConfig } from '@/lib/exams/registry';
 import { Badge, Card } from '@/components/ui';

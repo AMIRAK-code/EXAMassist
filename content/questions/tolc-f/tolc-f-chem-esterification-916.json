@@ -79,5 +79,48 @@
     "carboxylic-acids",
     "alcohols",
     "esters"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "L'acido etanoico (acido acetico), $\\mathrm{CH_3COOH}$, viene riscaldato con metanolo, $\\mathrm{CH_3OH}$, in presenza di alcune gocce di acido solforico concentrato come catalizzatore. Quali sono i prodotti?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "etanoato di metile, $\\mathrm{CH_3COOCH_3}$, e acqua"
+        },
+        {
+          "id": "b",
+          "textMd": "metanoato di etile, $\\mathrm{HCOOCH_2CH_3}$, e acqua"
+        },
+        {
+          "id": "c",
+          "textMd": "metanoato di metile, $\\mathrm{HCOOCH_3}$, e acqua"
+        },
+        {
+          "id": "d",
+          "textMd": "etanoato di etile, $\\mathrm{CH_3COOCH_2CH_3}$, e acqua"
+        },
+        {
+          "id": "e",
+          "textMd": "etanoato di metile, $\\mathrm{CH_3COOCH_3}$, e idrogeno gassoso"
+        }
+      ],
+      "explanationMd": "È un'esterificazione: un acido carbossilico e un alcol, con un catalizzatore acido, danno un estere e acqua. La reazione è reversibile.\n\n$$\\mathrm{R{-}COOH + R'{-}OH \\rightleftharpoons R{-}COO{-}R' + H_2O}$$\n\nL'estere ha due parti: la parte acilica $\\mathrm{R{-}CO{-}}$ proviene dall'**acido**, e il gruppo alchilico $\\mathrm{R'}$ legato all'ossigeno proviene dall'**alcol**. In italiano il nome si scrive con la parte dell'acido per prima e la parte dell'alcol per seconda: alcanoato di alchile.\n\n- Acido: acido etanoico, quindi la parte acilica è $\\mathrm{CH_3CO{-}}$, chiamata etanoato.\n- Alcol: metanolo, quindi il gruppo alchilico è $\\mathrm{CH_3{-}}$, chiamato metile.\n\nL'estere è l'etanoato di metile, $\\mathrm{CH_3COOCH_3}$, e l'altro prodotto è l'acqua.\n\n**Verifica degli atomi.** Reagenti: $\\mathrm{C_2H_4O_2} + \\mathrm{CH_4O} = \\mathrm{C_3H_8O_3}$. Prodotti: $\\mathrm{C_3H_6O_2} + \\mathrm{H_2O} = \\mathrm{C_3H_8O_3}$. Tutto torna, senza idrogeno gassoso.",
+      "distractorRationale": {
+        "b": "Scambia i ruoli dei due reagenti. Ha la stessa formula molecolare del prodotto reale ma è un isomero, e deriverebbe dall'acido metanoico e dall'etanolo. Nel nome italiano di un estere la prima parola deriva dall'acido (etanoico dà etanoato) e la parte dopo «di» dall'alcol (metanolo dà metile).",
+        "d": "La parte dell'acido è giusta, ma la parte dell'alcol è sbagliata: questo estere richiede l'etanolo, con due atomi di carbonio. Qui l'alcol è il metanolo, con un atomo di carbonio, quindi il gruppo legato all'ossigeno è il metile.",
+        "c": "La parte dell'alcol è giusta, ma la parte dell'acido è sbagliata: l'acido metanoico ha un atomo di carbonio. L'acido usato ne ha due, quindi il nome dell'estere comincia con etanoato.",
+        "e": "L'estere è giusto, ma il secondo prodotto non è idrogeno gassoso. Questa alternativa prende in prestito la reazione di un acido con un metallo reattivo. Nell'esterificazione l'$\\mathrm{OH}$ dell'acido e l'$\\mathrm{H}$ dell'alcol si combinano formando acqua."
+      },
+      "accessibilityText": "L'acido etanoico, C H pedice 3 C O O H, viene riscaldato con metanolo, C H pedice 3 O H, usando acido solforico concentrato come catalizzatore. La domanda chiede i prodotti. Ogni alternativa nomina un estere e ne dà la formula, poi nomina un secondo prodotto, acqua oppure idrogeno gassoso. Gli esteri proposti sono etanoato di metile, metanoato di etile, etanoato di etile e metanoato di metile.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f1",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": "LANGUAGE-DEPENDENT NAMING: English ester names put the alcohol part first (methyl ethanoate); Italian IUPAC puts the acid part first (etanoato di metile). Option names use Italian order; the explanation sentence on name order and the rationale for the swapped isomer were adapted to Italian word order (same chemistry, same keyed answer). Checker should confirm."
+      }
+    }
+  }
 }

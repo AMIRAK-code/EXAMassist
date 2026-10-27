@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import type { FormatCell, MatrixRow } from '@/lib/home/home-data';
 import { StatusBadge, StatusIcon } from '@/components/ui';
 

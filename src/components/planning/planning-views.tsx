@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import type { ExamChoice } from '@/lib/learning/dashboard';
 import { planningHref, type PlanningView } from '@/lib/learning/planning';
 import { Alert, cx } from '@/components/ui';

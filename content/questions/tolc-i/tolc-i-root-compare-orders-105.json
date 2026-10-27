@@ -78,5 +78,48 @@
     "radicals",
     "fractional-exponents",
     "comparison"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Siano $a = \\sqrt{2}$, $b = \\sqrt[3]{3}$ e $c = \\sqrt[5]{5}$. Quale delle seguenti relazioni è vera?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$a < c < b$"
+        },
+        {
+          "id": "b",
+          "textMd": "$a < b < c$"
+        },
+        {
+          "id": "c",
+          "textMd": "$c < a < b$"
+        },
+        {
+          "id": "d",
+          "textMd": "$c < b < a$"
+        },
+        {
+          "id": "e",
+          "textMd": "$b < a < c$"
+        }
+      ],
+      "explanationMd": "Radici con indici diversi non si possono confrontare direttamente, ma i numeri positivi mantengono il loro ordine quando vengono elevati alla stessa potenza positiva. Per ogni coppia si sceglie un esponente che elimini entrambe le radici.\n\n**Confronto tra $a$ e $b$.** Si elevano entrambi alla sesta potenza, perché 6 è multiplo sia di 2 sia di 3: $a^{6} = (2^{1/2})^{6} = 2^{3} = 8$ e $b^{6} = (3^{1/3})^{6} = 3^{2} = 9$. Poiché $8 < 9$, si ha $a < b$.\n\n**Confronto tra $a$ e $c$.** Si elevano entrambi alla decima potenza: $a^{10} = 2^{5} = 32$ e $c^{10} = (5^{1/5})^{10} = 5^{2} = 25$. Poiché $25 < 32$, si ha $c < a$.\n\nMettendo insieme i due risultati, $c < a < b$.\n\n**Come verificarlo.** Si confrontano direttamente $b$ e $c$ con la quindicesima potenza: $b^{15} = 3^{5} = 243$ e $c^{15} = 5^{3} = 125$, quindi $c < b$, in accordo con la catena. Anche le stime decimali concordano: $a \\approx 1.414$, $b \\approx 1.442$, $c \\approx 1.380$.",
+      "distractorRationale": {
+        "b": "Ordina i numeri secondo i radicandi, 2, 3 e 5. Un radicando maggiore non significa un valore maggiore quando anche l'indice della radice è maggiore: $c^{10} = 25 < 32 = a^{10}$.",
+        "d": "Suppone che un indice di radice più alto dia sempre un numero più piccolo. Questo vale per $c$, ma $b$ è maggiore di $a$: $b^{6} = 9 > 8 = a^{6}$.",
+        "a": "Ottiene correttamente $a < b$ ma inverte il confronto tra $a$ e $c$, forse confrontando $a^{10}$ con $c^{10}$ come $2^{10}$ contro $5^{2}$. Correttamente, $a^{10} = 2^{5} = 32$, che è maggiore di $c^{10} = 25$.",
+        "e": "Inverte il confronto tra $a$ e $b$ e mette $c$ per ultimo. Elevando alla sesta potenza si ottiene $a^{6} = 8 < 9 = b^{6}$, quindi $a < b$, e $c$ è il più piccolo dei tre."
+      },
+      "accessibilityText": "Siano a la radice quadrata di 2, b la radice cubica di 3 e c la radice quinta di 5. Quale delle seguenti relazioni è vera? Le cinque alternative sono: a minore di c minore di b; a minore di b minore di c; c minore di a minore di b; c minore di b minore di a; b minore di a minore di c.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i2",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

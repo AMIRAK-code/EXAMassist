@@ -79,5 +79,48 @@
     "problems",
     "ordering",
     "no-calculator"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Cinque travi d'acciaio, contrassegnate con L, M, N, O e P, hanno lunghezze tutte diverse. Si sa che:\n\n- L è più lunga di M.\n- N è più corta di M.\n- O è più lunga di L.\n- P è più corta di L ma più lunga di M.\n\nQuale trave è la terza in ordine di lunghezza, a partire dalla più lunga?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "N"
+        },
+        {
+          "id": "b",
+          "textMd": "P"
+        },
+        {
+          "id": "c",
+          "textMd": "M"
+        },
+        {
+          "id": "d",
+          "textMd": "L"
+        },
+        {
+          "id": "e",
+          "textMd": "O"
+        }
+      ],
+      "explanationMd": "Costruisci l'ordine un indizio alla volta, dalla più lunga alla più corta.\n\n- L è più lunga di M, e N è più corta di M: L, M, N.\n- O è più lunga di L: O, L, M, N.\n- P si inserisce tra L e M: O, L, P, M, N.\n\nOgni trave ha ora un posto fissato, e la terza più lunga è **P**.\n\nVerifica ogni indizio sull'ordine finale O, L, P, M, N: L prima di M, N dopo M, O prima di L, e P tra L e M. Valgono tutti.",
+      "distractorRationale": {
+        "d": "L è la seconda più lunga: solo O è più lunga di lei. Sceglierla significa contare male la posizione o trascurare O.",
+        "c": "M è la quarta più lunga, perché O, L e P sono tutte più lunghe. Sceglierla significa ignorare l'indizio che mette P sopra M.",
+        "a": "N è la trave più corta, perché è più corta di M, che a sua volta è più corta delle altre tre.",
+        "e": "O è la trave più lunga, perché è più lunga di L, che è più lunga di tutte le altre."
+      },
+      "accessibilityText": "Un problema di logica su cinque travi d'acciaio contrassegnate con L, M, N, O e P, tutte di lunghezza diversa. L è più lunga di M. N è più corta di M. O è più lunga di L. P è più corta di L ma più lunga di M. La domanda chiede quale trave è la terza più lunga. Le cinque alternative sono N, P, M, L e O.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

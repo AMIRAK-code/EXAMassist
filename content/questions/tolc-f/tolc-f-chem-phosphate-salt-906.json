@@ -79,5 +79,48 @@
     "acid-salts",
     "phosphates",
     "mole-ratio"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "L'acido fosforico, $\\mathrm{H_3PO_4}$, ha tre atomi di idrogeno che possono essere sostituiti dal sodio. Una soluzione contenente 0,50 mol di $\\mathrm{H_3PO_4}$ reagisce completamente con 1,0 mol di $\\mathrm{NaOH}$, senza che avanzi alcun reagente. Quale sale si forma?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\mathrm{Na_2PO_4}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\mathrm{NaHPO_4}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$\\mathrm{NaH_2PO_4}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\mathrm{Na_2HPO_4}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\mathrm{Na_3PO_4}$"
+        }
+      ],
+      "explanationMd": "L'idrossido di sodio sostituisce gli idrogeni dell'acido uno alla volta, quindi il rapporto in moli tra base e acido indica quanti idrogeni sono stati sostituiti.\n\n$$\\mathrm{H_3PO_4 + NaOH \\rightarrow NaH_2PO_4 + H_2O}\\qquad (1:1)$$\n$$\\mathrm{H_3PO_4 + 2\\,NaOH \\rightarrow Na_2HPO_4 + 2\\,H_2O}\\qquad (1:2)$$\n$$\\mathrm{H_3PO_4 + 3\\,NaOH \\rightarrow Na_3PO_4 + 3\\,H_2O}\\qquad (1:3)$$\n\nLe quantità sono 1,0 mol di base per 0,50 mol di acido, un rapporto di $1.0 \\div 0.50 = 2$. Vengono sostituiti due idrogeni e ne resta uno, e si ottiene $\\mathrm{Na_2HPO_4}$ (idrogenofosfato di disodio).\n\n**Verifica delle cariche:** due $\\mathrm{Na^+}$ danno $+2$, e l'anione $\\mathrm{HPO_4^{2-}}$ dà $-2$, quindi il sale è neutro. Verifica anche gli atomi: nel sale restano 1 P, 4 O, 1 H, e i 2 H rimossi se ne vanno con i 2 OH come 2 $\\mathrm{H_2O}$.",
+      "distractorRationale": {
+        "c": "Sostituisce un solo idrogeno, il che richiede una mole di $\\mathrm{NaOH}$ per mole di acido. Qui il rapporto è 1,0 mol : 0,50 mol, cioè due moli di base per mole di acido.",
+        "e": "Sostituisce tutti e tre gli idrogeni, il che richiederebbe tre moli di $\\mathrm{NaOH}$ per mole di acido, cioè qui 1,5 mol di base. Ne è disponibile solo 1,0 mol.",
+        "a": "Non è una formula con le cariche bilanciate, quindi non esiste un sale neutro di questo tipo. Mette i due sodi giusti ma toglie anche l'idrogeno rimasto, lasciando lo ione fosfato: $2\\times(+1)$ dal sodio e $-3$ da $\\mathrm{PO_4^{3-}}$ danno una carica netta di $-1$. Due sodi sostituiscono due idrogeni, quindi un idrogeno deve restare, e si ottiene $\\mathrm{Na_2HPO_4}$.",
+        "b": "Neanche questa è una formula con le cariche bilanciate, quindi non esiste un sale neutro di questo tipo. Mantiene l'anione giusto per due idrogeni sostituiti, $\\mathrm{HPO_4^{2-}}$, ma lo abbina a un solo $\\mathrm{Na^+}$, lasciando una carica netta di $-1$. Contare gli atomi di sodio invece delle cariche qui trae in inganno: l'anione $\\mathrm{HPO_4^{2-}}$ richiede due $\\mathrm{Na^+}$."
+      },
+      "accessibilityText": "L'acido fosforico, H pedice 3 P O pedice 4, viene neutralizzato dall'idrossido di sodio. Le quantità sono 0,50 moli di acido e 1,0 mole di idrossido di sodio, che reagiscono completamente senza avanzi. La domanda chiede quale sale si forma. Le alternative sono cinque formule: Na pedice 2 P O pedice 4; Na H P O pedice 4; Na H pedice 2 P O pedice 4; Na pedice 2 H P O pedice 4; e Na pedice 3 P O pedice 4.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f1",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": "Decimal commas in prose (0,50 mol; 1,0 mol; 1,5 mol); KaTeX unchanged. 'disodium hydrogen phosphate' = 'idrogenofosfato di disodio'."
+      }
+    }
+  }
 }
