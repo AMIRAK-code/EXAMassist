@@ -220,6 +220,11 @@ export const politoTilAConfig: ExamConfig = {
       'A study tool, not a reproduction of the exam: untimed, free navigation, and whatever area, topic and difficulty you choose.',
   }),
 
+  choiceOptions: {
+    count: 5,
+    basis: 'published',
+    note: 'Politecnico di Torino: five options, one correct.',
+  },
   scoring: {
     pointsCorrect: 1,
     pointsIncorrect: -0.25,
