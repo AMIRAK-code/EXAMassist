@@ -80,5 +80,48 @@
     "quantifiers",
     "syllogism",
     "no-calculator"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Due affermazioni sull'associazione di atletica Città Alta sono vere.\n\n- Ogni corridore del gruppo di allenamento del martedì è socio dell'associazione.\n- Nessun socio dell'associazione ha mai corso una maratona.\n\nQuale delle seguenti affermazioni deve essere vera?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Alcuni maratoneti sono corridori del gruppo di allenamento del martedì."
+        },
+        {
+          "id": "b",
+          "textMd": "Chiunque non faccia parte del gruppo di allenamento del martedì ha corso una maratona."
+        },
+        {
+          "id": "c",
+          "textMd": "Ogni socio dell'associazione è un corridore del gruppo di allenamento del martedì."
+        },
+        {
+          "id": "d",
+          "textMd": "Nessun corridore del gruppo di allenamento del martedì ha mai corso una maratona."
+        },
+        {
+          "id": "e",
+          "textMd": "Alcuni soci dell'associazione non si allenano il martedì."
+        }
+      ],
+      "explanationMd": "Immagina gli insiemi come cerchi. La prima affermazione mette il gruppo del martedì interamente dentro il cerchio dell'associazione. La seconda dice che i maratoneti non hanno alcuna sovrapposizione con il cerchio dell'associazione. Un cerchio contenuto in quello dell'associazione non può sovrapporsi a un cerchio che sta completamente fuori da esso, quindi **nessun corridore del gruppo del martedì ha corso una maratona**.\n\nVerifica ciascuna delle altre alternative chiedendoti se un disegno compatibile con entrambe le affermazioni può renderla falsa. L'alternativa secondo cui ogni socio si allena il martedì è falsa se l'associazione ha un socio che non lo fa; quella secondo cui alcuni maratoneti fanno parte del gruppo è falsa a causa della sovrapposizione appena esclusa; quella secondo cui chiunque sia fuori dal gruppo ha corso una maratona è falsa per una persona estranea sia al gruppo sia all'associazione che non ne ha mai corsa una; e quella secondo cui alcuni soci non si allenano il martedì è falsa se il gruppo coincide con l'intera associazione.",
+      "distractorRationale": {
+        "c": "Inverte la prima affermazione. Tutti i corridori del martedì appartengono all'associazione, ma l'associazione può avere molti soci che non si allenano mai il martedì.",
+        "a": "Applica la seconda affermazione solo ai soci dell'associazione in generale e dimentica che ogni corridore del martedì è uno di loro. Contraddice la conclusione che segue dalle premesse. Il gruppo del martedì sta dentro l'associazione, e l'associazione non contiene alcun maratoneta, quindi non ne contiene nemmeno il gruppo.",
+        "b": "Nulla collega l'essere «fuori dal gruppo» all'aver corso una maratona. Questa alternativa tratta il gruppo come l'unico luogo in cui si trovano persone che non hanno mai corso una maratona. In realtà ogni socio dell'associazione esterno al gruppo, per la seconda affermazione, non ha mai corso una maratona, e le affermazioni non dicono nulla sulle persone esterne all'associazione, quindi questa affermazione può facilmente essere falsa.",
+        "e": "Legge «ogni corridore del martedì è socio» come se significasse anche che l'associazione è più grande del gruppo. Le affermazioni permettono che il gruppo del martedì coincida con l'intera associazione; nulla impone che esista un socio fuori dal gruppo, quindi questa affermazione è possibile ma non certa."
+      },
+      "accessibilityText": "Una domanda di deduzione con due affermazioni sull'associazione di atletica Città Alta: ogni corridore del gruppo di allenamento del martedì è socio dell'associazione, e nessun socio dell'associazione ha mai corso una maratona. La domanda chiede quale di cinque affermazioni deve essere vera. Le affermazioni dicono: ogni socio fa parte del gruppo del martedì; alcuni maratoneti fanno parte del gruppo del martedì; chiunque sia fuori dal gruppo del martedì ha corso una maratona; nessun corridore del gruppo del martedì ha corso una maratona; alcuni soci non si allenano il martedì.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-e",
+        "checkedBy": "tolc-italian-checker-e",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; quantifiers ogni/nessun/alcuni preserved."
+      }
+    }
+  }
 }

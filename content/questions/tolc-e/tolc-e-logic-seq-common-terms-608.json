@@ -80,5 +80,48 @@
     "arithmetic-progressions",
     "common-terms",
     "no-calculator"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "La successione P inizia con 3, 7, 11, 15, ... e prosegue all'infinito aggiungendo sempre 4. La successione Q inizia con 2, 7, 12, 17, ... e prosegue all'infinito aggiungendo sempre 5. Il numero 7 compare in entrambe.\n\nQual è il quarto numero più piccolo che compare in entrambe le successioni?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "27"
+        },
+        {
+          "id": "b",
+          "textMd": "47"
+        },
+        {
+          "id": "c",
+          "textMd": "67"
+        },
+        {
+          "id": "d",
+          "textMd": "80"
+        },
+        {
+          "id": "e",
+          "textMd": "87"
+        }
+      ],
+      "explanationMd": "Non scrivere per intero le due successioni. Osserva invece ogni quanto può ripresentarsi un numero comune.\n\nA partire da un numero comune, la successione P tocca un numero ogni 4 e la successione Q uno ogni 5. Si ritrovano insieme dopo una distanza che è multipla sia di 4 sia di 5, e la più piccola distanza di questo tipo è 20. Quindi i numeri comuni sono 7, 7 + 20, 7 + 40, 7 + 60, ...: **7, 27, 47, 67**. Il quarto è 67.\n\nVerifica 67 direttamente: $67 - 3 = 64 = 4 \\times 16$, quindi appartiene a P; $67 - 2 = 65 = 5 \\times 13$, quindi appartiene a Q. Invece 17 appartiene a Q ma non a P: $17 - 3 = 14$ non è multiplo di 4.",
+      "distractorRationale": {
+        "a": "È il secondo numero comune alle due successioni, ottenuto aggiungendo a 7 un periodo di 20. Deriva dal fermarsi al primo numero comune trovato dopo 7, cioè dal rispondere «il numero comune successivo» invece del quarto.",
+        "b": "È il terzo numero comune, 7 + 40. Si ferma un passo prima: 7 conta come primo numero comune, quindi dopo di esso servono tre periodi di 20.",
+        "d": "È 4 per 20, come se i numeri comuni fossero i multipli di 20. I numeri comuni formano una sequenza che parte da 7, quindi terminano tutti con la cifra 7 e nessuno è multiplo di 20.",
+        "e": "È il quinto numero comune, 7 + 80. Conta 7 come numero comune di posto zero anziché come primo."
+      },
+      "accessibilityText": "Una domanda su due successioni numeriche. La successione P inizia con 3, 7, 11, 15 e aggiunge sempre 4. La successione Q inizia con 2, 7, 12, 17 e aggiunge sempre 5. Entrambe proseguono all'infinito e il numero 7 compare in entrambe. La domanda chiede il quarto numero più piccolo che compare in entrambe le successioni. Le cinque alternative sono 27, 47, 67, 80 e 87.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-e",
+        "checkedBy": "tolc-italian-checker-e",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful. Common terms 7,27,47,67."
+      }
+    }
+  }
 }
