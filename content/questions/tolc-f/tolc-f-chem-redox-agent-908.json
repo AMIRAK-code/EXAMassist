@@ -78,5 +78,48 @@
     "redox",
     "oxidising-agent",
     "oxidation-numbers"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Si consideri la reazione\n\n$$2\\,\\mathrm{H_2S} + \\mathrm{SO_2} \\rightarrow 3\\,\\mathrm{S} + 2\\,\\mathrm{H_2O}$$\n\nQuale affermazione su di essa è corretta?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\mathrm{SO_2}$ è l'ossidante, perché lo zolfo passa da $+4$ a $0$."
+        },
+        {
+          "id": "b",
+          "textMd": "$\\mathrm{H_2S}$ è l'ossidante, perché lo zolfo passa da $-2$ a $0$."
+        },
+        {
+          "id": "c",
+          "textMd": "L'ossigeno si ossida, perché finisce nell'acqua."
+        },
+        {
+          "id": "d",
+          "textMd": "L'idrogeno si riduce, perché finisce nell'acqua."
+        },
+        {
+          "id": "e",
+          "textMd": "Non è una reazione redox, perché lo zolfo è presente da entrambe le parti dell'equazione."
+        }
+      ],
+      "explanationMd": "Assegna un numero di ossidazione a ogni elemento da ciascuna parte e guarda quali cambiano.\n\n| Specie | Elemento | Numero di ossidazione |\n| --- | --- | --- |\n| $\\mathrm{H_2S}$ | S | $-2$ (H è $+1$) |\n| $\\mathrm{SO_2}$ | S | $+4$ (O è $-2$) |\n| $\\mathrm{S}$ | S | $0$ |\n| $\\mathrm{H_2O}$ | H, O | $+1$, $-2$ |\n\nL'idrogeno resta a $+1$ e l'ossigeno resta a $-2$. Cambia solo lo zolfo:\n\n- In $\\mathrm{H_2S}$ lo zolfo sale da $-2$ a $0$: si **ossida**, quindi $\\mathrm{H_2S}$ è il riducente.\n- In $\\mathrm{SO_2}$ lo zolfo scende da $+4$ a $0$: si **riduce**, quindi $\\mathrm{SO_2}$ è l'ossidante.\n\n**Verifica contando gli elettroni.** Due atomi di zolfo passano da $-2$ a $0$, perdendo $2 \\times 2 = 4$ elettroni. Un atomo di zolfo passa da $+4$ a $0$, acquistandone 4. Gli elettroni sono bilanciati, il che conferma i coefficienti. L'ossidante è sempre la specie che si riduce.",
+      "distractorRationale": {
+        "b": "I numeri sono giusti ma la conclusione è rovesciata. Lo zolfo che sale da $-2$ a $0$ perde elettroni, quindi si ossida e $\\mathrm{H_2S}$ è il riducente. L'ossidante è la specie che si riduce.",
+        "c": "Finire in un nuovo composto non cambia un numero di ossidazione. L'ossigeno è $-2$ in $\\mathrm{SO_2}$ e $-2$ in $\\mathrm{H_2O}$, quindi non si ossida né si riduce.",
+        "d": "L'idrogeno è $+1$ in $\\mathrm{H_2S}$ e $+1$ in $\\mathrm{H_2O}$: nessun cambiamento, quindi non si riduce. Solo lo zolfo cambia numero di ossidazione.",
+        "e": "La presenza dello stesso elemento da entrambe le parti non dice nulla. Ciò che conta è il suo numero di ossidazione, che è $-2$ e $+4$ a sinistra e $0$ a destra. Ci sono elettroni trasferiti, quindi è una reazione redox."
+      },
+      "accessibilityText": "La reazione è: due molecole di solfuro di idrogeno, H pedice 2 S, più una molecola di diossido di zolfo, S O pedice 2, danno tre atomi di zolfo e due molecole d'acqua, H pedice 2 O. La domanda chiede quale affermazione sulla reazione è corretta. Le alternative sono affermazioni su quale specie è l'ossidante e su quali elementi si ossidano o si riducono.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f1",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": "'oxidising agent' = 'ossidante', 'reducing agent' = 'riducente' (also 'agente ossidante/riducente')."
+      }
+    }
+  }
 }
