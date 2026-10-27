@@ -1,1 +1,302 @@
-{}
+{
+  "plans": {
+    "all_access": {
+      "name": "All access",
+      "tagline": "Every exam on the site, plus the AI tutor.",
+      "perPeriod": "per month",
+      "scope": "Every exam"
+    },
+    "single_exam": {
+      "name": "Single exam",
+      "tagline": "Full use of the one exam you choose. Hold several if you prepare for more than one.",
+      "perPeriod": "per month, per exam",
+      "scope": "One exam of your choice"
+    },
+    "free": {
+      "name": "Free",
+      "tagline": "Guides, sample questions and a free diagnostic for every exam."
+    },
+    "vatNote": "Prices in euros, VAT included. Billed monthly; renews automatically until you cancel."
+  },
+  "features": {
+    "guides": "Exam guides, format and scoring pages",
+    "samples": "Sample questions",
+    "diagnostic": "The free diagnostic for every exam",
+    "practice": "Topic practice and retries, with fresh questions every session",
+    "timed_section": "Timed sections at the published pace",
+    "simulation": "Full-length simulations, where the exam offers one",
+    "study_plan": "Study plan and readiness",
+    "ai_tutor": "AI tutor: hints, deeper explanations, after-test guides"
+  },
+  "crumbs": {
+    "home": "Home",
+    "pricing": "Pricing",
+    "checkout": "Checkout",
+    "confirmation": "Confirmation"
+  },
+  "pricing": {
+    "meta": {
+      "title": "Plans and pricing",
+      "description": "All access for {allAccessPrice} a month, or a single exam for {singleExamPrice} a month. Guides, sample questions and a diagnostic for every exam stay free. VAT included; cancel any time."
+    },
+    "eyebrow": "Plans",
+    "heading": "Practise every exam, or just the one you are sitting",
+    "headingForExam": "Plans for your {exam} preparation",
+    "lead": "Guides, sample questions and a diagnostic for every exam are free. A plan opens practice, timed sections, full simulations and the study plan.",
+    "notEnforced": {
+      "title": "Everything is free right now",
+      "body": "Payments are not switched on for this site yet, so every exam and every format is open to everyone."
+    },
+    "testMode": "Test mode: checkout uses Stripe test cards and charges nothing.",
+    "reasons": {
+      "diagnosticTaken": "You have taken the free diagnostic. Choose a plan to keep practising with fresh questions.",
+      "practice": "Practice sessions are part of a paid plan.",
+      "timed_section": "Timed sections are part of a paid plan.",
+      "simulation": "Full-length simulations are part of a paid plan.",
+      "study_plan": "The study plan and readiness view are part of a paid plan.",
+      "ai_tutor": "The AI tutor is part of All access."
+    },
+    "current": {
+      "allAccess": "You have All access: every exam and the AI tutor are open to you.",
+      "singleExam": "Your single-exam plans: {exams}.",
+      "manage": "Manage your plans"
+    },
+    "perMonth": "/ month",
+    "perMonthPerExam": "/ month per exam",
+    "featured": "Most complete",
+    "free": {
+      "cta": "Take a free diagnostic",
+      "ctaExams": "Choose an exam"
+    },
+    "single": {
+      "examLabel": "Exam",
+      "owned": "(your plan)",
+      "coveredByAll": "All access already includes every exam.",
+      "cta": "Continue to checkout"
+    },
+    "all": {
+      "cta": "Choose All access",
+      "owned": "You have this plan"
+    },
+    "accountNote": "Buying a plan needs a free account. If you have been practising as a guest, your history comes with you.",
+    "matrix": {
+      "heading": "What each plan includes",
+      "caption": "Features by plan",
+      "feature": "Feature",
+      "included": "Included",
+      "notIncluded": "Not included"
+    },
+    "smallPrint": {
+      "heading": "How billing works",
+      "currency": "Prices are in euros and include VAT.",
+      "renewal": "Plans renew every month until you cancel. Cancel any time from your account; the plan stays on until the end of the month you paid for.",
+      "withdrawal": "Access starts as soon as you pay. At checkout you are asked to confirm that you want it straight away and that the 14-day right of withdrawal ends when it starts.",
+      "cards": "Card details are entered in fields provided by Stripe, our payment provider, and go straight to Stripe. They never reach our servers.",
+      "terms": "Terms of sale",
+      "privacy": "Privacy notice"
+    }
+  },
+  "checkout": {
+    "meta": {
+      "title": "Checkout"
+    },
+    "eyebrow": "Checkout",
+    "title": "Choose your plan and pay",
+    "lead": "Monthly, VAT included, cancel any time from your account.",
+    "unavailable": {
+      "title": "Payments are not available right now",
+      "body": "Nothing can be bought on this site at the moment, so nothing will be charged. Everything that is open stays open.",
+      "back": "Back to pricing"
+    },
+    "allAccess": {
+      "title": "You already have All access",
+      "body": "Every exam and the AI tutor are already open to you, so there is nothing more to buy.",
+      "manage": "Manage your plans"
+    }
+  },
+  "complete": {
+    "meta": {
+      "title": "Your plan"
+    },
+    "eyebrow": "Checkout",
+    "success": {
+      "title": "Your plan is active",
+      "lead": "{plan} is open to you now.",
+      "leadExam": "{plan} for {exam} is open to you now.",
+      "renews": "It renews on {date} and every month after that, until you cancel.",
+      "receipt": "Stripe, our payment provider, sends a receipt to {email}.",
+      "practise": "Start practising {exam}",
+      "exams": "Choose an exam",
+      "manage": "Manage your plan"
+    },
+    "processing": {
+      "title": "Your payment is being processed",
+      "body": "Your bank has not confirmed the payment yet. Your plan starts as soon as it does; refresh this page in a minute.",
+      "refresh": "Refresh"
+    },
+    "pending": {
+      "title": "Waiting for your payment",
+      "body": "We have not received confirmation of this payment yet. If you have just paid, refresh this page in a moment. If you left the payment unfinished, you can try again; nothing has been charged.",
+      "refresh": "Refresh",
+      "retry": "Back to checkout"
+    },
+    "failed": {
+      "title": "The payment did not go through",
+      "body": "Your bank declined the payment or the verification was not completed. Nothing was charged. You can try again with the same or another card.",
+      "retry": "Try again"
+    },
+    "expired": {
+      "title": "This checkout has expired",
+      "body": "The payment was not completed in time, so nothing was charged. Start a new checkout whenever you are ready.",
+      "retry": "Start again"
+    },
+    "missing": {
+      "title": "We could not find that checkout",
+      "body": "It may belong to a different account. Your plans are listed on your account page.",
+      "account": "Your account"
+    },
+    "pricing": "See plans"
+  },
+  "form": {
+    "planLegend": "Plan",
+    "examLabel": "Exam",
+    "examPlaceholder": "Choose an exam",
+    "examOwned": "(your plan)",
+    "examRequired": "Choose the exam this plan is for.",
+    "examHint": "A single-exam plan covers one exam. You can hold several, one for each exam you are preparing for.",
+    "countryLabel": "Country of residence",
+    "countryPlaceholder": "Choose your country",
+    "countryHint": "Used to apply the right VAT. The price you pay does not change.",
+    "countryRequired": "Choose your country.",
+    "paymentLegend": "Payment",
+    "testMode": "Test mode: use card 4242 4242 4242 4242, any future date and any CVC. For 3-D Secure, use 4000 0027 6000 3184.",
+    "secure": "Card details are entered in secure fields provided by Stripe and go straight to Stripe; they never reach our servers.",
+    "loadingFields": "Loading the secure card fields…",
+    "consent": "I want my plan to start now. I understand that I lose my 14-day right of withdrawal once access starts.",
+    "consentTerms": "Terms of sale",
+    "consentTermsNewTab": "(opens in a new tab)",
+    "consentRequired": "Please tick this box to continue.",
+    "pay": "Pay {price} and start",
+    "paying": "Processing payment…",
+    "errorTitle": "The payment did not go through",
+    "networkError": "We could not reach the server. Check your connection and try again. Nothing was charged.",
+    "genericError": "Something went wrong. Nothing was charged; please try again.",
+    "alreadySubscribed": "Manage your plans",
+    "summary": {
+      "heading": "Order summary",
+      "plan": "Plan",
+      "exam": "Exam",
+      "examNone": "Not chosen yet",
+      "monthly": "Monthly price",
+      "vat": "VAT",
+      "vatIncluded": "Included",
+      "vatByCountry": "Included, at your country’s rate",
+      "dueToday": "Due today",
+      "then": "Then {price} every month from {date}, until you cancel.",
+      "cancel": "Cancel any time from your account. Your plan stays on until the end of the month you paid for."
+    }
+  },
+  "manager": {
+    "none": "You have no plan. Guides, sample questions and a diagnostic for every exam are free.",
+    "seePlans": "See plans",
+    "addPlan": "Add a plan",
+    "price": "{price} a month, VAT included",
+    "renews": "Renews on {date}",
+    "ends": "Ends on {date}; it will not renew",
+    "accessUntil": "Access until {date}",
+    "statuses": {
+      "active": "Active",
+      "trialing": "Active",
+      "past_due": "Payment failed: retrying",
+      "unpaid": "Unpaid",
+      "paused": "Paused",
+      "canceled": "Ended",
+      "incomplete": "Waiting for payment",
+      "incomplete_expired": "Checkout expired"
+    },
+    "pastDue": "The last renewal payment did not go through. Stripe will try again over the next days; your access continues meanwhile. Update your card to pay now.",
+    "cancel": "Cancel at end of period",
+    "cancelConfirm": "Cancel this plan? It stays on until {date} and is not charged again.",
+    "cancelYes": "Yes, cancel",
+    "cancelNo": "Keep my plan",
+    "resume": "Keep my plan",
+    "working": "Saving…",
+    "changeFailed": "That could not be changed just now. Please try again.",
+    "cancelled": "Your plan will end on {date}. You can undo this until then.",
+    "resumed": "Your plan will renew as usual.",
+    "card": {
+      "heading": "Payment card",
+      "none": "No card on file.",
+      "summary": "{brand} ending in {last4}, expires {month}/{year}",
+      "stale": "The card details could not be loaded just now.",
+      "update": "Update card",
+      "save": "Save card",
+      "saving": "Saving card…",
+      "cancel": "Cancel",
+      "loading": "Loading the secure card fields…",
+      "secure": "Card details go straight to Stripe in secure fields; they never reach our servers.",
+      "saved": "Your new card is saved and will be used for every plan.",
+      "savedAndRetried": "Your new card is saved and will be used for every plan. We charged the new card for the renewal that had failed.",
+      "failed": "The card could not be saved. Your previous card is unchanged.",
+      "network": "We could not reach the server. Your previous card is unchanged."
+    },
+    "history": "Earlier plans"
+  },
+  "upgrade": {
+    "eyebrow": "Part of a paid plan",
+    "titles": {
+      "practice": "{hasExam, select, yes {Practise {exam} as often as you need} other {Practise this exam as often as you need}}",
+      "timed_section": "{hasExam, select, yes {Timed sections for {exam}} other {Timed sections for this exam}}",
+      "simulation": "{hasExam, select, yes {Full-length simulations for {exam}} other {Full-length simulations for this exam}}",
+      "study_plan": "{hasExam, select, yes {A study plan for {exam}} other {A study plan for this exam}}",
+      "ai_tutor": "The AI tutor",
+      "diagnostic": "The free diagnostic",
+      "guides": "Guides",
+      "samples": "Sample questions"
+    },
+    "leads": {
+      "practice": "Topic practice with fresh questions every session, retries of what you missed, timed sections and simulations.",
+      "timed_section": "Timed sections at the published pace, with results by topic.",
+      "simulation": "Full-length simulations under the published rules, where the exam offers one.",
+      "study_plan": "A dated plan to your test date, and a readiness view built from your own results.",
+      "ai_tutor": "Hints while you practise, deeper explanations after you answer, and a guide after every test."
+    },
+    "planLine": "{plan}: {price} {period}",
+    "seePlans": "See plans",
+    "choosePlan": "Choose {plan}",
+    "freeDiagnostic": "Try the free diagnostic first"
+  },
+  "errors": {
+    "billingOff": "Payments are not switched on for this site yet. Nothing was charged.",
+    "accountRequired": "Create an account first, so your plan has somewhere to live. Your guest practice comes with you.",
+    "consentRequired": "Please confirm that you want access straight away and that the 14-day withdrawal right then ends.",
+    "unknownPlan": "That plan does not exist.",
+    "unknownExam": "Choose the exam this plan is for.",
+    "alreadyAllAccess": "You already have All access, which includes every exam.",
+    "alreadyThisExam": "You already have a plan for this exam.",
+    "misconfigured": "Payments are not set up correctly yet. Nothing was charged.",
+    "unavailable": "The payment provider is busy. Nothing was charged; please try again in a minute.",
+    "failed": "The payment provider could not complete that. Nothing was charged.",
+    "retry": "That request was already sent with different details. Reload the page and try again.",
+    "unknownSubscription": "That subscription was not found.",
+    "notChangeable": "That subscription has already ended.",
+    "noBillingAccount": "There is no billing account yet. Choose a plan first.",
+    "cardNotSaved": "The new card was not confirmed. Your previous card is unchanged.",
+    "countryRequired": "Choose your country, so the right VAT can be applied.",
+    "deletionBlocked": "Your subscriptions could not be cancelled just now, so the account was not deleted. Please try again in a few minutes.",
+    "rateLimited": "Too many tries. Please wait a few minutes.",
+    "entitlement": {
+      "accountRequired": "Create a free account to take the free diagnostic. Your guest practice comes with you.",
+      "upgradeRequired": {
+        "practice": "Practice sessions for this exam are part of a paid plan. The diagnostic stays free.",
+        "timed_section": "Timed sections for this exam are part of a paid plan. The diagnostic stays free.",
+        "simulation": "Full-length simulations are part of a paid plan. The diagnostic stays free.",
+        "study_plan": "The study plan and readiness view are part of a paid plan for this exam.",
+        "ai_tutor": "The AI tutor is part of the All access plan.",
+        "diagnostic": "The diagnostic is free.",
+        "guides": "Guides are free.",
+        "samples": "Sample questions are free."
+      }
+    }
+  }
+}

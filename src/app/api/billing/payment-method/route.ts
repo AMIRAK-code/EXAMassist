@@ -3,7 +3,7 @@ import { getDb } from '@/lib/db';
 import { assertSameOrigin, fail, ok, readJson, toErrorResponse } from '@/lib/api/http';
 import { callerKey, checkRateLimit } from '@/lib/auth/rate-limit';
 import { requireUser } from '@/lib/auth/session';
-import { finishCardUpdate } from '@/lib/billing/service';
+import { BILLING_COPY, finishCardUpdate } from '@/lib/billing/service';
 
 export const dynamic = 'force-dynamic';
 
@@ -22,8 +22,9 @@ export async function POST(request: Request) {
 
     const limit = await checkRateLimit(db, 'billingRequest', callerKey(request, user.id));
     if (!limit.allowed) {
-      return fail('rate-limited', 'Too many tries. Please wait a few minutes.', 429, {
+      return fail('rate-limited', BILLING_COPY.rateLimited, 429, {
         retryAfterSeconds: limit.retryAfterSeconds,
+        messageKey: 'rateLimited',
       });
     }
 

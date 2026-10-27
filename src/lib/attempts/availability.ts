@@ -21,12 +21,22 @@ import { resolveParts } from './service';
  * a full-length simulation.
  */
 
+/**
+ * Why a format is not open. A rules reason is the exam config's own published
+ * text (it stays as written); a content reason carries only the numbers, and
+ * the page words it in the visitor's language with the `exams` message
+ * `availability.contentReason` ({requested}, {available}).
+ */
+export type AvailabilityReason =
+  | { kind: 'rules'; text: string }
+  | { kind: 'content'; requested: number; available: number };
+
 export interface BlueprintAvailability {
   blueprint: Blueprint;
   available: boolean;
   /** 'rules' or 'content', when unavailable. */
   blockedBy: 'rules' | 'content' | null;
-  reason: string | null;
+  reason: AvailabilityReason | null;
   itemsRequested: number;
   itemsAvailable: number;
   shortfall: number;
@@ -53,7 +63,7 @@ export function availabilityFromPool(
         blueprint,
         available: false,
         blockedBy: 'rules',
-        reason: (config.capabilities.fullSimulation as { reason: string }).reason,
+        reason: { kind: 'rules', text: (config.capabilities.fullSimulation as { reason: string }).reason },
         itemsRequested: blueprint.parts.reduce((n, p) => n + p.itemCount, 0),
         itemsAvailable: pool.length,
         shortfall: 0,
@@ -70,8 +80,7 @@ export function availabilityFromPool(
       blockedBy: check.sufficient ? null : 'content',
       reason: check.sufficient
         ? null
-        : `This format needs ${requested} reviewed questions and the bank currently holds ` +
-          `${Math.max(0, requested - check.shortfall)} that fit it. It will open as the bank grows.`,
+        : { kind: 'content', requested, available: Math.max(0, requested - check.shortfall) },
       itemsRequested: requested,
       itemsAvailable: Math.max(0, requested - check.shortfall),
       shortfall: check.shortfall,

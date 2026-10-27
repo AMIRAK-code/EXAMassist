@@ -1,5 +1,6 @@
 import type { Db } from '@/lib/db';
 import { requireExamConfig, labelsFor } from '@/lib/exams/registry';
+import { msg, type Msg } from './text';
 
 /**
  * Study recommendations.
@@ -121,11 +122,11 @@ export type RecommendationKind =
 
 export interface Recommendation {
   kind: RecommendationKind;
-  title: string;
+  title: Msg;
   /** Stated plainly so the learner can judge whether they agree. */
-  because: string;
+  because: Msg;
   href: string;
-  actionLabel: string;
+  actionLabel: Msg;
   priority: number;
   /** The skill or topic a drill targets, so callers need not parse the link. */
   skillSlug?: string;
@@ -148,11 +149,10 @@ export function buildRecommendations(input: RecommendationInput): Recommendation
     return [
       {
         kind: 'get_started',
-        title: 'Take a short session to find your starting point',
-        because:
-          'You have not answered any questions for this exam yet, so there is nothing to base advice on.',
+        title: msg('steps.getStarted.title'),
+        because: msg('steps.getStarted.because'),
         href: `/practice/${examKey}`,
-        actionLabel: 'Start practising',
+        actionLabel: msg('steps.getStarted.action'),
         priority: 0,
       },
     ];
@@ -161,11 +161,10 @@ export function buildRecommendations(input: RecommendationInput): Recommendation
   if (input.dueReviewCount > 0) {
     recommendations.push({
       kind: 'due_review',
-      title: `Revisit ${input.dueReviewCount} question${input.dueReviewCount === 1 ? '' : 's'} you got wrong`,
-      because:
-        'Questions you missed come back after a short interval, which is when reviewing them is worth most.',
+      title: msg('steps.dueReview.title', { count: input.dueReviewCount }),
+      because: msg('steps.dueReview.because'),
       href: '/review',
-      actionLabel: 'Open mistake notebook',
+      actionLabel: msg('steps.dueReview.action'),
       priority: 1,
     });
   }
@@ -179,12 +178,14 @@ export function buildRecommendations(input: RecommendationInput): Recommendation
   for (const [index, skill] of weak.entries()) {
     recommendations.push({
       kind: 'weak_skill',
-      title: `Drill ${skill.skillLabel}`,
-      because: `You have answered ${skill.answered + skill.omitted} question${
-        skill.answered + skill.omitted === 1 ? '' : 's'
-      } tagged to this skill and got ${skill.correct} right (${Math.round(skill.accuracy * 100)}%).`,
+      title: msg('steps.weakSkill.title', { skill: skill.skillLabel }),
+      because: msg('steps.weakSkill.because', {
+        count: skill.answered + skill.omitted,
+        correct: skill.correct,
+        accuracy: Math.round(skill.accuracy * 100) / 100,
+      }),
       href: `/practice/${examKey}?skill=${encodeURIComponent(skill.skillSlug)}`,
-      actionLabel: 'Practise this skill',
+      actionLabel: msg('steps.weakSkill.action'),
       priority: 2 + index,
       skillSlug: skill.skillSlug,
       domainSlug: skill.domainSlug,
@@ -200,12 +201,13 @@ export function buildRecommendations(input: RecommendationInput): Recommendation
   for (const skill of slow) {
     recommendations.push({
       kind: 'slow_skill',
-      title: `Work on pace in ${skill.skillLabel}`,
-      because: `Your accuracy here is ${Math.round(skill.accuracy * 100)}%, but your median time is ${Math.round(
-        skill.medianTimeMs / 1000,
-      )} seconds a question. Accuracy is not the problem; speed is.`,
+      title: msg('steps.slowSkill.title', { skill: skill.skillLabel }),
+      because: msg('steps.slowSkill.because', {
+        accuracy: Math.round(skill.accuracy * 100) / 100,
+        seconds: Math.round(skill.medianTimeMs / 1000),
+      }),
       href: `/practice/${examKey}?skill=${encodeURIComponent(skill.skillSlug)}`,
-      actionLabel: 'Practise under time',
+      actionLabel: msg('steps.slowSkill.action'),
       priority: 6,
       skillSlug: skill.skillSlug,
       domainSlug: skill.domainSlug,
@@ -216,10 +218,10 @@ export function buildRecommendations(input: RecommendationInput): Recommendation
   for (const [index, domain] of input.untouchedDomains.slice(0, 2).entries()) {
     recommendations.push({
       kind: 'untouched_domain',
-      title: `Try ${domain.name}`,
-      because: `You have not answered any questions in this topic yet, so there is a blind spot in your picture.`,
+      title: msg('steps.untouchedDomain.title', { topic: domain.name }),
+      because: msg('steps.untouchedDomain.because'),
       href: `/practice/${examKey}?domain=${encodeURIComponent(domain.slug)}`,
-      actionLabel: 'Practise this topic',
+      actionLabel: msg('steps.untouchedDomain.action'),
       priority: 7 + index,
       domainSlug: domain.slug,
     });
@@ -229,10 +231,10 @@ export function buildRecommendations(input: RecommendationInput): Recommendation
   if (weak.length === 0 && noSignal > 0) {
     recommendations.push({
       kind: 'needs_more_data',
-      title: 'Answer a few more questions before drawing conclusions',
-      because: `${noSignal} of your skills have fewer than ${MIN_ATTEMPTS_FOR_SIGNAL} answers, which is too few to tell a weakness from a bad day.`,
+      title: msg('steps.needsMoreData.title'),
+      because: msg('steps.needsMoreData.because', { count: noSignal, min: MIN_ATTEMPTS_FOR_SIGNAL }),
       href: `/practice/${examKey}`,
-      actionLabel: 'Practise more',
+      actionLabel: msg('steps.needsMoreData.action'),
       priority: 9,
     });
   }

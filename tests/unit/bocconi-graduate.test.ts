@@ -11,7 +11,7 @@ import {
   listHubs,
   requireExamConfig,
 } from '@/lib/exams/registry';
-import { copy as otherRoutesCopy } from '@/components/exams/other-routes';
+import examsMessages from '../../messages/en/exams.json';
 
 /**
  * Bocconi admission is two tracks with different tests. The bachelor and law
@@ -82,10 +82,11 @@ describe('the two Bocconi hubs', () => {
     expect(gre.note).not.toMatch(/\b1[3-7]\d\b|\b3[0-4]\d\b/);
   });
 
-  it('labels each route’s audience in the component copy', () => {
+  it('labels each route’s audience in the exams catalogue', () => {
+    const audience: Record<string, string> = examsMessages.audience;
     for (const hub of EXAM_HUBS) {
       for (const route of hub.otherRoutes ?? []) {
-        expect(otherRoutesCopy.audience[route.audience]).toBeTruthy();
+        expect(audience[route.audience]).toBeTruthy();
       }
     }
   });

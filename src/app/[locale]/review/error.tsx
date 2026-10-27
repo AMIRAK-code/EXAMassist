@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { Alert, Button, Container, PageHeader } from '@/components/ui';
 
@@ -8,15 +9,16 @@ import { Alert, Button, Container, PageHeader } from '@/components/ui';
  * never shows an empty notebook that would read as "no mistakes".
  */
 export default function NotebookError({ reset }: { error: Error & { digest?: string }; reset: () => void }) {
+  const t = useTranslations('results.notebookError');
   return (
     <Container>
-      <PageHeader title="Mistake notebook" />
-      <Alert tone="negative" title="Your notebook could not be loaded" role="alert" className="mb-6">
-        <p>Something went wrong while reading your mistakes. Try again in a moment.</p>
+      <PageHeader title={t('title')} />
+      <Alert tone="negative" title={t('alertTitle')} role="alert" className="mb-6">
+        <p>{t('body')}</p>
       </Alert>
       <div className="flex flex-wrap items-center gap-3">
-        <Button onClick={() => reset()}>Try again</Button>
-        <Link href="/dashboard">Back to your dashboard</Link>
+        <Button onClick={() => reset()}>{t('retry')}</Button>
+        <Link href="/dashboard">{t('back')}</Link>
       </div>
     </Container>
   );

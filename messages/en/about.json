@@ -1,1 +1,453 @@
-{}
+{
+  "shared": {
+    "home": "Home",
+    "eyebrow": "About {name}",
+    "inShort": "In short",
+    "byline": "By {publisher} · Published <published>{publishedDate}</published> · Updated <updated>{updatedDate}</updated>"
+  },
+  "editorialStandards": {
+    "meta": {
+      "title": "Editorial standards",
+      "description": "How Examer creates, checks and publishes practice questions: original, AI-assisted drafting, a blind solve by a separate AI reviewer, mechanical comparison against the answer key, and quarantine instead of quiet correction."
+    },
+    "title": "Editorial standards",
+    "lead": "What has to be true before a question is shown to anyone, and what we refuse to claim about it afterwards.",
+    "inShort": "Every practice question on {name} is original, AI-assisted material. Before it is published, a separate AI reviewer solves it from scratch without seeing the proposed answer, and the comparison between that solution and the key is made by the same scoring code the app uses. When the two disagree the question is quarantined — not quietly corrected. No per-question human review is recorded today, and we say so rather than imply one. Difficulty labels are editorial judgement, not calibrated statistics, and every claim we make about an exam’s format is sourced to the test maker and dated.",
+    "original": {
+      "heading": "1. All questions are original",
+      "p1": "The question contract permits exactly one provenance for anything that reaches a learner: <code>original</code>, owned by us. We do not reproduce, adapt or paraphrase official question banks, retired forms, or any other publisher’s items, and there is no code path that would let a question of another provenance be published.",
+      "p2": "Every question record identifies the role that drafted it, records that a model assisted the drafting, and carries its rights status. Anything a model helped draft enters the bank as a <code>draft</code>, and no question reaches learners without passing every step below."
+    },
+    "states": {
+      "heading": "2. The five states a question can be in",
+      "intro": "Publication is a state, not an opinion. These are the only five states a question can hold, and only one of them is served to learners.",
+      "draft": "Being written. Anything a model helped draft enters here and cannot skip the queue. Drafts are never delivered to a learner.",
+      "inReview": "Queued for the blind independent solve. This is the only state the review export picks up.",
+      "published": "Passed every automatic check and the independent solve. Only published questions are served in practice, diagnostics and simulations.",
+      "quarantined": "The reviewer disagreed with the answer key, or could not confirm that only one answer works. The question is withdrawn from the bank with the reason recorded, and stays out until it is rewritten and passes a new blind solve.",
+      "retired": "Withdrawn deliberately — superseded, or made wrong by a change to the exam. Results that already reference it are untouched, because an attempt points at an immutable question version."
+    },
+    "automatic": {
+      "heading": "3. What code checks before any review",
+      "intro": "A validator runs over every question in the repository as part of the build. These checks are cheap, boring and absolute — they exist so that review is spent on whether the question is <em>right</em>, not on whether it is well formed.",
+      "checks": {
+        "duplicates": "Answer choices that mean the same thing are rejected. Choice text is normalised numerically first, so “0.50”, “.5” and “1/2” collide as one answer offered twice. Punctuation is only ignored while testing a numeric reading, because on the SAT and ACT the punctuation often is the question.",
+        "keyExists": "The answer key must name options that exist, and its type must match the question’s response type. A select-all key that includes every option is rejected as not a real question.",
+        "numeric": "Numeric answers must be coherent: no range whose minimum exceeds its maximum, and no negative tolerance.",
+        "distractors": "Every wrong choice needs a written reason it is wrong. A missing or throwaway distractor rationale blocks publication.",
+        "explanationLength": "Explanations have to explain: an explanation shorter than 40 characters is not accepted at all.",
+        "explanationNamesOption": "An explanation that names an option as the answer — “the answer is C”, “so option A must be true” — must name the keyed option. The check reads explicit statements only, so it is a safety net, not a proof that every letter is right.",
+        "references": "A question that refers to a passage, chart or table must refer to one that exists.",
+        "reviewer": "A published question must name a reviewer, and the reviewer must not be the author.",
+        "solveRecord": "A published question must carry a review date and a complete independent-solve record in which the solver agreed with the key and confirmed answer uniqueness.",
+        "difficulty": "Difficulty marked as empirically calibrated is flagged, because we do not hold validated response data to calibrate with."
+      },
+      "outro": "A question that fails any of these is not published. The build fails with it."
+    },
+    "blindSolve": {
+      "heading": "4. The blind solve by a separate AI reviewer",
+      "intro": "This is the control the whole process turns on, so it is worth being precise about how it works. The reviewer is an AI model, separate from the one that drafted the question. A reviewer that can see the proposed answer is not solving the question, it is agreeing with it. So the reviewer never sees it.",
+      "strippedHeading": "The batch is stripped, then the stripping is checked",
+      "stripped": "Questions waiting for review are exported to a separate file with the answer key, the explanation and the distractor reasoning removed. The export then re-reads what it wrote and fails loudly if any of those three fields appears anywhere in the file. A leak stops the batch rather than quietly degrading the review.",
+      "scratchHeading": "The reviewer solves it from scratch",
+      "scratch": "The reviewer receives the stem, the instructions, the passage or chart and the answer choices — nothing else — together with a statement of exactly how to express an answer of that type. They record the answer they reached, their working notes, and whether they confirmed that only one choice is defensible.",
+      "mechanicalHeading": "The comparison is mechanical",
+      "mechanical": "The reviewer is never asked whether they agree. Their answer is parsed into a response and run through the same scoring engine that marks a learner’s attempt, and the engine decides whether it matches the author’s key. That removes the most common failure mode in editorial review: a reviewer who half-recognises the intended answer and talks themselves into it.",
+      "quarantineHeading": "Disagreement quarantines, it does not fix",
+      "quarantine": "If the solved answer matches the key <em>and</em> uniqueness was confirmed, the question is published with the reviewer’s role, the date and the full solve record attached. In every other case — a mismatch, or uniqueness left unconfirmed — the question moves to <code>quarantined</code>, with the reviewer’s answer and notes written into the reason, and it leaves the live bank. Nothing in that path infers what the author “meant”. A disputed question stays out until it is rewritten and passes a new blind solve."
+    },
+    "roles": {
+      "heading": "5. Who does what, as the records show it",
+      "intro": "A check done by a model is not the same as a check done by a person, so here is the list, step by step. It describes what the question records actually contain.",
+      "drafting": {
+        "term": "Drafting",
+        "value": "An AI model, working to the exam’s official taxonomy. Every published record says a model assisted and names the drafting role, not a person."
+      },
+      "checks": {
+        "term": "Automatic checks",
+        "value": "Code: the content validator described in section 3, run over every question on every build."
+      },
+      "blindSolve": {
+        "term": "Blind solve",
+        "value": "A separate AI reviewer, given the question without its key, explanation or distractor notes. Its role is recorded on the question and is never the drafting role."
+      },
+      "comparison": {
+        "term": "Comparison with the key",
+        "value": "Code: the same scoring engine that marks learners’ answers."
+      },
+      "humanReview": {
+        "term": "Human review of each question",
+        "value": "Not recorded today. No question record names a human reviewer, so we do not claim one. Explanations are not yet independently re-read for teaching quality either."
+      },
+      "reports": {
+        "term": "Learner reports",
+        "value": "Triaged in a role-gated editor area by a signed-in editor account."
+      }
+    },
+    "limits": {
+      "heading": "6. What review does not establish",
+      "badgeEditorial": "Difficulty labels are editorial",
+      "badgeNotCalibrated": "Not calibrated",
+      "badgeNoPrediction": "No score prediction",
+      "p1": "Every question carries an easy, medium or hard label, and every one of those labels is our editorial judgement of how hard the question ought to be. They are not calibrated against test-taker data, because we do not hold validated response data to calibrate with — and a label that claimed otherwise would be a statistic we invented. Where a question’s difficulty basis says “empirical”, the validator flags it.",
+      "p2": "For the same reason: a review tells you a question is correct and unambiguous. It tells you nothing about where a set of these questions would place you on an exam’s reported scale. Why we publish no scaled score, percentile or admission estimate is set out in <link>how scoring works</link>."
+    },
+    "examFacts": {
+      "heading": "7. How exam facts are verified and dated",
+      "p1": "Format, timing, navigation, calculator policy and scoring are not written from memory. Each exam has a research record holding the verified claims, the sources behind them with publisher and fetch status, a verification date, and — the part that matters most — an explicit list of the things the test maker does <strong>not</strong> publish.",
+      "p2": "The research documents in the repository are generated from those records by a pure transformation, deliberately, so that the documentation cannot assert anything the record does not already contain. A fact changes in the record and the document follows; never the reverse.",
+      "p3": "The unverifiable list has teeth. Where a rule cannot be verified, the feature that depends on it is <em>disabled</em> rather than estimated, and the exam page says which feature and why. Where we do approximate something, the approximation is labelled as ours on the page where it applies: the second-stage routing threshold in our Digital SAT simulation, for instance, is our own published rule, not College Board’s.",
+      "p4": "Date-sensitive facts such as booking windows and test dates are reviewed on a shorter cycle than rule facts, and rule facts are re-verified before any release that changes how a simulation behaves. Every current exam record was verified on <time>{date}</time>."
+    },
+    "corrections": {
+      "heading": "8. Corrections",
+      "p1": "Controls catch a great deal and never everything. If a question looks wrong, ambiguous or badly worded, tell us. The report goes into the editor area’s review queue, with the question and the version you saw attached to it.",
+      "p2": "Corrections are made as new versions, never by editing what a learner already saw. In September 2026 an audit found that reordering answer options had left 104 published explanations referring to options by their old letters, 91 of them in a way that pointed to a wrong option as the answer. Each was corrected as a new version, withdrawn from new sessions until a separate AI reviewer had re-checked its option references and a new blind solve had passed, and then restored. Earlier attempts keep the version they were shown. A second check the same month had a separate AI reviewer test every claim the remaining 180 published explanations and distractor notes make about the options. It confirmed every answer key and found false statements in 37 questions, such as a note describing an error that does not lead to its option. Those were corrected and reviewed the same way, together with one chart whose week labels did not match its text.",
+      "cardTitle": "Found a problem in a question?",
+      "cardBody": "No account needed. It takes about a minute, and it is the fastest way to get a bad question out of the bank.",
+      "cardLink": "Report a question →"
+    },
+    "refusals": {
+      "heading": "9. What we will not do",
+      "reproduce": "Reproduce, adapt or paraphrase an official question. Every item here is ours, and the content contract permits nothing else.",
+      "scaled": "Report a scaled score, a percentile, a score band or an admission probability. No test maker we cover publishes the equating that would make such a number honest.",
+      "target": "Present a “target score” for an admissions process that is decided by competitive ranking.",
+      "ours": "Describe a difficulty label, a routing rule or a timing allowance as the exam’s when it is ours.",
+      "dates": "Refresh a published or updated date to look current. The dates on this site are the dates the work was done.",
+      "affiliation": "Claim an affiliation with, or endorsement by, any test maker. We have neither; the notice in the site footer is the full statement."
+    }
+  },
+  "howScoringWorks": {
+    "meta": {
+      "title": "How our scoring works",
+      "description": "What Examer reports after a practice session — raw marks, accuracy by topic and pacing — and why it reports no scaled score, no percentile and no admission estimate for any exam, with the per-exam rules for correct, wrong and omitted answers."
+    },
+    "title": "How our scoring works",
+    "lead": "What a practice result here means, what it deliberately does not contain, and the scoring rule each exam actually applies.",
+    "inShort": "We report what we can count: how many questions you answered correctly, how many you left blank, how that splits by topic and skill, how long you took, and — where the exam has real negative marking — your penalty-adjusted points. We report no scaled score for any exam, because the tables that convert raw answers into a scaled score are unpublished for every exam we cover. We also report no percentile and no estimate of an admission outcome.",
+    "report": {
+      "heading": "1. What a result contains",
+      "raw": {
+        "term": "Raw marks",
+        "value": "How many questions you answered correctly, how many you got wrong, and how many you left blank."
+      },
+      "points": {
+        "term": "Points, where the exam has a penalty",
+        "value": "On an exam with negative marking we also show points earned out of points possible, applying the exam’s own published penalty. On an exam without one, points and raw marks are the same number."
+      },
+      "topic": {
+        "term": "Accuracy by topic and skill",
+        "value": "The same breakdown split by section, content domain and individual skill, so a weak area is visible rather than averaged away."
+      },
+      "pacing": {
+        "term": "Pacing",
+        "value": "Total time and median time per question, which on a timed format usually explains more than the raw mark does."
+      },
+      "session": {
+        "term": "What the session was and was not",
+        "value": "Every result carries the fidelity of the format you took, the exam’s official scoring rules as published facts, and the list of rules the test maker does not publish."
+      },
+      "topicHeading": "What accuracy by topic looks like",
+      "topicBody": "Every figure comes with the number of questions behind it. With fewer than {min} answers in a topic, the dashboard says so instead of printing a percentage."
+    },
+    "refuse": {
+      "heading": "2. What a result never contains, and why",
+      "intro": "These are not features we have not built yet. They are numbers we have decided cannot be produced honestly from what test makers publish, so the field that would hold a reported score is left empty in our database rather than filled with an estimate.",
+      "scaled": {
+        "claim": "A scaled score (400–1600, 1–36, 120–180, 205–805, 130–170, and so on)",
+        "why": "Every one of those scales is produced by equating, and no test maker we cover publishes the tables, item parameters or transformations that equating uses. A number produced without them would be invented, however carefully it was dressed up."
+      },
+      "percentile": {
+        "claim": "A percentile or a score band",
+        "why": "A percentile is a statement about a reference population. We have no calibrated reference population, and a percentile computed against the people who happened to use this site would describe our visitors, not test takers."
+      },
+      "admission": {
+        "claim": "A probability of admission, or a “target score”",
+        "why": "Admission decisions are made by institutions using criteria they control, and several of the processes we cover — Bocconi’s among them — are competitive rankings with no published cut-off at all. There is no honest arithmetic from a practice session to an admission outcome."
+      },
+      "readiness": {
+        "claim": "A readiness verdict dressed up as a measurement",
+        "why": "We will happily tell you that you got 6 of 10 Algebra questions right and spent 2 minutes each. We will not convert that into a claim about how you would perform on test day."
+      }
+    },
+    "twoCases": {
+      "heading": "3. Two exams that show why the rule is not one rule",
+      "intro": "“No scaled score” sounds like a single policy. It is really the same conclusion reached from two very different directions, and the Digital SAT and the Online Bocconi Test are the clearest illustration.",
+      "satHeading": "Digital SAT — no penalty, but the scale is not arithmetic",
+      "satBadge": "No penalty for a wrong answer",
+      "satP1": "A wrong answer and a blank both score zero, so on the real exam guessing is never worse than leaving a question blank. That part is simple. The scale is not: College Board produces the 200–800 section score with Item Response Theory over the specific items administered, not from a count of correct answers. Its own guidance states that two students who answer the same number of questions correctly in a section may earn different section scores.",
+      "satP2": "The item parameters and the transformation onto the scale are unpublished, so there is no arithmetic that turns “38 of 44 correct on our questions” into an SAT section score. The 400–1600 scale is recorded on our exam pages as a fact about the exam. We do not place your result on it.",
+      "bocconiHeading": "Online Bocconi Test — the penalty is real, and the raw total is the score",
+      "bocconiBadge": "Negative marking",
+      "bocconiP1": "Bocconi publishes its scoring outright: a correct answer scores +1, an omitted answer scores 0, and a wrong answer costs 0.2 points — 0.33 points on critical-thinking items presented with only three options. The penalty belongs to the item, not to the exam, which is why the table below records the exam-level rule and our engine applies the heavier penalty to the items that carry it.",
+      "bocconiP2": "Two consequences follow, and both are practical rather than theoretical. First, omitting genuinely beats blind guessing here, which is the opposite of the advice that works on the SAT. Second, there is no scale to estimate: the result Bocconi reports <em>is</em> the penalty-adjusted raw total out of 50, with per-area subscores and the counts of correct, wrong and omitted answers. So our result screen shows you the same shape of information, and stops there.",
+      "bocconiP3": "Bocconi states that an applicant scoring below 17 “will not be considered in the selection process”. That is an eligibility floor, not a pass mark and not a target: admission is decided by a competitive ranking that weights the test 55% and high-school GPA 45%, and no cut-off is published for any programme or round."
+    },
+    "table": {
+      "heading": "4. The scoring rule for every exam we cover",
+      "intro": "These are the exams’ own published rules, and they are the rules our engine applies to a practice attempt. The reported scale in the final column is a fact about the exam: we record it, and we do not produce a score on it.",
+      "caption": "Points awarded per answer, and the scale each test maker reports. No exam in this table has a published raw-to-scale conversion, so no scaled score is produced for any of them.",
+      "exam": "Exam",
+      "correct": "Correct",
+      "wrong": "Wrong",
+      "omitted": "Omitted",
+      "scale": "Officially reported scale",
+      "negativeMarking": "Negative marking",
+      "noPenalty": "No penalty",
+      "noScale": "No single reported scale",
+      "exception": "One exception the table cannot hold: on both Bocconi variants, critical-thinking items offered with three answer options carry a heavier penalty of 0.33 points instead of 0.2. That penalty attaches to the individual item, so the column above shows the exam-level rule."
+    },
+    "noScaled": {
+      "heading": "5. Why there is no scaled score, exam by exam",
+      "intro": "The reasons differ enough to be worth reading in full for the exam you are preparing for. Each is the reason recorded in our exam configuration, which is also what the methodology note on your result links back to.",
+      "summary": "Why no scaled score for the {exam}?"
+    },
+    "ours": {
+      "heading": "6. The parts that are ours, labelled as ours",
+      "intro": "Some things we have to choose, because the test maker does not publish them. Wherever that happens the choice is disclosed on the screen where it applies, never presented as the exam’s own rule:",
+      "difficulty": "<strong>Difficulty labels.</strong> Easy, medium and hard are our editorial judgement. They are not calibrated against test-taker data — see <link>editorial standards</link>.",
+      "routing": "<strong>Adaptive routing thresholds.</strong> Where an exam routes between modules, the real cut score is unpublished. The threshold we use is ours, it is stated on the simulation, and it is stored with the attempt so resuming replays the same path.",
+      "counts": "<strong>Item counts where the exam does not publish them,</strong> and any extended time setting, which is a study aid rather than a replica of an accommodation."
+    },
+    "using": {
+      "heading": "7. Getting something useful out of a result anyway",
+      "body": "A raw mark from one session is a small sample, and treating it as a measurement is the fastest way to be misled by it. Two things in a result are genuinely informative early on: which content domains you miss repeatedly, and where your time goes. Both are reported per topic and per skill precisely because they are actionable in a way a single headline number is not.",
+      "alertTitle": "A practice result is a study signal, not a score",
+      "alertBody": "Nothing here is a prediction of your performance on test day or of an admission decision. If you want to know what a given exam’s score means, its format guide records the official scale, the published rules and the things the test maker does not publish.",
+      "browse": "Browse the exam format and scoring guides →"
+    }
+  },
+  "privacy": {
+    "meta": {
+      "title": "Privacy notice (draft)",
+      "description": "Draft privacy notice for Examer, prepared for legal review: one session cookie, one language cookie, optional email and password, practice history, paid plans through Stripe, no advertising, no third-party analytics, and export or deletion from your account page."
+    },
+    "breadcrumb": "Privacy notice",
+    "draftTitle": "Draft — prepared for review, not yet reviewed by a lawyer",
+    "draftBody": "This is a working draft written by the {name} team to describe what the application actually does. It has not been reviewed or approved by a lawyer, it is not legal advice, and it is not a contract. The open questions we cannot answer ourselves are listed in full at the <link>end of the page</link> rather than filled in with boilerplate.",
+    "languageVersions": "This notice is published in English, Italian, Turkish, Spanish and Polish. If the language versions differ, the English version prevails.",
+    "title": "Privacy notice",
+    "lead": "What this application stores, why it stores it, and what it deliberately never collects.",
+    "inShort": "You can use {name} without giving us anything: practising without an account creates a guest record that holds no personal data at all. If you do create an account we hold your email address, a salted hash of your password, any study settings you set, and your practice history. We set two cookies of our own: one only keeps you signed in, and the other only remembers the language you chose (Stripe adds its own fraud-prevention cookies only where you enter a card). There is no advertising and no third-party analytics. If you buy a plan, Stripe takes the payment in its own secure card fields and we keep only which plans you hold. You can export or delete your data from your <link>account page</link>.",
+    "drafted": "Drafted by {publisher} · <time>{date}</time>",
+    "hold": {
+      "heading": "1. What we hold",
+      "session": {
+        "term": "A session cookie",
+        "value": "One cookie, named examer_session. It carries a random token, is set HttpOnly and SameSite=Lax, is marked Secure in production, and lasts 30 days for an account or 7 days for a guest session. The server stores only a SHA-256 hash of the token, so the session table cannot be used to impersonate anyone."
+      },
+      "language": {
+        "term": "A language cookie",
+        "value": "One cookie, named NEXT_LOCALE. It is set when you open a page in a language or pick one from the language menu, and it holds only that language’s code (for example “it”), so that a link without a language opens in the one you last used. It lasts up to one year and is set SameSite=Lax. It is a functional cookie: it is not linked to your account, nothing about it is stored on our server, and it is not used for tracking, advertising or measurement."
+      },
+      "guest": {
+        "term": "A guest account, if you never sign up",
+        "value": "Practising without an account creates a real user row so your history persists and can be claimed later. It holds no email, no password and no name — nothing that identifies a person."
+      },
+      "credentials": {
+        "term": "Your email address and password, if you create an account",
+        "value": "The email address is stored as you typed it, lowercased. The password is never stored: we keep a salted scrypt hash of it and compare against that. We also note when you confirmed the address with a code, if you did."
+      },
+      "codes": {
+        "term": "One-time email codes, if you ask for them",
+        "value": "When you ask for a sign-in code or a password reset, or confirm your address, we store what the code is for, the address it went to, when it was sent and expires, how many wrong guesses were made, and whether it was used. The code itself is never stored: only a keyed hash of it. A code works once and expires after 10 minutes. Asking for a new one deletes the previous one, and expired codes are deleted the next time anyone asks for a code once they are more than a day old."
+      },
+      "profile": {
+        "term": "Optional profile and study settings",
+        "value": "A display name, a target exam, a target date, a weekly study-minutes goal, and a self-declared flag for being under 16. We do not ask for a date of birth, a school, a country or a phone number."
+      },
+      "history": {
+        "term": "Your practice history",
+        "value": "The attempts you start, the answers you give, which questions you flagged, how long each question took, and the computed result of each attempt."
+      },
+      "reports": {
+        "term": "Question reports you send us",
+        "value": "The question you reported, the reason you chose, whatever you typed in the details box, and your user id if you were signed in when you sent it."
+      },
+      "tutor": {
+        "term": "AI tutor requests (only if you use it)",
+        "value": "When you press a button asking the optional AI tutor for a hint, a deeper explanation or an after-test guide, we log that you asked, when, and whether it worked, so the daily allowance can be enforced. After-test guides are stored against your account so you can see them again; hints and explanations are about a question rather than about you and are stored without your id."
+      },
+      "billing": {
+        "term": "Billing (only if you buy a plan)",
+        "value": "When you buy a plan we create a customer for you at Stripe, our payment provider, with your email address, your display name if you set one, and your account id, and we keep the Stripe customer and subscription ids, each plan and the exam it covers, its status, its renewal date, and when you asked for immediate access and acknowledged the end of the withdrawal right. Your card details are typed into fields provided by Stripe on our checkout and account pages and go straight to Stripe; they never reach our servers. We show the card brand and last four digits, read from Stripe, on your account page."
+      },
+      "rateLimits": {
+        "term": "Rate-limit counters",
+        "value": "To stop abuse we count requests per caller in fixed windows. The counter key is a SHA-256 hash of an identifier, so a raw IP address is never written to the database."
+      },
+      "totals": {
+        "term": "Daily totals (no personal data)",
+        "value": "To see whether our exam pages are useful we keep plain daily totals of a few events: views of the exam pages and the plans page, checkouts started and plans bought, each with the exam concerned and a coarse source for page views (search engine, AI assistant, this site, another site, or none). Each total is just a number for a day. No account id, cookie, IP address, browser details or full referring address is recorded, so no total can be linked to you. Whether you started or finished a free test is part of your practice history above."
+      }
+    },
+    "doNot": {
+      "heading": "2. What we do not do",
+      "advertising": "No advertising, and no advertising or tracking pixels of any kind.",
+      "analytics": "No third-party analytics. There is no Google Analytics, no product-analytics SDK, and no session recording.",
+      "cards": "No card details. Card numbers are typed into Stripe’s own secure fields on our checkout page, so they go to Stripe and are never stored or seen by us.",
+      "cookies": "No cookies other than the session cookie and the language cookie, with one exception: when you enter a card (at checkout, or when you update your card on the account page) Stripe’s payment script sets its own fraud-prevention cookies (__stripe_mid and __stripe_sid). Nothing is stored on your device for advertising, measurement or personalisation; the daily totals described above are counted on our server and identify nobody.",
+      "selling": "No selling, renting or sharing of personal data with third parties for their own purposes.",
+      "ai": "No AI unless you ask for it. The optional AI tutor sends nothing until you press one of its buttons, and it is never needed to practise: every question has its own reviewed explanation.",
+      "marketing": "No email marketing. We hold your address to let you sign in, not to send you campaigns. The only emails we send are the codes described above, as plain text, so they carry no tracking pixel."
+    },
+    "why": {
+      "heading": "3. Why we hold it",
+      "signedIn": "<strong>To keep you signed in.</strong> That is the entire job of the session cookie.",
+      "language": "<strong>To show the site in your language.</strong> That is the entire job of the language cookie.",
+      "history": "<strong>To give you your practice history back.</strong> Results, topic breakdowns and the “don’t show me this question again for a month” behaviour all need the history to exist.",
+      "fix": "<strong>To fix bad questions.</strong> A report tells our editors which question and which version to look at.",
+      "tutor": "<strong>To answer an AI tutor request you made.</strong> Only when you press the button, and only with the question content and performance figures described in the open questions below.",
+      "codes": "<strong>To send the codes you ask for.</strong> A sign-in code, a password reset code, or the code that confirms your address when you create an account.",
+      "abuse": "<strong>To stop abuse.</strong> Sign-in attempts, sign-ups, guest creation, attempt starts, answer writes, email codes and question reports are all rate limited.",
+      "noProfiling": "We do not profile you, we do not build an advertising audience, and we do not use your practice history for anything except showing it to you and selecting questions you have not recently seen."
+    },
+    "security": {
+      "heading": "4. How it is protected",
+      "passwords": "Passwords are hashed with scrypt and a per-password salt. A leaked database does not hand over passwords.",
+      "sessions": "Session tokens are stored only as SHA-256 hashes, so a leaked database does not hand over live sessions either.",
+      "codes": "Email codes are stored only as hashes keyed with a secret that is not in the database. Each works once, expires after 10 minutes and stops working after five wrong guesses.",
+      "scoping": "Every private page and every private API route resolves who you are on the server and filters data by your own user id. An id in a URL is never trusted to identify you.",
+      "origin": "State-changing requests are checked against the site’s own origin, in addition to the SameSite cookie setting.",
+      "rateLimitKeys": "Rate-limit keys are hashed, so raw IP addresses are not stored."
+    },
+    "controls": {
+      "heading": "5. What you can do",
+      "export": "<strong>Export.</strong> Download everything associated with your account from your account page.",
+      "delete": "<strong>Delete.</strong> Delete your account from the same place. See the open question below about what deletion should mean underneath.",
+      "signOut": "<strong>Sign out everywhere.</strong> Signing out destroys the session; resetting your password destroys every session for the account.",
+      "guest": "<strong>Stay a guest.</strong> If you never sign up, there is nothing personal to export or delete in the first place — clearing the session cookie ends the session.",
+      "language": "<strong>Change or clear your language.</strong> Pick another language from the language menu at any time, or delete the language cookie in your browser; the site then shows English, or the language your browser asks for.",
+      "accountLink": "Go to your account page →"
+    },
+    "openQuestions": {
+      "heading": "Open questions for legal review",
+      "intro": "These are the points this draft cannot settle on its own. They are listed rather than guessed at, because a confident-sounding answer here would be worse than an admitted gap.",
+      "controller": "The controller: which legal entity operates this service, in which jurisdiction, and what the contact address for privacy requests should be. Nothing below can be finalised until this is settled.",
+      "lawfulBasis": "The lawful basis for each processing purpose under the GDPR — most plausibly contract for the account and the practice history, legitimate interests for rate limiting and abuse prevention — and whether that analysis survives review.",
+      "retention": "Retention periods. Today nothing expires except sessions (30 days, or 7 for a guest), rate-limit windows (purged after 24 hours), email codes (described above) and the language cookie (one year, in your browser only). How long an inactive guest account, a practice history and a resolved question report should be kept needs a decision and then an implementation.",
+      "deletion": "Whether deletion should be a hard delete or the soft delete currently implemented. Today deletion marks the account deleted so it stops resolving and stops appearing anywhere; what happens to the underlying attempt rows, and after how long, is an open decision.",
+      "minors": "Whether users under 16 need verifiable parental consent in each jurisdiction we serve, and whether a self-declared flag is defensible at all. The age flag exists in the code and is self-declared; we do not verify it and we do not currently ask for consent.",
+      "hosting": "Where the data is hosted, whether any international transfer occurs, and what the transfer mechanism and sub-processor list should say. The application uses one database. Three third-party services are involved: the optional AI tutor, described in the next point; the payment provider, Stripe, described after it; and the email provider, Brevo, which delivers the one-time codes. For each code email Brevo receives the recipient address, the subject and the plain-text message, which contains the code. What needs settling for Brevo: its status as a processor and the data-processing terms of the account, its retention of message content and delivery logs, and where it processes data.",
+      "tutor": "The AI tutor. When a learner presses a tutor button, the server sends the question, its choices, our reviewed explanation, which choice the learner picked and - for an after-test guide - the session’s aggregate results to the model provider (Anthropic) through its API. No name, email address, account id or free text typed by the learner is sent. What needs settling: the provider’s status as a processor and the data-processing terms under which the API key is issued; the provider’s retention and use of request content under those terms, which we have not verified and so do not describe here; the international-transfer mechanism, if the provider processes outside the learner’s jurisdiction; whether performance data counts as personal data once separated from the account; and whether learners under 16 may use the tutor without parental consent. Until these are settled, an operator can leave the tutor switched off, and the site works fully without it.",
+      "payments": "Payments. When a learner buys a plan, the server creates a Stripe customer with the account’s email address, display name (if set) and account id, and Stripe collects the card in its own secure fields embedded in our checkout page (Stripe.js loads from js.stripe.com on the checkout and account pages only). What needs settling: whether Stripe’s fraud-prevention cookies, set only on the pages where a card is entered, count as strictly necessary (our view) or need consent; whether Stripe acts as our processor or as an independent controller for payment data; how long billing records must be kept for tax and accounting, which may override a deletion request for those records; the international-transfer mechanism; and whether minors may buy a plan.",
+      "cookies": "Whether the session cookie qualifies as strictly necessary in every jurisdiction served — our view is that it does, which is why no consent banner is shown — and whether the language cookie, which only remembers the language you chose, is exempt from consent as a user-interface preference for its one-year lifetime (also our view); and confirmation that nothing else on the site would trigger consent requirements.",
+      "rights": "The process and deadlines for handling access, rectification, portability, objection and erasure requests, and who is accountable for meeting them.",
+      "breach": "Breach notification: the threshold, the internal process and the notification timetable.",
+      "trademark": "The wording of the trademark and non-affiliation notice, which appears on every page and is drafted by us rather than by a lawyer."
+    }
+  },
+  "terms": {
+    "meta": {
+      "title": "Terms of use (draft)",
+      "description": "Draft terms of use for this exam preparation site, prepared for legal review. Includes the open questions a lawyer still needs to settle."
+    },
+    "breadcrumb": "Terms of use",
+    "title": "Terms of use",
+    "draftTitle": "This is a draft, not a finished legal document",
+    "draftBody": "It was written by the engineering team to describe what this application actually does, so that a qualified lawyer has something concrete to review. It has not been reviewed by one, it is not legal advice, and the open questions at the end are genuinely open.",
+    "languageVersions": "These terms are published in English, Italian, Turkish, Spanish and Polish. If the language versions differ, the English version prevails.",
+    "drafted": "Drafted <time>{date}</time>.",
+    "service": {
+      "heading": "What this service is",
+      "p1": "{name} is a study tool. It provides original practice questions, worked explanations, and guides describing the published format and scoring rules of several university admission tests. It is a preparation aid and nothing more.",
+      "p2": "The guides, the sample questions and the format pages are open to everyone. A free account can also take the free diagnostic for every exam: the same fixed questions for every account, with full results. Practice sessions, timed sections, full simulations, the study plan and the AI tutor need a paid plan, described below."
+    },
+    "plans": {
+      "heading": "Plans and payments",
+      "plans": "<strong>All access</strong> opens every exam, every practice format, the study plan and the AI tutor. <strong>Single exam</strong> opens every practice format and the study plan for the one exam you choose; you can hold several. The plans and their prices are on the <link>pricing page</link>. Prices are in euros, include VAT and are charged monthly.",
+      "payment": "Payment is taken by Stripe, our payment provider, at the start of each month. Card details are typed into fields provided by Stripe on our checkout page and go straight to Stripe; they never reach us.",
+      "renewal": "A subscription renews automatically every month until it is cancelled. You can cancel at any time from <link>your account</link>; the plan then stays on until the end of the month already paid for, and nothing more is charged.",
+      "start": "A plan starts as soon as you pay. At checkout you expressly ask us to start it straight away and acknowledge that, once it has started, you lose the 14-day right of withdrawal. We keep a record of when you did.",
+      "failed": "If a renewal payment fails, Stripe retries it for a limited period and your access continues until the end of the month that payment was for. If it still fails, the plan ends.",
+      "priceChange": "If we change a price, the new price applies only from your next renewal, and we will tell you before it does.",
+      "deletion": "Deleting your account cancels your plans immediately, so nothing more is charged for an account that no longer exists."
+    },
+    "independence": {
+      "heading": "Independence and trademarks",
+      "descriptive": "Exam names are used descriptively, to say which exam a guide or question set is about. Nothing here should be read as a claim of partnership, endorsement, licensing or accreditation."
+    },
+    "noPromise": {
+      "heading": "What we do not promise",
+      "score": "We do not promise any score, any score improvement, any admission outcome, or any probability of admission. We do not calculate such figures, because nothing we hold could support one.",
+      "fidelity": "We do not promise that our practice reproduces a real exam. Each practice format carries a label saying how close it is, and what differs.",
+      "current": "We do not promise that exam information here is current. Test makers change their exams. Every factual claim carries the source and the date we checked it, and the official source always wins. Check it yourself before relying on it for a decision.",
+      "service": "We do not promise uninterrupted or error-free service, and this is not a secure environment for high-stakes assessment. Browser-based practice cannot be invigilated."
+    },
+    "conduct": {
+      "heading": "Your account and your conduct",
+      "noAccount": "You may read the guides and try the sample question without an account. Practice sessions need one.",
+      "password": "If you create an account, keep your password to yourself. Tell us if you believe someone else has used it.",
+      "abuse": "Do not attempt to access another person’s account or data, disrupt the service, or extract the question bank in bulk.",
+      "delete": "You may delete your account at any time from <link>your account settings</link>, which removes your practice history."
+    },
+    "content": {
+      "heading": "Our content",
+      "body": "The questions, explanations and guides on this site are our own original work. You may use them for your own study. You may not republish, resell or redistribute them, or use them to train a machine learning model, without permission."
+    },
+    "reporting": {
+      "heading": "Reporting a problem",
+      "body": "If a question looks wrong, <link>report it</link>. We would rather withdraw an item than leave a bad one in the bank."
+    },
+    "changes": {
+      "heading": "Changes",
+      "body": "If these terms change materially, the date above changes with them, and we will not backdate it."
+    },
+    "openQuestions": {
+      "heading": "Open questions for legal review",
+      "intro": "Deliberately unresolved. Each needs a decision before this draft becomes a real document.",
+      "entity": "<strong>Contracting entity and governing law.</strong> No company, jurisdiction, venue or governing law is named, because none has been chosen.",
+      "liability": "<strong>Limitation of liability and warranty disclaimers.</strong> This draft contains none. The permitted scope depends on the jurisdiction, and in the EU on consumer protection rules that cannot be contracted away.",
+      "minors": "<strong>Minors as contracting parties.</strong> A large part of the audience is under 18. Whether a minor can accept these terms, and whether parental consent is required, differs by jurisdiction and needs advice. This now includes buying a plan: nothing stops a minor from paying today.",
+      "consumer": "<strong>Consumer law for paid plans.</strong> Whether the checkout wording is enough to end the 14-day right of withdrawal for a subscription that starts immediately (EU Consumer Rights Directive, Italian Consumer Code); what the pre-contract information and the confirmation email must contain; whether unused time should be refunded when an account is deleted or a plan is cancelled early; and how price changes must be notified.",
+      "vat": "<strong>VAT.</strong> Prices include VAT, but VAT on digital services is due at the buyer’s country rate. Whether to register for the EU One-Stop Shop and switch on Stripe Tax, and which rate the fixed prices assume, needs a decision with an accountant.",
+      "trademark": "<strong>Trademark wording.</strong> The nominative-fair-use notice above should be checked against each test maker’s published trademark guidelines, particularly College Board’s and ACT’s.",
+      "describing": "<strong>Describing exams accurately.</strong> We summarise published exam rules and link the source. Confirm that this stays within fair use and does not infringe database or copyright interests in the originals.",
+      "training": "<strong>Prohibiting model training on our content.</strong> Whether that restriction is enforceable, and how it should interact with the crawler policy in <code>robots.txt</code>, needs advice.",
+      "accessibility": "<strong>Accessibility obligations.</strong> We target WCAG 2.2 AA. Whether a binding legal obligation applies in the markets served, and what conformance statement to publish, is undecided."
+    },
+    "privacyLink": "Privacy notice (also a draft)"
+  },
+  "reportQuestion": {
+    "meta": {
+      "title": "Report a question",
+      "description": "Tell us about a question that looks wrong, ambiguous or incomplete."
+    },
+    "title": "Report a question",
+    "lead": "If a question looks wrong, ambiguous or incomplete, tell us. We would rather withdraw an item than leave a bad one in the bank.",
+    "process": {
+      "heading": "What happens to your report",
+      "resolve": "An editor re-solves the question independently, without looking at the stored key.",
+      "quarantine": "If the key is wrong, or a second answer is genuinely defensible, the question is <strong>quarantined</strong>, not quietly corrected. Quarantined items leave the live bank immediately.",
+      "replacement": "A replacement is written and goes through the same blind independent solve before it is published.",
+      "pinned": "Results you have already seen do not change. Every attempt is pinned to the exact version of the question you were shown.",
+      "noAccount": "You do not need an account to report a question, and we do not need your email address."
+    },
+    "form": {
+      "questionId": "Question ID",
+      "questionIdHint": "Shown under each question on your results page. It is filled in for you if you followed the link from there.",
+      "reasonLegend": "What is wrong?",
+      "reasons": {
+        "wrongAnswer": "The marked answer looks wrong",
+        "ambiguous": "More than one answer seems defensible",
+        "missingMaterial": "Something needed to answer is missing",
+        "explanation": "The explanation is wrong or unclear",
+        "typo": "A typo or formatting problem",
+        "other": "Something else"
+      },
+      "details": "Details <muted>(optional)</muted>",
+      "detailsHint": "If you think a different answer is right, telling us which one and why is the most useful thing you can write here.",
+      "submit": "Send report",
+      "sending": "Sending…",
+      "errors": {
+        "generic": "We could not send that report. Please try again.",
+        "rateLimited": "You have sent several reports already. Please try again later.",
+        "unknownQuestion": "We could not find that question. Check the question ID and try again.",
+        "invalid": "Please check the question ID and the details, then try again."
+      },
+      "sentTitle": "Thank you — your report has been logged",
+      "sentBody": "An editor will look at this question. If it turns out to be wrong, it is withdrawn from the bank rather than quietly edited, and a replacement is written.",
+      "another": "Report another question"
+    }
+  }
+}

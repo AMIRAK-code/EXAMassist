@@ -1,6 +1,7 @@
 import { createHmac, randomInt, randomUUID, timingSafeEqual } from 'node:crypto';
 import type { Db } from '@/lib/db';
 import type { EmailCodeRow, UserRow } from '@/lib/db/rows';
+import type { Locale } from '@/i18n/locales';
 import { codeEmail } from '@/lib/email/messages';
 import { defaultMailer, type Mailer, type OutgoingEmail } from '@/lib/email/send';
 import { checkPasswordStrength, hashPassword, type PasswordProblem } from './password';
@@ -32,7 +33,11 @@ export const MAX_CODE_ATTEMPTS = 5;
 /** Expired rows are deleted once they are this old, the next time a code is issued. */
 const PURGE_AFTER_MS = 24 * 60 * 60 * 1000;
 
-/** What each failure tells the learner. One wording per outcome, used by every route. */
+/**
+ * What each failure tells the learner, in the API's English. One wording per
+ * outcome, used by every route; the forms show the `auth.errors` message for
+ * the code (`code-invalid`, ...) in the learner's language.
+ */
 export const CODE_FAILURE_MESSAGES: Record<CodeFailure, string> = {
   invalid: 'That code is not right. Check the most recent email we sent you and try again.',
   expired: 'That code has expired. Ask for a new one.',
@@ -198,26 +203,27 @@ async function markVerified(db: Db, userId: string, now: Date): Promise<void> {
 /**
  * For a sign-in or password-reset request: the email to send, or null when no
  * account uses the address. The caller must answer the same way in both cases.
+ * `locale` is the language of the page the code was asked for on (English by default).
  */
 export async function prepareCodeForAddress(
   db: Db,
-  request: { purpose: 'sign-in' | 'reset-password'; email: string },
+  request: { purpose: 'sign-in' | 'reset-password'; email: string; locale?: Locale },
   deps: CodeDeps = {},
 ): Promise<OutgoingEmail | null> {
   const user = await registeredAccount(db, request.email);
   if (!user) return null;
   const { code } = await issueCode(db, user, request.purpose, deps);
-  return codeEmail(request.purpose, user.email, code, CODE_TTL_MINUTES);
+  return codeEmail(request.purpose, user.email, code, CODE_TTL_MINUTES, request.locale);
 }
 
-/** The confirmation email for a signed-in account's own address. */
+/** The confirmation email for a signed-in account's own address, in `holder.locale` (English by default). */
 export async function prepareVerificationEmail(
   db: Db,
-  holder: CodeHolder,
+  holder: CodeHolder & { locale?: Locale },
   deps: CodeDeps = {},
 ): Promise<OutgoingEmail> {
-  const { code } = await issueCode(db, holder, 'verify-email', deps);
-  return codeEmail('verify-email', holder.email, code, CODE_TTL_MINUTES);
+  const { code } = await issueCode(db, { id: holder.id, email: holder.email }, 'verify-email', deps);
+  return codeEmail('verify-email', holder.email, code, CODE_TTL_MINUTES, holder.locale);
 }
 
 export type SignInWithCodeResult = { ok: true; user: UserRow } | { ok: false; failure: CodeFailure };

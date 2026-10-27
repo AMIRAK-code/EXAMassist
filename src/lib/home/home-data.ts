@@ -15,19 +15,33 @@ import type { FormatStatus } from '@/components/ui';
  * that would then refuse to start.
  */
 
+/**
+ * A sentence for the page, as a key in the `home` message namespace plus its
+ * values, so it is translated where it is rendered. A list value is joined
+ * with the reader's locale's list format ("x and y", "x, y and z").
+ */
+export type HomeValue = string | number | { list: string[] };
+export interface HomeMessage {
+  key: string;
+  values?: Record<string, HomeValue>;
+}
+
 export interface ExamChoice {
   hubSlug: string;
   label: string;
   name: string;
-  destinations: Array<{ href: string; label: string }>;
+  destinations: Array<{ href: string; label: HomeMessage }>;
   guideHref: string;
-  guideLabel: string;
-  facts: string[];
+  guideLabel: HomeMessage;
+  facts: HomeMessage[];
 }
 
 export interface FormatCell {
   status: FormatStatus;
+  /** English detail, kept for callers that do not translate yet. Prefer `message`. */
   detail: string | null;
+  /** The same detail as a `home` message (keys under `formats.detail`). */
+  message: HomeMessage | null;
 }
 
 export interface MatrixRow {
@@ -64,26 +78,56 @@ async function snapshot(db: Db, config: ExamConfig): Promise<ConfigSnapshot> {
   return { config, questions: pool.length, availability: availabilityFromPool(pool, config) };
 }
 
+const RULES_NOT_VERIFIED = 'The rules it needs are not verified';
+const NO_DETAIL = { detail: null, message: null } as const;
+
 function cellFor(entry: BlueprintAvailability | undefined): FormatCell {
-  if (!entry) return { status: 'notoffered', detail: null };
-  if (entry.available) return { status: 'open', detail: `${entry.itemsRequested} questions` };
-  if (entry.blockedBy === 'rules') return { status: 'notoffered', detail: 'The rules it needs are not verified' };
-  return { status: 'notyet', detail: `${entry.itemsAvailable} of ${entry.itemsRequested} questions` };
+  if (!entry) return { status: 'notoffered', ...NO_DETAIL };
+  if (entry.available) {
+    return {
+      status: 'open',
+      detail: `${entry.itemsRequested} questions`,
+      message: { key: 'formats.detail.questions', values: { count: entry.itemsRequested } },
+    };
+  }
+  if (entry.blockedBy === 'rules') {
+    return { status: 'notoffered', detail: RULES_NOT_VERIFIED, message: { key: 'formats.detail.rulesNotVerified' } };
+  }
+  return {
+    status: 'notyet',
+    detail: `${entry.itemsAvailable} of ${entry.itemsRequested} questions`,
+    message: {
+      key: 'formats.detail.partial',
+      values: { available: entry.itemsAvailable, requested: entry.itemsRequested },
+    },
+  };
 }
 
 function timedCell(entries: BlueprintAvailability[]): FormatCell {
   const timed = entries.filter((entry) => isTimedSection(entry.blueprint));
-  if (timed.length === 0) return { status: 'notoffered', detail: null };
+  if (timed.length === 0) return { status: 'notoffered', ...NO_DETAIL };
   const open = timed.filter((entry) => entry.available);
   if (open.length > 0) {
+    // Section names come from the exam configuration and stay as published.
     const names = open.map((entry) => shortFormatName(entry.blueprint.label)).join(' · ');
     const rest = timed.length - open.length;
-    return { status: 'open', detail: rest > 0 ? `${names}; ${rest} more need questions` : names };
+    return rest > 0
+      ? {
+          status: 'open',
+          detail: `${names}; ${rest} more need questions`,
+          message: { key: 'formats.detail.timedOpenWithRest', values: { names, rest } },
+        }
+      : { status: 'open', detail: names, message: { key: 'formats.detail.timedOpen', values: { names } } };
   }
   const closest = [...timed].sort((a, b) => a.shortfall - b.shortfall)[0];
+  const name = shortFormatName(closest.blueprint.label);
   return {
     status: 'notyet',
-    detail: `Closest: ${shortFormatName(closest.blueprint.label)}, ${closest.itemsAvailable} of ${closest.itemsRequested}`,
+    detail: `Closest: ${name}, ${closest.itemsAvailable} of ${closest.itemsRequested}`,
+    message: {
+      key: 'formats.detail.closest',
+      values: { name, available: closest.itemsAvailable, requested: closest.itemsRequested },
+    },
   };
 }
 
@@ -92,12 +136,20 @@ function simulationCell(snap: ConfigSnapshot): FormatCell {
   if (simulation) return cellFor(simulation);
   // No simulation blueprint at all: the configuration has switched it off.
   return snap.config.capabilities.fullSimulation.available
-    ? { status: 'notyet', detail: null }
-    : { status: 'notoffered', detail: 'The rules it needs are not verified' };
+    ? { status: 'notyet', ...NO_DETAIL }
+    : { status: 'notoffered', detail: RULES_NOT_VERIFIED, message: { key: 'formats.detail.rulesNotVerified' } };
 }
 
 function variantOf(hub: ExamHub, examKey: string): string | null {
   return hub.configKeys.length > 1 ? (hub.variantLabels?.[examKey] ?? null) : null;
+}
+
+/**
+ * A variant label as it reads mid-sentence ("Law" -> "law"). Only the first
+ * letter changes, so an exam name inside it ("Economics (TOLC-E)") stays intact.
+ */
+function inSentence(label: string | null): string {
+  return label ? label.charAt(0).toLowerCase() + label.slice(1) : '';
 }
 
 export interface HomeData {
@@ -121,7 +173,7 @@ export async function buildHomeData(db: Db, now = new Date()): Promise<HomeData>
         name: hub.name,
         variant: variantOf(hub, snap.config.examKey),
         questions: snap.questions,
-        practice: byId('practice')?.available ? { status: 'open', detail: null } : cellFor(byId('practice')),
+        practice: byId('practice')?.available ? { status: 'open', ...NO_DETAIL } : cellFor(byId('practice')),
         diagnostic: cellFor(byId('diagnostic')),
         timed: timedCell(snap.availability),
         simulation: simulationCell(snap),
@@ -130,39 +182,56 @@ export async function buildHomeData(db: Db, now = new Date()): Promise<HomeData>
 
     // What choosing this exam on the homepage leads to.
     const total = snaps.reduce((n, snap) => n + snap.questions, 0);
-    const facts = [
+    const facts: HomeMessage[] = [
       snaps.length > 1
-        ? `${total} reviewed questions (${snaps.map((s) => `${s.questions} ${variantOf(hub, s.config.examKey)?.toLowerCase()}`).join(', ')})`
-        : `${total} reviewed questions`,
+        ? {
+            key: 'choice.facts.reviewedQuestionsSplit',
+            values: {
+              count: total,
+              breakdown: {
+                list: snaps.map((s) => `${s.questions} ${inSentence(variantOf(hub, s.config.examKey))}`),
+              },
+            },
+          }
+        : { key: 'choice.facts.reviewedQuestions', values: { count: total } },
     ];
     if (snaps.some((snap) => snap.availability.find((e) => e.blueprint.id === 'practice')?.available)) {
-      facts.push('topic practice');
+      facts.push({ key: 'choice.facts.topicPractice' });
     }
     const diagnostics = snaps.filter((snap) => snap.availability.find((e) => e.blueprint.id === 'diagnostic')?.available);
     if (diagnostics.length === snaps.length && diagnostics.length > 0) {
       const diagnostic = diagnostics[0].availability.find((e) => e.blueprint.id === 'diagnostic')!;
-      facts.push(snaps.length > 1 ? 'a diagnostic' : `a ${diagnostic.itemsRequested}-question diagnostic`);
-    } else if (diagnostics.length > 0) {
       facts.push(
-        `a diagnostic on the ${diagnostics.map((s) => variantOf(hub, s.config.examKey)?.toLowerCase()).join(' and ')} test`,
+        snaps.length > 1
+          ? { key: 'choice.facts.diagnostic' }
+          : { key: 'choice.facts.diagnosticSized', values: { count: diagnostic.itemsRequested } },
       );
+    } else if (diagnostics.length > 0) {
+      facts.push({
+        key: 'choice.facts.diagnosticOn',
+        values: {
+          variants: {
+            list: diagnostics.map((s) => inSentence(variantOf(hub, s.config.examKey))),
+          },
+        },
+      });
     }
     const openTimed = snaps.flatMap((snap) => snap.availability.filter((e) => isTimedSection(e.blueprint) && e.available));
-    if (openTimed.length > 0) facts.push(`${openTimed.length} timed section${openTimed.length === 1 ? '' : 's'}`);
+    if (openTimed.length > 0) facts.push({ key: 'choice.facts.timedSections', values: { count: openTimed.length } });
 
     choices.push({
       hubSlug: hub.slug,
       label: hub.label,
       name: hub.name,
-      destinations: snaps.map((snap) => ({
+      destinations: snaps.map((snap): ExamChoice['destinations'][number] => ({
         href: `/practice/${snap.config.examKey}`,
         label:
           snaps.length > 1
-            ? `Practise the ${variantOf(hub, snap.config.examKey)?.toLowerCase()} test`
-            : `Start ${hub.label} practice`,
+            ? { key: 'choice.practiseVariant', values: { variant: inSentence(variantOf(hub, snap.config.examKey)) } }
+            : { key: 'choice.startPractice', values: { exam: hub.label } },
       })),
       guideHref: `/exams/${hub.slug}`,
-      guideLabel: `What’s on the ${hub.label}`,
+      guideLabel: { key: 'choice.whatsOn', values: { exam: hub.label } },
       facts,
     });
   }

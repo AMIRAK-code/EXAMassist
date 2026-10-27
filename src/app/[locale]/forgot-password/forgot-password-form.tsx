@@ -1,12 +1,18 @@
 'use client';
 
 import { useId, useState } from 'react';
+import { useLocale, useTranslations } from 'next-intl';
 import { Link, useRouter } from '@/i18n/navigation';
 import { Alert, Button, buttonClass, cx, fieldClass } from '@/components/ui';
-import { CodeField, NETWORK_ERROR, answerMessage, isCodeError, postJson } from '@/components/auth/email-code';
-
-/** Codes the password policy returns; these belong next to the password box. */
-const PASSWORD_CODES = new Set(['too-short', 'too-long', 'contains-email', 'too-common', 'repeated']);
+import {
+  CodeField,
+  answerMessage,
+  emailChunk,
+  isCodeError,
+  isPasswordError,
+  passwordMessage,
+  postJson,
+} from '@/components/auth/email-code';
 
 /**
  * Password reset in two steps: the address, then the emailed code together
@@ -24,6 +30,9 @@ export function ForgotPasswordForm({
   minPasswordLength: number;
   ttlMinutes: number;
 }) {
+  const t = useTranslations('auth');
+  // The email goes out in the language of the page it was asked for on.
+  const locale = useLocale();
   const router = useRouter();
   const id = useId();
   const [step, setStep] = useState<'email' | 'reset'>('email');
@@ -44,15 +53,15 @@ export function ForgotPasswordForm({
     setSubmitting(true);
     setError(null);
     setCodeInvalid(false);
-    const answer = await postJson('/api/auth/code', { purpose: 'reset-password', email });
+    const answer = await postJson('/api/auth/code', { purpose: 'reset-password', email, locale });
     setSubmitting(false);
 
-    if (!answer) return setError(NETWORK_ERROR);
+    if (!answer) return setError(t('errors.network'));
     if (!answer.ok) {
       return setError(
         answer.code === 'invalid-request'
-          ? 'Check the email address - that one does not look like a valid address.'
-          : answerMessage(answer, 'We could not send a code. Please try again.'),
+          ? t('errors.invalidEmail')
+          : answerMessage(t, answer, t('codeSent.sendFallback')),
       );
     }
     setStep('reset');
@@ -66,20 +75,20 @@ export function ForgotPasswordForm({
     setPasswordError(null);
 
     if (password.length < minPasswordLength) {
-      return setPasswordError(`Use at least ${minPasswordLength} characters. A short phrase works well.`);
+      return setPasswordError(passwordMessage(t, 'too-short', minPasswordLength));
     }
 
     setSubmitting(true);
     const answer = await postJson('/api/auth/reset-password', { email, code, password });
     if (!answer) {
       setSubmitting(false);
-      return setError(NETWORK_ERROR);
+      return setError(t('errors.network'));
     }
     if (!answer.ok) {
       setSubmitting(false);
-      if (answer.code && PASSWORD_CODES.has(answer.code)) return setPasswordError(answer.message ?? 'Choose a different password.');
+      if (isPasswordError(answer.code)) return setPasswordError(passwordMessage(t, answer.code, minPasswordLength));
       setCodeInvalid(isCodeError(answer.code));
-      return setError(answerMessage(answer, 'We could not reset your password. Please try again.'));
+      return setError(answerMessage(t, answer, t('forgotPassword.form.fallback')));
     }
     router.push(destination);
     router.refresh();
@@ -96,7 +105,11 @@ export function ForgotPasswordForm({
     <form onSubmit={handleSubmit} noValidate className="space-y-5">
       <div aria-live="assertive" aria-atomic="true">
         {error ? (
-          <Alert tone="negative" role="alert" title={step === 'email' ? 'Code not sent' : 'Password not changed'}>
+          <Alert
+            tone="negative"
+            role="alert"
+            title={step === 'email' ? t('codeSent.notSentTitle') : t('forgotPassword.form.failedTitle')}
+          >
             <p id={errorId}>{error}</p>
           </Alert>
         ) : null}
@@ -106,7 +119,7 @@ export function ForgotPasswordForm({
         <>
           <div>
             <label htmlFor={`${id}-email`} className="mb-1.5 block text-sm font-medium">
-              Email address
+              {t('fields.email')}
             </label>
             <input
               id={`${id}-email`}
@@ -123,22 +136,24 @@ export function ForgotPasswordForm({
               className={fieldClass()}
             />
             <p id={`${id}-email-hint`} className="mt-1.5 text-sm text-ink-muted">
-              The address you created your account with. We will email it a 6-digit code.
+              {t('fields.accountEmailHint')}
             </p>
           </div>
 
           <Button type="submit" size="lg" full loading={submitting}>
-            Email me a reset code
+            {t('forgotPassword.form.requestCode')}
           </Button>
         </>
       ) : (
         <>
           <div role="status" aria-live="polite">
-            <Alert tone="info" title={resent ? 'New code sent' : 'Check your email'}>
+            <Alert tone="info" title={resent ? t('codeSent.resentTitle') : t('codeSent.title')}>
               <p>
-                If an account uses <span className="break-all font-medium">{email}</span>, we have sent it a
-                6-digit code{resent ? ' and the earlier one no longer works' : ''}. It expires in {ttlMinutes}{' '}
-                minutes. It can take a minute to arrive, so check your spam folder too.
+                {t.rich(resent ? 'codeSent.ifAccountResent' : 'codeSent.ifAccount', {
+                  email,
+                  minutes: ttlMinutes,
+                  addr: emailChunk,
+                })}
               </p>
             </Alert>
           </div>
@@ -157,7 +172,7 @@ export function ForgotPasswordForm({
           <div>
             <div className="mb-1 flex flex-wrap items-center justify-between gap-2">
               <label htmlFor={`${id}-password`} className="text-sm font-medium">
-                New password
+                {t('fields.newPassword')}
               </label>
               <button
                 type="button"
@@ -166,7 +181,7 @@ export function ForgotPasswordForm({
                 aria-controls={`${id}-password`}
                 className={cx(buttonClass({ variant: 'quiet', size: 'sm' }), 'min-h-11 -me-3')}
               >
-                Show password
+                {t('fields.showPassword')}
               </button>
             </div>
             <input
@@ -186,8 +201,7 @@ export function ForgotPasswordForm({
               className={fieldClass()}
             />
             <p id={`${id}-password-hint`} className="mt-1.5 text-sm text-ink-muted">
-              At least {minPasswordLength} characters. A short phrase only you would write works well. Changing it
-              signs you out on every other device.
+              {t('forgotPassword.form.passwordHint', { min: minPasswordLength })}
             </p>
             <p id={`${id}-password-state`} aria-live="polite" className="mt-1.5 text-sm text-negative">
               {passwordError}
@@ -195,7 +209,7 @@ export function ForgotPasswordForm({
           </div>
 
           <Button type="submit" size="lg" full loading={submitting}>
-            Set new password
+            {t('forgotPassword.form.submit')}
           </Button>
 
           <div className="flex flex-wrap gap-x-4 gap-y-2">
@@ -205,7 +219,7 @@ export function ForgotPasswordForm({
               disabled={submitting}
               className={cx(buttonClass({ variant: 'quiet', size: 'sm' }), '-ms-3.5 min-h-11')}
             >
-              Send a new code
+              {t('codeSent.sendNew')}
             </button>
             <button
               type="button"
@@ -217,14 +231,14 @@ export function ForgotPasswordForm({
               disabled={submitting}
               className={cx(buttonClass({ variant: 'quiet', size: 'sm' }), 'min-h-11')}
             >
-              Use a different address
+              {t('codeSent.differentAddress')}
             </button>
           </div>
         </>
       )}
 
       <p className="text-sm">
-        <Link href={signInHref}>Back to sign in</Link>
+        <Link href={signInHref}>{t('forgotPassword.form.backToSignIn')}</Link>
       </p>
     </form>
   );

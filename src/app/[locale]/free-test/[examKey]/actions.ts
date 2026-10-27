@@ -1,6 +1,7 @@
 'use server';
 
-import { redirect } from 'next/navigation';
+import { getLocale } from 'next-intl/server';
+import { redirect as localeRedirect } from '@/i18n/navigation';
 import { getDb } from '@/lib/db';
 import { requireUser } from '@/lib/auth/session';
 import { checkRateLimit } from '@/lib/auth/rate-limit';
@@ -15,6 +16,9 @@ import { upgradeTarget } from '@/lib/billing/upgrade';
  * second one.
  */
 export async function startFreeTestAction(formData: FormData): Promise<void> {
+  const locale = await getLocale();
+  // Every destination stays in the learner's language.
+  const redirect: (href: string) => never = (href) => localeRedirect({ href, locale });
   const user = await requireUser();
   const config = getExamConfig(String(formData.get('examKey') ?? ''));
   if (!config) redirect('/exams');

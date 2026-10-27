@@ -3,10 +3,11 @@
 import { Link } from '@/i18n/navigation';
 import { useRef, useState, useTransition, type ReactNode } from 'react';
 import type { ExamChoice } from '@/lib/home/home-data';
+import { homeText } from '@/lib/home/home-message';
 import type { SampleView } from '@/lib/content/sample-view';
 import { StimulusView } from '@/components/stimulus-view';
 import { Button, buttonClass, cx } from '@/components/ui';
-import { useTranslations } from 'next-intl';
+import { useFormatter, useLocale, useTranslations } from 'next-intl';
 
 /**
  * The homepage's exam selector and sample question.
@@ -46,6 +47,12 @@ export function ExamPreview({
   intro: ReactNode;
 }) {
   const tGuest = useTranslations('common.guest');
+  const t = useTranslations('home.sample');
+  const tHome = useTranslations('home');
+  const format = useFormatter();
+  const locale = useLocale();
+  const text = (message: Parameters<typeof homeText>[2]) =>
+    homeText(tHome, (items, options) => format.list(items, options), message);
   // The chips and the destination follow `selectedHub` at once. The sample card
   // follows `hub` in a transition, so the click paints before the heavier swap.
   const [selectedHub, setSelectedHub] = useState(initialHub);
@@ -116,7 +123,7 @@ export function ExamPreview({
         {intro}
 
         <fieldset className="min-w-0">
-          <legend className="mb-3 text-sm font-semibold text-ink-muted">Which exam are you preparing for?</legend>
+          <legend className="mb-3 text-sm font-semibold text-ink-muted">{t('legend')}</legend>
           <div className="grid grid-cols-3 gap-2 sm:flex sm:flex-wrap sm:gap-2.5">
             {choices.map((option) => {
               const selected = option.hubSlug === selectedHub;
@@ -158,7 +165,7 @@ export function ExamPreview({
                   'w-full sm:w-auto',
                 )}
               >
-                {destination.label}
+                {text(destination.label)}
                 {index === 0 ? (
                   <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
                     <path d="M3 9h12M10 4l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
@@ -167,11 +174,14 @@ export function ExamPreview({
               </Link>
             ))}
             <Link href={choice.guideHref} className="px-1 py-2 font-semibold text-ink underline decoration-accent underline-offset-4 hover:text-ink">
-              {choice.guideLabel}
+              {text(choice.guideLabel)}
             </Link>
           </div>
           <p className="max-w-[46ch] text-[0.9375rem] leading-relaxed text-ink-muted">
-            {choice.facts.join(' · ').replace(/^./, (c) => c.toUpperCase())}
+            {choice.facts
+              .map(text)
+              .join(' · ')
+              .replace(/^./, (c) => c.toLocaleUpperCase(locale))}
           </p>
           <p className="max-w-[52ch] text-sm leading-relaxed text-ink-subtle">{tGuest('noteShort')}</p>
         </div>
@@ -182,7 +192,7 @@ export function ExamPreview({
           aria-hidden="true"
           className="accent-italic absolute -top-1 left-1 hidden items-end gap-1.5 text-[1.6rem] leading-none text-accent lg:flex"
         >
-          Try it, no sign-up
+          {t('tryIt')}
           <svg width="56" height="40" viewBox="0 0 64 46" fill="none">
             <path d="M4 8c22-6 42 4 50 30" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
             <path d="M46 32l8 7 3-10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
@@ -196,7 +206,7 @@ export function ExamPreview({
           <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 border-b-[1.5px] border-ink px-4 py-3 sm:px-6">
             <h2 id="sample-heading" className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.1em] text-accent">
               <span aria-hidden="true" className="text-lg font-normal leading-none">[</span>
-              Sample question
+              {t('heading')}
               <span aria-hidden="true" className="text-lg font-normal leading-none">]</span>
             </h2>
             {sample ? (
@@ -212,7 +222,7 @@ export function ExamPreview({
           >
             {loading ? (
               <div role="status" className="space-y-3">
-                <span className="sr-only">Loading the {shown.label} sample question</span>
+                <span className="sr-only">{t('loading', { exam: shown.label })}</span>
                 <div className="h-4 w-11/12 rounded bg-surface-sunken" />
                 <div className="h-4 w-9/12 rounded bg-surface-sunken" />
                 <div className="h-4 w-10/12 rounded bg-surface-sunken" />
@@ -222,15 +232,15 @@ export function ExamPreview({
               </div>
             ) : failed[hub] ? (
               <div role="alert" className="space-y-4">
-                <p>We couldn’t load the {shown.label} sample. Check your connection and try again.</p>
+                <p>{t('loadFailed', { exam: shown.label })}</p>
                 <Button variant="secondary" onClick={() => void load(hub)}>
-                  Try again
+                  {t('tryAgain')}
                 </Button>
               </div>
             ) : !sample ? (
               <div className="space-y-4">
-                <p>No sample question is available for the {shown.label} right now.</p>
-                <Link href={shown.destinations[0].href}>Go to {shown.label} practice</Link>
+                <p>{t('none', { exam: shown.label })}</p>
+                <Link href={shown.destinations[0].href}>{t('goToPractice', { exam: shown.label })}</Link>
               </div>
             ) : (
               <div key={sample.questionId}>
@@ -254,7 +264,7 @@ export function ExamPreview({
                 />
 
                 <fieldset disabled={checked} className="min-w-0">
-                  <legend className="sr-only">Answer choices</legend>
+                  <legend className="sr-only">{t('answerChoices')}</legend>
                   <ul className="space-y-2.5">
                     {sample.options.map((option, index) => {
                       const isPicked = picked === option.id;
@@ -306,19 +316,19 @@ export function ExamPreview({
                               {option.label}
                             </span>
                             <span className="min-w-0 flex-1 pt-0.5 leading-snug">
-                              <span className="sr-only">Option {option.label}: </span>
+                              <span className="sr-only">{t('option', { label: option.label })} </span>
                               <span dangerouslySetInnerHTML={{ __html: option.html }} />
                             </span>
                             {checked && isAnswer ? (
                               <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-positive px-2 py-0.5 text-xs font-bold text-white">
                                 <Tick />
-                                Answer
+                                {t('answer')}
                               </span>
                             ) : null}
                             {checked && isPicked && !isAnswer ? (
                               <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-negative px-2 py-0.5 text-xs font-bold text-white">
                                 <Cross />
-                                Your answer
+                                {t('yourAnswer')}
                               </span>
                             ) : null}
                           </label>
@@ -331,41 +341,38 @@ export function ExamPreview({
                 {!checked ? (
                   <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2">
                     <Button size="lg" onClick={check} disabled={!picked} className="w-full sm:w-auto">
-                      Check answer
+                      {t('check')}
                     </Button>
                     <span className="text-sm text-ink-subtle">
-                      Editorial difficulty: {sample.difficulty}
+                      {t('difficulty', { level: t(`levels.${sample.difficulty}`) })}
                     </span>
                   </div>
                 ) : (
                   <div className="mt-5 space-y-4">
                     <p ref={verdictRef} tabIndex={-1} className="text-[1.0625rem] leading-relaxed outline-none">
                       <strong className={right ? 'text-positive' : 'text-negative'}>
-                        {right ? 'Correct.' : 'Not this time.'}
+                        {right ? t('correct') : t('notThisTime')}
                       </strong>{' '}
                       {right
-                        ? `${correct?.label} is the answer. Here is the full working.`
-                        : `You chose ${chosen?.label}. The answer is ${correct?.label}. Here is why.`}
+                        ? t('rightDetail', { answer: correct?.label ?? '' })
+                        : t('wrongDetail', { chosen: chosen?.label ?? '', answer: correct?.label ?? '' })}
                     </p>
 
                     {!right && chosen?.rationaleHtml ? (
                       <div className="rounded-control border-[1.5px] border-negative-line bg-negative-soft p-4">
                         <p className="mb-1.5 text-xs font-bold uppercase tracking-[0.08em] text-negative">
-                          Why {chosen.label} doesn’t work
+                          {t('whyNot', { label: chosen.label })}
                         </p>
                         <div
                           className="prose-academic text-[0.9375rem]"
                           dangerouslySetInnerHTML={{ __html: chosen.rationaleHtml }}
                         />
-                        <p className="mt-2 text-sm text-ink-muted">
-                          Written for this option in advance: a common route to it, not a claim about how
-                          you reasoned.
-                        </p>
+                        <p className="mt-2 text-sm text-ink-muted">{t('rationaleNote')}</p>
                       </div>
                     ) : null}
 
                     <div className="border-t-[1.5px] border-dashed border-line-strong pt-4">
-                      <h3 className="mb-2 text-lg">Worked explanation</h3>
+                      <h3 className="mb-2 text-lg">{t('worked')}</h3>
                       <div
                         className="prose-academic text-[0.9375rem] leading-relaxed"
                         dangerouslySetInnerHTML={{ __html: sample.explanationHtml }}
@@ -373,7 +380,7 @@ export function ExamPreview({
                     </div>
 
                     <details className="border-t border-line pt-3 text-[0.9375rem]">
-                      <summary className="min-h-8 cursor-pointer font-semibold">A note on every other option</summary>
+                      <summary className="min-h-8 cursor-pointer font-semibold">{t('otherOptions')}</summary>
                       <ul className="mt-3 space-y-3">
                         {sample.options
                           .filter((option) => option.rationaleHtml)
@@ -391,10 +398,10 @@ export function ExamPreview({
 
                     <div className="flex flex-wrap items-center gap-3 border-t-[1.5px] border-ink pt-4">
                       <Link href={shown.destinations[0].href} className={cx(buttonClass({ size: 'md' }), 'w-full sm:w-auto')}>
-                        Practise more {shown.label} questions
+                        {t('practiseMore', { exam: shown.label })}
                       </Link>
                       <Button variant="secondary" onClick={reset}>
-                        Try it again
+                        {t('tryItAgain')}
                       </Button>
                     </div>
                   </div>
@@ -404,7 +411,7 @@ export function ExamPreview({
           </div>
 
           <p className="border-t border-line bg-paper px-4 py-3 text-sm leading-relaxed text-ink-muted sm:px-6">
-            One question can’t show how ready you are. It shows how every answer is explained.
+            {t('footer')}
           </p>
         </section>
       </div>

@@ -6,6 +6,7 @@ import { assertSameOrigin, fail, ok, readJson, toErrorResponse } from '@/lib/api
 import { SESSION_COOKIE, requireUser, toAuthUser } from '@/lib/auth/session';
 import { getExamConfig } from '@/lib/exams/registry';
 import { cancelBeforeDeletion } from '@/lib/billing/service';
+import { LOCALES } from '@/i18n/locales';
 
 /**
  * The acting learner's own account.
@@ -21,7 +22,7 @@ export const dynamic = 'force-dynamic';
  * Interface languages the application actually ships. Kept as an allowlist so a
  * stored locale is always one the UI can render.
  */
-const SUPPORTED_LOCALES = ['en'] as const;
+const SUPPORTED_LOCALES = LOCALES;
 
 const patchSchema = z.object({
   /** null or an empty string clears the name. */
