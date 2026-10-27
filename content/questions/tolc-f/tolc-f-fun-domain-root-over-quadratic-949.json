@@ -78,5 +78,48 @@
     "domain",
     "square-root",
     "fraction"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Qual è il dominio della funzione reale $f(x)=\\dfrac{\\sqrt{x+3}}{x^{2}-4}$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$x>-3$, con $x\\ne -2$ e $x\\ne 2$"
+        },
+        {
+          "id": "b",
+          "textMd": "$x\\ge -3$, con $x\\ne -2$ e $x\\ne 2$"
+        },
+        {
+          "id": "c",
+          "textMd": "Tutti gli $x$ reali tranne $x=-2$ e $x=2$"
+        },
+        {
+          "id": "d",
+          "textMd": "$x\\ge -3$"
+        },
+        {
+          "id": "e",
+          "textMd": "$x\\ge -3$, con $x\\ne 2$"
+        }
+      ],
+      "explanationMd": "**Metodo.** Scrivi una condizione per ogni operazione che può non essere definita, poi metti a sistema le condizioni.\n\n- La radice quadrata richiede $x+3\\ge 0$, quindi $x\\ge -3$ (per $x=-3$ la radice vale $0$, il che è ammesso).\n- Il denominatore non deve annullarsi: $x^{2}-4\\ne 0$, quindi $x\\ne 2$ e $x\\ne -2$.\n\nEntrambi i punti esclusi appartengono a $x\\ge -3$, quindi il dominio è $x\\ge -3$ con $x\\ne -2$ e $x\\ne 2$.\n\n**Come verificarlo.** $f(-3)=\\tfrac{0}{5}=0$ esiste; $f(-2)$ e $f(2)$ richiedono una divisione per zero; $f(-4)$ richiede $\\sqrt{-1}$.",
+      "distractorRationale": {
+        "e": "Risolve $x^{2}=4$ ma tiene solo la radice positiva, dimenticando che anche $x=-2$ annulla il denominatore.",
+        "a": "Esclude $x=-3$, ma lì la radice vale $\\sqrt{0}=0$ e il denominatore vale $5$, quindi $f(-3)=0$ è definita.",
+        "d": "Tiene conto della radice quadrata ma ignora il denominatore, che si annulla per $x=\\pm 2$.",
+        "c": "Tiene conto del denominatore ma ignora la radice quadrata, che non è reale per $x<-3$."
+      },
+      "accessibilityText": "Qual è il dominio della funzione reale f di x uguale alla radice quadrata di x più 3, diviso x al quadrato meno 4? Le cinque alternative sono: x maggiore di meno 3, con x diverso da meno 2 e diverso da 2; x maggiore o uguale a meno 3, con x diverso da meno 2 e diverso da 2; tutti gli x reali tranne meno 2 e 2; x maggiore o uguale a meno 3; x maggiore o uguale a meno 3, con x diverso da 2.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f2",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }
