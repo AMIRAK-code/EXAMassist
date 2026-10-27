@@ -8,9 +8,11 @@ import { EXAM_CONFIGS, getExamConfig } from '@/lib/exams/registry';
 import { listExamTargets } from '@/lib/learning/queries';
 import { examLabel } from '@/lib/learning/dashboard';
 import { Breadcrumbs, Alert, Badge, ButtonLink, Card, Container, DefinitionList, PageHeader } from '@/components/ui';
-import { FREE_SESSIONS, PLANS, formatEuros, isPlanKey } from '@/lib/billing/config';
-import { getAccess, type Access } from '@/lib/billing/service';
-import { ManageBillingButton } from '@/components/billing/billing-buttons';
+import { billingSettings, pricingPath } from '@/lib/billing/config';
+import { grantIsLive, loadEntitlements, toGrant } from '@/lib/billing/entitlements';
+import { PLANS, PLAN_COPY } from '@/lib/billing/plans';
+import { BillingError, billingOverview, finishCardUpdate, type BillingOverview } from '@/lib/billing/service';
+import { SubscriptionManager, type ManagedSubscription } from '@/components/billing/subscription-manager';
 import {
   AccountSettingsForm,
   DeleteAccountForm,
@@ -49,7 +51,22 @@ function formatDate(value: string | null): string | null {
   });
 }
 
-export default async function AccountPage() {
+/** Strings for the plan section of this page; the manager has its own. */
+const BILLING_COPY = {
+  heading: 'Plans and billing',
+  guest: 'A plan needs an account. Create one first; your guest practice comes with you.',
+  createAccount: 'Create an account',
+  staff: 'Editors and administrators have every exam and feature open, without a plan.',
+  cardUpdated: 'Your new card is saved and will be used for every plan.',
+  cardFailed: 'The new card was not confirmed. Your previous card is unchanged.',
+} as const;
+
+export default async function AccountPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ card?: string; setup_intent?: string; redirect_status?: string }>;
+}) {
+  const query = await searchParams;
   // requireUser() is the authorisation check. The lookup before it exists only
   // so a signed-out visitor gets the sign-in page rather than an error screen.
   if (!(await getCurrentUser())) redirect('/sign-in?next=%2Faccount');
@@ -63,7 +80,23 @@ export default async function AccountPage() {
     .filter((target) => target.targetDate && getExamConfig(target.examKey))
     .map((target) => ({ examKey: target.examKey, label: examLabel(target.examKey), date: formatDate(target.targetDate)! }));
 
-  const access = await getAccess(getDb(), user.id);
+  // Plans: shown wherever billing is on or Stripe keys are set.
+  const settings = billingSettings();
+  const showBilling = settings.enforced || settings.configured;
+  const entitlements = await loadEntitlements(getDb(), user.id);
+  let cardNotice: { tone: 'positive' | 'negative'; message: string } | null = null;
+  if (showBilling && !user.isGuest && query.card === 'updated' && typeof query.setup_intent === 'string') {
+    // Back from a 3-D Secure redirect while replacing the card: finish it here.
+    try {
+      if (query.redirect_status !== 'succeeded') throw new BillingError('card-not-saved', BILLING_COPY.cardFailed);
+      await finishCardUpdate(getDb(), user.id, query.setup_intent);
+      cardNotice = { tone: 'positive', message: BILLING_COPY.cardUpdated };
+    } catch (error) {
+      if (!(error instanceof BillingError)) throw error;
+      cardNotice = { tone: 'negative', message: error.message };
+    }
+  }
+  const overview: BillingOverview | null = showBilling && !user.isGuest ? await billingOverview(getDb(), user.id) : null;
 
   const examOptions = EXAM_CONFIGS.map((config) => ({
     examKey: config.examKey,
@@ -188,13 +221,33 @@ export default async function AccountPage() {
         </Card>
       </section>
 
-      {access.paywall ? (
+      {showBilling ? (
         <section id="billing" aria-labelledby="billing-heading" className="mb-10 scroll-mt-24">
           <h2 id="billing-heading" className="mb-4 font-heading text-2xl font-semibold">
-            Plan and billing
+            {BILLING_COPY.heading}
           </h2>
           <Card>
-            <PlanSummary access={access} isGuest={user.isGuest} />
+            {user.isGuest ? (
+              <>
+                <p className="text-sm text-ink-muted">{BILLING_COPY.guest}</p>
+                <ButtonLink href={`/sign-up?next=${encodeURIComponent('/pricing')}`} className="mt-4">
+                  {BILLING_COPY.createAccount}
+                </ButtonLink>
+              </>
+            ) : (
+              <>
+                {entitlements.isStaff ? <p className="mb-4 text-sm text-ink-muted">{BILLING_COPY.staff}</p> : null}
+                <SubscriptionManager
+                  subscriptions={(overview?.subscriptions ?? []).map(toManaged)}
+                  card={overview?.card ?? null}
+                  cardFresh={overview?.fresh ?? false}
+                  publishableKey={settings.publishableKey}
+                  pricingHref={pricingPath(user.targetExamKey)}
+                  canManage={settings.configured}
+                  initialNotice={cardNotice}
+                />
+              </>
+            )}
           </Card>
         </section>
       ) : null}
@@ -242,92 +295,19 @@ export default async function AccountPage() {
   );
 }
 
-const STATUS_LABEL: Record<string, string> = {
-  active: 'Active',
-  trialing: 'Active',
-  past_due: 'Payment retrying',
-  unpaid: 'Unpaid',
-  paused: 'Paused',
-  canceled: 'Cancelled',
-  incomplete: 'Waiting for payment',
-  incomplete_expired: 'Checkout expired',
-};
-
-/** The learner's plan: Premium with its renewal date, or the free session and a way to upgrade. */
-function PlanSummary({ access, isGuest }: { access: Access; isGuest: boolean }) {
-  const subscription = access.subscription;
-  const planKey = subscription?.plan;
-  const plan = isPlanKey(planKey) ? PLANS[planKey] : null;
-  const periodEnd = subscription?.current_period_end ? formatDate(subscription.current_period_end.slice(0, 10)) : null;
-
-  if (access.premium && subscription) {
-    return (
-      <>
-        <DefinitionList
-          items={[
-            { term: 'Plan', value: <Badge tone="positive">Premium{plan ? `, ${plan.name} plan` : ''}</Badge> },
-            ...(plan ? [{ term: 'Price', value: `${formatEuros(plan.amount)} ${plan.billedEvery}, VAT included` }] : []),
-            { term: 'Status', value: STATUS_LABEL[subscription.status ?? ''] ?? subscription.status ?? 'Active' },
-            ...(periodEnd
-              ? [{ term: subscription.cancel_at_period_end ? 'Ends on' : 'Renews on', value: periodEnd }]
-              : []),
-          ]}
-        />
-        {subscription.status === 'past_due' ? (
-          <Alert tone="caution" className="mt-4">
-            <p>The last renewal payment did not go through. Stripe will try again; you can update your card under Manage billing.</p>
-          </Alert>
-        ) : null}
-        <p className="mt-5 border-t border-line pt-4 text-sm text-ink-muted">
-          Change plan, update your card, download invoices or cancel on Stripe&rsquo;s secure billing page.
-          If you cancel, Premium stays on until the end of the period you paid for.
-        </p>
-        <div className="mt-4">
-          <ManageBillingButton />
-        </div>
-      </>
-    );
-  }
-
-  if (access.staff) {
-    return <p className="text-sm text-ink-muted">Editors and administrators have every exam and practice format open, without a plan.</p>;
-  }
-
-  return (
-    <>
-      <DefinitionList
-        items={[
-          { term: 'Plan', value: <Badge tone="neutral">Free</Badge> },
-          {
-            term: 'Free test',
-            value: isGuest ? (
-              'Needs an account. Without one, the sample question on the home page is open to you.'
-            ) : access.firstSession ? (
-              <>
-                {access.firstSession.status === 'in_progress' ? 'Started' : 'Taken'} on {examLabel(access.firstSession.examKey)}.{' '}
-                <Link href={access.firstSession.status === 'in_progress' ? `/attempt/${access.firstSession.id}` : `/attempt/${access.firstSession.id}/results`}>
-                  {access.firstSession.status === 'in_progress' ? 'Continue it' : 'See its results'}
-                </Link>
-              </>
-            ) : (
-              `Not taken yet: ${FREE_SESSIONS === 1 ? 'one test' : `${FREE_SESSIONS} tests`} on the exam of your choice, the same fixed questions for everyone.`
-            ),
-          },
-          ...(subscription?.status
-            ? [{ term: 'Last plan', value: `${STATUS_LABEL[subscription.status] ?? subscription.status}${periodEnd ? `, ${periodEnd}` : ''}` }]
-            : []),
-        ]}
-      />
-      <p className="mt-5 border-t border-line pt-4 text-sm text-ink-muted">
-        Premium opens every exam and every practice format, from {formatEuros(PLANS.yearly.perMonth)} a month.
-        {isGuest ? ' It needs an account, so create one first; your guest practice comes with you.' : ''}
-      </p>
-      <div className="mt-4 flex flex-wrap gap-3">
-        <ButtonLink href={isGuest ? `/sign-up?next=${encodeURIComponent('/premium')}` : '/premium'}>
-          {isGuest ? 'Create an account' : 'See Premium plans'}
-        </ButtonLink>
-        {subscription && !isGuest ? <ManageBillingButton label="Past invoices" /> : null}
-      </div>
-    </>
-  );
+/** A stored subscription, as the plan manager shows it. */
+function toManaged(row: BillingOverview['subscriptions'][number]): ManagedSubscription {
+  const grant = toGrant(row);
+  return {
+    id: row.stripe_subscription_id,
+    planName: PLAN_COPY.plans[row.plan].name,
+    examName: row.exam_key ? (getExamConfig(row.exam_key)?.name ?? row.exam_key) : null,
+    status: row.status,
+    live: grantIsLive(grant),
+    // A subscription on an earlier price (LEGACY_LOOKUP_KEYS) shows no current price.
+    amount: row.price_lookup_key === PLANS[row.plan].lookupKey ? PLANS[row.plan].amount : null,
+    periodEnd: row.current_period_end,
+    cancelAtPeriodEnd: grant.cancelAtPeriodEnd,
+    changeable: ['active', 'trialing', 'past_due'].includes(row.status),
+  };
 }

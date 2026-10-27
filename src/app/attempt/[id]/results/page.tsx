@@ -12,8 +12,9 @@ import { UnsentAnswersNotice } from '@/components/player/unsent-answers-notice';
 import { HowToRead, NextSteps, QuestionList, Verdict, WhereMarksWentLost } from '@/components/results/results-sections';
 import { DebriefTutor } from '@/components/tutor/tutor-panel';
 import { tutorEnabled } from '@/lib/tutor/config';
-import { billingSettings } from '@/lib/billing/config';
-import { getAccess } from '@/lib/billing/service';
+import { pricingPath } from '@/lib/billing/config';
+import { loadEntitlements } from '@/lib/billing/entitlements';
+import { UpgradePrompt } from '@/components/billing/upgrade-prompt';
 import { getExamConfig, getHubForConfig } from '@/lib/exams/registry';
 import { Alert, Breadcrumbs, ButtonLink, Card, Container, PageHeader } from '@/components/ui';
 
@@ -58,16 +59,16 @@ export default async function ResultsPage({
     notFound();
   }
 
-  // After the free test, the next step for a learner without Premium is the
-  // offer for this same exam, so the exam they chose is not lost here.
+  // After the free diagnostic, the next step for a learner without a plan for
+  // this exam is the offer for this same exam, so the exam is not lost here.
   const attemptRow = (await db.prepare('SELECT settings_json FROM attempts WHERE id = ? AND user_id = ?').get(id, user.id)) as
     | { settings_json: string }
     | undefined;
   const wasFreeTest = Boolean(attemptRow && JSON.parse(attemptRow.settings_json)?.freeTest);
-  const offer =
-    wasFreeTest && billingSettings().enabled && !(await getAccess(db, user.id)).fullAccess
-      ? getExamConfig(summary.examKey)
-      : undefined;
+  const entitlements = await loadEntitlements(db, user.id);
+  const offer = wasFreeTest && !entitlements.can('practice', summary.examKey) ? getExamConfig(summary.examKey) : undefined;
+  const tutorOn = tutorEnabled();
+  const tutorAllowed = tutorOn && entitlements.can('ai_tutor', summary.examKey);
   const offerHub = offer ? getHubForConfig(offer.examKey) : undefined;
 
   const finished = new Date(summary.finishedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -112,13 +113,13 @@ export default async function ResultsPage({
         <Card padding="lg" className="mb-10 border-2 border-accent">
           <h2 className="font-heading text-xl font-semibold">Keep preparing for the {offerHub?.name ?? offer.name}</h2>
           <p className="mt-2 text-ink-muted">
-            That was your free test. Premium opens every {offerHub?.label ?? offer.shortName} practice format with
-            fresh questions each time, brings back the questions you missed, and plans your sessions toward your
-            test date.
+            That was your free diagnostic. A plan opens every {offerHub?.label ?? offer.shortName} practice format
+            with fresh questions each time, brings back the questions you missed, and plans your sessions toward
+            your test date.
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
-            <ButtonLink href={`/premium?exam=${encodeURIComponent(offer.examKey)}&reason=free-test-used`}>
-              See Premium for {offerHub?.label ?? offer.shortName}
+            <ButtonLink href={pricingPath(offer.examKey, 'diagnostic-taken')}>
+              See plans for {offerHub?.label ?? offer.shortName}
             </ButtonLink>
             {offerHub ? (
               <ButtonLink href={`/exams/${offerHub.slug}`} variant="secondary">
@@ -128,11 +129,14 @@ export default async function ResultsPage({
           </div>
         </Card>
       ) : null}
-      {/* Optional AI after-test guide: only when the operator has switched the tutor on. */}
-      {tutorEnabled() ? (
+      {/* Optional AI after-test guide: only when the operator has switched the
+          tutor on, and for learners whose plan includes it. */}
+      {tutorAllowed ? (
         <section aria-label="After-test guide" className="mb-10">
           <DebriefTutor attemptId={id} />
         </section>
+      ) : tutorOn && !offer ? (
+        <UpgradePrompt feature="ai_tutor" examKey={summary.examKey} className="mb-10" />
       ) : null}
       <QuestionList summary={summary} />
       <HowToRead summary={summary} />

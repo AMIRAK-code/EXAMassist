@@ -22,8 +22,7 @@ import { JsonLd, articleSchema, breadcrumbSchema, webPageSchema } from '@/compon
 import { headers } from 'next/headers';
 import { countPageView } from '@/lib/analytics/funnel';
 import { getCurrentUser } from '@/lib/auth/session';
-import { billingSettings } from '@/lib/billing/config';
-import { getAccess } from '@/lib/billing/service';
+import { loadEntitlements } from '@/lib/billing/entitlements';
 import { BOCCONI_HUB_SLUG, bocconiLandingData } from '@/lib/exams/bocconi-landing';
 import { BOCCONI_FACTS_CHECKED_ON } from '@/lib/exams/bocconi-facts';
 import { BocconiLanding } from '@/components/exams/bocconi-landing';
@@ -153,8 +152,8 @@ export default async function ExamHubPage({ params }: { params: Promise<{ hub: s
 
   if (hub.slug === BOCCONI_HUB_SLUG) {
     const user = await getCurrentUser();
-    const billing = billingSettings();
-    const fullAccess = !billing.enabled || (user ? (await getAccess(db, user.id)).fullAccess : false);
+    const entitlements = await loadEntitlements(db, user?.id ?? null);
+    const fullAccess = entitlements.can('practice', 'bocconi-undergraduate') && entitlements.can('practice', 'bocconi-law');
     const data = await bocconiLandingData(db);
     const url = absoluteUrl(`/exams/${hub.slug}`);
     return (
@@ -174,7 +173,7 @@ export default async function ExamHubPage({ params }: { params: Promise<{ hub: s
           ]}
         />
         <Breadcrumbs trail={trail} />
-        <BocconiLanding data={data} hasFullAccess={fullAccess} billingOn={billing.enabled} />
+        <BocconiLanding data={data} hasFullAccess={fullAccess} billingOn={entitlements.enforced} />
       </Container>
     );
   }

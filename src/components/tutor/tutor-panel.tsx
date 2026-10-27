@@ -22,7 +22,16 @@ interface TutorReply {
   truncated: boolean;
 }
 
-type Outcome = { ok: true; reply: TutorReply } | { ok: false; message: string };
+/** Shown with a refusal that comes with an upgrade (the tutor is part of All access). */
+const UPGRADE_LABEL = 'See the plans that include the AI tutor';
+
+interface Failure {
+  message: string;
+  /** Set when the tutor is part of a plan this learner does not have. */
+  upgradeHref?: string;
+}
+
+type Outcome = { ok: true; reply: TutorReply } | ({ ok: false } & Failure);
 
 async function ask(url: string, body: unknown): Promise<Outcome> {
   try {
@@ -33,14 +42,16 @@ async function ask(url: string, body: unknown): Promise<Outcome> {
     });
     const data = (await response.json().catch(() => null)) as
       | (TutorReply & { error?: undefined })
-      | { error: { message: string } }
+      | { error: { message: string; detail?: { upgradeHref?: unknown } } }
       | null;
     if (response.ok && data && !('error' in data && data.error)) {
       return { ok: true, reply: data as TutorReply };
     }
-    const message =
-      data && 'error' in data && data.error ? data.error.message : 'The AI tutor is unavailable right now.';
-    return { ok: false, message };
+    const failure = data && 'error' in data && data.error ? data.error : null;
+    const upgradeHref = typeof failure?.detail?.upgradeHref === 'string' && failure.detail.upgradeHref.startsWith('/')
+      ? failure.detail.upgradeHref
+      : undefined;
+    return { ok: false, message: failure?.message ?? 'The AI tutor is unavailable right now.', upgradeHref };
   } catch {
     return { ok: false, message: 'Could not reach the AI tutor. Check your connection and try again.' };
   }
@@ -67,10 +78,15 @@ function AiBadge() {
   );
 }
 
-function TutorError({ message }: { message: string }) {
+function TutorError({ message, upgradeHref }: Failure) {
   return (
     <Alert tone="caution" role="alert" className="mt-3">
       <p>{message}</p>
+      {upgradeHref ? (
+        <p className="mt-2">
+          <a href={upgradeHref}>{UPGRADE_LABEL}</a>
+        </p>
+      ) : null}
     </Alert>
   );
 }
@@ -178,7 +194,7 @@ export function QuestionTutor({
   const [hints, setHints] = useState<TutorReply[]>([]);
   const [explanation, setExplanation] = useState<TutorReply | null>(null);
   const [pending, setPending] = useState<'hint' | 'explain' | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<Failure | null>(null);
 
   if (!canHint && !canExplain) return null;
 
@@ -189,7 +205,7 @@ export function QuestionTutor({
     const outcome = await ask('/api/tutor/help', { attemptId, partIndex, position, kind: 'hint', level });
     setPending(null);
     if (outcome.ok) setHints((current) => [...current, outcome.reply]);
-    else setError(outcome.message);
+    else setError(outcome);
   }
 
   async function requestExplanation() {
@@ -198,7 +214,7 @@ export function QuestionTutor({
     const outcome = await ask('/api/tutor/help', { attemptId, partIndex, position, kind: 'explain' });
     setPending(null);
     if (outcome.ok) setExplanation(outcome.reply);
-    else setError(outcome.message);
+    else setError(outcome);
   }
 
   const showHints = canHint && !canExplain;
@@ -229,7 +245,7 @@ export function QuestionTutor({
         ) : null}
       </div>
 
-      {error ? <TutorError message={error} /> : null}
+      {error ? <TutorError message={error.message} upgradeHref={error.upgradeHref} /> : null}
     </div>
   );
 }
@@ -241,7 +257,7 @@ export function QuestionTutor({
 export function DebriefTutor({ attemptId }: { attemptId: string }) {
   const [reply, setReply] = useState<TutorReply | null>(null);
   const [pending, setPending] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<Failure | null>(null);
 
   async function request() {
     setPending(true);
@@ -249,7 +265,7 @@ export function DebriefTutor({ attemptId }: { attemptId: string }) {
     const outcome = await ask('/api/tutor/debrief', { attemptId });
     setPending(false);
     if (outcome.ok) setReply(outcome.reply);
-    else setError(outcome.message);
+    else setError(outcome);
   }
 
   if (reply) return <AiResponse reply={reply} title="Your after-test guide" />;
@@ -271,7 +287,7 @@ export function DebriefTutor({ attemptId }: { attemptId: string }) {
         </Button>
         <span className="text-xs text-ink-muted">Optional. Uses one of your daily AI requests.</span>
       </div>
-      {error ? <TutorError message={error} /> : null}
+      {error ? <TutorError message={error.message} upgradeHref={error.upgradeHref} /> : null}
     </div>
   );
 }

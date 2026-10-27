@@ -36,7 +36,7 @@ and tests can still use SQLite when DATABASE_URL is absent. Vercel requires
 DATABASE_URL and refuses to fall back to an ephemeral SQLite file.
 
 The application retains its existing accounts and session authentication. Its
-24 tables live in the private examer schema; the restricted examer_app login
+26 tables live in the private examer schema; the restricted examer_app login
 can read and write that schema only. Browser publishable keys cannot access it.
 Connections use the transaction pooler and verified TLS with the bundled public
 Supabase root certificate. No service-role key is required.
@@ -88,6 +88,7 @@ reset can fail there (error 1102) until the account is on Workers Paid.
 | `npm run e2e` | Browser tests (Playwright); prepares its own database |
 | `npm run db:migrate` / `db:seed` / `db:reset` | Database lifecycle |
 | `npm run content:validate` | Validate the question bank and report coverage |
+| `npm run stripe:setup` | Create or check the Stripe products and prices for the plans (`-- --dry-run` to only report); see [`docs/BILLING.md`](docs/BILLING.md) |
 | `npx tsx scripts/validate-configs.ts` | Validate the exam configurations |
 
 ## What is here
@@ -106,6 +107,12 @@ reset can fail there (error 1102) until the account is on Workers Paid.
   solved by a second reviewer before publication.
 - **Public educational pages** — exam hubs, format and scoring guides, and
   editorial guides, server-rendered with canonical URLs and structured data.
+- **Paid plans** — All access (€39/month) and Single exam (€19.99/month per
+  exam) through Stripe, with the pricing page, checkout and plan management on
+  the site's own pages; guides, sample questions and a diagnostic for every
+  exam stay free. Off unless `BILLING_ENFORCED=true`. Plans, prices and the
+  feature matrix are in `src/lib/billing/plans.ts`; setup, webhooks and the
+  go-live checklist in [`docs/BILLING.md`](docs/BILLING.md).
 
 - **Bocconi preparation and search** — the Bocconi landing page, its
   supporting guides, the funnel counts and the Search Console runbook are in

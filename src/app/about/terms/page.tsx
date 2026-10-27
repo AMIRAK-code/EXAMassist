@@ -60,38 +60,46 @@ export default function TermsPage() {
           university admission tests. It is a preparation aid and nothing more.
         </p>
         <p>
-          The guides and the sample question on the home page are open to everyone. A free account can
-          also take one free test, on the exam of its choice: the same fixed questions for every
-          account, with full results. Every other session needs Premium, a paid subscription described
-          below.
+          The guides, the sample questions and the format pages are open to everyone. A free account can
+          also take the free diagnostic for every exam: the same fixed questions for every account, with
+          full results. Practice sessions, timed sections, full simulations, the study plan and the AI
+          tutor need a paid plan, described below.
         </p>
 
-        <h2>Premium and payments</h2>
+        <h2 id="sale">Plans and payments</h2>
         <ul>
           <li>
-            Premium opens every exam and every practice format for as long as the subscription runs.
-            The plans and their prices are on the <Link href="/premium">Premium page</Link>. Prices are
-            in euros and include VAT.
+            <strong>All access</strong> opens every exam, every practice format, the study plan and the
+            AI tutor. <strong>Single exam</strong> opens every practice format and the study plan for the
+            one exam you choose; you can hold several. The plans and their prices are on the{' '}
+            <Link href="/pricing">pricing page</Link>. Prices are in euros, include VAT and are charged
+            monthly.
           </li>
           <li>
-            Payment is taken by Stripe, on Stripe&rsquo;s own checkout page, at the start of each
-            billing period. Card details go to Stripe and never reach us.
+            Payment is taken by Stripe, our payment provider, at the start of each month. Card details
+            are typed into fields provided by Stripe on our checkout page and go straight to Stripe; they
+            never reach us.
           </li>
           <li>
-            A subscription renews automatically at the end of each period until it is cancelled. You
-            can cancel at any time from <Link href="/account#billing">your account</Link>; Premium then
-            stays on until the end of the period already paid for, and nothing more is charged.
+            A subscription renews automatically every month until it is cancelled. You can cancel at any
+            time from <Link href="/account#billing">your account</Link>; the plan then stays on until the
+            end of the month already paid for, and nothing more is charged.
           </li>
           <li>
-            Premium starts as soon as you pay. At checkout you ask us to start it straight away and
-            acknowledge that, once it has started, the 14-day right of withdrawal no longer applies.
+            A plan starts as soon as you pay. At checkout you expressly ask us to start it straight away
+            and acknowledge that, once it has started, you lose the 14-day right of withdrawal. We keep a
+            record of when you did.
+          </li>
+          <li>
+            If a renewal payment fails, Stripe retries it for a limited period and your access continues
+            until the end of the month that payment was for. If it still fails, the plan ends.
           </li>
           <li>
             If we change a price, the new price applies only from your next renewal, and we will tell
             you before it does.
           </li>
           <li>
-            Deleting your account cancels Premium immediately, so nothing more is charged for an
+            Deleting your account cancels your plans immediately, so nothing more is charged for an
             account that no longer exists.
           </li>
         </ul>
@@ -184,11 +192,11 @@ export default function TermsPage() {
           <li>
             <strong>Minors as contracting parties.</strong> A large part of the audience is under 18.
             Whether a minor can accept these terms, and whether parental consent is required, differs
-            by jurisdiction and needs advice. This now includes buying Premium: nothing stops a minor
+            by jurisdiction and needs advice. This now includes buying a plan: nothing stops a minor
             from paying today.
           </li>
           <li>
-            <strong>Consumer law for Premium.</strong> Whether the checkout wording is enough to end the
+            <strong>Consumer law for paid plans.</strong> Whether the checkout wording is enough to end the
             14-day right of withdrawal for a subscription that starts immediately (EU Consumer Rights
             Directive, Italian Consumer Code); what the pre-contract information and the confirmation
             email must contain; whether unused time should be refunded when an account is deleted or a

@@ -13,6 +13,8 @@ import { ReadinessReport } from '@/components/readiness/readiness-report';
 import { SuggestionsList } from '@/components/readiness/suggestions-list';
 import { TargetForm } from '@/components/readiness/target-form';
 import { Breadcrumbs, Card, Container, EmptyState, ButtonLink, PageHeader } from '@/components/ui';
+import { loadEntitlements } from '@/lib/billing/entitlements';
+import { UpgradePrompt } from '@/components/billing/upgrade-prompt';
 import { PlanningExamSwitcher, PlanningNotice, PlanningViews } from '@/components/planning/planning-views';
 import { DateConflictCard } from '@/components/planning/plan-parts';
 
@@ -63,6 +65,18 @@ export default async function ReadinessPage({ searchParams }: { searchParams: Pr
   }
 
   const config = requireExamConfig(examKey);
+  // The study plan and readiness are part of a paid plan for this exam.
+  if (!(await loadEntitlements(db, user.id)).can('study_plan', config.examKey)) {
+    return (
+      <Container>
+        <Breadcrumbs trail={trail} />
+        <PageHeader eyebrow={config.publisher} title="Study plan" />
+        <PlanningViews current="progress" examKey={config.examKey} />
+        <PlanningExamSwitcher choices={choices} />
+        <UpgradePrompt feature="study_plan" examKey={config.examKey} examName={config.shortName} />
+      </Container>
+    );
+  }
   const target = (await getExamTarget(db, user.id, config.examKey));
   const dates = (await examDateFor(db, user.id, config.examKey));
   const assessment = (await buildReadiness(db, user.id, config, target?.targetScore ?? null));
