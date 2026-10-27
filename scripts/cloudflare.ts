@@ -36,8 +36,11 @@ function main(): void {
   env.CLOUDFLARE_HYPERDRIVE_LOCAL_CONNECTION_STRING_HYPERDRIVE ??= 'postgres://examer:examer@127.0.0.1:5432/examer';
 
   const cli = path.join('node_modules', '@opennextjs', 'cloudflare', 'dist', 'cli', 'index.js');
+  // Next.js 15 left the Next team's two-year support window on 2026-10-21, and
+  // OpenNext refuses to build it without this flag. Remove it after moving to 16.
+  const stepArgs: Record<string, string[]> = { build: ['--dangerouslyUseUnsupportedNextVersion'], deploy: [] };
   for (const step of command === 'build' ? ['build'] : ['build', 'deploy']) {
-    const result = spawnSync(process.execPath, [cli, step], { stdio: 'inherit', env });
+    const result = spawnSync(process.execPath, [cli, step, ...stepArgs[step]], { stdio: 'inherit', env });
     if (result.status !== 0) throw new Error(`opennextjs-cloudflare ${step} failed.`);
   }
 }
