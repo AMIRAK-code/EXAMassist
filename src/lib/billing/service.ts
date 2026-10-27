@@ -33,7 +33,12 @@ import { asStripeError, isSignatureError, stripeClient, verifyWebhookEvent, type
  * - Webhooks keep the local copy in step (store.ts), idempotently.
  */
 
-/** Learner-facing messages. Translated with the rest of the site. */
+/**
+ * Learner-facing messages, in English. Each is also in the `billing` message
+ * catalogue under `errors.<key>`: a BillingError made by `billingError()`
+ * carries its key in `detail.messageKey`, which the API passes on, so the page
+ * shows the message in the buyer's language.
+ */
 export const BILLING_COPY = {
   billingOff: 'Payments are not switched on for this site yet. Nothing was charged.',
   accountRequired: 'Create an account first, so your plan has somewhere to live. Your guest practice comes with you.',
@@ -53,7 +58,10 @@ export const BILLING_COPY = {
   countryRequired: 'Choose your country, so the right VAT can be applied.',
   deletionBlocked:
     'Your subscriptions could not be cancelled just now, so the account was not deleted. Please try again in a few minutes.',
+  rateLimited: 'Too many tries. Please wait a few minutes.',
 } as const;
+
+export type BillingMessageKey = keyof typeof BILLING_COPY;
 
 export class BillingError extends Error {
   constructor(
@@ -65,6 +73,17 @@ export class BillingError extends Error {
     super(message);
     this.name = 'BillingError';
   }
+
+  /** The `billing.errors.*` key of this message, when it is one of BILLING_COPY. */
+  get messageKey(): BillingMessageKey | null {
+    const key = (this.detail as { messageKey?: unknown } | undefined)?.messageKey;
+    return typeof key === 'string' && Object.prototype.hasOwnProperty.call(BILLING_COPY, key) ? (key as BillingMessageKey) : null;
+  }
+}
+
+/** A BillingError with one of our messages, and its catalogue key for the page to translate. */
+export function billingError(code: string, key: BillingMessageKey, status = 400): BillingError {
+  return new BillingError(code, BILLING_COPY[key], status, { messageKey: key });
 }
 
 export interface BillingDeps {
@@ -87,21 +106,21 @@ function explainStripeError(error: unknown): unknown {
   if (!stripeError) return error;
   console.error('[billing] Stripe error', stripeError.statusCode, stripeError.type, stripeError.code, stripeError.message);
   if (stripeError.type === 'StripeAuthenticationError' || stripeError.type === 'StripePermissionError') {
-    return new BillingError('billing-misconfigured', BILLING_COPY.misconfigured, 503);
+    return billingError('billing-misconfigured', 'misconfigured', 503);
   }
   if (/stripe tax|tax settings|head office|origin address|tax_location/i.test(stripeError.message)) {
-    return new BillingError('billing-misconfigured', BILLING_COPY.misconfigured, 503);
+    return billingError('billing-misconfigured', 'misconfigured', 503);
   }
-  if (stripeError.type === 'StripeIdempotencyError') return new BillingError('retry', BILLING_COPY.retry, 409);
+  if (stripeError.type === 'StripeIdempotencyError') return billingError('retry', 'retry', 409);
   if (
     stripeError.type === 'StripeRateLimitError' ||
     stripeError.type === 'StripeConnectionError' ||
     stripeError.type === 'StripeAPIError' ||
     (stripeError.statusCode ?? 0) >= 500
   ) {
-    return new BillingError('billing-unavailable', BILLING_COPY.unavailable, 503);
+    return billingError('billing-unavailable', 'unavailable', 503);
   }
-  return new BillingError('billing-failed', BILLING_COPY.failed, 502);
+  return billingError('billing-failed', 'failed', 502);
 }
 
 async function withStripe<T>(work: () => Promise<T>): Promise<T> {
@@ -113,7 +132,7 @@ async function withStripe<T>(work: () => Promise<T>): Promise<T> {
 }
 
 function requireStripe(stripe: StripeApi | null): StripeApi {
-  if (!stripe) throw new BillingError('billing-off', BILLING_COPY.billingOff, 503);
+  if (!stripe) throw billingError('billing-off', 'billingOff', 503);
   return stripe;
 }
 
@@ -162,7 +181,7 @@ export async function priceIdFor(stripe: StripeApi, plan: PlanKey): Promise<stri
   const price = found.data[0];
   if (!price) {
     console.error(`[billing] no active Stripe price with lookup key ${PLANS[plan].lookupKey}; run scripts/stripe-setup.ts`);
-    throw new BillingError('billing-misconfigured', BILLING_COPY.misconfigured, 503);
+    throw billingError('billing-misconfigured', 'misconfigured', 503);
   }
   return price.id;
 }
@@ -214,29 +233,29 @@ export async function createSubscription(
   options: BillingDeps = {},
 ): Promise<CreatedSubscription> {
   const { settings, stripe: maybeStripe, now } = resolveDeps(options);
-  if (!settings.checkoutAvailable) throw new BillingError('billing-off', BILLING_COPY.billingOff, 503);
+  if (!settings.checkoutAvailable) throw billingError('billing-off', 'billingOff', 503);
   const stripe = requireStripe(maybeStripe);
-  if (user.isGuest || !user.email) throw new BillingError('account-required', BILLING_COPY.accountRequired, 403);
-  if (input.consent !== true) throw new BillingError('consent-required', BILLING_COPY.consentRequired, 400);
-  if (!isPlanKey(input.plan)) throw new BillingError('unknown-plan', BILLING_COPY.unknownPlan, 400);
+  if (user.isGuest || !user.email) throw billingError('account-required', 'accountRequired', 403);
+  if (input.consent !== true) throw billingError('consent-required', 'consentRequired', 400);
+  if (!isPlanKey(input.plan)) throw billingError('unknown-plan', 'unknownPlan', 400);
 
   const plan = PLANS[input.plan];
   const examKey = plan.scope === 'one-exam' ? (input.examKey ?? null) : null;
   if (plan.scope === 'one-exam' && (!examKey || !getExamConfig(examKey))) {
-    throw new BillingError('unknown-exam', BILLING_COPY.unknownExam, 400);
+    throw billingError('unknown-exam', 'unknownExam', 400);
   }
   const sourceExam = input.sourceExam && getExamConfig(input.sourceExam) ? input.sourceExam : null;
   const country = input.country?.trim().toUpperCase() || null;
   if (settings.automaticTax && !(country && /^[A-Z]{2}$/.test(country))) {
-    throw new BillingError('country-required', BILLING_COPY.countryRequired, 400);
+    throw billingError('country-required', 'countryRequired', 400);
   }
 
   // Never sell what the learner already has. Checked whether or not the
   // paywall is on, so a rehearsal in test mode behaves like the real thing.
   const owned = await loadEntitlements(db, user.id, { settings: { ...settings, enforced: true }, now });
-  if (owned.hasAllAccess) throw new BillingError('already-subscribed', BILLING_COPY.alreadyAllAccess, 409);
+  if (owned.hasAllAccess) throw billingError('already-subscribed', 'alreadyAllAccess', 409);
   if (examKey && owned.singleExamKeys.includes(examKey)) {
-    throw new BillingError('already-subscribed', BILLING_COPY.alreadyThisExam, 409);
+    throw billingError('already-subscribed', 'alreadyThisExam', 409);
   }
 
   return withStripe(async () => {
@@ -306,7 +325,7 @@ export async function syncSubscriptionForUser(
 ): Promise<SubscriptionRow> {
   const { stripe, now } = resolveDeps(options);
   const row = await getSubscriptionRow(db, subscriptionId);
-  if (!row || row.user_id !== userId) throw new BillingError('unknown-subscription', BILLING_COPY.unknownSubscription, 404);
+  if (!row || row.user_id !== userId) throw billingError('unknown-subscription', 'unknownSubscription', 404);
   if (!stripe) return row;
   try {
     const fresh = await stripe.subscriptions.retrieve(subscriptionId);
@@ -336,8 +355,8 @@ export async function setCancelAtPeriodEnd(
   const { stripe: maybeStripe, now } = resolveDeps(options);
   const stripe = requireStripe(maybeStripe);
   const row = await getSubscriptionRow(db, subscriptionId);
-  if (!row || row.user_id !== userId) throw new BillingError('unknown-subscription', BILLING_COPY.unknownSubscription, 404);
-  if (!CHANGEABLE.has(row.status)) throw new BillingError('not-changeable', BILLING_COPY.notChangeable, 409);
+  if (!row || row.user_id !== userId) throw billingError('unknown-subscription', 'unknownSubscription', 404);
+  if (!CHANGEABLE.has(row.status)) throw billingError('not-changeable', 'notChangeable', 409);
   return withStripe(async () => {
     const updated = await stripe.subscriptions.update(subscriptionId, { cancel_at_period_end: cancel });
     const stored = await storeSubscription(db, userId, updated, { syncedAt: seconds(now), now });
@@ -350,7 +369,7 @@ export async function startCardUpdate(db: Db, userId: string, options: BillingDe
   const { stripe: maybeStripe } = resolveDeps(options);
   const stripe = requireStripe(maybeStripe);
   const customer = await getCustomerId(db, userId);
-  if (!customer) throw new BillingError('no-billing-account', BILLING_COPY.noBillingAccount, 404);
+  if (!customer) throw billingError('no-billing-account', 'noBillingAccount', 404);
   return withStripe(async () => {
     const intent = await stripe.setupIntents.create({
       customer,
@@ -358,7 +377,7 @@ export async function startCardUpdate(db: Db, userId: string, options: BillingDe
       payment_method_types: ['card'],
       metadata: { examer_user_id: userId, purpose: 'card_update' },
     });
-    if (!intent.client_secret) throw new BillingError('billing-failed', BILLING_COPY.failed, 502);
+    if (!intent.client_secret) throw billingError('billing-failed', 'failed', 502);
     return { clientSecret: intent.client_secret };
   });
 }
@@ -375,15 +394,15 @@ export async function finishCardUpdate(
 ): Promise<{ updated: number; retried: number }> {
   const { stripe: maybeStripe, now } = resolveDeps(options);
   const stripe = requireStripe(maybeStripe);
-  if (!/^seti_[A-Za-z0-9]+$/.test(setupIntentId)) throw new BillingError('card-not-saved', BILLING_COPY.cardNotSaved, 400);
+  if (!/^seti_[A-Za-z0-9]+$/.test(setupIntentId)) throw billingError('card-not-saved', 'cardNotSaved', 400);
   const customer = await getCustomerId(db, userId);
-  if (!customer) throw new BillingError('no-billing-account', BILLING_COPY.noBillingAccount, 404);
+  if (!customer) throw billingError('no-billing-account', 'noBillingAccount', 404);
 
   return withStripe(async () => {
     const intent = await stripe.setupIntents.retrieve(setupIntentId);
     const paymentMethod = idOf(intent.payment_method);
     if (idOf(intent.customer) !== customer || intent.status !== 'succeeded' || !paymentMethod) {
-      throw new BillingError('card-not-saved', BILLING_COPY.cardNotSaved, 409);
+      throw billingError('card-not-saved', 'cardNotSaved', 409);
     }
     await stripe.customers.update(customer, { invoice_settings: { default_payment_method: paymentMethod } });
 
@@ -566,7 +585,7 @@ export async function cancelBeforeDeletion(db: Db, userId: string, options: Bill
   if (!customer) return;
   if (!stripe) {
     const live = (await listSubscriptions(db, userId).catch(() => [])).some((row) => CHANGEABLE.has(row.status));
-    if (live) throw new BillingError('billing-unavailable', BILLING_COPY.deletionBlocked, 503);
+    if (live) throw billingError('billing-unavailable', 'deletionBlocked', 503);
     return;
   }
   try {
@@ -579,7 +598,7 @@ export async function cancelBeforeDeletion(db: Db, userId: string, options: Bill
     if (asStripeError(error)?.code === 'resource_missing') return;
     if (asStripeError(error)) {
       console.error('[billing] cancel before deletion failed:', asStripeError(error)?.message);
-      throw new BillingError('billing-unavailable', BILLING_COPY.deletionBlocked, 503);
+      throw billingError('billing-unavailable', 'deletionBlocked', 503);
     }
     throw error;
   }

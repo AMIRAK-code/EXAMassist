@@ -1,59 +1,50 @@
 import { Link } from '@/i18n/navigation';
 import type { Metadata } from 'next';
+import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/server';
+import { languageAlternates } from '@/i18n/alternates';
+import type { Locale } from '@/i18n/locales';
 import { getDb } from '@/lib/db';
 import { listHubs, requireExamConfig } from '@/lib/exams/registry';
 import { examCoverage } from '@/lib/attempts/availability';
 import { buildHomeData } from '@/lib/home/home-data';
 import { FormatAvailabilityTable } from '@/components/exams/format-availability';
-import { SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
+import { shareImages, SITE, siteUrl } from '@/lib/site';
 import { Badge, Breadcrumbs, ButtonLink, Card, Container, PageHeader } from '@/components/ui';
 import { JsonLd, breadcrumbSchema } from '@/components/seo/json-ld';
 
 export const dynamic = 'force-dynamic';
 
-const TITLE = 'Admission exams we cover';
-const DESCRIPTION =
-  'Format, timing, scoring and practice for the Online Bocconi test (bachelor, law and master’s forms), Digital SAT, Enhanced ACT, LSAT, GMAT, GRE, Politecnico di Torino TIL and CISIA TOLC, with undergraduate, law and graduate requirements kept separate.';
+type Props = { params: Promise<{ locale: string }> };
 
-export const metadata: Metadata = {
-  title: TITLE,
-  description: DESCRIPTION,
-  alternates: { canonical: absoluteUrl('/exams') },
-  openGraph: {
-    url: absoluteUrl('/exams'),
-    title: `${TITLE} | ${SITE.shortName}`,
-    description: DESCRIPTION,
-    images: shareImages('site', TITLE),
-  },
-};
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'exams.index' });
+  const title = t('title');
+  const description = t('metaDescription');
+  const alternates = languageAlternates('/exams', locale as Locale);
+  return {
+    title,
+    description,
+    alternates,
+    openGraph: { url: alternates.canonical, title: `${title} | ${SITE.shortName}`, description, images: shareImages('site', title) },
+  };
+}
 
-const AUDIENCE_LABEL: Record<string, string> = {
-  undergraduate: 'Undergraduate',
-  law: 'Law',
-  graduate: 'Graduate',
-};
+const AUDIENCES = ['undergraduate', 'law', 'graduate'] as const;
 
-export default async function ExamsPage() {
+export default async function ExamsPage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale as Locale);
+  const t = await getTranslations('exams');
+  const format = await getFormatter();
   const db = getDb();
-  const trail = [{ href: '/', label: 'Home' }, { label: 'Exams' }];
+  const trail = [{ href: '/', label: t('breadcrumb.home') }, { label: t('breadcrumb.exams') }];
 
-  const groups: Array<{ audience: string; label: string; blurb: string }> = [
-    {
-      audience: 'undergraduate',
-      label: 'Undergraduate admission',
-      blurb: 'Tests taken before a first degree, including the Bocconi bachelor route.',
-    },
-    {
-      audience: 'law',
-      label: 'Law admission',
-      blurb: 'The LSAT for JD admission, and the Bocconi law variant, which is a different test from the bachelor form.',
-    },
-    {
-      audience: 'graduate',
-      label: 'Graduate and business admission',
-      blurb: 'Tests taken after a first degree, for master’s and MBA programmes, including the Bocconi master’s route, which has its own form of the Bocconi test.',
-    },
-  ];
+  const groups = AUDIENCES.map((audience) => ({
+    audience,
+    label: t(`index.groups.${audience}.label`),
+    blurb: t(`index.groups.${audience}.blurb`),
+  }));
 
   const { matrix, asOf } = (await buildHomeData(db));
 
@@ -79,10 +70,10 @@ export default async function ExamsPage() {
         line when the interface font arrived and pushed the first exams down
         (docs/REDESIGN.md §18).
       */}
-      <PageHeader title={TITLE} />
+      <PageHeader title={t('index.title')} />
 
       {groups.map((group) => {
-        const groupHubs = hubs.filter((entry) => entry.hub.audiences.includes(group.audience as never));
+        const groupHubs = hubs.filter((entry) => entry.hub.audiences.includes(group.audience));
         if (groupHubs.length === 0) return null;
 
         return (
@@ -105,7 +96,7 @@ export default async function ExamsPage() {
                     <div className="flex flex-wrap gap-1">
                       {hub.audiences.map((audience) => (
                         <Badge key={audience} tone="neutral">
-                          {AUDIENCE_LABEL[audience]}
+                          {t(`audience.${audience}`)}
                         </Badge>
                       ))}
                     </div>
@@ -116,20 +107,20 @@ export default async function ExamsPage() {
 
                   <dl className="mt-4 grid grid-cols-2 gap-3 border-t border-line pt-4 text-sm">
                     <div>
-                      <dt className="text-ink-muted">Reviewed questions</dt>
-                      <dd className="font-medium tabular-nums">{items}</dd>
+                      <dt className="text-ink-muted">{t('index.reviewedQuestions')}</dt>
+                      <dd className="font-medium tabular-nums">{format.number(items)}</dd>
                     </div>
                     <div>
-                      <dt className="text-ink-muted">Topics covered</dt>
+                      <dt className="text-ink-muted">{t('index.topicsCovered')}</dt>
                       <dd className="font-medium tabular-nums">
-                        {domainsCovered} / {domainsTotal}
+                        {t('index.topicsValue', { covered: domainsCovered, total: domainsTotal })}
                       </dd>
                     </div>
                   </dl>
 
                   <div className="mt-4 flex flex-wrap gap-2">
                     <ButtonLink href={`/exams/${hub.slug}`} size="sm">
-                      {hub.slug === 'bocconi-online-test' ? 'Bocconi test preparation' : 'Exam guide'}
+                      {hub.slug === 'bocconi-online-test' ? t('index.bocconiButton') : t('index.examGuide')}
                     </ButtonLink>
                     {configs.map((config) => (
                       <ButtonLink
@@ -138,15 +129,13 @@ export default async function ExamsPage() {
                         size="sm"
                         variant="secondary"
                       >
-                        {configs.length > 1 ? `Practise ${config.shortName}` : 'Practise'}
+                        {configs.length > 1 ? t('index.practiseVariant', { name: config.shortName }) : t('index.practise')}
                       </ButtonLink>
                     ))}
                   </div>
 
                   {configs.some((c) => !c.capabilities.fullSimulation.available) ? (
-                    <p className="mt-3 text-xs text-ink-subtle">
-                      Full-length simulation not offered yet — see the guide for why.
-                    </p>
+                    <p className="mt-3 text-xs text-ink-subtle">{t('index.noSimulation')}</p>
                   ) : null}
                 </Card>
               ))}
@@ -155,19 +144,13 @@ export default async function ExamsPage() {
         );
       })}
 
-      <p className="mb-12 max-w-2xl text-ink-muted">
-        Each guide records what the test maker actually publishes: sections, question counts, timing,
-        navigation rules, calculator policy and scoring, with the source and the date we checked it.
-      </p>
+      <p className="mb-12 max-w-2xl text-ink-muted">{t('index.guidesNote')}</p>
 
       <section id="formats" aria-labelledby="formats-heading" className="mb-12">
         <h2 id="formats-heading" className="font-heading text-2xl font-semibold">
-          Formats and availability
+          {t('index.formatsHeading')}
         </h2>
-        <p className="mt-1 max-w-2xl text-ink-muted">
-          A format opens only when the exam’s rules are verified and the reviewed bank can fill it
-          without repeating a question. These counts come from the live bank.
-        </p>
+        <p className="mt-1 max-w-2xl text-ink-muted">{t('index.formatsLead')}</p>
         <FormatAvailabilityTable matrix={matrix} asOf={asOf} />
       </section>
     </Container>

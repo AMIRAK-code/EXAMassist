@@ -17,12 +17,8 @@ import type { Correction, Outcome } from './results';
  * own page. Everything is scoped to the learner.
  */
 
-export const NOTEBOOK_VIEWS = [
-  { key: 'due', label: 'Due now' },
-  { key: 'later', label: 'Coming back later' },
-  { key: 'all', label: 'All mistakes' },
-  { key: 'bookmarked', label: 'Bookmarked' },
-] as const;
+/** The views, in display order. Their names are in the `results.notebook.views` messages. */
+export const NOTEBOOK_VIEWS = [{ key: 'due' }, { key: 'later' }, { key: 'all' }, { key: 'bookmarked' }] as const;
 export type NotebookView = (typeof NOTEBOOK_VIEWS)[number]['key'];
 export const NOTEBOOK_PAGE = 40;
 

@@ -1,4 +1,9 @@
 import type { Metadata } from 'next';
+import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
+import { Link, getPathname } from '@/i18n/navigation';
+import { languageAlternates } from '@/i18n/alternates';
+import type { Locale } from '@/i18n/locales';
 import { getDb } from '@/lib/db';
 import { requireSignedIn } from '@/lib/auth/guards';
 import { listHubs, requireExamConfig } from '@/lib/exams/registry';
@@ -46,41 +51,50 @@ import {
 
 export const dynamic = 'force-dynamic';
 
-export const metadata: Metadata = {
-  title: 'Your study plan',
-  description: 'A dated practice plan built from your own answers and the questions available.',
-  // Private page. Authorization is the protection; this is only an indexing hint.
-  robots: { index: false, follow: false },
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'learning.studyPlan.meta' });
+  return {
+    title: t('title'),
+    description: t('description'),
+    alternates: languageAlternates('/study-plan', locale),
+    // Private page. Authorization is the protection; this is only an indexing hint.
+    robots: { index: false, follow: false },
+  };
+}
 
 type Query = { exam?: string | string[]; notice?: string | string[]; minutes?: string | string[]; date?: string | string[] };
 const one = (value: string | string[] | undefined) => (Array.isArray(value) ? value[0] : value);
 
-const TRAIL = [
-  { href: '/', label: 'Home' },
-  { href: '/dashboard', label: 'Dashboard' },
-  { label: 'Study plan' },
-];
-
-export default async function StudyPlanPage({ searchParams }: { searchParams: Promise<Query> }) {
+export default async function StudyPlanPage({ params, searchParams }: { params: Promise<{ locale: Locale }>; searchParams: Promise<Query> }) {
+  const { locale } = await params;
   const user = await requireSignedIn('/study-plan');
   const query = await searchParams;
   const db = getDb();
   const { examKey, choices } = (await planningExam(db, user, query.exam, 'plan'));
+  const t = await getTranslations('learning');
+  const TRAIL = [
+    { href: '/', label: t('crumbs.home') },
+    { href: '/dashboard', label: t('crumbs.dashboard') },
+    { label: t('crumbs.studyPlan') },
+  ];
 
   if (!examKey) {
     return (
       <Container>
         <Breadcrumbs trail={TRAIL} />
-        <PageHeader title="Study plan" />
+        <PageHeader title={t('crumbs.studyPlan')} />
         <PlanningViews current="plan" examKey={null} />
-        <EmptyState title="No exam chosen yet" action={<ButtonLink href="/exams">Choose an exam</ButtonLink>}>
-          <p>Pick the test you are preparing for, and this page will lay out the next few weeks from the questions available and your own results.</p>
+        <EmptyState
+          title={t('studyPlan.noExamTitle')}
+          action={<ButtonLink href="/exams">{t('studyPlan.chooseExam')}</ButtonLink>}
+        >
+          <p>{t('studyPlan.noExamLead')}</p>
         </EmptyState>
         <ul className="mt-8 flex flex-wrap gap-x-4 gap-y-2 text-sm">
           {listHubs().map((hub) => (
             <li key={hub.slug}>
-              <a href={`/exams/${hub.slug}`}>{hub.name}</a>
+              <Link href={`/exams/${hub.slug}`}>{hub.name}</Link>
             </li>
           ))}
         </ul>
@@ -94,7 +108,7 @@ export default async function StudyPlanPage({ searchParams }: { searchParams: Pr
     return (
       <Container>
         <Breadcrumbs trail={TRAIL} />
-        <PageHeader eyebrow={config.publisher} title="Study plan" />
+        <PageHeader eyebrow={config.publisher} title={t('crumbs.studyPlan')} />
         <PlanningViews current="plan" examKey={config.examKey} />
         <PlanningExamSwitcher choices={choices} />
         <UpgradePrompt feature="study_plan" examKey={config.examKey} examName={config.shortName} />
@@ -109,7 +123,7 @@ export default async function StudyPlanPage({ searchParams }: { searchParams: Pr
   return (
     <Container>
       <Breadcrumbs trail={TRAIL} />
-      <PageHeader eyebrow={config.publisher} title="Study plan" />
+      <PageHeader eyebrow={config.publisher} title={t('crumbs.studyPlan')} />
       <PlanningViews current="plan" examKey={examKey} />
       <PlanningExamSwitcher choices={choices} />
       <PlanningNotice code={query.notice} className="mb-6" />
@@ -117,7 +131,13 @@ export default async function StudyPlanPage({ searchParams }: { searchParams: Pr
         <DateConflictCard examKey={examKey} examName={config.shortName} current={dates.examDate} earlier={dates.conflicting} returnTo="plan" />
       ) : null}
       {plan ? (
-        <StoredPlan plan={plan} sessions={(await planSessions(db, user.id, plan.id))} examDate={dates.examDate} configKey={examKey} />
+        <StoredPlan
+          plan={plan}
+          sessions={(await planSessions(db, user.id, plan.id))}
+          examDate={dates.examDate}
+          configKey={examKey}
+          locale={locale}
+        />
       ) : (
         <PlanSetup
           examKey={examKey}
@@ -126,6 +146,7 @@ export default async function StudyPlanPage({ searchParams }: { searchParams: Pr
           unattached={(await unattachedPlanDate(db, user.id))}
           savedMinutes={user.weeklyMinutes}
           query={query}
+          locale={locale}
         />
       )}
     </Container>
@@ -143,6 +164,7 @@ async function PlanSetup({
   unattached,
   savedMinutes,
   query,
+  locale,
 }: {
   examKey: string;
   userId: string;
@@ -150,7 +172,9 @@ async function PlanSetup({
   unattached: string | null;
   savedMinutes: number | null;
   query: Query;
+  locale: Locale;
 }) {
+  const t = await getTranslations('learning.studyPlan');
   const db = getDb();
   const config = requireExamConfig(examKey);
   const today = isoDay(new Date());
@@ -164,9 +188,9 @@ async function PlanSetup({
   const examDate = parsed === 'invalid' ? null : parsed;
   const dateProblem =
     askedDate !== undefined && parsed === 'invalid'
-      ? 'That date is not after today, so the preview uses no exam date.'
+      ? t('setup.dateNotAfterToday')
       : askedDate === undefined && fallbackDate && fallbackDate <= today
-        ? `Your exam date, ${formatDate(fallbackDate)}, has passed, so the preview uses none.`
+        ? t('setup.datePassed', { date: formatDate(fallbackDate, locale) })
         : null;
 
   const sessions = buildSessions((await planInputs(db, userId, config, { startsOn: today, examDate, weeklyMinutes })));
@@ -177,23 +201,23 @@ async function PlanSetup({
 
   const dateHint =
     askedDate === undefined && !canonicalDate && unattached
-      ? `Filled in from your earlier study plan, which was not tied to an exam. Clear it if it is not your ${config.shortName} date.`
-      : 'Your one exam date for this exam, shared with your goal. Leave it empty for a six-week plan.';
+      ? t('setup.dateHintEarlier', { exam: config.shortName })
+      : t('setup.dateHint');
 
   return (
     <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_20rem]">
       <div>
         <section aria-labelledby="setup-heading" className="mb-10">
           <h2 id="setup-heading" className="mb-4 font-heading text-2xl font-semibold">
-            Make a plan
+            {t('setup.title')}
           </h2>
           <Card>
             <PlanInputsForm
-              action="/study-plan"
+              action={getPathname({ href: '/study-plan', locale })}
               examKey={examKey}
               examDate={examDate}
               weeklyMinutes={weeklyMinutes}
-              submitLabel="Preview with these"
+              submitLabel={t('setup.preview')}
               dateHint={dateHint}
             />
             {dateProblem ? (
@@ -206,40 +230,43 @@ async function PlanSetup({
 
         <section aria-labelledby="preview-heading">
           <h2 id="preview-heading" className="mb-4 font-heading text-2xl font-semibold">
-            The plan this would make
+            {t('setup.previewTitle')}
           </h2>
           {sessions.length === 0 ? (
-            <EmptyState title="Nothing to plan yet" headingLevel={3}>
-              <p>There are no reviewed questions to plan for {config.shortName} yet.</p>
+            <EmptyState title={t('setup.nothingTitle')} headingLevel={3}>
+              <p>{t('setup.nothingLead', { exam: config.shortName })}</p>
             </EmptyState>
           ) : (
             <>
               <Card className="mb-6">
                 <div className="grid grid-cols-2 gap-5 sm:grid-cols-4">
-                  <Stat label="Sessions" value={sessions.length} />
-                  <Stat label="New questions" value={counts.new} />
-                  <Stat label="Revision" value={counts.revision} />
-                  <Stat label="Review" value={counts.review} />
+                  <Stat label={t('stats.sessions')} value={sessions.length} />
+                  <Stat label={t('stats.new')} value={counts.new} />
+                  <Stat label={t('stats.revision')} value={counts.revision} />
+                  <Stat label={t('stats.review')} value={counts.review} />
                 </div>
                 <div className="mt-5 border-t border-line pt-5">
                   <DefinitionList
                     items={[
-                      { term: 'Runs', value: `${formatDay(shape.startsOn)} to ${formatDay(shape.endsOn, true)}` },
-                      { term: 'Exam date', value: examDate ? formatDate(examDate) : 'None' },
-                      { term: 'Each week', value: `${weeklyMinutes} minutes` },
+                      {
+                        term: t('terms.runs'),
+                        value: t('terms.range', { from: formatDay(shape.startsOn, locale), to: formatDay(shape.endsOn, locale, true) }),
+                      },
+                      { term: t('terms.examDate'), value: examDate ? formatDate(examDate, locale) : t('terms.none') },
+                      { term: t('terms.eachWeek'), value: t('terms.minutes', { minutes: weeklyMinutes }) },
                     ]}
                   />
                 </div>
                 {sessions.length < slots ? (
                   <p className="mt-5 text-sm text-ink-muted">
-                    {sessions.length} of the {slots} sessions your time allows are planned. The rest are left free: there are not enough reviewed {config.shortName} questions to revise a topic more than once a week.
+                    {t('setup.slotsLeftFree', { planned: sessions.length, slots, exam: config.shortName })}
                   </p>
                 ) : null}
                 <form action={createPlanAction} className="mt-5">
                   <input type="hidden" name="examKey" value={examKey} />
                   <input type="hidden" name="weeklyMinutes" value={weeklyMinutes} />
                   <input type="hidden" name="examDate" value={examDate ?? ''} />
-                  <Button type="submit">Save this plan</Button>
+                  <Button type="submit">{t('setup.save')}</Button>
                 </form>
               </Card>
               <Weeks config={config} startsOn={shape.startsOn} sessions={sessions} />
@@ -263,12 +290,15 @@ async function StoredPlan({
   sessions,
   examDate,
   configKey,
+  locale,
 }: {
   plan: PlanRow;
   sessions: PlanSessionRow[];
   examDate: string | null;
   configKey: string;
+  locale: Locale;
 }) {
+  const t = await getTranslations('learning.studyPlan');
   const config = requireExamConfig(configKey);
   const now = new Date();
   // How many questions the session that completed each one answered: completing needs 5 (or all of
@@ -313,65 +343,69 @@ async function StoredPlan({
       <div>
         <section aria-labelledby="summary-heading" className="mb-8">
           <h2 id="summary-heading" className="sr-only">
-            Your plan at a glance
+            {t('stored.glance')}
           </h2>
           <Card>
             <div className="grid grid-cols-2 gap-5 sm:grid-cols-4">
-              <Stat label="Completed" value={count('completed')} of={sessions.length} />
-              <Stat label="Still to do" value={count('planned')} />
-              <Stat label="Missed" value={missed} />
-              <Stat label="Skipped" value={count('skipped')} />
+              <Stat label={t('stats.completed')} value={count('completed')} of={sessions.length} />
+              <Stat label={t('stats.toDo')} value={count('planned')} />
+              <Stat label={t('stats.missed')} value={missed} />
+              <Stat label={t('stats.skipped')} value={count('skipped')} />
             </div>
             <div className="mt-5 border-t border-line pt-5">
               <DefinitionList
                 items={[
-                  { term: 'Runs', value: `${formatDay(plan.startsOn)} to ${formatDay(plan.endsOn, true)}` },
-                  { term: 'Built for', value: plan.examDate ? `an exam on ${formatDate(plan.examDate)}` : 'no exam date' },
-                  { term: 'Each week', value: `${plan.weeklyMinutes} minutes` },
+                  {
+                    term: t('terms.runs'),
+                    value: t('terms.range', { from: formatDay(plan.startsOn, locale), to: formatDay(plan.endsOn, locale, true) }),
+                  },
+                  {
+                    term: t('terms.builtFor'),
+                    value: plan.examDate ? t('terms.examOn', { date: formatDate(plan.examDate, locale) }) : t('terms.noExamDate'),
+                  },
+                  { term: t('terms.eachWeek'), value: t('terms.minutes', { minutes: plan.weeklyMinutes }) },
                 ]}
               />
             </div>
             <div className="mt-5 flex flex-wrap gap-3">
               <ButtonLink href={adjustHref} variant={unrecordedMissed > 0 || dateMoved ? 'primary' : 'secondary'}>
-                Adjust my remaining plan
+                {t('stored.adjust')}
               </ButtonLink>
             </div>
           </Card>
         </section>
 
         {unrecordedMissed > 0 ? (
-          <Alert tone="caution" title={`${unrecordedMissed} session${unrecordedMissed === 1 ? '' : 's'} missed`} className="mb-8">
-            <p>You can still do them. Adjusting records them as missed, moves their topics forward and shows you every change before saving.</p>
+          <Alert tone="caution" title={t('stored.missedTitle', { count: unrecordedMissed })} className="mb-8">
+            <p>{t('stored.missedLead')}</p>
           </Alert>
         ) : null}
         {dateMoved ? (
-          <Alert tone="info" title="Your exam date has changed" className="mb-8">
+          <Alert tone="info" title={t('stored.dateChangedTitle')} className="mb-8">
             <p>
-              {examDate ? `It is now ${formatDate(examDate)}` : 'It has been cleared'}; this plan was built for{' '}
-              {plan.examDate ? formatDate(plan.examDate) : 'no date'}. Adjusting shows what a new schedule would change.
+              {examDate ? t('stored.dateNow', { date: formatDate(examDate, locale) }) : t('stored.dateCleared')}{' '}
+              {plan.examDate ? t('stored.builtFor', { date: formatDate(plan.examDate, locale) }) : t('stored.builtForNone')}
             </p>
           </Alert>
         ) : null}
 
         <section aria-labelledby="weeks-heading">
           <h2 id="weeks-heading" className="mb-4 font-heading text-2xl font-semibold">
-            Week by week
+            {t('stored.weekByWeek')}
           </h2>
           <Weeks config={config} startsOn={plan.startsOn} sessions={states} withActions examKey={plan.examKey} openAttempts={openAttempts} />
         </section>
 
         <section aria-labelledby="end-heading" className="mt-10">
           <h2 id="end-heading" className="font-heading text-lg font-semibold">
-            Finished with this plan?
+            {t('stored.endTitle')}
           </h2>
-          <p className="mt-2 text-sm text-ink-muted">
-            Ending it keeps every session as it is, in your data export, and lets you make a new one.
-          </p>
+          <p className="mt-2 text-sm text-ink-muted">{t('stored.endLead')}</p>
           <form action={endPlanAction} className="mt-3">
             <input type="hidden" name="planId" value={plan.id} />
             <input type="hidden" name="examKey" value={plan.examKey} />
             <Button type="submit" variant="danger" size="sm">
-              End this plan
+              {t('stored.end')}
             </Button>
           </form>
         </section>
@@ -420,10 +454,11 @@ function Weeks({
 }
 
 function SessionActions({ session, examKey, openAttempts }: { session: Parameters<typeof SessionCard>[0]['session']; examKey: string; openAttempts: ReadonlySet<string> }) {
+  const t = useTranslations('learning.studyPlan.actions');
   if (session.state === 'completed' && session.attemptId) {
     return (
       <ButtonLink href={`/attempt/${session.attemptId}/results`} size="sm" variant="secondary">
-        See results
+        {t('seeResults')}
       </ButtonLink>
     );
   }
@@ -434,14 +469,14 @@ function SessionActions({ session, examKey, openAttempts }: { session: Parameter
     <>
       {open ? (
         <ButtonLink href={`/attempt/${open}`} size="sm">
-          Continue
+          {t('continue')}
         </ButtonLink>
       ) : (
       <form action={startPlanSessionAction}>
         <input type="hidden" name="sessionId" value={session.id} />
         <input type="hidden" name="examKey" value={examKey} />
         <Button type="submit" size="sm" variant={session.state === 'planned' ? 'primary' : 'secondary'}>
-          {session.attemptId ? 'Start again' : 'Start'}
+          {session.attemptId ? t('startAgain') : t('start')}
         </Button>
       </form>
       )}
@@ -449,7 +484,7 @@ function SessionActions({ session, examKey, openAttempts }: { session: Parameter
         <input type="hidden" name="sessionId" value={session.id} />
         <input type="hidden" name="examKey" value={examKey} />
         <Button type="submit" size="sm" variant="quiet">
-          Skip
+          {t('skip')}
         </Button>
       </form>
     </>
@@ -457,13 +492,11 @@ function SessionActions({ session, examKey, openAttempts }: { session: Parameter
 }
 
 function HowItWorks() {
+  const t = useTranslations('learning.studyPlan.howItWorks');
   return (
     <Card>
-      <h2 className="font-heading text-lg font-semibold">How the plan works</h2>
-      <p className="mt-2 text-sm text-ink-muted">
-        It is built from the reviewed questions available now and your own answers: weakest topics first, then ones you
-        have not tried. It changes only when you adjust it.
-      </p>
+      <h2 className="font-heading text-lg font-semibold">{t('title')}</h2>
+      <p className="mt-2 text-sm text-ink-muted">{t('lead')}</p>
       <div className="mt-4">
         <StatesExplained />
       </div>

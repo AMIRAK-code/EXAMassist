@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl';
+
 /**
  * Pure presentational rendering of a passage, table or chart.
  *
@@ -39,6 +41,7 @@ const SERIES_COLOURS = ['#1d4e6e', '#98322b', '#1c6b45', '#7a5407'];
  * need the actual numbers to answer, and so do screen reader users.
  */
 export function Chart({ data, chart }: { data: StimulusData; chart: ChartSpec }) {
+  const t = useTranslations('player.stimulus');
   const width = 640;
   const height = 300;
   const pad = { top: 16, right: 16, bottom: 44, left: 56 };
@@ -62,7 +65,10 @@ export function Chart({ data, chart }: { data: StimulusData; chart: ChartSpec })
       viewBox={`0 0 ${width} ${height}`}
       className="h-auto w-full"
       role="img"
-      aria-label={`${chart.type} chart: ${data.caption || `${chart.yLabel} by ${chart.xLabel}`}. The same data is listed in the table below.`}
+      aria-label={t('chartLabel', {
+        type: chart.type,
+        description: data.caption || t('byAxis', { y: chart.yLabel, x: chart.xLabel }),
+      })}
     >
       {Array.from({ length: ticks + 1 }, (_, i) => {
         const value = minValue + (span * i) / ticks;
@@ -199,9 +205,10 @@ export function DataTable({ data }: { data: StimulusData }) {
  * that wrapped differently once its font arrived would move the passage.
  */
 export function StimulusView({ stimulus, reading = false }: { stimulus: StimulusViewModel; reading?: boolean }) {
+  const t = useTranslations('player.stimulus');
   return (
     <section
-      aria-label={stimulus.title ?? 'Source material'}
+      aria-label={stimulus.title ?? t('sourceMaterial')}
       className="rounded-card border border-line bg-surface-sunken p-5"
     >
       {stimulus.title ? (
@@ -218,11 +225,11 @@ export function StimulusView({ stimulus, reading = false }: { stimulus: Stimulus
       {stimulus.data ? (
         <div className={stimulus.bodyHtml ? 'mt-4' : ''}>
           {stimulus.data.chart ? (
-            <div role="region" aria-label="Chart" tabIndex={0} className="mb-4 relative overflow-x-auto rounded border border-line bg-surface p-3">
+            <div role="region" aria-label={t('chart')} tabIndex={0} className="mb-4 relative overflow-x-auto rounded border border-line bg-surface p-3">
               <Chart data={stimulus.data} chart={stimulus.data.chart} />
             </div>
           ) : null}
-          <div role="region" aria-label="Data table" tabIndex={0} className="relative overflow-x-auto">
+          <div role="region" aria-label={t('dataTable')} tabIndex={0} className="relative overflow-x-auto">
             <DataTable data={stimulus.data} />
           </div>
         </div>

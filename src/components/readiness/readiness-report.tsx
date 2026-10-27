@@ -1,6 +1,8 @@
+import { useFormatter, useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import type { ExamConfig } from '@/lib/assessment/types';
-import { BAND_LABEL, type Band, type ReadinessAssessment } from '@/lib/learning/readiness';
+import { type Band, type ReadinessAssessment } from '@/lib/learning/readiness';
+import { renderText, type LearnerText } from '@/lib/learning/text';
 import { Alert, Badge, Card, Meter, SectionHeading, Stat } from '@/components/ui';
 
 /**
@@ -30,7 +32,8 @@ const BAND_FILL: Record<Band, number> = {
 };
 
 function BandPill({ band }: { band: Band }) {
-  return <Badge tone={BAND_TONE[band]}>{BAND_LABEL[band]}</Badge>;
+  const t = useTranslations('learning');
+  return <Badge tone={BAND_TONE[band]}>{t(`readiness.band.${band}`)}</Badge>;
 }
 
 export function ReadinessReport({
@@ -40,6 +43,10 @@ export function ReadinessReport({
   assessment: ReadinessAssessment;
   config: ExamConfig;
 }) {
+  const t = useTranslations('learning');
+  const format = useFormatter();
+  const text = (value: LearnerText) => renderText(t, value);
+  const band = (value: Band) => t(`readiness.band.${value}`);
   const { target } = assessment;
 
   return (
@@ -49,20 +56,19 @@ export function ReadinessReport({
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold uppercase tracking-[0.08em] text-ink-subtle">
-              Readiness
+              {t('report.eyebrow')}
             </p>
-            <h2 className="mt-2 text-2xl">{BAND_LABEL[assessment.overall]}</h2>
-            <p className="mt-2.5 leading-relaxed text-ink-muted">{assessment.overallStatement}</p>
+            <h2 className="mt-2 text-2xl">{band(assessment.overall)}</h2>
+            <p className="mt-2.5 leading-relaxed text-ink-muted">{text(assessment.overallStatement)}</p>
           </div>
           <div className="w-full max-w-56 sm:w-56">
             <Meter
               value={BAND_FILL[assessment.overall]}
-              label={`Readiness band: ${BAND_LABEL[assessment.overall]}`}
+              label={t('report.meterLabel', { band: band(assessment.overall) })}
               tone={BAND_TONE[assessment.overall] === 'neutral' ? 'neutral' : BAND_TONE[assessment.overall]}
             />
             <p className="mt-2 text-xs text-ink-subtle">
-              Based on {assessment.answeredTotal} question
-              {assessment.answeredTotal === 1 ? '' : 's'} you have answered.
+              {t('report.basedOn', { count: assessment.answeredTotal })}
             </p>
           </div>
         </div>
@@ -73,35 +79,40 @@ export function ReadinessReport({
         <section aria-labelledby="target-heading">
           <SectionHeading
             id="target-heading"
-            title="Your target"
-            description={target.statedTarget}
+            title={t('report.target.title')}
+            description={text(target.statedTarget)}
           />
 
           {target.quantifiable && target.projection ? (
             <Card padding="lg">
-              <p className="leading-relaxed text-ink-muted">{target.explanation}</p>
+              <p className="leading-relaxed text-ink-muted">{text(target.explanation)}</p>
 
               <div className="mt-6 grid gap-6 sm:grid-cols-3">
                 <Stat
-                  label={target.projection.scoreLabel ?? 'Projected raw score'}
-                  value={target.projection.projectedRaw}
-                  of={target.projection.maxRaw}
+                  label={text(target.projection.scoreLabel ?? { key: 'readiness.projection.scoreLabelRaw' })}
+                  value={format.number(target.projection.projectedRaw)}
+                  of={format.number(target.projection.maxRaw)}
                   tone={target.projection.meetsTarget ? 'positive' : 'neutral'}
                 />
-                <Stat label="Your target" value={target.projection.targetRaw} of={target.projection.maxRaw} />
+                <Stat
+                  label={t('report.target.title')}
+                  value={format.number(target.projection.targetRaw)}
+                  of={format.number(target.projection.maxRaw)}
+                />
                 {target.projection.officialFloor !== null ? (
                   <Stat
-                    label="Official eligibility floor"
-                    value={target.projection.officialFloor}
-                    hint="Published by the university as a minimum to be considered — not a competitive score."
+                    label={t('report.target.floorLabel')}
+                    value={format.number(target.projection.officialFloor)}
+                    hint={t('report.target.floorHint')}
                   />
                 ) : null}
+                {/* Threshold names and meanings are the exam owner's own, quoted as published. */}
                 {(target.projection.thresholds ?? []).map((threshold) => (
                   <Stat
                     key={threshold.label}
                     label={threshold.label}
-                    value={threshold.value}
-                    of={target.projection!.maxRaw}
+                    value={format.number(threshold.value)}
+                    of={format.number(target.projection!.maxRaw)}
                     hint={threshold.meaning}
                   />
                 ))}
@@ -110,42 +121,48 @@ export function ReadinessReport({
               <div className="mt-6 space-y-3">
                 <Alert tone={target.projection.meetsTarget ? 'positive' : 'caution'} role="status">
                   {target.projection.meetsTarget
-                    ? `On this projection you are at or above your target of ${target.projection.targetRaw}.`
-                    : `On this projection you are ${Math.round((target.projection.targetRaw - target.projection.projectedRaw) * 10) / 10} points short of your target of ${target.projection.targetRaw}.`}
+                    ? t('report.target.atOrAbove', { target: target.projection.targetRaw })
+                    : t('report.target.short', {
+                        gap: Math.round((target.projection.targetRaw - target.projection.projectedRaw) * 10) / 10,
+                        target: target.projection.targetRaw,
+                      })}
                 </Alert>
 
                 {(target.projection.thresholds ?? [])
                   .filter((threshold) => !threshold.met)
                   .map((threshold) => (
-                    <Alert key={threshold.label} tone="caution" role="status" title={`Below the published ${threshold.label.toLowerCase()}`}>
-                      On this projection you are below {threshold.value}. {threshold.meaning}
+                    <Alert
+                      key={threshold.label}
+                      tone="caution"
+                      role="status"
+                      title={t('report.target.belowThresholdTitle', { threshold: threshold.label.toLowerCase() })}
+                    >
+                      {t('report.target.belowThreshold', { value: threshold.value })} {threshold.meaning}
                     </Alert>
                   ))}
 
                 {target.projection.noThresholdReason ? (
-                  <Alert tone="info" role="note" title="No single pass mark">
+                  <Alert tone="info" role="note" title={t('report.target.noPassMarkTitle')}>
                     {target.projection.noThresholdReason}
                   </Alert>
                 ) : null}
 
                 {target.projection.meetsOfficialFloor === false ? (
-                  <Alert tone="negative" role="status" title="Below the published eligibility floor">
-                    An application scoring below {target.projection.officialFloor} is not considered.
-                    This is the one number here that is an official requirement rather than a goal you
-                    set.
+                  <Alert tone="negative" role="status" title={t('report.target.belowFloorTitle')}>
+                    {t('report.target.belowFloor', { floor: target.projection.officialFloor ?? 0 })}
                   </Alert>
                 ) : null}
               </div>
 
               <details className="mt-6 rounded-card border border-line bg-surface-sunken p-4">
                 <summary className="cursor-pointer text-sm font-medium">
-                  How this projection is calculated, and what it assumes
+                  {t('report.target.howCalculated')}
                 </summary>
                 <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-                  {target.projection.method}
+                  {text(target.projection.method)}
                 </p>
                 <ul className="mt-3 list-disc space-y-1.5 ps-5 text-sm text-ink-muted">
-                  {target.projection.assumptions.map((assumption) => (
+                  {target.projection.assumptions.map(text).map((assumption) => (
                     <li key={assumption}>{assumption}</li>
                   ))}
                 </ul>
@@ -153,14 +170,11 @@ export function ReadinessReport({
             </Card>
           ) : (
             <Card padding="lg">
-              <Alert tone="info" title="We will not guess at this">
-                <p className="leading-relaxed">{target.explanation}</p>
+              <Alert tone="info" title={t('report.target.noGuessTitle')}>
+                <p className="leading-relaxed">{text(target.explanation)}</p>
               </Alert>
               <p className="mt-4 text-sm leading-relaxed text-ink-muted">
-                Official full-length practice from {config.publisher} is scored by their own model, so
-                that is where a scaled-score estimate should come from. Use this page for diagnosis —
-                which topics are weak, whether you are working at the exam&rsquo;s pace — and theirs for
-                score prediction.
+                {t('report.target.officialPractice', { publisher: config.publisher })}
               </p>
             </Card>
           )}
@@ -171,27 +185,27 @@ export function ReadinessReport({
       <section aria-labelledby="signals-heading">
         <SectionHeading
           id="signals-heading"
-          title="What we measured"
-          description="Each of these comes from your own answers. The basis for every one is stated, so you can judge whether you agree with it."
+          title={t('report.signals.title')}
+          description={t('report.signals.description')}
         />
         <ul className="grid gap-4 sm:grid-cols-2">
           {assessment.signals.map((signal) => (
             <Card as="li" key={signal.key}>
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <p className="text-sm font-medium text-ink-muted">{signal.label}</p>
-                  <p className="mt-1 font-heading text-2xl font-semibold">{signal.display}</p>
+                  <p className="text-sm font-medium text-ink-muted">{text(signal.label)}</p>
+                  <p className="mt-1 font-heading text-2xl font-semibold">{text(signal.display)}</p>
                 </div>
                 <BandPill band={signal.band} />
               </div>
               <div className="mt-3">
                 <Meter
                   value={BAND_FILL[signal.band]}
-                  label={`${signal.label}: ${BAND_LABEL[signal.band]}`}
+                  label={t('report.signals.meterLabel', { signal: text(signal.label), band: band(signal.band) })}
                   tone={BAND_TONE[signal.band] === 'neutral' ? 'neutral' : BAND_TONE[signal.band]}
                 />
               </div>
-              <p className="mt-3 text-sm leading-relaxed text-ink-subtle">{signal.basis}</p>
+              <p className="mt-3 text-sm leading-relaxed text-ink-subtle">{text(signal.basis)}</p>
             </Card>
           ))}
         </ul>
@@ -202,30 +216,28 @@ export function ReadinessReport({
         <section aria-labelledby="gaps-heading">
           <SectionHeading
             id="gaps-heading"
-            title="Where the ground is weakest"
-            description="Ordered by what would move your result most: topics you have never attempted first, then your lowest accuracy."
+            title={t('report.gaps.title')}
+            description={t('report.gaps.description')}
           />
           <div role="region" aria-labelledby="gaps-heading" tabIndex={0} className="relative overflow-x-auto rounded-card border border-line bg-surface shadow-card">
             <table className="w-full border-collapse text-sm">
-              <caption className="sr-only">
-                Your accuracy by topic for the {assessment.examName}, weakest first.
-              </caption>
+              <caption className="sr-only">{t('report.gaps.caption', { exam: assessment.examName })}</caption>
               <thead>
                 <tr className="border-b border-line">
                   <th scope="col" className="px-4 py-3 text-left font-semibold">
-                    Topic
+                    {t('report.gaps.topic')}
                   </th>
                   <th scope="col" className="px-4 py-3 text-right font-semibold">
-                    Answered
+                    {t('report.gaps.answered')}
                   </th>
                   <th scope="col" className="px-4 py-3 text-right font-semibold">
-                    Accuracy
+                    {t('report.gaps.accuracy')}
                   </th>
                   <th scope="col" className="hidden px-4 py-3 text-left font-semibold sm:table-cell">
-                    Share of the exam
+                    {t('report.gaps.share')}
                   </th>
                   <th scope="col" className="px-4 py-3 text-right font-semibold">
-                    <span className="sr-only">Practise</span>
+                    <span className="sr-only">{t('report.gaps.practise')}</span>
                   </th>
                 </tr>
               </thead>
@@ -238,24 +250,25 @@ export function ReadinessReport({
                     <td className="px-4 py-3 text-right tabular-nums text-ink-muted">{gap.answered}</td>
                     <td className="px-4 py-3 text-right">
                       {gap.answered === 0 ? (
-                        <span className="text-ink-subtle">Not attempted</span>
+                        <span className="text-ink-subtle">{t('report.gaps.notAttempted')}</span>
                       ) : gap.hasSignal ? (
                         <span className="font-medium tabular-nums">
-                          {Math.round(gap.accuracy * 100)}%
+                          {format.number(Math.round(gap.accuracy * 100) / 100, { style: 'percent' })}
                         </span>
                       ) : (
-                        <span className="text-ink-subtle">Too few to say</span>
+                        <span className="text-ink-subtle">{t('report.gaps.tooFew')}</span>
                       )}
                     </td>
                     <td className="hidden px-4 py-3 text-ink-muted sm:table-cell">
-                      {gap.officialShare ?? <span className="text-ink-subtle">Not published</span>}
+                      {/* The published share is the test maker's own wording. */}
+                      {gap.officialShare ?? <span className="text-ink-subtle">{t('report.gaps.notPublished')}</span>}
                     </td>
                     <td className="px-4 py-3 text-right">
                       <Link
                         href={`/practice/${assessment.examKey}?domain=${encodeURIComponent(gap.domainSlug)}`}
                         className="text-sm no-underline hover:underline"
                       >
-                        Practise
+                        {t('report.gaps.practise')}
                       </Link>
                     </td>
                   </tr>
@@ -269,10 +282,10 @@ export function ReadinessReport({
       {/* --- Limitations, never collapsed away ---------------------------- */}
       <section aria-labelledby="limits-heading">
         <h2 id="limits-heading" className="text-lg">
-          What this assessment is not
+          {t('report.limits.title')}
         </h2>
         <ul className="mt-3 list-disc space-y-1.5 ps-5 text-sm leading-relaxed text-ink-muted">
-          {assessment.limitations.map((limitation) => (
+          {assessment.limitations.map(text).map((limitation) => (
             <li key={limitation}>{limitation}</li>
           ))}
         </ul>

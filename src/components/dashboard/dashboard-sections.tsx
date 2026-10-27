@@ -1,7 +1,9 @@
+import { useFormatter, useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import type { UnfinishedAttempt } from '@/lib/attempts/service';
 import { examDisplayName, type DashboardData, type ExamChoice, type ExamDashboard, type NextStep } from '@/lib/learning/dashboard';
 import { MIN_ATTEMPTS_FOR_SIGNAL } from '@/lib/learning/recommend';
+import { renderText } from '@/lib/learning/text';
 import { Alert, Badge, ButtonLink, Card, EmptyState, Stat, cx } from '@/components/ui';
 
 /**
@@ -12,60 +14,61 @@ import { Alert, Badge, ButtonLink, Card, EmptyState, Stat, cx } from '@/componen
  * font arrives cannot throw a fragment onto the next line (docs/REDESIGN.md §14).
  */
 
-export function formatDate(iso: string | null): string {
-  if (!iso) return '—';
-  const date = new Date(iso);
-  if (Number.isNaN(date.getTime())) return '—';
-  return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+/** A date as "3 Oct 2026", in the reader's language; a dash when there is none. */
+function useShortDate(): (iso: string | null) => string {
+  const format = useFormatter();
+  return (iso) => {
+    if (!iso) return '—';
+    const date = new Date(iso);
+    if (Number.isNaN(date.getTime())) return '—';
+    return format.dateTime(date, { day: 'numeric', month: 'short', year: 'numeric' });
+  };
 }
 
-function plural(n: number, one: string, many: string): string {
-  return `${n} ${n === 1 ? one : many}`;
-}
-
-function percent(value: number | null): string {
-  return value === null ? '' : `${Math.round(value * 100)}%`;
-}
-
-function remainingLabel(seconds: number | null): string | null {
-  if (seconds === null) return null;
-  if (seconds < 60) return 'under a minute left';
-  return `${Math.floor(seconds / 60)} min left`;
+/** A share as a whole percent, "68%", in the reader's language. */
+function usePercent(): (value: number | null) => string {
+  const format = useFormatter();
+  return (value) => (value === null ? '' : format.number(Math.round(value * 100) / 100, { style: 'percent' }));
 }
 
 export function GuestNote({ guest }: { guest: NonNullable<DashboardData['guest']> }) {
-  const until = new Date(guest.expiresAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
-  const text = `As a guest, this browser keeps your practice until ${until}. After that, this browser can no longer open it. Create an account to keep it.`;
+  const t = useTranslations('learning.dashboard.guest');
+  const format = useFormatter();
+  const until = format.dateTime(new Date(guest.expiresAt), { day: 'numeric', month: 'long' });
+  const text = t('text', { until });
   return guest.expiringSoon ? (
-    <Alert tone="caution" title="Your guest practice ends soon" className="mb-8" role="status">
+    <Alert tone="caution" title={t('endsSoon')} className="mb-8" role="status">
       <p>{text}</p>
       <p className="mt-2">
-        <Link href="/sign-up">Keep your progress</Link>
+        <Link href="/sign-up">{t('keep')}</Link>
       </p>
     </Alert>
   ) : (
     <div className="mb-8 text-sm text-ink-muted">
       <p>{text}</p>
       <p className="mt-1">
-        <Link href="/sign-up">Keep your progress</Link>
+        <Link href="/sign-up">{t('keep')}</Link>
       </p>
     </div>
   );
 }
 
 export function UnfinishedList({ items }: { items: UnfinishedAttempt[] }) {
+  const t = useTranslations('learning.dashboard.unfinished');
+  const remaining = (seconds: number | null) =>
+    seconds === null ? null : seconds < 60 ? t('underAMinute') : t('minutesLeft', { minutes: Math.floor(seconds / 60) });
   return (
     <section aria-labelledby="unfinished-heading" className="mb-10">
       <h2 id="unfinished-heading" className="mb-4 font-heading text-2xl font-semibold">
-        Pick up where you left off
+        {t('title')}
       </h2>
       <ul className="space-y-3">
         {items.map((item) => {
           const where = [
-            item.partCount > 1 ? `Section ${item.partNumber} of ${item.partCount}` : null,
-            `Question ${item.resumeQuestion} of ${item.questionCount}`,
-            `${item.answeredInPart} answered`,
-            remainingLabel(item.remainingSeconds),
+            item.partCount > 1 ? t('section', { part: item.partNumber, parts: item.partCount }) : null,
+            t('question', { question: item.resumeQuestion, questions: item.questionCount }),
+            t('answered', { count: item.answeredInPart }),
+            remaining(item.remainingSeconds),
           ]
             .filter(Boolean)
             .join(' · ');
@@ -78,13 +81,11 @@ export function UnfinishedList({ items }: { items: UnfinishedAttempt[] }) {
                   <p className="mt-1 text-sm text-ink-muted">{where}</p>
                 </div>
                 <ButtonLink href={`/attempt/${item.id}`} className="shrink-0">
-                  Continue
+                  {t('continue')}
                 </ButtonLink>
               </div>
               {item.remainingSeconds !== null ? (
-                <p className="mt-3 border-t border-line pt-3 text-xs text-ink-subtle">
-                  The clock keeps running while you are away, as it does in the real exam.
-                </p>
+                <p className="mt-3 border-t border-line pt-3 text-xs text-ink-subtle">{t('clockRuns')}</p>
               ) : null}
             </Card>
           );
@@ -95,8 +96,9 @@ export function UnfinishedList({ items }: { items: UnfinishedAttempt[] }) {
 }
 
 export function ExamSwitcher({ choices }: { choices: ExamChoice[] }) {
+  const t = useTranslations('learning.dashboard.switcher');
   return (
-    <nav aria-label="Exams on your dashboard" className="mb-8">
+    <nav aria-label={t('label')} className="mb-8">
       <ul className="flex flex-wrap gap-2">
         {choices.map((choice) => (
           <li key={choice.examKey}>
@@ -113,7 +115,7 @@ export function ExamSwitcher({ choices }: { choices: ExamChoice[] }) {
               {choice.label}
               {choice.target ? (
                 <span className={cx('text-xs font-normal', choice.current ? 'text-ink-inverse-muted' : 'text-ink-subtle')}>
-                  target
+                  {t('target')}
                 </span>
               ) : null}
             </Link>
@@ -125,49 +127,51 @@ export function ExamSwitcher({ choices }: { choices: ExamChoice[] }) {
 }
 
 export function NextStepCard({ step }: { step: NextStep }) {
+  const t = useTranslations('learning');
   return (
     <section aria-labelledby="next-heading" className="mb-10">
       <h2 id="next-heading" className="mb-4 font-heading text-2xl font-semibold">
-        Your next step
+        {t('dashboard.nextStep')}
       </h2>
       <Card className="border-[1.5px] border-ink" padding="lg">
-        <h3 className="font-heading text-xl font-semibold">{step.title}</h3>
-        <p className="mt-2 text-ink-muted">{`Why: ${step.because}`}</p>
+        <h3 className="font-heading text-xl font-semibold">{renderText(t, step.title)}</h3>
+        <p className="mt-2 text-ink-muted">{t('why', { reason: renderText(t, step.because) })}</p>
         <div className="mt-5 flex flex-wrap items-center gap-3">
-          <ButtonLink href={step.href}>{step.actionLabel}</ButtonLink>
+          <ButtonLink href={step.href}>{renderText(t, step.actionLabel)}</ButtonLink>
           {step.broader ? (
             <ButtonLink href={step.broader.href} variant="secondary">
-              {step.broader.label}
+              {renderText(t, step.broader.label)}
             </ButtonLink>
           ) : null}
         </div>
-        {step.broader ? <p className="mt-3 text-sm text-ink-muted">{step.broader.because}</p> : null}
+        {step.broader ? <p className="mt-3 text-sm text-ink-muted">{renderText(t, step.broader.because)}</p> : null}
       </Card>
     </section>
   );
 }
 
 export function OtherSteps({ steps }: { steps: NextStep[] }) {
+  const t = useTranslations('learning');
   if (steps.length === 0) return null;
   return (
     <section aria-labelledby="other-steps-heading" className="mb-10">
       <h2 id="other-steps-heading" className="mb-3 font-heading text-lg font-semibold">
-        Also worth doing
+        {t('dashboard.alsoWorthDoing')}
       </h2>
       <ul className="divide-y divide-line rounded-card border border-line bg-surface">
         {steps.map((step) => (
-          <li key={`${step.kind}-${step.title}`} className="flex flex-wrap items-start justify-between gap-3 p-4">
+          <li key={`${step.kind}-${step.href}`} className="flex flex-wrap items-start justify-between gap-3 p-4">
             <div className="min-w-0 flex-1">
-              <p className="font-medium">{step.title}</p>
-              <p className="mt-1 text-sm text-ink-muted">{step.because}</p>
+              <p className="font-medium">{renderText(t, step.title)}</p>
+              <p className="mt-1 text-sm text-ink-muted">{renderText(t, step.because)}</p>
               {step.broader ? (
                 <p className="mt-1 text-sm">
-                  <Link href={step.broader.href}>{step.broader.label}</Link>
+                  <Link href={step.broader.href}>{renderText(t, step.broader.label)}</Link>
                 </p>
               ) : null}
             </div>
             <ButtonLink href={step.href} size="sm" variant="secondary" className="shrink-0">
-              {step.actionLabel}
+              {renderText(t, step.actionLabel)}
             </ButtonLink>
           </li>
         ))}
@@ -177,38 +181,39 @@ export function OtherSteps({ steps }: { steps: NextStep[] }) {
 }
 
 export function ProgressSummary({ exam }: { exam: ExamDashboard }) {
+  const t = useTranslations('learning.dashboard.summary');
+  const shortDate = useShortDate();
+  const percent = usePercent();
   const { review } = exam;
   const reviewHint =
     review.comingLater > 0
-      ? `${plural(review.comingLater, 'more comes', 'more come')} back later${review.nextDueAt ? `, the next on ${formatDate(review.nextDueAt)}` : ''}.`
+      ? review.nextDueAt
+        ? t('comingLaterOn', { count: review.comingLater, date: shortDate(review.nextDueAt) })
+        : t('comingLater', { count: review.comingLater })
       : review.dueNow > 0
-        ? 'Missed questions come back after a short interval.'
-        : 'Nothing is waiting. Missed questions come back the day after you miss them.';
+        ? t('dueInterval')
+        : t('nothingWaiting');
   return (
-    <section aria-label="Your counts" className="mb-10 grid gap-4 sm:grid-cols-3">
+    <section aria-label={t('label')} className="mb-10 grid gap-4 sm:grid-cols-3">
       <Card>
-        <Stat
-          label="Questions scored"
-          value={exam.totalScored}
-          hint={`across ${plural(exam.finishedCount, 'finished session', 'finished sessions')}`}
-        />
+        <Stat label={t('scored')} value={exam.totalScored} hint={t('across', { count: exam.finishedCount })} />
       </Card>
       <Card>
         <Stat
-          label="Answered correctly"
+          label={t('correct')}
           value={exam.totalCorrect}
           of={exam.totalScored}
           hint={
             exam.totalScored > 0
-              ? `${Math.round((exam.totalCorrect / exam.totalScored) * 100)}% of everything you have been shown`
-              : 'No scored questions yet'
+              ? t('correctShare', { percent: percent(exam.totalCorrect / exam.totalScored) })
+              : t('noneScored')
           }
         />
       </Card>
       <Card>
-        <Stat label="Mistakes due for review now" value={review.dueNow} hint={reviewHint} />
+        <Stat label={t('due')} value={review.dueNow} hint={reviewHint} />
         <p className="mt-2 text-sm">
-          <Link href="/review">Open the mistake notebook</Link>
+          <Link href="/review">{t('openNotebook')}</Link>
         </p>
       </Card>
     </section>
@@ -216,22 +221,22 @@ export function ProgressSummary({ exam }: { exam: ExamDashboard }) {
 }
 
 export function TopicLandscape({ exam }: { exam: ExamDashboard }) {
+  const t = useTranslations('learning.dashboard.topics');
+  const percent = usePercent();
   return (
     <section aria-labelledby="topics-heading" className="mb-10">
       <h2 id="topics-heading" className="mb-2 font-heading text-2xl font-semibold">
-        Accuracy by topic
+        {t('title')}
       </h2>
-      <p className="mb-4 max-w-2xl text-sm text-ink-muted">
-        {`Every ${exam.shortName} topic, including the ones you have not practised. A figure needs at least ${MIN_ATTEMPTS_FOR_SIGNAL} scored questions; below that the counts are shown instead. Open a topic to see its skills.`}
-      </p>
+      <p className="mb-4 max-w-2xl text-sm text-ink-muted">{t('lead', { exam: exam.shortName, min: MIN_ATTEMPTS_FOR_SIGNAL })}</p>
       <ul className="divide-y divide-line rounded-card border border-line bg-surface">
         {exam.topics.map((topic) => {
           const figure =
             topic.scored === 0
-              ? 'Not practised yet'
+              ? t('notPractised')
               : topic.hasSignal
-                ? `${percent(topic.accuracy)} · ${topic.correct} of ${topic.scored} correct`
-                : `${topic.correct} of ${topic.scored} correct · not enough answers for a figure`;
+                ? t('figure', { percent: percent(topic.accuracy), correct: topic.correct, scored: topic.scored })
+                : t('figureTooFew', { correct: topic.correct, scored: topic.scored });
           return (
             <li key={topic.slug} className="p-4">
               <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
@@ -240,16 +245,16 @@ export function TopicLandscape({ exam }: { exam: ExamDashboard }) {
               </div>
               <details className="mt-2 text-sm">
                 <summary className="cursor-pointer text-ink-muted">
-                  {`${plural(topic.skills.length, 'skill', 'skills')} · ${plural(topic.reviewed, 'reviewed question', 'reviewed questions')} in the bank`}
+                  {t('summary', { skills: topic.skills.length, reviewed: topic.reviewed })}
                 </summary>
                 <table className="mt-3 w-full border-collapse text-sm">
-                  <caption className="sr-only">{`Skills in ${topic.name}`}</caption>
+                  <caption className="sr-only">{t('caption', { topic: topic.name })}</caption>
                   <thead>
                     <tr className="border-b border-line text-ink-muted">
-                      <th scope="col" className="py-2 pe-2 text-start font-medium sm:pe-3">Skill</th>
-                      <th scope="col" className="px-2 py-2 text-end font-medium sm:px-3">In the bank</th>
-                      <th scope="col" className="px-2 py-2 text-end font-medium sm:px-3">Scored</th>
-                      <th scope="col" className="py-2 ps-2 text-end font-medium sm:ps-3">Correct</th>
+                      <th scope="col" className="py-2 pe-2 text-start font-medium sm:pe-3">{t('skill')}</th>
+                      <th scope="col" className="px-2 py-2 text-end font-medium sm:px-3">{t('inBank')}</th>
+                      <th scope="col" className="px-2 py-2 text-end font-medium sm:px-3">{t('scored')}</th>
+                      <th scope="col" className="py-2 ps-2 text-end font-medium sm:ps-3">{t('correct')}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -267,7 +272,7 @@ export function TopicLandscape({ exam }: { exam: ExamDashboard }) {
                 </table>
                 {topic.practiseHref ? (
                   <p className="mt-3">
-                    <Link href={topic.practiseHref}>{`Practise ${topic.name}`}</Link>
+                    <Link href={topic.practiseHref}>{t('practise', { topic: topic.name })}</Link>
                   </p>
                 ) : null}
               </details>
@@ -279,39 +284,40 @@ export function TopicLandscape({ exam }: { exam: ExamDashboard }) {
   );
 }
 
-function statusLabel(status: ExamDashboard['recent'][number]['status']): string {
-  if (status === 'submitted') return 'Finished';
-  if (status === 'expired') return 'Time ran out';
-  return 'Abandoned';
-}
-
 export function RecentSessions({ exam }: { exam: ExamDashboard }) {
+  const t = useTranslations('learning.dashboard.recent');
+  const shortDate = useShortDate();
   if (exam.recent.length === 0) return null;
   return (
     <section aria-labelledby="recent-heading" className="mb-10">
       <h2 id="recent-heading" className="mb-4 font-heading text-2xl font-semibold">
-        Recent sessions
+        {t('title')}
       </h2>
       <ul className="space-y-3">
         {exam.recent.map((session) => {
           const total = (session.correct ?? 0) + (session.incorrect ?? 0) + (session.omitted ?? 0);
           const outcome =
             session.correct === null
-              ? 'No result recorded'
-              : `${session.correct} correct, ${session.incorrect} wrong, ${session.omitted} blank of ${total}`;
+              ? t('noResult')
+              : t('outcome', {
+                  correct: session.correct,
+                  wrong: session.incorrect ?? 0,
+                  blank: session.omitted ?? 0,
+                  total,
+                });
           return (
             <Card as="li" key={session.id} padding="sm">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="min-w-0">
                   <h3 className="font-medium">{session.label}</h3>
-                  <p className="mt-1 text-sm text-ink-muted">{`${formatDate(session.finishedAt)} · ${outcome}`}</p>
+                  <p className="mt-1 text-sm text-ink-muted">{`${shortDate(session.finishedAt)} · ${outcome}`}</p>
                 </div>
                 <div className="flex shrink-0 items-center gap-3">
-                  {session.isRetry ? <Badge tone="accent">Retry</Badge> : null}
-                  <Badge tone={session.status === 'expired' ? 'caution' : 'neutral'}>{statusLabel(session.status)}</Badge>
+                  {session.isRetry ? <Badge tone="accent">{t('retry')}</Badge> : null}
+                  <Badge tone={session.status === 'expired' ? 'caution' : 'neutral'}>{t(`status.${session.status}`)}</Badge>
                   {session.correct !== null ? (
                     <ButtonLink href={`/attempt/${session.id}/results`} size="sm" variant="secondary">
-                      See results
+                      {t('seeResults')}
                     </ButtonLink>
                   ) : null}
                 </div>
@@ -325,39 +331,34 @@ export function RecentSessions({ exam }: { exam: ExamDashboard }) {
 }
 
 export function NoHistoryYet({ exam }: { exam: ExamDashboard }) {
+  const t = useTranslations('learning.dashboard.noHistory');
   const continuing = exam.unfinishedHere.length > 0;
   return (
     <div className="mb-10">
       <EmptyState
-        title={`No finished ${exam.shortName} session yet`}
+        title={t('title', { exam: exam.shortName })}
         action={
           continuing ? (
-            <ButtonLink href={`/attempt/${exam.unfinishedHere[0].id}`}>Continue your session</ButtonLink>
+            <ButtonLink href={`/attempt/${exam.unfinishedHere[0].id}`}>{t('continue')}</ButtonLink>
           ) : (
-            <ButtonLink href={`/practice/${exam.examKey}`}>{`Start practising ${exam.shortName}`}</ButtonLink>
+            <ButtonLink href={`/practice/${exam.examKey}`}>{t('start', { exam: exam.shortName })}</ButtonLink>
           )
         }
       >
-        <p>
-          {continuing
-            ? 'Finish the session you started and this page will show your accuracy by topic, what you missed and what is worth practising next, all counted from your own answers.'
-            : 'Once you finish a session, this page shows your accuracy by topic, what you missed and what is worth practising next, all counted from your own answers.'}
-        </p>
+        <p>{continuing ? t('leadContinuing') : t('lead')}</p>
       </EmptyState>
     </div>
   );
 }
 
 export function EmptyBank({ exam }: { exam: ExamDashboard }) {
+  const t = useTranslations('learning.dashboard.emptyBank');
   return (
-    <Alert tone="caution" title={`No reviewed ${exam.shortName} questions to practise yet`} className="mb-10">
-      <p>
-        Questions for this exam are still being checked, so there is nothing to start. Only questions
-        that have passed review are ever served.
-      </p>
+    <Alert tone="caution" title={t('title', { exam: exam.shortName })} className="mb-10">
+      <p>{t('lead')}</p>
       {exam.formatGuideHref ? (
         <p className="mt-2">
-          <Link href={exam.formatGuideHref}>Read the format and scoring guide</Link>
+          <Link href={exam.formatGuideHref}>{t('guide')}</Link>
         </p>
       ) : null}
     </Alert>

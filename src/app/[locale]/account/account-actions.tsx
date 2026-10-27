@@ -1,7 +1,8 @@
 'use client';
 
 import { useId, useState } from 'react';
-import { useRouter } from '@/i18n/navigation';
+import { useTranslations } from 'next-intl';
+import { Link, useRouter } from '@/i18n/navigation';
 import { Alert, Button, buttonClass, fieldClass } from '@/components/ui';
 import { clearAllPending } from '@/lib/player/pending';
 
@@ -19,9 +20,33 @@ interface ApiErrorBody {
 
 const FIELD_CLASS = fieldClass();
 
-async function readError(response: Response, fallback: string): Promise<string> {
+/** The word a guest types to delete their session; the server checks for exactly this. */
+const DELETE_WORD = 'DELETE';
+
+type Translate = (key: string, values?: Record<string, string | number>) => string;
+
+/**
+ * The server's error codes and the `account.errors` message for each. The API
+ * answers in English; the learner reads the message for the code.
+ */
+const ERROR_KEYS: Record<string, string> = {
+  'unknown-exam': 'unknownExam',
+  'no-changes': 'noChanges',
+  'not-found': 'notFound',
+  'billing-unavailable': 'deletionBlocked',
+  unauthorized: 'unauthorized',
+  forbidden: 'forbidden',
+  'server-error': 'serverError',
+};
+
+async function readError(response: Response, t: Translate, fallback: string, email?: string | null): Promise<string> {
   const body: ApiErrorBody | null = await response.json().catch(() => null);
-  return body?.error?.message ?? fallback;
+  const code = body?.error?.code;
+  if (code === 'confirmation-mismatch') {
+    return email ? t('errors.confirmEmail') : t('errors.confirmWord', { word: DELETE_WORD });
+  }
+  const key = code ? ERROR_KEYS[code] : undefined;
+  return key ? t(`errors.${key}`) : fallback;
 }
 
 // ---------------------------------------------------------------------------
@@ -35,6 +60,7 @@ export function AccountSettingsForm({
   initialDisplayName: string;
   initialTargetExamKey: string;
 }) {
+  const t = useTranslations('account');
   const router = useRouter();
   const id = useId();
   const [displayName, setDisplayName] = useState(initialDisplayName);
@@ -63,11 +89,11 @@ export function AccountSettingsForm({
     setSaving(false);
 
     if (!response) {
-      setError('We could not reach the server. Check your connection and try again.');
+      setError(t('errors.network'));
       return;
     }
     if (!response.ok) {
-      setError(await readError(response, 'Those changes could not be saved.'));
+      setError(await readError(response, t, t('settings.fallback')));
       return;
     }
 
@@ -79,7 +105,7 @@ export function AccountSettingsForm({
     <form onSubmit={handleSubmit} className="space-y-5">
       <div aria-live="assertive" aria-atomic="true">
         {error ? (
-          <Alert tone="negative" role="alert" title="Not saved">
+          <Alert tone="negative" role="alert" title={t('settings.notSavedTitle')}>
             <p>{error}</p>
           </Alert>
         ) : null}
@@ -87,7 +113,7 @@ export function AccountSettingsForm({
 
       <div>
         <label htmlFor={`${id}-name`} className="mb-1.5 block text-sm font-medium">
-          Display name
+          {t('settings.displayName')}
         </label>
         <input
           id={`${id}-name`}
@@ -101,13 +127,13 @@ export function AccountSettingsForm({
           className={FIELD_CLASS}
         />
         <p id={`${id}-name-hint`} className="mt-1.5 text-sm text-ink-muted">
-          Shown on your own pages only. Leave it empty to remove it.
+          {t('settings.displayNameHint')}
         </p>
       </div>
 
       <div>
         <label htmlFor={`${id}-exam`} className="mb-1.5 block text-sm font-medium">
-          Target exam
+          {t('settings.targetExam')}
         </label>
         <select
           id={`${id}-exam`}
@@ -117,7 +143,7 @@ export function AccountSettingsForm({
           aria-describedby={`${id}-exam-hint`}
           className={FIELD_CLASS}
         >
-          <option value="">No target exam</option>
+          <option value="">{t('settings.noTarget')}</option>
           {examOptions.map((option) => (
             <option key={option.examKey} value={option.examKey}>
               {option.name}
@@ -125,21 +151,22 @@ export function AccountSettingsForm({
           ))}
         </select>
         <p id={`${id}-exam-hint`} className="mt-1.5 text-sm text-ink-muted">
-          Used to decide which exam your study pages open on. You can still practise any of them.
+          {t('settings.targetHint')}
         </p>
       </div>
 
       <p className="text-sm text-ink-muted">
-        Each exam has its own date, beside your goal for it. Set it in{' '}
-        <a href="/study-plan/progress">Progress &amp; readiness</a>.
+        {t.rich('settings.examDateNote', {
+          link: (chunks) => <Link href="/study-plan/progress">{chunks}</Link>,
+        })}
       </p>
 
       <div className="flex flex-wrap items-center gap-4">
         <Button type="submit" disabled={saving}>
-          {saving ? 'Saving…' : 'Save changes'}
+          {saving ? t('settings.saving') : t('settings.save')}
         </Button>
         <p role="status" aria-live="polite" className="text-sm text-ink-muted">
-          {saving ? 'Saving your changes…' : saved ? 'Saved.' : null}
+          {saving ? t('settings.savingStatus') : saved ? t('settings.saved') : null}
         </p>
       </div>
     </form>
@@ -153,6 +180,7 @@ export function AccountSettingsForm({
  * still works if the JavaScript for this page never arrives.
  */
 export function ExportDataLink() {
+  const t = useTranslations('account.data');
   return (
     <div>
       <a
@@ -160,11 +188,9 @@ export function ExportDataLink() {
         download
         className={buttonClass({ variant: 'secondary' })}
       >
-        Download my data (JSON)
+        {t('downloadLink')}
       </a>
-      <p className="mt-2 text-sm text-ink-subtle">
-        The file is generated when you click, so it is always current.
-      </p>
+      <p className="mt-2 text-sm text-ink-subtle">{t('downloadNote')}</p>
     </div>
   );
 }
@@ -172,6 +198,7 @@ export function ExportDataLink() {
 // ---------------------------------------------------------------------------
 
 export function SignOutButton() {
+  const t = useTranslations('account.data');
   const router = useRouter();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -188,7 +215,7 @@ export function SignOutButton() {
 
     if (!response || !response.ok) {
       setBusy(false);
-      setError('We could not sign you out. Check your connection and try again.');
+      setError(t('signOutFailed'));
       return;
     }
 
@@ -206,7 +233,7 @@ export function SignOutButton() {
   return (
     <div>
       <Button type="button" variant="secondary" onClick={signOut} disabled={busy}>
-        {busy ? 'Signing out…' : 'Sign out'}
+        {busy ? t('signingOut') : t('signOut')}
       </Button>
       <div aria-live="assertive" aria-atomic="true">
         {error ? (
@@ -222,6 +249,7 @@ export function SignOutButton() {
 // ---------------------------------------------------------------------------
 
 export function DeleteAccountForm({ email, isGuest }: { email: string | null; isGuest: boolean }) {
+  const t = useTranslations('account');
   const router = useRouter();
   const id = useId();
   const [confirm, setConfirm] = useState('');
@@ -229,17 +257,17 @@ export function DeleteAccountForm({ email, isGuest }: { email: string | null; is
   const [error, setError] = useState<string | null>(null);
 
   const expectationHint = email
-    ? `Type ${email} to confirm.`
-    : 'Type DELETE, in capital letters, to confirm.';
+    ? t('delete.hintEmail', { email })
+    : t('delete.hintWord', { word: DELETE_WORD });
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (busy) return;
 
     const typed = confirm.trim();
-    const matches = email ? typed.toLowerCase() === email.toLowerCase() : typed === 'DELETE';
+    const matches = email ? typed.toLowerCase() === email.toLowerCase() : typed === DELETE_WORD;
     if (!matches) {
-      setError(`That does not match. ${expectationHint}`);
+      setError(email ? t('delete.mismatchEmail', { email }) : t('delete.mismatchWord', { word: DELETE_WORD }));
       return;
     }
 
@@ -254,11 +282,7 @@ export function DeleteAccountForm({ email, isGuest }: { email: string | null; is
 
     if (!response || !response.ok) {
       setBusy(false);
-      setError(
-        response
-          ? await readError(response, 'Your account could not be deleted.')
-          : 'We could not reach the server. Check your connection and try again.',
-      );
+      setError(response ? await readError(response, t, t('delete.fallback'), email) : t('errors.network'));
       return;
     }
 
@@ -268,24 +292,20 @@ export function DeleteAccountForm({ email, isGuest }: { email: string | null; is
 
   return (
     <form onSubmit={handleSubmit}>
-      <h3 className="font-heading text-lg font-semibold">This cannot be undone</h3>
-      <p className="mt-2 text-sm text-ink-muted">Deleting {isGuest ? 'this guest session' : 'your account'} removes:</p>
+      <h3 className="font-heading text-lg font-semibold">{t('delete.cannotUndo')}</h3>
+      <p className="mt-2 text-sm text-ink-muted">{isGuest ? t('delete.removesGuest') : t('delete.removesAccount')}</p>
       <ul className="mt-2 list-disc space-y-1 ps-5 text-sm text-ink-muted">
-        <li>your account record{email ? ', including your email address' : ''}</li>
-        <li>every practice session, answer and timing record</li>
-        <li>your results and score breakdowns</li>
-        <li>your bookmarks, your review queue and your study plan</li>
-        <li>every sign-in session, on this device and any other</li>
+        <li>{email ? t('delete.itemRecordWithEmail') : t('delete.itemRecord')}</li>
+        <li>{t('delete.itemSessions')}</li>
+        <li>{t('delete.itemResults')}</li>
+        <li>{t('delete.itemBookmarks')}</li>
+        <li>{t('delete.itemSignIns')}</li>
       </ul>
-      <p className="mt-2 text-sm text-ink-muted">
-        Question reports you have sent us are kept for our editorial record, but they stop being
-        linked to you. Nothing here can be restored afterwards, so download your data first if you
-        want to keep it.
-      </p>
+      <p className="mt-2 text-sm text-ink-muted">{t('delete.reports')}</p>
 
       <div aria-live="assertive" aria-atomic="true">
         {error ? (
-          <Alert tone="negative" role="alert" title="Not deleted" className="mt-4">
+          <Alert tone="negative" role="alert" title={t('delete.notDeletedTitle')} className="mt-4">
             <p id={`${id}-confirm-error`}>{error}</p>
           </Alert>
         ) : null}
@@ -293,7 +313,7 @@ export function DeleteAccountForm({ email, isGuest }: { email: string | null; is
 
       <div className="mt-5">
         <label htmlFor={`${id}-confirm`} className="mb-1.5 block text-sm font-medium">
-          {email ? 'Type your email address to confirm' : 'Type DELETE to confirm'}
+          {email ? t('delete.labelEmail') : t('delete.labelWord', { word: DELETE_WORD })}
         </label>
         <input
           id={`${id}-confirm`}
@@ -315,10 +335,10 @@ export function DeleteAccountForm({ email, isGuest }: { email: string | null; is
 
       <div className="mt-5 flex flex-wrap items-center gap-4">
         <Button type="submit" variant="danger" disabled={busy}>
-          {busy ? 'Deleting…' : 'Delete my account permanently'}
+          {busy ? t('delete.deleting') : t('delete.submit')}
         </Button>
         <p role="status" aria-live="polite" className="text-sm text-ink-muted">
-          {busy ? 'Deleting your account…' : null}
+          {busy ? t('delete.deletingStatus') : null}
         </p>
       </div>
     </form>

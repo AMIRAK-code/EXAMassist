@@ -3,18 +3,24 @@
 import { useEffect, useId, useMemo, useRef, useState, type FormEvent } from 'react';
 import { Elements, PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import type { Appearance, Stripe, StripeElementsOptionsMode } from '@stripe/stripe-js';
+import { useLocale, useTranslations } from 'next-intl';
+import { Link, getPathname, usePathname } from '@/i18n/navigation';
+import { formatPrice } from '@/lib/billing/plans';
 import { Alert, Badge, Button, Card, cx, fieldClass } from '@/components/ui';
 import { appearanceFromDocument, buildAppearance, elementFonts } from './stripe-appearance';
 import { stripeFor } from './stripe-loader';
 import { COUNTRY_CODES } from './countries';
+import { billingErrorMessage, countryOptions, stripeLocale } from './locale';
 
 /**
  * The checkout, on this site's own page.
  *
  * Plan picker, exam picker, order summary, consent and every message are
- * ours. The card fields are Stripe's Payment Element (Stripe's iframes, so card
- * data never reaches our server) styled with the Appearance API from our CSS
- * tokens, so they look like the rest of the form.
+ * ours, from the `billing` catalogue (`form.*`). The card fields are Stripe's
+ * Payment Element (Stripe's iframes, so card data never reaches our server)
+ * styled with the Appearance API from our CSS tokens, so they look like the
+ * rest of the form, and told the page's language so Stripe's own labels and
+ * errors match it.
  *
  * The Payment Element is shown straight away ("deferred intent"). On Pay:
  *   1. elements.submit() validates the card fields,
@@ -24,52 +30,6 @@ import { COUNTRY_CODES } from './countries';
  *      completes it, including any 3-D Secure challenge, and the learner
  *      lands on /checkout/complete, our own confirmation page.
  */
-
-/** Every string in this component, for translation. */
-const COPY = {
-  planLegend: 'Plan',
-  examLabel: 'Exam',
-  examPlaceholder: 'Choose an exam',
-  examOwned: '(your plan)',
-  examRequired: 'Choose the exam this plan is for.',
-  examHint: 'A single-exam plan covers one exam. You can hold several, one for each exam you are preparing for.',
-  countryLabel: 'Country of residence',
-  countryPlaceholder: 'Choose your country',
-  countryHint: 'Used to apply the right VAT. The price you pay does not change.',
-  countryRequired: 'Choose your country.',
-  paymentLegend: 'Payment',
-  testMode: 'Test mode: use card 4242 4242 4242 4242, any future date and any CVC. For 3-D Secure, use 4000 0027 6000 3184.',
-  secure: 'Card details are entered in secure fields provided by Stripe and go straight to Stripe; they never reach our servers.',
-  loadingFields: 'Loading the secure card fields…',
-  consent:
-    'I want my plan to start now. I understand that I lose my 14-day right of withdrawal once access starts.',
-  consentTerms: 'Terms of sale',
-  consentRequired: 'Please tick this box to continue.',
-  pay: 'Pay {price} and start',
-  paying: 'Processing payment…',
-  errorTitle: 'The payment did not go through',
-  networkError: 'We could not reach the server. Check your connection and try again. Nothing was charged.',
-  genericError: 'Something went wrong. Nothing was charged; please try again.',
-  alreadySubscribed: 'Manage your plans',
-  summary: {
-    heading: 'Order summary',
-    plan: 'Plan',
-    exam: 'Exam',
-    examNone: 'Not chosen yet',
-    monthly: 'Monthly price',
-    vat: 'VAT',
-    vatIncluded: 'Included',
-    vatByCountry: 'Included, at your country’s rate',
-    dueToday: 'Due today',
-    then: 'Then {price} every month from {date}, until you cancel.',
-    cancel: 'Cancel any time from your account. Your plan stays on until the end of the month you paid for.',
-  },
-} as const;
-
-const fill = (template: string, values: Record<string, string>) =>
-  template.replace(/\{(\w+)\}/g, (_, key: string) => values[key] ?? '');
-
-const euros = (cents: number) => `€${(cents / 100).toFixed(2)}`;
 
 export interface CheckoutPlanOption {
   key: string;
@@ -100,6 +60,7 @@ function newRequestId(): string {
 }
 
 export function CheckoutForm(props: CheckoutFormProps) {
+  const locale = useLocale();
   const [stripe, setStripe] = useState<Promise<Stripe | null> | null>(null);
   const [appearance, setAppearance] = useState<Appearance>(() => buildAppearance());
   const [origin, setOrigin] = useState('');
@@ -121,9 +82,9 @@ export function CheckoutForm(props: CheckoutFormProps) {
       paymentMethodTypes: ['card'],
       appearance,
       fonts: origin ? elementFonts(origin) : [],
-      locale: 'en',
+      locale: stripeLocale(locale),
     }),
-    [selected.amount, appearance, origin],
+    [selected.amount, appearance, origin, locale],
   );
 
   return (
@@ -155,9 +116,13 @@ function CheckoutBody({
   origin: string;
   ready: boolean;
 }) {
+  const t = useTranslations('billing');
+  const locale = useLocale();
+  const pathname = usePathname();
   const stripe = useStripe();
   const elements = useElements();
   const id = useId();
+  const euros = (cents: number) => formatPrice(cents, locale);
   const [exam, setExam] = useState(initialExam && !ownedExamKeys.includes(initialExam) ? initialExam : '');
   const [country, setCountry] = useState('');
   const [consent, setConsent] = useState(false);
@@ -174,13 +139,12 @@ function CheckoutBody({
   const renewsOn = useMemo(() => {
     const date = new Date();
     date.setMonth(date.getMonth() + 1);
-    return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-  }, []);
-  const countries = useMemo(() => {
-    if (!collectCountry) return [];
-    const names = new Intl.DisplayNames(['en'], { type: 'region' });
-    return COUNTRY_CODES.map((code) => ({ code, name: names.of(code) ?? code })).sort((a, b) => a.name.localeCompare(b.name, 'en'));
-  }, [collectCountry]);
+    return new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'long', year: 'numeric' }).format(date);
+  }, [locale]);
+  const countries = useMemo(
+    () => (collectCountry ? countryOptions(COUNTRY_CODES, locale) : []),
+    [collectCountry, locale],
+  );
 
   useEffect(() => {
     if (error) errorRef.current?.focus();
@@ -225,21 +189,26 @@ function CheckoutBody({
         country: collectCountry ? country : null,
       }),
     }).catch(() => null);
-    if (!response) return fail(COPY.networkError);
+    if (!response) return fail(t('form.networkError'));
     const data = await response.json().catch(() => null);
     if (!response.ok) {
       const code = data?.error?.code;
       if (code === 'unauthorized' || code === 'account-required') {
-        window.location.assign(`/sign-up?next=${encodeURIComponent(window.location.pathname + window.location.search)}`);
+        // `next` is the path without the language prefix; sign-up adds it back.
+        const next = encodeURIComponent(pathname + window.location.search);
+        window.location.assign(getPathname({ href: `/sign-up?next=${next}`, locale }));
         return;
       }
-      return fail(data?.error?.message ?? COPY.genericError, code === 'already-subscribed');
+      return fail(billingErrorMessage(t, data?.error, t('form.genericError')), code === 'already-subscribed');
     }
 
     // 3. Confirm with Stripe, 3-D Secure included. Card payments finish here
     //    without leaving the page; anything that needs a redirect comes back
     //    to the same confirmation page.
-    const returnUrl = `${origin}/checkout/complete?subscription=${encodeURIComponent(data.subscriptionId)}`;
+    const returnUrl = `${origin}${getPathname({
+      href: `/checkout/complete?subscription=${encodeURIComponent(data.subscriptionId)}`,
+      locale,
+    })}`;
     const billingDetails = { email, ...(name ? { name } : {}) };
     if (data.intent === 'payment' && data.clientSecret) {
       const result = await stripe.confirmPayment({
@@ -248,7 +217,7 @@ function CheckoutBody({
         confirmParams: { return_url: returnUrl, payment_method_data: { billing_details: billingDetails } },
         redirect: 'if_required',
       });
-      if (result.error) return fail(result.error.message ?? COPY.genericError);
+      if (result.error) return fail(result.error.message ?? t('form.genericError'));
     } else if (data.intent === 'setup' && data.clientSecret) {
       const result = await stripe.confirmSetup({
         elements,
@@ -256,7 +225,7 @@ function CheckoutBody({
         confirmParams: { return_url: returnUrl, payment_method_data: { billing_details: billingDetails } },
         redirect: 'if_required',
       });
-      if (result.error) return fail(result.error.message ?? COPY.genericError);
+      if (result.error) return fail(result.error.message ?? t('form.genericError'));
     }
     window.location.assign(returnUrl);
   }
@@ -266,11 +235,11 @@ function CheckoutBody({
       <form onSubmit={(event) => void submit(event)} noValidate className="space-y-8">
         {error ? (
           <div ref={errorRef} tabIndex={-1} className="outline-none">
-            <Alert tone="negative" role="alert" title={COPY.errorTitle}>
+            <Alert tone="negative" role="alert" title={t('form.errorTitle')}>
               <p>{error.message}</p>
               {error.manage ? (
                 <p className="mt-2">
-                  <a href="/account#billing">{COPY.alreadySubscribed}</a>
+                  <Link href="/account#billing">{t('form.alreadySubscribed')}</Link>
                 </p>
               ) : null}
             </Alert>
@@ -278,7 +247,7 @@ function CheckoutBody({
         ) : null}
 
         <fieldset>
-          <legend className="mb-3 font-heading text-lg font-semibold">{COPY.planLegend}</legend>
+          <legend className="mb-3 font-heading text-lg font-semibold">{t('form.planLegend')}</legend>
           <div className="grid gap-3 sm:grid-cols-2">
             {plans.map((option) => {
               const checked = option.key === plan;
@@ -326,7 +295,7 @@ function CheckoutBody({
         {selected.needsExam ? (
           <div>
             <label htmlFor={`${id}-exam`} className="mb-1.5 block text-sm font-medium">
-              {COPY.examLabel}
+              {t('form.examLabel')}
             </label>
             <select
               id={`${id}-exam`}
@@ -337,23 +306,23 @@ function CheckoutBody({
               aria-describedby={`${id}-exam-hint${touched && examMissing ? ` ${id}-exam-error` : ''}`}
               className={fieldClass()}
             >
-              <option value="">{COPY.examPlaceholder}</option>
+              <option value="">{t('form.examPlaceholder')}</option>
               {exams.map((option) => {
                 const owned = ownedExamKeys.includes(option.key);
                 return (
                   <option key={option.key} value={option.key} disabled={owned}>
                     {option.name}
-                    {owned ? ` ${COPY.examOwned}` : ''}
+                    {owned ? ` ${t('form.examOwned')}` : ''}
                   </option>
                 );
               })}
             </select>
             <p id={`${id}-exam-hint`} className="mt-1.5 text-sm text-ink-muted">
-              {COPY.examHint}
+              {t('form.examHint')}
             </p>
             {touched && examMissing ? (
               <p id={`${id}-exam-error`} className="mt-1.5 text-sm text-negative">
-                {COPY.examRequired}
+                {t('form.examRequired')}
               </p>
             ) : null}
           </div>
@@ -362,7 +331,7 @@ function CheckoutBody({
         {collectCountry ? (
           <div>
             <label htmlFor={`${id}-country`} className="mb-1.5 block text-sm font-medium">
-              {COPY.countryLabel}
+              {t('form.countryLabel')}
             </label>
             <select
               id={`${id}-country`}
@@ -374,7 +343,7 @@ function CheckoutBody({
               aria-describedby={`${id}-country-hint${touched && countryMissing ? ` ${id}-country-error` : ''}`}
               className={fieldClass()}
             >
-              <option value="">{COPY.countryPlaceholder}</option>
+              <option value="">{t('form.countryPlaceholder')}</option>
               {countries.map((option) => (
                 <option key={option.code} value={option.code}>
                   {option.name}
@@ -382,24 +351,24 @@ function CheckoutBody({
               ))}
             </select>
             <p id={`${id}-country-hint`} className="mt-1.5 text-sm text-ink-muted">
-              {COPY.countryHint}
+              {t('form.countryHint')}
             </p>
             {touched && countryMissing ? (
               <p id={`${id}-country-error`} className="mt-1.5 text-sm text-negative">
-                {COPY.countryRequired}
+                {t('form.countryRequired')}
               </p>
             ) : null}
           </div>
         ) : null}
 
         <fieldset>
-          <legend className="mb-3 font-heading text-lg font-semibold">{COPY.paymentLegend}</legend>
-          {testMode ? <p className="mb-4 rounded-card bg-surface-sunken p-3 text-sm text-ink-muted">{COPY.testMode}</p> : null}
+          <legend className="mb-3 font-heading text-lg font-semibold">{t('form.paymentLegend')}</legend>
+          {testMode ? <p className="mb-4 rounded-card bg-surface-sunken p-3 text-sm text-ink-muted">{t('form.testMode')}</p> : null}
           {/* Holds the height of the fields while they load, so nothing below jumps. */}
           <div className="relative min-h-[11rem]">
             {!elementReady ? (
               <p className="absolute inset-0 text-sm text-ink-muted" aria-live="polite">
-                {COPY.loadingFields}
+                {t('form.loadingFields')}
               </p>
             ) : null}
             {ready ? (
@@ -414,7 +383,7 @@ function CheckoutBody({
               />
             ) : null}
           </div>
-          <p className="mt-3 text-xs text-ink-subtle">{COPY.secure}</p>
+          <p className="mt-3 text-xs text-ink-subtle">{t('form.secure')}</p>
         </fieldset>
 
         <div>
@@ -431,43 +400,50 @@ function CheckoutBody({
               className="mt-0.5 size-5 shrink-0 accent-[var(--color-accent)]"
             />
             <span>
-              {COPY.consent}{' '}
-              <a href="/about/terms#sale" target="_blank" rel="noopener">
-                {COPY.consentTerms}
-              </a>
+              {t('form.consent')}{' '}
+              <Link href="/about/terms#sale" target="_blank" rel="noopener">
+                {t('form.consentTerms')}
+                <span className="sr-only"> {t('form.consentTermsNewTab')}</span>
+              </Link>
             </span>
           </label>
           {touched && !consent ? (
             <p id={`${id}-consent-error`} className="mt-1.5 ps-8 text-sm text-negative">
-              {COPY.consentRequired}
+              {t('form.consentRequired')}
             </p>
           ) : null}
         </div>
 
         <Button type="submit" size="lg" full loading={busy} disabled={!stripe || !elements || !elementReady}>
-          {busy ? COPY.paying : fill(COPY.pay, { price: euros(selected.amount) })}
+          {busy ? t('form.paying') : t('form.pay', { price: euros(selected.amount) })}
         </Button>
       </form>
 
       <aside aria-labelledby={`${id}-summary`} className="lg:sticky lg:top-24 lg:self-start">
         <Card padding="lg">
           <h2 id={`${id}-summary`} className="font-heading text-lg font-semibold">
-            {COPY.summary.heading}
+            {t('form.summary.heading')}
           </h2>
           <dl className="mt-4 space-y-3 text-sm">
-            <SummaryRow term={COPY.summary.plan} value={<Badge tone="accent">{selected.name}</Badge>} />
+            <SummaryRow term={t('form.summary.plan')} value={<Badge tone="accent">{selected.name}</Badge>} />
             {selected.needsExam ? (
-              <SummaryRow term={COPY.summary.exam} value={examName ?? <span className="text-ink-muted">{COPY.summary.examNone}</span>} />
+              <SummaryRow
+                term={t('form.summary.exam')}
+                value={examName ?? <span className="text-ink-muted">{t('form.summary.examNone')}</span>}
+              />
             ) : null}
-            <SummaryRow term={COPY.summary.monthly} value={euros(selected.amount)} />
-            <SummaryRow term={COPY.summary.vat} value={collectCountry ? COPY.summary.vatByCountry : COPY.summary.vatIncluded} />
+            <SummaryRow term={t('form.summary.monthly')} value={euros(selected.amount)} />
+            <SummaryRow
+              term={t('form.summary.vat')}
+              value={collectCountry ? t('form.summary.vatByCountry') : t('form.summary.vatIncluded')}
+            />
           </dl>
           <div className="mt-4 flex items-baseline justify-between gap-3 border-t border-line pt-4">
-            <span className="font-semibold">{COPY.summary.dueToday}</span>
+            <span className="font-semibold">{t('form.summary.dueToday')}</span>
             <span className="font-heading text-2xl font-semibold tabular-nums">{euros(selected.amount)}</span>
           </div>
-          <p className="mt-3 text-sm text-ink-muted">{fill(COPY.summary.then, { price: euros(selected.amount), date: renewsOn })}</p>
-          <p className="mt-2 text-sm text-ink-muted">{COPY.summary.cancel}</p>
+          <p className="mt-3 text-sm text-ink-muted">{t('form.summary.then', { price: euros(selected.amount), date: renewsOn })}</p>
+          <p className="mt-2 text-sm text-ink-muted">{t('form.summary.cancel')}</p>
         </Card>
       </aside>
     </div>

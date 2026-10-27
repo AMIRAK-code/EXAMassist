@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { cx } from '@/components/ui';
 import type { SaveStatus } from './use-pending-saves';
 
@@ -14,34 +15,34 @@ import type { SaveStatus } from './use-pending-saves';
  * on every keystroke.
  */
 export function SaveIndicator({ status, timed, onRetry }: { status: SaveStatus; timed: boolean; onRetry: () => void }) {
+  const t = useTranslations('player.save');
   const { state, unsaved, durable } = status;
-  const where = durable ? 'on this device' : 'on this page only';
-  const waiting = unsaved === 1 ? '1 answer' : `${unsaved} answers`;
+  const timer = timed ? ` ${t('timerRuns')}` : '';
 
   let short: string;
   let long: string;
   switch (state) {
     case 'saving':
-      short = 'Saving…';
-      long = 'Saving your answers.';
+      short = t('savingShort');
+      long = t('savingLong');
       break;
     case 'saved':
-      short = 'Saved';
-      long = 'All answers saved.';
+      short = t('savedShort');
+      long = t('savedLong');
       break;
     case 'offline':
-      short = unsaved > 0 ? `Offline · ${unsaved} waiting` : 'Offline';
+      short = unsaved > 0 ? t('offlineWaitingShort', { count: unsaved }) : t('offlineShort');
       long =
         unsaved > 0
-          ? `You are offline. ${waiting} not yet saved, kept ${where} and sent when the connection returns.${timed ? ' The timer keeps running.' : ''}`
-          : `You are offline. Everything so far is saved.${timed ? ' The timer keeps running.' : ''}`;
+          ? `${t(durable ? 'offlineDevice' : 'offlinePage', { count: unsaved })}${timer}`
+          : `${t('offlineSaved')}${timer}`;
       break;
     case 'failed':
-      short = unsaved > 0 ? `${unsaved} not saved` : 'Not saved';
-      long = unsaved > 0 ? `${waiting} could not be saved yet, kept ${where}. Retrying.` : 'Saving stopped.';
+      short = unsaved > 0 ? t('failedShort', { count: unsaved }) : t('notSavedShort');
+      long = unsaved > 0 ? t(durable ? 'failedDevice' : 'failedPage', { count: unsaved }) : t('stopped');
       break;
     default:
-      short = 'Saves as you go';
+      short = t('idle');
       long = '';
   }
 
@@ -63,7 +64,7 @@ export function SaveIndicator({ status, timed, onRetry }: { status: SaveStatus; 
       </span>
       {state === 'failed' && !status.halted ? (
         <button type="button" onClick={onRetry} className="font-semibold text-accent underline underline-offset-2">
-          Retry
+          {t('retry')}
         </button>
       ) : null}
     </div>

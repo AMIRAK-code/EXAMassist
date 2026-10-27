@@ -1,4 +1,11 @@
+import { createTranslator, type AbstractIntlMessages } from 'next-intl';
+import { DEFAULT_LOCALE, isLocale, type Locale } from '@/i18n/locales';
 import { SITE } from '@/lib/site';
+import en from '../../../messages/en/auth.json';
+import es from '../../../messages/es/auth.json';
+import it from '../../../messages/it/auth.json';
+import pl from '../../../messages/pl/auth.json';
+import tr from '../../../messages/tr/auth.json';
 import type { OutgoingEmail } from './send';
 
 /**
@@ -7,50 +14,54 @@ import type { OutgoingEmail } from './send';
  * an unexpected code is the moment someone decides whether to trust us.
  *
  * The code leads the subject line so it can be read from a notification.
+ *
+ * The wording lives in messages/<locale>/auth.json under `email`, and each
+ * message goes out in the language of the page it was asked for on.
  */
 
 export type CodeEmailPurpose = 'sign-in' | 'reset-password' | 'verify-email';
 
-const COPY: Record<CodeEmailPurpose, { tag: string; subject: string; intro: string; ignore: string }> = {
-  'sign-in': {
-    tag: 'sign-in-code',
-    subject: `is your ${SITE.name} sign-in code`,
-    intro: `Use this code to sign in to ${SITE.name}:`,
-    ignore:
-      'If you did not try to sign in, you can ignore this email. Nobody can sign in with it unless they also have access to this inbox.',
-  },
-  'reset-password': {
-    tag: 'password-reset-code',
-    subject: `is your ${SITE.name} password reset code`,
-    intro: `Use this code to choose a new password for your ${SITE.name} account:`,
-    ignore:
-      'If you did not ask to reset your password, you can ignore this email. Your password has not changed.',
-  },
-  'verify-email': {
-    tag: 'verify-email-code',
-    subject: `is your ${SITE.name} confirmation code`,
-    intro: `Use this code to confirm this email address for your ${SITE.name} account:`,
-    ignore:
-      `If you did not create an account with ${SITE.name}, you can ignore this email. The address stays unconfirmed and you will not hear from us again.`,
-  },
+const CATALOGUES: Record<Locale, AbstractIntlMessages> = { en, it, tr, es, pl };
+
+const KEYS: Record<CodeEmailPurpose, { tag: string; key: 'signIn' | 'resetPassword' | 'verifyEmail' }> = {
+  'sign-in': { tag: 'sign-in-code', key: 'signIn' },
+  'reset-password': { tag: 'password-reset-code', key: 'resetPassword' },
+  'verify-email': { tag: 'verify-email-code', key: 'verifyEmail' },
 };
 
-export function codeEmail(purpose: CodeEmailPurpose, to: string, code: string, ttlMinutes: number): OutgoingEmail {
-  const copy = COPY[purpose];
+/** A locale named by a request, or English when it names none we publish. */
+export function emailLocale(value: unknown): Locale {
+  return typeof value === 'string' && isLocale(value) ? value : DEFAULT_LOCALE;
+}
+
+export function codeEmail(
+  purpose: CodeEmailPurpose,
+  to: string,
+  code: string,
+  ttlMinutes: number,
+  locale: Locale = DEFAULT_LOCALE,
+): OutgoingEmail {
+  const { tag, key } = KEYS[purpose];
+  const translate = createTranslator({
+    locale,
+    messages: { auth: CATALOGUES[locale] ?? CATALOGUES[DEFAULT_LOCALE] } as AbstractIntlMessages,
+  });
+  const t = (key: string, values: Record<string, string | number>) => translate(`auth.email.${key}` as never, values as never) as string;
+  const site = SITE.name;
   return {
     to,
-    tag: copy.tag,
-    subject: `${code} ${copy.subject}`,
+    tag,
+    subject: t(`${key}.subject`, { code, site }),
     text: [
-      copy.intro,
+      t(`${key}.intro`, { site }),
       '',
       `    ${code}`,
       '',
-      `It works once and expires in ${ttlMinutes} minutes. Enter it on the page where you asked for it. We will never ask you for this code by phone, chat or email.`,
+      t('expiry', { minutes: ttlMinutes }),
       '',
-      copy.ignore,
+      t(`${key}.ignore`, { site }),
       '',
-      `- ${SITE.name}`,
+      t('signature', { site }),
     ].join('\n'),
   };
 }
