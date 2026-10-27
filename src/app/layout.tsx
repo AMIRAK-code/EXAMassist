@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
+import { headers } from 'next/headers';
 import './globals.css';
 import { SITE, indexingEnabled, shareImages, siteUrl } from '@/lib/site';
 import { getCurrentUser } from '@/lib/auth/session';
+import { isSnapshotRequest } from '@/lib/seo/static-pages';
 import { SiteFooter } from '@/components/site/site-footer';
 import { SiteHeader } from '@/components/site/site-header';
 import type { AccountState } from '@/components/site/nav-items';
@@ -33,6 +35,8 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const user = await getCurrentUser();
   const account: AccountState = !user ? 'visitor' : user.isGuest ? 'guest' : 'registered';
+  // A page being saved as a static file is served to everyone: the browser decides.
+  const snapshot = isSnapshotRequest(await headers());
 
   return (
     <html lang="en" className={sans.variable}>
@@ -41,7 +45,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           Skip to main content
         </a>
 
-        <SiteHeader account={account} />
+        <SiteHeader account={account} deferred={snapshot} />
 
         <main id="main" className="flex-1">
           {children}

@@ -4,6 +4,7 @@ import {
   classifyReferrer,
   countEvent,
   countPageView,
+  countReportedView,
   funnelReport,
   isLikelyBot,
   subjectFor,
@@ -83,6 +84,20 @@ describe('counting', () => {
     expect(rows.map((r) => [r.source, r.count])).toEqual([
       ['direct', 1],
       ['search', 1],
+    ]);
+  });
+
+  it('counts a view the static exam page reports from the browser, the same way', async () => {
+    const report = { userAgent: CHROME, ownHost: 'uniexamer.com' };
+    await countReportedView(db, 'gmat', { ...report, referrer: 'https://chatgpt.com/' });
+    await countReportedView(db, 'gmat', { ...report, referrer: 'https://uniexamer.com/exams' });
+    await countReportedView(db, 'gmat', { ...report, referrer: null });
+    await countReportedView(db, 'gmat', { userAgent: 'Mozilla/5.0 (compatible; bingbot/2.0)', ownHost: 'uniexamer.com', referrer: null });
+    const rows = await totals();
+    expect(rows.map((r) => [r.event, r.subject, r.source, r.count])).toEqual([
+      ['landing_view', 'gmat', 'ai', 1],
+      ['landing_view', 'gmat', 'direct', 1],
+      ['landing_view', 'gmat', 'internal', 1],
     ]);
   });
 

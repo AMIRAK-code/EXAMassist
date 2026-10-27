@@ -16,7 +16,7 @@ export const PAGE_DATES = {
   home: { updated: '2026-10-07' },
   editorialStandards: { published: '2026-09-22', updated: '2026-09-24' },
   howScoringWorks: { published: '2026-09-22', updated: '2026-09-24' },
-  privacy: { published: '2026-09-22', updated: '2026-10-07' },
+  privacy: { published: '2026-09-22', updated: '2026-10-27' },
   /** The terms show this as "last reviewed". */
   terms: { updated: '2026-10-05' },
   /** Plans and prices from 2026-10-05; exam-specific plans copy from 2026-10-07. */

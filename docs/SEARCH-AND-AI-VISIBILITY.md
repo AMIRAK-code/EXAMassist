@@ -18,6 +18,7 @@ rankings, rich results or citations in AI answers.
 | Share images | `public/og/*.png`, `src/lib/seo/share-cards.ts` | A 1200 × 630 card for the site, each exam and each guide, with the logo, the title and "Independent · not affiliated with …". Format guides use their exam's card; listings and about pages use the site card. |
 | Apple touch icon | `src/app/apple-icon.png` | The brand symbol, 180 × 180. |
 | llms.txt | `src/app/llms.txt/route.ts` | A Markdown map of the public pages, built from the same data as the sitemap. Google says it uses no such file and that one neither helps nor harms; some other AI tools read it. |
+| Static public pages | `scripts/snapshot-pages.ts`, `src/lib/seo/static-pages.ts` | `npm run cf:deploy` saves every public page except `/premium` as a file Cloudflare serves without running the Worker, so crawlers never meet the Free plan's CPU limit there. |
 | IndexNow | `src/lib/seo/indexnow.ts`, `public/<key>.txt` | Tells Bing (and so Copilot), Yandex, Seznam, Naver and the other participants about new and changed pages. |
 
 The pages were already written for answer engines before this: each exam page
@@ -87,15 +88,17 @@ Bing Webmaster Tools, same Google sign-in:
     crawlers, and HSTS are live. `npm run seo:indexnow` then got HTTP 202
     for all 29 URLs.
 
+12. **Workers stays on Free**, the owner's choice. Public pages are served as
+    static files instead (next section).
+
 Still open:
 
-12. **Workers Paid** (Workers & Pages → Workers plans → Paid, $5 a month) in
-    Moein's account. After an attempt to upgrade, the plans page still said
-    "Current plan: Free" and Billing → Subscriptions listed only "Workers
-    Free". A member without billing rights may be unable to finish the
-    checkout, in which case the account owner has to do it.
+13. **Two Single Redirects** (README, "Cloudflare Workers"): www.uniexamer.com
+    and exam.assist365.app must redirect in Cloudflare before the Worker's
+    static files are looked up. `npm run cf:deploy` checks and, without them,
+    leaves every page dynamic.
 
-## Known gap: pages fail under the Free Workers CPU limit
+## Pages failed under the Free Workers CPU limit, now served as files
 
 Measured on 2026-10-27: fetching the 29 sitemap pages one after another, 9 to
 15 answered **503 with Cloudflare error 1102** ("Worker exceeded resource
@@ -116,15 +119,37 @@ came from the Rome data centre (`CF-RAY …-FCO`), and every success in that
 sample from Frankfurt (`-FRA`).
 
 A crawler that keeps getting 503s lowers its crawl rate, and a page that
-keeps failing is eventually dropped. The two fixes are:
+keeps failing is eventually dropped.
 
-1. **Workers Paid** ($5 a month in the account that holds the Worker): the CPU
-   limit becomes 30 s per request. This is the immediate fix, and sign-in's
-   scrypt needs it anyway.
-2. Serving public pages from a cache (next section), so most requests do not
-   render at all.
+Workers Observability (24 hours, 2,381 fetches) showed why trimming would not
+help: successful requests used a median of 28 ms of CPU and a p90 of 378 ms;
+the home page 381 ms, the Bocconi page 115 ms, and even robots.txt 49 ms,
+because every request starts the Next.js server. The 77 failures were all
+`exceededCpu` at 10 ms. Only a request that never runs the Worker fits Free.
 
-Check after either fix (expect only 200s):
+So, with Workers kept on Free, `npm run cf:deploy` deploys, saves every public
+page of that deployment as a file in the Worker's static assets, and deploys
+again (`scripts/snapshot-pages.ts`, `src/lib/seo/static-pages.ts`). Cloudflare
+answers a request that matches an asset before it runs the Worker, so the 28
+sitemap pages other than `/premium`, plus robots.txt, sitemap.xml, llms.txt and
+the icons, cost no Worker CPU. What changes for visitors:
+
+- The header's learner menu comes from a note in the browser's own storage,
+  kept in step by every page the server renders and cleared on sign-out. The
+  privacy notice says so.
+- The home page's "continue studying" line and its `?exam=` choice are filled
+  in by the browser; exam pages report their view (`/api/views`) for
+  `/admin/funnel`, since the server no longer sees it.
+- A link to a static page from inside the app does a full page load instead
+  of an in-app transition, because the file is HTML, not the router's data.
+  Prefetches of those links download the file (7–34 KB compressed) instead of
+  running the Worker.
+- The Bocconi page shows the visitor version to Premium learners too (an
+  offer they already have), and counts on the pages refresh only on deploy.
+
+Sign-in, practice and `/premium` still run on the Worker and can still hit 1102.
+
+Check after a deploy (expect only 200s):
 
 ```bash
 for i in 1 2 3 4 5 6 7 8; do curl -s -o /dev/null -w "%{http_code} " https://uniexamer.com/exams/gmat; done
@@ -134,12 +159,11 @@ for i in 1 2 3 4 5 6 7 8; do curl -s -o /dev/null -w "%{http_code} " https://uni
 
 Measured on 2026-10-27 from Italy, time to first byte on uniexamer.com varied
 from 0.2 s to 4.6 s for the same page (home 0.3–4.4 s, Bocconi page 0.6–3.7 s).
-Every public page is rendered per request, because the root layout reads the
-session, and is sent as `private, no-store`, so nothing is cached at the edge.
-A cold Worker on a site with little traffic then pays the start-up and
-database cost again. Slow first bytes cost Core Web Vitals and can make AI
-fetchers give up. The fix is to serve public pages from a cache and leave only
-the signed-in parts dynamic, best done after the move to Next.js 16.
+Every public page was rendered per request, because the root layout reads the
+session, and sent as `private, no-store`, so nothing was cached at the edge.
+Serving public pages as static files (previous section) removes the render
+and the database from those requests; measure again after the first deploy
+with them.
 
 ## Measuring
 
