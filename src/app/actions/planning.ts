@@ -6,7 +6,8 @@ import { requireUser } from '@/lib/auth/session';
 import { checkRateLimit } from '@/lib/auth/rate-limit';
 import { AttemptError, startAttempt, startRetry } from '@/lib/attempts/service';
 import { getExamConfig } from '@/lib/exams/registry';
-import { PREMIUM_PATH } from '@/lib/billing/config';
+import { upgradeTarget } from '@/lib/billing/upgrade';
+import { requireEntitlement, EntitlementError } from '@/lib/billing/entitlements';
 import {
   PlanError,
   activePlan,
@@ -49,12 +50,23 @@ function returnView(value: FormDataEntryValue | null): 'plan' | 'progress' {
 
 const field = (formData: FormData, name: string) => String(formData.get(name) ?? '');
 
+/** Study plans are part of a paid plan for the exam: refused learners go to its pricing page. */
+async function requireStudyPlan(userId: string, examKey: string): Promise<void> {
+  try {
+    await requireEntitlement(getDb(), userId, 'study_plan', examKey);
+  } catch (error) {
+    if (error instanceof EntitlementError) redirect(error.detail.upgradeHref);
+    throw error;
+  }
+}
+
 /** Creates the plan the learner has just previewed. */
 export async function createPlanAction(formData: FormData): Promise<void> {
   const user = await requireUser();
   const db = getDb();
   const config = getExamConfig(field(formData, 'examKey'));
   if (!config) redirect('/study-plan');
+  await requireStudyPlan(user.id, config.examKey);
   const weeklyMinutes = parseWeeklyMinutes(field(formData, 'weeklyMinutes'));
   const date = parsePlanDate(field(formData, 'examDate'));
   if (weeklyMinutes === null || date === 'invalid') redirect(planPath('plan', config.examKey, 'invalid-plan-input'));
@@ -113,7 +125,8 @@ export async function startPlanSessionAction(formData: FormData): Promise<void> 
     (await linkStartedSession(db, user.id, planned.id, attemptId));
   } catch (error) {
     if (!(error instanceof AttemptError)) throw error;
-    if (error.code === 'premium-required') redirect(PREMIUM_PATH);
+    const upgrade = upgradeTarget(error);
+    if (upgrade) redirect(upgrade);
     failure = planned.kind === 'review' ? 'nothing-to-review' : planned.kind === 'revision' ? 'insufficient-content' : 'not-enough-new';
     attemptId = null;
   }
@@ -139,6 +152,7 @@ export async function applyAdjustmentAction(formData: FormData): Promise<void> {
   const db = getDb();
   const config = getExamConfig(field(formData, 'examKey'));
   if (!config) redirect('/study-plan');
+  await requireStudyPlan(user.id, config.examKey);
   const weeklyMinutes = parseWeeklyMinutes(field(formData, 'weeklyMinutes'));
   const date = parsePlanDate(field(formData, 'examDate'));
   if (weeklyMinutes === null || date === 'invalid') redirect(planPath('adjust', config.examKey, 'invalid-plan-input'));
@@ -223,7 +237,8 @@ export async function startSuggestionAction(formData: FormData): Promise<void> {
     }
   } catch (error) {
     if (!(error instanceof AttemptError)) throw error;
-    if (error.code === 'premium-required') redirect(PREMIUM_PATH);
+    const upgrade = upgradeTarget(error);
+    if (upgrade) redirect(upgrade);
     attemptId = null;
   }
   redirect(attemptId ? `/attempt/${attemptId}` : planPath('progress', config.examKey, failure));

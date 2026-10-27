@@ -2,11 +2,11 @@ import { getDb } from '@/lib/db';
 import { assertSameOrigin, fail, ok, toErrorResponse } from '@/lib/api/http';
 import { callerKey, checkRateLimit } from '@/lib/auth/rate-limit';
 import { requireUser } from '@/lib/auth/session';
-import { openBillingPortal } from '@/lib/billing/service';
+import { startCardUpdate } from '@/lib/billing/service';
 
 export const dynamic = 'force-dynamic';
 
-/** Stripe's billing portal for the signed-in learner: plan changes, card, invoices, cancelling. */
+/** A SetupIntent for replacing the card, confirmed on the account page in Stripe's iframes. */
 export async function POST(request: Request) {
   try {
     assertSameOrigin(request);
@@ -20,7 +20,7 @@ export async function POST(request: Request) {
       });
     }
 
-    return ok({ url: await openBillingPortal(db, user.id) });
+    return ok(await startCardUpdate(db, user.id));
   } catch (error) {
     return toErrorResponse(error);
   }
