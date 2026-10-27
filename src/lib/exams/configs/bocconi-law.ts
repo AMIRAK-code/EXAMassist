@@ -635,6 +635,11 @@ export const bocconiLawConfig: ExamConfig = {
     },
   ],
 
+  choiceOptions: {
+    count: 4,
+    basis: 'editorial',
+    note: 'Bocconi publishes no option count except three options on some critical thinking items (scoring.itemPenaltyOverrides); four is our choice.',
+  },
   scoring: {
     pointsCorrect: 1,
     pointsIncorrect: -0.2,

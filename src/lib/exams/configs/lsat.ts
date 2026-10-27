@@ -651,6 +651,11 @@ export const lsatConfig: ExamConfig = {
     },
   ],
 
+  choiceOptions: {
+    count: 5,
+    basis: 'published',
+    note: 'Five answer choices, exactly one correct.',
+  },
   scoring: {
     pointsCorrect: 1,
     pointsIncorrect: 0,

@@ -109,6 +109,7 @@ and leaves every page dynamic.
 | `npm run e2e` | Browser tests (Playwright); prepares its own database |
 | `npm run db:migrate` / `db:seed` / `db:reset` | Database lifecycle |
 | `npm run content:validate` | Validate the question bank and report coverage |
+| `npm run content:draft -- --exam=… --domain=…` | Draft questions with Claude into the review queue (`in_review`); `--dry-run` shows the request without calling the model. See docs/AUTHORING-BRIEF.md |
 | `npm run stripe:setup` | Create or check the Stripe products and prices for the plans (`-- --dry-run` to only report); see [`docs/BILLING.md`](docs/BILLING.md) |
 | `npx tsx scripts/validate-configs.ts` | Validate the exam configurations |
 
