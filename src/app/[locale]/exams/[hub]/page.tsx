@@ -1,11 +1,13 @@
 import { Link } from '@/i18n/navigation';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/server';
+import { languageAlternates } from '@/i18n/alternates';
+import type { Locale } from '@/i18n/locales';
 import { getDb } from '@/lib/db';
 import { EXAM_HUBS, getConfigsForHub, getHub } from '@/lib/exams/registry';
-import type { SectionConfig } from '@/lib/assessment/types';
 import { blueprintAvailability, examCoverage } from '@/lib/attempts/availability';
-import { SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
+import { shareImages, SITE, siteUrl } from '@/lib/site';
 import {
   Alert,
   Breadcrumbs,
@@ -18,6 +20,7 @@ import {
   StatusBadge,
 } from '@/components/ui';
 import { OtherRoutes } from '@/components/exams/other-routes';
+import { OfficialNote } from '@/components/exams/official-note';
 import { JsonLd, articleSchema, breadcrumbSchema, webPageSchema } from '@/components/seo/json-ld';
 import { headers } from 'next/headers';
 import { countPageView } from '@/lib/analytics/funnel';
@@ -29,79 +32,29 @@ import { BocconiLanding } from '@/components/exams/bocconi-landing';
 
 export const dynamic = 'force-dynamic';
 
-/** Every user-facing string on this page, in one place for translation. */
-const copy = {
-  fallbackTitle: 'Exam',
-  title: (hubName: string) => `${hubName}: format, timing and scoring`,
-  breadcrumbHome: 'Home',
-  breadcrumbExams: 'Exams',
-  term: {
-    version: 'Version covered',
-    cycle: 'Admissions cycle',
-    verifiedOn: 'Verified on',
-    scoring: 'Scoring',
-    wrongAnswers: 'Wrong answers',
-  },
-  scoringFallback: 'See the format guide',
-  penalised: (points: number, omitted: number) =>
-    `Penalised (${points} per wrong answer); a blank scores ${omitted}`,
-  noPenalty: 'No penalty — never leave a question blank',
-  structureHeading: 'Structure',
-  structureRegion: (configName: string) => `Structure of the ${configName}`,
-  structureCaption: (configName: string, publisher: string) =>
-    `Sections of the ${configName}, with question counts, time limits and calculator policy as published by ${publisher}.`,
-  column: { section: 'Section', questions: 'Questions', time: 'Time', calculator: 'Calculator' },
-  notPublished: 'Not published',
-  minutes: (value: number) => `${value} min`,
-  calculator: {
-    none: 'Not permitted',
-    onscreen: 'On-screen only',
-    onscreen_and_personal: 'On-screen and approved personal',
-    personal_only: 'Approved personal only',
-    not_applicable: '—',
-    unverified: 'Not verified',
-  } satisfies Record<SectionConfig['calculator'], string>,
-  formatGuideLink: 'Read the full format and scoring guide, with every source →',
-  practiseHeading: 'Practise this exam',
-  coverage: (items: number, covered: number, total: number) =>
-    `${items} reviewed questions across ${covered} of ${total} topics. The questions are original and AI-assisted; each was solved blind by a separate AI reviewer before publication.`,
-  howChecked: 'How questions are checked',
-  noFormatsTitle: 'No practice formats are open yet for this exam',
-  noFormatsBody:
-    'The question bank is still too small to fill any format without repeating a question. The guide above is complete and sourced in the meantime.',
-  notOpenHeading: 'Not open yet',
-  rulesNotVerified: 'the rules it needs are not verified',
-  needsMore: (shortfall: number) => `needs ${shortfall} more reviewed question${shortfall === 1 ? '' : 's'}`,
-  whyOpen: 'Why each format is or is not open',
-  everyFormat: 'Every exam’s formats',
-  practiseVariant: (shortName: string) => `Practise ${shortName}`,
-  startPractising: 'Start practising',
-  formatGuideButton: 'Format and scoring guide',
-  noSimulationTitle: 'Why there is no full-length simulation',
-} as const;
+type Props = { params: Promise<{ locale: string; hub: string }> };
 
 export function generateStaticParams() {
   return EXAM_HUBS.map((hub) => ({ hub: hub.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ hub: string }>;
-}): Promise<Metadata> {
-  const { hub: slug } = await params;
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale, hub: slug } = await params;
+  const t = await getTranslations({ locale, namespace: 'exams.hub' });
   const hub = getHub(slug);
-  if (!hub) return { title: copy.fallbackTitle };
-  if (hub.slug === BOCCONI_HUB_SLUG) return bocconiMetadata();
+  if (!hub) return { title: t('fallbackTitle') };
+  if (hub.slug === BOCCONI_HUB_SLUG) return bocconiMetadata(locale as Locale);
 
-  const title = copy.title(hub.name);
+  const title = t('metaTitle', { name: hub.name });
+  // The tagline is the exam's own summary from its config, as published.
   const description = hub.tagline;
+  const alternates = languageAlternates(`/exams/${hub.slug}`, locale as Locale);
   return {
     title,
     description,
-    alternates: { canonical: absoluteUrl(`/exams/${hub.slug}`) },
+    alternates,
     openGraph: {
-      url: absoluteUrl(`/exams/${hub.slug}`),
+      url: alternates.canonical,
       title: `${title} | ${SITE.shortName}`,
       description,
       type: 'article',
@@ -114,44 +67,40 @@ export async function generateMetadata({
  * The Bocconi page is the site's page for Bocconi test preparation, so its
  * title and description say that, with the live question count.
  */
-async function bocconiMetadata(): Promise<Metadata> {
+async function bocconiMetadata(locale: Locale): Promise<Metadata> {
+  const t = await getTranslations({ locale, namespace: 'exams.hub' });
   const counts = (await Promise.all(getConfigsForHub(BOCCONI_HUB_SLUG).map((c) => examCoverage(getDb(), c)))).reduce(
     (sum, c) => sum + c.publishedItems,
     0,
   );
-  const title = BOCCONI_TITLE;
-  const description = `Prepare for the Bocconi Online Test, undergraduate or Law, with ${counts} original practice questions, worked explanations, timed 50-question sets and a free test. Independent of Bocconi.`;
-  const url = absoluteUrl(`/exams/${BOCCONI_HUB_SLUG}`);
+  const title = t('bocconiMetaTitle');
+  const description = t('bocconiMetaDescription', { count: counts });
+  const alternates = languageAlternates(`/exams/${BOCCONI_HUB_SLUG}`, locale);
   return {
     title,
     description,
-    alternates: { canonical: url },
-    openGraph: {
-      url,
-      title: `${title} | ${SITE.shortName}`,
-      description,
-      type: 'website',
-      images: shareImages(`exam-${BOCCONI_HUB_SLUG}`, title),
-    },
+    alternates,
+    openGraph: { url: alternates.canonical, title: `${title} | ${SITE.shortName}`, description, type: 'website', images: shareImages(`exam-${BOCCONI_HUB_SLUG}`, title) },
   };
 }
 
-const BOCCONI_TITLE = 'Bocconi Test Preparation: Practice Questions and a Free Test';
-
-function minutes(value: number | null): string {
-  return value === null ? copy.notPublished : copy.minutes(value);
-}
-
-export default async function ExamHubPage({ params }: { params: Promise<{ hub: string }> }) {
-  const { hub: slug } = await params;
+export default async function ExamHubPage({ params }: Props) {
+  const { locale, hub: slug } = await params;
+  setRequestLocale(locale as Locale);
   const hub = getHub(slug);
   if (!hub) notFound();
+
+  const t = await getTranslations('exams');
+  const format = await getFormatter();
+  const minutes = (value: number | null): string =>
+    value === null ? t('table.notPublished') : t('table.minutes', { value });
+  const url = languageAlternates(`/exams/${hub.slug}`, locale as Locale).canonical;
 
   const db = getDb();
   const configs = getConfigsForHub(slug);
   const trail = [
-    { href: '/', label: copy.breadcrumbHome },
-    { href: '/exams', label: copy.breadcrumbExams },
+    { href: '/', label: t('breadcrumb.home') },
+    { href: '/exams', label: t('breadcrumb.exams') },
     { label: hub.name },
   ];
   // A daily total of views, by coarse source; nothing about the visitor is kept.
@@ -162,7 +111,6 @@ export default async function ExamHubPage({ params }: { params: Promise<{ hub: s
     const entitlements = await loadEntitlements(db, user?.id ?? null);
     const fullAccess = entitlements.can('practice', 'bocconi-undergraduate') && entitlements.can('practice', 'bocconi-law');
     const data = await bocconiLandingData(db);
-    const url = absoluteUrl(`/exams/${hub.slug}`);
     return (
       <Container>
         <JsonLd
@@ -171,8 +119,8 @@ export default async function ExamHubPage({ params }: { params: Promise<{ hub: s
             webPageSchema({
               siteUrl: siteUrl(),
               url,
-              name: BOCCONI_TITLE,
-              description: `Independent preparation for the Bocconi Online Test and the Bocconi Law test: ${data.totalQuestions} original practice questions with worked explanations, results by area, timed sets and a free test.`,
+              name: t('hub.bocconiMetaTitle'),
+              description: t('hub.bocconiSchemaDescription', { count: data.totalQuestions }),
               // The date the Bocconi facts on the page were last checked against Bocconi's own pages.
               dateModified: BOCCONI_FACTS_CHECKED_ON,
               about: 'Bocconi Online Test',
@@ -194,8 +142,8 @@ export default async function ExamHubPage({ params }: { params: Promise<{ hub: s
           breadcrumbSchema(siteUrl(), trail),
           articleSchema({
             siteUrl: siteUrl(),
-            url: absoluteUrl(`/exams/${hub.slug}`),
-            headline: copy.title(hub.name),
+            url,
+            headline: t('hub.metaTitle', { name: hub.name }),
             description: hub.tagline,
             // Real dates only: this is the date the facts were verified.
             datePublished: verifiedOn,
@@ -214,6 +162,7 @@ export default async function ExamHubPage({ params }: { params: Promise<{ hub: s
         the format guide's "In short".
       */}
       <PageHeader eyebrow={hub.publisher} title={hub.name} />
+      <OfficialNote />
 
       {/* The direct answer, first: what this exam is, in one block. */}
       {(await Promise.all(configs.map(async (config) => {
@@ -247,32 +196,42 @@ export default async function ExamHubPage({ params }: { params: Promise<{ hub: s
               <div className="mt-4 md:mt-0">
                 <DefinitionList
                   items={[
-                    { term: copy.term.version, value: config.versionLabel },
-                    { term: copy.term.cycle, value: config.admissionsCycle },
+                    { term: t('hub.term.version'), value: config.versionLabel },
+                    { term: t('hub.term.cycle'), value: config.admissionsCycle },
                     {
-                      term: copy.term.verifiedOn,
+                      term: t('hub.term.verifiedOn'),
                       value: (
                         <time dateTime={config.verifiedOn}>
-                          {new Date(config.verifiedOn).toLocaleDateString('en-GB', {
-                            day: 'numeric',
-                            month: 'long',
-                            year: 'numeric',
-                          })}
+                          {/^\d{4}-\d{2}-\d{2}/.test(config.verifiedOn)
+                            ? format.dateTime(new Date(config.verifiedOn), {
+                                day: 'numeric',
+                                month: 'long',
+                                year: 'numeric',
+                                timeZone: 'UTC',
+                              })
+                            : config.verifiedOn}
                         </time>
                       ),
                     },
                     {
-                      term: copy.term.scoring,
+                      term: t('hub.term.scoring'),
                       value: config.scoring.officialScale
-                        ? `${config.scoring.officialScale.label}, ${config.scoring.officialScale.min}–${config.scoring.officialScale.max}`
-                        : copy.scoringFallback,
+                        ? t('hub.scale', {
+                            label: config.scoring.officialScale.label,
+                            min: config.scoring.officialScale.min,
+                            max: config.scoring.officialScale.max,
+                          })
+                        : t('hub.scoringFallback'),
                     },
                     {
-                      term: copy.term.wrongAnswers,
+                      term: t('hub.term.wrongAnswers'),
                       value:
                         config.scoring.pointsIncorrect < 0
-                          ? copy.penalised(config.scoring.pointsIncorrect, config.scoring.pointsOmitted)
-                          : copy.noPenalty,
+                          ? t('hub.penalised', {
+                              points: config.scoring.pointsIncorrect,
+                              omitted: config.scoring.pointsOmitted,
+                            })
+                          : t('hub.noPenalty'),
                     },
                   ]}
                 />
@@ -280,29 +239,29 @@ export default async function ExamHubPage({ params }: { params: Promise<{ hub: s
             </Card>
 
             {/* Structure table */}
-            <h3 className="mb-3 font-heading text-xl font-semibold">{copy.structureHeading}</h3>
+            <h3 className="mb-3 font-heading text-xl font-semibold">{t('hub.structureHeading')}</h3>
             {/* Focusable, so the table can be scrolled sideways from the keyboard on a narrow screen. */}
             <div
               role="region"
-              aria-label={copy.structureRegion(config.name)}
+              aria-label={t('hub.structureRegion', { name: config.name })}
               tabIndex={0}
               className="mb-6 relative overflow-x-auto rounded-card border border-line bg-surface"
             >
               <table className="w-full border-collapse text-sm">
-                <caption className="sr-only">{copy.structureCaption(config.name, config.publisher)}</caption>
+                <caption className="sr-only">{t('hub.structureCaption', { name: config.name, publisher: config.publisher })}</caption>
                 <thead>
                   <tr className="border-b border-line">
                     <th scope="col" className="px-4 py-3 text-left font-semibold">
-                      {copy.column.section}
+                      {t('table.section')}
                     </th>
                     <th scope="col" className="px-4 py-3 text-left font-semibold">
-                      {copy.column.questions}
+                      {t('table.questions')}
                     </th>
                     <th scope="col" className="px-4 py-3 text-left font-semibold">
-                      {copy.column.time}
+                      {t('table.time')}
                     </th>
                     <th scope="col" className="px-4 py-3 text-left font-semibold">
-                      {copy.column.calculator}
+                      {t('table.calculator')}
                     </th>
                   </tr>
                 </thead>
@@ -312,9 +271,9 @@ export default async function ExamHubPage({ params }: { params: Promise<{ hub: s
                       <th scope="row" className="px-4 py-3 text-left font-normal">
                         {section.name}
                       </th>
-                      <td className="px-4 py-3">{section.officialQuestionCount ?? copy.notPublished}</td>
+                      <td className="px-4 py-3">{section.officialQuestionCount ?? t('table.notPublished')}</td>
                       <td className="px-4 py-3 tabular-nums">{minutes(section.officialTimeMinutes)}</td>
-                      <td className="px-4 py-3">{copy.calculator[section.calculator]}</td>
+                      <td className="px-4 py-3">{t(`hub.calculator.${section.calculator}`)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -322,19 +281,23 @@ export default async function ExamHubPage({ params }: { params: Promise<{ hub: s
             </div>
 
             <p className="mb-8">
-              <Link href={`/exams/${hub.slug}/format`}>{copy.formatGuideLink}</Link>
+              <Link href={`/exams/${hub.slug}/format`}>{t('hub.formatGuideLink')}</Link>
             </p>
 
             {/* Practice */}
-            <h3 className="mb-3 font-heading text-xl font-semibold">{copy.practiseHeading}</h3>
+            <h3 className="mb-3 font-heading text-xl font-semibold">{t('hub.practiseHeading')}</h3>
             <p className="mb-4 text-ink-muted">
-              {copy.coverage(coverage.publishedItems, coverage.domainsCovered, coverage.domainsTotal)}{' '}
-              <Link href="/about/editorial-standards">{copy.howChecked}</Link>
+              {t('hub.coverage', {
+                items: coverage.publishedItems,
+                covered: coverage.domainsCovered,
+                total: coverage.domainsTotal,
+              })}{' '}
+              <Link href="/about/editorial-standards">{t('hub.howChecked')}</Link>
             </p>
 
             {offered.length === 0 ? (
-              <Alert tone="caution" title={copy.noFormatsTitle}>
-                {copy.noFormatsBody}
+              <Alert tone="caution" title={t('hub.noFormatsTitle')}>
+                {t('hub.noFormatsBody')}
               </Alert>
             ) : (
               <ul className="grid gap-3 sm:grid-cols-2">
@@ -352,38 +315,42 @@ export default async function ExamHubPage({ params }: { params: Promise<{ hub: s
 
             {offered.length > 0 && unavailable.length > 0 ? (
               <div className="mt-4 rounded-card border border-line bg-surface-sunken p-4">
-                <h4 className="text-sm font-semibold">{copy.notOpenHeading}</h4>
+                <h4 className="text-sm font-semibold">{t('hub.notOpenHeading')}</h4>
                 <ul className="mt-2 space-y-2 text-sm">
                   {unavailable.map((entry) => (
                     <li key={entry.blueprint.id} className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                      <StatusBadge status={entry.blockedBy === 'rules' ? 'notoffered' : 'notyet'} />
+                      <StatusBadge status={entry.blockedBy === 'rules' ? 'notoffered' : 'notyet'}>
+                        {t(entry.blockedBy === 'rules' ? 'status.notoffered' : 'status.notyet')}
+                      </StatusBadge>
                       <span className="font-medium">{entry.blueprint.label}</span>
                       <span className="text-ink-muted">
-                        {entry.blockedBy === 'rules' ? copy.rulesNotVerified : copy.needsMore(entry.shortfall)}
+                        {entry.blockedBy === 'rules'
+                          ? t('availability.rulesNotVerified')
+                          : t('availability.needsMore', { shortfall: entry.shortfall })}
                       </span>
                     </li>
                   ))}
                 </ul>
                 <p className="mt-3 text-sm">
-                  <Link href={`/practice/${config.examKey}`}>{copy.whyOpen}</Link>
+                  <Link href={`/practice/${config.examKey}`}>{t('hub.whyOpen')}</Link>
                   {' · '}
-                  <Link href="/exams#formats">{copy.everyFormat}</Link>
+                  <Link href="/exams#formats">{t('hub.everyFormat')}</Link>
                 </p>
               </div>
             ) : null}
 
             <div className="mt-5 flex flex-wrap gap-3">
               <ButtonLink href={`/practice/${config.examKey}`}>
-                {configs.length > 1 ? copy.practiseVariant(config.shortName) : copy.startPractising}
+                {configs.length > 1 ? t('hub.practiseVariant', { name: config.shortName }) : t('hub.startPractising')}
               </ButtonLink>
               <ButtonLink href={`/exams/${hub.slug}/format`} variant="secondary">
-                {copy.formatGuideButton}
+                {t('hub.formatGuideButton')}
               </ButtonLink>
             </div>
 
             {/* What is not simulated */}
             {!config.capabilities.fullSimulation.available ? (
-              <Alert tone="info" title={copy.noSimulationTitle} className="mt-6">
+              <Alert tone="info" title={t('hub.noSimulationTitle')} className="mt-6">
                 {(config.capabilities.fullSimulation as { reason: string }).reason}
               </Alert>
             ) : null}

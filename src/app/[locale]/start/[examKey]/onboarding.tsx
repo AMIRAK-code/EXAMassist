@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { Button, ButtonLink, Card, cx } from '@/components/ui';
@@ -28,6 +29,7 @@ export function Onboarding({
   plansHref: string;
   freeTestHref: string;
 }) {
+  const t = useTranslations('practice.start.onboarding');
   const total = steps.length + 1;
   const [index, setIndex] = useState(0);
   const heading = useRef<HTMLHeadingElement>(null);
@@ -51,11 +53,11 @@ export function Onboarding({
     <div>
       <div className="mb-6 flex items-center justify-between gap-4">
         <p className="text-sm font-semibold text-ink-muted" aria-live="polite">
-          Step {index + 1} of {total}
+          {t('step', { current: index + 1, total })}
         </p>
         {!last ? (
           <Link href={freeTestHref} className="text-sm font-semibold">
-            Skip to the free diagnostic
+            {t('skip')}
           </Link>
         ) : null}
       </div>
@@ -83,24 +85,24 @@ export function Onboarding({
         </section>
       ) : (
         <section aria-labelledby="onboarding-heading">
-          <p className="eyebrow mb-3">Your choice</p>
+          <p className="eyebrow mb-3">{t('choiceEyebrow')}</p>
           <h1 id="onboarding-heading" ref={heading} tabIndex={-1} className="text-[clamp(1.9rem,1.5rem+1.4vw,2.6rem)] leading-[1.08] tracking-[-0.02em] outline-none">
-            How would you like to start?
+            {t('choiceTitle')}
           </h1>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
             <Card padding="lg" className="border-2 border-accent">
-              <h2 className="font-heading text-xl font-semibold">A plan</h2>
+              <h2 className="font-heading text-xl font-semibold">{t('plan')}</h2>
               <ul className="mt-3 list-disc space-y-1.5 ps-5 text-sm">
                 {choice.paid.map((line) => (
                   <li key={line}>{line}</li>
                 ))}
               </ul>
               <ButtonLink href={plansHref} full className="mt-5">
-                See plans
+                {t('seePlans')}
               </ButtonLink>
             </Card>
             <Card padding="lg">
-              <h2 className="font-heading text-xl font-semibold">Free diagnostic</h2>
+              <h2 className="font-heading text-xl font-semibold">{t('free')}</h2>
               <ul className="mt-3 list-disc space-y-1.5 ps-5 text-sm">
                 {choice.free.map((line) => (
                   <li key={line}>{line}</li>
@@ -117,15 +119,15 @@ export function Onboarding({
       <div className="mt-10 flex items-center justify-between gap-3 border-t border-line pt-6">
         {index > 0 ? (
           <Button variant="secondary" onClick={() => go(index - 1)}>
-            Back
+            {t('back')}
           </Button>
         ) : (
           <span />
         )}
         {!last ? (
-          <Button onClick={() => go(index + 1)}>{index === total - 2 ? 'See my options' : 'Next'}</Button>
+          <Button onClick={() => go(index + 1)}>{index === total - 2 ? t('options') : t('next')}</Button>
         ) : (
-          <ButtonLink href={plansHref}>Continue to plans</ButtonLink>
+          <ButtonLink href={plansHref}>{t('continue')}</ButtonLink>
         )}
       </div>
     </div>

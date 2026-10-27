@@ -33,13 +33,15 @@ export interface FormatSummary {
   fidelity: Blueprint['fidelity'];
   fidelityNote: string;
   available: boolean;
-  /** Why it is not open, in a few words, when it is not. */
-  blockedNote: string | null;
+  /** Why it is not open, when it is not: unverified rules, or too few reviewed questions. */
+  blockedBy: 'rules' | 'content' | null;
+  /** Reviewed questions still missing, when content blocks it. */
+  shortfall: number;
 }
 
 export interface BocconiTestSummary {
   config: ExamConfig;
-  /** "Undergraduate" or "Law". */
+  /** The hub's variant label from its config ("Standard" or "Law"); data, not interface text. */
   variant: string;
   questions: number;
   areas: AreaCoverage[];
@@ -74,11 +76,8 @@ export async function bocconiLandingData(db: Db): Promise<BocconiLandingData> {
         fidelity: entry.blueprint.fidelity,
         fidelityNote: entry.blueprint.fidelityNote,
         available: entry.available,
-        blockedNote: entry.available
-          ? null
-          : entry.blockedBy === 'rules'
-            ? 'the rules it needs are not verified'
-            : `needs ${entry.shortfall} more reviewed question${entry.shortfall === 1 ? '' : 's'}`,
+        blockedBy: entry.available ? null : entry.blockedBy,
+        shortfall: entry.shortfall,
       }));
 
       const choice = chooseFreeTest(config, pool);

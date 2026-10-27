@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import type { Response } from '@/lib/assessment/types';
 import type { PlayerItem } from '@/lib/attempts/view-model';
 
@@ -17,7 +18,7 @@ interface Props {
   onChange: (response: Response | null) => void;
 }
 
-/** The four fixed GRE quantitative comparison choices. */
+/** The four fixed GRE quantitative comparison choices: answer content, as the GRE words them. */
 const QC_CHOICES: Array<{ id: 'A' | 'B' | 'C' | 'D'; text: string }> = [
   { id: 'A', text: 'Quantity A is greater.' },
   { id: 'B', text: 'Quantity B is greater.' },
@@ -100,6 +101,7 @@ function ChoiceList({
 }
 
 export function ResponseInput({ item, disabled, onChange }: Props) {
+  const t = useTranslations('player.response');
   const name = `q-${item.position}`;
   const response = item.response;
 
@@ -111,7 +113,7 @@ export function ResponseInput({ item, disabled, onChange }: Props) {
         <ChoiceList
           name={name}
           type="radio"
-          legend="Select one answer"
+          legend={t('selectOne')}
           choices={item.options}
           selected={selected}
           disabled={disabled}
@@ -126,8 +128,8 @@ export function ResponseInput({ item, disabled, onChange }: Props) {
         <ChoiceList
           name={name}
           type="checkbox"
-          legend="Select all answers that apply"
-          hint="Select every correct choice. Credit is all or nothing: a partly correct selection scores zero."
+          legend={t('selectAll')}
+          hint={t('selectAllHint')}
           choices={item.options}
           selected={selected}
           disabled={disabled}
@@ -147,7 +149,7 @@ export function ResponseInput({ item, disabled, onChange }: Props) {
         <ChoiceList
           name={name}
           type="radio"
-          legend="Compare Quantity A and Quantity B"
+          legend={t('compare')}
           choices={QC_CHOICES.map((c) => ({ id: c.id, label: c.id, text: c.text }))}
           selected={selected}
           disabled={disabled}
@@ -164,7 +166,7 @@ export function ResponseInput({ item, disabled, onChange }: Props) {
         <ChoiceList
           name={name}
           type="radio"
-          legend="Select the statement that describes the sufficiency of the data"
+          legend={t('dataSufficiency')}
           choices={item.options.map((o) => ({ id: o.label, label: o.label, html: o.html, spoken: o.spoken }))}
           selected={selected}
           disabled={disabled}
@@ -180,7 +182,7 @@ export function ResponseInput({ item, disabled, onChange }: Props) {
       return (
         <div className="max-w-sm">
           <label htmlFor={name} className="mb-1 block text-sm font-medium">
-            Your answer
+            {t('yourAnswer')}
           </label>
           <input
             id={name}
@@ -195,8 +197,11 @@ export function ResponseInput({ item, disabled, onChange }: Props) {
             className="w-full rounded border border-line-strong bg-surface px-3 py-2.5 text-base tabular-nums focus:border-accent disabled:opacity-70"
           />
           <p id={`${name}-help`} className="mt-1.5 text-sm text-ink-muted">
-            Enter a number. Fractions such as <code>3/4</code> and decimals such as{' '}
-            <code>0.75</code> are both accepted. Use a leading minus sign for negatives.
+            {t.rich('numericHelp', {
+              fraction: '3/4',
+              decimal: '0.75',
+              code: (chunks) => <code>{chunks}</code>,
+            })}
           </p>
         </div>
       );
@@ -220,7 +225,7 @@ export function ResponseInput({ item, disabled, onChange }: Props) {
                 key={columnId}
                 name={`${name}-${columnId}`}
                 type="radio"
-                legend={`Select one answer for ${columnId.replace(/[-_]/g, ' ')}`}
+                legend={t('twoPartLegend', { column: columnId.replace(/[-_]/g, ' ') })}
                 hint={columnId.replace(/[-_]/g, ' ')}
                 choices={columnOptions.map((o) => ({
                   id: o.id,
@@ -247,7 +252,7 @@ export function ResponseInput({ item, disabled, onChange }: Props) {
       return (
         <div>
           <label htmlFor={name} className="mb-1 block text-sm font-medium">
-            Your response
+            {t('yourResponse')}
           </label>
           <textarea
             id={name}
@@ -260,10 +265,8 @@ export function ResponseInput({ item, disabled, onChange }: Props) {
             className="w-full rounded border border-line-strong bg-surface px-3 py-2.5 font-sans text-base leading-relaxed focus:border-accent disabled:opacity-70"
           />
           <p id={`${name}-help`} className="mt-1.5 text-sm text-ink-muted">
-            {text.trim() ? `${text.trim().split(/\s+/).length} words. ` : ''}
-            Essays are not scored automatically. After you submit, the results page shows a
-            self-assessment guide: what a strong response to this prompt does, so you can check yours
-            against it.
+            {text.trim() ? `${t('words', { count: text.trim().split(/\s+/).length })} ` : ''}
+            {t('essayHelp')}
           </p>
         </div>
       );
@@ -272,7 +275,7 @@ export function ResponseInput({ item, disabled, onChange }: Props) {
     default:
       return (
         <p role="alert" className="text-sm text-negative">
-          This question uses a response type the app cannot display yet. Please report it.
+          {t('unsupported')}
         </p>
       );
   }

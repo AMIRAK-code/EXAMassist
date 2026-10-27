@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
-import { Link } from '@/i18n/navigation';
-import { redirect } from 'next/navigation';
+import { getFormatter, getTranslations } from 'next-intl/server';
+import { Link, redirect } from '@/i18n/navigation';
+import { languageAlternates } from '@/i18n/alternates';
+import { LOCALE_INFO, type Locale } from '@/i18n/locales';
 import { getCurrentUser, requireUser } from '@/lib/auth/session';
 import { emailCodesMailer } from '@/lib/auth/email-codes';
 import { getDb } from '@/lib/db';
@@ -22,55 +24,45 @@ import {
 
 export const dynamic = 'force-dynamic';
 
-export const metadata: Metadata = {
-  title: 'Your account',
-  description: 'Your account details, study target, and the controls for exporting or deleting your data.',
-  // Private page. Authorization is what protects it; this only keeps it out of
-  // search results if a URL ever leaks.
-  robots: { index: false, follow: false },
-};
+type Params = Promise<{ locale: string }>;
 
-const ROLE_LABEL: Record<string, string> = {
-  learner: 'Learner',
-  editor: 'Editor',
-  admin: 'Administrator',
-};
-
-/** Interface languages the application ships. The API holds the same allowlist. */
-const LOCALE_LABEL: Record<string, string> = { en: 'English' };
-
-function formatDate(value: string | null): string | null {
-  if (!value) return null;
-  const parsed = new Date(`${value}T00:00:00Z`);
-  if (Number.isNaN(parsed.getTime())) return value;
-  return parsed.toLocaleDateString('en-GB', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-    timeZone: 'UTC',
-  });
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'account.meta' });
+  return {
+    title: t('title'),
+    description: t('description'),
+    alternates: languageAlternates('/account', locale as Locale),
+    // Private page. Authorization is what protects it; this only keeps it out of
+    // search results if a URL ever leaks.
+    robots: { index: false, follow: false },
+  };
 }
 
-/** Strings for the plan section of this page; the manager has its own. */
-const BILLING_COPY = {
-  heading: 'Plans and billing',
-  guest: 'A plan needs an account. Create one first; your guest practice comes with you.',
-  createAccount: 'Create an account',
-  staff: 'Editors and administrators have every exam and feature open, without a plan.',
-  cardUpdated: 'Your new card is saved and will be used for every plan.',
-  cardFailed: 'The new card was not confirmed. Your previous card is unchanged.',
-} as const;
+const ROLE_KEYS = new Set(['learner', 'editor', 'admin']);
 
 export default async function AccountPage({
+  params,
   searchParams,
 }: {
+  params: Params;
   searchParams: Promise<{ card?: string; setup_intent?: string; redirect_status?: string }>;
 }) {
+  const locale = (await params).locale as Locale;
+  const t = await getTranslations('account');
+  const format = await getFormatter();
   const query = await searchParams;
   // requireUser() is the authorisation check. The lookup before it exists only
   // so a signed-out visitor gets the sign-in page rather than an error screen.
-  if (!(await getCurrentUser())) redirect('/sign-in?next=%2Faccount');
+  if (!(await getCurrentUser())) return redirect({ href: '/sign-in?next=%2Faccount', locale });
   const user = await requireUser();
+
+  function formatDate(value: string | null): string | null {
+    if (!value) return null;
+    const parsed = new Date(`${value}T00:00:00Z`);
+    if (Number.isNaN(parsed.getTime())) return value;
+    return format.dateTime(parsed, { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+  }
 
   const targetConfig = user.targetExamKey ? getExamConfig(user.targetExamKey) : undefined;
   // Offer to confirm the address only where this deployment can send the code.
@@ -88,129 +80,119 @@ export default async function AccountPage({
   if (showBilling && !user.isGuest && query.card === 'updated' && typeof query.setup_intent === 'string') {
     // Back from a 3-D Secure redirect while replacing the card: finish it here.
     try {
-      if (query.redirect_status !== 'succeeded') throw new BillingError('card-not-saved', BILLING_COPY.cardFailed);
+      if (query.redirect_status !== 'succeeded') throw new BillingError('card-not-saved', t('billing.cardFailed'));
       await finishCardUpdate(getDb(), user.id, query.setup_intent);
-      cardNotice = { tone: 'positive', message: BILLING_COPY.cardUpdated };
+      cardNotice = { tone: 'positive', message: t('billing.cardUpdated') };
     } catch (error) {
       if (!(error instanceof BillingError)) throw error;
-      cardNotice = { tone: 'negative', message: error.message };
+      // The card was not saved, whatever Stripe's reason: say so in the learner's language.
+      cardNotice = { tone: 'negative', message: error.code === 'card-not-saved' ? t('billing.cardFailed') : error.message };
     }
   }
   const overview: BillingOverview | null = showBilling && !user.isGuest ? await billingOverview(getDb(), user.id) : null;
 
+  // Exam names are data from the exam configs and stay as published.
   const examOptions = EXAM_CONFIGS.map((config) => ({
     examKey: config.examKey,
     name: config.name,
   }));
 
+  const notSet = <span className="text-ink-muted">{t('details.notSet')}</span>;
+
   return (
     <Container size="narrow">
-      <Breadcrumbs trail={[{ href: '/', label: 'Home' }, { href: '/dashboard', label: 'Dashboard' }, { label: 'Account' }]} />
+      <Breadcrumbs
+        trail={[
+          { href: '/', label: t('breadcrumbs.home') },
+          { href: '/dashboard', label: t('breadcrumbs.dashboard') },
+          { label: t('breadcrumbs.account') },
+        ]}
+      />
       <PageHeader
-        eyebrow="Your account"
-        title={user.displayName ? `Hello, ${user.displayName}` : 'Your account'}
-        lead="What we hold, what you are working towards, and the controls to take your data with you or remove it."
+        eyebrow={t('header.eyebrow')}
+        title={user.displayName ? t('header.greeting', { name: user.displayName }) : t('header.title')}
+        lead={t('header.lead')}
       />
 
       {user.isGuest ? (
-        <Alert tone="caution" title="You are practising as a guest" className="mb-8">
-          <p>
-            A guest session stores no email address and expires after seven days of not being used.{' '}
-            <Link href="/sign-up">Create an account</Link> in this browser to keep the practice,
-            bookmarks and review queue you have built up.
-          </p>
+        <Alert tone="caution" title={t('guest.title')} className="mb-8">
+          <p>{t.rich('guest.body', { link: (chunks) => <Link href="/sign-up">{chunks}</Link> })}</p>
         </Alert>
       ) : null}
 
       <section aria-labelledby="details-heading" className="mb-10">
         <h2 id="details-heading" className="mb-4 font-heading text-2xl font-semibold">
-          Your details
+          {t('details.heading')}
         </h2>
         <Card>
           <DefinitionList
             items={[
               {
-                term: 'Display name',
-                value: user.displayName ?? <span className="text-ink-muted">Not set</span>,
+                term: t('details.displayName'),
+                value: user.displayName ?? notSet,
               },
               {
-                term: 'Email address',
+                term: t('details.email'),
                 value: user.email ? (
                   <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
                     <span className="break-all">{user.email}</span>
                     {user.emailVerifiedAt ? (
-                      <Badge tone="positive">Confirmed</Badge>
+                      <Badge tone="positive">{t('details.confirmed')}</Badge>
                     ) : emailCodes ? (
                       <>
-                        <Badge tone="caution">Not confirmed</Badge>
+                        <Badge tone="caution">{t('details.notConfirmed')}</Badge>
                         <Link href="/verify-email?next=%2Faccount" className="text-sm">
-                          Confirm it
+                          {t('details.confirmIt')}
                         </Link>
                       </>
                     ) : null}
                   </span>
                 ) : (
-                  <span className="text-ink-muted">
-                    None — guest accounts store no email address
-                  </span>
+                  <span className="text-ink-muted">{t('details.noEmail')}</span>
                 ),
               },
               {
-                term: 'Account type',
+                term: t('details.accountType'),
                 value: user.isGuest ? (
-                  <Badge tone="caution">Guest account</Badge>
+                  <Badge tone="caution">{t('details.guestAccount')}</Badge>
                 ) : (
-                  <Badge tone="positive">Registered account</Badge>
+                  <Badge tone="positive">{t('details.registeredAccount')}</Badge>
                 ),
               },
-              { term: 'Role', value: ROLE_LABEL[user.role] ?? user.role },
-              { term: 'Interface language', value: LOCALE_LABEL[user.locale] ?? user.locale },
+              { term: t('details.role'), value: ROLE_KEYS.has(user.role) ? t(`roles.${user.role}`) : user.role },
+              // The language this page is shown in, which the language menu changes.
+              { term: t('details.interfaceLanguage'), value: LOCALE_INFO[locale]?.nativeName ?? locale },
               {
-                term: 'Target exam',
+                term: t('details.targetExam'),
                 value: targetConfig ? (
                   <Link href={`/practice/${targetConfig.examKey}`}>{targetConfig.name}</Link>
                 ) : (
-                  <span className="text-ink-muted">Not set</span>
+                  notSet
                 ),
               },
               {
-                term: 'Exam dates',
+                term: t('details.examDates'),
                 value:
                   examDates.length > 0 ? (
                     <ul className="space-y-1">
                       {examDates.map((entry) => (
-                        <li key={entry.examKey}>
-                          {entry.label}: {entry.date}
-                        </li>
+                        <li key={entry.examKey}>{t('details.examDate', { exam: entry.label, date: entry.date })}</li>
                       ))}
                     </ul>
                   ) : (
-                    <span className="text-ink-muted">Not set</span>
+                    notSet
                   ),
               },
-              ...(user.isMinor
-                ? [
-                    {
-                      term: 'Age setting',
-                      value:
-                        'You told us you are under 16, so optional data collection stays switched off.',
-                    },
-                  ]
-                : []),
+              ...(user.isMinor ? [{ term: t('details.ageSetting'), value: t('details.minor') }] : []),
             ]}
           />
-          {user.locale === 'en' ? (
-            <p className="mt-5 border-t border-line pt-4 text-sm text-ink-subtle">
-              English is the only interface language we publish at the moment, so there is nothing to
-              choose here yet.
-            </p>
-          ) : null}
+          <p className="mt-5 border-t border-line pt-4 text-sm text-ink-subtle">{t('details.languageNote')}</p>
         </Card>
       </section>
 
       <section aria-labelledby="settings-heading" className="mb-10">
         <h2 id="settings-heading" className="mb-4 font-heading text-2xl font-semibold">
-          Name and study target
+          {t('settings.heading')}
         </h2>
         <Card>
           <AccountSettingsForm
@@ -224,19 +206,19 @@ export default async function AccountPage({
       {showBilling ? (
         <section id="billing" aria-labelledby="billing-heading" className="mb-10 scroll-mt-24">
           <h2 id="billing-heading" className="mb-4 font-heading text-2xl font-semibold">
-            {BILLING_COPY.heading}
+            {t('billing.heading')}
           </h2>
           <Card>
             {user.isGuest ? (
               <>
-                <p className="text-sm text-ink-muted">{BILLING_COPY.guest}</p>
+                <p className="text-sm text-ink-muted">{t('billing.guest')}</p>
                 <ButtonLink href={`/sign-up?next=${encodeURIComponent('/pricing')}`} className="mt-4">
-                  {BILLING_COPY.createAccount}
+                  {t('billing.createAccount')}
                 </ButtonLink>
               </>
             ) : (
               <>
-                {entitlements.isStaff ? <p className="mb-4 text-sm text-ink-muted">{BILLING_COPY.staff}</p> : null}
+                {entitlements.isStaff ? <p className="mb-4 text-sm text-ink-muted">{t('billing.staff')}</p> : null}
                 <SubscriptionManager
                   subscriptions={(overview?.subscriptions ?? []).map(toManaged)}
                   card={overview?.card ?? null}
@@ -254,23 +236,17 @@ export default async function AccountPage({
 
       <section aria-labelledby="data-heading" className="mb-10">
         <h2 id="data-heading" className="mb-4 font-heading text-2xl font-semibold">
-          Your data
+          {t('data.heading')}
         </h2>
         <Card>
-          <h3 className="font-heading text-lg font-semibold">Download a copy</h3>
-          <p className="mt-2 text-sm text-ink-muted">
-            One JSON file with your account details, every practice session and answer, your results,
-            bookmarks, review queue, goals and study plans. Nothing else is included, and nobody else&rsquo;s
-            data can appear in it.
-          </p>
+          <h3 className="font-heading text-lg font-semibold">{t('data.downloadHeading')}</h3>
+          <p className="mt-2 text-sm text-ink-muted">{t('data.downloadBody')}</p>
           <div className="mt-4">
             <ExportDataLink />
           </div>
 
-          <h3 className="mt-8 font-heading text-lg font-semibold">Sign out</h3>
-          <p className="mt-2 text-sm text-ink-muted">
-            Ends this session on this device. Your data stays exactly as it is.
-          </p>
+          <h3 className="mt-8 font-heading text-lg font-semibold">{t('data.signOutHeading')}</h3>
+          <p className="mt-2 text-sm text-ink-muted">{t('data.signOutBody')}</p>
           <div className="mt-4">
             <SignOutButton />
           </div>
@@ -279,7 +255,7 @@ export default async function AccountPage({
 
       <section aria-labelledby="delete-heading" className="mb-10">
         <h2 id="delete-heading" className="mb-4 font-heading text-2xl font-semibold">
-          Delete your account
+          {t('delete.heading')}
         </h2>
         <Card>
           <DeleteAccountForm email={user.email} isGuest={user.isGuest} />
@@ -287,9 +263,7 @@ export default async function AccountPage({
       </section>
 
       <p className="text-sm text-ink-subtle">
-        Our <Link href="/about/privacy">privacy notice</Link> explains what we store and why. If
-        something here looks wrong, tell us before you delete anything — a deleted account cannot be
-        brought back.
+        {t.rich('footer', { link: (chunks) => <Link href="/about/privacy">{chunks}</Link> })}
       </p>
     </Container>
   );

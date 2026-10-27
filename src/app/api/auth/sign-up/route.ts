@@ -13,6 +13,7 @@ import {
   sessionCookieOptions,
 } from '@/lib/auth/session';
 import { deliverAfterResponse } from '@/lib/email/deliver';
+import { emailLocale } from '@/lib/email/messages';
 
 const bodySchema = z.object({
   email: z.string().trim().toLowerCase().email().max(254),
@@ -23,6 +24,8 @@ const bodySchema = z.object({
    * not collect a date of birth.
    */
   isMinor: z.boolean().optional(),
+  /** The language of the page the account was created on; English when missing or unknown. */
+  locale: z.string().max(16).optional(),
 });
 
 export async function POST(request: Request) {
@@ -38,6 +41,7 @@ export async function POST(request: Request) {
     }
 
     const body = await readJson(request, bodySchema);
+    const locale = emailLocale(body.locale);
 
     const problem = checkPasswordStrength(body.password, body.email);
     if (problem) return fail(problem.code, problem.message, 400);
@@ -66,16 +70,16 @@ export async function POST(request: Request) {
       userId = guest.id;
       (await db.prepare(
         `UPDATE users SET email = ?, password_hash = ?, display_name = ?, is_guest = 0,
-                          is_minor = ?, updated_at = ?
+                          is_minor = ?, locale = ?, updated_at = ?
          WHERE id = ? AND is_guest = 1`,
-      ).run(body.email, passwordHash, body.displayName ?? null, body.isMinor ? 1 : 0, nowIso, userId));
+      ).run(body.email, passwordHash, body.displayName ?? null, body.isMinor ? 1 : 0, locale, nowIso, userId));
     } else {
       userId = randomUUID();
       (await db.prepare(
         `INSERT INTO users (id, email, password_hash, display_name, role, is_guest, locale,
                             is_minor, created_at, updated_at)
-         VALUES (?, ?, ?, ?, 'learner', 0, 'en', ?, ?, ?)`,
-      ).run(userId, body.email, passwordHash, body.displayName ?? null, body.isMinor ? 1 : 0, nowIso, nowIso));
+         VALUES (?, ?, ?, ?, 'learner', 0, ?, ?, ?, ?)`,
+      ).run(userId, body.email, passwordHash, body.displayName ?? null, locale, body.isMinor ? 1 : 0, nowIso, nowIso));
     }
 
     const session = (await createSession(db, userId, false, now));
@@ -88,7 +92,7 @@ export async function POST(request: Request) {
     const mailer = emailCodesMailer();
     if (mailer) {
       try {
-        deliverAfterResponse(mailer, await prepareVerificationEmail(db, { id: userId, email: body.email }, { now }));
+        deliverAfterResponse(mailer, await prepareVerificationEmail(db, { id: userId, email: body.email, locale }, { now }));
         verificationSent = true;
       } catch (error) {
         console.error('[sign-up] could not issue a confirmation code:', error instanceof Error ? error.message : error);

@@ -1,1 +1,453 @@
-{}
+{
+  "shared": {
+    "home": "Inicio",
+    "eyebrow": "Sobre {name}",
+    "inShort": "En resumen",
+    "byline": "Por {publisher} · Publicado el <published>{publishedDate}</published> · Actualizado el <updated>{updatedDate}</updated>"
+  },
+  "editorialStandards": {
+    "meta": {
+      "title": "Estándares editoriales",
+      "description": "Cómo crea, revisa y publica Examer las preguntas de práctica: redacción original con ayuda de IA, resolución a ciegas por un revisor de IA independiente, comparación automática con la clave de respuestas y cuarentena en lugar de correcciones discretas."
+    },
+    "title": "Estándares editoriales",
+    "lead": "Qué tiene que cumplirse antes de mostrar una pregunta a nadie y qué nos negamos a afirmar sobre ella después.",
+    "inShort": "Todas las preguntas de práctica de {name} son material original elaborado con ayuda de IA. Antes de publicarse, un revisor de IA independiente la resuelve desde cero sin ver la respuesta propuesta, y la comparación entre esa solución y la clave la hace el mismo código de puntuación que usa la aplicación. Cuando no coinciden, la pregunta se pone en cuarentena, no se corrige discretamente. Hoy no consta ninguna revisión humana pregunta por pregunta, y lo decimos en lugar de darlo a entender. Las etiquetas de dificultad son un criterio editorial, no estadísticas calibradas, y cada afirmación que hacemos sobre el formato de un examen cita a la entidad que lo organiza y está fechada.",
+    "original": {
+      "heading": "1. Todas las preguntas son originales",
+      "p1": "El contrato de preguntas admite una única procedencia para todo lo que llega a un estudiante: <code>original</code>, de nuestra propiedad. No reproducimos, adaptamos ni parafraseamos bancos de preguntas oficiales, modelos de examen retirados ni preguntas de ningún otro editor, y no existe ninguna ruta en el código que permita publicar una pregunta de otra procedencia.",
+      "p2": "Cada ficha de pregunta identifica el rol que la redactó, registra que un modelo ayudó a redactarla e indica su situación de derechos. Todo lo que un modelo ayudó a redactar entra en el banco como <code>draft</code>, y ninguna pregunta llega a los estudiantes sin superar cada uno de los pasos siguientes."
+    },
+    "states": {
+      "heading": "2. Los cinco estados en los que puede estar una pregunta",
+      "intro": "La publicación es un estado, no una opinión. Estos son los únicos cinco estados que puede tener una pregunta, y solo uno de ellos se muestra a los estudiantes.",
+      "draft": "En redacción. Todo lo que un modelo ayudó a redactar entra aquí y no puede saltarse la cola. Los borradores nunca se muestran a un estudiante.",
+      "inReview": "En cola para la resolución independiente a ciegas. Es el único estado que recoge la exportación para revisión.",
+      "published": "Ha superado todas las comprobaciones automáticas y la resolución independiente. Solo las preguntas publicadas se usan en la práctica, los diagnósticos y las simulaciones.",
+      "quarantined": "El revisor no estuvo de acuerdo con la clave de respuestas o no pudo confirmar que solo una respuesta sea válida. La pregunta se retira del banco con el motivo registrado y queda fuera hasta que se reescribe y supera una nueva resolución a ciegas.",
+      "retired": "Retirada deliberadamente: sustituida, o vuelta incorrecta por un cambio en el examen. Los resultados que ya la incluyen no cambian, porque un intento apunta a una versión inmutable de la pregunta."
+    },
+    "automatic": {
+      "heading": "3. Qué comprueba el código antes de cualquier revisión",
+      "intro": "Un validador revisa todas las preguntas del repositorio como parte de la compilación. Estas comprobaciones son baratas, aburridas y absolutas: existen para que la revisión se dedique a si la pregunta es <em>correcta</em>, no a si está bien construida.",
+      "checks": {
+        "duplicates": "Se rechazan las opciones de respuesta que significan lo mismo. Primero se normaliza numéricamente el texto de las opciones, de modo que “0.50”, “.5” y “1/2” coinciden como una misma respuesta ofrecida dos veces. La puntuación solo se ignora al comprobar una lectura numérica, porque en el SAT y el ACT la puntuación a menudo es justo lo que se pregunta.",
+        "keyExists": "La clave de respuestas debe indicar opciones que existan, y su tipo debe coincidir con el tipo de respuesta de la pregunta. Una clave de “selecciona todas” que incluye todas las opciones se rechaza porque no es una pregunta de verdad.",
+        "numeric": "Las respuestas numéricas deben ser coherentes: ningún intervalo cuyo mínimo supere a su máximo y ninguna tolerancia negativa.",
+        "distractors": "Cada opción incorrecta necesita una explicación escrita de por qué es incorrecta. Una justificación del distractor ausente o de mero trámite bloquea la publicación.",
+        "explanationLength": "Las explicaciones tienen que explicar: no se acepta ninguna explicación de menos de 40 caracteres.",
+        "explanationNamesOption": "Una explicación que señala una opción como la respuesta (“la respuesta es la C”, “así que la opción A debe ser verdadera”) debe señalar la opción de la clave. La comprobación solo lee afirmaciones explícitas, así que es una red de seguridad, no una prueba de que todas las letras sean correctas.",
+        "references": "Una pregunta que remite a un texto, un gráfico o una tabla debe remitir a uno que exista.",
+        "reviewer": "Una pregunta publicada debe indicar un revisor, y el revisor no puede ser el autor.",
+        "solveRecord": "Una pregunta publicada debe llevar una fecha de revisión y un registro completo de la resolución independiente en el que quien la resolvió coincidió con la clave y confirmó que la respuesta es única.",
+        "difficulty": "Se marca toda dificultad indicada como calibrada empíricamente, porque no disponemos de datos de respuesta validados con los que calibrarla."
+      },
+      "outro": "Una pregunta que no supera alguna de estas comprobaciones no se publica. La compilación falla con ella."
+    },
+    "blindSolve": {
+      "heading": "4. La resolución a ciegas por un revisor de IA independiente",
+      "intro": "Es el control sobre el que gira todo el proceso, así que vale la pena explicar con precisión cómo funciona. El revisor es un modelo de IA distinto del que redactó la pregunta. Un revisor que puede ver la respuesta propuesta no está resolviendo la pregunta, le está dando la razón. Por eso el revisor nunca la ve.",
+      "strippedHeading": "Se depura el lote y después se comprueba la depuración",
+      "stripped": "Las preguntas pendientes de revisión se exportan a un archivo aparte sin la clave de respuestas, la explicación ni el razonamiento de los distractores. Después, la exportación vuelve a leer lo que ha escrito y falla de forma visible si alguno de esos tres campos aparece en cualquier parte del archivo. Una filtración detiene el lote en lugar de degradar la revisión sin que nadie lo note.",
+      "scratchHeading": "El revisor la resuelve desde cero",
+      "scratch": "El revisor recibe el enunciado, las instrucciones, el texto o el gráfico y las opciones de respuesta, nada más, junto con una indicación exacta de cómo expresar una respuesta de ese tipo. Registra la respuesta a la que ha llegado, sus notas de trabajo y si ha confirmado que solo una opción es defendible.",
+      "mechanicalHeading": "La comparación es automática",
+      "mechanical": "Nunca se le pregunta al revisor si está de acuerdo. Su respuesta se convierte en una respuesta formal y pasa por el mismo motor de puntuación que corrige el intento de un estudiante, y es el motor el que decide si coincide con la clave del autor. Así se elimina el fallo más habitual de la revisión editorial: el revisor que medio reconoce la respuesta prevista y acaba convenciéndose de ella.",
+      "quarantineHeading": "El desacuerdo lleva a la cuarentena, no a la corrección",
+      "quarantine": "Si la respuesta obtenida coincide con la clave <em>y</em> se confirmó la unicidad, la pregunta se publica con el rol del revisor, la fecha y el registro completo de la resolución. En cualquier otro caso (una discrepancia, o la unicidad sin confirmar) la pregunta pasa a <code>quarantined</code>, con la respuesta y las notas del revisor anotadas en el motivo, y sale del banco activo. Nada en ese proceso deduce lo que el autor “quería decir”. Una pregunta cuestionada queda fuera hasta que se reescribe y supera una nueva resolución a ciegas."
+    },
+    "roles": {
+      "heading": "5. Quién hace qué, según consta en las fichas",
+      "intro": "Una comprobación hecha por un modelo no es lo mismo que una hecha por una persona, así que aquí está la lista, paso a paso. Describe lo que contienen de verdad las fichas de las preguntas.",
+      "drafting": {
+        "term": "Redacción",
+        "value": "Un modelo de IA, que trabaja con la taxonomía oficial del examen. Cada ficha publicada indica que un modelo ayudó y nombra el rol de redacción, no a una persona."
+      },
+      "checks": {
+        "term": "Comprobaciones automáticas",
+        "value": "Código: el validador de contenidos descrito en la sección 3, que se ejecuta sobre todas las preguntas en cada compilación."
+      },
+      "blindSolve": {
+        "term": "Resolución a ciegas",
+        "value": "Un revisor de IA independiente, que recibe la pregunta sin su clave, su explicación ni sus notas sobre los distractores. Su rol queda registrado en la pregunta y nunca es el rol de redacción."
+      },
+      "comparison": {
+        "term": "Comparación con la clave",
+        "value": "Código: el mismo motor de puntuación que corrige las respuestas de los estudiantes."
+      },
+      "humanReview": {
+        "term": "Revisión humana de cada pregunta",
+        "value": "Hoy no consta. Ninguna ficha de pregunta nombra a un revisor humano, así que no afirmamos que lo haya. Tampoco se vuelven a leer todavía las explicaciones de forma independiente para valorar su calidad didáctica."
+      },
+      "reports": {
+        "term": "Avisos de los estudiantes",
+        "value": "Los clasifica una cuenta de editor con sesión iniciada en un área editorial de acceso restringido."
+      }
+    },
+    "limits": {
+      "heading": "6. Lo que la revisión no establece",
+      "badgeEditorial": "Las etiquetas de dificultad son editoriales",
+      "badgeNotCalibrated": "Sin calibrar",
+      "badgeNoPrediction": "Sin predicción de puntuación",
+      "p1": "Cada pregunta lleva una etiqueta de fácil, media o difícil, y todas esas etiquetas son nuestro criterio editorial sobre lo difícil que debería ser la pregunta. No están calibradas con datos de candidatos, porque no disponemos de datos de respuesta validados con los que calibrarlas; una etiqueta que afirmara lo contrario sería una estadística inventada por nosotros. Cuando la base de la dificultad de una pregunta dice “empírica”, el validador la marca.",
+      "p2": "Por la misma razón, una revisión te dice que una pregunta es correcta y no es ambigua. No te dice nada sobre dónde te situaría un conjunto de estas preguntas en la escala oficial de un examen. Por qué no publicamos puntuaciones escaladas, percentiles ni estimaciones de admisión se explica en <link>cómo puntuamos</link>."
+    },
+    "examFacts": {
+      "heading": "7. Cómo se verifican y fechan los datos de los exámenes",
+      "p1": "El formato, los tiempos, la navegación, las normas sobre calculadora y la puntuación no se escriben de memoria. Cada examen tiene una ficha de investigación con las afirmaciones verificadas, las fuentes que las respaldan con su editor y estado de consulta, una fecha de verificación y, lo más importante, una lista explícita de lo que la entidad organizadora <strong>no</strong> publica.",
+      "p2": "Los documentos de investigación del repositorio se generan a partir de esas fichas mediante una transformación pura, a propósito, para que la documentación no pueda afirmar nada que la ficha no contenga ya. Un dato cambia en la ficha y el documento lo sigue; nunca al revés.",
+      "p3": "La lista de lo no verificable tiene consecuencias. Cuando una norma no puede verificarse, la función que depende de ella se <em>desactiva</em> en lugar de estimarse, y la página del examen indica qué función y por qué. Cuando aproximamos algo, la aproximación se identifica como nuestra en la página en la que se aplica: el umbral de asignación de la segunda etapa en nuestra simulación del Digital SAT, por ejemplo, es una norma propia que publicamos, no de College Board.",
+      "p4": "Los datos sujetos a fechas, como los plazos de inscripción y las fechas de examen, se revisan con más frecuencia que las normas, y las normas se vuelven a verificar antes de cualquier versión que cambie el comportamiento de una simulación. Todas las fichas de exámenes actuales se verificaron el <time>{date}</time>."
+    },
+    "corrections": {
+      "heading": "8. Correcciones",
+      "p1": "Los controles detectan mucho, pero nunca todo. Si una pregunta te parece incorrecta, ambigua o mal redactada, avísanos. El aviso entra en la cola de revisión del área editorial, con la pregunta y la versión que viste adjuntas.",
+      "p2": "Las correcciones se hacen como versiones nuevas, nunca editando lo que un estudiante ya ha visto. En septiembre de 2026 una auditoría descubrió que reordenar las opciones de respuesta había dejado 104 explicaciones publicadas que se referían a las opciones por sus letras antiguas, 91 de ellas de una manera que señalaba como respuesta una opción incorrecta. Cada una se corrigió como versión nueva, se retiró de las sesiones nuevas hasta que un revisor de IA independiente volvió a comprobar sus referencias a las opciones y se superó una nueva resolución a ciegas, y después se restableció. Los intentos anteriores conservan la versión que se mostró. Una segunda comprobación ese mismo mes hizo que un revisor de IA independiente examinara cada afirmación sobre las opciones de las 180 explicaciones y notas sobre distractores publicadas restantes. Confirmó todas las claves de respuesta y encontró afirmaciones falsas en 37 preguntas, como una nota que describía un error que no lleva a su opción. Se corrigieron y revisaron de la misma manera, junto con un gráfico cuyas etiquetas de semana no coincidían con su texto.",
+      "cardTitle": "¿Has encontrado un problema en una pregunta?",
+      "cardBody": "No necesitas cuenta. Lleva alrededor de un minuto y es la forma más rápida de sacar una pregunta incorrecta del banco.",
+      "cardLink": "Informar de una pregunta →"
+    },
+    "refusals": {
+      "heading": "9. Lo que no haremos",
+      "reproduce": "Reproducir, adaptar o parafrasear una pregunta oficial. Todas las preguntas de aquí son nuestras, y el contrato de contenidos no permite otra cosa.",
+      "scaled": "Dar una puntuación escalada, un percentil, una franja de puntuación o una probabilidad de admisión. Ninguna de las entidades que cubrimos publica la equiparación (equating) que haría honesto un número así.",
+      "target": "Presentar una “puntuación objetivo” para un proceso de admisión que se decide mediante una clasificación competitiva.",
+      "ours": "Presentar como del examen una etiqueta de dificultad, una regla de asignación o un margen de tiempo que son nuestros.",
+      "dates": "Cambiar una fecha de publicación o de actualización para parecer al día. Las fechas de este sitio son las fechas en que se hizo el trabajo.",
+      "affiliation": "Afirmar una afiliación con alguna entidad organizadora o su respaldo. No tenemos ni lo uno ni lo otro; el aviso del pie de página del sitio es la declaración completa."
+    }
+  },
+  "howScoringWorks": {
+    "meta": {
+      "title": "Cómo puntuamos",
+      "description": "Qué muestra Examer después de una sesión de práctica (aciertos brutos, precisión por tema y ritmo) y por qué no da para ningún examen una puntuación escalada, un percentil ni una estimación de admisión, con las reglas de cada examen para respuestas correctas, incorrectas y en blanco."
+    },
+    "title": "Cómo puntuamos",
+    "lead": "Qué significa aquí un resultado de práctica, qué no contiene a propósito y qué regla de puntuación aplica realmente cada examen.",
+    "inShort": "Mostramos lo que podemos contar: cuántas preguntas has respondido correctamente, cuántas has dejado en blanco, cómo se reparte eso por tema y habilidad, cuánto tiempo has tardado y, cuando el examen tiene una penalización real por error, tus puntos con la penalización aplicada. No damos una puntuación escalada para ningún examen, porque las tablas que convierten las respuestas brutas en una puntuación escalada no se publican para ninguno de los exámenes que cubrimos. Tampoco damos percentiles ni estimaciones del resultado de una admisión.",
+    "report": {
+      "heading": "1. Qué contiene un resultado",
+      "raw": {
+        "term": "Aciertos brutos",
+        "value": "Cuántas preguntas has respondido correctamente, cuántas has fallado y cuántas has dejado en blanco."
+      },
+      "points": {
+        "term": "Puntos, si el examen penaliza",
+        "value": "En un examen con penalización por error también mostramos los puntos obtenidos sobre los puntos posibles, aplicando la penalización que publica el propio examen. En un examen sin penalización, los puntos y los aciertos brutos son el mismo número."
+      },
+      "topic": {
+        "term": "Precisión por tema y habilidad",
+        "value": "El mismo desglose dividido por sección, área de contenido y habilidad concreta, para que un punto débil se vea en lugar de quedar diluido en la media."
+      },
+      "pacing": {
+        "term": "Ritmo",
+        "value": "El tiempo total y el tiempo mediano por pregunta, que en un formato cronometrado suelen explicar más que los aciertos brutos."
+      },
+      "session": {
+        "term": "Qué fue la sesión y qué no fue",
+        "value": "Cada resultado indica la fidelidad del formato que hiciste, las reglas de puntuación oficiales del examen como datos publicados y la lista de reglas que la entidad organizadora no publica."
+      },
+      "topicHeading": "Cómo se ve la precisión por tema",
+      "topicBody": "Cada cifra va acompañada del número de preguntas en el que se basa. Con menos de {min} respuestas en un tema, el panel lo indica en lugar de mostrar un porcentaje."
+    },
+    "refuse": {
+      "heading": "2. Qué no contiene nunca un resultado, y por qué",
+      "intro": "No son funciones que aún no hayamos creado. Son números que hemos decidido que no pueden obtenerse honestamente a partir de lo que publican las entidades organizadoras, así que el campo que contendría una puntuación oficial se deja vacío en nuestra base de datos en lugar de rellenarse con una estimación.",
+      "scaled": {
+        "claim": "Una puntuación escalada (400–1600, 1–36, 120–180, 205–805, 130–170, etc.)",
+        "why": "Todas esas escalas se obtienen mediante equiparación (equating), y ninguna de las entidades que cubrimos publica las tablas, los parámetros de los ítems ni las transformaciones que usa esa equiparación. Un número obtenido sin ellos sería inventado, por muy bien presentado que estuviera."
+      },
+      "percentile": {
+        "claim": "Un percentil o una franja de puntuación",
+        "why": "Un percentil es una afirmación sobre una población de referencia. No tenemos una población de referencia calibrada, y un percentil calculado con las personas que por casualidad han usado este sitio describiría a nuestros visitantes, no a los candidatos."
+      },
+      "admission": {
+        "claim": "Una probabilidad de admisión o una “puntuación objetivo”",
+        "why": "Las decisiones de admisión las toman las instituciones con criterios que controlan ellas, y varios de los procesos que cubrimos, entre ellos el de Bocconi, son clasificaciones competitivas sin ninguna nota de corte publicada. No hay ninguna aritmética honesta que lleve de una sesión de práctica a un resultado de admisión."
+      },
+      "readiness": {
+        "claim": "Un veredicto de preparación disfrazado de medición",
+        "why": "Te diremos con gusto que acertaste 6 de 10 preguntas de álgebra y dedicaste 2 minutos a cada una. No convertiremos eso en una afirmación sobre cómo te iría el día del examen."
+      }
+    },
+    "twoCases": {
+      "heading": "3. Dos exámenes que muestran por qué la regla no es una sola",
+      "intro": "“Sin puntuación escalada” suena a una única política. En realidad es la misma conclusión a la que se llega desde dos direcciones muy distintas, y el Digital SAT y el Bocconi Online Test son el ejemplo más claro.",
+      "satHeading": "Digital SAT: sin penalización, pero la escala no es aritmética",
+      "satBadge": "Sin penalización por respuesta incorrecta",
+      "satP1": "Una respuesta incorrecta y una en blanco puntúan cero, así que en el examen real responder al azar nunca es peor que dejar una pregunta en blanco. Esa parte es sencilla. La escala no lo es: College Board obtiene la puntuación de sección de 200 a 800 mediante la Teoría de Respuesta al Ítem aplicada a los ítems concretos administrados, no contando las respuestas correctas. Sus propias indicaciones afirman que dos estudiantes que aciertan el mismo número de preguntas en una sección pueden obtener puntuaciones de sección distintas.",
+      "satP2": "Los parámetros de los ítems y la transformación a la escala no se publican, así que no existe ninguna aritmética que convierta “38 de 44 aciertos en nuestras preguntas” en una puntuación de sección del SAT. La escala de 400 a 1600 figura en nuestras páginas de exámenes como un dato sobre el examen. No situamos tu resultado en ella.",
+      "bocconiHeading": "Bocconi Online Test: la penalización es real y el total bruto es la puntuación",
+      "bocconiBadge": "Penalización por error",
+      "bocconiP1": "Bocconi publica abiertamente su puntuación: una respuesta correcta suma +1, una respuesta en blanco suma 0 y una respuesta incorrecta resta 0,2 puntos (0,33 puntos en los ítems de pensamiento crítico que se presentan con solo tres opciones). La penalización pertenece al ítem, no al examen; por eso la tabla de abajo recoge la regla general del examen y nuestro motor aplica la penalización mayor a los ítems que la llevan.",
+      "bocconiP2": "De ahí se siguen dos consecuencias, ambas más prácticas que teóricas. Primero, aquí dejar en blanco supera de verdad a responder completamente al azar, justo lo contrario del consejo que funciona en el SAT. Segundo, no hay ninguna escala que estimar: el resultado que comunica Bocconi <em>es</em> el total bruto con la penalización aplicada, sobre 50, con subpuntuaciones por área y el número de respuestas correctas, incorrectas y en blanco. Así que nuestra pantalla de resultados te muestra el mismo tipo de información, y ahí se detiene.",
+      "bocconiP3": "Bocconi afirma que un aspirante con una puntuación inferior a 17 “no será tenido en cuenta en el proceso de selección”. Es un mínimo para optar, no una nota de aprobado ni un objetivo: la admisión se decide mediante una clasificación competitiva que pondera el examen con un 55% y la nota media de bachillerato con un 45%, y no se publica ninguna nota de corte para ningún programa ni convocatoria."
+    },
+    "table": {
+      "heading": "4. La regla de puntuación de cada examen que cubrimos",
+      "intro": "Estas son las reglas que publican los propios exámenes, y son las reglas que nuestro motor aplica a un intento de práctica. La escala oficial de la última columna es un dato sobre el examen: la recogemos, pero no generamos una puntuación en ella.",
+      "caption": "Puntos concedidos por respuesta y la escala que comunica cada entidad organizadora. Ningún examen de esta tabla tiene publicada una conversión de puntuación bruta a escala, así que no se genera una puntuación escalada para ninguno de ellos.",
+      "exam": "Examen",
+      "correct": "Correcta",
+      "wrong": "Incorrecta",
+      "omitted": "En blanco",
+      "scale": "Escala oficial",
+      "negativeMarking": "Penalización por error",
+      "noPenalty": "Sin penalización",
+      "noScale": "Sin una escala oficial única",
+      "exception": "Una excepción que la tabla no puede recoger: en las dos variantes de Bocconi, los ítems de pensamiento crítico con tres opciones de respuesta tienen una penalización mayor, de 0,33 puntos en lugar de 0,2. Esa penalización corresponde a cada ítem, así que la columna de arriba muestra la regla general del examen."
+    },
+    "noScaled": {
+      "heading": "5. Por qué no hay puntuación escalada, examen por examen",
+      "intro": "Los motivos son lo bastante distintos como para merecer una lectura completa en el caso del examen que estás preparando. Cada uno es el motivo registrado en nuestra configuración del examen, que es también a lo que remite la nota metodológica de tu resultado.",
+      "summary": "¿Por qué no hay puntuación escalada para el {exam}?"
+    },
+    "ours": {
+      "heading": "6. Las partes que son nuestras, señaladas como nuestras",
+      "intro": "Hay cosas que tenemos que decidir nosotros porque la entidad organizadora no las publica. Siempre que ocurre, la decisión se indica en la pantalla en la que se aplica y nunca se presenta como una regla del propio examen:",
+      "difficulty": "<strong>Etiquetas de dificultad.</strong> Fácil, media y difícil son nuestro criterio editorial. No están calibradas con datos de candidatos; consulta los <link>estándares editoriales</link>.",
+      "routing": "<strong>Umbrales de asignación adaptativa.</strong> Cuando un examen asigna módulos según el rendimiento, el umbral real no se publica. El umbral que usamos es nuestro, se indica en la simulación y se guarda con el intento, de modo que al reanudarlo se repite el mismo recorrido.",
+      "counts": "<strong>Número de ítems cuando el examen no lo publica,</strong> y cualquier ajuste de tiempo adicional, que es una ayuda para estudiar y no una réplica de una adaptación oficial."
+    },
+    "using": {
+      "heading": "7. Sacar algo útil de un resultado de todas formas",
+      "body": "Los aciertos brutos de una sola sesión son una muestra pequeña, y tratarlos como una medición es la forma más rápida de que te lleven a engaño. Al principio, dos cosas de un resultado son realmente informativas: en qué áreas de contenido fallas una y otra vez y en qué se te va el tiempo. Las dos se muestran por tema y por habilidad precisamente porque permiten actuar, algo que no permite un único número global.",
+      "alertTitle": "Un resultado de práctica es una señal para estudiar, no una puntuación",
+      "alertBody": "Nada de lo que hay aquí es una predicción de tu rendimiento el día del examen ni de una decisión de admisión. Si quieres saber qué significa la puntuación de un examen, su guía de formato recoge la escala oficial, las reglas publicadas y lo que la entidad organizadora no publica.",
+      "browse": "Consulta las guías de formato y puntuación de los exámenes →"
+    }
+  },
+  "privacy": {
+    "meta": {
+      "title": "Aviso de privacidad (borrador)",
+      "description": "Borrador del aviso de privacidad de Examer, preparado para revisión jurídica: una cookie de sesión, una cookie de idioma, correo electrónico y contraseña opcionales, historial de práctica, planes de pago a través de Stripe, sin publicidad, sin analítica de terceros, y exportación o eliminación desde la página de tu cuenta."
+    },
+    "breadcrumb": "Aviso de privacidad",
+    "draftTitle": "Borrador: preparado para revisión, aún no revisado por un abogado",
+    "draftBody": "Este es un borrador de trabajo redactado por el equipo de {name} para describir lo que la aplicación hace realmente. No lo ha revisado ni aprobado un abogado, no constituye asesoramiento jurídico y no es un contrato. Las cuestiones abiertas que no podemos resolver por nuestra cuenta se enumeran por completo al <link>final de la página</link> en lugar de rellenarse con texto genérico.",
+    "languageVersions": "Este aviso se publica en inglés, italiano, turco, español y polaco. Si las versiones lingüísticas difieren, prevalece la versión en inglés.",
+    "title": "Aviso de privacidad",
+    "lead": "Qué guarda esta aplicación, por qué lo guarda y qué no recoge nunca, de forma deliberada.",
+    "inShort": "Puedes usar {name} sin darnos nada: practicar sin cuenta crea un registro de invitado que no contiene ningún dato personal. Si creas una cuenta, guardamos tu dirección de correo electrónico, un hash con sal de tu contraseña, los ajustes de estudio que configures y tu historial de práctica. Usamos dos cookies propias: una solo mantiene tu sesión iniciada y la otra solo recuerda el idioma que elegiste (Stripe añade sus propias cookies antifraude únicamente donde introduces una tarjeta). No hay publicidad ni analítica de terceros. Si compras un plan, Stripe cobra el pago en sus propios campos seguros para la tarjeta y nosotros solo guardamos qué planes tienes. Puedes exportar o eliminar tus datos desde la <link>página de tu cuenta</link>.",
+    "drafted": "Redactado por {publisher} · <time>{date}</time>",
+    "hold": {
+      "heading": "1. Qué guardamos",
+      "session": {
+        "term": "Una cookie de sesión",
+        "value": "Una sola cookie, llamada examer_session. Contiene un token aleatorio, se configura como HttpOnly y SameSite=Lax, se marca como Secure en producción y dura 30 días para una cuenta o 7 días para una sesión de invitado. El servidor solo guarda un hash SHA-256 del token, así que la tabla de sesiones no puede usarse para suplantar a nadie."
+      },
+      "language": {
+        "term": "Una cookie de idioma",
+        "value": "Una sola cookie, llamada NEXT_LOCALE. Se establece cuando abres una página en un idioma o eliges uno en el menú de idiomas, y solo contiene el código de ese idioma (por ejemplo, “it”), para que un enlace sin idioma se abra en el último que usaste. Dura hasta un año y se configura como SameSite=Lax. Es una cookie funcional: no está vinculada a tu cuenta, no se guarda nada sobre ella en nuestro servidor y no se usa para seguimiento, publicidad ni medición."
+      },
+      "guest": {
+        "term": "Una cuenta de invitado, si nunca te registras",
+        "value": "Practicar sin cuenta crea una fila de usuario real para que tu historial se conserve y puedas reclamarlo más adelante. No contiene correo electrónico, contraseña ni nombre: nada que identifique a una persona."
+      },
+      "credentials": {
+        "term": "Tu dirección de correo electrónico y tu contraseña, si creas una cuenta",
+        "value": "La dirección de correo se guarda tal como la escribiste, en minúsculas. La contraseña nunca se guarda: conservamos un hash scrypt con sal y comparamos con él. También anotamos cuándo confirmaste la dirección con un código, si lo hiciste."
+      },
+      "codes": {
+        "term": "Códigos de un solo uso por correo electrónico, si los pides",
+        "value": "Cuando pides un código de inicio de sesión o un restablecimiento de contraseña, o confirmas tu dirección, guardamos para qué es el código, la dirección a la que se envió, cuándo se envió y cuándo caduca, cuántos intentos fallidos se hicieron y si se usó. El código en sí nunca se guarda: solo un hash con clave. Un código funciona una sola vez y caduca a los 10 minutos. Pedir uno nuevo elimina el anterior, y los códigos caducados hace más de un día se eliminan la siguiente vez que alguien pide un código."
+      },
+      "profile": {
+        "term": "Perfil y ajustes de estudio opcionales",
+        "value": "Un nombre visible, un examen objetivo, una fecha objetivo, un objetivo semanal de minutos de estudio y una indicación, declarada por ti, de que tienes menos de 16 años. No pedimos fecha de nacimiento, centro de estudios, país ni número de teléfono."
+      },
+      "history": {
+        "term": "Tu historial de práctica",
+        "value": "Los intentos que empiezas, las respuestas que das, las preguntas que marcas, cuánto tiempo te llevó cada pregunta y el resultado calculado de cada intento."
+      },
+      "reports": {
+        "term": "Los avisos sobre preguntas que nos envías",
+        "value": "La pregunta de la que informaste, el motivo que elegiste, lo que escribiste en el campo de detalles y tu id de usuario si tenías la sesión iniciada al enviarlo."
+      },
+      "tutor": {
+        "term": "Solicitudes al tutor de IA (solo si lo usas)",
+        "value": "Cuando pulsas un botón para pedir al tutor de IA opcional una pista, una explicación más detallada o una guía posterior al test, registramos que lo pediste, cuándo y si funcionó, para poder aplicar el límite diario. Las guías posteriores al test se guardan en tu cuenta para que puedas volver a verlas; las pistas y explicaciones tratan sobre una pregunta y no sobre ti, y se guardan sin tu id."
+      },
+      "billing": {
+        "term": "Facturación (solo si compras un plan)",
+        "value": "Cuando compras un plan, creamos un cliente para ti en Stripe, nuestro proveedor de pagos, con tu dirección de correo electrónico, tu nombre visible si lo has configurado y el id de tu cuenta, y guardamos los id de cliente y de suscripción de Stripe, cada plan y el examen que cubre, su estado, su fecha de renovación y el momento en que pediste acceso inmediato y aceptaste el fin del derecho de desistimiento. Los datos de tu tarjeta se escriben en campos proporcionados por Stripe en nuestras páginas de pago y de cuenta y van directamente a Stripe; nunca llegan a nuestros servidores. En la página de tu cuenta mostramos la marca de la tarjeta y los cuatro últimos dígitos, obtenidos de Stripe."
+      },
+      "rateLimits": {
+        "term": "Contadores de límite de solicitudes",
+        "value": "Para evitar abusos, contamos las solicitudes de cada usuario en intervalos fijos. La clave del contador es un hash SHA-256 de un identificador, así que nunca se escribe una dirección IP sin cifrar en la base de datos."
+      },
+      "totals": {
+        "term": "Totales diarios (sin datos personales)",
+        "value": "Para saber si nuestras páginas de exámenes son útiles, guardamos simples totales diarios de unos pocos eventos: visitas a las páginas de exámenes y a la página de planes, pagos iniciados y planes comprados, cada uno con el examen correspondiente y, para las visitas, una procedencia aproximada (buscador, asistente de IA, este sitio, otro sitio o ninguna). Cada total es solo un número por día. No se registra ningún id de cuenta, cookie, dirección IP, dato del navegador ni la dirección de procedencia completa, así que ningún total puede vincularse contigo. Si empezaste o terminaste un test gratuito forma parte de tu historial de práctica, descrito más arriba."
+      }
+    },
+    "doNot": {
+      "heading": "2. Lo que no hacemos",
+      "advertising": "Sin publicidad y sin píxeles publicitarios o de seguimiento de ningún tipo.",
+      "analytics": "Sin analítica de terceros. No hay Google Analytics, ni SDK de analítica de producto, ni grabación de sesiones.",
+      "cards": "Sin datos de tarjetas. Los números de tarjeta se escriben en los campos seguros de Stripe en nuestra página de pago, así que van a Stripe y nosotros nunca los guardamos ni los vemos.",
+      "cookies": "Sin más cookies que la cookie de sesión y la cookie de idioma, con una excepción: cuando introduces una tarjeta (en el pago, o al actualizar tu tarjeta en la página de la cuenta), el script de pago de Stripe establece sus propias cookies antifraude (__stripe_mid y __stripe_sid). No se guarda nada en tu dispositivo con fines de publicidad, medición o personalización; los totales diarios descritos arriba se cuentan en nuestro servidor y no identifican a nadie.",
+      "selling": "Sin venta, alquiler ni cesión de datos personales a terceros para sus propios fines.",
+      "ai": "Sin IA a menos que la pidas. El tutor de IA opcional no envía nada hasta que pulsas uno de sus botones, y nunca es necesario para practicar: cada pregunta tiene su propia explicación revisada.",
+      "marketing": "Sin marketing por correo electrónico. Guardamos tu dirección para que puedas iniciar sesión, no para enviarte campañas. Los únicos correos que enviamos son los códigos descritos arriba, en texto sin formato, así que no llevan ningún píxel de seguimiento."
+    },
+    "why": {
+      "heading": "3. Por qué lo guardamos",
+      "signedIn": "<strong>Para mantener tu sesión iniciada.</strong> Esa es la única función de la cookie de sesión.",
+      "language": "<strong>Para mostrarte el sitio en tu idioma.</strong> Esa es la única función de la cookie de idioma.",
+      "history": "<strong>Para devolverte tu historial de práctica.</strong> Los resultados, el desglose por temas y la función “no me vuelvas a mostrar esta pregunta durante un mes” necesitan que exista el historial.",
+      "fix": "<strong>Para corregir preguntas incorrectas.</strong> Un aviso indica a nuestros editores qué pregunta y qué versión deben revisar.",
+      "tutor": "<strong>Para responder a una solicitud que hiciste al tutor de IA.</strong> Solo cuando pulsas el botón, y solo con el contenido de la pregunta y los datos de rendimiento descritos en las cuestiones abiertas de abajo.",
+      "codes": "<strong>Para enviarte los códigos que pides.</strong> Un código de inicio de sesión, un código para restablecer la contraseña o el código que confirma tu dirección al crear una cuenta.",
+      "abuse": "<strong>Para evitar abusos.</strong> Los intentos de inicio de sesión, los registros, la creación de invitados, el inicio de intentos, el guardado de respuestas, los códigos por correo y los avisos sobre preguntas tienen límite de solicitudes.",
+      "noProfiling": "No te elaboramos un perfil, no creamos audiencias publicitarias y no usamos tu historial de práctica para nada que no sea mostrártelo y seleccionar preguntas que no hayas visto recientemente."
+    },
+    "security": {
+      "heading": "4. Cómo se protege",
+      "passwords": "Las contraseñas se cifran con scrypt y una sal distinta para cada contraseña. Una base de datos filtrada no entrega las contraseñas.",
+      "sessions": "Los tokens de sesión solo se guardan como hashes SHA-256, así que una base de datos filtrada tampoco entrega sesiones activas.",
+      "codes": "Los códigos por correo solo se guardan como hashes con una clave secreta que no está en la base de datos. Cada uno funciona una sola vez, caduca a los 10 minutos y deja de funcionar tras cinco intentos fallidos.",
+      "scoping": "Cada página privada y cada ruta privada de la API determinan en el servidor quién eres y filtran los datos por tu propio id de usuario. Nunca se confía en un id que aparezca en una URL para identificarte.",
+      "origin": "Las solicitudes que modifican datos se comprueban con el origen del propio sitio, además de la configuración SameSite de la cookie.",
+      "rateLimitKeys": "Las claves de límite de solicitudes se guardan como hash, así que no se almacenan direcciones IP sin cifrar."
+    },
+    "controls": {
+      "heading": "5. Lo que puedes hacer",
+      "export": "<strong>Exportar.</strong> Descarga todo lo asociado a tu cuenta desde la página de tu cuenta.",
+      "delete": "<strong>Eliminar.</strong> Elimina tu cuenta desde el mismo sitio. Consulta abajo la cuestión abierta sobre qué debería implicar la eliminación internamente.",
+      "signOut": "<strong>Cerrar sesión en todas partes.</strong> Cerrar sesión destruye la sesión; restablecer la contraseña destruye todas las sesiones de la cuenta.",
+      "guest": "<strong>Seguir como invitado.</strong> Si nunca te registras, no hay nada personal que exportar o eliminar: borrar la cookie de sesión pone fin a la sesión.",
+      "language": "<strong>Cambiar o borrar tu idioma.</strong> Elige otro idioma en el menú de idiomas en cualquier momento, o borra la cookie de idioma en tu navegador; entonces el sitio se mostrará en inglés o en el idioma que pida tu navegador.",
+      "accountLink": "Ir a la página de tu cuenta →"
+    },
+    "openQuestions": {
+      "heading": "Cuestiones abiertas para la revisión jurídica",
+      "intro": "Son los puntos que este borrador no puede resolver por sí solo. Se enumeran en lugar de suponerse, porque una respuesta con apariencia de seguridad sería peor que una laguna reconocida.",
+      "controller": "El responsable del tratamiento: qué entidad jurídica gestiona este servicio, en qué jurisdicción y cuál debería ser la dirección de contacto para las solicitudes de privacidad. Nada de lo que sigue puede cerrarse hasta que esto se resuelva.",
+      "lawfulBasis": "La base jurídica de cada finalidad del tratamiento según el RGPD (lo más probable, la ejecución de un contrato para la cuenta y el historial de práctica, y el interés legítimo para el límite de solicitudes y la prevención de abusos) y si ese análisis resiste la revisión.",
+      "retention": "Los plazos de conservación. Hoy no caduca nada salvo las sesiones (30 días, o 7 para un invitado), los intervalos de límite de solicitudes (se purgan a las 24 horas), los códigos por correo (descritos arriba) y la cookie de idioma (un año, solo en tu navegador). Cuánto tiempo deben conservarse una cuenta de invitado inactiva, un historial de práctica y un aviso sobre una pregunta ya resuelto requiere una decisión y después una implementación.",
+      "deletion": "Si la eliminación debe ser definitiva o la eliminación lógica implementada actualmente. Hoy la eliminación marca la cuenta como eliminada, de modo que deja de reconocerse y de aparecer en cualquier parte; qué ocurre con las filas de intentos subyacentes, y al cabo de cuánto tiempo, es una decisión pendiente.",
+      "minors": "Si los usuarios menores de 16 años necesitan un consentimiento parental verificable en cada jurisdicción en la que operamos, y si una indicación autodeclarada es defendible en absoluto. La indicación de edad existe en el código y es autodeclarada; no la verificamos y actualmente no pedimos consentimiento.",
+      "hosting": "Dónde se alojan los datos, si se produce alguna transferencia internacional y qué deben indicar el mecanismo de transferencia y la lista de subencargados. La aplicación usa una sola base de datos. Intervienen tres servicios de terceros: el tutor de IA opcional, descrito en el punto siguiente; el proveedor de pagos, Stripe, descrito después; y el proveedor de correo electrónico, Brevo, que entrega los códigos de un solo uso. Por cada correo con un código, Brevo recibe la dirección del destinatario, el asunto y el mensaje en texto sin formato, que contiene el código. Lo que queda por resolver respecto a Brevo: su condición de encargado del tratamiento y las condiciones de tratamiento de datos de la cuenta, su conservación del contenido de los mensajes y de los registros de entrega, y dónde trata los datos.",
+      "tutor": "El tutor de IA. Cuando un estudiante pulsa un botón del tutor, el servidor envía al proveedor del modelo (Anthropic), a través de su API, la pregunta, sus opciones, nuestra explicación revisada, la opción que eligió el estudiante y, en el caso de una guía posterior al test, los resultados agregados de la sesión. No se envía ningún nombre, dirección de correo, id de cuenta ni texto libre escrito por el estudiante. Lo que queda por resolver: la condición del proveedor como encargado del tratamiento y las condiciones de tratamiento de datos con las que se emite la clave de la API; la conservación y el uso del contenido de las solicitudes por parte del proveedor según esas condiciones, que no hemos verificado y por eso no describimos aquí; el mecanismo de transferencia internacional, si el proveedor trata los datos fuera de la jurisdicción del estudiante; si los datos de rendimiento son datos personales una vez separados de la cuenta; y si los estudiantes menores de 16 años pueden usar el tutor sin consentimiento parental. Mientras esto no se resuelva, un operador puede dejar el tutor desactivado, y el sitio funciona por completo sin él.",
+      "payments": "Los pagos. Cuando un estudiante compra un plan, el servidor crea un cliente de Stripe con la dirección de correo de la cuenta, el nombre visible (si lo hay) y el id de la cuenta, y Stripe recoge la tarjeta en sus propios campos seguros integrados en nuestra página de pago (Stripe.js se carga desde js.stripe.com solo en las páginas de pago y de cuenta). Lo que queda por resolver: si las cookies antifraude de Stripe, establecidas solo en las páginas donde se introduce una tarjeta, se consideran estrictamente necesarias (nuestra opinión) o requieren consentimiento; si Stripe actúa como nuestro encargado del tratamiento o como responsable independiente de los datos de pago; cuánto tiempo deben conservarse los registros de facturación por motivos fiscales y contables, lo que puede prevalecer sobre una solicitud de eliminación de esos registros; el mecanismo de transferencia internacional; y si los menores pueden comprar un plan.",
+      "cookies": "Si la cookie de sesión se considera estrictamente necesaria en todas las jurisdicciones en las que operamos (nuestra opinión es que sí, y por eso no se muestra ningún banner de consentimiento) y si la cookie de idioma, que solo recuerda el idioma que elegiste, está exenta de consentimiento como preferencia de la interfaz durante su vida de un año (también es nuestra opinión); y la confirmación de que nada más en el sitio activaría requisitos de consentimiento.",
+      "rights": "El procedimiento y los plazos para atender las solicitudes de acceso, rectificación, portabilidad, oposición y supresión, y quién es responsable de cumplirlos.",
+      "breach": "La notificación de brechas de seguridad: el umbral, el procedimiento interno y el calendario de notificación.",
+      "trademark": "La redacción del aviso sobre marcas y ausencia de afiliación, que aparece en todas las páginas y está redactado por nosotros y no por un abogado."
+    }
+  },
+  "terms": {
+    "meta": {
+      "title": "Condiciones de uso (borrador)",
+      "description": "Borrador de las condiciones de uso de este sitio de preparación de exámenes, preparado para revisión jurídica. Incluye las cuestiones abiertas que un abogado aún debe resolver."
+    },
+    "breadcrumb": "Condiciones de uso",
+    "title": "Condiciones de uso",
+    "draftTitle": "Esto es un borrador, no un documento jurídico definitivo",
+    "draftBody": "Lo ha redactado el equipo técnico para describir lo que esta aplicación hace realmente, de modo que un abogado cualificado tenga algo concreto que revisar. No lo ha revisado ningún abogado, no constituye asesoramiento jurídico y las cuestiones abiertas del final están realmente abiertas.",
+    "languageVersions": "Estas condiciones se publican en inglés, italiano, turco, español y polaco. Si las versiones lingüísticas difieren, prevalece la versión en inglés.",
+    "drafted": "Redactado el <time>{date}</time>.",
+    "service": {
+      "heading": "Qué es este servicio",
+      "p1": "{name} es una herramienta de estudio. Ofrece preguntas de práctica originales, explicaciones resueltas y guías que describen el formato y las reglas de puntuación publicados de varias pruebas de acceso a la universidad. Es una ayuda para la preparación y nada más.",
+      "p2": "Las guías, las preguntas de muestra y las páginas de formato están abiertas a todo el mundo. Una cuenta gratuita también puede hacer el diagnóstico gratuito de cada examen: las mismas preguntas fijas para todas las cuentas, con resultados completos. Las sesiones de práctica, las secciones cronometradas, las simulaciones completas, el plan de estudio y el tutor de IA requieren un plan de pago, descrito a continuación."
+    },
+    "plans": {
+      "heading": "Planes y pagos",
+      "plans": "<strong>Acceso total</strong> abre todos los exámenes, todos los formatos de práctica, el plan de estudio y el tutor de IA. <strong>Examen individual</strong> abre todos los formatos de práctica y el plan de estudio para el examen que elijas; puedes tener varios. Los planes y sus precios están en la <link>página de precios</link>. Los precios están en euros, incluyen el IVA y se cobran mensualmente.",
+      "payment": "El pago lo cobra Stripe, nuestro proveedor de pagos, al principio de cada mes. Los datos de la tarjeta se escriben en campos proporcionados por Stripe en nuestra página de pago y van directamente a Stripe; nunca nos llegan a nosotros.",
+      "renewal": "Una suscripción se renueva automáticamente cada mes hasta que se cancela. Puedes cancelarla en cualquier momento desde <link>tu cuenta</link>; el plan sigue activo hasta el final del mes ya pagado y no se cobra nada más.",
+      "start": "Un plan empieza en cuanto pagas. Al pagar, nos pides expresamente que lo activemos de inmediato y aceptas que, una vez iniciado, pierdes el derecho de desistimiento de 14 días. Guardamos constancia de cuándo lo hiciste.",
+      "failed": "Si falla el pago de una renovación, Stripe lo reintenta durante un periodo limitado y tu acceso continúa hasta el final del mes al que correspondía ese pago. Si sigue fallando, el plan termina.",
+      "priceChange": "Si cambiamos un precio, el nuevo precio solo se aplica a partir de tu siguiente renovación, y te avisaremos antes.",
+      "deletion": "Eliminar tu cuenta cancela tus planes de inmediato, para que no se cobre nada más por una cuenta que ya no existe."
+    },
+    "independence": {
+      "heading": "Independencia y marcas",
+      "descriptive": "Los nombres de los exámenes se usan de forma descriptiva, para indicar a qué examen se refiere una guía o un conjunto de preguntas. Nada de lo que aparece aquí debe interpretarse como una afirmación de asociación, respaldo, licencia o acreditación."
+    },
+    "noPromise": {
+      "heading": "Lo que no prometemos",
+      "score": "No prometemos ninguna puntuación, ninguna mejora de la puntuación, ningún resultado de admisión ni ninguna probabilidad de admisión. No calculamos esas cifras, porque nada de lo que tenemos podría respaldarlas.",
+      "fidelity": "No prometemos que nuestra práctica reproduzca un examen real. Cada formato de práctica lleva una etiqueta que indica cuánto se parece y en qué se diferencia.",
+      "current": "No prometemos que la información sobre los exámenes que figura aquí esté al día. Las entidades organizadoras cambian sus exámenes. Cada afirmación sobre hechos indica la fuente y la fecha en que la comprobamos, y la fuente oficial siempre prevalece. Compruébala tú antes de basarte en ella para tomar una decisión.",
+      "service": "No prometemos un servicio ininterrumpido ni libre de errores, y este no es un entorno seguro para evaluaciones de alto riesgo. La práctica en el navegador no puede supervisarse."
+    },
+    "conduct": {
+      "heading": "Tu cuenta y tu conducta",
+      "noAccount": "Puedes leer las guías y probar la pregunta de muestra sin cuenta. Las sesiones de práctica requieren una.",
+      "password": "Si creas una cuenta, no compartas tu contraseña. Avísanos si crees que otra persona la ha usado.",
+      "abuse": "No intentes acceder a la cuenta o a los datos de otra persona, interrumpir el servicio ni extraer el banco de preguntas de forma masiva.",
+      "delete": "Puedes eliminar tu cuenta en cualquier momento desde los <link>ajustes de tu cuenta</link>, lo que borra tu historial de práctica."
+    },
+    "content": {
+      "heading": "Nuestro contenido",
+      "body": "Las preguntas, explicaciones y guías de este sitio son obra original nuestra. Puedes usarlas para tu propio estudio. No puedes volver a publicarlas, revenderlas ni redistribuirlas, ni usarlas para entrenar un modelo de aprendizaje automático, sin permiso."
+    },
+    "reporting": {
+      "heading": "Informar de un problema",
+      "body": "Si una pregunta te parece incorrecta, <link>infórmanos</link>. Preferimos retirar una pregunta antes que dejar una mala en el banco."
+    },
+    "changes": {
+      "heading": "Cambios",
+      "body": "Si estas condiciones cambian de forma sustancial, la fecha de arriba cambia con ellas, y no la antedataremos."
+    },
+    "openQuestions": {
+      "heading": "Cuestiones abiertas para la revisión jurídica",
+      "intro": "Sin resolver a propósito. Cada una requiere una decisión antes de que este borrador se convierta en un documento real.",
+      "entity": "<strong>Entidad contratante y ley aplicable.</strong> No se indica ninguna empresa, jurisdicción, fuero ni ley aplicable, porque aún no se ha elegido ninguno.",
+      "liability": "<strong>Limitación de responsabilidad y exclusiones de garantía.</strong> Este borrador no contiene ninguna. El alcance permitido depende de la jurisdicción y, en la UE, de normas de protección de los consumidores que no pueden excluirse por contrato.",
+      "minors": "<strong>Menores como partes contratantes.</strong> Gran parte del público tiene menos de 18 años. Si un menor puede aceptar estas condiciones, y si se requiere consentimiento parental, varía según la jurisdicción y requiere asesoramiento. Esto ahora incluye la compra de un plan: hoy nada impide que un menor pague.",
+      "consumer": "<strong>Derecho del consumidor para los planes de pago.</strong> Si la redacción del proceso de pago basta para extinguir el derecho de desistimiento de 14 días en una suscripción que empieza de inmediato (Directiva de la UE sobre los derechos de los consumidores, Código del Consumo italiano); qué deben contener la información precontractual y el correo de confirmación; si debe reembolsarse el tiempo no usado cuando se elimina una cuenta o se cancela un plan antes de tiempo; y cómo deben notificarse los cambios de precio.",
+      "vat": "<strong>IVA.</strong> Los precios incluyen el IVA, pero el IVA de los servicios digitales se devenga al tipo del país del comprador. Si darse de alta en la ventanilla única de la UE (OSS) y activar Stripe Tax, y qué tipo presuponen los precios fijos, requiere una decisión con un asesor fiscal.",
+      "trademark": "<strong>Redacción sobre marcas.</strong> El aviso de uso nominativo legítimo (nominative fair use) de arriba debería contrastarse con las directrices sobre marcas que publica cada entidad organizadora, en particular las de College Board y ACT.",
+      "describing": "<strong>Describir los exámenes con exactitud.</strong> Resumimos las reglas publicadas de los exámenes y enlazamos la fuente. Hay que confirmar que esto se mantiene dentro del uso legítimo y no vulnera derechos sobre bases de datos ni derechos de autor sobre los originales.",
+      "training": "<strong>Prohibición de entrenar modelos con nuestro contenido.</strong> Si esa restricción es exigible, y cómo debe encajar con la política para rastreadores de <code>robots.txt</code>, requiere asesoramiento.",
+      "accessibility": "<strong>Obligaciones de accesibilidad.</strong> Nuestro objetivo es WCAG 2.2 AA. Si se aplica una obligación legal vinculante en los mercados en los que operamos, y qué declaración de conformidad publicar, está por decidir."
+    },
+    "privacyLink": "Aviso de privacidad (también es un borrador)"
+  },
+  "reportQuestion": {
+    "meta": {
+      "title": "Informar de una pregunta",
+      "description": "Cuéntanos qué pregunta te parece incorrecta, ambigua o incompleta."
+    },
+    "title": "Informar de una pregunta",
+    "lead": "Si una pregunta te parece incorrecta, ambigua o incompleta, avísanos. Preferimos retirar una pregunta antes que dejar una mala en el banco.",
+    "process": {
+      "heading": "Qué pasa con tu aviso",
+      "resolve": "Un editor vuelve a resolver la pregunta de forma independiente, sin mirar la clave guardada.",
+      "quarantine": "Si la clave es incorrecta, o si una segunda respuesta es realmente defendible, la pregunta se pone <strong>en cuarentena</strong>, no se corrige discretamente. Las preguntas en cuarentena salen del banco activo de inmediato.",
+      "replacement": "Se redacta una pregunta de sustitución, que pasa por la misma resolución independiente a ciegas antes de publicarse.",
+      "pinned": "Los resultados que ya has visto no cambian. Cada intento queda vinculado a la versión exacta de la pregunta que se te mostró.",
+      "noAccount": "No necesitas cuenta para informar de una pregunta, y nosotros no necesitamos tu dirección de correo electrónico."
+    },
+    "form": {
+      "questionId": "ID de la pregunta",
+      "questionIdHint": "Aparece debajo de cada pregunta en tu página de resultados. Se rellena automáticamente si has llegado desde el enlace de allí.",
+      "reasonLegend": "¿Qué falla?",
+      "reasons": {
+        "wrongAnswer": "La respuesta marcada como correcta parece incorrecta",
+        "ambiguous": "Más de una respuesta parece defendible",
+        "missingMaterial": "Falta algo necesario para responder",
+        "explanation": "La explicación es incorrecta o poco clara",
+        "typo": "Una errata o un problema de formato",
+        "other": "Otra cosa"
+      },
+      "details": "Detalles <muted>(opcional)</muted>",
+      "detailsHint": "Si crees que la respuesta correcta es otra, lo más útil que puedes escribir aquí es cuál y por qué.",
+      "submit": "Enviar aviso",
+      "sending": "Enviando…",
+      "errors": {
+        "generic": "No hemos podido enviar el aviso. Inténtalo de nuevo.",
+        "rateLimited": "Ya has enviado varios avisos. Inténtalo de nuevo más tarde.",
+        "unknownQuestion": "No hemos encontrado esa pregunta. Comprueba el ID de la pregunta e inténtalo de nuevo.",
+        "invalid": "Comprueba el ID de la pregunta y los detalles, e inténtalo de nuevo."
+      },
+      "sentTitle": "Gracias: hemos registrado tu aviso",
+      "sentBody": "Un editor revisará esta pregunta. Si resulta incorrecta, se retira del banco en lugar de editarse discretamente, y se redacta una de sustitución.",
+      "another": "Informar de otra pregunta"
+    }
+  }
+}

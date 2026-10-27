@@ -1,37 +1,51 @@
 import { Link } from '@/i18n/navigation';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/server';
+import { languageAlternates } from '@/i18n/alternates';
+import type { Locale } from '@/i18n/locales';
 import { EXAM_HUBS, getConfigsForHub, getHub } from '@/lib/exams/registry';
 import { describePolicy } from '@/lib/assessment/navigation';
-import { SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
+import { shareImages, SITE, siteUrl } from '@/lib/site';
 import { guidesForHub } from '@/lib/content/guides';
 import { Callout, Alert, Breadcrumbs, ButtonLink, Card, Container } from '@/components/ui';
 import { JsonLd, articleSchema, breadcrumbSchema } from '@/components/seo/json-ld';
+import { OfficialNote } from '@/components/exams/official-note';
+
+type Props = { params: Promise<{ locale: string; hub: string }> };
+
+const DATE = { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' } as const;
+/** A config date in the reader's language; a value that is not a date (an unverified marker) shows as written. */
+const isIsoDate = (value: string) => /^\d{4}-\d{2}-\d{2}/.test(value);
 
 export function generateStaticParams() {
   return EXAM_HUBS.map((hub) => ({ hub: hub.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ hub: string }>;
-}): Promise<Metadata> {
-  const { hub: slug } = await params;
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale, hub: slug } = await params;
+  const t = await getTranslations({ locale, namespace: 'exams.format' });
   const hub = getHub(slug);
-  if (!hub) return { title: 'Format and scoring' };
+  if (!hub) return { title: t('fallbackTitle') };
 
+  const format = await getFormatter({ locale });
   const configs = getConfigsForHub(slug);
-  const title = `${hub.name} format and scoring guide`;
-  const description = `Sections, question counts, timing, navigation rules, calculator policy and scoring for the ${hub.name}, verified against ${hub.publisher} on ${configs[0]?.verifiedOn ?? 'our last check'}.`;
+  const verifiedOn = configs[0]?.verifiedOn;
+  const title = t('metaTitle', { name: hub.name });
+  const description = t('metaDescription', {
+    name: hub.name,
+    publisher: hub.publisher,
+    date: verifiedOn && isIsoDate(verifiedOn) ? format.dateTime(new Date(verifiedOn), DATE) : t('lastCheck'),
+  });
+  const alternates = languageAlternates(`/exams/${hub.slug}/format`, locale as Locale);
 
   return {
     title,
     description,
-    alternates: { canonical: absoluteUrl(`/exams/${hub.slug}/format`) },
+    alternates,
     openGraph: {
       type: 'article',
-      url: absoluteUrl(`/exams/${hub.slug}/format`),
+      url: alternates.canonical,
       title: `${title} | ${SITE.shortName}`,
       description,
       // The exam's own image: the format guide is about the same exam.
@@ -40,38 +54,23 @@ export async function generateMetadata({
   };
 }
 
-const CALCULATOR_LABEL: Record<string, string> = {
-  none: 'Not permitted',
-  onscreen: 'On-screen calculator provided',
-  onscreen_and_personal: 'On-screen calculator, and an approved personal calculator',
-  personal_only: 'Approved personal calculator only',
-  not_applicable: 'Not applicable',
-  unverified: 'Not verified',
-};
-
-/** Shown instead of the usual lead when the test maker publishes no navigation rule. */
-const UNVERIFIED_NAVIGATION = {
-  title: 'Not published for this test',
-  body: (publisher: string) =>
-    `${publisher} does not publish the navigation rule for this test. The lines below describe how our practice behaves, which is our choice, not the exam’s rule.`,
-};
-
-function formatDate(iso: string): string {
-  return new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-}
-
-export default async function FormatGuidePage({ params }: { params: Promise<{ hub: string }> }) {
-  const { hub: slug } = await params;
+export default async function FormatGuidePage({ params }: Props) {
+  const { locale, hub: slug } = await params;
+  setRequestLocale(locale as Locale);
   const hub = getHub(slug);
   if (!hub) notFound();
+
+  const t = await getTranslations('exams');
+  const format = await getFormatter();
+  const formatDate = (iso: string) => (isIsoDate(iso) ? format.dateTime(new Date(iso), DATE) : iso);
 
   const configs = getConfigsForHub(slug);
   const guides = guidesForHub(slug);
   const trail = [
-    { href: '/', label: 'Home' },
-    { href: '/exams', label: 'Exams' },
+    { href: '/', label: t('breadcrumb.home') },
+    { href: '/exams', label: t('breadcrumb.exams') },
     { href: `/exams/${hub.slug}`, label: hub.name },
-    { label: 'Format and scoring' },
+    { label: t('breadcrumb.format') },
   ];
   const verifiedOn = configs[0]?.verifiedOn ?? '';
 
@@ -82,8 +81,8 @@ export default async function FormatGuidePage({ params }: { params: Promise<{ hu
           breadcrumbSchema(siteUrl(), trail),
           articleSchema({
             siteUrl: siteUrl(),
-            url: absoluteUrl(`/exams/${hub.slug}/format`),
-            headline: `${hub.name} format and scoring guide`,
+            url: languageAlternates(`/exams/${hub.slug}/format`, locale as Locale).canonical,
+            headline: t('format.metaTitle', { name: hub.name }),
             description: hub.tagline,
             datePublished: verifiedOn,
             dateModified: verifiedOn,
@@ -95,7 +94,7 @@ export default async function FormatGuidePage({ params }: { params: Promise<{ hu
       <Breadcrumbs trail={trail} />
 
       <h1 className="font-heading text-3xl font-semibold sm:text-4xl">
-        {hub.name}: format and scoring
+        {t('format.heading', { name: hub.name })}
       </h1>
 
       {/*
@@ -106,11 +105,15 @@ export default async function FormatGuidePage({ params }: { params: Promise<{ hu
         and cycle details follow each summary (§14).
       */}
       <p className="mt-2 text-sm text-ink-subtle">
-        Verified <time dateTime={verifiedOn}>{verifiedOn ? formatDate(verifiedOn) : '—'}</time>
+        {t.rich('format.verified', {
+          date: verifiedOn ? formatDate(verifiedOn) : '—',
+          time: (chunks) => <time dateTime={verifiedOn}>{chunks}</time>,
+        })}
       </p>
+      <OfficialNote className="mt-1 text-sm text-ink-subtle" />
 
       {/* At the smaller size a line gained on a font swap moves the page less (§18). */}
-      <Callout title="In short" className="mt-6" textClassName="text-sm">
+      <Callout title={t('format.inShort')} className="mt-6" textClassName="text-sm">
         {hub.tagline}
       </Callout>
 
@@ -127,48 +130,46 @@ export default async function FormatGuidePage({ params }: { params: Promise<{ hu
           <p className="mt-3 font-serif text-ink">{config.summary}</p>
           <dl className="mt-4 space-y-2 text-sm">
             <div>
-              <dt className="font-medium text-ink-muted">Version described</dt>
+              <dt className="font-medium text-ink-muted">{t('format.versionDescribed')}</dt>
               <dd className="text-ink-subtle">{config.versionLabel}</dd>
             </div>
             <div>
-              <dt className="font-medium text-ink-muted">Admissions cycle</dt>
+              <dt className="font-medium text-ink-muted">{t('format.admissionsCycle')}</dt>
               <dd className="text-ink-subtle">{config.admissionsCycle}</dd>
             </div>
           </dl>
 
           {/* Structure */}
-          <h3 className="mt-8 font-heading text-xl font-semibold">Sections and timing</h3>
+          <h3 className="mt-8 font-heading text-xl font-semibold">{t('format.sectionsHeading')}</h3>
           {/* Focusable, so the table can be scrolled sideways from the keyboard on a narrow screen. */}
           <div
             role="region"
-            aria-label={`Sections and timing of the ${config.name}`}
+            aria-label={t('format.sectionsRegion', { name: config.name })}
             tabIndex={0}
             className="mt-3 relative overflow-x-auto rounded-card border border-line bg-surface"
           >
             <table className="w-full border-collapse text-sm">
-              <caption className="sr-only">
-                Sections of the {config.name} with question counts, time limits and calculator policy.
-              </caption>
+              <caption className="sr-only">{t('format.sectionsCaption', { name: config.name })}</caption>
               <thead>
                 <tr className="border-b border-line">
-                  <th scope="col" className="px-4 py-3 text-left font-semibold">Section</th>
-                  <th scope="col" className="px-4 py-3 text-left font-semibold">Questions</th>
-                  <th scope="col" className="px-4 py-3 text-left font-semibold">Time</th>
-                  <th scope="col" className="px-4 py-3 text-left font-semibold">Calculator</th>
+                  <th scope="col" className="px-4 py-3 text-left font-semibold">{t('table.section')}</th>
+                  <th scope="col" className="px-4 py-3 text-left font-semibold">{t('table.questions')}</th>
+                  <th scope="col" className="px-4 py-3 text-left font-semibold">{t('table.time')}</th>
+                  <th scope="col" className="px-4 py-3 text-left font-semibold">{t('table.calculator')}</th>
                 </tr>
               </thead>
               <tbody>
                 {config.sections.map((section) => (
                   <tr key={section.key} className="border-b border-line last:border-0 align-top">
                     <th scope="row" className="px-4 py-3 text-left font-normal">{section.name}</th>
-                    <td className="px-4 py-3">{section.officialQuestionCount ?? 'Not published'}</td>
+                    <td className="px-4 py-3">{section.officialQuestionCount ?? t('table.notPublished')}</td>
                     <td className="px-4 py-3 tabular-nums">
                       {section.officialTimeMinutes === null
-                        ? 'Not published'
-                        : `${section.officialTimeMinutes} min`}
+                        ? t('table.notPublished')
+                        : t('table.minutes', { value: section.officialTimeMinutes })}
                     </td>
                     <td className="px-4 py-3">
-                      {CALCULATOR_LABEL[section.calculator] ?? section.calculator}
+                      {t(`format.calculator.${section.calculator}`)}
                       {section.calculatorNote ? (
                         <span className="block text-xs text-ink-muted">{section.calculatorNote}</span>
                       ) : null}
@@ -180,16 +181,13 @@ export default async function FormatGuidePage({ params }: { params: Promise<{ hu
           </div>
 
           {/* Navigation */}
-          <h3 className="mt-8 font-heading text-xl font-semibold">Navigation rules</h3>
+          <h3 className="mt-8 font-heading text-xl font-semibold">{t('format.navigationHeading')}</h3>
           {config.sections[0].navigation.source === 'unverified' ? (
-            <Alert tone="caution" title={UNVERIFIED_NAVIGATION.title} className="mt-3">
-              {UNVERIFIED_NAVIGATION.body(config.publisher)}
+            <Alert tone="caution" title={t('format.unverifiedNavigationTitle')} className="mt-3">
+              {t('format.unverifiedNavigationBody', { publisher: config.publisher })}
             </Alert>
           ) : (
-            <p className="mt-2 text-ink-muted">
-              What you may and may not do once a section has started. Our timed practice enforces these
-              on the server, not just in the interface.
-            </p>
+            <p className="mt-2 text-ink-muted">{t('format.navigationLead')}</p>
           )}
           <ul className="mt-3 list-disc space-y-1.5 ps-5">
             {describePolicy(config.sections[0].navigation).map((line) => (
@@ -198,24 +196,27 @@ export default async function FormatGuidePage({ params }: { params: Promise<{ hu
           </ul>
 
           {/* Scoring */}
-          <h3 className="mt-8 font-heading text-xl font-semibold">Scoring</h3>
+          <h3 className="mt-8 font-heading text-xl font-semibold">{t('format.scoringHeading')}</h3>
           <dl className="mt-3 grid gap-x-6 gap-y-2 sm:grid-cols-[12rem_1fr]">
-            <dt className="text-sm font-medium text-ink-muted">Correct answer</dt>
-            <dd className="text-sm">{config.scoring.pointsCorrect} point(s)</dd>
-            <dt className="text-sm font-medium text-ink-muted">Wrong answer</dt>
+            <dt className="text-sm font-medium text-ink-muted">{t('format.correct')}</dt>
+            <dd className="text-sm">{t('format.points', { points: config.scoring.pointsCorrect })}</dd>
+            <dt className="text-sm font-medium text-ink-muted">{t('format.wrong')}</dt>
             <dd className="text-sm">
               {config.scoring.pointsIncorrect === 0
-                ? 'No penalty'
-                : `${config.scoring.pointsIncorrect} point(s) — a real penalty`}
+                ? t('format.noPenalty')
+                : t('format.penalty', { points: config.scoring.pointsIncorrect })}
             </dd>
-            <dt className="text-sm font-medium text-ink-muted">Left blank</dt>
-            <dd className="text-sm">{config.scoring.pointsOmitted} point(s)</dd>
+            <dt className="text-sm font-medium text-ink-muted">{t('format.blank')}</dt>
+            <dd className="text-sm">{t('format.points', { points: config.scoring.pointsOmitted })}</dd>
             {config.scoring.officialScale ? (
               <>
-                <dt className="text-sm font-medium text-ink-muted">Reported scale</dt>
+                <dt className="text-sm font-medium text-ink-muted">{t('format.reportedScale')}</dt>
                 <dd className="text-sm">
-                  {config.scoring.officialScale.label}: {config.scoring.officialScale.min}–
-                  {config.scoring.officialScale.max}
+                  {t('format.scale', {
+                    label: config.scoring.officialScale.label,
+                    min: config.scoring.officialScale.min,
+                    max: config.scoring.officialScale.max,
+                  })}
                   {config.scoring.officialScale.note ? (
                     <span className="block text-ink-muted">{config.scoring.officialScale.note}</span>
                   ) : null}
@@ -232,18 +233,15 @@ export default async function FormatGuidePage({ params }: { params: Promise<{ hu
             </ul>
           ) : null}
 
-          <Alert tone="info" title="Why we do not give you a scaled score" className="mt-5">
+          <Alert tone="info" title={t('format.scaledScoreTitle')} className="mt-5">
             {config.scoring.scaledEstimate.enabled
               ? config.scoring.scaledEstimate.method
               : config.scoring.scaledEstimate.reason}
           </Alert>
 
           {/* Taxonomy */}
-          <h3 className="mt-8 font-heading text-xl font-semibold">What is tested</h3>
-          <p className="mt-2 text-ink-muted">
-            {config.publisher}&rsquo;s own content domains. Our question bank is tagged against these,
-            so a results page names the same skills the test maker does.
-          </p>
+          <h3 className="mt-8 font-heading text-xl font-semibold">{t('format.testedHeading')}</h3>
+          <p className="mt-2 text-ink-muted">{t('format.testedLead', { publisher: config.publisher })}</p>
           <ul className="mt-3 space-y-3">
             {config.domains.map((domain) => (
               <li key={domain.slug}>
@@ -269,12 +267,9 @@ export default async function FormatGuidePage({ params }: { params: Promise<{ hu
           {config.unverified.length > 0 ? (
             <>
               <h3 className="mt-8 font-heading text-xl font-semibold">
-                What {config.publisher} does not publish
+                {t('format.unpublishedHeading', { publisher: config.publisher })}
               </h3>
-              <p className="mt-2 text-ink-muted">
-                We could not verify the following from an official source. Rather than guess, we
-                switch off any feature that would depend on them, and we say so here.
-              </p>
+              <p className="mt-2 text-ink-muted">{t('format.unpublishedLead')}</p>
               <ul className="mt-3 list-disc space-y-1.5 ps-5 text-sm text-ink-muted">
                 {config.unverified.map((rule) => (
                   <li key={rule}>{rule}</li>
@@ -284,9 +279,9 @@ export default async function FormatGuidePage({ params }: { params: Promise<{ hu
           ) : null}
 
           {/* Sources */}
-          <h3 className="mt-8 font-heading text-xl font-semibold">Sources</h3>
+          <h3 className="mt-8 font-heading text-xl font-semibold">{t('format.sourcesHeading')}</h3>
           <p className="mt-2 text-sm text-ink-muted">
-            {`Compiled by ${SITE.publisher} from ${hub.publisher}’s published pages. Each source shows the date it was checked.`}
+            {t('format.sourcesLead', { compiler: SITE.publisher, publisher: hub.publisher })}
           </p>
           <ol className="mt-3 space-y-2 text-sm">
             {config.sources.map((source, index) => (
@@ -296,7 +291,7 @@ export default async function FormatGuidePage({ params }: { params: Promise<{ hu
                   {source.label}
                 </a>{' '}
                 <span className="text-ink-muted">
-                  — {source.publisher}, checked {source.verifiedOn}
+                  {t('format.sourceChecked', { publisher: source.publisher, date: formatDate(source.verifiedOn) })}
                 </span>
               </li>
             ))}
@@ -306,7 +301,7 @@ export default async function FormatGuidePage({ params }: { params: Promise<{ hu
 
       {guides.length > 0 ? (
         <Card className="mt-10">
-          <h2 className="font-heading text-lg font-semibold">Related guides</h2>
+          <h2 className="font-heading text-lg font-semibold">{t('format.relatedGuides')}</h2>
           <ul className="mt-3 space-y-2">
             {guides.map((guide) => (
               <li key={guide.slug}>
@@ -318,9 +313,9 @@ export default async function FormatGuidePage({ params }: { params: Promise<{ hu
       ) : null}
 
       <div className="mt-8 flex flex-wrap gap-3">
-        <ButtonLink href={`/practice/${configs[0].examKey}`}>Start practising</ButtonLink>
+        <ButtonLink href={`/practice/${configs[0].examKey}`}>{t('format.startPractising')}</ButtonLink>
         <ButtonLink href={`/exams/${hub.slug}`} variant="secondary">
-          Back to {hub.name}
+          {t('format.backTo', { name: hub.name })}
         </ButtonLink>
       </div>
     </Container>

@@ -1,9 +1,10 @@
 'use client';
 
 import { useId, useState } from 'react';
+import { useLocale, useTranslations } from 'next-intl';
 import { Link, useRouter } from '@/i18n/navigation';
 import { Alert, Button, buttonClass, cx, fieldClass } from '@/components/ui';
-import { CodeField, NETWORK_ERROR, answerMessage, isCodeError, postJson } from '@/components/auth/email-code';
+import { CodeField, answerMessage, emailChunk, isCodeError, postJson } from '@/components/auth/email-code';
 
 /**
  * Sign-in with an emailed code, in two steps: the address, then the code.
@@ -21,6 +22,9 @@ export function CodeSignInForm({
   passwordHref: string;
   ttlMinutes: number;
 }) {
+  const t = useTranslations('auth');
+  // The email goes out in the language of the page it was asked for on.
+  const locale = useLocale();
   const router = useRouter();
   const id = useId();
   const [step, setStep] = useState<'email' | 'code'>('email');
@@ -38,15 +42,15 @@ export function CodeSignInForm({
     setSubmitting(true);
     setError(null);
     setCodeInvalid(false);
-    const answer = await postJson('/api/auth/code', { purpose: 'sign-in', email });
+    const answer = await postJson('/api/auth/code', { purpose: 'sign-in', email, locale });
     setSubmitting(false);
 
-    if (!answer) return setError(NETWORK_ERROR);
+    if (!answer) return setError(t('errors.network'));
     if (!answer.ok) {
       return setError(
         answer.code === 'invalid-request'
-          ? 'Check the email address - that one does not look like a valid address.'
-          : answerMessage(answer, 'We could not send a code. Please try again.'),
+          ? t('errors.invalidEmail')
+          : answerMessage(t, answer, t('codeSent.sendFallback')),
       );
     }
     setStep('code');
@@ -62,12 +66,12 @@ export function CodeSignInForm({
 
     if (!answer) {
       setSubmitting(false);
-      return setError(NETWORK_ERROR);
+      return setError(t('errors.network'));
     }
     if (!answer.ok) {
       setSubmitting(false);
       setCodeInvalid(isCodeError(answer.code));
-      return setError(answerMessage(answer, 'We could not sign you in. Please try again.'));
+      return setError(answerMessage(t, answer, t('signIn.form.fallback')));
     }
     router.push(destination);
     router.refresh();
@@ -84,7 +88,11 @@ export function CodeSignInForm({
     <form onSubmit={handleSubmit} noValidate className="space-y-5">
       <div aria-live="assertive" aria-atomic="true">
         {error ? (
-          <Alert tone="negative" role="alert" title={step === 'email' ? 'Code not sent' : 'Sign-in failed'}>
+          <Alert
+            tone="negative"
+            role="alert"
+            title={step === 'email' ? t('codeSent.notSentTitle') : t('codeSignIn.form.failedTitle')}
+          >
             <p id={errorId}>{error}</p>
           </Alert>
         ) : null}
@@ -94,7 +102,7 @@ export function CodeSignInForm({
         <>
           <div>
             <label htmlFor={`${id}-email`} className="mb-1.5 block text-sm font-medium">
-              Email address
+              {t('fields.email')}
             </label>
             <input
               id={`${id}-email`}
@@ -111,22 +119,24 @@ export function CodeSignInForm({
               className={fieldClass()}
             />
             <p id={`${id}-email-hint`} className="mt-1.5 text-sm text-ink-muted">
-              The address you created your account with. We will email it a 6-digit code.
+              {t('fields.accountEmailHint')}
             </p>
           </div>
 
           <Button type="submit" size="lg" full loading={submitting}>
-            Email me a code
+            {t('codeSignIn.form.requestCode')}
           </Button>
         </>
       ) : (
         <>
           <div role="status" aria-live="polite">
-            <Alert tone="info" title={resent ? 'New code sent' : 'Check your email'}>
+            <Alert tone="info" title={resent ? t('codeSent.resentTitle') : t('codeSent.title')}>
               <p>
-                If an account uses <span className="break-all font-medium">{email}</span>, we have sent it a
-                6-digit code{resent ? ' and the earlier one no longer works' : ''}. It expires in {ttlMinutes}{' '}
-                minutes. It can take a minute to arrive, so check your spam folder too.
+                {t.rich(resent ? 'codeSent.ifAccountResent' : 'codeSent.ifAccount', {
+                  email,
+                  minutes: ttlMinutes,
+                  addr: emailChunk,
+                })}
               </p>
             </Alert>
           </div>
@@ -143,7 +153,7 @@ export function CodeSignInForm({
           />
 
           <Button type="submit" size="lg" full loading={submitting}>
-            Sign in
+            {t('codeSignIn.form.submit')}
           </Button>
 
           <div className="flex flex-wrap gap-x-4 gap-y-2">
@@ -153,7 +163,7 @@ export function CodeSignInForm({
               disabled={submitting}
               className={cx(buttonClass({ variant: 'quiet', size: 'sm' }), '-ms-3.5 min-h-11')}
             >
-              Send a new code
+              {t('codeSent.sendNew')}
             </button>
             <button
               type="button"
@@ -165,14 +175,14 @@ export function CodeSignInForm({
               disabled={submitting}
               className={cx(buttonClass({ variant: 'quiet', size: 'sm' }), 'min-h-11')}
             >
-              Use a different address
+              {t('codeSent.differentAddress')}
             </button>
           </div>
         </>
       )}
 
       <p className="text-sm">
-        <Link href={passwordHref}>Sign in with your password instead</Link>
+        <Link href={passwordHref}>{t('codeSignIn.form.usePassword')}</Link>
       </p>
     </form>
   );
