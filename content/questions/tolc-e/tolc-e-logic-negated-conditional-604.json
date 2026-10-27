@@ -80,5 +80,48 @@
     "conditions",
     "negation-of-conditional",
     "no-calculator"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "In questa domanda, un'affermazione della forma «se P, allora Q» va intesa come in logica formale: è falsa solo quando P è vera e Q è falsa.\n\nUn editorialista scrive: «Non è vero che, se la banca centrale ha abbassato i tassi di interesse l'anno scorso, i risparmi delle famiglie sono diminuiti.» Si supponga che l'editorialista abbia ragione.\n\nQuale delle seguenti affermazioni deve essere vera?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "I risparmi delle famiglie sono diminuiti in ogni anno in cui la banca centrale ha abbassato i tassi di interesse."
+        },
+        {
+          "id": "b",
+          "textMd": "La banca centrale ha abbassato i tassi di interesse l'anno scorso, e i risparmi delle famiglie sono diminuiti."
+        },
+        {
+          "id": "c",
+          "textMd": "La banca centrale non ha abbassato i tassi di interesse l'anno scorso, e i risparmi delle famiglie non sono diminuiti."
+        },
+        {
+          "id": "d",
+          "textMd": "La banca centrale ha abbassato i tassi di interesse l'anno scorso, e i risparmi delle famiglie non sono diminuiti."
+        },
+        {
+          "id": "e",
+          "textMd": "La banca centrale non ha abbassato i tassi di interesse l'anno scorso, e i risparmi delle famiglie sono diminuiti."
+        }
+      ],
+      "explanationMd": "Un condizionale «se P, allora Q» è falso in un solo caso: P vera e Q falsa. Quindi dire che il condizionale **non** è vero significa dire che ci troviamo proprio in quel caso. Qui P è «la banca ha abbassato i tassi l'anno scorso» e Q è «i risparmi delle famiglie sono diminuiti». Che l'editorialista abbia ragione significa quindi che la banca ha abbassato i tassi e che i risparmi non sono diminuiti.\n\nNon leggere la negazione come «P è falsa» o come «P e Q sono entrambe vere»: una condizione falsa rende vero il condizionale, e anche una condizione vera con una conseguenza vera lo rende vero, quindi nessuna delle due situazioni può essere ciò che l'editorialista nega. Verifica ogni alternativa chiedendoti se il condizionale sarebbe vero o falso nella situazione che descrive; solo una situazione che rende falso il condizionale è compatibile con il fatto che l'editorialista abbia ragione.",
+      "distractorRationale": {
+        "c": "Tratta «non (se P allora Q)» come se dicesse «P è falsa». In logica formale un condizionale con condizione falsa è vero, non falso, quindi in questa situazione l'editorialista avrebbe torto.",
+        "e": "Con P falsa il condizionale «se la banca ha abbassato i tassi, i risparmi sono diminuiti» è automaticamente vero, quindi l'editorialista, che dice che non è vero, non potrebbe avere ragione. Entrambe le parti sono sbagliate.",
+        "b": "È la situazione in cui il condizionale è vero, cioè proprio ciò che l'editorialista nega. Mantiene la condizione ma rovescia la conseguenza.",
+        "a": "Afferma il condizionale in forma generale, l'opposto di ciò che dice l'editorialista. Secondo l'editorialista, l'anno scorso è proprio un anno in cui i tassi sono stati abbassati e i risparmi non sono diminuiti."
+      },
+      "accessibilityText": "Una domanda di deduzione su un condizionale negato. Il testo stabilisce che «se P, allora Q» va inteso come in logica formale ed è falso solo quando P è vera e Q è falsa. Un editorialista afferma che non è vero che, se la banca centrale ha abbassato i tassi di interesse l'anno scorso, i risparmi delle famiglie sono diminuiti. La domanda chiede quale di cinque affermazioni deve essere vera se l'editorialista ha ragione. Le affermazioni dicono: la banca non ha abbassato i tassi e i risparmi non sono diminuiti; la banca non ha abbassato i tassi e i risparmi sono diminuiti; la banca ha abbassato i tassi e i risparmi sono diminuiti; i risparmi sono diminuiti in ogni anno in cui la banca ha abbassato i tassi; la banca ha abbassato i tassi e i risparmi non sono diminuiti.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-e",
+        "checkedBy": "tolc-italian-checker-e",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; formal-logic reading of 'se P, allora Q' preserved; negation 'Non e vero che' intact."
+      }
+    }
+  }
 }

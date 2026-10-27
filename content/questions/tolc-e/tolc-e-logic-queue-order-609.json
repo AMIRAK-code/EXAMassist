@@ -79,5 +79,48 @@
     "arrangements",
     "ordering",
     "no-calculator"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Cinque amici, Giulia, Marco, Nadia, Paolo e Rita, sono in un'unica fila davanti a una biglietteria. Si sa quanto segue.\n\n- Rita è in fondo alla fila.\n- Marco è immediatamente davanti a Nadia, senza nessuno tra loro.\n- Giulia è da qualche parte davanti a Marco, ma non è in testa alla fila.\n\nChi è il terzo della fila, contando dalla testa?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Paolo"
+        },
+        {
+          "id": "b",
+          "textMd": "Nadia"
+        },
+        {
+          "id": "c",
+          "textMd": "Rita"
+        },
+        {
+          "id": "d",
+          "textMd": "Marco"
+        },
+        {
+          "id": "e",
+          "textMd": "Giulia"
+        }
+      ],
+      "explanationMd": "Numera le posizioni da 1 a 5 partendo dalla testa e colloca per primi gli indizi più restrittivi.\n\nRita è in fondo, quindi occupa la posizione 5. Restano le posizioni da 1 a 4 per gli altri quattro. Marco e Nadia formano una coppia legata, con Marco immediatamente davanti a Nadia, quindi occupano due posizioni adiacenti tra 1 e 4. Giulia è davanti a Marco, quindi la coppia non può iniziare dalla posizione 1, e non può iniziare nemmeno dalla posizione 2, perché allora per Giulia resterebbe solo la posizione 1, e Giulia non può essere prima. Quindi Marco e Nadia occupano le posizioni 3 e 4, Giulia ha la posizione 2 e Paolo la posizione 1.\n\nLa fila è Paolo, Giulia, Marco, Nadia, Rita. Il terzo è **Marco**.\n\nVerifica con ciascun indizio: Rita ultima, Marco subito davanti a Nadia, Giulia davanti a Marco e non prima. Sono tutti rispettati.",
+      "distractorRationale": {
+        "e": "Giulia è seconda, non terza. Sceglierla deriva dal collocarla prima di aver fissato la coppia Marco-Nadia; una volta che la coppia è costretta in terza e quarta posizione, Giulia, che non può essere prima, occupa il posto appena davanti a loro.",
+        "b": "Nadia è quarta, subito dietro Marco. Sceglierla significa mettere la coppia legata un posto troppo avanti, in seconda e terza posizione, il che lascerebbe a Giulia solo il primo posto, e il terzo indizio lo vieta.",
+        "a": "Paolo è primo. È l'unico amico che nessun indizio nomina, quindi viene la tentazione di metterlo in mezzo, ma Giulia non può essere prima e Marco e Nadia non possono stare in testa perché Giulia deve essere davanti a Marco, quindi il primo posto resta a Paolo.",
+        "c": "Rita è quinta, in fondo, per il primo indizio. Sceglierla significa perdere di vista l'unico indizio che fissa direttamente una posizione."
+      },
+      "accessibilityText": "Un problema di logica sull'ordinamento. Cinque amici, Giulia, Marco, Nadia, Paolo e Rita, sono in un'unica fila. Rita è in fondo; Marco è immediatamente davanti a Nadia; Giulia è da qualche parte davanti a Marco ma non è in testa. La domanda chiede chi è il terzo dalla testa della fila. Le cinque alternative sono i nomi dei cinque amici.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-e",
+        "checkedBy": "tolc-italian-checker-e",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; order P,G,M,N,R -> third Marco."
+      }
+    }
+  }
 }

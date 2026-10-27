@@ -78,5 +78,48 @@
     "absolute-value",
     "inequalities",
     "counting-integers"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Quanti numeri interi $x$ soddisfano $|x-3| < 4.5$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$5$"
+        },
+        {
+          "id": "b",
+          "textMd": "$7$"
+        },
+        {
+          "id": "c",
+          "textMd": "$8$"
+        },
+        {
+          "id": "d",
+          "textMd": "$9$"
+        },
+        {
+          "id": "e",
+          "textMd": "$10$"
+        }
+      ],
+      "explanationMd": "Traduci il valore assoluto in una distanza: $|x-3|$ è la distanza di $x$ da 3, quindi la condizione dice «$x$ dista meno di 4,5 unità da 3».\n\n**Passo 1 — elimina il valore assoluto.** $-4.5 < x - 3 < 4.5$, e sommando 3 a ogni membro si ottiene $-1.5 < x < 7.5$.\n\n**Passo 2 — elenca gli interi compresi.** Il più piccolo intero maggiore di $-1.5$ è $-1$ e il più grande intero minore di $7.5$ è $7$. Contando entrambi gli estremi: $7-(-1)+1 = 9$.\n\n**Come verificare.** Conta in base alla distanza da 3. Il 3 stesso va bene; poi 4 e 2, 5 e 1, 6 e 0, 7 e −1 distano tutti al più 4 da 3, che è meno di 4,5, quindi contano tutti; 8 e −2 distano 5 e non vanno bene. In tutto sono $1 + 2\\times 4 = 9$ interi.",
+      "distractorRationale": {
+        "a": "Guarda solo a destra di 3, contando 3, 4, 5, 6, 7 (gli interi fino a 4,5 sopra 3), e dimentica che una disequazione con valore assoluto ammette anche numeri minori di 3.",
+        "b": "Arrotonda 4,5 per difetto a 4. Con il limite 4 gli interi vanno solo da 0 a 6, cioè sono 7, ma qui il limite è 4,5, quindi anche −1 e 7 sono abbastanza vicini a 3.",
+        "c": "Sottrae i valori estremi degli interi, $7-(-1)=8$, invece di contarli. Una sequenza di interi da −1 a 7 comprende entrambi gli estremi, quindi ne contiene uno in più della differenza.",
+        "e": "Vede un intervallo di ampiezza 9 (da −1,5 a 7,5) e aggiunge uno, come quando si contano i paletti di una staccionata. Quella regola vale quando entrambi gli estremi sono interi da contare; qui entrambi gli estremi sono semi-interi, quindi non compare alcun intero in più."
+      },
+      "accessibilityText": "La domanda chiede quanti numeri interi x soddisfano la disequazione: il valore assoluto di x meno 3 è minore di 4 virgola 5. Le cinque alternative sono i numeri interi cinque, sette, otto, nove e dieci.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-e",
+        "checkedBy": "tolc-italian-checker-e",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; decimal point inside maths ($4.5$) acceptable. Integers -1..7 = 9."
+      }
+    }
+  }
 }
