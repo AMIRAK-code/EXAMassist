@@ -3,7 +3,7 @@ import { Link } from '@/i18n/navigation';
 import { headers } from 'next/headers';
 import { getCurrentUser } from '@/lib/auth/session';
 import { getDb } from '@/lib/db';
-import { absoluteUrl, SITE, siteUrl } from '@/lib/site';
+import { absoluteUrl, SITE, shareImages, siteUrl } from '@/lib/site';
 import { JsonLd, breadcrumbSchema } from '@/components/seo/json-ld';
 import { EXAM_CONFIGS, examTestName, getExamConfig } from '@/lib/exams/registry';
 import { countPageView, subjectFor } from '@/lib/analytics/funnel';
@@ -82,7 +82,12 @@ export const metadata: Metadata = {
   title: COPY.title,
   description: COPY.metaDescription,
   alternates: { canonical: absoluteUrl('/pricing') },
-  openGraph: { url: absoluteUrl('/pricing'), title: `${COPY.title} | ${SITE.shortName}`, description: COPY.metaDescription },
+  openGraph: {
+    url: absoluteUrl('/pricing'),
+    title: `${COPY.title} | ${SITE.shortName}`,
+    description: COPY.metaDescription,
+    images: shareImages('site', COPY.title),
+  },
 };
 
 const TRAIL = [{ href: '/', label: COPY.crumbs.home }, { label: COPY.crumbs.here }];
