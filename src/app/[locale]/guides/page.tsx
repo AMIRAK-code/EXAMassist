@@ -2,7 +2,8 @@ import { Link } from '@/i18n/navigation';
 import type { Metadata } from 'next';
 import { listGuides } from '@/lib/content/guides';
 import { getHub } from '@/lib/exams/registry';
-import { SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
+import { SITE, shareImages, siteUrl } from '@/lib/site';
+import { pageAlternates } from '@/i18n/alternates';
 import { Breadcrumbs, Card, Container, PageHeader } from '@/components/ui';
 import { JsonLd, breadcrumbSchema } from '@/components/seo/json-ld';
 
@@ -10,17 +11,20 @@ const TITLE = 'Guides and worked explanations';
 const DESCRIPTION =
   'Plain explanations of how these admission exams actually work: scoring rules, format changes and strategy, each one sourced to the test maker.';
 
-export const metadata: Metadata = {
-  title: TITLE,
-  description: DESCRIPTION,
-  alternates: { canonical: absoluteUrl('/guides') },
-  openGraph: {
-    url: absoluteUrl('/guides'),
-    title: `${TITLE} | ${SITE.shortName}`,
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const alternates = await pageAlternates(params, '/guides');
+  return {
+    title: TITLE,
     description: DESCRIPTION,
-    images: shareImages('site', TITLE),
-  },
-};
+    alternates,
+    openGraph: {
+      url: alternates.canonical,
+      title: `${TITLE} | ${SITE.shortName}`,
+      description: DESCRIPTION,
+      images: shareImages('site', TITLE),
+    },
+  };
+}
 
 export default function GuidesPage() {
   const guides = listGuides();

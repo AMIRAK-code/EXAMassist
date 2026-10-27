@@ -2,7 +2,8 @@ import { Link } from '@/i18n/navigation';
 import type { Metadata } from 'next';
 import { headers } from 'next/headers';
 import { getDb } from '@/lib/db';
-import { SITE, absoluteUrl, googleSiteVerification, indexingEnabled, shareImages, siteUrl } from '@/lib/site';
+import { SITE, googleSiteVerification, indexingEnabled, shareImages, siteUrl } from '@/lib/site';
+import { pageAlternates } from '@/i18n/alternates';
 import { getHub, listHubs } from '@/lib/exams/registry';
 import { buildHomeData, initialSample, sourceExample } from '@/lib/home/home-data';
 import { ExamPreview } from '@/components/home/exam-preview';
@@ -25,14 +26,15 @@ export const dynamic = 'force-dynamic';
  * only at the home page, so the tag lives here rather than in the root layout,
  * which would have made every prerendered page dynamic.
  */
-export function generateMetadata(): Metadata {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const google = indexingEnabled() ? googleSiteVerification() : null;
+  const alternates = await pageAlternates(params, '/');
   return {
     title: `${SITE.name} — ${SITE.tagline}`,
     description: SITE.description,
-    alternates: { canonical: absoluteUrl('/') },
+    alternates,
     openGraph: {
-      url: absoluteUrl('/'),
+      url: alternates.canonical,
       title: `${SITE.name} — ${SITE.tagline}`,
       description: SITE.description,
       images: shareImages('site', `${SITE.name}: ${SITE.tagline}`),

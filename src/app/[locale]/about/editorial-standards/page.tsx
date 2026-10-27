@@ -2,6 +2,7 @@ import { Link } from '@/i18n/navigation';
 import { PAGE_DATES, longDate } from '@/lib/content/page-dates';
 import type { Metadata } from 'next';
 import { SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
+import { pageAlternates } from '@/i18n/alternates';
 import { Badge, Breadcrumbs, Card, Container, DefinitionList, PageHeader } from '@/components/ui';
 import { JsonLd, articleSchema, breadcrumbSchema } from '@/components/seo/json-ld';
 
@@ -29,20 +30,23 @@ const UPDATED = PAGE_DATES.editorialStandards.updated;
 const PUBLISHED_LABEL = longDate(PUBLISHED);
 const UPDATED_LABEL = longDate(UPDATED);
 
-export const metadata: Metadata = {
-  title: TITLE,
-  description: DESCRIPTION,
-  alternates: { canonical: absoluteUrl(PATH) },
-  openGraph: {
-    type: 'article',
-    url: absoluteUrl(PATH),
-    title: `${TITLE} | ${SITE.shortName}`,
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const alternates = await pageAlternates(params, PATH);
+  return {
+    title: TITLE,
     description: DESCRIPTION,
-    images: shareImages('site', TITLE),
-    publishedTime: PUBLISHED,
-    modifiedTime: UPDATED,
-  },
-};
+    alternates,
+    openGraph: {
+      type: 'article',
+      url: alternates.canonical,
+      title: `${TITLE} | ${SITE.shortName}`,
+      description: DESCRIPTION,
+      images: shareImages('site', TITLE),
+      publishedTime: PUBLISHED,
+      modifiedTime: UPDATED,
+    },
+  };
+}
 
 const STATES: Array<{ term: string; value: string }> = [
   {
