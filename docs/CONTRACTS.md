@@ -96,6 +96,21 @@ learner may see: after submission, or in untimed practice once the item is
 answered. Any new surface that returns question data must make that choice
 explicitly.
 
+## 8. Entitlements — `src/lib/billing/entitlements.ts`
+
+Access to paid features is decided in one place. Plans, prices and the
+feature matrix live only in `src/lib/billing/plans.ts`.
+
+- Server code that starts a paid session, opens the study plan or calls the
+  AI tutor goes through `requireEntitlement` / `loadEntitlements`. Do not
+  check plans, statuses or roles anywhere else.
+- A refusal is a 402 `upgrade-required` (403 `account-required` for the free
+  diagnostic) whose `detail.upgradeHref` is the pricing page for that exam.
+  Every surface turns it into that link or an `UpgradePrompt`, never an error
+  page.
+- With `BILLING_ENFORCED` not `true`, everything is open; with it `true` and
+  a Stripe key missing, the check throws rather than opening anything.
+
 ## Changing a contract
 
 1. State the problem and the proposed shape.

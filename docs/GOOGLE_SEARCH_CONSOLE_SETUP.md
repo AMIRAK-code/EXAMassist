@@ -119,13 +119,13 @@ to index some pages. That is expected and not a configuration error.
 | Group | URLs |
 | --- | --- |
 | Home and listings | `/`, `/exams`, `/guides` |
-| Plans | `/premium` |
+| Plans | `/pricing` (the old `/premium` redirects here permanently) |
 | About | `/about/editorial-standards`, `/about/how-scoring-works`, `/about/privacy`, `/about/terms` |
 | Exam pages (8) | `/exams/bocconi-online-test`, `/exams/digital-sat`, `/exams/enhanced-act`, `/exams/lsat`, `/exams/gmat`, `/exams/gre`, `/exams/politecnico-di-torino-til`, `/exams/cisia-tolc` |
 | Format guides (8) | each exam page + `/format` |
 | Guides (5) | `/guides/bocconi-test-negative-marking-when-to-guess`, `/guides/bocconi-undergraduate-vs-law-test`, `/guides/bocconi-test-preparation-plan`, `/guides/lsat-without-logic-games`, `/guides/why-practice-tests-cannot-give-you-a-real-sat-score` |
 
-`/premium?exam=…` and `/?exam=…` are variants of the same pages; their
+`/pricing?exam=…` and `/?exam=…` are variants of the same pages; their
 canonical points to the plain URL, so they should not be indexed separately.
 
 ### Deliberately excluded
@@ -137,7 +137,7 @@ canonical points to the plain URL, so they should not be indexed separately.
 | `/attempt/…` (sessions and results) | robots.txt and `noindex` | Blocked by robots.txt |
 | `/practice/…`, `/start/…`, `/free-test/…` | robots.txt and `noindex` | Blocked by robots.txt |
 | `/sign-in`, `/sign-in/code`, `/sign-up` | robots.txt and `noindex` | Blocked by robots.txt |
-| `/premium/welcome` (after checkout) | robots.txt and `noindex` | Blocked by robots.txt |
+| `/checkout`, `/checkout/complete` | robots.txt and `noindex` | Blocked by robots.txt |
 | `/forgot-password`, `/verify-email` | `noindex` (404 when email codes are off) | Excluded by 'noindex' tag, or Not found (404) |
 | `/report-question` | `noindex, follow` | Excluded by 'noindex' tag |
 | Unknown URLs | 404 with `noindex` | Not found (404) |
@@ -151,7 +151,7 @@ robots.txt" with no content; it holds no private data.
 
 - Googlebot and bingbot have no group of their own, so they follow `*`:
   everything is allowed except the private paths above. `/`, `/exams/*`,
-  `/guides/*`, `/about/*` and `/premium` are all reachable.
+  `/guides/*`, `/about/*` and `/pricing` are all reachable.
 - AI search and user-triggered fetchers (OAI-SearchBot, Claude-SearchBot,
   PerplexityBot, ChatGPT-User, Claude-User) get the same rules as `*`.
 - Training crawlers are disallowed everywhere: GPTBot, ClaudeBot,
@@ -168,7 +168,7 @@ robots.txt" with no content; it holds no private data.
 | Page | Types |
 | --- | --- |
 | `/` | Organization (with logo and an explicit independence statement), WebSite |
-| `/exams`, `/guides`, `/premium`, `/about/terms` | BreadcrumbList |
+| `/exams`, `/guides`, `/pricing`, `/about/terms` | BreadcrumbList |
 | Exam pages, except Bocconi | BreadcrumbList, Article |
 | `/exams/bocconi-online-test` | BreadcrumbList, WebPage |
 | Format guides, guides, editorial standards, how scoring works, privacy | BreadcrumbList, Article |
@@ -202,7 +202,7 @@ verification token:
 
 Changes made by this audit: `lastmod` for the nine fixed pages that had none
 (from `src/lib/content/page-dates.ts`, which the pages also display), a
-BreadcrumbList on `/premium`, and support for the verification token.
+BreadcrumbList on the plans page (then `/premium`, now `/pricing`), and support for the verification token.
 
 ## 10. After setup
 
