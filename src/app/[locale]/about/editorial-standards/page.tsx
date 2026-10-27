@@ -18,7 +18,7 @@ import { JsonLd, articleSchema, breadcrumbSchema } from '@/components/seo/json-l
 const PATH = '/about/editorial-standards';
 const TITLE = 'Editorial standards';
 const DESCRIPTION =
-  'How Examer creates, checks and publishes practice questions: original, AI-assisted drafting, a blind solve by a separate AI reviewer, mechanical comparison against the answer key, and quarantine instead of quiet correction.';
+  `How ${SITE.name} creates, checks and publishes practice questions: original, AI-assisted drafting, a blind solve by a separate AI reviewer, mechanical comparison against the answer key, and quarantine instead of quiet correction.`;
 
 /**
  * Real dates: written on 2026-09-22; revised on 2026-09-24 to state plainly
@@ -152,7 +152,7 @@ export default function EditorialStandardsPage() {
       <Breadcrumbs trail={trail} />
 
       <PageHeader
-        eyebrow="About Examer"
+        eyebrow={`About ${SITE.name}`}
         title={TITLE}
         lead="What has to be true before a question is shown to anyone, and what we refuse to claim about it afterwards."
       />

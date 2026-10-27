@@ -19,7 +19,7 @@ import { MIN_ATTEMPTS_FOR_SIGNAL } from '@/lib/learning/recommend';
 const PATH = '/about/how-scoring-works';
 const TITLE = 'How our scoring works';
 const DESCRIPTION =
-  'What Examer reports after a practice session — raw marks, accuracy by topic and pacing — and why it reports no scaled score, no percentile and no admission estimate for any exam, with the per-exam rules for correct, wrong and omitted answers.';
+  `What ${SITE.name} reports after a practice session — raw marks, accuracy by topic and pacing — and why it reports no scaled score, no percentile and no admission estimate for any exam, with the per-exam rules for correct, wrong and omitted answers.`;
 
 /** Real dates: written on 2026-09-22; revised on 2026-09-24 to add the accuracy-by-topic illustration. */
 const PUBLISHED = PAGE_DATES.howScoringWorks.published;
@@ -143,7 +143,7 @@ export default function HowScoringWorksPage() {
       <Breadcrumbs trail={trail} />
 
       <PageHeader
-        eyebrow="About Examer"
+        eyebrow={`About ${SITE.name}`}
         title={TITLE}
         lead="What a practice result here means, what it deliberately does not contain, and the scoring rule each exam actually applies."
       />

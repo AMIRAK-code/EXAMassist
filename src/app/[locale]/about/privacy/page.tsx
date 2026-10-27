@@ -18,7 +18,7 @@ import { JsonLd, articleSchema, breadcrumbSchema } from '@/components/seo/json-l
 const PATH = '/about/privacy';
 const TITLE = 'Privacy notice (draft)';
 const DESCRIPTION =
-  'Draft privacy notice for Examer, prepared for legal review: a session cookie and a language cookie, optional email and password, practice history, paid plans through Stripe, no advertising, no third-party analytics, and export or deletion from your account page.';
+  `Draft privacy notice for ${SITE.name}, prepared for legal review: a session cookie and a language cookie, optional email and password, practice history, paid plans through Stripe, no advertising, no third-party analytics, and export or deletion from your account page.`;
 
 /** Real dates: this draft was written on 2026-09-22, revised on 2026-10-05 for Premium, on 2026-10-07 for the daily totals and on 2026-10-27 for the on-site checkout and the language cookie. */
 const PUBLISHED = PAGE_DATES.privacy.published;
@@ -165,7 +165,7 @@ export default function PrivacyPage() {
 
       <div className="mt-8">
         <PageHeader
-          eyebrow="About Examer"
+          eyebrow={`About ${SITE.name}`}
           title="Privacy notice"
           lead="What this application stores, why it stores it, and what it deliberately never collects."
         />
