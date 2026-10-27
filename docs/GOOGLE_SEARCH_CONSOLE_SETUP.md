@@ -157,9 +157,11 @@ robots.txt" with no content; it holds no private data.
   `/guides/*`, `/about/*` and `/premium` are all reachable.
 - AI search and user-triggered fetchers (OAI-SearchBot, Claude-SearchBot,
   PerplexityBot, ChatGPT-User, Claude-User) get the same rules as `*`.
-- Training crawlers are disallowed everywhere: GPTBot, ClaudeBot,
-  Google-Extended (this does not affect Google Search, AI Overviews or AI Mode),
-  Applebot-Extended, Meta-ExternalAgent and MistralAI-Training.
+- Training crawlers were disallowed everywhere at this audit. Since 2026-10-27
+  they get the same rules as `*`: GPTBot, ClaudeBot, Google-Extended (which
+  also lets Gemini ground answers in the pages; it does not affect Google
+  Search, AI Overviews or AI Mode), Applebot-Extended, Meta-ExternalAgent and
+  MistralAI-Training. See [`SEARCH-AND-AI-VISIBILITY.md`](SEARCH-AND-AI-VISIBILITY.md).
 - The `Host:` line Next.js adds is ignored by Google and harmless.
 
 ## 8. Canonicals and structured data, as audited

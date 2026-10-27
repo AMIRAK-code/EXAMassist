@@ -1,6 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { GET as llmsTxtRoute } from '@/app/llms.txt/route';
 import robots from '@/app/robots';
 import sitemap from '@/app/sitemap';
+import { organizationSchema, webSiteSchema } from '@/components/seo/json-ld';
 import { listGuides } from '@/lib/content/guides';
 import { EXAM_HUBS } from '@/lib/exams/registry';
 import { googleSiteVerification } from '@/lib/site';
@@ -53,14 +55,19 @@ describe('robots.txt in production', () => {
     expect(robots().sitemap).toBe(`${SITE}/sitemap.xml`);
   });
 
-  it('allows AI search and user-triggered crawlers and blocks training crawlers', () => {
+  it('names AI search, user-triggered and training crawlers, and gives each the public pages but not the private ones', () => {
     production();
     const rules = robots().rules as Rule[];
-    for (const agent of ['OAI-SearchBot', 'Claude-SearchBot', 'PerplexityBot', 'ChatGPT-User', 'Claude-User']) {
-      expect(list(groupFor(rules, agent)?.disallow), agent).not.toContain('/');
-    }
-    for (const agent of ['GPTBot', 'ClaudeBot', 'Google-Extended', 'Applebot-Extended', 'Meta-ExternalAgent', 'MistralAI-Training']) {
-      expect(list(groupFor(rules, agent)?.disallow), agent).toEqual(['/']);
+    const agents = [
+      'OAI-SearchBot', 'Claude-SearchBot', 'PerplexityBot', 'ChatGPT-User', 'Claude-User',
+      'GPTBot', 'ClaudeBot', 'Google-Extended', 'Applebot-Extended', 'Meta-ExternalAgent', 'MistralAI-Training',
+    ];
+    const star = groupFor(rules, '*')!;
+    for (const agent of agents) {
+      const group = groupFor(rules, agent);
+      expect(group, agent).toBeDefined();
+      expect(list(group!.allow), agent).toEqual(['/']);
+      expect(list(group!.disallow), agent).toEqual(list(star.disallow));
     }
   });
 
@@ -106,6 +113,42 @@ describe('the sitemap in production', () => {
   it('is empty on a deployment that may not be indexed', () => {
     process.env.SEARCH_INDEXING_ENABLED = 'false';
     expect(sitemap()).toEqual([]);
+  });
+});
+
+describe('llms.txt in production', () => {
+  it('links only pages from the sitemap, and every page in it below the listings', async () => {
+    production();
+    const response = llmsTxtRoute();
+    expect(response.status).toBe(200);
+    expect(response.headers.get('content-type')).toContain('text/plain');
+    const text = await response.text();
+    const linked = [...text.matchAll(/\]\((https?:[^)]+)\)/g)].map((match) => match[1]);
+    const listed = sitemap().map((entry) => entry.url);
+    for (const url of linked) expect(listed, url).toContain(url);
+    const listings = ['/', '/exams', '/guides'].map((p) => `${SITE}${p}`);
+    for (const url of listed.filter((u) => !listings.includes(u))) expect(linked, url).toContain(url);
+  });
+
+  it('names the site and its other names, and says it is independent', async () => {
+    production();
+    const text = await llmsTxtRoute().text();
+    expect(text.startsWith('# Examer\n')).toBe(true);
+    expect(text).toContain('UniExamer');
+    expect(text).toContain('not affiliated with');
+  });
+
+  it('is not served on a deployment that may not be indexed', () => {
+    process.env.SEARCH_INDEXING_ENABLED = 'false';
+    expect(llmsTxtRoute().status).toBe(404);
+  });
+});
+
+describe('site name in structured data', () => {
+  it('offers UniExamer and the domain as alternate names', () => {
+    expect(webSiteSchema(SITE, 'Examer', ['UniExamer', 'uniexamer.com']).alternateName).toEqual(['UniExamer', 'uniexamer.com']);
+    expect(organizationSchema(SITE, 'Examer', 'd', ['UniExamer']).alternateName).toEqual(['UniExamer']);
+    expect(webSiteSchema(SITE, 'Examer')).not.toHaveProperty('alternateName');
   });
 });
 

@@ -5,7 +5,7 @@ import { listHubs, requireExamConfig } from '@/lib/exams/registry';
 import { examCoverage } from '@/lib/attempts/availability';
 import { buildHomeData } from '@/lib/home/home-data';
 import { FormatAvailabilityTable } from '@/components/exams/format-availability';
-import { SITE, absoluteUrl, siteUrl } from '@/lib/site';
+import { SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
 import { Badge, Breadcrumbs, ButtonLink, Card, Container, PageHeader } from '@/components/ui';
 import { JsonLd, breadcrumbSchema } from '@/components/seo/json-ld';
 
@@ -13,13 +13,18 @@ export const dynamic = 'force-dynamic';
 
 const TITLE = 'Admission exams we cover';
 const DESCRIPTION =
-  'Format, timing, scoring and practice for the Bocconi Online Test, Digital SAT, Enhanced ACT, LSAT, GMAT and GRE, with undergraduate, law and graduate requirements kept separate.';
+  'Format, timing, scoring and practice for the Bocconi Online Test, Digital SAT, Enhanced ACT, LSAT, GMAT, GRE, Politecnico di Torino TIL and CISIA TOLC, with undergraduate, law and graduate requirements kept separate.';
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: absoluteUrl('/exams') },
-  openGraph: { url: absoluteUrl('/exams'), title: `${TITLE} | ${SITE.shortName}`, description: DESCRIPTION },
+  openGraph: {
+    url: absoluteUrl('/exams'),
+    title: `${TITLE} | ${SITE.shortName}`,
+    description: DESCRIPTION,
+    images: shareImages('site', TITLE),
+  },
 };
 
 const AUDIENCE_LABEL: Record<string, string> = {
