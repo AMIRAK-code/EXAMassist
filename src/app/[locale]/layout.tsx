@@ -30,6 +30,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: { default: title, template: `%s | ${SITE.shortName}` },
     description: t('description'),
     applicationName: SITE.name,
+    // A static file with the logo pack's app icons (192 and 512 px).
+    manifest: '/manifest.webmanifest',
     // Staging and preview deployments must never be indexed.
     robots: indexingEnabled() ? { index: true, follow: true } : { index: false, follow: false, nocache: true },
     // The home page in every language. Pages with their own canonical add
