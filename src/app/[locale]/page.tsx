@@ -1,7 +1,7 @@
 import { Link } from '@/i18n/navigation';
 import type { Metadata } from 'next';
 import { getDb } from '@/lib/db';
-import { SITE, absoluteUrl, googleSiteVerification, indexingEnabled, siteUrl } from '@/lib/site';
+import { SITE, absoluteUrl, googleSiteVerification, indexingEnabled, shareImages, siteUrl } from '@/lib/site';
 import { getHub, listHubs } from '@/lib/exams/registry';
 import { buildHomeData, initialSample, sourceExample } from '@/lib/home/home-data';
 import { ExamPreview } from '@/components/home/exam-preview';
@@ -32,6 +32,7 @@ export function generateMetadata(): Metadata {
       url: absoluteUrl('/'),
       title: `${SITE.name} — ${SITE.tagline}`,
       description: SITE.description,
+      images: shareImages('site', `${SITE.name}: ${SITE.tagline}`),
     },
     ...(google ? { verification: { google } } : {}),
   };
@@ -91,8 +92,8 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
     <div className={accent.variable}>
       <JsonLd
         data={[
-          organizationSchema(siteUrl(), SITE.name, SITE.description),
-          webSiteSchema(siteUrl(), SITE.name),
+          organizationSchema(siteUrl(), SITE.name, SITE.description, SITE.alternateNames),
+          webSiteSchema(siteUrl(), SITE.name, SITE.alternateNames),
         ]}
       />
 

@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import '../globals.css';
-import { SITE, indexingEnabled, siteUrl } from '@/lib/site';
+import { SITE, indexingEnabled, shareImages, siteUrl } from '@/lib/site';
 import { getCurrentUser } from '@/lib/auth/session';
 import { SiteFooter } from '@/components/site/site-footer';
 import { SiteHeader } from '@/components/site/site-header';
@@ -39,6 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale: LOCALE_INFO[locale as Locale]?.ogLocale ?? 'en_GB',
       title,
       description: t('description'),
+      images: shareImages('site', `${SITE.name}: ${t('tagline')}`),
     },
     twitter: { card: 'summary_large_image' },
   };

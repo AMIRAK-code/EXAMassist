@@ -2,7 +2,7 @@ import { Link } from '@/i18n/navigation';
 import { PAGE_DATES, longDate } from '@/lib/content/page-dates';
 import type { Metadata } from 'next';
 import { EXAM_CONFIGS, getHubForConfig } from '@/lib/exams/registry';
-import { SITE, absoluteUrl, siteUrl } from '@/lib/site';
+import { SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
 import { Alert, Badge, Breadcrumbs, Card, Container, PageHeader } from '@/components/ui';
 import { JsonLd, articleSchema, breadcrumbSchema } from '@/components/seo/json-ld';
 import { TopicAccuracyExample } from '@/components/scoring/topic-accuracy-example';
@@ -35,6 +35,7 @@ export const metadata: Metadata = {
     url: absoluteUrl(PATH),
     title: `${TITLE} | ${SITE.shortName}`,
     description: DESCRIPTION,
+    images: shareImages('site', TITLE),
     publishedTime: PUBLISHED,
     modifiedTime: UPDATED,
   },

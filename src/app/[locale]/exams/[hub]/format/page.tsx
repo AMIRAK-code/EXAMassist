@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { EXAM_HUBS, getConfigsForHub, getHub } from '@/lib/exams/registry';
 import { describePolicy } from '@/lib/assessment/navigation';
-import { SITE, absoluteUrl, siteUrl } from '@/lib/site';
+import { SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
 import { guidesForHub } from '@/lib/content/guides';
 import { Callout, Alert, Breadcrumbs, ButtonLink, Card, Container } from '@/components/ui';
 import { JsonLd, articleSchema, breadcrumbSchema } from '@/components/seo/json-ld';
@@ -34,6 +34,8 @@ export async function generateMetadata({
       url: absoluteUrl(`/exams/${hub.slug}/format`),
       title: `${title} | ${SITE.shortName}`,
       description,
+      // The exam's own image: the format guide is about the same exam.
+      images: shareImages(`exam-${hub.slug}`, title),
     },
   };
 }

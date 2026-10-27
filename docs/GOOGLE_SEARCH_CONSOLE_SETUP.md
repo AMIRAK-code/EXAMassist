@@ -1,21 +1,24 @@
-# Google Search Console setup for exam.assist365.app
+# Google Search Console setup for uniexamer.com
 
-Audited 2026-10-07 on branch `bocconi-landing`. Search Console itself was not
-touched: it needs the site owner's Google account, and DNS verification needs
-the Cloudflare account that holds assist365.app. Nothing here guarantees that
-Google crawls, indexes or ranks any page.
+Audited 2026-10-07 on branch `bocconi-landing`, when the site was at
+exam.assist365.app; addresses updated for the move to uniexamer.com on
+2026-10-27. Search Console itself was not touched: it needs the site owner's
+Google account, and DNS verification needs the Cloudflare account that holds
+uniexamer.com. Nothing here guarantees that Google crawls, indexes or ranks any
+page.
 
-> **Before you start:** the live site still runs the old build, which tells
-> search engines to index nothing (`noindex` on every page, `Disallow: /` and an
-> empty sitemap). Deploy this branch first (release order in
-> [`BOCCONI-SEARCH.md`](BOCCONI-SEARCH.md#release-steps-in-order-need-production-access)),
-> then check the URLs below before submitting anything to Google.
+> **Moving from exam.assist365.app:** every page on the old address answers
+> with a 301 to the same path on uniexamer.com. Verify uniexamer.com (section
+> 3) and submit its sitemap (section 4). If exam.assist365.app was ever
+> verified, open that old property → *Settings* → *Change of address* → pick
+> the uniexamer.com property → *Validate & update*. Keep the old property
+> verified and the redirects in place for at least 180 days.
 
 ## 1. Production environment
 
 | Variable | Production value | When it is read | Where it is set |
 | --- | --- | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | `https://exam.assist365.app` (no trailing slash; one is stripped anyway) | **At build time**: inlined into the bundle | `vars` in `wrangler.jsonc` (already set), and the build environment |
+| `NEXT_PUBLIC_SITE_URL` | `https://uniexamer.com` (no trailing slash; one is stripped anyway) | **At build time**: inlined into the bundle | `vars` in `wrangler.jsonc` (already set), and the build environment |
 | `SEARCH_INDEXING_ENABLED` | `true` | **Per request**, on every page, `robots.txt` and `sitemap.xml` | `vars` in `wrangler.jsonc` (set to `"true"` on this branch) |
 | `GOOGLE_SITE_VERIFICATION` | the token from Search Console, only for HTML-tag verification | Per request, on the home page | a Worker var, or the `GOOGLE_SITE_VERIFICATION_TOKEN` constant in `src/lib/site.ts` |
 
@@ -36,36 +39,36 @@ Notes:
 
 | URL | Expect |
 | --- | --- |
-| https://exam.assist365.app/robots.txt | `User-Agent: *` / `Allow: /` with the private paths disallowed, and `Sitemap: https://exam.assist365.app/sitemap.xml` |
-| https://exam.assist365.app/sitemap.xml | 29 `<url>` entries, all on `https://exam.assist365.app`, each with `<lastmod>` |
-| https://exam.assist365.app/ | `<meta name="robots" content="index, follow">`, canonical `https://exam.assist365.app`, and the verification tag if a token is set |
+| https://uniexamer.com/robots.txt | `User-Agent: *` / `Allow: /` with the private paths disallowed, and `Sitemap: https://uniexamer.com/sitemap.xml` |
+| https://uniexamer.com/sitemap.xml | 29 `<url>` entries, all on `https://uniexamer.com`, each with `<lastmod>` |
+| https://uniexamer.com/ | `<meta name="robots" content="index, follow">`, canonical `https://uniexamer.com`, and the verification tag if a token is set |
 
 ```bash
-curl -s https://exam.assist365.app/robots.txt
+curl -s https://uniexamer.com/robots.txt
 ```
 
 ```bash
-curl -s https://exam.assist365.app/sitemap.xml | grep -c "<loc>"
+curl -s https://uniexamer.com/sitemap.xml | grep -c "<loc>"
 ```
 
 ```bash
-curl -s https://exam.assist365.app/ | grep -o '<meta name="robots"[^>]*>\|<link rel="canonical"[^>]*>\|<meta name="google-site-verification"[^>]*>'
+curl -s https://uniexamer.com/ | grep -o '<meta name="robots"[^>]*>\|<link rel="canonical"[^>]*>\|<meta name="google-site-verification"[^>]*>'
 ```
 
 ## 3. Verify ownership
 
-**Option A, recommended: a Domain property** for `exam.assist365.app`.
+**Option A, recommended: a Domain property** for `uniexamer.com`.
 
-1. Search Console → *Add property* → *Domain* → enter `exam.assist365.app`.
+1. Search Console → *Add property* → *Domain* → enter `uniexamer.com`.
 2. Copy the `google-site-verification=…` TXT value.
-3. In the Cloudflare account that holds assist365.app (Moein's), DNS → add a
-   **TXT** record named `exam` with that value.
+3. In the Cloudflare account that holds uniexamer.com (Moein's), DNS → add a
+   **TXT** record named `@` with that value.
 4. Back in Search Console → *Verify*. DNS can take a few minutes. Keep the
    record: removing it unverifies the property.
 
 **Option B: a URL-prefix property with the HTML tag**, if DNS access is not available.
 
-1. Search Console → *Add property* → *URL prefix* → `https://exam.assist365.app/`.
+1. Search Console → *Add property* → *URL prefix* → `https://uniexamer.com/`.
 2. Choose *HTML tag* and copy the `content` value (or the whole tag).
 3. Set it as `GOOGLE_SITE_VERIFICATION` in the Worker's vars (or in
    `GOOGLE_SITE_VERIFICATION_TOKEN` in `src/lib/site.ts`) and deploy.
@@ -75,7 +78,7 @@ curl -s https://exam.assist365.app/ | grep -o '<meta name="robots"[^>]*>\|<link 
 ## 4. Submit the sitemap
 
 1. In the verified property: *Indexing* → *Sitemaps*.
-2. Enter `sitemap.xml` (the full address is `https://exam.assist365.app/sitemap.xml`) → *Submit*.
+2. Enter `sitemap.xml` (the full address is `https://uniexamer.com/sitemap.xml`) → *Submit*.
 3. Status should become *Success* with 29 discovered URLs. *Couldn't fetch*
    usually means the deploy has not happened or indexing is off: check the
    sitemap URL in a browser.
@@ -88,13 +91,13 @@ Bing, use *Import from Google Search Console* in Bing Webmaster Tools.
 Inspect these first, most important first, and request indexing for each one
 that is not yet on Google:
 
-1. `https://exam.assist365.app/`
-2. `https://exam.assist365.app/exams/bocconi-online-test`
-3. `https://exam.assist365.app/exams`
-4. `https://exam.assist365.app/exams/bocconi-online-test/format`
-5. `https://exam.assist365.app/guides/bocconi-undergraduate-vs-law-test`
-6. `https://exam.assist365.app/guides/bocconi-test-preparation-plan`
-7. `https://exam.assist365.app/guides/bocconi-test-negative-marking-when-to-guess`
+1. `https://uniexamer.com/`
+2. `https://uniexamer.com/exams/bocconi-online-test`
+3. `https://uniexamer.com/exams`
+4. `https://uniexamer.com/exams/bocconi-online-test/format`
+5. `https://uniexamer.com/guides/bocconi-undergraduate-vs-law-test`
+6. `https://uniexamer.com/guides/bocconi-test-preparation-plan`
+7. `https://uniexamer.com/guides/bocconi-test-negative-marking-when-to-guess`
 8. The other exam hubs (`/exams/digital-sat`, `/exams/enhanced-act`, `/exams/lsat`,
    `/exams/gmat`, `/exams/gre`, `/exams/politecnico-di-torino-til`, `/exams/cisia-tolc`)
 
@@ -154,9 +157,11 @@ robots.txt" with no content; it holds no private data.
   `/guides/*`, `/about/*` and `/pricing` are all reachable.
 - AI search and user-triggered fetchers (OAI-SearchBot, Claude-SearchBot,
   PerplexityBot, ChatGPT-User, Claude-User) get the same rules as `*`.
-- Training crawlers are disallowed everywhere: GPTBot, ClaudeBot,
-  Google-Extended (this does not affect Google Search, AI Overviews or AI Mode),
-  Applebot-Extended, Meta-ExternalAgent and MistralAI-Training.
+- Training crawlers were disallowed everywhere at this audit. Since 2026-10-27
+  they get the same rules as `*`: GPTBot, ClaudeBot, Google-Extended (which
+  also lets Gemini ground answers in the pages; it does not affect Google
+  Search, AI Overviews or AI Mode), Applebot-Extended, Meta-ExternalAgent and
+  MistralAI-Training. See [`SEARCH-AND-AI-VISIBILITY.md`](SEARCH-AND-AI-VISIBILITY.md).
 - The `Host:` line Next.js adds is ignored by Google and harmless.
 
 ## 8. Canonicals and structured data, as audited
