@@ -91,12 +91,19 @@ Bing Webmaster Tools, same Google sign-in:
 12. **Workers stays on Free**, the owner's choice. Public pages are served as
     static files instead (next section).
 
-Still open:
-
-13. **Two Single Redirects** (README, "Cloudflare Workers"): www.uniexamer.com
-    and exam.assist365.app must redirect in Cloudflare before the Worker's
-    static files are looked up. `npm run cf:deploy` checks and, without them,
-    leaves every page dynamic.
+13. **Two Single Redirects** (README, "Cloudflare Workers") since 2026-10-27:
+    `www.uniexamer.com to uniexamer.com` in the uniexamer.com zone and
+    `exam.assist365.app to uniexamer.com` in the assist365.app zone. They
+    answer before the Worker's static files, files included (checked with
+    `/og/site.png`). The assist365.app zone also holds an unrelated, inert
+    "Redirect from WWW to root [Template]" rule (www.assist365.app has no DNS
+    record); it can be deleted.
+14. **Static public pages live** from the deploy of 16ea708 (build
+    `2iT0ytgIG8ywxRUZJcG0D`): three crawls of all 29 sitemap pages and 40
+    back-to-back fetches of `/` and `/exams/gmat` all answered 200, median
+    about 75 ms. Workers Observability showed only `/premium`, `/api/views` and
+    `/api/continue` reaching the Worker in that time. IndexNow then answered
+    HTTP 200 for all 29 URLs.
 
 ## Pages failed under the Free Workers CPU limit, now served as files
 
