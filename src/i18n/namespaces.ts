@@ -3,5 +3,18 @@
  * Splitting by area lets several people translate at once without touching
  * the same file. Add a namespace here when you add its English file.
  */
-export const NAMESPACES = ['common'] as const;
+export const NAMESPACES = [
+  'common',
+  'home',
+  'exams',
+  'practice',
+  'player',
+  'results',
+  'learning',
+  'auth',
+  'account',
+  'billing',
+  'about',
+  'guides',
+] as const;
 export type Namespace = (typeof NAMESPACES)[number];
