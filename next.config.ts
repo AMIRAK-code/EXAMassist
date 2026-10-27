@@ -54,6 +54,9 @@ const nextConfig: NextConfig = {
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           { key: 'X-Frame-Options', value: 'DENY' },
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()' },
+          // HTTPS only, for a year, on the host that sent it. No includeSubDomains
+          // or preload: other subdomains of assist365.app are not this site's.
+          { key: 'Strict-Transport-Security', value: 'max-age=31536000' },
         ],
       },
     ];
