@@ -8,6 +8,7 @@ import { preloadKatexFonts } from '@/lib/content/katex-fonts';
 import { pendingOwner } from '@/lib/player/owner';
 import { AttemptPlayer } from '@/components/player/attempt-player';
 import { tutorEnabled } from '@/lib/tutor/config';
+import { loadEntitlements } from '@/lib/billing/entitlements';
 
 // A live attempt is personal state: never cached, never indexed.
 export const dynamic = 'force-dynamic';
@@ -33,6 +34,10 @@ export default async function AttemptPage({ params }: { params: Promise<{ id: st
   // A finished attempt belongs on the results page.
   if (state.status !== 'in_progress') redirect(`/attempt/${id}/results`);
 
+  // The AI tutor is offered only where the learner's plan includes it; the
+  // server refuses it anywhere else in any case.
+  const tutor = tutorEnabled() && (await loadEntitlements(getDb(), user.id)).can('ai_tutor', state.examKey);
+
   // The maths fonts, early, if anything in the open section shows maths. The
   // whole section counts, not just the first question: the player moves
   // between questions without a page load, and a formula shown after a move
@@ -56,7 +61,7 @@ export default async function AttemptPage({ params }: { params: Promise<{ id: st
       key={`${state.id}:${state.currentPartIndex}`}
       model={toPlayerModel(state)}
       owner={pendingOwner(user.id)}
-      tutorEnabled={tutorEnabled()}
+      tutorEnabled={tutor}
     />
   );
 }

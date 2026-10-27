@@ -9,8 +9,9 @@ import { getCurrentUser } from '@/lib/auth/session';
 import { StartPracticeForm, type PresetSkill } from '@/components/practice/start-practice-form';
 import { GUEST_NOTE_SHORT } from '@/components/site/nav-items';
 import { StartBlueprintButton } from '@/components/practice/start-blueprint-button';
-import { billingSettings, startPath } from '@/lib/billing/config';
-import { getAccess } from '@/lib/billing/service';
+import { pricingPath, startPath } from '@/lib/billing/config';
+import { loadEntitlements } from '@/lib/billing/entitlements';
+import { featureForSession } from '@/lib/billing/plans';
 import {
   Alert,
   Badge,
@@ -23,6 +24,9 @@ import {
 } from '@/components/ui';
 
 export const dynamic = 'force-dynamic';
+
+/** Shown on a format the learner's plan does not include. */
+const UPGRADE_LINK = 'Upgrade to start';
 
 export function generateStaticParams() {
   return EXAM_CONFIGS.map((config) => ({ examKey: config.examKey }));
@@ -66,9 +70,11 @@ export default async function PracticeSetupPage({
   const availability = (await blueprintAvailability(db, config));
   const hub = getHubForConfig(config.examKey);
   const user = await getCurrentUser();
-  // Every format here is Premium while it is on sale. Anyone else gets the
-  // exam's short introduction, then the plans or the free test.
-  if (billingSettings().enabled && !(user && (await getAccess(db, user.id)).fullAccess)) redirect(startPath(config.examKey));
+  // Practice needs a plan that covers this exam (src/lib/billing). Without
+  // one, the exam's short introduction offers the plans and the free
+  // diagnostic instead.
+  const entitlements = await loadEntitlements(db, user?.id ?? null);
+  if (!entitlements.can('practice', config.examKey)) redirect(startPath(config.examKey));
 
   const others = availability.filter((a) => a.blueprint.id !== 'practice');
   const totalItems = eligibleCount(facets, {});
@@ -204,7 +210,11 @@ export default async function PracticeSetupPage({
                     </div>
 
                     <div className="shrink-0">
-                      {entry.available ? (
+                      {entry.available && !entitlements.can(featureForSession(entry.blueprint), config.examKey) ? (
+                        <a href={pricingPath(config.examKey, featureForSession(entry.blueprint))} className="text-sm font-semibold">
+                          {UPGRADE_LINK}
+                        </a>
+                      ) : entry.available ? (
                         <StartBlueprintButton
                           examKey={config.examKey}
                           blueprintId={entry.blueprint.id}

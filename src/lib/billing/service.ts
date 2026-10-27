@@ -1,29 +1,59 @@
+import type Stripe from 'stripe';
 import type { Db } from '@/lib/db';
-import { siteUrl } from '@/lib/site';
-import {
-  CURRENCY,
-  FREE_SESSIONS,
-  PLANS,
-  PREMIUM_PRODUCT_ID,
-  PREMIUM_PRODUCT_NAME,
-  billingSettings,
-  planForPrice,
-  type BillingSettings,
-  type PlanKey,
-} from './config';
-import { StripeError, stripeClient, verifyStripeSignature, type StripeRequest } from './stripe';
-import { countEvent, subjectFor } from '@/lib/analytics/funnel';
 import { getExamConfig } from '@/lib/exams/registry';
+import { countEvent, subjectFor } from '@/lib/analytics/funnel';
+import { assertBillingConfig, type BillingSettings } from './config';
+import { loadEntitlements } from './entitlements';
+import { PLANS, isPlanKey, type PlanKey } from './plans';
+import {
+  eventSeen,
+  getCustomerId,
+  getSubscriptionRow,
+  linkCustomer,
+  listSubscriptions,
+  recordEvent,
+  snapshotFromStripe,
+  storeSubscription,
+  userExists,
+  userForCustomer,
+  type SubscriptionRow,
+} from './store';
+import { asStripeError, isSignatureError, stripeClient, verifyWebhookEvent, type StripeApi } from './stripe';
 
 /**
- * Premium: who has it, the one free session everyone else gets, and keeping
- * the subscriptions table in step with Stripe.
+ * Subscriptions through Stripe, sold and managed on this site's own pages.
  *
- * Stripe is the source of truth. Every change (checkout, webhook, a stale row)
- * re-reads the customer's subscriptions from Stripe and stores the one that
- * matters, so handling the same event twice, or events out of order, always
- * ends in the same state.
+ * - The checkout page collects the card in Stripe's Payment Element (Stripe's
+ *   iframes; card data never reaches this server). On "Pay", the server
+ *   creates the subscription with payment_behavior 'default_incomplete' and
+ *   returns the client secret of its first payment (or of its SetupIntent
+ *   when nothing is due), which the browser confirms, 3-D Secure included.
+ * - The account page cancels at period end, resumes, and replaces the card
+ *   through a SetupIntent: no hosted Stripe pages anywhere.
+ * - Webhooks keep the local copy in step (store.ts), idempotently.
  */
+
+/** Learner-facing messages. Translated with the rest of the site. */
+export const BILLING_COPY = {
+  billingOff: 'Payments are not switched on for this site yet. Nothing was charged.',
+  accountRequired: 'Create an account first, so your plan has somewhere to live. Your guest practice comes with you.',
+  consentRequired: 'Please confirm that you want access straight away and that the 14-day withdrawal right then ends.',
+  unknownPlan: 'That plan does not exist.',
+  unknownExam: 'Choose the exam this plan is for.',
+  alreadyAllAccess: 'You already have All access, which includes every exam.',
+  alreadyThisExam: 'You already have a plan for this exam.',
+  misconfigured: 'Payments are not set up correctly yet. Nothing was charged.',
+  unavailable: 'The payment provider is busy. Nothing was charged; please try again in a minute.',
+  failed: 'The payment provider could not complete that. Nothing was charged.',
+  retry: 'That request was already sent with different details. Reload the page and try again.',
+  unknownSubscription: 'That subscription was not found.',
+  notChangeable: 'That subscription has already ended.',
+  noBillingAccount: 'There is no billing account yet. Choose a plan first.',
+  cardNotSaved: 'The new card was not confirmed. Your previous card is unchanged.',
+  countryRequired: 'Choose your country, so the right VAT can be applied.',
+  deletionBlocked:
+    'Your subscriptions could not be cancelled just now, so the account was not deleted. Please try again in a few minutes.',
+} as const;
 
 export class BillingError extends Error {
   constructor(
@@ -37,130 +67,58 @@ export class BillingError extends Error {
   }
 }
 
-export interface SubscriptionRow {
-  user_id: string;
-  stripe_customer_id: string;
-  stripe_subscription_id: string | null;
-  plan: string | null;
-  status: string | null;
-  current_period_end: string | null;
-  cancel_at_period_end: number;
-  created_at: string;
-  updated_at: string;
-}
-
-/** Statuses that keep Premium on. past_due means Stripe is still retrying a failed renewal. */
-const PREMIUM_STATUSES = new Set(['active', 'trialing', 'past_due']);
-
-/** How long Premium survives a missed update after the paid period ends. */
-const GRACE_MS = 3 * 24 * 60 * 60 * 1000;
-
 export interface BillingDeps {
   settings?: BillingSettings;
-  stripe?: StripeRequest;
+  stripe?: StripeApi | null;
   now?: Date;
 }
 
-function deps(options: BillingDeps) {
-  const settings = options.settings ?? billingSettings();
-  return { settings, stripe: options.stripe ?? stripeClient(settings), now: options.now ?? new Date() };
+function resolveDeps(options: BillingDeps) {
+  const settings = options.settings ?? assertBillingConfig();
+  const stripe = options.stripe !== undefined ? options.stripe : settings.secretKey ? stripeClient(settings) : null;
+  return { settings, stripe, now: options.now ?? new Date() };
 }
 
-export async function getSubscription(db: Db, userId: string): Promise<SubscriptionRow | null> {
-  return ((await db.prepare('SELECT * FROM subscriptions WHERE user_id = ?').get(userId)) as SubscriptionRow | undefined) ?? null;
-}
+const seconds = (date: Date) => Math.floor(date.getTime() / 1000);
+const idOf = (value: string | { id: string } | null | undefined) => (typeof value === 'string' ? value : (value?.id ?? null));
 
-export function premiumActive(row: SubscriptionRow | null, now = new Date()): boolean {
-  if (!row?.status || !PREMIUM_STATUSES.has(row.status)) return false;
-  if (!row.current_period_end) return true;
-  return new Date(row.current_period_end).getTime() + GRACE_MS > now.getTime();
-}
-
-export interface Access {
-  /** Billing is configured, so everything beyond the free test needs Premium. */
-  paywall: boolean;
-  premium: boolean;
-  /** Editors and administrators review content and are never asked to pay. */
-  staff: boolean;
-  /** A real account rather than a guest. Only accounts get the free test. */
-  registered: boolean;
-  /** Every exam and format is open: no paywall, Premium, or staff. */
-  fullAccess: boolean;
-  sessionsUsed: number;
-  freeSessionsLeft: number;
-  /** The learner's first session. For a free account it is the free test. */
-  firstSession: { id: string; examKey: string; status: string } | null;
-  subscription: SubscriptionRow | null;
-}
-
-/**
- * What this user may do. A row that still says Premium after its paid period
- * ended is re-read from Stripe first, so a missed renewal webhook does not cut
- * a paying learner off.
- */
-export async function getAccess(db: Db, userId: string, options: BillingDeps = {}): Promise<Access> {
-  const { settings, stripe, now } = deps(options);
-  const user = (await db.prepare('SELECT role, is_guest FROM users WHERE id = ?').get(userId)) as
-    | { role: string; is_guest: number | string }
-    | undefined;
-  const staff = user?.role === 'editor' || user?.role === 'admin';
-  const registered = user !== undefined && Number(user.is_guest) === 0;
-  let subscription = settings.enabled ? await getSubscription(db, userId) : null;
-
-  const stale =
-    subscription?.status &&
-    PREMIUM_STATUSES.has(subscription.status) &&
-    subscription.current_period_end &&
-    new Date(subscription.current_period_end) < now;
-  if (stale && subscription) {
-    try {
-      subscription = await syncCustomer(db, userId, subscription.stripe_customer_id, stripe, now);
-    } catch (error) {
-      console.error('[billing] could not refresh a stale subscription:', error instanceof Error ? error.message : error);
-    }
+function explainStripeError(error: unknown): unknown {
+  const stripeError = asStripeError(error);
+  if (!stripeError) return error;
+  console.error('[billing] Stripe error', stripeError.statusCode, stripeError.type, stripeError.code, stripeError.message);
+  if (stripeError.type === 'StripeAuthenticationError' || stripeError.type === 'StripePermissionError') {
+    return new BillingError('billing-misconfigured', BILLING_COPY.misconfigured, 503);
   }
-
-  const premium = premiumActive(subscription, now);
-  const sessionsUsed = await countSessions(db, userId);
-  const first = (await db
-    .prepare('SELECT id, exam_key, status FROM attempts WHERE user_id = ? ORDER BY created_at, id LIMIT 1')
-    .get(userId)) as { id: string; exam_key: string; status: string } | undefined;
-  return {
-    paywall: settings.enabled,
-    premium,
-    staff,
-    registered,
-    fullAccess: !settings.enabled || premium || staff,
-    sessionsUsed,
-    freeSessionsLeft: Math.max(0, FREE_SESSIONS - sessionsUsed),
-    firstSession: first ? { id: first.id, examKey: first.exam_key, status: first.status } : null,
-    subscription,
-  };
+  if (/stripe tax|tax settings|head office|origin address|tax_location/i.test(stripeError.message)) {
+    return new BillingError('billing-misconfigured', BILLING_COPY.misconfigured, 503);
+  }
+  if (stripeError.type === 'StripeIdempotencyError') return new BillingError('retry', BILLING_COPY.retry, 409);
+  if (
+    stripeError.type === 'StripeRateLimitError' ||
+    stripeError.type === 'StripeConnectionError' ||
+    stripeError.type === 'StripeAPIError' ||
+    (stripeError.statusCode ?? 0) >= 500
+  ) {
+    return new BillingError('billing-unavailable', BILLING_COPY.unavailable, 503);
+  }
+  return new BillingError('billing-failed', BILLING_COPY.failed, 502);
 }
 
-async function countSessions(db: Db, userId: string): Promise<number> {
-  const row = (await db.prepare('SELECT COUNT(*) AS n FROM attempts WHERE user_id = ?').get(userId)) as { n: number | string };
-  return Number(row.n);
+async function withStripe<T>(work: () => Promise<T>): Promise<T> {
+  try {
+    return await work();
+  } catch (error) {
+    throw explainStripeError(error);
+  }
 }
 
-export type SessionBlock = 'account-required' | 'premium-required' | null;
-
-/**
- * Why this learner may not start a session of this kind, or null when they
- * may. A free account gets one session, the free test; a guest gets none (the
- * sample questions on the home page need no session). Run it again inside the
- * transaction that creates the session, so two tabs cannot both spend the
- * free test.
- */
-export async function sessionBlock(db: Db, userId: string, access: Access, kind: 'free-test' | 'session'): Promise<SessionBlock> {
-  if (access.fullAccess) return null;
-  if (kind !== 'free-test') return 'premium-required';
-  if (!access.registered) return 'account-required';
-  return (await countSessions(db, userId)) >= FREE_SESSIONS ? 'premium-required' : null;
+function requireStripe(stripe: StripeApi | null): StripeApi {
+  if (!stripe) throw new BillingError('billing-off', BILLING_COPY.billingOff, 503);
+  return stripe;
 }
 
 // ---------------------------------------------------------------------------
-// Checkout and the billing portal
+// Customers and prices
 // ---------------------------------------------------------------------------
 
 export interface BillingUser {
@@ -170,364 +128,458 @@ export interface BillingUser {
   isGuest: boolean;
 }
 
-/** Reaches the user through checkout and the webhooks; distinct from other products on the same Stripe account. */
-const referenceFor = (userId: string) => `examer:${userId}`;
-
-function explainStripeError(error: StripeError): BillingError {
-  console.error('[billing] Stripe error', error.status, error.code, error.message);
-  if (error.status === 401 || error.code === 'not_configured') {
-    return new BillingError('billing-misconfigured', 'Payments are not set up correctly. Nothing was charged.', 503);
-  }
-  if (/stripe tax|tax settings|head office|origin address/i.test(error.message)) {
-    return new BillingError('billing-misconfigured', 'Payments are not set up correctly yet (tax settings). Nothing was charged.', 503);
-  }
-  if (/customer portal|default configuration/i.test(error.message)) {
-    return new BillingError('billing-misconfigured', 'Billing management is not set up yet. Please try again later.', 503);
-  }
-  if (error.status === 429 || error.status >= 500 || error.code === 'network') {
-    return new BillingError('billing-unavailable', 'The payment provider is busy. Nothing was charged; please try again in a minute.', 503);
-  }
-  return new BillingError('billing-failed', 'The payment provider could not complete that. Nothing was charged.', 502);
-}
-
-async function withStripe<T>(work: () => Promise<T>): Promise<T> {
-  try {
-    return await work();
-  } catch (error) {
-    if (error instanceof StripeError) throw explainStripeError(error);
-    throw error;
-  }
-}
-
-/** The Stripe customer for this user, created on the first checkout. A stored one that no longer exists is replaced. */
-async function ensureCustomer(db: Db, user: BillingUser, stripe: StripeRequest, now: Date): Promise<string> {
-  const current = await getSubscription(db, user.id);
-  if (current?.stripe_customer_id) {
+/** The user's Stripe customer, created on the first purchase. A stored one deleted in Stripe is replaced. */
+export async function ensureCustomer(db: Db, user: BillingUser, stripe: StripeApi, now = new Date()): Promise<string> {
+  const existing = await getCustomerId(db, user.id);
+  if (existing) {
     try {
-      const existing = await stripe('GET', `customers/${current.stripe_customer_id}`);
-      if (!existing.deleted) return existing.id;
+      const customer = await stripe.customers.retrieve(existing);
+      if (!('deleted' in customer && customer.deleted)) {
+        if (user.email && (customer as Stripe.Customer).email !== user.email) {
+          await stripe.customers.update(existing, { email: user.email });
+        }
+        return existing;
+      }
     } catch (error) {
-      if (!(error instanceof StripeError && error.code === 'resource_missing')) throw error;
+      if (asStripeError(error)?.code !== 'resource_missing') throw error;
     }
   }
-  const customer = await stripe(
-    'POST',
-    'customers',
+  const customer = await stripe.customers.create(
     {
-      email: user.email,
+      email: user.email ?? undefined,
       ...(user.displayName ? { name: user.displayName } : {}),
       metadata: { examer_user_id: user.id },
     },
-    { idempotencyKey: `examer-customer-${user.id}-${current?.stripe_customer_id ?? 'first'}` },
+    { idempotencyKey: `examer-customer-${user.id}-${existing ?? 'first'}` },
   );
   await linkCustomer(db, user.id, customer.id, now);
   return customer.id;
 }
 
-async function linkCustomer(db: Db, userId: string, customerId: string, now: Date): Promise<void> {
-  const at = now.toISOString();
-  await db
-    .prepare(
-      `INSERT INTO subscriptions (user_id, stripe_customer_id, cancel_at_period_end, created_at, updated_at)
-       VALUES (?, ?, 0, ?, ?)
-       ON CONFLICT (user_id) DO UPDATE SET stripe_customer_id = excluded.stripe_customer_id, updated_at = excluded.updated_at`,
-    )
-    .run(userId, customerId, at, at);
-}
-
-/** The Stripe price for a plan, found by lookup key and created on first use. */
-export async function premiumPrice(stripe: StripeRequest, planKey: PlanKey): Promise<string> {
-  const plan = PLANS[planKey];
-  const found = await stripe('GET', 'prices', { lookup_keys: [plan.lookupKey], active: true, limit: 1 });
-  if (found.data?.[0]?.id) return found.data[0].id;
-
-  try {
-    await stripe('POST', 'products', {
-      id: PREMIUM_PRODUCT_ID,
-      name: PREMIUM_PRODUCT_NAME,
-      description: 'Every exam and every practice format on Examer, with full results and review.',
-    });
-  } catch (error) {
-    if (!(error instanceof StripeError && error.code === 'resource_already_exists')) throw error;
+/** The Stripe price for a plan, by its lookup key. Created by scripts/stripe-setup.ts, never here. */
+export async function priceIdFor(stripe: StripeApi, plan: PlanKey): Promise<string> {
+  const found = await stripe.prices.list({ lookup_keys: [PLANS[plan].lookupKey], active: true, limit: 1 });
+  const price = found.data[0];
+  if (!price) {
+    console.error(`[billing] no active Stripe price with lookup key ${PLANS[plan].lookupKey}; run scripts/stripe-setup.ts`);
+    throw new BillingError('billing-misconfigured', BILLING_COPY.misconfigured, 503);
   }
-  const price = await stripe('POST', 'prices', {
-    product: PREMIUM_PRODUCT_ID,
-    currency: CURRENCY,
-    unit_amount: plan.amount,
-    // Prices on the plans page include VAT
-    tax_behavior: 'inclusive',
-    recurring: { interval: plan.interval, interval_count: plan.intervalCount },
-    lookup_key: plan.lookupKey,
-    transfer_lookup_key: true,
-    nickname: `Examer Premium, ${plan.label}`,
-  });
   return price.id;
 }
 
-/**
- * A Stripe Checkout page for this plan. Returns its address.
- *
- * `context.examKey` is the exam the learner was preparing for when they chose
- * a plan. It changes nothing about the plan or the price: it rides along as
- * Stripe metadata (so purchases can be counted per exam) and on the return
- * addresses, so the learner lands back on that exam's practice.
- */
-export async function startCheckout(
+// ---------------------------------------------------------------------------
+// Buying
+// ---------------------------------------------------------------------------
+
+export interface CreateSubscriptionInput {
+  plan: PlanKey;
+  /** The exam a single-exam plan is for. */
+  examKey?: string | null;
+  /** The exam the learner came from, for counting; never changes the plan. */
+  sourceExam?: string | null;
+  /** The buyer asked for immediate access and acknowledged losing the withdrawal right. */
+  consent: boolean;
+  /** One per checkout page view, so a double click cannot create two subscriptions. */
+  requestId: string;
+  /** ISO country code, needed only when Stripe Tax is on. */
+  country?: string | null;
+}
+
+export interface CreatedSubscription {
+  subscriptionId: string;
+  /** What the browser confirms: the first payment, a SetupIntent (nothing due now), or nothing. */
+  intent: 'payment' | 'setup' | 'none';
+  clientSecret: string | null;
+  status: string;
+}
+
+function intentOf(subscription: Stripe.Subscription): Pick<CreatedSubscription, 'intent' | 'clientSecret'> {
+  const invoice = typeof subscription.latest_invoice === 'object' ? subscription.latest_invoice : null;
+  const payment = invoice?.confirmation_secret?.client_secret ?? null;
+  if (payment) return { intent: 'payment', clientSecret: payment };
+  const setup = typeof subscription.pending_setup_intent === 'object' ? subscription.pending_setup_intent?.client_secret : null;
+  if (setup) return { intent: 'setup', clientSecret: setup };
+  return { intent: 'none', clientSecret: null };
+}
+
+const EXPAND = ['latest_invoice.confirmation_secret', 'pending_setup_intent'];
+
+/** An incomplete subscription is confirmable for 23 hours, then Stripe expires it. */
+const PENDING_REUSE_MS = 22 * 60 * 60 * 1000;
+
+export async function createSubscription(
   db: Db,
   user: BillingUser,
-  planKey: PlanKey,
+  input: CreateSubscriptionInput,
   options: BillingDeps = {},
-  context: { examKey?: string | null } = {},
-): Promise<string> {
-  const { settings, stripe, now } = deps(options);
-  if (!settings.enabled) throw new BillingError('billing-off', 'Premium is not on sale yet.', 503);
-  if (user.isGuest || !user.email) {
-    throw new BillingError('account-required', 'Create an account first, so your Premium plan has somewhere to live.', 403);
+): Promise<CreatedSubscription> {
+  const { settings, stripe: maybeStripe, now } = resolveDeps(options);
+  if (!settings.checkoutAvailable) throw new BillingError('billing-off', BILLING_COPY.billingOff, 503);
+  const stripe = requireStripe(maybeStripe);
+  if (user.isGuest || !user.email) throw new BillingError('account-required', BILLING_COPY.accountRequired, 403);
+  if (input.consent !== true) throw new BillingError('consent-required', BILLING_COPY.consentRequired, 400);
+  if (!isPlanKey(input.plan)) throw new BillingError('unknown-plan', BILLING_COPY.unknownPlan, 400);
+
+  const plan = PLANS[input.plan];
+  const examKey = plan.scope === 'one-exam' ? (input.examKey ?? null) : null;
+  if (plan.scope === 'one-exam' && (!examKey || !getExamConfig(examKey))) {
+    throw new BillingError('unknown-exam', BILLING_COPY.unknownExam, 400);
   }
-  const access = await getAccess(db, user.id, { settings, stripe, now });
-  if (access.premium) throw new BillingError('already-premium', 'You already have Premium.', 409);
-
-  return withStripe(async () => {
-    const [customer, price] = await Promise.all([ensureCustomer(db, user, stripe, now), premiumPrice(stripe, planKey)]);
-    const site = siteUrl();
-    const examKey = context.examKey && getExamConfig(context.examKey) ? context.examKey : null;
-    const examMetadata = examKey ? { exam_key: examKey } : {};
-    const examQuery = examKey ? `&exam=${encodeURIComponent(examKey)}` : '';
-    const session = await stripe('POST', 'checkout/sessions', {
-      mode: 'subscription',
-      customer,
-      client_reference_id: referenceFor(user.id),
-      line_items: [{ price, quantity: 1 }],
-      allow_promotion_codes: true,
-      billing_address_collection: 'auto',
-      ...(settings.automaticTax ? { automatic_tax: { enabled: true }, customer_update: { address: 'auto', name: 'auto' } } : {}),
-      metadata: { examer_user_id: user.id, plan: planKey, ...examMetadata },
-      subscription_data: { metadata: { examer_user_id: user.id, plan: planKey, ...examMetadata } },
-      custom_text: {
-        submit: {
-          message:
-            'Premium starts as soon as you pay, and you agree that the 14-day right of withdrawal ends when it does. It renews automatically until you cancel, which you can do at any time from your Examer account.',
-        },
-      },
-      success_url: `${site}/premium/welcome?session_id={CHECKOUT_SESSION_ID}${examQuery}`,
-      cancel_url: `${site}/premium?checkout=cancelled${examQuery}`,
-    });
-    return session.url as string;
-  });
-}
-
-/** Stripe's billing portal for this user: change plan, update the card, see invoices, cancel. */
-export async function openBillingPortal(db: Db, userId: string, options: BillingDeps = {}): Promise<string> {
-  const { settings, stripe } = deps(options);
-  if (!settings.enabled) throw new BillingError('billing-off', 'Premium is not on sale yet.', 503);
-  const row = await getSubscription(db, userId);
-  if (!row) throw new BillingError('no-billing-account', 'There is no billing account yet. Choose a Premium plan first.', 404);
-  return withStripe(async () => {
-    const session = await stripe('POST', 'billing_portal/sessions', {
-      customer: row.stripe_customer_id,
-      return_url: `${siteUrl()}/account#billing`,
-    });
-    return session.url as string;
-  });
-}
-
-// ---------------------------------------------------------------------------
-// Keeping the table in step with Stripe
-// ---------------------------------------------------------------------------
-
-interface StripeSubscription {
-  id: string;
-  status: string;
-  metadata?: Record<string, string> | null;
-  created?: number;
-  cancel_at_period_end?: boolean;
-  cancel_at?: number | null;
-  current_period_end?: number;
-  items?: {
-    data?: Array<{
-      current_period_end?: number;
-      price?: { lookup_key?: string | null; recurring?: { interval?: string; interval_count?: number } | null };
-    }>;
-  };
-}
-
-/** The subscription that decides the plan: a live one if there is one, otherwise the newest. */
-export function pickSubscription(subscriptions: StripeSubscription[]): StripeSubscription | null {
-  const newestFirst = [...subscriptions].sort((a, b) => (b.created ?? 0) - (a.created ?? 0));
-  return newestFirst.find((s) => PREMIUM_STATUSES.has(s.status)) ?? newestFirst[0] ?? null;
-}
-
-/** Re-reads the customer's subscriptions from Stripe and stores the one that matters. */
-export async function syncCustomer(
-  db: Db,
-  userId: string,
-  customerId: string,
-  stripe: StripeRequest,
-  now = new Date(),
-): Promise<SubscriptionRow | null> {
-  const list = await stripe('GET', 'subscriptions', { customer: customerId, status: 'all', limit: 20 });
-  const subscription = pickSubscription(list.data ?? []);
-  const item = subscription?.items?.data?.[0];
-  // Newer Stripe API versions keep the billing period on the item instead
-  const periodEnd = subscription?.current_period_end ?? item?.current_period_end ?? null;
-  const before = await getSubscription(db, userId).catch(() => null);
-
-  await linkCustomer(db, userId, customerId, now);
-  await db
-    .prepare(
-      `UPDATE subscriptions
-       SET stripe_subscription_id = ?, plan = ?, status = ?, current_period_end = ?, cancel_at_period_end = ?, updated_at = ?
-       WHERE user_id = ?`,
-    )
-    .run(
-      subscription?.id ?? null,
-      planForPrice(item?.price),
-      subscription?.status ?? null,
-      periodEnd ? new Date(periodEnd * 1000).toISOString() : null,
-      subscription && (subscription.cancel_at_period_end || subscription.cancel_at) ? 1 : 0,
-      now.toISOString(),
-      userId,
-    );
-  if (subscription && isNewPurchase(before, subscription)) {
-    await countEvent(db, 'purchase', subjectFor(subscription.metadata?.exam_key), 'n/a', now);
+  const sourceExam = input.sourceExam && getExamConfig(input.sourceExam) ? input.sourceExam : null;
+  const country = input.country?.trim().toUpperCase() || null;
+  if (settings.automaticTax && !(country && /^[A-Z]{2}$/.test(country))) {
+    throw new BillingError('country-required', BILLING_COPY.countryRequired, 400);
   }
-  return getSubscription(db, userId);
-}
 
-/**
- * Whether this sync is the moment a subscription first became paid: a
- * subscription we had not stored before, or the one we stored while it was
- * still incomplete. A renewal, a plan change or a recovery from past_due is
- * not a purchase. Webhooks and the return from Checkout both sync, and only
- * the first of them sees the change, so a purchase is counted once.
- */
-export function isNewPurchase(
-  before: Pick<SubscriptionRow, 'stripe_subscription_id' | 'status'> | null,
-  after: Pick<StripeSubscription, 'id' | 'status'>,
-): boolean {
-  if (!PREMIUM_STATUSES.has(after.status) || after.status === 'past_due') return false;
-  if (!before || before.stripe_subscription_id !== after.id) return true;
-  return before.status === null || before.status === 'incomplete';
-}
+  // Never sell what the learner already has. Checked whether or not the
+  // paywall is on, so a rehearsal in test mode behaves like the real thing.
+  const owned = await loadEntitlements(db, user.id, { settings: { ...settings, enforced: true }, now });
+  if (owned.hasAllAccess) throw new BillingError('already-subscribed', BILLING_COPY.alreadyAllAccess, 409);
+  if (examKey && owned.singleExamKeys.includes(examKey)) {
+    throw new BillingError('already-subscribed', BILLING_COPY.alreadyThisExam, 409);
+  }
 
-/**
- * The return trip from Stripe Checkout. Webhooks may arrive a moment later,
- * so the plan is pulled now rather than waited for.
- */
-export async function completeCheckout(
-  db: Db,
-  userId: string,
-  sessionId: string,
-  options: BillingDeps = {},
-): Promise<{ paid: boolean; access: Access }> {
-  const { settings, stripe, now } = deps(options);
-  if (!/^cs_(test|live)_[A-Za-z0-9]{10,}$/.test(sessionId)) throw new BillingError('unknown-checkout', 'That checkout was not found.', 404);
   return withStripe(async () => {
-    const session = await stripe('GET', `checkout/sessions/${sessionId}`);
-    if (session.client_reference_id !== referenceFor(userId)) {
-      throw new BillingError('not-your-checkout', 'That checkout belongs to a different account.', 403);
+    const customer = await ensureCustomer(db, user, stripe, now);
+
+    // Going back and forth on the checkout page reuses the subscription that
+    // is still waiting for this same plan, rather than leaving a trail of them.
+    const pending = (await listSubscriptions(db, user.id))
+      .filter(
+        (row) =>
+          row.status === 'incomplete' &&
+          row.plan === input.plan &&
+          row.exam_key === examKey &&
+          now.getTime() - new Date(row.created_at).getTime() < PENDING_REUSE_MS,
+      )
+      .reverse();
+    for (const row of pending) {
+      const current = await stripe.subscriptions.retrieve(row.stripe_subscription_id, { expand: EXPAND });
+      await storeSubscription(db, user.id, current, { syncedAt: seconds(now), now });
+      const intent = intentOf(current);
+      if (current.status === 'incomplete' && intent.clientSecret) {
+        return { subscriptionId: current.id, status: current.status, ...intent };
+      }
     }
-    const customerId = typeof session.customer === 'string' ? session.customer : session.customer?.id;
-    if (customerId) await syncCustomer(db, userId, customerId, stripe, now);
-    return {
-      paid: session.status === 'complete' && session.payment_status !== 'unpaid',
-      access: await getAccess(db, userId, { settings, stripe, now }),
+
+    const price = await priceIdFor(stripe, input.plan);
+    if (settings.automaticTax && country) {
+      await stripe.customers.update(customer, { address: { country } });
+    }
+    const waiverAt = now.toISOString();
+    const metadata: Record<string, string> = {
+      examer_user_id: user.id,
+      plan: input.plan,
+      withdrawal_waiver_at: waiverAt,
+      ...(examKey ? { exam_key: examKey } : {}),
+      ...(sourceExam ? { source_exam: sourceExam } : {}),
     };
+    const subscription = await stripe.subscriptions.create(
+      {
+        customer,
+        items: [{ price, quantity: 1 }],
+        payment_behavior: 'default_incomplete',
+        payment_settings: { save_default_payment_method: 'on_subscription', payment_method_types: ['card'] },
+        expand: EXPAND,
+        metadata,
+        ...(settings.automaticTax ? { automatic_tax: { enabled: true } } : {}),
+      },
+      { idempotencyKey: `examer-sub-${user.id}-${input.plan}-${examKey ?? 'all'}-${input.requestId}` },
+    );
+    await storeSubscription(db, user.id, subscription, {
+      syncedAt: subscription.created ?? seconds(now),
+      now,
+      withdrawalWaiverAt: waiverAt,
+      sourceExam,
+    });
+    await countEvent(db, 'checkout_start', subjectFor(examKey ?? sourceExam), 'n/a', now);
+    return { subscriptionId: subscription.id, status: subscription.status, ...intentOf(subscription) };
   });
 }
 
-const HANDLED_EVENTS = new Set([
-  'checkout.session.completed',
+/** After the browser confirms (or returns from 3-D Secure): the subscription as Stripe now has it. */
+export async function syncSubscriptionForUser(
+  db: Db,
+  userId: string,
+  subscriptionId: string,
+  options: BillingDeps = {},
+): Promise<SubscriptionRow> {
+  const { stripe, now } = resolveDeps(options);
+  const row = await getSubscriptionRow(db, subscriptionId);
+  if (!row || row.user_id !== userId) throw new BillingError('unknown-subscription', BILLING_COPY.unknownSubscription, 404);
+  if (!stripe) return row;
+  try {
+    const fresh = await stripe.subscriptions.retrieve(subscriptionId);
+    const stored = await storeSubscription(db, userId, fresh, { syncedAt: seconds(now), now });
+    return stored.row ?? row;
+  } catch (error) {
+    // The page can still show what the webhooks have told us.
+    console.error('[billing] could not refresh a subscription:', error instanceof Error ? error.message : error);
+    return row;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Managing
+// ---------------------------------------------------------------------------
+
+const CHANGEABLE = new Set(['active', 'trialing', 'past_due']);
+
+/** Cancel at the end of the paid period, or undo that. */
+export async function setCancelAtPeriodEnd(
+  db: Db,
+  userId: string,
+  subscriptionId: string,
+  cancel: boolean,
+  options: BillingDeps = {},
+): Promise<SubscriptionRow> {
+  const { stripe: maybeStripe, now } = resolveDeps(options);
+  const stripe = requireStripe(maybeStripe);
+  const row = await getSubscriptionRow(db, subscriptionId);
+  if (!row || row.user_id !== userId) throw new BillingError('unknown-subscription', BILLING_COPY.unknownSubscription, 404);
+  if (!CHANGEABLE.has(row.status)) throw new BillingError('not-changeable', BILLING_COPY.notChangeable, 409);
+  return withStripe(async () => {
+    const updated = await stripe.subscriptions.update(subscriptionId, { cancel_at_period_end: cancel });
+    const stored = await storeSubscription(db, userId, updated, { syncedAt: seconds(now), now });
+    return stored.row ?? row;
+  });
+}
+
+/** A SetupIntent for a new card, confirmed in the browser with the same styled Payment Element. */
+export async function startCardUpdate(db: Db, userId: string, options: BillingDeps = {}): Promise<{ clientSecret: string }> {
+  const { stripe: maybeStripe } = resolveDeps(options);
+  const stripe = requireStripe(maybeStripe);
+  const customer = await getCustomerId(db, userId);
+  if (!customer) throw new BillingError('no-billing-account', BILLING_COPY.noBillingAccount, 404);
+  return withStripe(async () => {
+    const intent = await stripe.setupIntents.create({
+      customer,
+      usage: 'off_session',
+      payment_method_types: ['card'],
+      metadata: { examer_user_id: userId, purpose: 'card_update' },
+    });
+    if (!intent.client_secret) throw new BillingError('billing-failed', BILLING_COPY.failed, 502);
+    return { clientSecret: intent.client_secret };
+  });
+}
+
+/**
+ * Makes a confirmed card the default for the customer and every live
+ * subscription, then retries any renewal that failed on the old card.
+ */
+export async function finishCardUpdate(
+  db: Db,
+  userId: string,
+  setupIntentId: string,
+  options: BillingDeps = {},
+): Promise<{ updated: number; retried: number }> {
+  const { stripe: maybeStripe, now } = resolveDeps(options);
+  const stripe = requireStripe(maybeStripe);
+  if (!/^seti_[A-Za-z0-9]+$/.test(setupIntentId)) throw new BillingError('card-not-saved', BILLING_COPY.cardNotSaved, 400);
+  const customer = await getCustomerId(db, userId);
+  if (!customer) throw new BillingError('no-billing-account', BILLING_COPY.noBillingAccount, 404);
+
+  return withStripe(async () => {
+    const intent = await stripe.setupIntents.retrieve(setupIntentId);
+    const paymentMethod = idOf(intent.payment_method);
+    if (idOf(intent.customer) !== customer || intent.status !== 'succeeded' || !paymentMethod) {
+      throw new BillingError('card-not-saved', BILLING_COPY.cardNotSaved, 409);
+    }
+    await stripe.customers.update(customer, { invoice_settings: { default_payment_method: paymentMethod } });
+
+    let updated = 0;
+    let retried = 0;
+    for (const row of await listSubscriptions(db, userId)) {
+      if (!CHANGEABLE.has(row.status)) continue;
+      let subscription = await stripe.subscriptions.update(row.stripe_subscription_id, { default_payment_method: paymentMethod });
+      updated += 1;
+      const invoiceId = idOf(subscription.latest_invoice);
+      if (subscription.status === 'past_due' && invoiceId) {
+        try {
+          await stripe.invoices.pay(invoiceId, { payment_method: paymentMethod });
+          retried += 1;
+          subscription = await stripe.subscriptions.retrieve(subscription.id);
+        } catch (error) {
+          // Stripe keeps retrying on its own schedule with the new card.
+          console.warn('[billing] immediate retry of a failed renewal did not succeed:', error instanceof Error ? error.message : error);
+        }
+      }
+      await storeSubscription(db, userId, subscription, { syncedAt: seconds(now), now });
+    }
+    return { updated, retried };
+  });
+}
+
+export interface CardSummary {
+  brand: string;
+  last4: string;
+  expMonth: number;
+  expYear: number;
+}
+
+export interface BillingOverview {
+  subscriptions: SubscriptionRow[];
+  card: CardSummary | null;
+  /** False when Stripe could not be asked just now and the rows may be a little behind. */
+  fresh: boolean;
+}
+
+function cardOf(method: string | Stripe.PaymentMethod | null | undefined): CardSummary | null {
+  if (!method || typeof method === 'string' || !method.card) return null;
+  return { brand: method.card.brand, last4: method.card.last4, expMonth: method.card.exp_month, expYear: method.card.exp_year };
+}
+
+/** The account page's view: every subscription, refreshed from Stripe when it can be, and the card on file. */
+export async function billingOverview(db: Db, userId: string, options: BillingDeps = {}): Promise<BillingOverview> {
+  const { stripe, now } = resolveDeps(options);
+  const customer = await getCustomerId(db, userId).catch(() => null);
+  if (!customer || !stripe) {
+    return { subscriptions: await listSubscriptions(db, userId).catch(() => []), card: null, fresh: !customer };
+  }
+  try {
+    const list = await stripe.subscriptions.list({ customer, status: 'all', limit: 100, expand: ['data.default_payment_method'] });
+    let card: CardSummary | null = null;
+    for (const subscription of list.data) {
+      if (!snapshotFromStripe(subscription)) continue;
+      await storeSubscription(db, userId, subscription, { syncedAt: seconds(now), now });
+      if (!card && CHANGEABLE.has(subscription.status)) card = cardOf(subscription.default_payment_method);
+    }
+    if (!card) {
+      const record = await stripe.customers.retrieve(customer, { expand: ['invoice_settings.default_payment_method'] });
+      if (!('deleted' in record && record.deleted)) {
+        card = cardOf((record as Stripe.Customer).invoice_settings?.default_payment_method as Stripe.PaymentMethod | string | null);
+      }
+    }
+    return { subscriptions: await listSubscriptions(db, userId), card, fresh: true };
+  } catch (error) {
+    console.error('[billing] could not refresh the account billing view:', error instanceof Error ? error.message : error);
+    return { subscriptions: await listSubscriptions(db, userId), card: null, fresh: false };
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Webhooks
+// ---------------------------------------------------------------------------
+
+export const HANDLED_EVENTS = new Set([
   'customer.subscription.created',
   'customer.subscription.updated',
   'customer.subscription.deleted',
-  'customer.subscription.paused',
-  'customer.subscription.resumed',
   'invoice.paid',
   'invoice.payment_failed',
 ]);
 
 export interface WebhookResult {
-  handled: boolean;
   type: string;
+  /** Already processed: nothing was done again. */
+  duplicate: boolean;
+  /** Something here changed (false for another product's customer, or an event type not handled). */
+  handled: boolean;
   userId?: string;
 }
 
-/** A Stripe webhook delivery: verified, then the customer it concerns is synced. */
+/** Which account a subscription belongs to: our own metadata, the stored link, then the Stripe customer. */
+async function resolveUser(db: Db, subscription: Stripe.Subscription, stripe: StripeApi | null): Promise<string | null> {
+  const hinted = subscription.metadata?.examer_user_id;
+  if (hinted && (await userExists(db, hinted))) return hinted;
+  const customerId = idOf(subscription.customer);
+  if (!customerId) return null;
+  const linked = await userForCustomer(db, customerId);
+  if (linked && (await userExists(db, linked))) return linked;
+  if (!stripe) return null;
+  const customer = await stripe.customers.retrieve(customerId);
+  const fromCustomer = 'metadata' in customer ? customer.metadata?.examer_user_id : undefined;
+  return fromCustomer && (await userExists(db, fromCustomer)) ? fromCustomer : null;
+}
+
+/** The subscription an invoice belongs to (current API versions put it under `parent`). */
+function subscriptionOfInvoice(invoice: Stripe.Invoice): string | null {
+  const fromParent = idOf(invoice.parent?.subscription_details?.subscription ?? null);
+  const legacy = (invoice as unknown as { subscription?: string | { id: string } | null }).subscription;
+  return fromParent ?? idOf(legacy ?? null);
+}
+
+/**
+ * A Stripe webhook delivery. The signature is checked against the raw body;
+ * an event already processed is acknowledged and skipped; subscription events
+ * older than what is stored are ignored. Throws BillingError('invalid-signature')
+ * for a delivery that does not verify.
+ */
 export async function handleWebhook(
   db: Db,
   payload: string,
   signature: string | null,
   options: BillingDeps = {},
 ): Promise<WebhookResult> {
-  const { settings, stripe, now } = deps(options);
-  if (!settings.enabled || !settings.webhookSecret) {
-    throw new BillingError('billing-off', 'Webhooks are not configured.', 503);
-  }
-  if (!verifyStripeSignature(payload, signature, settings.webhookSecret, { now: Math.floor(now.getTime() / 1000) })) {
-    throw new BillingError('invalid-signature', 'The webhook signature did not verify.', 400);
+  const { settings, stripe, now } = resolveDeps(options);
+  if (!settings.webhookSecret) throw new BillingError('billing-off', 'Webhooks are not configured.', 503);
+
+  let event: Stripe.Event;
+  try {
+    event = await verifyWebhookEvent(payload, signature, settings.webhookSecret, { nowMs: now.getTime() });
+  } catch (error) {
+    if (isSignatureError(error)) throw new BillingError('invalid-signature', 'The webhook signature did not verify.', 400);
+    throw error;
   }
 
-  const event = JSON.parse(payload) as { type: string; data?: { object?: Record<string, any> } };
-  if (!HANDLED_EVENTS.has(event.type)) return { handled: false, type: event.type };
-  const object = event.data?.object ?? {};
-  const customerId: string | undefined = typeof object.customer === 'string' ? object.customer : object.customer?.id;
-  if (!customerId) return { handled: false, type: event.type };
+  if (!HANDLED_EVENTS.has(event.type)) return { type: event.type, duplicate: false, handled: false };
+  if (await eventSeen(db, event.id)) return { type: event.type, duplicate: true, handled: false };
 
-  // Who this customer is: the stored link first, then the id attached at checkout
-  const linked = (await db.prepare('SELECT user_id FROM subscriptions WHERE stripe_customer_id = ?').get(customerId)) as
-    | { user_id: string }
-    | undefined;
-  let userId = linked?.user_id ?? object.metadata?.examer_user_id ?? fromReference(object.client_reference_id);
-  if (!userId) {
-    const customer = await stripe('GET', `customers/${customerId}`);
-    userId = customer.metadata?.examer_user_id;
+  // Work out what to store before taking the write lock: it may ask Stripe.
+  let subscription: Stripe.Subscription | null = null;
+  let syncedAt = event.created;
+  if (event.type.startsWith('customer.subscription.')) {
+    subscription = event.data.object as Stripe.Subscription;
+  } else {
+    const subscriptionId = subscriptionOfInvoice(event.data.object as Stripe.Invoice);
+    if (subscriptionId && stripe) {
+      // An invoice does not carry the subscription's new state, so read it now.
+      subscription = await stripe.subscriptions.retrieve(subscriptionId);
+      syncedAt = Math.max(event.created, seconds(now));
+    }
   }
-  // Another product on the same Stripe account, or an account deleted since: nothing to do
-  if (!userId || !(await db.prepare('SELECT id FROM users WHERE id = ?').get(userId))) {
-    return { handled: false, type: event.type };
-  }
+  const ours = subscription && snapshotFromStripe(subscription) ? subscription : null;
+  const userId = ours ? await resolveUser(db, ours, stripe) : null;
 
-  await syncCustomer(db, userId, customerId, stripe, now);
-  return { handled: true, type: event.type, userId };
+  return db.transaction(async () => {
+    const first = await recordEvent(db, event, Boolean(userId), now);
+    if (!first) return { type: event.type, duplicate: true, handled: false };
+    if (!ours || !userId) return { type: event.type, duplicate: false, handled: false };
+    await storeSubscription(db, userId, ours, { syncedAt, now });
+    return { type: event.type, duplicate: false, handled: true, userId };
+  })();
 }
 
-function fromReference(value: unknown): string | undefined {
-  return typeof value === 'string' && value.startsWith('examer:') ? value.slice('examer:'.length) : undefined;
-}
+// ---------------------------------------------------------------------------
+// Account deletion
+// ---------------------------------------------------------------------------
 
 /**
  * Before an account is deleted: end its subscriptions now, so nobody is billed
  * for an account that no longer exists. Throws if Stripe cannot confirm it.
  */
 export async function cancelBeforeDeletion(db: Db, userId: string, options: BillingDeps = {}): Promise<void> {
-  const { settings, stripe } = deps(options);
-  if (!settings.enabled) {
-    // A database still awaiting migration 010 has no subscriptions table, and
-    // without billing nobody can have bought a plan there.
-    const row = await getSubscription(db, userId).catch(() => null);
-    if (premiumActive(row)) {
-      throw new BillingError('billing-unavailable', 'Your Premium plan cannot be cancelled right now, so the account was not deleted. Please try again later.', 503);
-    }
+  const settings = options.settings ?? assertBillingConfig();
+  const stripe = options.stripe !== undefined ? options.stripe : settings.secretKey ? stripeClient(settings) : null;
+  // A database still awaiting migration 012 has no billing tables; nobody can have paid there.
+  const customer = await getCustomerId(db, userId).catch(() => null);
+  if (!customer) return;
+  if (!stripe) {
+    const live = (await listSubscriptions(db, userId).catch(() => [])).some((row) => CHANGEABLE.has(row.status));
+    if (live) throw new BillingError('billing-unavailable', BILLING_COPY.deletionBlocked, 503);
     return;
   }
-  const row = await getSubscription(db, userId);
-  if (!row) return;
   try {
-    const list = await stripe('GET', 'subscriptions', { customer: row.stripe_customer_id, status: 'all', limit: 20 });
-    for (const subscription of (list.data ?? []) as StripeSubscription[]) {
+    const list = await stripe.subscriptions.list({ customer, status: 'all', limit: 100 });
+    for (const subscription of list.data) {
       if (['canceled', 'incomplete_expired'].includes(subscription.status)) continue;
-      await stripe('DELETE', `subscriptions/${subscription.id}`);
+      await stripe.subscriptions.cancel(subscription.id);
     }
   } catch (error) {
-    if (error instanceof StripeError && error.code === 'resource_missing') return;
-    if (error instanceof StripeError) {
-      console.error('[billing] cancel before deletion failed', error.status, error.code, error.message);
-      throw new BillingError(
-        'billing-unavailable',
-        'Your Premium plan could not be cancelled just now, so the account was not deleted. Please try again in a few minutes.',
-        503,
-      );
+    if (asStripeError(error)?.code === 'resource_missing') return;
+    if (asStripeError(error)) {
+      console.error('[billing] cancel before deletion failed:', asStripeError(error)?.message);
+      throw new BillingError('billing-unavailable', BILLING_COPY.deletionBlocked, 503);
     }
     throw error;
   }

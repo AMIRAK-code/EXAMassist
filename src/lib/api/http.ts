@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { ZodError } from 'zod';
 import { AttemptError } from '@/lib/attempts/service';
 import { BillingError } from '@/lib/billing/service';
+import { BillingConfigError } from '@/lib/billing/config';
+import { EntitlementError } from '@/lib/billing/entitlements';
 import { ForbiddenError, UnauthorizedError } from '@/lib/auth/session';
 import { EmailDeliveryError } from '@/lib/email/send';
 import { TutorError } from '@/lib/tutor/service';
@@ -40,6 +42,14 @@ export function toErrorResponse(error: unknown): NextResponse {
   }
   if (error instanceof BillingError) {
     return fail(error.code, error.message, error.status, error.detail);
+  }
+  if (error instanceof EntitlementError) {
+    return fail(error.code, error.message, error.status, error.detail);
+  }
+  if (error instanceof BillingConfigError) {
+    // Loud on the server, vague to the client: never fall back to free access.
+    console.error('[api] billing misconfigured:', error.message);
+    return fail('billing-misconfigured', 'This feature is unavailable because payments are not set up correctly.', 503);
   }
   if (error instanceof UnauthorizedError) {
     return fail('unauthorized', error.message, 401);

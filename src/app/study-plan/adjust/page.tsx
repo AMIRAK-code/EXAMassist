@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { getDb } from '@/lib/db';
+import { loadEntitlements } from '@/lib/billing/entitlements';
 import { requireSignedIn } from '@/lib/auth/guards';
 import { getExamConfig } from '@/lib/exams/registry';
 import {
@@ -57,6 +58,8 @@ export default async function AdjustPlanPage({ searchParams }: { searchParams: P
   const config = getExamConfig(one(query.exam) ?? '');
   if (!config) redirect('/study-plan');
   const db = getDb();
+  // Adjusting a plan is part of a paid plan for this exam; the plan view explains.
+  if (!(await loadEntitlements(db, user.id)).can('study_plan', config.examKey)) redirect(`/study-plan?exam=${encodeURIComponent(config.examKey)}`);
   let plan = (await activePlan(db, user.id, config.examKey));
   if (!plan) redirect(`/study-plan?exam=${encodeURIComponent(config.examKey)}&notice=no-plan`);
   if ((await recordCompletions(db, user.id, plan)) > 0) plan = (await activePlan(db, user.id, config.examKey))!;

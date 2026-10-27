@@ -4,10 +4,11 @@ import { getCurrentUser } from '@/lib/auth/session';
 import { getDb } from '@/lib/db';
 import { getCoverage } from '@/lib/content/repository';
 import { getBlueprint, getExamConfig, getHubForConfig } from '@/lib/exams/registry';
-import { freeTestPreview } from '@/lib/attempts/service';
+import { freeTestFor, freeTestPreview } from '@/lib/attempts/service';
 import { tutorSettings } from '@/lib/tutor/config';
-import { PLANS, billingSettings, formatEuros, freeTestPath } from '@/lib/billing/config';
-import { getAccess } from '@/lib/billing/service';
+import { freeTestPath, pricingPath } from '@/lib/billing/config';
+import { loadEntitlements } from '@/lib/billing/entitlements';
+import { PLANS, PLAN_COPY, formatPrice } from '@/lib/billing/plans';
 import { Breadcrumbs, Container } from '@/components/ui';
 import { Onboarding, type OnboardingStep } from './onboarding';
 
@@ -19,8 +20,8 @@ export const metadata: Metadata = {
 };
 
 /**
- * What a learner without Premium sees after choosing an exam: a short
- * introduction to it, then the plans, with the free test one click away.
+ * What a learner without a plan for this exam sees after choosing it: a short
+ * introduction, then the plans, with the free diagnostic one click away.
  * Everything said here comes from the exam's configuration and the bank.
  */
 export default async function StartPage({ params }: { params: Promise<{ examKey: string }> }) {
@@ -30,8 +31,8 @@ export default async function StartPage({ params }: { params: Promise<{ examKey:
 
   const db = getDb();
   const user = await getCurrentUser();
-  const access = user ? await getAccess(db, user.id) : null;
-  if (!billingSettings().enabled || access?.fullAccess) redirect(`/practice/${config.examKey}`);
+  const entitlements = await loadEntitlements(db, user?.id ?? null);
+  if (entitlements.can('practice', config.examKey)) redirect(`/practice/${config.examKey}`);
 
   const hub = getHubForConfig(config.examKey);
   const reviewed = (await getCoverage(db, config.examKey)).reduce((sum, row) => sum + Number(row.published), 0);
@@ -80,28 +81,28 @@ export default async function StartPage({ params }: { params: Promise<{ examKey:
     },
   ];
 
-  const freeNeedsAccount = !access?.registered;
-  const first = access?.firstSession ?? null;
+  const freeNeedsAccount = !entitlements.can('diagnostic', config.examKey);
+  const first = user && !freeNeedsAccount ? await freeTestFor(db, user.id, config.examKey) : null;
   const choice = {
-    premium: [
-      'Every exam and every practice format.',
-      'Fresh questions in every session.',
-      `From ${formatEuros(PLANS.yearly.perMonth)} a month, VAT included. Cancel any time.`,
+    paid: [
+      `${PLAN_COPY.plans.single_exam.name}: every ${config.shortName} practice format, ${formatPrice(PLANS.single_exam.amount)} a month.`,
+      `${PLAN_COPY.plans.all_access.name}: every exam plus the AI tutor, ${formatPrice(PLANS.all_access.amount)} a month.`,
+      'VAT included. Cancel any time from your account.',
     ],
     free: first
-      ? [first.status === 'in_progress' ? 'Your free test is still open: carry on where you left off.' : 'You have taken your free test; its results stay in your history.']
+      ? [first.status === 'in_progress' ? 'Your free diagnostic is still open: carry on where you left off.' : 'You have taken this diagnostic; its results stay in your history.']
       : [
-          preview ? `One ${preview.questions}-question test, the same for everyone.` : 'One fixed test, the same for everyone.',
-          'Once per account, with full results and explanations.',
+          preview ? `One ${preview.questions}-question diagnostic, the same for everyone.` : 'One fixed diagnostic, the same for everyone.',
+          'Free for every exam, with full results and explanations.',
           ...(freeNeedsAccount ? ['Needs a free account.'] : []),
         ],
     freeLabel: freeNeedsAccount
       ? 'Create a free account'
       : first
         ? first.status === 'in_progress'
-          ? 'Continue your free test'
-          : 'Your free test results'
-        : 'Take the free test',
+          ? 'Continue your diagnostic'
+          : 'Your diagnostic results'
+        : 'Take the free diagnostic',
   };
 
   return (
@@ -117,7 +118,7 @@ export default async function StartPage({ params }: { params: Promise<{ examKey:
       <Onboarding
         steps={steps}
         choice={choice}
-        plansHref={`/premium?exam=${encodeURIComponent(config.examKey)}`}
+        plansHref={pricingPath(config.examKey)}
         freeTestHref={freeTestPath(config.examKey)}
       />
     </Container>

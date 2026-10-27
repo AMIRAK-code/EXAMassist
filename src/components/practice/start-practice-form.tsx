@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Alert, Button, cx } from '@/components/ui';
-import { startPath } from '@/lib/billing/config';
+import { upgradeTarget } from '@/lib/billing/upgrade';
 import {
   defaultLength,
   eligibleCount,
@@ -169,8 +169,10 @@ export function StartPracticeForm({
 
     const data = await response.json().catch(() => null);
 
-    if (data?.error?.code === 'premium-required' || data?.error?.code === 'account-required') {
-      window.location.assign(startPath(examKey));
+    // No plan for this format: the pricing page for this exam, never an error.
+    const upgrade = data?.error ? upgradeTarget(data.error) : null;
+    if (upgrade) {
+      window.location.assign(upgrade);
       return;
     }
     if (!response.ok) {
