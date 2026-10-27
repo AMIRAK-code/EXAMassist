@@ -4,14 +4,15 @@ import { redirect } from 'next/navigation';
 import { getDb } from '@/lib/db';
 import { requireUser } from '@/lib/auth/session';
 import { checkRateLimit } from '@/lib/auth/rate-limit';
-import { AttemptError, startAttempt } from '@/lib/attempts/service';
+import { AttemptError, freeTestFor, startAttempt } from '@/lib/attempts/service';
 import { getExamConfig } from '@/lib/exams/registry';
 import { freeTestPath } from '@/lib/billing/config';
+import { upgradeTarget } from '@/lib/billing/upgrade';
 
 /**
- * Starts the free test for one exam. The idempotency key is per learner, so
- * pressing the button twice, or again after a refresh, opens the same session
- * rather than a second one.
+ * Starts the free diagnostic for one exam. One per exam per account: pressing
+ * the button again, or after a refresh, opens the same session rather than a
+ * second one.
  */
 export async function startFreeTestAction(formData: FormData): Promise<void> {
   const user = await requireUser();
@@ -19,6 +20,9 @@ export async function startFreeTestAction(formData: FormData): Promise<void> {
   if (!config) redirect('/exams');
   const back = freeTestPath(config.examKey);
   const db = getDb();
+
+  const existing = await freeTestFor(db, user.id, config.examKey);
+  if (existing) redirect(existing.status === 'in_progress' ? `/attempt/${existing.id}` : `/attempt/${existing.id}/results`);
   if (!(await checkRateLimit(db, 'attemptStart', `user:${user.id}`)).allowed) redirect(`${back}?notice=rate-limited`);
 
   let attemptId: string | null = null;
@@ -30,14 +34,15 @@ export async function startFreeTestAction(formData: FormData): Promise<void> {
         examKey: config.examKey,
         blueprintId: 'diagnostic',
         freeTest: true,
-        idempotencyKey: `free-test:${user.id}`,
+        idempotencyKey: `free-test:${user.id}:${config.examKey}`,
       })
     ).attemptId;
   } catch (error) {
     if (!(error instanceof AttemptError)) throw error;
+    if (error.code === 'account-required') redirect(`/sign-up?next=${encodeURIComponent(back)}`);
+    const upgrade = upgradeTarget(error);
+    if (upgrade) redirect(upgrade);
     failure = error.code;
   }
-  if (failure === 'account-required') redirect(`/sign-up?next=${encodeURIComponent(back)}`);
-  if (failure === 'premium-required') redirect(`/premium?reason=free-test-used&exam=${encodeURIComponent(config.examKey)}`);
   redirect(attemptId ? `/attempt/${attemptId}` : `${back}?notice=${encodeURIComponent(failure)}`);
 }

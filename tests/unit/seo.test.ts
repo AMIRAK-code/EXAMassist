@@ -12,7 +12,7 @@ import { googleSiteVerification } from '@/lib/site';
  */
 
 const SITE = 'https://exam.assist365.app';
-const PRIVATE = ['/api/', '/attempt/', '/dashboard', '/account', '/study-plan', '/admin', '/practice/', '/start/', '/free-test/', '/premium/welcome'];
+const PRIVATE = ['/api/', '/attempt/', '/dashboard', '/account', '/study-plan', '/admin', '/practice/', '/start/', '/free-test/', '/checkout'];
 const saved = { ...process.env };
 
 function production() {
@@ -43,7 +43,7 @@ describe('robots.txt in production', () => {
     expect(groupFor(result.rules as Rule[], 'bingbot')).toBeUndefined();
 
     const blocked = (path: string) => list(star.disallow).some((prefix) => path.startsWith(prefix));
-    for (const path of ['/', '/exams', '/exams/bocconi-online-test', '/exams/digital-sat/format', '/guides', '/guides/lsat-without-logic-games', '/about/privacy', '/premium']) {
+    for (const path of ['/', '/exams', '/exams/bocconi-online-test', '/exams/digital-sat/format', '/guides', '/guides/lsat-without-logic-games', '/about/privacy', '/pricing']) {
       expect(blocked(path), path).toBe(false);
     }
   });
@@ -76,7 +76,7 @@ describe('the sitemap in production', () => {
     const urls = sitemap().map((entry) => entry.url);
     expect(new Set(urls).size).toBe(urls.length);
     const expected = [
-      '/', '/exams', '/guides', '/premium',
+      '/', '/exams', '/guides', '/pricing',
       '/about/editorial-standards', '/about/how-scoring-works', '/about/privacy', '/about/terms',
       ...EXAM_HUBS.flatMap((hub) => [`/exams/${hub.slug}`, `/exams/${hub.slug}/format`]),
       ...listGuides().map((guide) => `/guides/${guide.slug}`),

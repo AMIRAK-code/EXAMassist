@@ -22,6 +22,8 @@ import { DEFAULT_WEEKLY_MINUTES, formatDate, formatDay, parsePlanDate, parseWeek
 import { planningExam } from '@/lib/learning/planning';
 import { createPlanAction, endPlanAction, skipPlanSessionAction, startPlanSessionAction } from '@/app/actions/planning';
 import { Alert, Breadcrumbs, Button, ButtonLink, Card, Container, DefinitionList, EmptyState, PageHeader, Stat } from '@/components/ui';
+import { loadEntitlements } from '@/lib/billing/entitlements';
+import { UpgradePrompt } from '@/components/billing/upgrade-prompt';
 import { PlanningExamSwitcher, PlanningNotice, PlanningViews } from '@/components/planning/planning-views';
 import {
   DateConflictCard,
@@ -87,6 +89,18 @@ export default async function StudyPlanPage({ searchParams }: { searchParams: Pr
   }
 
   const config = requireExamConfig(examKey);
+  // The study plan and readiness are part of a paid plan for this exam.
+  if (!(await loadEntitlements(db, user.id)).can('study_plan', config.examKey)) {
+    return (
+      <Container>
+        <Breadcrumbs trail={TRAIL} />
+        <PageHeader eyebrow={config.publisher} title="Study plan" />
+        <PlanningViews current="plan" examKey={config.examKey} />
+        <PlanningExamSwitcher choices={choices} />
+        <UpgradePrompt feature="study_plan" examKey={config.examKey} examName={config.shortName} />
+      </Container>
+    );
+  }
   let plan = (await activePlan(db, user.id, examKey));
   // The only write a visit makes: finished sessions complete what they satisfy.
   if (plan && (await recordCompletions(db, user.id, plan)) > 0) plan = (await activePlan(db, user.id, examKey));
