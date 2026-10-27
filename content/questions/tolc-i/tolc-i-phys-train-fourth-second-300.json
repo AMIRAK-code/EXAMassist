@@ -78,5 +78,48 @@
     "kinematics",
     "uniform-acceleration",
     "distance-in-nth-second"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un treno parte da fermo e si muove lungo un binario rettilineo con un'accelerazione costante di $2\\ \\text{m/s}^2$. Quanta strada percorre durante il quarto secondo del suo moto, cioè tra $t = 3\\ \\text{s}$ e $t = 4\\ \\text{s}$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$8\\ \\text{m}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$16\\ \\text{m}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$9\\ \\text{m}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$7\\ \\text{m}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$14\\ \\text{m}$"
+        }
+      ],
+      "explanationMd": "**Che cosa notare per prima cosa.** La domanda chiede la distanza percorsa *in un secondo particolare*, non la distanza dalla partenza. Trova la distanza dalla partenza a entrambi gli estremi di quel secondo e sottrai.\n\n**I passaggi.** Partendo da fermo, $s = \\tfrac12 a t^2 = \\tfrac12 \\cdot 2 \\cdot t^2 = t^2$ (in metri, con $t$ in secondi).\n\n- A $t = 4\\ \\text{s}$: $s = 16\\ \\text{m}$.\n- A $t = 3\\ \\text{s}$: $s = 9\\ \\text{m}$.\n\nDistanza durante il quarto secondo: $16 - 9 = 7\\ \\text{m}$.\n\n**Come verificarlo.** La velocità è $v = at$, quindi vale $6\\ \\text{m/s}$ a $t = 3\\ \\text{s}$ e $8\\ \\text{m/s}$ a $t = 4\\ \\text{s}$. Con accelerazione costante la velocità media in quel secondo è la media delle due, $7\\ \\text{m/s}$, e $7\\ \\text{m/s} \\times 1\\ \\text{s} = 7\\ \\text{m}$.",
+      "distractorRationale": {
+        "a": "Moltiplica la velocità alla fine del quarto secondo, $8\\ \\text{m/s}$, per $1\\ \\text{s}$, come se il treno avesse viaggiato alla velocità finale per tutto il secondo. In realtà stava accelerando da $6$ a $8\\ \\text{m/s}$, quindi la sua velocità media in quel secondo è $7\\ \\text{m/s}$.",
+        "c": "È la distanza percorsa nei primi tre secondi, $s(3) = 9\\ \\text{m}$, cioè il punto in cui comincia il quarto secondo, non la strada che il treno percorre durante quel secondo.",
+        "e": "Omette il fattore $\\tfrac12$ in $s = \\tfrac12 a t^2$ e calcola $2 \\times (16 - 9) = 14$. Il metodo della sottrazione è giusto, ma ogni distanza risulta raddoppiata.",
+        "b": "È la distanza totale dalla partenza fino a $t = 4\\ \\text{s}$, $s(4) = 16\\ \\text{m}$. La domanda chiede solo la parte percorsa durante il quarto secondo."
+      },
+      "accessibilityText": "Un treno parte da fermo e si muove lungo un binario rettilineo con un'accelerazione costante di 2 metri al secondo quadrato. Quanta strada percorre durante il quarto secondo del suo moto, cioè tra t uguale a 3 secondi e t uguale a 4 secondi? Le alternative sono 8 metri, 16 metri, 9 metri, 7 metri e 14 metri.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

@@ -78,5 +78,48 @@
     "circuits",
     "ohms-law",
     "parallel-resistors"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un resistore da $6\\ \\Omega$ e un resistore da $3\\ \\Omega$ sono collegati in parallelo ai capi di una batteria ideale da $12\\ \\text{V}$. Quale corrente eroga la batteria?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\dfrac{4}{3}\\ \\text{A}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$6\\ \\text{A}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$2\\ \\text{A}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$4\\ \\text{A}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$24\\ \\text{A}$"
+        }
+      ],
+      "explanationMd": "**Che cosa notare per prima cosa.** In parallelo, ai capi di ciascun resistore c'è l'intera tensione di $12\\ \\text{V}$, e la batteria eroga la somma delle correnti nei due rami.\n\n**I passaggi.** Legge di Ohm in ciascun ramo:\n\n$$I_6 = \\frac{12\\ \\text{V}}{6\\ \\Omega} = 2\\ \\text{A}, \\qquad I_3 = \\frac{12\\ \\text{V}}{3\\ \\Omega} = 4\\ \\text{A}, \\qquad I = 2 + 4 = 6\\ \\text{A}.$$\n\n**Come verificarlo.** La resistenza equivalente è data da $\\dfrac{1}{R} = \\dfrac16 + \\dfrac13 = \\dfrac12$, quindi $R = 2\\ \\Omega$ e $I = 12/2 = 6\\ \\text{A}$. Un collegamento in parallelo ha sempre una resistenza minore della più piccola delle sue resistenze, e $2\\ \\Omega < 3\\ \\Omega$, come previsto.",
+      "distractorRationale": {
+        "a": "Somma le resistenze, $6 + 3 = 9\\ \\Omega$, come in un collegamento in serie, ottenendo $12/9$. In parallelo la resistenza equivalente è minore di ciascuna delle due resistenze, non maggiore.",
+        "c": "È la corrente nel solo ramo da $6\\ \\Omega$. La batteria eroga anche i $4\\ \\text{A}$ che attraversano il resistore da $3\\ \\Omega$.",
+        "d": "È la corrente nel solo ramo da $3\\ \\Omega$. La batteria eroga anche i $2\\ \\text{A}$ che attraversano il resistore da $6\\ \\Omega$.",
+        "e": "Si ferma a $\\tfrac16 + \\tfrac13 = \\tfrac12$ e usa $0.5\\ \\Omega$ come resistenza. Quella somma è $1/R$; la resistenza è il suo reciproco, $2\\ \\Omega$."
+      },
+      "accessibilityText": "Un resistore da 6 ohm e un resistore da 3 ohm sono collegati in parallelo ai capi di una batteria ideale da 12 volt. Quale corrente eroga la batteria? Le alternative sono quattro terzi di ampere, 6 ampere, 2 ampere, 4 ampere e 24 ampere.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

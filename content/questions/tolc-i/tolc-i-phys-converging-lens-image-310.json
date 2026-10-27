@@ -79,5 +79,48 @@
     "thin-lens",
     "magnification",
     "real-image"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un oggetto è posto a $15\\ \\text{cm}$ davanti a una lente sottile convergente di distanza focale $10\\ \\text{cm}$. Quale affermazione descrive correttamente l'immagine?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Reale e capovolta, a $5\\ \\text{cm}$ dietro la lente, alta un terzo dell'oggetto"
+        },
+        {
+          "id": "b",
+          "textMd": "Reale e capovolta, a $6\\ \\text{cm}$ dietro la lente, alta $0.4$ volte l'oggetto"
+        },
+        {
+          "id": "c",
+          "textMd": "Reale e capovolta, a $30\\ \\text{cm}$ dietro la lente, alta il doppio dell'oggetto"
+        },
+        {
+          "id": "d",
+          "textMd": "Reale e capovolta, a $30\\ \\text{cm}$ dietro la lente, alta la metà dell'oggetto"
+        },
+        {
+          "id": "e",
+          "textMd": "Virtuale e diritta, a $30\\ \\text{cm}$ davanti alla lente, alta il doppio dell'oggetto"
+        }
+      ],
+      "explanationMd": "**Che cosa notare per prima cosa.** L'oggetto si trova tra $f$ e $2f$ da una lente convergente ($10 < 15 < 20$ cm). Un oggetto in questa posizione dà sempre un'immagine reale, capovolta e ingrandita, oltre $2f$ dall'altra parte. L'equazione delle lenti sottili fornisce la posizione esatta.\n\n**I passaggi.** Con distanza dell'oggetto $p = 15\\ \\text{cm}$ e distanza dell'immagine $q$:\n\n$$\\frac1p + \\frac1q = \\frac1f \\quad\\Rightarrow\\quad \\frac1q = \\frac1{10} - \\frac1{15} = \\frac{3 - 2}{30} = \\frac1{30}, \\qquad q = 30\\ \\text{cm}.$$\n\n$q$ è positiva, quindi l'immagine è reale, dalla parte della lente opposta all'oggetto. L'ingrandimento è $m = -\\dfrac{q}{p} = -\\dfrac{30}{15} = -2$: il segno meno indica che l'immagine è capovolta, e le dimensioni sono raddoppiate.\n\n**Come verificarlo.** Sostituisci: $\\tfrac1{15} + \\tfrac1{30} = \\tfrac{2+1}{30} = \\tfrac1{10}$. E $30\\ \\text{cm}$ è oltre $2f = 20\\ \\text{cm}$, come previsto dalla regola pratica.",
+      "distractorRationale": {
+        "b": "Somma i reciproci, $\\tfrac1{10} + \\tfrac1{15} = \\tfrac16$, invece di sottrarre $\\tfrac1p$ da $\\tfrac1f$. L'equazione è $\\tfrac1q = \\tfrac1f - \\tfrac1p$.",
+        "e": "Una lente convergente dà un'immagine virtuale e diritta solo quando l'oggetto è più vicino della distanza focale. A $15\\ \\text{cm}$ l'oggetto è oltre il fuoco a $10\\ \\text{cm}$, e $q = +30\\ \\text{cm}$ indica un'immagine reale.",
+        "d": "La posizione è giusta, ma l'ingrandimento è invertito: divide $p$ per $q$. L'immagine è più lontana dalla lente dell'oggetto, quindi è più grande, $q/p = 2$.",
+        "a": "Sottrae le distanze, $15 - 10 = 5\\ \\text{cm}$, invece dei loro reciproci. Nell'equazione delle lenti le lunghezze non si combinano in questo modo."
+      },
+      "accessibilityText": "Un oggetto è posto a 15 centimetri davanti a una lente sottile convergente di distanza focale 10 centimetri. Quale affermazione descrive correttamente l'immagine? Le alternative sono: reale e capovolta, a 5 centimetri dietro la lente, alta un terzo dell'oggetto; reale e capovolta, a 6 centimetri dietro la lente, alta 0,4 volte l'oggetto; reale e capovolta, a 30 centimetri dietro la lente, alta il doppio dell'oggetto; reale e capovolta, a 30 centimetri dietro la lente, alta la metà dell'oggetto; virtuale e diritta, a 30 centimetri davanti alla lente, alta il doppio dell'oggetto.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }
