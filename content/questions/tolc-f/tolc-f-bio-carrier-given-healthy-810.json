@@ -78,5 +78,48 @@
     "autosomal-recessive",
     "conditional-probability",
     "carrier"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "La fibrosi cistica è una malattia autosomica recessiva. Due genitori sani, entrambi notoriamente portatori, hanno un figlio sano. Qual è la probabilità che questo figlio sano sia portatore?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "1/4"
+        },
+        {
+          "id": "b",
+          "textMd": "1/3"
+        },
+        {
+          "id": "c",
+          "textMd": "1/2"
+        },
+        {
+          "id": "d",
+          "textMd": "2/3"
+        },
+        {
+          "id": "e",
+          "textMd": "3/4"
+        }
+      ],
+      "explanationMd": "Incrocia due portatori, $Aa \\times Aa$. I quattro esiti ugualmente probabili sono $AA$, $Aa$, $Aa$ e $aa$, quindi le probabilità sono $\\frac{1}{4}$ sano non portatore, $\\frac{1}{2}$ portatore e $\\frac{1}{4}$ malato.\n\nLa domanda aggiunge un'informazione: il figlio è sano, quindi l'esito malato $aa$ è escluso. Restano solo tre dei quattro esiti, e due di questi tre sono portatori. La probabilità è $\\frac{2}{3}$.\n\nQuando si sa che un figlio non è malato, restringi lo spazio campionario prima di contare. Verifica: $\\frac{1}{4}+\\frac{1}{2}=\\frac{3}{4}$ non malati in tutto, e $\\frac{1/2}{3/4}=\\frac{2}{3}$.",
+      "distractorRationale": {
+        "a": "È la probabilità che un figlio di due portatori sia malato. Inoltre ignora il fatto che si sa che il figlio è sano.",
+        "b": "È la probabilità che un figlio sano sia omozigote per l'allele normale (1 dei 3 esiti non malati), il complemento della risposta corretta.",
+        "c": "È la probabilità che un figlio di due portatori sia portatore prima di sapere qualcosa sulla sua salute. Sapere che il figlio è sano elimina un esito e cambia le probabilità.",
+        "e": "È la probabilità che un figlio di due portatori sia sano, cioè l'informazione data e non la probabilità richiesta."
+      },
+      "accessibilityText": "Una breve domanda testuale senza figure. Due genitori sani, entrambi portatori di una malattia autosomica recessiva, hanno un figlio sano. La domanda chiede la probabilità che il figlio sia portatore. Le cinque alternative sono un quarto, un terzo, un mezzo, due terzi e tre quarti.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f1",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

@@ -78,5 +78,48 @@
     "ph",
     "neutralisation",
     "excess-reagent"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "A 25 °C, 50 mL di acido cloridrico 0,030 mol/L vengono mescolati con 50 mL di idrossido di sodio 0,010 mol/L. Supponendo che i volumi si sommino, qual è il pH della miscela?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "12"
+        },
+        {
+          "id": "b",
+          "textMd": "Circa 1,7"
+        },
+        {
+          "id": "c",
+          "textMd": "2"
+        },
+        {
+          "id": "d",
+          "textMd": "7"
+        },
+        {
+          "id": "e",
+          "textMd": "3"
+        }
+      ],
+      "explanationMd": "Quando si mescolano un acido forte e una base forte, determina quale dei due è in eccesso, in **moli**, e poi dividi per il volume **totale**.\n\n1. Moli di $\\mathrm{H^+}$: $0.050\\ \\mathrm{L} \\times 0.030 = 1.5 \\times 10^{-3}$ mol.\n2. Moli di $\\mathrm{OH^-}$: $0.050\\ \\mathrm{L} \\times 0.010 = 0.5 \\times 10^{-3}$ mol.\n3. Si neutralizzano in rapporto 1 : 1, lasciando $1.0 \\times 10^{-3}$ mol di $\\mathrm{H^+}$.\n4. Volume totale: $50 + 50 = 100$ mL $= 0.100$ L, quindi $[\\mathrm{H^+}] = 1.0 \\times 10^{-3} \\div 0.100 = 1.0 \\times 10^{-2}$ mol/L.\n5. $\\mathrm{pH} = -\\log(10^{-2}) = 2$.\n\n**Verifica:** l'acido è in eccesso, quindi il pH deve essere inferiore a 7, e deve essere più alto del pH dell'acido iniziale ($[\\mathrm{H^+}] = 0.030$, pH circa 1,5), perché una parte dell'acido è stata neutralizzata e il resto diluito. Un pH di 2 soddisfa entrambe le condizioni.",
+      "distractorRationale": {
+        "b": "Trova correttamente l'eccesso in termini di concentrazione, $0.030 - 0.010 = 0.020$ mol/L, ma dimentica che mescolando il volume raddoppia. Dividendo per 0,100 L si ottiene 0,010 mol/L, non 0,020.",
+        "e": "Prende le $1.0 \\times 10^{-3}$ mol rimaste come se fossero una concentrazione, senza dividerle per gli 0,100 L della miscela.",
+        "d": "Un pH 7 richiederebbe moli uguali di acido e di base. Qui ci sono tre volte più moli di $\\mathrm{H^+}$ che di $\\mathrm{OH^-}$, quindi la miscela resta acida.",
+        "a": "Tratta gli 0,010 mol/L rimasti come idrossido, ottenendo pOH 2 e pH 12. In eccesso è l'acido, non la base."
+      },
+      "accessibilityText": "Una breve domanda testuale. A 25 gradi Celsius, 50 millilitri di acido cloridrico 0,030 moli per litro vengono mescolati con 50 millilitri di idrossido di sodio 0,010 moli per litro, e i volumi si sommano. La domanda chiede il pH della miscela. Le alternative sono 12, circa 1,7, 2, 7 e 3.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f1",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": "Decimal commas in prose and in the plain-text option 'Circa 1,7'; KaTeX working unchanged."
+      }
+    }
+  }
 }
