@@ -78,5 +78,48 @@
     "inscribed-circle",
     "area",
     "square"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "All'interno di un quadrato di lato $10$ cm è disegnato un cerchio tangente a tutti e quattro i lati del quadrato. Qual è l'area della parte del quadrato esterna al cerchio?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$25\\pi\\ \\text{cm}^{2}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$(400-100\\pi)\\ \\text{cm}^{2}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$\\left(25-\\dfrac{25\\pi}{4}\\right)\\ \\text{cm}^{2}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$(100-10\\pi)\\ \\text{cm}^{2}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$(100-25\\pi)\\ \\text{cm}^{2}$"
+        }
+      ],
+      "explanationMd": "Un cerchio tangente a tutti e quattro i lati di un quadrato ha il diametro uguale al lato, quindi qui il diametro è $10$ cm e il raggio è $5$ cm.\n\n**Passo 1 — le due aree.** Quadrato: $10^{2} = 100\\ \\text{cm}^{2}$. Cerchio: $\\pi\\cdot 5^{2} = 25\\pi\\ \\text{cm}^{2}$.\n\n**Passo 2 — sottrarre.** La regione interna al quadrato ed esterna al cerchio ha area $100 - 25\\pi\\ \\text{cm}^{2}$.\n\n**Verifica.** Con $\\pi\\approx 3.14$ il risultato è circa $100 - 78.5 = 21.5\\ \\text{cm}^{2}$: un'area positiva, circa un quinto del quadrato, che corrisponde ai quattro piccoli pezzi negli angoli.",
+      "distractorRationale": {
+        "d": "Sottrae la lunghezza della circonferenza $2\\pi\\cdot 5 = 10\\pi$ invece dell'area $\\pi\\cdot 5^{2}$; non si può sottrarre una lunghezza da un'area.",
+        "a": "Dà l'area del cerchio stesso, cioè della parte del quadrato interna al cerchio, non di quella esterna.",
+        "b": "Prende come raggio $10$ cm, il lato del quadrato, e poi inscrive quel cerchio in un quadrato di lato $20$: ogni lunghezza è raddoppiata, quindi entrambe le aree risultano quattro volte troppo grandi. È il diametro del cerchio, non il raggio, a essere uguale al lato.",
+        "c": "Calcola solo uno dei quattro pezzi negli angoli, $\\frac{1}{4}(100-25\\pi)$; la regione esterna al cerchio è formata da tutti e quattro gli angoli."
+      },
+      "accessibilityText": "All'interno di un quadrato di lato 10 centimetri è disegnato un cerchio tangente a tutti e quattro i lati del quadrato. Qual è l'area della parte del quadrato esterna al cerchio? Le cinque alternative sono: 25 pi greco centimetri quadrati; 400 meno 100 pi greco centimetri quadrati; 25 meno 25 pi greco fratto 4 centimetri quadrati; 100 meno 10 pi greco centimetri quadrati; 100 meno 25 pi greco centimetri quadrati.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i2",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": "'circle' rendered as 'cerchio' here because areas are involved; 'circumference' as 'lunghezza della circonferenza'."
+      }
+    }
+  }
 }

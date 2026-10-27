@@ -78,5 +78,48 @@
     "radicals",
     "rationalising",
     "conjugate"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Semplificare $\\dfrac{2}{\\sqrt{5}-\\sqrt{3}} - \\sqrt{5}$.",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\sqrt{5}+2\\sqrt{3}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\sqrt{3}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$\\sqrt{2}-\\sqrt{5}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\dfrac{\\sqrt{3}-3\\sqrt{5}}{4}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$-2\\sqrt{5}-\\sqrt{3}$"
+        }
+      ],
+      "explanationMd": "Un denominatore della forma $\\sqrt{a}-\\sqrt{b}$ si razionalizza moltiplicando numeratore e denominatore per il coniugato $\\sqrt{a}+\\sqrt{b}$, perché $(\\sqrt{a}-\\sqrt{b})(\\sqrt{a}+\\sqrt{b}) = a - b$.\n\n**Passo 1 — razionalizzare.** $$\\frac{2}{\\sqrt5-\\sqrt3}\\cdot\\frac{\\sqrt5+\\sqrt3}{\\sqrt5+\\sqrt3} = \\frac{2(\\sqrt5+\\sqrt3)}{5-3} = \\frac{2(\\sqrt5+\\sqrt3)}{2} = \\sqrt5+\\sqrt3.$$\n\n**Passo 2 — sottrarre.** $\\sqrt5+\\sqrt3-\\sqrt5 = \\sqrt3$.\n\n**Come verificarlo.** Si procede a ritroso: se $\\dfrac{2}{\\sqrt5-\\sqrt3} = \\sqrt5+\\sqrt3$, allora $(\\sqrt5+\\sqrt3)(\\sqrt5-\\sqrt3)$ deve valere 2, e infatti vale $5-3 = 2$ ✓.",
+      "distractorRationale": {
+        "a": "Razionalizza correttamente ma dimentica di dividere per il nuovo denominatore $5-3 = 2$, tenendo $2\\sqrt5+2\\sqrt3$ e poi sottraendo $\\sqrt5$.",
+        "c": "Sottrae sotto il segno di radice, scrivendo $\\sqrt5-\\sqrt3 = \\sqrt2$. Le radici non si combinano così: $\\sqrt5-\\sqrt3 \\approx 0.50$, mentre $\\sqrt2 \\approx 1.41$.",
+        "d": "Sviluppa il prodotto dei coniugati come $a + b$, ottenendo un denominatore $5+3 = 8$. Il prodotto $(\\sqrt5-\\sqrt3)(\\sqrt5+\\sqrt3)$ è una differenza di quadrati, $5-3 = 2$.",
+        "e": "Calcola la differenza di quadrati nell'ordine sbagliato, $3-5 = -2$, il che trasforma il primo termine in $-(\\sqrt5+\\sqrt3)$. Poiché $\\sqrt5 > \\sqrt3$, il denominatore di partenza è positivo, quindi anche il primo termine deve essere positivo."
+      },
+      "accessibilityText": "Semplificare: 2 diviso la quantità radice quadrata di 5 meno radice quadrata di 3, poi meno la radice quadrata di 5. Le cinque alternative sono: radice quadrata di 5 più 2 per la radice quadrata di 3; la radice quadrata di 3; radice quadrata di 2 meno radice quadrata di 5; la frazione con numeratore radice quadrata di 3 meno 3 per la radice quadrata di 5, e denominatore 4; meno 2 per la radice quadrata di 5, meno la radice quadrata di 3.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i2",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

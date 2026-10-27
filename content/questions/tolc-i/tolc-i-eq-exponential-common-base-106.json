@@ -77,5 +77,48 @@
   "tags": [
     "exponential-equation",
     "common-base"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Risolvere $4^{x+1} = 8^{x-1}$.",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "nessuna soluzione reale"
+        },
+        {
+          "id": "b",
+          "textMd": "$x = 5$"
+        },
+        {
+          "id": "c",
+          "textMd": "$x = 2$"
+        },
+        {
+          "id": "d",
+          "textMd": "$x = -5$"
+        },
+        {
+          "id": "e",
+          "textMd": "$x = 3$"
+        }
+      ],
+      "explanationMd": "Si scrivono entrambi i membri come potenze della stessa base. Poiché $4 = 2^{2}$ e $8 = 2^{3}$, l'equazione diventa un'uguaglianza tra esponenti.\n\n**Passo 1 — base comune.** $4^{x+1} = 2^{2(x+1)} = 2^{2x+2}$ e $8^{x-1} = 2^{3(x-1)} = 2^{3x-3}$.\n\n**Passo 2 — uguagliare gli esponenti.** La funzione $2^{t}$ è iniettiva, quindi $2x + 2 = 3x - 3$, da cui $x = 5$.\n\n**Come verificarlo.** $4^{6} = 4096$ e $8^{4} = 4096$ ✓.",
+      "distractorRationale": {
+        "c": "Moltiplica per i nuovi esponenti solo la $x$ e non i termini noti: $2x + 1 = 3x - 1$. Va moltiplicato l'intero esponente, $2(x+1) = 2x + 2$ e $3(x-1) = 3x - 3$.",
+        "e": "Applica la proprietà distributiva a sinistra ma non a destra, scrivendo $2x + 2 = 3x - 1$. Vanno sviluppate entrambe le parentesi: l'esponente di destra è $3x - 3$.",
+        "d": "Imposta correttamente $2x + 2 = 3x - 3$ ma sbaglia nell'isolare $x$. Raccogliendo i termini si ottiene $5 = x$, non $-5$; per $x = -5$ il primo membro è $4^{-4}$ e il secondo $8^{-6}$, che sono diversi.",
+        "a": "Uguaglia gli esponenti senza prima rendere uguali le basi, ottenendo $x + 1 = x - 1$, che non ha soluzioni. Gli esponenti si possono confrontare solo quando entrambi i membri hanno la stessa base."
+      },
+      "accessibilityText": "Risolvere l'equazione: 4 elevato a x più 1 uguale 8 elevato a x meno 1. Le cinque alternative sono: nessuna soluzione reale; x uguale 5; x uguale 2; x uguale meno 5; x uguale 3.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i2",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

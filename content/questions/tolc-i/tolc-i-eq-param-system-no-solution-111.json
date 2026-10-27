@@ -78,5 +78,48 @@
     "linear-system",
     "parameter",
     "determinant"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Si consideri il sistema lineare nelle incognite $x$ e $y$, dove $a$ è un parametro reale: $$\\begin{cases} ax + 2y = 3 \\\\ 2x + ay = a + 1 \\end{cases}$$ Per quale valore o quali valori di $a$ il sistema **non** ha soluzioni?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "nessun valore reale di $a$"
+        },
+        {
+          "id": "b",
+          "textMd": "solo $a = -2$"
+        },
+        {
+          "id": "c",
+          "textMd": "$a = 2$ e $a = -2$"
+        },
+        {
+          "id": "d",
+          "textMd": "solo $a = 2$"
+        },
+        {
+          "id": "e",
+          "textMd": "solo $a = 0$"
+        }
+      ],
+      "explanationMd": "Un sistema lineare $2\\times 2$ ha esattamente una soluzione quando il suo determinante è diverso da zero. Quando il determinante è zero, le due rette sono parallele: il sistema non ha soluzioni (rette parallele distinte) oppure ne ha infinite (la stessa retta), e ciascun caso va controllato separatamente.\n\n**Passo 1 — determinante.** $a\\cdot a - 2\\cdot 2 = a^{2} - 4$, che si annulla per $a = 2$ e $a = -2$. Per ogni altro valore di $a$ c'è esattamente una soluzione.\n\n**Passo 2 — $a = 2$.** Le equazioni diventano $2x + 2y = 3$ e $2x + 2y = 3$: la stessa equazione, quindi ci sono infinite soluzioni.\n\n**Passo 3 — $a = -2$.** Le equazioni diventano $-2x + 2y = 3$ e $2x - 2y = -1$. Moltiplicando la seconda per $-1$ si ottiene $-2x + 2y = 1$, che contraddice $-2x + 2y = 3$. Nessuna soluzione.\n\nQuindi il sistema non ha soluzioni solo per $a = -2$.\n\n**Come verificarlo.** Per $a = -2$ entrambe le equazioni descrivono rette di coefficiente angolare 1, $y = x + \\tfrac32$ e $y = x + \\tfrac12$: parallele e distinte, quindi non si incontrano mai ✓.",
+      "distractorRationale": {
+        "d": "Confonde i due casi degeneri. Per $a = 2$ entrambe le equazioni si riducono a $2x + 2y = 3$, quindi il sistema ha infinite soluzioni, non nessuna.",
+        "c": "Si ferma al determinante. Un determinante nullo esclude una soluzione unica ma lascia due possibilità; per $a = 2$ le equazioni coincidono e ogni punto della retta è una soluzione.",
+        "e": "Ritiene speciale $a = 0$ perché elimina dei termini. Per $a = 0$ il sistema è $2y = 3$, $2x = 1$, che ha l'unica soluzione $x = \\tfrac12$, $y = \\tfrac32$.",
+        "a": "Controlla solo $a = 2$, vi trova infinite soluzioni e conclude che il sistema ha sempre soluzioni. L'altra radice di $a^{2} - 4 = 0$, cioè $a = -2$, dà due rette parallele distinte."
+      },
+      "accessibilityText": "Si consideri il sistema lineare nelle incognite x e y, dove a è un parametro reale. Prima equazione: a x più 2 y uguale 3. Seconda equazione: 2 x più a y uguale a più 1. Per quale valore o quali valori di a il sistema non ha soluzioni? Le cinque alternative sono: nessun valore reale di a; solo a uguale meno 2; a uguale 2 e a uguale meno 2; solo a uguale 2; solo a uguale 0.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i2",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

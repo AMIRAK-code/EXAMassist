@@ -78,5 +78,48 @@
     "circle",
     "chord",
     "completing-the-square"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "La circonferenza di equazione $x^{2} + y^{2} - 6x + 4y - 12 = 0$ interseca l'asse $y$ in due punti. Qual è la distanza tra questi due punti?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$10$"
+        },
+        {
+          "id": "b",
+          "textMd": "$2\\sqrt{3}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$4$"
+        },
+        {
+          "id": "d",
+          "textMd": "$8$"
+        },
+        {
+          "id": "e",
+          "textMd": "$2\\sqrt{21}$"
+        }
+      ],
+      "explanationMd": "I punti dell'asse $y$ hanno $x = 0$: basta sostituire e risolvere.\n\n**Passo 1 — sostituire $x = 0$.** $y^{2} + 4y - 12 = 0$, che si scompone come $(y + 6)(y - 2) = 0$, quindi $y = 2$ oppure $y = -6$.\n\n**Passo 2 — la distanza.** I punti sono $(0, 2)$ e $(0, -6)$, quindi distano $2 - (-6) = 8$.\n\n**Verifica geometrica.** Completando i quadrati, $(x-3)^{2} + (y+2)^{2} = 9 + 4 + 12 = 25$: centro $(3, -2)$, raggio $5$. Il centro dista $3$ dall'asse $y$, quindi la semicorda è $\\sqrt{5^{2} - 3^{2}} = 4$ e la corda è $8$ ✓.",
+      "distractorRationale": {
+        "b": "Considera il termine noto come se desse $r^{2} = 12$, così la semicorda risulta $\\sqrt{12 - 9} = \\sqrt{3}$; completando i quadrati si ottiene invece $r^{2} = 9 + 4 + 12 = 25$.",
+        "c": "Trova la semicorda, $\\sqrt{25 - 9} = 4$, e non la raddoppia.",
+        "a": "È il diametro della circonferenza; l'asse $y$ non passa per il centro $(3, -2)$, quindi la corda è più corta di un diametro.",
+        "e": "Sostituisce $y = 0$ invece di $x = 0$, trovando la corda sull'asse $x$: $x^{2} - 6x - 12 = 0$ ha radici $3 \\pm \\sqrt{21}$."
+      },
+      "accessibilityText": "La circonferenza x al quadrato più y al quadrato meno 6 x più 4 y meno 12 uguale 0 interseca l'asse y in due punti. Qual è la distanza tra questi due punti? Le cinque alternative sono: 10; 2 per la radice quadrata di 3; 4; 8; 2 per la radice quadrata di 21.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i2",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": "'circle' rendered as 'circonferenza' (the curve), as in Italian school usage."
+      }
+    }
+  }
 }
