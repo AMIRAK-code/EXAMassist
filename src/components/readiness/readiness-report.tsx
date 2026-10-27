@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import type { ExamConfig } from '@/lib/assessment/types';
 import { BAND_LABEL, type Band, type ReadinessAssessment } from '@/lib/learning/readiness';
 import { Alert, Badge, Card, Meter, SectionHeading, Stat } from '@/components/ui';
