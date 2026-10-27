@@ -54,12 +54,14 @@ project-specific migration notes in private local files, never in Git.
 Run npm run db:check for a PostgreSQL application smoke test that rolls back its
 test records. npm run supabase:check independently checks the public API URL/key.
 
-### Cloudflare Workers (exam.assist365.app)
+### Cloudflare Workers (uniexamer.com)
 
 The site also runs as the Worker `examer` in the Cloudflare account that holds
-the assist365.app zone, built with OpenNext (`wrangler.jsonc`,
-`open-next.config.ts`). The custom domain gives it its DNS record and
-certificate. A Worker cannot keep a connection pool between requests, so the
+the uniexamer.com zone, built with OpenNext (`wrangler.jsonc`,
+`open-next.config.ts`). The custom domains give it its DNS records and
+certificates. Until 27 October 2026 the site was at exam.assist365.app; that
+host and www.uniexamer.com stay attached only to redirect (301) to the same
+path on uniexamer.com (`next.config.ts`). A Worker cannot keep a connection pool between requests, so the
 database goes through the Hyperdrive config `examer-db`: the same examer_app
 login against the Supabase session pooler (port 5432), TLS verify-full with the
 Supabase root certificate, and query caching off. Each request opens a small

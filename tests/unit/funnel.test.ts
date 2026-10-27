@@ -36,16 +36,16 @@ async function totals() {
 
 describe('classifying where a visit came from', () => {
   it('keeps only a coarse source', () => {
-    expect(classifyReferrer('https://www.google.it/', 'exam.assist365.app')).toBe('search');
-    expect(classifyReferrer('https://www.bing.com/search?q=bocconi', 'exam.assist365.app')).toBe('search');
-    expect(classifyReferrer('https://duckduckgo.com/', 'exam.assist365.app')).toBe('search');
-    expect(classifyReferrer('https://chatgpt.com/', 'exam.assist365.app')).toBe('ai');
-    expect(classifyReferrer('https://www.perplexity.ai/search/x', 'exam.assist365.app')).toBe('ai');
-    expect(classifyReferrer('https://gemini.google.com/app', 'exam.assist365.app')).toBe('ai');
-    expect(classifyReferrer('https://exam.assist365.app/guides', 'exam.assist365.app')).toBe('internal');
-    expect(classifyReferrer('https://assist365.app/', 'exam.assist365.app')).toBe('other');
-    expect(classifyReferrer(null, 'exam.assist365.app')).toBe('direct');
-    expect(classifyReferrer('not a url', 'exam.assist365.app')).toBe('other');
+    expect(classifyReferrer('https://www.google.it/', 'uniexamer.com')).toBe('search');
+    expect(classifyReferrer('https://www.bing.com/search?q=bocconi', 'uniexamer.com')).toBe('search');
+    expect(classifyReferrer('https://duckduckgo.com/', 'uniexamer.com')).toBe('search');
+    expect(classifyReferrer('https://chatgpt.com/', 'uniexamer.com')).toBe('ai');
+    expect(classifyReferrer('https://www.perplexity.ai/search/x', 'uniexamer.com')).toBe('ai');
+    expect(classifyReferrer('https://gemini.google.com/app', 'uniexamer.com')).toBe('ai');
+    expect(classifyReferrer('https://uniexamer.com/guides', 'uniexamer.com')).toBe('internal');
+    expect(classifyReferrer('https://assist365.app/', 'uniexamer.com')).toBe('other');
+    expect(classifyReferrer(null, 'uniexamer.com')).toBe('direct');
+    expect(classifyReferrer('not a url', 'uniexamer.com')).toBe('other');
   });
 
   it('skips crawlers and assistants fetching for a user', () => {
@@ -74,11 +74,11 @@ describe('counting', () => {
   });
 
   it('counts a person’s page view by source, and not a crawler’s or a prefetch', async () => {
-    const page = { 'user-agent': CHROME, host: 'exam.assist365.app' };
+    const page = { 'user-agent': CHROME, host: 'uniexamer.com' };
     await countPageView(db, 'landing_view', 'bocconi-online-test', headers({ ...page, referer: 'https://www.google.com/' }));
     await countPageView(db, 'landing_view', 'bocconi-online-test', headers({ ...page }));
     await countPageView(db, 'landing_view', 'bocconi-online-test', headers({ ...page, 'next-router-prefetch': '1' }));
-    await countPageView(db, 'landing_view', 'bocconi-online-test', headers({ 'user-agent': 'Googlebot/2.1', host: 'exam.assist365.app' }));
+    await countPageView(db, 'landing_view', 'bocconi-online-test', headers({ 'user-agent': 'Googlebot/2.1', host: 'uniexamer.com' }));
     const rows = await totals();
     expect(rows.map((r) => [r.source, r.count])).toEqual([
       ['direct', 1],
