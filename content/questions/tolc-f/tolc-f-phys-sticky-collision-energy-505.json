@@ -78,5 +78,48 @@
     "momentum",
     "inelastic-collision",
     "kinetic-energy"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un carrello di $3\\ \\text{kg}$ che si muove a $4\\ \\text{m/s}$ lungo un binario orizzontale urta un carrello di $1\\ \\text{kg}$ fermo, e i due restano attaccati. Quanta energia cinetica viene persa nell'urto?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$0\\ \\text{J}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$6\\ \\text{J}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$3\\ \\text{J}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$18\\ \\text{J}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$24\\ \\text{J}$"
+        }
+      ],
+      "explanationMd": "**Da notare subito.** I carrelli restano attaccati, quindi l'urto è completamente anelastico: la quantità di moto si conserva, l'energia cinetica no. Serve quindi prima la velocità dopo l'urto, poi il confronto tra le energie cinetiche prima e dopo.\n\n**I passaggi decisivi.** La conservazione della quantità di moto, $3\\times 4 = (3+1)\\,v$, dà $v=3\\ \\text{m/s}$. Quindi\n\n$$K_{\\text{prima}}=\\tfrac12\\cdot 3\\cdot 4^{2}=24\\ \\text{J}, \\qquad K_{\\text{dopo}}=\\tfrac12\\cdot 4\\cdot 3^{2}=18\\ \\text{J}, \\qquad K_{\\text{persa}}=24-18=6\\ \\text{J}.$$\n\n**Come verificarlo.** Quando una massa in moto si attacca a una ferma, la frazione di energia cinetica persa è uguale alla quota della massa ferma sulla massa totale: $\\tfrac{1}{3+1}=\\tfrac14$. Un quarto di 24 J è 6 J, in accordo con il risultato.",
+      "distractorRationale": {
+        "a": "Ragiona che, siccome la quantità di moto si conserva, deve conservarsi anche l'energia. La quantità di moto si conserva in ogni urto, ma l'energia cinetica si conserva solo negli urti elastici, e restare attaccati è il caso più anelastico possibile.",
+        "c": "È la *velocità* finale dei carrelli uniti in m/s, riportata come se fosse un'energia. La domanda chiede l'energia cinetica persa.",
+        "d": "È l'energia cinetica che rimane dopo l'urto, $\\tfrac12\\cdot 4\\cdot 3^{2}$, non l'energia che è stata persa.",
+        "e": "È l'energia cinetica prima dell'urto, $\\tfrac12\\cdot 3\\cdot 4^{2}$. L'energia persa è la differenza tra prima e dopo."
+      },
+      "accessibilityText": "Un carrello di tre chilogrammi che si muove a quattro metri al secondo urta un carrello di un chilogrammo fermo e i due restano attaccati. Quanta energia cinetica viene persa? Le alternative sono zero joule, sei joule, tre joule, diciotto joule e ventiquattro joule.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f2",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": "\\text{before}/\\text{after}/\\text{lost} subscripts translated as \\text{prima}/\\text{dopo}/\\text{persa}."
+      }
+    }
+  }
 }

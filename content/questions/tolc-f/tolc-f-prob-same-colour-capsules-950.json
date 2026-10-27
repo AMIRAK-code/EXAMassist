@@ -78,5 +78,48 @@
     "probability",
     "without-replacement",
     "combinations"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un barattolo contiene 4 capsule rosse e 2 capsule bianche, identiche tranne che per il colore. Si estraggono a caso due capsule, una dopo l'altra, senza rimettere la prima nel barattolo. Qual è la probabilità che le due capsule siano dello stesso colore?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\dfrac{1}{15}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\dfrac{2}{5}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$\\dfrac{7}{15}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\dfrac{8}{15}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\dfrac{5}{9}$"
+        }
+      ],
+      "explanationMd": "**Da notare subito.** «Stesso colore» significa due rosse **oppure** due bianche: due casi incompatibili, le cui probabilità si sommano.\n\n**Il calcolo.** Due rosse: $\\tfrac46\\cdot\\tfrac35=\\tfrac{12}{30}=\\tfrac{6}{15}$. Due bianche: $\\tfrac26\\cdot\\tfrac15=\\tfrac{2}{30}=\\tfrac{1}{15}$. Totale: $\\tfrac{6}{15}+\\tfrac{1}{15}=\\tfrac{7}{15}$.\n\n**Come verificarlo.** Conta le coppie non ordinate: in tutto ci sono $\\binom{6}{2}=15$ coppie, $\\binom{4}{2}=6$ coppie rosse e $\\binom{2}{2}=1$ coppia bianca, quindi di nuovo $\\tfrac{7}{15}$. L'evento complementare, una capsula per colore, ha probabilità $\\tfrac{4\\cdot 2}{15}=\\tfrac{8}{15}$, e $\\tfrac{7}{15}+\\tfrac{8}{15}=1$.",
+      "distractorRationale": {
+        "b": "Conta solo il caso delle due rosse, $\\tfrac{6}{15}$, e dimentica che anche due capsule bianche sono dello stesso colore.",
+        "e": "Tratta le estrazioni come se la prima capsula venisse rimessa nel barattolo: $\\left(\\tfrac46\\right)^{2}+\\left(\\tfrac26\\right)^{2}=\\tfrac{20}{36}$.",
+        "d": "Calcola la probabilità di una capsula per colore, cioè l'evento complementare a quello richiesto.",
+        "a": "Conta solo il caso delle due bianche e dimentica il caso, molto più probabile, delle due rosse."
+      },
+      "accessibilityText": "Un barattolo contiene 4 capsule rosse e 2 bianche. Se ne estraggono due a caso senza reinserimento. Trova la probabilità che siano entrambe dello stesso colore. Le cinque alternative sono: un quindicesimo; due quinti; sette quindicesimi; otto quindicesimi; cinque noni.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f2",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

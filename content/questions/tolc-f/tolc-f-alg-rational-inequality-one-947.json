@@ -77,5 +77,48 @@
   "tags": [
     "rational-inequality",
     "sign-analysis"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Per quali valori reali di $x$ si ha $\\dfrac{x-3}{x+2}\\le 1$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Per nessun $x$ reale"
+        },
+        {
+          "id": "b",
+          "textMd": "Per $x<-2$"
+        },
+        {
+          "id": "c",
+          "textMd": "Per $x>-2$"
+        },
+        {
+          "id": "d",
+          "textMd": "Per $x\\ge -2$"
+        },
+        {
+          "id": "e",
+          "textMd": "Per ogni $x$ reale tranne $x=-2$"
+        }
+      ],
+      "explanationMd": "**Da notare subito.** Non puoi moltiplicare entrambi i membri per $x+2$, perché il suo segno non è noto. Porta invece tutto a primo membro.\n\n**Il calcolo.**\n\n$$\\frac{x-3}{x+2}-1=\\frac{x-3-(x+2)}{x+2}=\\frac{-5}{x+2}\\le 0.$$\n\nIl numeratore è la costante $-5$, quindi la frazione non vale mai $0$ ed è negativa esattamente quando $x+2>0$. La soluzione è $x>-2$; per $x=-2$ l'espressione non è definita.\n\n**Come verificarlo.** Per $x=0$: $\\tfrac{-3}{2}\\le 1$ è vera. Per $x=-3$: $\\tfrac{-6}{-1}=6$, che non è $\\le 1$, quindi i valori minori di $-2$ sono davvero esclusi.",
+      "distractorRationale": {
+        "e": "Moltiplica entrambi i membri per $x+2$ senza considerarne il segno, ottenendo $x-3\\le x+2$, che è sempre vera. Quando $x+2<0$ il verso della disuguaglianza deve cambiare.",
+        "d": "Include $x=-2$, dove il denominatore è zero e l'espressione non esiste.",
+        "b": "Inverte il segno di $\\tfrac{-5}{x+2}$: la frazione è negativa quando $x+2$ è positivo, non negativo.",
+        "a": "Nota che la $x$ si elide dopo i passaggi e conclude che non resta nulla da risolvere, trascurando che il segno di $x+2$ decide ancora la disuguaglianza."
+      },
+      "accessibilityText": "Per quali valori reali di x la frazione x meno 3 fratto x più 2 è minore o uguale a 1? Le cinque alternative sono: per nessun x reale; per x minore di meno 2; per x maggiore di meno 2; per x maggiore o uguale a meno 2; per ogni x reale tranne x uguale a meno 2.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f2",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

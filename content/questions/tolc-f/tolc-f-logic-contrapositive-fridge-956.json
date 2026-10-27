@@ -78,5 +78,48 @@
     "contrapositive",
     "conditional",
     "necessary-sufficient"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Il foglietto illustrativo di un collirio afferma: «Se un flacone è conservato in frigorifero, allora resta efficace fino alla data di scadenza». Quale delle seguenti affermazioni è logicamente equivalente all'affermazione del foglietto?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Alcuni flaconi conservati in frigorifero non restano efficaci fino alla data di scadenza."
+        },
+        {
+          "id": "b",
+          "textMd": "Conservare un flacone in frigorifero è necessario perché resti efficace fino alla data di scadenza."
+        },
+        {
+          "id": "c",
+          "textMd": "Se un flacone non resta efficace fino alla data di scadenza, allora non è stato conservato in frigorifero."
+        },
+        {
+          "id": "d",
+          "textMd": "Se un flacone non è conservato in frigorifero, allora non resta efficace fino alla data di scadenza."
+        },
+        {
+          "id": "e",
+          "textMd": "Se un flacone resta efficace fino alla data di scadenza, allora è stato conservato in frigorifero."
+        }
+      ],
+      "explanationMd": "**Da notare subito.** Un'affermazione «se P allora Q» è equivalente alla sua contronominale, «se non Q allora non P», e a nessun'altra delle consuete riformulazioni.\n\n**Applicala.** Qui P è «conservato in frigorifero» e Q è «resta efficace fino alla scadenza». La contronominale è «se un flacone non resta efficace fino alla scadenza, non è stato conservato in frigorifero». È equivalente: un flacone che avesse perso efficacia pur essendo stato in frigorifero violerebbe la regola originale.\n\n**Come verificare le altre.** L'inversa («se Q allora P») e la contraria («se non P allora non Q») dicono qualcosa di nuovo sui flaconi conservati *fuori* dal frigorifero, di cui il foglietto non parla. Dire che il frigorifero è *necessario* per l'efficacia è l'inversa espressa con altre parole. E «alcuni flaconi in frigorifero non restano efficaci» contraddice il foglietto invece di riformularlo.",
+      "distractorRationale": {
+        "e": "È l'inversa. Il foglietto ammette che anche un flacone conservato fuori dal frigorifero resti efficace, quindi questa affermazione non ne segue.",
+        "d": "È la contraria. Il foglietto non dice nulla su ciò che accade ai flaconi non conservati in frigorifero.",
+        "b": "«P è necessaria per Q» significa «se Q allora P», cioè di nuovo l'inversa. Il foglietto rende il frigorifero sufficiente, non necessario.",
+        "a": "È la negazione dell'affermazione del foglietto: è vera esattamente quando la regola del foglietto è falsa."
+      },
+      "accessibilityText": "Una domanda di solo testo. Il foglietto illustrativo di un collirio afferma: se un flacone è conservato in frigorifero, allora resta efficace fino alla data di scadenza. Quale affermazione è logicamente equivalente? Le cinque alternative sono: alcuni flaconi conservati in frigorifero non restano efficaci fino alla data di scadenza; conservare un flacone in frigorifero è necessario perché resti efficace fino alla data di scadenza; se un flacone non resta efficace fino alla data di scadenza, allora non è stato conservato in frigorifero; se un flacone non è conservato in frigorifero, allora non resta efficace fino alla data di scadenza; se un flacone resta efficace fino alla data di scadenza, allora è stato conservato in frigorifero.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f2",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": "Italian school terminology used: English 'converse' (if Q then P) = 'inversa', English 'inverse' (if not P then not Q) = 'contraria', 'contrapositive' = 'contronominale'. Logic of every option unchanged."
+      }
+    }
+  }
 }
