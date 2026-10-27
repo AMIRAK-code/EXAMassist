@@ -78,5 +78,48 @@
     "rhombus",
     "pythagoras",
     "perimeter"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Le diagonali di un rombo misurano $12$ cm e $16$ cm. Qual è il perimetro del rombo?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$80$ cm"
+        },
+        {
+          "id": "b",
+          "textMd": "$28$ cm"
+        },
+        {
+          "id": "c",
+          "textMd": "$40$ cm"
+        },
+        {
+          "id": "d",
+          "textMd": "$10$ cm"
+        },
+        {
+          "id": "e",
+          "textMd": "$56$ cm"
+        }
+      ],
+      "explanationMd": "Le diagonali di un rombo sono perpendicolari e si tagliano scambievolmente a metà, quindi dividono il rombo in quattro triangoli rettangoli congruenti.\n\n**Passo 1 — un triangolo rettangolo.** I suoi cateti sono le metà delle diagonali, $6$ cm e $8$ cm, e la sua ipotenusa è un lato del rombo: $\\sqrt{6^{2}+8^{2}} = \\sqrt{36+64} = \\sqrt{100} = 10$ cm.\n\n**Passo 2 — il perimetro.** I quattro lati di un rombo sono uguali, quindi il perimetro è $4\\cdot 10 = 40$ cm.\n\n**Verifica.** L'area calcolata con le diagonali è $\\frac{12\\cdot 16}{2} = 96\\ \\text{cm}^{2}$, e quattro triangoli di area $\\frac{6\\cdot 8}{2} = 24$ danno $4\\cdot 24 = 96$ ✓, quindi i triangoli sono quelli giusti.",
+      "distractorRationale": {
+        "d": "Trova il lato, $10$ cm, e si ferma: la domanda chiede il perimetro, cioè la somma dei quattro lati.",
+        "b": "Somma le due diagonali, $12+16$, come se il perimetro fosse formato dalle diagonali.",
+        "e": "Raddoppia la somma delle diagonali, $2(12+16)$, trattando le diagonali come i lati di un rettangolo.",
+        "a": "Usa le diagonali intere, $12$ e $16$, come cateti del triangolo rettangolo, ottenendo un lato di $20$ cm; ogni cateto è solo metà di una diagonale."
+      },
+      "accessibilityText": "Le diagonali di un rombo misurano 12 centimetri e 16 centimetri. Qual è il perimetro del rombo? Le cinque alternative sono: 80 centimetri; 28 centimetri; 40 centimetri; 10 centimetri; 56 centimetri.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i2",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

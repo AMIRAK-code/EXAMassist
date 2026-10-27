@@ -78,5 +78,48 @@
     "parametric-quadratic",
     "discriminant",
     "sum-and-product"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Per quali valori reali di $k$ l'equazione $x^{2} - 2(k-1)x + k + 5 = 0$ ha due radici reali distinte ed entrambe positive?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$k < -1$ oppure $k > 4$"
+        },
+        {
+          "id": "b",
+          "textMd": "$k > 1$"
+        },
+        {
+          "id": "c",
+          "textMd": "$k > 4$"
+        },
+        {
+          "id": "d",
+          "textMd": "$-5 < k < -1$ oppure $k > 4$"
+        },
+        {
+          "id": "e",
+          "textMd": "$k \\ge 4$"
+        }
+      ],
+      "explanationMd": "Due radici distinte positive richiedono tre condizioni contemporaneamente: discriminante positivo (due radici reali distinte), prodotto positivo e somma positiva (entrambe le radici positive). Per $x^{2} + bx + c = 0$ la somma delle radici è $-b$ e il prodotto è $c$.\n\n**Discriminante.** $\\dfrac{\\Delta}{4} = (k-1)^{2} - (k+5) = k^{2} - 3k - 4 = (k-4)(k+1) > 0$, quindi $k < -1$ oppure $k > 4$.\n\n**Prodotto.** $k + 5 > 0$, quindi $k > -5$.\n\n**Somma.** $2(k-1) > 0$, quindi $k > 1$.\n\n**Intersezione.** Solo $k > 4$ soddisfa tutte e tre le condizioni.\n\n**Come verificarlo.** Per $k = 5$ l'equazione è $x^{2} - 8x + 10 = 0$, con radici $4 \\pm \\sqrt6$, entrambe positive e distinte ✓. Per $k = -2$ (ammesso dal discriminante e dal prodotto) è $x^{2} + 6x + 3 = 0$, le cui radici sono entrambe negative ✗.",
+      "distractorRationale": {
+        "a": "Usa solo il discriminante, che garantisce due radici reali distinte ma non dice nulla sul loro segno. Per $k < -1$ la somma $2(k-1)$ è negativa, quindi le radici non possono essere entrambe positive.",
+        "e": "Ammette $k = 4$, per cui il discriminante è nullo e l'equazione ha la radice doppia $x = 3$. La domanda chiede due radici distinte, quindi la disuguaglianza sul discriminante è stretta.",
+        "b": "Usa solo la condizione sulla somma. Per $1 < k \\le 4$ il discriminante $(k-4)(k+1)$ non è positivo, quindi non ci sono due radici reali distinte: per $k = 2$ l'equazione $x^{2} - 2x + 7 = 0$ non ha radici reali.",
+        "d": "Combina il discriminante con il prodotto ma dimentica la somma. Un prodotto positivo dice solo che le radici hanno lo stesso segno; per $-5 < k < -1$ sono entrambe negative."
+      },
+      "accessibilityText": "Per quali valori reali di k l'equazione x al quadrato meno 2 per la quantità k meno 1 per x, più k più 5, uguale 0, ha due radici reali distinte ed entrambe positive? Le cinque alternative sono: k minore di meno 1 oppure k maggiore di 4; k maggiore di 1; k maggiore di 4; k compreso tra meno 5 e meno 1, estremi esclusi, oppure k maggiore di 4; k maggiore o uguale a 4.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i2",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }
