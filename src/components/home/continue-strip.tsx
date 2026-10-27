@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import type { ContinueStudying } from '@/lib/learning/continue';
 import { buttonClass, cx } from '@/components/ui';
 

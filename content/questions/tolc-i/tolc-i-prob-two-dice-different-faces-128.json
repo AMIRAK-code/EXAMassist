@@ -78,5 +78,48 @@
     "dice",
     "sample-space",
     "classical-probability"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Si lanciano insieme un normale dado equilibrato con le facce numerate da $1$ a $6$ e un dado equilibrato a quattro facce numerate da $1$ a $4$. Qual è la probabilità che la somma dei due numeri usciti sia $8$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\dfrac{1}{9}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\dfrac{1}{8}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$\\dfrac{5}{36}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\dfrac{1}{6}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\dfrac{3}{10}$"
+        }
+      ],
+      "explanationMd": "Si elencano gli esiti equiprobabili come coppie ordinate (dado a sei facce, dado a quattro facce) e si contano quelli favorevoli.\n\n**Passo 1 — tutti gli esiti.** $6 \\cdot 4 = 24$ coppie, tutte equiprobabili.\n\n**Passo 2 — esiti favorevoli.** Il dado a quattro facce mostra al massimo $4$, quindi il dado a sei facce deve mostrare almeno $4$: $(4, 4)$, $(5, 3)$, $(6, 2)$. Sono $3$ coppie; $(7, 1)$ è impossibile.\n\n**Passo 3 — la probabilità.** $\\frac{3}{24} = \\frac{1}{8}$.\n\n**Verifica.** Si fissi il dado a quattro facce: qualunque valore $k$ mostri, il dado a sei facce deve mostrare $8 - k$, il che è possibile per $k = 2, 3, 4$ e non per $k = 1$. Quindi $3$ dei $4$ valori di $k$ danno ciascuno probabilità $\\frac16$: $\\frac14\\cdot 3\\cdot\\frac16 = \\frac18$ ✓.",
+      "distractorRationale": {
+        "d": "Conta quattro coppie, includendone una impossibile, come un $7$ sul dado a sei facce con un $1$, ottenendo $\\frac{4}{24}$.",
+        "a": "Tratta come equiprobabili le nove somme possibili, da $2$ a $10$; le somme centrali si ottengono da più coppie rispetto a quelle estreme.",
+        "e": "Divide le $3$ coppie favorevoli per $6 + 4 = 10$, sommando i numeri di facce invece di moltiplicarli.",
+        "c": "Risponde per due normali dadi a sei facce, per i quali una somma pari a $8$ si ottiene da $5$ coppie su $36$."
+      },
+      "accessibilityText": "Si lanciano insieme un normale dado equilibrato con le facce numerate da 1 a 6 e un dado equilibrato a quattro facce numerate da 1 a 4. Qual è la probabilità che la somma dei due numeri usciti sia 8? Le cinque alternative sono: un nono; un ottavo; cinque trentaseiesimi; un sesto; tre decimi.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i2",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

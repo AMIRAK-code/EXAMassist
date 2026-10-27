@@ -78,5 +78,48 @@
     "ideal-gas",
     "density",
     "gas-laws"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Una quantità fissa di gas ideale è contenuta in un cilindro chiuso da un pistone mobile. Inizialmente il gas si trova a $300\\ \\text{K}$ e $1.0 \\times 10^{5}\\ \\text{Pa}$. Dopo che il pistone è stato spostato e il gas è stato riscaldato, il gas si trova a $400\\ \\text{K}$ e $2.0 \\times 10^{5}\\ \\text{Pa}$. Di quale fattore è cambiata la densità del gas (nuova densità divisa per la densità iniziale)?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\dfrac{2}{3}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\dfrac{3}{4}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$\\dfrac{3}{2}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$2$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\dfrac{8}{3}$"
+        }
+      ],
+      "explanationMd": "**Che cosa notare per prima cosa.** La massa del gas è fissa, quindi la densità $\\rho = m/V$ cambia solo attraverso il volume, e l'equazione di stato dei gas ideali dà il volume: $V = nRT/p$. Quindi $\\rho \\propto p/T$.\n\n**I passaggi.**\n\n$$\\frac{\\rho_2}{\\rho_1} = \\frac{V_1}{V_2} = \\frac{p_2}{p_1} \\cdot \\frac{T_1}{T_2} = 2 \\times \\frac{300}{400} = \\frac{3}{2}.$$\n\n**Come verificarlo.** Considera la trasformazione in due fasi. Raddoppiare la pressione a temperatura costante dimezza il volume, il che raddoppia la densità. Poi portare la temperatura da $300\\ \\text{K}$ a $400\\ \\text{K}$ a pressione costante moltiplica il volume per $\\tfrac43$, il che moltiplica la densità per $\\tfrac34$. Complessivamente: $2 \\times \\tfrac34 = \\tfrac32$.",
+      "distractorRationale": {
+        "a": "È il rapporto tra i volumi, $V_2/V_1 = \\tfrac{1}{2} \\times \\tfrac{4}{3}$. La densità è inversamente proporzionale al volume, quindi il rapporto tra le densità è il reciproco.",
+        "e": "Moltiplica il rapporto delle pressioni per il rapporto delle temperature, $2 \\times \\tfrac43$. Riscaldare a pressione fissa fa espandere il gas e ne *riduce* la densità, quindi il rapporto delle temperature compare invertito.",
+        "d": "Tiene conto della pressione raddoppiata ma ignora il riscaldamento. L'aumento da $300\\ \\text{K}$ a $400\\ \\text{K}$ fa espandere il gas, il che riduce la densità di un fattore $\\tfrac34$.",
+        "b": "Tiene conto del riscaldamento ma ignora la pressione raddoppiata, che da sola dimezzerebbe il volume e raddoppierebbe la densità."
+      },
+      "accessibilityText": "Una quantità fissa di gas ideale è contenuta in un cilindro chiuso da un pistone mobile. Inizialmente il gas si trova a 300 kelvin e 1,0 per 10 alla quinta pascal. Dopo che il pistone è stato spostato e il gas è stato riscaldato, si trova a 400 kelvin e 2,0 per 10 alla quinta pascal. Di quale fattore è cambiata la densità del gas, nuova densità divisa per la densità iniziale? Le alternative sono due terzi, tre quarti, tre mezzi, 2 e otto terzi.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

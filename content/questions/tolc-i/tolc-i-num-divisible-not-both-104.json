@@ -79,5 +79,48 @@
     "divisibility",
     "lcm",
     "inclusion-exclusion"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Quanti sono i numeri interi da 1 a 300, estremi inclusi, divisibili per 4 o per 6, ma non per entrambi?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$50$"
+        },
+        {
+          "id": "b",
+          "textMd": "$75$"
+        },
+        {
+          "id": "c",
+          "textMd": "$100$"
+        },
+        {
+          "id": "d",
+          "textMd": "$101$"
+        },
+        {
+          "id": "e",
+          "textMd": "$125$"
+        }
+      ],
+      "explanationMd": "Si conta ciascun insieme, si trova l'intersezione e poi la si toglie da **entrambi** i conteggi. L'intersezione è l'insieme dei multipli del minimo comune multiplo di 4 e 6, che è 12, non $4\\cdot 6 = 24$.\n\n**Passo 1 — i due conteggi.** Multipli di 4 fino a 300: $300 \\div 4 = 75$. Multipli di 6: $300 \\div 6 = 50$.\n\n**Passo 2 — l'intersezione.** Un numero divisibile sia per 4 sia per 6 è divisibile per il loro minimo comune multiplo, $\\mathrm{lcm}(4,6) = 12$: $300 \\div 12 = 25$ numeri.\n\n**Passo 3 — esattamente uno dei due.** Divisibili solo per 4: $75 - 25 = 50$. Divisibili solo per 6: $50 - 25 = 25$. In totale: $50 + 25 = 75$.\n\n**Come verificarlo.** Il principio di inclusione–esclusione dà i numeri divisibili per almeno uno dei due: $75 + 50 - 25 = 100$; togliendo i 25 divisibili per entrambi restano $75$ ✓. Inoltre lo schema si ripete ogni 12 numeri: da 1 a 12 vanno bene esattamente 4, 6 e 8 (12 è divisibile per entrambi), quindi ciascuno dei $300 \\div 12 = 25$ blocchi contribuisce con 3 numeri, e $25 \\cdot 3 = 75$ ✓.",
+      "distractorRationale": {
+        "c": "Conta i numeri divisibili per almeno uno tra 4 e 6 ($75 + 50 - 25$) e ignora le parole «ma non per entrambi», così i 25 multipli di 12 restano inclusi.",
+        "d": "Prende come intersezione i multipli di $4\\cdot 6 = 24$, che sono 12, ottenendo $75 + 50 - 2\\cdot 12 = 101$. Per essere divisibile per 4 e per 6 basta essere divisibile per il loro minimo comune multiplo, 12.",
+        "e": "Somma i due conteggi, $75 + 50$, senza togliere affatto l'intersezione, così ogni multiplo di 12 viene contato due volte invece di nessuna.",
+        "a": "Conta solo i numeri divisibili per 4 ma non per 6 ($75 - 25$) e dimentica i 25 numeri divisibili per 6 ma non per 4."
+      },
+      "accessibilityText": "Quanti sono i numeri interi da 1 a 300, estremi inclusi, divisibili per 4 o per 6, ma non per entrambi? Le cinque alternative sono: 50; 75; 100; 101; 125.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i2",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": "KaTeX $\\mathrm{lcm}(4,6)$ kept identical per brief (Italian abbreviation would be m.c.m.); the prose names it 'minimo comune multiplo'."
+      }
+    }
+  }
 }

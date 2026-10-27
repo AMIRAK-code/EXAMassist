@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import type { UnfinishedAttempt } from '@/lib/attempts/service';
 import { examDisplayName, type DashboardData, type ExamChoice, type ExamDashboard, type NextStep } from '@/lib/learning/dashboard';
 import { MIN_ATTEMPTS_FOR_SIGNAL } from '@/lib/learning/recommend';

@@ -78,5 +78,48 @@
     "x-linked",
     "punnett-square",
     "sex-linked-inheritance"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Il daltonismo rosso-verde è causato da un allele recessivo sul cromosoma X. Una donna con visione dei colori normale, portatrice dell'allele, ha figli con un uomo con visione dei colori normale. Qual è la probabilità che un figlio maschio di questa coppia sia daltonico?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "0"
+        },
+        {
+          "id": "b",
+          "textMd": "1/4"
+        },
+        {
+          "id": "c",
+          "textMd": "1/2"
+        },
+        {
+          "id": "d",
+          "textMd": "3/4"
+        },
+        {
+          "id": "e",
+          "textMd": "1"
+        }
+      ],
+      "explanationMd": "Scrivi i genotipi. La madre è portatrice, $X^{C}X^{c}$, e il padre ha visione normale, $X^{C}Y$.\n\nNota di chi parla la domanda: di un figlio maschio, non di un figlio qualsiasi. Un figlio maschio riceve sempre il cromosoma Y dal padre, quindi il suo unico cromosoma X proviene dalla madre. Le cellule uovo della madre portano $X^{C}$ oppure $X^{c}$ con uguale probabilità, quindi ogni figlio maschio ha una probabilità di $\\frac{1}{2}$ di ricevere $X^{c}$ ed essere daltonico. Il cromosoma X del padre va solo alle figlie, quindi qui è irrilevante.\n\nVerifica con l'incrocio completo: i quattro figli ugualmente probabili sono una figlia normale, una figlia portatrice, un figlio maschio normale e un figlio maschio daltonico. Un figlio su quattro è un maschio daltonico, quindi $\\frac{1}{4}$ è la probabilità per un figlio di sesso qualsiasi. Ma solo due dei quattro esiti sono maschi, e uno di questi due è daltonico: limitandosi ai maschi, la probabilità è $\\frac{1/4}{1/2}=\\frac{1}{2}$.",
+      "distractorRationale": {
+        "a": "Presuppone che la visione normale del padre protegga i figli maschi. Un figlio maschio riceve dal padre il cromosoma Y e dalla madre il suo unico cromosoma X, quindi è l'allele della madre a decidere.",
+        "b": "È la probabilità che un figlio qualsiasi della coppia sia un maschio daltonico (una casella in un incrocio a quattro caselle). La domanda riguarda un figlio maschio, quindi i maschi costituiscono l'intero spazio campionario.",
+        "d": "È la quota di figli con il fenotipo dominante in un incrocio tra due eterozigoti, un rapporto autosomico 3 : 1. Qui non si applica: un figlio maschio ha un solo cromosoma X, proveniente dalla madre.",
+        "e": "Presuppone che ogni figlio maschio di una madre portatrice sia affetto. Metà delle sue cellule uovo porta il cromosoma X normale."
+      },
+      "accessibilityText": "Una breve domanda testuale senza figure. Il daltonismo rosso-verde è causato da un allele recessivo sul cromosoma X. Una donna con visione normale, portatrice dell'allele, ha figli con un uomo con visione normale, e la domanda chiede la probabilità che un figlio maschio di questa coppia sia daltonico. Le cinque alternative sono zero, un quarto, un mezzo, tre quarti e uno. Nella spiegazione la madre è scritta X con apice C maiuscola, X con apice c minuscola, e il padre X con apice C maiuscola, Y.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f1",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": "'a son' rendered as 'un figlio maschio' throughout so the restriction to sons (the point of the item) is explicit; plain 'figlio' could be read as any child."
+      }
+    }
+  }
 }

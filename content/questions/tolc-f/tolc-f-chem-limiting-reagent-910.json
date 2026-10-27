@@ -78,5 +78,48 @@
     "limiting-reagent",
     "stoichiometry",
     "conservation-of-mass"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Idrogeno e ossigeno reagiscono secondo\n\n$$2\\,\\mathrm{H_2} + \\mathrm{O_2} \\rightarrow 2\\,\\mathrm{H_2O}$$\n\nMasse molari: $\\mathrm{H_2} = 2\\ \\mathrm{g/mol}$, $\\mathrm{O_2} = 32\\ \\mathrm{g/mol}$, $\\mathrm{H_2O} = 18\\ \\mathrm{g/mol}$. Un recipiente contiene 6 g di idrogeno e 32 g di ossigeno, e la reazione va a completamento. Quale massa di acqua si forma, e che cosa avanza?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "54 g di acqua, con un avanzo di ossigeno"
+        },
+        {
+          "id": "b",
+          "textMd": "18 g di acqua, con un avanzo di 4 g di idrogeno"
+        },
+        {
+          "id": "c",
+          "textMd": "36 g di acqua, con un avanzo di 4 g di idrogeno"
+        },
+        {
+          "id": "d",
+          "textMd": "38 g di acqua, senza alcun avanzo"
+        },
+        {
+          "id": "e",
+          "textMd": "36 g di acqua, con un avanzo di 2 g di idrogeno"
+        }
+      ],
+      "explanationMd": "Quando sono date le quantità di due reagenti, converti entrambe in moli, poi confrontale con il rapporto dell'equazione. Non confrontare i grammi.\n\n- Idrogeno: $6 \\div 2 = 3$ mol.\n- Ossigeno: $32 \\div 32 = 1$ mol.\n\nL'equazione richiede 2 mol di idrogeno per ogni mole di ossigeno. La mole di ossigeno può usare solo 2 mol di idrogeno, e ne sono presenti 3, quindi **l'ossigeno è il reagente limitante** e l'idrogeno è in eccesso. (L'idrogeno ha la massa minore ma il numero di moli maggiore, ed è per questo che confrontare i grammi trae in inganno.)\n\n- **Acqua:** 1 mol di $\\mathrm{O_2}$ dà 2 mol di $\\mathrm{H_2O}$, quindi $2 \\times 18 = 36$ g.\n- **Idrogeno avanzato:** $3 - 2 = 1$ mol, cioè $1 \\times 2 = 2$ g.\n\n**Verifica con la conservazione della massa.** Acqua più idrogeno avanzato: $36 + 2 = 38$ g, uguali ai $6 + 32 = 38$ g iniziali. Qualsiasi risposta in cui acqua e avanzi non sommano a 38 g si può scartare in pochi secondi.",
+      "distractorRationale": {
+        "a": "Sceglie l'idrogeno come reagente limitante perché ha la massa minore. Il limite è fissato dalle moli e dai coefficienti, non dai grammi. In quel caso 3 mol di idrogeno richiederebbero 1,5 mol di ossigeno (48 g), più dei 32 g presenti. Inoltre, 54 g di acqua superano i 38 g di massa totale dei reagenti.",
+        "b": "Riconosce correttamente l'ossigeno come limitante, ma considera che 1 mol di ossigeno produca solo 1 mol di acqua, trascurando il coefficiente 2 del prodotto; 1 mol di acqua consuma 1 mol (2 g) di idrogeno, lasciandone 4 g. L'equazione dà 2 mol di acqua per mole di ossigeno, e qui le masse ($18 + 4 = 22$ g) non sommano ai 38 g iniziali.",
+        "d": "Somma le due masse iniziali, $6 + 32 = 38$, come se tutto reagisse. La massa si conserva, ma i reagenti non sono nel rapporto in moli 2:1 richiesto dall'equazione, quindi uno dei due avanza.",
+        "c": "L'acqua è giusta, ma l'avanzo no. Per produrre 2 mol di acqua si consumano 2 mol di idrogeno, cioè $2 \\times 2 = 4$ g, quindi ne restano $6 - 4 = 2$ g. Questa alternativa confonde le 2 mol di idrogeno consumate con 2 g, e sottrae $6 - 2 = 4$ g. La verifica della massa lo rivela: $36 + 4 = 40$ g non sono i 38 g iniziali."
+      },
+      "accessibilityText": "L'equazione bilanciata è: due H pedice 2 più un O pedice 2 dà due H pedice 2 O. Le masse molari sono 2, 32 e 18 grammi per mole per idrogeno, ossigeno e acqua. Il recipiente contiene 6 grammi di idrogeno e 32 grammi di ossigeno, e la reazione va a completamento. La domanda chiede la massa di acqua formata e che cosa avanza. Ogni alternativa indica una massa di acqua e che cosa rimane.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f1",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": "Decimal comma in prose (1,5 mol)."
+      }
+    }
+  }
 }

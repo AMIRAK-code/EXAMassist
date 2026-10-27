@@ -78,5 +78,48 @@
     "ellipse",
     "foci",
     "conics"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un'ellisse ha il centro nell'origine e i fuochi sull'asse $x$, distanti $8$ unità l'uno dall'altro. Passa per il punto $(0, 3)$. Qual è la sua equazione?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\dfrac{x^{2}}{7} + \\dfrac{y^{2}}{9} = 1$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\dfrac{x^{2}}{9} + \\dfrac{y^{2}}{25} = 1$"
+        },
+        {
+          "id": "c",
+          "textMd": "$\\dfrac{x^{2}}{73} + \\dfrac{y^{2}}{9} = 1$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\dfrac{x^{2}}{25} + \\dfrac{y^{2}}{9} = 1$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\dfrac{x^{2}}{16} + \\dfrac{y^{2}}{9} = 1$"
+        }
+      ],
+      "explanationMd": "Con i fuochi sull'asse $x$ l'equazione è $\\dfrac{x^{2}}{a^{2}} + \\dfrac{y^{2}}{b^{2}} = 1$ con $a > b$, e i fuochi sono in $(\\pm c, 0)$, dove $c^{2} = a^{2} - b^{2}$.\n\n**Passo 1 — $c$.** I fuochi distano $8$, quindi $2c = 8$ e $c = 4$.\n\n**Passo 2 — $b$.** Il punto $(0, 3)$ sta sull'asse $y$: sostituendo si ottiene $\\frac{9}{b^{2}} = 1$, quindi $b^{2} = 9$ (è un estremo dell'asse minore).\n\n**Passo 3 — $a$.** $a^{2} = b^{2} + c^{2} = 9 + 16 = 25$, quindi l'equazione è $\\dfrac{x^{2}}{25} + \\dfrac{y^{2}}{9} = 1$.\n\n**Verifica.** Da $(0, 3)$ a ciascun fuoco $(\\pm 4, 0)$ la distanza è $\\sqrt{16 + 9} = 5$, quindi la somma delle distanze è $10 = 2a$ ✓, la proprietà che definisce l'ellisse.",
+      "distractorRationale": {
+        "a": "Usa $a^{2} = c^{2} - b^{2} = 16 - 9$, la relazione dell'iperbole; con $7 < 9$ l'asse maggiore sarebbe verticale e i fuochi starebbero sull'asse $y$.",
+        "b": "Scambia i ruoli degli assi, mettendo $25$ sotto $y^{2}$; quell'ellisse ha i fuochi sull'asse $y$ e non passa per $(0, 3)$.",
+        "e": "Prende il semiasse maggiore uguale alla semidistanza focale, $a = c = 4$; allora $c^{2} = 16 - 9 = 7$ e i fuochi disterebbero solo $2\\sqrt{7}$.",
+        "c": "Usa l'intera distanza $8$ come $c$, quindi $a^{2} = 64 + 9$; i fuochi disterebbero allora $16$."
+      },
+      "accessibilityText": "Un'ellisse ha il centro nell'origine e i fuochi sull'asse x, distanti 8 unità l'uno dall'altro. Passa per il punto di coordinate 0 e 3. Qual è la sua equazione? Le cinque alternative sono: x al quadrato fratto 7 più y al quadrato fratto 9 uguale 1; x al quadrato fratto 9 più y al quadrato fratto 25 uguale 1; x al quadrato fratto 73 più y al quadrato fratto 9 uguale 1; x al quadrato fratto 25 più y al quadrato fratto 9 uguale 1; x al quadrato fratto 16 più y al quadrato fratto 9 uguale 1.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i2",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

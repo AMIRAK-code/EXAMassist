@@ -80,5 +80,48 @@
     "truth-tellers",
     "self-reference",
     "no-calculator"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Due sensori, X e Y, inviano segnalazioni su un banco di prova. Ciascun sensore è affidabile, cioè ogni segnalazione che invia è vera, oppure guasto, cioè ogni segnalazione che invia è falsa. Il sensore X invia questa segnalazione:\n\n«Almeno uno dei due sensori X e Y è guasto.»\n\nChe cosa si può concludere?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Entrambi i sensori sono affidabili."
+        },
+        {
+          "id": "b",
+          "textMd": "Entrambi i sensori sono guasti."
+        },
+        {
+          "id": "c",
+          "textMd": "La segnalazione non permette di escludere nessuno di questi casi."
+        },
+        {
+          "id": "d",
+          "textMd": "Il sensore X è guasto e il sensore Y è affidabile."
+        },
+        {
+          "id": "e",
+          "textMd": "Il sensore X è affidabile e il sensore Y è guasto."
+        }
+      ],
+      "explanationMd": "Esamina le due possibilità per il sensore che ha inviato la segnalazione.\n\n- Supponi che X sia guasto. Allora la sua segnalazione deve essere falsa, quindi nessuno dei due sensori sarebbe guasto. Ma X è guasto: contraddizione. Quindi X non può essere guasto.\n- Perciò X è affidabile, e la sua segnalazione è vera: almeno uno dei due sensori è guasto. Non lo è X, quindi lo è Y.\n\nVerifica: con X affidabile e Y guasto, la segnalazione di X «almeno uno di noi è guasto» è effettivamente vera, quindi la situazione è coerente.",
+      "distractorRationale": {
+        "a": "Se entrambi fossero affidabili, la segnalazione di X «almeno uno dei due è guasto» sarebbe falsa, e un sensore affidabile non invia mai una segnalazione falsa.",
+        "d": "Un X guasto deve inviare segnalazioni false, ma con X guasto l'affermazione «almeno uno è guasto» è vera. Quindi X non può essere guasto.",
+        "b": "Se entrambi fossero guasti, la segnalazione di X sarebbe vera, e un sensore guasto non può inviarla.",
+        "c": "La segnalazione permette di decidere: supporre X guasto porta a una contraddizione, e X affidabile obbliga allora Y a essere guasto."
+      },
+      "accessibilityText": "Un problema di logica su due sensori, X e Y. Ciascuno è affidabile, quindi tutte le sue segnalazioni sono vere, oppure guasto, quindi tutte le sue segnalazioni sono false. Il sensore X segnala: almeno uno dei due sensori X e Y è guasto. La domanda chiede che cosa si può concludere. Le cinque alternative sono: entrambi i sensori sono affidabili; entrambi i sensori sono guasti; la segnalazione non permette di escludere nessuno di questi casi; X è guasto e Y è affidabile; X è affidabile e Y è guasto.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }
