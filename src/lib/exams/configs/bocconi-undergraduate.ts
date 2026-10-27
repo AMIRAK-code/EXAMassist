@@ -693,6 +693,17 @@ export const bocconiUndergraduateConfig: ExamConfig = {
   scoring: {
     pointsCorrect: 1,
     pointsIncorrect: -0.2,
+    // Published: "For questions of the critical thinking area that give only
+    // three possible answer options, the penalty will be -0.33 points."
+    penaltyOverrides: [
+      {
+        domainSlugs: ['bocconi-ug-critical-thinking'],
+        optionCount: 3,
+        pointsIncorrect: -0.33,
+        rule: 'Critical thinking questions with only three answer options cost 0.33 points for a wrong answer.',
+        source: OFFICIAL_TEST_PAGE,
+      },
+    ],
     pointsOmitted: 0,
     multiSelectGrading: 'all_or_nothing',
     officialScale: {

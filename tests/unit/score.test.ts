@@ -432,3 +432,34 @@ describe('scoreAttempt breakdowns', () => {
     expect(result.bySkill).toEqual([]);
   });
 });
+
+describe('published item-level penalties', () => {
+  // Imported lazily so this block reads on its own.
+  it('charges 0.33 on a three-option Bocconi critical-thinking item, 0.2 elsewhere', async () => {
+    const { scoreResponse, penaltyFor } = await import('@/lib/assessment/score');
+    const { requireExamConfig } = await import('@/lib/exams/registry');
+    const ug = requireExamConfig('bocconi-undergraduate').scoring;
+    const key = { type: 'single_select' as const, optionId: 'a' };
+    const wrong = { type: 'single_select' as const, optionId: 'b' };
+
+    const threeOption = { domainSlug: 'bocconi-ug-critical-thinking', optionCount: 3 };
+    expect(scoreResponse(key, wrong, ug, threeOption).points).toBe(-0.33);
+    // Same area, five options: the standard penalty.
+    expect(penaltyFor(ug, { domainSlug: 'bocconi-ug-critical-thinking', optionCount: 5 })).toBe(-0.2);
+    // Three options in another area: the standard penalty.
+    expect(penaltyFor(ug, { domainSlug: 'bocconi-ug-mathematics', optionCount: 3 })).toBe(-0.2);
+    // No traits known: the exam's penalty, never a guess.
+    expect(scoreResponse(key, wrong, ug).points).toBe(-0.2);
+    // Correct and omitted answers are unaffected.
+    expect(scoreResponse(key, key, ug, threeOption).points).toBe(1);
+    expect(scoreResponse(key, null, ug, threeOption).points).toBe(0);
+  });
+
+  it('does not extend the rule to the law form, where Bocconi leaves it open', async () => {
+    const { penaltyFor } = await import('@/lib/assessment/score');
+    const { requireExamConfig } = await import('@/lib/exams/registry');
+    const law = requireExamConfig('bocconi-law');
+    const ct = law.domains.find((d) => /critical/i.test(d.name))!;
+    expect(penaltyFor(law.scoring, { domainSlug: ct.slug, optionCount: 3 })).toBe(-0.2);
+  });
+});
