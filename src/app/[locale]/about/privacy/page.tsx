@@ -18,9 +18,9 @@ import { JsonLd, articleSchema, breadcrumbSchema } from '@/components/seo/json-l
 const PATH = '/about/privacy';
 const TITLE = 'Privacy notice (draft)';
 const DESCRIPTION =
-  'Draft privacy notice for Examer, prepared for legal review: one session cookie, optional email and password, practice history, paid plans through Stripe, no advertising, no third-party analytics, and export or deletion from your account page.';
+  'Draft privacy notice for Examer, prepared for legal review: a session cookie and a language cookie, optional email and password, practice history, paid plans through Stripe, no advertising, no third-party analytics, and export or deletion from your account page.';
 
-/** Real dates: this draft was written on 2026-09-22, revised on 2026-10-05 for Premium, on 2026-10-07 for the daily totals and on 2026-10-27 for the on-site checkout. */
+/** Real dates: this draft was written on 2026-09-22, revised on 2026-10-05 for Premium, on 2026-10-07 for the daily totals and on 2026-10-27 for the on-site checkout and the language cookie. */
 const PUBLISHED = PAGE_DATES.privacy.published;
 const UPDATED = PAGE_DATES.privacy.updated;
 const PUBLISHED_LABEL = longDate(PUBLISHED);
@@ -47,7 +47,12 @@ const WHAT_WE_HOLD: Array<{ term: string; value: string }> = [
   {
     term: 'A session cookie',
     value:
-      'One cookie, named examer_session. It carries a random token, is set HttpOnly and SameSite=Lax, is marked Secure in production, and lasts 30 days for an account or 7 days for a guest session. The server stores only a SHA-256 hash of the token, so the session table cannot be used to impersonate anyone.',
+      'A cookie named examer_session. It carries a random token, is set HttpOnly and SameSite=Lax, is marked Secure in production, and lasts 30 days for an account or 7 days for a guest session. The server stores only a SHA-256 hash of the token, so the session table cannot be used to impersonate anyone.',
+  },
+  {
+    term: 'A language cookie',
+    value:
+      'A cookie named NEXT_LOCALE. It holds only a language code (en, it, tr, es or pl), so that an address without a language in it, such as uniexamer.com/exams, opens in the language you use. It is set when you choose a language from the menu, and updated when you open a page in a language other than the one it, or your browser, asks for. It lasts a year and is SameSite=Lax. It is not HttpOnly, because the language menu sets it from the page itself. It holds nothing about you, is sent only to this site, and works the same whether or not you are signed in.',
   },
   {
     term: 'A guest account, if you never sign up',
@@ -105,7 +110,7 @@ const WHAT_WE_DO_NOT: string[] = [
   'No advertising, and no advertising or tracking pixels of any kind.',
   'No third-party analytics. There is no Google Analytics, no product-analytics SDK, and no session recording.',
   'No card details. Card numbers are typed into Stripe’s own secure fields on our checkout page, so they go to Stripe and are never stored or seen by us.',
-  'No cookies other than the session cookie, with one exception: when you enter a card (at checkout, or when you update your card on the account page) Stripe’s payment script sets its own fraud-prevention cookies (__stripe_mid and __stripe_sid). Nothing is stored on your device for advertising, measurement or personalisation; the daily totals described above are counted on our server and identify nobody. The browser’s own storage keeps two working notes that never leave it: answers still waiting to reach our server, and whether this browser is signed in (as a guest or with an account), so pages we serve as ready-made files can show you your own menu. Signing out clears both.',
+  'No cookies other than the session cookie and the language cookie, with one exception: when you enter a card (at checkout, or when you update your card on the account page) Stripe’s payment script sets its own fraud-prevention cookies (__stripe_mid and __stripe_sid). Nothing is stored on your device for advertising, measurement or personalisation; the daily totals described above are counted on our server and identify nobody. The browser’s own storage keeps two working notes that never leave it: answers still waiting to reach our server, and whether this browser is signed in (as a guest or with an account), so pages we serve as ready-made files can show you your own menu. Signing out clears both.',
   'No selling, renting or sharing of personal data with third parties for their own purposes.',
   'No AI unless you ask for it. The optional AI tutor sends nothing until you press one of its buttons, and it is never needed to practise: every question has its own reviewed explanation.',
   'No email marketing. We hold your address to let you sign in, not to send you campaigns. The only emails we send are the codes described above, as plain text, so they carry no tracking pixel.',
@@ -121,6 +126,7 @@ const OPEN_QUESTIONS: string[] = [
   'The AI tutor. When a learner presses a tutor button, the server sends the question, its choices, our reviewed explanation, which choice the learner picked and - for an after-test guide - the session’s aggregate results to the model provider (Anthropic) through its API. No name, email address, account id or free text typed by the learner is sent. What needs settling: the provider’s status as a processor and the data-processing terms under which the API key is issued; the provider’s retention and use of request content under those terms, which we have not verified and so do not describe here; the international-transfer mechanism, if the provider processes outside the learner’s jurisdiction; whether performance data counts as personal data once separated from the account; and whether learners under 16 may use the tutor without parental consent. Until these are settled, an operator can leave the tutor switched off, and the site works fully without it.',
   'Payments. When a learner buys a plan, the server creates a Stripe customer with the account’s email address, display name (if set) and account id, and Stripe collects the card in its own secure fields embedded in our checkout page (Stripe.js loads from js.stripe.com on the checkout and account pages only). What needs settling: whether Stripe’s fraud-prevention cookies, set only on the pages where a card is entered, count as strictly necessary (our view) or need consent; whether Stripe acts as our processor or as an independent controller for payment data; how long billing records must be kept for tax and accounting, which may override a deletion request for those records; the international-transfer mechanism; and whether minors may buy a plan.',
   'Whether the session cookie qualifies as strictly necessary in every jurisdiction served — our view is that it does, which is why no consent banner is shown — and confirmation that nothing else on the site would trigger consent requirements.',
+  'Whether the language cookie is exempt from consent as a remembered choice of interface language. It is set when someone picks a language, but also without a click, when a page is opened in a language other than the browser’s, and it lasts a year; a shorter life, or setting it only on an explicit choice, may be needed.',
   'The process and deadlines for handling access, rectification, portability, objection and erasure requests, and who is accountable for meeting them.',
   'Breach notification: the threshold, the internal process and the notification timetable.',
   'The wording of the trademark and non-affiliation notice, which appears on every page and is drafted by us rather than by a lawyer.',
@@ -171,7 +177,7 @@ export default function PrivacyPage() {
           You can use {SITE.name} without giving us anything: practising without an account creates a
           guest record that holds no personal data at all. If you do create an account we hold your
           email address, a salted hash of your password, any study settings you set, and your
-          practice history. There is one cookie of ours, and it only keeps you signed in (Stripe adds its own fraud-prevention cookies only where you enter a card). There is no
+          practice history. We set two cookies: one keeps you signed in, the other remembers your language (Stripe adds its own fraud-prevention cookies only where you enter a card). There is no
           advertising and no third-party analytics. If you buy a plan, Stripe takes the payment in its
           own secure card fields and we keep only which plans you hold. You can export or delete your data
           from your <Link href="/account">account page</Link>.
@@ -213,6 +219,10 @@ export default function PrivacyPage() {
             <ul>
               <li>
                 <strong>To keep you signed in.</strong> That is the entire job of the session cookie.
+              </li>
+              <li>
+                <strong>To show the site in your language.</strong> That is the entire job of the
+                language cookie.
               </li>
               <li>
                 <strong>To give you your practice history back.</strong> Results, topic breakdowns
@@ -296,7 +306,11 @@ export default function PrivacyPage() {
               </li>
               <li>
                 <strong>Stay a guest.</strong> If you never sign up, there is nothing personal to
-                export or delete in the first place — clearing the cookie ends the session.
+                export or delete in the first place — clearing the session cookie ends the session.
+              </li>
+              <li>
+                <strong>Change or forget your language.</strong> Pick another language from the menu,
+                or clear the language cookie and the site follows your browser’s language again.
               </li>
             </ul>
           </div>
