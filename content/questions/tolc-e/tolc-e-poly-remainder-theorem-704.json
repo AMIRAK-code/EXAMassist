@@ -77,5 +77,48 @@
   "tags": [
     "remainder-theorem",
     "polynomial-division"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Qual è il resto della divisione di $p(x) = x^{3} - 2x^{2} + x - 5$ per $x - 2$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$-23$"
+        },
+        {
+          "id": "b",
+          "textMd": "$-5$"
+        },
+        {
+          "id": "c",
+          "textMd": "$-3$"
+        },
+        {
+          "id": "d",
+          "textMd": "$2$"
+        },
+        {
+          "id": "e",
+          "textMd": "$7$"
+        }
+      ],
+      "explanationMd": "Usa il **teorema del resto**: il resto della divisione di $p(x)$ per $x - c$ è $p(c)$. Qui $x - 2$ significa $c = 2$, quindi non serve eseguire la divisione.\n\n$$p(2) = 2^{3} - 2\\cdot 2^{2} + 2 - 5 = 8 - 8 + 2 - 5 = -3.$$\n\n**Come verificare.** Regola di Ruffini con 2 sui coefficienti $1, -2, 1, -5$: abbassa 1; poi $-2+2=0$; poi $1+0=1$; poi $-5+2=-3$. L'ultimo numero è il resto, $-3$.",
+      "distractorRationale": {
+        "a": "Calcola $p(-2)$ invece di $p(2)$. La divisione per $x-2$ corrisponde al valore $x=2$; la divisione per $x+2$ corrisponderebbe a $-2$.",
+        "b": "Prende il termine noto come resto. Quello è $p(0)$, il resto della divisione per $x$, non per $x-2$.",
+        "d": "Calcola in 2 i termini di terzo, secondo e primo grado ($8-8+2$) e tralascia il termine noto $-5$.",
+        "e": "Calcola correttamente in 2 ma prende il termine noto come $+5$: $8-8+2+5$. L'ultimo termine di $p$ è $-5$."
+      },
+      "accessibilityText": "Il polinomio p di x è uguale a x al cubo meno 2 x al quadrato più x meno 5. La domanda chiede il resto della sua divisione per x meno 2. Le cinque alternative sono i numeri meno 23, meno 5, meno 3, 2 e 7.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-e",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

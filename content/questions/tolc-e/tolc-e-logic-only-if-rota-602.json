@@ -80,5 +80,48 @@
     "conditions",
     "only-if",
     "no-calculator"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Due regole disciplinano un piccolo museo.\n\n- Il museo apre di domenica solo se quel giorno sono in servizio almeno quattro guide.\n- In ogni domenica per cui è stato pubblicato il turno dei volontari, sono in servizio almeno quattro guide.\n\nDomenica scorsa il museo era aperto. Quale delle seguenti affermazioni deve essere vera?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Domenica scorsa erano in servizio almeno quattro guide."
+        },
+        {
+          "id": "b",
+          "textMd": "Il museo è chiuso in ogni domenica per cui non è stato pubblicato alcun turno."
+        },
+        {
+          "id": "c",
+          "textMd": "Il museo apre in ogni domenica in cui sono in servizio almeno quattro guide."
+        },
+        {
+          "id": "d",
+          "textMd": "Domenica scorsa erano in servizio esattamente quattro guide."
+        },
+        {
+          "id": "e",
+          "textMd": "Il turno dei volontari per domenica scorsa era stato pubblicato."
+        }
+      ],
+      "explanationMd": "Traduci ogni regola nella forma «se ... allora ...», facendo attenzione a quale parte è la condizione.\n\n«P solo se Q» significa «se P, allora Q»: ciò che segue «solo se» è necessario per ciò che lo precede. Qui P è «il museo apre di domenica» e Q è «sono in servizio almeno quattro guide». Domenica scorsa il museo era aperto, quindi P è vera, e di conseguenza anche Q è vera: **erano in servizio almeno quattro guide**.\n\nLa seconda regola va nell'altra direzione: turno pubblicato implica quattro guide. Sapere che le guide c'erano non dice nulla di certo sul turno, perché le guide possono essere in servizio per altri motivi. Ogni alternativa sbagliata commette uno di tre errori: applica una regola al contrario, nega la condizione di una regola e presume che ne segua l'opposto, oppure legge «almeno quattro» come «esattamente quattro». Verifica inventando situazioni che rispettano entrambe le regole. Domenica scorsa potevano esserci sei guide e nessun turno pubblicato; il museo poteva comunque aprire, e quella sola domenica smentisce le alternative secondo cui il turno era stato pubblicato, secondo cui le guide erano esattamente quattro e secondo cui il museo è chiuso ogni volta che non viene pubblicato un turno. In un'altra domenica poteva esserci una squadra completa con il museo rimasto chiuso, il che smentisce l'alternativa secondo cui quattro guide significano sempre che il museo apre.\n\nL'abitudine da mantenere: «solo se» introduce una condizione necessaria, mai una condizione sufficiente.",
+      "distractorRationale": {
+        "e": "Applica la seconda regola al contrario. La regola dice che un turno pubblicato garantisce quattro guide, non che quattro guide si trovano solo quando è stato pubblicato un turno; le guide potevano essere in servizio anche senza turno. È l'errore di affermare il conseguente.",
+        "c": "Inverte la prima regola. «Apre solo se sono in servizio quattro guide» rende le quattro guide necessarie per l'apertura; non le rende sufficienti. Il museo potrebbe restare chiuso per qualche altro motivo anche con una squadra completa.",
+        "d": "Legge «almeno quattro» come «esattamente quattro». La regola fissa un minimo, non un numero preciso. Cinque o sei guide soddisferebbero ugualmente entrambe le regole, quindi il numero non è determinato.",
+        "b": "Nega la condizione della seconda regola e presume che ne segua l'opposto. Senza turno, la seconda regola non dice nulla su quante guide siano presenti, quindi nessuna delle due regole permette di dire che il museo è chiuso; quattro o più guide potrebbero presentarsi comunque e il museo potrebbe aprire."
+      },
+      "accessibilityText": "Una domanda di deduzione su due regole di un museo. La prima regola dice che il museo apre di domenica solo se sono in servizio almeno quattro guide. La seconda dice che in ogni domenica per cui è stato pubblicato il turno dei volontari sono in servizio almeno quattro guide. Domenica scorsa il museo era aperto. La domanda chiede quale di cinque affermazioni deve essere vera: il turno era stato pubblicato; il museo apre ogni domenica con almeno quattro guide; erano in servizio esattamente quattro guide; erano in servizio almeno quattro guide; il museo è chiuso ogni domenica senza turno pubblicato.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-e",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }
