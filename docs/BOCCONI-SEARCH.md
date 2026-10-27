@@ -6,7 +6,7 @@ conditions that make them possible, and the way to see what actually happens.
 
 ## What the site now does
 
-- **One page for Bocconi preparation:** `https://exam.assist365.app/exams/bocconi-online-test`,
+- **One page for Bocconi preparation:** `https://uniexamer.com/exams/bocconi-online-test`,
   the established hub URL, now a full landing page: unique title ("Bocconi Test
   Preparation: Practice Questions and a Free Test"), description with the live
   question count, one H1, a self-referencing canonical, and all core content
@@ -47,14 +47,14 @@ conditions that make them possible, and the way to see what actually happens.
    root layout reads the session cookie (checked 2026-10-07 by building with
    the flag on and serving with it off, which gave `noindex` everywhere).
    `NEXT_PUBLIC_SITE_URL` is the exception: it is inlined at build time, so the
-   build must have `https://exam.assist365.app`.
+   build must have `https://uniexamer.com`.
 4. **Deploy** from a clean worktree, as in the README (`npm run cf:deploy`).
 5. **Check production** (the first two should show the change; the others should not say noindex):
 
-       curl -s https://exam.assist365.app/robots.txt | head -5
-       curl -s https://exam.assist365.app/sitemap.xml | grep -c "<loc>"
-       curl -s https://exam.assist365.app/exams/bocconi-online-test | grep -o '<meta name="robots"[^>]*>'
-       curl -s https://exam.assist365.app/guides/bocconi-test-preparation-plan | grep -o '<meta name="robots"[^>]*>'
+       curl -s https://uniexamer.com/robots.txt | head -5
+       curl -s https://uniexamer.com/sitemap.xml | grep -c "<loc>"
+       curl -s https://uniexamer.com/exams/bocconi-online-test | grep -o '<meta name="robots"[^>]*>'
+       curl -s https://uniexamer.com/guides/bocconi-test-preparation-plan | grep -o '<meta name="robots"[^>]*>'
 
    Expected: `Allow: /` for `*`, 29 sitemap URLs, and `index, follow` on both pages.
 
@@ -64,15 +64,14 @@ canonical and must stay out of the index.
 
 ## Cloudflare checks (zone owner)
 
-- **AI crawler blocking:** in the assist365.app zone, check Security → Bots /
+- **AI crawler blocking:** in the uniexamer.com zone, check Security → Bots /
   AI Crawl Control. If Cloudflare is set to block "AI bots", it blocks search
   crawlers such as OAI-SearchBot, Claude-SearchBot and PerplexityBot at the
   edge, whatever `robots.txt` says. Allow those; keep training crawlers blocked
   if the managed rules allow the distinction.
-- **Managed robots.txt:** the apex domain serves Cloudflare's managed
-  content-signals robots.txt. After deploying, confirm that
-  `exam.assist365.app/robots.txt` is still the site's own file (it was on
-  2026-10-07).
+- **Managed robots.txt:** Cloudflare can serve its own content-signals
+  robots.txt for a zone (the assist365.app apex does). After deploying, confirm
+  that `uniexamer.com/robots.txt` is the site's own file.
 - **Crawler Hints (IndexNow):** Caching → Configuration → Crawler Hints. On every
   plan; it notifies Bing and other IndexNow engines when pages change.
 
@@ -80,7 +79,7 @@ canonical and must stay out of the index.
 
 Verification, sitemap submission, URL inspection and the list of indexed and
 excluded routes are in [`GOOGLE_SEARCH_CONSOLE_SETUP.md`](GOOGLE_SEARCH_CONSOLE_SETUP.md).
-Inspect `https://exam.assist365.app/exams/bocconi-online-test` among the first
+Inspect `https://uniexamer.com/exams/bocconi-online-test` among the first
 URLs, and import the property into Bing Webmaster Tools afterwards: Copilot
 answers come from Bing's index.
 

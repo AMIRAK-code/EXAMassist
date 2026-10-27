@@ -11,7 +11,7 @@ import { googleSiteVerification } from '@/lib/site';
  * requested, so the tests set it the way the Worker does.
  */
 
-const SITE = 'https://exam.assist365.app';
+const SITE = 'https://uniexamer.com';
 const PRIVATE = ['/api/', '/attempt/', '/dashboard', '/account', '/study-plan', '/admin', '/practice/', '/start/', '/free-test/', '/premium/welcome'];
 const saved = { ...process.env };
 
