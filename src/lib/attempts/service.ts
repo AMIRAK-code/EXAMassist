@@ -24,7 +24,7 @@ import {
   selectItems,
   type PoolItem,
 } from '@/lib/assessment/select';
-import { scoreAttempt, scoreResponse, type ScoredItem } from '@/lib/assessment/score';
+import { scoreAttempt, scoreResponse, type ItemTraits, type ScoredItem } from '@/lib/assessment/score';
 import {
   acceptsWrite,
   computeDeadline,
@@ -930,7 +930,7 @@ function buildFeedback(
   response: Response,
 ): ItemFeedback {
   const reviewable = toReviewable(db, version);
-  const outcome = scoreResponse(reviewable.answerKey, response, config.scoring);
+  const outcome = scoreResponse(reviewable.answerKey, response, config.scoring, traitsOf(version));
   return {
     correct: outcome.status === 'correct',
     explanationMd: reviewable.explanationMd,
@@ -1487,6 +1487,12 @@ function openNextPart(db: Db, attemptId: string, userId: string, fromIndex: numb
   return true;
 }
 
+/** The traits an item-level penalty rule looks at (see `penaltyOverrides`). */
+function traitsOf(version: QuestionVersionRow): ItemTraits {
+  const options = version.options_json ? (JSON.parse(version.options_json) as unknown[]) : [];
+  return { domainSlug: version.domain_slug, optionCount: options.length };
+}
+
 /** Scores every item in one part. Idempotent. */
 function scorePart(db: Db, attemptId: string, partIndex: number, config: ExamConfig, now: Date): void {
   const items = db
@@ -1499,7 +1505,7 @@ function scorePart(db: Db, attemptId: string, partIndex: number, config: ExamCon
     if (!version) continue;
     const key = answerKeySchema.parse(JSON.parse(version.correct_json));
     const response = item.response_json ? (JSON.parse(item.response_json) as Response) : null;
-    const outcome = scoreResponse(key, response, config.scoring);
+    const outcome = scoreResponse(key, response, config.scoring, traitsOf(version));
     db.prepare('UPDATE attempt_items SET is_correct = ?, points_earned = ?, points_possible = ? WHERE id = ?').run(
       outcome.status === 'correct' ? 1 : outcome.status === 'not_auto_scored' ? null : 0,
       outcome.points,
@@ -1601,7 +1607,7 @@ export function finalise(
       const key = version ? answerKeySchema.parse(JSON.parse(version.correct_json)) : null;
       const response = item.response_json ? (JSON.parse(item.response_json) as Response) : null;
       const outcome = key
-        ? scoreResponse(key, response, config.scoring)
+        ? scoreResponse(key, response, config.scoring, version ? traitsOf(version) : undefined)
         : { status: 'omitted' as const, points: 0, pointsPossible: 0 };
       return {
         partIndex: item.part_index,

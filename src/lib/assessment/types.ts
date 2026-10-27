@@ -184,6 +184,24 @@ export const scoringPolicySchema = z.object({
   ]),
   notes: z.array(z.string()).default([]),
   /**
+   * Published exceptions to `pointsIncorrect` that belong to particular
+   * items: Bocconi's "critical thinking questions that give only three
+   * possible answer options" cost 0.33, not 0.2. An item matches when it is in
+   * one of the domains AND has exactly `optionCount` options. Only rules the
+   * exam's owner publishes go here.
+   */
+  penaltyOverrides: z
+    .array(
+      z.object({
+        domainSlugs: z.array(z.string().min(1)).min(1),
+        optionCount: z.number().int().positive(),
+        pointsIncorrect: z.number(),
+        rule: z.string().min(1),
+        source: z.string().url(),
+      }),
+    )
+    .optional(),
+  /**
    * Set only when the exam publishes its raw scoring in full: a fixed number of
    * equally weighted items, a published penalty, and a published conversion to
    * the reported scale. Readiness then turns a learner's target into

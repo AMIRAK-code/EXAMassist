@@ -151,6 +151,7 @@ export function scoreResponse(
   key: AnswerKey,
   response: Response | null | undefined,
   policy: ScoringPolicy,
+  item?: ItemTraits,
 ): ScoreOutcome {
   if (key.type === 'essay') {
     return { status: 'not_auto_scored', points: 0, pointsPossible: 0 };
@@ -163,7 +164,25 @@ export function scoreResponse(
   const correct = isResponseCorrect(key, response as Response);
   return correct
     ? { status: 'correct', points: policy.pointsCorrect, pointsPossible: policy.pointsCorrect }
-    : { status: 'incorrect', points: policy.pointsIncorrect, pointsPossible: policy.pointsCorrect };
+    : { status: 'incorrect', points: penaltyFor(policy, item), pointsPossible: policy.pointsCorrect };
+}
+
+/** What an item-level penalty rule needs to know about the item. */
+export interface ItemTraits {
+  domainSlug: string;
+  optionCount: number;
+}
+
+/**
+ * The points a wrong answer costs on this item: the exam's penalty, unless a
+ * published item-level exception matches. Without traits, the exam's penalty.
+ */
+export function penaltyFor(policy: ScoringPolicy, item?: ItemTraits): number {
+  if (!item) return policy.pointsIncorrect;
+  const override = (policy.penaltyOverrides ?? []).find(
+    (rule) => rule.domainSlugs.includes(item.domainSlug) && rule.optionCount === item.optionCount,
+  );
+  return override ? override.pointsIncorrect : policy.pointsIncorrect;
 }
 
 // ---------------------------------------------------------------------------
