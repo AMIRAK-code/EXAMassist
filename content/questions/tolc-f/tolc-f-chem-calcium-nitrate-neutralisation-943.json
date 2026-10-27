@@ -78,5 +78,48 @@
     "neutralisation",
     "salts",
     "balancing-equations"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Quale equazione rappresenta correttamente la neutralizzazione **completa** dell'idrossido di calcio con acido nitrico?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\mathrm{Ca(OH)_2} + \\mathrm{HNO_3} \\rightarrow \\mathrm{Ca(OH)NO_3} + \\mathrm{H_2O}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\mathrm{Ca(OH)_2} + \\mathrm{HNO_3} \\rightarrow \\mathrm{CaNO_3} + \\mathrm{H_2O}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$\\mathrm{Ca(OH)_2} + 2\\,\\mathrm{HNO_2} \\rightarrow \\mathrm{Ca(NO_2)_2} + 2\\,\\mathrm{H_2O}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\mathrm{Ca(OH)_2} + 2\\,\\mathrm{HNO_3} \\rightarrow \\mathrm{Ca(NO_3)_2} + 2\\,\\mathrm{H_2O}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\mathrm{Ca(OH)_2} + 2\\,\\mathrm{HNO_3} \\rightarrow \\mathrm{Ca(NO_3)_2} + \\mathrm{H_2O}$"
+        }
+      ],
+      "explanationMd": "Controlla tre cose, una dopo l'altra: i reagenti giusti, il sale giusto e il bilanciamento.\n\n1. **Reagenti.** L'acido nitrico è $\\mathrm{HNO_3}$; $\\mathrm{HNO_2}$ è l'acido nitroso.\n2. **Sale.** La neutralizzazione completa sostituisce ogni $\\mathrm{OH^-}$ della base. Il calcio forma $\\mathrm{Ca^{2+}}$ e il nitrato è $\\mathrm{NO_3^-}$, quindi il sale neutro è $\\mathrm{Ca(NO_3)_2}$, il nitrato di calcio. Due $\\mathrm{OH^-}$ richiedono due $\\mathrm{H^+}$, quindi **2** $\\mathrm{HNO_3}$.\n3. **Bilanciamento.** Ogni $\\mathrm{H^+}$ si combina con un $\\mathrm{OH^-}$ formando una molecola d'acqua, quindi **2** $\\mathrm{H_2O}$.\n\n$$\\mathrm{Ca(OH)_2} + 2\\,\\mathrm{HNO_3} \\rightarrow \\mathrm{Ca(NO_3)_2} + 2\\,\\mathrm{H_2O}$$\n\n**Verifica contando gli atomi:** Ca $1 = 1$; N $2 = 2$; H $2 + 2 = 4$ a sinistra, $2 \\times 2 = 4$ a destra; O $2 + 6 = 8$ a sinistra, $6 + 2 = 8$ a destra.",
+      "distractorRationale": {
+        "b": "$\\mathrm{CaNO_3}$ non è una formula valida: $\\mathrm{Ca^{2+}}$ con un solo $\\mathrm{NO_3^-}$ lascia una carica di $+1$. Inoltre l'equazione non è bilanciata (3 H a sinistra, 2 a destra).",
+        "c": "Questa equazione è bilanciata, ma usa l'acido nitroso, $\\mathrm{HNO_2}$, e dà nitrito di calcio. L'acido nitrico è $\\mathrm{HNO_3}$ e i suoi sali sono nitrati.",
+        "a": "Questa equazione è bilanciata, ma sostituisce solo uno dei due ioni idrossido, dando un sale basico. È una neutralizzazione parziale, non la neutralizzazione completa richiesta dal testo.",
+        "e": "Reagenti e sale sono giusti, ma c'è una sola molecola d'acqua: a sinistra ci sono 4 H e 8 O, a destra 2 H e 7 O. Due $\\mathrm{H^+}$ che incontrano due $\\mathrm{OH^-}$ formano due molecole d'acqua."
+      },
+      "accessibilityText": "La domanda chiede quale equazione rappresenta la neutralizzazione completa dell'idrossido di calcio con acido nitrico. Le alternative sono: C a O H due volte più H N O 3 dà C a O H N O 3 più H 2 O; C a O H due volte più H N O 3 dà C a N O 3 più H 2 O; C a O H due volte più 2 H N O 2 dà C a N O 2 due volte più 2 H 2 O; C a O H due volte più 2 H N O 3 dà C a N O 3 due volte più 2 H 2 O; C a O H due volte più 2 H N O 3 dà C a N O 3 due volte più H 2 O. Qui «C a O H due volte» indica l'idrossido di calcio, C a con O H tra parentesi, pedice 2, e «C a N O 3 due volte» indica il nitrato di calcio.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f1",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

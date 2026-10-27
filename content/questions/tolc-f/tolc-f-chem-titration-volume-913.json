@@ -79,5 +79,48 @@
     "titration",
     "diprotic-acid",
     "molarity"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Quale volume di $\\mathrm{NaOH}$ 0,10 mol/L serve per neutralizzare completamente, formando $\\mathrm{Na_2SO_4}$, 20 mL di acido solforico 0,15 mol/L, $\\mathrm{H_2SO_4}$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "15 mL"
+        },
+        {
+          "id": "b",
+          "textMd": "30 mL"
+        },
+        {
+          "id": "c",
+          "textMd": "40 mL"
+        },
+        {
+          "id": "d",
+          "textMd": "120 mL"
+        },
+        {
+          "id": "e",
+          "textMd": "60 mL"
+        }
+      ],
+      "explanationMd": "Scrivi prima l'equazione bilanciata, perché è lei a fissare il rapporto in moli.\n\n$$\\mathrm{H_2SO_4 + 2\\,NaOH \\rightarrow Na_2SO_4 + 2\\,H_2O}$$\n\nUna mole di acido richiede due moli di base.\n\n1. **Moli di acido:** $0.15\\ \\mathrm{mol/L} \\times 0.020\\ \\mathrm{L} = 0.0030\\ \\mathrm{mol}$ (3,0 mmol).\n2. **Moli di base necessarie:** $2 \\times 3.0 = 6.0$ mmol.\n3. **Volume di base:** $V = n \\div c = 6.0\\ \\mathrm{mmol} \\div 0.10\\ \\mathrm{mmol/mL} = 60\\ \\mathrm{mL}$.\n\n**Verifica contando gli ioni idrogeno.** 3,0 mmol di $\\mathrm{H_2SO_4}$ danno 6,0 mmol di $\\mathrm{H^+}$; 60 mL di base 0,10 mol/L danno $60 \\times 0.10 = 6.0$ mmol di $\\mathrm{OH^-}$. Coincidono, quindi l'acido è neutralizzato esattamente. Lavorare in millilitri e millimoli evita errori con le cifre decimali.",
+      "distractorRationale": {
+        "a": "Applica il rapporto in moli nel verso sbagliato: dimezza i 30 mL, come se un $\\mathrm{NaOH}$ potesse neutralizzare due idrogeni acidi. Ogni $\\mathrm{NaOH}$ fornisce un solo $\\mathrm{OH^-}$, quindi servono il doppio delle moli di base rispetto a quelle di acido.",
+        "b": "Tratta la reazione come un $\\mathrm{NaOH}$ per ogni $\\mathrm{H_2SO_4}$: $3.0\\ \\mathrm{mmol} \\div 0.10 = 30$ mL. Dimentica che l'acido solforico è diprotico e fornisce due $\\mathrm{H^+}$.",
+        "c": "Raddoppia il volume dell'acido, $2 \\times 20 = 40$, usando il rapporto 2 ma ignorando che le due soluzioni hanno concentrazioni diverse (0,15 contro 0,10 mol/L).",
+        "d": "Applica due volte il fattore 2, una volta contando gli $\\mathrm{H^+}$ dell'acido e di nuovo nel passare a $\\mathrm{NaOH}$, ottenendo 12 mmol di base invece di 6 mmol."
+      },
+      "accessibilityText": "Una soluzione di idrossido di sodio con concentrazione 0,10 moli per litro viene usata per neutralizzare completamente 20 millilitri di acido solforico 0,15 moli per litro, H pedice 2 S O pedice 4, formando solfato di sodio, Na pedice 2 S O pedice 4. La domanda chiede il volume di idrossido di sodio necessario. Le alternative sono volumi in millilitri.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f1",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": "Decimal commas in prose (0,10 mol/L; 0,15 mol/L; 3,0 mmol); KaTeX unchanged."
+      }
+    }
+  }
 }
