@@ -77,5 +77,48 @@
   "tags": [
     "linear-system",
     "word-problem"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "In una cartoleria, 3 quaderni e 2 penne costano in tutto € 8,40, mentre 1 quaderno e 1 penna costano € 3,20. Qual è il prezzo di un quaderno?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "€ 1,60"
+        },
+        {
+          "id": "b",
+          "textMd": "€ 2,80"
+        },
+        {
+          "id": "c",
+          "textMd": "€ 2,00"
+        },
+        {
+          "id": "d",
+          "textMd": "€ 1,20"
+        },
+        {
+          "id": "e",
+          "textMd": "€ 3,20"
+        }
+      ],
+      "explanationMd": "Sia $n$ il prezzo di un quaderno e $p$ il prezzo di una penna, in euro. I due acquisti danno\n\n$$3n + 2p = 8.40, \\qquad n + p = 3.20.$$\n\n**Passo 1 — rendi uguali i coefficienti delle penne.** Raddoppiando la seconda equazione si ottiene $2n + 2p = 6.40$.\n\n**Passo 2 — sottraila dalla prima.** $(3n + 2p) - (2n + 2p) = 8.40 - 6.40$, quindi $n = 2.00$.\n\n**Come verificare.** Allora $p = 3.20 - 2.00 = 1.20$, e il primo acquisto costa $3\\times 2.00 + 2\\times 1.20 = 6.00 + 2.40 = 8.40$, come indicato.",
+      "distractorRationale": {
+        "d": "Questo è il prezzo di una penna, l'altra incognita. Il sistema dà $p = 3.20 - 2.00 = 1.20$, ma la domanda chiede il quaderno.",
+        "a": "Divide € 3,20 in parti uguali tra i due articoli, supponendo che un quaderno e una penna costino lo stesso. Allora 3 quaderni e 2 penne costerebbero $5\\times 1.60 = 8.00$, non 8,40.",
+        "b": "Divide € 8,40 per 3, come se il primo acquisto fosse di 3 quaderni e le penne fossero gratuite.",
+        "e": "Prende il prezzo complessivo di un quaderno e di una penna come prezzo del solo quaderno."
+      },
+      "accessibilityText": "Un problema. Tre quaderni e due penne costano in tutto 8 euro e 40. Un quaderno e una penna costano 3 euro e 20. La domanda chiede il prezzo di un quaderno. Le cinque alternative sono 1 euro e 20, 1 euro e 60, 2 euro, 2 euro e 80 e 3 euro e 20.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-e",
+        "checkedBy": "tolc-italian-checker-e",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; euro amounts with decimal commas. Notebook = 2,00."
+      }
+    }
+  }
 }

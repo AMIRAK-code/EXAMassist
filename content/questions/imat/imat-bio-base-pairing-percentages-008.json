@@ -1,0 +1,126 @@
+{
+  "id": "imat-bio-base-pairing-percentages-008",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-biology",
+  "skillSlug": "imat-bio-genetics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "In a sample of double-stranded DNA, 30% of the nitrogenous bases are adenine. What percentage of the bases are cytosine?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "20%"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "30%"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "40%"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "60%"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "70%"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "In double-stranded DNA every adenine pairs with a thymine and every guanine with a cytosine, so the amount of adenine equals the amount of thymine, and the amount of guanine equals the amount of cytosine.\n\n- Adenine = 30%, so thymine = 30%, and together they make 60%.\n- The remaining 40% is guanine plus cytosine, shared equally: 20% each.\n\nSo cytosine is 20%. Check: 30 + 30 + 20 + 20 = 100.",
+  "distractorRationale": {
+    "b": "This pairs adenine with cytosine instead of thymine. Adenine pairs with thymine, so it is thymine that is 30%.",
+    "c": "This is guanine and cytosine together. The 40% left after adenine and thymine must be split equally between the two.",
+    "d": "This is the combined percentage of adenine and thymine, not the percentage of cytosine.",
+    "e": "This subtracts only adenine from 100% and forgets that thymine also makes up 30%."
+  },
+  "estimatedSeconds": 45,
+  "stimulusRef": null,
+  "accessibilityText": "Double-stranded DNA has 30 percent adenine. What percentage of its bases are cytosine? Choices: 20, 30, 40, 60 and 70 percent.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "imat-biology-author",
+    "aiAssisted": true,
+    "notes": "Original numeric item on complementary base pairing."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "imat-biology-author",
+    "reviewer": "imat-blind-reviewer-1",
+    "reviewedOn": "2026-10-23",
+    "independentSolve": {
+      "solvedBy": "imat-blind-reviewer-1",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Chargaff: A=T=30%, so G+C=40%, C=20%."
+    },
+    "notes": "Author solved the item twice independently and argued for each wrong choice; no second choice was found defensible. Awaiting blind independent solve and a check of the Italian translation by a second party."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "biology",
+    "dna",
+    "base-pairing",
+    "chargaff"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "In un campione di DNA a doppio filamento il 30% delle basi azotate è adenina. Quale percentuale delle basi è citosina?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "20%"
+        },
+        {
+          "id": "b",
+          "textMd": "30%"
+        },
+        {
+          "id": "c",
+          "textMd": "40%"
+        },
+        {
+          "id": "d",
+          "textMd": "60%"
+        },
+        {
+          "id": "e",
+          "textMd": "70%"
+        }
+      ],
+      "explanationMd": "Nel DNA a doppio filamento ogni adenina si appaia con una timina e ogni guanina con una citosina, quindi la quantità di adenina è uguale a quella di timina e la quantità di guanina è uguale a quella di citosina.\n\n- Adenina = 30%, quindi timina = 30%, e insieme fanno il 60%.\n- Il restante 40% è guanina più citosina, diviso in parti uguali: 20% ciascuna.\n\nQuindi la citosina è il 20%. Verifica: 30 + 30 + 20 + 20 = 100.",
+      "distractorRationale": {
+        "b": "Appaia l'adenina con la citosina invece che con la timina. L'adenina si appaia con la timina, quindi è la timina a essere il 30%.",
+        "c": "È la somma di guanina e citosina. Il 40% che resta dopo adenina e timina va diviso in parti uguali fra le due.",
+        "d": "È la percentuale complessiva di adenina e timina, non la percentuale di citosina.",
+        "e": "Sottrae da 100% solo l'adenina e dimentica che anche la timina costituisce il 30%."
+      },
+      "accessibilityText": "Un DNA a doppio filamento contiene il 30 per cento di adenina. Quale percentuale delle sue basi è citosina? Opzioni: 20, 30, 40, 60 e 70 per cento.",
+      "check": {
+        "translatedBy": "imat-biology-author",
+        "checkedBy": "imat-italian-checker",
+        "checkedOn": "2026-10-23",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities, units, negations and options match; terminology correct."
+      }
+    }
+  }
+}

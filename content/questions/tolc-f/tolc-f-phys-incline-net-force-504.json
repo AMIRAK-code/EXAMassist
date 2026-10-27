@@ -78,5 +78,48 @@
     "newtons-laws",
     "inclined-plane",
     "components"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un blocco di $4\\ \\text{kg}$ scivola lungo un piano privo di attrito inclinato di $30^{\\circ}$ rispetto all'orizzontale. Assumi $g = 10\\ \\text{m/s}^{2}$. Qual è il modulo della forza risultante che agisce sul blocco?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$20\\ \\text{N}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$20\\sqrt{3}\\ \\text{N}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$40\\ \\text{N}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$80\\ \\text{N}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$5\\ \\text{N}$"
+        }
+      ],
+      "explanationMd": "**Da notare subito.** In assenza di attrito, l'unica forza con una componente parallela al piano è il peso. La reazione vincolare del piano annulla la componente del peso perpendicolare al piano, quindi la forza risultante è la componente *parallela* al piano.\n\n**Il passaggio decisivo.** Il peso è $mg=4\\times10=40$ N. La componente parallela a un piano inclinato di angolo $\\theta$ è $mg\\sin\\theta$:\n\n$$F_{\\text{ris}}=40\\sin 30^{\\circ}=40\\cdot\\tfrac12=20\\ \\text{N}.$$\n\n**Come verificarlo.** Prova i casi limite: su un piano orizzontale ($0^{\\circ}$) la forza risultante dovrebbe essere nulla, e su una parete verticale ($90^{\\circ}$) dovrebbe essere l'intero peso. $\\sin\\theta$ soddisfa entrambe le condizioni, e $\\sin30^{\\circ}=\\tfrac12$ dà metà del peso. L'accelerazione è quindi $20/4=5\\ \\text{m/s}^2$, cioè $g\\sin30^{\\circ}$, come previsto.",
+      "distractorRationale": {
+        "e": "È l'*accelerazione* del blocco, $g\\sin 30^\\circ = 5\\ \\text{m/s}^2$, data come se fosse una forza. La forza risultante è la massa per l'accelerazione.",
+        "b": "Usa $\\cos 30^\\circ$ invece di $\\sin 30^\\circ$. Quella è la componente del peso *perpendicolare* al piano, che la reazione vincolare del piano annulla.",
+        "c": "Prende l'intero peso, $4 \\times 10$, come forza risultante e ignora l'inclinazione. Lungo il piano agisce solo una componente del peso.",
+        "d": "Divide il peso per $\\sin 30^\\circ$ invece di moltiplicarlo. Scomponendo una forza, una componente non è mai più grande della forza stessa."
+      },
+      "accessibilityText": "Un blocco di quattro chilogrammi scivola lungo un piano privo di attrito inclinato di trenta gradi rispetto all'orizzontale. Assumi g uguale a dieci metri al secondo quadrato. Trova il modulo della forza risultante sul blocco. Le alternative sono venti newton; venti per la radice quadrata di tre newton; quaranta newton; ottanta newton; cinque newton.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f2",
+        "checkedBy": "tolc-italian-checker-f2",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; 'Assumi' (tu-imperative) slightly inconsistent with impersonal register elsewhere, harmless."
+      }
+    }
+  }
 }

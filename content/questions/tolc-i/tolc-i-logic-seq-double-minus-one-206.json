@@ -80,5 +80,48 @@
     "numeric",
     "doubling",
     "no-calculator"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Una coltura di laboratorio viene misurata una volta al giorno. Le misure dei primi cinque giorni sono\n\n3, 5, 9, 17, 33\n\ne seguono una regola fissa. Se la regola continua, qual è la misura del sesto giorno?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "49"
+        },
+        {
+          "id": "b",
+          "textMd": "50"
+        },
+        {
+          "id": "c",
+          "textMd": "64"
+        },
+        {
+          "id": "d",
+          "textMd": "65"
+        },
+        {
+          "id": "e",
+          "textMd": "66"
+        }
+      ],
+      "explanationMd": "Guarda come si ottiene ogni misura da quella precedente. Le differenze sono 2, 4, 8, 16: ogni differenza raddoppia. Quindi la differenza successiva è 32, e la sesta misura è 33 + 32 = **65**.\n\nLa stessa regola si può vedere in un altro modo: ogni misura è il doppio della precedente meno 1 ($2 \\times 3 - 1 = 5$, $2 \\times 5 - 1 = 9$, e così via), il che dà $2 \\times 33 - 1 = 65$. Un terzo punto di vista: ogni misura è una potenza di 2 aumentata di uno ($3 = 2 + 1$, $5 = 4 + 1$, ..., $33 = 32 + 1$), quindi la successiva è $64 + 1 = 65$. Le tre descrizioni concordano, e questo conferma la risposta.",
+      "distractorRationale": {
+        "a": "Aggiunge di nuovo 16, ripetendo l'ultima differenza. Le differenze raddoppiano ogni volta, quindi la prossima è 32.",
+        "b": "Aggiunge la misura precedente (33 + 17). Questa regola fallisce già prima: 9 + 5 = 14, non 17.",
+        "c": "Nota che le misure sono potenze di 2 aumentate di uno, ma dimentica il «+ 1» nel termine successivo.",
+        "e": "Raddoppia 33 ma dimentica di sottrarre 1, violando così la regola che ha prodotto tutte le misure precedenti."
+      },
+      "accessibilityText": "Una domanda su una successione numerica. Le misure di una coltura nei primi cinque giorni sono 3, 5, 9, 17 e 33, e seguono una regola fissa. La domanda chiede la misura del sesto giorno. Le cinque alternative sono 49, 50, 64, 65 e 66.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": "tolc-italian-checker-i1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; 'regola fissa' for 'regular pattern' fine."
+      }
+    }
+  }
 }

@@ -78,5 +78,48 @@
     "electron-configuration",
     "periodic-table",
     "ions"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un atomo neutro di un elemento X ha la configurazione elettronica $1s^2\\,2s^2\\,2p^6\\,3s^2\\,3p^6\\,4s^2$. Quale affermazione su X è corretta?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "X appartiene al periodo 2, perché ha due elettroni esterni"
+        },
+        {
+          "id": "b",
+          "textMd": "X è un metallo di transizione, perché i suoi elettroni esterni si trovano nel quarto livello"
+        },
+        {
+          "id": "c",
+          "textMd": "X è nel gruppo 2 e tende a perdere due elettroni, formando $\\mathrm{X^{2+}}$"
+        },
+        {
+          "id": "d",
+          "textMd": "X tende ad acquistare due elettroni e a formare lo ione $\\mathrm{X^{2-}}$"
+        },
+        {
+          "id": "e",
+          "textMd": "X è un gas nobile, perché il suo ultimo sottolivello, il 4s, è completo"
+        }
+      ],
+      "explanationMd": "Dalla configurazione si leggono due informazioni.\n\n- **Il numero del livello più alto** indica il periodo: gli elettroni più esterni sono nel livello 4, quindi X è nel **periodo 4**.\n- **Gli elettroni di quel livello esterno** indicano il gruppo per gli elementi dei gruppi principali: $4s^2$ significa due elettroni di valenza in un sottolivello s, quindi X è nel **gruppo 2**, i metalli alcalino-terrosi. Contando tutti gli elettroni, $2+2+6+2+6+2 = 20$: X è il calcio.\n\nPerdendo i suoi due elettroni esterni, X assume la configurazione $1s^2\\,2s^2\\,2p^6\\,3s^2\\,3p^6$, la stessa del gas nobile argon, quindi forma facilmente $\\mathrm{X^{2+}}$, come il calcio forma $\\mathrm{Ca^{2+}}$.\n\n**Verifica:** un gas nobile ha completi sia il sottolivello s **sia** il sottolivello p esterni ($ns^2\\,np^6$); qui il quarto livello contiene solo due elettroni.",
+      "distractorRationale": {
+        "e": "Un gas nobile ha bisogno di un livello esterno completo, $ns^2\\,np^6$, otto elettroni. X ha solo due elettroni nel quarto livello, e li perde facilmente.",
+        "a": "Confonde periodo e gruppo. Il periodo è il numero del livello più esterno, 4; i due elettroni esterni collocano X nel gruppo 2.",
+        "d": "Acquistare due elettroni è tipico degli elementi con sei elettroni esterni, come l'ossigeno. X ha due elettroni esterni e, essendo un metallo, li perde.",
+        "b": "I metalli di transizione sono gli elementi in cui si stanno riempiendo i sottolivelli d. X non ha elettroni d; il quarto livello è il livello esterno di tutti gli elementi del periodo 4, compresi quelli dei gruppi principali."
+      },
+      "accessibilityText": "Una breve domanda testuale. Un atomo neutro dell'elemento X ha la configurazione elettronica 1 s 2, 2 s 2, 2 p 6, 3 s 2, 3 p 6, 4 s 2, dove ogni numero finale è un esponente che indica il numero di elettroni. La domanda chiede quale affermazione su X è corretta. Le alternative sono: X appartiene al periodo 2 perché ha due elettroni esterni; X è un metallo di transizione perché i suoi elettroni esterni sono nel quarto livello; X è nel gruppo 2 e tende a perdere due elettroni, formando X 2 più; X tende ad acquistare due elettroni formando X 2 meno; X è un gas nobile perché il suo ultimo sottolivello, 4 s, è completo.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f1",
+        "checkedBy": "tolc-italian-checker-f1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities and options match the English."
+      }
+    }
+  }
 }

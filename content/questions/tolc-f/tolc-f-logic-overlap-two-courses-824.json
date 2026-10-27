@@ -78,5 +78,48 @@
     "sets",
     "inclusion-exclusion",
     "counting"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "In un gruppo di 30 studenti del primo anno di Farmacia, 18 sono iscritti al modulo di anatomia e 15 al modulo di statistica. Cinque studenti non sono iscritti a nessuno dei due moduli. Quanti studenti sono iscritti a entrambi i moduli?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "3"
+        },
+        {
+          "id": "b",
+          "textMd": "5"
+        },
+        {
+          "id": "c",
+          "textMd": "8"
+        },
+        {
+          "id": "d",
+          "textMd": "10"
+        },
+        {
+          "id": "e",
+          "textMd": "12"
+        }
+      ],
+      "explanationMd": "Usa l'unione dei due gruppi. Se 5 dei 30 studenti non sono iscritti a nessun modulo, allora $30 - 5 = 25$ studenti seguono almeno un modulo.\n\nSommando le due iscrizioni, ogni studente iscritto a entrambi i moduli viene contato due volte: $18 + 15 = 33$. L'eccedenza rispetto ai 25 iscritti è esattamente il numero di quelli contati due volte: $33 - 25 = 8$.\n\nVerifica: 10 seguono solo anatomia, 7 solo statistica, 8 entrambi e 5 nessuno dei due; $10 + 7 + 8 + 5 = 30$.",
+      "distractorRationale": {
+        "a": "È 18 + 15 - 30. Usa tutti i 30 studenti, dimenticando che 5 di loro non sono iscritti a nessun modulo e quindi non rientrano nell'unione.",
+        "b": "È il numero degli studenti iscritti a nessuno dei due moduli, non a entrambi.",
+        "d": "È 15 - 5: tratta i 5 studenti non iscritti a nessun modulo come se facessero parte del gruppo di statistica e li toglie da esso. Quei 5 sono fuori da entrambi i gruppi, quindi vanno usati nel passaggio che trova l'unione ($30 - 5 = 25$), non nel conteggio di uno dei due moduli.",
+        "e": "È 30 - 18, il numero degli studenti che non seguono anatomia. Non descrive gli studenti iscritti a entrambi i moduli."
+      },
+      "accessibilityText": "Una breve domanda di solo testo, senza figure. Un gruppo di 30 studenti: 18 seguono anatomia, 15 seguono statistica e 5 non seguono nessuno dei due moduli. La domanda chiede quanti seguono entrambi. Le cinque alternative sono 3, 5, 8, 10 e 12.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f2",
+        "checkedBy": "tolc-italian-checker-f2",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities and options match the English."
+      }
+    }
+  }
 }

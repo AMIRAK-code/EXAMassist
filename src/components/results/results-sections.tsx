@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import type { ResultItem, ResultsSummary } from '@/lib/learning/results';
 import { isMiss } from '@/lib/learning/results';
 import { labelText } from '@/lib/learning/mistakes';

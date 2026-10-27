@@ -1,0 +1,125 @@
+{
+  "id": "tolce-logic-sock-drawer-014",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A drawer holds 6 red socks, 8 blue socks and 10 black socks, all mixed together. In the dark, socks are taken out one at a time without looking.\n\nWhat is the smallest number of socks that must be taken out to be **certain** of having a pair of one colour and also a pair of a different colour?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$5$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$7$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$12$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$13$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$17$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "\"Certain\" means the number must work even with the worst possible luck, so look for the longest run of draws that still does **not** give two pairs of different colours.\n\nTo avoid two different-colour pairs, at most one colour can appear twice or more; each of the other colours can appear at most once. The worst case lets the largest colour supply as many socks as possible: all $10$ black socks, plus $1$ red and $1$ blue. That is $12$ socks with only black pairs.\n\nThe next sock is red or blue and completes a pair in that colour. So $12 + 1 = 13$ socks guarantee it. Checking the other ways to avoid two pairs confirms that $12$ is the worst case: all $8$ blue with one red and one black is only $10$ socks, and all $6$ red with one of each other colour is only $8$.\n\nWhat to notice first: for a guarantee, build the largest selection that fails, then add one. With uneven colour counts, the worst case uses up the most plentiful colour.",
+  "distractorRationale": {
+    "a": "Five socks are enough only with lucky draws. Nothing prevents all five from being black, which gives black pairs but no pair in a second colour.",
+    "b": "This allows one stray sock of each colour plus four more to make two pairs, but it ignores that the draws can keep landing on the same colour. All seven socks could be black.",
+    "c": "Twelve socks can be all ten black socks plus one red and one blue, which gives no pair in a second colour. The guarantee needs one more.",
+    "e": "This adds all the black and all the red socks before the extra one, but taking all six red socks already gives red pairs. The worst case keeps every colour but one to a single sock."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "A drawer holds 6 red, 8 blue and 10 black socks, mixed. Socks are drawn one at a time without looking. The question asks for the smallest number of draws that guarantees one pair of some colour and another pair of a different colour. Five answer choices.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-logic-author",
+    "aiAssisted": true,
+    "notes": "Original pigeonhole problem with uneven colour counts. Not derived from any CISIA or other published item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-logic-author",
+    "reviewer": "tolce-blind-reviewer-1",
+    "reviewedOn": "2026-10-21",
+    "independentSolve": {
+      "solvedBy": "tolce-blind-reviewer-1",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Worst case without two different-colour pairs: all 10 black + 1 red + 1 blue = 12. The 13th sock must be red or blue, forming a second-colour pair. Answer 13."
+    },
+    "notes": "Author solved the item and then tried to defend each wrong choice; none survives. Awaiting blind independent solve and uniqueness check by a second party."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "problems",
+    "pigeonhole",
+    "worst-case"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un cassetto contiene 6 calzini rossi, 8 calzini blu e 10 calzini neri, tutti mescolati. Al buio, si estraggono i calzini uno alla volta senza guardare.\n\nQual è il numero minimo di calzini che occorre estrarre per essere **certi** di avere un paio di un colore e anche un paio di un colore diverso?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$5$"
+        },
+        {
+          "id": "b",
+          "textMd": "$7$"
+        },
+        {
+          "id": "c",
+          "textMd": "$12$"
+        },
+        {
+          "id": "d",
+          "textMd": "$13$"
+        },
+        {
+          "id": "e",
+          "textMd": "$17$"
+        }
+      ],
+      "explanationMd": "«Certi» significa che il numero deve funzionare anche con la sfortuna peggiore possibile, quindi cerca la serie di estrazioni più lunga che **non** dà ancora due paia di colori diversi.\n\nPer evitare due paia di colori diversi, al più un colore può comparire due o più volte; ciascuno degli altri colori può comparire al più una volta. Il caso peggiore permette al colore più numeroso di fornire quanti più calzini possibile: tutti i $10$ calzini neri, più $1$ rosso e $1$ blu. Sono $12$ calzini con paia solo nere.\n\nIl calzino successivo è rosso o blu e completa un paio di quel colore. Quindi $12 + 1 = 13$ calzini lo garantiscono. Controllando gli altri modi di evitare due paia si conferma che $12$ è il caso peggiore: tutti gli $8$ blu con un rosso e un nero fanno solo $10$ calzini, e tutti i $6$ rossi con uno per ciascuno degli altri colori fanno solo $8$.\n\nDa notare subito: per una garanzia, costruisci la selezione più grande che non soddisfa la richiesta, poi aggiungi uno. Con quantità diverse per colore, il caso peggiore esaurisce il colore più numeroso.",
+      "distractorRationale": {
+        "a": "Cinque calzini bastano solo con estrazioni fortunate. Nulla impedisce che tutti e cinque siano neri, il che dà paia nere ma nessun paio di un secondo colore.",
+        "b": "Considera un calzino isolato per ciascun colore più altri quattro per formare due paia, ma ignora che le estrazioni possono continuare a cadere sullo stesso colore. Tutti e sette i calzini potrebbero essere neri.",
+        "c": "Dodici calzini possono essere tutti e dieci i calzini neri più un rosso e un blu, il che non dà nessun paio di un secondo colore. Per la garanzia ne serve uno in più.",
+        "e": "Aggiunge tutti i calzini neri e tutti quelli rossi prima di quello in più, ma prendere tutti e sei i calzini rossi dà già paia rosse. Il caso peggiore limita a un solo calzino ogni colore tranne uno."
+      },
+      "accessibilityText": "Un cassetto contiene 6 calzini rossi, 8 blu e 10 neri, mescolati. Si estraggono i calzini uno alla volta senza guardare. La domanda chiede il numero minimo di estrazioni che garantisce un paio di un colore e un altro paio di un colore diverso. Cinque alternative di risposta.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": "tolce-italian-checker",
+        "checkedOn": "2026-10-23",
+        "answerPreserved": true,
+        "notes": "Worst case 10 black + 1 red + 1 blue = 12; 13th gives a second pair. 'certi' bold preserved."
+      }
+    }
+  }
+}

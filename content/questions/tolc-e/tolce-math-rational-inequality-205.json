@@ -1,0 +1,126 @@
+{
+  "id": "tolce-math-rational-inequality-205",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which set contains exactly the real numbers $x$ that satisfy $\\dfrac{2x - 1}{x + 2} \\ge 1$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$x \\le -2$ or $x \\ge 3$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$x < -2$ or $x \\ge \\dfrac{1}{2}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$x < -2$ or $x \\ge 3$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$x \\ge 3$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$-2 < x \\le 3$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The trap is to multiply both sides by $x + 2$. That is only allowed, without flipping the inequality, when $x + 2 > 0$, and we do not know the sign of $x + 2$. The safe method is to bring everything to one side and study the sign of a single fraction.\n\n$$\\frac{2x - 1}{x + 2} - 1 = \\frac{2x - 1 - (x + 2)}{x + 2} = \\frac{x - 3}{x + 2} \\ge 0$$\n\nThe numerator is zero at $x = 3$ and the denominator is zero at $x = -2$. Make a sign table:\n\n| interval | $x - 3$ | $x + 2$ | fraction |\n| --- | --- | --- | --- |\n| $x < -2$ | $-$ | $-$ | $+$ |\n| $-2 < x < 3$ | $-$ | $+$ | $-$ |\n| $x > 3$ | $+$ | $+$ | $+$ |\n\nThe fraction is positive for $x < -2$ and for $x > 3$, and equals zero at $x = 3$, which is allowed by \"$\\ge$\". At $x = -2$ the fraction is undefined, so $-2$ is excluded.\n\nSolution: $x < -2$ or $x \\ge 3$.\n\nSpot-check in the original inequality: $x = -3$ gives $\\frac{-7}{-1} = 7 \\ge 1$, true; $x = 0$ gives $-\\frac{1}{2} \\ge 1$, false; $x = 3$ gives $\\frac{5}{5} = 1 \\ge 1$, true.",
+  "distractorRationale": {
+    "d": "This multiplies both sides by $x + 2$ as if it were always positive, giving $2x - 1 \\ge x + 2$. For $x < -2$ the multiplier is negative and the inequality would flip, so this loses the whole branch $x < -2$ (for example $x = -3$ works).",
+    "a": "This includes $x = -2$, where the denominator is zero and the fraction does not exist. Only zeros of the numerator can be included when the inequality is non-strict.",
+    "e": "This reads the sign table backwards and keeps the interval where the fraction is negative. That is the solution of $\\frac{x - 3}{x + 2} < 0$ (with the endpoint $3$ wrongly attached), not of the given inequality.",
+    "b": "This forgets the $1$ on the right and solves $\\frac{2x - 1}{x + 2} \\ge 0$, whose numerator is zero at $\\frac{1}{2}$. The right-hand side has to be moved across before the sign study, which changes the numerator to $x - 3$."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "The inequality is: the fraction with numerator 2x minus 1 and denominator x plus 2 is greater than or equal to 1. The answer choices are: x greater than or equal to 3; x less than negative 2 or x greater than or equal to 3; x less than or equal to negative 2 or x greater than or equal to 3; x greater than negative 2 and less than or equal to 3; x less than negative 2 or x greater than or equal to one half.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Rational inequality with a non-zero right-hand side; distractors come from cross-multiplying, including the pole, reversing the sign table, and ignoring the constant."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-math-author",
+    "reviewer": "tolce-blind-reviewer-2",
+    "reviewedOn": "2026-10-21",
+    "independentSolve": {
+      "solvedBy": "tolce-blind-reviewer-2",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "(2x-1)/(x+2) - 1 = (x-3)/(x+2) >= 0 => x < -2 (x = -2 excluded) or x >= 3. A wrongly includes -2; D/E/B incorrect."
+    },
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "inequalities",
+    "rational-inequality",
+    "sign-table"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Quale insieme contiene esattamente i numeri reali $x$ che soddisfano $\\dfrac{2x - 1}{x + 2} \\ge 1$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$x \\le -2$ oppure $x \\ge 3$"
+        },
+        {
+          "id": "b",
+          "textMd": "$x < -2$ oppure $x \\ge \\dfrac{1}{2}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$x < -2$ oppure $x \\ge 3$"
+        },
+        {
+          "id": "d",
+          "textMd": "$x \\ge 3$"
+        },
+        {
+          "id": "e",
+          "textMd": "$-2 < x \\le 3$"
+        }
+      ],
+      "explanationMd": "La trappola è moltiplicare entrambi i membri per $x + 2$. Ciò è lecito senza cambiare il verso della disuguaglianza solo quando $x + 2 > 0$, e il segno di $x + 2$ non è noto. Il metodo sicuro è portare tutto a primo membro e studiare il segno di un'unica frazione.\n\n$$\\frac{2x - 1}{x + 2} - 1 = \\frac{2x - 1 - (x + 2)}{x + 2} = \\frac{x - 3}{x + 2} \\ge 0$$\n\nIl numeratore si annulla per $x = 3$ e il denominatore si annulla per $x = -2$. Costruisci la tabella dei segni:\n\n| intervallo | $x - 3$ | $x + 2$ | frazione |\n| --- | --- | --- | --- |\n| $x < -2$ | $-$ | $-$ | $+$ |\n| $-2 < x < 3$ | $-$ | $+$ | $-$ |\n| $x > 3$ | $+$ | $+$ | $+$ |\n\nLa frazione è positiva per $x < -2$ e per $x > 3$, e vale zero per $x = 3$, valore ammesso dal segno «$\\ge$». Per $x = -2$ la frazione non è definita, quindi $-2$ è escluso.\n\nSoluzione: $x < -2$ oppure $x \\ge 3$.\n\nVerifica a campione nella disequazione originale: $x = -3$ dà $\\frac{-7}{-1} = 7 \\ge 1$, vero; $x = 0$ dà $-\\frac{1}{2} \\ge 1$, falso; $x = 3$ dà $\\frac{5}{5} = 1 \\ge 1$, vero.",
+      "distractorRationale": {
+        "d": "Moltiplica entrambi i membri per $x + 2$ come se fosse sempre positivo, ottenendo $2x - 1 \\ge x + 2$. Per $x < -2$ il moltiplicatore è negativo e la disuguaglianza cambierebbe verso, quindi così si perde l'intero ramo $x < -2$ (per esempio $x = -3$ è una soluzione).",
+        "a": "Include $x = -2$, dove il denominatore si annulla e la frazione non esiste. Quando la disuguaglianza è non stretta si possono includere solo gli zeri del numeratore.",
+        "e": "Legge la tabella dei segni al contrario e tiene l'intervallo in cui la frazione è negativa. Quella è la soluzione di $\\frac{x - 3}{x + 2} < 0$ (con l'estremo $3$ aggiunto erroneamente), non della disequazione data.",
+        "b": "Dimentica l'$1$ a secondo membro e risolve $\\frac{2x - 1}{x + 2} \\ge 0$, il cui numeratore si annulla in $\\frac{1}{2}$. Il secondo membro va portato a primo membro prima dello studio del segno, e così il numeratore diventa $x - 3$."
+      },
+      "accessibilityText": "La disequazione è: la frazione con numeratore 2x meno 1 e denominatore x più 2 è maggiore o uguale a 1. Le alternative di risposta sono: x maggiore o uguale a 3; x minore di meno 2 oppure x maggiore o uguale a 3; x minore o uguale a meno 2 oppure x maggiore o uguale a 3; x maggiore di meno 2 e minore o uguale a 3; x minore di meno 2 oppure x maggiore o uguale a un mezzo.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": "tolce-italian-checker",
+        "checkedOn": "2026-10-23",
+        "answerPreserved": true,
+        "notes": "(x-3)/(x+2) >= 0 -> x<-2 oppure x>=3. 'esattamente' preserved."
+      }
+    }
+  }
+}

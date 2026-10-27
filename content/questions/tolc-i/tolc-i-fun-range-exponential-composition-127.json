@@ -79,5 +79,48 @@
     "range",
     "exponential",
     "parabola-vertex"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Siano $f(x) = 2^{x}$ e $g(x) = x^{2} - 2x$, entrambe definite per ogni $x$ reale. Qual è l'insieme dei valori assunti (l'immagine) dalla funzione $h(x) = f(g(x))$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\left[\\tfrac{1}{2}, +\\infty\\right)$"
+        },
+        {
+          "id": "b",
+          "textMd": "$[-1, +\\infty)$"
+        },
+        {
+          "id": "c",
+          "textMd": "$(0, +\\infty)$"
+        },
+        {
+          "id": "d",
+          "textMd": "$[1, +\\infty)$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\left(\\tfrac{1}{2}, +\\infty\\right)$"
+        }
+      ],
+      "explanationMd": "Si trova prima l'immagine della funzione interna, poi si vede che cosa fa la funzione esterna a quell'insieme.\n\n**Passo 1 — la funzione interna.** $g(x) = x^{2} - 2x = (x - 1)^{2} - 1$. Il suo minimo è $-1$, raggiunto in $x = 1$, e assume ogni valore da $-1$ in su: la sua immagine è $[-1, +\\infty)$.\n\n**Passo 2 — la funzione esterna.** $2^{t}$ è crescente, quindi per $t \\ge -1$ il suo valore minimo è $2^{-1} = \\frac{1}{2}$, raggiunto in $t = -1$, e cresce illimitatamente. Quindi $h(x) = 2^{x^{2} - 2x}$ ha immagine $\\left[\\frac12, +\\infty\\right)$.\n\n**Verifica.** $h(1) = 2^{-1} = \\frac12$, quindi il valore $\\frac12$ viene assunto; $h(0) = h(2) = 2^{0} = 1$, e $h(3) = 2^{3} = 8$. Nessun valore minore di $\\frac12$ è possibile, perché l'esponente non è mai minore di $-1$.",
+      "distractorRationale": {
+        "e": "Esclude $\\frac12$, come se al minimo ci si potesse solo avvicinare; invece è raggiunto in $x = 1$, dove l'esponente vale $-1$.",
+        "c": "Dà l'immagine di $2^{x}$ su tutti i reali, ignorando che l'esponente $g(x)$ non può mai essere minore di $-1$.",
+        "b": "Dà l'immagine della funzione interna $g$, che è anche l'immagine dell'altra composizione $g(f(x)) = 4^{x} - 2\\cdot 2^{x}$, non di $f(g(x))$.",
+        "d": "Calcola $h$ in $x = 0$, dove $g = 0$, e lo tratta come il minimo; $g$ è minima in $x = 1$, il vertice della parabola, non in $x = 0$."
+      },
+      "accessibilityText": "Siano f di x uguale 2 elevato a x e g di x uguale x al quadrato meno 2 x, entrambe definite per ogni x reale. Qual è l'insieme dei valori assunti, cioè l'immagine, dalla funzione h di x uguale f di g di x? Le cinque alternative sono: l'intervallo da un mezzo, incluso, a più infinito; l'intervallo da meno 1, incluso, a più infinito; l'intervallo da 0, escluso, a più infinito; l'intervallo da 1, incluso, a più infinito; l'intervallo da un mezzo, escluso, a più infinito.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i2",
+        "checkedBy": "tolc-italian-checker-i1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; 'insieme dei valori assunti (l'immagine)' good rendering of range."
+      }
+    }
+  }
 }

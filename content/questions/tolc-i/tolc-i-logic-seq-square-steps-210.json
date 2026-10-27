@@ -81,5 +81,48 @@
     "differences",
     "squares",
     "no-calculator"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Una pila a forma di gradinata viene costruita a strati. Il numero totale di blocchi usati dopo ciascuno dei primi sei strati è\n\n1, 2, 6, 15, 31, 56\n\ne i totali seguono una regola fissa. Se la regola continua, quanti blocchi saranno stati usati in totale dopo il settimo strato?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "81"
+        },
+        {
+          "id": "b",
+          "textMd": "87"
+        },
+        {
+          "id": "c",
+          "textMd": "92"
+        },
+        {
+          "id": "d",
+          "textMd": "106"
+        },
+        {
+          "id": "e",
+          "textMd": "112"
+        }
+      ],
+      "explanationMd": "Scrivi le differenze tra totali consecutivi, che sono i blocchi aggiunti in ciascuno strato: 1, 4, 9, 16, 25. Sono i quadrati perfetti $1^2, 2^2, 3^2, 4^2, 5^2$. Quindi il settimo strato aggiunge $6^2 = 36$ blocchi, e il totale diventa 56 + 36 = **92**.\n\nVerifica con le differenze seconde: 4 - 1 = 3, 9 - 4 = 5, 16 - 9 = 7, 25 - 16 = 9 sono i numeri dispari, quindi la differenza seconda successiva è 11, la differenza successiva è 25 + 11 = 36 e il totale successivo è 92. I due punti di vista concordano.",
+      "distractorRationale": {
+        "a": "Aggiunge di nuovo 25, ripetendo l'ultima differenza. Le differenze sono i quadrati 1, 4, 9, 16, 25, quindi la prossima è 36.",
+        "b": "Somma i due totali precedenti (31 + 56). Questa regola fallisce già prima: 2 + 6 = 8, non 15.",
+        "d": "Raddoppia l'ultima differenza, aggiungendo 50. Le differenze crescono come quadrati, non raddoppiando: 9 non è il doppio di 4.",
+        "e": "Raddoppia l'ultimo totale. Il raddoppio non funziona per i totali precedenti: il doppio di 15 è 30, non 31, e il doppio di 6 è 12, non 15."
+      },
+      "accessibilityText": "Una domanda su una successione numerica relativa a una pila costruita a strati. Il numero totale di blocchi dopo ciascuno dei primi sei strati è 1, 2, 6, 15, 31 e 56, secondo una regola fissa. La domanda chiede il totale dopo il settimo strato. Le cinque alternative sono 81, 87, 92, 106 e 112.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": "tolc-italian-checker-i1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; differences are squares, 56+36=92."
+      }
+    }
+  }
 }

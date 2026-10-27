@@ -79,5 +79,48 @@
     "flotation",
     "density",
     "hydrostatics"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un blocco di legno galleggia in acqua dolce (densità $1000\\ \\text{kg/m}^3$) con tre quarti del suo volume sotto la superficie. Lo stesso blocco viene poi posto in un olio di densità $800\\ \\text{kg/m}^3$. Quale frazione del volume del blocco si trova sotto la superficie dell'olio?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\dfrac{3}{5}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\dfrac{3}{4}$"
+        },
+        {
+          "id": "c",
+          "textMd": "Non galleggia: l'intero blocco affonda fino al fondo"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\dfrac{15}{16}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\dfrac{4}{5}$"
+        }
+      ],
+      "explanationMd": "**Che cosa notare per prima cosa.** Per un corpo che galleggia la spinta di Archimede è uguale al peso, e da ciò segue una regola semplice: la frazione immersa è uguale a $\\rho_{\\text{corpo}}/\\rho_{\\text{liquido}}$. Usa l'acqua per trovare la densità del blocco, poi applica di nuovo la regola nell'olio.\n\n**I passaggi.**\n\n- In acqua: $\\dfrac{\\rho_{\\text{blocco}}}{1000} = \\dfrac34$, quindi $\\rho_{\\text{blocco}} = 750\\ \\text{kg/m}^3$.\n- Il blocco è meno denso dell'olio ($750 < 800$), quindi galleggia ancora.\n- In olio: frazione immersa $= \\dfrac{750}{800} = \\dfrac{15}{16}$.\n\n**Come verificarlo.** Con $\\tfrac{15}{16}$ del volume $V$ immersi nell'olio, la spinta di Archimede è $800 \\cdot \\tfrac{15}{16} V g = 750\\,Vg$, esattamente il peso del blocco $750\\,Vg$. Un liquido meno denso dà meno sostegno per metro cubo, quindi una parte maggiore del blocco deve andare sotto: $\\tfrac{15}{16}$ è più di $\\tfrac34$, come deve essere.",
+      "distractorRationale": {
+        "a": "Moltiplica la frazione per il rapporto delle densità, $\\tfrac34 \\times \\tfrac{800}{1000} = \\tfrac35$, invece di dividere. Così il blocco galleggerebbe più in alto nel liquido meno denso, l'opposto di ciò che accade.",
+        "b": "Presuppone che la frazione immersa dipenda solo dal blocco. Dipende invece dal rapporto tra la densità del blocco e quella del liquido, quindi cambia quando cambia il liquido.",
+        "e": "È il rapporto tra le densità dei due liquidi, $800/1000$. È la densità del blocco stesso, $750\\ \\text{kg/m}^3$, che va confrontata con quella dell'olio.",
+        "c": "Un corpo affonda solo se è più denso del liquido. La densità del blocco è $750\\ \\text{kg/m}^3$, minore di quella dell'olio, $800\\ \\text{kg/m}^3$, quindi galleggia con la maggior parte del suo volume immerso."
+      },
+      "accessibilityText": "Un blocco di legno galleggia in acqua dolce, di densità 1000 chilogrammi al metro cubo, con tre quarti del suo volume sotto la superficie. Lo stesso blocco viene poi posto in un olio di densità 800 chilogrammi al metro cubo. Quale frazione del volume del blocco si trova sotto la superficie dell'olio? Le alternative sono tre quinti; tre quarti; non galleggia, l'intero blocco affonda fino al fondo; quindici sedicesimi; e quattro quinti.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": "tolc-italian-checker-i2",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful. rho=750; 750/800=15/16."
+      }
+    }
+  }
 }

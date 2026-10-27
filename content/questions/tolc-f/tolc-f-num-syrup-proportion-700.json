@@ -77,5 +77,48 @@
   "tags": [
     "proportion",
     "concentration"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Uno sciroppo contiene 40 mg di principio attivo ogni 5 mL. Quanti milligrammi di principio attivo ci sono in 12,5 mL di sciroppo?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "16 mg"
+        },
+        {
+          "id": "b",
+          "textMd": "100 mg"
+        },
+        {
+          "id": "c",
+          "textMd": "500 mg"
+        },
+        {
+          "id": "d",
+          "textMd": "47,5 mg"
+        },
+        {
+          "id": "e",
+          "textMd": "62,5 mg"
+        }
+      ],
+      "explanationMd": "Trova il fattore di scala tra i due volumi e applicalo alla quantità.\n\n12,5 mL sono $12.5 \\div 5 = 2.5$ volte 5 mL, quindi anche il principio attivo è 2,5 volte tanto: $40 \\times 2.5 = 100$ mg.\n\n**Come verificarlo.** Per millilitro lo sciroppo contiene $40 \\div 5 = 8$ mg, e $8 \\times 12.5 = 100$. Oppure usa una stima di controllo: 10 mL conterrebbero $2\\times 40 = 80$ mg e 12,5 mL sono un po' di più, quindi la risposta sta poco sopra 80.",
+      "distractorRationale": {
+        "a": "Inverte la proporzione ($40\\times 5 \\div 12.5 = 16$). Più sciroppo deve contenere più principio attivo, quindi la risposta deve essere maggiore di 40 mg.",
+        "d": "Ragiona per addizione: 12,5 mL sono 7,5 mL in più di 5 mL, quindi aggiunge 7,5 a 40. Le grandezze direttamente proporzionali si scalano moltiplicando, non aggiungendo la stessa quantità.",
+        "e": "Moltiplica il volume 12,5 per 5, il volume della dose di riferimento, invece che per la concentrazione di 8 mg per mL.",
+        "c": "Moltiplica 40 per 12,5 e non divide mai per i 5 mL a cui si riferiscono i 40 mg."
+      },
+      "accessibilityText": "Uno sciroppo contiene 40 milligrammi di principio attivo ogni 5 millilitri. La domanda chiede quanti milligrammi ci sono in 12 virgola 5 millilitri. Le cinque alternative sono 16, 100, 500, 47 virgola 5 e 62 virgola 5 milligrammi.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f2",
+        "checkedBy": "tolc-italian-checker-f2",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities and options match the English."
+      }
+    }
+  }
 }

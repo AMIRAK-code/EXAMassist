@@ -1,104 +1,98 @@
-import { createHmac, timingSafeEqual } from 'node:crypto';
-import type { BillingSettings } from './config';
+import Stripe from 'stripe';
+import { billingSettings, type BillingSettings } from './config';
 
 /**
- * The small part of the Stripe API that Premium uses, over plain HTTPS: no SDK,
- * so it runs the same in Node and on Cloudflare Workers.
+ * The Stripe SDK, as this site uses it.
+ *
+ * `StripeApi` names only the calls the billing service makes, so tests can
+ * pass a small fake instead of the network (tests/unit/billing-*.test.ts).
+ * The real client uses the fetch HTTP client, which works the same in Node
+ * and on Cloudflare Workers.
  */
 
-export class StripeError extends Error {
-  constructor(
-    readonly status: number,
-    message: string,
-    readonly code?: string,
-  ) {
-    super(message);
-    this.name = 'StripeError';
+type Opts = Stripe.RequestOptions;
+
+export interface StripeApi {
+  customers: {
+    create(params: Stripe.CustomerCreateParams, options?: Opts): Promise<Stripe.Customer>;
+    retrieve(id: string, params?: Stripe.CustomerRetrieveParams, options?: Opts): Promise<Stripe.Customer | Stripe.DeletedCustomer>;
+    update(id: string, params: Stripe.CustomerUpdateParams, options?: Opts): Promise<Stripe.Customer>;
+  };
+  prices: {
+    list(params: Stripe.PriceListParams, options?: Opts): Promise<{ data: Stripe.Price[] }>;
+  };
+  subscriptions: {
+    create(params: Stripe.SubscriptionCreateParams, options?: Opts): Promise<Stripe.Subscription>;
+    retrieve(id: string, params?: Stripe.SubscriptionRetrieveParams, options?: Opts): Promise<Stripe.Subscription>;
+    update(id: string, params: Stripe.SubscriptionUpdateParams, options?: Opts): Promise<Stripe.Subscription>;
+    list(params: Stripe.SubscriptionListParams, options?: Opts): Promise<{ data: Stripe.Subscription[] }>;
+    cancel(id: string, params?: Stripe.SubscriptionCancelParams, options?: Opts): Promise<Stripe.Subscription>;
+  };
+  setupIntents: {
+    create(params: Stripe.SetupIntentCreateParams, options?: Opts): Promise<Stripe.SetupIntent>;
+    retrieve(id: string, params?: Stripe.SetupIntentRetrieveParams, options?: Opts): Promise<Stripe.SetupIntent>;
+  };
+  invoices: {
+    pay(id: string, params?: Stripe.InvoicePayParams, options?: Opts): Promise<Stripe.Invoice>;
+  };
+}
+
+let cached: { key: string; client: Stripe } | null = null;
+
+/** The SDK client for this deployment's secret key. */
+export function stripeClient(settings: BillingSettings = billingSettings()): Stripe {
+  if (!settings.secretKey) throw new StripeNotConfiguredError();
+  if (cached?.key !== settings.secretKey) {
+    cached = {
+      key: settings.secretKey,
+      client: new Stripe(settings.secretKey, {
+        httpClient: Stripe.createFetchHttpClient(),
+        maxNetworkRetries: 1,
+        timeout: 15_000,
+        appInfo: { name: 'Examer', url: 'https://uniexamer.com' },
+      }),
+    };
+  }
+  return cached.client;
+}
+
+export class StripeNotConfiguredError extends Error {
+  constructor() {
+    super('Stripe is not configured on this deployment (STRIPE_SECRET_KEY is empty).');
+    this.name = 'StripeNotConfiguredError';
   }
 }
 
-type FormValue = string | number | boolean | null | undefined | FormValue[] | { [key: string]: FormValue };
-
-/** Stripe takes nested parameters as form fields: line_items[0][price]=… */
-export function encodeForm(params: Record<string, FormValue>): URLSearchParams {
-  const form = new URLSearchParams();
-  const add = (key: string, value: FormValue) => {
-    if (value === undefined || value === null) return;
-    if (Array.isArray(value)) value.forEach((item, index) => add(`${key}[${index}]`, item));
-    else if (typeof value === 'object') for (const [name, item] of Object.entries(value)) add(`${key}[${name}]`, item);
-    else form.append(key, String(value));
-  };
-  for (const [key, value] of Object.entries(params)) add(key, value);
-  return form;
-}
-
-export type StripeRequest = (
-  method: 'GET' | 'POST' | 'DELETE',
-  path: string,
-  params?: Record<string, FormValue>,
-  options?: { idempotencyKey?: string },
-  // Stripe's own objects, read field by field where they are used
-) => Promise<any>;
-
-/** A Stripe caller for this deployment's key. Tests pass their own StripeRequest instead. */
-export function stripeClient(settings: BillingSettings): StripeRequest {
-  return async (method, path, params = {}, options = {}) => {
-    if (!settings.secretKey) throw new StripeError(503, 'Stripe is not configured.', 'not_configured');
-    const url = new URL(`${settings.apiBase}/v1/${path}`);
-    const form = encodeForm(params);
-    const headers: Record<string, string> = { Authorization: `Bearer ${settings.secretKey}` };
-    if (options.idempotencyKey) headers['Idempotency-Key'] = options.idempotencyKey;
-    const init: RequestInit = { method, headers, signal: AbortSignal.timeout(settings.timeoutMs) };
-    if (method === 'POST') {
-      init.body = form;
-      (init.headers as Record<string, string>)['Content-Type'] = 'application/x-www-form-urlencoded';
-    } else {
-      form.forEach((value, name) => url.searchParams.append(name, value));
-    }
-
-    let response: Response;
-    try {
-      response = await fetch(url, init);
-    } catch (error) {
-      throw new StripeError(503, `Stripe could not be reached: ${error instanceof Error ? error.message : String(error)}`, 'network');
-    }
-    const body = await response.json().catch(() => ({}));
-    if (!response.ok) {
-      throw new StripeError(response.status, body?.error?.message ?? `Stripe returned ${response.status}`, body?.error?.code);
-    }
-    return body;
-  };
-}
-
 /**
- * Checks a Stripe-Signature header (t=…,v1=…) against the raw request body.
- * Anything older than the tolerance is refused, so a captured request cannot
- * be replayed later.
+ * Verifies a webhook delivery against the raw request body and returns the
+ * event. Throws Stripe's signature error for anything that does not verify,
+ * including a delivery older than five minutes (a replay).
  */
-export function verifyStripeSignature(
+export async function verifyWebhookEvent(
   payload: string,
-  header: string | null,
-  secret: string | null,
-  { toleranceSeconds = 300, now = Math.floor(Date.now() / 1000) } = {},
-): boolean {
-  if (!header || !secret) return false;
-  const parts = header.split(',').map((part) => {
-    const at = part.indexOf('=');
-    return [part.slice(0, at).trim(), part.slice(at + 1).trim()] as const;
-  });
-  const timestamp = Number(parts.find(([key]) => key === 't')?.[1]);
-  const signatures = parts.filter(([key]) => key === 'v1').map(([, value]) => value);
-  if (!Number.isFinite(timestamp) || signatures.length === 0) return false;
-  if (Math.abs(now - timestamp) > toleranceSeconds) return false;
-
-  const expected = Buffer.from(createHmac('sha256', secret).update(`${timestamp}.${payload}`).digest('hex'));
-  return signatures.some((signature) => {
-    const given = Buffer.from(signature);
-    return given.length === expected.length && timingSafeEqual(given, expected);
-  });
+  signature: string | null,
+  secret: string,
+  options: { toleranceSeconds?: number; nowMs?: number } = {},
+): Promise<Stripe.Event> {
+  // An empty header fails verification inside the SDK with its own signature error.
+  return Stripe.webhooks.constructEventAsync(
+    payload,
+    signature ?? '',
+    secret,
+    options.toleranceSeconds ?? 300,
+    undefined,
+    options.nowMs,
+  );
 }
 
-/** Builds a valid header for a payload: used by the tests and by local webhook checks. */
-export function signStripePayload(payload: string, secret: string, timestamp = Math.floor(Date.now() / 1000)): string {
-  return `t=${timestamp},v1=${createHmac('sha256', secret).update(`${timestamp}.${payload}`).digest('hex')}`;
+export function isSignatureError(error: unknown): boolean {
+  return error instanceof Stripe.errors.StripeSignatureVerificationError;
+}
+
+/** A Stripe API error, with the fields the service decides on. */
+export function asStripeError(error: unknown): { type: string; code?: string; statusCode?: number; message: string } | null {
+  if (error instanceof Stripe.errors.StripeError) {
+    return { type: error.type, code: error.code, statusCode: error.statusCode, message: error.message };
+  }
+  return null;
 }

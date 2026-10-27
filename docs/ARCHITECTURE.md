@@ -7,8 +7,8 @@ exam is data, not code branches.
 
 | Choice | Version | Why this one |
 | --- | --- | --- |
-| Next.js App Router | 15.5.25 | Server-rendered public pages for search, server components for authorization, route handlers for the API. Pinned to 15.x rather than 16.x deliberately: 15.5 is a supported release whose App Router behaviour is well understood, and correctness mattered more than recency here. |
-| React | 19.3 | Required peer of Next 15.5. |
+| Next.js App Router | 16.4 | Server-rendered public pages for search, server components for authorization, route handlers for the API. Upgraded from 15.5 on 27 October 2026 at the owner's request; builds with Turbopack, Next 16's default. Requires Node 20.9 or later (`engines` asks for 20.11). |
+| React | 19.3 | Required peer of Next 16. |
 | TypeScript | 5.9, `strict` | `noUncheckedIndexedAccess` is off: the runtime validation below carries that weight instead. |
 | Tailwind CSS | 4.3 | CSS-first tokens in `src/app/globals.css`, no component library. |
 | PostgreSQL (pg) / SQLite (better-sqlite3) | 8.23.0 / 13.0 | Supabase in production; SQLite for isolated local tests. |
@@ -74,6 +74,14 @@ src/lib/content/        The question bank.
 
 src/lib/auth/           Sessions, password hashing, rate limiting.
 src/lib/learning/       Recommendations and study plans.
+
+src/lib/billing/        Paid plans through Stripe (docs/BILLING.md).
+  plans.ts              Plans, prices and the free/paid feature matrix: the
+                        one place to change them.
+  entitlements.ts       The one access helper. Server code asks it before a
+                        paid session, the study plan or the AI tutor.
+  service.ts, store.ts  Stripe customers and subscriptions, webhooks, and the
+                        local copy they keep in step.
 ```
 
 The dependency direction is one-way: `assessment` knows nothing about the

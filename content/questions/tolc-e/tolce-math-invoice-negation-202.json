@@ -1,0 +1,126 @@
+{
+  "id": "tolce-math-invoice-negation-202",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Consider the statement:\n\n> Every invoice issued in March was paid within $30$ days.\n\nWhich of the following is the negation of this statement?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "No invoice issued in March was paid within $30$ days."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Every invoice paid within $30$ days was issued in March."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "At least one invoice issued in March was not paid within $30$ days."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "At least one invoice not issued in March was not paid within $30$ days."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "At least one invoice issued in March was paid within $30$ days."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The negation of a statement is the statement that is true exactly when the original is false, no more and no less.\n\nThe original has the form \"for every $x$ in the set of March invoices, $x$ was paid within $30$ days\". It is false as soon as **one** March invoice breaks the rule. So the negation is\n\n$$\\text{not}\\,(\\forall x,\\ P(x)) \\iff \\exists x,\\ \\text{not}\\,P(x)$$\n\nIn words: at least one invoice issued in March was not paid within $30$ days. Two things change: \"every\" becomes \"at least one\", and the property is negated. The set the statement talks about (invoices issued in March) stays exactly the same.\n\nA quick test settles the doubtful cases. Imagine $10$ March invoices of which $9$ were paid on time and $1$ was late. The original is false, so the negation must be true. \"At least one March invoice was not paid within 30 days\" is true here. \"No March invoice was paid within 30 days\" is false here, because nine were, so it cannot be the negation.",
+  "distractorRationale": {
+    "a": "This is the contrary, not the negation. It claims that every March invoice was late, which is much stronger than needed. In the scenario where nine of ten March invoices were paid on time and one was late, the original is false but this statement is false too.",
+    "b": "This is the converse: it swaps the roles of \"issued in March\" and \"paid within 30 days\". A statement and its converse can both be true at once, so the converse can never be a negation.",
+    "e": "This changes \"every\" to \"at least one\" but forgets to negate the property. It is compatible with the original: if every March invoice was paid on time, this is true as well.",
+    "d": "This negates the wrong part. It moves the claim to invoices issued outside March, which the original says nothing about. Whatever happened to invoices from other months, the original can still be true or false."
+  },
+  "estimatedSeconds": 75,
+  "stimulusRef": null,
+  "accessibilityText": "A statement is quoted: every invoice issued in March was paid within 30 days. The question asks for its negation. The five choices are short sentences about invoices issued in March, or not in March, being paid or not paid within 30 days.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Negating a universal statement; distractors are the contrary, the converse, an existential that keeps the property, and a negation applied to the wrong set."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-math-author",
+    "reviewer": "tolce-blind-reviewer-2",
+    "reviewedOn": "2026-10-21",
+    "independentSolve": {
+      "solvedBy": "tolce-blind-reviewer-2",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Negation of 'for all x in March, P(x)' is 'exists x in March with not P(x)'. A is the contrary, B the converse, D/E change the quantified set or the predicate."
+    },
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "logic",
+    "negation",
+    "quantifiers"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Si consideri l'affermazione:\n\n> Ogni fattura emessa a marzo è stata pagata entro $30$ giorni.\n\nQuale delle seguenti è la negazione di questa affermazione?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Nessuna fattura emessa a marzo è stata pagata entro $30$ giorni."
+        },
+        {
+          "id": "b",
+          "textMd": "Ogni fattura pagata entro $30$ giorni è stata emessa a marzo."
+        },
+        {
+          "id": "c",
+          "textMd": "Almeno una fattura emessa a marzo non è stata pagata entro $30$ giorni."
+        },
+        {
+          "id": "d",
+          "textMd": "Almeno una fattura non emessa a marzo non è stata pagata entro $30$ giorni."
+        },
+        {
+          "id": "e",
+          "textMd": "Almeno una fattura emessa a marzo è stata pagata entro $30$ giorni."
+        }
+      ],
+      "explanationMd": "La negazione di un'affermazione è l'affermazione che è vera esattamente quando l'originale è falsa, né più né meno.\n\nL'originale ha la forma «per ogni $x$ nell'insieme delle fatture di marzo, $x$ è stata pagata entro $30$ giorni». È falsa non appena **una** fattura di marzo viola la regola. Quindi la negazione è\n\n$$\\text{non}\\,(\\forall x,\\ P(x)) \\iff \\exists x,\\ \\text{non}\\,P(x)$$\n\nA parole: almeno una fattura emessa a marzo non è stata pagata entro $30$ giorni. Cambiano due cose: «ogni» diventa «almeno una», e la proprietà viene negata. L'insieme di cui parla l'affermazione (le fatture emesse a marzo) resta esattamente lo stesso.\n\nUna prova rapida risolve i casi dubbi. Immagina $10$ fatture di marzo, di cui $9$ pagate in tempo e $1$ in ritardo. L'originale è falsa, quindi la negazione deve essere vera. «Almeno una fattura di marzo non è stata pagata entro 30 giorni» è vera in questo caso. «Nessuna fattura di marzo è stata pagata entro 30 giorni» è falsa in questo caso, perché nove lo sono state, quindi non può essere la negazione.",
+      "distractorRationale": {
+        "a": "È la contraria, non la negazione. Afferma che ogni fattura di marzo è stata pagata in ritardo, il che è molto più forte del necessario. Nello scenario in cui nove fatture di marzo su dieci sono state pagate in tempo e una in ritardo, l'originale è falsa ma anche questa affermazione è falsa.",
+        "b": "È l'inversa: scambia i ruoli di «emessa a marzo» e «pagata entro 30 giorni». Un'affermazione e la sua inversa possono essere vere contemporaneamente, quindi l'inversa non può mai essere una negazione.",
+        "e": "Trasforma «ogni» in «almeno una» ma dimentica di negare la proprietà. È compatibile con l'originale: se ogni fattura di marzo è stata pagata in tempo, anche questa è vera.",
+        "d": "Nega la parte sbagliata. Sposta l'affermazione sulle fatture emesse in mesi diversi da marzo, su cui l'originale non dice nulla. Qualunque cosa sia successa alle fatture degli altri mesi, l'originale può comunque essere vera o falsa."
+      },
+      "accessibilityText": "Viene citata un'affermazione: ogni fattura emessa a marzo è stata pagata entro 30 giorni. La domanda chiede la sua negazione. Le cinque alternative sono brevi frasi su fatture emesse, o non emesse, a marzo, pagate o non pagate entro 30 giorni.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": "tolce-italian-checker",
+        "checkedOn": "2026-10-23",
+        "answerPreserved": true,
+        "notes": "Quantifiers Ogni/Nessuna/Almeno una preserved."
+      }
+    }
+  }
+}

@@ -95,7 +95,7 @@ async function reflowOffenders(page: Page): Promise<string[]> {
 }
 
 const PUBLIC = [
-  '/', '/exams', '/exams/digital-sat', '/exams/bocconi-online-test', '/exams/digital-sat/format', '/guides',
+  '/', '/exams', '/exams/digital-sat', '/exams/bocconi-online-test', '/exams/bocconi-master', '/exams/bocconi-master/format', '/exams/digital-sat/format', '/guides',
   '/guides/lsat-without-logic-games', '/practice/digital-sat', '/practice/bocconi-undergraduate', '/about/editorial-standards',
   '/about/how-scoring-works', '/about/privacy', '/about/terms', '/report-question', '/sign-in', '/sign-up', '/does-not-exist',
 ];

@@ -1,0 +1,126 @@
+{
+  "id": "imat-pm-same-colour-draw-205",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-physics-maths",
+  "skillSlug": "imat-math-probability-statistics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A bag contains 4 red balls and 2 blue balls, identical except for colour. Two balls are drawn at random, one after the other, without replacement. What is the probability that both balls are the same colour?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\frac{1}{15}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\frac{2}{5}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\frac{7}{15}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\frac{8}{15}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\frac{5}{9}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "“Same colour” means both red **or** both blue. These two events cannot happen together, so their probabilities add. Within each event the draws are dependent, because the first ball is not put back, so multiply conditional probabilities.\n\n$$P(\\text{both red}) = \\frac{4}{6} \\cdot \\frac{3}{5} = \\frac{12}{30} = \\frac{2}{5} \\qquad P(\\text{both blue}) = \\frac{2}{6} \\cdot \\frac{1}{5} = \\frac{2}{30} = \\frac{1}{15}$$\n\n$$P(\\text{same colour}) = \\frac{12}{30} + \\frac{2}{30} = \\frac{14}{30} = \\frac{7}{15}$$\n\nCheck by counting unordered pairs: there are $\\binom{6}{2} = 15$ equally likely pairs, of which $\\binom{4}{2} = 6$ are red–red and $1$ is blue–blue, giving $\\tfrac{7}{15}$. The complementary event, one of each colour, has $4 \\cdot 2 = 8$ pairs, and $\\tfrac{7}{15} + \\tfrac{8}{15} = 1$ as it must.",
+  "distractorRationale": {
+    "a": "This is the probability that both balls are blue only. The red–red outcome also counts as “the same colour” and has to be added.",
+    "b": "This is the probability that both balls are red only. The blue–blue outcome is also the same colour and has to be added.",
+    "d": "This is the probability of the complementary event, one red and one blue ball, so it answers the opposite question.",
+    "e": "This treats the draws as if the first ball were put back: $\\left(\\tfrac{4}{6}\\right)^2 + \\left(\\tfrac{2}{6}\\right)^2 = \\tfrac{20}{36} = \\tfrac{5}{9}$. Without replacement, the second probability must use $5$ balls and one fewer of the colour already drawn."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A bag holds 4 red and 2 blue balls. Two are drawn at random without replacement. Find the probability that both are the same colour. The five choices are the fractions: 1 over 15; 2 over 5; 7 over 15; 8 over 15; 5 over 9.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "imat-physmaths-author",
+    "aiAssisted": true,
+    "notes": "Original item. Distractors are the two partial events, the complement and the with-replacement value."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "imat-physmaths-author",
+    "reviewer": "imat-blind-reviewer-2",
+    "reviewedOn": "2026-10-23",
+    "independentSolve": {
+      "solvedBy": "imat-blind-reviewer-2",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "P(RR)=4/6x3/5=2/5; P(BB)=2/6x1/5=1/15; total 7/15. B=only RR, A=only BB, D complement, E with replacement."
+    },
+    "notes": "Author solved the item twice by independent routes and argued for each wrong choice; each fails on a specific, named error. Awaiting blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "mathematics",
+    "probability",
+    "without-replacement",
+    "mutually-exclusive-events"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un sacchetto contiene 4 palline rosse e 2 palline blu, identiche tranne che per il colore. Si estraggono a caso due palline, una dopo l'altra, senza reimmissione. Qual è la probabilità che le due palline siano dello stesso colore?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\frac{1}{15}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\frac{2}{5}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$\\frac{7}{15}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\frac{8}{15}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\frac{5}{9}$"
+        }
+      ],
+      "explanationMd": "«Stesso colore» significa entrambe rosse **oppure** entrambe blu. I due eventi sono incompatibili, quindi le loro probabilità si sommano. All'interno di ciascun evento le estrazioni sono dipendenti, perché la prima pallina non viene rimessa nel sacchetto, quindi si moltiplicano le probabilità condizionate.\n\n$$P(\\text{entrambe rosse}) = \\frac{4}{6} \\cdot \\frac{3}{5} = \\frac{12}{30} = \\frac{2}{5} \\qquad P(\\text{entrambe blu}) = \\frac{2}{6} \\cdot \\frac{1}{5} = \\frac{2}{30} = \\frac{1}{15}$$\n\n$$P(\\text{stesso colore}) = \\frac{12}{30} + \\frac{2}{30} = \\frac{14}{30} = \\frac{7}{15}$$\n\nVerifica contando le coppie non ordinate: ci sono $\\binom{6}{2} = 15$ coppie equiprobabili, di cui $\\binom{4}{2} = 6$ rosso–rosso e $1$ blu–blu, quindi $\\tfrac{7}{15}$. L'evento complementare, una pallina per colore, conta $4 \\cdot 2 = 8$ coppie, e $\\tfrac{7}{15} + \\tfrac{8}{15} = 1$, come deve essere.",
+      "distractorRationale": {
+        "a": "Questa è solo la probabilità che entrambe le palline siano blu. Anche il caso rosso–rosso è «stesso colore» e va aggiunto.",
+        "b": "Questa è solo la probabilità che entrambe le palline siano rosse. Anche il caso blu–blu è dello stesso colore e va aggiunto.",
+        "d": "Questa è la probabilità dell'evento complementare, una pallina rossa e una blu, quindi risponde alla domanda opposta.",
+        "e": "Qui le estrazioni sono trattate come se la prima pallina venisse rimessa nel sacchetto: $\\left(\\tfrac{4}{6}\\right)^2 + \\left(\\tfrac{2}{6}\\right)^2 = \\tfrac{20}{36} = \\tfrac{5}{9}$. Senza reimmissione, la seconda probabilità va calcolata su $5$ palline, con una pallina in meno del colore già estratto."
+      },
+      "accessibilityText": "Un sacchetto contiene 4 palline rosse e 2 blu. Se ne estraggono due a caso senza reimmissione. Trovare la probabilità che siano dello stesso colore. Le cinque alternative sono le frazioni: 1 su 15; 2 su 5; 7 su 15; 8 su 15; 5 su 9.",
+      "check": {
+        "translatedBy": "imat-physmaths-author",
+        "checkedBy": "imat-italian-checker",
+        "checkedOn": "2026-10-23",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities, units, negations and options match; terminology correct."
+      }
+    }
+  }
+}

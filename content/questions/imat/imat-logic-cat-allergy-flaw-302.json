@@ -1,0 +1,126 @@
+{
+  "id": "imat-logic-cat-allergy-flaw-302",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-logic",
+  "skillSlug": "imat-logic-critical",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A study of 200 adults who had developed an allergy to cats found that 150 of them had lived with a cat as children. The researchers concluded that living with a cat in childhood makes a person more likely to develop an allergy to cats.\n\nWhich of the following identifies the most serious flaw in the researchers' reasoning?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "It does not consider what proportion of adults without the allergy also lived with a cat as children."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "It uses the word \"allergy\" with one meaning in the evidence and a different meaning in the conclusion."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "It draws a general conclusion from a single case."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "It assumes that an allergy to cats cannot be treated once it has developed."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "It takes for granted that everyone who lived with a cat as a child will develop an allergy to cats."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The evidence describes **only people who have the allergy**: 150 of 200, that is 75%, lived with a cat as children. The conclusion is comparative: living with a cat makes the allergy *more likely*. A comparison needs two groups, and the argument supplies only one.\n\nTo decide whether 75% is high, you need the matching figure for people *without* the allergy. If 75% of adults without the allergy also grew up with a cat, then people with the allergy are no more likely than anyone else to have done so, and the evidence shows no link at all. If only 30% of adults without the allergy grew up with a cat, the 75% becomes striking. The researchers never check, which is why the statement that the reasoning ignores the proportion of adults without the allergy who lived with a cat names the flaw.\n\nThe other descriptions do not match what the argument actually does. The conclusion says *more likely*, not *certain*, so it does not assume that every child who lived with a cat becomes allergic. Treatment is never mentioned. The word \"allergy\" refers to the same condition throughout. And the evidence comes from 200 people, not one.\n\nThe habit to carry forward: whenever an argument reports how common a feature is *among the cases*, ask how common it is *among the non-cases*. Without that baseline, even a large percentage can mean nothing.",
+  "distractorRationale": {
+    "e": "The conclusion is only that living with a cat in childhood makes the allergy more likely, which is compatible with many such children never becoming allergic. Describing it as a claim of certainty attacks an argument the researchers did not make.",
+    "d": "Treatment plays no part in either the evidence or the conclusion. A description of a flaw has to fit the reasoning actually given, and this one brings in a topic the argument never touches.",
+    "b": "The word refers to the same condition, an allergy to cats, in the study and in the conclusion. There is no shift in meaning for the reasoning to exploit, so equivocation is not the problem.",
+    "c": "The evidence comes from 200 adults, not from one. The weakness is not the number of people studied but the absence of any comparison group, so this description misidentifies the flaw."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "A short argument: of 200 adults with an allergy to cats, 150 lived with a cat as children, and the researchers conclude that living with a cat in childhood makes the allergy more likely. The question asks for the most serious flaw in the reasoning. Five answer choices. No figures, tables or notation.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "imat-logic-reading-author",
+    "aiAssisted": true,
+    "notes": "Original argument and choices. Flaw item on the missing comparison group (base rate) when a feature's frequency is reported only among cases. The scenario is invented; no claim is made about the real relationship between childhood cat exposure and allergy. Not derived from any published IMAT, BMAT or textbook item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "imat-logic-reading-author",
+    "reviewer": "imat-blind-reviewer-2",
+    "reviewedOn": "2026-10-23",
+    "independentSolve": {
+      "solvedBy": "imat-blind-reviewer-2",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "No comparison group: 75% exposure is meaningless without the exposure rate among non-allergic adults. B (equivocation) not present; C wrong (200 cases); D irrelevant; E not assumed (conclusion is 'more likely')."
+    },
+    "notes": "Author solved the item twice independently and tried to defend each other description as the flaw; none fits the reasoning given. Choices that could have been defended as genuine secondary weaknesses (sample representativeness, recall of childhood, confounding factors) were deliberately left out so that only the missing comparison group can be defended. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "critical-thinking",
+    "flaw",
+    "base-rate",
+    "comparison-group"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Uno studio su 200 adulti che avevano sviluppato un'allergia ai gatti ha rilevato che 150 di loro avevano vissuto con un gatto da bambini. I ricercatori hanno concluso che vivere con un gatto durante l'infanzia aumenta la probabilità che una persona sviluppi un'allergia ai gatti.\n\nQuale delle seguenti affermazioni individua il difetto più grave nel ragionamento dei ricercatori?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Non considera quale proporzione degli adulti senza l'allergia abbia anch'essa vissuto con un gatto da bambini."
+        },
+        {
+          "id": "b",
+          "textMd": "Usa la parola \"allergia\" con un significato nei dati e con un significato diverso nella conclusione."
+        },
+        {
+          "id": "c",
+          "textMd": "Trae una conclusione generale da un singolo caso."
+        },
+        {
+          "id": "d",
+          "textMd": "Presuppone che un'allergia ai gatti non possa essere curata una volta sviluppata."
+        },
+        {
+          "id": "e",
+          "textMd": "Dà per scontato che chiunque abbia vissuto con un gatto da bambino svilupperà un'allergia ai gatti."
+        }
+      ],
+      "explanationMd": "I dati descrivono **solo persone che hanno l'allergia**: 150 su 200, cioè il 75%, hanno vissuto con un gatto da bambini. La conclusione è comparativa: vivere con un gatto rende l'allergia *più probabile*. Un confronto richiede due gruppi, e l'argomentazione ne fornisce uno solo.\n\nPer stabilire se il 75% sia alto, serve il dato corrispondente per le persone *senza* l'allergia. Se anche il 75% degli adulti senza l'allergia fosse cresciuto con un gatto, le persone allergiche non lo avrebbero fatto più spesso di chiunque altro, e i dati non mostrerebbero alcun legame. Se invece solo il 30% degli adulti senza l'allergia fosse cresciuto con un gatto, il 75% diventerebbe notevole. I ricercatori non lo verificano mai: per questo l'affermazione secondo cui il ragionamento ignora la proporzione degli adulti senza l'allergia che hanno vissuto con un gatto individua il difetto.\n\nLe altre descrizioni non corrispondono a ciò che l'argomentazione fa davvero. La conclusione dice *più probabile*, non *certo*, quindi non presuppone che ogni bambino vissuto con un gatto diventi allergico. La cura non è mai menzionata. La parola \"allergia\" indica sempre la stessa condizione. E i dati provengono da 200 persone, non da una.\n\nL'abitudine da conservare: ogni volta che un'argomentazione riporta quanto è frequente una caratteristica *tra i casi*, chiediti quanto è frequente *tra i non casi*. Senza questo termine di riferimento, anche una percentuale elevata può non significare nulla.",
+      "distractorRationale": {
+        "e": "La conclusione afferma soltanto che vivere con un gatto durante l'infanzia rende l'allergia più probabile, il che è compatibile con il fatto che molti di questi bambini non diventino mai allergici. Descriverla come un'affermazione di certezza significa attaccare un'argomentazione che i ricercatori non hanno formulato.",
+        "d": "La cura non ha alcun ruolo né nei dati né nella conclusione. La descrizione di un difetto deve adattarsi al ragionamento effettivamente proposto, e questa introduce un argomento che l'argomentazione non tocca mai.",
+        "b": "La parola indica la stessa condizione, un'allergia ai gatti, sia nello studio sia nella conclusione. Non c'è alcuno slittamento di significato di cui il ragionamento approfitti, quindi il problema non è un'ambiguità di termini.",
+        "c": "I dati provengono da 200 adulti, non da uno. La debolezza non sta nel numero di persone studiate ma nell'assenza di un gruppo di confronto, quindi questa descrizione individua il difetto sbagliato."
+      },
+      "accessibilityText": "Una breve argomentazione: su 200 adulti con un'allergia ai gatti, 150 hanno vissuto con un gatto da bambini, e i ricercatori concludono che vivere con un gatto durante l'infanzia rende l'allergia più probabile. La domanda chiede il difetto più grave del ragionamento. Cinque opzioni di risposta. Nessuna figura, tabella o notazione.",
+      "check": {
+        "translatedBy": "imat-logic-reading-author",
+        "checkedBy": "imat-italian-checker",
+        "checkedOn": "2026-10-23",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities, units, negations and options match; terminology correct."
+      }
+    }
+  }
+}

@@ -77,5 +77,48 @@
   "tags": [
     "fractional-inequality",
     "sign-chart"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Determinare tutti i numeri reali $x$ tali che $\\dfrac{2x-1}{x+3} \\le 1$.",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$-3 \\le x \\le 4$"
+        },
+        {
+          "id": "b",
+          "textMd": "$-3 < x \\le 4$"
+        },
+        {
+          "id": "c",
+          "textMd": "$-3 < x < 4$"
+        },
+        {
+          "id": "d",
+          "textMd": "$x \\le 4$"
+        },
+        {
+          "id": "e",
+          "textMd": "$x < -3$ oppure $x \\ge 4$"
+        }
+      ],
+      "explanationMd": "Il segno di $x+3$ cambia in $x=-3$, quindi non moltiplicare entrambi i membri per questa quantità. Porta tutto al primo membro e studia il segno di un'unica frazione.\n\n**Passo 1 — un'unica frazione.** $\\dfrac{2x-1}{x+3} - 1 = \\dfrac{2x-1-(x+3)}{x+3} = \\dfrac{x-4}{x+3} \\le 0.$\n\n**Passo 2 — studio del segno.** Il numeratore si annulla in $x=4$ e il denominatore in $x=-3$. Il quoziente è positivo per $x<-3$, negativo per $-3<x<4$ e positivo per $x>4$. Lo vogliamo negativo o nullo.\n\n**Passo 3 — estremi.** $x=4$ annulla il quoziente, quindi è incluso. $x=-3$ è escluso perché lì la frazione non è definita. La soluzione è $-3 < x \\le 4$.\n\n**Come verificare.** Prova un valore in ciascuna regione e in ciascun punto particolare: $x=0$ dà $-\\tfrac13\\le 1$ ✓; $x=4$ dà $1\\le 1$ ✓; $x=5$ dà $\\tfrac98>1$ ✗; $x=-4$ dà $9>1$ ✗.",
+      "distractorRationale": {
+        "a": "Trova l'intervallo giusto ma include $x=-3$, dove il denominatore si annulla e l'espressione non è definita.",
+        "c": "Tratta la disequazione come stretta. In $x=4$ la frazione vale $\\dfrac{7}{7}=1$, che soddisfa «minore o uguale», quindi 4 appartiene alla soluzione.",
+        "d": "Moltiplica entrambi i membri per $x+3$ come se fosse positivo, ottenendo $2x-1 \\le x+3$. Quando $x < -3$ il fattore è negativo e il verso della disequazione si invertirebbe; per esempio $x=-4$ dà 9, che non è minore o uguale a 1.",
+        "e": "Legge il segno di $\\dfrac{x-4}{x+3}$ al contrario, scegliendo la regione in cui è positivo. In $x=5$ la frazione originale vale $\\dfrac{9}{8}$, che è maggiore di 1."
+      },
+      "accessibilityText": "Determinare tutti i numeri reali x tali che la frazione con numeratore 2 x meno 1 e denominatore x più 3 sia minore o uguale a 1. Le cinque alternative sono: meno 3 minore o uguale a x minore o uguale a 4; meno 3 minore di x minore di 4; meno 3 minore di x minore o uguale a 4; x minore o uguale a 4; x minore di meno 3 oppure x maggiore o uguale a 4.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-e",
+        "checkedBy": "tolc-italian-checker-e",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; 'or' -> 'oppure' fine. (x-4)/(x+3)<=0 -> -3<x<=4."
+      }
+    }
+  }
 }

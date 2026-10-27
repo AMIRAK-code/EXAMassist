@@ -1,0 +1,124 @@
+{
+  "id": "tolce-logic-word-chain-003",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-sequences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The words below follow a rule.\n\nAT → TOE → EACH → HOTEL → ...\n\nWhich word continues the sequence according to the same rule?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "PLANET"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "LADDERS"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "RATTLE"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "LEMON"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "LETTER"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Look at how each word connects to the one before it. Two things change together at every step:\n\n- each word begins with the **last letter** of the previous word (AT ends in T, TOE starts with T; TOE ends in E, EACH starts with E; EACH ends in H, HOTEL starts with H);\n- each word is **one letter longer** than the previous one (2, 3, 4, 5 letters).\n\nSo the next word must start with L, the last letter of HOTEL, and have 6 letters. LETTER is the only choice that meets both conditions.\n\nWhat to notice first: with word sequences, check the joins between consecutive words (first and last letters) and the lengths. A choice that satisfies one condition but not the other is the typical trap, so verify every condition on the chosen word.",
+  "distractorRationale": {
+    "d": "LEMON starts with L, as required, but has only 5 letters, the same length as HOTEL. The sequence grows by one letter at every step.",
+    "b": "LADDERS starts with L but has 7 letters. It skips a length, as if the sequence grew by two.",
+    "a": "PLANET has 6 letters and contains an L, but the L is not its first letter. The rule links the end of one word to the start of the next.",
+    "c": "RATTLE has the right length, 6 letters, but starts with R. It ignores the link between the last letter of HOTEL and the first letter of the next word."
+  },
+  "estimatedSeconds": 50,
+  "stimulusRef": null,
+  "accessibilityText": "A sequence of words joined by arrows: AT, TOE, EACH, HOTEL, then a gap for the next word. The answer choices are the words LEMON, LETTER, LADDERS, PLANET and RATTLE. Five answer choices.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-logic-author",
+    "aiAssisted": true,
+    "notes": "Original word chain combining a last-letter link with growing length. Not derived from any CISIA or other published item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-logic-author",
+    "reviewer": "tolce-blind-reviewer-1",
+    "reviewedOn": "2026-10-21",
+    "independentSolve": {
+      "solvedBy": "tolce-blind-reviewer-1",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Each word starts with the last letter of the previous word and is one letter longer: AT(2) TOE(3) EACH(4) HOTEL(5) -> L-word of 6 letters: LETTER. LADDERS has 7, LEMON 5, PLANET/RATTLE start wrong."
+    },
+    "notes": "Author solved the item and then tried to defend each wrong choice; none survives. Awaiting blind independent solve and uniqueness check by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "sequences",
+    "words"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Le parole seguenti (in inglese) seguono una regola.\n\nAT → TOE → EACH → HOTEL → ...\n\nQuale parola continua la sequenza secondo la stessa regola?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "PLANET"
+        },
+        {
+          "id": "b",
+          "textMd": "LADDERS"
+        },
+        {
+          "id": "c",
+          "textMd": "RATTLE"
+        },
+        {
+          "id": "d",
+          "textMd": "LEMON"
+        },
+        {
+          "id": "e",
+          "textMd": "LETTER"
+        }
+      ],
+      "explanationMd": "Osserva come ogni parola si collega alla precedente. A ogni passo cambiano insieme due cose:\n\n- ogni parola inizia con l'**ultima lettera** della parola precedente (AT finisce con T, TOE inizia con T; TOE finisce con E, EACH inizia con E; EACH finisce con H, HOTEL inizia con H);\n- ogni parola ha **una lettera in più** della precedente (2, 3, 4, 5 lettere).\n\nQuindi la parola successiva deve iniziare con L, l'ultima lettera di HOTEL, e avere 6 lettere. LETTER è l'unica alternativa che soddisfa entrambe le condizioni.\n\nDa notare subito: nelle sequenze di parole, controlla i raccordi tra parole consecutive (prima e ultima lettera) e le lunghezze. Un'alternativa che soddisfa una condizione ma non l'altra è la trappola tipica, quindi verifica ogni condizione sulla parola scelta.",
+      "distractorRationale": {
+        "d": "LEMON inizia con L, come richiesto, ma ha solo 5 lettere, la stessa lunghezza di HOTEL. La sequenza cresce di una lettera a ogni passo.",
+        "b": "LADDERS inizia con L ma ha 7 lettere. Salta una lunghezza, come se la sequenza crescesse di due.",
+        "a": "PLANET ha 6 lettere e contiene una L, ma la L non è la sua prima lettera. La regola collega la fine di una parola all'inizio della successiva.",
+        "c": "RATTLE ha la lunghezza giusta, 6 lettere, ma inizia con R. Ignora il collegamento tra l'ultima lettera di HOTEL e la prima lettera della parola successiva."
+      },
+      "accessibilityText": "Una sequenza di parole inglesi collegate da frecce: AT, TOE, EACH, HOTEL, poi uno spazio vuoto per la parola successiva. Le alternative di risposta sono le parole LEMON, LETTER, LADDERS, PLANET e RATTLE. Cinque alternative di risposta.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": "tolce-italian-checker",
+        "checkedOn": "2026-10-23",
+        "answerPreserved": true,
+        "notes": "Each word starts with previous last letter and is one letter longer -> LETTER. '(in inglese)' added correctly flags English words."
+      }
+    }
+  }
+}

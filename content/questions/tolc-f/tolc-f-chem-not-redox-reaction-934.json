@@ -78,5 +78,48 @@
     "redox",
     "oxidation-number",
     "decomposition"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Quale delle seguenti reazioni **non** è una reazione redox?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\mathrm{Zn} + 2\\,\\mathrm{HCl} \\rightarrow \\mathrm{ZnCl_2} + \\mathrm{H_2}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\mathrm{CaCO_3} \\rightarrow \\mathrm{CaO} + \\mathrm{CO_2}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$2\\,\\mathrm{H_2O_2} \\rightarrow 2\\,\\mathrm{H_2O} + \\mathrm{O_2}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\mathrm{CH_4} + 2\\,\\mathrm{O_2} \\rightarrow \\mathrm{CO_2} + 2\\,\\mathrm{H_2O}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$2\\,\\mathrm{KClO_3} \\rightarrow 2\\,\\mathrm{KCl} + 3\\,\\mathrm{O_2}$"
+        }
+      ],
+      "explanationMd": "Una reazione è redox se **almeno un** elemento cambia numero di ossidazione. Assegnali rapidamente (O è $-2$ tranne che nei perossidi e in $\\mathrm{O_2}$; H è $+1$ nei composti; gli elementi liberi sono $0$).\n\n- Combustione del metano: C passa da $-4$ a $+4$, e O da $0$ a $-2$. Redox.\n- Zinco con acido cloridrico: Zn da $0$ a $+2$, H da $+1$ a $0$. Redox.\n- Perossido di idrogeno: O è $-1$ in $\\mathrm{H_2O_2}$ e passa a $-2$ nell'acqua e a $0$ in $\\mathrm{O_2}$. Redox (lo stesso elemento si riduce e si ossida).\n- Clorato di potassio: Cl da $+5$ a $-1$, O da $-2$ a $0$. Redox.\n- Carbonato di calcio: Ca resta $+2$, C resta $+4$ (in $\\mathrm{CO_3^{2-}}$ e in $\\mathrm{CO_2}$), O resta $-2$. **Nessun cambiamento: non è redox.**\n\nLa trappola è che due delle decomposizioni sono redox e una no. *Decomposizione* descrive lo schema della reazione, non se c'è trasferimento di elettroni; solo i numeri di ossidazione risolvono la questione.\n\n**Verifica:** nella decomposizione del carbonato non compare né un elemento libero né un perossido da nessuna delle due parti; lo ione carbonato si scinde semplicemente in uno ione ossido, $\\mathrm{O^{2-}}$, e $\\mathrm{CO_2}$, senza movimento di elettroni.",
+      "distractorRationale": {
+        "d": "La combustione è sempre una redox: il carbonio passa da $-4$ nel metano a $+4$ in $\\mathrm{CO_2}$, e l'ossigeno da $0$ a $-2$.",
+        "a": "Un metallo che sposta l'idrogeno da un acido è una redox: lo zinco si ossida da $0$ a $+2$ e l'idrogeno si riduce da $+1$ a $0$.",
+        "c": "Sembra una semplice decomposizione, ma in un perossido l'ossigeno è $-1$. Si riduce (a $-2$ nell'acqua) e si ossida (a $0$ in $\\mathrm{O_2}$): è una dismutazione.",
+        "e": "Il cloro passa da $+5$ nello ione clorato a $-1$ nel cloruro, e l'ossigeno da $-2$ a $0$ in $\\mathrm{O_2}$. La liberazione di un elemento da un composto è un segno di redox."
+      },
+      "accessibilityText": "La domanda chiede quale reazione non è una reazione redox. Le alternative sono cinque equazioni: zinco più 2 H C l dà Z n C l 2 più H 2; carbonato di calcio, C a C O 3, dà ossido di calcio, C a O, più C O 2; 2 H 2 O 2 dà 2 H 2 O più O 2; metano più 2 O 2 dà C O 2 più 2 H 2 O; 2 K C l O 3 dà 2 K C l più 3 O 2.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f1",
+        "checkedBy": "tolc-italian-checker-f2",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities and options match the English."
+      }
+    }
+  }
 }

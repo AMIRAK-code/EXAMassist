@@ -1,0 +1,126 @@
+{
+  "id": "tolce-math-parabola-minimum-208",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the minimum value of the function $f(x) = 2x^2 - 12x + 13$, defined for all real $x$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$-5$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$3$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$4$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$13$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$67$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The graph is a parabola opening upwards (the coefficient of $x^2$ is $2 > 0$), so its minimum value is the $y$-coordinate of the vertex.\n\nThe vertex is at\n\n$$x = -\\frac{b}{2a} = -\\frac{-12}{2 \\cdot 2} = 3$$\n\nand the minimum value is\n\n$$f(3) = 2 \\cdot 9 - 12 \\cdot 3 + 13 = 18 - 36 + 13 = -5$$\n\nA second route, completing the square, confirms it:\n\n$$2x^2 - 12x + 13 = 2(x^2 - 6x) + 13 = 2\\big[(x - 3)^2 - 9\\big] + 13 = 2(x - 3)^2 - 5$$\n\nSince $2(x - 3)^2 \\ge 0$, the smallest value is $-5$, reached at $x = 3$.\n\nRead the question carefully: it asks for the minimum **value** of $f$, which is an output, not the input where it occurs.",
+  "distractorRationale": {
+    "b": "This is the $x$-coordinate of the vertex, the point where the minimum occurs. The question asks for the minimum value of $f$, which is $f(3)$.",
+    "c": "This comes from completing the square but forgetting to multiply the $-9$ by the factor $2$ outside the bracket: $2(x - 3)^2 - 9 + 13$. The constant pulled out of the bracket is $2 \\times 9 = 18$.",
+    "d": "This is $f(0)$, the $y$-intercept. It is also what you get if the vertex is placed at $x = -\\frac{b}{a} = 6$ instead of $-\\frac{b}{2a}$, since $f(6) = 72 - 72 + 13 = 13$. Neither is the lowest point of the graph.",
+    "e": "This evaluates $f$ at $x = -3$, from dropping the minus sign in $-\\frac{b}{2a}$. With $b = -12$, the vertex is at $x = +3$."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "The function is f of x equals 2 x squared minus 12 x plus 13. The question asks for its minimum value. The answer choices are negative 5, 3, 4, 13 and 67.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Vertex of an upward parabola; distractors model reporting the x-coordinate, a completing-the-square slip, the intercept, and a sign error."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-math-author",
+    "reviewer": "tolce-blind-reviewer-2",
+    "reviewedOn": "2026-10-21",
+    "independentSolve": {
+      "solvedBy": "tolce-blind-reviewer-2",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Vertex at x = 12/4 = 3; f(3) = 18 - 36 + 13 = -5 (B = 3 is the vertex x-coordinate distractor)."
+    },
+    "notes": "Awaiting blind independent solve before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "quadratic-functions",
+    "vertex",
+    "completing-the-square"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Qual è il valore minimo della funzione $f(x) = 2x^2 - 12x + 13$, definita per ogni $x$ reale?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$-5$"
+        },
+        {
+          "id": "b",
+          "textMd": "$3$"
+        },
+        {
+          "id": "c",
+          "textMd": "$4$"
+        },
+        {
+          "id": "d",
+          "textMd": "$13$"
+        },
+        {
+          "id": "e",
+          "textMd": "$67$"
+        }
+      ],
+      "explanationMd": "Il grafico è una parabola con la concavità rivolta verso l'alto (il coefficiente di $x^2$ è $2 > 0$), quindi il suo valore minimo è la coordinata $y$ del vertice.\n\nIl vertice si trova in\n\n$$x = -\\frac{b}{2a} = -\\frac{-12}{2 \\cdot 2} = 3$$\n\ne il valore minimo è\n\n$$f(3) = 2 \\cdot 9 - 12 \\cdot 3 + 13 = 18 - 36 + 13 = -5$$\n\nUna seconda strada, il completamento del quadrato, lo conferma:\n\n$$2x^2 - 12x + 13 = 2(x^2 - 6x) + 13 = 2\\big[(x - 3)^2 - 9\\big] + 13 = 2(x - 3)^2 - 5$$\n\nPoiché $2(x - 3)^2 \\ge 0$, il valore più piccolo è $-5$, raggiunto per $x = 3$.\n\nLeggi con attenzione la domanda: chiede il **valore** minimo di $f$, cioè un valore assunto dalla funzione, non il punto $x$ in cui viene raggiunto.",
+      "distractorRationale": {
+        "b": "È la coordinata $x$ del vertice, il punto in cui il minimo viene raggiunto. La domanda chiede il valore minimo di $f$, cioè $f(3)$.",
+        "c": "Deriva dal completamento del quadrato dimenticando di moltiplicare il $-9$ per il fattore $2$ fuori dalla parentesi: $2(x - 3)^2 - 9 + 13$. La costante portata fuori dalla parentesi è $2 \\times 9 = 18$.",
+        "d": "È $f(0)$, l'intercetta con l'asse $y$. È anche il risultato che si ottiene collocando il vertice in $x = -\\frac{b}{a} = 6$ invece che in $-\\frac{b}{2a}$, poiché $f(6) = 72 - 72 + 13 = 13$. Nessuno dei due è il punto più basso del grafico.",
+        "e": "Calcola $f$ in $x = -3$, perché perde il segno meno in $-\\frac{b}{2a}$. Con $b = -12$, il vertice è in $x = +3$."
+      },
+      "accessibilityText": "La funzione è f di x uguale a 2 x al quadrato meno 12 x più 13. La domanda chiede il suo valore minimo. Le alternative di risposta sono meno 5, 3, 4, 13 e 67.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": "tolce-italian-checker",
+        "checkedOn": "2026-10-23",
+        "answerPreserved": true,
+        "notes": "Vertex x=3, f(3) = -5."
+      }
+    }
+  }
+}

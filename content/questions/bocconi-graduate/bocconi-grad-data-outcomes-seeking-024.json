@@ -1,0 +1,79 @@
+{
+  "id": "bocconi-grad-data-outcomes-seeking-024",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-data-insight",
+  "skillSlug": "grad-data-derived-conclusions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Of the respondents who were seeking work, what percentage were Economics graduates?",
+  "instructionsMd": "Use only the figures shown. Work by hand.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "9.5%"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "10%"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "40%"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "42.1%"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Read the question's \"of\" carefully: the group is respondents SEEKING WORK, and we want the share of that group who studied Economics.\n\n$$\\frac{\\text{Economics graduates seeking work}}{\\text{all seeking work}} = \\frac{16}{38} \\approx 0.421 = 42.1\\%$$\n\n**Doing it by hand.** $\\frac{16}{38} = \\frac{8}{19}$. Since $19 \\times 0.4 = 7.6$, the remaining $0.4$ is about $0.021$ of 19, giving $0.421$.\n\n**The trap.** \"What share of Economics graduates were seeking work?\" is a different question, $\\frac{16}{160} = 10$ per cent. Conditional shares are not symmetric: always identify the group in the denominator first.",
+  "distractorRationale": {
+    "a": "This is all job-seekers as a share of all respondents, $\\frac{38}{400} = 9.5$ per cent. It ignores the programme entirely.",
+    "b": "This reverses the condition: $\\frac{16}{160}$ is the share of ECONOMICS graduates who were seeking work, not the share of job-seekers who studied Economics.",
+    "c": "This is Economics graduates as a share of ALL respondents, $\\frac{160}{400} = 40$ per cent. Economics graduates are slightly over-represented among job-seekers compared with that."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": {
+    "id": "bocconi-grad-stim-outcomes-006",
+    "version": 1
+  },
+  "accessibilityText": "A question about the table of 400 surveyed graduates by programme and status. It asks what percentage of the respondents seeking work were Economics graduates. The options are 9.5 per cent, 10 per cent, 40 per cent and 42.1 per cent.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-graduate-author",
+    "aiAssisted": true,
+    "notes": "Original item on the direction of a conditional share. Each distractor uses the wrong denominator."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-graduate-author",
+    "reviewer": "bocconi-graduate-blind-reviewer",
+    "reviewedOn": "2026-10-27",
+    "independentSolve": {
+      "solvedBy": "bocconi-graduate-blind-reviewer",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Seeking work total 38; Economics 16. 16/38 = 42.1%. 40% = 16/40 (wrong denominator); 10% = 16/160 (share of Economics graduates seeking); 9.5%? not a valid reading."
+    },
+    "notes": "Author checked that exactly one option is defensible. Awaiting blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "table-outcomes",
+    "conditional-share"
+  ],
+  "translations": {}
+}

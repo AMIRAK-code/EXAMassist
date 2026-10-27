@@ -52,7 +52,7 @@ export function llmsTxt(): string {
     '',
     '## Optional',
     '',
-    link('Premium', '/premium', 'plans and prices.'),
+    link('Pricing', '/pricing', 'plans and prices.'),
     link('Privacy', '/about/privacy', 'what is collected and why.'),
     link('Terms', '/about/terms', 'terms of use.'),
     '',

@@ -18,7 +18,7 @@ rankings, rich results or citations in AI answers.
 | Share images | `public/og/*.png`, `src/lib/seo/share-cards.ts` | A 1200 × 630 card for the site, each exam and each guide, with the logo, the title and "Independent · not affiliated with …". Format guides use their exam's card; listings and about pages use the site card. |
 | Apple touch icon | `src/app/apple-icon.png` | The brand symbol, 180 × 180. |
 | llms.txt | `src/app/llms.txt/route.ts` | A Markdown map of the public pages, built from the same data as the sitemap. Google says it uses no such file and that one neither helps nor harms; some other AI tools read it. |
-| Static public pages | `scripts/snapshot-pages.ts`, `src/lib/seo/static-pages.ts` | `npm run cf:deploy` saves every public page except `/premium` as a file Cloudflare serves without running the Worker, so crawlers never meet the Free plan's CPU limit there. |
+| Static public pages | `scripts/snapshot-pages.ts`, `src/lib/seo/static-pages.ts` | `npm run cf:deploy` saves every public page except `/pricing`, in all five languages, as a file Cloudflare serves without running the Worker, so crawlers never meet the Free plan's CPU limit there. |
 | IndexNow | `src/lib/seo/indexnow.ts`, `public/<key>.txt` | Tells Bing (and so Copilot), Yandex, Seznam, Naver and the other participants about new and changed pages. |
 
 The pages were already written for answer engines before this: each exam page
@@ -137,9 +137,15 @@ because every request starts the Next.js server. The 77 failures were all
 So, with Workers kept on Free, `npm run cf:deploy` deploys, saves every public
 page of that deployment as a file in the Worker's static assets, and deploys
 again (`scripts/snapshot-pages.ts`, `src/lib/seo/static-pages.ts`). Cloudflare
-answers a request that matches an asset before it runs the Worker, so the 28
-sitemap pages other than `/premium`, plus robots.txt, sitemap.xml, llms.txt and
-the icons, cost no Worker CPU. What changes for visitors:
+answers a request that matches an asset before it runs the Worker, so the
+sitemap pages other than `/pricing`, each in all five languages (`/exams/gmat`,
+`/it/exams/gmat`, …), plus robots.txt, sitemap.xml, llms.txt and the icons,
+cost no Worker CPU. What changes for visitors:
+
+- Saved pages never pass through `src/proxy.ts` (next-intl). An inline script
+  on each makes the proxy's choice instead: on an English address it moves to
+  the language in the locale cookie, else the browser's, and on every page it
+  keeps the cookie in step. Crawlers ask for English and stay.
 
 - The header's learner menu comes from a note in the browser's own storage,
   kept in step by every page the server renders and cleared on sign-out. The
@@ -154,7 +160,8 @@ the icons, cost no Worker CPU. What changes for visitors:
 - The Bocconi page shows the visitor version to Premium learners too (an
   offer they already have), and counts on the pages refresh only on deploy.
 
-Sign-in, practice and `/premium` still run on the Worker and can still hit 1102.
+Sign-in, practice, `/pricing` and checkout still run on the Worker and can
+still hit 1102.
 
 Check after a deploy (expect only 200s):
 

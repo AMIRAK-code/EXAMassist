@@ -78,5 +78,48 @@
     "locus",
     "circle",
     "coordinates"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "In un piano, $A$ e $B$ sono due punti fissi distanti $6$ cm. Quale delle seguenti descrizioni corrisponde all'insieme di tutti i punti $P$ del piano tali che $PA^{2} + PB^{2} = 50\\ \\text{cm}^{2}$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "La circonferenza con centro nel punto medio di $AB$ e raggio $5$ cm"
+        },
+        {
+          "id": "b",
+          "textMd": "La circonferenza con centro nel punto medio di $AB$ e raggio $4$ cm"
+        },
+        {
+          "id": "c",
+          "textMd": "L'asse del segmento $AB$"
+        },
+        {
+          "id": "d",
+          "textMd": "La circonferenza con centro nel punto medio di $AB$ e raggio $4\\sqrt{2}$ cm"
+        },
+        {
+          "id": "e",
+          "textMd": "Un'ellisse con fuochi $A$ e $B$"
+        }
+      ],
+      "explanationMd": "Si pone la figura in un sistema di coordinate in modo che la simmetria faccia il lavoro: siano $A = (-3, 0)$ e $B = (3, 0)$, così il punto medio $M$ di $AB$ è l'origine.\n\n**Passo 1 — scrivere la condizione.** Per $P = (x, y)$: $PA^{2} = (x+3)^{2} + y^{2}$ e $PB^{2} = (x-3)^{2} + y^{2}$. Sommando, i termini $\\pm 6x$ si eliminano: $PA^{2}+PB^{2} = 2x^{2} + 2y^{2} + 18$.\n\n**Passo 2 — risolvere.** $2x^{2}+2y^{2}+18 = 50$ dà $x^{2}+y^{2} = 16$: la circonferenza con centro $M$ e raggio $4$ cm.\n\n**Verifica con due punti.** Sull'asse del segmento, a $4$ cm da $M$: $PA^{2} = PB^{2} = 4^{2}+3^{2} = 25$, somma $50$ ✓. Sulla retta $AB$, a $4$ cm da $M$ (quindi a $7$ cm da uno dei due punti e a $1$ cm dall'altro): $49 + 1 = 50$ ✓. Entrambi i punti distano $4$ cm da $M$, come richiede una circonferenza.",
+      "distractorRationale": {
+        "a": "Perde il termine noto: scrive $2x^{2}+2y^{2} = 50$, dimenticando il $18$ che proviene dai due termini $3^{2}$, quindi $x^{2}+y^{2}=25$.",
+        "d": "Sottrae il $18$ ma dimentica di dividere per $2$: $x^{2}+y^{2} = 50-18 = 32$, raggio $\\sqrt{32} = 4\\sqrt{2}$.",
+        "e": "Confonde la condizione con $PA + PB$ costante, che definisce effettivamente un'ellisse con fuochi $A$ e $B$; una somma di quadrati costante dà invece una circonferenza.",
+        "c": "Confonde la condizione con $PA = PB$; l'asse del segmento è illimitato, e i suoi punti lontani da $AB$ hanno $PA^{2}+PB^{2}$ molto maggiore di $50$."
+      },
+      "accessibilityText": "In un piano, A e B sono due punti fissi distanti 6 centimetri. Quale delle seguenti descrizioni corrisponde all'insieme di tutti i punti P del piano tali che P A al quadrato più P B al quadrato sia uguale a 50 centimetri quadrati? Le cinque alternative sono: la circonferenza con centro nel punto medio di A B e raggio 5 centimetri; la circonferenza con centro nel punto medio di A B e raggio 4 centimetri; l'asse del segmento A B; la circonferenza con centro nel punto medio di A B e raggio 4 per la radice quadrata di 2 centimetri; un'ellisse con fuochi A e B.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i2",
+        "checkedBy": "tolc-italian-checker-i1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; 'asse del segmento' correct Italian for perpendicular bisector."
+      }
+    }
+  }
 }

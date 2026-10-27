@@ -10,9 +10,9 @@ import {
   subjectFor,
 } from '@/lib/analytics/funnel';
 import { recordResponse, startAttempt, submitAttempt } from '@/lib/attempts/service';
-import { billingSettings, PLANS } from '@/lib/billing/config';
-import { isNewPurchase, startCheckout, syncCustomer } from '@/lib/billing/service';
-import type { StripeRequest } from '@/lib/billing/stripe';
+import { createSubscription } from '@/lib/billing/service';
+import { storeSubscription } from '@/lib/billing/store';
+import { ON, fakeStripe, nowSeconds, stripeSubscription } from './helpers/fake-stripe';
 import { requireExamConfig } from '@/lib/exams/registry';
 import { createTestDb, createUser, seedQuestions } from './helpers/test-db';
 
@@ -151,68 +151,55 @@ describe('the funnel report', () => {
 });
 
 describe('purchases', () => {
-  it('counts a subscription’s first activation, not renewals or recoveries', () => {
-    expect(isNewPurchase(null, { id: 'sub_1', status: 'active' })).toBe(true);
-    expect(isNewPurchase({ stripe_subscription_id: null, status: null }, { id: 'sub_1', status: 'active' })).toBe(true);
-    expect(isNewPurchase({ stripe_subscription_id: 'sub_1', status: 'incomplete' }, { id: 'sub_1', status: 'active' })).toBe(true);
-    expect(isNewPurchase({ stripe_subscription_id: 'sub_1', status: 'active' }, { id: 'sub_1', status: 'active' })).toBe(false);
-    expect(isNewPurchase({ stripe_subscription_id: 'sub_1', status: 'past_due' }, { id: 'sub_1', status: 'active' })).toBe(false);
-    expect(isNewPurchase(null, { id: 'sub_1', status: 'incomplete' })).toBe(false);
-    expect(isNewPurchase({ stripe_subscription_id: 'sub_0', status: 'canceled' }, { id: 'sub_2', status: 'active' })).toBe(true);
+  const totals = async () =>
+    db.prepare("SELECT event, subject, count FROM funnel_counts WHERE event IN ('purchase', 'checkout_start') ORDER BY event").all();
+
+  it('counts a subscription’s first activation once, not renewals or recoveries', async () => {
+    const user = await createUser(db);
+    const at = nowSeconds();
+    const sub = (status: 'incomplete' | 'active' | 'past_due') =>
+      stripeSubscription({ userId: user, plan: 'single_exam', examKey: 'bocconi-undergraduate', status });
+    await storeSubscription(db, user, sub('incomplete'), { syncedAt: at });
+    await storeSubscription(db, user, sub('active'), { syncedAt: at + 1 });
+    // The webhook arriving after the confirmation page already synced it.
+    await storeSubscription(db, user, sub('active'), { syncedAt: at + 2 });
+    await storeSubscription(db, user, sub('past_due'), { syncedAt: at + 3 });
+    await storeSubscription(db, user, sub('active'), { syncedAt: at + 4 });
+    expect(await totals()).toEqual([expect.objectContaining({ event: 'purchase', subject: 'bocconi-undergraduate', count: 1 })]);
   });
 
-  it('counts a purchase once per subscription, under the exam it was bought from', async () => {
+  it('counts an All access purchase under the exam it was bought from', async () => {
     const user = await createUser(db);
-    const sub = {
-      id: 'sub_1',
-      status: 'active',
-      created: 1_700_000_000,
-      metadata: { examer_user_id: user, plan: 'quarterly', exam_key: 'bocconi-undergraduate' },
-      items: { data: [{ current_period_end: Math.floor(Date.now() / 1000) + 86400 * 90, price: { lookup_key: PLANS.quarterly.lookupKey } }] },
-    };
-    const stripe: StripeRequest = async () => ({ data: [sub] });
-    await syncCustomer(db, user, 'cus_1', stripe);
-    await syncCustomer(db, user, 'cus_1', stripe); // the webhook arriving after the return from Checkout
-    expect(await totals()).toEqual([
-      expect.objectContaining({ event: 'purchase', subject: 'bocconi-undergraduate', count: 1 }),
-    ]);
+    const subscription = stripeSubscription({ userId: user, plan: 'all_access' });
+    subscription.metadata = { ...subscription.metadata, source_exam: 'bocconi-law' };
+    await storeSubscription(db, user, subscription, { syncedAt: nowSeconds() });
+    expect(await totals()).toEqual([expect.objectContaining({ event: 'purchase', subject: 'bocconi-law', count: 1 })]);
   });
 });
 
 describe('checkout keeps the exam', () => {
-  const ON = billingSettings({ STRIPE_SECRET_KEY: 'sk_test_unit', STRIPE_WEBHOOK_SECRET: 'whsec_unit' });
+  const buyer = async () => {
+    const id = await createUser(db);
+    return { id, email: `${id}@example.invalid`, displayName: null, isGuest: false };
+  };
 
-  function fake() {
-    const calls: Array<{ method: string; path: string; params: Record<string, unknown> }> = [];
-    const stripe: StripeRequest = async (method, path, params = {}) => {
-      calls.push({ method, path, params });
-      if (method === 'GET' && path === 'subscriptions') return { data: [] };
-      if (method === 'GET' && path === 'prices') return { data: [{ id: 'price_q' }] };
-      if (method === 'POST' && path === 'customers') return { id: 'cus_new' };
-      if (method === 'POST' && path === 'checkout/sessions') return { id: 'cs_test_1', url: 'https://checkout.stripe.test/cs_test_1' };
-      throw new Error(`unexpected Stripe call ${method} ${path}`);
-    };
-    return { stripe, calls };
-  }
-
-  it('passes a known exam as metadata and on both return addresses, without touching the price', async () => {
-    const user = await createUser(db);
-    const { stripe, calls } = fake();
-    await startCheckout(db, { id: user, email: 'b@example.invalid', displayName: null, isGuest: false }, 'quarterly', { settings: ON, stripe }, { examKey: 'bocconi-law' });
-    const session = calls.find((c) => c.path === 'checkout/sessions')!.params;
-    expect(session.metadata).toMatchObject({ plan: 'quarterly', exam_key: 'bocconi-law' });
-    expect(session.subscription_data).toMatchObject({ metadata: { exam_key: 'bocconi-law' } });
-    expect(String(session.success_url)).toMatch(/\/premium\/welcome\?session_id=\{CHECKOUT_SESSION_ID\}&exam=bocconi-law$/);
-    expect(String(session.cancel_url)).toMatch(/\/premium\?checkout=cancelled&exam=bocconi-law$/);
-    expect(session.line_items).toEqual([{ price: 'price_q', quantity: 1 }]);
+  it('counts a checkout start under the exam, and passes it as metadata without touching the price', async () => {
+    const fake = fakeStripe();
+    await createSubscription(db, await buyer(), { plan: 'all_access', sourceExam: 'bocconi-law', consent: true, requestId: 'req-00000001' }, { settings: ON, stripe: fake.api });
+    const params = fake.called('subscriptions.create')[0]!.args[0] as { metadata: Record<string, string>; items: unknown };
+    expect(params.metadata).toMatchObject({ plan: 'all_access', source_exam: 'bocconi-law' });
+    expect(params.items).toEqual([{ price: 'price_all', quantity: 1 }]);
+    expect(await totals()).toEqual([expect.objectContaining({ event: 'checkout_start', subject: 'bocconi-law', count: 1 })]);
   });
 
   it('ignores an exam it does not know', async () => {
-    const user = await createUser(db);
-    const { stripe, calls } = fake();
-    await startCheckout(db, { id: user, email: 'c@example.invalid', displayName: null, isGuest: false }, 'monthly', { settings: ON, stripe }, { examKey: 'https://evil.example' });
-    const session = calls.find((c) => c.path === 'checkout/sessions')!.params;
-    expect(session.metadata).not.toHaveProperty('exam_key');
-    expect(String(session.success_url)).not.toContain('exam=');
+    const fake = fakeStripe();
+    await createSubscription(db, await buyer(), { plan: 'all_access', sourceExam: 'https://evil.example', consent: true, requestId: 'req-00000002' }, { settings: ON, stripe: fake.api });
+    const params = fake.called('subscriptions.create')[0]!.args[0] as { metadata: Record<string, string> };
+    expect(params.metadata).not.toHaveProperty('source_exam');
+    expect(params.metadata).not.toHaveProperty('exam_key');
+    expect(await totals()).toEqual([expect.objectContaining({ event: 'checkout_start', subject: 'none', count: 1 })]);
   });
+
+  const totals = async () => db.prepare("SELECT event, subject, count FROM funnel_counts WHERE event = 'checkout_start'").all();
 });

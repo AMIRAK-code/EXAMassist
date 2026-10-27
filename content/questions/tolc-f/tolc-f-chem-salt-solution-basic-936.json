@@ -78,5 +78,48 @@
     "salt-hydrolysis",
     "ph",
     "acids-bases"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Ciascuno dei seguenti sali viene sciolto in acqua pura a 25 °C per ottenere una soluzione 0,1 mol/L. Quale soluzione ha un pH maggiore di 7?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Nitrato di ammonio, $\\mathrm{NH_4NO_3}$"
+        },
+        {
+          "id": "b",
+          "textMd": "Cloruro di sodio, $\\mathrm{NaCl}$"
+        },
+        {
+          "id": "c",
+          "textMd": "Acetato di sodio, $\\mathrm{CH_3COONa}$"
+        },
+        {
+          "id": "d",
+          "textMd": "Cloruro di ammonio, $\\mathrm{NH_4Cl}$"
+        },
+        {
+          "id": "e",
+          "textMd": "Nitrato di potassio, $\\mathrm{KNO_3}$"
+        }
+      ],
+      "explanationMd": "Considera ogni sale come derivato da un acido e da una base, e chiediti quale dei due è debole. Lo ione che proviene da un genitore **debole** reagisce con l'acqua; lo ione che proviene da un genitore **forte** no.\n\n- NaCl: da NaOH (forte) e HCl (forte). Nessuno dei due ioni reagisce: **neutra**, pH 7.\n- $\\mathrm{KNO_3}$: da KOH (forte) e $\\mathrm{HNO_3}$ (forte): **neutra**.\n- $\\mathrm{NH_4Cl}$ e $\\mathrm{NH_4NO_3}$: dalla base debole $\\mathrm{NH_3}$ e da un acido forte. Lo ione ammonio cede $\\mathrm{H^+}$ all'acqua: **acida**.\n- $\\mathrm{CH_3COONa}$: da NaOH (forte) e acido acetico (debole). Lo ione acetato prende $\\mathrm{H^+}$ dall'acqua:\n\n$$\\mathrm{CH_3COO^-} + \\mathrm{H_2O} \\rightleftharpoons \\mathrm{CH_3COOH} + \\mathrm{OH^-}$$\n\nGli $\\mathrm{OH^-}$ in più rendono la soluzione **basica**.\n\n**Verifica:** acido forte con base forte dà soluzione neutra, acido forte con base debole dà soluzione acida, acido debole con base forte dà soluzione basica; solo l'acetato di sodio corrisponde all'ultimo schema.",
+      "distractorRationale": {
+        "b": "Il cloruro di sodio deriva da un acido forte e da una base forte. Nessuno dei due ioni reagisce con l'acqua, quindi la soluzione è neutra.",
+        "e": "Anche il nitrato di potassio deriva da una base forte e da un acido forte, quindi la sua soluzione è neutra, non basica.",
+        "d": "Lo ione ammonio è l'acido coniugato della base debole ammoniaca; cede $\\mathrm{H^+}$ all'acqua, quindi la soluzione è acida, con pH inferiore a 7.",
+        "a": "Il nitrato di ammonio contiene lo ione ammonio, che rende acida la soluzione; lo ione nitrato, che deriva da un acido forte, non lo compensa."
+      },
+      "accessibilityText": "Una breve domanda testuale. Ogni sale viene sciolto in acqua pura a 25 gradi Celsius alla concentrazione di 0,1 moli per litro, e la domanda chiede quale soluzione ha un pH maggiore di 7. Le alternative sono: nitrato di ammonio, N H 4 N O 3; cloruro di sodio, N a C l; acetato di sodio, C H 3 C O O N a; cloruro di ammonio, N H 4 C l; nitrato di potassio, K N O 3.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f1",
+        "checkedBy": "tolc-italian-checker-f2",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities and options match the English."
+      }
+    }
+  }
 }
