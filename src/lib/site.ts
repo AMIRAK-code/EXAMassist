@@ -18,7 +18,7 @@ export const SITE = {
   alternateNames: ['UniExamer', 'uniexamer.com'],
   tagline: 'Admission test preparation, verified against official sources',
   description:
-    'Practice questions, exam format guides and timed practice for the Bocconi Online Test, Digital SAT, Enhanced ACT, LSAT, GMAT, GRE, Politecnico di Torino TIL and CISIA TOLC, with a free test for every account. Every format claim is sourced to the test maker.',
+    'Practice questions, exam format guides and timed practice for the Bocconi Online Test (bachelor, law and master’s forms), Digital SAT, Enhanced ACT, LSAT, GMAT, GRE, CISIA TOLC and Politecnico di Torino TIL, with a free test for every account. Every format claim is sourced to the test maker.',
   locale: 'en',
   /**
    * Publisher identity shown on public content and in structured data. Not

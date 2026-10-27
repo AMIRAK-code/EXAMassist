@@ -77,5 +77,48 @@
   "tags": [
     "exponential-equation",
     "substitution"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Qual è la somma di tutte le soluzioni reali di $4^{x} - 5\\cdot 2^{x} + 4 = 0$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$0$"
+        },
+        {
+          "id": "b",
+          "textMd": "$2$"
+        },
+        {
+          "id": "c",
+          "textMd": "$3$"
+        },
+        {
+          "id": "d",
+          "textMd": "$4$"
+        },
+        {
+          "id": "e",
+          "textMd": "$5$"
+        }
+      ],
+      "explanationMd": "Osserva che $4^{x} = (2^{2})^{x} = (2^{x})^{2}$, quindi l'equazione è di secondo grado in $2^{x}$.\n\n**Passo 1 — sostituzione.** Poni $t = 2^{x}$ (sempre positivo): $t^{2} - 5t + 4 = 0$, quindi $(t-1)(t-4) = 0$ e $t = 1$ oppure $t = 4$.\n\n**Passo 2 — ritorno a $x$.** $2^{x} = 1$ dà $x = 0$; $2^{x} = 4$ dà $x = 2$. Entrambe sono accettabili perché i valori di $t$ sono positivi.\n\n**Passo 3 — somma.** $0 + 2 = 2$.\n\n**Come verificarlo.** $x=0$: $1 - 5 + 4 = 0$ ✓. $x=2$: $16 - 20 + 4 = 0$ ✓.",
+      "distractorRationale": {
+        "a": "Trova solo la soluzione di $2^{x} = 1$, cioè $x = 0$, e dimentica la seconda. Entrambi i valori di $2^{x}$ (1 e 4) sono positivi, quindi entrambi danno un $x$ reale.",
+        "c": "Risolve $2^{x} = 1$ come $x = 1$ e $2^{x} = 4$ come $x = 2$, poi somma. Ma $2^{1} = 2$, non 1; l'esponente che dà 1 è 0.",
+        "d": "Riporta il prodotto dei due valori di $2^{x}$ ($1\\times 4$) invece della somma delle soluzioni in $x$.",
+        "e": "Riporta la somma dei due valori di $2^{x}$ ($1+4$) invece della somma delle soluzioni in $x$."
+      },
+      "accessibilityText": "La domanda chiede la somma di tutte le soluzioni reali dell'equazione 4 elevato alla x, meno 5 per 2 elevato alla x, più 4, uguale a 0. Le cinque alternative sono 0, 2, 3, 4 e 5.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f2",
+        "checkedBy": "tolc-italian-checker-f1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities and options match the English."
+      }
+    }
+  }
 }

@@ -40,7 +40,7 @@ function main(): void {
   for (const row of coverage) {
     const gap = row.missingDomains.length > 0 ? row.missingDomains.join(', ') : '-';
     console.log(
-      `  ${row.examKey.padEnd(24)}${String(row.published).padStart(6)}` +
+      `  ${(row.draftConfig ? `${row.examKey} (draft)` : row.examKey).padEnd(24)}${String(row.published).padStart(6)}` +
         `${String(TARGET_PER_EXAM).padStart(8)}` +
         `${String(`${row.domainsCovered}/${row.domainsTotal}`).padStart(9)}   ${gap.slice(0, 80)}`,
     );

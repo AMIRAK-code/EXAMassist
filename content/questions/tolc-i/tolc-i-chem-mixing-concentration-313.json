@@ -78,5 +78,48 @@
     "solutions",
     "molarity",
     "mixing"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "$200\\ \\text{mL}$ di una soluzione di cloruro di sodio $0.30\\ \\text{mol/L}$ vengono mescolati con $300\\ \\text{mL}$ di una soluzione di cloruro di sodio $0.10\\ \\text{mol/L}$. Supponendo che i volumi siano additivi, qual è la concentrazione molare del cloruro di sodio nella miscela?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$0.22\\ \\text{mol/L}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$0.18\\ \\text{mol/L}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$0.20\\ \\text{mol/L}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$0.09\\ \\text{mol/L}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$0.40\\ \\text{mol/L}$"
+        }
+      ],
+      "explanationMd": "**Che cosa notare per prima cosa.** Le concentrazioni non si possono semplicemente mediare o sommare. Le moli di soluto *si possono* sommare: trova quindi le moli in ciascuna soluzione, sommale e dividi per il volume totale in litri.\n\n**I passaggi.**\n\n- Prima soluzione: $0.200\\ \\text{L} \\times 0.30\\ \\text{mol/L} = 0.060\\ \\text{mol}$.\n- Seconda soluzione: $0.300\\ \\text{L} \\times 0.10\\ \\text{mol/L} = 0.030\\ \\text{mol}$.\n- Totale: $0.090\\ \\text{mol}$ in $0.200 + 0.300 = 0.500\\ \\text{L}$.\n\n$$c = \\frac{0.090\\ \\text{mol}}{0.500\\ \\text{L}} = 0.18\\ \\text{mol/L}.$$\n\n**Come verificarlo.** Il risultato deve essere compreso tra le due concentrazioni di partenza, $0.10$ e $0.30$, e più vicino a $0.10$, perché c'è più soluzione diluita. $0.18$ è al di sotto del semplice punto medio $0.20$, come deve essere.",
+      "distractorRationale": {
+        "c": "Fa la media semplice delle due concentrazioni, $(0.30 + 0.10)/2$. Funziona solo per volumi uguali; qui c'è più soluzione diluita, quindi la miscela sta al di sotto del punto medio.",
+        "e": "Somma le due concentrazioni. Mescolando due soluzioni non si può ottenere una concentrazione più alta di entrambe.",
+        "d": "Somma correttamente le moli, $0.090\\ \\text{mol}$, ma poi presenta quel numero come concentrazione, come se il volume fosse $1\\ \\text{L}$. Il volume totale è $0.500\\ \\text{L}$.",
+        "a": "Associa ciascuna concentrazione al volume dell'altra soluzione, $(0.300 \\times 0.30 + 0.200 \\times 0.10)/0.500$. La soluzione $0.30\\ \\text{mol/L}$ è quella da $200\\ \\text{mL}$."
+      },
+      "accessibilityText": "200 millilitri di una soluzione di cloruro di sodio 0,30 moli al litro vengono mescolati con 300 millilitri di una soluzione di cloruro di sodio 0,10 moli al litro. Supponendo che i volumi siano additivi, qual è la concentrazione molare del cloruro di sodio nella miscela? Le alternative sono 0,22, 0,18, 0,20, 0,09 e 0,40 moli al litro.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": "tolc-italian-checker-i1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; 0.09 mol / 0.5 L = 0.18 mol/L."
+      }
+    }
+  }
 }

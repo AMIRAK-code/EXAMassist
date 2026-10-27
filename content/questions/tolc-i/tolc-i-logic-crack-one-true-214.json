@@ -80,5 +80,48 @@
     "truth-tellers",
     "case-analysis",
     "no-calculator"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "È stata trovata una cricca sottilissima in esattamente uno dei quattro componenti di una turbina, contrassegnati con P, Q, R e S. Quattro ispettori fanno ciascuno un'affermazione.\n\n- Aldo: «La cricca è in P o in Q.»\n- Bice: «La cricca non è in P.»\n- Ciro: «La cricca è in R.»\n- Dora: «La cricca non è in S.»\n\nEsattamente una delle quattro affermazioni è vera. In quale componente si trova la cricca?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "R"
+        },
+        {
+          "id": "b",
+          "textMd": "Le informazioni non sono sufficienti per stabilirlo."
+        },
+        {
+          "id": "c",
+          "textMd": "S"
+        },
+        {
+          "id": "d",
+          "textMd": "P"
+        },
+        {
+          "id": "e",
+          "textMd": "Q"
+        }
+      ],
+      "explanationMd": "Con soli quattro posti possibili per la cricca, provali uno per uno e conta quante affermazioni rendono vere.\n\n- Cricca in P: Aldo vera, Bice falsa, Ciro falsa, Dora vera. Due affermazioni vere.\n- Cricca in Q: vere quelle di Aldo, Bice e Dora. Tre.\n- Cricca in R: vere quelle di Bice, Ciro e Dora. Tre.\n- Cricca in S: Aldo falsa, Bice vera, Ciro falsa, Dora falsa. Esattamente una.\n\nSolo una cricca in **S** lascia esattamente un'affermazione vera, quindi è lì che si trova la cricca.\n\nUna via più rapida: le affermazioni di Bice e di Dora sono entrambe vere a meno che la cricca non sia in P o in S. Se fosse in P, sarebbero vere sia quella di Aldo sia quella di Dora. Quindi deve essere in S, e allora ha ragione solo Bice.",
+      "distractorRationale": {
+        "d": "Una cricca in P rende vere sia l'affermazione di Aldo sia quella di Dora: due affermazioni vere invece di una.",
+        "e": "Una cricca in Q dà ragione ad Aldo, Bice e Dora: tre affermazioni vere.",
+        "a": "Una cricca in R dà ragione a Bice, Ciro e Dora: tre affermazioni vere.",
+        "b": "Provando tutti e quattro i componenti si vede che esattamente uno di essi, S, dà esattamente un'affermazione vera, quindi le informazioni permettono di stabilirlo."
+      },
+      "accessibilityText": "Un problema di logica. Una cricca si trova in esattamente uno di quattro componenti di una turbina contrassegnati con P, Q, R e S. Aldo dice che la cricca è in P o in Q. Bice dice che non è in P. Ciro dice che è in R. Dora dice che non è in S. Esattamente una delle quattro affermazioni è vera. La domanda chiede dove si trova la cricca. Le cinque alternative sono: R; le informazioni non sono sufficienti per stabilirlo; S; P; Q.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": "tolc-italian-checker-i1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; 'Esattamente una' preserved."
+      }
+    }
+  }
 }

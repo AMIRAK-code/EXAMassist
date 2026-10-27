@@ -77,5 +77,48 @@
   "tags": [
     "gcd",
     "lcm"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Due numeri interi positivi hanno massimo comune divisore 5 e minimo comune multiplo 60. Uno dei due è 15. Qual è l'altro?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$4$"
+        },
+        {
+          "id": "b",
+          "textMd": "$12$"
+        },
+        {
+          "id": "c",
+          "textMd": "$20$"
+        },
+        {
+          "id": "d",
+          "textMd": "$45$"
+        },
+        {
+          "id": "e",
+          "textMd": "$300$"
+        }
+      ],
+      "explanationMd": "Per due numeri interi positivi qualsiasi, il prodotto del loro massimo comune divisore per il loro minimo comune multiplo è uguale al prodotto dei due numeri:\n\n$$\\gcd \\times \\operatorname{lcm} = a \\times b.$$\n\nQui $5 \\times 60 = 300 = 15 \\times b$, quindi $b = 300 \\div 15 = 20$.\n\n**Come verificarlo.** Scomponi in fattori: $15 = 3\\cdot 5$ e $20 = 2^{2}\\cdot 5$. L'unico fattore primo comune è 5, quindi il massimo comune divisore è 5; prendendo ogni fattore primo con l'esponente più alto si ottiene $2^{2}\\cdot 3\\cdot 5 = 60$, il minimo comune multiplo.",
+      "distractorRationale": {
+        "a": "Divide il minimo comune multiplo per 15 e ignora il divisore comune. I numeri 15 e 4 hanno massimo comune divisore 1, non 5.",
+        "b": "Divide il minimo comune multiplo per il massimo comune divisore ($60 \\div 5$). Quel quoziente non è il numero mancante; 15 e 12 hanno massimo comune divisore 3.",
+        "d": "Sottrae 15 da 60, come se il minimo comune multiplo fosse la somma dei due numeri. I numeri 15 e 45 hanno massimo comune divisore 15.",
+        "e": "Moltiplica il massimo comune divisore per il minimo comune multiplo ($5\\times 60$) e si ferma. Quel prodotto è uguale al prodotto dei due numeri, quindi va ancora diviso per 15."
+      },
+      "accessibilityText": "Due numeri interi positivi hanno massimo comune divisore 5 e minimo comune multiplo 60. Uno dei due è 15. La domanda chiede l'altro. Le cinque alternative sono 4, 12, 20, 45 e 300.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f2",
+        "checkedBy": "tolc-italian-checker-f2",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities and options match the English."
+      }
+    }
+  }
 }

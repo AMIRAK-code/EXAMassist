@@ -78,5 +78,48 @@
     "dna",
     "base-pairing",
     "chargaff"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "In un campione di DNA a doppio filamento prelevato da una foglia di olivo, il 20% dei nucleotidi contiene adenina. Quale percentuale dei nucleotidi contiene guanina?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "20%"
+        },
+        {
+          "id": "b",
+          "textMd": "30%"
+        },
+        {
+          "id": "c",
+          "textMd": "40%"
+        },
+        {
+          "id": "d",
+          "textMd": "60%"
+        },
+        {
+          "id": "e",
+          "textMd": "80%"
+        }
+      ],
+      "explanationMd": "Parti dall'appaiamento delle basi. Nel DNA a doppio filamento l'adenina si appaia con la timina e la guanina con la citosina, quindi la quantità di A è uguale a quella di T, e la quantità di G è uguale a quella di C.\n\n1. L'adenina è il 20%, quindi anche la timina è il 20%, e insieme A + T fanno il 40%.\n2. Il restante 60% è guanina più citosina. Poiché G = C, ciascuna base è la metà del 60%, cioè il 30%.\n\nVerifica: 20 + 20 + 30 + 30 = 100. L'errore tipico è fermarsi dopo uno dei passaggi e dare il totale di due basi invece della singola base richiesta dalla domanda.",
+      "distractorRationale": {
+        "a": "Considera la guanina uguale all'adenina. Le uguaglianze valgono tra basi appaiate, quindi l'adenina corrisponde alla timina, non alla guanina.",
+        "c": "È la quota di adenina e timina insieme (20% + 20%). Risponde a «quanta A + T», non a «quanta G».",
+        "d": "È la quota di guanina e citosina insieme. È la sottrazione giusta (100% - 40%), ma si ferma prima di dividere il 60% tra le due basi.",
+        "e": "Sottrae dal 100% solo l'adenina e dimentica che la timina deve essere uguale all'adenina, quindi toglie il 20% invece del 40%."
+      },
+      "accessibilityText": "Una breve domanda testuale senza figure. Il venti per cento dei nucleotidi di un campione di DNA a doppio filamento prelevato da una foglia di olivo è adenina. Le cinque alternative sono percentuali: venti, trenta, quaranta, sessanta e ottanta per cento.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f1",
+        "checkedBy": "tolc-italian-checker-f1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities and options match the English."
+      }
+    }
+  }
 }

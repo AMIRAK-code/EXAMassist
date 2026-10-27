@@ -78,5 +78,48 @@
     "logarithmic-inequality",
     "decreasing-function",
     "domain"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Determinare tutti i numeri reali $x$ tali che $\\log_{1/2}(x-1) > -2$.",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$1 < x < \\dfrac{5}{4}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$1 < x < 5$"
+        },
+        {
+          "id": "c",
+          "textMd": "$x > 5$"
+        },
+        {
+          "id": "d",
+          "textMd": "$x > \\dfrac{5}{4}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$x < 5$"
+        }
+      ],
+      "explanationMd": "Due elementi decidono una disequazione logaritmica: il dominio (l'argomento deve essere positivo) e la base. Quando la base è compresa tra 0 e 1 il logaritmo è una funzione **decrescente**, quindi, eliminandolo, il verso della disuguaglianza si inverte.\n\n**Passo 1 — dominio.** $x - 1 > 0$, quindi $x > 1$.\n\n**Passo 2 — riscrivere il secondo membro.** $-2 = \\log_{1/2}\\left(\\tfrac12\\right)^{-2} = \\log_{1/2} 4$, perché $\\left(\\tfrac12\\right)^{-2} = 2^{2} = 4$.\n\n**Passo 3 — eliminare il logaritmo.** $\\log_{1/2}(x-1) > \\log_{1/2} 4$ con un logaritmo decrescente significa $x - 1 < 4$, quindi $x < 5$.\n\n**Passo 4 — intersecare con il dominio.** $1 < x < 5$.\n\n**Come verificarlo.** Si provi $x = 3$: $\\log_{1/2} 2 = -1 > -2$ ✓. Si provi $x = 9$, fuori dall'intervallo: $\\log_{1/2} 8 = -3$, che non è maggiore di $-2$ ✓.",
+      "distractorRationale": {
+        "c": "Mantiene il verso della disuguaglianza eliminando il logaritmo. Con base $\\tfrac12$ il logaritmo è decrescente, quindi $\\log_{1/2}(x-1) > \\log_{1/2}4$ significa $x - 1 < 4$: per $x = 9$ il primo membro vale $-3$, che è minore di $-2$.",
+        "e": "Inverte correttamente il verso ma dimentica il dominio. Per $x \\le 1$ l'argomento $x - 1$ non è positivo e il logaritmo non esiste.",
+        "a": "Calcola $\\left(\\tfrac12\\right)^{-2}$ come $\\tfrac14$ invece di $4$. Un esponente negativo inverte la base: $\\left(\\tfrac12\\right)^{-2} = 2^{2} = 4$.",
+        "d": "Commette due errori: prende $\\left(\\tfrac12\\right)^{-2}$ come $\\tfrac14$ e mantiene il verso della disuguaglianza. La limitazione corretta è $x - 1 < 4$."
+      },
+      "accessibilityText": "Determinare tutti i numeri reali x tali che il logaritmo in base un mezzo di x meno 1 sia maggiore di meno 2. Le cinque alternative sono: x compreso tra 1 e cinque quarti, estremi esclusi; x compreso tra 1 e 5, estremi esclusi; x maggiore di 5; x maggiore di cinque quarti; x minore di 5.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i2",
+        "checkedBy": "tolc-italian-checker-i1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful."
+      }
+    }
+  }
 }

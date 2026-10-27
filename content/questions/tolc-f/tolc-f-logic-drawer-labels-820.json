@@ -78,5 +78,48 @@
     "truth-values",
     "case-analysis",
     "contradiction"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un farmacista nasconde una fiala campione in uno di tre cassetti e mette un'etichetta su ciascun cassetto.\n\n- Cassetto 1: «La fiala è in questo cassetto.»\n- Cassetto 2: «La fiala non è in questo cassetto.»\n- Cassetto 3: «La fiala non è nel cassetto 1.»\n\nEsattamente una delle tre etichette è vera. In quale cassetto si trova la fiala?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "È impossibile decidere tra il cassetto 1 e il cassetto 3."
+        },
+        {
+          "id": "b",
+          "textMd": "Cassetto 2"
+        },
+        {
+          "id": "c",
+          "textMd": "Nessun cassetto è possibile, perché le etichette si contraddicono."
+        },
+        {
+          "id": "d",
+          "textMd": "Cassetto 1"
+        },
+        {
+          "id": "e",
+          "textMd": "Cassetto 3"
+        }
+      ],
+      "explanationMd": "Cerca la coppia di etichette che non possono essere né entrambe vere né entrambe false. L'etichetta del cassetto 1 dice che la fiala è nel cassetto 1, e l'etichetta del cassetto 3 dice che non è nel cassetto 1. Sono contraddittorie, quindi esattamente una delle due è vera, qualunque sia la verità.\n\nIl problema dice che in tutto è vera esattamente un'etichetta, quindi l'etichetta del cassetto 2 deve essere falsa. Quell'etichetta dice «la fiala non è in questo cassetto», quindi è falsa solo se la fiala è nel cassetto 2.\n\nVerifica provando il cassetto 2: l'etichetta del cassetto 1 è falsa, l'etichetta del cassetto 2 è falsa, l'etichetta del cassetto 3 è vera. Esattamente una è vera. I cassetti 1 e 3 danno ciascuno due etichette vere, quindi non vanno bene.",
+      "distractorRationale": {
+        "d": "Se la fiala fosse nel cassetto 1, l'etichetta del cassetto 1 sarebbe vera e lo sarebbe anche quella del cassetto 2: due etichette vere.",
+        "e": "Se la fiala fosse nel cassetto 3, l'etichetta del cassetto 2 e quella del cassetto 3 sarebbero entrambe vere: due etichette vere.",
+        "a": "I cassetti 1 e 3 danno entrambi due etichette vere, quindi sono esclusi entrambi. Resta un solo cassetto.",
+        "c": "Due etichette si contraddicono, ma è proprio questo che rende il problema risolvibile. Il cassetto 2 dà esattamente un'etichetta vera."
+      },
+      "accessibilityText": "Una breve domanda di solo testo, senza figure. Una fiala è nascosta in uno di tre cassetti. L'etichetta del cassetto 1 dice che la fiala è in questo cassetto. L'etichetta del cassetto 2 dice che la fiala non è in questo cassetto. L'etichetta del cassetto 3 dice che la fiala non è nel cassetto 1. Esattamente un'etichetta è vera. Le cinque alternative sono: cassetto 1; cassetto 3; cassetto 2; è impossibile decidere tra il cassetto 1 e il cassetto 3; nessun cassetto è possibile.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f2",
+        "checkedBy": "tolc-italian-checker-f2",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities and options match the English."
+      }
+    }
+  }
 }

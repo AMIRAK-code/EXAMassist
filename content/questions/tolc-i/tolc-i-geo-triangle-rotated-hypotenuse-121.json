@@ -78,5 +78,48 @@
     "solid-of-revolution",
     "cone",
     "altitude-to-hypotenuse"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un triangolo rettangolo ha i cateti di $6$ cm e $8$ cm. Il triangolo compie una rotazione completa attorno alla retta che contiene la sua ipotenusa. Qual è il volume del solido generato?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\dfrac{1152\\pi}{5}\\ \\text{cm}^{3}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\dfrac{250\\pi}{3}\\ \\text{cm}^{3}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$128\\pi\\ \\text{cm}^{3}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$96\\pi\\ \\text{cm}^{3}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\dfrac{384\\pi}{5}\\ \\text{cm}^{3}$"
+        }
+      ],
+      "explanationMd": "Ruotando attorno all'ipotenusa, il vertice dell'angolo retto descrive una circonferenza e ciascun cateto descrive la superficie laterale di un cono. Il solido è formato da due coni uniti per la base.\n\n**Passo 1 — il raggio comune.** È la distanza del vertice dell'angolo retto dall'ipotenusa, cioè l'altezza $h$ relativa all'ipotenusa. L'ipotenusa è $\\sqrt{36+64} = 10$, e il doppio dell'area dà $10\\,h = 6\\cdot 8$, quindi $h = \\frac{48}{10} = \\frac{24}{5}$ cm.\n\n**Passo 2 — le altezze.** Il piede dell'altezza divide l'ipotenusa in due parti che sono le altezze dei due coni; qualunque esse siano, la loro somma è $10$ cm.\n\n**Passo 3 — il volume.** $V = \\frac13\\pi h^{2} h_{1} + \\frac13\\pi h^{2} h_{2} = \\frac13\\pi h^{2}(h_{1}+h_{2}) = \\frac13\\pi\\cdot\\frac{576}{25}\\cdot 10 = \\frac{5760\\pi}{75} = \\frac{384\\pi}{5}\\ \\text{cm}^{3}$.\n\n**Verifica.** Le parti dell'ipotenusa sono $\\frac{36}{10} = 3.6$ e $\\frac{64}{10} = 6.4$ (ciascun cateto al quadrato diviso per l'ipotenusa); $3.6 + 6.4 = 10$ ✓. Inoltre il risultato $76.8\\pi$ è minore del volume di ciascuno dei due coni ottenuti ruotando attorno a un cateto ($96\\pi$ e $128\\pi$), come deve essere: il raggio $4.8$ è minore di entrambi i cateti.",
+      "distractorRationale": {
+        "b": "Prende come raggio $5$ cm, metà dell'ipotenusa; il raggio della base comune è l'altezza relativa all'ipotenusa, $4.8$ cm.",
+        "d": "Ruota il triangolo attorno al cateto di $8$ cm, ottenendo un solo cono di raggio $6$ e altezza $8$.",
+        "c": "Ruota il triangolo attorno al cateto di $6$ cm, ottenendo un solo cono di raggio $8$ e altezza $6$.",
+        "a": "Imposta correttamente i due coni ma dimentica il fattore $\\frac{1}{3}$ nel volume del cono, calcolando $\\pi\\cdot\\frac{576}{25}\\cdot 10$."
+      },
+      "accessibilityText": "Un triangolo rettangolo ha i cateti di 6 centimetri e 8 centimetri. Il triangolo compie una rotazione completa attorno alla retta che contiene la sua ipotenusa. Qual è il volume del solido generato? Le cinque alternative sono: 1152 pi greco fratto 5 centimetri cubi; 250 pi greco fratto 3 centimetri cubi; 128 pi greco centimetri cubi; 96 pi greco centimetri cubi; 384 pi greco fratto 5 centimetri cubi.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i2",
+        "checkedBy": "tolc-italian-checker-i1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; two cones, h=4.8, V=384pi/5."
+      }
+    }
+  }
 }

@@ -1,0 +1,125 @@
+{
+  "id": "tolce-math-radical-sum-204",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-powers-exp-log",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the value of $\\sqrt{50} - \\sqrt{18} + \\sqrt{8}$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$4$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$4\\sqrt{2}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$6\\sqrt{2}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$10\\sqrt{2}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$2\\sqrt{10}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Square roots can only be added or subtracted directly when they have the same radicand, so first bring each one to the form $n\\sqrt{2}$ by pulling out the largest perfect-square factor.\n\n- $\\sqrt{50} = \\sqrt{25 \\cdot 2} = 5\\sqrt{2}$\n- $\\sqrt{18} = \\sqrt{9 \\cdot 2} = 3\\sqrt{2}$\n- $\\sqrt{8} = \\sqrt{4 \\cdot 2} = 2\\sqrt{2}$\n\nNow they are like terms:\n\n$$5\\sqrt{2} - 3\\sqrt{2} + 2\\sqrt{2} = (5 - 3 + 2)\\sqrt{2} = 4\\sqrt{2}$$\n\nA rough check: $\\sqrt{50} \\approx 7.07$, $\\sqrt{18} \\approx 4.24$ and $\\sqrt{8} \\approx 2.83$, so the expression is about $5.66$, and $4\\sqrt{2} \\approx 4 \\times 1.414 = 5.66$.",
+  "distractorRationale": {
+    "a": "This gets the coefficient right, $5 - 3 + 2 = 4$, and then drops the common factor $\\sqrt{2}$. The expression is about $5.66$, not $4$.",
+    "c": "This writes $\\sqrt{8}$ as $4\\sqrt{2}$, taking half of $8$ instead of the square root of its square factor $4$. In fact $\\sqrt{8} = \\sqrt{4}\\sqrt{2} = 2\\sqrt{2}$.",
+    "e": "This combines the radicands, $\\sqrt{50 - 18 + 8} = \\sqrt{40} = 2\\sqrt{10}$. Square roots do not add that way: $\\sqrt{a} + \\sqrt{b}$ is not $\\sqrt{a + b}$.",
+    "d": "This adds all three terms, $5\\sqrt{2} + 3\\sqrt{2} + 2\\sqrt{2}$, losing the minus sign in front of $\\sqrt{18}$."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "The expression is the square root of 50, minus the square root of 18, plus the square root of 8. The answer choices are: 4; 4 times the square root of 2; 6 times the square root of 2; 2 times the square root of 10; 10 times the square root of 2.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Simplifying and combining like radicals; distractors model dropping the radical, a wrong simplification, combining radicands and a sign slip."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-math-author",
+    "reviewer": "tolce-blind-reviewer-2",
+    "reviewedOn": "2026-10-21",
+    "independentSolve": {
+      "solvedBy": "tolce-blind-reviewer-2",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "5sqrt2 - 3sqrt2 + 2sqrt2 = 4sqrt2. No other option equals 4sqrt2 (~5.657); E = 2sqrt10 ~ 6.32."
+    },
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "radicals",
+    "simplification"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Qual è il valore di $\\sqrt{50} - \\sqrt{18} + \\sqrt{8}$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$4$"
+        },
+        {
+          "id": "b",
+          "textMd": "$4\\sqrt{2}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$6\\sqrt{2}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$10\\sqrt{2}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$2\\sqrt{10}$"
+        }
+      ],
+      "explanationMd": "Le radici quadrate si possono sommare o sottrarre direttamente solo quando hanno lo stesso radicando, quindi per prima cosa porta ciascuna nella forma $n\\sqrt{2}$, estraendo dalla radice il massimo fattore che è un quadrato perfetto.\n\n- $\\sqrt{50} = \\sqrt{25 \\cdot 2} = 5\\sqrt{2}$\n- $\\sqrt{18} = \\sqrt{9 \\cdot 2} = 3\\sqrt{2}$\n- $\\sqrt{8} = \\sqrt{4 \\cdot 2} = 2\\sqrt{2}$\n\nOra sono radicali simili:\n\n$$5\\sqrt{2} - 3\\sqrt{2} + 2\\sqrt{2} = (5 - 3 + 2)\\sqrt{2} = 4\\sqrt{2}$$\n\nUna verifica approssimata: $\\sqrt{50} \\approx 7.07$, $\\sqrt{18} \\approx 4.24$ e $\\sqrt{8} \\approx 2.83$, quindi l'espressione vale circa $5.66$, e $4\\sqrt{2} \\approx 4 \\times 1.414 = 5.66$.",
+      "distractorRationale": {
+        "a": "Calcola correttamente il coefficiente, $5 - 3 + 2 = 4$, ma poi perde il fattore comune $\\sqrt{2}$. L'espressione vale circa $5.66$, non $4$.",
+        "c": "Scrive $\\sqrt{8}$ come $4\\sqrt{2}$, prendendo la metà di $8$ invece della radice quadrata del suo fattore quadrato $4$. In realtà $\\sqrt{8} = \\sqrt{4}\\sqrt{2} = 2\\sqrt{2}$.",
+        "e": "Combina i radicandi, $\\sqrt{50 - 18 + 8} = \\sqrt{40} = 2\\sqrt{10}$. Le radici quadrate non si sommano così: $\\sqrt{a} + \\sqrt{b}$ non è $\\sqrt{a + b}$.",
+        "d": "Somma tutti e tre i termini, $5\\sqrt{2} + 3\\sqrt{2} + 2\\sqrt{2}$, perdendo il segno meno davanti a $\\sqrt{18}$."
+      },
+      "accessibilityText": "L'espressione è la radice quadrata di 50, meno la radice quadrata di 18, più la radice quadrata di 8. Le alternative di risposta sono: 4; 4 per la radice quadrata di 2; 6 per la radice quadrata di 2; 2 per la radice quadrata di 10; 10 per la radice quadrata di 2.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": "tolce-italian-checker",
+        "checkedOn": "2026-10-23",
+        "answerPreserved": true,
+        "notes": "5sqrt2 - 3sqrt2 + 2sqrt2 = 4sqrt2."
+      }
+    }
+  }
+}

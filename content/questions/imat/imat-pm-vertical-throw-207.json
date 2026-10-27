@@ -1,0 +1,126 @@
+{
+  "id": "imat-pm-vertical-throw-207",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-physics-maths",
+  "skillSlug": "imat-phys-mechanics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A ball is thrown vertically upwards with an initial speed of $20\\ \\text{m/s}$. Air resistance is negligible; take $g = 10\\ \\text{m/s}^2$. How long after it is thrown is the ball $15\\ \\text{m}$ above the launch point for the second time?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$3\\ \\text{s}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$4\\ \\text{s}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$0.75\\ \\text{s}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$1\\ \\text{s}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$2\\ \\text{s}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "“For the second time” signals that the ball passes $15\\ \\text{m}$ twice, once going up and once coming down, so expect two roots and take the larger.\n\nTaking upwards as positive, the height after time $t$ is\n\n$$h = v_0 t - \\tfrac{1}{2} g t^2 = 20t - 5t^2$$\n\nSet $h = 15$: $5t^2 - 20t + 15 = 0$, so $t^2 - 4t + 3 = 0$ and $(t - 1)(t - 3) = 0$. The ball is at $15\\ \\text{m}$ at $t = 1\\ \\text{s}$ (rising) and at $t = 3\\ \\text{s}$ (falling), so the second time is $3\\ \\text{s}$.\n\nCheck with symmetry: the ball reaches its highest point when its velocity is zero, at $t = v_0 / g = 2\\ \\text{s}$, at a height of $20 \\cdot 2 - 5 \\cdot 4 = 20\\ \\text{m}$. Without air resistance the motion is symmetric about that instant, and $1\\ \\text{s}$ and $3\\ \\text{s}$ are each $1\\ \\text{s}$ from it.",
+  "distractorRationale": {
+    "c": "This divides $15\\ \\text{m}$ by $20\\ \\text{m/s}$, as if the ball kept its initial speed. Gravity slows it at $10\\ \\text{m/s}$ every second, so constant-speed reasoning does not apply.",
+    "d": "This is the first time the ball is $15\\ \\text{m}$ up, on the way up. The question asks for the second passage, on the way down.",
+    "e": "This is the time of the highest point, where the ball is $20\\ \\text{m}$ above the launch point, not $15\\ \\text{m}$.",
+    "b": "This is the total flight time, when the ball is back at the launch height ($h = 0$), not at $15\\ \\text{m}$."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "A ball is thrown straight up at 20 metres per second, with no air resistance and g equal to 10 metres per second squared. Find the time after launch at which the ball is 15 metres above the launch point for the second time. The five choices are 0.75 seconds, 1 second, 2 seconds, 3 seconds and 4 seconds.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "imat-physmaths-author",
+    "aiAssisted": true,
+    "notes": "Original item. Uniformly accelerated motion with a quadratic in t; distractors are the other notable instants."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "imat-physmaths-author",
+    "reviewer": "imat-blind-reviewer-2",
+    "reviewedOn": "2026-10-23",
+    "independentSolve": {
+      "solvedBy": "imat-blind-reviewer-2",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "15 = 20t - 5t^2 -> t^2 - 4t + 3 = 0 -> t = 1, 3 s; second time 3 s. B is total flight time, E time to apex, D first time."
+    },
+    "notes": "Author solved the item twice by independent routes and argued for each wrong choice; each fails on a specific, named error. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "physics",
+    "kinematics",
+    "free-fall",
+    "vertical-motion"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Una palla viene lanciata verticalmente verso l'alto con velocità iniziale di $20\\ \\text{m/s}$. La resistenza dell'aria è trascurabile; si assuma $g = 10\\ \\text{m/s}^2$. Dopo quanto tempo dal lancio la palla si trova per la seconda volta $15\\ \\text{m}$ sopra il punto di lancio?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$3\\ \\text{s}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$4\\ \\text{s}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$0{,}75\\ \\text{s}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$1\\ \\text{s}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$2\\ \\text{s}$"
+        }
+      ],
+      "explanationMd": "«Per la seconda volta» indica che la palla passa due volte a $15\\ \\text{m}$, una in salita e una in discesa: ci si aspettano due radici e si prende la maggiore.\n\nScegliendo come positivo il verso verso l'alto, l'altezza dopo un tempo $t$ è\n\n$$h = v_0 t - \\tfrac{1}{2} g t^2 = 20t - 5t^2$$\n\nSi pone $h = 15$: $5t^2 - 20t + 15 = 0$, quindi $t^2 - 4t + 3 = 0$ e $(t - 1)(t - 3) = 0$. La palla si trova a $15\\ \\text{m}$ per $t = 1\\ \\text{s}$ (in salita) e per $t = 3\\ \\text{s}$ (in discesa), quindi la seconda volta è a $3\\ \\text{s}$.\n\nVerifica per simmetria: la palla raggiunge il punto più alto quando la sua velocità è nulla, per $t = v_0 / g = 2\\ \\text{s}$, a un'altezza di $20 \\cdot 2 - 5 \\cdot 4 = 20\\ \\text{m}$. In assenza di resistenza dell'aria il moto è simmetrico rispetto a quell'istante, e $1\\ \\text{s}$ e $3\\ \\text{s}$ distano entrambi $1\\ \\text{s}$ da esso.",
+      "distractorRationale": {
+        "c": "Qui si divide $15\\ \\text{m}$ per $20\\ \\text{m/s}$, come se la palla mantenesse la velocità iniziale. La gravità la rallenta di $10\\ \\text{m/s}$ ogni secondo, quindi il ragionamento a velocità costante non vale.",
+        "d": "Questa è la prima volta in cui la palla si trova a $15\\ \\text{m}$, in salita. La domanda chiede il secondo passaggio, in discesa.",
+        "e": "Questo è l'istante del punto più alto, in cui la palla si trova $20\\ \\text{m}$ sopra il punto di lancio, non $15\\ \\text{m}$.",
+        "b": "Questo è il tempo di volo complessivo, quando la palla torna all'altezza di lancio ($h = 0$), non a $15\\ \\text{m}$."
+      },
+      "accessibilityText": "Una palla è lanciata verticalmente verso l'alto a 20 metri al secondo, senza resistenza dell'aria e con g uguale a 10 metri al secondo quadrato. Trovare dopo quanto tempo dal lancio la palla si trova per la seconda volta 15 metri sopra il punto di lancio. Le cinque alternative sono 0,75 secondi, 1 secondo, 2 secondi, 3 secondi e 4 secondi.",
+      "check": {
+        "translatedBy": "imat-physmaths-author",
+        "checkedBy": "imat-italian-checker",
+        "checkedOn": "2026-10-23",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities, units, negations and options match; terminology correct."
+      }
+    }
+  }
+}

@@ -78,5 +78,48 @@
     "necessary-condition",
     "contrapositive",
     "only-if"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un regolamento universitario stabilisce: «Uno studente ottiene la borsa di studio solo se la sua media dei voti è almeno 27». Supponendo che il regolamento sia rispettato, quale delle seguenti affermazioni deve essere vera?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Ogni studente con media almeno 27 ottiene la borsa di studio."
+        },
+        {
+          "id": "b",
+          "textMd": "Uno studente che non ottiene la borsa di studio ha una media inferiore a 27."
+        },
+        {
+          "id": "c",
+          "textMd": "Almeno uno studente con media almeno 27 non ottiene la borsa di studio."
+        },
+        {
+          "id": "d",
+          "textMd": "Solo gli studenti con media esattamente 27 possono ottenere la borsa di studio."
+        },
+        {
+          "id": "e",
+          "textMd": "Uno studente con media inferiore a 27 non ottiene la borsa di studio."
+        }
+      ],
+      "explanationMd": "«P solo se Q» dice che Q è una condizione necessaria per P: ogni volta che vale P, vale Q. Qui P è «ottiene la borsa di studio» e Q è «media almeno 27», quindi la regola è «borsa di studio implica media almeno 27».\n\nUn'implicazione e la sua contronominale dicono la stessa cosa. La contronominale è «media inferiore a 27 implica niente borsa di studio», ed è questa l'affermazione che deve essere vera.\n\nL'inversa («media almeno 27 implica borsa di studio») e la contraria («niente borsa di studio implica media inferiore a 27») non sono conseguenze della regola. Per rendersene conto, si immagini uno studente con media 28 a cui la borsa viene negata per mancanza di fondi: la regola non è violata.",
+      "distractorRationale": {
+        "a": "Trasforma «solo se» in «se». La regola rende la media di 27 necessaria, non sufficiente; non promette la borsa di studio a tutti quelli che la raggiungono.",
+        "b": "È la contraria: nega entrambe le parti della regola senza scambiarle, il che la rende equivalente all'inversa, «media almeno 27 implica borsa di studio», e non alla regola. Uno studente con media 28 potrebbe vedersi negare la borsa per un altro motivo e la regola varrebbe comunque.",
+        "d": "La regola fissa un minimo, «almeno 27», non un valore esatto. Le medie superiori a 27 sono ammesse.",
+        "c": "La regola lo permette ma non lo impone. Potrebbe darsi che ogni studente con media pari o superiore a 27 ottenga la borsa di studio."
+      },
+      "accessibilityText": "Una breve domanda di solo testo, senza figure. La regola dice: uno studente ottiene la borsa di studio solo se la sua media dei voti è almeno 27. La domanda chiede quale affermazione deve essere vera se la regola è rispettata. Le cinque alternative sono: ogni studente con media almeno 27 ottiene la borsa; uno studente che non la ottiene ha una media inferiore a 27; uno studente con media inferiore a 27 non la ottiene; solo gli studenti con media esattamente 27 possono ottenerla; almeno uno studente con media almeno 27 non la ottiene.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f2",
+        "checkedBy": "tolc-italian-checker-f2",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities and options match the English."
+      }
+    }
+  }
 }

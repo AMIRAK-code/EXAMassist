@@ -1,0 +1,126 @@
+{
+  "id": "imat-bio-plasmid-restriction-fragments-012",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-biology",
+  "skillSlug": "imat-bio-genetics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A circular plasmid is 6000 base pairs (bp) long. Its positions are numbered from 1 to 6000 around the circle, starting from a fixed reference point. A restriction enzyme cuts the plasmid at exactly three sites: at positions 1000, 2500 and 4000.\n\nAfter complete digestion, how many fragments are produced, and how long is the largest one?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "4 fragments; the largest is 3000 bp"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "3 fragments; the largest is 1500 bp"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "4 fragments; the largest is 2000 bp"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "3 fragments; the largest is 3000 bp"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "3 fragments; the largest is 2000 bp"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The key fact is that the plasmid is **circular**. A circle has no ends, so $n$ cuts produce $n$ fragments (a linear molecule would give $n + 1$). Three cuts give three fragments.\n\nNow measure the gaps between consecutive cuts, going all the way round:\n\n- from 1000 to 2500: 1500 bp\n- from 2500 to 4000: 1500 bp\n- from 4000 round past 6000 and back to 1000: $2000 + 1000 = 3000$ bp\n\nCheck: $1500 + 1500 + 3000 = 6000$, the whole plasmid. The largest fragment is 3000 bp.\n\nThe trap is to treat the numbering's start as a real end: that splits the 3000 bp fragment into pieces of 1000 bp and 2000 bp and gives four fragments.",
+  "distractorRationale": {
+    "c": "This treats the plasmid as a linear molecule with ends at positions 1 and 6000, giving pieces of 1000, 1500, 1500 and 2000 bp. A circle has no ends, so the 1000 bp and 2000 bp pieces are one fragment.",
+    "e": "The fragment count is right, but the largest fragment is taken as the stretch from 4000 to 6000 only, forgetting that it continues past the reference point to the cut at 1000.",
+    "a": "This finds the correct 3000 bp fragment but still counts fragments as for a linear molecule; three cuts in a circle make three fragments, not four.",
+    "b": "This uses only the two equal gaps between the listed positions and overlooks the fragment that runs from 4000 round to 1000."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "A circular plasmid of 6000 base pairs, positions numbered 1 to 6000 around the circle, is cut at positions 1000, 2500 and 4000. How many fragments result and how long is the largest? Each choice gives a number of fragments, 3 or 4, and a largest length of 1500, 2000 or 3000 base pairs.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "imat-biology-author",
+    "aiAssisted": true,
+    "notes": "Original restriction-mapping item. Two-part choices separate the counting error (linear versus circular) from the length error."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "imat-biology-author",
+    "reviewer": "imat-blind-reviewer-1",
+    "reviewedOn": "2026-10-23",
+    "independentSolve": {
+      "solvedBy": "imat-blind-reviewer-1",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Circular DNA with 3 cuts gives 3 fragments: 1000-2500 = 1500, 2500-4000 = 1500, 4000->6000->1000 = 3000. Largest 3000 bp."
+    },
+    "notes": "Author solved the item twice independently and argued for each wrong choice; no second choice was found defensible. Awaiting blind independent solve and a check of the Italian translation by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "biology",
+    "biotechnology",
+    "restriction-enzymes",
+    "plasmids"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un plasmide circolare è lungo 6000 paia di basi (bp). Le sue posizioni sono numerate da 1 a 6000 lungo il cerchio, a partire da un punto di riferimento fisso. Un enzima di restrizione taglia il plasmide esattamente in tre siti: nelle posizioni 1000, 2500 e 4000.\n\nDopo la digestione completa, quanti frammenti si ottengono e quanto è lungo il frammento più grande?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "4 frammenti; il più grande è di 3000 bp"
+        },
+        {
+          "id": "b",
+          "textMd": "3 frammenti; il più grande è di 1500 bp"
+        },
+        {
+          "id": "c",
+          "textMd": "4 frammenti; il più grande è di 2000 bp"
+        },
+        {
+          "id": "d",
+          "textMd": "3 frammenti; il più grande è di 3000 bp"
+        },
+        {
+          "id": "e",
+          "textMd": "3 frammenti; il più grande è di 2000 bp"
+        }
+      ],
+      "explanationMd": "Il fatto decisivo è che il plasmide è **circolare**. Un cerchio non ha estremità, quindi $n$ tagli producono $n$ frammenti (una molecola lineare ne darebbe $n + 1$). Tre tagli danno tre frammenti.\n\nOra si misurino gli intervalli tra tagli consecutivi, facendo tutto il giro:\n\n- da 1000 a 2500: 1500 bp\n- da 2500 a 4000: 1500 bp\n- da 4000, oltre 6000 e di nuovo fino a 1000: $2000 + 1000 = 3000$ bp\n\nVerifica: $1500 + 1500 + 3000 = 6000$, l'intero plasmide. Il frammento più grande è di 3000 bp.\n\nLa trappola è trattare l'inizio della numerazione come una vera estremità: così il frammento di 3000 bp si divide in pezzi di 1000 bp e 2000 bp e si ottengono quattro frammenti.",
+      "distractorRationale": {
+        "c": "Tratta il plasmide come una molecola lineare con estremità nelle posizioni 1 e 6000, ottenendo pezzi di 1000, 1500, 1500 e 2000 bp. Un cerchio non ha estremità, quindi i pezzi di 1000 bp e 2000 bp sono un unico frammento.",
+        "e": "Il numero di frammenti è corretto, ma come frammento più grande si considera solo il tratto da 4000 a 6000, dimenticando che prosegue oltre il punto di riferimento fino al taglio in 1000.",
+        "a": "Trova correttamente il frammento di 3000 bp ma conta ancora i frammenti come per una molecola lineare; tre tagli in un cerchio danno tre frammenti, non quattro.",
+        "b": "Usa solo i due intervalli uguali tra le posizioni indicate e trascura il frammento che va da 4000, facendo il giro, fino a 1000."
+      },
+      "accessibilityText": "Un plasmide circolare di 6000 paia di basi, con le posizioni numerate da 1 a 6000 lungo il cerchio, viene tagliato nelle posizioni 1000, 2500 e 4000. Quanti frammenti si ottengono e quanto è lungo il più grande? Ogni opzione indica un numero di frammenti, 3 o 4, e una lunghezza massima di 1500, 2000 o 3000 paia di basi.",
+      "check": {
+        "translatedBy": "imat-biology-author",
+        "checkedBy": "imat-italian-checker",
+        "checkedOn": "2026-10-23",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities, units, negations and options match; terminology correct."
+      }
+    }
+  }
+}

@@ -78,5 +78,48 @@
     "abo-blood-groups",
     "codominance",
     "inference-of-genotype"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Una donna di gruppo sanguigno A e un uomo di gruppo sanguigno B hanno un figlio di gruppo sanguigno 0. Qual è la probabilità che anche il loro prossimo figlio sia di gruppo sanguigno 0?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "0"
+        },
+        {
+          "id": "b",
+          "textMd": "1/4"
+        },
+        {
+          "id": "c",
+          "textMd": "1/2"
+        },
+        {
+          "id": "d",
+          "textMd": "3/4"
+        },
+        {
+          "id": "e",
+          "textMd": "1"
+        }
+      ],
+      "explanationMd": "Osserva prima che cosa ti dice il figlio di gruppo 0. Il gruppo 0 corrisponde al genotipo $ii$, quindi quel figlio ha ricevuto un allele $i$ da ciascun genitore. Un genitore di gruppo A è $I^{A}I^{A}$ oppure $I^{A}i$, e un genitore di gruppo B è $I^{B}I^{B}$ oppure $I^{B}i$. Poiché la coppia ha un figlio di gruppo 0, entrambi i genitori devono portare $i$: la madre è $I^{A}i$ e il padre è $I^{B}i$.\n\nIncrocio $I^{A}i \\times I^{B}i$: i quattro figli ugualmente probabili sono $I^{A}I^{B}$ (gruppo AB), $I^{A}i$ (gruppo A), $I^{B}i$ (gruppo B) e $ii$ (gruppo 0). La probabilità del gruppo 0 è $\\frac{1}{4}$.\n\nIl primo figlio non cambia le probabilità per il successivo; ogni figlio è un'estrazione indipendente dallo stesso incrocio. Il primo figlio ci ha detto soltanto i genotipi dei genitori.",
+      "distractorRationale": {
+        "a": "Presuppone che un genitore di gruppo A e uno di gruppo B non possano avere un figlio di gruppo 0. Invece possono, se ciascuno è eterozigote e porta l'allele recessivo del gruppo 0.",
+        "c": "È la probabilità del gruppo 0 quando un genitore è $I^{A}i$ e l'altro è $ii$ (gruppo 0), come in un reincrocio (test cross). Qui nessuno dei due genitori è di gruppo 0: ciascuno porta un allele $i$ e un allele diverso da 0, quindi ciascuno trasmette $i$ solo nella metà dei casi e la probabilità è $\\frac{1}{2}\\times\\frac{1}{2}=\\frac{1}{4}$.",
+        "d": "È la probabilità di NON essere di gruppo 0: i tre quarti dei figli che ricevono $I^{A}$, $I^{B}$ o entrambi. Risponde alla domanda opposta, oppure prende in prestito il rapporto 3 : 1 senza notare che il gruppo 0 è il tipo recessivo, uno su quattro.",
+        "e": "Presuppone che, siccome il primo figlio è di gruppo 0, lo saranno tutti. Ogni figlio eredita gli alleli indipendentemente dai fratelli."
+      },
+      "accessibilityText": "Una breve domanda testuale senza figure. Una madre di gruppo sanguigno A e un padre di gruppo sanguigno B hanno un figlio di gruppo sanguigno 0. La domanda chiede la probabilità che anche il prossimo figlio sia di gruppo 0. Le cinque alternative sono zero, un quarto, un mezzo, tre quarti e uno. Nella spiegazione gli alleli sono scritti I con apice A, I con apice B e i minuscola.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f1",
+        "checkedBy": "tolc-italian-checker-f1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities and options match the English."
+      }
+    }
+  }
 }

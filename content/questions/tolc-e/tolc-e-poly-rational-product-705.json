@@ -78,5 +78,48 @@
     "factorisation",
     "rational-expressions",
     "cancelling"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Per ogni $x$ per cui l'espressione è definita, semplificare\n\n$$\\frac{x^{2}-9}{x^{2}+x-6}\\cdot\\frac{x+3}{x-3}.$$",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\dfrac{(x+3)^{2}}{(x+2)(x-3)}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\dfrac{x-3}{x-2}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$\\dfrac{x+3}{x+2}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\dfrac{(x-3)^{2}}{(x-2)(x+3)}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\dfrac{x+3}{x-2}$"
+        }
+      ],
+      "explanationMd": "Prima scomponi tutto in fattori, poi semplifica.\n\n**Passo 1 — scomponi ciascun termine.**\n- $x^{2}-9 = (x-3)(x+3)$ (differenza di quadrati).\n- $x^{2}+x-6 = (x+3)(x-2)$: cerca due numeri con prodotto $-6$ e somma $+1$, cioè $3$ e $-2$.\n\n**Passo 2 — scrivi il prodotto e semplifica i fattori comuni.**\n\n$$\\frac{(x-3)(x+3)}{(x+3)(x-2)}\\cdot\\frac{x+3}{x-3} = \\frac{x+3}{x-2}.$$\n\nSi semplificano un fattore $x-3$ e un fattore $x+3$, e al numeratore resta un fattore $x+3$.\n\n**Come verificare.** Sostituisci $x = 4$. L'espressione originale dà $\\dfrac{7}{14}\\cdot\\dfrac{7}{1} = 3.5$, e $\\dfrac{4+3}{4-2} = 3.5$. Le altre quattro espressioni danno in $x=4$ i valori $0.5$, circa $8.17$, circa $1.17$ e circa $0.07$, quindi nessuna coincide.",
+      "distractorRationale": {
+        "b": "Legge $x^{2}-9$ come $(x-3)^{2}$. Una differenza di quadrati si scompone come $(x-3)(x+3)$, e poi si semplifica un solo fattore $x-3$.",
+        "a": "Scompone $x^{2}+x-6$ come $(x+2)(x-3)$, che sviluppato dà $x^{2}-x-6$. La coppia con prodotto $-6$ e somma $+1$ è $+3$ e $-2$.",
+        "c": "Sbaglia di un segno la coppia di fattori di $x^{2}+x-6$, usando $(x+3)(x+2)$; sviluppato dà $x^{2}+5x+6$.",
+        "d": "Divide per la seconda frazione invece di moltiplicare, il che mette $x-3$ al numeratore e $x+3$ al denominatore."
+      },
+      "accessibilityText": "Semplificare un prodotto di due frazioni, per ogni x per cui è definito. La prima frazione ha numeratore x al quadrato meno 9 e denominatore x al quadrato più x meno 6. La seconda frazione ha numeratore x più 3 e denominatore x meno 3. Le cinque alternative sono frazioni: x più 3 fratto x meno 2; x meno 3 fratto x meno 2; x più 3 al quadrato fratto il prodotto di x più 2 e x meno 3; x più 3 fratto x più 2; x meno 3 al quadrato fratto il prodotto di x meno 2 e x più 3.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-e",
+        "checkedBy": "tolc-italian-checker-e",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful. (x+3)/(x-2)."
+      }
+    }
+  }
 }

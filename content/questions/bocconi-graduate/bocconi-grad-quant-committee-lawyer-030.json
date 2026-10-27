@@ -1,0 +1,77 @@
+{
+  "id": "bocconi-grad-quant-committee-lawyer-030",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-quantitative-reasoning",
+  "skillSlug": "grad-quant-algebra-problem-solving",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A committee of 3 people is chosen at random from a group of 5 economists and 3 lawyers. What is the probability that the committee includes at least one lawyer?",
+  "instructionsMd": "Work by hand.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "5/28"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "3/8"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "387/512"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "23/28"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "\"At least one\" is easiest through its complement: the committee has NO lawyer, which means all three are economists.\n\n$$P(\\text{no lawyer}) = \\frac{\\binom{5}{3}}{\\binom{8}{3}} = \\frac{10}{56} = \\frac{5}{28}$$\n\n$$P(\\text{at least one lawyer}) = 1 - \\frac{5}{28} = \\frac{23}{28}$$\n\n**Doing it step by step instead.** Picking three people one at a time with no lawyer has probability $\\frac{5}{8} \\times \\frac{4}{7} \\times \\frac{3}{6} = \\frac{60}{336} = \\frac{5}{28}$, the same complement.\n\n**The trap.** A committee is chosen WITHOUT replacement: once an economist is chosen, fewer remain. Treating each choice as independent with probability $\\frac{5}{8}$ gives a wrong answer.",
+  "distractorRationale": {
+    "a": "This is the probability of NO lawyer, the complement. It must be subtracted from 1.",
+    "b": "This is the probability that one particular pick is a lawyer, $\\frac{3}{8}$. It ignores the other two places on the committee.",
+    "c": "This treats the three choices as independent with replacement, $1 - \\left(\\frac{5}{8}\\right)^3 = \\frac{387}{512}$. A person cannot be chosen twice for a committee."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "A quantitative question. A committee of 3 is chosen at random from 5 economists and 3 lawyers. It asks the probability that the committee includes at least one lawyer. The options are five twenty-eighths, three eighths, 387 over 512, and twenty-three twenty-eighths.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-graduate-author",
+    "aiAssisted": true,
+    "notes": "Original item. Distractors are the complement, a single-draw probability, and the with-replacement error."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-graduate-author",
+    "reviewer": "bocconi-graduate-blind-reviewer",
+    "reviewedOn": "2026-10-27",
+    "independentSolve": {
+      "solvedBy": "bocconi-graduate-blind-reviewer",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "P(no lawyer) = C(5,3)/C(8,3) = 10/56 = 5/28. P(at least one) = 1 - 5/28 = 23/28. 5/28 is the complement; 3/8 is the single-draw probability; 387/512 = 1-(5/8)^3 assumes replacement."
+    },
+    "notes": "Author checked that exactly one option is defensible. Awaiting blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "probability",
+    "complement",
+    "combinations"
+  ],
+  "translations": {}
+}

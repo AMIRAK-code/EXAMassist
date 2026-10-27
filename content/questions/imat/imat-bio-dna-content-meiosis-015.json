@@ -1,0 +1,126 @@
+{
+  "id": "imat-bio-dna-content-meiosis-015",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-biology",
+  "skillSlug": "imat-bio-reproduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A diploid animal cell in the $G_1$ phase of the cell cycle contains a mass $m$ of nuclear DNA. The cell then replicates its DNA and enters meiosis. What mass of nuclear DNA does one cell contain at metaphase II?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$4m$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$m/4$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$m$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$m/2$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$2m$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Track the DNA mass step by step rather than the chromosome number.\n\n1. $G_1$: $m$ (diploid, each chromosome one chromatid).\n2. After S phase: $2m$ (each chromosome now two chromatids).\n3. Meiosis I separates homologous chromosomes into two cells: $2m \\div 2 = m$ each. Each chromosome still has two chromatids.\n4. **Metaphase II**: the chromosomes line up, but the chromatids have not yet separated, so the cell still holds $m$.\n\nOnly at the end of meiosis II, when the chromatids part and the cell divides, does each cell drop to $m/2$, the amount in a gamete. Metaphase II is the stage where the cell is already haploid in chromosome number but still holds the same DNA mass as a diploid $G_1$ cell.",
+  "distractorRationale": {
+    "b": "This halves the DNA once too often, as though both meiotic divisions had already been completed starting from $m$ without any replication; no stage of meiosis holds $m/4$.",
+    "d": "This is the DNA content of a gamete at the end of meiosis II. At metaphase II the sister chromatids have not yet been separated.",
+    "e": "This is the content after S phase and through meiosis I, up to metaphase I. The first division has halved it by metaphase II.",
+    "a": "This doubles the DNA twice, as though it were replicated again before meiosis II. There is no S phase between the two meiotic divisions."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": null,
+  "accessibilityText": "A diploid cell in G 1 has nuclear DNA mass m. It replicates its DNA and enters meiosis. What DNA mass does one cell have at metaphase II? Choices: m over 4, m over 2, m, 2 m, 4 m.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "imat-biology-author",
+    "aiAssisted": true,
+    "notes": "Original item separating DNA mass from chromosome number across meiosis."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "imat-biology-author",
+    "reviewer": "imat-blind-reviewer-1",
+    "reviewedOn": "2026-10-23",
+    "independentSolve": {
+      "solvedBy": "imat-blind-reviewer-1",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "G1 = m (2C). After S = 2m. Meiosis I halves to m per cell; at metaphase II sister chromatids still joined, so m."
+    },
+    "notes": "Author solved the item twice independently and argued for each wrong choice; no second choice was found defensible. Awaiting blind independent solve and a check of the Italian translation by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "biology",
+    "meiosis",
+    "dna-content",
+    "cell-cycle"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Una cellula animale diploide in fase $G_1$ del ciclo cellulare contiene una massa $m$ di DNA nucleare. La cellula poi duplica il suo DNA ed entra in meiosi. Quale massa di DNA nucleare contiene una cellula in metafase II?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$4m$"
+        },
+        {
+          "id": "b",
+          "textMd": "$m/4$"
+        },
+        {
+          "id": "c",
+          "textMd": "$m$"
+        },
+        {
+          "id": "d",
+          "textMd": "$m/2$"
+        },
+        {
+          "id": "e",
+          "textMd": "$2m$"
+        }
+      ],
+      "explanationMd": "Si segua passo per passo la massa di DNA, non il numero di cromosomi.\n\n1. $G_1$: $m$ (diploide, ogni cromosoma con un cromatidio).\n2. Dopo la fase S: $2m$ (ogni cromosoma ora con due cromatidi).\n3. La meiosi I separa i cromosomi omologhi in due cellule: $2m \\div 2 = m$ ciascuna. Ogni cromosoma ha ancora due cromatidi.\n4. **Metafase II**: i cromosomi si allineano, ma i cromatidi non si sono ancora separati, quindi la cellula contiene ancora $m$.\n\nSolo alla fine della meiosi II, quando i cromatidi si separano e la cellula si divide, ogni cellula scende a $m/2$, la quantità di un gamete. La metafase II è lo stadio in cui la cellula è già aploide per numero di cromosomi ma contiene ancora la stessa massa di DNA di una cellula diploide in $G_1$.",
+      "distractorRationale": {
+        "b": "Dimezza il DNA una volta di troppo, come se entrambe le divisioni meiotiche fossero già avvenute partendo da $m$ senza alcuna duplicazione; nessuno stadio della meiosi contiene $m/4$.",
+        "d": "È il contenuto di DNA di un gamete alla fine della meiosi II. In metafase II i cromatidi fratelli non sono ancora stati separati.",
+        "e": "È il contenuto dopo la fase S e durante la meiosi I, fino alla metafase I. In metafase II la prima divisione lo ha già dimezzato.",
+        "a": "Raddoppia il DNA due volte, come se fosse duplicato di nuovo prima della meiosi II. Tra le due divisioni meiotiche non c'è una fase S."
+      },
+      "accessibilityText": "Una cellula diploide in G 1 ha una massa di DNA nucleare m. Duplica il suo DNA ed entra in meiosi. Quale massa di DNA ha una cellula in metafase II? Opzioni: m fratto 4, m fratto 2, m, 2 m, 4 m.",
+      "check": {
+        "translatedBy": "imat-biology-author",
+        "checkedBy": "imat-italian-checker",
+        "checkedOn": "2026-10-23",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities, units, negations and options match; terminology correct."
+      }
+    }
+  }
+}

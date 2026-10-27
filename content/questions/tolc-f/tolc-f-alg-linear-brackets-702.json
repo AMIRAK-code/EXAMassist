@@ -77,5 +77,48 @@
   "tags": [
     "linear-equation",
     "brackets"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Risolvi $3(x-2) - 2(x-5) = 4x - 8$.",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$-\\dfrac{8}{3}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$-\\dfrac{4}{3}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$4$"
+        },
+        {
+          "id": "d",
+          "textMd": "$12$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\dfrac{16}{3}$"
+        }
+      ],
+      "explanationMd": "Sviluppa completamente ogni parentesi, facendo attenzione ai segni.\n\n$$3(x-2) = 3x - 6, \\qquad -2(x-5) = -2x + 10.$$\n\nIl primo membro diventa $3x - 6 - 2x + 10 = x + 4$. Quindi $x + 4 = 4x - 8$, e spostando i termini si ottiene $12 = 3x$, da cui $x = 4$.\n\n**Come verificarlo.** Sostituisci $x=4$: il primo membro vale $3\\cdot 2 - 2\\cdot(-1) = 6 + 2 = 8$ e il secondo membro vale $16 - 8 = 8$ ✓.",
+      "distractorRationale": {
+        "a": "Sbaglia il segno meno davanti alla seconda parentesi, scrivendo $-2(x-5) = -2x - 10$. Il prodotto di due numeri negativi è positivo: $-2\\cdot(-5) = +10$.",
+        "b": "Arriva correttamente a $x + 4 = 4x - 8$ e poi sposta i termini con il segno sbagliato, scrivendo $4 - 8 = 3x$ invece di $4 + 8 = 3x$.",
+        "e": "Moltiplica solo il primo termine della prima parentesi, scrivendo $3(x-2) = 3x - 2$. Il 3 moltiplica entrambi i termini.",
+        "d": "Arriva correttamente a $3x = 12$ e riporta 12 senza dividere per 3."
+      },
+      "accessibilityText": "Risolvi l'equazione: 3 per la quantità x meno 2, meno 2 per la quantità x meno 5, uguale a 4 x meno 8. Le cinque alternative sono meno otto terzi, meno quattro terzi, 4, 12 e sedici terzi.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f2",
+        "checkedBy": "tolc-italian-checker-f1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities and options match the English."
+      }
+    }
+  }
 }

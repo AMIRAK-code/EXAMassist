@@ -78,5 +78,48 @@
     "powers",
     "negative-exponents",
     "common-base"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Semplificare $\\dfrac{8^{3}\\cdot 4^{-2}}{2^{4}}$.",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\dfrac{1}{4}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$2$"
+        },
+        {
+          "id": "c",
+          "textMd": "$8$"
+        },
+        {
+          "id": "d",
+          "textMd": "$32$"
+        },
+        {
+          "id": "e",
+          "textMd": "$512$"
+        }
+      ],
+      "explanationMd": "Si scrive ogni fattore come potenza della stessa base, 2: a quel punto basta sommare e sottrarre gli esponenti.\n\n**Passo 1 — riscrivere le basi.** $8^{3} = (2^{3})^{3} = 2^{9}$ e $4^{-2} = (2^{2})^{-2} = 2^{-4}$. Quando si eleva una potenza a un'altra potenza, gli esponenti si moltiplicano.\n\n**Passo 2 — combinare.** Il numeratore è $2^{9}\\cdot 2^{-4} = 2^{9-4} = 2^{5}$, e dividendo per $2^{4}$ si ottiene $2^{5-4} = 2^{1} = 2$.\n\n**Come verificarlo.** Con i numeri ordinari: $8^{3} = 512$, $4^{-2} = \\tfrac{1}{16}$ e $2^{4} = 16$, quindi l'espressione vale $\\dfrac{512/16}{16} = \\dfrac{32}{16} = 2$.",
+      "distractorRationale": {
+        "c": "Riscrive $4^{-2}$ come $2^{-2}$, dimenticando che $4 = 2^{2}$ raddoppia l'esponente. Si ottiene $2^{9-2-4} = 2^{3} = 8$; la riscrittura corretta è $4^{-2} = 2^{-4}$.",
+        "a": "Somma gli esponenti in $(2^{3})^{3}$ invece di moltiplicarli, così $8^{3}$ diventa $2^{6}$ e il risultato $2^{6-4-4} = 2^{-2}$. Nella potenza di una potenza gli esponenti si moltiplicano: $8^{3} = 2^{9}$.",
+        "e": "Trascura il segno meno dell'esponente in $4^{-2}$, trattandolo come $4^{2} = 2^{4}$. Allora il numeratore è $2^{13}$ e il risultato $2^{9} = 512$. Un esponente negativo indica un reciproco, quindi $4^{-2} = 2^{-4}$.",
+        "d": "Semplifica correttamente il numeratore in $2^{5} = 32$ ma dimentica di dividere per il denominatore $2^{4}$."
+      },
+      "accessibilityText": "Semplificare la frazione che ha come numeratore 8 elevato alla 3 per 4 elevato alla meno 2, e come denominatore 2 elevato alla 4. Le cinque alternative sono: un quarto; 2; 8; 32; 512.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i2",
+        "checkedBy": "tolc-italian-checker-i1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; 'Semplificare' standard imperative."
+      }
+    }
+  }
 }

@@ -1,4 +1,7 @@
 import type { NextConfig } from 'next';
+import createNextIntlPlugin from 'next-intl/plugin';
+
+const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
 /*
  * The site moved from exam.assist365.app to uniexamer.com on 27 October 2026,
@@ -43,6 +46,10 @@ const nextConfig: NextConfig = {
         })),
       ),
       { source: '/readiness', destination: '/study-plan/progress', permanent: true },
+      // Plans moved from /premium (hosted Stripe Checkout) to /pricing and our
+      // own /checkout (docs/BILLING.md). Old links keep working, query and all.
+      { source: '/premium', destination: '/pricing', permanent: true },
+      { source: '/premium/welcome', destination: '/account', permanent: false },
     ];
   },
   async headers() {
@@ -59,8 +66,18 @@ const nextConfig: NextConfig = {
           { key: 'Strict-Transport-Security', value: 'max-age=31536000' },
         ],
       },
+      {
+        // The interface font, fetched by Stripe's card-field iframes
+        // so the Payment Element matches our own fields.
+        source: '/fonts/:path*',
+        headers: [
+          // A public, openly licensed font file: any origin may read it.
+          { key: 'Access-Control-Allow-Origin', value: '*' },
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
     ];
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

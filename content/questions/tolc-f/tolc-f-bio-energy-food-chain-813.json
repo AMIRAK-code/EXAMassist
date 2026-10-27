@@ -78,5 +78,48 @@
     "energy-flow",
     "trophic-levels",
     "food-chain"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "In un prato della Pianura Padana esiste una catena alimentare: erba, poi cavalletta, poi rana, poi airone. Si supponga che ogni livello trofico trasmetta al livello successivo il 10% dell'energia che riceve. Se l'erba cattura 50 000 kJ, quanta energia arriva alla rana?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "45 000 kJ"
+        },
+        {
+          "id": "b",
+          "textMd": "500 kJ"
+        },
+        {
+          "id": "c",
+          "textMd": "40 500 kJ"
+        },
+        {
+          "id": "d",
+          "textMd": "50 kJ"
+        },
+        {
+          "id": "e",
+          "textMd": "5 000 kJ"
+        }
+      ],
+      "explanationMd": "Conta prima i trasferimenti. L'erba è il primo livello, la cavalletta il secondo e la rana il terzo, quindi tra l'erba e la rana ci sono due trasferimenti. Ogni trasferimento trasmette il 10%, cioè un decimo.\n\n- Dall'erba alla cavalletta: $50{,}000 \\div 10 = 5{,}000$ kJ.\n- Dalla cavalletta alla rana: $5{,}000 \\div 10 = 500$ kJ.\n\nVerifica: $50{,}000 \\times 0.1 \\times 0.1 = 500$. Ogni alternativa sbagliata nasce dal contare male i trasferimenti o dal leggere «trasmette il 10%» come «perde il 10%».",
+      "distractorRationale": {
+        "d": "È l'energia che arriva all'airone. Conta un trasferimento di troppo.",
+        "e": "È l'energia che arriva alla cavalletta. Conta un trasferimento in meno, perché la rana si trova due passaggi dopo l'erba.",
+        "c": "Legge il 10% come la quantità persa a ogni passaggio, quindi trasmette il 90% per due volte: $50{,}000 \\times 0.9 \\times 0.9 = 40{,}500$ kJ.",
+        "a": "Legge il 10% come la quantità persa e lo applica una sola volta ($50{,}000 \\times 0.9 = 45{,}000$ kJ), quindi commette entrambi gli errori: la frazione sbagliata e un trasferimento in meno."
+      },
+      "accessibilityText": "Una breve domanda testuale senza figure. Una catena alimentare di quattro livelli è: erba, cavalletta, rana, airone. Ogni livello trasmette al successivo il dieci per cento dell'energia che riceve. L'erba cattura cinquantamila kilojoule e la domanda chiede quanta energia arriva alla rana. Le cinque alternative sono 45 000, 500, 40 500, 50 e 5 000 kilojoule.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f1",
+        "checkedBy": "tolc-italian-checker-f1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; thin-space thousands separator (50 000) is standard Italian."
+      }
+    }
+  }
 }

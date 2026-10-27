@@ -80,5 +80,48 @@
     "conditionals",
     "contrapositive",
     "no-calculator"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Due regole descrivono il sistema di sicurezza di un compressore.\n\n- Se la pressione nel serbatoio supera 6 bar, la valvola di sicurezza si apre.\n- Ogni volta che la valvola di sicurezza si apre, l'allarme suona.\n\nEntrambe le regole valgono sempre. Questa mattina l'allarme non ha suonato.\n\nQuale delle seguenti affermazioni su questa mattina è necessariamente vera?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "La pressione nel serbatoio era superiore a 6 bar e l'allarme si è guastato."
+        },
+        {
+          "id": "b",
+          "textMd": "La valvola di sicurezza non si è aperta, anche se la pressione ha superato 6 bar."
+        },
+        {
+          "id": "c",
+          "textMd": "La pressione nel serbatoio non ha superato 6 bar."
+        },
+        {
+          "id": "d",
+          "textMd": "La valvola di sicurezza si è aperta, ma l'allarme non ha suonato."
+        },
+        {
+          "id": "e",
+          "textMd": "La pressione nel serbatoio era esattamente 6 bar."
+        }
+      ],
+      "explanationMd": "Concatena le due regole: una pressione superiore a 6 bar porta all'apertura della valvola, che porta all'allarme. Quindi «pressione superiore a 6 bar» porta, attraverso la valvola, a «l'allarme suona».\n\nOra usa la contronominale, che è sempre equivalente alla regola originale: se la conseguenza non si è verificata, non si è verificata nemmeno la condizione. L'allarme non ha suonato, quindi la valvola non si è aperta; la valvola non si è aperta, quindi la pressione non ha superato 6 bar.\n\nVerifica: «non ha superato 6 bar» ammette qualsiasi pressione fino a 6 bar compresi, ed è tutto ciò che le regole possono dirci. Non danno alcun modo di determinare ulteriormente il valore.",
+      "distractorRationale": {
+        "e": "Le regole dicono soltanto che la pressione non era superiore a 6 bar. Esattamente 6 bar è una possibilità tra molte, come 4 bar o 5,5 bar, quindi non è necessariamente vera.",
+        "d": "La seconda regola dice che l'allarme suona sempre quando la valvola si apre. Poiché l'allarme è rimasto in silenzio, la valvola non può essersi aperta.",
+        "b": "La prima regola dice che la valvola si apre sempre quando la pressione supera 6 bar, quindi una valvola chiusa con una pressione superiore a 6 bar la viola.",
+        "a": "Il testo dice che entrambe le regole valgono sempre, quindi l'allarme non può guastarsi. Una pressione superiore a 6 bar avrebbe aperto la valvola e fatto suonare l'allarme."
+      },
+      "accessibilityText": "Una domanda di deduzione su due regole per un compressore. Se la pressione nel serbatoio supera 6 bar, la valvola di sicurezza si apre. Ogni volta che la valvola di sicurezza si apre, l'allarme suona. Entrambe le regole valgono sempre, e questa mattina l'allarme non ha suonato. La domanda chiede che cosa è necessariamente vero su questa mattina. Le cinque alternative sono: la pressione era superiore a 6 bar e l'allarme si è guastato; la valvola di sicurezza non si è aperta anche se la pressione ha superato 6 bar; la pressione non ha superato 6 bar; la valvola di sicurezza si è aperta ma l'allarme non ha suonato; la pressione era esattamente 6 bar.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": "tolc-italian-checker-i1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; contrapositive chain preserved."
+      }
+    }
+  }
 }

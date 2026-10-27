@@ -78,5 +78,48 @@
     "mutation",
     "frameshift",
     "genetic-code"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Nella sequenza codificante di un gene si verifica la delezione di un singolo nucleotide poche basi dopo il codone di inizio. Non avviene nessun'altra modifica. Qual è l'effetto più probabile sulla proteina codificata dal gene?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Manca un amminoacido; il resto della proteina è normale"
+        },
+        {
+          "id": "b",
+          "textMd": "Non c'è alcun cambiamento, perché il codice genetico è ridondante"
+        },
+        {
+          "id": "c",
+          "textMd": "Viene inserito un amminoacido in più nel punto della delezione"
+        },
+        {
+          "id": "d",
+          "textMd": "Il modulo di lettura si sposta, cambiando la maggior parte degli amminoacidi dopo la delezione"
+        },
+        {
+          "id": "e",
+          "textMd": "Cambia un solo amminoacido; il resto della proteina è normale"
+        }
+      ],
+      "explanationMd": "Il codice viene letto a **triplette** (codoni) a partire dal codone di inizio, senza segni di separazione tra loro. Togliere un nucleotide sposta di una posizione tutti i raggruppamenti successivi.\n\nPer esempio, il messaggio `AUG GCA UUC GAA ...` a cui viene tolta la prima `G` di `GCA` diventa `AUG CAU UCG AA...`: ogni codone dopo la delezione è nuovo. La sequenza di amminoacidi risulta alterata da quel punto in poi, e spesso compare precocemente un codone di stop che tronca la proteina. Questa è una **mutazione con slittamento del modulo di lettura** (frameshift), e vicino all'inizio del gene di solito distrugge la funzione della proteina.\n\n**Verifica:** per togliere esattamente un amminoacido lasciando intatto il modulo di lettura, servirebbe la delezione di tre nucleotidi adiacenti (un codone intero). Un nucleotide non è un multiplo di tre, quindi il modulo deve spostarsi.",
+      "distractorRationale": {
+        "e": "Il cambiamento di un singolo amminoacido è l'effetto tipico di una sostituzione (mutazione missenso), in cui il numero di nucleotidi resta lo stesso e il modulo di lettura si conserva.",
+        "a": "Perdere esattamente un amminoacido richiede la delezione di tre nucleotidi, un codone intero. La delezione di un solo nucleotide sposta invece il modulo di lettura.",
+        "b": "La ridondanza può nascondere una sostituzione nella terza base di un codone (mutazione silente). Non può nascondere una delezione, che cambia il raggruppamento di tutti i codoni successivi.",
+        "c": "Per aggiungere materiale servirebbe un'inserzione di nucleotidi, non una delezione; e anche l'inserzione di un singolo nucleotide sposterebbe il modulo di lettura invece di aggiungere un amminoacido."
+      },
+      "accessibilityText": "Una breve domanda testuale senza figure. Nella sequenza codificante di un gene si verifica la delezione di un nucleotide poche basi dopo il codone di inizio. La domanda chiede l'effetto più probabile sulla proteina codificata. Le alternative sono: manca un amminoacido e il resto è normale; nessun cambiamento, perché il codice genetico è ridondante; viene inserito un amminoacido in più nel punto della delezione; il modulo di lettura si sposta, cambiando la maggior parte degli amminoacidi dopo la delezione; cambia un solo amminoacido e il resto è normale. La spiegazione mostra un messaggio di esempio letto a gruppi di tre lettere.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f1",
+        "checkedBy": "tolc-italian-checker-f1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities and options match the English."
+      }
+    }
+  }
 }

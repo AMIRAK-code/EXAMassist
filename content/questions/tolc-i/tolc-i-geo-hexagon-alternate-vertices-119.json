@@ -78,5 +78,48 @@
     "regular-hexagon",
     "equilateral-triangle",
     "area"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un esagono regolare ha i lati di $4$ cm. Congiungendo un vertice sì e uno no dell'esagono (il primo, il terzo e il quinto) si ottiene un triangolo. Qual è l'area di questo triangolo?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$16\\sqrt{3}\\ \\text{cm}^{2}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$12\\sqrt{3}\\ \\text{cm}^{2}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$24\\sqrt{3}\\ \\text{cm}^{2}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$4\\sqrt{3}\\ \\text{cm}^{2}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$48\\sqrt{3}\\ \\text{cm}^{2}$"
+        }
+      ],
+      "explanationMd": "Per simmetria il triangolo è equilatero, quindi basta trovarne il lato: la distanza tra due vertici dell'esagono separati da un altro vertice.\n\n**Passo 1 — il lato.** Si prendano tre vertici consecutivi $P$, $Q$, $R$. $PQ = QR = 4$ e l'angolo interno in $Q$ è $120^{\\circ}$. La perpendicolare condotta da $Q$ a $PR$ divide il triangolo isoscele $PQR$ in due triangoli rettangoli con angoli di $30$-$60$-$90$ gradi e ipotenusa $4$; il cateto maggiore è $4\\cdot\\frac{\\sqrt{3}}{2} = 2\\sqrt{3}$, quindi $PR = 4\\sqrt{3}$ cm.\n\n**Passo 2 — l'area.** Un triangolo equilatero di lato $s$ ha area $\\frac{\\sqrt{3}}{4}s^{2}$: $\\frac{\\sqrt{3}}{4}\\cdot 48 = 12\\sqrt{3}\\ \\text{cm}^{2}$.\n\n**Verifica.** L'esagono è formato da sei triangoli equilateri di lato 4, di area totale $6\\cdot\\frac{\\sqrt3}{4}\\cdot 16 = 24\\sqrt{3}$. I tre pezzi tagliati agli angoli sono triangoli come $PQR$, ciascuno di area $\\frac12\\cdot 4\\cdot 4\\cdot\\sin 120^{\\circ} = 4\\sqrt{3}$. Quindi il triangolo interno ha area $24\\sqrt{3} - 3\\cdot 4\\sqrt{3} = 12\\sqrt{3}$ ✓, esattamente metà dell'esagono.",
+      "distractorRationale": {
+        "d": "Dà l'area di un triangolo equilatero di lato $4$, il lato dell'esagono stesso, invece che di lato $4\\sqrt{3}$.",
+        "a": "Prende come lato del triangolo $8$ cm, la diagonale maggiore passante per il centro, che unisce vertici opposti, non un vertice sì e uno no.",
+        "c": "Dà l'area dell'intero esagono, che è il doppio di quella del triangolo.",
+        "e": "Trova correttamente il lato $4\\sqrt{3}$ ma usa $\\sqrt{3}\\,s^{2}$ per l'area, dimenticando di dividere per $4$."
+      },
+      "accessibilityText": "Un esagono regolare ha i lati di 4 centimetri. Congiungendo un vertice sì e uno no dell'esagono, il primo, il terzo e il quinto, si ottiene un triangolo. Qual è l'area di questo triangolo? Le cinque alternative sono: 16 radice di 3 centimetri quadrati; 12 radice di 3 centimetri quadrati; 24 radice di 3 centimetri quadrati; 4 radice di 3 centimetri quadrati; 48 radice di 3 centimetri quadrati. Qui radice di 3 indica la radice quadrata di 3.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i2",
+        "checkedBy": "tolc-italian-checker-i1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; 'un vertice si e uno no' idiomatic."
+      }
+    }
+  }
 }

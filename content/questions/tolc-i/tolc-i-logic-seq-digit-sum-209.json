@@ -80,5 +80,48 @@
     "numeric",
     "digit-sum",
     "no-calculator"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Ogni termine della successione seguente si ottiene dal termine precedente con la stessa regola.\n\n7, 14, 19, 29, 40, 44, ?\n\nQual è il termine successivo?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "48"
+        },
+        {
+          "id": "b",
+          "textMd": "51"
+        },
+        {
+          "id": "c",
+          "textMd": "52"
+        },
+        {
+          "id": "d",
+          "textMd": "60"
+        },
+        {
+          "id": "e",
+          "textMd": "88"
+        }
+      ],
+      "explanationMd": "Le differenze 7, 5, 10, 11, 4 non seguono alcuno schema aritmetico, e questo è il segnale che conviene guardare invece le cifre di ciascun termine. Ogni termine è il termine precedente più la **somma delle sue cifre**:\n\n- 7 + 7 = 14\n- 14 + (1 + 4) = 19\n- 19 + (1 + 9) = 29\n- 29 + (2 + 9) = 40\n- 40 + (4 + 0) = 44\n\nQuindi il termine successivo è 44 + (4 + 4) = **52**.\n\nVerifica che la regola riproduca davvero ogni passaggio a partire dal primo termine: lo fa, senza eccezioni, e il testo dice che un'unica regola produce ogni termine.",
+      "distractorRationale": {
+        "a": "Aggiunge di nuovo 4, ripetendo l'ultima differenza. Le differenze non sono costanti; ciascuna è la somma delle cifre del termine corrente, e la somma delle cifre di 44 è 8.",
+        "b": "Presuppone che le differenze 7, 5, 10, 11, 4 si ripetano ciclicamente e ricomincia da 7. Cinque differenze senza alcuna ripetizione non danno prova di un ciclo, e la regola della somma delle cifre le spiega tutte.",
+        "d": "Usa il prodotto delle cifre, 4 × 4 = 16, invece della loro somma. La regola del prodotto fallisce già prima: da 14 aggiungerebbe 4 e darebbe 18, non 19.",
+        "e": "Raddoppia l'ultimo termine. Il raddoppio funziona solo per il primo passaggio, da 7 a 14."
+      },
+      "accessibilityText": "Una domanda su una successione numerica. Ogni termine si ottiene dal precedente con la stessa regola. I termini sono 7, 14, 19, 29, 40, 44, seguiti da un termine incognito. La domanda chiede il termine successivo. Le cinque alternative sono 48, 51, 52, 60 e 88.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": "tolc-italian-checker-i1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; add digit sum, 44+8=52."
+      }
+    }
+  }
 }

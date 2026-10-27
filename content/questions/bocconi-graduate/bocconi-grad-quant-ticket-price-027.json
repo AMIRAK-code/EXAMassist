@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-grad-quant-ticket-price-027",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-quantitative-reasoning",
+  "skillSlug": "grad-quant-numbers-percentages",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A museum raised its ticket price by 25% in spring, and in autumn reduced the new price by 20%. Compared with the original price, the autumn price is",
+  "instructionsMd": "Work by hand.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "5% higher than the original price"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "20% lower than the original price"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "4% lower than the original price"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "the same as the original price"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Successive percentage changes multiply, they do not add. A 25 per cent rise multiplies the price by 1.25, and a 20 per cent cut multiplies it by 0.8:\n\n$$1.25 \\times 0.8 = 1.00$$\n\nThe autumn price equals the original.\n\n**Check with a number.** Start at 20 euros. A 25 per cent rise gives 25 euros. Twenty per cent of 25 is 5, so the autumn price is 20 euros again.\n\n**Why it is not 5 per cent.** The 20 per cent cut is taken from the HIGHER spring price, so it removes more euros than the 25 per cent rise added to the lower original price.",
+  "distractorRationale": {
+    "a": "This adds the percentages, $25 - 20 = 5$. But the 20 per cent cut applies to the raised price, so it removes as many euros as the rise added.",
+    "c": "This is the result for a 20 per cent rise followed by a 20 per cent cut, $1.2 \\times 0.8 = 0.96$. The rise here is 25 per cent.",
+    "b": "This applies only the autumn cut to the original price and ignores the spring rise."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "A quantitative question. A museum raised its ticket price by 25 per cent, then cut the new price by 20 per cent. It asks how the final price compares with the original. The options are: the same; 5 per cent higher; 4 per cent lower; 20 per cent lower.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-graduate-author",
+    "aiAssisted": true,
+    "notes": "Original item. Numbers chosen so the two changes cancel exactly, which the additive misconception misses."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-graduate-author",
+    "reviewer": "bocconi-graduate-blind-reviewer",
+    "reviewedOn": "2026-10-27",
+    "independentSolve": {
+      "solvedBy": "bocconi-graduate-blind-reviewer",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "1.25 x 0.80 = 1.00, so the autumn price equals the original. 5% higher = adding percentages; 4% lower = reversed-order confusion (e.g. 1.2x0.8); 20% lower ignores the rise."
+    },
+    "notes": "Author checked that exactly one option is defensible. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "successive-percentages"
+  ],
+  "translations": {}
+}

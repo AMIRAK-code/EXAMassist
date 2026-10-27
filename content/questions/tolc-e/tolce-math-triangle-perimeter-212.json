@@ -1,0 +1,127 @@
+{
+  "id": "tolce-math-triangle-perimeter-212",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The two legs of a right triangle are in the ratio $3 : 4$, and the triangle has area $54\\ \\text{cm}^2$. What is the perimeter of the triangle?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$15$ cm"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$21$ cm"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$108$ cm"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$36$ cm"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$18\\sqrt{2}$ cm"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Write the legs as $3t$ and $4t$ for some positive number $t$. In a right triangle the legs are perpendicular, so one is the base and the other the height:\n\n$$\\text{area} = \\frac{1}{2} \\cdot 3t \\cdot 4t = 6t^2 = 54 \\iff t^2 = 9 \\iff t = 3$$\n\nThe legs are $9$ cm and $12$ cm. The hypotenuse follows from Pythagoras, or from noticing that a $3 : 4$ right triangle has hypotenuse in proportion $5$:\n\n$$\\sqrt{9^2 + 12^2} = \\sqrt{81 + 144} = \\sqrt{225} = 15$$\n\nPerimeter: $9 + 12 + 15 = 36$ cm.\n\nCheck: $\\frac{1}{2} \\cdot 9 \\cdot 12 = 54$, and $9 : 12 = 3 : 4$.",
+  "distractorRationale": {
+    "a": "This is the hypotenuse alone. The perimeter is the sum of all three sides.",
+    "b": "This adds the two legs, $9 + 12$, and leaves out the hypotenuse.",
+    "c": "This uses $t^2 = 9$ as the scale factor instead of $t = 3$, giving sides $27$, $36$ and $45$. Those sides would make the area $486\\ \\text{cm}^2$, nine times too large.",
+    "e": "This forgets the $\\frac{1}{2}$ in the area formula, solving $12t^2 = 54$ to get $t = \\frac{3}{\\sqrt{2}}$ and a perimeter of $12t = 18\\sqrt{2}$. The area of a triangle is half the product of base and height."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A right triangle has legs in the ratio 3 to 4 and an area of 54 square centimetres. The question asks for its perimeter. The answer choices, in centimetres, are 15, 21, 36, 108, and 18 times the square root of 2.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Scale factor from area, then a 3-4-5 hypotenuse; distractors model partial perimeters, using the squared scale factor, and omitting the half in the area formula."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-math-author",
+    "reviewer": "tolce-blind-reviewer-2",
+    "reviewedOn": "2026-10-21",
+    "independentSolve": {
+      "solvedBy": "tolce-blind-reviewer-2",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Legs 3k, 4k; area 6k^2 = 54 => k = 3; legs 9, 12, hypotenuse 15; perimeter 36 cm."
+    },
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "plane-geometry",
+    "right-triangle",
+    "pythagoras",
+    "area"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "I due cateti di un triangolo rettangolo stanno nel rapporto $3 : 4$, e il triangolo ha area $54\\ \\text{cm}^2$. Qual è il perimetro del triangolo?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$15$ cm"
+        },
+        {
+          "id": "b",
+          "textMd": "$21$ cm"
+        },
+        {
+          "id": "c",
+          "textMd": "$108$ cm"
+        },
+        {
+          "id": "d",
+          "textMd": "$36$ cm"
+        },
+        {
+          "id": "e",
+          "textMd": "$18\\sqrt{2}$ cm"
+        }
+      ],
+      "explanationMd": "Scrivi i cateti come $3t$ e $4t$ per un opportuno numero positivo $t$. In un triangolo rettangolo i cateti sono perpendicolari, quindi uno è la base e l'altro l'altezza:\n\n$$\\text{area} = \\frac{1}{2} \\cdot 3t \\cdot 4t = 6t^2 = 54 \\iff t^2 = 9 \\iff t = 3$$\n\nI cateti misurano $9$ cm e $12$ cm. L'ipotenusa si ottiene con il teorema di Pitagora, oppure notando che in un triangolo rettangolo con cateti in rapporto $3 : 4$ l'ipotenusa sta nella proporzione $5$:\n\n$$\\sqrt{9^2 + 12^2} = \\sqrt{81 + 144} = \\sqrt{225} = 15$$\n\nPerimetro: $9 + 12 + 15 = 36$ cm.\n\nVerifica: $\\frac{1}{2} \\cdot 9 \\cdot 12 = 54$, e $9 : 12 = 3 : 4$.",
+      "distractorRationale": {
+        "a": "È solo l'ipotenusa. Il perimetro è la somma di tutti e tre i lati.",
+        "b": "Somma i due cateti, $9 + 12$, e lascia fuori l'ipotenusa.",
+        "c": "Usa $t^2 = 9$ come fattore di scala invece di $t = 3$, ottenendo i lati $27$, $36$ e $45$. Con questi lati l'area sarebbe $486\\ \\text{cm}^2$, nove volte troppo grande.",
+        "e": "Dimentica il $\\frac{1}{2}$ nella formula dell'area, risolvendo $12t^2 = 54$ e ottenendo $t = \\frac{3}{\\sqrt{2}}$ e un perimetro di $12t = 18\\sqrt{2}$. L'area di un triangolo è la metà del prodotto di base e altezza."
+      },
+      "accessibilityText": "Un triangolo rettangolo ha i cateti in rapporto 3 a 4 e un'area di 54 centimetri quadrati. La domanda chiede il suo perimetro. Le alternative di risposta, in centimetri, sono 15, 21, 36, 108 e 18 per la radice quadrata di 2.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": "tolce-italian-checker",
+        "checkedOn": "2026-10-23",
+        "answerPreserved": true,
+        "notes": "Legs 9,12, hyp 15 -> 36 cm. 'cateti' correct."
+      }
+    }
+  }
+}

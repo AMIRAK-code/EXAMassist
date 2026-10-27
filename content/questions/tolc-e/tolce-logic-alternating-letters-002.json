@@ -1,0 +1,125 @@
+{
+  "id": "tolce-logic-alternating-letters-002",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-sequences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Using the 26-letter English alphabet, which letter comes next in the sequence?\n\n$\\text{C}, \\; \\text{F}, \\; \\text{E}, \\; \\text{H}, \\; \\text{G}, \\; \\text{J}, \\; \\ldots$",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "L"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "M"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "I"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "K"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "H"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Turn the letters into their positions in the alphabet: $3, 6, 5, 8, 7, 10$. The steps are $+3, -1, +3, -1, +3$, so the moves alternate between three forward and one back. The next step is $-1$, and $10 - 1 = 9$, which is the letter I.\n\nA second view confirms it. The letters in odd positions of the sequence (3rd, 5th, 7th...) run $3, 5, 7$, going up by two, and the letters in even positions run $6, 8, 10$, also going up by two. The missing term is the seventh, an odd position, so it continues $3, 5, 7$ with $9$.\n\nWhat to notice first: when a letter sequence goes forwards and then backwards, convert to numbers and write down the steps. An alternating pattern of steps, or two interleaved sequences, is the usual explanation.",
+  "distractorRationale": {
+    "e": "This steps back two places from J instead of one. The backward step in this sequence has always been exactly one letter (F to E, H to G).",
+    "d": "This moves one letter forward, perhaps because the sequence gains one letter overall for every two steps. That net gain describes pairs of steps, not the single step that comes next.",
+    "a": "This continues the even-position series (F, H, J) by two more letters. The term asked for is the seventh, which belongs to the odd-position series C, E, G.",
+    "b": "This applies the forward step of three again, missing that forward and backward steps alternate and the last step taken was forward."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "A sequence of capital letters: C, F, E, H, G, J, followed by a gap for the next letter. The English alphabet of 26 letters is to be used. Each answer choice is a single letter: H, I, K, L or M. Five answer choices.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-logic-author",
+    "aiAssisted": true,
+    "notes": "Original interleaved letter sequence. Not derived from any CISIA or other published item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-logic-author",
+    "reviewer": "tolce-blind-reviewer-1",
+    "reviewedOn": "2026-10-21",
+    "independentSolve": {
+      "solvedBy": "tolce-blind-reviewer-1",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Pattern +3,-1 alternating (C+3=F,-1=E,+3=H,-1=G,+3=J); next J-1=I. Equivalently interleaved C,E,G,(I) and F,H,J. No other option fits a consistent rule."
+    },
+    "notes": "Author solved the item and then tried to defend each wrong choice; none survives. Awaiting blind independent solve and uniqueness check by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "sequences",
+    "letters",
+    "alternating-steps"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Utilizzando l'alfabeto inglese di 26 lettere, quale lettera segue nella successione?\n\n$\\text{C}, \\; \\text{F}, \\; \\text{E}, \\; \\text{H}, \\; \\text{G}, \\; \\text{J}, \\; \\ldots$",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "L"
+        },
+        {
+          "id": "b",
+          "textMd": "M"
+        },
+        {
+          "id": "c",
+          "textMd": "I"
+        },
+        {
+          "id": "d",
+          "textMd": "K"
+        },
+        {
+          "id": "e",
+          "textMd": "H"
+        }
+      ],
+      "explanationMd": "Sostituisci a ogni lettera la sua posizione nell'alfabeto: $3, 6, 5, 8, 7, 10$. I passi sono $+3, -1, +3, -1, +3$, quindi gli spostamenti alternano tre posizioni in avanti e una indietro. Il passo successivo è $-1$, e $10 - 1 = 9$, che corrisponde alla lettera I.\n\nUn secondo punto di vista lo conferma. Le lettere nelle posizioni dispari della successione (3ª, 5ª, 7ª...) valgono $3, 5, 7$, crescendo di due, e quelle nelle posizioni pari valgono $6, 8, 10$, anch'esse crescendo di due. Il termine mancante è il settimo, in posizione dispari, quindi prosegue $3, 5, 7$ con $9$.\n\nDa notare subito: quando una successione di lettere va avanti e poi indietro, converti le lettere in numeri e scrivi i passi. Un andamento alternato dei passi, oppure due successioni intrecciate, è la spiegazione più frequente.",
+      "distractorRationale": {
+        "e": "Arretra di due posizioni da J invece che di una. In questa successione il passo all'indietro è sempre stato esattamente di una lettera (da F a E, da H a G).",
+        "d": "Avanza di una lettera, forse perché la successione guadagna complessivamente una lettera ogni due passi. Questo guadagno netto descrive coppie di passi, non il singolo passo che viene dopo.",
+        "a": "Prosegue di altre due lettere la serie delle posizioni pari (F, H, J). Il termine richiesto è il settimo, che appartiene alla serie delle posizioni dispari C, E, G.",
+        "b": "Applica di nuovo il passo in avanti di tre, senza accorgersi che i passi in avanti e all'indietro si alternano e che l'ultimo passo compiuto è stato in avanti."
+      },
+      "accessibilityText": "Una successione di lettere maiuscole: C, F, E, H, G, J, seguita da uno spazio vuoto per la lettera successiva. Si deve usare l'alfabeto inglese di 26 lettere. Ogni alternativa di risposta è una singola lettera: H, I, K, L oppure M. Cinque alternative di risposta.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": "tolce-italian-checker",
+        "checkedOn": "2026-10-23",
+        "answerPreserved": true,
+        "notes": "+3,-1 pattern: C,F,E,H,G,J -> I. Italian keeps the 26-letter English alphabet; 'segue nella successione' faithful."
+      }
+    }
+  }
+}

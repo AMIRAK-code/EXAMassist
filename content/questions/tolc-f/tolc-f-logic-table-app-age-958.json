@@ -78,5 +78,48 @@
     "two-way-table",
     "conditional-percentage",
     "missing-values"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Una farmacia ha intervistato 250 clienti sulla sua app per le prenotazioni. Alcune celle della tabella riassuntiva sono andate perse; sono indicate con un punto interrogativo.\n\n| | Usa l'app | Non usa l'app | Totale |\n| --- | --- | --- | --- |\n| Meno di 40 anni | 66 | ? | 150 |\n| 40 anni e oltre | ? | ? | 100 |\n| Totale | 90 | ? | 250 |\n\nQuale percentuale dei clienti di 40 anni e oltre **non** usa l'app?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$24\\%$"
+        },
+        {
+          "id": "b",
+          "textMd": "$56\\%$"
+        },
+        {
+          "id": "c",
+          "textMd": "$76\\%$"
+        },
+        {
+          "id": "d",
+          "textMd": "$47.5\\%$"
+        },
+        {
+          "id": "e",
+          "textMd": "$30.4\\%$"
+        }
+      ],
+      "explanationMd": "**Da notare subito.** La domanda chiede una quota *all'interno* della riga dei 40 anni e oltre, quindi il denominatore è il totale di quella riga, $100$, non il totale generale e non il totale della colonna.\n\n**Completa la tabella.** Clienti di 40 anni e oltre che usano l'app: $90-66=24$. Quelli che non la usano: $100-24=76$. In percentuale sui $100$ clienti di quella fascia d'età: $76\\%$.\n\n**Come verificarlo.** Completa il resto: i non utenti con meno di 40 anni sono $150-66=84$, e tutti i non utenti sono $250-90=160$. Allora $84+76=160$, quindi la tabella è coerente.",
+      "distractorRationale": {
+        "a": "È la quota di clienti di 40 anni e oltre che *usano* l'app, $24$ su $100$.",
+        "d": "Divide per tutti i $160$ non utenti: $76/160=47.5\\%$ è la quota di non utenti che hanno 40 anni o più, cioè la probabilità condizionata inversa.",
+        "e": "Divide per tutti i $250$ clienti: $76/250=30.4\\%$ è la quota dell'intero campione che ha 40 anni o più e non usa l'app.",
+        "b": "Legge la riga sbagliata: $84/150=56\\%$ è la quota di clienti con meno di 40 anni che non usano l'app."
+      },
+      "accessibilityText": "Una tabella a doppia entrata di 250 clienti intervistati, per età e uso dell'app, con le colonne usa l'app, non usa l'app e totale. Meno di 40 anni: 66 usano l'app, il numero dei non utenti manca, totale 150. 40 anni e oltre: mancano entrambi i numeri, totale 100. Riga dei totali: 90 usano l'app, il totale dei non utenti manca, totale generale 250. La domanda chiede quale percentuale dei clienti di 40 anni e oltre non usa l'app. Le cinque alternative sono: 24 per cento; 56 per cento; 76 per cento; 47,5 per cento; 30,4 per cento.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f2",
+        "checkedBy": "tolc-italian-checker-f2",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; $47.5\\%$ decimal point inside maths acceptable. 24/100 use app -> 76% do not."
+      }
+    }
+  }
 }

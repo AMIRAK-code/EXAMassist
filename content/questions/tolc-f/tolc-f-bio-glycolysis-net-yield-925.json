@@ -77,5 +77,48 @@
   "tags": [
     "glycolysis",
     "atp-yield"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "La glicolisi avviene nel citoplasma e trasforma una molecola di glucosio in piruvato. Quali sono i prodotti **netti** della glicolisi per ogni molecola di glucosio?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "2 lattato e 2 ATP"
+        },
+        {
+          "id": "b",
+          "textMd": "2 piruvato, 2 ATP e 2 $\\mathrm{FADH_2}$"
+        },
+        {
+          "id": "c",
+          "textMd": "2 piruvato, 2 ATP e 2 NADH"
+        },
+        {
+          "id": "d",
+          "textMd": "2 piruvato, 4 ATP e 2 NADH"
+        },
+        {
+          "id": "e",
+          "textMd": "2 piruvato e 2 ATP, senza NADH"
+        }
+      ],
+      "explanationMd": "Fai il bilancio in due fasi.\n\n- **Fase di investimento:** lo zucchero a sei atomi di carbonio viene fosforilato due volte, consumando **2 ATP**, e viene scisso in due molecole a tre atomi di carbonio.\n- **Fase di recupero:** ogni molecola a tre atomi di carbonio viene ossidata, riducendo un $\\mathrm{NAD^+}$ a NADH, e fornisce 2 ATP. Per due molecole: **2 NADH** e **4 ATP**.\n\nNetto: $4 - 2 = 2$ ATP, più 2 NADH e 2 piruvato. La parola *netti* nel testo è l'avvertimento: i 4 ATP prodotti sono un valore lordo.\n\n**Verifica con il carbonio:** i 6 atomi di carbonio del glucosio finiscono come $2 \\times 3$ atomi di carbonio nel piruvato, senza liberazione di $\\mathrm{CO_2}$, il che è coerente con una via che ossida il glucosio solo in piccola parte e quindi fornisce solo poca energia.",
+      "distractorRationale": {
+        "d": "4 ATP è la resa lorda della fase di recupero. Ignora i 2 ATP spesi all'inizio per fosforilare il glucosio, quindi il guadagno netto è 2.",
+        "e": "La glicolisi è un'ossidazione: una sua tappa trasferisce elettroni al $\\mathrm{NAD^+}$, producendo 2 NADH per glucosio. Proprio per questo NADH le cellule devono rigenerare il $\\mathrm{NAD^+}$, con la respirazione o con la fermentazione.",
+        "b": "Il $\\mathrm{FADH_2}$ è prodotto nel ciclo di Krebs, nei mitocondri, non nella glicolisi. Il trasportatore di elettroni ridotto nella glicolisi è il NAD.",
+        "a": "Il lattato si forma solo quando il piruvato viene ridotto nella fermentazione lattica, una tappa distinta successiva alla glicolisi. Il testo chiede della glicolisi, che termina con il piruvato."
+      },
+      "accessibilityText": "Una breve domanda testuale senza figure. La glicolisi, nel citoplasma, trasforma una molecola di glucosio in piruvato. La domanda chiede i prodotti netti per molecola di glucosio. Le alternative sono: 2 lattato e 2 A T P; 2 piruvato, 2 A T P e 2 F A D H 2; 2 piruvato, 2 A T P e 2 N A D H; 2 piruvato, 4 A T P e 2 N A D H; 2 piruvato e 2 A T P senza N A D H.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f1",
+        "checkedBy": "tolc-italian-checker-f1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities and options match the English."
+      }
+    }
+  }
 }

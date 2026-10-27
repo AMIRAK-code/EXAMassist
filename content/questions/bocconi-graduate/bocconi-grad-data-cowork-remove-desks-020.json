@@ -1,0 +1,85 @@
+{
+  "id": "bocconi-grad-data-cowork-remove-desks-020",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-data-insight",
+  "skillSlug": "grad-data-derived-conclusions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Corvo plans to remove some desks. If desks occupied on an average weekday stayed at 72, how many desks would Corvo have to remove for its occupancy rate (desks occupied divided by desks) to equal Dunmere's March rate?",
+  "instructionsMd": "Use only the figures shown. Work by hand.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "30"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "48"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "60"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "72"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "90"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Dunmere's rate is $\\frac{48}{60} = 0.8$. Corvo keeps 72 occupied desks, so it needs a number of desks $d$ with\n\n$$\\frac{72}{d} = 0.8 \\quad\\Rightarrow\\quad d = \\frac{72}{0.8} = 90$$\n\nCorvo has 150 desks now, so it must remove $150 - 90 = 60$.\n\n**How to check.** With 90 desks, $\\frac{72}{90} = \\frac{4}{5} = 0.8$, which equals Dunmere's $\\frac{48}{60} = \\frac{4}{5}$.\n\n**The trap.** The question asks how many desks to REMOVE, not how many should remain. Solving for $d$ gives the remaining number, 90; the answer is the difference from today's 150.",
+  "distractorRationale": {
+    "a": "Removing 30 leaves 120 desks, and $\\frac{72}{120} = 0.6$, still well below Dunmere's 0.8.",
+    "b": "This is Dunmere's number of occupied desks, copied across. Matching a RATE does not mean matching either of Dunmere's counts.",
+    "d": "Removing 72 leaves 78 desks, and $\\frac{72}{78} \\approx 0.92$, which overshoots. It comes from removing as many desks as are in use, which has no basis in the target rate.",
+    "e": "This is the number of desks Corvo should KEEP, $72 \\div 0.8 = 90$. The question asks how many to remove: $150 - 90 = 60$."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": {
+    "id": "bocconi-grad-stim-coworking-004",
+    "version": 1
+  },
+  "accessibilityText": "A question about the table of four co-working sites. It asks how many desks Corvo, with 150 desks and 72 occupied on an average weekday, would have to remove, keeping 72 occupied, for its occupancy rate to equal Dunmere's rate of 48 occupied out of 60 desks. The options are 30, 48, 60, 72 and 90.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-graduate-author",
+    "aiAssisted": true,
+    "notes": "Original item. Distractors are the remaining count rather than the removal, a copied count, and an under- and over-shoot."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-graduate-author",
+    "reviewer": "bocconi-graduate-blind-reviewer",
+    "reviewedOn": "2026-10-27",
+    "independentSolve": {
+      "solvedBy": "bocconi-graduate-blind-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Dunmere rate = 48/60 = 0.8. Need 72/x = 0.8, x = 90 desks, so Corvo removes 150-90 = 60. 30 gives 72/120=60%; 48 gives 72/102; 72 gives 72/78; 90 is the remaining desk count, not the number removed (gives 72/60 >100%)."
+    },
+    "notes": "Author checked that exactly one option is defensible. Awaiting blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "table-coworking",
+    "solve-for-target"
+  ],
+  "translations": {}
+}

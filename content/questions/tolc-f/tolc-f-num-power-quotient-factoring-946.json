@@ -78,5 +78,48 @@
     "powers",
     "factoring",
     "exponents"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Qual è il valore di $\\dfrac{3^{8}-3^{6}}{3^{6}+3^{6}}$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$1$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\dfrac{8}{3}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$4$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\dfrac{9}{2}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$8$"
+        }
+      ],
+      "explanationMd": "**Da notare subito.** Le potenze con la stessa base non si possono sommare o sottrarre termine a termine, ma si può raccogliere un fattore comune.\n\n**Il calcolo.** Raccogli $3^{6}$ al numeratore e al denominatore:\n\n$$\\frac{3^{8}-3^{6}}{3^{6}+3^{6}}=\\frac{3^{6}(3^{2}-1)}{3^{6}\\cdot 2}=\\frac{9-1}{2}=4.$$\n\n**Come verificarlo.** Con i numeri effettivi, $3^{6}=729$ e $3^{8}=6561$: il numeratore è $6561-729=5832$, il denominatore è $1458$, e $1458\\cdot 4=5832$.",
+      "distractorRationale": {
+        "e": "Scrive il denominatore $3^{6}+3^{6}$ come $3^{6}$, perdendo il fattore $2$, e così ottiene $3^{2}-1=8$.",
+        "b": "Scrive $3^{6}+3^{6}$ come $3^{7}$, confondendo il doppio di $3^{6}$ con il triplo di $3^{6}$.",
+        "a": "Scompone il numeratore come $3^{6}(3-1)$, trattando $3^{8}$ come $3^{6}\\cdot 3$ invece di $3^{6}\\cdot 3^{2}$.",
+        "d": "Trascura il $-3^{6}$ al numeratore e calcola $\\tfrac{3^{8}}{2\\cdot 3^{6}}=\\tfrac{9}{2}$."
+      },
+      "accessibilityText": "Calcola la frazione il cui numeratore è 3 alla ottava meno 3 alla sesta e il cui denominatore è 3 alla sesta più 3 alla sesta. Le cinque alternative sono: 1; otto terzi; 4; nove mezzi; 8.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f2",
+        "checkedBy": "tolc-italian-checker-f2",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities and options match the English."
+      }
+    }
+  }
 }

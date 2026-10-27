@@ -80,5 +80,48 @@
     "necessary-sufficient",
     "only-if",
     "no-calculator"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Il regolamento di una gara di progettazione ingegneristica contiene questa frase:\n\n«Una squadra è ammessa alla revisione finale solo se ha consegnato il proprio rapporto di prova e ha superato l'ispezione di sicurezza.»\n\nQuale delle seguenti affermazioni discende da questa regola?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Superare l'ispezione di sicurezza è una condizione necessaria per l'ammissione alla revisione finale."
+        },
+        {
+          "id": "b",
+          "textMd": "Ogni squadra che ha consegnato il proprio rapporto di prova e ha superato l'ispezione di sicurezza è ammessa alla revisione finale."
+        },
+        {
+          "id": "c",
+          "textMd": "Ogni squadra che non è ammessa alla revisione finale non ha superato l'ispezione di sicurezza."
+        },
+        {
+          "id": "d",
+          "textMd": "Superare l'ispezione di sicurezza è una condizione sufficiente per l'ammissione alla revisione finale."
+        },
+        {
+          "id": "e",
+          "textMd": "Consegnare il rapporto di prova è una condizione sufficiente per l'ammissione alla revisione finale."
+        }
+      ],
+      "explanationMd": "«P solo se Q» significa «se P, allora Q»: Q è una condizione **necessaria** per P, non una condizione sufficiente. Qui P è «la squadra è ammessa» e Q è «la squadra ha consegnato il rapporto e ha superato l'ispezione». Quindi ogni squadra ammessa ha fatto entrambe le cose.\n\nIn particolare, ogni squadra ammessa ha superato l'ispezione di sicurezza: una squadra che non supera l'ispezione non può essere ammessa. È esattamente ciò che significa che superare l'ispezione è una condizione necessaria per l'ammissione.\n\nLa regola non dice nulla nella direzione opposta. Una squadra potrebbe consegnare il rapporto e superare l'ispezione e comunque non essere ammessa, per esempio perché il suo progetto è giudicato troppo debole. Quindi nessuno dei due requisiti, e nemmeno i due insieme, è garantito come sufficiente per l'ammissione. Verifica costruendo una squadra del genere: non viola nessuna parola della regola.",
+      "distractorRationale": {
+        "d": "Inverte la direzione di «solo se». La regola dice che l'ammissione richiede l'ispezione, non che l'ispezione porti all'ammissione.",
+        "e": "La regola indica il rapporto come uno dei due requisiti, e anche entrambi insieme sono soltanto richiesti, non sufficienti. Una squadra con il rapporto ma senza l'ispezione superata è anzi esclusa.",
+        "b": "Legge «solo se» come «se»: trasforma i due requisiti in una garanzia. La regola consente che una squadra che soddisfa entrambi i requisiti venga respinta per qualche altro motivo.",
+        "c": "Una squadra non ammessa potrebbe aver superato l'ispezione ed essere stata respinta per un altro motivo, oppure potrebbe non aver consegnato il rapporto. La mancata ammissione non dice quale requisito, se ce n'è uno, sia mancato."
+      },
+      "accessibilityText": "Una domanda di deduzione su condizioni necessarie e sufficienti. Una regola di gara dice: una squadra è ammessa alla revisione finale solo se ha consegnato il proprio rapporto di prova e ha superato l'ispezione di sicurezza. La domanda chiede quale affermazione discende dalla regola. Le cinque alternative sono: superare l'ispezione di sicurezza è una condizione necessaria per l'ammissione; ogni squadra che ha consegnato il rapporto e ha superato l'ispezione è ammessa; ogni squadra che non è ammessa non ha superato l'ispezione di sicurezza; superare l'ispezione di sicurezza è una condizione sufficiente per l'ammissione; consegnare il rapporto di prova è una condizione sufficiente per l'ammissione.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": "tolc-italian-checker-i1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; 'solo se' preserves necessary-condition reading."
+      }
+    }
+  }
 }

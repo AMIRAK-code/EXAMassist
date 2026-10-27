@@ -77,5 +77,48 @@
   "tags": [
     "cellular-respiration",
     "electron-transport-chain"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Nella respirazione aerobica gli elettroni passano lungo la catena di trasporto degli elettroni nella membrana mitocondriale interna. Qual è l'accettore finale di questi elettroni?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "L'ATP, che viene ridotto ad ADP"
+        },
+        {
+          "id": "b",
+          "textMd": "Il $\\mathrm{NAD^+}$, che viene ridotto a NADH"
+        },
+        {
+          "id": "c",
+          "textMd": "L'anidride carbonica, che viene ridotta a glucosio"
+        },
+        {
+          "id": "d",
+          "textMd": "Il piruvato, che viene ridotto a lattato"
+        },
+        {
+          "id": "e",
+          "textMd": "L'ossigeno, che viene ridotto ad acqua"
+        }
+      ],
+      "explanationMd": "Segui gli elettroni. Il NADH e il $\\mathrm{FADH_2}$, prodotti nella glicolisi e nel ciclo di Krebs, **cedono** elettroni all'inizio della catena di trasporto degli elettroni. Gli elettroni passano da un trasportatore all'altro, e l'energia liberata pompa protoni che alimentano la sintesi di ATP. Alla fine della catena devono andare da qualche parte, e quel destino è l'**ossigeno**: l'$\\mathrm{O_2}$ accetta gli elettroni insieme agli $\\mathrm{H^+}$ e viene ridotto ad acqua.\n\nPer questo il processo si chiama aerobico e per questo abbiamo bisogno di respirare: senza ossigeno la catena si blocca e si ferma.\n\n**Verifica:** l'acqua che si forma alla fine della catena è l'acqua dell'equazione complessiva $\\mathrm{C_6H_{12}O_6} + 6\\,\\mathrm{O_2} \\rightarrow 6\\,\\mathrm{CO_2} + 6\\,\\mathrm{H_2O}$.",
+      "distractorRationale": {
+        "b": "Il $\\mathrm{NAD^+}$ acquista elettroni prima, nella glicolisi e nel ciclo di Krebs, e il NADH che ne risulta li cede poi all'inizio della catena. È un trasportatore, non l'accettore finale.",
+        "c": "L'anidride carbonica è un prodotto di scarto della respirazione, liberato nel ciclo di Krebs; viene ridotta a zucchero solo nella fotosintesi.",
+        "d": "La riduzione del piruvato a lattato avviene nella fermentazione lattica, quando manca l'ossigeno; non fa parte della catena di trasporto degli elettroni.",
+        "a": "L'ATP è il prodotto la cui sintesi è alimentata dalla catena, e la trasformazione di ATP in ADP è un'idrolisi che libera energia, non una riduzione."
+      },
+      "accessibilityText": "Una breve domanda testuale senza figure. Nella respirazione aerobica gli elettroni passano lungo la catena di trasporto degli elettroni nella membrana mitocondriale interna. La domanda chiede l'accettore finale degli elettroni. Le alternative sono: A T P, ridotto ad A D P; N A D più, ridotto a N A D H; anidride carbonica, ridotta a glucosio; piruvato, ridotto a lattato; ossigeno, ridotto ad acqua.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f1",
+        "checkedBy": "tolc-italian-checker-f1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities and options match the English."
+      }
+    }
+  }
 }

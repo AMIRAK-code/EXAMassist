@@ -1,0 +1,79 @@
+{
+  "id": "bocconi-grad-verbal-defaults-attitude-007",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-verbal-reasoning",
+  "skillSlug": "grad-verbal-passage-reasoning",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "The author's attitude towards automatic enrolment is best described as",
+  "instructionsMd": "Answer on the basis of the passage only.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "enthusiastic, without reservation, about its effect on participation"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "hostile, because it lowers average contributions"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "supportive, but concerned that the default rate is treated as a neutral starting point"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "indifferent, because the evidence is evenly balanced between the two readings"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Attitude is set in the last paragraph. \"None of this makes automatic enrolment a mistake\" is support. \"It does mean that the default rate is not a neutral starting point but a message\" is the reservation, and the warning that a scheme judged only by enrolment \"may be quietly lowering how much they save\" explains it.\n\nSupportive with a specific concern about the default rate is the attitude.\n\n**How to check.** Test each extreme against one sentence. \"Hostile\" fails on \"not a mistake\". \"Without reservation\" fails on \"quietly lowering\". \"Indifferent\" fails because the author does take a side on the evidence: \"Several studies have found exactly this second pattern.\"",
+  "distractorRationale": {
+    "b": "The author explicitly says automatic enrolment is not a mistake. Lower contributions among some workers are a reason to choose the default rate carefully, not to oppose the policy.",
+    "d": "The passage does not treat the evidence as balanced: it reports that several studies found the pattern the advice reading predicts. And the closing paragraph takes a clear position.",
+    "a": "The author has a clear reservation: judging a scheme only by enrolment \"may be quietly lowering how much they save\". That rules out enthusiasm without reservation."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": {
+    "id": "bocconi-grad-stim-defaults-002",
+    "version": 1
+  },
+  "accessibilityText": "A question about the passage on automatic pension enrolment. It asks for the author's attitude towards automatic enrolment. The options are: supportive but concerned the default rate is treated as neutral; hostile because it lowers contributions; indifferent because evidence is balanced; enthusiastic without reservation.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-graduate-author",
+    "aiAssisted": true,
+    "notes": "Original attitude item. Each distractor is refuted by a single quoted sentence."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-graduate-author",
+    "reviewer": "bocconi-graduate-blind-reviewer",
+    "reviewedOn": "2026-10-27",
+    "independentSolve": {
+      "solvedBy": "bocconi-graduate-blind-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "'None of this makes automatic enrolment a mistake' = supportive; but 'the default rate is not a neutral starting point but a message' and schemes judged only by enrolment may lower saving = concern. A ignores the reservation; B contradicts 'not a mistake'; D wrong because the author cites studies favouring the second pattern, not an even balance."
+    },
+    "notes": "Author checked that exactly one option is defensible. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "passage-defaults",
+    "author-attitude"
+  ],
+  "translations": {}
+}

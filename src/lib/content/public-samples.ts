@@ -82,6 +82,8 @@ export const PUBLIC_SAMPLES: readonly PublicSample[] = [
  * state for these rather than a question it cannot stand behind.
  */
 export const WITHHELD_SAMPLES: Readonly<Record<string, string>> = {
+  'bocconi-master':
+    'The graduate Bocconi test bank is new and small. Making one of its questions public would take it out of every diagnostic and timed set, so no sample is shown until the bank is larger.',
   // Added 29 September 2026. A public sample is excluded from every measured
   // format, and a new bank sized close to one full test cannot spare one
   // without closing a timed section. Choose one once the bank has grown.

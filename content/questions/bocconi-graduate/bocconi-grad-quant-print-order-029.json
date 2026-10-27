@@ -1,0 +1,76 @@
+{
+  "id": "bocconi-grad-quant-print-order-029",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-quantitative-reasoning",
+  "skillSlug": "grad-quant-algebra-problem-solving",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A printing firm charges a fixed set-up fee plus a constant price per copy. An order of 200 copies costs €340 and an order of 500 copies costs €610. What does an order of 800 copies cost?",
+  "instructionsMd": "Work by hand.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "€880"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "€976"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "€1,360"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "€720"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Write the cost as $c = f + p n$, where $f$ is the set-up fee, $p$ the price per copy and $n$ the number of copies. The difference between the two orders removes the fee:\n\n$$p = \\frac{610 - 340}{500 - 200} = \\frac{270}{300} = 0.90$$\n\nThen $f = 340 - 200 \\times 0.90 = 340 - 180 = 160$. For 800 copies:\n\n$$c = 160 + 800 \\times 0.90 = 160 + 720 = 880$$\n\n**How to check.** The step from 500 to 800 copies is another 300 copies, which cost another 270 euros, as the step from 200 to 500 did: $610 + 270 = 880$.\n\n**The trap.** Cost is not proportional to copies when there is a fixed fee, so scaling an order up by a ratio overstates it.",
+  "distractorRationale": {
+    "d": "This is $800 \\times 0.90$, the copy charge alone. It leaves out the 160 euro set-up fee.",
+    "b": "This scales the 500-copy price in proportion, $610 \\times \\frac{800}{500} = 976$. That also scales up the fixed fee, which is paid only once.",
+    "c": "This scales the 200-copy price in proportion, $340 \\times 4 = 1{,}360$, charging the set-up fee four times."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A quantitative question. A printing firm charges a fixed set-up fee plus a constant price per copy; 200 copies cost 340 euros and 500 copies cost 610 euros. It asks the cost of 800 copies. The options are 720 euros, 880 euros, 976 euros and 1,360 euros.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-graduate-author",
+    "aiAssisted": true,
+    "notes": "Original item. Distractors are the missing fee and two proportional-scaling errors."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-graduate-author",
+    "reviewer": "bocconi-graduate-blind-reviewer",
+    "reviewedOn": "2026-10-27",
+    "independentSolve": {
+      "solvedBy": "bocconi-graduate-blind-reviewer",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Per copy = (610-340)/(500-200) = 0.90; set-up = 340 - 180 = 160. 800 copies: 160 + 720 = 880. 976 = 610x1.6 (proportional), 1,360 = 340x4 (no fixed fee), 720 = variable part only."
+    },
+    "notes": "Author checked that exactly one option is defensible. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "linear-model",
+    "fixed-plus-variable"
+  ],
+  "translations": {}
+}

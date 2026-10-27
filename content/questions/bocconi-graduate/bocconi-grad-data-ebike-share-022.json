@@ -1,0 +1,79 @@
+{
+  "id": "bocconi-grad-data-ebike-share-022",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-data-insight",
+  "skillSlug": "grad-data-derived-conclusions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Costa's share of all e-bikes sold in Valdoria in 2025 was closest to",
+  "instructionsMd": "Use only the figures shown. Work by hand.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "34%"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "38%"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "43%"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "47%"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Share means Costa's 2025 sales over the national 2025 total. The national total is $50 + 35 + 66 + 24 = 175$ thousand, so\n\n$$\\frac{66}{175} \\approx 0.377 \\approx 38\\%$$\n\n**Doing it by hand.** $175 \\times 0.4 = 70$, which is 4 more than 66, and 4 is about 2.3 per cent of 175. So the share is about $40 - 2.3 = 37.7$ per cent.\n\n**The trap.** Keep the year consistent in the numerator and the denominator. Costa's 2024 share was $\\frac{60}{140} \\approx 43$ per cent, and mixing the years produces two more of the listed figures.",
+  "distractorRationale": {
+    "a": "This divides Costa's 2024 sales by the 2025 total, $\\frac{60}{175} \\approx 34$ per cent: numerator and denominator are from different years.",
+    "c": "This is Costa's 2024 share, $\\frac{60}{140} \\approx 43$ per cent. The question asks about 2025, when the other regions grew faster and Costa's share fell.",
+    "d": "This divides Costa's 2025 sales by the 2024 total, $\\frac{66}{140} \\approx 47$ per cent: the years are mixed the other way round."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": {
+    "id": "bocconi-grad-stim-ebike-005",
+    "version": 1
+  },
+  "accessibilityText": "A question about the bar chart of e-bike sales by region. It asks what Costa's share of all e-bikes sold in 2025 was closest to. The options are 34 per cent, 38 per cent, 43 per cent and 47 per cent.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-graduate-author",
+    "aiAssisted": true,
+    "notes": "Original item. Each distractor comes from using the wrong year in the numerator, the denominator, or both."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-graduate-author",
+    "reviewer": "bocconi-graduate-blind-reviewer",
+    "reviewedOn": "2026-10-27",
+    "independentSolve": {
+      "solvedBy": "bocconi-graduate-blind-reviewer",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "2025 total = 50+35+66+24 = 175k. Costa 66/175 = 37.7%, closest to 38%. 34%, 43%, 47% are all at least 3.7 points away. (66/140 = 47% would be the trap using the 2024 total.)"
+    },
+    "notes": "Author checked that exactly one option is defensible. Awaiting blind independent solve."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "chart-ebike",
+    "share"
+  ],
+  "translations": {}
+}

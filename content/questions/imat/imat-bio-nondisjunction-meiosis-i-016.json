@@ -1,0 +1,127 @@
+{
+  "id": "imat-bio-nondisjunction-meiosis-i-016",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-biology",
+  "skillSlug": "imat-bio-reproduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "In a primary spermatocyte, one pair of homologous chromosomes fails to separate during meiosis I. All other separations in meiosis I and meiosis II happen normally. Which describes the four sperm cells produced from this spermatocyte?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Two have one extra chromosome and the other two are normal."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Two have one extra chromosome and two have one chromosome missing."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "One has one extra chromosome, one has one chromosome missing, and two are normal."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "All four have one extra chromosome."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "All four are normal, because meiosis II corrects the error."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Follow the misplaced pair through both divisions.\n\n**Meiosis I.** Both members of the homologous pair go to the same daughter cell. One secondary spermatocyte therefore has one chromosome too many (that pair is present twice), and the other is missing that chromosome entirely.\n\n**Meiosis II.** Each secondary spermatocyte divides normally, sharing out sister chromatids equally. The cell with the extra chromosome gives two cells that each have one extra chromosome ($n + 1$). The cell lacking the chromosome gives two cells that each lack it ($n - 1$).\n\nSo all four sperm are abnormal: two $n + 1$ and two $n - 1$. Compare a failure in meiosis II of one secondary spermatocyte: then only that cell's two products are abnormal (one $n + 1$, one $n - 1$), and the other two sperm are normal.",
+  "distractorRationale": {
+    "c": "This is the outcome of nondisjunction of sister chromatids in meiosis II in one of the two secondary spermatocytes, not of homologous chromosomes in meiosis I.",
+    "d": "This ignores where the extra chromosome came from. One cell can gain a chromosome only because the other daughter cell of meiosis I lost it.",
+    "a": "This follows only the secondary spermatocyte that received the extra chromosome and forgets that its sister cell received none of that pair.",
+    "e": "Meiosis II only separates sister chromatids; it has no way to restore a chromosome that went to the wrong cell in meiosis I."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": null,
+  "accessibilityText": "A text-only question: in a primary spermatocyte one homologous pair fails to separate in meiosis I, and everything else is normal. Which describes the four sperm cells? Five choices about how many sperm have an extra chromosome, a missing chromosome, or the normal number. In the explanation, n plus 1 and n minus 1 mean one chromosome more or fewer than the haploid number.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "imat-biology-author",
+    "aiAssisted": true,
+    "notes": "Original item contrasting nondisjunction in meiosis I with nondisjunction in meiosis II."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "imat-biology-author",
+    "reviewer": "imat-blind-reviewer-1",
+    "reviewedOn": "2026-10-23",
+    "independentSolve": {
+      "solvedBy": "imat-blind-reviewer-1",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Nondisjunction in MI: one secondary spermatocyte n+1, other n-1; normal MII gives two n+1 and two n-1 sperm."
+    },
+    "notes": "Author solved the item twice independently and argued for each wrong choice; no second choice was found defensible. Awaiting blind independent solve and a check of the Italian translation by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "biology",
+    "meiosis",
+    "nondisjunction",
+    "aneuploidy",
+    "spermatogenesis"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "In uno spermatocita primario una coppia di cromosomi omologhi non si separa durante la meiosi I. Tutte le altre separazioni nella meiosi I e nella meiosi II avvengono normalmente. Quale descrizione corrisponde ai quattro spermatozoi prodotti da questo spermatocita?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Due hanno un cromosoma in più e gli altri due sono normali."
+        },
+        {
+          "id": "b",
+          "textMd": "Due hanno un cromosoma in più e due hanno un cromosoma in meno."
+        },
+        {
+          "id": "c",
+          "textMd": "Uno ha un cromosoma in più, uno ha un cromosoma in meno e due sono normali."
+        },
+        {
+          "id": "d",
+          "textMd": "Tutti e quattro hanno un cromosoma in più."
+        },
+        {
+          "id": "e",
+          "textMd": "Tutti e quattro sono normali, perché la meiosi II corregge l'errore."
+        }
+      ],
+      "explanationMd": "Si segua la coppia mal distribuita in entrambe le divisioni.\n\n**Meiosi I.** Entrambi i membri della coppia di omologhi finiscono nella stessa cellula figlia. Uno spermatocita secondario ha quindi un cromosoma in più (quella coppia è presente due volte) e l'altro è del tutto privo di quel cromosoma.\n\n**Meiosi II.** Ogni spermatocita secondario si divide normalmente, distribuendo in parti uguali i cromatidi fratelli. La cellula con il cromosoma in più dà due cellule che hanno ciascuna un cromosoma in più ($n + 1$). La cellula priva del cromosoma dà due cellule che ne sono ciascuna prive ($n - 1$).\n\nQuindi tutti e quattro gli spermatozoi sono anomali: due $n + 1$ e due $n - 1$. Si confronti con una mancata separazione nella meiosi II di uno spermatocita secondario: allora sono anomali solo i due prodotti di quella cellula (uno $n + 1$ e uno $n - 1$), e gli altri due spermatozoi sono normali.",
+      "distractorRationale": {
+        "c": "È il risultato di una mancata separazione dei cromatidi fratelli nella meiosi II in uno dei due spermatociti secondari, non dei cromosomi omologhi nella meiosi I.",
+        "d": "Ignora da dove provenga il cromosoma in più. Una cellula può avere un cromosoma in più solo perché l'altra cellula figlia della meiosi I lo ha perso.",
+        "a": "Segue solo lo spermatocita secondario che ha ricevuto il cromosoma in più e dimentica che la cellula sorella non ha ricevuto nessun cromosoma di quella coppia.",
+        "e": "La meiosi II separa soltanto i cromatidi fratelli; non ha modo di ripristinare un cromosoma finito nella cellula sbagliata durante la meiosi I."
+      },
+      "accessibilityText": "Una domanda solo testuale: in uno spermatocita primario una coppia di omologhi non si separa nella meiosi I, e tutto il resto è normale. Quale descrizione corrisponde ai quattro spermatozoi? Cinque opzioni su quanti spermatozoi hanno un cromosoma in più, uno in meno o il numero normale. Nella spiegazione, n più 1 e n meno 1 indicano un cromosoma in più o in meno rispetto al numero aploide.",
+      "check": {
+        "translatedBy": "imat-biology-author",
+        "checkedBy": "imat-italian-checker",
+        "checkedOn": "2026-10-23",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities, units, negations and options match; terminology correct."
+      }
+    }
+  }
+}

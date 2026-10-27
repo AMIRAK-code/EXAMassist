@@ -1,0 +1,126 @@
+{
+  "id": "tolce-math-discriminant-parameter-206",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "For which real values of $k$ does the equation $x^2 - (k + 1)x + 4 = 0$ have two distinct real solutions?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$k < -\\sqrt{15}$ or $k > \\sqrt{15}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$-5 < k < 3$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$k < -5$ or $k > 3$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$k \\le -5$ or $k \\ge 3$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$k > 3$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "A quadratic $ax^2 + bx + c = 0$ has two distinct real solutions exactly when its discriminant is **strictly** positive: $\\Delta = b^2 - 4ac > 0$.\n\nHere $a = 1$, $b = -(k + 1)$ and $c = 4$, so\n\n$$\\Delta = (k + 1)^2 - 16 > 0 \\iff (k + 1)^2 > 16 \\iff |k + 1| > 4$$\n\nA square exceeds $16$ when the quantity being squared is above $4$ **or** below $-4$:\n\n- $k + 1 > 4 \\Rightarrow k > 3$\n- $k + 1 < -4 \\Rightarrow k < -5$\n\nSo $k < -5$ or $k > 3$.\n\nCheck one value from each piece and one from between. With $k = 4$ the equation is $x^2 - 5x + 4 = 0$, roots $1$ and $4$. With $k = -6$ it is $x^2 + 5x + 4 = 0$, roots $-1$ and $-4$. With $k = 0$ it is $x^2 - x + 4 = 0$, and $\\Delta = 1 - 16 < 0$, so there are no real roots. At the boundary $k = 3$ the equation is $x^2 - 4x + 4 = (x - 2)^2$, a single repeated root, which is why the endpoints are excluded.",
+  "distractorRationale": {
+    "b": "This is where $\\Delta < 0$, the values of $k$ for which there are no real solutions at all. It comes from solving $(k + 1)^2 > 16$ as if it gave an interval between the roots.",
+    "d": "This includes $k = -5$ and $k = 3$, where $\\Delta = 0$ and the equation has a single repeated root, for example $(x - 2)^2 = 0$ when $k = 3$. Two distinct solutions need $\\Delta > 0$ strictly.",
+    "e": "This takes only the positive square root, $k + 1 > 4$, and forgets that $(k + 1)^2 > 16$ also holds when $k + 1 < -4$. The value $k = -6$, which gives roots $-1$ and $-4$, shows the missing branch.",
+    "a": "This expands $(k + 1)^2$ as $k^2 + 1$, dropping the middle term $2k$, and then solves $k^2 > 15$. The correct expansion is $k^2 + 2k + 1$."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": "The equation is x squared minus the quantity k plus 1 times x, plus 4, equals 0. The question asks for which k it has two distinct real solutions. The answer choices are: k between negative 5 and 3, exclusive; k less than negative 5 or k greater than 3; k less than or equal to negative 5 or k greater than or equal to 3; k greater than 3; k less than negative root 15 or k greater than root 15.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Discriminant condition with a parameter inside a squared term; distractors model the reversed interval, non-strict inequality, a missing branch, and a faulty binomial expansion."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-math-author",
+    "reviewer": "tolce-blind-reviewer-2",
+    "reviewedOn": "2026-10-21",
+    "independentSolve": {
+      "solvedBy": "tolce-blind-reviewer-2",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Delta = (k+1)^2 - 16 > 0 => |k+1| > 4 => k < -5 or k > 3. D includes endpoints where Delta = 0 (double root, not distinct) so D is wrong; E and B are incomplete/wrong; A is a sqrt-15 distractor."
+    },
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "quadratic-equations",
+    "discriminant",
+    "parameter"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Per quali valori reali di $k$ l'equazione $x^2 - (k + 1)x + 4 = 0$ ha due soluzioni reali distinte?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$k < -\\sqrt{15}$ oppure $k > \\sqrt{15}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$-5 < k < 3$"
+        },
+        {
+          "id": "c",
+          "textMd": "$k < -5$ oppure $k > 3$"
+        },
+        {
+          "id": "d",
+          "textMd": "$k \\le -5$ oppure $k \\ge 3$"
+        },
+        {
+          "id": "e",
+          "textMd": "$k > 3$"
+        }
+      ],
+      "explanationMd": "Un'equazione di secondo grado $ax^2 + bx + c = 0$ ha due soluzioni reali distinte esattamente quando il suo discriminante è **strettamente** positivo: $\\Delta = b^2 - 4ac > 0$.\n\nQui $a = 1$, $b = -(k + 1)$ e $c = 4$, quindi\n\n$$\\Delta = (k + 1)^2 - 16 > 0 \\iff (k + 1)^2 > 16 \\iff |k + 1| > 4$$\n\nUn quadrato supera $16$ quando la quantità elevata al quadrato è maggiore di $4$ **oppure** minore di $-4$:\n\n- $k + 1 > 4 \\Rightarrow k > 3$\n- $k + 1 < -4 \\Rightarrow k < -5$\n\nQuindi $k < -5$ oppure $k > 3$.\n\nVerifica un valore in ciascuno dei due intervalli e uno compreso tra essi. Con $k = 4$ l'equazione è $x^2 - 5x + 4 = 0$, con radici $1$ e $4$. Con $k = -6$ è $x^2 + 5x + 4 = 0$, con radici $-1$ e $-4$. Con $k = 0$ è $x^2 - x + 4 = 0$, e $\\Delta = 1 - 16 < 0$, quindi non ci sono radici reali. Nel valore di confine $k = 3$ l'equazione è $x^2 - 4x + 4 = (x - 2)^2$, con un'unica radice doppia: ecco perché gli estremi sono esclusi.",
+      "distractorRationale": {
+        "b": "È l'insieme in cui $\\Delta < 0$, cioè i valori di $k$ per cui non ci sono soluzioni reali. Deriva dal risolvere $(k + 1)^2 > 16$ come se desse un intervallo compreso tra le radici.",
+        "d": "Include $k = -5$ e $k = 3$, dove $\\Delta = 0$ e l'equazione ha un'unica radice doppia, per esempio $(x - 2)^2 = 0$ quando $k = 3$. Due soluzioni distinte richiedono $\\Delta > 0$ in senso stretto.",
+        "e": "Considera solo la radice quadrata positiva, $k + 1 > 4$, e dimentica che $(k + 1)^2 > 16$ vale anche quando $k + 1 < -4$. Il valore $k = -6$, che dà le radici $-1$ e $-4$, mostra il ramo mancante.",
+        "a": "Sviluppa $(k + 1)^2$ come $k^2 + 1$, perdendo il termine centrale $2k$, e poi risolve $k^2 > 15$. Lo sviluppo corretto è $k^2 + 2k + 1$."
+      },
+      "accessibilityText": "L'equazione è: x al quadrato meno la quantità k più 1 per x, più 4, uguale a 0. La domanda chiede per quali valori di k ha due soluzioni reali distinte. Le alternative di risposta sono: k compreso tra meno 5 e 3, estremi esclusi; k minore di meno 5 oppure k maggiore di 3; k minore o uguale a meno 5 oppure k maggiore o uguale a 3; k maggiore di 3; k minore di meno radice di 15 oppure k maggiore di radice di 15.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": "tolce-italian-checker",
+        "checkedOn": "2026-10-23",
+        "answerPreserved": true,
+        "notes": "(k+1)^2 > 16 -> k<-5 oppure k>3. 'distinte' preserves strict inequality."
+      }
+    }
+  }
+}

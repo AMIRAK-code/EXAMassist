@@ -1,0 +1,125 @@
+{
+  "id": "imat-chem-electron-configuration-102",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-chemistry",
+  "skillSlug": "imat-chem-atoms-periodic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "An element is in period 3 and group 15 of the periodic table. Which of the following is its ground-state electron configuration?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$1s^2\\,2s^2\\,2p^6\\,3s^2\\,3p^5$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$1s^2\\,2s^2\\,2p^3$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$1s^2\\,2s^2\\,2p^6\\,3s^2\\,3p^3$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$1s^2\\,2s^2\\,2p^6\\,3s^2\\,3p^6\\,4s^2\\,3d^3$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$1s^2\\,2s^2\\,2p^6\\,3s^1\\,3p^4$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Read the two coordinates separately.\n\n- The **period** gives the outermost shell. Period 3 means the valence electrons are in shell $n = 3$, so shells 1 and 2 are full: $1s^2\\,2s^2\\,2p^6$.\n- The **group** gives the number of valence electrons. For groups 13 to 18 it is the group number minus 10, so a group-15 element has 5 valence electrons.\n\nIn the ground state those five electrons fill the lower-energy $3s$ subshell first (two electrons), and the other three go into $3p$: $3s^2\\,3p^3$. The full configuration is $1s^2\\,2s^2\\,2p^6\\,3s^2\\,3p^3$, which is phosphorus.\n\nCheck by counting: $2 + 2 + 6 + 2 + 3 = 15$ electrons. Period 3 has no d-block elements, so for its groups 13 to 18 the atomic number equals the group number, and phosphorus is indeed element 15.",
+  "distractorRationale": {
+    "b": "This is the group-15 element of period 2 (nitrogen). It has the right number of valence electrons, five, but in shell 2, so it ignores the period.",
+    "e": "This has the right total of 15 electrons and five in shell 3, but it is an excited state: one electron sits in $3p$ while $3s$ is still only half full. In the ground state the lower-energy $3s$ subshell fills first.",
+    "a": "This puts all five valence electrons in $3p$ on top of a full $3s$, giving seven valence electrons and 17 electrons in total. That is a group-17 element (chlorine), not group 15.",
+    "d": "This is vanadium, a transition metal in period 4 and group 5: five electrons beyond the argon core, in $4s$ and $3d$. Five outer electrons is right for group 15, but a group-15 element is in the p-block, and in period 3 its outer electrons must be in shell 3."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "An element lies in period 3 and group 15 of the periodic table. Choose its ground-state electron configuration. The choices, read in subshell notation with superscripts giving the number of electrons: one s two, two s two, two p three; one s two, two s two, two p six, three s one, three p four; one s two, two s two, two p six, three s two, three p three; one s two, two s two, two p six, three s two, three p five; one s two, two s two, two p six, three s two, three p six, four s two, three d three.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "imat-chemistry-author",
+    "aiAssisted": true,
+    "notes": "Original item. Tests reading period and group as shell and valence-electron count; distractors are the period-2 analogue, an excited state, a group-17 configuration and a group-5 transition metal."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "imat-chemistry-author",
+    "reviewer": "imat-blind-reviewer-1",
+    "reviewedOn": "2026-10-23",
+    "independentSolve": {
+      "solvedBy": "imat-blind-reviewer-1",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Period 3 group 15 = phosphorus, Z=15: 1s2 2s2 2p6 3s2 3p3. A is Cl, B is N, D is V, E is an excited/incorrect configuration."
+    },
+    "notes": "Author solved the item twice independently and tried to defend each wrong choice; only the keyed choice survives. Awaiting blind independent solve. The Italian version uses the decimal comma, as Italian schools do, and awaits a check by someone other than its translator. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "chemistry",
+    "electron-configuration",
+    "periodic-table"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un elemento si trova nel periodo 3 e nel gruppo 15 della tavola periodica. Quale delle seguenti è la sua configurazione elettronica allo stato fondamentale?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$1s^2\\,2s^2\\,2p^6\\,3s^2\\,3p^5$"
+        },
+        {
+          "id": "b",
+          "textMd": "$1s^2\\,2s^2\\,2p^3$"
+        },
+        {
+          "id": "c",
+          "textMd": "$1s^2\\,2s^2\\,2p^6\\,3s^2\\,3p^3$"
+        },
+        {
+          "id": "d",
+          "textMd": "$1s^2\\,2s^2\\,2p^6\\,3s^2\\,3p^6\\,4s^2\\,3d^3$"
+        },
+        {
+          "id": "e",
+          "textMd": "$1s^2\\,2s^2\\,2p^6\\,3s^1\\,3p^4$"
+        }
+      ],
+      "explanationMd": "Si leggono le due coordinate separatamente.\n\n- Il **periodo** indica il livello più esterno. Periodo 3 significa che gli elettroni di valenza si trovano nel livello $n = 3$, quindi i livelli 1 e 2 sono completi: $1s^2\\,2s^2\\,2p^6$.\n- Il **gruppo** indica il numero di elettroni di valenza. Per i gruppi dal 13 al 18 è il numero del gruppo meno 10, quindi un elemento del gruppo 15 ha 5 elettroni di valenza.\n\nAllo stato fondamentale questi cinque elettroni riempiono prima il sottolivello $3s$, a energia più bassa (due elettroni), e gli altri tre vanno nel $3p$: $3s^2\\,3p^3$. La configurazione completa è $1s^2\\,2s^2\\,2p^6\\,3s^2\\,3p^3$, cioè il fosforo.\n\nVerifica contando: $2 + 2 + 6 + 2 + 3 = 15$ elettroni. Il periodo 3 non contiene elementi del blocco d, quindi per i suoi gruppi dal 13 al 18 il numero atomico coincide con il numero del gruppo, e il fosforo è proprio l'elemento 15.",
+      "distractorRationale": {
+        "b": "È l'elemento del gruppo 15 nel periodo 2 (l'azoto). Ha il numero giusto di elettroni di valenza, cinque, ma nel livello 2, quindi ignora il periodo.",
+        "e": "Ha il totale corretto di 15 elettroni, cinque dei quali nel livello 3, ma è uno stato eccitato: un elettrone si trova nel $3p$ mentre il $3s$ è ancora riempito solo a metà. Allo stato fondamentale si riempie prima il sottolivello $3s$, a energia più bassa.",
+        "a": "Mette tutti e cinque gli elettroni di valenza nel $3p$ oltre a un $3s$ completo, ottenendo sette elettroni di valenza e 17 elettroni in totale. È un elemento del gruppo 17 (il cloro), non del gruppo 15.",
+        "d": "È il vanadio, un metallo di transizione del periodo 4 e del gruppo 5: cinque elettroni oltre il nocciolo dell'argon, nel $4s$ e nel $3d$. Cinque elettroni esterni sono corretti per il gruppo 15, ma un elemento del gruppo 15 appartiene al blocco p e, nel periodo 3, i suoi elettroni esterni devono trovarsi nel livello 3."
+      },
+      "accessibilityText": "Un elemento si trova nel periodo 3 e nel gruppo 15 della tavola periodica. Si sceglie la sua configurazione elettronica allo stato fondamentale. Le scelte, lette in notazione per sottolivelli con gli apici che indicano il numero di elettroni: uno s due, due s due, due p tre; uno s due, due s due, due p sei, tre s uno, tre p quattro; uno s due, due s due, due p sei, tre s due, tre p tre; uno s due, due s due, due p sei, tre s due, tre p cinque; uno s due, due s due, due p sei, tre s due, tre p sei, quattro s due, tre d tre.",
+      "check": {
+        "translatedBy": "imat-chemistry-author",
+        "checkedBy": "imat-italian-checker",
+        "checkedOn": "2026-10-23",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities, units, negations and options match; terminology correct."
+      }
+    }
+  }
+}

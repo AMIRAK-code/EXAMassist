@@ -1,6 +1,6 @@
 {
   "id": "tolc-i-logic-machine-duty-rota-213",
-  "version": 1,
+  "version": 2,
   "examKey": "tolc-i",
   "sectionKey": "logic",
   "domainSlug": "tolci-logic",
@@ -44,7 +44,7 @@
   },
   "explanationMd": "Start with the day that has fewest possibilities. On Tuesday, Ivo is ruled out because he works Monday and nobody works two consecutive days, and Mira is ruled out by the last clue. So Lea works Tuesday. Lea now has her two days, Tuesday and Saturday.\n\nThat leaves Wednesday, Thursday and Friday for Ivo's second day and both of Mira's days. Mira cannot work two consecutive days, and the only non-consecutive pair among those three days is Wednesday and Friday. So Mira works Wednesday and Friday, and Ivo works **Thursday**.\n\nCheck the full rota, Monday to Saturday: Ivo, Lea, Mira, Ivo, Mira, Lea. Everyone works twice, nobody works two days in a row, and every clue holds.",
   "distractorRationale": {
-    "c": "Lea's two days are already fixed as Tuesday and Saturday: Tuesday is the only possible day for anyone except her, and Saturday is given.",
+    "c": "Lea's two days are already fixed as Tuesday and Saturday: nobody but Lea can work Tuesday, and Saturday is given.",
     "a": "Mira needs two days among Wednesday, Thursday and Friday that are not consecutive. Thursday is next to both of the other two, so it cannot be one of hers.",
     "e": "The rota is fully determined. Putting Mira on Thursday would force her other day to be Wednesday or Friday, which are consecutive with Thursday.",
     "b": "Lea cannot be on duty on Thursday because her two days are already Tuesday and Saturday."
@@ -70,7 +70,7 @@
       "uniquenessChecked": true,
       "workingNotes": "Tuesday cannot be Ivo (consecutive with Monday) or Mira, so Lea; Lea then has Tue and Sat and is used up. Mira needs two non-consecutive days among Wed-Fri, so Wed and Fri, leaving Thursday to Ivo. The rota is unique, so the 'either' options fail. [A second, separate blind solve (blind-reviewer-wave8-tolci-logic-sci-run1) reached the same answer: Tue cannot be Mira or Ivo (Mon), so Lea; Lea then has Tue and Sat. Wed-Fri go to Ivo (1 more) and Mira (2), and Mira's two must be non-consecutive, so Wed and Fri, leaving Ivo on Thu (I L M I M L). The 'either' options fail because the schedule is unique.]"
     },
-    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+    "notes": " Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. Version 2: the rationale for the choice naming Lea was garbled (\"Tuesday is the only possible day for anyone except her\"); it now says that nobody but Lea can work Tuesday, since Ivo works Monday and Mira is ruled out. The key is unchanged, and the version was incremented to keep earlier attempts pinned to the text they showed."
   },
   "state": "published",
   "quarantine": null,
@@ -79,5 +79,48 @@
     "problems",
     "schedules",
     "no-calculator"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Tre tecnici, Ivo, Lea e Mira, si dividono la sorveglianza di una macchina da lunedì a sabato di una settimana. In ciascuno di questi sei giorni è di turno esattamente uno di loro, e ciascuno lavora esattamente due dei sei giorni. Si sa che:\n\n- Nessuno è di turno in due giorni consecutivi.\n- Ivo è di turno il lunedì.\n- Lea è di turno il sabato.\n- Mira non è di turno il martedì.\n\nChi è di turno il giovedì?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Mira"
+        },
+        {
+          "id": "b",
+          "textMd": "Lea oppure Mira; le informazioni non permettono di stabilire chi delle due."
+        },
+        {
+          "id": "c",
+          "textMd": "Lea"
+        },
+        {
+          "id": "d",
+          "textMd": "Ivo"
+        },
+        {
+          "id": "e",
+          "textMd": "Ivo oppure Mira; le informazioni non permettono di stabilire chi dei due."
+        }
+      ],
+      "explanationMd": "Parti dal giorno con meno possibilità. Il martedì Ivo è escluso, perché lavora il lunedì e nessuno lavora in due giorni consecutivi, e Mira è esclusa dall'ultimo indizio. Quindi il martedì lavora Lea. Lea ha ora i suoi due giorni, martedì e sabato.\n\nRestano mercoledì, giovedì e venerdì per il secondo giorno di Ivo e per entrambi i giorni di Mira. Mira non può lavorare in due giorni consecutivi, e l'unica coppia di giorni non consecutivi fra questi tre è mercoledì e venerdì. Quindi Mira lavora mercoledì e venerdì, e Ivo lavora il **giovedì**.\n\nVerifica il turno completo, da lunedì a sabato: Ivo, Lea, Mira, Ivo, Mira, Lea. Ognuno lavora due volte, nessuno lavora due giorni di fila, e ogni indizio è rispettato.",
+      "distractorRationale": {
+        "c": "I due giorni di Lea sono già fissati, martedì e sabato: il martedì non è possibile per nessun altro tranne lei, e il sabato è dato.",
+        "a": "Mira ha bisogno di due giorni non consecutivi tra mercoledì, giovedì e venerdì. Il giovedì è adiacente a entrambi gli altri due, quindi non può essere uno dei suoi.",
+        "e": "Il turno è completamente determinato. Mettere Mira di giovedì obbligherebbe il suo altro giorno a essere mercoledì o venerdì, che sono consecutivi al giovedì.",
+        "b": "Lea non può essere di turno il giovedì, perché i suoi due giorni sono già martedì e sabato."
+      },
+      "accessibilityText": "Un problema di turni. Tre tecnici, Ivo, Lea e Mira, sorvegliano una macchina da lunedì a sabato, una persona al giorno, e ciascuno lavora esattamente due giorni. Nessuno lavora in due giorni consecutivi. Ivo lavora il lunedì, Lea lavora il sabato e Mira non lavora il martedì. La domanda chiede chi lavora il giovedì. Le cinque alternative sono: Mira; Lea oppure Mira, non determinato; Lea; Ivo; Ivo oppure Mira, non determinato.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": "tolc-italian-checker-i1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; unique rota Ivo-Lea-Mira-Ivo-Mira-Lea."
+      }
+    }
+  }
 }

@@ -78,5 +78,48 @@
     "special-angles",
     "radians",
     "reference-angle"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Qual è il valore di $\\cos\\dfrac{4\\pi}{3} + \\sin\\dfrac{7\\pi}{6}$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$-\\dfrac{1+\\sqrt{3}}{2}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$-\\sqrt{3}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$0$"
+        },
+        {
+          "id": "d",
+          "textMd": "$1$"
+        },
+        {
+          "id": "e",
+          "textMd": "$-1$"
+        }
+      ],
+      "explanationMd": "Si converte ciascun angolo in gradi, si individua il quadrante per stabilire il segno e si usa l'angolo di riferimento per stabilire il valore assoluto.\n\n**Primo termine.** $\\dfrac{4\\pi}{3} = 240^\\circ$, nel terzo quadrante, dove il coseno è negativo. L'angolo di riferimento è $240^\\circ - 180^\\circ = 60^\\circ$, quindi $\\cos\\dfrac{4\\pi}{3} = -\\cos 60^\\circ = -\\dfrac12$.\n\n**Secondo termine.** $\\dfrac{7\\pi}{6} = 210^\\circ$, anch'esso nel terzo quadrante, dove il seno è negativo. L'angolo di riferimento è $30^\\circ$, quindi $\\sin\\dfrac{7\\pi}{6} = -\\sin 30^\\circ = -\\dfrac12$.\n\n**Somma.** $-\\dfrac12 - \\dfrac12 = -1$.\n\n**Come verificarlo.** Sulla circonferenza goniometrica, il punto a $240^\\circ$ è $\\left(-\\tfrac12, -\\tfrac{\\sqrt3}{2}\\right)$ e il punto a $210^\\circ$ è $\\left(-\\tfrac{\\sqrt3}{2}, -\\tfrac12\\right)$. La prima coordinata del primo punto più la seconda coordinata del secondo dà $-\\tfrac12 - \\tfrac12 = -1$ ✓.",
+      "distractorRationale": {
+        "c": "Sbaglia uno dei due segni, così i termini si annullano. Entrambi gli angoli sono nel terzo quadrante, dove seno e coseno sono entrambi negativi.",
+        "d": "Usa i valori degli angoli di riferimento $\\cos 60^\\circ = \\tfrac12$ e $\\sin 30^\\circ = \\tfrac12$ senza i segni del terzo quadrante.",
+        "a": "Prende il valore di riferimento sbagliato per uno dei due angoli, per esempio $\\cos 240^\\circ = -\\tfrac{\\sqrt3}{2}$. L'angolo di riferimento di $240^\\circ$ è $60^\\circ$, e $\\cos 60^\\circ = \\tfrac12$.",
+        "b": "Scambia seno e coseno per entrambi gli angoli, ottenendo $-\\tfrac{\\sqrt3}{2} - \\tfrac{\\sqrt3}{2}$. Quelli sono $\\sin 240^\\circ$ e $\\cos 210^\\circ$, non i valori richiesti."
+      },
+      "accessibilityText": "Qual è il valore del coseno di 4 pi greco fratto 3 più il seno di 7 pi greco fratto 6? Le cinque alternative sono: meno la frazione 1 più la radice quadrata di 3, fratto 2; meno la radice quadrata di 3; 0; 1; meno 1.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i2",
+        "checkedBy": "tolc-italian-checker-i2",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful. -1/2-1/2=-1."
+      }
+    }
+  }
 }

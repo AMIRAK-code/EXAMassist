@@ -1,0 +1,126 @@
+{
+  "id": "imat-chem-ph-dilution-110",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-chemistry",
+  "skillSlug": "imat-chem-reactions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "10 mL of a 0.10 mol/L solution of hydrochloric acid, a strong acid, is diluted with water to a total volume of 1.0 L. What is the pH of the diluted solution?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "1"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "2"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "3"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "4"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "11"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Hydrochloric acid is fully dissociated, so $[\\mathrm{H^+}]$ equals the concentration of the acid. Find the moles of acid, then the new concentration.\n\nMoles of HCl: $0.10\\ \\text{mol/L} \\times 0.010\\ \\text{L} = 1.0 \\times 10^{-3}$ mol.\n\nAfter dilution to 1.0 L, $[\\mathrm{H^+}] = 1.0 \\times 10^{-3}$ mol/L, so $\\text{pH} = -\\log(10^{-3}) = 3$.\n\nShortcut and check: going from 10 mL to 1000 mL is a hundredfold dilution, and each tenfold dilution of a strong acid raises the pH by one unit. The original pH is 1, so the new pH is $1 + 2 = 3$. The solution is still acidic, as it must be: adding water to an acid brings the pH towards 7 but never past it.",
+  "distractorRationale": {
+    "a": "pH 1 is the pH of the original 0.10 mol/L acid. It ignores the dilution.",
+    "b": "This takes 10 mL to be 0.1 L, giving 0.010 mol of acid and a concentration of 0.010 mol/L. In fact 10 mL is 0.010 L.",
+    "d": "This takes 10 mL to be 0.001 L, giving $1 \\times 10^{-4}$ mol of acid and pH 4. Since 1 L is 1000 mL, 10 mL is 0.010 L.",
+    "e": "11 is the pOH of the diluted solution, $14 - 3$, not its pH. Diluting an acid cannot make it basic; its pH stays below 7."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "10 millilitres of 0.10 moles per litre hydrochloric acid, a strong acid, is diluted with water to 1.0 litre. The question asks for the pH of the diluted solution. Five choices: 1, 2, 3, 4 and 11.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "imat-chemistry-author",
+    "aiAssisted": true,
+    "notes": "Original item. A hundredfold dilution of a strong acid; the two unit-conversion slips with 10 mL give the neighbouring pH values."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "imat-chemistry-author",
+    "reviewer": "imat-blind-reviewer-1",
+    "reviewedOn": "2026-10-23",
+    "independentSolve": {
+      "solvedBy": "imat-blind-reviewer-1",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "n(H+) = 0.010 L * 0.10 = 1.0e-3 mol in 1.0 L -> [H+] = 1e-3 M -> pH 3."
+    },
+    "notes": "Author solved the item twice independently and tried to defend each wrong choice; only the keyed choice survives. Awaiting blind independent solve. The Italian version uses the decimal comma, as Italian schools do, and awaits a check by someone other than its translator."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "chemistry",
+    "acids-and-bases",
+    "ph",
+    "dilution"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "10 mL di una soluzione 0,10 mol/L di acido cloridrico, un acido forte, vengono diluiti con acqua fino a un volume totale di 1,0 L. Qual è il pH della soluzione diluita?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "1"
+        },
+        {
+          "id": "b",
+          "textMd": "2"
+        },
+        {
+          "id": "c",
+          "textMd": "3"
+        },
+        {
+          "id": "d",
+          "textMd": "4"
+        },
+        {
+          "id": "e",
+          "textMd": "11"
+        }
+      ],
+      "explanationMd": "L'acido cloridrico è completamente dissociato, quindi $[\\mathrm{H^+}]$ è uguale alla concentrazione dell'acido. Si calcolano le moli di acido, poi la nuova concentrazione.\n\nMoli di HCl: $0{,}10\\ \\text{mol/L} \\times 0{,}010\\ \\text{L} = 1{,}0 \\times 10^{-3}$ mol.\n\nDopo la diluizione a 1,0 L, $[\\mathrm{H^+}] = 1{,}0 \\times 10^{-3}$ mol/L, quindi $\\text{pH} = -\\log(10^{-3}) = 3$.\n\nScorciatoia e verifica: passare da 10 mL a 1000 mL è una diluizione di cento volte, e ogni diluizione di dieci volte di un acido forte aumenta il pH di un'unità. Il pH iniziale è 1, quindi il nuovo pH è $1 + 2 = 3$. La soluzione è ancora acida, come deve essere: aggiungendo acqua a un acido il pH si avvicina a 7 ma non lo supera mai.",
+      "distractorRationale": {
+        "a": "pH 1 è il pH dell'acido iniziale 0,10 mol/L. Ignora la diluizione.",
+        "b": "Considera 10 mL come 0,1 L, ottenendo 0,010 mol di acido e una concentrazione di 0,010 mol/L. In realtà 10 mL sono 0,010 L.",
+        "d": "Considera 10 mL come 0,001 L, ottenendo $1 \\times 10^{-4}$ mol di acido e pH 4. Poiché 1 L corrisponde a 1000 mL, 10 mL sono 0,010 L.",
+        "e": "11 è il pOH della soluzione diluita, $14 - 3$, non il suo pH. Diluire un acido non può renderlo basico; il suo pH resta inferiore a 7."
+      },
+      "accessibilityText": "10 millilitri di acido cloridrico 0,10 moli per litro, un acido forte, vengono diluiti con acqua fino a 1,0 litro. La domanda chiede il pH della soluzione diluita. Cinque scelte: 1, 2, 3, 4 e 11.",
+      "check": {
+        "translatedBy": "imat-chemistry-author",
+        "checkedBy": "imat-italian-checker",
+        "checkedOn": "2026-10-23",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities, units, negations and options match; terminology correct."
+      }
+    }
+  }
+}

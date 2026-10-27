@@ -79,5 +79,48 @@
     "electrostatics",
     "inverse-square",
     "proportional-reasoning"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Due piccole sfere cariche, poste a distanza $d$, si respingono con una forza di modulo $F$. La carica di **ciascuna** sfera viene poi raddoppiata e le sfere vengono portate a distanza $3d$. Qual è il modulo della nuova forza?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\dfrac{2}{9}F$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\dfrac{9}{4}F$"
+        },
+        {
+          "id": "c",
+          "textMd": "$\\dfrac{2}{3}F$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\dfrac{4}{9}F$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\dfrac{4}{3}F$"
+        }
+      ],
+      "explanationMd": "**Che cosa notare per prima cosa.** La legge di Coulomb, $F = k\\dfrac{q_1 q_2}{d^2}$, è direttamente proporzionale al *prodotto* delle cariche e inversamente proporzionale al *quadrato* della distanza. Considera separatamente come cambia ciascun fattore.\n\n**I passaggi.**\n\n- Entrambe le cariche raddoppiate: il prodotto $q_1 q_2$ diventa $2 \\times 2 = 4$ volte più grande.\n- Distanza triplicata: $d^2$ diventa $9$ volte più grande, quindi la forza viene divisa per $9$.\n\n$$F' = \\frac{4}{9}F.$$\n\n**Come verificarlo.** Scrivilo per esteso: $F' = k\\dfrac{(2q_1)(2q_2)}{(3d)^2} = \\dfrac{4}{9}\\,k\\dfrac{q_1 q_2}{d^2} = \\dfrac49 F$.",
+      "distractorRationale": {
+        "e": "Divide per $3$ invece che per $3^2 = 9$. La legge di Coulomb dipende dall'inverso del quadrato della distanza, quindi triplicare la distanza riduce la forza a un nono.",
+        "a": "Raddoppia la forza una sola volta, come se fosse cambiata una sola carica. Entrambe le cariche sono raddoppiate, quindi il prodotto delle cariche è quattro volte più grande.",
+        "b": "Inverte il risultato, moltiplicando per il fattore della distanza e dividendo per quello delle cariche. Una separazione maggiore deve indebolire la forza, e qui prevale l'effetto della distanza.",
+        "c": "Commette entrambi gli errori insieme: conta il fattore delle cariche come $2$ invece di $4$ e quello della distanza come $3$ invece di $9$."
+      },
+      "accessibilityText": "Due piccole sfere cariche, a distanza d, si respingono con una forza di modulo F. La carica di ciascuna sfera viene poi raddoppiata e le sfere vengono portate a distanza 3 d. Qual è il modulo della nuova forza? Le alternative sono due noni di F, nove quarti di F, due terzi di F, quattro noni di F e quattro terzi di F.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": "tolc-italian-checker-i2",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful. 4/9 F."
+      }
+    }
+  }
 }

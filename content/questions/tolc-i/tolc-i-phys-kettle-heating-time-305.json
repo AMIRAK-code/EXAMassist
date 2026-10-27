@@ -78,5 +78,48 @@
     "specific-heat",
     "power",
     "energy"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un bollitore elettrico di potenza $2.0\\ \\text{kW}$ riscalda $1.5\\ \\text{kg}$ di acqua da $20\\ ^{\\circ}\\text{C}$ a $100\\ ^{\\circ}\\text{C}$. Il calore specifico dell'acqua è $4200\\ \\text{J/(kg·K)}$. Supponendo che tutta l'energia elettrica vada all'acqua, quanto tempo richiede il riscaldamento?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$252\\,000\\ \\text{s}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$315\\ \\text{s}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$252\\ \\text{s}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$168\\ \\text{s}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$63\\ \\text{s}$"
+        }
+      ],
+      "explanationMd": "**Che cosa notare per prima cosa.** L'energia necessaria si ricava da $Q = mc\\,\\Delta T$; il tempo è quell'energia divisa per la potenza, $t = Q/P$. Usa sempre le unità del SI: la potenza è $2000\\ \\text{W}$, e una *differenza* di temperatura ha lo stesso valore in kelvin e in gradi Celsius.\n\n**I passaggi.**\n\n$$Q = 1.5 \\times 4200 \\times (100 - 20) = 6300 \\times 80 = 504\\,000\\ \\text{J},$$\n\n$$t = \\frac{504\\,000\\ \\text{J}}{2000\\ \\text{W}} = 252\\ \\text{s}.$$\n\n**Come verificarlo.** $252\\ \\text{s}$ sono poco più di quattro minuti, un tempo ragionevole per un bollitore. Unità di misura: $\\text{J} / (\\text{J/s}) = \\text{s}$.",
+      "distractorRationale": {
+        "b": "Usa un aumento di temperatura di $100\\ ^{\\circ}\\text{C}$, come se l'acqua partisse da $0\\ ^{\\circ}\\text{C}$. L'aumento è di $100 - 20 = 80$ gradi.",
+        "e": "Usa la temperatura iniziale, $20$ gradi, come variazione di temperatura. L'acqua si scalda di $80$ gradi.",
+        "d": "Omette la massa in $Q = mc\\,\\Delta T$, calcolando l'energia solo per $1\\ \\text{kg}$. Il bollitore contiene $1.5\\ \\text{kg}$.",
+        "a": "Divide per $2$ invece che per $2000$, dimenticando che $2.0\\ \\text{kW} = 2000\\ \\text{W}$. Quasi tre giorni non sono certo il tempo che impiega un bollitore."
+      },
+      "accessibilityText": "Un bollitore elettrico di potenza 2,0 kilowatt riscalda 1,5 chilogrammi di acqua da 20 gradi Celsius a 100 gradi Celsius. Il calore specifico dell'acqua è 4200 joule al chilogrammo per kelvin. Supponendo che tutta l'energia elettrica vada all'acqua, quanto tempo richiede il riscaldamento? Le alternative sono 252 mila secondi, 315 secondi, 252 secondi, 168 secondi e 63 secondi.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": "tolc-italian-checker-i2",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful. 504000 J / 2000 W = 252 s."
+      }
+    }
+  }
 }

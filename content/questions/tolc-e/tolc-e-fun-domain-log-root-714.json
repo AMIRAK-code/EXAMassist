@@ -78,5 +78,48 @@
     "domain",
     "logarithm",
     "square-root"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Qual è il dominio di $f(x) = \\dfrac{\\ln(4 - x^{2})}{\\sqrt{x+1}}$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$(-1,\\ 2)$"
+        },
+        {
+          "id": "b",
+          "textMd": "$(2,\\ +\\infty)$"
+        },
+        {
+          "id": "c",
+          "textMd": "$(-1,\\ +\\infty)$"
+        },
+        {
+          "id": "d",
+          "textMd": "$[-1,\\ 2)$"
+        },
+        {
+          "id": "e",
+          "textMd": "$(-2,\\ 2)$"
+        }
+      ],
+      "explanationMd": "Una funzione è definita dove è definita **ogni** operazione che contiene, quindi elenca ciascuna condizione e fanne l'intersezione.\n\n**1. Il logaritmo** richiede un argomento positivo: $4 - x^{2} > 0$, cioè $x^{2} < 4$, quindi $-2 < x < 2$.\n\n**2. La radice quadrata** richiede $x + 1 \\ge 0$.\n\n**3. Il denominatore** non deve annullarsi: $\\sqrt{x+1} \\ne 0$, quindi $x \\ne -1$. Insieme alla condizione precedente, $x + 1 > 0$, cioè $x > -1$.\n\n**Intersezione.** $-2 < x < 2$ e $x > -1$ danno $-1 < x < 2$, cioè l'intervallo $(-1, 2)$.\n\n**Come verificare.** Prova un punto vicino a ciascun estremo: $x = -1$ dà una divisione per zero; $x = 0$ dà $\\ln 4 / 1$, che è definito; $x = 2$ dà $\\ln 0$, che non è definito; $x = -1.5$ dà la radice quadrata di un numero negativo.",
+      "distractorRationale": {
+        "d": "Richiede solo $x+1 \\ge 0$, la condizione per la sola radice quadrata. Qui la radice sta al denominatore, quindi deve anche essere diversa da zero, il che esclude $x=-1$.",
+        "e": "Applica la condizione per il logaritmo e dimentica la radice quadrata, che richiede $x+1>0$. In $x=-1.5$ la radice è di un numero negativo.",
+        "c": "Applica la condizione per la radice e per il denominatore e dimentica il logaritmo, il cui argomento $4-x^{2}$ deve essere positivo. In $x=3$ vale $-5$.",
+        "b": "Risolve $4 - x^{2} > 0$ con il verso della disequazione invertito, ottenendo $x^{2} > 4$, cioè $x<-2$ oppure $x>2$; l'intersezione con $x>-1$ lascia allora $x>2$. In realtà serve $x^{2}<4$, e in $x=3$ l'argomento $4-9=-5$ è negativo."
+      },
+      "accessibilityText": "La domanda chiede il dominio della funzione f di x, una frazione il cui numeratore è il logaritmo naturale di 4 meno x al quadrato e il cui denominatore è la radice quadrata di x più 1. Le cinque alternative sono intervalli: l'intervallo aperto da meno 1 a 2; da meno 1 incluso a 2 escluso; l'intervallo aperto da meno 2 a 2; l'intervallo aperto da meno 1 a infinito; l'intervallo aperto da 2 a infinito.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-e",
+        "checkedBy": "tolc-italian-checker-e",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful. (-1,2)."
+      }
+    }
+  }
 }

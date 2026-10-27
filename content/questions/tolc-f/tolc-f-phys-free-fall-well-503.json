@@ -77,5 +77,48 @@
   "tags": [
     "kinematics",
     "free-fall"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un sasso viene lasciato cadere da fermo in un pozzo asciutto e raggiunge il fondo dopo $3.0\\ \\text{s}$. Trascurando la resistenza dell'aria e assumendo $g = 10\\ \\text{m/s}^{2}$, quanto è profondo il pozzo?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$90\\ \\text{m}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$4.5\\ \\text{m}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$45\\ \\text{m}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$30\\ \\text{m}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$15\\ \\text{m}$"
+        }
+      ],
+      "explanationMd": "**Da notare subito.** Partenza da fermo, accelerazione costante $g$, tempo noto: si applica la legge oraria del moto uniformemente accelerato con partenza da fermo.\n\n**Il passaggio decisivo.**\n\n$$d=\\tfrac12 g t^{2}=\\tfrac12\\cdot 10\\cdot 3^{2}=\\tfrac12\\cdot 10\\cdot 9=45\\ \\text{m}.$$\n\n**Come verificarlo.** La velocità all'arrivo è $gt=30$ m/s, e la velocità è cresciuta in modo uniforme da 0, quindi la velocità media è 15 m/s. In 3 s il sasso percorre $15 \\times 3 = 45$ m. Lo stesso risultato si ottiene per una strada completamente diversa.",
+      "distractorRationale": {
+        "b": "Usa $\\tfrac12 t^{2}$ e tralascia l'accelerazione $g$. Lo spazio percorso in caduta è $\\tfrac12 g t^{2}$.",
+        "e": "Calcola $\\tfrac12 g t$, che è metà della velocità d'impatto. Per lo spazio serve il tempo al quadrato, non il tempo.",
+        "d": "Calcola $gt$, la velocità all'arrivo ($30\\ \\text{m/s}$), e la riporta come se fosse una distanza.",
+        "a": "Usa $g t^{2}$ e dimentica il fattore $\\tfrac12$. Il sasso parte da fermo, quindi la sua velocità media è solo metà della velocità finale."
+      },
+      "accessibilityText": "Un sasso viene lasciato cadere da fermo in un pozzo e raggiunge il fondo dopo tre secondi. Trascura la resistenza dell'aria e assumi g uguale a dieci metri al secondo quadrato. Trova la profondità del pozzo. Le alternative sono novanta, quattro virgola cinque, quarantacinque, trenta e quindici metri.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f2",
+        "checkedBy": "tolc-italian-checker-f2",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities and options match the English."
+      }
+    }
+  }
 }

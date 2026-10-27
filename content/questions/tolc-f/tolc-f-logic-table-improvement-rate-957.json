@@ -78,5 +78,48 @@
     "table-reading",
     "percentages",
     "rates-vs-counts"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "In una sperimentazione, lo stesso principio attivo è stato somministrato in quattro forme diverse a quattro gruppi di pazienti, e un quinto gruppo ha ricevuto un placebo. La tabella riporta, per ogni gruppo, quanti pazienti hanno partecipato e quanti sono migliorati.\n\n| Gruppo | Pazienti | Pazienti migliorati |\n| --- | --- | --- |\n| Compressa | 80 | 52 |\n| Sciroppo | 50 | 34 |\n| Cerotto | 120 | 72 |\n| Spray | 60 | 40 |\n| Placebo | 40 | 18 |\n\nQuale gruppo ha avuto la percentuale più alta di pazienti migliorati?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Sciroppo"
+        },
+        {
+          "id": "b",
+          "textMd": "Spray"
+        },
+        {
+          "id": "c",
+          "textMd": "Placebo"
+        },
+        {
+          "id": "d",
+          "textMd": "Cerotto"
+        },
+        {
+          "id": "e",
+          "textMd": "Compressa"
+        }
+      ],
+      "explanationMd": "**Da notare subito.** I gruppi hanno dimensioni diverse, quindi i numeri di pazienti migliorati non si possono confrontare direttamente: ciascuno va diviso per la numerosità del suo gruppo.\n\n**Il calcolo.**\n\n- Compressa: $52/80=65\\%$\n- Sciroppo: $34/50=68\\%$\n- Cerotto: $72/120=60\\%$\n- Spray: $40/60\\approx 66.7\\%$\n- Placebo: $18/40=45\\%$\n\nIl gruppo dello sciroppo ha la percentuale più alta.\n\n**Come verificarlo.** Confronta direttamente le due percentuali più vicine: sciroppo $34/50=0.68$ contro spray $40/60=2/3\\approx 0.667$. Lo sciroppo resta in vantaggio.",
+      "distractorRationale": {
+        "e": "Il gruppo della compressa ha il secondo numero più alto di pazienti migliorati, ma $52/80$ è solo il $65\\%$.",
+        "d": "Il gruppo del cerotto ha il maggior numero di pazienti migliorati, $72$, ma è anche il gruppo più numeroso: $72/120$ è solo il $60\\%$.",
+        "b": "La percentuale dello spray, $40/60\\approx 66.7\\%$, è vicina ma appena inferiore a quella dello sciroppo, il $68\\%$.",
+        "c": "Il gruppo placebo ha la quota più alta di pazienti che *non* sono migliorati, $22/40=55\\%$; la sua percentuale di miglioramento, il $45\\%$, è la più bassa."
+      },
+      "accessibilityText": "Una tabella con cinque righe e tre colonne: gruppo, pazienti e pazienti migliorati. Compressa: 80 pazienti, 52 migliorati. Sciroppo: 50 pazienti, 34 migliorati. Cerotto: 120 pazienti, 72 migliorati. Spray: 60 pazienti, 40 migliorati. Placebo: 40 pazienti, 18 migliorati. La domanda chiede quale gruppo ha avuto la percentuale più alta di pazienti migliorati. Le cinque alternative sono: sciroppo; spray; placebo; cerotto; compressa.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f2",
+        "checkedBy": "tolc-italian-checker-f2",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities and options match the English."
+      }
+    }
+  }
 }

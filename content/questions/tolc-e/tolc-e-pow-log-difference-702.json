@@ -77,5 +77,48 @@
   "tags": [
     "logarithms",
     "quotient-law"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Semplificare $\\log_2 40 - \\log_2 5$.",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\log_2 35$"
+        },
+        {
+          "id": "b",
+          "textMd": "$3$"
+        },
+        {
+          "id": "c",
+          "textMd": "$8$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\dfrac{\\log_2 40}{\\log_2 5}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\log_2 200$"
+        }
+      ],
+      "explanationMd": "Entrambi i logaritmi hanno base 2, quindi si applica la proprietà del quoziente:\n\n$$\\log_2 40 - \\log_2 5 = \\log_2 \\frac{40}{5} = \\log_2 8.$$\n\nOra chiediti a quale esponente va elevato 2 per ottenere 8. Poiché $2^{3} = 8$, il valore è $3$.\n\n**Come verificare.** Eleva 2 al risultato: $2^{\\log_2 40 - \\log_2 5} = \\dfrac{40}{5} = 8 = 2^{3}$, quindi l'esponente deve essere 3. Anche una stima approssimativa concorda: $2^5 = 32 < 40 < 64 = 2^6$ dice che $\\log_2 40$ è poco più di 5, e $\\log_2 5$ è poco più di 2, quindi la loro differenza è vicina a 3.",
+      "distractorRationale": {
+        "a": "Sottrae all'interno del logaritmo (40 − 5). La proprietà dice che una *differenza di logaritmi* diventa il logaritmo di un *quoziente*, non di una differenza.",
+        "e": "Applica la proprietà del prodotto, che moltiplica gli argomenti (40 × 5). Quella proprietà riguarda una somma di logaritmi; qui il segno è meno.",
+        "c": "Divide correttamente 40 per 5 ma si ferma lì. Il numero 8 è l'argomento del logaritmo, non il suo valore; l'ultimo passo è chiedersi a quale esponente va elevato 2 per ottenere 8.",
+        "d": "Trasforma la sottrazione in una divisione tra i due logaritmi. La proprietà del quoziente divide gli argomenti all'interno di un unico logaritmo; non divide un logaritmo per un altro."
+      },
+      "accessibilityText": "Semplificare il logaritmo in base 2 di 40 meno il logaritmo in base 2 di 5. Le cinque alternative sono: 3; 8; il logaritmo in base 2 di 35; il logaritmo in base 2 di 200; la frazione con numeratore il logaritmo in base 2 di 40 e denominatore il logaritmo in base 2 di 5.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-e",
+        "checkedBy": "tolc-italian-checker-e",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful. log2 8 = 3."
+      }
+    }
+  }
 }

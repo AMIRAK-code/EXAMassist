@@ -1,0 +1,125 @@
+{
+  "id": "tolce-logic-negating-every-006",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Consider the statement:\n\n\"Every student who passed the exam attended at least one lecture.\"\n\nWhich of the following is the **negation** of this statement?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "At least one student who attended a lecture failed the exam."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Every student who attended no lectures failed the exam."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Every student who failed the exam attended at least one lecture."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "At least one student passed the exam without attending any lecture."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "No student who passed the exam attended any lecture."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The negation of a statement is the claim that is true exactly when the original is false. The original says that among the students who passed, there is no exception: each attended at least one lecture. It is false as soon as there is a single exception, that is, one student who passed and attended no lectures. So the negation is \"at least one student passed the exam without attending any lecture.\"\n\nThe general pattern: the negation of \"every X is Y\" is \"at least one X is not Y\". The \"every\" becomes \"at least one\" (some), and only the final property is denied; the group being talked about, students who passed, stays the same.\n\nCheck by asking whether the candidate and the original can both be true, and whether they can both be false. A true negation passes both tests: they never agree.\n\nWhat to notice first: a negation is never stronger than it needs to be. Turning \"every\" into \"no\" produces the opposite extreme, not the negation.",
+  "distractorRationale": {
+    "e": "This is the opposite extreme, not the negation. If some students who passed attended lectures and others did not, the original and this statement are both false, so they are not negations of each other.",
+    "b": "This is the contrapositive of the original, so it says the same thing. A student who attended no lectures and passed would break both statements at once.",
+    "a": "This talks about students who failed, a group the original says nothing about. It can be true at the same time as the original.",
+    "c": "This also concerns students who failed, and so can be true or false regardless of the original. Swapping the groups does not deny the claim."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "A statement in quotation marks: every student who passed the exam attended at least one lecture. The question asks which choice is its negation. Five answer choices.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-logic-author",
+    "aiAssisted": true,
+    "notes": "Original negation item; one distractor is the contrapositive (equivalent, not negation). Not derived from any CISIA or other published item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-logic-author",
+    "reviewer": "tolce-blind-reviewer-1",
+    "reviewedOn": "2026-10-21",
+    "independentSolve": {
+      "solvedBy": "tolce-blind-reviewer-1",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Negation of 'all P are L' is 'some P is not L': at least one student passed without attending any lecture. E is a contrary (too strong), others change the subject class."
+    },
+    "notes": "Author solved the item and then tried to defend each wrong choice; none survives. Awaiting blind independent solve and uniqueness check by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "deduction",
+    "negation",
+    "quantifiers"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Si consideri l'affermazione:\n\n«Ogni studente che ha superato l'esame ha frequentato almeno una lezione.»\n\nQuale delle seguenti è la **negazione** di questa affermazione?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Almeno uno studente che ha frequentato una lezione non ha superato l'esame."
+        },
+        {
+          "id": "b",
+          "textMd": "Ogni studente che non ha frequentato nessuna lezione non ha superato l'esame."
+        },
+        {
+          "id": "c",
+          "textMd": "Ogni studente che non ha superato l'esame ha frequentato almeno una lezione."
+        },
+        {
+          "id": "d",
+          "textMd": "Almeno uno studente ha superato l'esame senza frequentare alcuna lezione."
+        },
+        {
+          "id": "e",
+          "textMd": "Nessuno studente che ha superato l'esame ha frequentato alcuna lezione."
+        }
+      ],
+      "explanationMd": "La negazione di un'affermazione è l'affermazione che è vera esattamente quando l'originale è falsa. L'originale dice che, tra gli studenti che hanno superato l'esame, non ci sono eccezioni: ciascuno ha frequentato almeno una lezione. È falsa non appena c'è una sola eccezione, cioè uno studente che ha superato l'esame e non ha frequentato nessuna lezione. Quindi la negazione è «almeno uno studente ha superato l'esame senza frequentare alcuna lezione».\n\nLo schema generale: la negazione di «ogni X è Y» è «almeno un X non è Y». Il quantificatore «ogni» diventa «almeno uno» (alcuni), e si nega solo la proprietà finale; il gruppo di cui si parla, gli studenti che hanno superato l'esame, resta lo stesso.\n\nPer verificare, chiediti se la candidata e l'originale possono essere entrambe vere, e se possono essere entrambe false. Una vera negazione supera entrambe le prove: le due affermazioni non concordano mai.\n\nDa notare subito: una negazione non è mai più forte del necessario. Trasformare «ogni» in «nessuno» produce l'estremo opposto, non la negazione.",
+      "distractorRationale": {
+        "e": "È l'estremo opposto, non la negazione. Se alcuni studenti che hanno superato l'esame hanno frequentato lezioni e altri no, l'originale e questa affermazione sono entrambe false, quindi non sono l'una la negazione dell'altra.",
+        "b": "È la contronominale dell'originale, quindi dice la stessa cosa. Uno studente che non ha frequentato nessuna lezione e ha superato l'esame renderebbe false entrambe le affermazioni contemporaneamente.",
+        "a": "Parla di studenti che non hanno superato l'esame, un gruppo su cui l'originale non dice nulla. Può essere vera contemporaneamente all'originale.",
+        "c": "Anche questa riguarda gli studenti che non hanno superato l'esame, e quindi può essere vera o falsa indipendentemente dall'originale. Scambiare i gruppi non nega l'affermazione."
+      },
+      "accessibilityText": "Un'affermazione tra virgolette: ogni studente che ha superato l'esame ha frequentato almeno una lezione. La domanda chiede quale alternativa ne è la negazione. Cinque alternative di risposta.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": "tolce-italian-checker",
+        "checkedOn": "2026-10-23",
+        "answerPreserved": true,
+        "notes": "Negation of universal = 'Almeno uno ... senza frequentare alcuna lezione'. 'failed' rendered as 'non ha superato' consistently."
+      }
+    }
+  }
+}

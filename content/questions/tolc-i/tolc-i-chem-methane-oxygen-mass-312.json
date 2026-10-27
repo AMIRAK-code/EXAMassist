@@ -79,5 +79,48 @@
     "mole",
     "combustion",
     "balancing"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Il metano, $\\mathrm{CH_4}$, brucia completamente in ossigeno formando diossido di carbonio e acqua. Quale massa di ossigeno, $\\mathrm{O_2}$, è necessaria per bruciare completamente $8\\ \\text{g}$ di metano? Masse molari: $\\mathrm{H} = 1\\ \\text{g/mol}$, $\\mathrm{C} = 12\\ \\text{g/mol}$, $\\mathrm{O} = 16\\ \\text{g/mol}$.",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$22\\ \\text{g}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$8\\ \\text{g}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$64\\ \\text{g}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$32\\ \\text{g}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$16\\ \\text{g}$"
+        }
+      ],
+      "explanationMd": "**Che cosa notare per prima cosa.** Non sono le masse a reagire nel rapporto dei coefficienti, ma le moli. Bilancia l'equazione, converti i grammi di metano in moli, usa il rapporto molare e poi riconverti in grammi.\n\n**I passaggi.**\n\n- Equazione bilanciata: $\\mathrm{CH_4 + 2\\,O_2 \\rightarrow CO_2 + 2\\,H_2O}$ (un C, quattro H e quattro O da ciascuna parte).\n- $M(\\mathrm{CH_4}) = 12 + 4 = 16\\ \\text{g/mol}$, quindi $8\\ \\text{g}$ corrispondono a $0.5\\ \\text{mol}$.\n- Ogni mole di metano richiede $2$ mol di $\\mathrm{O_2}$: $0.5 \\times 2 = 1\\ \\text{mol}$ di $\\mathrm{O_2}$.\n- $M(\\mathrm{O_2}) = 32\\ \\text{g/mol}$, quindi la massa è $1 \\times 32 = 32\\ \\text{g}$.\n\n**Come verificarlo.** Conservazione della massa: $0.5\\ \\text{mol}$ di $\\mathrm{CO_2}$ sono $22\\ \\text{g}$ e $1\\ \\text{mol}$ di $\\mathrm{H_2O}$ sono $18\\ \\text{g}$, in tutto $40\\ \\text{g}$, pari agli $8\\ \\text{g} + 32\\ \\text{g}$ di reagenti.",
+      "distractorRationale": {
+        "e": "Lascia l'equazione non bilanciata, usando un $\\mathrm{O_2}$ per ogni $\\mathrm{CH_4}$. Non può essere giusto: un $\\mathrm{O_2}$ ha solo due atomi di ossigeno, mentre un $\\mathrm{CO_2}$ e due $\\mathrm{H_2O}$ ne richiedono quattro.",
+        "c": "Interpreta il coefficiente $2$ come le moli di ossigeno necessarie qualunque sia la quantità di metano, ottenendo $2 \\times 32$. Quello è l'ossigeno per una mole intera ($16\\ \\text{g}$) di metano; qui ce n'è solo mezza mole.",
+        "a": "È la massa di diossido di carbonio prodotta, $0.5 \\times 44$, non la massa di ossigeno consumata.",
+        "b": "Presuppone che i reagenti si combinino in masse uguali. Si combinano invece in un rapporto fisso di moli, e una molecola di $\\mathrm{O_2}$ pesa il doppio di una molecola di $\\mathrm{CH_4}$."
+      },
+      "accessibilityText": "Il metano, C H 4, brucia completamente in ossigeno formando diossido di carbonio e acqua. Quale massa di ossigeno, O 2, è necessaria per bruciare completamente 8 grammi di metano? Masse molari: idrogeno 1, carbonio 12 e ossigeno 16 grammi per mole. Le alternative sono 22 grammi, 8 grammi, 64 grammi, 32 grammi e 16 grammi.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": "tolc-italian-checker-i1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; 'diossido di carbonio' acceptable (anidride carbonica also common)."
+      }
+    }
+  }
 }

@@ -80,5 +80,48 @@
     "negation",
     "quantifiers",
     "no-calculator"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Dopo una prova di fatica, un tecnico scrive nel registro: «Almeno una delle saldature del telaio di prova è criccata.» Una seconda ispezione mostra che l'affermazione del tecnico è falsa.\n\nQuale delle seguenti affermazioni è necessariamente vera?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Ogni saldatura del telaio di prova è criccata."
+        },
+        {
+          "id": "b",
+          "textMd": "Esattamente una saldatura del telaio di prova è criccata."
+        },
+        {
+          "id": "c",
+          "textMd": "Almeno una saldatura di qualche altro telaio è criccata."
+        },
+        {
+          "id": "d",
+          "textMd": "Nessuna saldatura del telaio di prova è criccata."
+        },
+        {
+          "id": "e",
+          "textMd": "Alcune saldature del telaio di prova sono criccate e altre no."
+        }
+      ],
+      "explanationMd": "Per negare un'affermazione, trova l'unica situazione che essa esclude. «Almeno una saldatura è criccata» è vera non appena esiste una saldatura criccata, quindi è falsa solo quando non c'è **nessuna** saldatura criccata. La negazione di «almeno un ... è» è «nessun ... è».\n\nQuindi la nota falsa nel registro ci dice che nessuna saldatura del telaio di prova è criccata.\n\nControlla ciascuna delle altre affermazioni rispetto a questa situazione. «Ogni saldatura è criccata», «esattamente una saldatura è criccata» e «alcune sono criccate e altre no» richiedono tutte almeno una saldatura criccata sul telaio, quindi ciascuna renderebbe vera, non falsa, l'affermazione del tecnico. Un'affermazione su altri telai non può discendere da informazioni che riguardano soltanto questo telaio.",
+      "distractorRationale": {
+        "a": "Confonde la negazione con l'estremo opposto. «Ogni saldatura è criccata» renderebbe vera l'affermazione originale, perché in quel caso almeno una saldatura è certamente criccata.",
+        "b": "Una sola saldatura criccata basta a rendere vera «almeno una saldatura è criccata», quindi questa situazione contraddice l'ispezione.",
+        "e": "Se alcune saldature sono criccate, allora almeno una lo è, e il tecnico avrebbe avuto ragione. Descrive un caso escluso dall'ispezione.",
+        "c": "L'affermazione e la sua negazione riguardano solo il telaio di prova. Non si dice nulla su altri telai, quindi questo non si può dedurre."
+      },
+      "accessibilityText": "Una domanda di deduzione sulla negazione di un'affermazione. Il registro di un tecnico dice: almeno una delle saldature del telaio di prova è criccata. Un'ispezione mostra che ciò è falso. La domanda chiede quale affermazione è necessariamente vera. Le cinque alternative sono: ogni saldatura del telaio di prova è criccata; esattamente una saldatura del telaio di prova è criccata; almeno una saldatura di qualche altro telaio è criccata; nessuna saldatura del telaio di prova è criccata; alcune saldature del telaio di prova sono criccate e altre no.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i1",
+        "checkedBy": "tolc-italian-checker-i2",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful. 'criccata' is correct technical Italian for cracked weld (incrinata also fine)."
+      }
+    }
+  }
 }

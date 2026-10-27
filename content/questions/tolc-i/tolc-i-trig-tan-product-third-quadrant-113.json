@@ -78,5 +78,48 @@
     "fundamental-identity",
     "quadrant-signs",
     "tangent"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "L'angolo $\\alpha$ soddisfa $\\pi < \\alpha < \\dfrac{3\\pi}{2}$ e $\\tan\\alpha = 2$. Qual è il valore di $\\sin\\alpha\\cos\\alpha$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\dfrac{2}{5}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\dfrac{4}{5}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$-\\dfrac{2\\sqrt{5}}{5}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$-\\dfrac{2}{5}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\dfrac{2}{3}$"
+        }
+      ],
+      "explanationMd": "Si ricavano seno e coseno dalla tangente, usando il quadrante per determinarne i segni, oppure si divide per $\\sin^{2}\\alpha + \\cos^{2}\\alpha = 1$ per esprimere tutto in funzione di $\\tan\\alpha$.\n\n**Metodo 1 — tramite la tangente.** $$\\sin\\alpha\\cos\\alpha = \\frac{\\sin\\alpha\\cos\\alpha}{\\sin^{2}\\alpha + \\cos^{2}\\alpha} = \\frac{\\tan\\alpha}{1 + \\tan^{2}\\alpha} = \\frac{2}{1 + 4} = \\frac{2}{5},$$ dividendo numeratore e denominatore per $\\cos^{2}\\alpha$.\n\n**Metodo 2 — i valori stessi.** $\\cos^{2}\\alpha = \\dfrac{1}{1 + \\tan^{2}\\alpha} = \\dfrac15$. Nel terzo quadrante seno e coseno sono entrambi negativi, quindi $\\cos\\alpha = -\\dfrac{1}{\\sqrt5}$ e $\\sin\\alpha = \\tan\\alpha\\cos\\alpha = -\\dfrac{2}{\\sqrt5}$. Il prodotto è $\\dfrac{2}{5}$ ✓.\n\nIl quadrante conta per ciascun fattore ma non per il prodotto: due negativi danno un positivo, in accordo con il segno della tangente.",
+      "distractorRationale": {
+        "d": "Ragiona che il terzo quadrante renda negativo il risultato. Lì seno e coseno sono entrambi negativi, quindi il loro prodotto è positivo, con lo stesso segno di $\\tan\\alpha = \\dfrac{\\sin\\alpha}{\\cos\\alpha}$.",
+        "b": "Calcola $\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha$ invece di $\\sin\\alpha\\cos\\alpha$, il che raddoppia il valore.",
+        "e": "Usa $\\dfrac{\\tan\\alpha}{1 + \\tan\\alpha}$ invece di $\\dfrac{\\tan\\alpha}{1 + \\tan^{2}\\alpha}$. Il denominatore viene da $\\sin^{2}\\alpha + \\cos^{2}\\alpha$ diviso per $\\cos^{2}\\alpha$, cioè $1 + \\tan^{2}\\alpha$.",
+        "c": "Si ferma al valore intermedio $\\sin\\alpha = -\\dfrac{2}{\\sqrt5} = -\\dfrac{2\\sqrt5}{5}$ e non lo moltiplica per $\\cos\\alpha = -\\dfrac{1}{\\sqrt5}$."
+      },
+      "accessibilityText": "L'angolo alfa è compreso tra pi greco e 3 pi greco fratto 2, e la tangente di alfa è uguale a 2. Qual è il valore del seno di alfa per il coseno di alfa? Le cinque alternative sono: due quinti; quattro quinti; meno 2 per la radice quadrata di 5, fratto 5; meno due quinti; due terzi.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i2",
+        "checkedBy": "tolc-italian-checker-i2",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful. tan/(1+tan^2)=2/5, positive in III quadrant."
+      }
+    }
+  }
 }

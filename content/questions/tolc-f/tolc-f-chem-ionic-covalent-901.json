@@ -78,5 +78,48 @@
     "ionic-bond",
     "covalent-bond",
     "polyatomic-ion"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Quale di questi composti contiene sia legami ionici sia legami covalenti?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\mathrm{NaCl}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\mathrm{NH_4Cl}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$\\mathrm{HCl}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\mathrm{MgO}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\mathrm{CO_2}$"
+        }
+      ],
+      "explanationMd": "Classifica i composti in base al tipo di particelle da cui sono formati.\n\n- Solo **atomi di non metalli** uniti tra loro, senza ioni (come in $\\mathrm{CO_2}$ e $\\mathrm{HCl}$): solo legami covalenti.\n- Un metallo e un non metallo che formano ciascuno uno **ione monoatomico** (come in $\\mathrm{NaCl}$ e $\\mathrm{MgO}$): solo legami ionici.\n- Uno **ione poliatomico** abbinato a uno ione di carica opposta: gli atomi all'interno dello ione poliatomico sono tenuti insieme da legami covalenti, e gli ioni sono legati tra loro da legami ionici. Si hanno quindi entrambi i tipi.\n\n$\\mathrm{NH_4Cl}$ è formato dallo ione ammonio, $\\mathrm{NH_4^+}$, e dallo ione cloruro, $\\mathrm{Cl^-}$. All'interno di $\\mathrm{NH_4^+}$ i quattro legami N-H sono covalenti (tutti e quattro identici una volta formati). Tra $\\mathrm{NH_4^+}$ e $\\mathrm{Cl^-}$ l'attrazione è ionica.\n\nLa trappola è la scorciatoia «solo non metalli significa covalente»: il cloruro di ammonio contiene solo non metalli eppure è ionico. **Verifica:** un composto con un gruppo carico all'interno della formula (ammonio, idrossido, solfato, nitrato) è candidato ad avere entrambi i tipi di legame.",
+      "distractorRationale": {
+        "a": "Il cloruro di sodio è un metallo unito a un non metallo, ed è un reticolo puramente ionico di ioni $\\mathrm{Na^+}$ e $\\mathrm{Cl^-}$. Nessuno dei due ioni contiene un legame covalente, perché ciascuno è un singolo atomo.",
+        "d": "Anche l'ossido di magnesio è un reticolo puramente ionico, di $\\mathrm{Mg^{2+}}$ e $\\mathrm{O^{2-}}$. Un metallo e un non metallo che formano ioni monoatomici danno solo legame ionico.",
+        "e": "Il diossido di carbonio è una piccola molecola con due doppi legami C=O, tutti covalenti. I legami sono polari, ma un legame covalente polare resta un legame covalente; essere polare non rende ionico il composto.",
+        "c": "Il cloruro di idrogeno ha un solo legame covalente polare. Produce ioni quando si scioglie in acqua, ma il legame all'interno del composto in sé è solo covalente."
+      },
+      "accessibilityText": "La domanda chiede quale composto ha sia legami ionici sia legami covalenti. I composti sono il cloruro di sodio, NaCl; l'ossido di magnesio, MgO; il diossido di carbonio, C O pedice 2; il cloruro di idrogeno, HCl; e il cloruro di ammonio, N H pedice 4 Cl.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f1",
+        "checkedBy": "tolc-italian-checker-f1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities and options match the English."
+      }
+    }
+  }
 }

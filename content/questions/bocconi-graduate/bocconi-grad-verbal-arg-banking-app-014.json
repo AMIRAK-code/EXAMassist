@@ -1,0 +1,82 @@
+{
+  "id": "bocconi-grad-verbal-arg-banking-app-014",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-verbal-reasoning",
+  "skillSlug": "grad-verbal-argument-analysis",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Riverside Bank launched a mobile app in 2024. By the end of the year, customers who used the app had average account balances 30 per cent higher than customers who did not. The bank's marketing director argues that the app encourages customers to save more.\n\nWhich of the following, if true, most seriously weakens the director's argument?",
+  "instructionsMd": "Choose the one best answer.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Fewer customers downloaded the app than the bank had expected."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Customers who used the app logged in an average of twelve times a month."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Customers who already had larger balances before 2024 were much more likely than other customers to download the app."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The app shows each customer a chart of their balance over time."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Several competing banks also launched mobile apps in 2024."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The director infers cause (the app makes people save) from a correlation (app users have higher balances). The standard way to weaken such an argument is to show the correlation could run the other way, or come from something else.\n\nIf customers who were already richer were the ones who downloaded the app, the 30 per cent gap was there before the app did anything. The difference reflects who chose the app, not what it did.\n\n**How to check.** A weakener must make the conclusion less likely to be true, not merely add information. How many people downloaded the app, what competitors did, and how often users logged in leave the comparison between users and non-users untouched. A balance chart, if anything, suggests a way the app might encourage saving, which supports the director.",
+  "distractorRationale": {
+    "a": "The number of downloads does not affect whether the app changes the behaviour of those who use it. The comparison of balances is still between users and non-users.",
+    "e": "What other banks did says nothing about why Riverside's app users have higher balances than its non-users.",
+    "b": "Frequent log-ins show engagement, but they neither explain the balance gap another way nor show the app had no effect. They do not weaken the argument.",
+    "d": "A chart of one's balance is a plausible way an app could encourage saving, so this, if anything, makes the director's explanation more believable."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "An argument-analysis question. App users at Riverside Bank had 30 per cent higher average balances than non-users by the end of 2024, and the marketing director argues the app encourages saving. The question asks which statement most weakens the argument. The options are: customers with larger balances before 2024 were more likely to download the app; fewer downloads than expected; competitors also launched apps; users logged in twelve times a month; the app shows a balance chart.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-graduate-author",
+    "aiAssisted": true,
+    "notes": "Original weaken item built on self-selection. One distractor mildly strengthens; the rest are irrelevant to the user versus non-user comparison."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-graduate-author",
+    "reviewer": "bocconi-graduate-blind-reviewer",
+    "reviewedOn": "2026-10-27",
+    "independentSolve": {
+      "solvedBy": "bocconi-graduate-blind-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "The argument infers causation (app -> saving) from a correlation. C shows the higher balances predated the app and drove adoption (selection/reverse causation), which directly undercuts it. A (fewer downloads), B (login frequency), D (app shows a chart, if anything a mechanism that slightly supports) and E (competitors launched apps) do not address whether the app caused the higher balances."
+    },
+    "notes": "Author checked that exactly one option is defensible. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "weaken",
+    "selection-effect"
+  ],
+  "translations": {}
+}

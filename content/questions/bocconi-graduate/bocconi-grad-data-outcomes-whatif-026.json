@@ -1,0 +1,79 @@
+{
+  "id": "bocconi-grad-data-outcomes-whatif-026",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-data-insight",
+  "skillSlug": "grad-data-derived-conclusions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Suppose that 20 of the Humanities graduates who reported further study had instead been employed, with nothing else in the table changing. The Humanities employment rate would then be",
+  "instructionsMd": "Use only the figures shown. Work by hand.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "still lower than the Economics employment rate"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "higher than the Engineering employment rate"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "equal to the Engineering employment rate"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "equal to the new employment rate of all 400 respondents"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Humanities would have $44 + 20 = 64$ employed out of 80 respondents, so its rate becomes $\\frac{64}{80} = 80$ per cent. Engineering's rate is $\\frac{96}{120} = 80$ per cent. The two are equal.\n\n**Checking the others.** Economics stays at 75 per cent, which 80 exceeds. The overall rate changes too: $\\frac{286 + 20}{400} = \\frac{306}{400} = 76.5$ per cent, not 80.\n\n**The trap.** Moving people between categories changes the numerator only. The 80 Humanities respondents stay in the denominator, and so do the 400 overall.",
+  "distractorRationale": {
+    "a": "The new Humanities rate is $\\frac{64}{80} = 80$ per cent, which is higher than Economics' 75 per cent, not lower.",
+    "b": "Engineering is $\\frac{96}{120} = 80$ per cent exactly, and so is the new Humanities rate. Equal is not higher.",
+    "d": "The overall rate also moves, but only to $\\frac{306}{400} = 76.5$ per cent, because 20 extra employed is a smaller share of 400 than of 80."
+  },
+  "estimatedSeconds": 110,
+  "stimulusRef": {
+    "id": "bocconi-grad-stim-outcomes-006",
+    "version": 1
+  },
+  "accessibilityText": "A question about the table of 400 surveyed graduates. It supposes that 20 Humanities graduates in further study had instead been employed, and asks how the Humanities employment rate would then compare. The options are: still lower than Economics; equal to Engineering; higher than Engineering; equal to the new overall rate of all 400 respondents.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-graduate-author",
+    "aiAssisted": true,
+    "notes": "Original what-if item. The new rate equals Engineering's exactly; distractors test the comparison and the changed overall rate."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-graduate-author",
+    "reviewer": "bocconi-graduate-blind-reviewer",
+    "reviewedOn": "2026-10-27",
+    "independentSolve": {
+      "solvedBy": "bocconi-graduate-blind-reviewer",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "New Humanities employed = 44+20 = 64; 64/80 = 80% = Engineering 96/120 = 80%. A false (80% > Economics 75%); B false (equal, not higher); D false (new overall = 306/400 = 76.5%, not 80%)."
+    },
+    "notes": "Author checked that exactly one option is defensible. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "table-outcomes",
+    "what-if"
+  ],
+  "translations": {}
+}

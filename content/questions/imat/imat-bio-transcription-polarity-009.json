@@ -1,0 +1,126 @@
+{
+  "id": "imat-bio-transcription-polarity-009",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-biology",
+  "skillSlug": "imat-bio-genetics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The template strand of a short segment of DNA has the sequence\n\n3'-TAC GGA TTC-5'\n\nWhich of the following is the mRNA transcribed from this segment?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "5'-UAC GGA UUC-3'"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "3'-UAC GGA UUC-5'"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "5'-AUG CCU AAG-3'"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "3'-AUG CCU AAG-5'"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "5'-ATG CCT AAG-3'"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Three rules settle it.\n\n1. **Complementary bases.** RNA polymerase pairs each template base with its partner: A with U, T with A, G with C and C with G. Template TAC GGA TTC therefore gives AUG CCU AAG.\n2. **Uracil, not thymine.** RNA contains uracil in place of thymine.\n3. **Antiparallel.** The new strand runs in the opposite direction to the template. The template is written 3' to 5', so the mRNA, read base by base opposite it, runs 5' to 3'.\n\nResult: 5'-AUG CCU AAG-3'. A useful check: the mRNA begins with AUG, the usual start codon, read from the 5' end exactly as a ribosome reads it.",
+  "distractorRationale": {
+    "e": "This has the right bases and direction but contains thymine. It is the coding (non-template) strand of the DNA, not the mRNA, which has uracil in place of thymine.",
+    "a": "This copies the template itself, only swapping thymine for uracil. Transcription produces a complementary strand, not a copy of the template.",
+    "d": "The bases are complementary, but the strand is labelled as running parallel to the template. Nucleic acid strands that pair are antiparallel, so opposite the template's 3' end lies the mRNA's 5' end.",
+    "b": "This is the template sequence rewritten with uracil and the same orientation. It is neither complementary to the template nor antiparallel to it."
+  },
+  "estimatedSeconds": 80,
+  "stimulusRef": null,
+  "accessibilityText": "The DNA template strand reads, from the 3 prime end to the 5 prime end: T A C, G G A, T T C. Which mRNA is transcribed? The five choices are base sequences, each labelled with its 5 prime and 3 prime ends; they differ in whether they contain T or U, in which bases they contain, and in which end is labelled 5 prime.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "imat-biology-author",
+    "aiAssisted": true,
+    "notes": "Original item on complementarity, uracil and antiparallel orientation in transcription. Every distractor is a distinct molecule from the key and from each other."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "imat-biology-author",
+    "reviewer": "imat-blind-reviewer-1",
+    "reviewedOn": "2026-10-23",
+    "independentSolve": {
+      "solvedBy": "imat-blind-reviewer-1",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "mRNA is complementary and antiparallel to template 3'-TAC GGA TTC-5': 5'-AUG CCU AAG-3'. D has same letters but wrong polarity labels; E uses T; A/B are coding-like/same-letter."
+    },
+    "notes": "Author solved the item twice independently and argued for each wrong choice; no second choice was found defensible. Awaiting blind independent solve and a check of the Italian translation by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "biology",
+    "transcription",
+    "mrna",
+    "dna-polarity"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Il filamento stampo di un breve segmento di DNA ha la sequenza\n\n3'-TAC GGA TTC-5'\n\nQuale delle seguenti è la sequenza dell'mRNA trascritto da questo segmento?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "5'-UAC GGA UUC-3'"
+        },
+        {
+          "id": "b",
+          "textMd": "3'-UAC GGA UUC-5'"
+        },
+        {
+          "id": "c",
+          "textMd": "5'-AUG CCU AAG-3'"
+        },
+        {
+          "id": "d",
+          "textMd": "3'-AUG CCU AAG-5'"
+        },
+        {
+          "id": "e",
+          "textMd": "5'-ATG CCT AAG-3'"
+        }
+      ],
+      "explanationMd": "Tre regole risolvono la domanda.\n\n1. **Basi complementari.** L'RNA polimerasi appaia a ogni base dello stampo la sua complementare: A con U, T con A, G con C e C con G. Lo stampo TAC GGA TTC dà quindi AUG CCU AAG.\n2. **Uracile, non timina.** L'RNA contiene uracile al posto della timina.\n3. **Antiparallelismo.** Il nuovo filamento corre in direzione opposta allo stampo. Lo stampo è scritto da 3' a 5', quindi l'mRNA, letto base per base di fronte a esso, va da 5' a 3'.\n\nRisultato: 5'-AUG CCU AAG-3'. Un controllo utile: l'mRNA inizia con AUG, il consueto codone di inizio, letto dall'estremità 5' esattamente come lo legge un ribosoma.",
+      "distractorRationale": {
+        "e": "Ha le basi e la direzione giuste ma contiene timina. È il filamento codificante (non stampo) del DNA, non l'mRNA, che ha uracile al posto della timina.",
+        "a": "Copia lo stampo stesso, sostituendo soltanto la timina con l'uracile. La trascrizione produce un filamento complementare, non una copia dello stampo.",
+        "d": "Le basi sono complementari, ma il filamento è indicato come parallelo allo stampo. I filamenti di acido nucleico che si appaiano sono antiparalleli, quindi di fronte all'estremità 3' dello stampo si trova l'estremità 5' dell'mRNA.",
+        "b": "È la sequenza dello stampo riscritta con uracile e con lo stesso orientamento. Non è né complementare né antiparallela allo stampo."
+      },
+      "accessibilityText": "Il filamento stampo di DNA si legge, dall'estremità 3 primo all'estremità 5 primo: T A C, G G A, T T C. Quale mRNA viene trascritto? Le cinque opzioni sono sequenze di basi, ciascuna con le estremità 5 primo e 3 primo indicate; differiscono per la presenza di T o U, per le basi contenute e per quale estremità è indicata come 5 primo.",
+      "check": {
+        "translatedBy": "imat-biology-author",
+        "checkedBy": "imat-italian-checker",
+        "checkedOn": "2026-10-23",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities, units, negations and options match; terminology correct."
+      }
+    }
+  }
+}

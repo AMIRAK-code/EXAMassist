@@ -1,0 +1,79 @@
+{
+  "id": "bocconi-grad-data-cowork-occupancy-017",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-data-insight",
+  "skillSlug": "grad-data-reading-displays",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which site had the highest occupancy rate in March, measured as desks occupied on an average weekday divided by desks?",
+  "instructionsMd": "Use only the figures shown. Work by hand.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Arden"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Corvo"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Dunmere"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Belmont"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Divide the occupied column by the desks column for each site:\n\n$$\\text{Arden } \\tfrac{84}{120} = 0.70 \\quad \\text{Belmont } \\tfrac{68}{80} = 0.85 \\quad \\text{Corvo } \\tfrac{72}{150} = 0.48 \\quad \\text{Dunmere } \\tfrac{48}{60} = 0.80$$\n\nBelmont's 85 per cent is the highest.\n\n**Doing it by hand.** Simplify each fraction before dividing: $\\frac{68}{80} = \\frac{17}{20}$, and twentieths convert to hundredths by multiplying by 5, giving 85. $\\frac{48}{60} = \\frac{4}{5} = 80$ per cent.\n\n**The trap.** The question defines the rate as occupied desks over DESKS, not over members, and not the raw number of desks occupied. Arden has the most desks in use but also many desks.",
+  "distractorRationale": {
+    "a": "Arden has the most desks occupied, 84, but that is a count, not a rate. Against its 120 desks it is only 70 per cent full.",
+    "b": "Corvo has the most desks, 150, but only 72 are in use on an average weekday: 48 per cent, the lowest of the four.",
+    "c": "Dunmere is close, at 48 of 60 desks or 80 per cent, but Belmont's 68 of 80 is 85 per cent. Dunmere would come first only if the rate were taken over members or confused with fees."
+  },
+  "estimatedSeconds": 70,
+  "stimulusRef": {
+    "id": "bocconi-grad-stim-coworking-004",
+    "version": 1
+  },
+  "accessibilityText": "A question about the table of four co-working sites. It asks which site had the highest occupancy rate, defined as desks occupied on an average weekday divided by desks. The options are the four site names: Arden, Belmont, Corvo, Dunmere.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-graduate-author",
+    "aiAssisted": true,
+    "notes": "Original item. The rate is defined in the stem so the candidate must pick the right two columns; distractors are the largest count and the runner-up."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-graduate-author",
+    "reviewer": "bocconi-graduate-blind-reviewer",
+    "reviewedOn": "2026-10-27",
+    "independentSolve": {
+      "solvedBy": "bocconi-graduate-blind-reviewer",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Occupancy = occupied/desks: Arden 84/120=70%, Belmont 68/80=85%, Corvo 72/150=48%, Dunmere 48/60=80%. Belmont highest; Dunmere (80%) is the nearest rival but lower; Arden and Corvo clearly lower."
+    },
+    "notes": "Author checked that exactly one option is defensible. Awaiting blind independent solve. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "table-coworking",
+    "rates"
+  ],
+  "translations": {}
+}

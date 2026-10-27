@@ -18,9 +18,9 @@ export const PAGE_DATES = {
   howScoringWorks: { published: '2026-09-22', updated: '2026-09-24' },
   privacy: { published: '2026-09-22', updated: '2026-10-27' },
   /** The terms show this as "last reviewed". */
-  terms: { updated: '2026-10-05' },
-  /** Plans and prices from 2026-10-05; exam-specific plans copy from 2026-10-07. */
-  premium: { published: '2026-10-05', updated: '2026-10-07' },
+  terms: { updated: '2026-10-27' },
+  /** Plans and prices: Premium from 2026-10-05, All access and Single exam on /pricing from 2026-10-27. */
+  pricing: { published: '2026-10-05', updated: '2026-10-27' },
 } as const satisfies Record<string, PageDates>;
 
 /** "22 September 2026", the same in every time zone. */

@@ -77,5 +77,48 @@
   "tags": [
     "arithmetic-mean",
     "totals"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "La media aritmetica di cinque numeri è 12. Quando si toglie uno dei numeri, la media dei quattro rimanenti è 10. Qual era il numero tolto?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$2$"
+        },
+        {
+          "id": "b",
+          "textMd": "$10$"
+        },
+        {
+          "id": "c",
+          "textMd": "$20$"
+        },
+        {
+          "id": "d",
+          "textMd": "$22$"
+        },
+        {
+          "id": "e",
+          "textMd": "$40$"
+        }
+      ],
+      "explanationMd": "Lavora con le somme, perché una media è una somma divisa per un numero di elementi.\n\n- Cinque numeri con media 12 hanno somma $5 \\times 12 = 60$.\n- I quattro rimanenti hanno media 10, quindi la loro somma è $4 \\times 10 = 40$.\n- Il numero tolto è la differenza: $60 - 40 = 20$.\n\n**Come verificarlo.** Il numero tolto, 20, supera di 8 la vecchia media di 12. Togliere un numero che sta 8 sopra la media fa scendere la media di $8 \\div 4 = 2$, da 12 a 10 ✓.",
+      "distractorRationale": {
+        "a": "Sottrae le due medie. Una variazione della media si distribuisce su più numeri, quindi il numero tolto differisce dalla vecchia media di più di quella quantità.",
+        "b": "Prende come numero tolto la nuova media. Togliere un numero uguale alla media dei rimanenti non cambierebbe la media, ma qui la media è scesa da 12 a 10.",
+        "d": "Somma le due medie. La somma di due medie qui non ha significato; confronta invece le somme dei numeri.",
+        "e": "Riporta la somma dei quattro numeri che restano, non il numero che è stato tolto."
+      },
+      "accessibilityText": "La media aritmetica di cinque numeri è 12. Quando si toglie uno dei numeri, la media dei quattro numeri rimanenti è 10. La domanda chiede il numero che è stato tolto. Le cinque alternative sono 2, 10, 20, 22 e 40.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-f2",
+        "checkedBy": "tolc-italian-checker-f2",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; facts, quantities and options match the English."
+      }
+    }
+  }
 }

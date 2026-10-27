@@ -1,0 +1,125 @@
+{
+  "id": "tolce-logic-courier-licence-005",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "At a delivery firm the following statements are true:\n\n- Every courier at the firm holds a driving licence.\n- No employee of the firm who holds a driving licence is under 18 years old.\n\nWhich of the following statements must also be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Every employee of the firm aged 18 or over is a courier."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Every employee of the firm who holds a driving licence is a courier."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Some couriers at the firm are under 18 years old."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Some employees of the firm hold a driving licence but are not couriers."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "No courier at the firm is under 18 years old."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Chain the two statements. Take any courier: by the first statement they hold a driving licence; by the second, nobody with a licence is under 18. So no courier is under 18.\n\nA quick way to see it is with nested groups: the couriers sit inside the licence holders, and the licence holders sit entirely outside the under-18s. Anything inside the couriers is therefore also outside the under-18s.\n\nThe other choices either reverse a statement (\"every courier holds a licence\" does not mean \"every licence holder is a courier\"), contradict what was derived, or claim something the statements leave open.\n\nWhat to notice first: \"all X are Y\" followed by \"no Y is Z\" always gives \"no X is Z\". Watch for choices that swap the order of an \"all\" statement.",
+  "distractorRationale": {
+    "b": "This reverses the first statement. Every courier holding a licence leaves room for other employees, such as managers or mechanics, who hold a licence but are not couriers.",
+    "c": "This contradicts the two statements together: every courier holds a licence, and no licence holder is under 18.",
+    "a": "This links being 18 or over to being a courier, but the statements only say that couriers are licensed and licence holders are not under 18. Nothing forces adult employees to be couriers.",
+    "d": "This may be true, but nothing requires it. It is consistent with the statements that the couriers are the only licence holders at the firm."
+  },
+  "estimatedSeconds": 45,
+  "stimulusRef": null,
+  "accessibilityText": "Two statements about a delivery firm: every courier holds a driving licence, and no employee holding a driving licence is under 18. The question asks which further statement must be true. Five answer choices.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-logic-author",
+    "aiAssisted": true,
+    "notes": "Original all/no syllogism. Not derived from any CISIA or other published item."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-logic-author",
+    "reviewer": "tolce-blind-reviewer-1",
+    "reviewedOn": "2026-10-21",
+    "independentSolve": {
+      "solvedBy": "tolce-blind-reviewer-1",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Courier -> licence -> not under 18, so no courier is under 18. A, B are converses; C contradicts; D not forced."
+    },
+    "notes": "Author solved the item and then tried to defend each wrong choice; none survives. Awaiting blind independent solve and uniqueness check by a second party. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "deduction",
+    "quantifiers",
+    "syllogism"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "In un'azienda di consegne sono vere le seguenti affermazioni:\n\n- Ogni corriere dell'azienda possiede la patente di guida.\n- Nessun dipendente dell'azienda che possiede la patente di guida ha meno di 18 anni.\n\nQuale delle seguenti affermazioni deve essere a sua volta vera?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Ogni dipendente dell'azienda che ha 18 anni o più è un corriere."
+        },
+        {
+          "id": "b",
+          "textMd": "Ogni dipendente dell'azienda che possiede la patente di guida è un corriere."
+        },
+        {
+          "id": "c",
+          "textMd": "Alcuni corrieri dell'azienda hanno meno di 18 anni."
+        },
+        {
+          "id": "d",
+          "textMd": "Alcuni dipendenti dell'azienda possiedono la patente di guida ma non sono corrieri."
+        },
+        {
+          "id": "e",
+          "textMd": "Nessun corriere dell'azienda ha meno di 18 anni."
+        }
+      ],
+      "explanationMd": "Concatena le due affermazioni. Prendi un corriere qualsiasi: per la prima affermazione possiede la patente; per la seconda, nessuno con la patente ha meno di 18 anni. Quindi nessun corriere ha meno di 18 anni.\n\nUn modo rapido per vederlo è con insiemi annidati: i corrieri stanno dentro l'insieme dei titolari di patente, e i titolari di patente stanno interamente fuori dall'insieme di chi ha meno di 18 anni. Tutto ciò che sta dentro l'insieme dei corrieri sta quindi anch'esso fuori dall'insieme di chi ha meno di 18 anni.\n\nLe altre alternative o invertono un'affermazione («ogni corriere possiede la patente» non significa «ogni titolare di patente è un corriere»), o contraddicono ciò che si è dedotto, o affermano qualcosa che le affermazioni lasciano aperto.\n\nDa notare subito: «tutti gli X sono Y» seguito da «nessun Y è Z» dà sempre «nessun X è Z». Attenzione alle alternative che invertono l'ordine di un'affermazione con «tutti».",
+      "distractorRationale": {
+        "b": "Inverte la prima affermazione. Il fatto che ogni corriere possieda la patente lascia spazio ad altri dipendenti, per esempio dirigenti o meccanici, che possiedono la patente ma non sono corrieri.",
+        "c": "Contraddice le due affermazioni prese insieme: ogni corriere possiede la patente, e nessun titolare di patente ha meno di 18 anni.",
+        "a": "Collega l'avere 18 anni o più all'essere corriere, ma le affermazioni dicono soltanto che i corrieri hanno la patente e che i titolari di patente non hanno meno di 18 anni. Nulla obbliga i dipendenti maggiorenni a essere corrieri.",
+        "d": "Può essere vera, ma nulla la rende necessaria. È compatibile con le affermazioni che i corrieri siano gli unici titolari di patente dell'azienda."
+      },
+      "accessibilityText": "Due affermazioni su un'azienda di consegne: ogni corriere possiede la patente di guida, e nessun dipendente che possiede la patente di guida ha meno di 18 anni. La domanda chiede quale ulteriore affermazione deve essere vera. Cinque alternative di risposta.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": "tolce-italian-checker",
+        "checkedOn": "2026-10-23",
+        "answerPreserved": true,
+        "notes": "Ogni corriere -> patente; nessun patentato < 18 -> nessun corriere < 18. 'deve essere a sua volta vera' = must also be true."
+      }
+    }
+  }
+}

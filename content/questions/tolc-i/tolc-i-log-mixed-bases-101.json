@@ -78,5 +78,48 @@
     "logarithms",
     "negative-exponents",
     "fractional-exponents"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Qual è il valore di $\\log_{2} 0.125 + \\log_{9} 3$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$-\\dfrac{7}{2}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$-\\dfrac{5}{2}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$-1$"
+        },
+        {
+          "id": "d",
+          "textMd": "$0$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\dfrac{7}{2}$"
+        }
+      ],
+      "explanationMd": "Si calcola ciascun logaritmo separatamente chiedendosi a quale esponente bisogna elevare la base per ottenere l'argomento. La prima mossa è trasformare il numero decimale in frazione.\n\n**Primo termine.** $0.125 = \\dfrac{1}{8} = 2^{-3}$, quindi $\\log_{2} 0.125 = -3$. Un numero compreso tra 0 e 1 ha sempre logaritmo negativo quando la base è maggiore di 1.\n\n**Secondo termine.** $3 = \\sqrt{9} = 9^{1/2}$, quindi $\\log_{9} 3 = \\dfrac{1}{2}$.\n\n**Somma.** $-3 + \\dfrac{1}{2} = -\\dfrac{5}{2}$.\n\n**Come verificarlo.** Si eleva ciascuna base al valore trovato: $2^{-3} = \\tfrac18 = 0.125$ ✓ e $9^{1/2} = 3$ ✓.",
+      "distractorRationale": {
+        "e": "Prende $\\log_{2} 0.125$ come $+3$, dimenticando che $0.125 = 2^{-3}$ è un reciproco. Un numero minore di 1 ha logaritmo in base 2 negativo, quindi la somma è $-3 + \\tfrac12$, non $3 + \\tfrac12$.",
+        "c": "Inverte il secondo logaritmo, leggendo $\\log_{9} 3$ come «a quale esponente bisogna elevare 3 per ottenere 9», cioè 2. Quello è $\\log_{3} 9$. Il valore corretto è $\\tfrac12$, perché $9^{1/2} = 3$.",
+        "a": "Trova correttamente entrambi i valori ma li combina come $-(3 + \\tfrac12)$. Aggiungere $\\tfrac12$ a $-3$ avvicina a zero, dando $-\\tfrac52$.",
+        "d": "Calcola $\\log_{9} 3$ come $9 \\div 3 = 3$, trattando il logaritmo come una divisione, così la somma diventa $-3 + 3 = 0$. Un logaritmo è un esponente: $9^{1/2} = 3$, quindi $\\log_{9} 3 = \\tfrac12$."
+      },
+      "accessibilityText": "Qual è il valore del logaritmo in base 2 di 0,125 più il logaritmo in base 9 di 3? Le cinque alternative sono: meno sette mezzi; meno cinque mezzi; meno 1; 0; sette mezzi.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-i2",
+        "checkedBy": "tolc-italian-checker-i1",
+        "checkedOn": "2026-10-27",
+        "answerPreserved": true,
+        "notes": "Faithful; decimal point inside maths fine."
+      }
+    }
+  }
 }

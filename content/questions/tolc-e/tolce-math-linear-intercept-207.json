@@ -1,0 +1,126 @@
+{
+  "id": "tolce-math-linear-intercept-207",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A linear function $f$ satisfies $f(2) = 7$ and $f(5) = 16$. What is $f(0)$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$1$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$3$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$4$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$13$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\dfrac{19}{3}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "A linear function has the form $f(x) = mx + q$, and $f(0) = q$ is the value we need.\n\nFind the slope first. Going from $x = 2$ to $x = 5$ the input rises by $3$ and the output rises by $16 - 7 = 9$, so\n\n$$m = \\frac{16 - 7}{5 - 2} = \\frac{9}{3} = 3$$\n\nNow step back from $x = 2$ to $x = 0$: that is $2$ units to the left, so the output falls by $2 \\times 3 = 6$.\n\n$$f(0) = 7 - 6 = 1$$\n\nCheck with the other point: $f(x) = 3x + 1$ gives $f(5) = 15 + 1 = 16$, as required.",
+  "distractorRationale": {
+    "b": "This is the slope $m$, not the value of the function at $0$. The slope tells you how much $f$ changes per unit of $x$; $f(0)$ is the intercept $q$.",
+    "c": "This steps back only one unit from $x = 2$, giving $7 - 3$. Reaching $x = 0$ from $x = 2$ takes two steps of size $3$.",
+    "e": "This inverts the slope, computing $\\frac{5 - 2}{16 - 7} = \\frac{1}{3}$, and then gets $7 - 2 \\cdot \\frac{1}{3}$. The slope is the change in output divided by the change in input.",
+    "d": "This moves in the wrong direction, adding $2 \\times 3$ to $f(2)$. Since the slope is positive, the function is smaller at $x = 0$ than at $x = 2$."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": "A linear function f has f of 2 equal to 7 and f of 5 equal to 16. The question asks for f of 0. The answer choices are 1, 3, 4, nineteen thirds, and 13.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "tolce-math-author",
+    "aiAssisted": true,
+    "notes": "Original item. Slope from two points and intercept by stepping back; distractors are the slope itself, a single step, an inverted slope and a wrong direction."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "tolce-math-author",
+    "reviewer": "tolce-blind-reviewer-2",
+    "reviewedOn": "2026-10-21",
+    "independentSolve": {
+      "solvedBy": "tolce-blind-reviewer-2",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Slope = (16-7)/3 = 3; f(0) = 7 - 2*3 = 1."
+    },
+    "notes": "Awaiting blind independent solve before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "math",
+    "linear-functions",
+    "slope",
+    "intercept"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Una funzione lineare $f$ soddisfa $f(2) = 7$ e $f(5) = 16$. Quanto vale $f(0)$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$1$"
+        },
+        {
+          "id": "b",
+          "textMd": "$3$"
+        },
+        {
+          "id": "c",
+          "textMd": "$4$"
+        },
+        {
+          "id": "d",
+          "textMd": "$13$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\dfrac{19}{3}$"
+        }
+      ],
+      "explanationMd": "Una funzione lineare ha la forma $f(x) = mx + q$, e $f(0) = q$ è il valore cercato.\n\nTrova prima il coefficiente angolare. Passando da $x = 2$ a $x = 5$ la variabile aumenta di $3$ e il valore della funzione aumenta di $16 - 7 = 9$, quindi\n\n$$m = \\frac{16 - 7}{5 - 2} = \\frac{9}{3} = 3$$\n\nOra torna indietro da $x = 2$ a $x = 0$: sono $2$ unità verso sinistra, quindi il valore della funzione diminuisce di $2 \\times 3 = 6$.\n\n$$f(0) = 7 - 6 = 1$$\n\nVerifica con l'altro punto: $f(x) = 3x + 1$ dà $f(5) = 15 + 1 = 16$, come richiesto.",
+      "distractorRationale": {
+        "b": "È il coefficiente angolare $m$, non il valore della funzione in $0$. Il coefficiente angolare indica di quanto varia $f$ per ogni unità di $x$; $f(0)$ è l'ordinata all'origine $q$.",
+        "c": "Torna indietro di una sola unità da $x = 2$, ottenendo $7 - 3$. Per arrivare a $x = 0$ da $x = 2$ servono due passi di ampiezza $3$.",
+        "e": "Inverte il coefficiente angolare, calcolando $\\frac{5 - 2}{16 - 7} = \\frac{1}{3}$, e poi ottiene $7 - 2 \\cdot \\frac{1}{3}$. Il coefficiente angolare è la variazione del valore della funzione divisa per la variazione della variabile.",
+        "d": "Si muove nella direzione sbagliata, aggiungendo $2 \\times 3$ a $f(2)$. Poiché il coefficiente angolare è positivo, la funzione è più piccola in $x = 0$ che in $x = 2$."
+      },
+      "accessibilityText": "Una funzione lineare f ha f di 2 uguale a 7 e f di 5 uguale a 16. La domanda chiede f di 0. Le alternative di risposta sono 1, 3, 4, diciannove terzi e 13.",
+      "check": {
+        "translatedBy": "tolce-italian-translator",
+        "checkedBy": "tolce-italian-checker",
+        "checkedOn": "2026-10-23",
+        "answerPreserved": true,
+        "notes": "Slope 3, f(0) = 1."
+      }
+    }
+  }
+}
