@@ -78,5 +78,48 @@
     "power-of-a-product",
     "exponent-laws",
     "identities"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Sia $x$ un numero reale e si ponga $a = 2^{x}$ e $b = 3^{x}$. Quale espressione è uguale a $12^{x}$ per ogni $x$ reale?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$a^{2}+b$"
+        },
+        {
+          "id": "b",
+          "textMd": "$2ab$"
+        },
+        {
+          "id": "c",
+          "textMd": "$4ab$"
+        },
+        {
+          "id": "d",
+          "textMd": "$a^{2}b$"
+        },
+        {
+          "id": "e",
+          "textMd": "$ab^{2}$"
+        }
+      ],
+      "explanationMd": "Scrivi la base 12 usando i numeri primi che compaiono in $a$ e $b$: $12 = 4\\cdot 3 = 2^{2}\\cdot 3$.\n\n**Passo 1 — potenza di un prodotto.** $12^{x} = (2^{2}\\cdot 3)^{x} = 2^{2x}\\cdot 3^{x}$.\n\n**Passo 2 — riscrivi $2^{2x}$ come potenza di $a$.** $2^{2x} = (2^{x})^{2} = a^{2}$, e $3^{x} = b$, quindi $12^{x} = a^{2}b$.\n\n**Come verificare.** Un solo valore di prova non basta, perché un'espressione sbagliata può coincidere con $12^{x}$ in un singolo punto. Per $x=1$ il valore 12 è prodotto anche dall'alternativa con $2ab$; per $x=2$ il valore 144 è prodotto anche dall'alternativa con $4ab$. Per $x=3$ si ha $a=8$, $b=27$ e $12^{3}=1728$: funziona solo $a^{2}b = 64\\cdot 27 = 1728$, mentre $2ab = 432$, $4ab = 864$, $ab^{2}=5832$ e $a^{2}+b = 91$.",
+      "distractorRationale": {
+        "e": "Eleva al quadrato il fattore sbagliato. Questa espressione è uguale a $2^{x}\\cdot 3^{2x} = (2\\cdot 9)^{x} = 18^{x}$, non a $12^{x}$.",
+        "b": "Scrive $4^{x}$ come $2\\cdot 2^{x}$, trattando l'esponente come un fattore moltiplicativo. Coincide con $12^{x}$ solo per $x=1$.",
+        "c": "Scrive $4^{x}$ come $4\\cdot 2^{x}$. Coincide per caso in $x=2$, ma $4^{x}$ è $(2^{x})^{2}$, e $4\\cdot 2^{x}$ è una funzione diversa.",
+        "a": "Trasforma il prodotto $4\\cdot 3$ in una somma di potenze. La potenza di un prodotto è il prodotto delle potenze; per le somme non esiste una regola simile."
+      },
+      "accessibilityText": "Sia x un numero reale, a uguale a 2 elevato alla x e b uguale a 3 elevato alla x. La domanda chiede quale espressione è uguale a 12 elevato alla x per ogni x reale. Le cinque alternative sono: a al quadrato per b; a per b al quadrato; 2 per a per b; 4 per a per b; a al quadrato più b.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-e",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

@@ -78,5 +78,48 @@
     "cylinder",
     "lateral-area",
     "volume"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un cilindro ha volume $90\\pi\\ \\text{cm}^{3}$ e altezza $10\\ \\text{cm}$. Qual è l'area della sua superficie laterale (curva)?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$180\\pi\\ \\text{cm}^{2}$"
+        },
+        {
+          "id": "b",
+          "textMd": "$90\\pi\\ \\text{cm}^{2}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$78\\pi\\ \\text{cm}^{2}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$60\\pi\\ \\text{cm}^{2}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$30\\pi\\ \\text{cm}^{2}$"
+        }
+      ],
+      "explanationMd": "Il volume dà il raggio; il raggio dà la superficie laterale.\n\n**Passo 1 — il raggio.** $V = \\pi r^{2} h$, quindi $90\\pi = \\pi r^{2}\\cdot 10$ e $r^{2} = 9$, da cui $r = 3$ cm.\n\n**Passo 2 — la superficie laterale.** Srotolata, è un rettangolo di base $2\\pi r$ e altezza $h$: $2\\pi\\cdot 3\\cdot 10 = 60\\pi\\ \\text{cm}^{2}$.\n\n**Come verificare.** Ricostruisci il volume da $r=3$, $h=10$: $\\pi\\cdot 9\\cdot 10 = 90\\pi$ ✓. E la superficie laterale è la circonferenza di base $6\\pi$ per l'altezza 10, cioè $60\\pi$.",
+      "distractorRationale": {
+        "e": "Usa $\\pi r h$ invece di $2\\pi r h$, dimenticando che la circonferenza è $2\\pi r$.",
+        "c": "Aggiunge alla superficie laterale le due basi circolari ($2\\times 9\\pi = 18\\pi$). Quella è la superficie totale, non quella laterale.",
+        "b": "Ripete il volume. Il volume si misura in centimetri cubi e la domanda chiede un'area.",
+        "a": "Legge $\\pi r^{2} h = 90\\pi$ come $r = 9$ invece di $r^{2} = 9$, poi calcola $2\\pi\\cdot 9\\cdot 10$."
+      },
+      "accessibilityText": "Un cilindro ha volume 90 pi greco centimetri cubi e altezza 10 centimetri. La domanda chiede l'area della sua superficie laterale curva. Le cinque alternative sono 30 pi greco, 60 pi greco, 78 pi greco, 90 pi greco e 180 pi greco centimetri quadrati.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-e",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

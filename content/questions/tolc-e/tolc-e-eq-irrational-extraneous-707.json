@@ -77,5 +77,48 @@
   "tags": [
     "irrational-equation",
     "extraneous-root"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Determinare tutte le soluzioni reali di $\\sqrt{2x+3} = x$.",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$\\{-3\\}$"
+        },
+        {
+          "id": "b",
+          "textMd": "nessuna soluzione reale"
+        },
+        {
+          "id": "c",
+          "textMd": "$\\{-1,\\ 3\\}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\{-1\\}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\{3\\}$"
+        }
+      ],
+      "explanationMd": "In un'equazione con una radice quadrata, ricorda che la radice non è mai negativa, quindi ogni soluzione deve avere $x \\ge 0$. Elevare al quadrato può introdurre soluzioni estranee, quindi ogni candidata va verificata nell'equazione originale.\n\n**Passo 1 — eleva al quadrato entrambi i membri.** $2x + 3 = x^{2}$, quindi $x^{2} - 2x - 3 = 0$.\n\n**Passo 2 — risolvi.** $(x-3)(x+1) = 0$, quindi $x = 3$ oppure $x = -1$.\n\n**Passo 3 — verifica ciascuna candidata nell'equazione originale.**\n- $x = 3$: $\\sqrt{2\\cdot 3 + 3} = \\sqrt{9} = 3$ ✓.\n- $x = -1$: $\\sqrt{2\\cdot(-1)+3} = \\sqrt{1} = 1$, ma il secondo membro vale $-1$ ✗.\n\nL'unica soluzione è $x = 3$. La soluzione da scartare si riconosce anche prima di ogni verifica: è negativa, e il secondo membro deve essere uguale a una radice quadrata.",
+      "distractorRationale": {
+        "c": "Risolve l'equazione di secondo grado ottenuta elevando al quadrato e si ferma. L'elevamento al quadrato può introdurre soluzioni che non soddisfano l'equazione originale: in $x=-1$ il secondo membro vale $-1$, ma una radice quadrata non è mai negativa.",
+        "d": "Tiene la soluzione estranea e scarta quella vera, applicando la verifica al contrario: $x=3$ dà $\\sqrt{9}=3$, che funziona.",
+        "a": "Elimina la radice senza elevare al quadrato il secondo membro, scrivendo $2x+3 = x$. Elevando al quadrato entrambi i membri si ottiene $2x+3 = x^{2}$, non $2x+3 = x$.",
+        "b": "Nota che una delle due soluzioni non funziona e conclude che l'equazione non ha soluzioni, senza verificare l'altra. La soluzione $x=3$ soddisfa l'equazione."
+      },
+      "accessibilityText": "Determinare tutte le soluzioni reali dell'equazione: la radice quadrata di 2 x più 3 è uguale a x. Le cinque alternative sono insiemi: l'insieme che contiene meno 1 e 3; l'insieme che contiene meno 1; l'insieme che contiene meno 3; l'insieme che contiene 3; nessuna soluzione reale.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-e",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

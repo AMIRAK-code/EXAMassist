@@ -80,5 +80,48 @@
     "scheduling",
     "ordering",
     "no-calculator"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "L'aula magna di una scuola è usata da cinque club: Scacchi, Coro, Teatro, Cinema e Musica. Ogni club si riunisce in un giorno feriale diverso, dal lunedì al venerdì, un club al giorno. Si sa quanto segue.\n\n- Scacchi si riunisce in un giorno precedente a quello di Cinema.\n- Cinema si riunisce in un giorno precedente a quello di Teatro.\n- Coro si riunisce il giorno immediatamente successivo a quello di Cinema.\n- Scacchi non si riunisce il lunedì.\n\nQuale club si riunisce il lunedì?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "Cinema"
+        },
+        {
+          "id": "b",
+          "textMd": "Teatro"
+        },
+        {
+          "id": "c",
+          "textMd": "Musica"
+        },
+        {
+          "id": "d",
+          "textMd": "Coro"
+        },
+        {
+          "id": "e",
+          "textMd": "Scacchi"
+        }
+      ],
+      "explanationMd": "Costruisci la catena creata dagli indizi e poi guarda quanto spazio ha a disposizione. Scacchi viene prima di Cinema, Cinema viene prima di Teatro, e Coro è subito dopo Cinema. Quindi Cinema ha bisogno di un giorno prima di sé (per Scacchi) e di due giorni diversi dopo di sé (uno per Coro e uno per Teatro, dato che Coro e Teatro non possono condividere un giorno).\n\nScacchi non può riunirsi il lunedì, quindi si riunisce al più presto il martedì, il che porta Cinema al più presto al mercoledì. Cinema ha anche bisogno di due giorni successivi, quindi il mercoledì è anche il giorno più tardo possibile. Cinema è il mercoledì, Scacchi il martedì, Coro il giovedì (subito dopo Cinema) e Teatro il venerdì (l'unico giorno rimasto dopo Cinema). Il club che resta per il lunedì è **Musica**.\n\nVerifica: lunedì Musica, martedì Scacchi, mercoledì Cinema, giovedì Coro e venerdì Teatro soddisfano tutti e quattro gli indizi.",
+      "distractorRationale": {
+        "a": "Scacchi deve riunirsi prima di Cinema, quindi Cinema non può occupare il primo giorno della settimana. Si riunisce il mercoledì.",
+        "b": "Teatro deve riunirsi dopo Cinema, e Cinema ha già Scacchi prima di sé, quindi Teatro cade verso la fine della settimana. Si riunisce il venerdì.",
+        "d": "Coro si riunisce il giorno dopo Cinema, quindi non può occupare il primo giorno della settimana. Si riunisce il giovedì.",
+        "e": "Scacchi sembra il club che apre la catena, ma l'ultimo indizio gli vieta il lunedì. Scacchi si riunisce il martedì."
+      },
+      "accessibilityText": "Un problema di logica sulla pianificazione. Cinque club, Scacchi, Coro, Teatro, Cinema e Musica, si riuniscono ciascuno in un giorno feriale diverso dal lunedì al venerdì. Scacchi si riunisce prima di Cinema nella settimana; Cinema prima di Teatro; Coro il giorno subito dopo Cinema; Scacchi non si riunisce il lunedì. La domanda chiede quale club si riunisce il lunedì. Le cinque alternative sono i nomi dei club, in quest'ordine: Cinema, Teatro, Musica, Coro e Scacchi.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-e",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": "Club names translated (Chess=Scacchi, Choir=Coro, Drama=Teatro, Film=Cinema, Music=Musica); the puzzle does not depend on the names."
+      }
+    }
+  }
 }

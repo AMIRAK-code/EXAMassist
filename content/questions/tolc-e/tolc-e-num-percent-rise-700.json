@@ -76,5 +76,48 @@
   "quarantine": null,
   "tags": [
     "percentage-change"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un bar aumenta il prezzo del suo caffè espresso da € 1,20 a € 1,50. Di quale percentuale è aumentato il prezzo?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "20%"
+        },
+        {
+          "id": "b",
+          "textMd": "25%"
+        },
+        {
+          "id": "c",
+          "textMd": "30%"
+        },
+        {
+          "id": "d",
+          "textMd": "80%"
+        },
+        {
+          "id": "e",
+          "textMd": "125%"
+        }
+      ],
+      "explanationMd": "Calcola prima la variazione, poi confrontala con il valore **iniziale**.\n\n**Passo 1 — la variazione.** $1.50 - 1.20 = 0.30$ euro, cioè 30 centesimi.\n\n**Passo 2 — dividi per il prezzo vecchio.** $\\dfrac{0.30}{1.20} = \\dfrac{30}{120} = \\dfrac{1}{4} = 25\\%$.\n\nL'abitudine da acquisire: il denominatore di una *variazione* percentuale è sempre il valore di partenza, mai quello di arrivo.\n\n**Come verificare.** Calcola il 25% del prezzo vecchio: un quarto di 120 centesimi è 30 centesimi, e $120 + 30 = 150$ centesimi, che è il prezzo nuovo.",
+      "distractorRationale": {
+        "a": "Divide l'aumento di 30 centesimi per il prezzo nuovo di € 1,50 (0,30 ÷ 1,50 = 0,20). Una variazione percentuale si misura sempre rispetto al valore iniziale, quindi la base deve essere € 1,20.",
+        "c": "Legge l'aumento di 30 centesimi come se fosse del 30 per cento. L'aumento è una differenza in euro; diventa una percentuale solo dopo essere stato diviso per il prezzo vecchio.",
+        "d": "Divide il prezzo vecchio per quello nuovo (1,20 ÷ 1,50 = 0,8). Quel rapporto dice che il prezzo vecchio è l'80% di quello nuovo; non è l'entità dell'aumento.",
+        "e": "Divide il prezzo nuovo per quello vecchio (1,50 ÷ 1,20 = 1,25) e riporta l'intero rapporto come aumento. Il prezzo nuovo è il 125% di quello vecchio, quindi l'aumento è solo il 25% oltre il 100%."
+      },
+      "accessibilityText": "Un bar aumenta il prezzo di un caffè espresso da un euro e venti a un euro e cinquanta. La domanda chiede l'aumento percentuale. Le cinque alternative sono le percentuali venti, venticinque, trenta, ottanta e centoventicinque.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-e",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }

@@ -79,5 +79,48 @@
     "sequences",
     "differences",
     "no-calculator"
-  ]
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un bar conta le paste vendute in ciascuna delle sue prime cinque ore di apertura: 4, 5, 7, 10, 14. I conteggi seguono uno schema regolare.\n\nSe lo schema continua, quante paste venderà il bar nella sesta ora?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "17"
+        },
+        {
+          "id": "b",
+          "textMd": "18"
+        },
+        {
+          "id": "c",
+          "textMd": "19"
+        },
+        {
+          "id": "d",
+          "textMd": "20"
+        },
+        {
+          "id": "e",
+          "textMd": "28"
+        }
+      ],
+      "explanationMd": "Quando una lista di numeri cresce lentamente e in modo irregolare, scrivi le differenze tra termini vicini prima di tentare qualcosa di più ingegnoso.\n\nLe differenze sono 5 - 4 = 1, 7 - 5 = 2, 10 - 7 = 3 e 14 - 10 = 4. Formano la sequenza 1, 2, 3, 4, quindi la differenza successiva è 5, e il sesto conteggio è 14 + 5 = **19**.\n\nVerifica: ricostruisci l'intera lista con la regola «parti da 4 e aggiungi 1, poi 2, poi 3, poi 4, poi 5»: 4, 5, 7, 10, 14, 19.",
+      "distractorRationale": {
+        "a": "Aggiunge 3, riutilizzando l'aumento che precede l'ultimo (da 7 a 10). Gli aumenti sono 1, 2, 3, 4 e ciascuno supera di uno il precedente, quindi l'aumento successivo non può essere 3.",
+        "b": "Aggiunge di nuovo 4, ripetendo l'ultimo aumento. Gli aumenti continuano a crescere di 1, quindi il prossimo è 5, non 4.",
+        "d": "Aggiunge 6, saltando un passo nella sequenza di aumenti 1, 2, 3, 4. Il prossimo aumento intero della sequenza è 5.",
+        "e": "Raddoppia l'ultimo conteggio. Il raddoppio non si adatta ai conteggi precedenti: da 4 a 5, da 5 a 7 e da 7 a 10 non sono neanche lontanamente raddoppi."
+      },
+      "accessibilityText": "Una domanda su una successione numerica ambientata in un bar. Le paste vendute nelle prime cinque ore sono 4, 5, 7, 10 e 14, e lo schema continua. La domanda chiede il numero di paste vendute nella sesta ora. Le cinque alternative sono 17, 18, 19, 20 e 28.",
+      "check": {
+        "translatedBy": "tolc-italian-translator-e",
+        "checkedBy": null,
+        "checkedOn": null,
+        "answerPreserved": null,
+        "notes": ""
+      }
+    }
+  }
 }
