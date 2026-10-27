@@ -163,7 +163,8 @@ export function getDb(): Db {
     if (process.env.DATABASE_URL) globalThis.__examerDb = openPostgres(process.env.DATABASE_URL);
     else {
       if (process.env.VERCEL) throw new Error('DATABASE_URL must be configured on Vercel. SQLite is only for local development.');
-      const file = path.resolve(process.env.DATABASE_PATH ?? './tmp/examer.db');
+      // Local development only; not a file the build should trace.
+      const file = path.resolve(/* turbopackIgnore: true */ process.env.DATABASE_PATH ?? './tmp/examer.db');
       fs.mkdirSync(path.dirname(file), { recursive: true });
       const raw = new Database(file);
       raw.pragma('journal_mode = WAL'); raw.pragma('foreign_keys = ON'); raw.pragma('busy_timeout = 5000');
