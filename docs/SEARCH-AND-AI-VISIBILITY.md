@@ -103,7 +103,8 @@ pages and eight back-to-back fetches of `/exams/gmat` all answered 200. So
 the failures are intermittent. Cloudflare applies the 10 ms with some leeway,
 and a render's CPU time varies (a freshly started isolate costs more), so
 whether a page goes over changes from one moment to the next. The cause has
-not gone away.
+not gone away: a crawl at 13:30 UTC, still on Free, got 1102 again on 9 of
+the 29 pages.
 
 A crawler that keeps getting 503s lowers its crawl rate, and a page that
 keeps failing is eventually dropped. The two fixes are:
