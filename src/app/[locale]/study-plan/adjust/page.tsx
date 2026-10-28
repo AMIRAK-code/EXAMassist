@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { useLocale, useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import { getPathname, redirect } from '@/i18n/navigation';
-import { languageAlternates } from '@/i18n/alternates';
+import { pageAlternates } from '@/i18n/alternates';
 import type { Locale } from '@/i18n/locales';
 import { getDb } from '@/lib/db';
 import { loadEntitlements } from '@/lib/billing/entitlements';
@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
   const t = await getTranslations({ locale, namespace: 'learning.adjust.meta' });
   return {
     title: t('title'),
-    alternates: languageAlternates('/study-plan/adjust', locale),
+    alternates: (await pageAlternates(params, '/study-plan/adjust')),
     robots: { index: false, follow: false },
   };
 }

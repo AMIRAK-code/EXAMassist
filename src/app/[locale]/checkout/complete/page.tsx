@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { getFormatter, getTranslations } from 'next-intl/server';
 import { Link, redirect } from '@/i18n/navigation';
-import { languageAlternates } from '@/i18n/alternates';
+import { pageAlternates } from '@/i18n/alternates';
 import type { Locale } from '@/i18n/locales';
 import { getCurrentUser } from '@/lib/auth/session';
 import { getDb } from '@/lib/db';
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   return {
     title: t('title'),
     robots: { index: false, follow: false },
-    alternates: languageAlternates('/checkout/complete', locale as Locale),
+    alternates: (await pageAlternates(params, '/checkout/complete')),
   };
 }
 

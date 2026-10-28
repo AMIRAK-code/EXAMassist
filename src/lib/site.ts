@@ -1,31 +1,35 @@
 /**
  * Site-wide configuration.
  *
- * The brand is deliberately neutral and lives in one place so renaming the
- * product is a single edit here plus the logo files: the wordmark and symbol
- * variants in public/brand, and the favicon (src/app/icon.svg, a copy of
- * public/brand/examer-favicon-micro.svg).
+ * The brand lives in one place so renaming the product is a single edit here
+ * plus the logo files. Those come from the UniExamer logo pack (October 2026):
+ * the logo, wordmark and symbol in primary, white and mono in public/brand,
+ * the favicon (src/app/favicon.ico and src/app/icon.svg), the Apple touch icon
+ * (src/app/apple-icon.png) and the app icons in public/manifest.webmanifest.
+ * Use the PNGs wherever there is lettering: the pack's SVG lettering is live
+ * Arial text, which a device without Arial redraws in another font.
  */
 
 export const SITE = {
-  name: 'Examer',
+  name: 'UniExamer',
   /** Used in titles: "<page> | <tagline-safe short name>". */
-  shortName: 'Examer',
+  shortName: 'UniExamer',
   /**
-   * Other names people may search for: the domain is uniexamer.com. Offered to
-   * search engines as WebSite and Organization `alternateName`.
+   * Other names people may search for: Examer was the name until October 2026,
+   * and the domain is uniexamer.com. Offered to search engines as WebSite and
+   * Organization `alternateName`.
    */
-  alternateNames: ['UniExamer', 'uniexamer.com'],
+  alternateNames: ['Examer', 'uniexamer.com'],
   tagline: 'Admission test preparation, verified against official sources',
   description:
     'Practice questions, exam format guides and timed practice for the Bocconi Online Test (bachelor, law and master’s forms), Digital SAT, Enhanced ACT, LSAT, GMAT, GRE, CISIA TOLC and Politecnico di Torino TIL, with a free test for every account. Every format claim is sourced to the test maker.',
   locale: 'en',
   /**
    * Publisher identity shown on public content and in structured data. Not
-   * "Examer Editorial": no record names a human editorial team, so the byline
-   * does not imply one.
+   * "UniExamer Editorial": no record names a human editorial team, so the
+   * byline does not imply one.
    */
-  publisher: 'Examer',
+  publisher: 'UniExamer',
 } as const;
 
 /** Absolute base URL, without a trailing slash. */
@@ -88,7 +92,7 @@ export function indexingEnabled(): boolean {
  * saying so is a trust and legal requirement, not a footer nicety.
  */
 export const INDEPENDENCE_NOTICE =
-  'Examer is an independent study resource. It is not affiliated with, endorsed by, or accredited by ' +
+  `${SITE.name} is an independent study resource. It is not affiliated with, endorsed by, or accredited by ` +
   'College Board, ACT, LSAC, GMAC, ETS, Università Bocconi, Politecnico di Torino or CISIA. SAT is a trademark of College Board; ACT ' +
   'of ACT; LSAT of LSAC; GMAT of GMAC; GRE of ETS. The practice questions are original, AI-assisted ' +
   'material; see our editorial standards for how they are created and checked.';

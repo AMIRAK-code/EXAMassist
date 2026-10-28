@@ -17,7 +17,10 @@ const REDIRECTED_HOSTS = ['exam.assist365.app', 'www.uniexamer.com'];
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   // better-sqlite3 is a native module: never bundle it into the server build.
-  serverExternalPackages: ['better-sqlite3'],
+  // pg-cloudflare is listed so OpenNext copies the whole package into the
+  // Worker: Turbopack's file tracing keeps only its Node stub (dist/empty.js),
+  // not the "workerd" build that pg loads on Cloudflare.
+  serverExternalPackages: ['better-sqlite3', 'pg-cloudflare'],
   poweredByHeader: false,
   /*
    * Pin the workspace root to this project.
@@ -61,6 +64,9 @@ const nextConfig: NextConfig = {
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           { key: 'X-Frame-Options', value: 'DENY' },
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()' },
+          // HTTPS only, for a year, on the host that sent it. No includeSubDomains
+          // or preload: other subdomains of assist365.app are not this site's.
+          { key: 'Strict-Transport-Security', value: 'max-age=31536000' },
         ],
       },
       {

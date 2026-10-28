@@ -4,11 +4,11 @@ import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/serve
 import { getGuide, listGuides } from '@/lib/content/guides';
 import { getHub } from '@/lib/exams/registry';
 import { SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
+import { pageAlternates } from '@/i18n/alternates';
 import { Markdown } from '@/components/content';
 import { freeTestPath } from '@/lib/billing/config';
 import { Breadcrumbs, ButtonLink, Callout, Card, Container, PageHeader } from '@/components/ui';
 import { JsonLd, articleSchema, breadcrumbSchema } from '@/components/seo/json-ld';
-import { languageAlternates } from '@/i18n/alternates';
 import { localizePath, type Locale } from '@/i18n/locales';
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const t = await getTranslations({ locale, namespace: 'guides.article' });
     return { title: t('fallbackTitle') };
   }
-  const alternates = languageAlternates(`/guides/${guide.slug}`, locale as Locale);
+  const alternates = (await pageAlternates(params, `/guides/${guide.slug}`));
   return {
     title: guide.title,
     description: guide.description,

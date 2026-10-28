@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { getFormatter, getTranslations } from 'next-intl/server';
 import { Link, redirect } from '@/i18n/navigation';
-import { languageAlternates } from '@/i18n/alternates';
+import { pageAlternates } from '@/i18n/alternates';
 import { LOCALE_INFO, type Locale } from '@/i18n/locales';
 import { getCurrentUser, requireUser } from '@/lib/auth/session';
 import { emailCodesMailer } from '@/lib/auth/email-codes';
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   return {
     title: t('title'),
     description: t('description'),
-    alternates: languageAlternates('/account', locale as Locale),
+    alternates: (await pageAlternates(params, '/account')),
     // Private page. Authorization is what protects it; this only keeps it out of
     // search results if a URL ever leaks.
     robots: { index: false, follow: false },

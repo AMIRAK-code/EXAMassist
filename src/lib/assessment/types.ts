@@ -407,6 +407,21 @@ export const examConfigSchema = z.object({
   /** Rules we could not verify. Surfaced to learners; gates simulation features. */
   unverified: z.array(z.string()).default([]),
   /**
+   * How many answer options a single-select question carries: the count the
+   * test maker publishes, or our editorial choice where it publishes none
+   * (`basis` says which, `note` why). Exam-wide; a domain named in
+   * `scoring.itemPenaltyOverrides` may also use that override's option count
+   * (Bocconi's three-option critical thinking items). Read by the question
+   * drafting tool, scripts/draft-questions.ts.
+   */
+  choiceOptions: z
+    .object({
+      count: z.number().int().min(2),
+      basis: z.enum(['published', 'editorial']),
+      note: z.string().default(''),
+    })
+    .optional(),
+  /**
    * Languages the exam's questions are offered in. English is the original.
    * Italian is offered for the TOLC-E (which CISIA runs in Italian) and for the
    * IMAT as a study aid (the real IMAT is English-only; its simulation stays

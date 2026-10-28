@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { getFormatter, getTranslations } from 'next-intl/server';
 import { Link, getPathname } from '@/i18n/navigation';
-import { languageAlternates } from '@/i18n/alternates';
+import { pageAlternates } from '@/i18n/alternates';
 import { localizePath, type Locale } from '@/i18n/locales';
 import { headers } from 'next/headers';
 import { getCurrentUser } from '@/lib/auth/session';
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     allAccessPrice: formatPrice(PLANS.all_access.amount, locale),
     singleExamPrice: formatPrice(PLANS.single_exam.amount, locale),
   });
-  const alternates = languageAlternates('/pricing', locale as Locale);
+  const alternates = (await pageAlternates(params, '/pricing'));
   return {
     title,
     description,

@@ -1078,6 +1078,11 @@ export const greConfig: ExamConfig = {
     // capabilities.fullSimulation for the reason.
   ],
 
+  choiceOptions: {
+    count: 5,
+    basis: 'published',
+    note: 'Five choices on single-answer multiple choice and single-blank Text Completion; other GRE formats have their own counts.',
+  },
   scoring: {
     pointsCorrect: 1,
     pointsIncorrect: 0,

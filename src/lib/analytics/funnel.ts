@@ -122,6 +122,26 @@ export async function countPageView(db: Db, event: 'landing_view' | 'pricing_vie
   }
 }
 
+/**
+ * Counts an exam-page view reported by the page itself. Exam pages are served
+ * as static files (src/lib/seo/static-pages.ts), so the server never renders
+ * them for a visitor and cannot count them as above; the browser sends where
+ * it came from instead. Crawlers rarely run the script, and the bot check
+ * still applies to those that do. Never throws.
+ */
+export async function countReportedView(
+  db: Db,
+  subject: string,
+  report: { referrer: string | null; userAgent: string | null; ownHost: string | null },
+): Promise<void> {
+  try {
+    if (isLikelyBot(report.userAgent)) return;
+    await countEvent(db, 'landing_view', subject, classifyReferrer(report.referrer, report.ownHost));
+  } catch {
+    // Never let measurement break a page.
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Reading the counts back
 // ---------------------------------------------------------------------------

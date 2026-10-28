@@ -2,7 +2,7 @@ import { Link } from '@/i18n/navigation';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/server';
-import { languageAlternates } from '@/i18n/alternates';
+import { languageAlternates, pageAlternates } from '@/i18n/alternates';
 import type { Locale } from '@/i18n/locales';
 import { getDb } from '@/lib/db';
 import { EXAM_HUBS, getConfigsForHub, getHub } from '@/lib/exams/registry';
@@ -29,6 +29,8 @@ import { loadEntitlements } from '@/lib/billing/entitlements';
 import { BOCCONI_HUB_SLUG, bocconiLandingData } from '@/lib/exams/bocconi-landing';
 import { BOCCONI_FACTS_CHECKED_ON } from '@/lib/exams/bocconi-facts';
 import { BocconiLanding } from '@/components/exams/bocconi-landing';
+import { ViewBeacon } from '@/components/exams/view-beacon';
+import { isSnapshotRequest } from '@/lib/seo/static-pages';
 
 export const dynamic = 'force-dynamic';
 
@@ -48,7 +50,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = t('metaTitle', { name: hub.name });
   // The tagline is the exam's own summary from its config, as published.
   const description = hub.tagline;
-  const alternates = languageAlternates(`/exams/${hub.slug}`, locale as Locale);
+  const alternates = (await pageAlternates(params, `/exams/${hub.slug}`));
   return {
     title,
     description,
@@ -94,7 +96,7 @@ export default async function ExamHubPage({ params }: Props) {
   const format = await getFormatter();
   const minutes = (value: number | null): string =>
     value === null ? t('table.notPublished') : t('table.minutes', { value });
-  const url = languageAlternates(`/exams/${hub.slug}`, locale as Locale).canonical;
+  const url = (await pageAlternates(params, `/exams/${hub.slug}`)).canonical;
 
   const db = getDb();
   const configs = getConfigsForHub(slug);
@@ -104,7 +106,11 @@ export default async function ExamHubPage({ params }: Props) {
     { label: hub.name },
   ];
   // A daily total of views, by coarse source; nothing about the visitor is kept.
-  await countPageView(db, 'landing_view', hub.slug, await headers());
+  // The copy saved as a static file reports its own views from the browser.
+  const requestHeaders = await headers();
+  const snapshot = isSnapshotRequest(requestHeaders);
+  if (!snapshot) await countPageView(db, 'landing_view', hub.slug, requestHeaders);
+  const beacon = snapshot ? <ViewBeacon subject={hub.slug} /> : null;
 
   if (hub.slug === BOCCONI_HUB_SLUG) {
     const user = await getCurrentUser();
@@ -128,7 +134,9 @@ export default async function ExamHubPage({ params }: Props) {
           ]}
         />
         <Breadcrumbs trail={trail} />
+        {beacon}
         <BocconiLanding data={data} hasFullAccess={fullAccess} billingOn={entitlements.enforced} />
+
       </Container>
     );
   }
@@ -154,6 +162,7 @@ export default async function ExamHubPage({ params }: Props) {
         ]}
       />
       <Breadcrumbs trail={trail} />
+      {beacon}
 
       {/*
         No lead: the tagline repeated the summary below it, and gained a line

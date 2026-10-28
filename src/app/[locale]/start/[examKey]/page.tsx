@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getFormatter, getTranslations } from 'next-intl/server';
 import { redirect } from '@/i18n/navigation';
-import { languageAlternates } from '@/i18n/alternates';
+import { pageAlternates } from '@/i18n/alternates';
 import type { Locale } from '@/i18n/locales';
 import { getCurrentUser } from '@/lib/auth/session';
 import { getDb } from '@/lib/db';
@@ -28,7 +28,7 @@ export async function generateMetadata({
   return {
     title: t('metaTitle'),
     robots: { index: false, follow: false },
-    alternates: languageAlternates(`/start/${examKey}`, locale as Locale),
+    alternates: (await pageAlternates(params, `/start/${examKey}`)),
   };
 }
 

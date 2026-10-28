@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import { Link, redirect } from '@/i18n/navigation';
 import type { Metadata } from 'next';
-import { languageAlternates } from '@/i18n/alternates';
+import { pageAlternates } from '@/i18n/alternates';
 import type { Locale } from '@/i18n/locales';
 import { getDb } from '@/lib/db';
 import { UnauthorizedError, requireUser, type AuthUser } from '@/lib/auth/session';
@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
   return {
     title: t('title'),
     description: t('description'),
-    alternates: languageAlternates('/dashboard', locale),
+    alternates: (await pageAlternates(params, '/dashboard')),
     // Private page. Authorization is the protection; this is only an indexing hint.
     robots: { index: false, follow: false },
   };

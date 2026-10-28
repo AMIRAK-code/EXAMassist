@@ -21,7 +21,7 @@ export function getSupabaseConfig() {
 
 /**
  * Public Data API connection, usable on the server or in the browser.
- * Existing Examer sessions do not authenticate this client: access uses the
+ * Existing UniExamer sessions do not authenticate this client: access uses the
  * anonymous role and the Supabase project's grants and row-level policies.
  * Supabase Auth/SSR session integration is a separate future change.
  */
