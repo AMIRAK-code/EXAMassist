@@ -12,6 +12,13 @@
  * scripts and styles uploaded with them. They change only at the next deploy:
  * after publishing questions straight to the database, deploy again to refresh
  * the counts the pages show.
+ *
+ * On the Free plan a page can fail with error 1102 (the client sees HTTP 503),
+ * and fetching about 150 pages back to back keeps the Worker over its CPU limit
+ * for minutes at a time: on 2026-10-28 /tr/exams took 268 s to come through.
+ * So the snapshot pauses between pages, backs off for several minutes before
+ * giving up on one, and keeps the pages an earlier run saved from the same
+ * build, so `npm run cf:snapshot` can carry on where a failed run stopped.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -20,17 +27,25 @@ import { SNAPSHOT_HEADER, assetFileFor, staticPagePaths } from '../src/lib/seo/s
 
 // "bot" keeps these requests out of the page-view totals (src/lib/analytics/funnel.ts).
 const USER_AGENT = 'ExamerSnapshot/1.0 (deploy bot)';
-// A page can fail with error 1102 on the Free plan, and the previous deployment
-// can answer for a few seconds after an upload: retry for about a minute.
-const ATTEMPTS = 20;
-const WAIT_MS = 3000;
+// 3 s, 6 s, 9 s ... then 20 s each: about nine minutes in all. The previous
+// deployment can also answer for a few seconds after an upload.
+export const ATTEMPTS = 30;
+export const retryDelay = (attempt: number) => Math.min(3000 * attempt, 20_000);
+const PAUSE_MS = 1500;
+const SLOW_MS = 5000;
 
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+const realSleep = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
 
-async function fetchLive(url: string, buildId: string): Promise<Buffer> {
+export interface FetchDeps {
+  fetch?: typeof fetch;
+  sleep?: (ms: number) => Promise<void>;
+}
+
+export async function fetchLive(url: string, buildId: string, deps: FetchDeps = {}): Promise<Buffer> {
+  const { fetch: get = fetch, sleep = realSleep } = deps;
   let reason = '';
   for (let attempt = 1; attempt <= ATTEMPTS; attempt++) {
-    const response = await fetch(url, {
+    const response = await get(url, {
       headers: { [SNAPSHOT_HEADER]: '1', 'user-agent': USER_AGENT },
       redirect: 'manual',
       cache: 'no-store',
@@ -45,7 +60,8 @@ async function fetchLive(url: string, buildId: string): Promise<Buffer> {
       else if (html && !body.includes(buildId)) reason = 'served by the previous deployment';
       else return body;
     }
-    if (attempt < ATTEMPTS) await sleep(WAIT_MS);
+    if (attempt === 6) console.log(`  still waiting for ${url} (${reason})`);
+    if (attempt < ATTEMPTS) await sleep(retryDelay(attempt));
   }
   throw new Error(`${url}: ${reason}, ${ATTEMPTS} attempts.`);
 }
@@ -71,21 +87,39 @@ export async function assertHostsRedirect(site: string, hosts: readonly string[]
   }
 }
 
-/** Writes the files into `assetsDir` and returns the paths saved. */
-export async function snapshotPublicPages(options: { site: string; assetsDir: string; buildId: string }): Promise<string[]> {
+/**
+ * Writes the files into `assetsDir` and returns the paths saved. A page an
+ * earlier run saved from this build (its HTML carries the build id) is kept;
+ * files without the id (robots.txt, the sitemap, icons) are always fetched.
+ */
+export async function snapshotPublicPages(
+  options: { site: string; assetsDir: string; buildId: string },
+  deps: FetchDeps = {},
+): Promise<string[]> {
   const { site, assetsDir, buildId } = options;
+  const sleep = deps.sleep ?? realSleep;
   // Only HTML carries the build id, so first wait for the new deployment to
   // answer there; then the sitemap and robots.txt are surely its own.
-  await fetchLive(`${site}/`, buildId);
-  const sitemap = (await fetchLive(`${site}/sitemap.xml`, buildId)).toString('utf8');
+  await fetchLive(`${site}/`, buildId, deps);
+  const sitemap = (await fetchLive(`${site}/sitemap.xml`, buildId, deps)).toString('utf8');
   const paths = staticPagePaths(sitemapUrls(sitemap));
   if (paths.length < 10) throw new Error(`The live sitemap lists too few pages (${paths.length}): is indexing on?`);
 
-  for (const pathname of paths) {
-    const body = await fetchLive(`${site}${pathname}`, buildId);
+  let kept = 0;
+  for (const [index, pathname] of paths.entries()) {
     const file = path.join(assetsDir, assetFileFor(pathname));
+    if (fs.existsSync(file) && fs.readFileSync(file).includes(buildId)) {
+      kept += 1;
+      continue;
+    }
+    const started = Date.now();
+    const body = await fetchLive(`${site}${pathname}`, buildId, deps);
     fs.mkdirSync(path.dirname(file), { recursive: true });
     fs.writeFileSync(file, body);
+    const took = Date.now() - started;
+    console.log(`  ${index + 1}/${paths.length} ${pathname}${took > SLOW_MS ? ` (${Math.round(took / 1000)} s)` : ''}`);
+    if (index < paths.length - 1) await sleep(PAUSE_MS);
   }
+  if (kept > 0) console.log(`  ${kept} pages kept from an earlier run of this build`);
   return paths;
 }

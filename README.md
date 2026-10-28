@@ -90,6 +90,13 @@ everything behind sign-in stay dynamic. Saved pages never pass through
 them (cookie, then browser languages). The saved pages change only when you
 deploy, so deploy again after publishing questions straight to the database.
 
+Fetching about 150 pages in a row keeps the Worker over the Free plan's CPU
+limit for minutes at a time (pages answer 503), so the snapshot pauses between
+pages and retries each one for about nine minutes. A full snapshot takes 5 to
+15 minutes. If it still gives up, the first upload stays live with every page
+rendered by the Worker; run `npm run cf:snapshot` in the same folder to carry on
+with the same build. It keeps the pages already saved, then uploads again.
+
 Static files are answered for any hostname before the Worker's own redirects
 run, so the snapshot step needs two Single Redirects in Cloudflare (Rules →
 Redirect Rules): `www.uniexamer.com/*` to `https://uniexamer.com/${1}` in the
