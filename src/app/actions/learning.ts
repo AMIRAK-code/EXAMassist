@@ -61,7 +61,7 @@ export async function startRetryAction(formData: FormData): Promise<void> {
   let attemptId: string | null = null;
   let failure: string | null = null;
   try {
-    attemptId = (await startRetry(db, { userId: user.id, examKey, questionIds, sourceAttemptId })).attemptId;
+    attemptId = (await startRetry(db, { userId: user.id, examKey, questionIds, sourceAttemptId, contentLocale: locale })).attemptId;
   } catch (error) {
     if (!(error instanceof AttemptError)) throw error;
     const upgrade = upgradeTarget(error);
@@ -100,6 +100,7 @@ export async function practiseNewAction(formData: FormData): Promise<void> {
   try {
     attemptId = (await startAttempt(db, {
       userId: user.id,
+      contentLocale: locale,
       examKey: config.examKey,
       blueprintId: 'practice',
       overrides: {

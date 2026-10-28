@@ -37,5 +37,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const locale = hasLocale(routing.locales, requested) ? requested : routing.defaultLocale;
   const english = await load(DEFAULT_LOCALE);
   const messages = locale === DEFAULT_LOCALE ? english : deepMerge(english, await load(locale));
-  return { locale, messages };
+  // One time zone for server and browser, so a date never renders differently
+  // in each; the site's exams and deadlines are Italian.
+  return { locale, messages, timeZone: 'Europe/Rome' };
 });

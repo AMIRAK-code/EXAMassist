@@ -24,6 +24,7 @@ import {
   FidelityBadge,
   PageHeader,
   StatusBadge,
+  buttonClass,
 } from '@/components/ui';
 
 export const dynamic = 'force-dynamic';
@@ -55,7 +56,7 @@ export default async function PracticeSetupPage({
   searchParams,
 }: {
   params: Promise<{ locale: string; examKey: string }>;
-  searchParams: Promise<{ domain?: string; skill?: string }>;
+  searchParams: Promise<{ domain?: string; skill?: string; questions?: string }>;
 }) {
   const { locale, examKey } = await params;
   const query = await searchParams;
@@ -118,6 +119,24 @@ export default async function PracticeSetupPage({
     else ignoredFilter = query.domain;
   }
 
+  // TOLC and IMAT questions have checked Italian versions. The learner picks
+  // the language here (?questions=); it starts as the site's language.
+  const offersItalian = (config.contentLocales ?? []).includes('it');
+  const contentLocale = !offersItalian
+    ? 'en'
+    : query.questions === 'en' || query.questions === 'it'
+      ? query.questions
+      : locale === 'it'
+        ? 'it'
+        : 'en';
+  const questionsHref = (code: 'en' | 'it') => {
+    const params = new URLSearchParams();
+    if (query.skill) params.set('skill', query.skill);
+    if (query.domain) params.set('domain', query.domain);
+    params.set('questions', code);
+    return `/practice/${config.examKey}?${params.toString()}`;
+  };
+
   return (
     <Container>
       <Breadcrumbs
@@ -140,6 +159,32 @@ export default async function PracticeSetupPage({
         title={t('setup.title', { exam: config.name })}
         lead={t('setup.lead')}
       />
+
+      {offersItalian && totalItems > 0 ? (
+        <nav aria-labelledby="questions-language" className="mb-8">
+          <div className="flex flex-wrap items-center gap-2">
+            <span id="questions-language" className="me-1 text-sm font-medium">
+              {t('setup.contentLanguage.label')}
+            </span>
+            {(['en', 'it'] as const).map((code) => (
+              <Link
+                key={code}
+                href={questionsHref(code)}
+                lang={code}
+                aria-current={code === contentLocale ? 'true' : undefined}
+                className={buttonClass({ variant: code === contentLocale ? 'primary' : 'secondary', size: 'sm' })}
+              >
+                {/* Each language in its own name. */}
+                {code === 'en' ? 'English' : 'Italiano'}
+              </Link>
+            ))}
+          </div>
+          <p className="mt-2 text-sm text-ink-muted">
+            {t('setup.contentLanguage.note')}
+            {config.examKey === 'imat' ? ` ${t('setup.contentLanguage.englishOnlySimulation', { exam: config.shortName })}` : ''}
+          </p>
+        </nav>
+      ) : null}
 
 
       {totalItems === 0 ? (
@@ -175,6 +220,7 @@ export default async function PracticeSetupPage({
                   presetSkill={presetSkill}
                   unseenFacets={offerUnseen}
                   guestNote={user && !user.isGuest ? null : (await getTranslations('common.guest'))('noteShort')}
+                  contentLocale={contentLocale}
                 />
               </div>
             </Card>
@@ -216,6 +262,7 @@ export default async function PracticeSetupPage({
                           examKey={config.examKey}
                           blueprintId={entry.blueprint.id}
                           label={t('setup.start')}
+                          contentLocale={contentLocale}
                         />
                       ) : (
                         <StatusBadge status={entry.blockedBy === 'rules' ? 'notoffered' : 'notyet'} />

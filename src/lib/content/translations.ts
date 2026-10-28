@@ -1,3 +1,4 @@
+import type { ExamConfig } from '../assessment/types';
 import type { ContentLocale, Question, QuestionTranslation, Stimulus, StimulusTranslation } from './question-schema';
 
 /**
@@ -27,6 +28,23 @@ export function servableStimulusTranslations(
     out[locale] = content;
   }
   return Object.keys(out).length > 0 ? out : null;
+}
+
+/**
+ * The language a new session's questions are shown in, fixed when it starts
+ * (attempts.content_locale). Italian only where the learner asks for it and
+ * the exam's config offers it; questions without a checked Italian version
+ * still show in English. An IMAT simulation stays in English, as the real
+ * IMAT is set only in English.
+ */
+export function sessionContentLocale(
+  config: Pick<ExamConfig, 'examKey' | 'contentLocales'>,
+  mode: string,
+  requested: string | null | undefined,
+): 'en' | ContentLocale {
+  if (requested !== 'it' || !(config.contentLocales ?? []).includes('it')) return 'en';
+  if (config.examKey === 'imat' && mode === 'simulation') return 'en';
+  return 'it';
 }
 
 /**

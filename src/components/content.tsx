@@ -10,14 +10,17 @@ import { StimulusView, type StimulusData } from './stimulus-view';
 export function Markdown({
   source,
   className,
+  lang,
 }: {
   source: string | null | undefined;
   className?: string;
+  /** The text's language where it may differ from the page's (a question shown in Italian). */
+  lang?: string;
 }) {
   if (!source) return null;
   // renderMarkdown sanitises the Markdown-derived HTML before injecting the
   // trusted, server-generated KaTeX output. See src/lib/markdown.ts.
-  return <div className={className} dangerouslySetInnerHTML={{ __html: renderMarkdown(source) }} />;
+  return <div lang={lang} className={className} dangerouslySetInnerHTML={{ __html: renderMarkdown(source) }} />;
 }
 
 export function InlineMarkdown({ source }: { source: string | null | undefined }) {
