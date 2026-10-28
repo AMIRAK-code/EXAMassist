@@ -32,6 +32,25 @@ export const SITE = {
   publisher: 'UniExamer',
 } as const;
 
+/**
+ * Where to write to us. Support mail is answered by a person on the team
+ * within 48 hours (the footer says so in every language); info is for
+ * everything else.
+ */
+export const CONTACT = {
+  support: 'support@uniexamer.com',
+  info: 'info@uniexamer.com',
+} as const;
+
+/** The site's own profiles, in the order the footer shows them; also the Organization's sameAs. */
+export const SOCIAL_LINKS = [
+  { key: 'blog', name: 'Hashnode', href: 'https://uniexamer.hashnode.dev/' },
+  { key: 'linkedin', name: 'LinkedIn', href: 'https://www.linkedin.com/company/uniexamer/' },
+  { key: 'instagram', name: 'Instagram', href: 'https://www.instagram.com/uniexamer/' },
+  { key: 'substack', name: 'Substack', href: 'https://substack.com/@uniexamerresearchteam' },
+] as const;
+export type SocialKey = (typeof SOCIAL_LINKS)[number]['key'];
+
 /** Absolute base URL, without a trailing slash. */
 export function siteUrl(): string {
   const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim() || 'http://localhost:3000';
