@@ -24,6 +24,8 @@ const bodySchema = z.object({
    * creation yields one attempt rather than several.
    */
   idempotencyKey: z.string().min(8).max(100).optional(),
+  /** The language asked for the questions; kept only where the exam offers it (sessionContentLocale). */
+  contentLocale: z.enum(['en', 'it']).optional(),
 });
 
 export async function POST(request: Request) {
@@ -47,6 +49,7 @@ export async function POST(request: Request) {
       blueprintId: body.blueprintId,
       overrides: body.overrides,
       idempotencyKey: body.idempotencyKey ?? null,
+      contentLocale: body.contentLocale ?? null,
     }));
 
     return ok(result, { status: result.reused ? 200 : 201 });

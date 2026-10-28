@@ -1,7 +1,8 @@
 'use server';
 
-import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
+import { getLocale } from 'next-intl/server';
+import { redirect as localeRedirect } from '@/i18n/navigation';
 import { getDb } from '@/lib/db';
 import { requireUser } from '@/lib/auth/session';
 import { checkRateLimit } from '@/lib/auth/rate-limit';
@@ -16,6 +17,15 @@ import { upgradeTarget } from '@/lib/billing/upgrade';
  * own records. They work without JavaScript: a plain form post, then a
  * redirect to the next page.
  */
+
+/**
+ * Redirects within the site in the learner's language. Paths are the English
+ * ones ("/review"); notice codes in the query are shown translated by
+ * LearningNotice on the page they land on.
+ */
+function redirect(href: string, locale: string): never {
+  return localeRedirect({ href, locale });
+}
 
 /** Only the learner's own results and notebook pages are valid places to return to. */
 function returnPath(value: FormDataEntryValue | null, fallback: string): string {
@@ -38,6 +48,7 @@ function list(value: FormDataEntryValue | null, max: number): string[] {
 /** Asks missed questions again, as a separate retry session. */
 export async function startRetryAction(formData: FormData): Promise<void> {
   const user = await requireUser();
+  const locale = await getLocale();
   const db = getDb();
   const back = returnPath(formData.get('returnTo'), '/review');
   const examKey = String(formData.get('examKey') ?? '');
@@ -45,19 +56,19 @@ export async function startRetryAction(formData: FormData): Promise<void> {
   const source = String(formData.get('sourceAttemptId') ?? '');
   const sourceAttemptId = /^[0-9a-f-]{36}$/.test(source) ? source : null;
 
-  if (!(await checkRateLimit(db, 'attemptStart', `user:${user.id}`)).allowed) redirect(withNotice(back, 'rate-limited'));
+  if (!(await checkRateLimit(db, 'attemptStart', `user:${user.id}`)).allowed) redirect(withNotice(back, 'rate-limited'), locale);
 
   let attemptId: string | null = null;
   let failure: string | null = null;
   try {
-    attemptId = (await startRetry(db, { userId: user.id, examKey, questionIds, sourceAttemptId })).attemptId;
+    attemptId = (await startRetry(db, { userId: user.id, examKey, questionIds, sourceAttemptId, contentLocale: locale })).attemptId;
   } catch (error) {
     if (!(error instanceof AttemptError)) throw error;
     const upgrade = upgradeTarget(error);
-    if (upgrade) redirect(upgrade);
+    if (upgrade) redirect(upgrade, locale);
     failure = error.code;
   }
-  redirect(attemptId ? `/attempt/${attemptId}` : withNotice(back, failure ?? 'nothing-to-retry'));
+  redirect(attemptId ? `/attempt/${attemptId}` : withNotice(back, failure ?? 'nothing-to-retry'), locale);
 }
 
 /**
@@ -67,27 +78,29 @@ export async function startRetryAction(formData: FormData): Promise<void> {
  */
 export async function practiseNewAction(formData: FormData): Promise<void> {
   const user = await requireUser();
+  const locale = await getLocale();
   const db = getDb();
   const back = returnPath(formData.get('returnTo'), '/review');
   const config = getExamConfig(String(formData.get('examKey') ?? ''));
-  if (!config) redirect(back);
+  if (!config) redirect(back, locale);
 
   const skill = String(formData.get('skill') ?? '');
   const domain = String(formData.get('domain') ?? '');
   const knownSkill = config.domains.some((d) => d.skills.some((s) => s.slug === skill));
   const knownDomain = config.domains.some((d) => d.slug === domain);
-  if (!knownSkill && !knownDomain) redirect(back);
+  if (!knownSkill && !knownDomain) redirect(back, locale);
 
   const requested = Number(formData.get('length') ?? 10);
   const length = Number.isFinite(requested) ? Math.max(1, Math.min(10, Math.round(requested))) : 10;
 
-  if (!(await checkRateLimit(db, 'attemptStart', `user:${user.id}`)).allowed) redirect(withNotice(back, 'rate-limited'));
+  if (!(await checkRateLimit(db, 'attemptStart', `user:${user.id}`)).allowed) redirect(withNotice(back, 'rate-limited'), locale);
 
   let attemptId: string | null = null;
   let failure: string | null = null;
   try {
     attemptId = (await startAttempt(db, {
       userId: user.id,
+      contentLocale: locale,
       examKey: config.examKey,
       blueprintId: 'practice',
       overrides: {
@@ -100,15 +113,16 @@ export async function practiseNewAction(formData: FormData): Promise<void> {
   } catch (error) {
     if (!(error instanceof AttemptError)) throw error;
     const upgrade = upgradeTarget(error);
-    if (upgrade) redirect(upgrade);
+    if (upgrade) redirect(upgrade, locale);
     failure = error.code;
   }
-  redirect(attemptId ? `/attempt/${attemptId}` : withNotice(back, failure ?? 'insufficient-content'));
+  redirect(attemptId ? `/attempt/${attemptId}` : withNotice(back, failure ?? 'insufficient-content'), locale);
 }
 
 /** Replaces the learner's labels on one missed question. */
 export async function saveLabelsAction(formData: FormData): Promise<void> {
   const user = await requireUser();
+  const locale = await getLocale();
   const back = returnPath(formData.get('returnTo'), '/review');
   const attemptItemId = String(formData.get('attemptItemId') ?? '');
   let notice = 'labels-saved';
@@ -119,7 +133,7 @@ export async function saveLabelsAction(formData: FormData): Promise<void> {
     notice = error.code;
   }
   revalidatePath('/review');
-  redirect(`${withNotice(back, notice)}#labels`);
+  redirect(`${withNotice(back, notice)}#labels`, locale);
 }
 
 /**
@@ -128,6 +142,7 @@ export async function saveLabelsAction(formData: FormData): Promise<void> {
  */
 export async function toggleBookmarkAction(formData: FormData): Promise<void> {
   const user = await requireUser();
+  const locale = await getLocale();
   const db = getDb();
   const back = returnPath(formData.get('returnTo'), '/review');
   const questionId = String(formData.get('questionId') ?? '');
@@ -150,5 +165,5 @@ export async function toggleBookmarkAction(formData: FormData): Promise<void> {
     }
   }
   revalidatePath('/review');
-  redirect(back);
+  redirect(back, locale);
 }

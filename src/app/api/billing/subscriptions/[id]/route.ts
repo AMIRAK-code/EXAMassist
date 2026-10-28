@@ -3,7 +3,7 @@ import { getDb } from '@/lib/db';
 import { assertSameOrigin, fail, ok, readJson, toErrorResponse } from '@/lib/api/http';
 import { callerKey, checkRateLimit } from '@/lib/auth/rate-limit';
 import { requireUser } from '@/lib/auth/session';
-import { setCancelAtPeriodEnd } from '@/lib/billing/service';
+import { BILLING_COPY, billingError, setCancelAtPeriodEnd } from '@/lib/billing/service';
 
 export const dynamic = 'force-dynamic';
 
@@ -19,12 +19,13 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
     const user = await requireUser();
     const db = getDb();
     const { id } = await params;
-    if (!/^sub_[A-Za-z0-9]+$/.test(id)) return fail('unknown-subscription', 'That subscription was not found.', 404);
+    if (!/^sub_[A-Za-z0-9]+$/.test(id)) return toErrorResponse(billingError('unknown-subscription', 'unknownSubscription', 404));
 
     const limit = await checkRateLimit(db, 'billingRequest', callerKey(request, user.id));
     if (!limit.allowed) {
-      return fail('rate-limited', 'Too many tries. Please wait a few minutes.', 429, {
+      return fail('rate-limited', BILLING_COPY.rateLimited, 429, {
         retryAfterSeconds: limit.retryAfterSeconds,
+        messageKey: 'rateLimited',
       });
     }
 

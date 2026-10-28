@@ -3,6 +3,7 @@ import { assessReadiness } from '@/lib/learning/readiness';
 import { buildSuggestions, type SuggestionInput } from '@/lib/learning/suggestions';
 import type { PracticeFacet } from '@/lib/attempts/facets';
 import { requireExamConfig } from '@/lib/exams/registry';
+import { english } from './helpers/intl';
 
 /**
  * Suggestions sit apart from the readiness evidence and are built from what
@@ -52,7 +53,7 @@ describe('suggestions', () => {
     expect(untouched.start).toEqual({ type: 'practice', domainSlug: fourth.slug, unseenOnly: true, length: 10 });
     const weak = suggestions.find((s) => s.key === `weak-${first.slug}`)!;
     expect(weak.kind).toBe('new');
-    expect(weak.why).toContain('40% of 10');
+    expect(english(weak.why)).toContain('40% of 10');
   });
 
   it('turns topic practice into revision, and says so, once few questions are new', () => {
@@ -60,7 +61,7 @@ describe('suggestions', () => {
     const weak = suggestions.find((s) => s.key === `weak-${first.slug}`)!;
     expect(weak.kind).toBe('revision');
     expect(weak.start).toMatchObject({ unseenOnly: false });
-    expect(weak.why).toContain('Only 2 of the 20 reviewed questions here are new to you');
+    expect(english(weak.why)).toContain('Only 2 of the 20 reviewed questions here are new to you');
   });
 
   it('suggests nothing for a topic with no reviewed questions', () => {
@@ -72,15 +73,15 @@ describe('suggestions', () => {
 
   it('offers a review of missed questions, saying it repeats them on purpose', () => {
     const review = buildSuggestions(input({ retryable: 14 })).find((s) => s.kind === 'review')!;
-    expect(review.title).toBe('Revisit 14 questions you missed');
-    expect(review.why).toContain('on purpose');
+    expect(english(review.title)).toBe('Revisit 14 questions you missed');
+    expect(english(review.why)).toContain('on purpose');
     expect(review.start).toEqual({ type: 'review', length: 10 });
   });
 
   it('asks for more answers first when there is too little evidence', () => {
     const suggestions = buildSuggestions(input({ assessment: assessment({ [first.slug]: { correct: 2, answered: 3 } }) }));
     expect(suggestions[0].key).toBe('more');
-    expect(suggestions[0].why).toContain('Another 22 answers');
+    expect(english(suggestions[0].why)).toContain('Another 22 answers');
   });
 
   it('suggests timed practice only from a reliable pace and an open timed format', () => {

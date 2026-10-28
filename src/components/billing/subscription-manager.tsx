@@ -1,74 +1,29 @@
 'use client';
 
 import { useEffect, useRef, useState, type FormEvent } from 'react';
-import { useRouter } from '@/i18n/navigation';
+import { useLocale, useTranslations } from 'next-intl';
+import { Link, getPathname, useRouter } from '@/i18n/navigation';
+import { formatPrice } from '@/lib/billing/plans';
 import { Elements, PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import type { Appearance } from '@stripe/stripe-js';
 import { Alert, Badge, Button, ButtonLink, Card } from '@/components/ui';
 import { appearanceFromDocument, buildAppearance, elementFonts } from './stripe-appearance';
 import { stripeFor } from './stripe-loader';
+import { billingErrorMessage, stripeLocale } from './locale';
 
 /**
  * The learner's plans, managed on our own account page: no hosted Stripe
  * pages. Cancel at the end of the paid month, undo that, and replace the card
  * through a SetupIntent confirmed in the same styled Payment Element as the
  * checkout. The server re-checks ownership of everything it is asked to change.
+ * Its words are in the `billing` catalogue (`manager.*`).
  */
-
-/** Every string in this component, for translation. */
-const COPY = {
-  none: 'You have no plan. Guides, sample questions and a diagnostic for every exam are free.',
-  seePlans: 'See plans',
-  addPlan: 'Add a plan',
-  price: '{price} a month, VAT included',
-  renews: 'Renews on {date}',
-  ends: 'Ends on {date}; it will not renew',
-  accessUntil: 'Access until {date}',
-  statuses: {
-    active: 'Active',
-    trialing: 'Active',
-    past_due: 'Payment failed: retrying',
-    unpaid: 'Unpaid',
-    paused: 'Paused',
-    canceled: 'Ended',
-    incomplete: 'Waiting for payment',
-    incomplete_expired: 'Checkout expired',
-  } as Record<string, string>,
-  pastDue:
-    'The last renewal payment did not go through. Stripe will try again over the next days; your access continues meanwhile. Update your card to pay now.',
-  cancel: 'Cancel at end of period',
-  cancelConfirm: 'Cancel this plan? It stays on until {date} and is not charged again.',
-  cancelYes: 'Yes, cancel',
-  cancelNo: 'Keep my plan',
-  resume: 'Keep my plan',
-  working: 'Saving…',
-  changeFailed: 'That could not be changed just now. Please try again.',
-  cancelled: 'Your plan will end on {date}. You can undo this until then.',
-  resumed: 'Your plan will renew as usual.',
-  card: {
-    heading: 'Payment card',
-    none: 'No card on file.',
-    summary: '{brand} ending in {last4}, expires {month}/{year}',
-    stale: 'The card details could not be loaded just now.',
-    update: 'Update card',
-    save: 'Save card',
-    saving: 'Saving card…',
-    cancel: 'Cancel',
-    loading: 'Loading the secure card fields…',
-    secure: 'Card details go straight to Stripe in secure fields; they never reach our servers.',
-    saved: 'Your new card is saved and will be used for every plan.',
-    retried: 'We charged the new card for the renewal that had failed.',
-    failed: 'The card could not be saved. Your previous card is unchanged.',
-    network: 'We could not reach the server. Your previous card is unchanged.',
-  },
-  history: 'Earlier plans',
-} as const;
-
-const fill = (template: string, values: Record<string, string>) =>
-  template.replace(/\{(\w+)\}/g, (_, key: string) => values[key] ?? '');
 
 export interface ManagedSubscription {
   id: string;
+  /** The plan's key ('all_access', 'single_exam'): its name is then shown in the page's language. */
+  plan?: string;
+  /** Shown when `plan` is not given or not a current plan. */
   planName: string;
   examName: string | null;
   status: string;
@@ -88,9 +43,18 @@ export interface ManagedCard {
   expYear: number;
 }
 
-const euros = (cents: number) => `€${(cents / 100).toFixed(2)}`;
-const day = (iso: string) =>
-  new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+/** "12 November 2026", in the page's language; dates are stored in UTC. */
+function useDay(): (iso: string) => string {
+  const locale = useLocale();
+  return (iso) => new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(iso));
+}
+
+/** The plan's name in the page's language, when the plan is one of ours. */
+function usePlanName(): (subscription: ManagedSubscription) => string {
+  const t = useTranslations('billing');
+  return (subscription) =>
+    subscription.plan && t.has(`plans.${subscription.plan}.name`) ? t(`plans.${subscription.plan}.name`) : subscription.planName;
+}
 
 async function send(url: string, method: 'POST' | 'PATCH', body: unknown) {
   const response = await fetch(url, {
@@ -121,6 +85,9 @@ export function SubscriptionManager({
   /** A message carried back from a 3-D Secure redirect. */
   initialNotice: { tone: 'positive' | 'negative'; message: string } | null;
 }) {
+  const t = useTranslations('billing');
+  const day = useDay();
+  const planName = usePlanName();
   const router = useRouter();
   const [notice, setNotice] = useState(initialNotice);
   const current = subscriptions.filter((s) => s.live || s.status === 'past_due');
@@ -136,9 +103,9 @@ export function SubscriptionManager({
 
       {current.length === 0 ? (
         <div>
-          <p className="text-sm text-ink-muted">{COPY.none}</p>
+          <p className="text-sm text-ink-muted">{t('manager.none')}</p>
           <ButtonLink href={pricingHref} className="mt-4">
-            {COPY.seePlans}
+            {t('manager.seePlans')}
           </ButtonLink>
         </div>
       ) : (
@@ -159,7 +126,7 @@ export function SubscriptionManager({
 
       {current.length > 0 ? (
         <p className="text-sm">
-          <a href={pricingHref}>{COPY.addPlan}</a>
+          <Link href={pricingHref}>{t('manager.addPlan')}</Link>
         </p>
       ) : null}
 
@@ -177,12 +144,12 @@ export function SubscriptionManager({
 
       {past.length > 0 ? (
         <details className="text-sm">
-          <summary className="cursor-pointer font-semibold">{COPY.history}</summary>
+          <summary className="cursor-pointer font-semibold">{t('manager.history')}</summary>
           <ul className="mt-2 space-y-1 text-ink-muted">
             {past.map((subscription) => (
               <li key={subscription.id}>
-                {subscription.planName}
-                {subscription.examName ? `, ${subscription.examName}` : ''}: {COPY.statuses[subscription.status] ?? subscription.status}
+                {planName(subscription)}
+                {subscription.examName ? `, ${subscription.examName}` : ''}: {statusLabel(t, subscription.status)}
                 {subscription.periodEnd ? `, ${day(subscription.periodEnd)}` : ''}
               </li>
             ))}
@@ -202,6 +169,10 @@ function SubscriptionCard({
   canManage: boolean;
   onChanged: (message: string) => void;
 }) {
+  const t = useTranslations('billing');
+  const locale = useLocale();
+  const day = useDay();
+  const planName = usePlanName();
   const [confirming, setConfirming] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -214,10 +185,10 @@ function SubscriptionCard({
     setBusy(false);
     setConfirming(false);
     if (!result.ok) {
-      setError(result.data?.error?.message ?? COPY.changeFailed);
+      setError(billingErrorMessage(t, result.data?.error, t('manager.changeFailed')));
       return;
     }
-    onChanged(cancelAtPeriodEnd ? fill(COPY.cancelled, { date: end }) : COPY.resumed);
+    onChanged(cancelAtPeriodEnd ? t('manager.cancelled', { date: end }) : t('manager.resumed'));
   }
 
   return (
@@ -225,30 +196,30 @@ function SubscriptionCard({
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="min-w-0">
           <h3 className="font-heading text-lg font-semibold">
-            {subscription.planName}
+            {planName(subscription)}
             {subscription.examName ? <span className="font-normal text-ink-muted">: {subscription.examName}</span> : null}
           </h3>
           {subscription.amount !== null ? (
-            <p className="mt-1 text-sm text-ink-muted">{fill(COPY.price, { price: euros(subscription.amount) })}</p>
+            <p className="mt-1 text-sm text-ink-muted">{t('manager.price', { price: formatPrice(subscription.amount, locale) })}</p>
           ) : null}
           {end ? (
             <p className="mt-1 text-sm">
               {subscription.status === 'past_due'
-                ? fill(COPY.accessUntil, { date: end })
+                ? t('manager.accessUntil', { date: end })
                 : subscription.cancelAtPeriodEnd
-                  ? fill(COPY.ends, { date: end })
-                  : fill(COPY.renews, { date: end })}
+                  ? t('manager.ends', { date: end })
+                  : t('manager.renews', { date: end })}
             </p>
           ) : null}
         </div>
         <Badge tone={subscription.status === 'past_due' ? 'caution' : subscription.cancelAtPeriodEnd ? 'neutral' : 'positive'}>
-          {COPY.statuses[subscription.status] ?? subscription.status}
+          {statusLabel(t, subscription.status)}
         </Badge>
       </div>
 
       {subscription.status === 'past_due' ? (
         <Alert tone="caution" className="mt-4">
-          <p>{COPY.pastDue}</p>
+          <p>{t('manager.pastDue')}</p>
         </Alert>
       ) : null}
 
@@ -262,23 +233,23 @@ function SubscriptionCard({
         <div className="mt-4 border-t border-line pt-4">
           {subscription.cancelAtPeriodEnd ? (
             <Button variant="secondary" size="sm" loading={busy} onClick={() => void change(false)}>
-              {busy ? COPY.working : COPY.resume}
+              {busy ? t('manager.working') : t('manager.resume')}
             </Button>
           ) : confirming ? (
-            <div role="group" aria-label={COPY.cancel}>
-              <p className="text-sm">{fill(COPY.cancelConfirm, { date: end })}</p>
+            <div role="group" aria-label={t('manager.cancel')}>
+              <p className="text-sm">{t('manager.cancelConfirm', { date: end })}</p>
               <div className="mt-3 flex flex-wrap gap-2">
                 <Button variant="danger" size="sm" loading={busy} onClick={() => void change(true)}>
-                  {busy ? COPY.working : COPY.cancelYes}
+                  {busy ? t('manager.working') : t('manager.cancelYes')}
                 </Button>
                 <Button variant="secondary" size="sm" disabled={busy} onClick={() => setConfirming(false)}>
-                  {COPY.cancelNo}
+                  {t('manager.cancelNo')}
                 </Button>
               </div>
             </div>
           ) : (
             <Button variant="quiet" size="sm" onClick={() => setConfirming(true)}>
-              {COPY.cancel}
+              {t('manager.cancel')}
             </Button>
           )}
         </div>
@@ -298,6 +269,8 @@ function CardSection({
   publishableKey: string;
   onSaved: (message: string) => void;
 }) {
+  const t = useTranslations('billing');
+  const locale = useLocale();
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [opening, setOpening] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -314,27 +287,29 @@ function CardSection({
     setError(null);
     const result = await send('/api/billing/setup-intent', 'POST', {});
     setOpening(false);
-    if (!result.reached) return setError(COPY.card.network);
-    if (!result.ok || !result.data?.clientSecret) return setError(result.data?.error?.message ?? COPY.card.failed);
+    if (!result.reached) return setError(t('manager.card.network'));
+    if (!result.ok || !result.data?.clientSecret) {
+      return setError(billingErrorMessage(t, result.data?.error, t('manager.card.failed')));
+    }
     setClientSecret(result.data.clientSecret);
   }
 
   return (
     <section aria-labelledby="card-heading" className="border-t border-line pt-5">
       <h3 id="card-heading" className="font-heading text-base font-semibold">
-        {COPY.card.heading}
+        {t('manager.card.heading')}
       </h3>
       <p className="mt-1 text-sm text-ink-muted">
         {card
-          ? fill(COPY.card.summary, {
+          ? t('manager.card.summary', {
               brand: card.brand.charAt(0).toUpperCase() + card.brand.slice(1),
               last4: card.last4,
               month: String(card.expMonth).padStart(2, '0'),
               year: String(card.expYear),
             })
           : fresh
-            ? COPY.card.none
-            : COPY.card.stale}
+            ? t('manager.card.none')
+            : t('manager.card.stale')}
       </p>
       {error ? (
         <Alert tone="negative" role="alert" className="mt-3">
@@ -342,9 +317,10 @@ function CardSection({
         </Alert>
       ) : null}
       {clientSecret && origin ? (
-        <Elements stripe={stripeFor(publishableKey)} options={{ clientSecret, appearance, fonts: elementFonts(origin), locale: 'en' }}>
+        <Elements stripe={stripeFor(publishableKey)} options={{ clientSecret, appearance, fonts: elementFonts(origin), locale: stripeLocale(locale) }}>
           <CardForm
             origin={origin}
+            locale={locale}
             onCancel={() => setClientSecret(null)}
             onSaved={(message) => {
               setClientSecret(null);
@@ -354,14 +330,25 @@ function CardSection({
         </Elements>
       ) : (
         <Button variant="secondary" size="sm" className="mt-3" loading={opening} onClick={() => void open()}>
-          {COPY.card.update}
+          {t('manager.card.update')}
         </Button>
       )}
     </section>
   );
 }
 
-function CardForm({ origin, onCancel, onSaved }: { origin: string; onCancel: () => void; onSaved: (message: string) => void }) {
+function CardForm({
+  origin,
+  locale,
+  onCancel,
+  onSaved,
+}: {
+  origin: string;
+  locale: string;
+  onCancel: () => void;
+  onSaved: (message: string) => void;
+}) {
+  const t = useTranslations('billing');
   const stripe = useStripe();
   const elements = useElements();
   const [ready, setReady] = useState(false);
@@ -381,22 +368,23 @@ function CardForm({ origin, onCancel, onSaved }: { origin: string; onCancel: () 
     const result = await stripe.confirmSetup({
       elements,
       // A card that needs a redirect for 3-D Secure comes back to the account
-      // page, which finishes the change (src/app/account/page.tsx).
-      confirmParams: { return_url: `${origin}/account?card=updated#billing` },
+      // page, in the same language, which finishes the change
+      // (src/app/[locale]/account/page.tsx).
+      confirmParams: { return_url: `${origin}${getPathname({ href: '/account?card=updated#billing', locale })}` },
       redirect: 'if_required',
     });
     if (result.error) {
       setBusy(false);
-      setError(result.error.message ?? COPY.card.failed);
+      setError(result.error.message ?? t('manager.card.failed'));
       return;
     }
     const saved = await send('/api/billing/payment-method', 'POST', { setupIntentId: result.setupIntent.id });
     setBusy(false);
     if (!saved.ok) {
-      setError(saved.data?.error?.message ?? COPY.card.failed);
+      setError(billingErrorMessage(t, saved.data?.error, t('manager.card.failed')));
       return;
     }
-    onSaved(saved.data?.retried > 0 ? `${COPY.card.saved} ${COPY.card.retried}` : COPY.card.saved);
+    onSaved(saved.data?.retried > 0 ? t('manager.card.savedAndRetried') : t('manager.card.saved'));
   }
 
   return (
@@ -411,20 +399,25 @@ function CardForm({ origin, onCancel, onSaved }: { origin: string; onCancel: () 
       <div className="relative min-h-[11rem]">
         {!ready ? (
           <p className="absolute inset-0 text-sm text-ink-muted" aria-live="polite">
-            {COPY.card.loading}
+            {t('manager.card.loading')}
           </p>
         ) : null}
         <PaymentElement onReady={() => setReady(true)} options={{ layout: 'tabs' }} />
       </div>
-      <p className="text-xs text-ink-subtle">{COPY.card.secure}</p>
+      <p className="text-xs text-ink-subtle">{t('manager.card.secure')}</p>
       <div className="flex flex-wrap gap-2">
         <Button type="submit" size="sm" loading={busy} disabled={!ready}>
-          {busy ? COPY.card.saving : COPY.card.save}
+          {busy ? t('manager.card.saving') : t('manager.card.save')}
         </Button>
         <Button type="button" variant="secondary" size="sm" disabled={busy} onClick={onCancel}>
-          {COPY.card.cancel}
+          {t('manager.card.cancel')}
         </Button>
       </div>
     </form>
   );
+}
+
+/** A subscription status in the page's language; a status Stripe adds later shows as Stripe names it. */
+function statusLabel(t: ReturnType<typeof useTranslations<'billing'>>, status: string): string {
+  return t.has(`manager.statuses.${status}`) ? t(`manager.statuses.${status}`) : status;
 }

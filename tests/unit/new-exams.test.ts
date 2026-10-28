@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { assessReadiness, examPaceSeconds, leadingCount, type ReadinessInput } from '@/lib/learning/readiness';
 import { getHubForConfig, requireExamConfig } from '@/lib/exams/registry';
 import type { ExamConfig } from '@/lib/assessment/types';
+import { english, englishList } from './helpers/intl';
 
 /**
  * The Politecnico di Torino TIL and CISIA TOLC configurations.
@@ -160,7 +161,7 @@ describe('readiness for the TIL-I, which publishes its thresholds', () => {
     expect(projection.projectedRaw).toBe(75);
     expect(projection.maxRaw).toBe(100);
     expect(projection.meetsTarget).toBe(true);
-    expect(projection.scoreLabel).toBe('Projected score (TIL-I score out of 100)');
+    expect(english(projection.scoreLabel!)).toBe('Projected score (TIL-I score out of 100)');
     expect(projection.thresholds).toEqual([
       expect.objectContaining({ label: 'Ranking threshold', value: 30, met: true }),
       expect.objectContaining({ label: 'Guarantee threshold', value: 60, met: true }),
@@ -176,10 +177,10 @@ describe('readiness for the TIL-I, which publishes its thresholds', () => {
 
   it('names PoliTo, the TIL-I conditions and its own caveats, not Bocconi’s', () => {
     const projection = assessReadiness(readinessFor(TIL_I, 0.7, 60)).target!.projection!;
-    expect(projection.method).toContain('Politecnico di Torino');
-    expect(projection.method).not.toContain('Bocconi');
-    expect(projection.assumptions.join(' ')).toContain('90 minutes');
-    expect(projection.assumptions.join(' ')).not.toMatch(/75 minutes|critical-thinking/);
+    expect(english(projection.method)).toContain('Politecnico di Torino');
+    expect(english(projection.method)).not.toContain('Bocconi');
+    expect(englishList(projection.assumptions)).toContain('90 minutes');
+    expect(englishList(projection.assumptions)).not.toMatch(/75 minutes|critical-thinking/);
   });
 });
 
@@ -194,6 +195,6 @@ describe('readiness for exams with no single pass mark', () => {
     expect(projection.maxRaw).toBe(max);
     expect(projection.thresholds).toEqual([]);
     expect(projection.noThresholdReason).toMatch(reason);
-    expect(projection.scoreLabel).toBe('Projected raw score');
+    expect(english(projection.scoreLabel!)).toBe('Projected raw score');
   });
 });

@@ -2,6 +2,7 @@ import type { Db } from '@/lib/db';
 import type { QuestionVersionRow, StimulusRow } from '@/lib/db/rows';
 import type { PoolItem } from '@/lib/assessment/select';
 import { answerKeySchema, type AnswerKey, type ResponseType } from '@/lib/assessment/types';
+import type { ContentLocale, QuestionTranslation, StimulusTranslation } from './question-schema';
 
 /**
  * Question bank reads.
@@ -35,6 +36,45 @@ export interface PresentedQuestion {
   estimatedSeconds: number;
   accessibilityText: string | null;
   stimulus: StimulusPayload | null;
+  /** The language this question is shown in: the one asked for, or English where it has no checked version. */
+  locale: ServedLocale;
+}
+
+/**
+ * The language a question is served in. English is the original; another
+ * language comes only from a checked translation (translations.ts).
+ */
+export type ServedLocale = 'en' | ContentLocale;
+
+type QuestionText = Omit<QuestionTranslation, 'check'>;
+type StimulusText = Omit<StimulusTranslation, 'check'>;
+
+/** One language's checked version from a `translations_json` column, if it has one. */
+function translationIn<T>(json: string | null | undefined, locale: ServedLocale): T | null {
+  if (locale === 'en' || !json) return null;
+  try {
+    return ((JSON.parse(json) as Record<string, T | undefined>)[locale]) ?? null;
+  } catch {
+    return null;
+  }
+}
+
+/** A stimulus's labels in another language; the data values themselves are never translated. */
+function translatedData(data: unknown, labels: StimulusText['dataLabels']): unknown {
+  if (!labels || !data || typeof data !== 'object') return data;
+  const original = data as {
+    columns?: Array<{ key: string; label: string }>;
+    caption?: string;
+    chart?: { xLabel: string; yLabel: string } | null;
+  };
+  return {
+    ...original,
+    columns: original.columns?.map((column) => ({ ...column, label: labels.columns[column.key] ?? column.label })),
+    caption: labels.caption || original.caption,
+    chart: original.chart
+      ? { ...original.chart, xLabel: labels.xLabel ?? original.chart.xLabel, yLabel: labels.yLabel ?? original.chart.yLabel }
+      : original.chart,
+  };
 }
 
 export interface ReviewableQuestion extends PresentedQuestion {
@@ -51,51 +91,85 @@ function parseOptions(json: string | null): Array<{ id: string; label: string; t
   return Array.isArray(parsed) ? (parsed as Array<{ id: string; label: string; textMd: string }>) : [];
 }
 
-export async function getStimulus(db: Db, id: string, version: number): Promise<StimulusPayload | null> {
-  const row = (await db
-    .prepare('SELECT * FROM stimuli WHERE id = ? AND version = ?')
-    .get(id, version)) as StimulusRow | undefined;
-  if (!row) return null;
+async function stimulusRow(db: Db, id: string, version: number): Promise<StimulusRow | undefined> {
+  return (await db.prepare('SELECT * FROM stimuli WHERE id = ? AND version = ?').get(id, version)) as StimulusRow | undefined;
+}
+
+function toStimulusPayload(row: StimulusRow, text: StimulusText | null): StimulusPayload {
+  const data = row.data_json ? (JSON.parse(row.data_json) as unknown) : null;
   return {
     id: row.id,
     version: row.version,
     kind: row.kind,
-    title: row.title,
-    bodyMd: row.body_md,
-    data: row.data_json ? (JSON.parse(row.data_json) as unknown) : null,
-    accessibilityText: row.accessibility_text,
+    title: text ? text.title : row.title,
+    bodyMd: text ? text.bodyMd : row.body_md,
+    data: text ? translatedData(data, text.dataLabels) : data,
+    accessibilityText: text ? text.accessibilityText : row.accessibility_text,
   };
 }
 
-export async function toPresented(db: Db, row: QuestionVersionRow): Promise<PresentedQuestion> {
+export async function getStimulus(db: Db, id: string, version: number, locale: ServedLocale = 'en'): Promise<StimulusPayload | null> {
+  const row = (await stimulusRow(db, id, version));
+  return row ? toStimulusPayload(row, translationIn<StimulusText>(row.translations_json, locale)) : null;
+}
+
+/**
+ * A question in the language asked for. It is shown in that language only
+ * when it and its stimulus both have a checked version in it, so a learner
+ * never reads a passage in one language and its question in another;
+ * otherwise it is shown in English.
+ */
+async function presentedWithText(
+  db: Db,
+  row: QuestionVersionRow,
+  locale: ServedLocale,
+): Promise<{ question: PresentedQuestion; text: QuestionText | null }> {
+  const stimulus =
+    row.stimulus_id && row.stimulus_version !== null ? (await stimulusRow(db, row.stimulus_id, row.stimulus_version)) ?? null : null;
+  let text = translationIn<QuestionText>(row.translations_json, locale);
+  let stimulusText = stimulus ? translationIn<StimulusText>(stimulus.translations_json, locale) : null;
+  if (!text || (stimulus && !stimulusText)) {
+    text = null;
+    stimulusText = null;
+  }
+  const options = parseOptions(row.options_json);
+  const translatedOptions = new Map((text?.options ?? []).map((option) => [option.id, option.textMd]));
   return {
-    questionId: row.question_id,
-    questionVersionId: row.id,
-    responseType: row.response_type as ResponseType,
-    sectionKey: row.section_key,
-    domainSlug: row.domain_slug,
-    skillSlug: row.skill_slug,
-    difficulty: row.difficulty,
-    stemMd: row.stem_md,
-    instructionsMd: row.instructions_md,
-    options: parseOptions(row.options_json),
-    estimatedSeconds: row.estimated_seconds,
-    accessibilityText: row.accessibility_text,
-    stimulus:
-      row.stimulus_id && row.stimulus_version !== null
-        ? (await getStimulus(db, row.stimulus_id, row.stimulus_version))
-        : null,
+    text,
+    question: {
+      questionId: row.question_id,
+      questionVersionId: row.id,
+      responseType: row.response_type as ResponseType,
+      sectionKey: row.section_key,
+      domainSlug: row.domain_slug,
+      skillSlug: row.skill_slug,
+      difficulty: row.difficulty,
+      stemMd: text ? text.stemMd : row.stem_md,
+      instructionsMd: text ? text.instructionsMd : row.instructions_md,
+      // Option ids and letters are the original's; only the wording changes.
+      options: options.map((option) => ({ ...option, textMd: translatedOptions.get(option.id) ?? option.textMd })),
+      estimatedSeconds: row.estimated_seconds,
+      accessibilityText: text ? text.accessibilityText : row.accessibility_text,
+      stimulus: stimulus ? toStimulusPayload(stimulus, stimulusText) : null,
+      locale: text ? locale : 'en',
+    },
   };
 }
 
-export async function toReviewable(db: Db, row: QuestionVersionRow): Promise<ReviewableQuestion> {
+export async function toPresented(db: Db, row: QuestionVersionRow, locale: ServedLocale = 'en'): Promise<PresentedQuestion> {
+  return (await presentedWithText(db, row, locale)).question;
+}
+
+export async function toReviewable(db: Db, row: QuestionVersionRow, locale: ServedLocale = 'en'): Promise<ReviewableQuestion> {
+  const { question, text } = await presentedWithText(db, row, locale);
+  const rationale = row.distractor_rationale_json
+    ? (JSON.parse(row.distractor_rationale_json) as Record<string, string>)
+    : {};
   return {
-    ...(await toPresented(db, row)),
+    ...question,
     answerKey: answerKeySchema.parse(JSON.parse(row.correct_json)),
-    explanationMd: row.explanation_md,
-    distractorRationale: row.distractor_rationale_json
-      ? (JSON.parse(row.distractor_rationale_json) as Record<string, string>)
-      : {},
+    explanationMd: text ? text.explanationMd : row.explanation_md,
+    distractorRationale: text ? { ...rationale, ...text.distractorRationale } : rationale,
     difficultyBasis: row.difficulty_basis,
   };
 }

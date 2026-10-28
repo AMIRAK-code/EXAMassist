@@ -39,18 +39,29 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 
 /**
  * A day for display, e.g. "Sat 3 Oct" (or "Sat 3 Oct 2026"). Calendar dates
- * are UTC days. Spelled out here rather than by the locale, whose short forms
- * ("Sept", a comma after the weekday) vary between runtimes.
+ * are UTC days. English is spelled out here rather than by the locale, whose
+ * short forms ("Sept", a comma after the weekday) vary between runtimes;
+ * other languages use their own short forms ("sab 3 ott").
  */
-export function formatDay(day: string, withYear = false): string {
+export function formatDay(day: string, locale = 'en', withYear = false): string {
   const date = new Date(`${day}T00:00:00Z`);
   if (Number.isNaN(date.getTime())) return day;
+  if (locale !== 'en') {
+    return date.toLocaleDateString(locale, {
+      weekday: 'short',
+      day: 'numeric',
+      month: 'short',
+      ...(withYear ? { year: 'numeric' as const } : {}),
+      timeZone: 'UTC',
+    });
+  }
   const text = `${WEEKDAYS[date.getUTCDay()]} ${date.getUTCDate()} ${MONTHS[date.getUTCMonth()]}`;
   return withYear ? `${text} ${date.getUTCFullYear()}` : text;
 }
 
-export function formatDate(day: string): string {
+/** A date in full, "3 October 2026", in the reader's language. */
+export function formatDate(day: string, locale = 'en'): string {
   const date = new Date(`${day}T00:00:00Z`);
   if (Number.isNaN(date.getTime())) return day;
-  return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+  return date.toLocaleDateString(locale === 'en' ? 'en-GB' : locale, { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 }

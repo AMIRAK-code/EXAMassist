@@ -85,6 +85,8 @@ export interface QuestionVersionRow {
   state: string;
   content_hash: string;
   created_at: string;
+  /** Checked other-language versions, keyed by locale (migration 013). */
+  translations_json?: string | null;
 }
 
 export interface StimulusRow {
@@ -99,6 +101,8 @@ export interface StimulusRow {
   provenance: string;
   rights_status: string;
   created_at: string;
+  /** Checked other-language versions, keyed by locale (migration 013). */
+  translations_json?: string | null;
 }
 
 export interface AttemptRow {
@@ -123,6 +127,8 @@ export interface AttemptRow {
   resume_position: number | null;
   resume_clock: number | null;
   resume_saved_at: string | null;
+  /** The language its questions are shown in, chosen when it starts (migration 013). */
+  content_locale: string;
 }
 
 export interface AttemptPartRow {

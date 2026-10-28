@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { examConfigSchema } from '@/lib/assessment/types';
 import { assessReadiness, type ReadinessInput } from '@/lib/learning/readiness';
+import { english, englishList } from './helpers/intl';
 import {
   DRAFT_EXAM_CONFIGS,
   DRAFT_EXAM_HUBS,
@@ -87,7 +88,7 @@ describe('readiness on a published raw-scoring rule', () => {
     expect(projection.maxRaw).toBe(36);
     expect(projection.projectedRaw).toBeCloseTo(24.8, 1);
     expect(projection.meetsTarget).toBe(true);
-    expect(projection.scoreLabel).toBe('Projected raw score');
+    expect(english(projection.scoreLabel!)).toBe('Projected raw score');
   });
 
   it('says there is no national pass mark rather than inventing one', () => {
@@ -101,7 +102,7 @@ describe('readiness on a published raw-scoring rule', () => {
     const projection = assessReadiness(inputFor('polito-til-i', 0.5, 0, 60)).target!.projection!;
     expect(projection.maxRaw).toBe(100);
     expect(projection.projectedRaw).toBeCloseTo(37.5, 1);
-    expect(projection.scoreLabel).toContain('out of 100');
+    expect(english(projection.scoreLabel!)).toContain('out of 100');
     const met = Object.fromEntries(projection.thresholds!.map((t) => [t.value, t.met]));
     expect(met).toEqual({ 30: true, 60: false });
     expect(projection.meetsTarget).toBe(false);
@@ -109,9 +110,9 @@ describe('readiness on a published raw-scoring rule', () => {
 
   it('keeps the standard caveats and adds the exam’s own', () => {
     const projection = assessReadiness(inputFor('tolc-e', 0.6, 0.2, 20)).target!.projection!;
-    const text = projection.assumptions.join(' ');
+    const text = englishList(projection.assumptions);
     expect(text).toContain('editorial judgement');
     expect(text).toContain('English section');
-    expect(projection.method).toContain('CISIA');
+    expect(english(projection.method)).toContain('CISIA');
   });
 });

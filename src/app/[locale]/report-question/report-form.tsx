@@ -1,18 +1,32 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { Alert, Button } from '@/components/ui';
 
+/** Reason codes the API accepts, with the key of each one's label. */
 const REASONS = [
-  { value: 'wrong_answer', label: 'The marked answer looks wrong' },
-  { value: 'ambiguous', label: 'More than one answer seems defensible' },
-  { value: 'missing_material', label: 'Something needed to answer is missing' },
-  { value: 'explanation', label: 'The explanation is wrong or unclear' },
-  { value: 'typo', label: 'A typo or formatting problem' },
-  { value: 'other', label: 'Something else' },
+  { value: 'wrong_answer', key: 'wrongAnswer' },
+  { value: 'ambiguous', key: 'ambiguous' },
+  { value: 'missing_material', key: 'missingMaterial' },
+  { value: 'explanation', key: 'explanation' },
+  { value: 'typo', key: 'typo' },
+  { value: 'other', key: 'other' },
 ] as const;
 
+/**
+ * The API answers in English with a stable error code; the form shows the
+ * message for that code in the visitor's language.
+ */
+const ERROR_KEYS: Record<string, 'rateLimited' | 'unknownQuestion' | 'invalid'> = {
+  'rate-limited': 'rateLimited',
+  'unknown-question': 'unknownQuestion',
+  'invalid-request': 'invalid',
+  'invalid-json': 'invalid',
+};
+
 export function ReportForm({ initialQuestionId }: { initialQuestionId: string }) {
+  const t = useTranslations('about.reportQuestion.form');
   const [questionId, setQuestionId] = useState(initialQuestionId);
   const [reason, setReason] = useState<string>('wrong_answer');
   const [details, setDetails] = useState('');
@@ -34,7 +48,9 @@ export function ReportForm({ initialQuestionId }: { initialQuestionId: string })
 
     if (!response?.ok) {
       setState('idle');
-      setError(data?.error?.message ?? 'We could not send that report. Please try again.');
+      const code: unknown = data?.error?.code;
+      const key = typeof code === 'string' ? ERROR_KEYS[code] : undefined;
+      setError(t(`errors.${key ?? 'generic'}`));
       return;
     }
     setState('sent');
@@ -42,11 +58,8 @@ export function ReportForm({ initialQuestionId }: { initialQuestionId: string })
 
   if (state === 'sent') {
     return (
-      <Alert tone="positive" title="Thank you — your report has been logged" role="status">
-        <p>
-          An editor will look at this question. If it turns out to be wrong, it is withdrawn from the
-          bank rather than quietly edited, and a replacement is written.
-        </p>
+      <Alert tone="positive" title={t('sentTitle')} role="status">
+        <p>{t('sentBody')}</p>
         <p className="mt-2">
           <button
             type="button"
@@ -56,7 +69,7 @@ export function ReportForm({ initialQuestionId }: { initialQuestionId: string })
               setDetails('');
             }}
           >
-            Report another question
+            {t('another')}
           </button>
         </p>
       </Alert>
@@ -73,7 +86,7 @@ export function ReportForm({ initialQuestionId }: { initialQuestionId: string })
 
       <div>
         <label htmlFor="questionId" className="mb-1.5 block text-sm font-medium">
-          Question ID
+          {t('questionId')}
         </label>
         <input
           id="questionId"
@@ -85,13 +98,12 @@ export function ReportForm({ initialQuestionId }: { initialQuestionId: string })
           className="w-full rounded border border-line-strong bg-surface px-3 py-2.5 font-mono text-sm"
         />
         <p id="questionId-hint" className="mt-1.5 text-sm text-ink-muted">
-          Shown under each question on your results page. It is filled in for you if you followed the
-          link from there.
+          {t('questionIdHint')}
         </p>
       </div>
 
       <fieldset>
-        <legend className="mb-1.5 text-sm font-medium">What is wrong?</legend>
+        <legend className="mb-1.5 text-sm font-medium">{t('reasonLegend')}</legend>
         <div className="space-y-2">
           {REASONS.map((option) => (
             <label
@@ -112,7 +124,7 @@ export function ReportForm({ initialQuestionId }: { initialQuestionId: string })
                 onChange={() => setReason(option.value)}
                 className="mt-1 size-4 shrink-0"
               />
-              <span>{option.label}</span>
+              <span>{t(`reasons.${option.key}`)}</span>
             </label>
           ))}
         </div>
@@ -120,7 +132,9 @@ export function ReportForm({ initialQuestionId }: { initialQuestionId: string })
 
       <div>
         <label htmlFor="details" className="mb-1.5 block text-sm font-medium">
-          Details <span className="font-normal text-ink-muted">(optional)</span>
+          {t.rich('details', {
+            muted: (chunks) => <span className="font-normal text-ink-muted">{chunks}</span>,
+          })}
         </label>
         <textarea
           id="details"
@@ -133,13 +147,12 @@ export function ReportForm({ initialQuestionId }: { initialQuestionId: string })
           className="w-full rounded border border-line-strong bg-surface px-3 py-2.5 text-base"
         />
         <p id="details-hint" className="mt-1.5 text-sm text-ink-muted">
-          If you think a different answer is right, telling us which one and why is the most useful
-          thing you can write here.
+          {t('detailsHint')}
         </p>
       </div>
 
       <Button type="submit" disabled={state === 'sending'}>
-        {state === 'sending' ? 'Sending…' : 'Send report'}
+        {state === 'sending' ? t('sending') : t('submit')}
       </Button>
     </form>
   );

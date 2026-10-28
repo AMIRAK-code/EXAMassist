@@ -2,6 +2,7 @@ import type { ExamConfig } from '@/lib/assessment/types';
 import { eligibleCount, type PracticeFacet } from '@/lib/attempts/facets';
 import { MIN_ANSWERS_FOR_SIGNAL, type ReadinessAssessment } from './readiness';
 import { WEAK_ACCURACY } from './recommend';
+import { msg, type LearnerText, type Msg } from './text';
 
 /**
  * Suggestions beside the readiness evidence, kept apart from it: the
@@ -23,12 +24,12 @@ export type SuggestionKind = 'new' | 'revision' | 'review' | 'timed';
 export type SuggestionStart =
   | { type: 'practice'; domainSlug: string | null; unseenOnly: boolean; length: number }
   | { type: 'review'; length: number }
-  | { type: 'link'; href: string; label: string };
+  | { type: 'link'; href: string; label: LearnerText };
 
 export interface Suggestion {
   key: string;
-  title: string;
-  why: string;
+  title: LearnerText;
+  why: LearnerText;
   kind: SuggestionKind;
   start: SuggestionStart;
 }
@@ -50,8 +51,6 @@ const SESSION = 10;
 /** Fewer unseen questions than this in a topic, and topic practice becomes revision. */
 const NEW_AT_LEAST = 5;
 
-const plural = (n: number, one: string, many = `${one}s`) => `${n} ${n === 1 ? one : many}`;
-
 /** Topic practice as new questions while enough are unseen, otherwise as revision. */
 function topicPractice(input: SuggestionInput, domainSlug: string | null) {
   const filters = { domain: domainSlug };
@@ -64,10 +63,14 @@ function topicPractice(input: SuggestionInput, domainSlug: string | null) {
   return { kind: 'revision' as const, start: { type: 'practice' as const, domainSlug, unseenOnly: false, length: Math.min(SESSION, all) }, unseen, all };
 }
 
-const repeatNote = (unseen: number, all: number) =>
+const repeatNote = (unseen: number, all: number): Msg =>
   unseen === 0
-    ? ` You have been shown all ${all} reviewed questions here, so this repeats them.`
-    : ` Only ${unseen} of the ${all} reviewed questions here are new to you, so this repeats some.`;
+    ? msg('suggestions.repeatAll', { all })
+    : msg('suggestions.repeatSome', { unseen, all });
+
+/** A reason, followed by the note that this practice repeats questions when it is revision. */
+const withRepeat = (why: Msg, practice: { kind: 'new' | 'revision'; unseen: number; all: number }): LearnerText =>
+  practice.kind === 'revision' ? [why, repeatNote(practice.unseen, practice.all)] : why;
 
 export function buildSuggestions(input: SuggestionInput): Suggestion[] {
   const { assessment, config } = input;
@@ -79,10 +82,11 @@ export function buildSuggestions(input: SuggestionInput): Suggestion[] {
     if (practice) {
       suggestions.push({
         key: 'more',
-        title: practice.kind === 'new' ? 'Answer more questions, new ones' : 'Answer more questions',
-        why:
-          `Another ${Math.max(0, MIN_ANSWERS_FOR_SIGNAL - assessment.answeredTotal)} answers and the measurements above start to mean something.` +
-          (practice.kind === 'revision' ? repeatNote(practice.unseen, practice.all) : ''),
+        title: msg(practice.kind === 'new' ? 'suggestions.more.titleNew' : 'suggestions.more.title'),
+        why: withRepeat(
+          msg('suggestions.more.why', { count: Math.max(0, MIN_ANSWERS_FOR_SIGNAL - assessment.answeredTotal) }),
+          practice,
+        ),
         kind: practice.kind,
         start: practice.start,
       });
@@ -92,8 +96,8 @@ export function buildSuggestions(input: SuggestionInput): Suggestion[] {
   if (input.retryable > 0) {
     suggestions.push({
       key: 'review',
-      title: `Revisit ${plural(input.retryable, 'question')} you missed`,
-      why: 'Questions you got wrong or left blank, asked again on purpose. A retry does not count towards the measurements above.',
+      title: msg('suggestions.review.title', { count: input.retryable }),
+      why: msg('suggestions.review.why'),
       kind: 'review',
       start: { type: 'review', length: Math.min(SESSION, input.retryable) },
     });
@@ -105,8 +109,8 @@ export function buildSuggestions(input: SuggestionInput): Suggestion[] {
     if (practice) {
       suggestions.push({
         key: `untouched-${untouched.domainSlug}`,
-        title: `Practise ${untouched.label}`,
-        why: 'You have not answered anything in this topic, so it is a blind spot in everything above.' + (practice.kind === 'revision' ? repeatNote(practice.unseen, practice.all) : ''),
+        title: msg('suggestions.untouched.title', { topic: untouched.label }),
+        why: withRepeat(msg('suggestions.untouched.why'), practice),
         kind: practice.kind,
         start: practice.start,
       });
@@ -119,10 +123,11 @@ export function buildSuggestions(input: SuggestionInput): Suggestion[] {
     if (practice) {
       suggestions.push({
         key: `weak-${weakest.domainSlug}`,
-        title: `Work on ${domainName(weakest.domainSlug)}`,
-        why:
-          `Your weakest topic with enough answers to act on: ${Math.round(weakest.accuracy * 100)}% of ${weakest.answered}.` +
-          (practice.kind === 'revision' ? repeatNote(practice.unseen, practice.all) : ''),
+        title: msg('suggestions.weak.title', { topic: domainName(weakest.domainSlug) }),
+        why: withRepeat(
+          msg('suggestions.weak.why', { accuracy: Math.round(weakest.accuracy * 100) / 100, answered: weakest.answered }),
+          practice,
+        ),
         kind: practice.kind,
         start: practice.start,
       });
@@ -132,10 +137,14 @@ export function buildSuggestions(input: SuggestionInput): Suggestion[] {
   if (assessment.paceRatio !== null && assessment.paceRatio > 1.25 && input.timedFormat) {
     suggestions.push({
       key: 'timed',
-      title: 'Practise against the clock',
-      why: `Your median time is ${assessment.paceRatio.toFixed(2)}× the exam's pace. ${input.timedFormat.label} runs to a clock.`,
+      title: msg('suggestions.timed.title'),
+      // The format's name is the exam config's own.
+      why: msg('suggestions.timed.why', {
+        ratio: Math.round(assessment.paceRatio * 100) / 100,
+        format: input.timedFormat.label,
+      }),
       kind: 'timed',
-      start: { type: 'link', href: `/practice/${config.examKey}`, label: 'Choose a timed format' },
+      start: { type: 'link', href: `/practice/${config.examKey}`, label: msg('suggestions.timed.action') },
     });
   }
 
