@@ -1,3 +1,5 @@
+import { CONTACT, SOCIAL_LINKS } from '@/lib/site';
+
 /**
  * Structured data.
  *
@@ -33,6 +35,11 @@ export function organizationSchema(siteUrl: string, name: string, description: s
     // An explicit, honest statement of independence.
     disambiguatingDescription:
       'An independent exam preparation resource, not affiliated with or endorsed by any test maker.',
+    sameAs: SOCIAL_LINKS.map((link) => link.href),
+    contactPoint: [
+      { '@type': 'ContactPoint', contactType: 'customer support', email: CONTACT.support, availableLanguage: ['en', 'it', 'tr', 'es', 'pl'] },
+      { '@type': 'ContactPoint', contactType: 'general enquiries', email: CONTACT.info },
+    ],
   };
 }
 
