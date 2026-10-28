@@ -4,11 +4,11 @@ import type { Metadata } from 'next';
 import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/server';
 import { EXAM_CONFIGS, getHubForConfig } from '@/lib/exams/registry';
 import { SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
+import { pageAlternates } from '@/i18n/alternates';
 import { Alert, Badge, Breadcrumbs, Card, Container, PageHeader } from '@/components/ui';
 import { JsonLd, articleSchema, breadcrumbSchema } from '@/components/seo/json-ld';
 import { TopicAccuracyExample } from '@/components/scoring/topic-accuracy-example';
 import { MIN_ATTEMPTS_FOR_SIGNAL } from '@/lib/learning/recommend';
-import { languageAlternates } from '@/i18n/alternates';
 import { LOCALE_INFO, localizePath, type Locale } from '@/i18n/locales';
 
 /**
@@ -32,7 +32,7 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'about.howScoringWorks.meta' });
-  const alternates = languageAlternates(PATH, locale as Locale);
+  const alternates = (await pageAlternates(params, PATH));
   return {
     title: t('title'),
     description: t('description'),

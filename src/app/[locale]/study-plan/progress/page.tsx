@@ -1,7 +1,7 @@
 import { Link } from '@/i18n/navigation';
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
-import { languageAlternates } from '@/i18n/alternates';
+import { pageAlternates } from '@/i18n/alternates';
 import type { Locale } from '@/i18n/locales';
 import { getDb } from '@/lib/db';
 import { requireSignedIn } from '@/lib/auth/guards';
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
   return {
     title: t('title'),
     description: t('description'),
-    alternates: languageAlternates('/study-plan/progress', locale),
+    alternates: (await pageAlternates(params, '/study-plan/progress')),
     robots: { index: false, follow: false },
   };
 }

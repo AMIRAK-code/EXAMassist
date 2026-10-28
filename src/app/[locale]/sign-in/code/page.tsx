@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { Link, redirect } from '@/i18n/navigation';
-import { languageAlternates } from '@/i18n/alternates';
+import { pageAlternates } from '@/i18n/alternates';
 import type { Locale } from '@/i18n/locales';
 import { CODE_TTL_MINUTES, emailCodesMailer } from '@/lib/auth/email-codes';
 import { safeNext, withNext } from '@/lib/auth/next-path';
@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   return {
     title: t('title'),
     description: t('description'),
-    alternates: languageAlternates('/sign-in/code', locale as Locale),
+    alternates: (await pageAlternates(params, '/sign-in/code')),
     robots: { index: false, follow: true },
   };
 }

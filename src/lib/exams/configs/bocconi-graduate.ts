@@ -350,6 +350,11 @@ export const bocconiGraduateConfig: ExamConfig = {
     },
   ],
 
+  choiceOptions: {
+    count: 4,
+    basis: 'editorial',
+    note: 'Bocconi publishes no option count for the graduate test; four is our choice, and some earlier items have five.',
+  },
   scoring: {
     pointsCorrect: 1,
     pointsIncorrect: -0.25,

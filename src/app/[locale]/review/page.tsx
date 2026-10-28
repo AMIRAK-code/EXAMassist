@@ -3,7 +3,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { Link, redirect } from '@/i18n/navigation';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
-import { languageAlternates } from '@/i18n/alternates';
+import { pageAlternates } from '@/i18n/alternates';
 import type { Locale } from '@/i18n/locales';
 import { getDb } from '@/lib/db';
 import { UnauthorizedError, requireUser, type AuthUser } from '@/lib/auth/session';
@@ -49,7 +49,7 @@ export async function generateMetadata({
     description: t('metaDescription'),
     // Private page. Authorization is the protection; this is only an indexing hint.
     robots: { index: false, follow: false },
-    alternates: languageAlternates('/review', locale as Locale),
+    alternates: (await pageAlternates(params, '/review')),
   };
 }
 

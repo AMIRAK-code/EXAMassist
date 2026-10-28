@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { Link, redirect } from '@/i18n/navigation';
-import { languageAlternates } from '@/i18n/alternates';
+import { pageAlternates } from '@/i18n/alternates';
 import type { Locale } from '@/i18n/locales';
 import { getDb } from '@/lib/db';
 import { EXAM_CONFIGS, getBlueprint, getExamConfig, getHubForConfig } from '@/lib/exams/registry';
@@ -47,7 +47,7 @@ export async function generateMetadata({
     description: t('metaDescription', { exam: config.name }),
     // Practice setup is a functional page, not editorial content.
     robots: { index: false, follow: true },
-    alternates: languageAlternates(`/practice/${config.examKey}`, locale as Locale),
+    alternates: (await pageAlternates(params, `/practice/${config.examKey}`)),
   };
 }
 

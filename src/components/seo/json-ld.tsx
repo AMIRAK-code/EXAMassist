@@ -27,7 +27,8 @@ export function organizationSchema(siteUrl: string, name: string, description: s
     name,
     ...(alternateNames.length > 0 ? { alternateName: [...alternateNames] } : {}),
     url: siteUrl,
-    logo: `${siteUrl}/brand/examer-symbol.svg`,
+    // Raster and square, as Google asks of an organisation logo (at least 112 x 112).
+    logo: `${siteUrl}/brand/uniexamer-symbol.png`,
     description,
     // An explicit, honest statement of independence.
     disambiguatingDescription:

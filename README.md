@@ -79,6 +79,25 @@ On the Workers Free plan a request may use 10 ms of CPU. One scrypt password
 check takes about 50 ms on a desktop CPU, so sign-in, sign-up and password
 reset can fail there (error 1102) until the account is on Workers Paid.
 
+Rendering any page costs more than 10 ms too (a median of 28 ms, and 381 ms
+for the home page, measured in Workers Observability on 2026-10-27). So
+`cf:deploy` uploads twice: after the first upload it fetches every public page,
+in every language, from the live site and saves it into `.open-next/assets`,
+and the second upload serves those files without running the Worker at all
+(`scripts/snapshot-pages.ts`, `src/lib/seo/static-pages.ts`). `/pricing` and
+everything behind sign-in stay dynamic. Saved pages never pass through
+`src/proxy.ts`, so a small inline script makes the same language choice on
+them (cookie, then browser languages). The saved pages change only when you
+deploy, so deploy again after publishing questions straight to the database.
+
+Static files are answered for any hostname before the Worker's own redirects
+run, so the snapshot step needs two Single Redirects in Cloudflare (Rules →
+Redirect Rules): `www.uniexamer.com/*` to `https://uniexamer.com/${1}` in the
+uniexamer.com zone, and hostname `exam.assist365.app` to
+`concat("https://uniexamer.com", http.request.uri.path)` in the assist365.app
+zone, both 301 and keeping the query string. Without them `cf:deploy` warns
+and leaves every page dynamic.
+
 ### Commands
 
 | Command | What it does |
@@ -90,6 +109,7 @@ reset can fail there (error 1102) until the account is on Workers Paid.
 | `npm run e2e` | Browser tests (Playwright); prepares its own database |
 | `npm run db:migrate` / `db:seed` / `db:reset` | Database lifecycle |
 | `npm run content:validate` | Validate the question bank and report coverage |
+| `npm run content:draft -- --exam=… --domain=…` | Draft questions with Claude into the review queue (`in_review`); `--dry-run` shows the request without calling the model. See docs/AUTHORING-BRIEF.md |
 | `npm run stripe:setup` | Create or check the Stripe products and prices for the plans (`-- --dry-run` to only report); see [`docs/BILLING.md`](docs/BILLING.md) |
 | `npx tsx scripts/validate-configs.ts` | Validate the exam configurations |
 

@@ -5,7 +5,7 @@ import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/serve
 import { absoluteUrl, shareImages, SITE, siteUrl } from '@/lib/site';
 import { Badge, Breadcrumbs, Card, Container, DefinitionList, PageHeader } from '@/components/ui';
 import { JsonLd, articleSchema, breadcrumbSchema } from '@/components/seo/json-ld';
-import { languageAlternates } from '@/i18n/alternates';
+import { pageAlternates } from '@/i18n/alternates';
 import { LOCALE_INFO, localizePath, type Locale } from '@/i18n/locales';
 
 /**
@@ -35,7 +35,7 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'about.editorialStandards.meta' });
-  const alternates = languageAlternates(PATH, locale as Locale);
+  const alternates = (await pageAlternates(params, PATH));
   return {
     title: t('title'),
     description: t('description'),
