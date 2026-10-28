@@ -9,6 +9,9 @@ import { assertHostsRedirect, snapshotPublicPages } from './snapshot-pages';
  * A deploy uploads twice: once as built, then again with the public pages of
  * that first upload saved as static files, which Cloudflare serves without
  * running the Worker (scripts/snapshot-pages.ts, src/lib/seo/static-pages.ts).
+ * If the snapshot gives up, the first upload stays live with every page
+ * rendered; npm run cf:snapshot then redoes only the snapshot and the second
+ * upload, from the same folder and build.
  *
  * OpenNext copies .env, .env.local and .env.<mode>(.local) into the Worker bundle,
  * and those files hold local secrets and DATABASE_URL. So this refuses to run next
@@ -21,7 +24,9 @@ ENV_FILES.push('.env', '.env.local');
 
 async function main(): Promise<void> {
   const command = process.argv[2];
-  if (command !== 'build' && command !== 'deploy') throw new Error('Usage: tsx scripts/cloudflare.ts build|deploy');
+  if (command !== 'build' && command !== 'deploy' && command !== 'snapshot') {
+    throw new Error('Usage: tsx scripts/cloudflare.ts build|deploy|snapshot');
+  }
 
   const found = ENV_FILES.filter((file) => fs.existsSync(path.join(process.cwd(), file)));
   if (found.length > 0) {
@@ -46,8 +51,14 @@ async function main(): Promise<void> {
     const result = spawnSync(process.execPath, [cli, step], { stdio: 'inherit', env });
     if (result.status !== 0) throw new Error(`opennextjs-cloudflare ${step} failed.`);
   };
-  for (const step of command === 'build' ? ['build'] : ['build', 'deploy']) run(step);
-  if (command !== 'deploy') return;
+  if (command === 'snapshot') {
+    if (!fs.existsSync(path.join('.next', 'BUILD_ID')) || !fs.existsSync(path.join('.open-next', 'assets'))) {
+      throw new Error('No build here to snapshot: run npm run cf:deploy.');
+    }
+  } else {
+    for (const step of command === 'build' ? ['build'] : ['build', 'deploy']) run(step);
+  }
+  if (command === 'build') return;
 
   // The first upload is live and renders every page. Now the public pages.
   const site = (vars.NEXT_PUBLIC_SITE_URL ?? '').replace(/\/+$/, '');
@@ -60,7 +71,13 @@ async function main(): Promise<void> {
     return;
   }
   const buildId = fs.readFileSync(path.join('.next', 'BUILD_ID'), 'utf8').trim();
-  const saved = await snapshotPublicPages({ site, assetsDir: path.join('.open-next', 'assets'), buildId });
+  console.log(`\nSaving the public pages of build ${buildId} as static files.`);
+  const saved = await snapshotPublicPages({ site, assetsDir: path.join('.open-next', 'assets'), buildId }).catch((error: unknown) => {
+    throw new Error(
+      `${(error as Error).message}\nThe first upload is live, with every page rendered by the Worker. ` +
+        'Run npm run cf:snapshot in this folder to carry on with the snapshot and the second upload.',
+    );
+  });
   console.log(`\nSaved ${saved.length} public pages as static files. Uploading them.\n`);
   run('deploy');
 }
