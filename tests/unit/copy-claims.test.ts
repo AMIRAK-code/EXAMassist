@@ -3,7 +3,7 @@ import { GUEST_TTL_DAYS } from '@/lib/auth/session';
 import fs from 'node:fs';
 import path from 'node:path';
 import { LOCALES } from '@/i18n/locales';
-import { INDEPENDENCE_NOTICE, SITE } from '@/lib/site';
+import { CONTACT, INDEPENDENCE_NOTICE, SITE, SOCIAL_LINKS } from '@/lib/site';
 
 /**
  * Public statements that describe behaviour, checked against the behaviour.
@@ -41,5 +41,23 @@ describe('editorial claims', () => {
     expect(INDEPENDENCE_NOTICE).not.toMatch(/editorial team/i);
     expect(INDEPENDENCE_NOTICE).toMatch(/AI-assisted/);
     expect(SITE.publisher).not.toMatch(/editorial/i);
+  });
+});
+
+describe('support promise', () => {
+  it('states the same 48-hour reply in every language, with the support address on our own domain', () => {
+    for (const locale of LOCALES) {
+      const common = JSON.parse(fs.readFileSync(path.resolve(`messages/${locale}/common.json`), 'utf8')) as {
+        footer: { support: { note: string } };
+      };
+      expect(common.footer.support.note, locale).toMatch(/\b48\b/);
+    }
+    expect(CONTACT.support).toBe('support@uniexamer.com');
+    expect(CONTACT.info).toBe('info@uniexamer.com');
+  });
+
+  it('links every profile over https, and lists each once', () => {
+    expect(new Set(SOCIAL_LINKS.map((link) => link.href)).size).toBe(SOCIAL_LINKS.length);
+    for (const link of SOCIAL_LINKS) expect(link.href).toMatch(/^https:\/\//);
   });
 });
