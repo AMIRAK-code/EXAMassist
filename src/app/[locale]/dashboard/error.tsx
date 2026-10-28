@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { Alert, Button, Container, PageHeader } from '@/components/ui';
 
@@ -9,15 +10,16 @@ import { Alert, Button, Container, PageHeader } from '@/components/ui';
  * partial or empty dashboard that would read as "no history".
  */
 export default function DashboardError({ reset }: { error: Error & { digest?: string }; reset: () => void }) {
+  const t = useTranslations('learning.dashboard');
   return (
     <Container>
-      <PageHeader title="Your dashboard" />
-      <Alert tone="negative" title="Your dashboard could not be loaded" role="alert" className="mb-6">
-        <p>Something went wrong while reading your practice history. Try again in a moment.</p>
+      <PageHeader title={t('title')} />
+      <Alert tone="negative" title={t('error.title')} role="alert" className="mb-6">
+        <p>{t('error.body')}</p>
       </Alert>
       <div className="flex flex-wrap items-center gap-3">
-        <Button onClick={() => reset()}>Try again</Button>
-        <Link href="/exams">Choose an exam to practise</Link>
+        <Button onClick={() => reset()}>{t('error.retry')}</Button>
+        <Link href="/exams">{t('error.chooseExam')}</Link>
       </div>
     </Container>
   );

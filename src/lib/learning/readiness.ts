@@ -1,5 +1,6 @@
 import type { ExamConfig } from '@/lib/assessment/types';
 import type { SkillPerformance } from './recommend';
+import { msg, type LearnerText, type Msg } from './text';
 
 /**
  * Readiness assessment against a learner's own target score.
@@ -22,17 +23,16 @@ import type { SkillPerformance } from './recommend';
  *
  * Everything else reports the target back as the learner's own stated goal and
  * says plainly why we cannot map our measurements onto it.
+ *
+ * Every sentence is a message in the `learning` catalogue (see text.ts), so it
+ * reads the same in every language; data quoted from an exam config (its
+ * caveats, thresholds, scale name) stays as published.
  */
 
 export type Band = 'insufficient' | 'early' | 'developing' | 'consistent' | 'strong';
 
-export const BAND_LABEL: Record<Band, string> = {
-  insufficient: 'Not enough evidence yet',
-  early: 'Early',
-  developing: 'Developing',
-  consistent: 'Consistent',
-  strong: 'Strong',
-};
+/** A band's name: "Not enough evidence yet", "Early", ... "Strong". */
+export const bandLabel = (band: Band): Msg => msg(`readiness.band.${band}`);
 
 /** Below this many scored answers, any percentage is noise. */
 export const MIN_ANSWERS_FOR_SIGNAL = 25;
@@ -41,12 +41,12 @@ export const ANSWERS_FOR_USABLE_SIGNAL = 80;
 
 export interface ReadinessSignal {
   key: 'accuracy' | 'pace' | 'coverage' | 'volume' | 'consistency';
-  label: string;
+  label: LearnerText;
   /** Human-readable measured value, e.g. "68%" or "1.4x exam pace". */
-  display: string;
+  display: LearnerText;
   band: Band;
-  /** What was actually measured, in one sentence. */
-  basis: string;
+  /** What was actually measured, in a sentence or two. */
+  basis: LearnerText;
 }
 
 export interface DomainGap {
@@ -61,7 +61,7 @@ export interface DomainGap {
 
 export interface TargetAnalysis {
   /** What the learner said they are aiming for. */
-  statedTarget: string;
+  statedTarget: LearnerText;
   /** True only when the exam publishes enough to reason about the target. */
   quantifiable: boolean;
   /** Present only when quantifiable. */
@@ -73,17 +73,17 @@ export interface TargetAnalysis {
     /** An officially published minimum, where one exists. */
     officialFloor: number | null;
     meetsOfficialFloor: boolean | null;
-    method: string;
-    assumptions: string[];
+    method: LearnerText;
+    assumptions: LearnerText[];
     /** "Projected raw score", or the reported scale's own name where raw is converted. */
-    scoreLabel?: string;
+    scoreLabel?: LearnerText;
     /** Every threshold the exam's owner publishes, on the reported scale. */
     thresholds?: Array<{ label: string; value: number; meaning: string; met: boolean }>;
     /** Why there is no single published threshold, where there is none. */
     noThresholdReason?: string | null;
   } | null;
   /** Always present: why we can or cannot speak to the target. */
-  explanation: string;
+  explanation: LearnerText;
 }
 
 export interface ReadinessAssessment {
@@ -92,11 +92,11 @@ export interface ReadinessAssessment {
   evidenceStrength: 'insufficient' | 'indicative' | 'usable';
   answeredTotal: number;
   overall: Band;
-  overallStatement: string;
+  overallStatement: LearnerText;
   signals: ReadinessSignal[];
   gaps: DomainGap[];
   target: TargetAnalysis | null;
-  limitations: string[];
+  limitations: LearnerText[];
   /** Median time against the exam's pace, only when it was measured reliably. */
   paceRatio: number | null;
 }
@@ -213,12 +213,12 @@ function bocconiProjection(
   const sections = config.sections;
   const minutes = sections.reduce((total, section) => total + (section.officialTimeMinutes ?? 0), 0);
   const conditions = [
-    sections.every((section) => section.calculator === 'none') ? 'no calculator' : null,
-    minutes > 0 ? `${minutes} minutes` : null,
+    sections.every((section) => section.calculator === 'none') ? msg('readiness.projection.condition.noCalculator') : null,
+    minutes > 0 ? msg('readiness.projection.condition.minutes', { minutes }) : null,
     sections.every((section) => !section.navigation.allowBackWithinPart && section.navigation.source !== 'unverified')
-      ? 'no going back'
+      ? msg('readiness.projection.condition.noGoingBack')
       : null,
-  ].filter((condition): condition is string => condition !== null);
+  ].filter((condition): condition is Msg => condition !== null);
 
   return {
     projectedRaw: Math.round(projectedRaw * 10) / 10,
@@ -227,17 +227,15 @@ function bocconiProjection(
     meetsTarget: projectedRaw >= targetRaw,
     officialFloor,
     meetsOfficialFloor: officialFloor === null ? null : projectedRaw >= officialFloor,
-    method:
-      `Your accuracy on the questions you attempted (${Math.round(accuracyOnAttempted * 100)}%) and your rate of ` +
-      `leaving questions blank (${Math.round(omissionRate * 100)}%) applied to the published ` +
-      `${items}-question form, scored with Bocconi's published rule: ` +
-      `+${config.scoring.pointsCorrect} correct, ${config.scoring.pointsOmitted} blank, ` +
-      `${config.scoring.pointsIncorrect} wrong.`,
+    method: msg('readiness.projection.methodBocconi', {
+      ...ruleValues(config, accuracyOnAttempted, omissionRate),
+      items,
+    }),
     assumptions: [
-      'It assumes our questions are as hard as the real ones. Their difficulty is our editorial judgement, not calibrated against test-taker data.',
-      `It assumes you answer under the same conditions: ${conditions.join(', ')}.`,
-      `It scores every wrong answer at ${config.scoring.pointsIncorrect} and ignores the larger −0.33 penalty Bocconi applies to some items, so a real form could score slightly lower.`,
-      'It is arithmetic on your own practice, not a prediction of test day.',
+      msg('readiness.projection.assumeDifficulty'),
+      msg('readiness.projection.assumeConditions', { conditions }),
+      msg('readiness.projection.assumeBocconiPenalty', { wrong: config.scoring.pointsIncorrect }),
+      msg('readiness.projection.assumeArithmetic'),
     ],
   };
 }
@@ -278,7 +276,9 @@ function publishedProjection(
     meetsTarget: projected >= targetReported,
     officialFloor: null,
     meetsOfficialFloor: null,
-    scoreLabel: converted && scale ? `Projected score (${scale.label})` : 'Projected raw score',
+    scoreLabel: converted && scale
+      ? msg('readiness.projection.scoreLabelScale', { scale: scale.label })
+      : msg('readiness.projection.scoreLabelRaw'),
     thresholds: rule.thresholds.map((threshold) => ({
       label: threshold.label,
       value: threshold.value,
@@ -287,20 +287,41 @@ function publishedProjection(
     })),
     noThresholdReason: rule.noThresholdReason,
     method:
-      `Your accuracy on the questions you attempted (${Math.round(accuracyOnAttempted * 100)}%) and your rate of ` +
-      `leaving questions blank (${Math.round(omissionRate * 100)}%) applied to the published ` +
-      `${items}-question form, scored with ${config.publisher}'s published rule: ` +
-      `+${config.scoring.pointsCorrect} correct, ${config.scoring.pointsOmitted} blank, ` +
-      `${config.scoring.pointsIncorrect} wrong` +
-      (converted && scale ? `, then converted to the reported scale (${scale.label}) as published.` : '.'),
+      converted && scale
+        ? msg('readiness.projection.methodConverted', {
+            ...ruleValues(config, accuracyOnAttempted, omissionRate),
+            items,
+            publisher: config.publisher,
+            scale: scale.label,
+          })
+        : msg('readiness.projection.methodPublished', {
+            ...ruleValues(config, accuracyOnAttempted, omissionRate),
+            items,
+            publisher: config.publisher,
+          }),
     assumptions: [
-      'It assumes our questions are as hard as the real ones. Their difficulty is our editorial judgement, not calibrated against test-taker data.',
-      `It assumes you answer under the same conditions: ${rule.conditions}.`,
+      msg('readiness.projection.assumeDifficulty'),
+      // The conditions and caveats are the exam config's own words, quoted as published.
+      msg('readiness.projection.assumeConditions', { conditions: rule.conditions }),
       ...rule.caveats,
-      'It is arithmetic on your own practice, not a prediction of test day.',
+      msg('readiness.projection.assumeArithmetic'),
     ],
   };
 }
+
+/** The values every projection method sentence states: the learner's rates and the published points. */
+function ruleValues(config: ExamConfig, accuracyOnAttempted: number, omissionRate: number) {
+  return {
+    accuracy: Math.round(accuracyOnAttempted * 100) / 100,
+    omission: Math.round(omissionRate * 100) / 100,
+    correct: config.scoring.pointsCorrect,
+    blank: config.scoring.pointsOmitted,
+    wrong: config.scoring.pointsIncorrect,
+  };
+}
+
+/** A share as the catalogue's `{x, number, percent}` expects it, rounded to a whole percent. */
+const share = (value: number) => Math.round(value * 100) / 100;
 
 /** Pace is read from at least this many answers with a recorded time. */
 export const MIN_TIMED_ANSWERS = 25;
@@ -330,8 +351,6 @@ function median(values: number[]): number {
   const middle = Math.floor(sorted.length / 2);
   return sorted.length % 2 === 0 ? (sorted[middle - 1] + sorted[middle]) / 2 : sorted[middle];
 }
-
-const plural = (n: number, one: string, many = `${one}s`) => `${n} ${n === 1 ? one : many}`;
 
 export interface ReadinessInput {
   config: ExamConfig;
@@ -379,8 +398,7 @@ export function assessReadiness(input: ReadinessInput): ReadinessAssessment {
   const rawAccuracy = scored > 0 ? correct / scored : 0;
 
   let weightedAccuracy = rawAccuracy;
-  let accuracyBasis =
-    `${correct} correct out of ${scored} questions shown, across every topic you have practised.`;
+  let accuracyBasis: Msg = msg('readiness.signal.accuracy.basisRaw', { correct, scored });
 
   if (weights.size > 0) {
     let weightSum = 0;
@@ -394,60 +412,71 @@ export function assessReadiness(input: ReadinessInput): ReadinessAssessment {
     }
     if (weightSum > 0) {
       weightedAccuracy = weighted / weightSum;
-      accuracyBasis =
-        `Your accuracy in each topic, weighted by ${config.publisher}'s published share of the exam ` +
-        `for that topic, over the ${Math.round(weightSum * 100)}% of the exam you have practised.`;
+      accuracyBasis = msg('readiness.signal.accuracy.basisWeighted', {
+        publisher: config.publisher,
+        share: share(weightSum),
+      });
     }
   }
   const accuracyEnough = scored >= MIN_ANSWERS_FOR_SIGNAL;
   const accuracySignal: ReadinessSignal = {
     key: 'accuracy',
-    label: 'Accuracy',
+    label: msg('readiness.signal.accuracy.label'),
     // Below the threshold a percentage is noise: show the count it would come from.
-    display: scored === 0 ? '—' : accuracyEnough ? `${Math.round(weightedAccuracy * 100)}%` : `${correct} of ${scored} correct`,
+    display:
+      scored === 0
+        ? '—'
+        : accuracyEnough
+          ? msg('readiness.display.percent', { value: share(weightedAccuracy) })
+          : msg('readiness.display.correctOf', { correct, total: scored }),
     band: accuracyEnough ? lowerOf(bandForAccuracy(weightedAccuracy), cap) : 'insufficient',
     basis: accuracyEnough
-      ? `${accuracyBasis}${cap === 'consistent' ? ` Under ${ANSWERS_FOR_USABLE_SIGNAL} answers this reads no better than Consistent.` : ''}`
-      : `A percentage means something from ${MIN_ANSWERS_FOR_SIGNAL} answers; you have ${scored}.`,
+      ? cap === 'consistent'
+        ? [
+            accuracyBasis,
+            msg('readiness.signal.accuracy.capNote', { usable: ANSWERS_FOR_USABLE_SIGNAL, band: bandLabel('consistent') }),
+          ]
+        : accuracyBasis
+      : msg('readiness.signal.accuracy.basisTooFew', { min: MIN_ANSWERS_FOR_SIGNAL, count: scored }),
   };
 
   // --- Pace: the median over individual timed answers, against the exam's published pace.
   const pace = examPaceSeconds(config);
   const times = input.timing.timesMs.filter((t) => t > 0);
   const learnerMedianMs = median(times);
-  const timingNotes = [
+  const timingNotes: Msg[] = [
     input.timing.inUntimed > 0
-      ? `${input.timing.inUntimed === times.length ? 'All' : `${input.timing.inUntimed} of ${times.length}`} of these were answered in untimed practice, with no clock to keep to.`
+      ? input.timing.inUntimed === times.length
+        ? msg('readiness.timing.allUntimed')
+        : msg('readiness.timing.someUntimed', { count: input.timing.inUntimed, total: times.length })
       : null,
-    input.timing.missing > 0 ? `${plural(input.timing.missing, 'answer')} had no time recorded and ${input.timing.missing === 1 ? 'is' : 'are'} left out.` : null,
-  ]
-    .filter(Boolean)
-    .join(' ');
+    input.timing.missing > 0 ? msg('readiness.timing.missing', { count: input.timing.missing }) : null,
+  ].filter((note): note is Msg => note !== null);
   let paceSignal: ReadinessSignal;
   let paceRatio: number | null = null;
   if (pace === null) {
     paceSignal = {
       key: 'pace',
-      label: 'Pace',
-      display: 'Not measurable',
+      label: msg('readiness.signal.pace.label'),
+      display: msg('readiness.display.notMeasurable'),
       band: 'insufficient',
-      basis: `${config.publisher} does not publish enough for a per-question pace on this exam, so we cannot compare.`,
+      basis: msg('readiness.signal.pace.basisNoPace', { publisher: config.publisher }),
     };
   } else if (times.length < MIN_TIMED_ANSWERS) {
     paceSignal = {
       key: 'pace',
-      label: 'Pace',
-      display: plural(times.length, 'timed answer'),
+      label: msg('readiness.signal.pace.label'),
+      display: msg('readiness.display.timedAnswers', { count: times.length }),
       band: 'insufficient',
-      basis: `Pace is read from at least ${MIN_TIMED_ANSWERS} answers with a recorded time; you have ${times.length}.${timingNotes ? ` ${timingNotes}` : ''}`,
+      basis: [msg('readiness.signal.pace.basisTooFew', { min: MIN_TIMED_ANSWERS, count: times.length }), ...timingNotes],
     };
   } else if (learnerMedianMs < MIN_RELIABLE_MEDIAN_MS) {
     paceSignal = {
       key: 'pace',
-      label: 'Pace',
-      display: 'Timing unreliable',
+      label: msg('readiness.signal.pace.label'),
+      display: msg('readiness.display.timingUnreliable'),
       band: 'insufficient',
-      basis: `Your median time is under ${MIN_RELIABLE_MEDIAN_MS / 1000} seconds a question, faster than a question can be read, so it is treated as unreliable timing rather than as speed.${timingNotes ? ` ${timingNotes}` : ''}`,
+      basis: [msg('readiness.signal.pace.basisUnreliable', { seconds: MIN_RELIABLE_MEDIAN_MS / 1000 }), ...timingNotes],
     };
   } else {
     const ratio = learnerMedianMs / 1000 / pace;
@@ -455,10 +484,13 @@ export function assessReadiness(input: ReadinessInput): ReadinessAssessment {
     const band: Band = ratio <= 1.0 ? 'strong' : ratio <= 1.25 ? 'consistent' : ratio <= 1.6 ? 'developing' : 'early';
     paceSignal = {
       key: 'pace',
-      label: 'Pace',
-      display: `${ratio.toFixed(2)}× the exam's pace`,
+      label: msg('readiness.signal.pace.label'),
+      display: msg('readiness.display.paceRatio', { ratio: Math.round(ratio * 100) / 100 }),
       band: lowerOf(band, evidenceCap(times.length)),
-      basis: `The exam allows about ${pace} seconds a question. Your median over ${times.length} timed answers is ${Math.round(learnerMedianMs / 1000)} seconds.${timingNotes ? ` ${timingNotes}` : ''}`,
+      basis: [
+        msg('readiness.signal.pace.basis', { pace, count: times.length, median: Math.round(learnerMedianMs / 1000) }),
+        ...timingNotes,
+      ],
     };
   }
 
@@ -471,12 +503,13 @@ export function assessReadiness(input: ReadinessInput): ReadinessAssessment {
     covered >= total ? 'strong' : covered >= total * 0.7 ? 'consistent' : covered >= total * 0.4 ? 'developing' : 'early';
   const coverageSignal: ReadinessSignal = {
     key: 'coverage',
-    label: 'Topic coverage',
-    display: `${covered} of ${total} topics`,
+    label: msg('readiness.signal.coverage.label'),
+    display: msg('readiness.display.topicsCovered', { covered, total }),
     band: accuracyEnough ? lowerOf(coverageBand, cap) : 'insufficient',
-    basis:
-      `Topics of the exam’s own list in which you have answered at least ${COVERAGE_MIN_ANSWERS} questions.` +
-      (touchedOnly > 0 ? ` ${plural(touchedOnly, 'more topic has', 'more topics have')} fewer answers than that.` : ''),
+    basis: [
+      msg('readiness.signal.coverage.basis', { min: COVERAGE_MIN_ANSWERS }),
+      ...(touchedOnly > 0 ? [msg('readiness.signal.coverage.touchedOnly', { count: touchedOnly })] : []),
+    ],
   };
 
   const signals: ReadinessSignal[] = [
@@ -485,15 +518,15 @@ export function assessReadiness(input: ReadinessInput): ReadinessAssessment {
     coverageSignal,
     {
       key: 'volume',
-      label: 'Evidence',
-      display: `${scored} questions`,
+      label: msg('readiness.signal.volume.label'),
+      display: msg('readiness.display.questions', { count: scored }),
       band:
         scored >= ANSWERS_FOR_USABLE_SIGNAL
           ? 'strong'
           : scored >= MIN_ANSWERS_FOR_SIGNAL
             ? 'developing'
             : 'insufficient',
-      basis: `Below ${MIN_ANSWERS_FOR_SIGNAL} answers a percentage is noise; we treat ${ANSWERS_FOR_USABLE_SIGNAL}+ as a usable sample of your own work.`,
+      basis: msg('readiness.signal.volume.basis', { min: MIN_ANSWERS_FOR_SIGNAL, usable: ANSWERS_FOR_USABLE_SIGNAL }),
     },
   ];
 
@@ -502,10 +535,14 @@ export function assessReadiness(input: ReadinessInput): ReadinessAssessment {
   if (sessions.length < CONSISTENCY_MIN_SESSIONS) {
     signals.push({
       key: 'consistency',
-      label: 'Consistency',
-      display: `${sessions.length} of ${CONSISTENCY_MIN_SESSIONS} sessions`,
+      label: msg('readiness.signal.consistency.label'),
+      display: msg('readiness.display.sessionsOf', { count: sessions.length, min: CONSISTENCY_MIN_SESSIONS }),
       band: 'insufficient',
-      basis: `Consistency compares at least ${CONSISTENCY_MIN_SESSIONS} sessions of ${CONSISTENCY_MIN_SESSION_ANSWERS} or more answers; you have ${sessions.length}.`,
+      basis: msg('readiness.signal.consistency.basisTooFew', {
+        min: CONSISTENCY_MIN_SESSIONS,
+        answers: CONSISTENCY_MIN_SESSION_ANSWERS,
+        count: sessions.length,
+      }),
     });
   } else {
     const values = sessions.map((s) => s.accuracy);
@@ -514,10 +551,10 @@ export function assessReadiness(input: ReadinessInput): ReadinessAssessment {
     const band: Band = spread <= 0.07 ? 'strong' : spread <= 0.12 ? 'consistent' : spread <= 0.2 ? 'developing' : 'early';
     signals.push({
       key: 'consistency',
-      label: 'Consistency',
-      display: `±${Math.round(spread * 100)} points between sessions`,
+      label: msg('readiness.signal.consistency.label'),
+      display: msg('readiness.display.spread', { points: Math.round(spread * 100) }),
       band: lowerOf(band, evidenceCap(sessions.reduce((n, s) => n + s.scored, 0))),
-      basis: `How much your accuracy moves between your last ${values.length} sessions of ${CONSISTENCY_MIN_SESSION_ANSWERS} or more answers. A wide spread usually means the topic mix is driving the result, not your level.`,
+      basis: msg('readiness.signal.consistency.basis', { count: values.length, answers: CONSISTENCY_MIN_SESSION_ANSWERS }),
     });
   }
 
@@ -526,10 +563,10 @@ export function assessReadiness(input: ReadinessInput): ReadinessAssessment {
 
   const overallStatement =
     overall === 'insufficient'
-      ? `You have answered ${scored} question${scored === 1 ? '' : 's'} for this exam. That is too few to say anything about readiness — answer at least ${MIN_ANSWERS_FOR_SIGNAL} and this becomes meaningful.`
-      : `Across the topics you have practised, you are answering ${Math.round(weightedAccuracy * 100)}% correctly${
-          weights.size > 0 ? ", weighted the way the exam itself weights its topics" : ''
-        }. This describes your work on our questions, not a predicted exam score.`;
+      ? msg('readiness.overall.insufficient', { count: scored, min: MIN_ANSWERS_FOR_SIGNAL })
+      : msg(weights.size > 0 ? 'readiness.overall.weighted' : 'readiness.overall.unweighted', {
+          accuracy: share(weightedAccuracy),
+        });
 
   // --- Every topic, worst first: never attempted, then lowest accuracy.
   const gaps: DomainGap[] = config.domains
@@ -555,7 +592,13 @@ export function assessReadiness(input: ReadinessInput): ReadinessAssessment {
   let target: TargetAnalysis | null = null;
   if (targetScore !== null && config.scoring.officialScale) {
     const scale = config.scoring.officialScale;
-    const statedTarget = `${targetScore} on the ${scale.label} scale (${scale.min}–${scale.max})`;
+    // Scores are written as the exam's owner writes them ("1400"), not regrouped.
+    const statedTarget = msg('readiness.target.stated', {
+      target: String(targetScore),
+      scale: scale.label,
+      min: String(scale.min),
+      max: String(scale.max),
+    });
 
     // Quantifiable only where the exam publishes its complete raw scoring.
     const publishesRawScoring =
@@ -568,11 +611,7 @@ export function assessReadiness(input: ReadinessInput): ReadinessAssessment {
         statedTarget,
         quantifiable: true,
         projection: publishedProjection(config, targetScore, accuracyOnAttempted, omissionRate),
-        explanation:
-          `${config.publisher} publishes this exam's scoring in full — a fixed number of questions, each worth ` +
-          `the same, a published penalty for a wrong answer and a published conversion to the reported score — ` +
-          `so your target can be turned into arithmetic rather than guesswork. The projection below is your own ` +
-          `practice accuracy applied to the published form.`,
+        explanation: msg('readiness.target.explanationConverted', { publisher: config.publisher }),
       };
     } else if (publishesRawScoring) {
       const omissionRate = scored > 0 ? omitted / scored : 0;
@@ -581,43 +620,32 @@ export function assessReadiness(input: ReadinessInput): ReadinessAssessment {
         statedTarget,
         quantifiable: true,
         projection: bocconiProjection(config, targetScore, accuracyOnAttempted, omissionRate),
-        explanation:
-          `${config.publisher} publishes this exam's scoring in full — every question is worth the same, ` +
-          `and the penalty for a wrong answer is published — so your target can be turned into arithmetic ` +
-          `rather than guesswork. The projection below is your own practice accuracy applied to the ` +
-          `published form.`,
+        explanation: msg('readiness.target.explanationPenalty', { publisher: config.publisher }),
       };
     } else {
       target = {
         statedTarget,
         quantifiable: false,
         projection: null,
-        explanation:
-          `We cannot tell you whether your practice equals ${targetScore}. ${config.publisher} does not ` +
-          `publish how a raw score becomes a ${scale.label} score` +
-          (config.examKey === 'digital-sat'
-            ? ', and states that two test takers who answer the same number of questions correctly can receive different section scores'
-            : '') +
-          `. Anyone who gives you a number for this is estimating. What we can show you is the work itself: ` +
-          `how accurate you are in each topic the exam publishes, and whether you are working at its pace.`,
+        explanation: msg(
+          // College Board's own statement about equal raw scores is cited for the SAT.
+          config.examKey === 'digital-sat' ? 'readiness.target.explanationNoneSat' : 'readiness.target.explanationNone',
+          { target: String(targetScore), publisher: config.publisher, scale: scale.label },
+        ),
       };
     }
   }
 
   // --- Limitations, always shown.
-  const limitations = [
-    'Every figure here comes from your answers to our own questions. Their difficulty is our editorial judgement, not calibrated against test-taker data.',
-    'We do not report percentiles, and we do not estimate a probability of admission.',
+  const limitations: LearnerText[] = [
+    msg('readiness.limitations.difficulty'),
+    msg('readiness.limitations.noPercentiles'),
   ];
   if (evidenceStrength !== 'usable') {
-    limitations.unshift(
-      `This is based on ${scored} answers, which is a small sample. Treat it as a pointer, not a measurement.`,
-    );
+    limitations.unshift(msg('readiness.limitations.smallSample', { count: scored }));
   }
   if (config.unverified.length > 0) {
-    limitations.push(
-      `${config.unverified.length} rule(s) of this exam could not be verified from an official source, so some exam-accurate practice is switched off.`,
-    );
+    limitations.push(msg('readiness.limitations.unverified', { count: config.unverified.length }));
   }
 
   return {

@@ -8,6 +8,7 @@ import { getPool } from '@/lib/content/repository';
 import { retryCandidates } from '@/lib/attempts/service';
 import { MAX_RETRY_QUESTIONS } from '@/lib/attempts/retry';
 import { skillPerformance, WEAK_ACCURACY, type SkillPerformance } from './recommend';
+import { decodeText, encodeText, msg, type LearnerText, type Msg } from './text';
 
 /**
  * Stored study plans (migration 007, docs/REDESIGN.md §18.5).
@@ -31,6 +32,9 @@ import { skillPerformance, WEAK_ACCURACY, type SkillPerformance } from './recomm
  *
  * Completed, skipped and recorded-missed sessions are history: nothing
  * changes them afterwards.
+ *
+ * Why a session was chosen is stored as a message (text.ts), so it reads in
+ * the learner's language whenever it is shown.
  */
 
 export const SESSION_MINUTES = 25;
@@ -57,7 +61,7 @@ export interface PlannedSession {
   skillSlug: string | null;
   questionCount: number;
   minutes: number;
-  reason: string;
+  reason: LearnerText;
 }
 
 export interface PlanSessionRow {
@@ -70,7 +74,7 @@ export interface PlanSessionRow {
   skillSlug: string | null;
   questionCount: number;
   minutes: number;
-  reason: string;
+  reason: LearnerText;
   status: StoredStatus;
   attemptId: string | null;
   statusAt: string | null;
@@ -128,7 +132,8 @@ interface Focus {
   domainSlug: string | null;
   skillSlug: string | null;
   label: string;
-  reason: string;
+  /** Why this focus, as sentences: the reason, and a note when a thin skill is planned as its topic. */
+  reason: Msg[];
 }
 
 export interface PlanInputs {
@@ -192,37 +197,38 @@ export function focusQueue(input: PlanInputs): Focus[] {
     seen.add(key);
     queue.push(focus);
   };
-  const skillFocus = (skillSlug: string, domainSlug: string, reason: string): Focus => {
+  const skillFocus = (skillSlug: string, domainSlug: string, reason: Msg): Focus => {
     const inSkill = focusCount(input.allFacets, { domainSlug, skillSlug });
     if (inSkill < THIN_SKILL_BELOW) {
       return {
         domainSlug,
         skillSlug: null,
         label: labels.domains[domainSlug] ?? domainSlug,
-        reason: `${reason}; ${labels.skills[skillSlug] ?? skillSlug} has only ${inSkill} reviewed question${inSkill === 1 ? '' : 's'}, so its topic is practised`,
+        reason: [reason, msg('plan.reason.thinSkill', { skill: labels.skills[skillSlug] ?? skillSlug, count: inSkill })],
       };
     }
-    return { domainSlug, skillSlug, label: labels.skills[skillSlug] ?? skillSlug, reason };
+    return { domainSlug, skillSlug, label: labels.skills[skillSlug] ?? skillSlug, reason: [reason] };
   };
 
+  const carriedReason = msg('plan.reason.carried');
   for (const carried of input.carryForward ?? []) {
-    if (carried.skillSlug && carried.domainSlug) push(skillFocus(carried.skillSlug, carried.domainSlug, 'carried from a missed session'));
-    else if (carried.domainSlug) push({ domainSlug: carried.domainSlug, skillSlug: null, label: labels.domains[carried.domainSlug] ?? carried.domainSlug, reason: 'carried from a missed session' });
+    if (carried.skillSlug && carried.domainSlug) push(skillFocus(carried.skillSlug, carried.domainSlug, carriedReason));
+    else if (carried.domainSlug) push({ domainSlug: carried.domainSlug, skillSlug: null, label: labels.domains[carried.domainSlug] ?? carried.domainSlug, reason: [carriedReason] });
   }
   const judged = input.performance.filter((skill) => skill.hasSignal).sort((a, b) => a.accuracy - b.accuracy);
   const judgedReason = (skill: SkillPerformance) =>
-    `${Math.round(skill.accuracy * 100)}% correct over ${skill.answered + skill.omitted} answers`;
+    msg('plan.reason.judged', { accuracy: Math.round(skill.accuracy * 100) / 100, count: skill.answered + skill.omitted });
   for (const skill of judged.filter((s) => s.accuracy < WEAK_ACCURACY)) {
     push(skillFocus(skill.skillSlug, skill.domainSlug, judgedReason(skill)));
   }
   const attempted = new Set(input.performance.map((skill) => skill.domainSlug));
   for (const domain of input.config.domains) {
-    if (!attempted.has(domain.slug)) push({ domainSlug: domain.slug, skillSlug: null, label: domain.name, reason: 'not attempted yet' });
+    if (!attempted.has(domain.slug)) push({ domainSlug: domain.slug, skillSlug: null, label: domain.name, reason: [msg('plan.reason.notAttempted')] });
   }
   const judgedDomains = new Set(judged.map((skill) => skill.domainSlug));
   for (const domain of input.config.domains) {
     if (attempted.has(domain.slug) && !judgedDomains.has(domain.slug)) {
-      push({ domainSlug: domain.slug, skillSlug: null, label: domain.name, reason: 'too few answers yet to judge' });
+      push({ domainSlug: domain.slug, skillSlug: null, label: domain.name, reason: [msg('plan.reason.tooFew')] });
     }
   }
   for (const skill of judged.filter((s) => s.accuracy >= WEAK_ACCURACY)) {
@@ -303,7 +309,7 @@ export function buildSessions(input: PlanInputs): PlannedSession[] {
           domainSlug: null,
           skillSlug: null,
           questionCount: count,
-          reason: `${input.retryable} question${input.retryable === 1 ? '' : 's'} you missed can be asked again. This repeats them on purpose.`,
+          reason: msg('plan.reason.review', { count: input.retryable }),
         });
         continue;
       }
@@ -314,10 +320,10 @@ export function buildSessions(input: PlanInputs): PlannedSession[] {
         const fresh = Math.min(SESSION_QUESTIONS, mixedUnseen);
         if (fresh > 0 && fresh >= Math.min(MIN_NEW_SESSION, count)) {
           mixedUnseen -= fresh;
-          push({ scheduledOn, kind: 'mixed', domainSlug: null, skillSlug: null, questionCount: fresh, reason: 'Not enough of your own answers yet to single out a topic.' });
+          push({ scheduledOn, kind: 'mixed', domainSlug: null, skillSlug: null, questionCount: fresh, reason: msg('plan.reason.mixed') });
         } else if (revisedInWeek.get('mixed') !== week) {
           revisedInWeek.set('mixed', week);
-          push({ scheduledOn, kind: 'revision', domainSlug: null, skillSlug: null, questionCount: count, reason: 'You have been shown most of these questions, so this revises them.' });
+          push({ scheduledOn, kind: 'revision', domainSlug: null, skillSlug: null, questionCount: count, reason: msg('plan.reason.mixedRevision') });
         }
         continue;
       }
@@ -333,7 +339,7 @@ export function buildSessions(input: PlanInputs): PlannedSession[] {
         const fresh = Math.min(SESSION_QUESTIONS, left);
         if (fresh > 0 && fresh >= Math.min(MIN_NEW_SESSION, count)) {
           unseenLeft.set(keyOf(focus), left - fresh);
-          push({ scheduledOn, kind: 'new', domainSlug: focus.domainSlug, skillSlug: focus.skillSlug, questionCount: fresh, reason: `${sentence(focus.reason)}.` });
+          push({ scheduledOn, kind: 'new', domainSlug: focus.domainSlug, skillSlug: focus.skillSlug, questionCount: fresh, reason: focus.reason });
           break;
         }
         if (revisedInWeek.get(keyOf(focus)) !== week) {
@@ -344,7 +350,7 @@ export function buildSessions(input: PlanInputs): PlannedSession[] {
             domainSlug: focus.domainSlug,
             skillSlug: focus.skillSlug,
             questionCount: count,
-            reason: `${sentence(focus.reason)}. ${left === 0 ? 'You have seen every question here' : `Only ${left} question${left === 1 ? ' here is' : 's here are'} new to you`}, so this revises ones you have seen.`,
+            reason: [...focus.reason, left === 0 ? msg('plan.reason.revisionAllSeen') : msg('plan.reason.revisionSomeNew', { count: left })],
           });
           break;
         }
@@ -354,10 +360,8 @@ export function buildSessions(input: PlanInputs): PlannedSession[] {
   return sessions;
 }
 
-const sentence = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
-
 /** A session's label, from its kind and topic. */
-export function sessionLabel(config: ExamConfig, session: Pick<PlannedSession, 'kind' | 'domainSlug' | 'skillSlug'>): string {
+export function sessionLabel(config: ExamConfig, session: Pick<PlannedSession, 'kind' | 'domainSlug' | 'skillSlug'>): Msg {
   const labels = labelsFor(config);
   const topic = session.skillSlug
     ? (labels.skills[session.skillSlug] ?? session.skillSlug)
@@ -366,13 +370,13 @@ export function sessionLabel(config: ExamConfig, session: Pick<PlannedSession, '
       : null;
   switch (session.kind) {
     case 'review':
-      return 'Revisit questions you missed';
+      return msg('plan.label.review');
     case 'mixed':
-      return 'Mixed practice, new questions';
+      return msg('plan.label.mixed');
     case 'new':
-      return `${topic}, new questions`;
+      return msg('plan.label.new', { topic: topic ?? '' });
     case 'revision':
-      return topic ? `${topic}, revision` : 'Mixed revision';
+      return topic ? msg('plan.label.revision', { topic }) : msg('plan.label.mixedRevision');
   }
 }
 
@@ -550,8 +554,14 @@ export async function activePlan(db: Db, userId: string, examKey: string): Promi
   return row ? toPlan(row) : null;
 }
 
+/** A stored session's reason, as the message it was stored as (or older plain text). */
+const withReason = <T extends { reason: LearnerText }>(row: T): T => ({
+  ...row,
+  reason: typeof row.reason === 'string' ? decodeText(row.reason) : row.reason,
+});
+
 export async function planSessions(db: Db, userId: string, planId: string): Promise<PlanSessionRow[]> {
-  return (await db
+  return ((await db
     .prepare(
       `SELECT id, plan_id AS planId, scheduled_on AS scheduledOn, sequence, kind, domain_slug AS domainSlug,
               skill_slug AS skillSlug, question_count AS questionCount, minutes, reason, status,
@@ -559,7 +569,7 @@ export async function planSessions(db: Db, userId: string, planId: string): Prom
          FROM plan_sessions WHERE plan_id = ? AND user_id = ?
         ORDER BY scheduled_on, sequence`,
     )
-    .all(planId, userId)) as PlanSessionRow[];
+    .all(planId, userId)) as PlanSessionRow[]).map(withReason);
 }
 
 /** The canonical exam date (exam_targets), and any value the migration kept for the learner to choose. */
@@ -662,7 +672,7 @@ async function insertSessions(db: Db, userId: string, planId: string, sessions: 
   (await Promise.all(sessions.map(async (session, index) => {
     (await insert.run(
       randomUUID(), planId, userId, session.scheduledOn, firstSequence + index, session.kind,
-      session.domainSlug, session.skillSlug, session.questionCount, session.minutes, session.reason, iso,
+      session.domainSlug, session.skillSlug, session.questionCount, session.minutes, encodeText(session.reason), iso,
     ));
   })));
 }
@@ -794,7 +804,7 @@ export async function openSession(db: Db, userId: string, sessionId: string): Pr
         WHERE s.id = ? AND s.user_id = ? AND s.status = 'planned' AND p.status = 'active'`,
     )
     .get(sessionId, userId)) as (PlanSessionRow & { examKey: string }) | undefined;
-  return row ?? null;
+  return row ? withReason(row) : null;
 }
 
 /**

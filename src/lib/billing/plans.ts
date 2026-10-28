@@ -43,7 +43,13 @@ export type PlanKey = 'all_access' | 'single_exam';
 
 export const CURRENCY = 'eur' as const;
 
-/** User-facing words for plans and features. Translated with the rest of the site. */
+/**
+ * User-facing words for plans and features, in English. The site renders the
+ * same words from the `billing` message catalogue (messages/<locale>/billing.json:
+ * `plans.<key>.*`, `plans.free.*`, `plans.vatNote`, `features.<feature>`), so a
+ * change here must be made there too. This copy stays for the Stripe product
+ * names (scripts/stripe-setup.ts) and for code without a translator.
+ */
 export const PLAN_COPY = {
   plans: {
     all_access: {
@@ -232,7 +238,7 @@ export function featureForSession(
   return 'practice';
 }
 
-/** "€39.00", from cents. */
-export function formatPrice(cents: number): string {
-  return `€${(cents / 100).toFixed(2)}`;
+/** A price in euros from cents, written the way the given language writes money: "€39.00" (en), "39,00 €" (it). */
+export function formatPrice(cents: number, locale = 'en'): string {
+  return new Intl.NumberFormat(locale, { style: 'currency', currency: 'EUR' }).format(cents / 100);
 }

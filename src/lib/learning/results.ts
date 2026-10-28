@@ -362,7 +362,7 @@ export async function getReviewItem(db: Db, attemptId: string, userId: string, o
     isRetry: isRetryAttempt(attempt),
     total: items.length,
     item,
-    question: (await toReviewable(db, version)),
+    question: (await toReviewable(db, version, attempt.content_locale === 'it' ? 'it' : 'en')),
     questionVersion: version.version,
     response: parseResponse(item.responseJson),
     previous: ordinal > 1 ? ordinal - 1 : null,

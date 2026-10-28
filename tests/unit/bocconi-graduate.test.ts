@@ -11,7 +11,8 @@ import {
   listHubs,
   requireExamConfig,
 } from '@/lib/exams/registry';
-import { copy as otherRoutesCopy } from '@/components/exams/other-routes';
+import examsMessages from '../../messages/en/exams.json';
+import { english, englishList } from './helpers/intl';
 
 /**
  * Bocconi admission is two tracks with different tests. The bachelor and law
@@ -82,10 +83,11 @@ describe('the two Bocconi hubs', () => {
     expect(gre.note).not.toMatch(/\b1[3-7]\d\b|\b3[0-4]\d\b/);
   });
 
-  it('labels each route’s audience in the component copy', () => {
+  it('labels each route’s audience in the exams catalogue', () => {
+    const audience: Record<string, string> = examsMessages.audience;
     for (const hub of EXAM_HUBS) {
       for (const route of hub.otherRoutes ?? []) {
-        expect(otherRoutesCopy.audience[route.audience]).toBeTruthy();
+        expect(audience[route.audience]).toBeTruthy();
       }
     }
   });
@@ -202,15 +204,15 @@ describe('graduate readiness against the published floor of 15', () => {
 
   it('assumes only the conditions verified for the graduate form', () => {
     const grad = assessReadiness(inputFor(0.6)).target!.projection!;
-    const gradText = grad.assumptions.join(' ');
+    const gradText = englishList(grad.assumptions);
     expect(gradText).toContain('75 minutes');
     expect(gradText).not.toContain('no calculator');
     expect(gradText).not.toContain('no going back');
     expect(gradText).toContain('-0.25');
-    expect(grad.method).toContain('-0.25 wrong');
+    expect(english(grad.method)).toContain('-0.25 wrong');
 
     const ug = assessReadiness({ ...inputFor(0.6), config: UG, byDomain: new Map(UG.domains.map((d) => [d.slug, { correct: 24, answered: 40, omitted: 0 }])) });
-    const ugText = ug.target!.projection!.assumptions.join(' ');
+    const ugText = englishList(ug.target!.projection!.assumptions);
     expect(ugText).toContain('no calculator, 75 minutes, no going back');
   });
 });

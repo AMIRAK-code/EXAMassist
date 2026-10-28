@@ -1,5 +1,8 @@
-import { notFound, redirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import { Link, redirect } from '@/i18n/navigation';
+import { pageAlternates } from '@/i18n/alternates';
+import type { Locale } from '@/i18n/locales';
 import { getDb } from '@/lib/db';
 import { EXAM_CONFIGS, getBlueprint, getExamConfig, getHubForConfig } from '@/lib/exams/registry';
 import { blueprintAvailability, facetsFromPool, practiceFacets } from '@/lib/attempts/availability';
@@ -7,7 +10,7 @@ import { getPool } from '@/lib/content/repository';
 import { eligibleCount } from '@/lib/attempts/facets';
 import { getCurrentUser } from '@/lib/auth/session';
 import { StartPracticeForm, type PresetSkill } from '@/components/practice/start-practice-form';
-import { getTranslations } from 'next-intl/server';
+import { getFormatter, getTranslations } from 'next-intl/server';
 import { StartBlueprintButton } from '@/components/practice/start-blueprint-button';
 import { pricingPath, startPath } from '@/lib/billing/config';
 import { loadEntitlements } from '@/lib/billing/entitlements';
@@ -21,12 +24,10 @@ import {
   FidelityBadge,
   PageHeader,
   StatusBadge,
+  buttonClass,
 } from '@/components/ui';
 
 export const dynamic = 'force-dynamic';
-
-/** Shown on a format the learner's plan does not include. */
-const UPGRADE_LINK = 'Upgrade to start';
 
 export function generateStaticParams() {
   return EXAM_CONFIGS.map((config) => ({ examKey: config.examKey }));
@@ -35,32 +36,29 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ examKey: string }>;
+  params: Promise<{ locale: string; examKey: string }>;
 }): Promise<Metadata> {
-  const { examKey } = await params;
+  const { locale, examKey } = await params;
+  const t = await getTranslations({ locale, namespace: 'practice.setup' });
   const config = getExamConfig(examKey);
-  if (!config) return { title: 'Practice' };
+  if (!config) return { title: t('metaFallbackTitle') };
   return {
-    title: `Practise ${config.shortName}`,
-    description: `Choose a topic, difficulty and session length, then practise ${config.name} with original questions and full explanations.`,
+    title: t('metaTitle', { exam: config.shortName }),
+    description: t('metaDescription', { exam: config.name }),
     // Practice setup is a functional page, not editorial content.
     robots: { index: false, follow: true },
+    alternates: (await pageAlternates(params, `/practice/${config.examKey}`)),
   };
-}
-
-function formatMinutes(seconds: number | null): string {
-  if (seconds === null) return 'Untimed';
-  return `${Math.round(seconds / 60)} min`;
 }
 
 export default async function PracticeSetupPage({
   params,
   searchParams,
 }: {
-  params: Promise<{ examKey: string }>;
-  searchParams: Promise<{ domain?: string; skill?: string }>;
+  params: Promise<{ locale: string; examKey: string }>;
+  searchParams: Promise<{ domain?: string; skill?: string; questions?: string }>;
 }) {
-  const { examKey } = await params;
+  const { locale, examKey } = await params;
   const query = await searchParams;
   const config = getExamConfig(examKey);
   if (!config) notFound();
@@ -74,7 +72,12 @@ export default async function PracticeSetupPage({
   // one, the exam's short introduction offers the plans and the free
   // diagnostic instead.
   const entitlements = await loadEntitlements(db, user?.id ?? null);
-  if (!entitlements.can('practice', config.examKey)) redirect(startPath(config.examKey));
+  if (!entitlements.can('practice', config.examKey)) redirect({ href: startPath(config.examKey), locale });
+
+  const t = await getTranslations('practice');
+  const format = await getFormatter();
+  const formatMinutes = (seconds: number | null) =>
+    seconds === null ? t('setup.untimed') : format.number(Math.round(seconds / 60), { style: 'unit', unit: 'minute', unitDisplay: 'short' });
 
   const others = availability.filter((a) => a.blueprint.id !== 'practice');
   const totalItems = eligibleCount(facets, {});
@@ -116,14 +119,32 @@ export default async function PracticeSetupPage({
     else ignoredFilter = query.domain;
   }
 
+  // TOLC and IMAT questions have checked Italian versions. The learner picks
+  // the language here (?questions=); it starts as the site's language.
+  const offersItalian = (config.contentLocales ?? []).includes('it');
+  const contentLocale = !offersItalian
+    ? 'en'
+    : query.questions === 'en' || query.questions === 'it'
+      ? query.questions
+      : locale === 'it'
+        ? 'it'
+        : 'en';
+  const questionsHref = (code: 'en' | 'it') => {
+    const params = new URLSearchParams();
+    if (query.skill) params.set('skill', query.skill);
+    if (query.domain) params.set('domain', query.domain);
+    params.set('questions', code);
+    return `/practice/${config.examKey}?${params.toString()}`;
+  };
+
   return (
     <Container>
       <Breadcrumbs
         trail={[
-          { href: '/', label: 'Home' },
-          { href: '/exams', label: 'Exams' },
+          { href: '/', label: t('crumbs.home') },
+          { href: '/exams', label: t('crumbs.exams') },
           ...(hub ? [{ href: `/exams/${hub.slug}`, label: hub.name }] : []),
-          { label: 'Practise' },
+          { label: t('crumbs.practise') },
         ]}
       />
 
@@ -135,21 +156,45 @@ export default async function PracticeSetupPage({
       */}
       <PageHeader
         eyebrow={config.publisher}
-        title={`Practise ${config.name}`}
-        lead="Practise by topic, untimed, or choose another format below."
+        title={t('setup.title', { exam: config.name })}
+        lead={t('setup.lead')}
       />
+
+      {offersItalian && totalItems > 0 ? (
+        <nav aria-labelledby="questions-language" className="mb-8">
+          <div className="flex flex-wrap items-center gap-2">
+            <span id="questions-language" className="me-1 text-sm font-medium">
+              {t('setup.contentLanguage.label')}
+            </span>
+            {(['en', 'it'] as const).map((code) => (
+              <Link
+                key={code}
+                href={questionsHref(code)}
+                lang={code}
+                aria-current={code === contentLocale ? 'true' : undefined}
+                className={buttonClass({ variant: code === contentLocale ? 'primary' : 'secondary', size: 'sm' })}
+              >
+                {/* Each language in its own name. */}
+                {code === 'en' ? 'English' : 'Italiano'}
+              </Link>
+            ))}
+          </div>
+          <p className="mt-2 text-sm text-ink-muted">
+            {t('setup.contentLanguage.note')}
+            {config.examKey === 'imat' ? ` ${t('setup.contentLanguage.englishOnlySimulation', { exam: config.shortName })}` : ''}
+          </p>
+        </nav>
+      ) : null}
 
 
       {totalItems === 0 ? (
-        <Alert tone="caution" title="No reviewed questions yet for this exam">
-          <p>
-            Questions for this exam are still being checked, so there is nothing to practise here yet.
-            Only questions that have passed review are ever served.
-          </p>
+        <Alert tone="caution" title={t('setup.empty.title')}>
+          <p>{t('setup.empty.body')}</p>
           {hub ? (
             <p className="mt-2">
-              The <a href={`/exams/${hub.slug}/format`}>format and scoring guide</a> is complete and
-              sourced, and is useful now.
+              {t.rich('setup.empty.guide', {
+                link: (chunks) => <Link href={`/exams/${hub.slug}/format`}>{chunks}</Link>,
+              })}
             </p>
           ) : null}
         </Alert>
@@ -157,14 +202,11 @@ export default async function PracticeSetupPage({
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_20rem]">
           <div>
             <Card>
-              <h2 className="text-xl">Topic practice</h2>
-              <p className="mt-1 text-sm text-ink-muted">
-                Untimed. Change an answer freely, then check it to see the worked explanation; a checked
-                answer is locked.
-              </p>
+              <h2 className="text-xl">{t('setup.topic.title')}</h2>
+              <p className="mt-1 text-sm text-ink-muted">{t('setup.topic.body')}</p>
               {ignoredFilter ? (
                 <Alert tone="caution" className="mt-4">
-                  {`The link named a topic or skill the ${config.shortName} does not have, so no filter has been applied.`}
+                  {t('setup.topic.ignoredFilter', { exam: config.shortName })}
                 </Alert>
               ) : null}
               <div className="mt-5">
@@ -178,11 +220,12 @@ export default async function PracticeSetupPage({
                   presetSkill={presetSkill}
                   unseenFacets={offerUnseen}
                   guestNote={user && !user.isGuest ? null : (await getTranslations('common.guest'))('noteShort')}
+                  contentLocale={contentLocale}
                 />
               </div>
             </Card>
 
-            <h2 className="mb-4 mt-10 font-heading text-xl font-semibold">Other formats</h2>
+            <h2 className="mb-4 mt-10 font-heading text-xl font-semibold">{t('setup.otherFormats')}</h2>
             <ul className="space-y-4">
               {others.map((entry) => (
                 <Card as="li" key={entry.blueprint.id}>
@@ -193,11 +236,11 @@ export default async function PracticeSetupPage({
                       <div className="mt-3 flex flex-wrap items-center gap-2">
                         <FidelityBadge fidelity={entry.blueprint.fidelity} />
                         <Badge tone="neutral">
-                          {entry.blueprint.parts.reduce((n, p) => n + p.itemCount, 0)} questions
+                          {t('setup.questionCount', { count: entry.blueprint.parts.reduce((n, p) => n + p.itemCount, 0) })}
                         </Badge>
                         <Badge tone="neutral">
                           {entry.blueprint.timing === 'untimed'
-                            ? 'Untimed'
+                            ? t('setup.untimed')
                             : formatMinutes(
                                 entry.blueprint.overallTimeLimitSeconds ??
                                   entry.blueprint.parts.reduce(
@@ -211,14 +254,15 @@ export default async function PracticeSetupPage({
 
                     <div className="shrink-0">
                       {entry.available && !entitlements.can(featureForSession(entry.blueprint), config.examKey) ? (
-                        <a href={pricingPath(config.examKey, featureForSession(entry.blueprint))} className="text-sm font-semibold">
-                          {UPGRADE_LINK}
-                        </a>
+                        <Link href={pricingPath(config.examKey, featureForSession(entry.blueprint))} className="text-sm font-semibold">
+                          {t('setup.upgrade')}
+                        </Link>
                       ) : entry.available ? (
                         <StartBlueprintButton
                           examKey={config.examKey}
                           blueprintId={entry.blueprint.id}
-                          label="Start"
+                          label={t('setup.start')}
+                          contentLocale={contentLocale}
                         />
                       ) : (
                         <StatusBadge status={entry.blockedBy === 'rules' ? 'notoffered' : 'notyet'} />
@@ -229,11 +273,12 @@ export default async function PracticeSetupPage({
                   {!entry.available && entry.reason ? (
                     <p className="mt-3 border-t border-line pt-3 text-sm text-ink-muted">
                       <span className="font-medium">
-                        {entry.blockedBy === 'rules'
-                          ? 'Why this is not offered: '
-                          : 'Not enough reviewed questions yet: '}
-                      </span>
-                      {entry.reason}
+                        {entry.blockedBy === 'rules' ? t('setup.whyNotOffered') : t('setup.notEnoughYet')}
+                      </span>{' '}
+                      {/* The rules reason is the research record's own wording; the content one is ours. */}
+                      {entry.reason.kind === 'content'
+                        ? t('setup.contentShortfall', { requested: entry.reason.requested, available: entry.reason.available })
+                        : entry.reason.text}
                     </p>
                   ) : null}
                 </Card>
@@ -242,12 +287,12 @@ export default async function PracticeSetupPage({
 
             <section aria-labelledby="about-exam-heading" className="mt-10">
               <h2 id="about-exam-heading" className="font-heading text-xl font-semibold">
-                About this exam
+                {t('setup.about.title')}
               </h2>
               <p className="mt-2 text-ink-muted">{config.summary}</p>
               {hub ? (
                 <p className="mt-3">
-                  <a href={`/exams/${hub.slug}/format`}>Format, timing and scoring, with sources</a>
+                  <Link href={`/exams/${hub.slug}/format`}>{t('setup.about.formatLink')}</Link>
                 </p>
               ) : null}
             </section>
@@ -260,23 +305,24 @@ export default async function PracticeSetupPage({
           */}
           <aside className="space-y-5">
             <Card>
-              <h2 className="font-heading text-lg font-semibold">Question bank</h2>
-              <p className="mt-2 text-3xl font-semibold tabular-nums">{totalItems}</p>
+              <h2 className="font-heading text-lg font-semibold">{t('setup.bank.title')}</h2>
+              <p className="mt-2 text-3xl font-semibold tabular-nums">{format.number(totalItems)}</p>
               <p className="text-sm text-ink-muted">
-                {`reviewed questions across ${config.domains.filter((d) => eligibleCount(facets, { domain: d.slug }) > 0).length} of ${config.domains.length} topics`}
+                {t('setup.bank.coverage', {
+                  count: totalItems,
+                  covered: config.domains.filter((d) => eligibleCount(facets, { domain: d.slug }) > 0).length,
+                  total: config.domains.length,
+                })}
               </p>
-              <p className="mt-3 text-sm text-ink-muted">
-                This is a starter library, not a complete course. The questions are original and
-                AI-assisted; each was solved blind by a separate AI reviewer before publication.
-              </p>
+              <p className="mt-3 text-sm text-ink-muted">{t('setup.bank.note')}</p>
               <p className="mt-2 text-sm">
-                <a href="/about/editorial-standards">How questions are checked</a>
+                <Link href="/about/editorial-standards">{t('setup.bank.howChecked')}</Link>
               </p>
             </Card>
 
             {config.unverified.length > 0 ? (
               <Card>
-                <h2 className="font-heading text-lg font-semibold">What we could not verify</h2>
+                <h2 className="font-heading text-lg font-semibold">{t('setup.unverified.title')}</h2>
                 <ul className="mt-2 list-disc space-y-1.5 ps-5 text-sm text-ink-muted">
                   {config.unverified.slice(0, 3).map((rule) => (
                     <li key={rule}>{rule}</li>
@@ -284,7 +330,7 @@ export default async function PracticeSetupPage({
                 </ul>
                 {hub ? (
                   <p className="mt-3 text-sm">
-                    <a href={`/exams/${hub.slug}/format`}>See all sources and caveats</a>
+                    <Link href={`/exams/${hub.slug}/format`}>{t('setup.unverified.allSources')}</Link>
                   </p>
                 ) : null}
               </Card>

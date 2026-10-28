@@ -1,9 +1,10 @@
 'use client';
 
 import { useId, useState } from 'react';
+import { useLocale, useTranslations } from 'next-intl';
 import { Link, useRouter } from '@/i18n/navigation';
 import { Alert, Button, buttonClass, cx } from '@/components/ui';
-import { CodeField, NETWORK_ERROR, answerMessage, isCodeError, postJson } from '@/components/auth/email-code';
+import { CodeField, answerMessage, emailChunk, isCodeError, postJson } from '@/components/auth/email-code';
 
 /**
  * Confirms the signed-in account's address. Arriving from sign-up, a code is
@@ -22,6 +23,9 @@ export function VerifyEmailForm({
   continueHref: string;
   ttlMinutes: number;
 }) {
+  const t = useTranslations('auth');
+  // The email goes out in the language of the page it was asked for on.
+  const locale = useLocale();
   const router = useRouter();
   const id = useId();
   const [codeSent, setCodeSent] = useState(alreadySent);
@@ -36,11 +40,11 @@ export function VerifyEmailForm({
     setSubmitting(true);
     setError(null);
     setCodeInvalid(false);
-    const answer = await postJson('/api/auth/code', { purpose: 'verify-email' });
+    const answer = await postJson('/api/auth/code', { purpose: 'verify-email', locale });
     setSubmitting(false);
 
-    if (!answer) return setError(NETWORK_ERROR);
-    if (!answer.ok) return setError(answerMessage(answer, 'We could not send a code. Please try again.'));
+    if (!answer) return setError(t('errors.network'));
+    if (!answer.ok) return setError(answerMessage(t, answer, t('codeSent.sendFallback')));
     if (answer.body?.alreadyVerified) {
       router.refresh();
       return;
@@ -58,12 +62,12 @@ export function VerifyEmailForm({
 
     if (!answer) {
       setSubmitting(false);
-      return setError(NETWORK_ERROR);
+      return setError(t('errors.network'));
     }
     if (!answer.ok) {
       setSubmitting(false);
       setCodeInvalid(isCodeError(answer.code));
-      return setError(answerMessage(answer, 'We could not confirm your address. Please try again.'));
+      return setError(answerMessage(t, answer, t('verifyEmail.form.fallback')));
     }
     router.push(continueHref);
     router.refresh();
@@ -80,7 +84,7 @@ export function VerifyEmailForm({
     <form onSubmit={handleSubmit} noValidate className="space-y-5">
       <div aria-live="assertive" aria-atomic="true">
         {error ? (
-          <Alert tone="negative" role="alert" title="Address not confirmed">
+          <Alert tone="negative" role="alert" title={t('verifyEmail.form.failedTitle')}>
             <p id={errorId}>{error}</p>
           </Alert>
         ) : null}
@@ -89,11 +93,13 @@ export function VerifyEmailForm({
       {codeSent ? (
         <>
           <div role="status" aria-live="polite">
-            <Alert tone="info" title={resent ? 'New code sent' : 'Check your email'}>
+            <Alert tone="info" title={resent ? t('codeSent.resentTitle') : t('codeSent.title')}>
               <p>
-                We have sent a 6-digit code to <span className="break-all font-medium">{email}</span>
-                {resent ? ', and the earlier one no longer works' : ''}. It expires in {ttlMinutes} minutes. It can
-                take a minute to arrive, so check your spam folder too.
+                {t.rich(resent ? 'codeSent.toAddressResent' : 'codeSent.toAddress', {
+                  email,
+                  minutes: ttlMinutes,
+                  addr: emailChunk,
+                })}
               </p>
             </Alert>
           </div>
@@ -110,7 +116,7 @@ export function VerifyEmailForm({
           />
 
           <Button type="submit" size="lg" full loading={submitting}>
-            Confirm address
+            {t('verifyEmail.form.submit')}
           </Button>
 
           <button
@@ -119,23 +125,20 @@ export function VerifyEmailForm({
             disabled={submitting}
             className={cx(buttonClass({ variant: 'quiet', size: 'sm' }), '-ms-3.5 min-h-11')}
           >
-            Send a new code
+            {t('codeSent.sendNew')}
           </button>
         </>
       ) : (
         <>
-          <p>
-            We will send a 6-digit code to <span className="break-all font-medium">{email}</span>. Entering it shows
-            that the address works, so password resets and sign-in codes will reach you.
-          </p>
+          <p>{t.rich('verifyEmail.form.intro', { email, addr: emailChunk })}</p>
           <Button type="submit" size="lg" full loading={submitting}>
-            Send me a code
+            {t('verifyEmail.form.sendCode')}
           </Button>
         </>
       )}
 
       <p className="text-sm">
-        <Link href={continueHref}>Skip for now</Link>
+        <Link href={continueHref}>{t('verifyEmail.form.skip')}</Link>
       </p>
     </form>
   );

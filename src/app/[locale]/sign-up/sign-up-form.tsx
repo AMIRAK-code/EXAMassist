@@ -1,8 +1,10 @@
 'use client';
 
 import { useId, useState } from 'react';
+import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/navigation';
 import { Alert, Button, buttonClass, cx, fieldClass } from '@/components/ui';
+import { answerMessage, isPasswordError, passwordMessage, postJson } from '@/components/auth/email-code';
 
 /**
  * Account creation.
@@ -11,13 +13,6 @@ import { Alert, Button, buttonClass, cx, fieldClass } from '@/components/ui';
  * server's own verdict - which is the one that counts - is shown against the
  * field it belongs to.
  */
-
-interface ApiErrorBody {
-  error?: { code?: string; message?: string; detail?: { retryAfterSeconds?: number } };
-}
-
-/** Codes the password policy returns; these belong next to the password box. */
-const PASSWORD_CODES = new Set(['too-short', 'too-long', 'contains-email', 'too-common', 'repeated']);
 
 export function SignUpForm({
   next,
@@ -29,6 +24,9 @@ export function SignUpForm({
   /** Whether this deployment sends account codes by email. */
   emailCodes: boolean;
 }) {
+  const t = useTranslations('auth');
+  // The confirmation email goes out in the language the account is created in.
+  const locale = useLocale();
   const router = useRouter();
   const id = useId();
   const [email, setEmail] = useState('');
@@ -55,76 +53,58 @@ export function SignUpForm({
 
     // Say the obvious thing before spending a request on it.
     if (password.length < minPasswordLength) {
-      setPasswordError(
-        `Use at least ${minPasswordLength} characters. A short phrase works well.`,
-      );
+      setPasswordError(passwordMessage(t, 'too-short', minPasswordLength));
       return;
     }
 
     setSubmitting(true);
 
-    const response = await fetch('/api/auth/sign-up', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'examer' },
-      body: JSON.stringify({
-        email,
-        password,
-        displayName: displayName.trim() || undefined,
-        isMinor,
-      }),
-    }).catch(() => null);
+    const answer = await postJson('/api/auth/sign-up', {
+      email,
+      password,
+      displayName: displayName.trim() || undefined,
+      isMinor,
+      locale,
+    });
 
-    if (!response) {
+    if (!answer) {
       setSubmitting(false);
-      setError('We could not reach the server. Check your connection and try again.');
+      setError(t('errors.network'));
       return;
     }
 
-    const body: (ApiErrorBody & { verificationSent?: boolean }) | null = await response.json().catch(() => null);
-
-    if (!response.ok) {
+    if (!answer.ok) {
       setSubmitting(false);
-      const code = body?.error?.code;
-      const message = body?.error?.message ?? 'That account could not be created.';
-
-      if (code && PASSWORD_CODES.has(code)) {
-        setPasswordError(message);
+      if (isPasswordError(answer.code)) {
+        setPasswordError(passwordMessage(t, answer.code, minPasswordLength));
         return;
       }
-      if (code === 'rate-limited') {
-        const retry = body?.error?.detail?.retryAfterSeconds;
-        const minutes = retry ? Math.ceil(retry / 60) : null;
-        setError(
-          `Too many accounts have been created from this connection. Please try again${
-            minutes ? ` in about ${minutes} minute${minutes === 1 ? '' : 's'}` : ' later'
-          }.`,
-        );
-        return;
-      }
-      if (code === 'invalid-request') {
-        setError('Check the email address — that one does not look like a valid address.');
+      if (answer.code === 'invalid-request') {
+        setError(t('errors.invalidEmail'));
         setEmailInvalid(true);
         return;
       }
-      setError(message);
+      setError(answerMessage(t, answer, t('signUp.form.fallback'), 'signUpRateLimited'));
       return;
     }
 
     // A confirmation code is on its way: ask for it now, while the email is
     // fresh. The page lets them skip straight on to where they were going.
     router.push(
-      body?.verificationSent
+      answer.body?.verificationSent
         ? `/verify-email?sent=1&next=${encodeURIComponent(destination)}`
         : destination,
     );
     router.refresh();
   }
 
+  const remaining = minPasswordLength - password.length;
+
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-5">
       <div aria-live="assertive" aria-atomic="true">
         {error ? (
-          <Alert tone="negative" role="alert" title="Account not created">
+          <Alert tone="negative" role="alert" title={t('signUp.form.failedTitle')}>
             <p id={errorId}>{error}</p>
           </Alert>
         ) : null}
@@ -132,7 +112,7 @@ export function SignUpForm({
 
       <div>
         <label htmlFor={`${id}-email`} className="mb-1.5 block text-sm font-medium">
-          Email address
+          {t('fields.email')}
         </label>
         <input
           id={`${id}-email`}
@@ -153,16 +133,14 @@ export function SignUpForm({
           className={fieldClass()}
         />
         <p id={`${id}-email-hint`} className="mt-1.5 text-sm text-ink-muted">
-          {emailCodes
-            ? 'Used to sign in and for account codes, such as one to confirm this address or reset your password. We send no marketing email.'
-            : 'Used to sign in and nothing else. We send no marketing email.'}
+          {emailCodes ? t('signUp.form.emailHintCodes') : t('signUp.form.emailHint')}
         </p>
       </div>
 
       <div>
         <div className="mb-1 flex flex-wrap items-center justify-between gap-2">
           <label htmlFor={`${id}-password`} className="text-sm font-medium">
-            Password
+            {t('fields.password')}
           </label>
           <button
             type="button"
@@ -171,7 +149,7 @@ export function SignUpForm({
             aria-controls={`${id}-password`}
             className={cx(buttonClass({ variant: 'quiet', size: 'sm' }), 'min-h-11 -me-3')}
           >
-            Show password
+            {t('fields.showPassword')}
           </button>
         </div>
         <input
@@ -188,28 +166,21 @@ export function SignUpForm({
           className={fieldClass()}
         />
         <p id={`${id}-password-hint`} className="mt-1.5 text-sm text-ink-muted">
-          At least {minPasswordLength} characters. Length matters more than symbols, so a short
-          phrase only you would write — three unrelated words, for example — is both stronger and
-          easier to type on a phone. Do not reuse a password from another site.
+          {t('signUp.form.passwordHint', { min: minPasswordLength })}
         </p>
         <p
           id={`${id}-password-state`}
           aria-live="polite"
           className={`mt-1.5 text-sm ${passwordError ? 'text-negative' : 'text-ink-subtle'}`}
         >
-          {passwordError
-            ? passwordError
-            : tooShort
-              ? `${minPasswordLength - password.length} more character${
-                  minPasswordLength - password.length === 1 ? '' : 's'
-                } to go.`
-              : null}
+          {passwordError ? passwordError : tooShort ? t('signUp.form.remaining', { count: remaining }) : null}
         </p>
       </div>
 
       <div>
         <label htmlFor={`${id}-name`} className="mb-1.5 block text-sm font-medium">
-          Display name <span className="font-normal text-ink-muted">(optional)</span>
+          {t('signUp.form.displayName')}{' '}
+          <span className="font-normal text-ink-muted">{t('signUp.form.optional')}</span>
         </label>
         <input
           id={`${id}-name`}
@@ -223,7 +194,7 @@ export function SignUpForm({
           className={fieldClass()}
         />
         <p id={`${id}-name-hint`} className="mt-1.5 text-sm text-ink-muted">
-          What we call you on your own pages. A first name or a nickname is plenty.
+          {t('signUp.form.displayNameHint')}
         </p>
       </div>
 
@@ -239,24 +210,23 @@ export function SignUpForm({
             aria-describedby={`${id}-minor-hint`}
             className="size-5 shrink-0 accent-[var(--color-accent)]"
           />
-          I am under 16 (optional)
+          {t('signUp.form.minor')}
         </label>
         <div className="ps-8">
           <div>
             <p id={`${id}-minor-hint`} className="mt-1 text-sm text-ink-muted">
-              Ticking this only switches off optional data collection for your account; we never ask
-              for a date of birth, and it changes nothing about the practice you get.
+              {t('signUp.form.minorHint')}
             </p>
           </div>
         </div>
       </div>
 
       <Button type="submit" size="lg" full loading={submitting}>
-        Create account
+        {t('signUp.form.submit')}
       </Button>
 
       <p role="status" aria-live="polite" className="text-sm text-ink-muted">
-        {submitting ? 'Creating your account…' : null}
+        {submitting ? t('signUp.form.creating') : null}
       </p>
     </form>
   );

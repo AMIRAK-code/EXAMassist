@@ -1,5 +1,9 @@
-import { notFound, redirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
+import { redirect } from '@/i18n/navigation';
+import { pageAlternates } from '@/i18n/alternates';
+import type { Locale } from '@/i18n/locales';
 import { getDb } from '@/lib/db';
 import { getCurrentUser } from '@/lib/auth/session';
 import { AttemptError, getAttemptState } from '@/lib/attempts/service';
@@ -13,15 +17,24 @@ import { loadEntitlements } from '@/lib/billing/entitlements';
 // A live attempt is personal state: never cached, never indexed.
 export const dynamic = 'force-dynamic';
 
-export const metadata: Metadata = {
-  title: 'Practice session',
-  robots: { index: false, follow: false },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; id: string }>;
+}): Promise<Metadata> {
+  const { locale, id } = await params;
+  const t = await getTranslations({ locale, namespace: 'player' });
+  return {
+    title: t('metaTitle'),
+    robots: { index: false, follow: false },
+    alternates: (await pageAlternates(params, `/attempt/${id}`)),
+  };
+}
 
-export default async function AttemptPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
+export default async function AttemptPage({ params }: { params: Promise<{ locale: string; id: string }> }) {
+  const { locale, id } = await params;
   const user = await getCurrentUser();
-  if (!user) redirect(`/sign-in?next=/attempt/${id}`);
+  if (!user) return redirect({ href: `/sign-in?next=/attempt/${id}`, locale });
 
   let state;
   try {
@@ -32,7 +45,7 @@ export default async function AttemptPage({ params }: { params: Promise<{ id: st
   }
 
   // A finished attempt belongs on the results page.
-  if (state.status !== 'in_progress') redirect(`/attempt/${id}/results`);
+  if (state.status !== 'in_progress') redirect({ href: `/attempt/${id}/results`, locale });
 
   // The AI tutor is offered only where the learner's plan includes it; the
   // server refuses it anywhere else in any case.

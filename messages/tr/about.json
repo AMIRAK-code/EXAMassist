@@ -1,1 +1,453 @@
-{}
+{
+  "shared": {
+    "home": "Ana sayfa",
+    "eyebrow": "{name} hakkında",
+    "inShort": "Kısaca",
+    "byline": "Hazırlayan: {publisher} · Yayın tarihi: <published>{publishedDate}</published> · Güncelleme: <updated>{updatedDate}</updated>"
+  },
+  "editorialStandards": {
+    "meta": {
+      "title": "Editoryal standartlar",
+      "description": "UniExamer alıştırma sorularını nasıl oluşturur, kontrol eder ve yayımlar: yapay zekâ desteğiyle yazılan özgün sorular, ayrı bir yapay zekâ denetçisinin körlemesine çözümü, cevap anahtarıyla mekanik karşılaştırma ve sessizce düzeltmek yerine karantina."
+    },
+    "title": "Editoryal standartlar",
+    "lead": "Bir soru herhangi birine gösterilmeden önce nelerin doğru olması gerektiği ve sonrasında onun hakkında neleri iddia etmeyi reddettiğimiz.",
+    "inShort": "{name} üzerindeki her alıştırma sorusu, yapay zekâ desteğiyle hazırlanmış özgün bir içeriktir. Yayımlanmadan önce ayrı bir yapay zekâ denetçisi soruyu önerilen cevabı görmeden sıfırdan çözer; bu çözüm ile cevap anahtarı arasındaki karşılaştırmayı da uygulamanın kullandığı puanlama kodunun aynısı yapar. İkisi uyuşmadığında soru sessizce düzeltilmez, karantinaya alınır. Bugün soru bazında kayıtlı bir insan incelemesi yoktur ve bunu ima etmek yerine açıkça söylüyoruz. Zorluk etiketleri kalibre edilmiş istatistikler değil, editoryal değerlendirmelerdir; bir sınavın formatı hakkında öne sürdüğümüz her bilgi, sınavı düzenleyen kuruma dayandırılır ve tarihlendirilir.",
+    "original": {
+      "heading": "1. Tüm sorular özgündür",
+      "p1": "Soru sözleşmesi, öğrenciye ulaşan her içerik için yalnızca tek bir köken türüne izin verir: bize ait olan <code>original</code>. Resmî soru bankalarını, kullanımdan kaldırılmış sınav formlarını ya da başka bir yayıncının sorularını çoğaltmaz, uyarlamaz veya başka sözcüklerle yeniden yazmayız; başka kökenli bir sorunun yayımlanmasına izin verecek bir kod yolu da yoktur.",
+      "p2": "Her soru kaydı, soruyu taslak olarak yazan rolü belirtir, yazımına bir modelin yardım ettiğini kaydeder ve sorunun hak durumunu taşır. Bir modelin yazımına yardım ettiği her şey bankaya <code>draft</code> (taslak) olarak girer ve hiçbir soru aşağıdaki adımların tümünden geçmeden öğrencilere ulaşmaz."
+    },
+    "states": {
+      "heading": "2. Bir sorunun bulunabileceği beş durum",
+      "intro": "Yayında olmak bir görüş değil, bir durumdur. Bir soru yalnızca bu beş durumdan birinde olabilir ve bunlardan yalnızca biri öğrencilere sunulur.",
+      "draft": "Yazılıyor. Bir modelin yazımına yardım ettiği her şey buradan başlar ve sırayı atlayamaz. Taslaklar hiçbir zaman bir öğrenciye gösterilmez.",
+      "inReview": "Körlemesine bağımsız çözüm için sırada. İnceleme dışa aktarımının aldığı tek durum budur.",
+      "published": "Tüm otomatik kontrollerden ve bağımsız çözümden geçti. Alıştırmalarda, seviye belirleme testlerinde ve deneme sınavlarında yalnızca yayımlanmış sorular sunulur.",
+      "quarantined": "Denetçi cevap anahtarına katılmadı ya da yalnızca tek bir cevabın doğru olduğunu teyit edemedi. Soru, nedeni kaydedilerek bankadan çekilir ve yeniden yazılıp yeni bir körlemesine çözümden geçene kadar dışarıda kalır.",
+      "retired": "Bilinçli olarak geri çekildi: yerine yenisi geldi ya da sınavdaki bir değişiklik onu yanlış hâle getirdi. Ona zaten atıfta bulunan sonuçlara dokunulmaz, çünkü her oturum sorunun değiştirilemez bir sürümüne bağlıdır."
+    },
+    "automatic": {
+      "heading": "3. Herhangi bir incelemeden önce kodun kontrol ettikleri",
+      "intro": "Derleme sürecinin bir parçası olarak depodaki her sorunun üzerinden bir doğrulayıcı geçer. Bu kontroller ucuz, sıkıcı ve kesindir: incelemenin, sorunun iyi biçimlendirilip biçimlendirilmediğine değil, <em>doğru</em> olup olmadığına harcanması için vardır.",
+      "checks": {
+        "duplicates": "Aynı anlama gelen cevap seçenekleri reddedilir. Seçenek metni önce sayısal olarak normalleştirilir; böylece “0.50”, “.5” ve “1/2” iki kez sunulmuş tek bir cevap olarak çakışır. Noktalama yalnızca sayısal bir okuma denenirken yok sayılır, çünkü SAT ve ACT’de çoğu zaman sorunun kendisi noktalamadır.",
+        "keyExists": "Cevap anahtarı var olan seçenekleri göstermeli ve türü, sorunun cevap türüyle eşleşmelidir. Tüm seçenekleri içeren bir “uygun olanların hepsini seçin” anahtarı, gerçek bir soru olmadığı gerekçesiyle reddedilir.",
+        "numeric": "Sayısal cevaplar tutarlı olmalıdır: en küçük değeri en büyük değerini aşan bir aralık ya da negatif bir tolerans olamaz.",
+        "distractors": "Her yanlış seçeneğin neden yanlış olduğuna dair yazılı bir gerekçesi olmalıdır. Eksik ya da özensiz bir çeldirici gerekçesi yayımlanmayı engeller.",
+        "explanationLength": "Açıklamalar gerçekten açıklamalıdır: 40 karakterden kısa bir açıklama hiç kabul edilmez.",
+        "explanationNamesOption": "Bir seçeneği cevap olarak adlandıran bir açıklama (“cevap C’dir”, “dolayısıyla A seçeneği doğru olmalıdır” gibi) anahtardaki seçeneği adlandırmalıdır. Kontrol yalnızca açık ifadeleri okur; bu nedenle her harfin doğru olduğunun bir kanıtı değil, bir güvenlik ağıdır.",
+        "references": "Bir parçaya, grafiğe ya da tabloya atıfta bulunan bir soru, gerçekten var olan bir parçaya, grafiğe ya da tabloya atıfta bulunmalıdır.",
+        "reviewer": "Yayımlanmış bir soru bir denetçi belirtmelidir ve denetçi, sorunun yazarı olmamalıdır.",
+        "solveRecord": "Yayımlanmış bir soru, bir inceleme tarihi ve çözücünün anahtara katıldığı ve cevabın tekliğini teyit ettiği eksiksiz bir bağımsız çözüm kaydı taşımalıdır.",
+        "difficulty": "Ampirik olarak kalibre edildiği belirtilen zorluk derecesi uyarıyla işaretlenir, çünkü kalibrasyon yapmamızı sağlayacak doğrulanmış yanıt verilerine sahip değiliz."
+      },
+      "outro": "Bunlardan herhangi birini geçemeyen bir soru yayımlanmaz. Derleme de onunla birlikte başarısız olur."
+    },
+    "blindSolve": {
+      "heading": "4. Ayrı bir yapay zekâ denetçisinin körlemesine çözümü",
+      "intro": "Tüm süreç bu kontrol üzerine kurulu olduğundan, nasıl işlediğini tam olarak anlatmaya değer. Denetçi, soruyu taslak olarak yazan modelden ayrı bir yapay zekâ modelidir. Önerilen cevabı görebilen bir denetçi soruyu çözmüyor, ona katılıyordur. Bu yüzden denetçi cevabı hiçbir zaman görmez.",
+      "strippedHeading": "Soru grubu temizlenir, ardından temizlik kontrol edilir",
+      "stripped": "İncelemeyi bekleyen sorular; cevap anahtarı, açıklama ve çeldirici gerekçeleri çıkarılarak ayrı bir dosyaya aktarılır. Dışa aktarım ardından yazdığı dosyayı yeniden okur ve bu üç alandan herhangi biri dosyanın herhangi bir yerinde görünürse açıkça hata vererek durur. Bir sızıntı, incelemenin kalitesini sessizce düşürmek yerine grubun tamamını durdurur.",
+      "scratchHeading": "Denetçi soruyu sıfırdan çözer",
+      "scratch": "Denetçi soru kökünü, yönergeleri, parçayı ya da grafiği ve cevap seçeneklerini alır; başka hiçbir şeyi değil. Bunlarla birlikte, o türden bir cevabın tam olarak nasıl ifade edileceğine dair bir açıklama da verilir. Denetçi ulaştığı cevabı, çalışma notlarını ve yalnızca tek bir seçeneğin savunulabilir olduğunu teyit edip etmediğini kaydeder.",
+      "mechanicalHeading": "Karşılaştırma mekaniktir",
+      "mechanical": "Denetçiye hiçbir zaman katılıp katılmadığı sorulmaz. Cevabı bir yanıta dönüştürülür ve bir öğrencinin oturumunu puanlayan puanlama motorunun aynısından geçirilir; yazarın anahtarıyla eşleşip eşleşmediğine motor karar verir. Bu, editoryal incelemedeki en yaygın hata biçimini ortadan kaldırır: amaçlanan cevabı yarım yamalak tanıyıp kendini ona ikna eden bir denetçi.",
+      "quarantineHeading": "Uyuşmazlık düzeltmeye değil, karantinaya yol açar",
+      "quarantine": "Çözülen cevap anahtarla eşleşirse <em>ve</em> teklik teyit edildiyse, soru denetçinin rolü, tarih ve çözüm kaydının tamamı eklenerek yayımlanır. Diğer tüm durumlarda (bir uyuşmazlık ya da teyit edilmemiş teklik) soru, denetçinin cevabı ve notları gerekçeye yazılarak <code>quarantined</code> (karantinada) durumuna geçer ve canlı bankadan çıkar. Bu süreçte hiçbir adım, yazarın “ne demek istediğini” tahmin etmez. Tartışmalı bir soru, yeniden yazılıp yeni bir körlemesine çözümden geçene kadar dışarıda kalır."
+    },
+    "roles": {
+      "heading": "5. Kayıtlara göre kim ne yapıyor",
+      "intro": "Bir modelin yaptığı kontrol, bir insanın yaptığı kontrolle aynı şey değildir; bu yüzden liste adım adım aşağıdadır. Soru kayıtlarının gerçekte neler içerdiğini anlatır.",
+      "drafting": {
+        "term": "Taslak yazımı",
+        "value": "Sınavın resmî konu sınıflandırmasına göre çalışan bir yapay zekâ modeli. Yayımlanan her kayıt, bir modelin yardım ettiğini belirtir ve taslağı yazanı bir kişi olarak değil, bir rol olarak adlandırır."
+      },
+      "checks": {
+        "term": "Otomatik kontroller",
+        "value": "Kod: 3. bölümde anlatılan ve her derlemede her sorunun üzerinden geçen içerik doğrulayıcısı."
+      },
+      "blindSolve": {
+        "term": "Körlemesine çözüm",
+        "value": "Soruyu cevap anahtarı, açıklaması ve çeldirici notları olmadan alan ayrı bir yapay zekâ denetçisi. Rolü soruya kaydedilir ve hiçbir zaman taslağı yazan rolle aynı değildir."
+      },
+      "comparison": {
+        "term": "Anahtarla karşılaştırma",
+        "value": "Kod: öğrencilerin cevaplarını puanlayan puanlama motorunun aynısı."
+      },
+      "humanReview": {
+        "term": "Her sorunun insan tarafından incelenmesi",
+        "value": "Bugün kayıtlı değil. Hiçbir soru kaydında bir insan denetçinin adı geçmez; bu yüzden böyle bir inceleme olduğunu iddia etmiyoruz. Açıklamalar da öğretim kalitesi açısından henüz bağımsız olarak yeniden okunmuyor."
+      },
+      "reports": {
+        "term": "Öğrenci bildirimleri",
+        "value": "Yalnızca yetkili rollerin erişebildiği bir editör alanında, giriş yapmış bir editör hesabı tarafından değerlendirilir."
+      }
+    },
+    "limits": {
+      "heading": "6. İncelemenin ortaya koymadıkları",
+      "badgeEditorial": "Zorluk etiketleri editoryaldir",
+      "badgeNotCalibrated": "Kalibre edilmemiştir",
+      "badgeNoPrediction": "Puan tahmini yok",
+      "p1": "Her soru kolay, orta ya da zor etiketi taşır ve bu etiketlerin her biri, sorunun ne kadar zor olması gerektiğine dair bizim editoryal değerlendirmemizdir. Sınava girenlerin verilerine göre kalibre edilmemiştir, çünkü kalibrasyon yapmamızı sağlayacak doğrulanmış yanıt verilerine sahip değiliz; aksini iddia eden bir etiket, uydurduğumuz bir istatistik olurdu. Bir sorunun zorluk dayanağı “ampirik” olarak belirtilmişse doğrulayıcı bunu işaretler.",
+      "p2": "Aynı nedenle: bir inceleme size bir sorunun doğru ve açık olduğunu söyler. Bu sorulardan oluşan bir setin sizi bir sınavın bildirilen ölçeğinde nereye yerleştireceği hakkında hiçbir şey söylemez. Neden ölçeklenmiş puan, yüzdelik dilim ya da kabul tahmini yayımlamadığımızı <link>puanlamamız nasıl işler</link> sayfasında açıklıyoruz."
+    },
+    "examFacts": {
+      "heading": "7. Sınav bilgileri nasıl doğrulanır ve tarihlendirilir",
+      "p1": "Format, süre, gezinme, hesap makinesi kuralları ve puanlama ezberden yazılmaz. Her sınavın bir araştırma kaydı vardır: doğrulanmış iddiaları, bunların dayandığı kaynakları (yayıncısı ve erişim durumuyla birlikte), bir doğrulama tarihini ve en önemlisi, sınavı düzenleyen kurumun <strong>yayımlamadığı</strong> şeylerin açık bir listesini içerir.",
+      "p2": "Depodaki araştırma belgeleri bu kayıtlardan saf bir dönüşümle, bilinçli olarak üretilir; böylece belgeler kayıtta zaten bulunmayan hiçbir şeyi öne süremez. Bir bilgi kayıtta değişir ve belge onu izler; hiçbir zaman tersi olmaz.",
+      "p3": "Doğrulanamayanlar listesinin gerçek bir etkisi vardır. Bir kural doğrulanamadığında, ona bağlı özellik tahminle çalıştırılmak yerine <em>devre dışı bırakılır</em> ve sınav sayfası hangi özelliğin neden devre dışı olduğunu belirtir. Bir şeyi yaklaşık olarak belirlediğimiz durumlarda bu yaklaşım, geçerli olduğu sayfada bize ait olarak etiketlenir: örneğin Digital SAT simülasyonumuzdaki ikinci aşama yönlendirme eşiği, College Board’un değil, bizim yayımladığımız kendi kuralımızdır.",
+      "p4": "Kayıt dönemleri ve sınav tarihleri gibi tarihe bağlı bilgiler, kural bilgilerinden daha kısa aralıklarla gözden geçirilir; kural bilgileri ise bir simülasyonun işleyişini değiştiren her sürümden önce yeniden doğrulanır. Mevcut tüm sınav kayıtları <time>{date}</time> tarihinde doğrulandı."
+    },
+    "corrections": {
+      "heading": "8. Düzeltmeler",
+      "p1": "Kontroller pek çok şeyi yakalar ama hiçbir zaman her şeyi değil. Bir soru yanlış, belirsiz ya da kötü ifade edilmiş görünüyorsa bize bildirin. Bildiriminiz, soru ve gördüğünüz sürümü eklenmiş olarak editör alanındaki inceleme sırasına girer.",
+      "p2": "Düzeltmeler, bir öğrencinin daha önce gördüğü şey düzenlenerek değil, her zaman yeni sürümler olarak yapılır. Eylül 2026’da yapılan bir denetim, cevap seçeneklerinin yeniden sıralanması nedeniyle yayımlanmış 104 açıklamanın seçeneklere hâlâ eski harfleriyle atıfta bulunduğunu ve bunların 91’inin cevap olarak yanlış bir seçeneği gösterdiğini ortaya koydu. Her biri yeni bir sürüm olarak düzeltildi; ayrı bir yapay zekâ denetçisi seçenek atıflarını yeniden kontrol edene ve yeni bir körlemesine çözüm başarılı olana kadar yeni oturumlardan çekildi, ardından geri getirildi. Önceki oturumlar kendilerine gösterilen sürümü korur. Aynı ay yapılan ikinci bir kontrolde ayrı bir yapay zekâ denetçisi, yayımlanmış geri kalan 180 açıklama ve çeldirici notunun seçenekler hakkında öne sürdüğü her iddiayı test etti. Tüm cevap anahtarlarını teyit etti ve 37 soruda yanlış ifadeler buldu; örneğin, ilgili seçeneğe götürmeyen bir hatayı anlatan bir not. Bunlar, hafta etiketleri metniyle uyuşmayan bir grafikle birlikte aynı şekilde düzeltilip incelendi.",
+      "cardTitle": "Bir soruda sorun mu buldunuz?",
+      "cardBody": "Hesap gerekmez. Yaklaşık bir dakika sürer ve kötü bir soruyu bankadan çıkarmanın en hızlı yoludur.",
+      "cardLink": "Bir soruyu bildirin →"
+    },
+    "refusals": {
+      "heading": "9. Yapmayacaklarımız",
+      "reproduce": "Resmî bir soruyu çoğaltmak, uyarlamak ya da başka sözcüklerle yeniden yazmak. Buradaki her soru bize aittir ve içerik sözleşmesi başka hiçbir şeye izin vermez.",
+      "scaled": "Ölçeklenmiş puan, yüzdelik dilim, puan aralığı ya da kabul olasılığı bildirmek. Kapsadığımız sınavları düzenleyen kurumların hiçbiri, böyle bir sayıyı dürüst kılacak eşitleme (equating) yöntemini yayımlamıyor.",
+      "target": "Rekabete dayalı bir sıralamayla karar verilen bir kabul süreci için “hedef puan” sunmak.",
+      "ours": "Bize ait olan bir zorluk etiketini, yönlendirme kuralını ya da süre payını sınavın kendisininmiş gibi sunmak.",
+      "dates": "Güncel görünmesi için bir yayın ya da güncelleme tarihini yenilemek. Bu sitedeki tarihler, çalışmanın yapıldığı tarihlerdir.",
+      "affiliation": "Herhangi bir sınav kurumuyla bağlantımız olduğunu ya da onun tarafından onaylandığımızı iddia etmek. İkisi de söz konusu değil; sitenin alt bilgisindeki not, bu konudaki eksiksiz açıklamamızdır."
+    }
+  },
+  "howScoringWorks": {
+    "meta": {
+      "title": "Puanlamamız nasıl işler",
+      "description": "UniExamer’ın bir alıştırma oturumundan sonra neleri bildirdiği (ham sonuçlar, konuya göre doğruluk ve tempo) ve neden hiçbir sınav için ölçeklenmiş puan, yüzdelik dilim ya da kabul tahmini bildirmediği; her sınavın doğru, yanlış ve boş cevaplara ilişkin kurallarıyla birlikte."
+    },
+    "title": "Puanlamamız nasıl işler",
+    "lead": "Buradaki bir alıştırma sonucunun ne anlama geldiği, bilinçli olarak neleri içermediği ve her sınavın gerçekte uyguladığı puanlama kuralı.",
+    "inShort": "Sayabildiklerimizi bildiriyoruz: kaç soruyu doğru cevapladığınızı, kaçını boş bıraktığınızı, bunun konulara ve becerilere göre nasıl dağıldığını, ne kadar süre harcadığınızı ve sınavda gerçek bir yanlış cevap cezası varsa cezalar düşülmüş puanınızı. Hiçbir sınav için ölçeklenmiş puan bildirmiyoruz, çünkü ham cevapları ölçeklenmiş puana dönüştüren tablolar, kapsadığımız sınavların hiçbiri için yayımlanmıyor. Yüzdelik dilim ya da kabul sonucuna ilişkin bir tahmin de bildirmiyoruz.",
+    "report": {
+      "heading": "1. Bir sonuç neleri içerir",
+      "raw": {
+        "term": "Ham sonuçlar",
+        "value": "Kaç soruyu doğru, kaçını yanlış cevapladığınız ve kaçını boş bıraktığınız."
+      },
+      "points": {
+        "term": "Cezalı sınavlarda puanlar",
+        "value": "Yanlış cevap cezası olan bir sınavda, sınavın kendi yayımladığı cezayı uygulayarak alınabilecek toplam puan üzerinden kazandığınız puanı da gösteririz. Cezası olmayan bir sınavda puanlar ile ham sonuç aynı sayıdır."
+      },
+      "topic": {
+        "term": "Konuya ve beceriye göre doğruluk",
+        "value": "Aynı dağılımın bölüm, içerik alanı ve tek tek beceriler bazında ayrıştırılmış hâli; böylece zayıf bir alan ortalamanın içinde kaybolmaz, görünür olur."
+      },
+      "pacing": {
+        "term": "Tempo",
+        "value": "Toplam süre ve soru başına ortanca süre; süreli bir formatta bu genellikle ham sonuçtan daha fazlasını açıklar."
+      },
+      "session": {
+        "term": "Oturumun ne olduğu ve ne olmadığı",
+        "value": "Her sonuç; girdiğiniz formatın gerçek sınava ne kadar yakın olduğunu, sınavın resmî puanlama kurallarını yayımlanmış bilgiler olarak ve sınavı düzenleyen kurumun yayımlamadığı kuralların listesini taşır."
+      },
+      "topicHeading": "Konuya göre doğruluk nasıl görünür",
+      "topicBody": "Her rakam, dayandığı soru sayısıyla birlikte verilir. Bir konuda {min} cevaptan az varsa panel bir yüzde yazmak yerine bunu belirtir."
+    },
+    "refuse": {
+      "heading": "2. Bir sonuç neleri asla içermez ve neden",
+      "intro": "Bunlar henüz geliştirmediğimiz özellikler değil. Sınav kurumlarının yayımladıklarından dürüstçe üretilemeyeceğine karar verdiğimiz sayılardır; bu yüzden veritabanımızda bildirilen puanı tutacak alan, bir tahminle doldurulmak yerine boş bırakılır.",
+      "scaled": {
+        "claim": "Ölçeklenmiş bir puan (400–1600, 1–36, 120–180, 205–805, 130–170 vb.)",
+        "why": "Bu ölçeklerin her biri eşitleme (equating) ile üretilir ve kapsadığımız sınav kurumlarının hiçbiri eşitlemenin kullandığı tabloları, madde parametrelerini ya da dönüşümleri yayımlamaz. Bunlar olmadan üretilen bir sayı, ne kadar özenle sunulursa sunulsun uydurma olur."
+      },
+      "percentile": {
+        "claim": "Bir yüzdelik dilim ya da puan aralığı",
+        "why": "Yüzdelik dilim, bir referans popülasyonu hakkında bir ifadedir. Kalibre edilmiş bir referans popülasyonumuz yok; bu siteyi kullanmış kişilere göre hesaplanan bir yüzdelik dilim, sınava girenleri değil, ziyaretçilerimizi tanımlar."
+      },
+      "admission": {
+        "claim": "Bir kabul olasılığı ya da “hedef puan”",
+        "why": "Kabul kararlarını kurumlar, kendi belirledikleri ölçütlerle verir ve kapsadığımız süreçlerin birçoğu (Bocconi’ninki de dahil) hiç yayımlanmış taban puanı olmayan rekabetçi sıralamalardır. Bir alıştırma oturumundan bir kabul sonucuna giden dürüst bir hesap yoktur."
+      },
+      "readiness": {
+        "claim": "Ölçüm kılığına sokulmuş bir hazırlık değerlendirmesi",
+        "why": "10 cebir sorusundan 6’sını doğru cevapladığınızı ve her birine 2 dakika harcadığınızı size seve seve söyleriz. Bunu, sınav günü nasıl bir performans göstereceğinize dair bir iddiaya dönüştürmeyiz."
+      }
+    },
+    "twoCases": {
+      "heading": "3. Kuralın neden tek bir kural olmadığını gösteren iki sınav",
+      "intro": "“Ölçeklenmiş puan yok” tek bir politika gibi görünür. Aslında birbirinden çok farklı iki yönden varılan aynı sonuçtur ve bunun en açık örneği Digital SAT ile Online Bocconi Test’tir.",
+      "satHeading": "Digital SAT: ceza yok, ancak ölçek aritmetik değil",
+      "satBadge": "Yanlış cevaba ceza yok",
+      "satP1": "Yanlış bir cevap da boş bırakılan bir soru da sıfır puan alır; bu yüzden gerçek sınavda tahmin etmek hiçbir zaman soruyu boş bırakmaktan kötü değildir. Bu kısım basit. Ölçek ise öyle değil: College Board 200–800 arasındaki bölüm puanını doğru cevap sayısından değil, uygulanan belirli maddeler üzerinden Madde Tepki Kuramı (Item Response Theory) ile üretir. Kurumun kendi açıklamasına göre bir bölümde aynı sayıda soruyu doğru cevaplayan iki öğrenci farklı bölüm puanları alabilir.",
+      "satP2": "Madde parametreleri ve ölçeğe dönüşüm yayımlanmadığından, “sorularımızda 44 sorudan 38 doğru” sonucunu bir SAT bölüm puanına dönüştürecek bir hesap yoktur. 400–1600 ölçeği sınav sayfalarımızda sınava ilişkin bir bilgi olarak yer alır. Sonucunuzu bu ölçeğe yerleştirmeyiz.",
+      "bocconiHeading": "Online Bocconi Test: ceza gerçek ve ham toplam, puanın ta kendisi",
+      "bocconiBadge": "Yanlış cevap cezası",
+      "bocconiP1": "Bocconi puanlamasını açıkça yayımlar: doğru bir cevap +1, boş bırakılan bir cevap 0 puan alır, yanlış bir cevap ise 0,2 puana mal olur; yalnızca üç seçenekle sunulan eleştirel düşünme sorularında bu ceza 0,33 puandır. Ceza sınava değil soruya aittir; aşağıdaki tablonun sınav düzeyindeki kuralı göstermesinin ve motorumuzun daha ağır cezayı onu taşıyan sorulara uygulamasının nedeni budur.",
+      "bocconiP2": "Bundan iki sonuç çıkar ve ikisi de kuramsal değil, pratiktir. Birincisi, burada boş bırakmak gerçekten de körü körüne tahmin etmekten iyidir; bu, SAT’de işe yarayan tavsiyenin tam tersidir. İkincisi, tahmin edilecek bir ölçek yoktur: Bocconi’nin bildirdiği sonuç, alan bazındaki alt puanlar ve doğru, yanlış ve boş cevap sayılarıyla birlikte, 50 üzerinden cezalar düşülmüş ham toplamın <em>ta kendisidir</em>. Bu yüzden sonuç ekranımız size aynı türden bilgiyi gösterir ve orada durur.",
+      "bocconiP3": "Bocconi, 17’nin altında puan alan bir adayın “seçim sürecinde değerlendirmeye alınmayacağını” belirtir. Bu bir geçme notu ya da hedef değil, bir uygunluk alt sınırıdır: kabul, testin %55, lise not ortalamasının %45 ağırlıkla hesaplandığı rekabetçi bir sıralamayla belirlenir ve hiçbir program ya da dönem için taban puan yayımlanmaz."
+    },
+    "table": {
+      "heading": "4. Kapsadığımız her sınavın puanlama kuralı",
+      "intro": "Bunlar sınavların kendi yayımladığı kurallardır ve motorumuzun bir alıştırma oturumuna uyguladığı kurallar da bunlardır. Son sütundaki bildirilen ölçek sınava ilişkin bir bilgidir: onu kaydederiz, ancak bu ölçekte bir puan üretmeyiz.",
+      "caption": "Cevap başına verilen puanlar ve her sınav kurumunun bildirdiği ölçek. Bu tablodaki hiçbir sınavın yayımlanmış bir ham puandan ölçeğe dönüşümü yoktur; bu yüzden hiçbiri için ölçeklenmiş puan üretilmez.",
+      "exam": "Sınav",
+      "correct": "Doğru",
+      "wrong": "Yanlış",
+      "omitted": "Boş",
+      "scale": "Resmî olarak bildirilen ölçek",
+      "negativeMarking": "Yanlış cevap cezası",
+      "noPenalty": "Ceza yok",
+      "noScale": "Tek bir bildirilen ölçek yok",
+      "exception": "Tablonun gösteremediği bir istisna: her iki Bocconi türünde de üç cevap seçeneğiyle sunulan eleştirel düşünme soruları, 0,2 yerine 0,33 puanlık daha ağır bir ceza taşır. Bu ceza tek tek sorulara bağlı olduğundan yukarıdaki sütun sınav düzeyindeki kuralı gösterir."
+    },
+    "noScaled": {
+      "heading": "5. Sınav sınav, neden ölçeklenmiş puan yok",
+      "intro": "Nedenler, hazırlandığınız sınav için tamamını okumaya değecek kadar farklıdır. Her biri sınav yapılandırmamızda kayıtlı olan gerekçedir; sonucunuzdaki yöntem notu da buraya bağlantı verir.",
+      "summary": "{exam} için neden ölçeklenmiş puan yok?"
+    },
+    "ours": {
+      "heading": "6. Bize ait olan kısımlar, bize ait olarak etiketlenmiş hâlde",
+      "intro": "Bazı şeyleri bizim seçmemiz gerekir, çünkü sınav kurumu bunları yayımlamaz. Böyle bir durumda seçim, geçerli olduğu ekranda açıkça belirtilir ve hiçbir zaman sınavın kendi kuralı olarak sunulmaz:",
+      "difficulty": "<strong>Zorluk etiketleri.</strong> Kolay, orta ve zor bizim editoryal değerlendirmemizdir. Sınava girenlerin verilerine göre kalibre edilmemiştir; bkz. <link>editoryal standartlar</link>.",
+      "routing": "<strong>Uyarlamalı yönlendirme eşikleri.</strong> Bir sınav modüller arasında yönlendirme yaptığında gerçek kesme puanı yayımlanmaz. Kullandığımız eşik bize aittir, simülasyonda belirtilir ve oturumla birlikte saklanır; böylece kaldığınız yerden devam ettiğinizde aynı yol yeniden izlenir.",
+      "counts": "<strong>Sınavın yayımlamadığı durumlarda soru sayıları</strong> ve gerçek bir özel düzenlemenin kopyası değil, bir çalışma aracı olan her türlü ek süre ayarı."
+    },
+    "using": {
+      "heading": "7. Yine de bir sonuçtan yararlı bir şey çıkarmak",
+      "body": "Tek bir oturumdan elde edilen ham sonuç küçük bir örneklemdir; onu bir ölçüm gibi ele almak, yanılmanın en hızlı yoludur. Bir sonuçtaki iki şey, daha başlarda bile gerçekten bilgi verir: hangi içerik alanlarında tekrar tekrar hata yaptığınız ve zamanınızın nereye gittiği. İkisi de konu ve beceri bazında bildirilir, çünkü tek bir manşet sayının aksine doğrudan üzerinde çalışılabilecek bilgilerdir.",
+      "alertTitle": "Bir alıştırma sonucu bir puan değil, bir çalışma sinyalidir",
+      "alertBody": "Buradaki hiçbir şey sınav günündeki performansınıza ya da bir kabul kararına ilişkin bir tahmin değildir. Bir sınavın puanının ne anlama geldiğini öğrenmek istiyorsanız, o sınavın format rehberi resmî ölçeği, yayımlanmış kuralları ve sınav kurumunun yayımlamadığı şeyleri kaydeder.",
+      "browse": "Sınav formatı ve puanlama rehberlerine göz atın →"
+    }
+  },
+  "privacy": {
+    "meta": {
+      "title": "Gizlilik bildirimi (taslak)",
+      "description": "UniExamer için hukuki inceleme amacıyla hazırlanmış taslak gizlilik bildirimi: bir oturum çerezi, bir dil çerezi, isteğe bağlı e-posta ve parola, alıştırma geçmişi, Stripe üzerinden ücretli planlar, reklam yok, üçüncü taraf analiz yok; verilerinizi hesap sayfanızdan dışa aktarabilir veya silebilirsiniz."
+    },
+    "breadcrumb": "Gizlilik bildirimi",
+    "draftTitle": "Taslak: inceleme için hazırlandı, henüz bir avukat tarafından incelenmedi",
+    "draftBody": "Bu, {name} ekibi tarafından uygulamanın gerçekte ne yaptığını anlatmak için yazılmış bir çalışma taslağıdır. Bir avukat tarafından incelenmemiş veya onaylanmamıştır; hukuki tavsiye değildir ve bir sözleşme değildir. Kendi başımıza yanıtlayamadığımız açık sorular, kalıp ifadelerle doldurulmak yerine <link>sayfanın sonunda</link> eksiksiz olarak listelenmiştir.",
+    "languageVersions": "Bu bildirim İngilizce, İtalyanca, Türkçe, İspanyolca ve Lehçe olarak yayımlanmaktadır. Dil sürümleri arasında herhangi bir farklılık olması hâlinde İngilizce sürüm esas alınır.",
+    "title": "Gizlilik bildirimi",
+    "lead": "Bu uygulamanın neleri sakladığı, neden sakladığı ve bilinçli olarak hiçbir zaman neleri toplamadığı.",
+    "inShort": "{name} hizmetini bize hiçbir şey vermeden kullanabilirsiniz: hesap olmadan alıştırma yapmak, hiçbir kişisel veri içermeyen bir misafir kaydı oluşturur. Bir hesap oluşturursanız e-posta adresinizi, parolanızın tuzlanmış bir özetini (hash), belirlediğiniz çalışma ayarlarını ve alıştırma geçmişinizi saklarız. Kendimize ait iki çerez kullanırız: biri yalnızca oturumunuzu açık tutar, diğeri yalnızca seçtiğiniz dili hatırlar (Stripe, yalnızca kart bilgisi girdiğiniz yerlerde kendi dolandırıcılık önleme çerezlerini ekler). Reklam ve üçüncü taraf analiz yoktur. Bir plan satın alırsanız ödemeyi Stripe kendi güvenli kart alanlarında alır; biz yalnızca hangi planlara sahip olduğunuzu saklarız. Verilerinizi <link>hesap sayfanızdan</link> dışa aktarabilir veya silebilirsiniz.",
+    "drafted": "Hazırlayan: {publisher} · <time>{date}</time>",
+    "hold": {
+      "heading": "1. Sakladığımız veriler",
+      "session": {
+        "term": "Bir oturum çerezi",
+        "value": "examer_session adlı tek bir çerez. Rastgele bir belirteç (token) taşır, HttpOnly ve SameSite=Lax olarak ayarlanır, üretim ortamında Secure olarak işaretlenir ve bir hesap için 30 gün, misafir oturumu için 7 gün geçerlidir. Sunucu belirtecin yalnızca SHA-256 özetini saklar; bu nedenle oturum tablosu kimsenin kimliğine bürünmek için kullanılamaz."
+      },
+      "language": {
+        "term": "Bir dil çerezi",
+        "value": "NEXT_LOCALE adlı tek bir çerez. Bir sayfayı belirli bir dilde açtığınızda ya da dil menüsünden bir dil seçtiğinizde ayarlanır ve yalnızca o dilin kodunu (örneğin “it”) tutar; böylece dil belirtmeyen bir bağlantı, en son kullandığınız dilde açılır. En fazla bir yıl geçerlidir ve SameSite=Lax olarak ayarlanır. İşlevsel bir çerezdir: hesabınıza bağlı değildir, sunucumuzda onunla ilgili hiçbir şey saklanmaz ve takip, reklam ya da ölçüm için kullanılmaz."
+      },
+      "guest": {
+        "term": "Hiç kaydolmazsanız bir misafir hesabı",
+        "value": "Hesap olmadan alıştırma yapmak, geçmişinizin korunması ve daha sonra sahiplenilebilmesi için gerçek bir kullanıcı satırı oluşturur. Bu satırda e-posta, parola ya da ad yoktur; bir kişiyi tanımlayan hiçbir şey yoktur."
+      },
+      "credentials": {
+        "term": "Hesap oluşturursanız e-posta adresiniz ve parolanız",
+        "value": "E-posta adresi, yazdığınız şekliyle ve küçük harfe çevrilerek saklanır. Parola hiçbir zaman saklanmaz: onun tuzlanmış bir scrypt özetini saklar ve karşılaştırmayı bununla yaparız. Adresinizi bir kodla doğruladıysanız bunu ne zaman yaptığınızı da not ederiz."
+      },
+      "codes": {
+        "term": "İsterseniz tek kullanımlık e-posta kodları",
+        "value": "Bir giriş kodu ya da parola sıfırlama kodu istediğinizde veya adresinizi doğruladığınızda; kodun ne için olduğunu, gönderildiği adresi, ne zaman gönderildiğini ve ne zaman sona ereceğini, kaç yanlış deneme yapıldığını ve kullanılıp kullanılmadığını saklarız. Kodun kendisi hiçbir zaman saklanmaz; yalnızca anahtarlı bir özeti saklanır. Bir kod yalnızca bir kez çalışır ve 10 dakika sonra geçersiz olur. Yeni bir kod istemek öncekini siler; süresi dolmuş ve bir günden eski olan kodlar, herhangi biri bir sonraki kez kod istediğinde silinir."
+      },
+      "profile": {
+        "term": "İsteğe bağlı profil ve çalışma ayarları",
+        "value": "Bir görünen ad, hedef sınav, hedef tarih, haftalık çalışma dakikası hedefi ve 16 yaşından küçük olduğunuzu kendi beyanınızla belirten bir işaret. Doğum tarihi, okul, ülke ya da telefon numarası istemeyiz."
+      },
+      "history": {
+        "term": "Alıştırma geçmişiniz",
+        "value": "Başlattığınız oturumlar, verdiğiniz cevaplar, işaretlediğiniz sorular, her sorunun ne kadar sürdüğü ve her oturumun hesaplanan sonucu."
+      },
+      "reports": {
+        "term": "Bize gönderdiğiniz soru bildirimleri",
+        "value": "Bildirdiğiniz soru, seçtiğiniz neden, ayrıntılar kutusuna yazdığınız her şey ve gönderdiğiniz sırada giriş yapmışsanız kullanıcı kimliğiniz."
+      },
+      "tutor": {
+        "term": "Yapay zekâ eğitmeni istekleri (yalnızca kullanırsanız)",
+        "value": "İsteğe bağlı yapay zekâ eğitmeninden bir ipucu, daha ayrıntılı bir açıklama ya da test sonrası rehber istemek için bir düğmeye bastığınızda, günlük kullanım hakkının uygulanabilmesi için istekte bulunduğunuzu, ne zaman bulunduğunuzu ve isteğin başarılı olup olmadığını kaydederiz. Test sonrası rehberler, yeniden görebilmeniz için hesabınızla ilişkilendirilerek saklanır; ipuçları ve açıklamalar sizinle değil bir soruyla ilgilidir ve kimliğiniz olmadan saklanır."
+      },
+      "billing": {
+        "term": "Ödemeler (yalnızca bir plan satın alırsanız)",
+        "value": "Bir plan satın aldığınızda ödeme hizmeti sağlayıcımız Stripe’ta e-posta adresiniz, belirlediyseniz görünen adınız ve hesap kimliğinizle sizin için bir müşteri kaydı oluştururuz. Stripe müşteri ve abonelik kimliklerini, her planı ve kapsadığı sınavı, planın durumunu, yenilenme tarihini ve erişimin hemen başlamasını istediğiniz ve cayma hakkının sona erdiğini onayladığınız zamanı saklarız. Kart bilgileriniz, ödeme ve hesap sayfalarımızda Stripe’ın sunduğu alanlara girilir ve doğrudan Stripe’a iletilir; hiçbir zaman sunucularımıza ulaşmaz. Hesap sayfanızda, Stripe’tan okunan kart markasını ve son dört haneyi gösteririz."
+      },
+      "rateLimits": {
+        "term": "İstek sınırı sayaçları",
+        "value": "Kötüye kullanımı önlemek için istekleri, istekte bulunan her taraf için sabit zaman aralıklarında sayarız. Sayaç anahtarı bir tanımlayıcının SHA-256 özetidir; bu nedenle ham IP adresi hiçbir zaman veritabanına yazılmaz."
+      },
+      "totals": {
+        "term": "Günlük toplamlar (kişisel veri içermez)",
+        "value": "Sınav sayfalarımızın işe yarayıp yaramadığını görmek için birkaç olayın yalnızca günlük toplamlarını tutarız: sınav sayfalarının ve planlar sayfasının görüntülenmeleri, başlatılan ödemeler ve satın alınan planlar; her biri ilgili sınavla ve sayfa görüntülemeleri için kaba bir kaynak bilgisiyle (arama motoru, yapay zekâ asistanı, bu site, başka bir site ya da hiçbiri). Her toplam, bir gün için yalnızca bir sayıdır. Hesap kimliği, çerez, IP adresi, tarayıcı bilgisi ya da tam yönlendiren adres kaydedilmez; bu nedenle hiçbir toplam sizinle ilişkilendirilemez. Ücretsiz bir teste başlayıp başlamadığınız ya da onu bitirip bitirmediğiniz, yukarıda anlatılan alıştırma geçmişinizin bir parçasıdır."
+      }
+    },
+    "doNot": {
+      "heading": "2. Yapmadıklarımız",
+      "advertising": "Reklam yok; hiçbir türde reklam ya da takip pikseli yok.",
+      "analytics": "Üçüncü taraf analiz yok. Google Analytics, ürün analizi SDK’sı ya da oturum kaydı yoktur.",
+      "cards": "Kart bilgisi yok. Kart numaraları, ödeme sayfamızda Stripe’ın kendi güvenli alanlarına girilir; bu nedenle Stripe’a gider ve hiçbir zaman tarafımızdan saklanmaz veya görülmez.",
+      "cookies": "Oturum çerezi ve dil çerezi dışında çerez yok; tek bir istisnayla: bir kart girdiğinizde (ödeme sırasında ya da hesap sayfasında kartınızı güncellediğinizde) Stripe’ın ödeme betiği kendi dolandırıcılık önleme çerezlerini (__stripe_mid ve __stripe_sid) ayarlar. Cihazınızda reklam, ölçüm ya da kişiselleştirme amacıyla hiçbir şey saklanmaz; yukarıda anlatılan günlük toplamlar sunucumuzda sayılır ve kimseyi tanımlamaz. Tarayıcının kendi depolama alanı, oradan hiç çıkmayan iki çalışma notu tutar: henüz sunucumuza ulaşmamış yanıtlar ve bu tarayıcıda (misafir olarak ya da bir hesapla) oturum açık olup olmadığı; böylece hazır dosya olarak sunduğumuz sayfalar size kendi menünüzü gösterebilir. Çıkış yapmak ikisini de siler.",
+      "selling": "Kişisel verilerin üçüncü taraflara kendi amaçları için satılması, kiralanması ya da paylaşılması yok.",
+      "ai": "Siz istemedikçe yapay zekâ yok. İsteğe bağlı yapay zekâ eğitmeni, düğmelerinden birine basana kadar hiçbir şey göndermez ve alıştırma yapmak için hiçbir zaman gerekli değildir: her sorunun incelenmiş kendi açıklaması vardır.",
+      "marketing": "E-posta pazarlaması yok. Adresinizi size kampanya göndermek için değil, giriş yapabilmeniz için saklarız. Gönderdiğimiz tek e-postalar yukarıda anlatılan kodlardır; düz metin olarak gönderildikleri için takip pikseli içermezler."
+    },
+    "why": {
+      "heading": "3. Neden saklıyoruz",
+      "signedIn": "<strong>Oturumunuzu açık tutmak için.</strong> Oturum çerezinin tek görevi budur.",
+      "language": "<strong>Siteyi sizin dilinizde göstermek için.</strong> Dil çerezinin tek görevi budur.",
+      "history": "<strong>Alıştırma geçmişinizi size geri vermek için.</strong> Sonuçlar, konu dağılımları ve “bu soruyu bir ay boyunca bana yeniden gösterme” davranışı, geçmişin var olmasını gerektirir.",
+      "fix": "<strong>Kötü soruları düzeltmek için.</strong> Bir bildirim, editörlerimize hangi soruya ve hangi sürüme bakmaları gerektiğini söyler.",
+      "tutor": "<strong>Yaptığınız bir yapay zekâ eğitmeni isteğini yanıtlamak için.</strong> Yalnızca düğmeye bastığınızda ve yalnızca aşağıdaki açık sorularda anlatılan soru içeriği ve performans verileriyle.",
+      "codes": "<strong>İstediğiniz kodları göndermek için.</strong> Bir giriş kodu, bir parola sıfırlama kodu ya da hesap oluşturduğunuzda adresinizi doğrulayan kod.",
+      "abuse": "<strong>Kötüye kullanımı önlemek için.</strong> Giriş denemeleri, kayıtlar, misafir hesabı oluşturma, oturum başlatma, cevap kaydetme, e-posta kodları ve soru bildirimlerinin tümü istek sınırlamasına tabidir.",
+      "noProfiling": "Profilinizi çıkarmayız, reklam kitlesi oluşturmayız ve alıştırma geçmişinizi size göstermek ve yakın zamanda görmediğiniz soruları seçmek dışında hiçbir amaçla kullanmayız."
+    },
+    "security": {
+      "heading": "4. Nasıl korunuyor",
+      "passwords": "Parolalar, her parola için ayrı bir tuz (salt) kullanılarak scrypt ile özetlenir. Sızdırılan bir veritabanı parolaları ele vermez.",
+      "sessions": "Oturum belirteçleri yalnızca SHA-256 özetleri olarak saklanır; bu nedenle sızdırılan bir veritabanı etkin oturumları da ele vermez.",
+      "codes": "E-posta kodları yalnızca, veritabanında bulunmayan bir gizli anahtarla oluşturulan özetler olarak saklanır. Her biri yalnızca bir kez çalışır, 10 dakika sonra geçersiz olur ve beş yanlış denemeden sonra çalışmayı durdurur.",
+      "scoping": "Her özel sayfa ve her özel API rotası, kim olduğunuzu sunucuda belirler ve verileri kendi kullanıcı kimliğinize göre filtreler. Bir URL’deki kimlik, sizi tanımlamak için asla güvenilir kabul edilmez.",
+      "origin": "Durum değiştiren istekler, SameSite çerez ayarına ek olarak sitenin kendi kaynağına (origin) göre de kontrol edilir.",
+      "rateLimitKeys": "İstek sınırı anahtarları özetlenir; bu nedenle ham IP adresleri saklanmaz."
+    },
+    "controls": {
+      "heading": "5. Neler yapabilirsiniz",
+      "export": "<strong>Dışa aktarın.</strong> Hesabınızla ilişkili her şeyi hesap sayfanızdan indirin.",
+      "delete": "<strong>Silin.</strong> Hesabınızı aynı yerden silin. Silme işleminin arka planda ne anlama gelmesi gerektiğine ilişkin aşağıdaki açık soruya bakın.",
+      "signOut": "<strong>Her yerde oturumu kapatın.</strong> Çıkış yapmak oturumu sonlandırır; parolanızı sıfırlamak ise hesabın tüm oturumlarını sonlandırır.",
+      "guest": "<strong>Misafir olarak kalın.</strong> Hiç kaydolmazsanız, zaten dışa aktarılacak ya da silinecek kişisel bir şey yoktur; oturum çerezini temizlemek oturumu sona erdirir.",
+      "language": "<strong>Dilinizi değiştirin ya da temizleyin.</strong> İstediğiniz zaman dil menüsünden başka bir dil seçin ya da tarayıcınızda dil çerezini silin; site bu durumda İngilizce ya da tarayıcınızın istediği dilde görüntülenir.",
+      "accountLink": "Hesap sayfanıza gidin →"
+    },
+    "openQuestions": {
+      "heading": "Hukuki inceleme için açık sorular",
+      "intro": "Bunlar, bu taslağın kendi başına çözemediği noktalardır. Tahmin edilmek yerine listelenmişlerdir, çünkü burada kendinden emin görünen bir cevap, açıkça kabul edilmiş bir boşluktan daha kötü olurdu.",
+      "controller": "Veri sorumlusu: bu hizmeti hangi tüzel kişinin, hangi yargı bölgesinde işlettiği ve gizlilik talepleri için iletişim adresinin ne olması gerektiği. Bu konu çözülmeden aşağıdakilerin hiçbiri kesinleştirilemez.",
+      "lawfulBasis": "GDPR kapsamında her işleme amacının hukuki dayanağı (büyük olasılıkla hesap ve alıştırma geçmişi için sözleşme, istek sınırlaması ve kötüye kullanımın önlenmesi için meşru menfaat) ve bu analizin incelemeden geçip geçmeyeceği.",
+      "retention": "Saklama süreleri. Bugün oturumlar (30 gün, misafir için 7 gün), istek sınırı aralıkları (24 saat sonra temizlenir), e-posta kodları (yukarıda anlatıldığı gibi) ve dil çerezi (bir yıl, yalnızca tarayıcınızda) dışında hiçbir şeyin süresi dolmaz. Etkin olmayan bir misafir hesabının, bir alıştırma geçmişinin ve çözülmüş bir soru bildiriminin ne kadar süre saklanacağı konusunda bir karar verilmesi ve ardından bunun uygulanması gerekiyor.",
+      "deletion": "Silmenin kalıcı silme mi, yoksa şu anda uygulanan geçici (yumuşak) silme mi olması gerektiği. Bugün silme işlemi hesabı silinmiş olarak işaretler; böylece hesap artık tanınmaz ve hiçbir yerde görünmez. Alttaki oturum satırlarına ne olacağı ve bunun ne kadar süre sonra olacağı henüz karara bağlanmamıştır.",
+      "minors": "Hizmet verdiğimiz her yargı bölgesinde 16 yaşından küçük kullanıcılar için doğrulanabilir ebeveyn onayı gerekip gerekmediği ve kendi beyanına dayalı bir işaretin savunulabilir olup olmadığı. Yaş işareti kodda vardır ve kullanıcının beyanına dayanır; bunu doğrulamayız ve şu anda onay istemeyiz.",
+      "hosting": "Verilerin nerede barındırıldığı, herhangi bir uluslararası aktarım olup olmadığı ve aktarım mekanizması ile alt işleyen listesinin ne söylemesi gerektiği. Uygulama tek bir veritabanı kullanır. Üç üçüncü taraf hizmet söz konusudur: bir sonraki maddede anlatılan isteğe bağlı yapay zekâ eğitmeni; ondan sonra anlatılan ödeme hizmeti sağlayıcısı Stripe; ve tek kullanımlık kodları ileten e-posta hizmeti sağlayıcısı Brevo. Brevo her kod e-postası için alıcı adresini, konuyu ve kodu içeren düz metin mesajı alır. Brevo için netleştirilmesi gerekenler: veri işleyen statüsü ve hesabın veri işleme koşulları, mesaj içeriğini ve teslim kayıtlarını saklaması ve verileri nerede işlediği.",
+      "tutor": "Yapay zekâ eğitmeni. Bir öğrenci bir eğitmen düğmesine bastığında sunucu; soruyu, seçeneklerini, incelenmiş açıklamamızı, öğrencinin hangi seçeneği seçtiğini ve test sonrası rehber için oturumun toplu sonuçlarını API’si aracılığıyla model sağlayıcısına (Anthropic) gönderir. Ad, e-posta adresi, hesap kimliği ya da öğrencinin yazdığı serbest metin gönderilmez. Netleştirilmesi gerekenler: sağlayıcının veri işleyen statüsü ve API anahtarının verildiği veri işleme koşulları; sağlayıcının bu koşullar kapsamında istek içeriğini saklaması ve kullanması (bunu doğrulamadık, bu nedenle burada anlatmıyoruz); sağlayıcı verileri öğrencinin yargı bölgesi dışında işliyorsa uluslararası aktarım mekanizması; performans verilerinin hesaptan ayrıldıktan sonra kişisel veri sayılıp sayılmadığı; ve 16 yaşından küçük öğrencilerin eğitmeni ebeveyn onayı olmadan kullanıp kullanamayacağı. Bunlar netleşene kadar bir işletmeci eğitmeni kapalı tutabilir; site onsuz da eksiksiz çalışır.",
+      "payments": "Ödemeler. Bir öğrenci bir plan satın aldığında sunucu, hesabın e-posta adresi, (belirlenmişse) görünen adı ve hesap kimliğiyle bir Stripe müşterisi oluşturur; Stripe da kartı, ödeme sayfamıza yerleştirilmiş kendi güvenli alanlarında toplar (Stripe.js yalnızca ödeme ve hesap sayfalarında js.stripe.com adresinden yüklenir). Netleştirilmesi gerekenler: Stripe’ın yalnızca kart girilen sayfalarda ayarlanan dolandırıcılık önleme çerezlerinin kesinlikle gerekli sayılıp sayılmadığı (bizim görüşümüz) ya da onay gerektirip gerektirmediği; Stripe’ın ödeme verileri açısından bizim veri işleyenimiz mi, yoksa bağımsız bir veri sorumlusu mu olduğu; vergi ve muhasebe için ödeme kayıtlarının ne kadar süre saklanması gerektiği (bu, söz konusu kayıtlar için bir silme talebinin önüne geçebilir); uluslararası aktarım mekanizması; ve reşit olmayanların plan satın alıp alamayacağı.",
+      "cookies": "Oturum çerezinin hizmet verilen her yargı bölgesinde kesinlikle gerekli sayılıp sayılmadığı (bizim görüşümüz sayıldığı yönündedir; bu yüzden onay başlığı gösterilmiyor), yalnızca seçtiğiniz dili hatırlayan dil çerezinin bir yıllık ömrü boyunca bir kullanıcı arayüzü tercihi olarak onaydan muaf olup olmadığı (bu da bizim görüşümüz) ve sitede onay gerekliliklerini doğuracak başka hiçbir şeyin bulunmadığının teyidi.",
+      "rights": "Erişim, düzeltme, taşınabilirlik, itiraz ve silme taleplerinin ele alınmasına ilişkin süreç ve süreler ile bunların karşılanmasından kimin sorumlu olduğu.",
+      "breach": "İhlal bildirimi: eşik, iç süreç ve bildirim takvimi.",
+      "trademark": "Her sayfada yer alan ve bir avukat tarafından değil, bizim tarafımızdan hazırlanan ticari marka ve bağlantısızlık bildiriminin ifadesi."
+    }
+  },
+  "terms": {
+    "meta": {
+      "title": "Kullanım koşulları (taslak)",
+      "description": "Bu sınav hazırlık sitesi için hukuki inceleme amacıyla hazırlanmış taslak kullanım koşulları. Bir avukatın hâlâ çözmesi gereken açık soruları da içerir."
+    },
+    "breadcrumb": "Kullanım koşulları",
+    "title": "Kullanım koşulları",
+    "draftTitle": "Bu bir taslaktır, tamamlanmış bir hukuki belge değildir",
+    "draftBody": "Bu metin, nitelikli bir avukatın inceleyebileceği somut bir şey olması için mühendislik ekibi tarafından bu uygulamanın gerçekte ne yaptığını anlatmak amacıyla yazıldı. Bir avukat tarafından incelenmedi, hukuki tavsiye değildir ve sondaki açık sorular gerçekten açıktır.",
+    "languageVersions": "Bu koşullar İngilizce, İtalyanca, Türkçe, İspanyolca ve Lehçe olarak yayımlanmaktadır. Dil sürümleri arasında herhangi bir farklılık olması hâlinde İngilizce sürüm esas alınır.",
+    "drafted": "Hazırlanma tarihi: <time>{date}</time>.",
+    "service": {
+      "heading": "Bu hizmet nedir",
+      "p1": "{name} bir çalışma aracıdır. Özgün alıştırma soruları, çözümlü açıklamalar ve birçok üniversite giriş sınavının yayımlanmış formatını ve puanlama kurallarını anlatan rehberler sunar. Bir hazırlık yardımcısıdır, daha fazlası değil.",
+      "p2": "Rehberler, örnek sorular ve format sayfaları herkese açıktır. Ücretsiz bir hesapla her sınav için ücretsiz seviye belirleme testine de girilebilir: her hesap için aynı sabit sorular ve eksiksiz sonuçlar. Alıştırma oturumları, zamanlı bölümler, tam uzunlukta deneme sınavları, çalışma planı ve yapay zekâ eğitmeni için aşağıda anlatılan ücretli bir plan gerekir."
+    },
+    "plans": {
+      "heading": "Planlar ve ödemeler",
+      "plans": "<strong>Tam erişim</strong> tüm sınavları, tüm alıştırma formatlarını, çalışma planını ve yapay zekâ eğitmenini açar. <strong>Tek sınav</strong>, seçtiğiniz tek bir sınav için tüm alıştırma formatlarını ve çalışma planını açar; birden fazlasına sahip olabilirsiniz. Planlar ve fiyatları <link>fiyatlar sayfasında</link> yer alır. Fiyatlar euro cinsindendir, KDV dahildir ve aylık olarak tahsil edilir.",
+      "payment": "Ödeme, her ayın başında ödeme hizmeti sağlayıcımız Stripe tarafından alınır. Kart bilgileri, ödeme sayfamızda Stripe’ın sunduğu alanlara girilir ve doğrudan Stripe’a iletilir; hiçbir zaman bize ulaşmaz.",
+      "renewal": "Abonelik, iptal edilene kadar her ay otomatik olarak yenilenir. <link>Hesabınızdan</link> istediğiniz zaman iptal edebilirsiniz; plan bu durumda ödemesi yapılmış ayın sonuna kadar açık kalır ve başka ücret alınmaz.",
+      "start": "Plan, ödeme yaptığınız anda başlar. Ödeme sırasında planın hemen başlamasını açıkça talep eder ve plan başladıktan sonra 14 günlük cayma hakkınızı kaybedeceğinizi kabul edersiniz. Bunu ne zaman yaptığınızın kaydını tutarız.",
+      "failed": "Bir yenileme ödemesi başarısız olursa Stripe sınırlı bir süre boyunca ödemeyi yeniden dener ve erişiminiz, o ödemenin ait olduğu ayın sonuna kadar devam eder. Ödeme yine başarısız olursa plan sona erer.",
+      "priceChange": "Bir fiyatı değiştirirsek yeni fiyat yalnızca bir sonraki yenilemenizden itibaren geçerli olur ve bunu size önceden bildiririz.",
+      "deletion": "Hesabınızı silmek planlarınızı hemen iptal eder; böylece artık var olmayan bir hesap için başka ücret alınmaz."
+    },
+    "independence": {
+      "heading": "Bağımsızlık ve ticari markalar",
+      "descriptive": "Sınav adları, bir rehberin ya da soru setinin hangi sınavla ilgili olduğunu belirtmek için tanımlayıcı olarak kullanılır. Buradaki hiçbir şey bir ortaklık, onay, lisans ya da akreditasyon iddiası olarak okunmamalıdır."
+    },
+    "noPromise": {
+      "heading": "Neleri vaat etmiyoruz",
+      "score": "Herhangi bir puanı, puan artışını, kabul sonucunu ya da kabul olasılığını vaat etmiyoruz. Bu tür rakamları hesaplamıyoruz, çünkü elimizdeki hiçbir veri bunları destekleyemez.",
+      "fidelity": "Alıştırmalarımızın gerçek bir sınavı birebir yansıttığını vaat etmiyoruz. Her alıştırma formatı, gerçeğe ne kadar yakın olduğunu ve nelerin farklı olduğunu belirten bir etiket taşır.",
+      "current": "Buradaki sınav bilgilerinin güncel olduğunu vaat etmiyoruz. Sınav kurumları sınavlarını değiştirir. Her bilgi, kaynağını ve kontrol ettiğimiz tarihi taşır; resmî kaynak her zaman önceliklidir. Bir karar için bu bilgilere dayanmadan önce kendiniz kontrol edin.",
+      "service": "Kesintisiz ya da hatasız bir hizmet vaat etmiyoruz ve burası yüksek riskli değerlendirmeler için güvenli bir ortam değildir. Tarayıcı tabanlı alıştırmalar gözetim altında yapılamaz."
+    },
+    "conduct": {
+      "heading": "Hesabınız ve davranışınız",
+      "noAccount": "Rehberleri okuyabilir ve örnek soruyu hesap olmadan deneyebilirsiniz. Alıştırma oturumları için hesap gerekir.",
+      "password": "Bir hesap oluşturursanız parolanızı kimseyle paylaşmayın. Başka birinin parolanızı kullandığını düşünüyorsanız bize bildirin.",
+      "abuse": "Başka bir kişinin hesabına ya da verilerine erişmeye, hizmeti aksatmaya veya soru bankasını toplu olarak çekmeye çalışmayın.",
+      "delete": "Hesabınızı istediğiniz zaman <link>hesap ayarlarınızdan</link> silebilirsiniz; bu işlem alıştırma geçmişinizi de kaldırır."
+    },
+    "content": {
+      "heading": "İçeriğimiz",
+      "body": "Bu sitedeki sorular, açıklamalar ve rehberler bizim özgün çalışmamızdır. Bunları kendi çalışmanız için kullanabilirsiniz. İzin almadan yeniden yayımlayamaz, satamaz, dağıtamaz ya da bir makine öğrenimi modelini eğitmek için kullanamazsınız."
+    },
+    "reporting": {
+      "heading": "Bir sorunu bildirme",
+      "body": "Bir soru yanlış görünüyorsa <link>bize bildirin</link>. Bankada kötü bir soru bırakmaktansa onu geri çekmeyi tercih ederiz."
+    },
+    "changes": {
+      "heading": "Değişiklikler",
+      "body": "Bu koşullar önemli ölçüde değişirse yukarıdaki tarih de onlarla birlikte değişir; bu tarihi geriye dönük olarak değiştirmeyiz."
+    },
+    "openQuestions": {
+      "heading": "Hukuki inceleme için açık sorular",
+      "intro": "Bilinçli olarak çözümsüz bırakıldı. Bu taslağın gerçek bir belgeye dönüşmesi için her biri hakkında karar verilmesi gerekiyor.",
+      "entity": "<strong>Sözleşmeyi yapan taraf ve uygulanacak hukuk.</strong> Hiçbir şirket, yargı bölgesi, yetkili mahkeme ya da uygulanacak hukuk belirtilmemiştir, çünkü henüz hiçbiri seçilmemiştir.",
+      "liability": "<strong>Sorumluluğun sınırlandırılması ve garanti reddi.</strong> Bu taslak bunları içermez. İzin verilen kapsam yargı bölgesine ve AB’de sözleşmeyle bertaraf edilemeyen tüketiciyi koruma kurallarına bağlıdır.",
+      "minors": "<strong>Sözleşme tarafı olarak reşit olmayanlar.</strong> Kitlenin büyük bir kısmı 18 yaşından küçüktür. Reşit olmayan birinin bu koşulları kabul edip edemeyeceği ve ebeveyn onayının gerekip gerekmediği yargı bölgesine göre değişir ve hukuki danışmanlık gerektirir. Bu artık plan satın almayı da kapsıyor: bugün hiçbir şey reşit olmayan birinin ödeme yapmasını engellemiyor.",
+      "consumer": "<strong>Ücretli planlar için tüketici hukuku.</strong> Hemen başlayan bir abonelik için ödeme sırasındaki ifadenin 14 günlük cayma hakkını sona erdirmeye yetip yetmediği (AB Tüketici Hakları Direktifi, İtalyan Tüketici Kanunu); sözleşme öncesi bilgilerin ve onay e-postasının neleri içermesi gerektiği; bir hesap silindiğinde ya da bir plan erken iptal edildiğinde kullanılmayan sürenin iade edilip edilmeyeceği; ve fiyat değişikliklerinin nasıl bildirilmesi gerektiği.",
+      "vat": "<strong>KDV.</strong> Fiyatlara KDV dahildir, ancak dijital hizmetlerde KDV alıcının ülkesindeki oran üzerinden ödenir. AB Tek Durak Noktası (One-Stop Shop) sistemine kaydolunup kaydolunmayacağı, Stripe Tax’in etkinleştirilip etkinleştirilmeyeceği ve sabit fiyatların hangi oranı esas aldığı konusunda bir mali müşavirle birlikte karar verilmesi gerekiyor.",
+      "trademark": "<strong>Ticari marka ifadesi.</strong> Yukarıdaki adlandırıcı adil kullanım (nominative fair use) bildirimi, her sınav kurumunun yayımladığı ticari marka yönergeleriyle, özellikle College Board’un ve ACT’nin yönergeleriyle karşılaştırılarak kontrol edilmelidir.",
+      "describing": "<strong>Sınavları doğru anlatmak.</strong> Yayımlanmış sınav kurallarını özetliyor ve kaynağa bağlantı veriyoruz. Bunun adil kullanım sınırları içinde kaldığı ve asıl metinler üzerindeki veri tabanı ya da telif haklarını ihlal etmediği teyit edilmelidir.",
+      "training": "<strong>İçeriğimizle model eğitilmesini yasaklamak.</strong> Bu kısıtlamanın uygulanabilir olup olmadığı ve <code>robots.txt</code> dosyasındaki tarayıcı politikasıyla nasıl etkileşmesi gerektiği hukuki danışmanlık gerektirir.",
+      "accessibility": "<strong>Erişilebilirlik yükümlülükleri.</strong> WCAG 2.2 AA düzeyini hedefliyoruz. Hizmet verilen pazarlarda bağlayıcı bir yasal yükümlülüğün geçerli olup olmadığı ve hangi uygunluk beyanının yayımlanacağı henüz kararlaştırılmadı."
+    },
+    "privacyLink": "Gizlilik bildirimi (o da bir taslak)"
+  },
+  "reportQuestion": {
+    "meta": {
+      "title": "Bir soruyu bildirin",
+      "description": "Yanlış, belirsiz ya da eksik görünen bir soruyu bize bildirin."
+    },
+    "title": "Bir soruyu bildirin",
+    "lead": "Bir soru yanlış, belirsiz ya da eksik görünüyorsa bize bildirin. Bankada kötü bir soru bırakmaktansa onu geri çekmeyi tercih ederiz.",
+    "process": {
+      "heading": "Bildiriminize ne olur",
+      "resolve": "Bir editör, kayıtlı cevap anahtarına bakmadan soruyu bağımsız olarak yeniden çözer.",
+      "quarantine": "Anahtar yanlışsa ya da ikinci bir cevap gerçekten savunulabilir durumdaysa soru sessizce düzeltilmez, <strong>karantinaya alınır</strong>. Karantinaya alınan sorular canlı bankadan hemen çıkar.",
+      "replacement": "Yerine yeni bir soru yazılır ve yayımlanmadan önce aynı körlemesine bağımsız çözümden geçer.",
+      "pinned": "Daha önce gördüğünüz sonuçlar değişmez. Her oturum, size gösterilen sorunun tam sürümüne sabitlenmiştir.",
+      "noAccount": "Bir soruyu bildirmek için hesabınızın olması gerekmez; e-posta adresinize de ihtiyacımız yok."
+    },
+    "form": {
+      "questionId": "Soru kimliği",
+      "questionIdHint": "Sonuçlar sayfanızda her sorunun altında gösterilir. Bağlantıyı oradan izlediyseniz sizin için otomatik olarak doldurulur.",
+      "reasonLegend": "Sorun ne?",
+      "reasons": {
+        "wrongAnswer": "İşaretlenen cevap yanlış görünüyor",
+        "ambiguous": "Birden fazla cevap savunulabilir görünüyor",
+        "missingMaterial": "Cevaplamak için gereken bir şey eksik",
+        "explanation": "Açıklama yanlış ya da anlaşılmaz",
+        "typo": "Bir yazım ya da biçimlendirme hatası",
+        "other": "Başka bir şey"
+      },
+      "details": "Ayrıntılar <muted>(isteğe bağlı)</muted>",
+      "detailsHint": "Farklı bir cevabın doğru olduğunu düşünüyorsanız, hangisi olduğunu ve nedenini yazmanız, burada bize iletebileceğiniz en yararlı bilgidir.",
+      "submit": "Bildirimi gönder",
+      "sending": "Gönderiliyor…",
+      "errors": {
+        "generic": "Bu bildirimi gönderemedik. Lütfen yeniden deneyin.",
+        "rateLimited": "Şimdiden birkaç bildirim gönderdiniz. Lütfen daha sonra yeniden deneyin.",
+        "unknownQuestion": "Bu soruyu bulamadık. Soru kimliğini kontrol edip yeniden deneyin.",
+        "invalid": "Lütfen soru kimliğini ve ayrıntıları kontrol edip yeniden deneyin."
+      },
+      "sentTitle": "Teşekkürler, bildiriminiz kaydedildi",
+      "sentBody": "Bir editör bu soruya bakacak. Sorunun yanlış olduğu anlaşılırsa sessizce düzenlenmek yerine bankadan çekilir ve yerine yeni bir soru yazılır.",
+      "another": "Başka bir soruyu bildirin"
+    }
+  }
+}

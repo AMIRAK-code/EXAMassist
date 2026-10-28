@@ -1,5 +1,7 @@
+import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import type { Suggestion } from '@/lib/learning/suggestions';
+import { renderText } from '@/lib/learning/text';
 import { startSuggestionAction } from '@/app/actions/planning';
 import { Badge, Button, Card, SectionHeading, buttonClass } from '@/components/ui';
 
@@ -8,35 +10,29 @@ import { Badge, Button, Card, SectionHeading, buttonClass } from '@/components/u
  * which kind of practice it is, and starts exactly that.
  */
 
-const KIND_LABEL: Record<Suggestion['kind'], string> = {
-  new: 'New questions only',
-  revision: 'Revision: may repeat questions',
-  review: 'Review: repeats missed questions',
-  timed: 'Timed',
-};
-
 export function SuggestionsList({ examKey, suggestions, planHref }: { examKey: string; suggestions: Suggestion[]; planHref: string }) {
+  const t = useTranslations('learning');
   return (
     <section aria-labelledby="suggestions-heading">
       <SectionHeading
         id="suggestions-heading"
-        title="Suggestions"
-        description="What might help next, from the questions available now. These are suggestions, not measurements."
+        title={t('suggestionsList.title')}
+        description={t('suggestionsList.description')}
       />
       {suggestions.length === 0 ? (
-        <p className="text-sm text-ink-muted">Nothing to suggest right now beyond the sessions in your plan.</p>
+        <p className="text-sm text-ink-muted">{t('suggestionsList.none')}</p>
       ) : (
         <ul className="space-y-3">
           {suggestions.map((suggestion) => (
             <Card as="li" key={suggestion.key}>
-              <h3 className="font-heading text-lg font-semibold">{suggestion.title}</h3>
+              <h3 className="font-heading text-lg font-semibold">{renderText(t, suggestion.title)}</h3>
               <div className="mt-2">
-                <Badge tone={suggestion.kind === 'new' ? 'accent' : 'neutral'}>{KIND_LABEL[suggestion.kind]}</Badge>
+                <Badge tone={suggestion.kind === 'new' ? 'accent' : 'neutral'}>{t(`kind.${suggestion.kind}`)}</Badge>
               </div>
               <div className="mt-3">
                 {suggestion.start.type === 'link' ? (
                   <Link href={suggestion.start.href} className={buttonClass({ variant: 'secondary', size: 'sm' })}>
-                    {suggestion.start.label}
+                    {renderText(t, suggestion.start.label)}
                   </Link>
                 ) : (
                   <form action={startSuggestionAction}>
@@ -47,18 +43,20 @@ export function SuggestionsList({ examKey, suggestions, planHref }: { examKey: s
                     ) : null}
                     <input type="hidden" name="length" value={suggestion.start.length} />
                     <Button type="submit" size="sm" variant="secondary">
-                      Start {suggestion.start.length} question{suggestion.start.length === 1 ? '' : 's'}
+                      {t('suggestionsList.start', { count: suggestion.start.length })}
                     </Button>
                   </form>
                 )}
               </div>
-              <p className="mt-3 border-t border-line pt-3 text-sm text-ink-muted">Why: {suggestion.why}</p>
+              <p className="mt-3 border-t border-line pt-3 text-sm text-ink-muted">
+                {t('why', { reason: renderText(t, suggestion.why) })}
+              </p>
             </Card>
           ))}
         </ul>
       )}
       <p className="mt-4 text-sm">
-        <Link href={planHref}>Your dated plan</Link>
+        <Link href={planHref}>{t('suggestionsList.planLink')}</Link>
       </p>
     </section>
   );

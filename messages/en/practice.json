@@ -1,1 +1,234 @@
-{}
+{
+  "crumbs": {
+    "home": "Home",
+    "exams": "Exams",
+    "practise": "Practise",
+    "getStarted": "Get started",
+    "freeDiagnostic": "Free diagnostic"
+  },
+  "setup": {
+    "metaFallbackTitle": "Practice",
+    "metaTitle": "Practise {exam}",
+    "metaDescription": "Choose a topic, difficulty and session length, then practise {exam} with original questions and full explanations.",
+    "title": "Practise {exam}",
+    "lead": "Practise by topic, untimed, or choose another format below.",
+    "empty": {
+      "title": "No reviewed questions yet for this exam",
+      "body": "Questions for this exam are still being checked, so there is nothing to practise here yet. Only questions that have passed review are ever served.",
+      "guide": "The <link>format and scoring guide</link> is complete and sourced, and is useful now."
+    },
+    "topic": {
+      "title": "Topic practice",
+      "body": "Untimed. Change an answer freely, then check it to see the worked explanation; a checked answer is locked.",
+      "ignoredFilter": "The link named a topic or skill the {exam} does not have, so no filter has been applied."
+    },
+    "otherFormats": "Other formats",
+    "questionCount": "{count, plural, one {# question} other {# questions}}",
+    "untimed": "Untimed",
+    "upgrade": "Upgrade to start",
+    "start": "Start",
+    "whyNotOffered": "Why this is not offered:",
+    "notEnoughYet": "Not enough reviewed questions yet:",
+    "contentShortfall": "This format needs {requested, plural, one {# reviewed question} other {# reviewed questions}} and the bank currently holds {available} that fit it. It will open as the bank grows.",
+    "about": {
+      "title": "About this exam",
+      "formatLink": "Format, timing and scoring, with sources"
+    },
+    "bank": {
+      "title": "Question bank",
+      "coverage": "{count, plural, one {reviewed question} other {reviewed questions}} across {covered} of {total} topics",
+      "note": "This is a starter library, not a complete course. The questions are original and AI-assisted; each was solved blind by a separate AI reviewer before publication.",
+      "howChecked": "How questions are checked"
+    },
+    "unverified": {
+      "title": "What we could not verify",
+      "allSources": "See all sources and caveats"
+    },
+    "contentLanguage": {
+      "label": "Questions in:",
+      "note": "A question without a checked Italian version is shown in English. Your choice applies to every format on this page.",
+      "englishOnlySimulation": "The full {exam} simulation is always in English, as the real test is."
+    }
+  },
+  "form": {
+    "skill": "Skill",
+    "removeSkill": "Remove skill filter",
+    "skillNote": "This session is limited to one skill. Remove the filter to choose a topic instead.",
+    "topic": "Topic",
+    "everyTopicOption": "Every topic ({count})",
+    "countsNote": "Counts are reviewed questions that match every setting on this form.",
+    "difficulty": "Difficulty",
+    "levels": {
+      "mixed": "Mixed",
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    },
+    "difficultyNote": "Difficulty labels are our editorial judgement, not calibrated against test-taker data. A chosen level is used on its own; it is never padded with other levels.",
+    "newOnly": "New questions only",
+    "newOnlyCount": "({unseen} of {matching} are new to you)",
+    "newOnlyOn": "Only questions you have never been shown. A session is never topped up with ones you have seen; if too few are left, it is shorter, or cannot start.",
+    "newOnlyOff": "{seen} of the {matching} matching questions are ones you have been shown before. Those not seen recently are chosen first, but a repeat can be included; tick this to rule repeats out.",
+    "length": "Number of questions",
+    "allOfThem": "{count} (all of them)",
+    "shortened": "Only {count, plural, one {# reviewed question matches} other {# reviewed questions match}} these settings, so this session has {length}.",
+    "shortenedNew": "Only {count, plural, one {# new reviewed question matches} other {# new reviewed questions match}} these settings, so this session has {length}.",
+    "allSeen": {
+      "title": "You have been shown every question that matches",
+      "body": "There is nothing new here. Include questions you have seen, or choose a broader option below."
+    },
+    "noMatch": {
+      "title": "No reviewed questions match these settings",
+      "body": "Choose a broader option below, or change the topic or difficulty."
+    },
+    "longer": "Want a longer session?",
+    "broader": {
+      "includeSeen": "Include questions you have seen ({count})",
+      "wholeDomain": "Practise all of {domain} ({count})",
+      "mixedDifficulty": "Use mixed difficulty ({count})",
+      "everyTopic": "Practise every {exam} topic ({count})"
+    },
+    "summary": {
+      "count": "<strong>{count, plural, one {# question} other {# questions}}</strong> from {scope}",
+      "everyTopic": "every topic",
+      "skillScope": "{skill} ({domain})",
+      "mixed": "mixed difficulty",
+      "easy": "easy only",
+      "medium": "medium only",
+      "hard": "hard only",
+      "newOnly": "new to you only",
+      "untimed": "untimed",
+      "check": "check each answer to see its worked explanation",
+      "bank": "{count} reviewed {exam} questions in the bank"
+    },
+    "nothing": "Nothing to start with these settings.",
+    "preparing": "Preparing your session…",
+    "startPractising": "Start practising",
+    "startLength": "Start {count}-question session"
+  },
+  "blueprint": {
+    "starting": "Starting…"
+  },
+  "errors": {
+    "network": "We could not reach the server. Check your connection and try again.",
+    "insufficientCounts": "The reviewed bank no longer holds enough questions for this combination ({available} available, {requested} requested). Reload the page to see the current counts.",
+    "insufficient": "The reviewed bank no longer holds enough questions for this combination. Reload the page to see the current counts.",
+    "formFallback": "That session could not be started.",
+    "buttonFallback": "This session could not be started right now.",
+    "codes": {
+      "rate-limited": "You have started a lot of sessions. Please wait a moment.",
+      "unknown-exam": "That exam is not offered.",
+      "unknown-blueprint": "That practice format does not exist.",
+      "simulation-unavailable": "A full simulation is not offered for this exam.",
+      "insufficient-content": "There are not enough reviewed questions to build this session without repeating one.",
+      "unauthorized": "Your session has ended. Sign in again to start practising.",
+      "invalid-request": "That request was not valid.",
+      "server-error": "Something went wrong on our side."
+    }
+  },
+  "start": {
+    "metaTitle": "Get started",
+    "intro": {
+      "title": "Practise for the {exam}",
+      "lead": "The real exam has {count, plural, one {one section} other {# sections}}, as the test maker publishes it:",
+      "questions": "{count, plural, one {# question} other {# questions}}",
+      "minutes": "{count, plural, one {# minute} other {# minutes}}"
+    },
+    "how": {
+      "eyebrow": "How practice works",
+      "title": "Practise the way the exam works",
+      "leadCount": "{count, plural, one {# reviewed {exam} question} other {# reviewed {exam} questions}}, each with a worked explanation.",
+      "lead": "Reviewed questions, each with a worked explanation.",
+      "topic": "Topic practice: pick topics and difficulty, untimed, with the worked explanation as soon as you check an answer.",
+      "timed": "{count, plural, one {A timed section} other {# timed sections}} at the published pace.",
+      "mock": "A full-length mock exam under the real rules.",
+      "diagnostic": "A short diagnostic that shows where to start."
+    },
+    "results": {
+      "eyebrow": "Your results",
+      "title": "See exactly what needs work",
+      "lead": "Every session ends with results you can act on.",
+      "accuracy": "Accuracy by topic and skill, so you know what to practise next.",
+      "notebook": "A mistake notebook and a review queue that bring back what you missed.",
+      "plan": "A study plan built around your exam date.",
+      "tutor": "An AI tutor for hints and deeper explanations, within a daily allowance."
+    },
+    "paid": {
+      "single": "{plan}: every {exam} practice format, {price} a month.",
+      "all": "{plan}: every exam plus the AI tutor, {price} a month.",
+      "vat": "VAT included. Cancel any time from your account."
+    },
+    "free": {
+      "open": "Your free diagnostic is still open: carry on where you left off.",
+      "taken": "You have taken this diagnostic; its results stay in your history.",
+      "questions": "One {count}-question diagnostic, the same for everyone.",
+      "fixed": "One fixed diagnostic, the same for everyone.",
+      "every": "Free for every exam, with full results and explanations.",
+      "needsAccount": "Needs a free account."
+    },
+    "freeLabel": {
+      "signUp": "Create a free account",
+      "continue": "Continue your diagnostic",
+      "results": "Your diagnostic results",
+      "take": "Take the free diagnostic"
+    },
+    "onboarding": {
+      "step": "Step {current} of {total}",
+      "skip": "Skip to the free diagnostic",
+      "choiceEyebrow": "Your choice",
+      "choiceTitle": "How would you like to start?",
+      "plan": "A plan",
+      "seePlans": "See plans",
+      "free": "Free diagnostic",
+      "back": "Back",
+      "options": "See my options",
+      "next": "Next",
+      "continue": "Continue to plans"
+    }
+  },
+  "freeTest": {
+    "metaTitle": "Your free diagnostic",
+    "title": "Your free {exam} diagnostic",
+    "leadTimed": "{questions, plural, one {# question} other {# questions}} across {sections, plural, one {one section} other {# sections}}, about {minutes, plural, one {# minute} other {# minutes}}, with full results and a worked explanation for every answer.",
+    "leadUntimed": "{questions, plural, one {# question} other {# questions}} across {sections, plural, one {one section} other {# sections}}, untimed, with full results and a worked explanation for every answer.",
+    "notices": {
+      "rate-limited": "You have started a lot of sessions. Please wait a moment and try again.",
+      "insufficient-content": "There are not enough reviewed questions to build this diagnostic yet."
+    },
+    "account": {
+      "title": "Create a free account to take it",
+      "body": "The diagnostic needs an account, so your results are kept. It takes an email address and a password. Without an account you can still try the sample questions.",
+      "signUp": "Create a free account",
+      "signIn": "Sign in",
+      "sample": "Try a sample question"
+    },
+    "waiting": {
+      "title": "Your diagnostic is waiting",
+      "body": "You have started it already. Carry on where you left off; the questions stay the same however often you come back.",
+      "action": "Continue your diagnostic"
+    },
+    "taken": {
+      "title": "You have taken this diagnostic",
+      "body": "There is one free diagnostic per exam, and its results stay in your history. A plan opens every practice format for this exam, with fresh questions in every session.",
+      "results": "Your diagnostic results"
+    },
+    "preview": {
+      "sameForEveryone": "Everyone gets the same questions; there is one free diagnostic per exam.",
+      "perPart": "Each section has its own clock.",
+      "perPartPauses": "Each section has its own clock; leaving the page pauses it.",
+      "overall": "One clock runs for the whole test.",
+      "overallPauses": "One clock runs for the whole test; leaving the page pauses it.",
+      "untimed": "Untimed: take as long as you need.",
+      "results": "At the end you see your results by topic and the worked explanation for every question.",
+      "start": "Start the free diagnostic",
+      "starting": "Starting…"
+    },
+    "notReady": {
+      "title": "Not ready yet",
+      "body": "There are not enough reviewed {exam} questions to build the diagnostic yet. The format and scoring guide is complete and useful now.",
+      "guide": "Read the format and scoring guide"
+    },
+    "plans": "See plans",
+    "footer": "Want every format, with fresh questions each time? <link>See plans</link>."
+  }
+}
