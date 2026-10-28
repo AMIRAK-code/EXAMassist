@@ -1,6 +1,15 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
+import {
+  isLiteralElement,
+  isPluralElement,
+  isPoundElement,
+  isSelectElement,
+  isTagElement,
+  parse,
+  type MessageFormatElement,
+} from '@formatjs/icu-messageformat-parser';
 import { LOCALES, localizePath, splitLocale } from '@/i18n/locales';
 import { NAMESPACES } from '@/i18n/namespaces';
 
@@ -27,11 +36,30 @@ function flatten(tree: Tree, prefix = ''): Map<string, string> {
   return out;
 }
 
-/** ICU arguments ({name}, {count, plural, ...}) and rich-text tags (<link>). */
+/**
+ * ICU arguments ({name}, {count, plural, ...}) and rich-text tags (<link>),
+ * read by the ICU parser, so the words inside a plural or select branch
+ * ("one {Source}") are text, not arguments. A message that does not parse
+ * fails here too.
+ */
 function tokens(message: string): string[] {
-  const args = [...message.matchAll(/\{\s*([a-zA-Z0-9_]+)\s*[,}]/g)].map((m) => `{${m[1]}}`);
-  const tags = [...message.matchAll(/<\/?([a-zA-Z0-9_]+)>/g)].map((m) => `<${m[1]}>`);
-  return [...new Set([...args, ...tags])].sort();
+  const found = new Set<string>();
+  const walk = (elements: MessageFormatElement[]) => {
+    for (const element of elements) {
+      if (isLiteralElement(element) || isPoundElement(element)) continue;
+      if (isTagElement(element)) {
+        found.add(`<${element.value}>`);
+        walk(element.children);
+        continue;
+      }
+      found.add(`{${element.value}}`);
+      if (isPluralElement(element) || isSelectElement(element)) {
+        for (const option of Object.values(element.options)) walk(option.value);
+      }
+    }
+  };
+  walk(parse(message));
+  return [...found].sort();
 }
 
 describe('message catalogues', () => {

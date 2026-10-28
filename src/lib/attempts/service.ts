@@ -7,7 +7,9 @@ import {
   toPresented,
   toReviewable,
   type PresentedQuestion,
+  type ServedLocale,
 } from '@/lib/content/repository';
+import { sessionContentLocale } from '@/lib/content/translations';
 import {
   canAnswerAt,
   canBookmark,
@@ -320,7 +322,25 @@ export interface StartAttemptInput {
    * blueprintId, overrides and seed are ignored.
    */
   freeTest?: boolean;
+  /**
+   * The language the learner asked to see the questions in ("it"). Honoured
+   * only where the exam offers it (sessionContentLocale); English otherwise.
+   */
+  contentLocale?: string | null;
 }
+
+/**
+ * Records a new session's question language. English is the column's default
+ * (migration 013), so only another language is written.
+ */
+async function storeContentLocale(db: Db, attemptId: string, locale: ServedLocale): Promise<void> {
+  if (locale === 'en') return;
+  (await db.prepare('UPDATE attempts SET content_locale = ? WHERE id = ?').run(locale, attemptId));
+}
+
+/** The language a stored session's questions are shown in. */
+const servedLocale = (attempt: Pick<AttemptRow, 'content_locale'>): ServedLocale =>
+  attempt.content_locale === 'it' ? 'it' : 'en';
 
 export interface StartAttemptResult {
   attemptId: string;
@@ -444,6 +464,7 @@ export async function startAttempt(db: Db, input: StartAttemptInput): Promise<St
       toIso(now),
       toIso(now),
     ));
+    (await storeContentLocale(db, attemptId, sessionContentLocale(config, blueprint.mode, input.contentLocale)));
 
     (await Promise.all(plannedParts.map(async ({ part, items, policy }, partIndex) => {
       const isFirst = partIndex === 0;
@@ -560,6 +581,8 @@ export interface StartRetryInput {
   questionIds: string[];
   /** The session the retry was started from, if any. Recorded, never modified. */
   sourceAttemptId?: string | null;
+  /** The language asked for, as for startAttempt. */
+  contentLocale?: string | null;
   now?: Date;
 }
 
@@ -630,6 +653,7 @@ export async function startRetry(db: Db, input: StartRetryInput): Promise<StartR
       toIso(now),
       toIso(now),
     ));
+    (await storeContentLocale(db, attemptId, sessionContentLocale(config, 'review', input.contentLocale)));
     (await db.prepare(
       `INSERT INTO attempt_parts (
          id, attempt_id, part_index, part_key, section_key, label, time_limit_seconds,
@@ -911,11 +935,11 @@ export async function getAttemptState(
           feedbackReleased: released,
           responseClock: item.response_clock,
           question: visible
-            ? (await toPresented(db, version))
+            ? (await toPresented(db, version, servedLocale(attempt)))
             : ({} as PresentedQuestion),
           review: mayReview
             ? (await (async () => {
-                const reviewable = (await toReviewable(db, version));
+                const reviewable = (await toReviewable(db, version, servedLocale(attempt)));
                 return {
                   // Scored items carry their stored result. A released item in
                   // a live attempt is not scored yet, so it is scored here the
@@ -1053,8 +1077,9 @@ async function buildFeedback(
   config: ExamConfig,
   version: QuestionVersionRow,
   response: Response,
+  locale: ServedLocale,
 ): Promise<ItemFeedback> {
-  const reviewable = (await toReviewable(db, version));
+  const reviewable = (await toReviewable(db, version, locale));
   const outcome = scoreResponse(reviewable.answerKey, response, config.scoring);
   return {
     correct: outcome.status === 'correct',
@@ -1076,6 +1101,7 @@ async function lockedOutcome(
   version: QuestionVersionRow,
   item: AttemptItemRow,
   attempted: Response | null,
+  locale: ServedLocale,
 ): Promise<RecordResponseResult> {
   const stored = storedResponse(item);
   if (stored && canonicalResponse(stored) === canonicalResponse(attempted)) {
@@ -1087,7 +1113,7 @@ async function lockedOutcome(
       stale: false,
       current: stored,
       clock: item.response_clock,
-      feedback: (await buildFeedback(db, config, version, stored)),
+      feedback: (await buildFeedback(db, config, version, stored, locale)),
     };
   }
   throw new AttemptError('response-locked', RESPONSE_LOCKED_MESSAGE, 409);
@@ -1106,6 +1132,7 @@ async function notNewerOutcome(
   item: AttemptItemRow,
   attempted: Response | null,
   immediateFeedback: boolean,
+  locale: ServedLocale,
 ): Promise<RecordResponseResult> {
   const stored = storedResponse(item);
   const locked = immediateFeedback && item.feedback_released_at !== null;
@@ -1118,7 +1145,7 @@ async function notNewerOutcome(
     stale: !same,
     current: stored,
     clock: item.response_clock,
-    feedback: same && locked && stored ? (await buildFeedback(db, config, version, stored)) : null,
+    feedback: same && locked && stored ? (await buildFeedback(db, config, version, stored, locale)) : null,
   };
 }
 
@@ -1271,11 +1298,11 @@ export async function recordResponse(db: Db, input: RecordResponseInput): Promis
   // item, where an old draft arriving late is stale, not a violation).
   const clock = usableClock(input.clock, now) ? input.clock : undefined;
   if (clock !== undefined && item.response_clock !== null && clock <= item.response_clock) {
-    return (await notNewerOutcome(db, config, version, item, parsed, settings.immediateFeedback));
+    return (await notNewerOutcome(db, config, version, item, parsed, settings.immediateFeedback, servedLocale(attempt)));
   }
 
   if (settings.immediateFeedback && item.feedback_released_at !== null) {
-    return (await lockedOutcome(db, config, version, item, parsed));
+    return (await lockedOutcome(db, config, version, item, parsed, servedLocale(attempt)));
   }
 
   const release = settings.immediateFeedback && input.reveal === true;
@@ -1298,9 +1325,9 @@ export async function recordResponse(db: Db, input: RecordResponseInput): Promis
     // request against what it did.
     const fresh = (await db.prepare('SELECT * FROM attempt_items WHERE id = ?').get(item.id)) as AttemptItemRow;
     if (settings.immediateFeedback && fresh.feedback_released_at !== null && (clock === undefined || fresh.response_clock === null || clock > fresh.response_clock)) {
-      return (await lockedOutcome(db, config, version, fresh, parsed));
+      return (await lockedOutcome(db, config, version, fresh, parsed, servedLocale(attempt)));
     }
-    return (await notNewerOutcome(db, config, version, fresh, parsed, settings.immediateFeedback));
+    return (await notNewerOutcome(db, config, version, fresh, parsed, settings.immediateFeedback, servedLocale(attempt)));
   }
 
   return {
@@ -1311,7 +1338,7 @@ export async function recordResponse(db: Db, input: RecordResponseInput): Promis
     stale: false,
     current: parsed,
     clock: written.clock,
-    feedback: release && parsed ? (await buildFeedback(db, config, version, parsed)) : null,
+    feedback: release && parsed ? (await buildFeedback(db, config, version, parsed, servedLocale(attempt))) : null,
   };
 }
 

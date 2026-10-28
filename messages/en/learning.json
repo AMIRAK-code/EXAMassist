@@ -1,1 +1,535 @@
-{}
+{
+  "crumbs": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "studyPlan": "Study plan",
+    "notebook": "Mistake notebook",
+    "progress": "Progress & readiness",
+    "adjust": "Adjust"
+  },
+  "why": "Why: {reason}",
+  "kind": {
+    "new": "New questions only",
+    "mixed": "New questions only",
+    "revision": "Revision: may repeat questions",
+    "review": "Review: repeats missed questions",
+    "timed": "Timed"
+  },
+  "dashboard": {
+    "meta": {
+      "title": "Your dashboard",
+      "description": "Your unfinished sessions, what to work on next and your accuracy by topic."
+    },
+    "title": "Your dashboard",
+    "lead": "Counted from your own answers. Nothing here predicts a score.",
+    "unknownExamShowing": "That link named an exam we do not offer, so this shows your {exam} practice instead.",
+    "unknownExam": "That link named an exam we do not offer.",
+    "doesNotTitle": "What this page does not do",
+    "doesNot": "It does not predict a score, place you in a percentile, or estimate your chance of admission. Every figure above is a count of your own answers and nothing more.",
+    "practise": "Practise {exam}",
+    "chooseTitle": "Choose an exam to start",
+    "chooseLead": "This page then follows the exam you practise, and you can switch between exams here at any time.",
+    "startPractising": "Start practising",
+    "examGuide": "Exam guide",
+    "otherTitle": "Practising something else?",
+    "otherLead": "Open another exam here. It does not change the exam you have set as your target.",
+    "nextStep": "Your next step",
+    "alsoWorthDoing": "Also worth doing",
+    "error": {
+      "title": "Your dashboard could not be loaded",
+      "body": "Something went wrong while reading your practice history. Try again in a moment.",
+      "retry": "Try again",
+      "chooseExam": "Choose an exam to practise"
+    },
+    "guest": {
+      "text": "As a guest, this browser keeps your practice until {until}. After that, this browser can no longer open it. Create an account to keep it.",
+      "endsSoon": "Your guest practice ends soon",
+      "keep": "Keep your progress"
+    },
+    "unfinished": {
+      "title": "Pick up where you left off",
+      "section": "Section {part} of {parts}",
+      "question": "Question {question} of {questions}",
+      "answered": "{count} answered",
+      "underAMinute": "under a minute left",
+      "minutesLeft": "{minutes} min left",
+      "continue": "Continue",
+      "clockRuns": "The clock keeps running while you are away, as it does in the real exam."
+    },
+    "switcher": {
+      "label": "Exams on your dashboard",
+      "target": "target"
+    },
+    "summary": {
+      "label": "Your counts",
+      "scored": "Questions scored",
+      "across": "across {count, plural, one {# finished session} other {# finished sessions}}",
+      "correct": "Answered correctly",
+      "correctShare": "{percent} of everything you have been shown",
+      "noneScored": "No scored questions yet",
+      "due": "Mistakes due for review now",
+      "comingLater": "{count, plural, one {# more comes} other {# more come}} back later.",
+      "comingLaterOn": "{count, plural, one {# more comes} other {# more come}} back later, the next on {date}.",
+      "dueInterval": "Missed questions come back after a short interval.",
+      "nothingWaiting": "Nothing is waiting. Missed questions come back the day after you miss them.",
+      "openNotebook": "Open the mistake notebook"
+    },
+    "topics": {
+      "title": "Accuracy by topic",
+      "lead": "Every {exam} topic, including the ones you have not practised. A figure needs at least {min} scored questions; below that the counts are shown instead. Open a topic to see its skills.",
+      "notPractised": "Not practised yet",
+      "figure": "{percent} · {correct} of {scored} correct",
+      "figureTooFew": "{correct} of {scored} correct · not enough answers for a figure",
+      "summary": "{skills, plural, one {# skill} other {# skills}} · {reviewed, plural, one {# reviewed question} other {# reviewed questions}} in the bank",
+      "caption": "Skills in {topic}",
+      "skill": "Skill",
+      "inBank": "In the bank",
+      "scored": "Scored",
+      "correct": "Correct",
+      "practise": "Practise {topic}"
+    },
+    "recent": {
+      "title": "Recent sessions",
+      "noResult": "No result recorded",
+      "outcome": "{correct} correct, {wrong} wrong, {blank} blank of {total}",
+      "retry": "Retry",
+      "status": {
+        "submitted": "Finished",
+        "expired": "Time ran out",
+        "abandoned": "Abandoned"
+      },
+      "seeResults": "See results"
+    },
+    "noHistory": {
+      "title": "No finished {exam} session yet",
+      "continue": "Continue your session",
+      "start": "Start practising {exam}",
+      "leadContinuing": "Finish the session you started and this page will show your accuracy by topic, what you missed and what is worth practising next, all counted from your own answers.",
+      "lead": "Once you finish a session, this page shows your accuracy by topic, what you missed and what is worth practising next, all counted from your own answers."
+    },
+    "emptyBank": {
+      "title": "No reviewed {exam} questions to practise yet",
+      "lead": "Questions for this exam are still being checked, so there is nothing to start. Only questions that have passed review are ever served.",
+      "guide": "Read the format and scoring guide"
+    }
+  },
+  "steps": {
+    "getStarted": {
+      "title": "Take a short session to find your starting point",
+      "because": "You have not answered any questions for this exam yet, so there is nothing to base advice on.",
+      "action": "Start practising"
+    },
+    "dueReview": {
+      "title": "Revisit {count, plural, one {# question} other {# questions}} you got wrong",
+      "because": "Questions you missed come back after a short interval, which is when reviewing them is worth most.",
+      "action": "Open mistake notebook"
+    },
+    "weakSkill": {
+      "title": "Drill {skill}",
+      "because": "You have answered {count, plural, one {# question} other {# questions}} tagged to this skill and got {correct} right ({accuracy, number, percent}).",
+      "action": "Practise this skill"
+    },
+    "slowSkill": {
+      "title": "Work on pace in {skill}",
+      "because": "Your accuracy here is {accuracy, number, percent}, but your median time is {seconds} seconds a question. Accuracy is not the problem; speed is.",
+      "action": "Practise under time"
+    },
+    "untouchedDomain": {
+      "title": "Try {topic}",
+      "because": "You have not answered any questions in this topic yet, so there is a blind spot in your picture.",
+      "action": "Practise this topic"
+    },
+    "needsMoreData": {
+      "title": "Answer a few more questions before drawing conclusions",
+      "because": "{count} of your skills have fewer than {min} answers, which is too few to tell a weakness from a bad day.",
+      "action": "Practise more"
+    },
+    "broader": {
+      "label": "Practise all of {topic}",
+      "because": "This skill has {inSkill, plural, one {# reviewed question} other {# reviewed questions}}, so the drill is short; its topic has {inTopic}."
+    }
+  },
+  "readiness": {
+    "band": {
+      "insufficient": "Not enough evidence yet",
+      "early": "Early",
+      "developing": "Developing",
+      "consistent": "Consistent",
+      "strong": "Strong"
+    },
+    "display": {
+      "percent": "{value, number, percent}",
+      "correctOf": "{correct} of {total} correct",
+      "notMeasurable": "Not measurable",
+      "timedAnswers": "{count, plural, one {# timed answer} other {# timed answers}}",
+      "timingUnreliable": "Timing unreliable",
+      "paceRatio": "{ratio, number, ::.00}× the exam's pace",
+      "topicsCovered": "{covered} of {total} topics",
+      "questions": "{count, plural, one {# question} other {# questions}}",
+      "sessionsOf": "{count} of {min} sessions",
+      "spread": "±{points} points between sessions"
+    },
+    "signal": {
+      "accuracy": {
+        "label": "Accuracy",
+        "basisRaw": "{correct} correct out of {scored} questions shown, across every topic you have practised.",
+        "basisWeighted": "Your accuracy in each topic, weighted by {publisher}'s published share of the exam for that topic, over the {share, number, percent} of the exam you have practised.",
+        "capNote": "Under {usable} answers this reads no better than {band}.",
+        "basisTooFew": "A percentage means something from {min} answers; you have {count}."
+      },
+      "pace": {
+        "label": "Pace",
+        "basisNoPace": "{publisher} does not publish enough for a per-question pace on this exam, so we cannot compare.",
+        "basisTooFew": "Pace is read from at least {min} answers with a recorded time; you have {count}.",
+        "basisUnreliable": "Your median time is under {seconds} seconds a question, faster than a question can be read, so it is treated as unreliable timing rather than as speed.",
+        "basis": "The exam allows about {pace} seconds a question. Your median over {count} timed answers is {median} seconds."
+      },
+      "coverage": {
+        "label": "Topic coverage",
+        "basis": "Topics of the exam’s own list in which you have answered at least {min} questions.",
+        "touchedOnly": "{count, plural, one {# more topic has} other {# more topics have}} fewer answers than that."
+      },
+      "volume": {
+        "label": "Evidence",
+        "basis": "Below {min} answers a percentage is noise; we treat {usable}+ as a usable sample of your own work."
+      },
+      "consistency": {
+        "label": "Consistency",
+        "basisTooFew": "Consistency compares at least {min} sessions of {answers} or more answers; you have {count}.",
+        "basis": "How much your accuracy moves between your last {count} sessions of {answers} or more answers. A wide spread usually means the topic mix is driving the result, not your level."
+      }
+    },
+    "timing": {
+      "allUntimed": "All of these were answered in untimed practice, with no clock to keep to.",
+      "someUntimed": "{count} of {total} of these were answered in untimed practice, with no clock to keep to.",
+      "missing": "{count, plural, one {# answer had no time recorded and is left out.} other {# answers had no time recorded and are left out.}}"
+    },
+    "overall": {
+      "insufficient": "You have answered {count, plural, one {# question} other {# questions}} for this exam. That is too few to say anything about readiness — answer at least {min} and this becomes meaningful.",
+      "weighted": "Across the topics you have practised, you are answering {accuracy, number, percent} correctly, weighted the way the exam itself weights its topics. This describes your work on our questions, not a predicted exam score.",
+      "unweighted": "Across the topics you have practised, you are answering {accuracy, number, percent} correctly. This describes your work on our questions, not a predicted exam score."
+    },
+    "projection": {
+      "condition": {
+        "noCalculator": "no calculator",
+        "minutes": "{minutes} minutes",
+        "noGoingBack": "no going back"
+      },
+      "methodBocconi": "Your accuracy on the questions you attempted ({accuracy, number, percent}) and your rate of leaving questions blank ({omission, number, percent}) applied to the published {items}-question form, scored with Bocconi's published rule: +{correct} correct, {blank} blank, {wrong} wrong.",
+      "methodPublished": "Your accuracy on the questions you attempted ({accuracy, number, percent}) and your rate of leaving questions blank ({omission, number, percent}) applied to the published {items}-question form, scored with {publisher}'s published rule: +{correct} correct, {blank} blank, {wrong} wrong.",
+      "methodConverted": "Your accuracy on the questions you attempted ({accuracy, number, percent}) and your rate of leaving questions blank ({omission, number, percent}) applied to the published {items}-question form, scored with {publisher}'s published rule: +{correct} correct, {blank} blank, {wrong} wrong, then converted to the reported scale ({scale}) as published.",
+      "assumeDifficulty": "It assumes our questions are as hard as the real ones. Their difficulty is our editorial judgement, not calibrated against test-taker data.",
+      "assumeConditions": "It assumes you answer under the same conditions: {conditions}.",
+      "assumeBocconiPenalty": "It scores every wrong answer at {wrong} and ignores the larger −0.33 penalty Bocconi applies to some items, so a real form could score slightly lower.",
+      "assumeArithmetic": "It is arithmetic on your own practice, not a prediction of test day.",
+      "scoreLabelScale": "Projected score ({scale})",
+      "scoreLabelRaw": "Projected raw score"
+    },
+    "target": {
+      "stated": "{target} on the {scale} scale ({min}–{max})",
+      "explanationConverted": "{publisher} publishes this exam's scoring in full — a fixed number of questions, each worth the same, a published penalty for a wrong answer and a published conversion to the reported score — so your target can be turned into arithmetic rather than guesswork. The projection below is your own practice accuracy applied to the published form.",
+      "explanationPenalty": "{publisher} publishes this exam's scoring in full — every question is worth the same, and the penalty for a wrong answer is published — so your target can be turned into arithmetic rather than guesswork. The projection below is your own practice accuracy applied to the published form.",
+      "explanationNone": "We cannot tell you whether your practice equals {target}. {publisher} does not publish how a raw score becomes a {scale} score. Anyone who gives you a number for this is estimating. What we can show you is the work itself: how accurate you are in each topic the exam publishes, and whether you are working at its pace.",
+      "explanationNoneSat": "We cannot tell you whether your practice equals {target}. {publisher} does not publish how a raw score becomes a {scale} score, and states that two test takers who answer the same number of questions correctly can receive different section scores. Anyone who gives you a number for this is estimating. What we can show you is the work itself: how accurate you are in each topic the exam publishes, and whether you are working at its pace."
+    },
+    "limitations": {
+      "smallSample": "This is based on {count, plural, one {# answer} other {# answers}}, which is a small sample. Treat it as a pointer, not a measurement.",
+      "difficulty": "Every figure here comes from your answers to our own questions. Their difficulty is our editorial judgement, not calibrated against test-taker data.",
+      "noPercentiles": "We do not report percentiles, and we do not estimate a probability of admission.",
+      "unverified": "{count, plural, one {# rule} other {# rules}} of this exam could not be verified from an official source, so some exam-accurate practice is switched off."
+    }
+  },
+  "suggestions": {
+    "repeatAll": "You have been shown all {all} reviewed questions here, so this repeats them.",
+    "repeatSome": "Only {unseen} of the {all} reviewed questions here are new to you, so this repeats some.",
+    "more": {
+      "title": "Answer more questions",
+      "titleNew": "Answer more questions, new ones",
+      "why": "Another {count} answers and the measurements above start to mean something."
+    },
+    "review": {
+      "title": "Revisit {count, plural, one {# question} other {# questions}} you missed",
+      "why": "Questions you got wrong or left blank, asked again on purpose. A retry does not count towards the measurements above."
+    },
+    "untouched": {
+      "title": "Practise {topic}",
+      "why": "You have not answered anything in this topic, so it is a blind spot in everything above."
+    },
+    "weak": {
+      "title": "Work on {topic}",
+      "why": "Your weakest topic with enough answers to act on: {accuracy, number, percent} of {answered}."
+    },
+    "timed": {
+      "title": "Practise against the clock",
+      "why": "Your median time is {ratio, number, ::.00}× the exam's pace. {format} runs to a clock.",
+      "action": "Choose a timed format"
+    }
+  },
+  "suggestionsList": {
+    "title": "Suggestions",
+    "description": "What might help next, from the questions available now. These are suggestions, not measurements.",
+    "none": "Nothing to suggest right now beyond the sessions in your plan.",
+    "start": "Start {count, plural, one {# question} other {# questions}}",
+    "planLink": "Your dated plan"
+  },
+  "plan": {
+    "label": {
+      "review": "Revisit questions you missed",
+      "mixed": "Mixed practice, new questions",
+      "new": "{topic}, new questions",
+      "revision": "{topic}, revision",
+      "mixedRevision": "Mixed revision"
+    },
+    "reason": {
+      "carried": "Carried from a missed session.",
+      "judged": "{accuracy, number, percent} correct over {count} answers.",
+      "notAttempted": "Not attempted yet.",
+      "tooFew": "Too few answers yet to judge.",
+      "thinSkill": "{skill} has only {count, plural, one {# reviewed question} other {# reviewed questions}}, so its topic is practised.",
+      "review": "{count, plural, one {# question you missed can be asked again.} other {# questions you missed can be asked again.}} This repeats them on purpose.",
+      "mixed": "Not enough of your own answers yet to single out a topic.",
+      "mixedRevision": "You have been shown most of these questions, so this revises them.",
+      "revisionAllSeen": "You have seen every question here, so this revises ones you have seen.",
+      "revisionSomeNew": "{count, plural, one {Only # question here is new to you} other {Only # questions here are new to you}}, so this revises ones you have seen."
+    }
+  },
+  "planParts": {
+    "size": "{questions} questions · {minutes} min",
+    "completed": "Completed with {answered, plural, one {# question} other {# questions}} answered.",
+    "completedOf": "Completed with {answered, plural, one {# question} other {# questions}} answered of the {planned} planned.",
+    "week": "Week {week}",
+    "weekRange": "{from} to {to} · {minutes} min",
+    "state": {
+      "planned": "Planned",
+      "completed": "Completed",
+      "missed": "Missed",
+      "skipped": "Skipped"
+    },
+    "stateExplained": {
+      "planned": "Scheduled, and its day is not over yet.",
+      "completed": "You finished a matching session and answered at least {min} of its questions, or all of them if fewer are planned. That is the bar for completing it, not a sign that every question was answered: each one shows how many you did. Opening a session is not enough, and a new-questions session counts only if it was started with new questions only, as Start does.",
+      "missed": "Its date has ended in every time zone: from 12:00 UTC the next day (13:00 in Italy in winter, 14:00 in summer). Where you are, that is between the midnight after its date and about a day later, never earlier. You can still do it until you adjust your plan, which records it as missed.",
+      "skipped": "You chose to skip it. It stays in your plan as skipped."
+    },
+    "inputs": {
+      "date": "Exam date",
+      "optional": "(optional)",
+      "weekly": "Time each week",
+      "minutesOption": "{minutes} minutes ({hours} hours)",
+      "weeklyHint": "Sessions are {minutes} minutes, so this sets how many you get each week."
+    },
+    "dateConflict": {
+      "title": "Which is your {exam} date?",
+      "lead": "We found two, and kept both rather than choose for you.",
+      "legend": "Choose your exam date",
+      "fromGoal": "{date}, from your goal",
+      "fromEarlier": "{date}, from your earlier plan",
+      "untilChosen": "Until you choose, the date from your goal is used."
+    }
+  },
+  "planning": {
+    "viewsLabel": "Study plan views",
+    "views": {
+      "plan": "Plan",
+      "progress": "Progress & readiness"
+    },
+    "examsLabel": "Exams in your study plan",
+    "notices": {
+      "planCreated": "Your plan is saved. It changes only when you adjust it.",
+      "planAdjusted": "Your remaining plan is adjusted. Completed, skipped and missed sessions are kept as they were.",
+      "planEnded": "That plan has ended. Its sessions are kept in your data export.",
+      "planExists": "You already have a plan for this exam, shown below.",
+      "planChanged": "Your plan or your practice changed since this preview was made, so nothing was applied. Here is the preview as it is now.",
+      "noPlan": "That plan is no longer active.",
+      "nothingToPlan": "There are no reviewed questions to plan for this exam yet.",
+      "invalidPlanInput": "Nothing was saved: choose a weekly time from the list, and an exam date after today (or none).",
+      "sessionSkipped": "Session skipped. It stays in your plan as skipped.",
+      "sessionClosed": "That session is already completed, skipped or recorded as missed.",
+      "notEnoughNew": "Too few questions you have not seen are left for that session. Adjust your plan to turn it into revision, or skip it.",
+      "insufficientContent": "Not enough reviewed questions are available for that session right now.",
+      "nothingToReview": "There are no missed questions to ask again right now: you have answered them correctly since, or they are being revised.",
+      "rateLimited": "Too many sessions were started in a short time. Try again in a few minutes.",
+      "dateChosen": "Exam date saved. That is now the one date for this exam."
+    }
+  },
+  "studyPlan": {
+    "meta": {
+      "title": "Your study plan",
+      "description": "A dated practice plan built from your own answers and the questions available."
+    },
+    "noExamTitle": "No exam chosen yet",
+    "chooseExam": "Choose an exam",
+    "noExamLead": "Pick the test you are preparing for, and this page will lay out the next few weeks from the questions available and your own results.",
+    "setup": {
+      "title": "Make a plan",
+      "preview": "Preview with these",
+      "previewTitle": "The plan this would make",
+      "dateNotAfterToday": "That date is not after today, so the preview uses no exam date.",
+      "datePassed": "Your exam date, {date}, has passed, so the preview uses none.",
+      "dateHintEarlier": "Filled in from your earlier study plan, which was not tied to an exam. Clear it if it is not your {exam} date.",
+      "dateHint": "Your one exam date for this exam, shared with your goal. Leave it empty for a six-week plan.",
+      "nothingTitle": "Nothing to plan yet",
+      "nothingLead": "There are no reviewed questions to plan for {exam} yet.",
+      "slotsLeftFree": "{planned} of the {slots} sessions your time allows are planned. The rest are left free: there are not enough reviewed {exam} questions to revise a topic more than once a week.",
+      "save": "Save this plan"
+    },
+    "stats": {
+      "sessions": "Sessions",
+      "new": "New questions",
+      "revision": "Revision",
+      "review": "Review",
+      "completed": "Completed",
+      "toDo": "Still to do",
+      "missed": "Missed",
+      "skipped": "Skipped"
+    },
+    "terms": {
+      "runs": "Runs",
+      "range": "{from} to {to}",
+      "examDate": "Exam date",
+      "none": "None",
+      "eachWeek": "Each week",
+      "minutes": "{minutes} minutes",
+      "builtFor": "Built for",
+      "examOn": "an exam on {date}",
+      "noExamDate": "no exam date"
+    },
+    "stored": {
+      "glance": "Your plan at a glance",
+      "adjust": "Adjust my remaining plan",
+      "missedTitle": "{count, plural, one {# session missed} other {# sessions missed}}",
+      "missedLead": "You can still do them. Adjusting records them as missed, moves their topics forward and shows you every change before saving.",
+      "dateChangedTitle": "Your exam date has changed",
+      "dateNow": "It is now {date};",
+      "dateCleared": "It has been cleared;",
+      "builtFor": "this plan was built for {date}. Adjusting shows what a new schedule would change.",
+      "builtForNone": "this plan was built for no date. Adjusting shows what a new schedule would change.",
+      "weekByWeek": "Week by week",
+      "endTitle": "Finished with this plan?",
+      "endLead": "Ending it keeps every session as it is, in your data export, and lets you make a new one.",
+      "end": "End this plan"
+    },
+    "actions": {
+      "seeResults": "See results",
+      "continue": "Continue",
+      "start": "Start",
+      "startAgain": "Start again",
+      "skip": "Skip"
+    },
+    "howItWorks": {
+      "title": "How the plan works",
+      "lead": "It is built from the reviewed questions available now and your own answers: weakest topics first, then ones you have not tried. It changes only when you adjust it."
+    }
+  },
+  "adjust": {
+    "meta": {
+      "title": "Adjust your study plan"
+    },
+    "title": "Adjust my remaining plan",
+    "dateNotAfterToday": "That date is not after today, so this preview uses no exam date.",
+    "datePassed": "Your exam date, {date}, has passed, so this preview uses none.",
+    "changesTitle": "What would change",
+    "stats": {
+      "missed": "Recorded missed",
+      "moved": "Moved",
+      "added": "Added",
+      "removed": "Removed"
+    },
+    "terms": {
+      "unchanged": "Unchanged",
+      "unchangedValue": "{count, plural, one {# upcoming session} other {# upcoming sessions}}",
+      "history": "History kept",
+      "historyValue": "{count} completed or skipped",
+      "schedule": "New schedule"
+    },
+    "apply": "Apply these changes",
+    "keep": "Keep my plan as it is",
+    "nothing": "Nothing would change: your plan already matches these inputs.",
+    "back": "Back to my plan",
+    "inputsTitle": "Time and date",
+    "updatePreview": "Update the preview",
+    "dateHint": "Your one exam date for this exam. Changing it here changes it for your goal too, once you apply.",
+    "detailsTitle": "Every change",
+    "missedTitle": "Recorded as missed",
+    "missedEmpty": "No missed sessions.",
+    "carriedTitle": "Carried forward",
+    "carried": "Scheduled first in the new schedule: {sessions}.",
+    "movedTitle": "Moved",
+    "movedEmpty": "Nothing moves.",
+    "addedTitle": "Added",
+    "addedEmpty": "Nothing is added.",
+    "removedTitle": "Removed",
+    "removedEmpty": "Nothing is removed.",
+    "movesTo": "moves to"
+  },
+  "progress": {
+    "meta": {
+      "title": "Progress and readiness",
+      "description": "How your practice measures against the exam you are preparing for."
+    },
+    "chooseLead": "Choose the exam you are preparing for, and this view measures your practice against it.",
+    "noAnswersTitle": "No answers yet for {exam}",
+    "startPractising": "Start practising",
+    "noAnswersLead": "This page measures your readiness from questions you have actually answered. Answer some and it becomes meaningful — there is nothing useful we could tell you before that.",
+    "formatLink": "What the {exam} actually looks like"
+  },
+  "report": {
+    "eyebrow": "Readiness",
+    "meterLabel": "Readiness band: {band}",
+    "basedOn": "Based on {count, plural, one {# question} other {# questions}} you have answered.",
+    "target": {
+      "title": "Your target",
+      "floorLabel": "Official eligibility floor",
+      "floorHint": "Published by the university as a minimum to be considered — not a competitive score.",
+      "atOrAbove": "On this projection you are at or above your target of {target}.",
+      "short": "On this projection you are {gap} points short of your target of {target}.",
+      "belowThresholdTitle": "Below the published {threshold}",
+      "belowThreshold": "On this projection you are below {value}.",
+      "noPassMarkTitle": "No single pass mark",
+      "belowFloorTitle": "Below the published eligibility floor",
+      "belowFloor": "An application scoring below {floor} is not considered. This is the one number here that is an official requirement rather than a goal you set.",
+      "howCalculated": "How this projection is calculated, and what it assumes",
+      "noGuessTitle": "We will not guess at this",
+      "officialPractice": "Official full-length practice from {publisher} is scored by their own model, so that is where a scaled-score estimate should come from. Use this page for diagnosis — which topics are weak, whether you are working at the exam’s pace — and theirs for score prediction."
+    },
+    "signals": {
+      "title": "What we measured",
+      "description": "Each of these comes from your own answers. The basis for every one is stated, so you can judge whether you agree with it.",
+      "meterLabel": "{signal}: {band}"
+    },
+    "gaps": {
+      "title": "Where the ground is weakest",
+      "description": "Ordered by what would move your result most: topics you have never attempted first, then your lowest accuracy.",
+      "caption": "Your accuracy by topic for the {exam}, weakest first.",
+      "topic": "Topic",
+      "answered": "Answered",
+      "accuracy": "Accuracy",
+      "share": "Share of the exam",
+      "practise": "Practise",
+      "notAttempted": "Not attempted",
+      "tooFew": "Too few to say",
+      "notPublished": "Not published"
+    },
+    "limits": {
+      "title": "What this assessment is not"
+    }
+  },
+  "targetForm": {
+    "title": "Your goal",
+    "lead": "These two are the only things this page cannot work out for itself.",
+    "errors": {
+      "title": "Not saved",
+      "outOfRange": "A score on this scale runs from {min} to {max}. {score} is outside that.",
+      "invalidDate": "That is not a real calendar date.",
+      "notSaved": "That goal could not be saved."
+    },
+    "score": "Target score",
+    "scoreHintScale": "On the exam's own scale, from {min} to {max}. Leave it empty if you do not have a number in mind yet.",
+    "scoreHint": "On the exam’s own reported scale. Leave it empty if you do not have a number in mind yet.",
+    "date": "Exam date",
+    "optional": "(optional)",
+    "dateHint": "Your one date for this exam. Your study plan uses it too, and offers to adjust when it changes.",
+    "save": "Save goal",
+    "saved": "Saved."
+  }
+}

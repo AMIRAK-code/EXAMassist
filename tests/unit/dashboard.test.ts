@@ -1,4 +1,4 @@
-import { withIntl } from './helpers/intl';
+import { english, withIntl } from './helpers/intl';
 import { beforeEach, describe, expect, it } from 'vitest';
 import type { Db } from '@/lib/db';
 import { recordResponse, startAttempt, submitAttempt } from '@/lib/attempts/service';
@@ -119,7 +119,7 @@ describe('the next step', () => {
     const drill = [exam.next!, ...exam.others].find((step) => step.kind === 'weak_skill' && step.skillSlug === skill.slug)!;
     expect(drill.href).toBe(`/practice/digital-sat?skill=${skill.slug}`);
     expect(drill.broader).toMatchObject({ href: `/practice/digital-sat?domain=${domain.slug}` });
-    expect(drill.broader!.because).toContain(`${inSkill} reviewed question`);
+    expect(english(drill.broader!.because)).toContain(`${inSkill} reviewed question`);
   });
 
   it('puts the recommendation with the lowest priority number first', async () => {

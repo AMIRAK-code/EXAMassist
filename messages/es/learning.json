@@ -1,1 +1,535 @@
-{}
+{
+  "crumbs": {
+    "home": "Inicio",
+    "dashboard": "Panel",
+    "studyPlan": "Plan de estudio",
+    "notebook": "Cuaderno de errores",
+    "progress": "Progreso y preparación",
+    "adjust": "Ajustar"
+  },
+  "why": "Por qué: {reason}",
+  "kind": {
+    "new": "Solo preguntas nuevas",
+    "mixed": "Solo preguntas nuevas",
+    "revision": "Repaso: puede repetir preguntas",
+    "review": "Repaso de errores: repite preguntas falladas",
+    "timed": "Cronometrada"
+  },
+  "dashboard": {
+    "meta": {
+      "title": "Tu panel",
+      "description": "Tus sesiones sin terminar, en qué trabajar a continuación y tu precisión por tema."
+    },
+    "title": "Tu panel",
+    "lead": "Calculado a partir de tus propias respuestas. Nada de esto predice una puntuación.",
+    "unknownExamShowing": "Ese enlace indicaba un examen que no ofrecemos, así que aquí ves tu práctica de {exam}.",
+    "unknownExam": "Ese enlace indicaba un examen que no ofrecemos.",
+    "doesNotTitle": "Lo que esta página no hace",
+    "doesNot": "No predice una puntuación, no te sitúa en un percentil ni estima tu probabilidad de admisión. Cada cifra de arriba es un recuento de tus propias respuestas y nada más.",
+    "practise": "Practicar {exam}",
+    "chooseTitle": "Elige un examen para empezar",
+    "chooseLead": "A partir de ahí, esta página sigue el examen que practicas, y puedes cambiar de examen aquí cuando quieras.",
+    "startPractising": "Empezar a practicar",
+    "examGuide": "Guía del examen",
+    "otherTitle": "¿Practicas otro examen?",
+    "otherLead": "Abre otro examen aquí. No cambia el examen que tienes como objetivo.",
+    "nextStep": "Tu siguiente paso",
+    "alsoWorthDoing": "También merece la pena",
+    "error": {
+      "title": "No se ha podido cargar tu panel",
+      "body": "Algo ha fallado al leer tu historial de práctica. Vuelve a intentarlo en un momento.",
+      "retry": "Reintentar",
+      "chooseExam": "Elige un examen para practicar"
+    },
+    "guest": {
+      "text": "Como invitado, este navegador guarda tu práctica hasta el {until}. Después, este navegador ya no podrá abrirla. Crea una cuenta para conservarla.",
+      "endsSoon": "Tu práctica como invitado termina pronto",
+      "keep": "Conserva tu progreso"
+    },
+    "unfinished": {
+      "title": "Continúa donde lo dejaste",
+      "section": "Sección {part} de {parts}",
+      "question": "Pregunta {question} de {questions}",
+      "answered": "{count} respondidas",
+      "underAMinute": "queda menos de un minuto",
+      "minutesLeft": "quedan {minutes} min",
+      "continue": "Continuar",
+      "clockRuns": "El reloj sigue corriendo mientras no estás, igual que en el examen real."
+    },
+    "switcher": {
+      "label": "Exámenes de tu panel",
+      "target": "objetivo"
+    },
+    "summary": {
+      "label": "Tus recuentos",
+      "scored": "Preguntas puntuadas",
+      "across": "en {count, plural, one {# sesión terminada} other {# sesiones terminadas}}",
+      "correct": "Respuestas correctas",
+      "correctShare": "{percent} de todo lo que se te ha mostrado",
+      "noneScored": "Todavía no hay preguntas puntuadas",
+      "due": "Errores para repasar ahora",
+      "comingLater": "{count, plural, one {# pregunta más vuelve} other {# preguntas más vuelven}} más adelante.",
+      "comingLaterOn": "{count, plural, one {# pregunta más vuelve} other {# preguntas más vuelven}} más adelante; la próxima, el {date}.",
+      "dueInterval": "Las preguntas falladas vuelven tras un breve intervalo.",
+      "nothingWaiting": "No hay nada pendiente. Las preguntas falladas vuelven al día siguiente de fallarlas.",
+      "openNotebook": "Abrir el cuaderno de errores"
+    },
+    "topics": {
+      "title": "Precisión por tema",
+      "lead": "Todos los temas de {exam}, incluidos los que no has practicado. Para dar una cifra hacen falta al menos {min} preguntas puntuadas; por debajo de eso se muestran los recuentos. Abre un tema para ver sus habilidades.",
+      "notPractised": "Sin practicar todavía",
+      "figure": "{percent} · {correct} de {scored} correctas",
+      "figureTooFew": "{correct} de {scored} correctas · no hay respuestas suficientes para dar una cifra",
+      "summary": "{skills, plural, one {# habilidad} other {# habilidades}} · {reviewed, plural, one {# pregunta revisada} other {# preguntas revisadas}} en el banco",
+      "caption": "Habilidades de {topic}",
+      "skill": "Habilidad",
+      "inBank": "En el banco",
+      "scored": "Puntuadas",
+      "correct": "Correctas",
+      "practise": "Practicar {topic}"
+    },
+    "recent": {
+      "title": "Sesiones recientes",
+      "noResult": "Sin resultado registrado",
+      "outcome": "{correct} correctas, {wrong} incorrectas y {blank} en blanco de {total}",
+      "retry": "Repetir",
+      "status": {
+        "submitted": "Terminada",
+        "expired": "Se acabó el tiempo",
+        "abandoned": "Abandonada"
+      },
+      "seeResults": "Ver resultados"
+    },
+    "noHistory": {
+      "title": "Todavía no has terminado ninguna sesión de {exam}",
+      "continue": "Continuar tu sesión",
+      "start": "Empezar a practicar {exam}",
+      "leadContinuing": "Termina la sesión que empezaste y esta página mostrará tu precisión por tema, lo que fallaste y lo que merece la pena practicar a continuación, todo calculado a partir de tus propias respuestas.",
+      "lead": "Cuando termines una sesión, esta página mostrará tu precisión por tema, lo que fallaste y lo que merece la pena practicar a continuación, todo calculado a partir de tus propias respuestas."
+    },
+    "emptyBank": {
+      "title": "Todavía no hay preguntas revisadas de {exam} para practicar",
+      "lead": "Las preguntas de este examen aún se están comprobando, así que no hay nada con lo que empezar. Solo se ofrecen preguntas que han superado la revisión.",
+      "guide": "Leer la guía de formato y puntuación"
+    }
+  },
+  "steps": {
+    "getStarted": {
+      "title": "Haz una sesión corta para saber desde dónde partes",
+      "because": "Todavía no has respondido ninguna pregunta de este examen, así que no hay nada en lo que basar un consejo.",
+      "action": "Empezar a practicar"
+    },
+    "dueReview": {
+      "title": "{count, plural, one {Vuelve a la pregunta que fallaste} other {Vuelve a las # preguntas que fallaste}}",
+      "because": "Las preguntas que fallas vuelven tras un breve intervalo, que es cuando más rinde repasarlas.",
+      "action": "Abrir el cuaderno de errores"
+    },
+    "weakSkill": {
+      "title": "Practica a fondo {skill}",
+      "because": "Has respondido {count, plural, one {# pregunta asociada} other {# preguntas asociadas}} a esta habilidad y has acertado {correct} ({accuracy, number, percent}).",
+      "action": "Practicar esta habilidad"
+    },
+    "slowSkill": {
+      "title": "Mejora tu ritmo en {skill}",
+      "because": "Tu precisión aquí es del {accuracy, number, percent}, pero tu tiempo mediano es de {seconds} segundos por pregunta. El problema no es la precisión, sino la velocidad.",
+      "action": "Practicar con tiempo"
+    },
+    "untouchedDomain": {
+      "title": "Prueba {topic}",
+      "because": "Todavía no has respondido ninguna pregunta de este tema, así que es un punto ciego en tu panorama.",
+      "action": "Practicar este tema"
+    },
+    "needsMoreData": {
+      "title": "Responde algunas preguntas más antes de sacar conclusiones",
+      "because": "{count} de tus habilidades tienen menos de {min} respuestas, demasiado pocas para distinguir un punto débil de un mal día.",
+      "action": "Practicar más"
+    },
+    "broader": {
+      "label": "Practicar todo {topic}",
+      "because": "Esta habilidad tiene {inSkill, plural, one {# pregunta revisada} other {# preguntas revisadas}}, así que la sesión es corta; su tema tiene {inTopic}."
+    }
+  },
+  "readiness": {
+    "band": {
+      "insufficient": "Todavía no hay datos suficientes",
+      "early": "Inicial",
+      "developing": "En desarrollo",
+      "consistent": "Constante",
+      "strong": "Sólido"
+    },
+    "display": {
+      "percent": "{value, number, percent}",
+      "correctOf": "{correct} de {total} correctas",
+      "notMeasurable": "No medible",
+      "timedAnswers": "{count, plural, one {# respuesta cronometrada} other {# respuestas cronometradas}}",
+      "timingUnreliable": "Tiempos poco fiables",
+      "paceRatio": "{ratio, number, ::.00}× el ritmo del examen",
+      "topicsCovered": "{covered} de {total} temas",
+      "questions": "{count, plural, one {# pregunta} other {# preguntas}}",
+      "sessionsOf": "{count} de {min} sesiones",
+      "spread": "±{points} puntos entre sesiones"
+    },
+    "signal": {
+      "accuracy": {
+        "label": "Precisión",
+        "basisRaw": "{correct} correctas de {scored} preguntas mostradas, en todos los temas que has practicado.",
+        "basisWeighted": "Tu precisión en cada tema, ponderada según el peso que {publisher} publica para ese tema en el examen, sobre el {share, number, percent} del examen que has practicado.",
+        "capNote": "Con menos de {usable} respuestas, esta lectura no pasa del nivel «{band}».",
+        "basisTooFew": "Un porcentaje empieza a significar algo a partir de {min} respuestas; tú tienes {count}."
+      },
+      "pace": {
+        "label": "Ritmo",
+        "basisNoPace": "{publisher} no publica datos suficientes para calcular un ritmo por pregunta en este examen, así que no podemos comparar.",
+        "basisTooFew": "El ritmo se calcula con al menos {min} respuestas con el tiempo registrado; tú tienes {count}.",
+        "basisUnreliable": "Tu tiempo mediano es inferior a {seconds} segundos por pregunta, menos de lo que se tarda en leer una pregunta, así que se trata como un registro de tiempo poco fiable y no como velocidad.",
+        "basis": "El examen da unos {pace} segundos por pregunta. Tu mediana en {count} respuestas cronometradas es de {median} segundos."
+      },
+      "coverage": {
+        "label": "Cobertura de temas",
+        "basis": "Temas de la lista oficial del examen en los que has respondido al menos {min} preguntas.",
+        "touchedOnly": "{count, plural, one {# tema más tiene} other {# temas más tienen}} menos respuestas que eso."
+      },
+      "volume": {
+        "label": "Datos",
+        "basis": "Por debajo de {min} respuestas, un porcentaje es ruido; consideramos {usable} o más una muestra útil de tu propio trabajo."
+      },
+      "consistency": {
+        "label": "Constancia",
+        "basisTooFew": "La constancia compara al menos {min} sesiones de {answers} respuestas o más; tú tienes {count}.",
+        "basis": "Cuánto varía tu precisión entre tus últimas {count} sesiones de {answers} respuestas o más. Una gran dispersión suele indicar que el resultado depende de la combinación de temas, no de tu nivel."
+      }
+    },
+    "timing": {
+      "allUntimed": "Todas se respondieron en práctica sin límite de tiempo, sin ningún reloj que seguir.",
+      "someUntimed": "{count} de {total} se respondieron en práctica sin límite de tiempo, sin ningún reloj que seguir.",
+      "missing": "{count, plural, one {# respuesta no tenía tiempo registrado y se ha excluido.} other {# respuestas no tenían tiempo registrado y se han excluido.}}"
+    },
+    "overall": {
+      "insufficient": "Has respondido {count, plural, one {# pregunta} other {# preguntas}} de este examen. Es demasiado poco para decir nada sobre tu preparación: responde al menos {min} y esto empezará a tener sentido.",
+      "weighted": "En los temas que has practicado, aciertas el {accuracy, number, percent}, con la misma ponderación que el propio examen da a sus temas. Esto describe tu trabajo con nuestras preguntas, no una puntuación prevista en el examen.",
+      "unweighted": "En los temas que has practicado, aciertas el {accuracy, number, percent}. Esto describe tu trabajo con nuestras preguntas, no una puntuación prevista en el examen."
+    },
+    "projection": {
+      "condition": {
+        "noCalculator": "sin calculadora",
+        "minutes": "{minutes} minutos",
+        "noGoingBack": "sin poder volver atrás"
+      },
+      "methodBocconi": "Tu precisión en las preguntas que intentaste ({accuracy, number, percent}) y tu tasa de preguntas en blanco ({omission, number, percent}), aplicadas al modelo publicado de {items} preguntas y puntuadas con la regla que publica Bocconi: +{correct} por correcta, {blank} por pregunta en blanco y {wrong} por incorrecta.",
+      "methodPublished": "Tu precisión en las preguntas que intentaste ({accuracy, number, percent}) y tu tasa de preguntas en blanco ({omission, number, percent}), aplicadas al modelo publicado de {items} preguntas y puntuadas con la regla que publica {publisher}: +{correct} por correcta, {blank} por pregunta en blanco y {wrong} por incorrecta.",
+      "methodConverted": "Tu precisión en las preguntas que intentaste ({accuracy, number, percent}) y tu tasa de preguntas en blanco ({omission, number, percent}), aplicadas al modelo publicado de {items} preguntas, puntuadas con la regla que publica {publisher} (+{correct} por correcta, {blank} por pregunta en blanco y {wrong} por incorrecta) y convertidas después a la escala oficial ({scale}) tal como se publica.",
+      "assumeDifficulty": "Supone que nuestras preguntas son tan difíciles como las reales. Su dificultad es un criterio editorial nuestro, no está calibrada con datos de personas que han hecho el examen.",
+      "assumeConditions": "Supone que respondes en las mismas condiciones: {conditions}.",
+      "assumeBocconiPenalty": "Puntúa cada respuesta incorrecta con {wrong} e ignora la penalización mayor, de −0,33, que Bocconi aplica a algunas preguntas, así que una prueba real podría dar una puntuación algo más baja.",
+      "assumeArithmetic": "Es aritmética sobre tu propia práctica, no una predicción del día del examen.",
+      "scoreLabelScale": "Puntuación proyectada ({scale})",
+      "scoreLabelRaw": "Puntuación bruta proyectada"
+    },
+    "target": {
+      "stated": "{target} en la escala {scale} ({min}–{max})",
+      "explanationConverted": "{publisher} publica la puntuación de este examen al completo (un número fijo de preguntas, todas con el mismo valor, una penalización publicada por respuesta incorrecta y una conversión publicada a la puntuación oficial), así que tu objetivo se puede traducir en aritmética en lugar de en conjeturas. La proyección de abajo es tu propia precisión en la práctica aplicada al modelo publicado.",
+      "explanationPenalty": "{publisher} publica la puntuación de este examen al completo (todas las preguntas valen lo mismo y la penalización por respuesta incorrecta es pública), así que tu objetivo se puede traducir en aritmética en lugar de en conjeturas. La proyección de abajo es tu propia precisión en la práctica aplicada al modelo publicado.",
+      "explanationNone": "No podemos decirte si tu práctica equivale a {target}. {publisher} no publica cómo una puntuación bruta se convierte en una puntuación de {scale}. Quien te dé una cifra para esto está haciendo una estimación. Lo que sí podemos mostrarte es el trabajo en sí: tu precisión en cada tema que publica el examen y si trabajas a su ritmo.",
+      "explanationNoneSat": "No podemos decirte si tu práctica equivale a {target}. {publisher} no publica cómo una puntuación bruta se convierte en una puntuación de {scale}, y afirma que dos personas que respondan correctamente el mismo número de preguntas pueden obtener puntuaciones de sección distintas. Quien te dé una cifra para esto está haciendo una estimación. Lo que sí podemos mostrarte es el trabajo en sí: tu precisión en cada tema que publica el examen y si trabajas a su ritmo."
+    },
+    "limitations": {
+      "smallSample": "Se basa en {count, plural, one {# respuesta} other {# respuestas}}, una muestra pequeña. Tómalo como una orientación, no como una medición.",
+      "difficulty": "Todas las cifras de esta página proceden de tus respuestas a nuestras propias preguntas. Su dificultad es un criterio editorial nuestro, no está calibrada con datos de personas que han hecho el examen.",
+      "noPercentiles": "No damos percentiles ni estimamos una probabilidad de admisión.",
+      "unverified": "{count, plural, one {# norma de este examen no se ha podido verificar con una fuente oficial, así que parte de la práctica fiel al examen está desactivada.} other {# normas de este examen no se han podido verificar con una fuente oficial, así que parte de la práctica fiel al examen está desactivada.}}"
+    }
+  },
+  "suggestions": {
+    "repeatAll": "Ya se te han mostrado las {all} preguntas revisadas de aquí, así que esta sesión las repite.",
+    "repeatSome": "Solo {unseen} de las {all} preguntas revisadas de aquí son nuevas para ti, así que esta sesión repite algunas.",
+    "more": {
+      "title": "Responde más preguntas",
+      "titleNew": "Responde más preguntas nuevas",
+      "why": "Con {count} respuestas más, las mediciones de arriba empiezan a tener sentido."
+    },
+    "review": {
+      "title": "{count, plural, one {Vuelve a la pregunta que fallaste} other {Vuelve a las # preguntas que fallaste}}",
+      "why": "Preguntas que fallaste o dejaste en blanco, planteadas de nuevo a propósito. Una repetición no cuenta en las mediciones de arriba."
+    },
+    "untouched": {
+      "title": "Practica {topic}",
+      "why": "No has respondido nada de este tema, así que es un punto ciego en todo lo anterior."
+    },
+    "weak": {
+      "title": "Refuerza {topic}",
+      "why": "Es tu tema más débil entre los que tienen respuestas suficientes para actuar: {accuracy, number, percent} en {answered}."
+    },
+    "timed": {
+      "title": "Practica contra el reloj",
+      "why": "Tu tiempo mediano es {ratio, number, ::.00}× el ritmo del examen. {format} se hace con reloj.",
+      "action": "Elegir un formato cronometrado"
+    }
+  },
+  "suggestionsList": {
+    "title": "Sugerencias",
+    "description": "Lo que podría ayudarte ahora, a partir de las preguntas disponibles en este momento. Son sugerencias, no mediciones.",
+    "none": "Ahora mismo no hay nada que sugerir aparte de las sesiones de tu plan.",
+    "start": "Empezar con {count, plural, one {# pregunta} other {# preguntas}}",
+    "planLink": "Tu plan con fechas"
+  },
+  "plan": {
+    "label": {
+      "review": "Vuelve a las preguntas que fallaste",
+      "mixed": "Práctica mixta, preguntas nuevas",
+      "new": "{topic}, preguntas nuevas",
+      "revision": "{topic}, repaso",
+      "mixedRevision": "Repaso mixto"
+    },
+    "reason": {
+      "carried": "Trasladada desde una sesión no realizada.",
+      "judged": "{accuracy, number, percent} de aciertos en {count} respuestas.",
+      "notAttempted": "Todavía sin intentar.",
+      "tooFew": "Todavía hay muy pocas respuestas para valorarlo.",
+      "thinSkill": "{skill} solo tiene {count, plural, one {# pregunta revisada} other {# preguntas revisadas}}, así que se practica su tema.",
+      "review": "{count, plural, one {# pregunta que fallaste puede volver a plantearse. Esta sesión la repite a propósito.} other {# preguntas que fallaste pueden volver a plantearse. Esta sesión las repite a propósito.}}",
+      "mixed": "Todavía no tienes suficientes respuestas propias para destacar un tema.",
+      "mixedRevision": "Ya se te han mostrado la mayoría de estas preguntas, así que esta sesión las repasa.",
+      "revisionAllSeen": "Ya has visto todas las preguntas de aquí, así que esta sesión repasa preguntas vistas.",
+      "revisionSomeNew": "{count, plural, one {Solo # pregunta de aquí es nueva para ti} other {Solo # preguntas de aquí son nuevas para ti}}, así que esta sesión repasa preguntas vistas."
+    }
+  },
+  "planParts": {
+    "size": "{questions} preguntas · {minutes} min",
+    "completed": "Completada con {answered, plural, one {# pregunta respondida} other {# preguntas respondidas}}.",
+    "completedOf": "Completada con {answered, plural, one {# pregunta respondida} other {# preguntas respondidas}} de las {planned} previstas.",
+    "week": "Semana {week}",
+    "weekRange": "Del {from} al {to} · {minutes} min",
+    "state": {
+      "planned": "Prevista",
+      "completed": "Completada",
+      "missed": "No realizada",
+      "skipped": "Saltada"
+    },
+    "stateExplained": {
+      "planned": "Programada, y su día aún no ha terminado.",
+      "completed": "Terminaste una sesión que coincide con ella y respondiste al menos {min} de sus preguntas, o todas si hay menos previstas. Ese es el requisito para completarla, no una señal de que respondieras todas las preguntas: cada una muestra cuántas hiciste. Abrir una sesión no basta, y una sesión de preguntas nuevas solo cuenta si se empezó solo con preguntas nuevas, como hace el botón «Empezar».",
+      "missed": "Su fecha ya ha terminado en todos los husos horarios: a partir de las 12:00 UTC del día siguiente (las 13:00 en Italia en invierno y las 14:00 en verano). Donde estás tú, eso ocurre entre la medianoche posterior a su fecha y aproximadamente un día después, nunca antes. Puedes hacerla igualmente hasta que ajustes tu plan, que la registra como no realizada.",
+      "skipped": "Decidiste saltarla. Se queda en tu plan como saltada."
+    },
+    "inputs": {
+      "date": "Fecha del examen",
+      "optional": "(opcional)",
+      "weekly": "Tiempo por semana",
+      "minutesOption": "{minutes} minutos ({hours} horas)",
+      "weeklyHint": "Las sesiones duran {minutes} minutos, así que esto determina cuántas tienes cada semana."
+    },
+    "dateConflict": {
+      "title": "¿Cuál es la fecha de tu {exam}?",
+      "lead": "Hemos encontrado dos y hemos conservado ambas en lugar de elegir por ti.",
+      "legend": "Elige la fecha de tu examen",
+      "fromGoal": "{date}, de tu objetivo",
+      "fromEarlier": "{date}, de tu plan anterior",
+      "untilChosen": "Hasta que elijas, se usa la fecha de tu objetivo."
+    }
+  },
+  "planning": {
+    "viewsLabel": "Vistas del plan de estudio",
+    "views": {
+      "plan": "Plan",
+      "progress": "Progreso y preparación"
+    },
+    "examsLabel": "Exámenes de tu plan de estudio",
+    "notices": {
+      "planCreated": "Tu plan se ha guardado. Solo cambia cuando lo ajustas.",
+      "planAdjusted": "Se ha ajustado lo que queda de tu plan. Las sesiones completadas, saltadas y no realizadas se mantienen como estaban.",
+      "planEnded": "Ese plan ha terminado. Sus sesiones se conservan en la exportación de tus datos.",
+      "planExists": "Ya tienes un plan para este examen; lo ves a continuación.",
+      "planChanged": "Tu plan o tu práctica han cambiado desde que se generó esta vista previa, así que no se ha aplicado nada. Esta es la vista previa actualizada.",
+      "noPlan": "Ese plan ya no está activo.",
+      "nothingToPlan": "Todavía no hay preguntas revisadas con las que planificar este examen.",
+      "invalidPlanInput": "No se ha guardado nada: elige un tiempo semanal de la lista y una fecha de examen posterior a hoy (o ninguna).",
+      "sessionSkipped": "Sesión saltada. Se queda en tu plan como saltada.",
+      "sessionClosed": "Esa sesión ya está completada, saltada o registrada como no realizada.",
+      "notEnoughNew": "Quedan muy pocas preguntas que no hayas visto para esa sesión. Ajusta tu plan para convertirla en repaso, o sáltala.",
+      "insufficientContent": "Ahora mismo no hay suficientes preguntas revisadas para esa sesión.",
+      "nothingToReview": "Ahora mismo no hay preguntas falladas que volver a plantear: las has respondido bien desde entonces o se están revisando.",
+      "rateLimited": "Se han iniciado demasiadas sesiones en poco tiempo. Vuelve a intentarlo dentro de unos minutos.",
+      "dateChosen": "Fecha del examen guardada. Ahora es la única fecha para este examen."
+    }
+  },
+  "studyPlan": {
+    "meta": {
+      "title": "Tu plan de estudio",
+      "description": "Un plan de práctica con fechas, creado a partir de tus propias respuestas y de las preguntas disponibles."
+    },
+    "noExamTitle": "Todavía no has elegido ningún examen",
+    "chooseExam": "Elegir un examen",
+    "noExamLead": "Elige la prueba para la que te preparas y esta página organizará las próximas semanas a partir de las preguntas disponibles y de tus propios resultados.",
+    "setup": {
+      "title": "Crea un plan",
+      "preview": "Ver la vista previa",
+      "previewTitle": "El plan que se crearía",
+      "dateNotAfterToday": "Esa fecha no es posterior a hoy, así que la vista previa no usa ninguna fecha de examen.",
+      "datePassed": "La fecha de tu examen, el {date}, ya ha pasado, así que la vista previa no usa ninguna.",
+      "dateHintEarlier": "Se ha rellenado a partir de tu plan de estudio anterior, que no estaba vinculado a ningún examen. Bórrala si no es la fecha de tu {exam}.",
+      "dateHint": "Tu única fecha para este examen, compartida con tu objetivo. Déjala vacía para un plan de seis semanas.",
+      "nothingTitle": "Todavía no hay nada que planificar",
+      "nothingLead": "Todavía no hay preguntas revisadas de {exam} con las que planificar.",
+      "slotsLeftFree": "Se han planificado {planned} de las {slots} sesiones que permite tu tiempo. El resto queda libre: no hay suficientes preguntas revisadas de {exam} para repasar un tema más de una vez por semana.",
+      "save": "Guardar este plan"
+    },
+    "stats": {
+      "sessions": "Sesiones",
+      "new": "Preguntas nuevas",
+      "revision": "Repaso",
+      "review": "Repaso de errores",
+      "completed": "Completadas",
+      "toDo": "Pendientes",
+      "missed": "No realizadas",
+      "skipped": "Saltadas"
+    },
+    "terms": {
+      "runs": "Periodo",
+      "range": "Del {from} al {to}",
+      "examDate": "Fecha del examen",
+      "none": "Ninguna",
+      "eachWeek": "Cada semana",
+      "minutes": "{minutes} minutos",
+      "builtFor": "Creado para",
+      "examOn": "un examen el {date}",
+      "noExamDate": "sin fecha de examen"
+    },
+    "stored": {
+      "glance": "Tu plan de un vistazo",
+      "adjust": "Ajustar lo que queda de mi plan",
+      "missedTitle": "{count, plural, one {# sesión no realizada} other {# sesiones no realizadas}}",
+      "missedLead": "Todavía puedes hacerlas. Al ajustar el plan, se registran como no realizadas, sus temas pasan al nuevo calendario y ves cada cambio antes de guardar.",
+      "dateChangedTitle": "La fecha de tu examen ha cambiado",
+      "dateNow": "Ahora es el {date};",
+      "dateCleared": "Se ha borrado;",
+      "builtFor": "este plan se creó para el {date}. Al ajustarlo, verás qué cambiaría con un nuevo calendario.",
+      "builtForNone": "este plan se creó sin ninguna fecha. Al ajustarlo, verás qué cambiaría con un nuevo calendario.",
+      "weekByWeek": "Semana a semana",
+      "endTitle": "¿Has terminado con este plan?",
+      "endLead": "Al terminarlo, todas sus sesiones se conservan tal como están en la exportación de tus datos, y puedes crear uno nuevo.",
+      "end": "Terminar este plan"
+    },
+    "actions": {
+      "seeResults": "Ver resultados",
+      "continue": "Continuar",
+      "start": "Empezar",
+      "startAgain": "Empezar de nuevo",
+      "skip": "Saltar"
+    },
+    "howItWorks": {
+      "title": "Cómo funciona el plan",
+      "lead": "Se crea a partir de las preguntas revisadas disponibles ahora y de tus propias respuestas: primero los temas más débiles y después los que aún no has probado. Solo cambia cuando lo ajustas."
+    }
+  },
+  "adjust": {
+    "meta": {
+      "title": "Ajusta tu plan de estudio"
+    },
+    "title": "Ajustar lo que queda de mi plan",
+    "dateNotAfterToday": "Esa fecha no es posterior a hoy, así que esta vista previa no usa ninguna fecha de examen.",
+    "datePassed": "La fecha de tu examen, el {date}, ya ha pasado, así que esta vista previa no usa ninguna.",
+    "changesTitle": "Qué cambiaría",
+    "stats": {
+      "missed": "Registradas como no realizadas",
+      "moved": "Movidas",
+      "added": "Añadidas",
+      "removed": "Eliminadas"
+    },
+    "terms": {
+      "unchanged": "Sin cambios",
+      "unchangedValue": "{count, plural, one {# sesión próxima} other {# sesiones próximas}}",
+      "history": "Historial conservado",
+      "historyValue": "{count} completadas o saltadas",
+      "schedule": "Nuevo calendario"
+    },
+    "apply": "Aplicar estos cambios",
+    "keep": "Mantener mi plan como está",
+    "nothing": "No cambiaría nada: tu plan ya coincide con estos datos.",
+    "back": "Volver a mi plan",
+    "inputsTitle": "Tiempo y fecha",
+    "updatePreview": "Actualizar la vista previa",
+    "dateHint": "Tu única fecha para este examen. Si la cambias aquí, también cambia para tu objetivo en cuanto apliques los cambios.",
+    "detailsTitle": "Todos los cambios",
+    "missedTitle": "Registradas como no realizadas",
+    "missedEmpty": "No hay sesiones no realizadas.",
+    "carriedTitle": "Trasladadas",
+    "carried": "Programadas en primer lugar en el nuevo calendario: {sessions}.",
+    "movedTitle": "Movidas",
+    "movedEmpty": "No se mueve nada.",
+    "addedTitle": "Añadidas",
+    "addedEmpty": "No se añade nada.",
+    "removedTitle": "Eliminadas",
+    "removedEmpty": "No se elimina nada.",
+    "movesTo": "pasa a"
+  },
+  "progress": {
+    "meta": {
+      "title": "Progreso y preparación",
+      "description": "Cómo se compara tu práctica con el examen para el que te preparas."
+    },
+    "chooseLead": "Elige el examen para el que te preparas y esta vista medirá tu práctica con respecto a él.",
+    "noAnswersTitle": "Todavía no hay respuestas de {exam}",
+    "startPractising": "Empezar a practicar",
+    "noAnswersLead": "Esta página mide tu preparación a partir de las preguntas que has respondido de verdad. Responde algunas y empezará a tener sentido: antes de eso no podríamos decirte nada útil.",
+    "formatLink": "Cómo es realmente el {exam}"
+  },
+  "report": {
+    "eyebrow": "Preparación",
+    "meterLabel": "Nivel de preparación: {band}",
+    "basedOn": "Basado en {count, plural, one {# pregunta que has respondido} other {# preguntas que has respondido}}.",
+    "target": {
+      "title": "Tu objetivo",
+      "floorLabel": "Mínimo oficial de admisibilidad",
+      "floorHint": "Lo publica la universidad como mínimo para que se tenga en cuenta una solicitud; no es una puntuación competitiva.",
+      "atOrAbove": "Según esta proyección, alcanzas o superas tu objetivo de {target}.",
+      "short": "Según esta proyección, te faltan {gap} puntos para tu objetivo de {target}.",
+      "belowThresholdTitle": "Por debajo del umbral publicado ({threshold})",
+      "belowThreshold": "Según esta proyección, estás por debajo de {value}.",
+      "noPassMarkTitle": "No hay una única nota de corte",
+      "belowFloorTitle": "Por debajo del mínimo de admisibilidad publicado",
+      "belowFloor": "Una solicitud con una puntuación inferior a {floor} no se tiene en cuenta. Es la única cifra de esta página que es un requisito oficial y no un objetivo que te has marcado tú.",
+      "howCalculated": "Cómo se calcula esta proyección y qué supone",
+      "noGuessTitle": "No vamos a hacer conjeturas sobre esto",
+      "officialPractice": "La práctica oficial de examen completo de {publisher} se puntúa con su propio modelo, así que es de ahí de donde debe salir una estimación de la puntuación escalada. Usa esta página para el diagnóstico (qué temas son débiles, si trabajas al ritmo del examen) y la suya para predecir la puntuación."
+    },
+    "signals": {
+      "title": "Qué hemos medido",
+      "description": "Cada uno de estos indicadores procede de tus propias respuestas. Indicamos la base de cada uno para que puedas valorar si estás de acuerdo.",
+      "meterLabel": "{signal}: {band}"
+    },
+    "gaps": {
+      "title": "Dónde tu base es más débil",
+      "description": "Ordenado según lo que más movería tu resultado: primero los temas que nunca has intentado y después los de menor precisión.",
+      "caption": "Tu precisión por tema en el {exam}, empezando por el más débil.",
+      "topic": "Tema",
+      "answered": "Respondidas",
+      "accuracy": "Precisión",
+      "share": "Peso en el examen",
+      "practise": "Practicar",
+      "notAttempted": "Sin intentar",
+      "tooFew": "Muy pocas para valorar",
+      "notPublished": "No publicado"
+    },
+    "limits": {
+      "title": "Lo que esta evaluación no es"
+    }
+  },
+  "targetForm": {
+    "title": "Tu objetivo",
+    "lead": "Estos dos datos son lo único que esta página no puede deducir por sí sola.",
+    "errors": {
+      "title": "No guardado",
+      "outOfRange": "En esta escala, una puntuación va de {min} a {max}. {score} queda fuera de ese rango.",
+      "invalidDate": "Esa fecha no existe en el calendario.",
+      "notSaved": "No se ha podido guardar ese objetivo."
+    },
+    "score": "Puntuación objetivo",
+    "scoreHintScale": "En la escala propia del examen, de {min} a {max}. Déjalo vacío si todavía no tienes una cifra en mente.",
+    "scoreHint": "En la escala oficial del propio examen. Déjalo vacío si todavía no tienes una cifra en mente.",
+    "date": "Fecha del examen",
+    "optional": "(opcional)",
+    "dateHint": "Tu única fecha para este examen. Tu plan de estudio también la usa y te ofrece ajustarse cuando cambia.",
+    "save": "Guardar objetivo",
+    "saved": "Guardado."
+  }
+}

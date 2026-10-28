@@ -7,6 +7,7 @@ import {
   type ReadinessInput,
 } from '@/lib/learning/readiness';
 import { requireExamConfig } from '@/lib/exams/registry';
+import { english, englishList } from './helpers/intl';
 
 /**
  * The readiness assessment exists to answer "am I on track for my target?"
@@ -73,7 +74,7 @@ describe('refusing to over-claim', () => {
     expect(result.evidenceStrength).toBe('insufficient');
     expect(result.overall).toBe('insufficient');
     // 100% correct, but on five answers it must not say "strong".
-    expect(result.overallStatement).toContain('too few');
+    expect(english(result.overallStatement)).toContain('too few');
   });
 
   it('caps the band at the evidence, not the accuracy', () => {
@@ -90,19 +91,19 @@ describe('refusing to over-claim', () => {
     expect(result.target).not.toBeNull();
     expect(result.target!.quantifiable).toBe(false);
     expect(result.target!.projection).toBeNull();
-    expect(result.target!.explanation).toContain('cannot tell you');
-    expect(result.target!.explanation).toContain('does not');
+    expect(english(result.target!.explanation)).toContain('cannot tell you');
+    expect(english(result.target!.explanation)).toContain('does not');
   });
 
   it('cites the SAT’s own statement about equal raw scores', () => {
     const result = assessReadiness(input({ targetScore: 1500 }));
-    expect(result.target!.explanation).toContain('same number of questions correctly');
+    expect(english(result.target!.explanation)).toContain('same number of questions correctly');
   });
 
   it('always states its limitations, including never reporting percentiles', () => {
     const result = assessReadiness(input({ targetScore: 1400 }));
-    expect(result.limitations.join(' ')).toContain('percentiles');
-    expect(result.limitations.join(' ')).toContain('editorial judgement');
+    expect(englishList(result.limitations)).toContain('percentiles');
+    expect(englishList(result.limitations)).toContain('editorial judgement');
   });
 
   it('records no target analysis when the learner has not set one', () => {
@@ -189,8 +190,8 @@ describe('Bocconi, the one exam whose scoring is fully published', () => {
   it('states its assumptions, including that our difficulty is not calibrated', () => {
     const projection = assessReadiness(bocconiInput(0.7)).target!.projection!;
     expect(projection.assumptions.length).toBeGreaterThanOrEqual(3);
-    expect(projection.assumptions.join(' ')).toContain('editorial judgement');
-    expect(projection.method).toContain('published');
+    expect(englishList(projection.assumptions)).toContain('editorial judgement');
+    expect(english(projection.method)).toContain('published');
   });
 });
 
@@ -201,7 +202,7 @@ describe('signals, each with its own evidence threshold', () => {
   it('shows accuracy as a count, not a percentage, below the threshold', () => {
     const accuracy = signal(assessReadiness(input({ byDomain: domainRows(SAT, { correct: 5, answered: 5, omitted: 0 }, 1) })), 'accuracy');
     expect(accuracy.band).toBe('insufficient');
-    expect(accuracy.display).toBe('5 of 5 correct');
+    expect(english(accuracy.display)).toBe('5 of 5 correct');
   });
 
   it('caps accuracy at Consistent below a usable sample, however high', () => {
@@ -209,35 +210,35 @@ describe('signals, each with its own evidence threshold', () => {
     const byDomain = domainRows(SAT, { correct: 7, answered: 7, omitted: 0 });
     expect(SAT.domains.length * 7).toBeLessThan(80);
     const accuracy = signal(assessReadiness(input({ byDomain })), 'accuracy');
-    expect(accuracy.display).toBe('100%');
+    expect(english(accuracy.display)).toBe('100%');
     expect(accuracy.band).toBe('consistent');
   });
 
   it('measures pace against the exam’s own published pace, over individual answers', () => {
     const slow = signal(assessReadiness(input({ timing: times(40, 200_000) })), 'pace');
-    expect(slow.display).toContain('×');
+    expect(english(slow.display)).toContain('×');
     expect(['early', 'developing']).toContain(slow.band);
-    expect(slow.basis).toContain('40 timed answers');
+    expect(english(slow.basis)).toContain('40 timed answers');
   });
 
   it('needs 25 timed answers before it reads pace at all', () => {
     const result = assessReadiness(input({ timing: times(24, 40_000) }));
     expect(signal(result, 'pace').band).toBe('insufficient');
-    expect(signal(result, 'pace').display).toBe('24 timed answers');
+    expect(english(signal(result, 'pace').display)).toBe('24 timed answers');
     expect(result.paceRatio).toBeNull();
   });
 
   it('treats a median under five seconds as unreliable timing, never as strong pace', () => {
     const result = assessReadiness(input({ timing: times(60, 2_000) }));
-    expect(signal(result, 'pace').display).toBe('Timing unreliable');
+    expect(english(signal(result, 'pace').display)).toBe('Timing unreliable');
     expect(signal(result, 'pace').band).toBe('insufficient');
     expect(result.paceRatio).toBeNull();
   });
 
   it('says when pace comes from untimed practice, and what had no time recorded', () => {
     const pace = signal(assessReadiness(input({ timing: times(30, 60_000, 30, 4) })), 'pace');
-    expect(pace.basis).toContain('All of these were answered in untimed practice');
-    expect(pace.basis).toContain('4 answers had no time recorded');
+    expect(english(pace.basis)).toContain('All of these were answered in untimed practice');
+    expect(english(pace.basis)).toContain('4 answers had no time recorded');
     // 30 timed answers: fast enough for "Strong", capped at "Consistent".
     expect(pace.band).toBe('consistent');
   });
@@ -251,22 +252,22 @@ describe('signals, each with its own evidence threshold', () => {
       recentSessions: [],
       timing: times(50, 60_000),
     });
-    expect(signal(result, 'pace').display).toBe('Not measurable');
-    expect(signal(result, 'pace').basis).toContain('does not publish');
+    expect(english(signal(result, 'pace').display)).toBe('Not measurable');
+    expect(english(signal(result, 'pace').basis)).toContain('does not publish');
   });
 
   it('counts a topic as covered only from four answers', () => {
     const byDomain = domainRows(SAT, { correct: 8, answered: 10, omitted: 0 }, SAT.domains.length - 1);
     byDomain.set(SAT.domains[SAT.domains.length - 1].slug, { correct: 3, answered: 3, omitted: 0 });
     const coverage = signal(assessReadiness(input({ byDomain })), 'coverage');
-    expect(coverage.display).toBe(`${SAT.domains.length - 1} of ${SAT.domains.length} topics`);
-    expect(coverage.basis).toContain('1 more topic has fewer answers');
+    expect(english(coverage.display)).toBe(`${SAT.domains.length - 1} of ${SAT.domains.length} topics`);
+    expect(english(coverage.basis)).toContain('1 more topic has fewer answers');
   });
 
   it('reads consistency only from three sessions of five or more answers', () => {
     const short = assessReadiness(input({ recentSessions: [0.5, 0.8, 0.55, 0.85].map((accuracy) => ({ accuracy, scored: 4 })) }));
     expect(signal(short, 'consistency').band).toBe('insufficient');
-    expect(signal(short, 'consistency').display).toBe('0 of 3 sessions');
+    expect(english(signal(short, 'consistency').display)).toBe('0 of 3 sessions');
 
     const long = assessReadiness(input({ recentSessions: [0.5, 0.8, 0.55, 0.85].map((accuracy) => ({ accuracy, scored: 10 })) }));
     expect(['early', 'developing']).toContain(signal(long, 'consistency').band);

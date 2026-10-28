@@ -1,1 +1,234 @@
-{}
+{
+  "crumbs": {
+    "home": "Inicio",
+    "exams": "Exámenes",
+    "practise": "Practicar",
+    "getStarted": "Empezar",
+    "freeDiagnostic": "Diagnóstico gratuito"
+  },
+  "setup": {
+    "metaFallbackTitle": "Práctica",
+    "metaTitle": "Practicar {exam}",
+    "metaDescription": "Elige un tema, una dificultad y la duración de la sesión, y practica {exam} con preguntas originales y explicaciones completas.",
+    "title": "Practicar {exam}",
+    "lead": "Practica por temas, sin límite de tiempo, o elige otro formato más abajo.",
+    "empty": {
+      "title": "Todavía no hay preguntas revisadas para este examen",
+      "body": "Las preguntas de este examen aún se están comprobando, así que de momento no hay nada que practicar aquí. Solo se ofrecen preguntas que han superado la revisión.",
+      "guide": "La <link>guía de formato y puntuación</link> está completa y con fuentes, y ya te puede resultar útil."
+    },
+    "topic": {
+      "title": "Práctica por temas",
+      "body": "Sin límite de tiempo. Cambia tu respuesta tantas veces como quieras y luego compruébala para ver la explicación resuelta; una respuesta comprobada queda bloqueada.",
+      "ignoredFilter": "El enlace indicaba un tema o una habilidad que el {exam} no tiene, así que no se ha aplicado ningún filtro."
+    },
+    "otherFormats": "Otros formatos",
+    "questionCount": "{count, plural, one {# pregunta} other {# preguntas}}",
+    "untimed": "Sin límite de tiempo",
+    "upgrade": "Elige un plan para empezar",
+    "start": "Empezar",
+    "whyNotOffered": "Por qué no está disponible:",
+    "notEnoughYet": "Aún no hay suficientes preguntas revisadas:",
+    "contentShortfall": "Este formato necesita {requested, plural, one {# pregunta revisada} other {# preguntas revisadas}} y el banco tiene ahora {available} que encajan. Se abrirá a medida que el banco crezca.",
+    "about": {
+      "title": "Sobre este examen",
+      "formatLink": "Formato, tiempos y puntuación, con fuentes"
+    },
+    "bank": {
+      "title": "Banco de preguntas",
+      "coverage": "{count, plural, one {pregunta revisada} other {preguntas revisadas}} en {covered} de {total} temas",
+      "note": "Es una biblioteca inicial, no un curso completo. Las preguntas son originales y elaboradas con ayuda de IA; antes de publicarse, un revisor de IA independiente resolvió cada una a ciegas.",
+      "howChecked": "Cómo se revisan las preguntas"
+    },
+    "unverified": {
+      "title": "Lo que no hemos podido verificar",
+      "allSources": "Ver todas las fuentes y salvedades"
+    },
+    "contentLanguage": {
+      "label": "Preguntas en:",
+      "note": "Una pregunta sin versión italiana revisada se muestra en inglés. Tu elección se aplica a todos los formatos de esta página.",
+      "englishOnlySimulation": "El simulacro completo del {exam} es siempre en inglés, como la prueba real."
+    }
+  },
+  "form": {
+    "skill": "Habilidad",
+    "removeSkill": "Quitar el filtro de habilidad",
+    "skillNote": "Esta sesión se limita a una habilidad. Quita el filtro para elegir un tema.",
+    "topic": "Tema",
+    "everyTopicOption": "Todos los temas ({count})",
+    "countsNote": "Las cifras indican las preguntas revisadas que cumplen todos los ajustes de este formulario.",
+    "difficulty": "Dificultad",
+    "levels": {
+      "mixed": "Mixta",
+      "easy": "Fácil",
+      "medium": "Media",
+      "hard": "Difícil"
+    },
+    "difficultyNote": "Las etiquetas de dificultad son un criterio editorial nuestro, no están calibradas con datos de personas que han hecho el examen. Un nivel elegido se usa por sí solo: nunca se completa con preguntas de otros niveles.",
+    "newOnly": "Solo preguntas nuevas",
+    "newOnlyCount": "({unseen} de {matching} son nuevas para ti)",
+    "newOnlyOn": "Solo preguntas que nunca se te han mostrado. Una sesión nunca se completa con preguntas ya vistas; si quedan muy pocas, será más corta o no podrá empezar.",
+    "newOnlyOff": "{seen} de las {matching} preguntas que coinciden ya se te han mostrado antes. Se eligen primero las que no has visto recientemente, pero puede incluirse alguna repetida; marca esta casilla para excluir las repeticiones.",
+    "length": "Número de preguntas",
+    "allOfThem": "{count} (todas)",
+    "shortened": "Solo {count, plural, one {# pregunta revisada coincide} other {# preguntas revisadas coinciden}} con estos ajustes, así que esta sesión tiene {length}.",
+    "shortenedNew": "Solo {count, plural, one {# pregunta revisada nueva coincide} other {# preguntas revisadas nuevas coinciden}} con estos ajustes, así que esta sesión tiene {length}.",
+    "allSeen": {
+      "title": "Ya se te han mostrado todas las preguntas que coinciden",
+      "body": "Aquí no hay nada nuevo. Incluye las preguntas que ya has visto o elige una opción más amplia a continuación."
+    },
+    "noMatch": {
+      "title": "Ninguna pregunta revisada coincide con estos ajustes",
+      "body": "Elige una opción más amplia a continuación o cambia el tema o la dificultad."
+    },
+    "longer": "¿Quieres una sesión más larga?",
+    "broader": {
+      "includeSeen": "Incluir las preguntas que ya has visto ({count})",
+      "wholeDomain": "Practicar todo {domain} ({count})",
+      "mixedDifficulty": "Usar dificultad mixta ({count})",
+      "everyTopic": "Practicar todos los temas de {exam} ({count})"
+    },
+    "summary": {
+      "count": "<strong>{count, plural, one {# pregunta} other {# preguntas}}</strong> de {scope}",
+      "everyTopic": "todos los temas",
+      "skillScope": "{skill} ({domain})",
+      "mixed": "dificultad mixta",
+      "easy": "solo fáciles",
+      "medium": "solo de dificultad media",
+      "hard": "solo difíciles",
+      "newOnly": "solo nuevas para ti",
+      "untimed": "sin límite de tiempo",
+      "check": "comprueba cada respuesta para ver su explicación resuelta",
+      "bank": "{count} preguntas revisadas de {exam} en el banco"
+    },
+    "nothing": "No hay nada con lo que empezar con estos ajustes.",
+    "preparing": "Preparando tu sesión…",
+    "startPractising": "Empezar a practicar",
+    "startLength": "Empezar sesión de {count} preguntas"
+  },
+  "blueprint": {
+    "starting": "Iniciando…"
+  },
+  "errors": {
+    "network": "No hemos podido conectar con el servidor. Comprueba tu conexión e inténtalo de nuevo.",
+    "insufficientCounts": "El banco de preguntas revisadas ya no tiene suficientes preguntas para esta combinación ({available} disponibles, {requested} solicitadas). Recarga la página para ver las cifras actuales.",
+    "insufficient": "El banco de preguntas revisadas ya no tiene suficientes preguntas para esta combinación. Recarga la página para ver las cifras actuales.",
+    "formFallback": "No se ha podido iniciar esa sesión.",
+    "buttonFallback": "Ahora mismo no se puede iniciar esta sesión.",
+    "codes": {
+      "rate-limited": "Has iniciado muchas sesiones. Espera un momento, por favor.",
+      "unknown-exam": "Ese examen no está disponible.",
+      "unknown-blueprint": "Ese formato de práctica no existe.",
+      "simulation-unavailable": "Este examen no ofrece un simulacro completo.",
+      "insufficient-content": "No hay suficientes preguntas revisadas para crear esta sesión sin repetir ninguna.",
+      "unauthorized": "Tu sesión ha terminado. Vuelve a iniciar sesión para empezar a practicar.",
+      "invalid-request": "Esa solicitud no era válida.",
+      "server-error": "Algo ha fallado por nuestra parte."
+    }
+  },
+  "start": {
+    "metaTitle": "Empezar",
+    "intro": {
+      "title": "Practica para el {exam}",
+      "lead": "El examen real tiene {count, plural, one {una sección} other {# secciones}}, según lo publica la entidad organizadora:",
+      "questions": "{count, plural, one {# pregunta} other {# preguntas}}",
+      "minutes": "{count, plural, one {# minuto} other {# minutos}}"
+    },
+    "how": {
+      "eyebrow": "Cómo funciona la práctica",
+      "title": "Practica tal como funciona el examen",
+      "leadCount": "{count, plural, one {# pregunta revisada de {exam}} other {# preguntas revisadas de {exam}}}, cada una con su explicación resuelta.",
+      "lead": "Preguntas revisadas, cada una con su explicación resuelta.",
+      "topic": "Práctica por temas: elige temas y dificultad, sin límite de tiempo, con la explicación resuelta en cuanto compruebas una respuesta.",
+      "timed": "{count, plural, one {Una sección cronometrada} other {# secciones cronometradas}} al ritmo oficial.",
+      "mock": "Un simulacro completo con las reglas reales.",
+      "diagnostic": "Un breve diagnóstico que te indica por dónde empezar."
+    },
+    "results": {
+      "eyebrow": "Tus resultados",
+      "title": "Ve exactamente qué necesitas mejorar",
+      "lead": "Cada sesión termina con resultados que te dicen qué hacer a continuación.",
+      "accuracy": "Precisión por tema y por habilidad, para que sepas qué practicar después.",
+      "notebook": "Un cuaderno de errores y una cola de repaso que te vuelven a plantear lo que fallaste.",
+      "plan": "Un plan de estudio organizado en torno a la fecha de tu examen.",
+      "tutor": "Un tutor de IA para pistas y explicaciones más detalladas, con un límite diario."
+    },
+    "paid": {
+      "single": "{plan}: todos los formatos de práctica de {exam}, por {price} al mes.",
+      "all": "{plan}: todos los exámenes y el tutor de IA, por {price} al mes.",
+      "vat": "IVA incluido. Cancela cuando quieras desde tu cuenta."
+    },
+    "free": {
+      "open": "Tu diagnóstico gratuito sigue abierto: continúa donde lo dejaste.",
+      "taken": "Ya has hecho este diagnóstico; sus resultados se quedan en tu historial.",
+      "questions": "Un diagnóstico de {count} preguntas, igual para todos.",
+      "fixed": "Un diagnóstico fijo, igual para todos.",
+      "every": "Gratis para cada examen, con resultados completos y explicaciones.",
+      "needsAccount": "Necesitas una cuenta gratuita."
+    },
+    "freeLabel": {
+      "signUp": "Crea una cuenta gratuita",
+      "continue": "Continúa tu diagnóstico",
+      "results": "Los resultados de tu diagnóstico",
+      "take": "Haz el diagnóstico gratuito"
+    },
+    "onboarding": {
+      "step": "Paso {current} de {total}",
+      "skip": "Ir directamente al diagnóstico gratuito",
+      "choiceEyebrow": "Tu elección",
+      "choiceTitle": "¿Cómo quieres empezar?",
+      "plan": "Un plan",
+      "seePlans": "Ver planes",
+      "free": "Diagnóstico gratuito",
+      "back": "Atrás",
+      "options": "Ver mis opciones",
+      "next": "Siguiente",
+      "continue": "Continuar a los planes"
+    }
+  },
+  "freeTest": {
+    "metaTitle": "Tu diagnóstico gratuito",
+    "title": "Tu diagnóstico gratuito de {exam}",
+    "leadTimed": "{questions, plural, one {# pregunta} other {# preguntas}} en {sections, plural, one {una sección} other {# secciones}}, unos {minutes, plural, one {# minuto} other {# minutos}}, con resultados completos y una explicación resuelta para cada respuesta.",
+    "leadUntimed": "{questions, plural, one {# pregunta} other {# preguntas}} en {sections, plural, one {una sección} other {# secciones}}, sin límite de tiempo, con resultados completos y una explicación resuelta para cada respuesta.",
+    "notices": {
+      "rate-limited": "Has iniciado muchas sesiones. Espera un momento y vuelve a intentarlo.",
+      "insufficient-content": "Todavía no hay suficientes preguntas revisadas para crear este diagnóstico."
+    },
+    "account": {
+      "title": "Crea una cuenta gratuita para hacerlo",
+      "body": "El diagnóstico necesita una cuenta para que tus resultados se conserven. Solo hace falta un correo electrónico y una contraseña. Sin cuenta, puedes probar igualmente las preguntas de ejemplo.",
+      "signUp": "Crear una cuenta gratuita",
+      "signIn": "Iniciar sesión",
+      "sample": "Probar una pregunta de ejemplo"
+    },
+    "waiting": {
+      "title": "Tu diagnóstico te está esperando",
+      "body": "Ya lo has empezado. Continúa donde lo dejaste; las preguntas son las mismas por muchas veces que vuelvas.",
+      "action": "Continuar tu diagnóstico"
+    },
+    "taken": {
+      "title": "Ya has hecho este diagnóstico",
+      "body": "Hay un diagnóstico gratuito por examen, y sus resultados se quedan en tu historial. Un plan abre todos los formatos de práctica de este examen, con preguntas nuevas en cada sesión.",
+      "results": "Los resultados de tu diagnóstico"
+    },
+    "preview": {
+      "sameForEveryone": "Todo el mundo recibe las mismas preguntas; hay un diagnóstico gratuito por examen.",
+      "perPart": "Cada sección tiene su propio reloj.",
+      "perPartPauses": "Cada sección tiene su propio reloj; si sales de la página, se detiene.",
+      "overall": "Un único reloj para todo el test.",
+      "overallPauses": "Un único reloj para todo el test; si sales de la página, se detiene.",
+      "untimed": "Sin límite de tiempo: tómate el que necesites.",
+      "results": "Al final verás tus resultados por tema y la explicación resuelta de cada pregunta.",
+      "start": "Empezar el diagnóstico gratuito",
+      "starting": "Iniciando…"
+    },
+    "notReady": {
+      "title": "Todavía no está listo",
+      "body": "Aún no hay suficientes preguntas revisadas de {exam} para crear el diagnóstico. La guía de formato y puntuación está completa y ya te puede resultar útil.",
+      "guide": "Leer la guía de formato y puntuación"
+    },
+    "plans": "Ver planes",
+    "footer": "¿Quieres todos los formatos, con preguntas nuevas cada vez? <link>Ver planes</link>."
+  }
+}

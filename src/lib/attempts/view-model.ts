@@ -47,6 +47,8 @@ export interface PlayerItem {
   questionId: string;
   responseType: ResponseType;
   stemHtml: string;
+  /** The language of the question's own text (stem, options, passage), which may differ from the page's. */
+  contentLocale: string;
   instructionsHtml: string | null;
   options: PlayerOption[];
   accessibilityText: string | null;
@@ -180,6 +182,7 @@ export function toPlayerModel(state: AttemptState): PlayerModel {
           questionId: item.questionId,
           responseType: question.responseType,
           stemHtml: renderMarkdown(question.stemMd ?? ''),
+          contentLocale: question.locale ?? 'en',
           instructionsHtml: question.instructionsMd ? renderMarkdown(question.instructionsMd) : null,
           options,
           accessibilityText: question.accessibilityText ?? null,

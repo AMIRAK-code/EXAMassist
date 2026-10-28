@@ -548,6 +548,7 @@ export function AttemptPlayer({
               role="region"
               aria-label={t('passage')}
               tabIndex={split ? 0 : undefined}
+              lang={item.contentLocale}
               className="question-text mb-5 lg:sticky lg:top-20 lg:mb-0 lg:max-h-[calc(100dvh-11rem)] lg:overflow-y-auto"
             >
               <StimulusView stimulus={item.stimulus} reading />
@@ -561,14 +562,15 @@ export function AttemptPlayer({
 
             {item.instructionsHtml ? (
               <div
+                lang={item.contentLocale}
                 className="prose-academic question-body question-text mb-3 text-sm text-ink-muted"
                 dangerouslySetInnerHTML={{ __html: item.instructionsHtml }}
               />
             ) : null}
 
-            <div className="prose-academic question-body question-text mb-5" dangerouslySetInnerHTML={{ __html: item.stemHtml }} />
+            <div lang={item.contentLocale} className="prose-academic question-body question-text mb-5" dangerouslySetInnerHTML={{ __html: item.stemHtml }} />
 
-            {item.accessibilityText ? <p className="sr-only">{item.accessibilityText}</p> : null}
+            {item.accessibilityText ? <p lang={item.contentLocale} className="sr-only">{item.accessibilityText}</p> : null}
 
             <ResponseInput
               item={{ ...item, response: responses[item.position] ?? null }}
@@ -612,6 +614,7 @@ export function AttemptPlayer({
                 </p>
                 {item.review?.explanationHtml ? (
                   <div
+                    lang={item.contentLocale}
                     className="prose-academic question-text mt-2 text-sm"
                     dangerouslySetInnerHTML={{ __html: item.review.explanationHtml }}
                   />

@@ -124,14 +124,14 @@ export default async function QuestionReviewPage({
           {t('review.questionHeading')}
         </h2>
         {question.stimulus ? (
-          <div className="question-text mb-5">
+          <div lang={question.locale} className="question-text mb-5">
             <Stimulus stimulus={question.stimulus} reading />
           </div>
         ) : null}
         {question.instructionsMd ? (
-          <Markdown source={question.instructionsMd} className="prose-academic question-text mb-3 text-sm text-ink-muted" />
+          <Markdown lang={question.locale} source={question.instructionsMd} className="prose-academic question-text mb-3 text-sm text-ink-muted" />
         ) : null}
-        <Markdown source={question.stemMd} className="prose-academic question-body question-text mb-5" />
+        <Markdown lang={question.locale} source={question.stemMd} className="prose-academic question-body question-text mb-5" />
 
         {question.options.length > 0 ? (
           <ul className="mb-6 space-y-2 text-sm">
@@ -146,7 +146,7 @@ export default async function QuestionReviewPage({
                 >
                   <div className="flex flex-wrap items-baseline gap-2">
                     <span className="w-5 shrink-0 font-semibold text-ink-muted">{t('review.optionLabel', { label: option.label })}</span>
-                    <Markdown source={option.textMd} className="question-text min-w-0 flex-1" />
+                    <Markdown lang={question.locale} source={option.textMd} className="question-text min-w-0 flex-1" />
                   </div>
                   {isChosen || isKey ? (
                     <div className="mt-2 flex flex-wrap gap-2">
@@ -154,7 +154,7 @@ export default async function QuestionReviewPage({
                       {isKey ? <Badge tone="positive">{t('review.correctAnswer')}</Badge> : null}
                     </div>
                   ) : null}
-                  {rationale ? <Markdown source={rationale} className="question-text mt-2 text-ink-muted" /> : null}
+                  {rationale ? <Markdown lang={question.locale} source={rationale} className="question-text mt-2 text-ink-muted" /> : null}
                 </li>
               );
             })}
@@ -165,7 +165,7 @@ export default async function QuestionReviewPage({
           <h2 id="explanation-heading" className="mb-2 font-heading text-lg font-semibold">
             {t('review.explanationHeading')}
           </h2>
-          <Markdown source={question.explanationMd} className="prose-academic question-text text-sm" />
+          <Markdown lang={question.locale} source={question.explanationMd} className="prose-academic question-text text-sm" />
           <p className="mt-3 text-xs text-ink-subtle">
             {t(question.difficultyBasis === 'empirical' ? 'review.difficultyEmpirical' : 'review.difficultyEditorial')}
           </p>

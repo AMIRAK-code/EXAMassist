@@ -379,7 +379,8 @@ function findItem(state: AttemptState, partIndex: number, position: number): Att
 async function loadReviewable(db: Db, item: AttemptItemState): Promise<ReviewableQuestion> {
   const version = (await getQuestionVersion(db, item.questionVersionId));
   if (!version) throw new TutorError('unknown-item', 'That question could not be found.', 404);
-  return (await toReviewable(db, version));
+  // The wording the learner saw: an Italian session's checked translation where it has one.
+  return (await toReviewable(db, version, item.question.locale ?? 'en'));
 }
 
 /**
