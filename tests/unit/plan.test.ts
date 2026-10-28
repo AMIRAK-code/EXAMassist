@@ -30,6 +30,7 @@ import {
   type PlanSessionRow,
 } from '@/lib/learning/plan';
 import { createTestDb, createUser, seedQuestions } from './helpers/test-db';
+import { english } from './helpers/intl';
 
 /**
  * Stored study plans (docs/REDESIGN.md §18.5): the shape of a plan, what each
@@ -181,7 +182,7 @@ describe('building sessions from what is available', () => {
     // 12 questions in the topic: one new session of 10, then revision.
     expect(topic[0]).toMatchObject({ kind: 'new', questionCount: 10 });
     expect(topic[1].kind).toBe('revision');
-    expect(topic[1].reason).toContain('revises ones you have');
+    expect(english(topic[1].reason)).toContain('revises ones you have');
   });
 
   it('revises a topic at most once a week, leaving time unfilled rather than repeating more', async () => {
@@ -213,7 +214,7 @@ describe('building sessions from what is available', () => {
     const inputs = (await planInputs(db, learner, SAT, { startsOn: '2026-10-01', examDate: null, weeklyMinutes: 150 }));
     const first = buildSessions(inputs).find((s) => s.kind !== 'review')!;
     expect(first).toMatchObject({ domainSlug: DOMAIN.slug, skillSlug: null });
-    expect(first.reason).toMatch(/has only \d reviewed questions?, so its topic is practised/);
+    expect(english(first.reason)).toMatch(/has only \d reviewed questions?, so its topic is practised/);
   });
 
   it('plans a review only while missed questions can be asked again, as many as it takes', async () => {
@@ -223,7 +224,7 @@ describe('building sessions from what is available', () => {
     const reviews = buildSessions((await planInputs(db, learner, SAT, { startsOn: '2026-10-01', examDate: null, weeklyMinutes: 150 }))).filter((s) => s.kind === 'review');
     expect(reviews).toHaveLength(1);
     expect(reviews[0]).toMatchObject({ questionCount: 3, scheduledOn: '2026-10-01' });
-    expect(reviews[0].reason).toContain('This repeats them on purpose');
+    expect(english(reviews[0].reason)).toContain('This repeats them on purpose');
   });
 });
 
@@ -446,7 +447,7 @@ describe('adjusting the remaining plan', () => {
     expect(upcoming.length).toBe(preview.kept + preview.added.length);
     // The first new session carries a missed topic forward.
     const carried = upcoming.filter((s) => s.kind !== 'review').sort((a, b) => a.scheduledOn.localeCompare(b.scheduledOn) || a.sequence - b.sequence)[0];
-    expect(carried.reason).toContain('Carried from a missed session');
+    expect(english(carried.reason)).toContain('Carried from a missed session');
 
     // Applying the same preview twice is refused: the plan moved on.
     (await expect(async () => (await applyAdjustment(db, learner, plan.id, digest, { weeklyMinutes: 150, examDate: null, now }))).rejects.toThrowError(

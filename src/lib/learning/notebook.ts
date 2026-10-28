@@ -76,6 +76,17 @@ export interface NotebookData {
   labelSummary: Array<{ key: MistakeLabel; text: string; count: number }>;
 }
 
+/** The stem as the session showed it: its checked translation for an Italian session, else the original. */
+function stemAsShown(detail: { stemMd: string; translationsJson: string | null; contentLocale: string }): string {
+  if (detail.contentLocale === 'en' || !detail.translationsJson) return detail.stemMd;
+  try {
+    const translations = JSON.parse(detail.translationsJson) as Record<string, { stemMd?: string } | undefined>;
+    return translations[detail.contentLocale]?.stemMd ?? detail.stemMd;
+  } catch {
+    return detail.stemMd;
+  }
+}
+
 /** A short, plain-text start of a question stem: maths and Markdown stripped. */
 export function stemPreview(stemMd: string, max = 140): string {
   const text = stemMd
@@ -172,6 +183,8 @@ interface DetailRow {
   responseStatus: string;
   seenAt: string | null;
   stemMd: string;
+  translationsJson: string | null;
+  contentLocale: string;
   domainSlug: string;
   skillSlug: string;
   answeredVersion: number;
@@ -190,7 +203,8 @@ async function details(db: Db, userId: string, itemIds: string[]): Promise<Map<s
       `SELECT ai.id AS itemId, ai.attempt_id AS attemptId, a.exam_key AS examKey, ai.question_id AS questionId,
               ai.is_correct AS isCorrect, ai.response_status AS responseStatus,
               COALESCE(ai.last_answered_at, a.submitted_at, a.created_at) AS seenAt,
-              qv.stem_md AS stemMd, qv.domain_slug AS domainSlug, qv.skill_slug AS skillSlug,
+              qv.stem_md AS stemMd, qv.translations_json AS translationsJson, a.content_locale AS contentLocale,
+              qv.domain_slug AS domainSlug, qv.skill_slug AS skillSlug,
               qv.version AS answeredVersion, q.current_version AS currentVersion, q.state AS questionState,
               (SELECT cv.state FROM question_versions cv
                 WHERE cv.question_id = ai.question_id AND cv.version = q.current_version) AS currentVersionState,
@@ -252,7 +266,7 @@ export async function buildNotebook(db: Db, userId: string, view: NotebookView, 
           : (detail.currentVersion ?? 0) > detail.answeredVersion
             ? 'corrected'
             : 'current',
-      preview: stemPreview(detail.stemMd),
+      preview: stemPreview(stemAsShown(detail)),
     });
   }
 

@@ -18,11 +18,14 @@ export function StartBlueprintButton({
   blueprintId,
   label,
   variant = 'primary',
+  contentLocale = 'en',
 }: {
   examKey: string;
   blueprintId: string;
   label: string;
   variant?: 'primary' | 'secondary';
+  /** The language the questions are asked in, as for StartPracticeForm. */
+  contentLocale?: string;
 }) {
   const t = useTranslations('practice.blueprint');
   const locale = useLocale();
@@ -49,6 +52,7 @@ export function StartBlueprintButton({
       body: JSON.stringify({
         examKey,
         blueprintId,
+        contentLocale,
         idempotencyKey: `${examKey}-${blueprintId}-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`,
       }),
     }).catch(() => null);

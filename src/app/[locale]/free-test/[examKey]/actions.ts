@@ -38,6 +38,7 @@ export async function startFreeTestAction(formData: FormData): Promise<void> {
         examKey: config.examKey,
         blueprintId: 'diagnostic',
         freeTest: true,
+        contentLocale: locale,
         idempotencyKey: `free-test:${user.id}:${config.examKey}`,
       })
     ).attemptId;

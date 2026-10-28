@@ -1,1 +1,535 @@
-{}
+{
+  "crumbs": {
+    "home": "Ana sayfa",
+    "dashboard": "Panel",
+    "studyPlan": "Çalışma planı",
+    "notebook": "Hata defteri",
+    "progress": "İlerleme ve hazırlık",
+    "adjust": "Düzenle"
+  },
+  "why": "Neden: {reason}",
+  "kind": {
+    "new": "Yalnızca yeni sorular",
+    "mixed": "Yalnızca yeni sorular",
+    "revision": "Pekiştirme: sorular tekrarlanabilir",
+    "review": "Hata tekrarı: kaçırılan sorular yeniden sorulur",
+    "timed": "Süreli"
+  },
+  "dashboard": {
+    "meta": {
+      "title": "Paneliniz",
+      "description": "Yarım kalan oturumlarınız, sırada neye çalışmanız gerektiği ve konu bazında doğruluk oranınız."
+    },
+    "title": "Paneliniz",
+    "lead": "Kendi yanıtlarınızdan hesaplanır. Buradaki hiçbir şey puan tahmini yapmaz.",
+    "unknownExamShowing": "Bu bağlantı sunmadığımız bir sınavı belirtiyordu, bu yüzden burada bunun yerine {exam} alıştırmalarınız gösteriliyor.",
+    "unknownExam": "Bu bağlantı sunmadığımız bir sınavı belirtiyordu.",
+    "doesNotTitle": "Bu sayfa neleri yapmaz",
+    "doesNot": "Puan tahmini yapmaz, sizi bir yüzdelik dilime yerleştirmez ve kabul alma olasılığınızı hesaplamaz. Yukarıdaki her rakam yalnızca kendi yanıtlarınızın bir sayımıdır, fazlası değil.",
+    "practise": "{exam} alıştırması yapın",
+    "chooseTitle": "Başlamak için bir sınav seçin",
+    "chooseLead": "Bu sayfa ardından alıştırma yaptığınız sınavı takip eder; sınavlar arasında istediğiniz zaman buradan geçiş yapabilirsiniz.",
+    "startPractising": "Alıştırmaya başla",
+    "examGuide": "Sınav rehberi",
+    "otherTitle": "Başka bir sınava mı çalışıyorsunuz?",
+    "otherLead": "Buradan başka bir sınav açın. Bu, hedef olarak belirlediğiniz sınavı değiştirmez.",
+    "nextStep": "Sıradaki adımınız",
+    "alsoWorthDoing": "Bunlar da işinize yarayabilir",
+    "error": {
+      "title": "Paneliniz yüklenemedi",
+      "body": "Alıştırma geçmişiniz okunurken bir sorun oluştu. Birazdan yeniden deneyin.",
+      "retry": "Yeniden dene",
+      "chooseExam": "Alıştırma yapmak için bir sınav seçin"
+    },
+    "guest": {
+      "text": "Misafir olarak bu tarayıcı alıştırmalarınızı {until} tarihine kadar saklar. Bu tarihten sonra bu tarayıcı onları artık açamaz. Saklamak için bir hesap oluşturun.",
+      "endsSoon": "Misafir alıştırmanız yakında sona eriyor",
+      "keep": "İlerlemenizi koruyun"
+    },
+    "unfinished": {
+      "title": "Kaldığınız yerden devam edin",
+      "section": "Bölüm {part} / {parts}",
+      "question": "Soru {question} / {questions}",
+      "answered": "{count} yanıtlandı",
+      "underAMinute": "bir dakikadan az kaldı",
+      "minutesLeft": "{minutes} dk kaldı",
+      "continue": "Devam et",
+      "clockRuns": "Siz uzaktayken de süre işlemeye devam eder; tıpkı gerçek sınavda olduğu gibi."
+    },
+    "switcher": {
+      "label": "Panelinizdeki sınavlar",
+      "target": "hedef"
+    },
+    "summary": {
+      "label": "Sayılarınız",
+      "scored": "Puanlanan sorular",
+      "across": "{count, plural, one {# tamamlanmış oturumda} other {# tamamlanmış oturumda}}",
+      "correct": "Doğru yanıtlanan",
+      "correctShare": "Size gösterilen tüm soruların {percent} kadarı",
+      "noneScored": "Henüz puanlanan soru yok",
+      "due": "Şu anda tekrar zamanı gelen hatalar",
+      "comingLater": "{count, plural, one {# soru daha} other {# soru daha}} ileride yeniden karşınıza gelecek.",
+      "comingLaterOn": "{count, plural, one {# soru daha} other {# soru daha}} ileride yeniden karşınıza gelecek; bir sonraki {date} tarihinde.",
+      "dueInterval": "Kaçırılan sorular kısa bir aradan sonra yeniden karşınıza gelir.",
+      "nothingWaiting": "Bekleyen bir şey yok. Kaçırdığınız sorular, kaçırdığınız günün ertesi günü yeniden karşınıza gelir.",
+      "openNotebook": "Hata defterini açın"
+    },
+    "topics": {
+      "title": "Konu bazında doğruluk",
+      "lead": "Henüz alıştırma yapmadıklarınız dahil tüm {exam} konuları. Bir oranın gösterilmesi için en az {min} puanlanan soru gerekir; bunun altında yalnızca sayılar gösterilir. Becerilerini görmek için bir konuyu açın.",
+      "notPractised": "Henüz alıştırma yapılmadı",
+      "figure": "{percent} · {scored} sorudan {correct} doğru",
+      "figureTooFew": "{scored} sorudan {correct} doğru · oran için yeterli yanıt yok",
+      "summary": "{skills, plural, one {# beceri} other {# beceri}} · bankada {reviewed, plural, one {# incelenmiş soru} other {# incelenmiş soru}}",
+      "caption": "{topic} konusundaki beceriler",
+      "skill": "Beceri",
+      "inBank": "Bankada",
+      "scored": "Puanlanan",
+      "correct": "Doğru",
+      "practise": "{topic} konusunda alıştırma yapın"
+    },
+    "recent": {
+      "title": "Son oturumlar",
+      "noResult": "Kayıtlı sonuç yok",
+      "outcome": "{total} sorudan {correct} doğru, {wrong} yanlış, {blank} boş",
+      "retry": "Yeniden dene",
+      "status": {
+        "submitted": "Tamamlandı",
+        "expired": "Süre doldu",
+        "abandoned": "Yarıda bırakıldı"
+      },
+      "seeResults": "Sonuçları görün"
+    },
+    "noHistory": {
+      "title": "Henüz tamamlanmış bir {exam} oturumu yok",
+      "continue": "Oturumunuza devam edin",
+      "start": "{exam} alıştırmasına başlayın",
+      "leadContinuing": "Başladığınız oturumu bitirin; bu sayfa konu bazında doğruluk oranınızı, kaçırdıklarınızı ve sırada neye çalışmanın işe yarayacağını gösterecek. Hepsi kendi yanıtlarınızdan hesaplanır.",
+      "lead": "Bir oturumu bitirdiğinizde bu sayfa konu bazında doğruluk oranınızı, kaçırdıklarınızı ve sırada neye çalışmanın işe yarayacağını gösterir. Hepsi kendi yanıtlarınızdan hesaplanır."
+    },
+    "emptyBank": {
+      "title": "Henüz alıştırma yapılacak incelenmiş {exam} sorusu yok",
+      "lead": "Bu sınavın soruları hâlâ kontrol ediliyor, bu yüzden başlatılacak bir şey yok. Yalnızca incelemeden geçmiş sorular sunulur.",
+      "guide": "Format ve puanlama rehberini okuyun"
+    }
+  },
+  "steps": {
+    "getStarted": {
+      "title": "Başlangıç noktanızı bulmak için kısa bir oturum yapın",
+      "because": "Bu sınav için henüz hiç soru yanıtlamadınız, bu yüzden tavsiyeye dayanak olacak bir şey yok.",
+      "action": "Alıştırmaya başla"
+    },
+    "dueReview": {
+      "title": "Yanlış yaptığınız {count, plural, one {# soruyu} other {# soruyu}} yeniden ele alın",
+      "because": "Kaçırdığınız sorular kısa bir aradan sonra geri gelir; onları tekrar etmenin en çok işe yaradığı an da budur.",
+      "action": "Hata defterini aç"
+    },
+    "weakSkill": {
+      "title": "{skill} becerisinde alıştırma yapın",
+      "because": "Bu beceriyle etiketlenmiş {count, plural, one {# soruyu} other {# soruyu}} yanıtladınız ve {correct} tanesini doğru yaptınız ({accuracy, number, percent}).",
+      "action": "Bu beceriyi çalışın"
+    },
+    "slowSkill": {
+      "title": "{skill} becerisinde temponuzu geliştirin",
+      "because": "Buradaki doğruluk oranınız {accuracy, number, percent}, ancak soru başına ortanca süreniz {seconds} saniye. Sorun doğruluk değil, hız.",
+      "action": "Süreli alıştırma yapın"
+    },
+    "untouchedDomain": {
+      "title": "{topic} konusunu deneyin",
+      "because": "Bu konuda henüz hiç soru yanıtlamadınız, bu yüzden genel tablonuzda bir kör nokta var.",
+      "action": "Bu konuda alıştırma yapın"
+    },
+    "needsMoreData": {
+      "title": "Sonuç çıkarmadan önce birkaç soru daha yanıtlayın",
+      "because": "Becerilerinizden {count} tanesinde {min} yanıttan az var; bu, bir zayıflığı kötü bir günden ayırt etmek için çok az.",
+      "action": "Daha fazla alıştırma yapın"
+    },
+    "broader": {
+      "label": "{topic} konusunun tamamıyla alıştırma yapın",
+      "because": "Bu becerinin {inSkill, plural, one {# incelenmiş sorusu} other {# incelenmiş sorusu}} var, bu yüzden alıştırma kısa sürer; konusunun ise {inTopic} sorusu var."
+    }
+  },
+  "readiness": {
+    "band": {
+      "insufficient": "Henüz yeterli kanıt yok",
+      "early": "Başlangıç",
+      "developing": "Gelişiyor",
+      "consistent": "İstikrarlı",
+      "strong": "Güçlü"
+    },
+    "display": {
+      "percent": "{value, number, percent}",
+      "correctOf": "{total} sorudan {correct} doğru",
+      "notMeasurable": "Ölçülemiyor",
+      "timedAnswers": "{count, plural, one {# süreli yanıt} other {# süreli yanıt}}",
+      "timingUnreliable": "Süre verisi güvenilir değil",
+      "paceRatio": "Sınav temposunun {ratio, number, ::.00} katı",
+      "topicsCovered": "{total} konudan {covered} tanesi",
+      "questions": "{count, plural, one {# soru} other {# soru}}",
+      "sessionsOf": "{count} / {min} oturum",
+      "spread": "Oturumlar arasında ±{points} puan"
+    },
+    "signal": {
+      "accuracy": {
+        "label": "Doğruluk",
+        "basisRaw": "Alıştırma yaptığınız tüm konularda, size gösterilen {scored} sorudan {correct} tanesi doğru.",
+        "basisWeighted": "Her konudaki doğruluk oranınız, o konunun sınavdaki {publisher} tarafından yayımlanan payına göre ağırlıklandırılır; sınavın alıştırma yaptığınız kısmı ({share, number, percent}) üzerinden hesaplanır.",
+        "capNote": "{usable} yanıtın altında bu sonuç en fazla “{band}” düzeyinde gösterilir.",
+        "basisTooFew": "Bir yüzde ancak {min} yanıttan itibaren anlam taşır; sizin {count} yanıtınız var."
+      },
+      "pace": {
+        "label": "Tempo",
+        "basisNoPace": "{publisher}, bu sınav için soru başına bir tempo hesaplamaya yetecek kadar bilgi yayımlamıyor, bu yüzden karşılaştırma yapamıyoruz.",
+        "basisTooFew": "Tempo, süresi kaydedilmiş en az {min} yanıttan okunur; sizin {count} yanıtınız var.",
+        "basisUnreliable": "Soru başına ortanca süreniz {seconds} saniyenin altında; bu, bir sorunun okunabileceğinden daha hızlıdır. Bu yüzden hız olarak değil, güvenilmez süre verisi olarak değerlendirilir.",
+        "basis": "Sınav soru başına yaklaşık {pace} saniye tanır. {count} süreli yanıtınızdaki ortanca süreniz {median} saniye."
+      },
+      "coverage": {
+        "label": "Konu kapsamı",
+        "basis": "Sınavın kendi konu listesinde en az {min} soru yanıtladığınız konular.",
+        "touchedOnly": "{count, plural, one {# konuda daha} other {# konuda daha}} bundan az yanıt var."
+      },
+      "volume": {
+        "label": "Kanıt",
+        "basis": "{min} yanıtın altında bir yüzde yalnızca gürültüdür; {usable} ve üzeri yanıtı, kendi çalışmanızdan kullanılabilir bir örneklem olarak kabul ediyoruz."
+      },
+      "consistency": {
+        "label": "İstikrar",
+        "basisTooFew": "İstikrar, {answers} veya daha fazla yanıt içeren en az {min} oturumu karşılaştırır; sizin {count} oturumunuz var.",
+        "basis": "Doğruluk oranınızın, {answers} veya daha fazla yanıt içeren son {count} oturumunuz arasında ne kadar değiştiği. Geniş bir dağılım genellikle sonucu seviyenizin değil, konu karışımının belirlediği anlamına gelir."
+      }
+    },
+    "timing": {
+      "allUntimed": "Bunların hepsi, uyulacak bir süre olmadan, süresiz alıştırmada yanıtlandı.",
+      "someUntimed": "Bunlardan {total} yanıtın {count} tanesi, uyulacak bir süre olmadan, süresiz alıştırmada verildi.",
+      "missing": "{count, plural, one {# yanıtın süresi kaydedilmediği için hesaba katılmadı.} other {# yanıtın süresi kaydedilmediği için hesaba katılmadı.}}"
+    },
+    "overall": {
+      "insufficient": "Bu sınav için {count, plural, one {# soru} other {# soru}} yanıtladınız. Bu, hazırlık durumunuz hakkında bir şey söylemek için çok az; en az {min} soru yanıtladığınızda bu değerlendirme anlam kazanır.",
+      "weighted": "Alıştırma yaptığınız konularda, sınavın kendi konu ağırlıklarına göre hesaplandığında yanıtlarınızın {accuracy, number, percent} kadarı doğru. Bu, tahmini bir sınav puanı değil, bizim sorularımız üzerindeki çalışmanızın bir tanımıdır.",
+      "unweighted": "Alıştırma yaptığınız konularda yanıtlarınızın {accuracy, number, percent} kadarı doğru. Bu, tahmini bir sınav puanı değil, bizim sorularımız üzerindeki çalışmanızın bir tanımıdır."
+    },
+    "projection": {
+      "condition": {
+        "noCalculator": "hesap makinesi yok",
+        "minutes": "{minutes} dakika",
+        "noGoingBack": "önceki sorulara dönüş yok"
+      },
+      "methodBocconi": "Denediğiniz sorulardaki doğruluk oranınız ({accuracy, number, percent}) ve soruları boş bırakma oranınız ({omission, number, percent}), yayımlanan {items} soruluk forma uygulanır ve Bocconi’nin yayımladığı kuralla puanlanır: doğru +{correct}, boş {blank}, yanlış {wrong}.",
+      "methodPublished": "Denediğiniz sorulardaki doğruluk oranınız ({accuracy, number, percent}) ve soruları boş bırakma oranınız ({omission, number, percent}), yayımlanan {items} soruluk forma uygulanır ve {publisher} tarafından yayımlanan kuralla puanlanır: doğru +{correct}, boş {blank}, yanlış {wrong}.",
+      "methodConverted": "Denediğiniz sorulardaki doğruluk oranınız ({accuracy, number, percent}) ve soruları boş bırakma oranınız ({omission, number, percent}), yayımlanan {items} soruluk forma uygulanır ve {publisher} tarafından yayımlanan kuralla puanlanır: doğru +{correct}, boş {blank}, yanlış {wrong}; ardından yayımlandığı şekliyle bildirilen ölçeğe ({scale}) dönüştürülür.",
+      "assumeDifficulty": "Sorularımızın gerçek sorular kadar zor olduğunu varsayar. Zorlukları bizim editoryal değerlendirmemizdir; sınava girenlerin verilerine göre kalibre edilmemiştir.",
+      "assumeConditions": "Aynı koşullarda yanıt verdiğinizi varsayar: {conditions}.",
+      "assumeBocconiPenalty": "Her yanlış yanıtı {wrong} olarak puanlar ve Bocconi’nin bazı sorularda uyguladığı daha büyük −0,33 cezayı dikkate almaz; bu yüzden gerçek bir form biraz daha düşük puan verebilir.",
+      "assumeArithmetic": "Bu, sınav gününe dair bir tahmin değil, kendi alıştırmalarınız üzerinde yapılan bir hesaplamadır.",
+      "scoreLabelScale": "Öngörülen puan ({scale})",
+      "scoreLabelRaw": "Öngörülen ham puan"
+    },
+    "target": {
+      "stated": "{scale} ölçeğinde {target} ({min}–{max})",
+      "explanationConverted": "{publisher}, bu sınavın puanlamasını eksiksiz yayımlar — sabit sayıda soru, her birinin eşit değeri, yanlış yanıt için yayımlanmış bir ceza ve bildirilen puana yayımlanmış bir dönüşüm — böylece hedefiniz tahmine değil, hesaba dönüştürülebilir. Aşağıdaki öngörü, kendi alıştırmalarınızdaki doğruluk oranınızın yayımlanan forma uygulanmış hâlidir.",
+      "explanationPenalty": "{publisher}, bu sınavın puanlamasını eksiksiz yayımlar — her soru eşit değerdedir ve yanlış yanıtın cezası yayımlanmıştır — böylece hedefiniz tahmine değil, hesaba dönüştürülebilir. Aşağıdaki öngörü, kendi alıştırmalarınızdaki doğruluk oranınızın yayımlanan forma uygulanmış hâlidir.",
+      "explanationNone": "Alıştırmalarınızın {target} puana karşılık gelip gelmediğini size söyleyemeyiz. {publisher}, ham puanın {scale} ölçeğindeki puana nasıl dönüştüğünü yayımlamaz. Size bunun için bir sayı veren herkes tahmin yürütüyordur. Size gösterebileceğimiz şey çalışmanın kendisidir: sınavın yayımladığı her konuda ne kadar doğru yanıt verdiğiniz ve sınavın temposunda çalışıp çalışmadığınız.",
+      "explanationNoneSat": "Alıştırmalarınızın {target} puana karşılık gelip gelmediğini size söyleyemeyiz. {publisher}, ham puanın {scale} ölçeğindeki puana nasıl dönüştüğünü yayımlamaz ve aynı sayıda soruyu doğru yanıtlayan iki adayın farklı bölüm puanları alabileceğini belirtir. Size bunun için bir sayı veren herkes tahmin yürütüyordur. Size gösterebileceğimiz şey çalışmanın kendisidir: sınavın yayımladığı her konuda ne kadar doğru yanıt verdiğiniz ve sınavın temposunda çalışıp çalışmadığınız."
+    },
+    "limitations": {
+      "smallSample": "Bu, {count, plural, one {# yanıta} other {# yanıta}} dayanıyor ve bu küçük bir örneklem. Bunu bir ölçüm değil, bir işaret olarak değerlendirin.",
+      "difficulty": "Buradaki her rakam, kendi sorularımıza verdiğiniz yanıtlardan gelir. Zorlukları bizim editoryal değerlendirmemizdir; sınava girenlerin verilerine göre kalibre edilmemiştir.",
+      "noPercentiles": "Yüzdelik dilim bildirmiyoruz ve kabul alma olasılığı tahmini yapmıyoruz.",
+      "unverified": "Bu sınavın {count, plural, one {# kuralı} other {# kuralı}} resmî bir kaynaktan doğrulanamadı, bu yüzden sınava birebir uygun bazı alıştırma özellikleri kapalı."
+    }
+  },
+  "suggestions": {
+    "repeatAll": "Buradaki {all} incelenmiş sorunun tamamı size gösterildi, bu yüzden bu oturum onları tekrarlar.",
+    "repeatSome": "Buradaki {all} incelenmiş sorudan yalnızca {unseen} tanesi sizin için yeni, bu yüzden bu oturum bazılarını tekrarlar.",
+    "more": {
+      "title": "Daha fazla soru yanıtlayın",
+      "titleNew": "Daha fazla yeni soru yanıtlayın",
+      "why": "{count} yanıt daha verdiğinizde yukarıdaki ölçümler anlam kazanmaya başlar."
+    },
+    "review": {
+      "title": "Kaçırdığınız {count, plural, one {# soruyu} other {# soruyu}} yeniden ele alın",
+      "why": "Yanlış yaptığınız ya da boş bıraktığınız sorular, bilinçli olarak yeniden sorulur. Bir tekrar, yukarıdaki ölçümlere dahil edilmez."
+    },
+    "untouched": {
+      "title": "{topic} konusunda alıştırma yapın",
+      "why": "Bu konuda hiçbir soru yanıtlamadınız, bu yüzden yukarıdaki her şeyde bir kör nokta oluşturuyor."
+    },
+    "weak": {
+      "title": "{topic} konusuna çalışın",
+      "why": "Üzerinde çalışmaya yetecek kadar yanıtınız olan en zayıf konunuz: {answered} yanıtta {accuracy, number, percent}."
+    },
+    "timed": {
+      "title": "Süreye karşı alıştırma yapın",
+      "why": "Ortanca süreniz sınav temposunun {ratio, number, ::.00} katı. {format} formatında süre işler.",
+      "action": "Süreli bir format seçin"
+    }
+  },
+  "suggestionsList": {
+    "title": "Öneriler",
+    "description": "Şu anda mevcut sorulara göre sırada neyin işe yarayabileceği. Bunlar ölçüm değil, öneridir.",
+    "none": "Şu anda planınızdaki oturumların dışında önerilecek bir şey yok.",
+    "start": "Başla: {count, plural, one {# soru} other {# soru}}",
+    "planLink": "Tarihli planınız"
+  },
+  "plan": {
+    "label": {
+      "review": "Kaçırdığınız soruları yeniden ele alın",
+      "mixed": "Karışık alıştırma, yeni sorular",
+      "new": "{topic}, yeni sorular",
+      "revision": "{topic}, pekiştirme",
+      "mixedRevision": "Karışık pekiştirme"
+    },
+    "reason": {
+      "carried": "Kaçırılan bir oturumdan aktarıldı.",
+      "judged": "{count} yanıtta {accuracy, number, percent} doğru.",
+      "notAttempted": "Henüz denenmedi.",
+      "tooFew": "Değerlendirmek için henüz çok az yanıt var.",
+      "thinSkill": "{skill} becerisinin yalnızca {count, plural, one {# incelenmiş sorusu} other {# incelenmiş sorusu}} var, bu yüzden konusunun tamamı çalışılır.",
+      "review": "{count, plural, one {Kaçırdığınız # soru yeniden sorulabilir.} other {Kaçırdığınız # soru yeniden sorulabilir.}} Bu oturum onları bilinçli olarak tekrarlar.",
+      "mixed": "Bir konuyu öne çıkarmak için henüz yeterince kendi yanıtınız yok.",
+      "mixedRevision": "Bu soruların çoğu size gösterildi, bu yüzden bu oturum onları pekiştirir.",
+      "revisionAllSeen": "Buradaki her soruyu gördünüz, bu yüzden bu oturum gördüklerinizi pekiştirir.",
+      "revisionSomeNew": "{count, plural, one {Buradaki sorulardan yalnızca # tanesi sizin için yeni} other {Buradaki sorulardan yalnızca # tanesi sizin için yeni}}, bu yüzden bu oturum gördüklerinizi pekiştirir."
+    }
+  },
+  "planParts": {
+    "size": "{questions} soru · {minutes} dk",
+    "completed": "{answered, plural, one {# soru} other {# soru}} yanıtlanarak tamamlandı.",
+    "completedOf": "Planlanan {planned} sorudan {answered, plural, one {# tanesi} other {# tanesi}} yanıtlanarak tamamlandı.",
+    "week": "{week}. hafta",
+    "weekRange": "{from} – {to} · {minutes} dk",
+    "state": {
+      "planned": "Planlandı",
+      "completed": "Tamamlandı",
+      "missed": "Kaçırıldı",
+      "skipped": "Atlandı"
+    },
+    "stateExplained": {
+      "planned": "Planlandı ve günü henüz bitmedi.",
+      "completed": "Eşleşen bir oturumu bitirdiniz ve sorularından en az {min} tanesini (daha az soru planlandıysa hepsini) yanıtladınız. Bu, tamamlamanın ölçütüdür; her sorunun yanıtlandığı anlamına gelmez: her oturum kaç soruyu yanıtladığınızı gösterir. Bir oturumu açmak yeterli değildir; yeni sorular oturumu da ancak Başla düğmesinin yaptığı gibi yalnızca yeni sorularla başlatıldıysa sayılır.",
+      "missed": "Tarihi tüm saat dilimlerinde sona erdi: ertesi gün 12:00 UTC itibarıyla (İtalya’da kışın 13:00, yazın 14:00). Bulunduğunuz yerde bu an, tarihinden sonraki gece yarısı ile yaklaşık bir gün sonrası arasına denk gelir, asla daha erken değil. Planınızı düzenleyene kadar yine de yapabilirsiniz; düzenleme onu kaçırılmış olarak kaydeder.",
+      "skipped": "Atlamayı seçtiniz. Planınızda atlanmış olarak kalır."
+    },
+    "inputs": {
+      "date": "Sınav tarihi",
+      "optional": "(isteğe bağlı)",
+      "weekly": "Haftalık süre",
+      "minutesOption": "{minutes} dakika ({hours} saat)",
+      "weeklyHint": "Oturumlar {minutes} dakika sürer; bu nedenle bu ayar her hafta kaç oturumunuz olacağını belirler."
+    },
+    "dateConflict": {
+      "title": "{exam} için sınav tarihiniz hangisi?",
+      "lead": "İki tarih bulduk ve sizin yerinize seçmek yerine ikisini de sakladık.",
+      "legend": "Sınav tarihinizi seçin",
+      "fromGoal": "{date}, hedefinizden",
+      "fromEarlier": "{date}, önceki planınızdan",
+      "untilChosen": "Siz seçene kadar hedefinizdeki tarih kullanılır."
+    }
+  },
+  "planning": {
+    "viewsLabel": "Çalışma planı görünümleri",
+    "views": {
+      "plan": "Plan",
+      "progress": "İlerleme ve hazırlık"
+    },
+    "examsLabel": "Çalışma planınızdaki sınavlar",
+    "notices": {
+      "planCreated": "Planınız kaydedildi. Yalnızca siz düzenlediğinizde değişir.",
+      "planAdjusted": "Kalan planınız düzenlendi. Tamamlanan, atlanan ve kaçırılan oturumlar olduğu gibi korundu.",
+      "planEnded": "Bu plan sona erdi. Oturumları veri dışa aktarımınızda saklanır.",
+      "planExists": "Bu sınav için zaten bir planınız var; aşağıda gösteriliyor.",
+      "planChanged": "Bu önizleme hazırlandıktan sonra planınız ya da alıştırmalarınız değişti, bu yüzden hiçbir şey uygulanmadı. Önizlemenin güncel hâli aşağıda.",
+      "noPlan": "Bu plan artık etkin değil.",
+      "nothingToPlan": "Bu sınav için henüz planlanacak incelenmiş soru yok.",
+      "invalidPlanInput": "Hiçbir şey kaydedilmedi: listeden haftalık bir süre ve bugünden sonraki bir sınav tarihi seçin (ya da tarih seçmeyin).",
+      "sessionSkipped": "Oturum atlandı. Planınızda atlanmış olarak kalır.",
+      "sessionClosed": "Bu oturum zaten tamamlandı, atlandı ya da kaçırılmış olarak kaydedildi.",
+      "notEnoughNew": "Bu oturum için görmediğiniz çok az soru kaldı. Oturumu pekiştirmeye dönüştürmek için planınızı düzenleyin ya da oturumu atlayın.",
+      "insufficientContent": "Bu oturum için şu anda yeterli incelenmiş soru yok.",
+      "nothingToReview": "Şu anda yeniden sorulacak kaçırılmış soru yok: bunları o zamandan beri doğru yanıtladınız ya da düzeltiliyorlar.",
+      "rateLimited": "Kısa sürede çok fazla oturum başlatıldı. Birkaç dakika sonra yeniden deneyin.",
+      "dateChosen": "Sınav tarihi kaydedildi. Bu sınav için artık geçerli olan tek tarih bu."
+    }
+  },
+  "studyPlan": {
+    "meta": {
+      "title": "Çalışma planınız",
+      "description": "Kendi yanıtlarınızdan ve mevcut sorulardan oluşturulan, tarihli bir alıştırma planı."
+    },
+    "noExamTitle": "Henüz sınav seçilmedi",
+    "chooseExam": "Bir sınav seçin",
+    "noExamLead": "Hazırlandığınız sınavı seçin; bu sayfa önümüzdeki birkaç haftayı mevcut sorulara ve kendi sonuçlarınıza göre planlasın.",
+    "setup": {
+      "title": "Bir plan oluşturun",
+      "preview": "Bu ayarlarla önizle",
+      "previewTitle": "Bu ayarların oluşturacağı plan",
+      "dateNotAfterToday": "Bu tarih bugünden sonra değil, bu yüzden önizleme sınav tarihi kullanmıyor.",
+      "datePassed": "Sınav tarihiniz ({date}) geçti, bu yüzden önizleme tarih kullanmıyor.",
+      "dateHintEarlier": "Bir sınava bağlı olmayan önceki çalışma planınızdan dolduruldu. {exam} sınav tarihiniz değilse silin.",
+      "dateHint": "Bu sınav için tek sınav tarihiniz; hedefinizle ortaktır. Altı haftalık bir plan için boş bırakın.",
+      "nothingTitle": "Henüz planlanacak bir şey yok",
+      "nothingLead": "Henüz {exam} için planlanacak incelenmiş soru yok.",
+      "slotsLeftFree": "Sürenizin izin verdiği {slots} oturumdan {planned} tanesi planlandı. Geri kalanı boş bırakıldı: bir konuyu haftada birden fazla pekiştirmeye yetecek kadar incelenmiş {exam} sorusu yok.",
+      "save": "Bu planı kaydet"
+    },
+    "stats": {
+      "sessions": "Oturumlar",
+      "new": "Yeni sorular",
+      "revision": "Pekiştirme",
+      "review": "Hata tekrarı",
+      "completed": "Tamamlanan",
+      "toDo": "Kalan",
+      "missed": "Kaçırılan",
+      "skipped": "Atlanan"
+    },
+    "terms": {
+      "runs": "Dönem",
+      "range": "{from} – {to}",
+      "examDate": "Sınav tarihi",
+      "none": "Yok",
+      "eachWeek": "Her hafta",
+      "minutes": "{minutes} dakika",
+      "builtFor": "Hedeflenen",
+      "examOn": "{date} tarihli bir sınav",
+      "noExamDate": "sınav tarihi yok"
+    },
+    "stored": {
+      "glance": "Bir bakışta planınız",
+      "adjust": "Kalan planımı düzenle",
+      "missedTitle": "{count, plural, one {# oturum kaçırıldı} other {# oturum kaçırıldı}}",
+      "missedLead": "Bunları hâlâ yapabilirsiniz. Düzenleme, bunları kaçırılmış olarak kaydeder, konularını ileriye taşır ve kaydetmeden önce her değişikliği size gösterir.",
+      "dateChangedTitle": "Sınav tarihiniz değişti",
+      "dateNow": "Yeni tarih {date};",
+      "dateCleared": "Tarih silindi;",
+      "builtFor": "bu plan ise {date} için oluşturulmuştu. Düzenlemek, yeni bir programın neleri değiştireceğini gösterir.",
+      "builtForNone": "bu plan ise bir tarih olmadan oluşturulmuştu. Düzenlemek, yeni bir programın neleri değiştireceğini gösterir.",
+      "weekByWeek": "Hafta hafta",
+      "endTitle": "Bu planla işiniz bitti mi?",
+      "endLead": "Planı sonlandırmak, her oturumu olduğu gibi veri dışa aktarımınızda saklar ve yeni bir plan oluşturmanızı sağlar.",
+      "end": "Bu planı sonlandır"
+    },
+    "actions": {
+      "seeResults": "Sonuçları gör",
+      "continue": "Devam et",
+      "start": "Başla",
+      "startAgain": "Yeniden başla",
+      "skip": "Atla"
+    },
+    "howItWorks": {
+      "title": "Plan nasıl işler",
+      "lead": "Şu anda mevcut olan incelenmiş sorulardan ve kendi yanıtlarınızdan oluşturulur: önce en zayıf konular, ardından denemediğiniz konular gelir. Yalnızca siz düzenlediğinizde değişir."
+    }
+  },
+  "adjust": {
+    "meta": {
+      "title": "Çalışma planınızı düzenleyin"
+    },
+    "title": "Kalan planımı düzenle",
+    "dateNotAfterToday": "Bu tarih bugünden sonra değil, bu yüzden bu önizleme sınav tarihi kullanmıyor.",
+    "datePassed": "Sınav tarihiniz ({date}) geçti, bu yüzden bu önizleme tarih kullanmıyor.",
+    "changesTitle": "Neler değişecek",
+    "stats": {
+      "missed": "Kaçırıldı olarak kaydedilen",
+      "moved": "Taşınan",
+      "added": "Eklenen",
+      "removed": "Kaldırılan"
+    },
+    "terms": {
+      "unchanged": "Değişmeyen",
+      "unchangedValue": "{count, plural, one {# yaklaşan oturum} other {# yaklaşan oturum}}",
+      "history": "Korunan geçmiş",
+      "historyValue": "{count} tamamlanan ya da atlanan",
+      "schedule": "Yeni program"
+    },
+    "apply": "Bu değişiklikleri uygula",
+    "keep": "Planımı olduğu gibi bırak",
+    "nothing": "Hiçbir şey değişmeyecek: planınız bu ayarlarla zaten uyumlu.",
+    "back": "Planıma dön",
+    "inputsTitle": "Süre ve tarih",
+    "updatePreview": "Önizlemeyi güncelle",
+    "dateHint": "Bu sınav için tek sınav tarihiniz. Burada değiştirirseniz, değişiklikleri uyguladığınızda hedefinizdeki tarih de değişir.",
+    "detailsTitle": "Tüm değişiklikler",
+    "missedTitle": "Kaçırıldı olarak kaydedilenler",
+    "missedEmpty": "Kaçırılan oturum yok.",
+    "carriedTitle": "İleriye taşınanlar",
+    "carried": "Yeni programda ilk sıraya alınanlar: {sessions}.",
+    "movedTitle": "Taşınanlar",
+    "movedEmpty": "Hiçbir şey taşınmıyor.",
+    "addedTitle": "Eklenenler",
+    "addedEmpty": "Hiçbir şey eklenmiyor.",
+    "removedTitle": "Kaldırılanlar",
+    "removedEmpty": "Hiçbir şey kaldırılmıyor.",
+    "movesTo": "yeni tarih:"
+  },
+  "progress": {
+    "meta": {
+      "title": "İlerleme ve hazırlık",
+      "description": "Alıştırmalarınızın, hazırlandığınız sınava göre ne durumda olduğu."
+    },
+    "chooseLead": "Hazırlandığınız sınavı seçin; bu görünüm alıştırmalarınızı o sınava göre ölçsün.",
+    "noAnswersTitle": "Henüz {exam} için yanıt yok",
+    "startPractising": "Alıştırmaya başla",
+    "noAnswersLead": "Bu sayfa hazırlık durumunuzu gerçekten yanıtladığınız sorulardan ölçer. Birkaç soru yanıtladığınızda anlam kazanır — bundan önce size söyleyebileceğimiz işe yarar bir şey yok.",
+    "formatLink": "{exam} gerçekte neye benziyor"
+  },
+  "report": {
+    "eyebrow": "Hazırlık",
+    "meterLabel": "Hazırlık düzeyi: {band}",
+    "basedOn": "Yanıtladığınız {count, plural, one {# soruya} other {# soruya}} dayanır.",
+    "target": {
+      "title": "Hedefiniz",
+      "floorLabel": "Resmî başvuru alt sınırı",
+      "floorHint": "Üniversitenin, değerlendirmeye alınmak için asgari şart olarak yayımladığı sınırdır — rekabetçi bir puan değildir.",
+      "atOrAbove": "Bu öngörüye göre {target} hedefinizde ya da üzerindesiniz.",
+      "short": "Bu öngörüye göre {target} hedefinizin {gap} puan gerisindesiniz.",
+      "belowThresholdTitle": "Yayımlanan sınırın altında: {threshold}",
+      "belowThreshold": "Bu öngörüye göre {value} değerinin altındasınız.",
+      "noPassMarkTitle": "Tek bir geçme puanı yok",
+      "belowFloorTitle": "Yayımlanan başvuru alt sınırının altında",
+      "belowFloor": "{floor} puanın altındaki bir başvuru değerlendirmeye alınmaz. Buradaki sayılardan yalnızca bu, sizin belirlediğiniz bir hedef değil, resmî bir şarttır.",
+      "howCalculated": "Bu öngörü nasıl hesaplanır ve neleri varsayar",
+      "noGuessTitle": "Bu konuda tahmin yürütmeyeceğiz",
+      "officialPractice": "{publisher} tarafından sunulan resmî tam uzunlukta deneme sınavları kendi modelleriyle puanlanır; ölçeklenmiş puan tahmini de oradan gelmelidir. Bu sayfayı teşhis için — hangi konuların zayıf olduğu, sınavın temposunda çalışıp çalışmadığınız — onlarınkini ise puan tahmini için kullanın."
+    },
+    "signals": {
+      "title": "Neleri ölçtük",
+      "description": "Bunların her biri kendi yanıtlarınızdan gelir. Her birinin dayanağı belirtilir; böylece katılıp katılmadığınıza siz karar verebilirsiniz.",
+      "meterLabel": "{signal}: {band}"
+    },
+    "gaps": {
+      "title": "En zayıf olduğunuz alanlar",
+      "description": "Sonucunuzu en çok neyin değiştireceğine göre sıralanmıştır: önce hiç denemediğiniz konular, ardından doğruluk oranınızın en düşük olduğu konular.",
+      "caption": "{exam} için konu bazında doğruluk oranınız, en zayıftan başlayarak.",
+      "topic": "Konu",
+      "answered": "Yanıtlanan",
+      "accuracy": "Doğruluk",
+      "share": "Sınavdaki payı",
+      "practise": "Alıştırma yap",
+      "notAttempted": "Denenmedi",
+      "tooFew": "Söylemek için çok az",
+      "notPublished": "Yayımlanmadı"
+    },
+    "limits": {
+      "title": "Bu değerlendirme ne değildir"
+    }
+  },
+  "targetForm": {
+    "title": "Hedefiniz",
+    "lead": "Bu sayfanın kendi başına hesaplayamadığı yalnızca bu iki şey var.",
+    "errors": {
+      "title": "Kaydedilmedi",
+      "outOfRange": "Bu ölçekte bir puan {min} ile {max} arasındadır. {score} bu aralığın dışında.",
+      "invalidDate": "Bu, takvimde gerçek bir tarih değil.",
+      "notSaved": "Bu hedef kaydedilemedi."
+    },
+    "score": "Hedef puan",
+    "scoreHintScale": "Sınavın kendi ölçeğinde, {min} ile {max} arasında. Henüz aklınızda bir sayı yoksa boş bırakın.",
+    "scoreHint": "Sınavın kendi bildirdiği ölçekte. Henüz aklınızda bir sayı yoksa boş bırakın.",
+    "date": "Sınav tarihi",
+    "optional": "(isteğe bağlı)",
+    "dateHint": "Bu sınav için tek tarihiniz. Çalışma planınız da bunu kullanır ve tarih değiştiğinde planı düzenlemeyi önerir.",
+    "save": "Hedefi kaydet",
+    "saved": "Kaydedildi."
+  }
+}

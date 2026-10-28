@@ -55,6 +55,7 @@ export function StartPracticeForm({
   presetSkill,
   unseenFacets,
   guestNote,
+  contentLocale = 'en',
 }: {
   examKey: string;
   examLabel: string;
@@ -67,6 +68,8 @@ export function StartPracticeForm({
   unseenFacets?: PracticeFacet[] | null;
   /** Shown to visitors and guests; registered learners keep their history anyway. */
   guestNote?: string | null;
+  /** The language the questions are asked in, chosen on the page; the server keeps it only where the exam offers it. */
+  contentLocale?: string;
 }) {
   const t = useTranslations('practice');
   const locale = useLocale();
@@ -156,6 +159,7 @@ export function StartPracticeForm({
         examKey,
         blueprintId,
         idempotencyKey,
+        contentLocale,
         overrides: {
           domains: filters.domain ? [filters.domain] : undefined,
           skills: filters.skill ? [filters.skill] : undefined,
