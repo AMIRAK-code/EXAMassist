@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Breadcrumbs, Card, Container, PageHeader } from '@/components/ui';
-import { languageAlternates } from '@/i18n/alternates';
+import { pageAlternates } from '@/i18n/alternates';
 import type { Locale } from '@/i18n/locales';
 import { ReportForm } from './report-form';
 
@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   return {
     title: t('title'),
     description: t('description'),
-    alternates: languageAlternates('/report-question', locale as Locale),
+    alternates: (await pageAlternates(params, '/report-question')),
     robots: { index: false, follow: true },
   };
 }

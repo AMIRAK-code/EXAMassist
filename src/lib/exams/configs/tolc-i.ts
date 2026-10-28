@@ -170,6 +170,11 @@ export const tolcIConfig: ExamConfig = {
       'A study tool, not a reproduction of the exam: untimed, free navigation, and whatever section, topic and difficulty you choose.',
   }),
 
+  choiceOptions: {
+    count: 5,
+    basis: 'published',
+    note: 'CISIA: five options, one correct (Regolamento TOLC).',
+  },
   scoring: {
     pointsCorrect: 1,
     pointsIncorrect: -0.25,

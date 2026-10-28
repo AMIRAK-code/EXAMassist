@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { Link, redirect } from '@/i18n/navigation';
-import { languageAlternates } from '@/i18n/alternates';
+import { pageAlternates } from '@/i18n/alternates';
 import type { Locale } from '@/i18n/locales';
 import { getCurrentUser } from '@/lib/auth/session';
 import { emailCodesMailer } from '@/lib/auth/email-codes';
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   return {
     title: t('title'),
     description: t('description'),
-    alternates: languageAlternates('/sign-in', locale as Locale),
+    alternates: (await pageAlternates(params, '/sign-in')),
     // A functional page, not editorial content: there is nothing here to index.
     robots: { index: false, follow: true },
   };

@@ -751,6 +751,11 @@ export const digitalSatConfig: ExamConfig = {
     },
   ],
 
+  choiceOptions: {
+    count: 4,
+    basis: 'published',
+    note: 'Four-option multiple choice; student-produced response items carry no options.',
+  },
   scoring: {
     pointsCorrect: 1,
     pointsIncorrect: 0,

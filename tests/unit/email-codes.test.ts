@@ -292,7 +292,7 @@ describe('sending', () => {
     vi.stubGlobal('fetch', fetchMock);
 
     const mailer = defaultMailer(
-      emailSettings({ BREVO_API_KEY: 'brevo-key', EMAIL_FROM_ADDRESS: 'noreply@example.invalid', EMAIL_FROM_NAME: 'Examer' }),
+      emailSettings({ BREVO_API_KEY: 'brevo-key', EMAIL_FROM_ADDRESS: 'noreply@example.invalid', EMAIL_FROM_NAME: 'UniExamer' }),
     );
     (await mailer!(codeEmail('sign-in', 'learner@example.invalid', '123456', CODE_TTL_MINUTES)));
 
@@ -301,9 +301,9 @@ describe('sending', () => {
     expect(url).toBe('https://api.brevo.com/v3/smtp/email');
     expect((init?.headers as Record<string, string>)['api-key']).toBe('brevo-key');
     const body = JSON.parse(String(init?.body));
-    expect(body.sender).toEqual({ name: 'Examer', email: 'noreply@example.invalid' });
+    expect(body.sender).toEqual({ name: 'UniExamer', email: 'noreply@example.invalid' });
     expect(body.to).toEqual([{ email: 'learner@example.invalid' }]);
-    expect(body.subject).toBe('123456 is your Examer sign-in code');
+    expect(body.subject).toBe('123456 is your UniExamer sign-in code');
     expect(body.textContent).toContain('123456');
     expect(body).not.toHaveProperty('htmlContent');
   });

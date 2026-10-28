@@ -1,7 +1,7 @@
 import { Link } from '@/i18n/navigation';
 import type { Metadata } from 'next';
 import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/server';
-import { languageAlternates } from '@/i18n/alternates';
+import { pageAlternates } from '@/i18n/alternates';
 import type { Locale } from '@/i18n/locales';
 import { getDb } from '@/lib/db';
 import { listHubs, requireExamConfig } from '@/lib/exams/registry';
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: 'exams.index' });
   const title = t('title');
   const description = t('metaDescription');
-  const alternates = languageAlternates('/exams', locale as Locale);
+  const alternates = (await pageAlternates(params, '/exams'));
   return {
     title,
     description,

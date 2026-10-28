@@ -47,8 +47,8 @@ export async function SiteFooter() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
             <p>
-              {/* The reversed mark's own ground is the footer's ink, so it sits flush. */}
-              <img src="/brand/examer-wordmark-reversed.svg" alt={SITE.name} width={99} height={28} className="block" />
+              {/* The white logo, made for dark grounds such as the footer's ink. */}
+              <img src="/brand/uniexamer-logo-white.png" alt={SITE.name} width={125} height={30} className="block" />
             </p>
             <EditorialLine onInk className="mt-3 max-w-xs leading-relaxed text-ink-inverse-muted" />
           </div>

@@ -1,5 +1,6 @@
 import { Link } from '@/i18n/navigation';
 import type { Metadata } from 'next';
+import { headers } from 'next/headers';
 import { getFormatter, getTranslations } from 'next-intl/server';
 import { getDb } from '@/lib/db';
 import { googleSiteVerification, indexingEnabled, shareImages, SITE, siteUrl } from '@/lib/site';
@@ -12,7 +13,9 @@ import { JsonLd, organizationSchema, webSiteSchema } from '@/components/seo/json
 import { getCurrentUser } from '@/lib/auth/session';
 import { continueStudying } from '@/lib/learning/continue';
 import { ContinueStrip } from '@/components/home/continue-strip';
-import { languageAlternates } from '@/i18n/alternates';
+import { ContinueStripLoader } from '@/components/home/continue-strip-loader';
+import { isSnapshotRequest } from '@/lib/seo/static-pages';
+import { pageAlternates } from '@/i18n/alternates';
 import type { Locale } from '@/i18n/locales';
 import { accent } from '../_fonts/accent';
 
@@ -29,7 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: 'common.site' });
   const google = indexingEnabled() ? googleSiteVerification() : null;
   const title = `${SITE.name} — ${t('tagline')}`;
-  const alternates = languageAlternates('/', locale as Locale);
+  const alternates = (await pageAlternates(params, '/'));
   return {
     title,
     description: t('description'),
@@ -91,8 +94,11 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
   // A returning learner's way back in. Rendered here, per request, for the
   // learner the cookie names; the page is dynamic and sent as private and
   // uncacheable, so it can never be served to anyone else.
+  // Saved as a static file for everyone, the page asks for the line from the
+  // browser instead (src/lib/seo/static-pages.ts).
   const user = await getCurrentUser();
   const strip = user ? (await continueStudying(db, user.id)) : null;
+  const snapshot = isSnapshotRequest(await headers());
 
   return (
     <div className={accent.variable}>
@@ -103,7 +109,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
         ]}
       />
 
-      {strip ? <ContinueStrip strip={strip} /> : null}
+      {strip ? <ContinueStrip strip={strip} /> : snapshot ? <ContinueStripLoader /> : null}
 
       {/* --- 1. Hero: headline, exam selector, a real sample question ------ */}
       <section id="top" className="mx-auto max-w-6xl scroll-mt-20 px-4 pb-20 pt-10 sm:px-6 sm:pt-14 lg:pb-24">

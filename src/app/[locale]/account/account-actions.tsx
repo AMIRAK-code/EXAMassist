@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { Link, useRouter } from '@/i18n/navigation';
 import { Alert, Button, buttonClass, fieldClass } from '@/components/ui';
 import { clearAllPending } from '@/lib/player/pending';
+import { browserStorage, rememberAccount } from '@/lib/auth/account-hint';
 
 /**
  * The interactive parts of the account page: editing the profile, taking a copy
@@ -220,9 +221,11 @@ export function SignOutButton() {
     }
 
     // The response also asks the browser to clear this site's storage; this
-    // covers a browser that ignores that. Nothing of this account's waits here.
+    // covers a browser that ignores that. Nothing of this account's waits here,
+    // and the static public pages stop showing the learner menu.
     try {
       clearAllPending(window.localStorage);
+      rememberAccount(window.localStorage, 'visitor');
     } catch {
       /* storage unavailable: nothing was kept */
     }
@@ -286,6 +289,8 @@ export function DeleteAccountForm({ email, isGuest }: { email: string | null; is
       return;
     }
 
+    // The home page is a static file that reads this to choose its menu.
+    rememberAccount(browserStorage(), 'visitor');
     router.replace('/');
     router.refresh();
   }

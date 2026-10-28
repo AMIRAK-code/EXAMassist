@@ -234,6 +234,11 @@ export const imatConfig: ExamConfig = {
     },
   ],
   blueprints,
+  choiceOptions: {
+    count: 5,
+    basis: 'published',
+    note: 'Five options per question in recent ministerial decrees; not yet verified first-hand, like the rest of this draft config.',
+  },
   scoring: {
     pointsCorrect: 1.5,
     pointsIncorrect: -0.4,

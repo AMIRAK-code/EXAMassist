@@ -1,7 +1,7 @@
 'use client';
 
 import { Link } from '@/i18n/navigation';
-import { useRef, useState, useTransition, type ReactNode } from 'react';
+import { useEffect, useRef, useState, useTransition, type ReactNode } from 'react';
 import type { ExamChoice } from '@/lib/home/home-data';
 import { homeText } from '@/lib/home/home-message';
 import type { SampleView } from '@/lib/content/sample-view';
@@ -99,6 +99,15 @@ export function ExamPreview({
     // not belong between the click and its paint.
     window.setTimeout(() => window.history.replaceState(null, '', `?exam=${encodeURIComponent(target)}`), 0);
   }
+
+  // The home page is served as a static file (src/lib/seo/static-pages.ts), so
+  // the server cannot open the exam a link or a reload names in ?exam=.
+  useEffect(() => {
+    const wanted = new URLSearchParams(window.location.search).get('exam');
+    if (wanted && wanted !== initialHub && choices.some((c) => c.hubSlug === wanted)) choose(wanted);
+    // Once, on arrival: later choices update the address themselves.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   function check() {
     if (!picked) return;

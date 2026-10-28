@@ -2,7 +2,7 @@ import { Link } from '@/i18n/navigation';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/server';
-import { languageAlternates } from '@/i18n/alternates';
+import { pageAlternates } from '@/i18n/alternates';
 import type { Locale } from '@/i18n/locales';
 import { EXAM_HUBS, getConfigsForHub, getHub } from '@/lib/exams/registry';
 import { describePolicy } from '@/lib/assessment/navigation';
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     publisher: hub.publisher,
     date: verifiedOn && isIsoDate(verifiedOn) ? format.dateTime(new Date(verifiedOn), DATE) : t('lastCheck'),
   });
-  const alternates = languageAlternates(`/exams/${hub.slug}/format`, locale as Locale);
+  const alternates = (await pageAlternates(params, `/exams/${hub.slug}/format`));
 
   return {
     title,
@@ -81,7 +81,7 @@ export default async function FormatGuidePage({ params }: Props) {
           breadcrumbSchema(siteUrl(), trail),
           articleSchema({
             siteUrl: siteUrl(),
-            url: languageAlternates(`/exams/${hub.slug}/format`, locale as Locale).canonical,
+            url: (await pageAlternates(params, `/exams/${hub.slug}/format`)).canonical,
             headline: t('format.metaTitle', { name: hub.name }),
             description: hub.tagline,
             datePublished: verifiedOn,

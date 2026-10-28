@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getDb } from '@/lib/db';
+import { SITE } from '@/lib/site';
 import { getCustomerId, listSubscriptions } from '@/lib/billing/store';
 import type {
   AttemptItemRow,
@@ -190,9 +191,9 @@ export async function GET() {
       format: 'examer.account-export.v1',
       exportedAt: new Date().toISOString(),
       notice:
-        'This file contains the data held for one Examer account. Question text and explanations are ' +
+        `This file contains the data held for one ${SITE.name} account. Question text and explanations are ` +
         'included so your practice makes sense on its own; that material is original, AI-assisted work ' +
-        'published by Examer and is not licensed for republication. Answer keys are included only for ' +
+        `published by ${SITE.name} and is not licensed for republication. Answer keys are included only for ` +
         'practice you have already submitted.',
       account: {
         id: account.id,
@@ -383,7 +384,7 @@ export async function GET() {
       },
     };
 
-    const filename = `examer-export-${new Date().toISOString().slice(0, 10)}.json`;
+    const filename = `uniexamer-export-${new Date().toISOString().slice(0, 10)}.json`;
 
     return new NextResponse(JSON.stringify(payload, null, 2), {
       status: 200,

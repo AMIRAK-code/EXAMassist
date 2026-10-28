@@ -564,6 +564,11 @@ export const gmatConfig: ExamConfig = {
   sections,
   domains,
   blueprints,
+  choiceOptions: {
+    count: 5,
+    basis: 'published',
+    note: 'Five answer choices on Problem Solving and Critical Reasoning; Data Sufficiency has its own fixed five.',
+  },
   scoring: {
     pointsCorrect: 1,
     pointsIncorrect: 0,

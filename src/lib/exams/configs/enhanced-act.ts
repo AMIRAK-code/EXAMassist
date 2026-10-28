@@ -1187,6 +1187,11 @@ export const enhancedActConfig: ExamConfig = {
   sections,
   domains,
   blueprints,
+  choiceOptions: {
+    count: 4,
+    basis: 'published',
+    note: 'Four answer choices; the enhanced format reduced Mathematics from five to four.',
+  },
   scoring: {
     pointsCorrect: 1,
     pointsIncorrect: 0,

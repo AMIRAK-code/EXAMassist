@@ -67,6 +67,28 @@ Zero errors, and no `stale-option-letter` warnings on your files. Paste the
 output verbatim in your report. An agent's self-report is not evidence; the
 coordinator re-runs it.
 
+## Drafting with the model
+
+`npm run content:draft -- --exam=<examKey> --domain=<domainSlug> [--skill=…] [--count=3]`
+drafts questions with Claude (`scripts/draft-questions.ts`, logic in
+`src/lib/content/drafting.ts`). Add `--dry-run` to see the rules and the
+request without calling the model; every real run costs money.
+
+- The exam's rules come from its config, not the model's memory: the option
+  count (`choiceOptions`, or a domain's `scoring.itemPenaltyOverrides`
+  variant via `--options`), the scoring, the calculator policy and the skills.
+- It writes only single-select and numeric-entry items, on an existing
+  stimulus with `--stimulus=<id>`.
+- A draft is discarded, never written, if it fails the schema or
+  `validateQuestion`, names option letters, has the wrong option count, lacks
+  a real rationale for a wrong choice, repeats a bank item, or if the same
+  model, solving it again blind, disagrees with the key or finds a second
+  answer. That last check is a filter, not the blind review below.
+- What it writes follows this brief: `in_review`, `aiAssisted: true`,
+  `difficultyBasis: "editorial"`, `review.independentSolve: null`. It is then
+  normalised, blind-solved and published by `apply-review.ts` like any other
+  item; the script prints those commands.
+
 ## When you are blocked
 
 If a slug you need does not exist in the exam config, or the schema cannot
