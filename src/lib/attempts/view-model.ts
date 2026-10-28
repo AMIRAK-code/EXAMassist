@@ -3,6 +3,7 @@ import { spokenLabel } from '@/lib/speech';
 import type { StimulusData, StimulusViewModel } from '@/components/stimulus-view';
 import type { AttemptState } from './service';
 import type { NavigationPolicy, Response, ResponseType } from '@/lib/assessment/types';
+import { RETRY_BLUEPRINT_ID } from './retry';
 
 /**
  * Turns server attempt state into a payload the client player can render
@@ -20,11 +21,24 @@ export interface PlayerOption {
   spoken: string | null;
 }
 
+/**
+ * The correct answer, as data: the player words it in the learner's
+ * language (messages/<locale>/player.json, `answerKey`).
+ */
+export type AnswerSummary =
+  | { kind: 'option'; label: string }
+  | { kind: 'options'; labels: string[] }
+  | { kind: 'range'; min: string; max: string }
+  | { kind: 'tolerance'; value: string; tolerance: string }
+  | { kind: 'value'; value: string }
+  | { kind: 'pairs'; pairs: Array<{ column: string; label: string }> }
+  | { kind: 'essay' };
+
 export interface PlayerReview {
   correct: boolean | null;
   explanationHtml: string;
   distractorHtml: Record<string, string>;
-  correctSummary: string;
+  correctSummary: AnswerSummary | null;
   difficultyBasis: string;
 }
 
@@ -33,6 +47,8 @@ export interface PlayerItem {
   questionId: string;
   responseType: ResponseType;
   stemHtml: string;
+  /** The language of the question's own text (stem, options, passage), which may differ from the page's. */
+  contentLocale: string;
   instructionsHtml: string | null;
   options: PlayerOption[];
   accessibilityText: string | null;
@@ -66,6 +82,8 @@ export interface PlayerModel {
   examKey: string;
   examName: string;
   blueprintLabel: string;
+  /** A retry of missed questions: its label and note are the app's own, worded by the player. */
+  retry: boolean;
   mode: AttemptState['mode'];
   status: AttemptState['status'];
   fidelity: AttemptState['fidelity'];
@@ -84,36 +102,40 @@ export interface PlayerModel {
   serverNowMs: number;
 }
 
-/** Plain-language statement of the correct answer, for the review panel. */
-function describeAnswerKey(key: unknown, options: PlayerOption[]): string {
-  if (typeof key !== 'object' || key === null || !('type' in key)) return '';
+/** The correct answer, for the review panel. */
+function describeAnswerKey(key: unknown, options: PlayerOption[]): AnswerSummary | null {
+  if (typeof key !== 'object' || key === null || !('type' in key)) return null;
   const typed = key as Record<string, unknown>;
   const labelFor = (id: string) => options.find((o) => o.id === id)?.label ?? id;
 
   switch (typed.type) {
     case 'single_select':
-      return `Option ${labelFor(String(typed.optionId))}`;
+      return { kind: 'option', label: labelFor(String(typed.optionId)) };
     case 'multi_select':
-      return `Options ${(typed.optionIds as string[]).map(labelFor).join(' and ')}`;
+      return { kind: 'options', labels: (typed.optionIds as string[]).map(labelFor) };
     case 'quantitative_comparison':
     case 'data_sufficiency':
-      return `Option ${String(typed.choice)}`;
+      return { kind: 'option', label: String(typed.choice) };
     case 'numeric_entry': {
       const accepted = typed.accepted as Array<Record<string, unknown>>;
       const first = accepted?.[0];
-      if (!first) return '';
-      if (first.kind === 'range') return `Any value from ${first.min} to ${first.max}`;
-      if (first.kind === 'tolerance') return `${first.value} (± ${first.tolerance})`;
-      return String(first.value);
+      if (!first) return null;
+      if (first.kind === 'range') return { kind: 'range', min: String(first.min), max: String(first.max) };
+      if (first.kind === 'tolerance') return { kind: 'tolerance', value: String(first.value), tolerance: String(first.tolerance) };
+      return { kind: 'value', value: String(first.value) };
     }
     case 'two_part':
-      return (typed.selections as Array<{ columnId: string; optionId: string }>)
-        .map((s) => `${s.columnId}: ${labelFor(s.optionId)}`)
-        .join('; ');
+      return {
+        kind: 'pairs',
+        pairs: (typed.selections as Array<{ columnId: string; optionId: string }>).map((s) => ({
+          column: s.columnId,
+          label: labelFor(s.optionId),
+        })),
+      };
     case 'essay':
-      return 'Essays are not scored automatically. Check your response against the self-assessment guide in the explanation.';
+      return { kind: 'essay' };
     default:
-      return '';
+      return null;
   }
 }
 
@@ -123,6 +145,7 @@ export function toPlayerModel(state: AttemptState): PlayerModel {
     examKey: state.examKey,
     examName: state.examName,
     blueprintLabel: state.blueprintLabel,
+    retry: state.blueprintId === RETRY_BLUEPRINT_ID,
     mode: state.mode,
     status: state.status,
     fidelity: state.fidelity,
@@ -159,6 +182,7 @@ export function toPlayerModel(state: AttemptState): PlayerModel {
           questionId: item.questionId,
           responseType: question.responseType,
           stemHtml: renderMarkdown(question.stemMd ?? ''),
+          contentLocale: question.locale ?? 'en',
           instructionsHtml: question.instructionsMd ? renderMarkdown(question.instructionsMd) : null,
           options,
           accessibilityText: question.accessibilityText ?? null,

@@ -1,10 +1,11 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { useFormatter, useLocale, useTranslations } from 'next-intl';
 import { Link, useRouter } from '@/i18n/navigation';
 
-import type { Response } from '@/lib/assessment/types';
-import type { PlayerItem, PlayerModel } from '@/lib/attempts/view-model';
+import type { NavigationPolicy, Response } from '@/lib/assessment/types';
+import type { AnswerSummary, PlayerItem, PlayerModel } from '@/lib/attempts/view-model';
 import { formatRemaining } from '@/lib/assessment/timing';
 import type { ServerItem } from '@/lib/player/pending';
 import { StimulusView } from '@/components/stimulus-view';
@@ -36,7 +37,8 @@ interface Notice {
   link?: { href: string; label: string };
 }
 
-const plural = (n: number, one: string, many = `${one}s`) => `${n} ${n === 1 ? one : many}`;
+/** Visually hidden text inside a translated message: `<sr>…</sr>`. */
+const srOnly = (chunks: React.ReactNode) => <span className="sr-only">{chunks}</span>;
 const TYPING: ReadonlySet<PlayerItem['responseType']> = new Set(['numeric_entry', 'essay']);
 /** Typing is sent once it pauses for this long (and at once on leaving the question). */
 const TYPING_DEBOUNCE_MS = 800;
@@ -51,6 +53,9 @@ export function AttemptPlayer({
   /** The optional AI tutor is configured on the server. See lib/tutor/config.ts. */
   tutorEnabled?: boolean;
 }) {
+  const t = useTranslations('player');
+  const locale = useLocale();
+  const answerKeyText = useAnswerKeyText();
   const router = useRouter();
   const part = model.parts[model.currentPartIndex];
 
@@ -101,44 +106,44 @@ export function AttemptPlayer({
         setResponses((all) => ({ ...all, [at]: current }));
         setNotice({
           tone: 'info',
-          text: isLocked
-            ? `Question ${at + 1} was checked in another tab or on another device, so its answer is locked. The checked answer is shown here.`
-            : `Question ${at + 1} was answered again in another tab or on another device after this change. The newer answer is kept, and shown here.`,
+          text: t(isLocked ? 'notices.replacedLocked' : 'notices.replaced', { number: at + 1 }),
         });
         if (isLocked) {
           setLocked((all) => ({ ...all, [at]: true }));
           resync();
         }
       },
-      onLocked(at, text) {
+      onLocked(at, message, code) {
         setLocked((all) => ({ ...all, [at]: true }));
-        setNotice({ tone: 'caution', text });
+        setNotice({ tone: 'caution', text: errorText(code, message, t('errors.response-locked')) });
         resync();
       },
-      onClosed(lost, text) {
+      onClosed(lost, message, code) {
+        const text = errorText(code, message, t('errors.attempt-closed'));
         setNotice({
           tone: 'caution',
-          text: lost > 0 ? `${text} ${plural(lost, 'answer')} made on this device could not be saved.` : text,
+          text: lost > 0 ? `${text} ${t('notices.closedLost', { count: lost })}` : text,
         });
         // The server moves on: to the next section, or to the results.
         router.refresh();
       },
-      onRefused(at, text) {
-        setNotice({ tone: 'negative', text: at === null ? text : `Question ${at + 1}: ${text}` });
+      onRefused(at, message, code) {
+        const text = errorText(code, message, t('notices.saveRefused'));
+        setNotice({ tone: 'negative', text: at === null ? text : t('notices.refusedAt', { number: at + 1, message: text }) });
         if (at === null) resync();
       },
       onSignedOut() {
         setNotice({
           tone: 'negative',
-          text: 'You are signed out, so nothing more can be saved from this page. Answers not yet saved are kept on this device for your account, and are sent when you sign in again and reopen this session.',
-          link: { href: `/sign-in?next=/attempt/${model.attemptId}`, label: 'Sign in again' },
+          text: t('notices.signedOut'),
+          link: { href: `/sign-in?next=/attempt/${model.attemptId}`, label: t('notices.signInAgain') },
         });
       },
       onNotFound() {
         setNotice({
           tone: 'negative',
-          text: 'This session is not available to the account now signed in, so nothing more will be sent from this page.',
-          link: { href: '/dashboard', label: 'Go to your dashboard' },
+          text: t('notices.notFound'),
+          link: { href: '/dashboard', label: t('notices.dashboard') },
         });
       },
     },
@@ -172,9 +177,7 @@ export function AttemptPlayer({
       const closedSection = result.lost.some((a) => a.partIndex !== part.partIndex);
       setNotice({
         tone: 'caution',
-        text: closedSection
-          ? `${plural(result.lost.length, 'answer')} made on this device did not reach the server before the previous section closed, so ${result.lost.length === 1 ? 'it does' : 'they do'} not count.`
-          : `${plural(result.lost.length, 'answer')} made on this device could not be saved, because the question was checked in another tab first.`,
+        text: t(closedSection ? 'notices.lostClosedSection' : 'notices.lostChecked', { count: result.lost.length }),
       });
     }
     // Opening runs once, when the device's store is ready.
@@ -206,6 +209,24 @@ export function AttemptPlayer({
 
   function isFree(target: number): boolean {
     return !!policy && (policy.allowBackWithinPart || Math.floor(target / pageSize) === currentPage);
+  }
+
+  /**
+   * A refusal from the server, in the learner's language. The API answers in
+   * English; its error code is what is translated. An unknown code shows the
+   * server's sentence in English and `fallback` in every other language.
+   */
+  function errorText(code: unknown, message: unknown, fallback: string): string {
+    const key = typeof code === 'string' ? code : '';
+    if (key === 'no-backward-navigation' && pageSize > 1) return t('errors.no-backward-navigation-screen');
+    if (key === 'edit-limit-reached' || key === 'bookmark-limit-reached') {
+      const limit = key === 'edit-limit-reached' ? policy?.editLimitPerPart : policy?.bookmarkLimitPerPart;
+      if (limit != null) return t(`errors.${key}`, { count: limit });
+    } else if (key && t.has(`errors.${key}`)) {
+      return t(`errors.${key}`);
+    }
+    if (locale === 'en' && typeof message === 'string' && message) return message;
+    return fallback;
   }
 
   // --- Clock ---------------------------------------------------------------
@@ -297,12 +318,12 @@ export function AttemptPlayer({
     if (reply.kind === 'offline') {
       setNotice({
         tone: 'caution',
-        text: 'You are offline, so this answer cannot be checked yet. It is kept on this device and saved when the connection returns; check it then.',
+        text: t('notices.checkOffline'),
       });
       return;
     }
     if (reply.kind === 'retry') {
-      setNotice({ tone: 'negative', text: 'The answer could not be checked just now. It is kept on this device; try again in a moment.' });
+      setNotice({ tone: 'negative', text: t('notices.checkRetry') });
       return;
     }
     if (reply.kind !== 'saved') return; // the saving hook has reported it
@@ -310,7 +331,7 @@ export function AttemptPlayer({
       setResponses((all) => ({ ...all, [target]: reply.current }));
       setNotice({
         tone: 'info',
-        text: `Question ${target + 1} was answered again in another tab or on another device, so it was not checked. The newer answer is shown.`,
+        text: t('notices.checkStale', { number: target + 1 }),
       });
       return;
     }
@@ -346,8 +367,8 @@ export function AttemptPlayer({
         tone: 'caution',
         text:
           flushed === 'offline'
-            ? `You are offline. Moving on closes this screen for good, so it needs the connection. Your answers are kept on this device; move on when you are back online.${timed ? ' The timer keeps running.' : ''}`
-            : 'The answers on this screen could not all be saved yet, so this screen stays open. Try again in a moment.',
+            ? `${t('notices.moveOffline')}${timed ? ` ${t('notices.timerRuns')}` : ''}`
+            : t('notices.moveUnsaved'),
       });
       return;
     }
@@ -358,11 +379,11 @@ export function AttemptPlayer({
     });
     setMoving(false);
     if (status === 0) {
-      setNotice({ tone: 'caution', text: 'The connection dropped before the server confirmed the move, so this screen stays open. Try again.' });
+      setNotice({ tone: 'caution', text: t('notices.moveDropped') });
       return;
     }
     if (status < 200 || status >= 300) {
-      setNotice({ tone: 'negative', text: data?.error?.message ?? 'You cannot move there on this exam.' });
+      setNotice({ tone: 'negative', text: errorText(data?.error?.code, data?.error?.message, t('notices.moveRefused')) });
       const code = data?.error?.code;
       if (code === 'attempt-closed' || code === 'wrong-part' || code === 'part-expired') router.refresh();
       return;
@@ -385,7 +406,10 @@ export function AttemptPlayer({
     setFlags((current) => ({ ...current, [at]: !next }));
     setNotice({
       tone: status === 0 ? 'caution' : 'negative',
-      text: status === 0 ? 'Marking a question needs the connection. Try again when you are back online.' : (data?.error?.message ?? 'That question could not be marked.'),
+      text:
+        status === 0
+          ? t('notices.flagOffline')
+          : errorText(data?.error?.code, data?.error?.message, t('notices.flagFailed')),
     });
   };
 
@@ -401,8 +425,8 @@ export function AttemptPlayer({
           tone: 'caution',
           text:
             flushed === 'offline'
-              ? `You are offline, so this section has not been submitted. Your answers are kept on this device; submit when the connection returns.${timed ? ' The timer keeps running.' : ''}`
-              : 'Some answers could not be saved yet, so this section has not been submitted. Try again in a moment.',
+              ? `${t('notices.submitOffline')}${timed ? ` ${t('notices.timerRuns')}` : ''}`
+              : t('notices.submitUnsaved'),
         });
       }
       return;
@@ -410,11 +434,11 @@ export function AttemptPlayer({
     const { status, data } = await postJson(`/api/attempts/${model.attemptId}/submit-part`, { partIndex: part.partIndex });
     setSubmitting(false);
     if (status === 0) {
-      setNotice({ tone: 'caution', text: 'The connection dropped, so this section has not been submitted. Try again when you are back online.' });
+      setNotice({ tone: 'caution', text: t('notices.submitDropped') });
       return;
     }
     if (status < 200 || status >= 300) {
-      setNotice({ tone: 'negative', text: data?.error?.message ?? 'This section could not be submitted.' });
+      setNotice({ tone: 'negative', text: errorText(data?.error?.code, data?.error?.message, t('notices.submitFailed')) });
       return;
     }
     if (data?.attemptSubmitted) {
@@ -433,9 +457,9 @@ export function AttemptPlayer({
   if (!part || !item || !policy) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-10">
-        <Alert tone="caution" title="This attempt has no open section">
-          <p>It may already be finished.</p>
-          <a href={`/attempt/${model.attemptId}/results`}>View your results</a>
+        <Alert tone="caution" title={t('noOpenSection.title')}>
+          <p>{t('noOpenSection.body')}</p>
+          <Link href={`/attempt/${model.attemptId}/results`}>{t('noOpenSection.results')}</Link>
         </Alert>
       </div>
     );
@@ -455,7 +479,7 @@ export function AttemptPlayer({
         {/* One row that never wraps: the label truncates, so the interface font arriving cannot add a line. */}
         <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-2.5 sm:gap-4 sm:px-6">
           <div className="min-w-0 flex-1">
-            <p className="truncate text-sm font-medium">{model.blueprintLabel}</p>
+            <p className="truncate text-sm font-medium">{model.retry ? t('retry.label') : model.blueprintLabel}</p>
             <p className="truncate text-xs text-ink-muted">{`${model.examName} · ${part.label}`}</p>
           </div>
           <div className="flex shrink-0 items-center gap-2 sm:gap-3">
@@ -469,18 +493,18 @@ export function AttemptPlayer({
                   remaining <= 60 ? 'bg-negative-soft text-negative' : 'bg-surface-sunken text-ink',
                 )}
               >
-                <span className="sr-only">Time remaining: </span>
+                <span className="sr-only">{`${t('header.timeRemaining')} `}</span>
                 {formatRemaining(remaining)}
               </div>
             ) : (
-              <Badge tone="neutral">Untimed</Badge>
+              <Badge tone="neutral">{t('header.untimed')}</Badge>
             )}
             <Link
               href={`/dashboard?exam=${model.examKey}`}
               className="text-sm font-medium"
-              title={timed ? 'The timer keeps running while you are away.' : 'You can come back to this session later.'}
+              title={timed ? t('header.leaveTimed') : t('header.leaveUntimed')}
             >
-              Leave
+              {t('header.leave')}
             </Link>
           </div>
         </div>
@@ -492,7 +516,7 @@ export function AttemptPlayer({
             <p>{notice.text}</p>
             {notice.link ? (
               <p className="mt-1">
-                <a href={notice.link.href}>{notice.link.label}</a>
+                <Link href={notice.link.href}>{notice.link.label}</Link>
               </p>
             ) : null}
           </Alert>
@@ -500,7 +524,7 @@ export function AttemptPlayer({
 
         {remaining !== null && remaining <= 60 ? (
           <Alert tone="caution" role="status" className="mb-4">
-            {remaining === 0 ? 'Time for this section has run out.' : 'Less than a minute left in this section.'}
+            {remaining === 0 ? t('time.runOut') : t('time.lastMinute')}
           </Alert>
         ) : null}
 
@@ -522,8 +546,9 @@ export function AttemptPlayer({
             // Beside the question on a wide screen the passage scrolls on its own, so it takes focus there.
             <div
               role="region"
-              aria-label="Passage"
+              aria-label={t('passage')}
               tabIndex={split ? 0 : undefined}
+              lang={item.contentLocale}
               className="question-text mb-5 lg:sticky lg:top-20 lg:mb-0 lg:max-h-[calc(100dvh-11rem)] lg:overflow-y-auto"
             >
               <StimulusView stimulus={item.stimulus} reading />
@@ -532,20 +557,20 @@ export function AttemptPlayer({
 
           <article aria-labelledby="question-heading" className="min-w-0">
             <h1 id="question-heading" ref={headingRef} tabIndex={-1} className="mb-3 font-heading text-lg font-semibold outline-none">
-              Question {position + 1}
-              <span className="sr-only"> of {part.items.length}</span>
+              {t.rich('question.heading', { number: position + 1, total: part.items.length, sr: srOnly })}
             </h1>
 
             {item.instructionsHtml ? (
               <div
+                lang={item.contentLocale}
                 className="prose-academic question-body question-text mb-3 text-sm text-ink-muted"
                 dangerouslySetInnerHTML={{ __html: item.instructionsHtml }}
               />
             ) : null}
 
-            <div className="prose-academic question-body question-text mb-5" dangerouslySetInnerHTML={{ __html: item.stemHtml }} />
+            <div lang={item.contentLocale} className="prose-academic question-body question-text mb-5" dangerouslySetInnerHTML={{ __html: item.stemHtml }} />
 
-            {item.accessibilityText ? <p className="sr-only">{item.accessibilityText}</p> : null}
+            {item.accessibilityText ? <p lang={item.contentLocale} className="sr-only">{item.accessibilityText}</p> : null}
 
             <ResponseInput
               item={{ ...item, response: responses[item.position] ?? null }}
@@ -560,16 +585,14 @@ export function AttemptPlayer({
                     <rect x="3" y="7" width="10" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.6" />
                     <path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" stroke="currentColor" strokeWidth="1.6" />
                   </svg>
-                  Answer locked: you have seen the explanation for this question.
+                  {t('question.locked')}
                 </p>
               ) : (
                 <div className="mt-5">
                   <Button onClick={() => void checkAnswer()} disabled={responses[item.position] == null} loading={checking}>
-                    Check answer
+                    {t('question.check')}
                   </Button>
-                  <p className="mt-2 text-sm text-ink-muted">
-                    You can change your answer until you check it. Checking shows the explanation and locks the answer.
-                  </p>
+                  <p className="mt-2 text-sm text-ink-muted">{t('question.checkHint')}</p>
                 </div>
               )
             ) : null}
@@ -582,13 +605,16 @@ export function AttemptPlayer({
                 )}
               >
                 <p className="font-semibold">
-                  {itemCorrect ? 'Correct' : 'Not correct'}
+                  {itemCorrect ? t('feedback.correct') : t('feedback.incorrect')}
                   {item.review?.correctSummary ? (
-                    <span className="font-normal text-ink-muted"> · Answer: {item.review.correctSummary}</span>
+                    <span className="font-normal text-ink-muted">
+                      {` · ${t('feedback.answer', { summary: answerKeyText(item.review.correctSummary) })}`}
+                    </span>
                   ) : null}
                 </p>
                 {item.review?.explanationHtml ? (
                   <div
+                    lang={item.contentLocale}
                     className="prose-academic question-text mt-2 text-sm"
                     dangerouslySetInnerHTML={{ __html: item.review.explanationHtml }}
                   />
@@ -616,12 +642,14 @@ export function AttemptPlayer({
         {showReviewScreen ? (
           <section aria-labelledby="review-heading" className="mt-6 rounded-card border border-line bg-surface p-5">
             <h2 id="review-heading" className="font-heading text-lg font-semibold">
-              Review before finishing
+              {t('review.title')}
             </h2>
             <p className="mt-1 text-sm text-ink-muted">
               {policy.reviewScreenEditable
-                ? `You can change up to ${policy.editLimitPerPart ?? 'any number of'} answers from here.`
-                : 'This summary is read-only, as it is on the real exam. Answers cannot be changed now.'}
+                ? policy.editLimitPerPart != null
+                  ? t('review.editableLimit', { count: policy.editLimitPerPart })
+                  : t('review.editableAny')
+                : t('review.readOnly')}
             </p>
             <ul className="mt-4 grid gap-2 sm:grid-cols-2">
               {part.items.map((reviewItem) => (
@@ -629,17 +657,17 @@ export function AttemptPlayer({
                   key={reviewItem.position}
                   className="flex items-center justify-between gap-3 rounded border border-line px-3 py-2 text-sm"
                 >
-                  <span>Question {reviewItem.position + 1}</span>
+                  <span>{t('review.question', { number: reviewItem.position + 1 })}</span>
                   <span className="flex items-center gap-2">
-                    {flags[reviewItem.position] ? <Badge tone="caution">Marked</Badge> : null}
+                    {flags[reviewItem.position] ? <Badge tone="caution">{t('review.marked')}</Badge> : null}
                     {responses[reviewItem.position] != null ? (
-                      <Badge tone="accent">Answered</Badge>
+                      <Badge tone="accent">{t('review.answered')}</Badge>
                     ) : (
-                      <Badge tone="neutral">Not answered</Badge>
+                      <Badge tone="neutral">{t('review.notAnswered')}</Badge>
                     )}
                     {policy.reviewScreenEditable ? (
                       <Button size="sm" variant="quiet" onClick={() => void go(reviewItem.position)}>
-                        Open
+                        {t('review.open')}
                       </Button>
                     ) : null}
                   </span>
@@ -648,7 +676,7 @@ export function AttemptPlayer({
             </ul>
             <div className="mt-5 flex justify-end">
               <Button onClick={() => void submitCurrentPart()} disabled={submitting} loading={submitting}>
-                Submit section
+                {t('review.submit')}
               </Button>
             </div>
           </section>
@@ -656,46 +684,40 @@ export function AttemptPlayer({
 
         {/* Rules in force, stated plainly */}
         <details className="mt-8 rounded-card border border-line bg-surface-sunken p-4 text-sm">
-          <summary className="cursor-pointer font-medium">Rules for this section</summary>
+          <summary className="cursor-pointer font-medium">{t('rules.title')}</summary>
           <ul className="mt-3 list-disc space-y-1 ps-5 text-ink-muted">
-            {part.navigationSummary.map((line) => (
-              <li key={line}>{line}</li>
-            ))}
-            <li>{model.fidelityNote}</li>
+            <PolicyRules policy={policy} />
+            {/* The fidelity note and the routing disclosure come from the exam's configuration. */}
+            <li>{model.retry ? t('retry.fidelityNote') : model.fidelityNote}</li>
             {part.routingDisclosure ? <li>{part.routingDisclosure}</li> : null}
-            <li>
-              {timed
-                ? 'Answers are kept on this device until the server has them. The timer is the server’s: it keeps running while you are offline or away, and an answer that reaches the server after time runs out does not count.'
-                : 'Answers are kept on this device until the server has them, and sent when the connection returns.'}
-            </li>
+            <li>{timed ? t('rules.savingTimed') : t('rules.savingUntimed')}</li>
           </ul>
         </details>
       </div>
 
       {/* Controls: a bar that stays put, whatever the question's length */}
-      <nav aria-label="Question controls" className="sticky bottom-0 z-20 border-t border-line bg-paper/95 backdrop-blur-sm">
+      <nav aria-label={t('controls.label')} className="sticky bottom-0 z-20 border-t border-line bg-paper/95 backdrop-blur-sm">
         <div className={cx('mx-auto flex items-center gap-2 px-4 py-2.5 sm:gap-3 sm:px-6', split ? 'max-w-6xl' : 'max-w-3xl')}>
           <Button variant="secondary" onClick={() => void go(position - 1)} disabled={!canGoBack || moving}>
-            Previous
+            {t('controls.previous')}
           </Button>
 
           {policy.allowFlagForReview ? (
             <Button variant="quiet" onClick={() => void toggleFlag()} aria-pressed={flags[item.position] ?? false}>
-              {flags[item.position] ? 'Unmark' : 'Mark'}
-              <span className="sr-only"> for review</span>
+              {t.rich(flags[item.position] ? 'controls.unmark' : 'controls.mark', { sr: srOnly })}
             </Button>
           ) : null}
 
           <div className="ms-auto flex gap-2 sm:gap-3">
             {!isLastItem ? (
               <Button onClick={() => void go(position + 1)} loading={moving}>
-                {pageSize > 1 && isLastOnPage ? 'Next screen' : 'Next'}
+                {pageSize > 1 && isLastOnPage ? t('controls.nextScreen') : t('controls.next')}
               </Button>
             ) : policy.reviewScreen && !showReviewScreen ? (
-              <Button onClick={() => setShowReviewScreen(true)}>Review answers</Button>
+              <Button onClick={() => setShowReviewScreen(true)}>{t('controls.reviewAnswers')}</Button>
             ) : (
               <Button onClick={() => void submitCurrentPart()} disabled={submitting} loading={submitting}>
-                Finish section
+                {t('controls.finish')}
               </Button>
             )}
           </div>
@@ -734,10 +756,11 @@ function QuestionNavigator({
   answeredCount: number;
   onGo: (position: number) => void;
 }) {
+  const t = useTranslations('player.navigator');
   const currentPage = Math.floor(position / pageSize);
   const anyUnsaved = items.some((i) => unsaved.has(i.position) && responses[i.position] != null);
   return (
-    <nav aria-label="Questions in this section">
+    <nav aria-label={t('label')}>
       <ol ref={listRef} className="-mx-1 flex gap-1.5 overflow-x-auto px-1 py-1 sm:flex-wrap sm:overflow-visible">
         {items.map((navItem) => {
           const isCurrent = navItem.position === position;
@@ -752,7 +775,12 @@ function QuestionNavigator({
                 onClick={() => onGo(navItem.position)}
                 disabled={!reachable}
                 aria-current={isCurrent ? 'true' : undefined}
-                aria-label={`Question ${navItem.position + 1}${isAnswered ? (isUnsaved ? ', answered, not yet saved' : ', answered') : ', not answered'}${isFlagged ? ', marked for review' : ''}${reachable ? '' : ', not available'}`}
+                aria-label={[
+                  t('question', { number: navItem.position + 1 }),
+                  t(isAnswered ? (isUnsaved ? 'answeredUnsaved' : 'answered') : 'notAnswered'),
+                  ...(isFlagged ? [t('marked')] : []),
+                  ...(reachable ? [] : [t('unavailable')]),
+                ].join(', ')}
                 className={cx(
                   'relative flex size-11 items-center justify-center rounded border-[1.5px] text-sm font-semibold tabular-nums transition-colors duration-100',
                   isCurrent
@@ -782,10 +810,59 @@ function QuestionNavigator({
         })}
       </ol>
       <p className="mt-1.5 text-xs text-ink-muted">
-        {`${answeredCount} of ${items.length} answered`}
-        {pageSize > 1 ? ` · ${pageSize} questions to a screen` : ''}
-        {anyUnsaved ? ' · dotted: not yet saved' : ''}
+        {[
+          t('progress', { answered: answeredCount, total: items.length }),
+          ...(pageSize > 1 ? [t('perScreen', { count: pageSize })] : []),
+          ...(anyUnsaved ? [t('dotted')] : []),
+        ].join(' · ')}
       </p>
     </nav>
   );
+}
+
+/** What the section's navigation policy allows, in the learner's language. */
+function PolicyRules({ policy }: { policy: NavigationPolicy }) {
+  const t = useTranslations('player.rules');
+  const lines = [
+    t(policy.allowBackWithinPart ? 'backFree' : 'backFixed'),
+    t(policy.allowChangeAnswer ? 'changeAllowed' : 'changeLocked'),
+    ...(policy.reviewScreen
+      ? [policy.editLimitPerPart === null ? t('reviewScreen') : t('reviewScreenEdits', { count: policy.editLimitPerPart })]
+      : []),
+    ...(policy.allowFlagForReview
+      ? [policy.bookmarkLimitPerPart === null ? t('flagAny') : t('flagLimit', { count: policy.bookmarkLimitPerPart })]
+      : []),
+    t(policy.allowReturnToPreviousPart ? 'returnAllowed' : 'returnLocked'),
+  ];
+  return (
+    <>
+      {lines.map((line) => (
+        <li key={line}>{line}</li>
+      ))}
+    </>
+  );
+}
+
+/** The correct answer, worded in the learner's language. Option letters and values are data. */
+function useAnswerKeyText() {
+  const t = useTranslations('player.answerKey');
+  const format = useFormatter();
+  return (summary: AnswerSummary): string => {
+    switch (summary.kind) {
+      case 'option':
+        return t('option', { label: summary.label });
+      case 'options':
+        return t('options', { labels: format.list(summary.labels, { type: 'conjunction' }) });
+      case 'range':
+        return t('range', { min: summary.min, max: summary.max });
+      case 'tolerance':
+        return `${summary.value} (± ${summary.tolerance})`;
+      case 'value':
+        return summary.value;
+      case 'pairs':
+        return summary.pairs.map((pair) => `${pair.column}: ${pair.label}`).join('; ');
+      case 'essay':
+        return t('essay');
+    }
+  };
 }

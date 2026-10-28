@@ -1,3 +1,4 @@
+import { useFormatter, useTranslations } from 'next-intl';
 import { requireExamConfig } from '@/lib/exams/registry';
 import { MIN_ATTEMPTS_FOR_SIGNAL } from '@/lib/learning/recommend';
 import { cx } from '@/components/ui';
@@ -6,7 +7,8 @@ import { cx } from '@/components/ui';
  * What accuracy by topic looks like, drawn with invented answers against the
  * SAT's real topic names and labelled as an illustration. It shows the
  * reporting rule: every figure comes with its count, and below
- * MIN_ATTEMPTS_FOR_SIGNAL answers no percentage is printed.
+ * MIN_ATTEMPTS_FOR_SIGNAL answers no percentage is printed. Topic and
+ * section names are the College Board's and stay as published.
  */
 
 const ILLUSTRATION: Record<string, string> = {
@@ -40,19 +42,18 @@ function Tally({ marks }: { marks: string }) {
 
 export function TopicAccuracyExample({ className }: { className?: string }) {
   const sat = requireExamConfig('digital-sat');
+  const t = useTranslations('exams.topicAccuracy');
+  const format = useFormatter();
   return (
     <div className={cx('min-w-0 rounded-card border-[1.5px] border-ink bg-surface p-4 sm:p-7', className)}>
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <p className="text-xl font-bold">SAT, by topic</p>
+        <p className="text-xl font-bold">{t('title')}</p>
         <span className="rounded-sm bg-highlight px-2.5 py-1 text-xs font-bold uppercase tracking-[0.08em] text-ink">
-          Illustrative example · not real data
+          {t('badge')}
         </span>
       </div>
       <table className="mt-2 w-full border-collapse">
-        <caption className="sr-only">
-          Illustrative example, not real learner data: answers by SAT topic, correct out of scored, with a
-          percentage only from {MIN_ATTEMPTS_FOR_SIGNAL} answers upward
-        </caption>
+        <caption className="sr-only">{t('caption', { min: MIN_ATTEMPTS_FOR_SIGNAL })}</caption>
         {sat.sections
           // Domains are tagged to the first section of each subject; later
           // modules draw from it (poolSectionKey), so group by those.
@@ -84,15 +85,18 @@ export function TopicAccuracyExample({ className }: { className?: string }) {
                       </th>
                       <td className="py-3 text-right align-top tabular-nums sm:whitespace-nowrap">
                         {scored === 0 ? (
-                          <span className="text-ink-subtle">Not attempted</span>
+                          <span className="text-ink-subtle">{t('notAttempted')}</span>
                         ) : scored < MIN_ATTEMPTS_FOR_SIGNAL ? (
                           <>
-                            <strong>{correct} of {scored}</strong> <span className="text-ink-muted">· too few to say</span>
+                            <strong>{t('score', { correct, scored })}</strong>{' '}
+                            <span className="text-ink-muted">· {t('tooFew')}</span>
                           </>
                         ) : (
                           <>
-                            <strong>{correct} of {scored}</strong>{' '}
-                            <span className="text-ink-muted">· {Math.round((correct / scored) * 100)}%</span>
+                            <strong>{t('score', { correct, scored })}</strong>{' '}
+                            <span className="text-ink-muted">
+                              · {format.number(Math.round((correct / scored) * 100) / 100, { style: 'percent' })}
+                            </span>
                           </>
                         )}
                       </td>
@@ -104,9 +108,9 @@ export function TopicAccuracyExample({ className }: { className?: string }) {
           })}
       </table>
       <ul aria-hidden="true" className="mt-5 flex flex-wrap gap-5 text-sm text-ink-muted">
-        <li className="flex items-center gap-2"><Tally marks="c" /> correct</li>
-        <li className="flex items-center gap-2"><Tally marks="x" /> wrong</li>
-        <li className="flex items-center gap-2"><Tally marks="b" /> left blank</li>
+        <li className="flex items-center gap-2"><Tally marks="c" /> {t('legend.correct')}</li>
+        <li className="flex items-center gap-2"><Tally marks="x" /> {t('legend.wrong')}</li>
+        <li className="flex items-center gap-2"><Tally marks="b" /> {t('legend.blank')}</li>
       </ul>
     </div>
   );

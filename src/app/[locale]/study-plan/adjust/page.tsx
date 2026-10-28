@@ -1,5 +1,9 @@
 import type { Metadata } from 'next';
-import { redirect } from 'next/navigation';
+import { useLocale, useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
+import { getPathname, redirect } from '@/i18n/navigation';
+import { pageAlternates } from '@/i18n/alternates';
+import type { Locale } from '@/i18n/locales';
 import { getDb } from '@/lib/db';
 import { loadEntitlements } from '@/lib/billing/entitlements';
 import { requireSignedIn } from '@/lib/auth/guards';
@@ -14,6 +18,7 @@ import {
   type PlanSessionRow,
 } from '@/lib/learning/plan';
 import { formatDate, formatDay, parsePlanDate, parseWeeklyMinutes } from '@/lib/learning/plan-inputs';
+import { renderText, type Msg } from '@/lib/learning/text';
 import { applyAdjustmentAction } from '@/app/actions/planning';
 import { Breadcrumbs, Button, ButtonLink, Card, Container, DefinitionList, PageHeader, Stat } from '@/components/ui';
 import { PlanningNotice } from '@/components/planning/planning-views';
@@ -31,10 +36,15 @@ import { KindBadge, PlanInputsForm } from '@/components/planning/plan-parts';
 
 export const dynamic = 'force-dynamic';
 
-export const metadata: Metadata = {
-  title: 'Adjust your study plan',
-  robots: { index: false, follow: false },
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'learning.adjust.meta' });
+  return {
+    title: t('title'),
+    alternates: (await pageAlternates(params, '/study-plan/adjust')),
+    robots: { index: false, follow: false },
+  };
+}
 
 type Query = { exam?: string | string[]; minutes?: string | string[]; date?: string | string[]; notice?: string | string[] };
 const one = (value: string | string[] | undefined) => (Array.isArray(value) ? value[0] : value);
@@ -52,17 +62,27 @@ function pairMoves(removed: PlanSessionRow[], added: PlannedSession[]) {
   return { moves, removed: removedLeft, added: addedLeft };
 }
 
-export default async function AdjustPlanPage({ searchParams }: { searchParams: Promise<Query> }) {
+export default async function AdjustPlanPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ locale: Locale }>;
+  searchParams: Promise<Query>;
+}) {
+  const { locale } = await params;
   const user = await requireSignedIn('/study-plan/adjust');
   const query = await searchParams;
   const config = getExamConfig(one(query.exam) ?? '');
-  if (!config) redirect('/study-plan');
+  if (!config) return redirect({ href: '/study-plan', locale });
   const db = getDb();
   // Adjusting a plan is part of a paid plan for this exam; the plan view explains.
-  if (!(await loadEntitlements(db, user.id)).can('study_plan', config.examKey)) redirect(`/study-plan?exam=${encodeURIComponent(config.examKey)}`);
+  if (!(await loadEntitlements(db, user.id)).can('study_plan', config.examKey)) {
+    return redirect({ href: `/study-plan?exam=${encodeURIComponent(config.examKey)}`, locale });
+  }
   let plan = (await activePlan(db, user.id, config.examKey));
-  if (!plan) redirect(`/study-plan?exam=${encodeURIComponent(config.examKey)}&notice=no-plan`);
+  if (!plan) return redirect({ href: `/study-plan?exam=${encodeURIComponent(config.examKey)}&notice=no-plan`, locale });
   if ((await recordCompletions(db, user.id, plan)) > 0) plan = (await activePlan(db, user.id, config.examKey))!;
+  const t = await getTranslations('learning');
 
   // Inputs: what the learner asked to preview, else the plan's own, with the
   // exam date as it is now (it may have changed since the plan was made).
@@ -74,13 +94,19 @@ export default async function AdjustPlanPage({ searchParams }: { searchParams: P
   const dateNote =
     parsed === 'invalid'
       ? askedDate !== undefined
-        ? 'That date is not after today, so this preview uses no exam date.'
-        : `Your exam date, ${formatDate(current!)}, has passed, so this preview uses none.`
+        ? t('adjust.dateNotAfterToday')
+        : t('adjust.datePassed', { date: formatDate(current!, locale) })
       : null;
 
   const { preview, digest } = (await planAdjustment(db, user.id, plan, { weeklyMinutes, examDate }));
   const { moves, removed, added } = pairMoves(preview.removed, preview.added);
-  const carried = [...new Set(preview.missed.filter((s) => s.kind === 'new' || s.kind === 'revision').map((s) => sessionLabel(config, s)))];
+  const carried = [
+    ...new Set(
+      preview.missed
+        .filter((s) => s.kind === 'new' || s.kind === 'revision')
+        .map((s) => renderText(t, sessionLabel(config, s))),
+    ),
+  ];
   const inputsChanged = weeklyMinutes !== plan.weeklyMinutes || examDate !== plan.examDate;
   const changes = preview.missed.length + preview.removed.length + preview.added.length;
   const planHref = `/study-plan?exam=${encodeURIComponent(config.examKey)}`;
@@ -89,34 +115,43 @@ export default async function AdjustPlanPage({ searchParams }: { searchParams: P
     <Container size="narrow">
       <Breadcrumbs
         trail={[
-          { href: '/', label: 'Home' },
-          { href: '/dashboard', label: 'Dashboard' },
-          { href: planHref, label: 'Study plan' },
-          { label: 'Adjust' },
+          { href: '/', label: t('crumbs.home') },
+          { href: '/dashboard', label: t('crumbs.dashboard') },
+          { href: planHref, label: t('crumbs.studyPlan') },
+          { label: t('crumbs.adjust') },
         ]}
       />
-      <PageHeader eyebrow={config.publisher} title="Adjust my remaining plan" />
+      <PageHeader eyebrow={config.publisher} title={t('adjust.title')} />
       <PlanningNotice code={query.notice} className="mb-6" />
 
       <section aria-labelledby="changes-heading" className="mb-10">
         <h2 id="changes-heading" className="mb-4 font-heading text-2xl font-semibold">
-          What would change
+          {t('adjust.changesTitle')}
         </h2>
         <Card>
           <div className="grid grid-cols-2 gap-5 sm:grid-cols-4">
-            <Stat label="Recorded missed" value={preview.missed.length} />
-            <Stat label="Moved" value={moves.length} />
-            <Stat label="Added" value={added.length} />
-            <Stat label="Removed" value={removed.length} />
+            <Stat label={t('adjust.stats.missed')} value={preview.missed.length} />
+            <Stat label={t('adjust.stats.moved')} value={moves.length} />
+            <Stat label={t('adjust.stats.added')} value={added.length} />
+            <Stat label={t('adjust.stats.removed')} value={removed.length} />
           </div>
           <div className="mt-5 border-t border-line pt-5">
             <DefinitionList
               items={[
-                { term: 'Unchanged', value: `${preview.kept} upcoming session${preview.kept === 1 ? '' : 's'}` },
-                { term: 'History kept', value: `${preview.history} completed or skipped` },
-                { term: 'New schedule', value: `${formatDay(preview.startsOn)} to ${formatDay(preview.endsOn, true)}` },
-                { term: 'Exam date', value: examDate ? formatDate(examDate) : 'None' },
-                { term: 'Each week', value: `${weeklyMinutes} minutes` },
+                { term: t('adjust.terms.unchanged'), value: t('adjust.terms.unchangedValue', { count: preview.kept }) },
+                { term: t('adjust.terms.history'), value: t('adjust.terms.historyValue', { count: preview.history }) },
+                {
+                  term: t('adjust.terms.schedule'),
+                  value: t('studyPlan.terms.range', {
+                    from: formatDay(preview.startsOn, locale),
+                    to: formatDay(preview.endsOn, locale, true),
+                  }),
+                },
+                {
+                  term: t('studyPlan.terms.examDate'),
+                  value: examDate ? formatDate(examDate, locale) : t('studyPlan.terms.none'),
+                },
+                { term: t('studyPlan.terms.eachWeek'), value: t('studyPlan.terms.minutes', { minutes: weeklyMinutes }) },
               ]}
             />
           </div>
@@ -127,16 +162,16 @@ export default async function AdjustPlanPage({ searchParams }: { searchParams: P
               <input type="hidden" name="digest" value={digest} />
               <input type="hidden" name="weeklyMinutes" value={weeklyMinutes} />
               <input type="hidden" name="examDate" value={examDate ?? ''} />
-              <Button type="submit">Apply these changes</Button>
+              <Button type="submit">{t('adjust.apply')}</Button>
               <ButtonLink href={planHref} variant="secondary">
-                Keep my plan as it is
+                {t('adjust.keep')}
               </ButtonLink>
             </form>
           ) : (
             <div className="mt-5">
-              <p className="text-sm text-ink-muted">Nothing would change: your plan already matches these inputs.</p>
+              <p className="text-sm text-ink-muted">{t('adjust.nothing')}</p>
               <ButtonLink href={planHref} variant="secondary" className="mt-3">
-                Back to my plan
+                {t('adjust.back')}
               </ButtonLink>
             </div>
           )}
@@ -145,16 +180,16 @@ export default async function AdjustPlanPage({ searchParams }: { searchParams: P
 
       <section aria-labelledby="inputs-heading" className="mb-10">
         <h2 id="inputs-heading" className="mb-4 font-heading text-2xl font-semibold">
-          Time and date
+          {t('adjust.inputsTitle')}
         </h2>
         <Card>
           <PlanInputsForm
-            action="/study-plan/adjust"
+            action={getPathname({ href: '/study-plan/adjust', locale })}
             examKey={config.examKey}
             examDate={examDate}
             weeklyMinutes={weeklyMinutes}
-            submitLabel="Update the preview"
-            dateHint="Your one exam date for this exam. Changing it here changes it for your goal too, once you apply."
+            submitLabel={t('adjust.updatePreview')}
+            dateHint={t('adjust.dateHint')}
           />
           {dateNote ? <p className="mt-4 text-sm text-caution">{dateNote}</p> : null}
         </Card>
@@ -162,31 +197,31 @@ export default async function AdjustPlanPage({ searchParams }: { searchParams: P
 
       <section aria-labelledby="details-heading">
         <h2 id="details-heading" className="mb-4 font-heading text-2xl font-semibold">
-          Every change
+          {t('adjust.detailsTitle')}
         </h2>
         <div className="space-y-8">
-          <ChangeList title="Recorded as missed" empty="No missed sessions.">
+          <ChangeList title={t('adjust.missedTitle')} empty={t('adjust.missedEmpty')}>
             {preview.missed.map((s) => (
               <Row key={s.id} day={s.scheduledOn} label={sessionLabel(config, s)} kind={s.kind} />
             ))}
           </ChangeList>
           {carried.length > 0 ? (
             <div>
-              <h3 className="font-heading text-lg font-semibold">Carried forward</h3>
-              <p className="mt-1 text-sm text-ink-muted">Scheduled first in the new schedule: {carried.join('; ')}.</p>
+              <h3 className="font-heading text-lg font-semibold">{t('adjust.carriedTitle')}</h3>
+              <p className="mt-1 text-sm text-ink-muted">{t('adjust.carried', { sessions: carried.join('; ') })}</p>
             </div>
           ) : null}
-          <ChangeList title="Moved" empty="Nothing moves.">
+          <ChangeList title={t('adjust.movedTitle')} empty={t('adjust.movedEmpty')}>
             {moves.map(({ from, to }) => (
               <Row key={from.id} day={to.scheduledOn} previous={from.scheduledOn} label={sessionLabel(config, to)} kind={to.kind} />
             ))}
           </ChangeList>
-          <ChangeList title="Added" empty="Nothing is added.">
+          <ChangeList title={t('adjust.addedTitle')} empty={t('adjust.addedEmpty')}>
             {added.map((s) => (
               <Row key={`${s.scheduledOn}-${s.sequence}`} day={s.scheduledOn} label={sessionLabel(config, s)} kind={s.kind} />
             ))}
           </ChangeList>
-          <ChangeList title="Removed" empty="Nothing is removed.">
+          <ChangeList title={t('adjust.removedTitle')} empty={t('adjust.removedEmpty')}>
             {removed.map((s) => (
               <Row key={s.id} day={s.scheduledOn} label={sessionLabel(config, s)} kind={s.kind} />
             ))}
@@ -210,20 +245,22 @@ function ChangeList({ title, empty, children }: { title: string; empty: string; 
   );
 }
 
-function Row({ day, previous, label, kind }: { day: string; previous?: string; label: string; kind: PlannedSession['kind'] }) {
+function Row({ day, previous, label, kind }: { day: string; previous?: string; label: Msg; kind: PlannedSession['kind'] }) {
+  const t = useTranslations('learning');
+  const locale = useLocale();
   return (
     <li className="px-4 py-3">
       <p className="text-sm font-semibold tabular-nums text-ink-muted">
         {previous ? (
           <>
-            <time dateTime={previous}>{formatDay(previous)}</time> <span aria-hidden="true">→</span>
-            <span className="sr-only"> moves to </span> <time dateTime={day}>{formatDay(day)}</time>
+            <time dateTime={previous}>{formatDay(previous, locale)}</time> <span aria-hidden="true">→</span>
+            <span className="sr-only"> {t('adjust.movesTo')} </span> <time dateTime={day}>{formatDay(day, locale)}</time>
           </>
         ) : (
-          <time dateTime={day}>{formatDay(day)}</time>
+          <time dateTime={day}>{formatDay(day, locale)}</time>
         )}
       </p>
-      <p className="mt-1 font-medium">{label}</p>
+      <p className="mt-1 font-medium">{renderText(t, label)}</p>
       <div className="mt-2">
         <KindBadge kind={kind} />
       </div>

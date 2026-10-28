@@ -1,5 +1,8 @@
 import { Link } from '@/i18n/navigation';
 import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
+import { pageAlternates } from '@/i18n/alternates';
+import type { Locale } from '@/i18n/locales';
 import { getDb } from '@/lib/db';
 import { requireSignedIn } from '@/lib/auth/guards';
 import { EXAM_CONFIGS, getBlueprint, getHubForConfig, requireExamConfig } from '@/lib/exams/registry';
@@ -20,11 +23,16 @@ import { DateConflictCard } from '@/components/planning/plan-parts';
 
 export const dynamic = 'force-dynamic';
 
-export const metadata: Metadata = {
-  title: 'Progress and readiness',
-  description: 'How your practice measures against the exam you are preparing for.',
-  robots: { index: false, follow: false },
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'learning.progress.meta' });
+  return {
+    title: t('title'),
+    description: t('description'),
+    alternates: (await pageAlternates(params, '/study-plan/progress')),
+    robots: { index: false, follow: false },
+  };
+}
 
 type Query = { exam?: string | string[]; notice?: string | string[] };
 
@@ -33,21 +41,22 @@ export default async function ReadinessPage({ searchParams }: { searchParams: Pr
   const query = await searchParams;
   const db = getDb();
   const { examKey, choices } = (await planningExam(db, user, query.exam, 'progress'));
+  const t = await getTranslations('learning');
 
   const trail = [
-    { href: '/', label: 'Home' },
-    { href: '/dashboard', label: 'Dashboard' },
-    { href: planningHref('plan', examKey), label: 'Study plan' },
-    { label: 'Progress & readiness' },
+    { href: '/', label: t('crumbs.home') },
+    { href: '/dashboard', label: t('crumbs.dashboard') },
+    { href: planningHref('plan', examKey), label: t('crumbs.studyPlan') },
+    { label: t('crumbs.progress') },
   ];
 
   if (!examKey) {
     return (
       <Container size="narrow">
         <Breadcrumbs trail={trail} />
-        <PageHeader title="Study plan" />
+        <PageHeader title={t('crumbs.studyPlan')} />
         <PlanningViews current="progress" examKey={null} />
-        <p className="mb-6 text-ink-muted">Choose the exam you are preparing for, and this view measures your practice against it.</p>
+        <p className="mb-6 text-ink-muted">{t('progress.chooseLead')}</p>
         <ul className="grid gap-3 sm:grid-cols-2">
           {EXAM_CONFIGS.map((option) => (
             <Card as="li" key={option.examKey}>
@@ -70,7 +79,7 @@ export default async function ReadinessPage({ searchParams }: { searchParams: Pr
     return (
       <Container>
         <Breadcrumbs trail={trail} />
-        <PageHeader eyebrow={config.publisher} title="Study plan" />
+        <PageHeader eyebrow={config.publisher} title={t('crumbs.studyPlan')} />
         <PlanningViews current="progress" examKey={config.examKey} />
         <PlanningExamSwitcher choices={choices} />
         <UpgradePrompt feature="study_plan" examKey={config.examKey} examName={config.shortName} />
@@ -107,7 +116,7 @@ export default async function ReadinessPage({ searchParams }: { searchParams: Pr
     <Container>
       <Breadcrumbs trail={trail} />
 
-      <PageHeader eyebrow={config.publisher} title="Study plan" />
+      <PageHeader eyebrow={config.publisher} title={t('crumbs.studyPlan')} />
       <PlanningViews current="progress" examKey={config.examKey} />
       <PlanningExamSwitcher choices={choices} />
       <PlanningNotice code={query.notice} className="mb-6" />
@@ -119,13 +128,10 @@ export default async function ReadinessPage({ searchParams }: { searchParams: Pr
       {assessment.answeredTotal === 0 ? (
         <div className="space-y-10">
           <EmptyState
-            title={`No answers yet for ${config.shortName}`}
-            action={<ButtonLink href={`/practice/${config.examKey}`}>Start practising</ButtonLink>}
+            title={t('progress.noAnswersTitle', { exam: config.shortName })}
+            action={<ButtonLink href={`/practice/${config.examKey}`}>{t('progress.startPractising')}</ButtonLink>}
           >
-            <p>
-              This page measures your readiness from questions you have actually answered. Answer some
-              and it becomes meaningful — there is nothing useful we could tell you before that.
-            </p>
+            <p>{t('progress.noAnswersLead')}</p>
           </EmptyState>
           {targetForm}
         </div>
@@ -137,7 +143,7 @@ export default async function ReadinessPage({ searchParams }: { searchParams: Pr
 
           {hub ? (
             <p className="text-sm">
-              <Link href={`/exams/${hub.slug}/format`}>What the {config.shortName} actually looks like</Link>
+              <Link href={`/exams/${hub.slug}/format`}>{t('progress.formatLink', { exam: config.shortName })}</Link>
             </p>
           ) : null}
         </div>

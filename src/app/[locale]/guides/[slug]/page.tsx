@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/server';
 import { getGuide, listGuides } from '@/lib/content/guides';
 import { getHub } from '@/lib/exams/registry';
 import { SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
@@ -8,20 +9,22 @@ import { Markdown } from '@/components/content';
 import { freeTestPath } from '@/lib/billing/config';
 import { Breadcrumbs, ButtonLink, Callout, Card, Container, PageHeader } from '@/components/ui';
 import { JsonLd, articleSchema, breadcrumbSchema } from '@/components/seo/json-ld';
+import { localizePath, type Locale } from '@/i18n/locales';
+
+type Props = { params: Promise<{ locale: string; slug: string }> };
 
 export function generateStaticParams() {
   return listGuides().map((guide) => ({ slug: guide.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string; slug: string }>;
-}): Promise<Metadata> {
-  const { slug } = await params;
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale, slug } = await params;
   const guide = getGuide(slug);
-  if (!guide) return { title: 'Guide' };
-  const alternates = await pageAlternates(params, `/guides/${guide.slug}`);
+  if (!guide) {
+    const t = await getTranslations({ locale, namespace: 'guides.article' });
+    return { title: t('fallbackTitle') };
+  }
+  const alternates = (await pageAlternates(params, `/guides/${guide.slug}`));
   return {
     title: guide.title,
     description: guide.description,
@@ -38,34 +41,38 @@ export async function generateMetadata({
   };
 }
 
-function formatDate(value: string): string {
-  return new Date(value).toLocaleDateString('en-GB', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  });
-}
-
-export default async function GuidePage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+export default async function GuidePage({ params }: Props) {
+  const { locale, slug } = await params;
+  setRequestLocale(locale);
   const guide = getGuide(slug);
   if (!guide) notFound();
 
+  const t = await getTranslations('guides');
+  const format = await getFormatter();
+  const formatDate = (value: string) =>
+    format.dateTime(new Date(`${value}T00:00:00Z`), {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+      timeZone: 'UTC',
+    });
+
   const hub = getHub(guide.hubSlug);
   const trail = [
-    { href: '/', label: 'Home' },
-    { href: '/guides', label: 'Guides' },
+    { href: '/', label: t('breadcrumbs.home') },
+    { href: '/guides', label: t('breadcrumbs.guides') },
     { label: guide.title },
   ];
+  const ldTrail = trail.map((crumb) => (crumb.href ? { ...crumb, href: localizePath(crumb.href, locale as Locale) } : crumb));
 
   return (
     <Container size="narrow">
       <JsonLd
         data={[
-          breadcrumbSchema(siteUrl(), trail),
+          breadcrumbSchema(siteUrl(), ldTrail),
           articleSchema({
             siteUrl: siteUrl(),
-            url: absoluteUrl(`/guides/${guide.slug}`),
+            url: absoluteUrl(localizePath(`/guides/${guide.slug}`, locale as Locale)),
             headline: guide.title,
             description: guide.description,
             datePublished: guide.publishedOn,
@@ -87,27 +94,33 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
       */}
       <article>
         <header className="mb-8">
-          <PageHeader eyebrow={hub?.name ?? 'General'} title={guide.title} />
+          <PageHeader eyebrow={hub?.name ?? t('general')} title={guide.title} />
 
           {/*
             The direct answer, before the body: what a reader needs in one
             paragraph, and the passage most likely to be quoted if this page is
             cited elsewhere.
           */}
-          <Callout title="In short" className="-mt-2" textClassName="font-serif">
+          <Callout title={t('article.inShort')} className="-mt-2" textClassName="font-serif">
             {guide.answer}
           </Callout>
 
           <p className="mt-4 text-sm text-ink-subtle">
-            By {SITE.publisher} · Published{' '}
-            <time dateTime={guide.publishedOn}>{formatDate(guide.publishedOn)}</time>
+            {t.rich('article.published', {
+              publisher: SITE.publisher,
+              date: formatDate(guide.publishedOn),
+              time: (chunks) => <time dateTime={guide.publishedOn}>{chunks}</time>,
+            })}
             {guide.updatedOn !== guide.publishedOn ? (
               <>
-                {' · Updated '}
-                <time dateTime={guide.updatedOn}>{formatDate(guide.updatedOn)}</time>
+                {' · '}
+                {t.rich('article.updated', {
+                  date: formatDate(guide.updatedOn),
+                  time: (chunks) => <time dateTime={guide.updatedOn}>{chunks}</time>,
+                })}
               </>
             ) : null}
-            {` · ${guide.readingMinutes} min read`}
+            {` · ${t('readingTime', { minutes: guide.readingMinutes })}`}
           </p>
         </header>
 
@@ -115,7 +128,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
 
         <section aria-labelledby="sources-heading" className="mt-10">
           <h2 id="sources-heading" className="font-heading text-xl font-semibold">
-            Sources
+            {t('article.sources')}
           </h2>
           <ol className="mt-3 space-y-2 text-sm">
             {guide.sources.map((source, index) => (
@@ -123,7 +136,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
                 <span className="text-ink-subtle">[{index + 1}]</span>{' '}
                 <a href={source.url} rel="noopener noreferrer" target="_blank">
                   {source.label}
-                  <span className="sr-only"> (opens in a new tab)</span>
+                  <span className="sr-only"> {t('article.opensInNewTab')}</span>
                   <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" className="ms-1 inline-block align-baseline">
                     <path d="M5 2H2.5v7.5H10V7M7 2h3v3M10 2 5.5 6.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
@@ -137,18 +150,18 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
 
       {hub ? (
         <Card className="mt-10">
-          <h2 className="font-heading text-lg font-semibold">Practise this exam</h2>
-          <p className="mt-1 text-sm text-ink-muted">
-            Original questions with worked explanations. A free account gets one free test.
-          </p>
+          <h2 className="font-heading text-lg font-semibold">{t('article.practiseTitle')}</h2>
+          <p className="mt-1 text-sm text-ink-muted">{t('article.practiseBody')}</p>
           <div className="mt-4 flex flex-wrap gap-3">
             {hub.slug === 'bocconi-online-test' ? (
-              <ButtonLink href={freeTestPath(guide.examKeys[0])}>Try a free Bocconi test</ButtonLink>
+              <ButtonLink href={freeTestPath(guide.examKeys[0])}>{t('article.tryFreeBocconi')}</ButtonLink>
             ) : (
-              <ButtonLink href={`/practice/${guide.examKeys[0]}`}>Start practising</ButtonLink>
+              <ButtonLink href={`/practice/${guide.examKeys[0]}`}>{t('article.startPractising')}</ButtonLink>
             )}
             <ButtonLink href={`/exams/${hub.slug}`} variant="secondary">
-              {hub.slug === 'bocconi-online-test' ? 'Bocconi test preparation' : `${hub.name} guide`}
+              {hub.slug === 'bocconi-online-test'
+                ? t('article.bocconiPreparation')
+                : t('article.hubGuide', { exam: hub.name })}
             </ButtonLink>
           </div>
         </Card>
@@ -156,7 +169,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
 
       <div className="mt-8">
         <ButtonLink href="/guides" variant="secondary" size="sm">
-          All guides
+          {t('article.allGuides')}
         </ButtonLink>
       </div>
     </Container>

@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import type { ComponentProps, ReactNode } from 'react';
 
@@ -336,8 +337,9 @@ export function SectionHeading({
  * negative margin, keeps focus outlines clear of the clipping edge.
  */
 export function Breadcrumbs({ trail }: { trail: Array<{ href?: string; label: string }> }) {
+  const t = useTranslations('common.ui');
   return (
-    <nav aria-label="Breadcrumb" className="mb-6 text-sm">
+    <nav aria-label={t('breadcrumb')} className="mb-6 text-sm">
       <ol className="-m-1 flex items-center gap-1 overflow-hidden whitespace-nowrap p-1 text-ink-muted">
         {trail.map((crumb, index) => {
           const last = index === trail.length - 1;
@@ -525,22 +527,12 @@ export function FidelityBadge({
 }: {
   fidelity: 'exam_accurate' | 'approximation' | 'practice_only';
 }) {
-  if (fidelity === 'exam_accurate') {
-    return <Badge tone="positive">Matches the published exam rules</Badge>;
-  }
-  if (fidelity === 'approximation') {
-    return <Badge tone="caution">Close approximation</Badge>;
-  }
-  return <Badge tone="neutral">Study practice, not a simulation</Badge>;
+  const t = useTranslations('common.ui.fidelity');
+  const tone = fidelity === 'exam_accurate' ? 'positive' : fidelity === 'approximation' ? 'caution' : 'neutral';
+  return <Badge tone={tone}>{t(fidelity)}</Badge>;
 }
 
 export type FormatStatus = 'open' | 'notyet' | 'notoffered';
-
-const STATUS_LABEL: Record<FormatStatus, string> = {
-  open: 'Open',
-  notyet: 'Not yet',
-  notoffered: 'Not offered',
-};
 
 /** Shape-coded status marks: a filled disc, a half disc, a ring with a bar. */
 export function StatusIcon({ status }: { status: FormatStatus }) {
@@ -550,10 +542,11 @@ export function StatusIcon({ status }: { status: FormatStatus }) {
 
 /** Whether a format can be started, with a shape and a word, never colour alone. */
 export function StatusBadge({ status, children }: { status: FormatStatus; children?: ReactNode }) {
+  const t = useTranslations('exams.status');
   return (
     <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink">
       <StatusIcon status={status} />
-      {children ?? STATUS_LABEL[status]}
+      {children ?? t(status)}
     </span>
   );
 }

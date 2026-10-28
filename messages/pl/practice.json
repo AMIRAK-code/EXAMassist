@@ -1,1 +1,234 @@
-{}
+{
+  "crumbs": {
+    "home": "Strona główna",
+    "exams": "Egzaminy",
+    "practise": "Ćwiczenia",
+    "getStarted": "Pierwsze kroki",
+    "freeDiagnostic": "Bezpłatny test diagnostyczny"
+  },
+  "setup": {
+    "metaFallbackTitle": "Ćwiczenia",
+    "metaTitle": "Ćwiczenia: {exam}",
+    "metaDescription": "Wybierz temat, poziom trudności i długość sesji, a potem ćwicz do {exam} na oryginalnych pytaniach z pełnymi wyjaśnieniami.",
+    "title": "Ćwiczenia: {exam}",
+    "lead": "Ćwicz tematami, bez limitu czasu, albo wybierz inny format poniżej.",
+    "empty": {
+      "title": "Dla tego egzaminu nie ma jeszcze sprawdzonych pytań",
+      "body": "Pytania do tego egzaminu są jeszcze sprawdzane, więc na razie nie ma tu czego ćwiczyć. Udostępniamy wyłącznie pytania, które przeszły weryfikację.",
+      "guide": "<link>Przewodnik po formacie i punktacji</link> jest kompletny, ma podane źródła i już teraz się przyda."
+    },
+    "topic": {
+      "title": "Ćwiczenia tematyczne",
+      "body": "Bez limitu czasu. Możesz dowolnie zmieniać odpowiedź, a potem ją sprawdzić, aby zobaczyć rozwiązanie krok po kroku; sprawdzona odpowiedź zostaje zablokowana.",
+      "ignoredFilter": "Link wskazywał temat lub umiejętność, których nie ma w {exam}, więc nie zastosowano żadnego filtra."
+    },
+    "otherFormats": "Inne formaty",
+    "questionCount": "{count, plural, one {# pytanie} few {# pytania} many {# pytań} other {# pytania}}",
+    "untimed": "Bez limitu czasu",
+    "upgrade": "Wybierz plan, aby zacząć",
+    "start": "Zacznij",
+    "whyNotOffered": "Dlaczego ten format nie jest dostępny:",
+    "notEnoughYet": "Na razie za mało sprawdzonych pytań:",
+    "contentShortfall": "Ten format wymaga {requested, plural, one {# sprawdzonego pytania} few {# sprawdzonych pytań} many {# sprawdzonych pytań} other {# sprawdzonego pytania}}, a baza zawiera obecnie {available} pasujących. Format zostanie udostępniony, gdy baza się powiększy.",
+    "about": {
+      "title": "O tym egzaminie",
+      "formatLink": "Format, czas i punktacja, ze źródłami"
+    },
+    "bank": {
+      "title": "Baza pytań",
+      "coverage": "{count, plural, one {sprawdzone pytanie} few {sprawdzone pytania} many {sprawdzonych pytań} other {sprawdzonego pytania}} w {covered} z {total} tematów",
+      "note": "To biblioteka na start, a nie kompletny kurs. Pytania są oryginalne i przygotowane z pomocą AI; przed publikacją każde z nich rozwiązał w ciemno osobny recenzent AI.",
+      "howChecked": "Jak sprawdzamy pytania"
+    },
+    "unverified": {
+      "title": "Czego nie udało nam się zweryfikować",
+      "allSources": "Zobacz wszystkie źródła i zastrzeżenia"
+    },
+    "contentLanguage": {
+      "label": "Język pytań:",
+      "note": "Pytanie bez sprawdzonej wersji włoskiej wyświetla się po angielsku. Twój wybór dotyczy wszystkich formatów na tej stronie.",
+      "englishOnlySimulation": "Pełna symulacja testu {exam} jest zawsze po angielsku, tak jak prawdziwy test."
+    }
+  },
+  "form": {
+    "skill": "Umiejętność",
+    "removeSkill": "Usuń filtr umiejętności",
+    "skillNote": "Ta sesja jest ograniczona do jednej umiejętności. Usuń filtr, aby zamiast tego wybrać temat.",
+    "topic": "Temat",
+    "everyTopicOption": "Wszystkie tematy ({count})",
+    "countsNote": "Liczby oznaczają sprawdzone pytania, które spełniają wszystkie ustawienia w tym formularzu.",
+    "difficulty": "Poziom trudności",
+    "levels": {
+      "mixed": "Mieszany",
+      "easy": "Łatwy",
+      "medium": "Średni",
+      "hard": "Trudny"
+    },
+    "difficultyNote": "Poziomy trudności to nasza ocena redakcyjna, nieskalibrowana na podstawie danych o zdających. Wybrany poziom jest stosowany samodzielnie; nigdy nie uzupełniamy go pytaniami z innych poziomów.",
+    "newOnly": "Tylko nowe pytania",
+    "newOnlyCount": "(nowe dla Ciebie: {unseen} z {matching})",
+    "newOnlyOn": "Tylko pytania, które nigdy nie zostały Ci pokazane. Sesji nigdy nie uzupełniamy pytaniami już widzianymi; jeśli zostało ich za mało, sesja będzie krótsza albo nie da się jej rozpocząć.",
+    "newOnlyOff": "{seen} z {matching} pasujących pytań zostało Ci już wcześniej pokazanych. Najpierw wybieramy te, których dawno nie widziano, ale może się trafić powtórka; zaznacz to pole, aby wykluczyć powtórki.",
+    "length": "Liczba pytań",
+    "allOfThem": "{count} (wszystkie)",
+    "shortened": "Tym ustawieniom {count, plural, one {odpowiada tylko # sprawdzone pytanie} few {odpowiadają tylko # sprawdzone pytania} many {odpowiada tylko # sprawdzonych pytań} other {odpowiada tylko # sprawdzonego pytania}}, więc w tej sesji będzie ich {length}.",
+    "shortenedNew": "Tym ustawieniom {count, plural, one {odpowiada tylko # nowe sprawdzone pytanie} few {odpowiadają tylko # nowe sprawdzone pytania} many {odpowiada tylko # nowych sprawdzonych pytań} other {odpowiada tylko # nowego sprawdzonego pytania}}, więc w tej sesji będzie ich {length}.",
+    "allSeen": {
+      "title": "Pokazano Ci już wszystkie pasujące pytania",
+      "body": "Nie ma tu nic nowego. Uwzględnij pytania już widziane albo wybierz szerszą opcję poniżej."
+    },
+    "noMatch": {
+      "title": "Żadne sprawdzone pytanie nie pasuje do tych ustawień",
+      "body": "Wybierz szerszą opcję poniżej albo zmień temat lub poziom trudności."
+    },
+    "longer": "Chcesz dłuższą sesję?",
+    "broader": {
+      "includeSeen": "Uwzględnij pytania już widziane ({count})",
+      "wholeDomain": "Ćwicz cały dział: {domain} ({count})",
+      "mixedDifficulty": "Użyj mieszanego poziomu trudności ({count})",
+      "everyTopic": "Ćwicz wszystkie tematy {exam} ({count})"
+    },
+    "summary": {
+      "count": "<strong>{count, plural, one {# pytanie} few {# pytania} many {# pytań} other {# pytania}}</strong>, zakres: {scope}",
+      "everyTopic": "wszystkie tematy",
+      "skillScope": "{skill} ({domain})",
+      "mixed": "mieszany poziom trudności",
+      "easy": "tylko łatwe",
+      "medium": "tylko średnie",
+      "hard": "tylko trudne",
+      "newOnly": "tylko nowe dla Ciebie",
+      "untimed": "bez limitu czasu",
+      "check": "sprawdź każdą odpowiedź, aby zobaczyć rozwiązanie krok po kroku",
+      "bank": "sprawdzone pytania {exam} w bazie: {count}"
+    },
+    "nothing": "Przy tych ustawieniach nie można rozpocząć sesji.",
+    "preparing": "Przygotowywanie sesji…",
+    "startPractising": "Zacznij ćwiczyć",
+    "startLength": "{count, plural, one {Zacznij sesję z # pytaniem} other {Zacznij sesję z # pytaniami}}"
+  },
+  "blueprint": {
+    "starting": "Rozpoczynanie…"
+  },
+  "errors": {
+    "network": "Nie udało się połączyć z serwerem. Sprawdź połączenie i spróbuj ponownie.",
+    "insufficientCounts": "W bazie nie ma już wystarczająco wielu sprawdzonych pytań dla tej kombinacji (dostępne: {available}, potrzebne: {requested}). Odśwież stronę, aby zobaczyć aktualne liczby.",
+    "insufficient": "W bazie nie ma już wystarczająco wielu sprawdzonych pytań dla tej kombinacji. Odśwież stronę, aby zobaczyć aktualne liczby.",
+    "formFallback": "Nie udało się rozpocząć tej sesji.",
+    "buttonFallback": "Nie można teraz rozpocząć tej sesji.",
+    "codes": {
+      "rate-limited": "Rozpoczynasz bardzo dużo sesji. Odczekaj chwilę.",
+      "unknown-exam": "Ten egzamin nie jest dostępny.",
+      "unknown-blueprint": "Taki format ćwiczeń nie istnieje.",
+      "simulation-unavailable": "Dla tego egzaminu nie oferujemy pełnej symulacji.",
+      "insufficient-content": "Nie ma wystarczająco wielu sprawdzonych pytań, aby utworzyć tę sesję bez powtarzania któregoś z nich.",
+      "unauthorized": "Twoja sesja logowania wygasła. Zaloguj się ponownie, aby zacząć ćwiczyć.",
+      "invalid-request": "To żądanie było nieprawidłowe.",
+      "server-error": "Coś poszło nie tak po naszej stronie."
+    }
+  },
+  "start": {
+    "metaTitle": "Pierwsze kroki",
+    "intro": {
+      "title": "Ćwicz do {exam}",
+      "lead": "Według informacji organizatora prawdziwy egzamin ma {count, plural, one {jedną sekcję} few {# sekcje} many {# sekcji} other {# sekcji}}:",
+      "questions": "{count, plural, one {# pytanie} few {# pytania} many {# pytań} other {# pytania}}",
+      "minutes": "{count, plural, one {# minuta} few {# minuty} many {# minut} other {# minuty}}"
+    },
+    "how": {
+      "eyebrow": "Jak działają ćwiczenia",
+      "title": "Ćwicz tak, jak działa egzamin",
+      "leadCount": "{count, plural, one {# sprawdzone pytanie z {exam}} few {# sprawdzone pytania z {exam}} many {# sprawdzonych pytań z {exam}} other {# sprawdzonego pytania z {exam}}}, każde z rozwiązaniem krok po kroku.",
+      "lead": "Sprawdzone pytania, każde z rozwiązaniem krok po kroku.",
+      "topic": "Ćwiczenia tematyczne: wybierasz tematy i poziom trudności, bez limitu czasu, a rozwiązanie krok po kroku widzisz zaraz po sprawdzeniu odpowiedzi.",
+      "timed": "{count, plural, one {Sekcja na czas} few {# sekcje na czas} many {# sekcji na czas} other {# sekcji na czas}} w oficjalnym tempie.",
+      "mock": "Pełna symulacja egzaminu według prawdziwych zasad.",
+      "diagnostic": "Krótki test diagnostyczny, który pokazuje, od czego zacząć."
+    },
+    "results": {
+      "eyebrow": "Twoje wyniki",
+      "title": "Zobacz dokładnie, nad czym popracować",
+      "lead": "Każda sesja kończy się wynikami, na podstawie których wiesz, co robić dalej.",
+      "accuracy": "Skuteczność według tematów i umiejętności, więc wiesz, co ćwiczyć dalej.",
+      "notebook": "Zeszyt błędów i kolejka powtórek, które przywracają pytania z błędnymi odpowiedziami.",
+      "plan": "Plan nauki ułożony wokół daty Twojego egzaminu.",
+      "tutor": "Tutor AI do podpowiedzi i szczegółowych wyjaśnień, w ramach dziennego limitu."
+    },
+    "paid": {
+      "single": "{plan}: wszystkie formaty ćwiczeń {exam}, {price} miesięcznie.",
+      "all": "{plan}: wszystkie egzaminy oraz tutor AI, {price} miesięcznie.",
+      "vat": "Cena z VAT. Możesz anulować w dowolnym momencie na swoim koncie."
+    },
+    "free": {
+      "open": "Twój bezpłatny test diagnostyczny jest nadal otwarty: kontynuuj tam, gdzie przerwano.",
+      "taken": "Ten test diagnostyczny masz już za sobą; jego wyniki pozostają w Twojej historii.",
+      "questions": "Jeden test diagnostyczny z {count} pytaniami, taki sam dla wszystkich.",
+      "fixed": "Jeden stały test diagnostyczny, taki sam dla wszystkich.",
+      "every": "Bezpłatny dla każdego egzaminu, z pełnymi wynikami i wyjaśnieniami.",
+      "needsAccount": "Wymaga bezpłatnego konta."
+    },
+    "freeLabel": {
+      "signUp": "Załóż bezpłatne konto",
+      "continue": "Kontynuuj test diagnostyczny",
+      "results": "Wyniki Twojego testu diagnostycznego",
+      "take": "Zrób bezpłatny test diagnostyczny"
+    },
+    "onboarding": {
+      "step": "Krok {current} z {total}",
+      "skip": "Przejdź do bezpłatnego testu diagnostycznego",
+      "choiceEyebrow": "Twój wybór",
+      "choiceTitle": "Jak chcesz zacząć?",
+      "plan": "Plan",
+      "seePlans": "Zobacz plany",
+      "free": "Bezpłatny test diagnostyczny",
+      "back": "Wstecz",
+      "options": "Pokaż moje opcje",
+      "next": "Dalej",
+      "continue": "Przejdź do planów"
+    }
+  },
+  "freeTest": {
+    "metaTitle": "Twój bezpłatny test diagnostyczny",
+    "title": "Twój bezpłatny test diagnostyczny {exam}",
+    "leadTimed": "{questions, plural, one {# pytanie} few {# pytania} many {# pytań} other {# pytania}} w {sections, plural, one {jednej sekcji} few {# sekcjach} many {# sekcjach} other {# sekcji}}, około {minutes, plural, one {# minuty} few {# minut} many {# minut} other {# minuty}}, z pełnymi wynikami i rozwiązaniem krok po kroku do każdej odpowiedzi.",
+    "leadUntimed": "{questions, plural, one {# pytanie} few {# pytania} many {# pytań} other {# pytania}} w {sections, plural, one {jednej sekcji} few {# sekcjach} many {# sekcjach} other {# sekcji}}, bez limitu czasu, z pełnymi wynikami i rozwiązaniem krok po kroku do każdej odpowiedzi.",
+    "notices": {
+      "rate-limited": "Rozpoczynasz bardzo dużo sesji. Odczekaj chwilę i spróbuj ponownie.",
+      "insufficient-content": "Na razie nie ma wystarczająco wielu sprawdzonych pytań, aby utworzyć ten test diagnostyczny."
+    },
+    "account": {
+      "title": "Załóż bezpłatne konto, aby go zrobić",
+      "body": "Test diagnostyczny wymaga konta, aby Twoje wyniki zostały zachowane. Wystarczą adres e-mail i hasło. Bez konta nadal możesz wypróbować przykładowe pytania.",
+      "signUp": "Załóż bezpłatne konto",
+      "signIn": "Zaloguj się",
+      "sample": "Wypróbuj przykładowe pytanie"
+    },
+    "waiting": {
+      "title": "Twój test diagnostyczny czeka",
+      "body": "Ten test jest już rozpoczęty. Kontynuuj tam, gdzie przerwano; pytania pozostają te same bez względu na to, ile razy wrócisz.",
+      "action": "Kontynuuj test diagnostyczny"
+    },
+    "taken": {
+      "title": "Ten test diagnostyczny masz już za sobą",
+      "body": "Dla każdego egzaminu jest jeden bezpłatny test diagnostyczny, a jego wyniki pozostają w Twojej historii. Plan otwiera wszystkie formaty ćwiczeń do tego egzaminu, z nowymi pytaniami w każdej sesji.",
+      "results": "Wyniki Twojego testu diagnostycznego"
+    },
+    "preview": {
+      "sameForEveryone": "Wszyscy dostają te same pytania; dla każdego egzaminu jest jeden bezpłatny test diagnostyczny.",
+      "perPart": "Każda sekcja ma własny zegar.",
+      "perPartPauses": "Każda sekcja ma własny zegar; wyjście ze strony go zatrzymuje.",
+      "overall": "Jeden zegar odmierza czas całego testu.",
+      "overallPauses": "Jeden zegar odmierza czas całego testu; wyjście ze strony go zatrzymuje.",
+      "untimed": "Bez limitu czasu: poświęć tyle czasu, ile potrzebujesz.",
+      "results": "Na końcu zobaczysz swoje wyniki według tematów i rozwiązanie krok po kroku do każdego pytania.",
+      "start": "Zacznij bezpłatny test diagnostyczny",
+      "starting": "Rozpoczynanie…"
+    },
+    "notReady": {
+      "title": "Jeszcze niegotowe",
+      "body": "Na razie nie ma wystarczająco wielu sprawdzonych pytań {exam}, aby utworzyć test diagnostyczny. Przewodnik po formacie i punktacji jest kompletny i już teraz się przyda.",
+      "guide": "Przeczytaj przewodnik po formacie i punktacji"
+    },
+    "plans": "Zobacz plany",
+    "footer": "Chcesz wszystkie formaty, za każdym razem z nowymi pytaniami? <link>Zobacz plany</link>."
+  }
+}

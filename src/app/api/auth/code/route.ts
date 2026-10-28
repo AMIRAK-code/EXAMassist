@@ -5,6 +5,7 @@ import { emailCodesMailer, prepareCodeForAddress, prepareVerificationEmail } fro
 import { callerKey, checkRateLimit, type RateLimitResult } from '@/lib/auth/rate-limit';
 import { requireUser } from '@/lib/auth/session';
 import { deliverAfterResponse } from '@/lib/email/deliver';
+import { emailLocale } from '@/lib/email/messages';
 
 /**
  * Sends a one-time code by email.
@@ -13,13 +14,17 @@ import { deliverAfterResponse } from '@/lib/email/deliver';
  *       the same whether or not an account uses the address, so this cannot be
  *       used to find out who has an account.
  *   { purpose: 'verify-email' }  - the signed-in account's own address.
+ *
+ * Either may carry `locale`, the language of the page the code was asked for
+ * on; the email is written in it. An unknown or missing locale means English.
  */
 
 const addressRequest = z.object({
   purpose: z.enum(['sign-in', 'reset-password']),
   email: z.string().trim().toLowerCase().email().max(254),
+  locale: z.string().max(16).optional(),
 });
-const verifyRequest = z.object({ purpose: z.literal('verify-email') });
+const verifyRequest = z.object({ purpose: z.literal('verify-email'), locale: z.string().max(16).optional() });
 const bodySchema = z.union([addressRequest, verifyRequest]);
 
 function tooMany(limit: RateLimitResult) {
@@ -41,6 +46,7 @@ export async function POST(request: Request) {
     if (!byCaller.allowed) return tooMany(byCaller);
 
     const body = await readJson(request, bodySchema);
+    const locale = emailLocale(body.locale);
 
     if (body.purpose === 'verify-email') {
       const user = await requireUser();
@@ -54,7 +60,7 @@ export async function POST(request: Request) {
 
       // Sent before answering: the learner is waiting for this one, and a
       // failure should say so rather than leave them watching an empty inbox.
-      const message = await prepareVerificationEmail(db, { id: user.id, email: user.email });
+      const message = await prepareVerificationEmail(db, { id: user.id, email: user.email, locale });
       await mailer(message);
       return ok({ sent: true });
     }
@@ -62,7 +68,7 @@ export async function POST(request: Request) {
     const byAddress = (await checkRateLimit(db, 'emailCodeAddress', `address:${body.email}`));
     if (!byAddress.allowed) return tooMany(byAddress);
 
-    const message = await prepareCodeForAddress(db, body);
+    const message = await prepareCodeForAddress(db, { purpose: body.purpose, email: body.email, locale });
     if (message) deliverAfterResponse(mailer, message);
 
     return ok({ sent: true }, { status: 202 });

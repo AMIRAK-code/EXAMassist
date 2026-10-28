@@ -1,8 +1,10 @@
 'use client';
 
 import { useId, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { Link, useRouter } from '@/i18n/navigation';
 import { Alert, Button, buttonClass, cx, fieldClass } from '@/components/ui';
+import { answerMessage, postJson } from '@/components/auth/email-code';
 
 /**
  * Email and password sign-in.
@@ -11,10 +13,6 @@ import { Alert, Button, buttonClass, cx, fieldClass } from '@/components/ui';
  * valid, whether the caller is rate limited, and what the learner is told. This
  * component only renders that answer.
  */
-
-interface ApiErrorBody {
-  error?: { code?: string; message?: string; detail?: { retryAfterSeconds?: number } };
-}
 
 export function SignInForm({
   next,
@@ -26,6 +24,7 @@ export function SignInForm({
   forgotHref: string | null;
   codeHref: string | null;
 }) {
+  const t = useTranslations('auth');
   const router = useRouter();
   const id = useId();
   const [email, setEmail] = useState('');
@@ -51,33 +50,22 @@ export function SignInForm({
     setError(null);
     setFieldsInvalid(false);
 
-    const response = await fetch('/api/auth/sign-in', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'examer' },
-      body: JSON.stringify({ email, password }),
-    }).catch(() => null);
+    const answer = await postJson('/api/auth/sign-in', { email, password });
 
-    if (!response) {
+    if (!answer) {
       setSubmitting(false);
-      setError('We could not reach the server. Check your connection and try again.');
+      setError(t('errors.network'));
       return;
     }
 
-    const body: ApiErrorBody | null = await response.json().catch(() => null);
-
-    if (!response.ok) {
+    if (!answer.ok) {
       setSubmitting(false);
-      const code = body?.error?.code;
-      const retry = body?.error?.detail?.retryAfterSeconds;
-      if (code === 'rate-limited') {
-        const minutes = retry ? Math.ceil(retry / 60) : null;
-        setError(
-          `Too many sign-in attempts. Please try again${minutes ? ` in about ${minutes} minute${minutes === 1 ? '' : 's'}` : ' later'}.`,
-        );
-        return;
-      }
-      setError(body?.error?.message ?? 'We could not sign you in. Please try again.');
-      setFieldsInvalid(code === 'invalid-credentials' || response.status === 400);
+      setError(
+        answer.code === 'invalid-request'
+          ? t('errors.signInIncomplete')
+          : answerMessage(t, answer, t('signIn.form.fallback'), 'signInRateLimited'),
+      );
+      setFieldsInvalid(answer.code === 'invalid-credentials' || answer.status === 400);
       return;
     }
 
@@ -89,7 +77,7 @@ export function SignInForm({
     <form onSubmit={handleSubmit} noValidate className="space-y-5">
       <div aria-live="assertive" aria-atomic="true">
         {error ? (
-          <Alert tone="negative" role="alert" title="Sign-in failed">
+          <Alert tone="negative" role="alert" title={t('signIn.form.failedTitle')}>
             <p id={errorId}>{error}</p>
           </Alert>
         ) : null}
@@ -97,7 +85,7 @@ export function SignInForm({
 
       <div>
         <label htmlFor={`${id}-email`} className="mb-1.5 block text-sm font-medium">
-          Email address
+          {t('fields.email')}
         </label>
         <input
           id={`${id}-email`}
@@ -119,7 +107,7 @@ export function SignInForm({
       <div>
         <div className="mb-1 flex flex-wrap items-center justify-between gap-2">
           <label htmlFor={`${id}-password`} className="text-sm font-medium">
-            Password
+            {t('fields.password')}
           </label>
           <button
             type="button"
@@ -128,7 +116,7 @@ export function SignInForm({
             aria-controls={`${id}-password`}
             className={cx(buttonClass({ variant: 'quiet', size: 'sm' }), 'min-h-11 -me-3')}
           >
-            Show password
+            {t('fields.showPassword')}
           </button>
         </div>
         <input
@@ -145,22 +133,22 @@ export function SignInForm({
         />
         {forgotHref ? (
           <p className="mt-2 text-sm">
-            <Link href={forgotHref}>Forgot your password?</Link>
+            <Link href={forgotHref}>{t('signIn.form.forgot')}</Link>
           </p>
         ) : null}
       </div>
 
       <Button type="submit" size="lg" full loading={submitting}>
-        Sign in
+        {t('signIn.form.submit')}
       </Button>
 
       <p role="status" aria-live="polite" className="text-sm text-ink-muted">
-        {submitting ? 'Checking your details…' : null}
+        {submitting ? t('signIn.form.checking') : null}
       </p>
 
       {codeHref ? (
         <p className="border-t border-line pt-4 text-sm">
-          <Link href={codeHref}>Email me a sign-in code instead</Link>
+          <Link href={codeHref}>{t('signIn.form.useCode')}</Link>
         </p>
       ) : null}
     </form>

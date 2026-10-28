@@ -168,9 +168,18 @@ export class EntitlementError extends Error {
     this.name = 'EntitlementError';
     this.status = code === 'account-required' ? 403 : 402;
   }
+
+  /** The `billing.errors.*` key of this message, for a page that shows it in the learner's language. */
+  get messageKey(): string {
+    return this.code === 'account-required' ? 'entitlement.accountRequired' : `entitlement.upgradeRequired.${this.detail.feature}`;
+  }
 }
 
-/** Learner-facing reasons for a refusal. Translated with the rest of the site. */
+/**
+ * Learner-facing reasons for a refusal, in English. The same sentences are in
+ * the `billing` message catalogue under `errors.entitlement.*`
+ * (EntitlementError.messageKey names the one that applies).
+ */
 export const ENTITLEMENT_COPY = {
   accountRequired: 'Create a free account to take the free diagnostic. Your guest practice comes with you.',
   upgradeRequired: {

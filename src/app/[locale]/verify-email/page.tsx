@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
-import { Link } from '@/i18n/navigation';
-import { notFound, redirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
+import { Link, redirect } from '@/i18n/navigation';
+import { pageAlternates } from '@/i18n/alternates';
+import type { Locale } from '@/i18n/locales';
 import { CODE_TTL_MINUTES, emailCodesMailer } from '@/lib/auth/email-codes';
 import { safeNext, withNext } from '@/lib/auth/next-path';
 import { getCurrentUser } from '@/lib/auth/session';
@@ -9,46 +12,64 @@ import { VerifyEmailForm } from './verify-email-form';
 
 export const dynamic = 'force-dynamic';
 
-const TITLE = 'Confirm your email address';
+type Params = Promise<{ locale: string }>;
 
-export const metadata: Metadata = {
-  title: TITLE,
-  description: 'Confirm the email address on your account with a one-time code.',
-  robots: { index: false, follow: false },
-};
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'auth.verifyEmail' });
+  return {
+    title: t('title'),
+    description: t('description'),
+    alternates: (await pageAlternates(params, '/verify-email')),
+    robots: { index: false, follow: false },
+  };
+}
 
 export default async function VerifyEmailPage({
+  params,
   searchParams,
 }: {
+  params: Params;
   searchParams: Promise<{ next?: string | string[]; sent?: string | string[] }>;
 }) {
   // Not offered at all on a deployment that cannot send email.
   if (!emailCodesMailer()) notFound();
 
+  const locale = (await params).locale as Locale;
+  const t = await getTranslations('auth');
   const query = await searchParams;
   const next = safeNext(query.next);
   const continueHref = next ?? '/account';
 
   const user = await getCurrentUser();
-  if (!user) redirect(withNext('/sign-in', '/account'));
-  if (user.isGuest || !user.email) redirect(withNext('/sign-up', next));
+  if (!user) return redirect({ href: withNext('/sign-in', '/account'), locale });
+  if (user.isGuest || !user.email) return redirect({ href: withNext('/sign-up', next), locale });
 
   return (
     <Container size="narrow">
-      <Breadcrumbs trail={[{ href: '/', label: 'Home' }, { href: '/account', label: 'Account' }, { label: 'Confirm email' }]} />
-      <PageHeader title={TITLE} />
+      <Breadcrumbs
+        trail={[
+          { href: '/', label: t('breadcrumbs.home') },
+          { href: '/account', label: t('breadcrumbs.account') },
+          { label: t('breadcrumbs.confirmEmail') },
+        ]}
+      />
+      <PageHeader title={t('verifyEmail.title')} />
 
       {user.emailVerifiedAt ? (
-        <Alert tone="positive" title="Your address is confirmed">
+        <Alert tone="positive" title={t('verifyEmail.confirmedTitle')}>
           <p>
-            <span className="break-all">{user.email}</span> is confirmed, so password resets and sign-in codes will
-            reach you. <Link href={continueHref}>Continue</Link>
+            {t.rich('verifyEmail.confirmedBody', {
+              email: user.email,
+              addr: (chunks) => <span className="break-all">{chunks}</span>,
+              link: (chunks) => <Link href={continueHref}>{chunks}</Link>,
+            })}
           </p>
         </Alert>
       ) : (
         <>
           <Card>
-            <h2 className="sr-only">Enter your confirmation code</h2>
+            <h2 className="sr-only">{t('verifyEmail.formHeading')}</h2>
             <VerifyEmailForm
               email={user.email}
               alreadySent={query.sent === '1'}
@@ -56,10 +77,7 @@ export default async function VerifyEmailPage({
               ttlMinutes={CODE_TTL_MINUTES}
             />
           </Card>
-          <p className="mt-6 text-ink-muted">
-            Your account works whether or not you confirm it. Confirming makes sure that, if you ever forget your
-            password, the reset code reaches you.
-          </p>
+          <p className="mt-6 text-ink-muted">{t('verifyEmail.about')}</p>
         </>
       )}
     </Container>

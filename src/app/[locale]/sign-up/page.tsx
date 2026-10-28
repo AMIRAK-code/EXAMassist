@@ -1,10 +1,12 @@
 import type { Metadata } from 'next';
-import { Link } from '@/i18n/navigation';
-import { redirect } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
+import { Link, redirect } from '@/i18n/navigation';
+import { pageAlternates } from '@/i18n/alternates';
+import type { Locale } from '@/i18n/locales';
 import { getDb } from '@/lib/db';
 import { getCurrentUser } from '@/lib/auth/session';
 import { emailCodesMailer } from '@/lib/auth/email-codes';
-import { safeNext } from '@/lib/auth/next-path';
+import { safeNext, withNext } from '@/lib/auth/next-path';
 import { examTestName, getExamConfig } from '@/lib/exams/registry';
 import { MIN_PASSWORD_LENGTH } from '@/lib/auth/password';
 import { Alert, Breadcrumbs, Card, Container, PageHeader } from '@/components/ui';
@@ -12,26 +14,34 @@ import { SignUpForm } from './sign-up-form';
 
 export const dynamic = 'force-dynamic';
 
-const TITLE = 'Create an account';
-const DESCRIPTION =
-  'Create a free account to keep your practice history, bookmarks and review queue. An email address and a password are all we ask for.';
+type Params = Promise<{ locale: string }>;
+type Translate = (key: string, values?: Record<string, string | number>) => string;
 
-export const metadata: Metadata = {
-  title: TITLE,
-  description: DESCRIPTION,
-  robots: { index: false, follow: true },
-};
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'auth.signUp' });
+  return {
+    title: t('title'),
+    description: t('description'),
+    alternates: (await pageAlternates(params, '/sign-up')),
+    robots: { index: false, follow: true },
+  };
+}
 
 export default async function SignUpPage({
+  params,
   searchParams,
 }: {
+  params: Params;
   searchParams: Promise<{ next?: string | string[] }>;
 }) {
+  const locale = (await params).locale as Locale;
+  const t = await getTranslations('auth');
   const query = await searchParams;
   const next = safeNext(query.next);
   const user = await getCurrentUser();
 
-  if (user && !user.isGuest) redirect(next ?? '/account');
+  if (user && !user.isGuest) return redirect({ href: next ?? '/account', locale });
 
   // A guest keeps everything they have already done, so say how much that is.
   // Scoped to the acting session's own user id - never to an id from the URL.
@@ -43,15 +53,15 @@ export default async function SignUpPage({
     guestAttempts = row?.n ?? 0;
   }
 
-  const signInHref = next ? `/sign-in?next=${encodeURIComponent(next)}` : '/sign-in';
-  const destination = describeNext(next);
+  const signInHref = withNext('/sign-in', next);
+  const destination = describeNext(next, t);
 
   return (
     <Container size="narrow">
-      <Breadcrumbs trail={[{ href: '/', label: 'Home' }, { label: 'Create an account' }]} />
+      <Breadcrumbs trail={[{ href: '/', label: t('breadcrumbs.home') }, { label: t('signUp.title') }]} />
 
       {/* No lead above the form: see the sign-in page. It is said below the form instead. */}
-      <PageHeader title={TITLE} />
+      <PageHeader title={t('signUp.title')} />
 
       {destination ? (
         <p className="-mt-4 mb-6 font-semibold" role="note">
@@ -60,42 +70,33 @@ export default async function SignUpPage({
       ) : null}
 
       {user?.isGuest ? (
-        <Alert tone="positive" title="Your practice so far will be kept" className="mb-6">
+        <Alert tone="positive" title={t('signUp.guestTitle')} className="mb-6">
           <p>
-            {guestAttempts === 0
-              ? 'You are practising as a guest. Creating an account here upgrades that same guest session, so anything you do now stays with you.'
-              : `You are practising as a guest and have started ${guestAttempts} practice ${
-                  guestAttempts === 1 ? 'session' : 'sessions'
-                }. Creating an account here upgrades that same session, so your history, bookmarks and review queue all carry over.`}
+            {guestAttempts === 0 ? t('signUp.guestNone') : t('signUp.guestSome', { count: guestAttempts })}
           </p>
         </Alert>
       ) : (
-        <Alert tone="info" title="Already practised as a guest?" className="mb-6">
-          <p>
-            Create the account in the same browser you practised in and your guest history, bookmarks
-            and review queue carry straight over to it.
-          </p>
+        <Alert tone="info" title={t('signUp.visitorTitle')} className="mb-6">
+          <p>{t('signUp.visitorBody')}</p>
         </Alert>
       )}
 
       <Card>
-        <h2 className="sr-only">Account details</h2>
+        <h2 className="sr-only">{t('signUp.formHeading')}</h2>
         <SignUpForm next={next} minPasswordLength={MIN_PASSWORD_LENGTH} emailCodes={emailCodesMailer() !== null} />
       </Card>
 
-      <p className="mt-6 text-ink-muted">
-        An email address and a password. No payment details, no phone number, and nothing shared with the
-        test makers — we are independent of all of them.
-      </p>
+      <p className="mt-6 text-ink-muted">{t('signUp.about')}</p>
 
       <p className="mt-4 text-sm text-ink-muted">
-        Already have an account? <Link href={signInHref}>Sign in</Link>.
+        {t.rich('signUp.haveAccount', { link: (chunks) => <Link href={signInHref}>{chunks}</Link> })}
       </p>
 
       <p className="mt-3 text-sm text-ink-subtle">
-        By creating an account you agree to our <Link href="/about/terms">terms</Link>. Our{' '}
-        <Link href="/about/privacy">privacy notice</Link> explains what we store, and you can export
-        or delete everything from your account page at any time.
+        {t.rich('signUp.consent', {
+          terms: (chunks) => <Link href="/about/terms">{chunks}</Link>,
+          privacy: (chunks) => <Link href="/about/privacy">{chunks}</Link>,
+        })}
       </p>
     </Container>
   );
@@ -103,20 +104,23 @@ export default async function SignUpPage({
 
 /**
  * Where the visitor goes once the account exists, when they came from an
- * exam's free test or plans, so the exam they chose stays in view.
+ * exam's free test or plans, so the exam they chose stays in view. The exam's
+ * name is data from its config and stays as published.
  */
-function describeNext(next: string | null): string | null {
+function describeNext(next: string | null, t: Translate): string | null {
   if (!next) return null;
   const [path, search = ''] = next.split('?');
   const freeTest = /^\/free-test\/([a-z0-9-]+)$/.exec(path);
   if (freeTest) {
     const config = getExamConfig(freeTest[1]);
-    return config ? `Next: your free ${examTestName(config)} test.` : null;
+    return config ? t('signUp.next.freeTest', { test: examTestName(config) }) : null;
   }
   if (path === '/pricing' || path === '/checkout') {
     const config = getExamConfig(new URLSearchParams(search).get('exam') ?? '');
-    if (path === '/checkout') return config ? `Next: checkout for your ${examTestName(config)} plan.` : 'Next: checkout.';
-    return config ? `Next: the plans for your ${examTestName(config)} preparation.` : null;
+    if (path === '/checkout') {
+      return config ? t('signUp.next.checkoutFor', { test: examTestName(config) }) : t('signUp.next.checkout');
+    }
+    return config ? t('signUp.next.plans', { test: examTestName(config) }) : null;
   }
   return null;
 }

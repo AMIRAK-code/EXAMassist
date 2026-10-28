@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { PendingStore, deviceStorage, purgePending } from '@/lib/player/pending';
 import { Alert } from '@/components/ui';
 
@@ -12,6 +13,7 @@ import { Alert } from '@/components/ui';
  * nothing in the usual case, where nothing was left waiting.
  */
 export function UnsentAnswersNotice({ attemptId, owner }: { attemptId: string; owner: string }) {
+  const t = useTranslations('player');
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -24,9 +26,7 @@ export function UnsentAnswersNotice({ attemptId, owner }: { attemptId: string; o
   if (count === 0) return null;
   return (
     <Alert tone="caution" role="status" className="mb-6">
-      <p>
-        {`${count === 1 ? '1 answer' : `${count} answers`} made on this device did not reach the server before this session ended, so ${count === 1 ? 'it is' : 'they are'} not part of these results. ${count === 1 ? 'It has' : 'They have'} been removed from this device.`}
-      </p>
+      <p>{t('unsent', { count })}</p>
     </Alert>
   );
 }

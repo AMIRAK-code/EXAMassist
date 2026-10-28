@@ -1,5 +1,9 @@
 import type { Metadata } from 'next';
-import { notFound, redirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
+import { getFormatter, getTranslations } from 'next-intl/server';
+import { redirect } from '@/i18n/navigation';
+import { pageAlternates } from '@/i18n/alternates';
+import type { Locale } from '@/i18n/locales';
 import { getCurrentUser } from '@/lib/auth/session';
 import { getDb } from '@/lib/db';
 import { getCoverage } from '@/lib/content/repository';
@@ -8,31 +12,44 @@ import { freeTestFor, freeTestPreview } from '@/lib/attempts/service';
 import { tutorSettings } from '@/lib/tutor/config';
 import { freeTestPath, pricingPath } from '@/lib/billing/config';
 import { loadEntitlements } from '@/lib/billing/entitlements';
-import { PLANS, PLAN_COPY, formatPrice } from '@/lib/billing/plans';
+import { PLANS, PLAN_COPY } from '@/lib/billing/plans';
 import { Breadcrumbs, Container } from '@/components/ui';
 import { Onboarding, type OnboardingStep } from './onboarding';
 
 export const dynamic = 'force-dynamic';
 
-export const metadata: Metadata = {
-  title: 'Get started',
-  robots: { index: false, follow: false },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; examKey: string }>;
+}): Promise<Metadata> {
+  const { locale, examKey } = await params;
+  const t = await getTranslations({ locale, namespace: 'practice.start' });
+  return {
+    title: t('metaTitle'),
+    robots: { index: false, follow: false },
+    alternates: (await pageAlternates(params, `/start/${examKey}`)),
+  };
+}
 
 /**
  * What a learner without a plan for this exam sees after choosing it: a short
  * introduction, then the plans, with the free diagnostic one click away.
  * Everything said here comes from the exam's configuration and the bank.
  */
-export default async function StartPage({ params }: { params: Promise<{ examKey: string }> }) {
-  const { examKey } = await params;
+export default async function StartPage({ params }: { params: Promise<{ locale: string; examKey: string }> }) {
+  const { locale, examKey } = await params;
   const config = getExamConfig(examKey);
   if (!config) notFound();
 
   const db = getDb();
   const user = await getCurrentUser();
   const entitlements = await loadEntitlements(db, user?.id ?? null);
-  if (entitlements.can('practice', config.examKey)) redirect(`/practice/${config.examKey}`);
+  if (entitlements.can('practice', config.examKey)) redirect({ href: `/practice/${config.examKey}`, locale });
+
+  const t = await getTranslations('practice');
+  const format = await getFormatter();
+  const price = (cents: number) => format.number(cents / 100, { style: 'currency', currency: 'EUR' });
 
   const hub = getHubForConfig(config.examKey);
   const reviewed = (await getCoverage(db, config.examKey)).reduce((sum, row) => sum + Number(row.published), 0);
@@ -44,8 +61,8 @@ export default async function StartPage({ params }: { params: Promise<{ examKey:
   const sectionLine = (section: (typeof config.sections)[number]) =>
     [
       section.name,
-      section.officialQuestionCount ? `${section.officialQuestionCount} questions` : null,
-      section.officialTimeMinutes ? `${section.officialTimeMinutes} minutes` : null,
+      section.officialQuestionCount ? t('start.intro.questions', { count: section.officialQuestionCount }) : null,
+      section.officialTimeMinutes ? t('start.intro.minutes', { count: section.officialTimeMinutes }) : null,
     ]
       .filter(Boolean)
       .join(' · ');
@@ -53,30 +70,30 @@ export default async function StartPage({ params }: { params: Promise<{ examKey:
   const steps: OnboardingStep[] = [
     {
       eyebrow: config.publisher,
-      title: `Practise for the ${config.name}`,
-      lead: `The real exam has ${config.sections.length === 1 ? 'one section' : `${config.sections.length} sections`}, as the test maker publishes it:`,
+      title: t('start.intro.title', { exam: config.name }),
+      lead: t('start.intro.lead', { count: config.sections.length }),
       points: config.sections.map(sectionLine),
     },
     {
-      eyebrow: 'How practice works',
-      title: 'Practise the way the exam works',
-      lead: `${reviewed > 0 ? `${reviewed} reviewed ${config.shortName} questions` : 'Reviewed questions'}, each with a worked explanation.`,
+      eyebrow: t('start.how.eyebrow'),
+      title: t('start.how.title'),
+      lead: reviewed > 0 ? t('start.how.leadCount', { count: reviewed, exam: config.shortName }) : t('start.how.lead'),
       points: [
-        'Topic practice: pick topics and difficulty, untimed, with the worked explanation as soon as you check an answer.',
-        ...(timedSections > 0 ? [`${timedSections === 1 ? 'A timed section' : `${timedSections} timed sections`} at the published pace.`] : []),
-        ...(fullMock ? ['A full-length mock exam under the real rules.'] : []),
-        ...(hasDiagnostic ? ['A short diagnostic that shows where to start.'] : []),
+        t('start.how.topic'),
+        ...(timedSections > 0 ? [t('start.how.timed', { count: timedSections })] : []),
+        ...(fullMock ? [t('start.how.mock')] : []),
+        ...(hasDiagnostic ? [t('start.how.diagnostic')] : []),
       ],
     },
     {
-      eyebrow: 'Your results',
-      title: 'See exactly what needs work',
-      lead: 'Every session ends with results you can act on.',
+      eyebrow: t('start.results.eyebrow'),
+      title: t('start.results.title'),
+      lead: t('start.results.lead'),
       points: [
-        'Accuracy by topic and skill, so you know what to practise next.',
-        'A mistake notebook and a review queue that bring back what you missed.',
-        'A study plan built around your exam date.',
-        ...(tutorSettings().enabled ? ['An AI tutor for hints and deeper explanations, within a daily allowance.'] : []),
+        t('start.results.accuracy'),
+        t('start.results.notebook'),
+        t('start.results.plan'),
+        ...(tutorSettings().enabled ? [t('start.results.tutor')] : []),
       ],
     },
   ];
@@ -85,34 +102,38 @@ export default async function StartPage({ params }: { params: Promise<{ examKey:
   const first = user && !freeNeedsAccount ? await freeTestFor(db, user.id, config.examKey) : null;
   const choice = {
     paid: [
-      `${PLAN_COPY.plans.single_exam.name}: every ${config.shortName} practice format, ${formatPrice(PLANS.single_exam.amount)} a month.`,
-      `${PLAN_COPY.plans.all_access.name}: every exam plus the AI tutor, ${formatPrice(PLANS.all_access.amount)} a month.`,
-      'VAT included. Cancel any time from your account.',
+      t('start.paid.single', {
+        plan: PLAN_COPY.plans.single_exam.name,
+        exam: config.shortName,
+        price: price(PLANS.single_exam.amount),
+      }),
+      t('start.paid.all', { plan: PLAN_COPY.plans.all_access.name, price: price(PLANS.all_access.amount) }),
+      t('start.paid.vat'),
     ],
     free: first
-      ? [first.status === 'in_progress' ? 'Your free diagnostic is still open: carry on where you left off.' : 'You have taken this diagnostic; its results stay in your history.']
+      ? [first.status === 'in_progress' ? t('start.free.open') : t('start.free.taken')]
       : [
-          preview ? `One ${preview.questions}-question diagnostic, the same for everyone.` : 'One fixed diagnostic, the same for everyone.',
-          'Free for every exam, with full results and explanations.',
-          ...(freeNeedsAccount ? ['Needs a free account.'] : []),
+          preview ? t('start.free.questions', { count: preview.questions }) : t('start.free.fixed'),
+          t('start.free.every'),
+          ...(freeNeedsAccount ? [t('start.free.needsAccount')] : []),
         ],
     freeLabel: freeNeedsAccount
-      ? 'Create a free account'
+      ? t('start.freeLabel.signUp')
       : first
         ? first.status === 'in_progress'
-          ? 'Continue your diagnostic'
-          : 'Your diagnostic results'
-        : 'Take the free diagnostic',
+          ? t('start.freeLabel.continue')
+          : t('start.freeLabel.results')
+        : t('start.freeLabel.take'),
   };
 
   return (
     <Container size="narrow">
       <Breadcrumbs
         trail={[
-          { href: '/', label: 'Home' },
-          { href: '/exams', label: 'Exams' },
+          { href: '/', label: t('crumbs.home') },
+          { href: '/exams', label: t('crumbs.exams') },
           ...(hub ? [{ href: `/exams/${hub.slug}`, label: hub.name }] : []),
-          { label: 'Get started' },
+          { label: t('crumbs.getStarted') },
         ]}
       />
       <Onboarding

@@ -1,6 +1,9 @@
-import { notFound, redirect } from 'next/navigation';
-import { Link } from '@/i18n/navigation';
+import { notFound } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
+import { Link, redirect } from '@/i18n/navigation';
 import type { Metadata } from 'next';
+import { pageAlternates } from '@/i18n/alternates';
+import type { Locale } from '@/i18n/locales';
 import { getDb } from '@/lib/db';
 import { getCurrentUser } from '@/lib/auth/session';
 import { expireIfDue, AttemptError } from '@/lib/attempts/service';
@@ -27,22 +30,30 @@ import { Alert, Breadcrumbs, ButtonLink, Card, Container, PageHeader } from '@/c
 
 export const dynamic = 'force-dynamic';
 
-export const metadata: Metadata = {
-  title: 'Your results',
-  robots: { index: false, follow: false },
-};
+type Params = Promise<{ locale: string; id: string }>;
+
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+  const { locale, id } = await params;
+  const t = await getTranslations({ locale, namespace: 'results.page' });
+  return {
+    title: t('metaTitle'),
+    robots: { index: false, follow: false },
+    alternates: (await pageAlternates(params, `/attempt/${id}/results`)),
+  };
+}
 
 export default async function ResultsPage({
   params,
   searchParams,
 }: {
-  params: Promise<{ id: string }>;
+  params: Params;
   searchParams: Promise<{ notice?: string | string[] }>;
 }) {
-  const { id } = await params;
+  const { locale, id } = await params;
   const query = await searchParams;
+  const t = await getTranslations('results');
   const user = await getCurrentUser();
-  if (!user) redirect(`/sign-in?next=/attempt/${id}/results`);
+  if (!user) return redirect({ href: `/sign-in?next=/attempt/${id}/results`, locale });
 
   const db = getDb();
   try {
@@ -55,7 +66,7 @@ export default async function ResultsPage({
   const summary = (await getResultsSummary(db, id, user.id));
   if (!summary) {
     const inProgress = (await db.prepare("SELECT 1 FROM attempts WHERE id = ? AND user_id = ? AND status = 'in_progress'").get(id, user.id));
-    if (inProgress) redirect(`/attempt/${id}`);
+    if (inProgress) redirect({ href: `/attempt/${id}`, locale });
     notFound();
   }
 
@@ -71,36 +82,38 @@ export default async function ResultsPage({
   const tutorAllowed = tutorOn && entitlements.can('ai_tutor', summary.examKey);
   const offerHub = offer ? getHubForConfig(offer.examKey) : undefined;
 
-  const finished = new Date(summary.finishedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  const finished = new Date(summary.finishedAt).toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' });
+  const nav = await getTranslations('common.nav');
   const trail = [
-    { href: '/', label: 'Home' },
-    { href: `/dashboard?exam=${summary.examKey}`, label: 'Dashboard' },
-    { label: 'Results' },
+    { href: '/', label: t('breadcrumbs.home') },
+    { href: `/dashboard?exam=${summary.examKey}`, label: nav('dashboard') },
+    { label: t('breadcrumbs.results') },
   ];
 
   return (
     <Container>
       <Breadcrumbs trail={trail} />
-      <PageHeader eyebrow={examLabel(summary.examKey)} title="Your results" lead={`${summary.blueprintLabel} · finished ${finished}`} />
+      <PageHeader
+        eyebrow={examLabel(summary.examKey)}
+        title={t('page.title')}
+        lead={t('page.lead', { blueprint: summary.blueprintLabel, date: finished })}
+      />
 
       <LearningNotice code={query.notice} className="mb-6" />
       <UnsentAnswersNotice attemptId={id} owner={pendingOwner(user.id)} />
 
       {summary.status === 'expired' ? (
-        <Alert tone="caution" title="This session ran out of time" className="mb-6">
-          <p>The clock reached zero, so unanswered questions were recorded as left blank.</p>
+        <Alert tone="caution" title={t('page.expiredTitle')} className="mb-6">
+          <p>{t('page.expiredBody')}</p>
         </Alert>
       ) : null}
 
       {summary.isRetry ? (
-        <Alert tone="info" title="A retry of questions you had missed" className="mb-6">
-          <p>
-            These questions were asked again. This result stands on its own: it did not change the session the
-            questions came from, and it is not counted in your accuracy by topic.
-          </p>
+        <Alert tone="info" title={t('page.retryTitle')} className="mb-6">
+          <p>{t('page.retryBody')}</p>
           {summary.retrySourceAttemptId ? (
             <p className="mt-2">
-              <Link href={`/attempt/${summary.retrySourceAttemptId}/results`}>See the original session</Link>
+              <Link href={`/attempt/${summary.retrySourceAttemptId}/results`}>{t('page.retrySource')}</Link>
             </p>
           ) : null}
         </Alert>
@@ -111,19 +124,17 @@ export default async function ResultsPage({
       <NextSteps summary={summary} />
       {offer ? (
         <Card padding="lg" className="mb-10 border-2 border-accent">
-          <h2 className="font-heading text-xl font-semibold">Keep preparing for the {offerHub?.name ?? offer.name}</h2>
-          <p className="mt-2 text-ink-muted">
-            That was your free diagnostic. A plan opens every {offerHub?.label ?? offer.shortName} practice format
-            with fresh questions each time, brings back the questions you missed, and plans your sessions toward
-            your test date.
-          </p>
+          <h2 className="font-heading text-xl font-semibold">
+            {t('page.offerTitle', { exam: offerHub?.name ?? offer.name })}
+          </h2>
+          <p className="mt-2 text-ink-muted">{t('page.offerBody', { exam: offerHub?.label ?? offer.shortName })}</p>
           <div className="mt-4 flex flex-wrap gap-3">
             <ButtonLink href={pricingPath(offer.examKey, 'diagnostic-taken')}>
-              See plans for {offerHub?.label ?? offer.shortName}
+              {t('page.offerPlans', { exam: offerHub?.label ?? offer.shortName })}
             </ButtonLink>
             {offerHub ? (
               <ButtonLink href={`/exams/${offerHub.slug}`} variant="secondary">
-                Back to {offerHub.name} preparation
+                {t('page.offerBack', { exam: offerHub.name })}
               </ButtonLink>
             ) : null}
           </div>
@@ -132,7 +143,7 @@ export default async function ResultsPage({
       {/* Optional AI after-test guide: only when the operator has switched the
           tutor on, and for learners whose plan includes it. */}
       {tutorAllowed ? (
-        <section aria-label="After-test guide" className="mb-10">
+        <section aria-label={t('page.tutorLabel')} className="mb-10">
           <DebriefTutor attemptId={id} />
         </section>
       ) : tutorOn && !offer ? (

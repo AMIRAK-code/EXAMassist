@@ -40,15 +40,19 @@ export interface SaveStatus {
   halted: boolean;
 }
 
+/**
+ * The server's reasons arrive as an error `code` (which the player words in
+ * the learner's language) and the API's English `message` (the fallback).
+ */
 export interface SaveEvents {
   /** The server holds a newer answer (another tab or device); it is now the one shown, and may be locked. */
   onReplaced(position: number, current: Response | null, locked: boolean): void;
   /** The question's answer was checked elsewhere and is locked. */
-  onLocked(position: number, message: string): void;
+  onLocked(position: number, message: string, code: string): void;
   /** The section or attempt has closed; `lost` answers made here could not be saved. */
-  onClosed(lost: number, message: string): void;
+  onClosed(lost: number, message: string, code: string): void;
   /** One change was refused for a reason another try would not change. */
-  onRefused(position: number | null, message: string): void;
+  onRefused(position: number | null, message: string, code: string): void;
   onSignedOut(): void;
   onNotFound(): void;
 }
@@ -203,18 +207,18 @@ export function usePendingSaves({ attemptId, owner, partIndex, serverNowMs, even
           // or the results) has told the learner what could not be saved.
           const lost = pending.read().answers.filter((a) => a.partIndex === partIndex).length;
           halt();
-          eventsRef.current.onClosed(lost, reply.message);
+          eventsRef.current.onClosed(lost, reply.message, reply.code);
           return false;
         }
         case 'locked': {
           pending.removeAnswers((a) => a.partIndex === partIndex && a.position === position);
-          eventsRef.current.onLocked(position, reply.message);
+          eventsRef.current.onLocked(position, reply.message, 'response-locked');
           return true;
         }
         case 'refused': {
           if (work.kind === 'move') pending.settleMove(work.clock);
           else pending.removeAnswers((a) => a.partIndex === partIndex && a.position === position && a.clock <= work.answer.clock);
-          eventsRef.current.onRefused(work.kind === 'answer' ? position : null, reply.message);
+          eventsRef.current.onRefused(work.kind === 'answer' ? position : null, reply.message, reply.code);
           return true;
         }
         case 'signed-out':

@@ -1,9 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from '@/i18n/navigation';
+import { useLocale, useTranslations } from 'next-intl';
+import { getPathname, useRouter } from '@/i18n/navigation';
 import { Button } from '@/components/ui';
 import { upgradeTarget } from '@/lib/billing/upgrade';
+import { useStartError } from './use-start-error';
 
 /**
  * Starts a fixed blueprint (diagnostic, timed section, simulation).
@@ -16,12 +18,18 @@ export function StartBlueprintButton({
   blueprintId,
   label,
   variant = 'primary',
+  contentLocale = 'en',
 }: {
   examKey: string;
   blueprintId: string;
   label: string;
   variant?: 'primary' | 'secondary';
+  /** The language the questions are asked in, as for StartPracticeForm. */
+  contentLocale?: string;
 }) {
+  const t = useTranslations('practice.blueprint');
+  const locale = useLocale();
+  const startError = useStartError();
   const router = useRouter();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -44,6 +52,7 @@ export function StartBlueprintButton({
       body: JSON.stringify({
         examKey,
         blueprintId,
+        contentLocale,
         idempotencyKey: `${examKey}-${blueprintId}-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`,
       }),
     }).catch(() => null);
@@ -53,23 +62,23 @@ export function StartBlueprintButton({
     // No plan for this format: the pricing page for this exam, never an error.
     const upgrade = data?.error ? upgradeTarget(data.error) : null;
     if (upgrade) {
-      window.location.assign(upgrade);
+      window.location.assign(getPathname({ href: upgrade, locale }));
       return;
     }
     if (!response?.ok) {
       setBusy(false);
-      setError(data?.error?.message ?? 'This session could not be started right now.');
+      setError(startError(data?.error, 'buttonFallback'));
       return;
     }
     // A brand-new guest session changes the header; see StartPracticeForm.
-    if (guest?.created) window.location.assign(`/attempt/${data.attemptId}`);
+    if (guest?.created) window.location.assign(getPathname({ href: `/attempt/${data.attemptId}`, locale }));
     else router.push(`/attempt/${data.attemptId}`);
   }
 
   return (
     <div className="text-end">
       <Button variant={variant} onClick={() => void start()} disabled={busy}>
-        {busy ? 'Starting…' : label}
+        {busy ? t('starting') : label}
       </Button>
       {error ? (
         <p role="alert" className="mt-2 max-w-60 text-sm text-negative">

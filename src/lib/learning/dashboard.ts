@@ -11,6 +11,7 @@ import {
   skillPerformance,
   type Recommendation,
 } from './recommend';
+import { msg, type Msg } from './text';
 
 /**
  * The learner's dashboard, as data.
@@ -43,7 +44,7 @@ export interface NextStep extends Recommendation {
    * with a few questions. The drill itself is never widened behind the
    * learner's back.
    */
-  broader: { label: string; href: string; because: string } | null;
+  broader: { label: Msg; href: string; because: Msg } | null;
 }
 
 export interface SkillRow {
@@ -276,9 +277,9 @@ async function buildExamDashboard(
     return {
       ...recommendation,
       broader: {
-        label: `Practise all of ${skill.domainLabel}`,
+        label: msg('steps.broader.label', { topic: skill.domainLabel }),
         href: `/practice/${examKey}?domain=${encodeURIComponent(skill.domainSlug)}`,
-        because: `This skill has ${inSkill} reviewed question${inSkill === 1 ? '' : 's'}, so the drill is short; its topic has ${inTopic}.`,
+        because: msg('steps.broader.because', { inSkill, inTopic }),
       },
     };
   });

@@ -1,6 +1,9 @@
-import { Link } from '@/i18n/navigation';
-import { redirect } from 'next/navigation';
+import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
+import { Link, redirect } from '@/i18n/navigation';
 import type { Metadata } from 'next';
+import { pageAlternates } from '@/i18n/alternates';
+import type { Locale } from '@/i18n/locales';
 import { getDb } from '@/lib/db';
 import { UnauthorizedError, requireUser, type AuthUser } from '@/lib/auth/session';
 import { EXAM_CONFIGS, listHubs, requireExamConfig } from '@/lib/exams/registry';
@@ -30,49 +33,56 @@ import { Alert, Breadcrumbs, ButtonLink, Card, Container, PageHeader } from '@/c
 
 export const dynamic = 'force-dynamic';
 
-export const metadata: Metadata = {
-  title: 'Your dashboard',
-  description: 'Your unfinished sessions, what to work on next and your accuracy by topic.',
-  // Private page. Authorization is the protection; this is only an indexing hint.
-  robots: { index: false, follow: false },
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'learning.dashboard.meta' });
+  return {
+    title: t('title'),
+    description: t('description'),
+    alternates: (await pageAlternates(params, '/dashboard')),
+    // Private page. Authorization is the protection; this is only an indexing hint.
+    robots: { index: false, follow: false },
+  };
+}
 
-async function requireLearner(nextPath: string): Promise<AuthUser> {
+async function requireLearner(nextPath: string, locale: Locale): Promise<AuthUser> {
   try {
     return await requireUser();
   } catch (error) {
     if (error instanceof UnauthorizedError) {
-      redirect(`/sign-in?next=${encodeURIComponent(nextPath)}`);
+      redirect({ href: `/sign-in?next=${encodeURIComponent(nextPath)}`, locale });
     }
     throw error;
   }
 }
 
 export default async function DashboardPage({
+  params,
   searchParams,
 }: {
+  params: Promise<{ locale: Locale }>;
   searchParams: Promise<{ exam?: string | string[] }>;
 }) {
-  const user = await requireLearner('/dashboard');
+  const { locale } = await params;
+  const user = await requireLearner('/dashboard', locale);
   const query = await searchParams;
   const data = (await buildDashboard(getDb(), user, query.exam));
   const exam = data.exam;
-  const trail = [{ href: '/', label: 'Home' }, { label: 'Dashboard' }];
+  const t = await getTranslations('learning');
+  const trail = [{ href: '/', label: t('crumbs.home') }, { label: t('crumbs.dashboard') }];
 
   return (
     <Container>
       <Breadcrumbs trail={trail} />
       <PageHeader
         eyebrow={exam ? examLabel(exam.examKey) : undefined}
-        title="Your dashboard"
-        lead="Counted from your own answers. Nothing here predicts a score."
+        title={t('dashboard.title')}
+        lead={t('dashboard.lead')}
       />
 
       {data.unknownExam ? (
         <Alert tone="caution" className="mb-8">
-          {exam
-            ? `That link named an exam we do not offer, so this shows your ${exam.shortName} practice instead.`
-            : 'That link named an exam we do not offer.'}
+          {exam ? t('dashboard.unknownExamShowing', { exam: exam.shortName }) : t('dashboard.unknownExam')}
         </Alert>
       ) : null}
 
@@ -99,22 +109,19 @@ export default async function DashboardPage({
             </>
           )}
 
-          <Alert tone="info" title="What this page does not do" className="mb-8">
-            <p>
-              It does not predict a score, place you in a percentile, or estimate your chance of
-              admission. Every figure above is a count of your own answers and nothing more.
-            </p>
+          <Alert tone="info" title={t('dashboard.doesNotTitle')} className="mb-8">
+            <p>{t('dashboard.doesNot')}</p>
           </Alert>
 
           <div className="mb-10 flex flex-wrap gap-3">
             {exam.bankSize > 0 ? (
-              <ButtonLink href={`/practice/${exam.examKey}`}>{`Practise ${exam.shortName}`}</ButtonLink>
+              <ButtonLink href={`/practice/${exam.examKey}`}>{t('dashboard.practise', { exam: exam.shortName })}</ButtonLink>
             ) : null}
             <ButtonLink href="/review" variant="secondary">
-              Mistake notebook
+              {t('crumbs.notebook')}
             </ButtonLink>
             <ButtonLink href="/study-plan" variant="secondary">
-              Study plan
+              {t('crumbs.studyPlan')}
             </ButtonLink>
           </div>
 
@@ -127,28 +134,28 @@ export default async function DashboardPage({
 
 /** Nothing practised and no target: offer a choice, not a guess. */
 function ChooseAnExam() {
+  const t = useTranslations('learning.dashboard');
   return (
     <section aria-labelledby="choose-heading">
       <h2 id="choose-heading" className="mb-2 font-heading text-2xl font-semibold">
-        Choose an exam to start
+        {t('chooseTitle')}
       </h2>
-      <p className="mb-5 max-w-2xl text-ink-muted">
-        This page then follows the exam you practise, and you can switch between exams here at any time.
-      </p>
+      <p className="mb-5 max-w-2xl text-ink-muted">{t('chooseLead')}</p>
       <ul className="grid gap-4 md:grid-cols-2">
         {listHubs().map((hub) => (
           <Card as="li" key={hub.slug}>
             <h3 className="font-heading text-xl font-semibold">{hub.name}</h3>
             <p className="mt-1 text-xs uppercase tracking-wide text-ink-subtle">{hub.publisher}</p>
+            {/* The hub's tagline is exam content, kept as published. */}
             <p className="mt-2 text-sm text-ink-muted">{hub.tagline}</p>
             <div className="mt-4 flex flex-wrap gap-2">
               {hub.configKeys.map(requireExamConfig).map((config) => (
                 <ButtonLink key={config.examKey} href={`/practice/${config.examKey}`} size="sm">
-                  {hub.configKeys.length > 1 ? `Practise ${config.shortName}` : 'Start practising'}
+                  {hub.configKeys.length > 1 ? t('practise', { exam: config.shortName }) : t('startPractising')}
                 </ButtonLink>
               ))}
               <ButtonLink href={`/exams/${hub.slug}`} size="sm" variant="secondary">
-                Exam guide
+                {t('examGuide')}
               </ButtonLink>
             </div>
           </Card>
@@ -160,16 +167,15 @@ function ChooseAnExam() {
 
 /** Every other exam, each opening its own view of this dashboard. */
 function OtherExams({ current, shown }: { current: string; shown: string[] }) {
+  const t = useTranslations('learning.dashboard');
   const others = EXAM_CONFIGS.filter((config) => config.examKey !== current && !shown.includes(config.examKey));
   if (others.length === 0) return null;
   return (
     <section aria-labelledby="other-exams-heading">
       <h2 id="other-exams-heading" className="mb-2 font-heading text-lg font-semibold">
-        Practising something else?
+        {t('otherTitle')}
       </h2>
-      <p className="mb-3 text-sm text-ink-muted">
-        Open another exam here. It does not change the exam you have set as your target.
-      </p>
+      <p className="mb-3 text-sm text-ink-muted">{t('otherLead')}</p>
       <ul className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
         {others.map((other) => (
           <li key={other.examKey}>

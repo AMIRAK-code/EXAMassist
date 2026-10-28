@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/navigation';
 import { Alert, Button, Card, fieldClass } from '@/components/ui';
 
@@ -22,11 +23,12 @@ export function TargetForm({
   currentScore: number | null;
   currentDate: string | null;
 }) {
+  const t = useTranslations('learning.targetForm');
   const router = useRouter();
   const [score, setScore] = useState(currentScore === null ? '' : String(currentScore));
   const [date, setDate] = useState(currentDate ?? '');
   const [state, setState] = useState<'idle' | 'saving' | 'saved'>('idle');
-  const [error, setError] = useState<{ message: string; field: 'score' | 'date' | null } | null>(null);
+  const [error, setError] = useState<{ code: string | null; field: 'score' | 'date' | null; score: string } | null>(null);
 
   async function save(event: React.FormEvent) {
     event.preventDefault();
@@ -49,8 +51,9 @@ export function TargetForm({
       setState('idle');
       const code = data?.error?.code as string | undefined;
       setError({
-        message: data?.error?.message ?? 'That goal could not be saved.',
+        code: code ?? null,
         field: code === 'target-out-of-range' ? 'score' : code === 'invalid-date' ? 'date' : null,
+        score: score.trim(),
       });
       return;
     }
@@ -60,26 +63,31 @@ export function TargetForm({
   }
 
   const errorId = `target-error-${examKey}`;
+  // The service's error codes, in the reader's language; anything else is a general failure.
+  const errorText = (problem: NonNullable<typeof error>) =>
+    problem.code === 'target-out-of-range' && scale
+      ? t('errors.outOfRange', { min: String(scale.min), max: String(scale.max), score: problem.score })
+      : problem.code === 'invalid-date'
+        ? t('errors.invalidDate')
+        : t('errors.notSaved');
   const describedBy = (hint: string, field: 'score' | 'date') =>
     error && (error.field === field || error.field === null) ? `${errorId} ${hint}` : hint;
 
   return (
     <Card padding="lg">
-      <h2 className="text-xl">Your goal</h2>
-      <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">
-        These two are the only things this page cannot work out for itself.
-      </p>
+      <h2 className="text-xl">{t('title')}</h2>
+      <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">{t('lead')}</p>
 
       <form onSubmit={save} className="mt-5 space-y-5">
         {error ? (
-          <Alert tone="negative" role="alert" title="Not saved">
-            <p id={errorId}>{error.message}</p>
+          <Alert tone="negative" role="alert" title={t('errors.title')}>
+            <p id={errorId}>{errorText(error)}</p>
           </Alert>
         ) : null}
 
         <div>
           <label htmlFor="target-score" className="mb-1.5 block text-sm font-medium">
-            Target score
+            {t('score')}
             {scale ? <span className="font-normal text-ink-muted"> · {scale.label}</span> : null}
           </label>
           <input
@@ -96,14 +104,14 @@ export function TargetForm({
           />
           <p id="target-score-hint" className="mt-1.5 text-sm text-ink-muted">
             {scale
-              ? `On the exam's own scale, from ${scale.min} to ${scale.max}. Leave it empty if you do not have a number in mind yet.`
-              : 'On the exam’s own reported scale. Leave it empty if you do not have a number in mind yet.'}
+              ? t('scoreHintScale', { min: String(scale.min), max: String(scale.max) })
+              : t('scoreHint')}
           </p>
         </div>
 
         <div>
           <label htmlFor="target-date" className="mb-1.5 block text-sm font-medium">
-            Exam date <span className="font-normal text-ink-muted">(optional)</span>
+            {t('date')} <span className="font-normal text-ink-muted">{t('optional')}</span>
           </label>
           <input
             id="target-date"
@@ -116,16 +124,16 @@ export function TargetForm({
             className={fieldClass('max-w-56')}
           />
           <p id="target-date-hint" className="mt-1.5 text-sm text-ink-muted">
-            Your one date for this exam. Your study plan uses it too, and offers to adjust when it changes.
+            {t('dateHint')}
           </p>
         </div>
 
         <div className="flex items-center gap-3">
           <Button type="submit" loading={state === 'saving'}>
-            Save goal
+            {t('save')}
           </Button>
           <span aria-live="polite" className="text-sm text-ink-muted">
-            {state === 'saved' ? 'Saved.' : ''}
+            {state === 'saved' ? t('saved') : ''}
           </span>
         </div>
       </form>
