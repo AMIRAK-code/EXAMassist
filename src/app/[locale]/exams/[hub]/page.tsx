@@ -30,6 +30,9 @@ import { BOCCONI_HUB_SLUG, bocconiLandingData } from '@/lib/exams/bocconi-landin
 import { BOCCONI_FACTS_CHECKED_ON } from '@/lib/exams/bocconi-facts';
 import { BocconiLanding } from '@/components/exams/bocconi-landing';
 import { ViewBeacon } from '@/components/exams/view-beacon';
+import { HubEssentials } from '@/components/exams/hub-essentials';
+import { billingSettings } from '@/lib/billing/config';
+import { guidesForHub } from '@/lib/content/guides';
 import { isSnapshotRequest } from '@/lib/seo/static-pages';
 
 export const dynamic = 'force-dynamic';
@@ -144,6 +147,10 @@ export default async function ExamHubPage({ params }: Props) {
   }
 
   const verifiedOn = configs[0]?.verifiedOn ?? '';
+  const offered = (await Promise.all(configs.map((config) => blueprintAvailability(db, config))))
+    .flat()
+    .filter((entry) => entry.available)
+    .map((entry) => entry.blueprint);
 
   return (
     <Container>
@@ -175,6 +182,7 @@ export default async function ExamHubPage({ params }: Props) {
       */}
       <PageHeader eyebrow={hub.publisher} title={hub.name} />
       <OfficialNote />
+      <HubEssentials hub={hub} offered={offered} billingOn={billingSettings().enforced} guides={guidesForHub(hub.slug)} />
 
       {/* The direct answer, first: what this exam is, in one block. */}
       {(await Promise.all(configs.map(async (config) => {
