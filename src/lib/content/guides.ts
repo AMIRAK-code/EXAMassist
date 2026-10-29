@@ -78,7 +78,7 @@ const GUIDES: Guide[] = [
     answer:
       'Guess when you can rule out at least one option. The Bocconi Online Test for bachelor and law programmes scores +1 for a correct answer, 0 for a blank and −0.2 for a wrong answer (−0.33 on three-option critical-thinking items). If a question has five options (Bocconi does not say how many most have), a blind guess is worth only +0.04 points on average, barely more than a blank, while every option you eliminate makes a guess clearly worthwhile. The master’s form of the test penalises a wrong answer more heavily, at −0.25.',
     description:
-      'How Bocconi’s +1 / 0 / −0.2 scoring changes guessing strategy on the bachelor and law test, worked through with the actual arithmetic for the 2027-28 admissions cycle, and how the master’s form’s −0.25 penalty changes it.',
+      'When to guess on the Bocconi test: the +1 / 0 / −0.2 scoring worked through for the 2027-28 bachelor and Law tests, and the master’s −0.25 penalty.',
     examKeys: ['bocconi-undergraduate', 'bocconi-law'],
     hubSlug: 'bocconi-online-test',
     publishedOn: '2026-09-22',
@@ -171,7 +171,7 @@ The blank-or-guess call only becomes automatic with practice under the real scor
     answer:
       'Take the standard Online Bocconi Test unless you are applying only to Bocconi’s Law School programmes. The standard test is valid for every bachelor programme, Law included; the Law test can only be used for programmes in the legal area. Both are 50 questions in 75 minutes with the same scoring, but the standard test is half mathematics, while the Law test is mostly logic, critical thinking and verbal reasoning.',
     description:
-      'The two Bocconi online tests compared: who each one is for, how their 50 questions are split, and what that means for preparation, for the 2027-28 admissions cycle.',
+      'The two Bocconi online tests compared for 2027-28: who each is for, how their 50 questions are split, and what that means for your preparation.',
     examKeys: ['bocconi-undergraduate', 'bocconi-law'],
     hubSlug: 'bocconi-online-test',
     publishedOn: '2026-10-07',
@@ -253,7 +253,7 @@ Our [Bocconi Online Test preparation](/exams/bocconi-online-test) page covers bo
     answer:
       'Start with a short diagnostic to find your weakest areas, spend most of the following weeks on untimed topic practice in those areas without a calculator, add timed 50-question sets in the last weeks, and use Bocconi’s free official simulation as a dress rehearsal. The test is 50 questions in 75 minutes with negative marking and no way back, so a plan has to train accuracy, pace and a blank-or-guess rule, not just content.',
     description:
-      'A practical preparation plan for the Bocconi Online Test, built on Bocconi’s published rules: what to practise each week, how to handle negative marking and pace, and when to book.',
+      'A week-by-week plan for the Bocconi Online Test, built on Bocconi’s published rules: what to practise, how to pace and guess, and when to book.',
     examKeys: ['bocconi-undergraduate', 'bocconi-law'],
     hubSlug: 'bocconi-online-test',
     publishedOn: '2026-10-07',
@@ -331,7 +331,7 @@ On our [Bocconi Online Test preparation](/exams/bocconi-online-test) page you ca
     answer:
       'Analytical Reasoning — the "logic games" section — was removed from the LSAT in August 2024 and replaced by a second Logical Reasoning section. The current test is four 35-minute sections: two scored Logical Reasoning sections, one scored Reading Comprehension section, and one unscored variable section that can be either type.',
     description:
-      'Analytical Reasoning was removed from the LSAT in August 2024. Here is the current structure for the 2026-27 testing cycle, and what it changes about preparation.',
+      'Analytical Reasoning left the LSAT in August 2024. The current structure for the 2026-27 testing cycle, and what it changes about preparation.',
     examKeys: ['lsat'],
     hubSlug: 'lsat',
     publishedOn: '2026-09-22',
