@@ -1,31 +1,49 @@
 {
   "plans": {
+    "exam_pass": {
+      "name": "Tek Sınav Paketi",
+      "tagline": "Seçtiğiniz bir sınav, altı ay boyunca. Tek seferlik ödenir ve yenilenmez."
+    },
+    "plus": {
+      "name": "Plus",
+      "tagline": "Sitedeki tüm sınavlar; siz iptal edene kadar aylık ya da yıllık faturalandırılır."
+    },
+    "premium": {
+      "name": "Premium",
+      "tagline": "Plus’taki her şey ve yapay zekâ eğitmeni."
+    },
     "all_access": {
-      "name": "Tam erişim",
-      "tagline": "Sitedeki tüm sınavlar ve yapay zekâ eğitmeni.",
-      "perPeriod": "aylık",
-      "scope": "Tüm sınavlar"
+      "name": "Tam erişim (önceki plan)",
+      "tagline": "Sitedeki tüm sınavlar ve yapay zekâ eğitmeni. Artık satılmıyor."
     },
     "single_exam": {
-      "name": "Tek sınav",
-      "tagline": "Seçtiğiniz tek bir sınavın tüm özellikleri. Birden fazla sınava hazırlanıyorsanız birden çok plana sahip olabilirsiniz.",
-      "perPeriod": "aylık, sınav başına",
-      "scope": "Seçtiğiniz bir sınav"
+      "name": "Tek sınav (önceki plan)",
+      "tagline": "Seçtiğiniz bir sınav, aylık faturalandırılır. Artık satılmıyor."
+    },
+    "legacyPremium": {
+      "name": "Premium (önceki plan)"
     },
     "free": {
       "name": "Ücretsiz",
-      "tagline": "Her sınav için rehberler, örnek sorular ve ücretsiz bir seviye belirleme testi."
+      "tagline": "Her sınav için rehberler, örnek sorular, ücretsiz bir seviye belirleme testi ve resmî deneme sınavı puanlarınızın takibi."
     },
-    "vatNote": "Fiyatlar euro cinsindendir ve KDV dahildir. Aylık olarak faturalandırılır; siz iptal edene kadar otomatik olarak yenilenir."
+    "vatNote": "Fiyatlar euro cinsindendir ve KDV dahildir.",
+    "summaryNote": "KDV dahildir. Paket tek seferlik ödenir ve yenilenmez; Plus siz iptal edene kadar yenilenir ve yıllık ücret her yılın başında tamamı peşin olarak tahsil edilir."
+  },
+  "prices": {
+    "exam_pass": "tek seferlik {price}",
+    "plus_month": "ayda {price}",
+    "plus_year": "yılda {price}"
   },
   "features": {
     "guides": "Sınav rehberleri, format ve puanlama sayfaları",
     "samples": "Örnek sorular",
     "diagnostic": "Her sınav için ücretsiz seviye belirleme testi",
-    "practice": "Her oturumda yeni sorularla konu alıştırmaları ve tekrarlar",
+    "official_scores": "Resmî deneme sınavı puanlarınızın takibi",
+    "practice": "Çözümlü açıklamalarla konu alıştırmaları ve tekrarlar, her oturumda yeni sorular",
     "timed_section": "Resmî tempoda zamanlı bölümler",
     "simulation": "Sınavda varsa tam uzunlukta deneme sınavları",
-    "study_plan": "Çalışma planı ve hazırlık durumu",
+    "study_plan": "Çalışma planı ve ilerleme takibi",
     "ai_tutor": "Yapay zekâ eğitmeni: ipuçları, ayrıntılı açıklamalar, test sonrası rehberler"
   },
   "crumbs": {
@@ -37,46 +55,72 @@
   "pricing": {
     "meta": {
       "title": "Planlar ve fiyatlar",
-      "description": "Tam erişim ayda {allAccessPrice}, tek bir sınav ise ayda {singleExamPrice}. Her sınav için rehberler, örnek sorular ve seviye belirleme testi ücretsiz kalır. KDV dahildir; istediğiniz zaman iptal edebilirsiniz."
+      "description": "Tek seferlik {passPrice} karşılığında Tek Sınav Paketi ya da ayda {plusMonthly} veya yılda {plusYearly} karşılığında Plus. Rehberler, örnek sorular, her sınav için bir seviye belirleme testi ve resmî puan takibi ücretsiz kalır. KDV dahildir."
     },
     "eyebrow": "Planlar",
-    "heading": "Tüm sınavlara ya da yalnızca gireceğiniz sınava çalışın",
+    "heading": "Gireceğiniz sınava ya da hepsine hazırlanın",
     "headingForExam": "Hazırlığınız için planlar: {exam}",
-    "lead": "Her sınav için rehberler, örnek sorular ve seviye belirleme testi ücretsizdir. Bir plan alıştırmaları, zamanlı bölümleri, tam uzunlukta deneme sınavlarını ve çalışma planını kullanımınıza açar.",
+    "lead": "Rehberler, örnek sorular, her sınav için bir seviye belirleme testi ve resmî deneme sınavı puanlarınızın takibi ücretsizdir. Tek Sınav Paketi ya da Plus; alıştırmaları, zamanlı bölümleri, tam deneme sınavlarını, çalışma planını ve ilerleme takibini her sınavın açık formatları için açar.",
     "notEnforced": {
       "title": "Şu anda her şey ücretsiz",
       "body": "Bu sitede ödemeler henüz etkin değil; bu nedenle tüm sınavlar ve tüm formatlar herkese açık."
     },
     "testMode": "Test modu: ödeme adımında Stripe test kartları kullanılır ve hiçbir ücret alınmaz.",
     "reasons": {
-      "diagnosticTaken": "Ücretsiz seviye belirleme testini tamamladınız. Yeni sorularla alıştırma yapmaya devam etmek için bir plan seçin.",
-      "practice": "Alıştırma oturumları ücretli bir planın parçasıdır.",
-      "timed_section": "Zamanlı bölümler ücretli bir planın parçasıdır.",
-      "simulation": "Tam uzunlukta deneme sınavları ücretli bir planın parçasıdır.",
-      "study_plan": "Çalışma planı ve hazırlık görünümü ücretli bir planın parçasıdır.",
-      "ai_tutor": "Yapay zekâ eğitmeni Tam erişim planına dahildir."
+      "diagnosticTaken": "Ücretsiz seviye belirleme testini çözdünüz. Tek Sınav Paketi ya da Plus ile yeni sorularla çalışmaya devam edebilirsiniz.",
+      "practice": "Alıştırma oturumları için Tek Sınav Paketi ya da Plus gerekir.",
+      "timed_section": "Zamanlı bölümler için Tek Sınav Paketi ya da Plus gerekir.",
+      "simulation": "Tam uzunlukta deneme sınavları için Tek Sınav Paketi ya da Plus gerekir.",
+      "study_plan": "Çalışma planı ve ilerleme takibi için Tek Sınav Paketi ya da Plus gerekir.",
+      "ai_tutor": "Yapay zekâ eğitmeni, yakında gelecek ve henüz satın alınamayan Premium ile sunulacak."
     },
     "current": {
-      "allAccess": "Tam erişim planınız var: tüm sınavlar ve yapay zekâ eğitmeni size açık.",
-      "singleExam": "Tek sınav planlarınız: {exams}.",
+      "allAccess": "Planınız tüm sınavları kapsıyor.",
+      "allAccessTutor": "Planınız tüm sınavları ve yapay zekâ eğitmenini kapsıyor.",
+      "singleExam": "Erişiminiz olan sınavlar: {exams}.",
       "manage": "Planlarınızı yönetin"
     },
     "perMonth": "/ ay",
-    "perMonthPerExam": "/ ay, sınav başına",
-    "featured": "En kapsamlı",
+    "perYear": "/ yıl",
     "free": {
       "cta": "Ücretsiz seviye belirleme testine girin",
       "ctaExams": "Bir sınav seçin"
     },
-    "single": {
+    "pass": {
+      "once": "tek seferlik",
+      "term": "Ödemenizin onaylandığı günden itibaren altı ay erişim. Yenilenmez.",
+      "noTutor": "Yapay zekâ eğitmeni dahil değildir.",
       "examLabel": "Sınav",
-      "owned": "(planınız)",
-      "coveredByAll": "Tam erişim zaten tüm sınavları kapsar.",
+      "owned": "(erişiminiz var)",
+      "unavailableOption": "(henüz mevcut değil)",
+      "coveredByAll": "Planınız zaten tüm sınavları kapsıyor.",
+      "noneAvailable": "Henüz hiçbir sınavın açık bir alıştırma formatı yok, bu yüzden bugün paket satın alınamaz. Formatlar, soruları insan incelemesinden geçtikçe açılır.",
       "cta": "Ödemeye geç"
     },
-    "all": {
-      "cta": "Tam erişimi seçin",
-      "owned": "Bu plana sahipsiniz"
+    "plus": {
+      "badge": "Tüm sınavlar",
+      "yearlySaving": "Aylık ödemeye göre %{percent} tasarruf edin.",
+      "yearlyApprox": "Aylık yaklaşık {perMonth}, yıllık {price} olarak faturalandırılır.",
+      "coverage": "Her sınavın açık alıştırma formatlarını kapsar. Bugün bu, {total} sınavdan {open, plural, =0 {hiçbiri} other {#}} için geçerli; hangileri olduğu aşağıdaki tabloda.",
+      "noTutor": "Yapay zekâ eğitmeni dahil değildir.",
+      "owned": "Tüm sınavları kapsayan bir planınız var",
+      "ctaYearly": "Yıllık seçin: yılda {price}",
+      "ctaMonthly": "Aylık seçin: ayda {price}"
+    },
+    "premium": {
+      "badge": "Yakında",
+      "planned": "Planlanan fiyat: ayda {monthly} veya yılda {yearly}.",
+      "limits": "Henüz satışta değil. Yapay zekâ eğitmeninin kullanım sınırları olacak ve satın almadan önce belirtilecek.",
+      "cta": "Henüz satışta değil"
+    },
+    "exams": {
+      "heading": "Bugün neye çalışabilirsiniz",
+      "lead": "Her soru kullanılmadan önce bir kişi tarafından incelenip onaylanır; bu yüzden bir alıştırma formatı ancak yeterli sayıda onaylı sorusu olduğunda açılır. Tek Sınav Paketi yalnızca en az bir alıştırma formatı açık olan bir sınav için satın alınabilir.",
+      "caption": "Sınava göre açık alıştırma formatları",
+      "exam": "Sınav",
+      "status": "Bugün alıştırma",
+      "open": "{count, plural, other {# alıştırma formatı açık: paket satın alınabilir}}",
+      "closed": "Henüz mevcut değil: hiçbir alıştırma formatında yeterli onaylı soru yok"
     },
     "accountNote": "Plan satın almak için ücretsiz bir hesap gerekir. Misafir olarak alıştırma yaptıysanız geçmişiniz de hesabınıza aktarılır.",
     "matrix": {
@@ -89,9 +133,11 @@
     "smallPrint": {
       "heading": "Ödemeler nasıl işler",
       "currency": "Fiyatlar euro cinsindendir ve KDV dahildir.",
-      "renewal": "Planlar siz iptal edene kadar her ay yenilenir. Hesabınızdan istediğiniz zaman iptal edebilirsiniz; plan, ödemesini yaptığınız ayın sonuna kadar açık kalır.",
+      "pass": "Tek Sınav Paketi tek seferlik ödenir. Altı aylık süresi ödemeniz onaylandığında başlar ve hesabınızda gösterilen tarihte sona erer. Hiçbir zaman yenilenmez ve tekrar ücret alınmaz.",
+      "renewal": "Plus, siz iptal edene kadar her ay ya da her yıl yenilenir. Yıllık ücret her yılın başında tamamı peşin olarak tahsil edilir. Hesabınızdan istediğiniz zaman iptal edebilirsiniz; Plus, ödemesini yaptığınız dönemin sonuna kadar açık kalır.",
       "withdrawal": "Erişim, ödeme yaptığınız anda başlar. Ödeme sırasında erişimin hemen başlamasını istediğinizi ve 14 günlük cayma hakkının erişim başladığında sona erdiğini onaylamanız istenir.",
       "cards": "Kart bilgileri, ödeme hizmeti sağlayıcımız Stripe’ın sunduğu alanlara girilir ve doğrudan Stripe’a iletilir. Bu bilgiler hiçbir zaman sunucularımıza ulaşmaz.",
+      "earlier": "Bu fiyatlardan önce satın alınan bir plan, sona erene kadar kapsadığı her şeyi kendi fiyatıyla korur. Kimseyi önceden haber vermeden yeni bir plana ya da fiyata geçirmeyiz.",
       "terms": "Satış koşulları",
       "privacy": "Gizlilik bildirimi"
     }
@@ -102,15 +148,19 @@
     },
     "eyebrow": "Ödeme",
     "title": "Planınızı seçin ve ödeyin",
-    "lead": "Aylık, KDV dahil; hesabınızdan istediğiniz zaman iptal edebilirsiniz.",
+    "lead": "KDV dahildir. Paket tek seferlik ödenir; Plus siz iptal edene kadar yenilenir.",
+    "notices": {
+      "premium": "Premium yakında gelecek ve henüz satın alınamıyor. Şu anda satışta olan planlar bunlar.",
+      "earlier": "Bu plan artık satılmıyor. Şu anda satışta olan planlar bunlar."
+    },
     "unavailable": {
       "title": "Ödemeler şu anda kullanılamıyor",
       "body": "Şu anda bu sitede hiçbir şey satın alınamıyor; bu nedenle hiçbir ücret alınmayacak. Açık olan her şey açık kalmaya devam ediyor.",
       "back": "Fiyatlara dön"
     },
     "allAccess": {
-      "title": "Zaten Tam erişim planınız var",
-      "body": "Tüm sınavlar ve yapay zekâ eğitmeni zaten size açık; satın alınacak başka bir şey yok.",
+      "title": "Planınız zaten tüm sınavları kapsıyor",
+      "body": "Tüm sınavlar size zaten açık, bu yüzden satın alınacak başka bir şey yok.",
       "manage": "Planlarınızı yönetin"
     }
   },
@@ -124,6 +174,8 @@
       "lead": "{plan} artık size açık.",
       "leadExam": "{exam} için {plan} artık size açık.",
       "renews": "Planınız {date} tarihinde ve ardından siz iptal edene kadar her ay yenilenir.",
+      "renewsYearly": "{date} tarihinde ve sonrasında her yıl, siz iptal edene kadar yenilenir.",
+      "passUntil": "{exam} erişiminiz {date} tarihine kadar sürer. Paket yenilenmez ve sizden başka ücret alınmaz.",
       "receipt": "Ödeme hizmeti sağlayıcımız Stripe, {email} adresine bir makbuz gönderir.",
       "practise": "Alıştırmaya başlayın: {exam}",
       "exams": "Bir sınav seçin",
@@ -147,7 +199,7 @@
     },
     "expired": {
       "title": "Bu ödeme işleminin süresi doldu",
-      "body": "Ödeme zamanında tamamlanmadığı için hiçbir ücret alınmadı. Hazır olduğunuzda yeni bir ödeme başlatın.",
+      "body": "Ödeme tamamlanmadı, bu yüzden hiçbir ücret alınmadı. Hazır olduğunuzda yeni bir ödeme başlatın.",
       "retry": "Yeniden başla"
     },
     "missing": {
@@ -159,11 +211,17 @@
   },
   "form": {
     "planLegend": "Plan",
+    "offers": {
+      "pass": "Altı ay boyunca bir sınav. Tek seferlik ödeme; yenileme yok.",
+      "plus": "Tüm sınavlar. Siz iptal edene kadar yenilenir."
+    },
     "examLabel": "Sınav",
     "examPlaceholder": "Bir sınav seçin",
-    "examOwned": "(planınız)",
-    "examRequired": "Bu planın hangi sınav için olduğunu seçin.",
-    "examHint": "Tek sınav planı bir sınavı kapsar. Hazırlandığınız her sınav için bir tane olmak üzere birden fazla plana sahip olabilirsiniz.",
+    "examOwned": "(erişiminiz var)",
+    "examUnavailable": "(henüz mevcut değil)",
+    "examRequired": "Bu paketin hangi sınav için olduğunu seçin.",
+    "examHint": "Bir paket, bir sınavı altı ay boyunca kapsar. Yalnızca en az bir alıştırma formatı açık olan sınavlar seçilebilir.",
+    "examInitialUnavailable": "Geldiğiniz sınavın henüz açık bir alıştırma formatı yok, bu yüzden bugün o sınav için paket satın alınamaz.",
     "countryLabel": "İkamet ettiğiniz ülke",
     "countryPlaceholder": "Ülkenizi seçin",
     "countryHint": "Doğru KDV’yi uygulamak için kullanılır. Ödediğiniz fiyat değişmez.",
@@ -172,7 +230,7 @@
     "testMode": "Test modu: 4242 4242 4242 4242 kartını, ileri bir tarihi ve herhangi bir CVC’yi kullanın. 3-D Secure için 4000 0027 6000 3184 kartını kullanın.",
     "secure": "Kart bilgileri, Stripe’ın sunduğu güvenli alanlara girilir ve doğrudan Stripe’a iletilir; hiçbir zaman sunucularımıza ulaşmaz.",
     "loadingFields": "Güvenli kart alanları yükleniyor…",
-    "consent": "Planımın hemen başlamasını istiyorum. Erişim başladığında 14 günlük cayma hakkımı kaybedeceğimi anlıyorum.",
+    "consent": "Erişimimin hemen başlamasını istiyorum. Erişim başladığında 14 günlük cayma hakkımı kaybedeceğimi anlıyorum.",
     "consentTerms": "Satış koşulları",
     "consentTermsNewTab": "(yeni sekmede açılır)",
     "consentRequired": "Devam etmek için lütfen bu kutuyu işaretleyin.",
@@ -187,23 +245,35 @@
       "plan": "Plan",
       "exam": "Sınav",
       "examNone": "Henüz seçilmedi",
+      "oneTime": "Tek seferlik ödeme",
       "monthly": "Aylık fiyat",
+      "yearly": "Yıllık ücret, peşin tahsil edilir",
       "vat": "KDV",
       "vatIncluded": "Dahil",
       "vatByCountry": "Ülkenizin oranıyla dahil",
       "dueToday": "Bugün ödenecek",
-      "then": "Ardından {date} tarihinden itibaren, siz iptal edene kadar her ay {price}.",
-      "cancel": "Hesabınızdan istediğiniz zaman iptal edebilirsiniz. Planınız, ödemesini yaptığınız ayın sonuna kadar açık kalır."
+      "passTerm": "Onaylanan ödemenizden itibaren altı ay erişim: bugün öderseniz {date} tarihine kadar.",
+      "passNoRenewal": "Tek seferlik ödenir. Yenilenmez ve başka ücret alınmaz.",
+      "thenMonthly": "Ardından {date} tarihinden itibaren, siz iptal edene kadar her ay {price}.",
+      "thenYearly": "Ardından {date} tarihinden itibaren, siz iptal edene kadar her yıl {price}.",
+      "cancel": "Hesabınızdan istediğiniz zaman iptal edebilirsiniz. Plus, ödemesini yaptığınız dönemin sonuna kadar açık kalır."
     }
   },
   "manager": {
     "none": "Planınız yok. Her sınav için rehberler, örnek sorular ve seviye belirleme testi ücretsizdir.",
     "seePlans": "Planları görün",
     "addPlan": "Plan ekleyin",
-    "price": "Ayda {price}, KDV dahil",
+    "prices": {
+      "once": "Tek seferlik {price}, KDV dahil",
+      "month": "Ayda {price}, KDV dahil",
+      "year": "Yılda {price}, KDV dahil"
+    },
     "renews": "{date} tarihinde yenilenir",
     "ends": "{date} tarihinde sona erer; yenilenmeyecek",
     "accessUntil": "{date} tarihine kadar erişim",
+    "passUntil": "{date} tarihine kadar erişim",
+    "passNoRenewal": "Tek seferlik ödendi; yenilenmez.",
+    "earlierNote": "Önceki bir plan: sona erene kadar kapsadığı her şeyi, kabul ettiğiniz fiyatla korur.",
     "statuses": {
       "active": "Etkin",
       "trialing": "Etkin",
@@ -212,7 +282,12 @@
       "paused": "Duraklatıldı",
       "canceled": "Sona erdi",
       "incomplete": "Ödeme bekleniyor",
-      "incomplete_expired": "Ödemenin süresi doldu"
+      "incomplete_expired": "Ödemenin süresi doldu",
+      "paid": "Aktif",
+      "pending": "Ödeme bekleniyor",
+      "void": "Ödenmedi",
+      "refunded": "İade edildi",
+      "expired": "Sona erdi"
     },
     "pastDue": "Son yenileme ödemesi gerçekleşmedi. Stripe önümüzdeki günlerde yeniden deneyecek; bu sırada erişiminiz devam eder. Hemen ödemek için kartınızı güncelleyin.",
     "cancel": "Dönem sonunda iptal et",
@@ -235,15 +310,16 @@
       "cancel": "Vazgeç",
       "loading": "Güvenli kart alanları yükleniyor…",
       "secure": "Kart bilgileri güvenli alanlar aracılığıyla doğrudan Stripe’a iletilir; hiçbir zaman sunucularımıza ulaşmaz.",
-      "saved": "Yeni kartınız kaydedildi ve tüm planlarınız için kullanılacak.",
-      "savedAndRetried": "Yeni kartınız kaydedildi ve tüm planlarınız için kullanılacak. Başarısız olan yenileme ödemesini yeni kartınızdan tahsil ettik.",
+      "saved": "Yeni kartınız kaydedildi ve yenilenen tüm planlar için kullanılacak.",
+      "savedAndRetried": "Yeni kartınız kaydedildi ve yenilenen tüm planlar için kullanılacak. Başarısız olan yenileme ücretini yeni karttan tahsil ettik.",
       "failed": "Kart kaydedilemedi. Önceki kartınız değişmedi.",
       "network": "Sunucuya ulaşamadık. Önceki kartınız değişmedi."
     },
-    "history": "Önceki planlar"
+    "history": "Önceki planlar ve paketler"
   },
   "upgrade": {
     "eyebrow": "Ücretli bir planın parçası",
+    "eyebrowSoon": "Yakında",
     "titles": {
       "practice": "{hasExam, select, yes {İstediğiniz kadar alıştırma yapın: {exam}} other {Bu sınav için istediğiniz kadar alıştırma yapın}}",
       "timed_section": "{hasExam, select, yes {Zamanlı bölümler: {exam}} other {Bu sınav için zamanlı bölümler}}",
@@ -251,17 +327,20 @@
       "study_plan": "{hasExam, select, yes {Çalışma planı: {exam}} other {Bu sınav için bir çalışma planı}}",
       "ai_tutor": "Yapay zekâ eğitmeni",
       "diagnostic": "Ücretsiz seviye belirleme testi",
+      "official_scores": "Resmî deneme sınavı puanlarınız",
       "guides": "Rehberler",
       "samples": "Örnek sorular"
     },
     "leads": {
-      "practice": "Her oturumda yeni sorularla konu alıştırmaları, yanlış yaptığınız soruların tekrarı, zamanlı bölümler ve deneme sınavları.",
+      "practice": "Çözümlü açıklamalar ve her oturumda yeni sorularla konu alıştırmaları, kaçırdıklarınızın tekrarı, zamanlı bölümler ve deneme sınavları; bu sınavın açık formatları için.",
       "timed_section": "Resmî tempoda zamanlı bölümler ve konu bazında sonuçlar.",
       "simulation": "Sınavda varsa, resmî kurallara uygun tam uzunlukta deneme sınavları.",
-      "study_plan": "Sınav tarihinize kadar tarihli bir plan ve kendi sonuçlarınıza dayanan bir hazırlık görünümü.",
+      "study_plan": "Sınav tarihinize kadar tarihli bir plan ve kendi sonuçlarınıza dayalı ilerleme takibi.",
       "ai_tutor": "Alıştırma yaparken ipuçları, yanıtladıktan sonra ayrıntılı açıklamalar ve her testten sonra bir rehber."
     },
-    "planLine": "{plan}: {period} {price}",
+    "passLine": "{plan}: tek seferlik {price}, bu sınav için altı ay",
+    "plusLine": "{plan}: ayda {monthly} veya yılda {yearly}, tüm sınavlar",
+    "tutorComingSoon": "Yapay zekâ eğitmeni, yakında gelecek ve henüz satın alınamayan Premium ile sunulacak. Bugün satışta olan hiçbir plan onu içermiyor.",
     "seePlans": "Planları görün",
     "choosePlan": "Şu planı seçin: {plan}",
     "freeDiagnostic": "Önce ücretsiz seviye belirleme testini deneyin"
@@ -270,15 +349,18 @@
     "billingOff": "Bu sitede ödemeler henüz etkin değil. Hiçbir ücret alınmadı.",
     "accountRequired": "Planınızın bağlanacağı bir hesap olması için önce bir hesap oluşturun. Misafir olarak yaptığınız alıştırmalar da aktarılır.",
     "consentRequired": "Lütfen erişimin hemen başlamasını istediğinizi ve bu durumda 14 günlük cayma hakkının sona ereceğini onaylayın.",
-    "unknownPlan": "Böyle bir plan yok.",
-    "unknownExam": "Bu planın hangi sınav için olduğunu seçin.",
-    "alreadyAllAccess": "Tüm sınavları kapsayan Tam erişim planına zaten sahipsiniz.",
-    "alreadyThisExam": "Bu sınav için zaten bir planınız var.",
+    "unknownPlan": "Bu plan satışta değil.",
+    "comingSoon": "Premium yakında gelecek ve henüz satın alınamıyor. Hiçbir ücret alınmadı.",
+    "unknownExam": "Bu paketin hangi sınav için olduğunu seçin.",
+    "examUnavailable": "Bu sınav için henüz paket satın alınamıyor: alıştırma formatlarının hiçbirinde açılmaya yetecek kadar incelenmiş soru yok. Hiçbir ücret alınmadı.",
+    "alreadyAllAccess": "Tüm sınavları kapsayan bir planınız zaten var.",
+    "alreadyThisExam": "Bu sınava zaten erişiminiz var.",
     "misconfigured": "Ödemeler henüz doğru şekilde ayarlanmadı. Hiçbir ücret alınmadı.",
     "unavailable": "Ödeme sağlayıcısı şu anda yoğun. Hiçbir ücret alınmadı; lütfen bir dakika sonra yeniden deneyin.",
     "failed": "Ödeme sağlayıcısı bu işlemi tamamlayamadı. Hiçbir ücret alınmadı.",
     "retry": "Bu istek daha önce farklı bilgilerle gönderilmiş. Sayfayı yenileyip yeniden deneyin.",
     "unknownSubscription": "Abonelik bulunamadı.",
+    "unknownPass": "Bu paket bulunamadı.",
     "notChangeable": "Bu abonelik zaten sona erdi.",
     "noBillingAccount": "Henüz bir ödeme hesabınız yok. Önce bir plan seçin.",
     "cardNotSaved": "Yeni kart onaylanmadı. Önceki kartınız değişmedi.",
@@ -288,12 +370,13 @@
     "entitlement": {
       "accountRequired": "Ücretsiz seviye belirleme testine girmek için ücretsiz bir hesap oluşturun. Misafir olarak yaptığınız alıştırmalar da aktarılır.",
       "upgradeRequired": {
-        "practice": "Bu sınavın alıştırma oturumları ücretli bir planın parçasıdır. Seviye belirleme testi ücretsiz kalır.",
-        "timed_section": "Bu sınavın zamanlı bölümleri ücretli bir planın parçasıdır. Seviye belirleme testi ücretsiz kalır.",
-        "simulation": "Tam uzunlukta deneme sınavları ücretli bir planın parçasıdır. Seviye belirleme testi ücretsiz kalır.",
-        "study_plan": "Çalışma planı ve hazırlık görünümü, bu sınav için ücretli bir planın parçasıdır.",
-        "ai_tutor": "Yapay zekâ eğitmeni Tam erişim planına dahildir.",
+        "practice": "Bu sınavın alıştırma oturumları için Tek Sınav Paketi ya da Plus gerekir. Seviye belirleme testi ücretsiz kalır.",
+        "timed_section": "Bu sınavın zamanlı bölümleri için Tek Sınav Paketi ya da Plus gerekir. Seviye belirleme testi ücretsiz kalır.",
+        "simulation": "Tam uzunlukta deneme sınavları için Tek Sınav Paketi ya da Plus gerekir. Seviye belirleme testi ücretsiz kalır.",
+        "study_plan": "Bu sınavın çalışma planı ve ilerleme takibi için Tek Sınav Paketi ya da Plus gerekir.",
+        "ai_tutor": "Yapay zekâ eğitmeni, yakında gelecek ve henüz satın alınamayan Premium’un bir parçası olacak.",
         "diagnostic": "Seviye belirleme testi ücretsizdir.",
+        "official_scores": "Resmî deneme sınavı puanlarınızın takibi ücretsizdir.",
         "guides": "Rehberler ücretsizdir.",
         "samples": "Örnek sorular ücretsizdir."
       }

@@ -3,14 +3,19 @@ import { getDb } from '@/lib/db';
 import { assertSameOrigin, fail, ok, readJson, toErrorResponse } from '@/lib/api/http';
 import { callerKey, checkRateLimit } from '@/lib/auth/rate-limit';
 import { requireUser } from '@/lib/auth/session';
-import { PLAN_KEYS, type PlanKey } from '@/lib/billing/plans';
-import { BILLING_COPY, createSubscription } from '@/lib/billing/service';
+import { PRICE_KEYS, type PriceKey } from '@/lib/billing/plans';
+import { BILLING_COPY, startCheckout } from '@/lib/billing/service';
 
 export const dynamic = 'force-dynamic';
 
 const bodySchema = z.object({
-  plan: z.enum(PLAN_KEYS as [PlanKey, ...PlanKey[]]),
-  /** The exam a single-exam plan is for. */
+  /**
+   * What is being bought. Every price key parses, so the service is the one
+   * place that refuses what is not on sale (Premium, earlier plans) with its
+   * own message.
+   */
+  offer: z.enum(PRICE_KEYS as [PriceKey, ...PriceKey[]]),
+  /** The exam a Single Exam Pass is for. */
   examKey: z.string().max(64).nullish(),
   /** The exam the learner came from; never changes the plan or the price. */
   sourceExam: z.string().max(64).nullish(),
@@ -22,9 +27,10 @@ const bodySchema = z.object({
 });
 
 /**
- * Creates the subscription the checkout page is about to pay for, with
- * payment_behavior 'default_incomplete', and returns the client secret the
- * browser confirms with Stripe.js. The acting user comes from the session.
+ * Creates what the checkout page is about to pay for (a Plus subscription, or
+ * the invoice of a Single Exam Pass) and returns the client secret the browser
+ * confirms with Stripe.js. The acting user comes from the session; whether it
+ * may be sold is decided by the server (startCheckout), never by the page.
  */
 export async function POST(request: Request) {
   try {
@@ -41,15 +47,15 @@ export async function POST(request: Request) {
     }
 
     const body = await readJson(request, bodySchema);
-    const created = await createSubscription(db, user, {
-      plan: body.plan,
+    const started = await startCheckout(db, user, {
+      offer: body.offer,
       examKey: body.examKey ?? null,
       sourceExam: body.sourceExam ?? null,
       consent: body.consent,
       requestId: body.requestId,
       country: body.country ?? null,
     });
-    return ok(created);
+    return ok(started);
   } catch (error) {
     return toErrorResponse(error);
   }
