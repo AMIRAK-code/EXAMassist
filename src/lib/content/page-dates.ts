@@ -18,11 +18,14 @@ export const PAGE_DATES = {
   howScoringWorks: { published: '2026-09-22', updated: '2026-09-24' },
   privacy: { published: '2026-09-22', updated: '2026-10-27' },
   /** The terms show this as "last reviewed". */
-  terms: { updated: '2026-10-27' },
+  terms: { updated: '2026-10-29' },
   /** Why support is answered by people, and how to reach them. */
   support: { published: '2026-10-28', updated: '2026-10-28' },
-  /** Plans and prices: Premium from 2026-10-05, All access and Single exam on /pricing from 2026-10-27. */
-  pricing: { published: '2026-10-05', updated: '2026-10-27' },
+  /**
+   * Plans and prices: Premium from 2026-10-05, All access and Single exam on /pricing from 2026-10-27,
+   * Single Exam Pass, Plus and Premium (coming soon) from 2026-10-29.
+   */
+  pricing: { published: '2026-10-05', updated: '2026-10-29' },
 } as const satisfies Record<string, PageDates>;
 
 /** "22 September 2026", the same in every time zone. */
