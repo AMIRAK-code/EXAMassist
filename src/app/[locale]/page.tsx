@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const title = `${SITE.name} — ${t('tagline')}`;
   const alternates = (await pageAlternates(params, '/'));
   return {
-    title,
+    title: { absolute: title },
     description: t('description'),
     alternates,
     openGraph: {

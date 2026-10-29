@@ -7,6 +7,8 @@
  * only when the substance changes.
  */
 
+import { bocconiSampleGuide } from './bocconi-sample-guide';
+
 export interface GuideSource {
   label: string;
   url: string;
@@ -29,6 +31,7 @@ export interface Guide {
 }
 
 const GUIDES: Guide[] = [
+  bocconiSampleGuide,
   {
     slug: 'bocconi-test-negative-marking-when-to-guess',
     title: 'Negative marking on the Bocconi Online Test: when to guess and when to leave a blank',

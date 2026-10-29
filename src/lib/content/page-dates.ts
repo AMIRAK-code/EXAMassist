@@ -13,7 +13,7 @@ export interface PageDates {
 
 export const PAGE_DATES = {
   /** The homepage's own copy; the sitemap also counts the exams and guides it lists. */
-  home: { updated: '2026-10-07' },
+  home: { updated: '2026-10-28' },
   editorialStandards: { published: '2026-09-22', updated: '2026-09-24' },
   howScoringWorks: { published: '2026-09-22', updated: '2026-09-24' },
   privacy: { published: '2026-09-22', updated: '2026-10-27' },
