@@ -384,7 +384,8 @@ async function loadReviewable(db: Db, item: AttemptItemState): Promise<Reviewabl
 }
 
 /**
- * The tutor is a paid feature (All access, src/lib/billing/plans.ts), checked
+ * The tutor is a paid feature (Premium, not yet sold, and the earlier All
+ * access and Premium plans their holders keep: src/lib/billing/plans.ts), checked
  * for the exam of the session it is asked about. A refusal carries the
  * pricing page for that exam, so the panel can offer the upgrade.
  */
