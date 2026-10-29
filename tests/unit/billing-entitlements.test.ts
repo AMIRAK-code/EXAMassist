@@ -12,6 +12,7 @@ import {
   type Subject,
 } from '@/lib/billing/entitlements';
 import { BillingConfigError } from '@/lib/billing/config';
+import { PASS_ACCESS_MONTHS, PRICES, addCalendarMonths } from '@/lib/billing/plans';
 import { questionHelp, TutorError } from '@/lib/tutor/service';
 import type { TutorModelClient } from '@/lib/tutor/client';
 import { BILLING_ENV, ON, fakeStripe, stripeSubscription } from './helpers/fake-stripe';
@@ -29,14 +30,30 @@ const NOW = new Date('2026-10-27T12:00:00Z');
 const inDays = (days: number) => new Date(NOW.getTime() + days * 86_400_000).toISOString();
 
 const grant = (overrides: Partial<Grant> = {}): Grant => ({
-  subscriptionId: 'sub_1',
+  kind: 'subscription',
+  id: 'sub_1',
   plan: 'all_access',
   examKey: null,
   status: 'active',
   currentPeriodEnd: inDays(20),
   cancelAtPeriodEnd: false,
+  lookupKey: null,
   ...overrides,
 });
+/** A Single Exam Pass paid `paidDaysAgo` days before NOW: six calendar months from that payment. */
+const pass = (examKey: string, paidDaysAgo = 1, overrides: Partial<Grant> = {}): Grant => {
+  const paidAt = new Date(NOW.getTime() - paidDaysAgo * 86_400_000);
+  return grant({
+    kind: 'pass',
+    id: 'in_pass_1',
+    plan: 'exam_pass',
+    examKey,
+    status: 'paid',
+    currentPeriodEnd: addCalendarMonths(paidAt, PASS_ACCESS_MONTHS).toISOString(),
+    lookupKey: PRICES.exam_pass.lookupKey,
+    ...overrides,
+  });
+};
 const learner = (grants: Grant[] = [], isGuest = false): Subject => ({ role: 'learner', isGuest, grants });
 const decide = (subject: Subject | null, feature: Parameters<typeof decideAccess>[0]['feature'], examKey: string | null = SAT.examKey, enforced = true) =>
   decideAccess({ enforced, subject, feature, examKey, now: NOW });
@@ -65,7 +82,7 @@ describe('decisions', () => {
     expect(decide(learner([], true), 'practice')).toMatchObject({ allowed: false, reason: 'upgrade-required' });
   });
 
-  it('All access opens every exam and the AI tutor', () => {
+  it('earlier All access (and the first Premium) still opens every exam and the AI tutor', () => {
     const subject = learner([grant()]);
     for (const exam of [SAT.examKey, GMAT.examKey]) {
       for (const feature of ['practice', 'timed_section', 'simulation', 'study_plan', 'ai_tutor'] as const) {
@@ -74,23 +91,71 @@ describe('decisions', () => {
     }
   });
 
-  it('Single exam opens its own exam only, and never the AI tutor', () => {
+  it('an earlier single-exam subscription opens its own exam only, and never the AI tutor', () => {
     const subject = learner([grant({ plan: 'single_exam', examKey: SAT.examKey })]);
     expect(decide(subject, 'practice', SAT.examKey).allowed).toBe(true);
     expect(decide(subject, 'simulation', SAT.examKey).allowed).toBe(true);
     expect(decide(subject, 'study_plan', SAT.examKey).allowed).toBe(true);
     expect(decide(subject, 'practice', GMAT.examKey).allowed).toBe(false);
-    expect(decide(subject, 'ai_tutor', SAT.examKey)).toMatchObject({ allowed: false, suggestedPlan: 'all_access' });
+    // Nothing on sale includes the tutor, so nothing is suggested for it.
+    expect(decide(subject, 'ai_tutor', SAT.examKey)).toMatchObject({ allowed: false, suggestedPlan: null });
   });
 
-  it('several single-exam plans add up', () => {
+  it('several one-exam grants add up', () => {
     const subject = learner([
-      grant({ subscriptionId: 'sub_a', plan: 'single_exam', examKey: SAT.examKey }),
-      grant({ subscriptionId: 'sub_b', plan: 'single_exam', examKey: GMAT.examKey }),
+      grant({ id: 'sub_a', plan: 'single_exam', examKey: SAT.examKey }),
+      pass(GMAT.examKey),
     ]);
     expect(decide(subject, 'practice', SAT.examKey).allowed).toBe(true);
     expect(decide(subject, 'practice', GMAT.examKey).allowed).toBe(true);
     expect(decide(subject, 'practice', 'lsat').allowed).toBe(false);
+  });
+
+  it('a Single Exam Pass opens every paid format of its own exam, and nothing else', () => {
+    const subject = learner([pass(SAT.examKey)]);
+    for (const feature of ['practice', 'timed_section', 'simulation', 'study_plan'] as const) {
+      expect(decide(subject, feature, SAT.examKey)).toMatchObject({ allowed: true, reason: 'pass' });
+      expect(decide(subject, feature, GMAT.examKey)).toMatchObject({ allowed: false, reason: 'upgrade-required', suggestedPlan: 'exam_pass' });
+    }
+    // No AI tutor, even for its own exam; and nothing that is not about one exam.
+    expect(decide(subject, 'ai_tutor', SAT.examKey)).toMatchObject({ allowed: false, suggestedPlan: null });
+    expect(decide(subject, 'study_plan', null).allowed).toBe(false);
+  });
+
+  it('a pass lasts six calendar months from its payment, with no grace after', () => {
+    const paidAt = new Date('2026-08-31T09:30:00Z');
+    const end = addCalendarMonths(paidAt, PASS_ACCESS_MONTHS);
+    expect(end.toISOString()).toBe('2027-02-28T09:30:00.000Z');
+    const subject = learner([pass(SAT.examKey, 0, { currentPeriodEnd: end.toISOString() })]);
+    const at = (iso: string) => decideAccess({ enforced: true, subject, feature: 'practice', examKey: SAT.examKey, now: new Date(iso) });
+    expect(at('2026-08-31T09:30:00Z').allowed).toBe(true);
+    expect(at('2027-02-28T09:29:59Z').allowed).toBe(true);
+    expect(at('2027-02-28T09:30:00Z').allowed).toBe(false);
+    expect(at('2027-03-01T00:00:00Z').allowed).toBe(false);
+  });
+
+  it('a pass gives access only once Stripe recorded it as paid, and not after a full refund', () => {
+    for (const status of ['pending', 'void', 'refunded']) {
+      expect(decide(learner([pass(SAT.examKey, 1, { status })]), 'practice').allowed).toBe(false);
+    }
+    expect(decide(learner([pass(SAT.examKey, 1, { currentPeriodEnd: null })]), 'practice').allowed).toBe(false);
+  });
+
+  it('Plus opens every exam but never the AI tutor, monthly or yearly', () => {
+    for (const price of [PRICES.plus_month, PRICES.plus_year]) {
+      const subject = learner([grant({ plan: 'plus', lookupKey: price.lookupKey })]);
+      for (const exam of [SAT.examKey, GMAT.examKey]) {
+        for (const feature of ['practice', 'timed_section', 'simulation', 'study_plan'] as const) {
+          expect(decide(subject, feature, exam)).toMatchObject({ allowed: true, reason: 'subscription' });
+        }
+        expect(decide(subject, 'ai_tutor', exam).allowed).toBe(false);
+      }
+    }
+  });
+
+  it('keeps free what was free: the diagnostic and official score tracking', () => {
+    expect(decide(learner(), 'official_scores')).toMatchObject({ allowed: true, reason: 'free' });
+    expect(decide(learner(), 'diagnostic')).toMatchObject({ allowed: true, reason: 'free' });
   });
 
   it('expired: a cancelled plan, or an active one long past its period, opens nothing', () => {
@@ -132,7 +197,10 @@ describe('decisions', () => {
 
 let db: Db;
 
-async function giveSubscription(userId: string, options: { plan?: 'all_access' | 'single_exam'; examKey?: string; status?: string; periodEnd?: string }) {
+async function giveSubscription(
+  userId: string,
+  options: { plan?: 'plus' | 'all_access' | 'single_exam'; examKey?: string; status?: string; periodEnd?: string; lookupKey?: string },
+) {
   const at = new Date().toISOString();
   const id = `sub_${Math.random().toString(36).slice(2, 10)}`;
   await db.prepare('INSERT INTO billing_customers (user_id, stripe_customer_id, created_at, updated_at) VALUES (?, ?, ?, ?) ON CONFLICT (user_id) DO NOTHING')
@@ -141,10 +209,26 @@ async function giveSubscription(userId: string, options: { plan?: 'all_access' |
     .prepare(
       `INSERT INTO billing_subscriptions (stripe_subscription_id, user_id, stripe_customer_id, plan, exam_key, status,
          price_lookup_key, current_period_end, cancel_at_period_end, withdrawal_waiver_at, stripe_synced_at, created_at, updated_at)
-       VALUES (?, ?, ?, ?, ?, ?, NULL, ?, 0, NULL, 0, ?, ?)`,
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, NULL, 0, ?, ?)`,
     )
     .run(id, userId, `cus_${userId.slice(0, 8)}`, options.plan ?? 'all_access', options.examKey ?? null, options.status ?? 'active',
-      options.periodEnd ?? new Date(Date.now() + 20 * 86_400_000).toISOString(), at, at);
+      options.lookupKey ?? null, options.periodEnd ?? new Date(Date.now() + 20 * 86_400_000).toISOString(), at, at);
+  return id;
+}
+
+/** A paid Single Exam Pass row, as storePass writes it once Stripe confirms the payment. */
+async function givePass(userId: string, examKey: string, options: { paidAt?: Date; status?: string } = {}) {
+  const at = new Date().toISOString();
+  const paidAt = options.paidAt ?? new Date(Date.now() - 86_400_000);
+  const id = `in_${Math.random().toString(36).slice(2, 10)}`;
+  await db
+    .prepare(
+      `INSERT INTO billing_passes (stripe_invoice_id, user_id, stripe_customer_id, stripe_payment_intent_id, plan, exam_key, price_lookup_key,
+         amount, currency, status, access_starts_at, access_ends_at, withdrawal_waiver_at, source_exam, stripe_synced_at, created_at, updated_at)
+       VALUES (?, ?, ?, NULL, 'exam_pass', ?, ?, 2399, 'eur', ?, ?, ?, NULL, NULL, 0, ?, ?)`,
+    )
+    .run(id, userId, `cus_${userId.slice(0, 8)}`, examKey, PRICES.exam_pass.lookupKey, options.status ?? 'paid', paidAt.toISOString(),
+      addCalendarMonths(paidAt, PASS_ACCESS_MONTHS).toISOString(), at, at);
   return id;
 }
 
@@ -203,6 +287,28 @@ describe('starting sessions', () => {
     const all = await createUser(db);
     await giveSubscription(all, { plan: 'all_access' });
     await expect(startAttempt(db, { userId: all, examKey: GMAT.examKey, blueprintId: 'practice' })).resolves.toHaveProperty('attemptId');
+  });
+
+  it('opens one exam for a paid Single Exam Pass, and closes it after six months', async () => {
+    const user = await createUser(db);
+    await givePass(user, SAT.examKey);
+    await expect(startAttempt(db, { userId: user, examKey: SAT.examKey, blueprintId: 'practice' })).resolves.toHaveProperty('attemptId');
+    expect((await refusal(startAttempt(db, { userId: user, examKey: GMAT.examKey, blueprintId: 'practice' }))).code).toBe('upgrade-required');
+
+    const lapsed = await createUser(db);
+    await givePass(lapsed, SAT.examKey, { paidAt: addCalendarMonths(new Date(Date.now() - 60_000), -PASS_ACCESS_MONTHS) });
+    expect((await refusal(startAttempt(db, { userId: lapsed, examKey: SAT.examKey, blueprintId: 'practice' }))).code).toBe('upgrade-required');
+
+    const unpaid = await createUser(db);
+    await givePass(unpaid, SAT.examKey, { status: 'pending' });
+    expect((await refusal(startAttempt(db, { userId: unpaid, examKey: SAT.examKey, blueprintId: 'practice' }))).code).toBe('upgrade-required');
+  });
+
+  it('opens every exam for Plus', async () => {
+    const user = await createUser(db);
+    await giveSubscription(user, { plan: 'plus', lookupKey: PRICES.plus_year.lookupKey });
+    await expect(startAttempt(db, { userId: user, examKey: SAT.examKey, blueprintId: 'practice' })).resolves.toHaveProperty('attemptId');
+    await expect(startAttempt(db, { userId: user, examKey: GMAT.examKey, blueprintId: 'practice' })).resolves.toHaveProperty('attemptId');
   });
 
   it('closes again when the plan has expired, and stays open while a renewal is retried', async () => {
@@ -268,12 +374,36 @@ describe('the AI tutor', () => {
     expect(error).toMatchObject({ code: 'upgrade-required', status: 402, detail: { upgradeHref: '/pricing?exam=digital-sat&reason=ai_tutor' } });
   });
 
-  it('answers an All access learner', async () => {
+  it('answers a learner on an earlier All access plan', async () => {
     const user = await createUser(db);
-    await giveSubscription(user, { plan: 'all_access' });
+    await giveSubscription(user, { plan: 'all_access', lookupKey: PRICES.all_access_month.lookupKey });
     const attemptId = await finishedSession(user);
     const reply = await questionHelp(db, { userId: user, isGuest: false }, { attemptId, partIndex: 0, position: 0, kind: 'explain' }, { client: model });
     expect(reply.html).toContain('units');
+  });
+
+  it('still answers a first-generation Premium subscriber: they keep what they paid for', async () => {
+    const user = await createUser(db);
+    // Migration 012 copies these rows as all_access with their original lookup key.
+    await giveSubscription(user, { plan: 'all_access', lookupKey: 'examer_premium_yearly_v1' });
+    const attemptId = await finishedSession(user);
+    const reply = await questionHelp(db, { userId: user, isGuest: false }, { attemptId, partIndex: 0, position: 0, kind: 'explain' }, { client: model });
+    expect(reply.html).toContain('units');
+  });
+
+  it('is refused to Plus and to a Single Exam Pass, which never include it', async () => {
+    const plus = await createUser(db);
+    await giveSubscription(plus, { plan: 'plus', lookupKey: PRICES.plus_month.lookupKey });
+    const withPass = await createUser(db);
+    await givePass(withPass, SAT.examKey);
+    for (const user of [plus, withPass]) {
+      const attemptId = await finishedSession(user);
+      const error = await questionHelp(db, { userId: user, isGuest: false }, { attemptId, partIndex: 0, position: 0, kind: 'explain' }, { client: model }).then(
+        () => null,
+        (e: unknown) => e,
+      );
+      expect(error).toMatchObject({ code: 'upgrade-required', status: 402 });
+    }
   });
 });
 
@@ -288,6 +418,18 @@ describe('loading entitlements', () => {
     expect(entitlements.can('study_plan', SAT.examKey)).toBe(true);
     expect(entitlements.can('study_plan', GMAT.examKey)).toBe(false);
     await expect(requireEntitlement(db, user, 'study_plan', GMAT.examKey, { settings: ON })).rejects.toBeInstanceOf(EntitlementError);
+  });
+
+  it('reads passes and subscriptions together', async () => {
+    const user = await createUser(db);
+    await givePass(user, GMAT.examKey);
+    await givePass(user, SAT.examKey, { status: 'refunded' });
+    const entitlements = await loadEntitlements(db, user, { settings: ON });
+    expect(entitlements.singleExamKeys).toEqual([GMAT.examKey]);
+    expect(entitlements.livePasses).toHaveLength(1);
+    expect(entitlements.hasAllAccess).toBe(false);
+    expect(entitlements.can('practice', GMAT.examKey)).toBe(true);
+    expect(entitlements.can('practice', SAT.examKey)).toBe(false);
   });
 
   it('re-reads from Stripe a plan whose period ended without a renewal webhook', async () => {

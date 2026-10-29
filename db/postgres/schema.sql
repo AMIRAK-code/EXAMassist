@@ -355,7 +355,7 @@ CREATE TABLE billing_subscriptions (
   stripe_subscription_id TEXT PRIMARY KEY,
   user_id                TEXT NOT NULL REFERENCES users (id) ON DELETE CASCADE,
   stripe_customer_id     TEXT NOT NULL,
-  -- 'all_access' | 'single_exam' (src/lib/billing/plans.ts)
+  -- 'plus', or an earlier plan: 'all_access' | 'single_exam' (src/lib/billing/plans.ts)
   plan                   TEXT NOT NULL,
   exam_key               TEXT,
   -- Stripe's subscription status: active, trialing, past_due, canceled, ...
@@ -367,6 +367,28 @@ CREATE TABLE billing_subscriptions (
   stripe_synced_at       BIGINT NOT NULL DEFAULT 0,
   created_at             TEXT NOT NULL,
   updated_at             TEXT NOT NULL
+);
+
+-- Single Exam Passes: one exam, paid once, six calendar months (016).
+CREATE TABLE billing_passes (
+  stripe_invoice_id        TEXT PRIMARY KEY,
+  user_id                  TEXT NOT NULL REFERENCES users (id) ON DELETE CASCADE,
+  stripe_customer_id       TEXT NOT NULL,
+  stripe_payment_intent_id TEXT,
+  plan                     TEXT NOT NULL,
+  exam_key                 TEXT NOT NULL,
+  price_lookup_key         TEXT NOT NULL,
+  amount                   BIGINT NOT NULL,
+  currency                 TEXT NOT NULL,
+  -- pending | paid | void | refunded
+  status                   TEXT NOT NULL,
+  access_starts_at         TEXT,
+  access_ends_at           TEXT,
+  withdrawal_waiver_at     TEXT,
+  source_exam              TEXT,
+  stripe_synced_at         BIGINT NOT NULL DEFAULT 0,
+  created_at               TEXT NOT NULL,
+  updated_at               TEXT NOT NULL
 );
 
 CREATE TABLE billing_events (
@@ -497,6 +519,10 @@ CREATE INDEX idx_billing_subscriptions_user ON billing_subscriptions (user_id, s
 
 CREATE INDEX idx_billing_subscriptions_customer ON billing_subscriptions (stripe_customer_id);
 
+CREATE INDEX idx_billing_passes_user ON billing_passes (user_id, status);
+
+CREATE INDEX idx_billing_passes_payment_intent ON billing_passes (stripe_payment_intent_id);
+
 CREATE INDEX idx_question_reviews_version ON question_reviews (question_version_id, created_at);
 
 CREATE INDEX idx_question_reviews_question ON question_reviews (question_id, created_at);
@@ -531,6 +557,7 @@ ALTER TABLE examer.tutor_usage ENABLE ROW LEVEL SECURITY;
 ALTER TABLE examer.email_codes ENABLE ROW LEVEL SECURITY;
 ALTER TABLE examer.billing_customers ENABLE ROW LEVEL SECURITY;
 ALTER TABLE examer.billing_subscriptions ENABLE ROW LEVEL SECURITY;
+ALTER TABLE examer.billing_passes ENABLE ROW LEVEL SECURITY;
 ALTER TABLE examer.billing_events ENABLE ROW LEVEL SECURITY;
 ALTER TABLE examer.funnel_counts ENABLE ROW LEVEL SECURITY;
 ALTER TABLE examer.reviewers ENABLE ROW LEVEL SECURITY;
@@ -553,6 +580,7 @@ INSERT INTO _migrations (name, applied_at) VALUES
 ('012_stripe_subscriptions.sql', '2026-10-23T00:00:00.000Z'),
 ('013_content_translations.sql', '2026-10-27T00:00:00.000Z'),
 ('014_human_review.sql', '2026-10-28T00:00:00.000Z'),
-('015_official_practice_scores.sql', '2026-10-28T00:00:00.000Z');
+('015_official_practice_scores.sql', '2026-10-28T00:00:00.000Z'),
+('016_exam_passes.sql', '2026-10-29T00:00:00.000Z');
 ALTER TABLE examer._migrations ENABLE ROW LEVEL SECURITY;
 COMMIT;

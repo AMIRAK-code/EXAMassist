@@ -121,7 +121,11 @@ export function pricingPath(examKey?: string | null, reason?: string): string {
   return query ? `/pricing?${query}` : '/pricing';
 }
 
-/** Our own checkout page for a plan (and the exam, for a single-exam plan). */
+/**
+ * Our own checkout page for an offer (a price key from plans.ts: 'exam_pass',
+ * 'plus_month', 'plus_year'), and the exam, for a Single Exam Pass. Older links
+ * naming an earlier plan land on the plans on sale now, with a note.
+ */
 export function checkoutPath(plan: string, examKey?: string | null): string {
   const params = new URLSearchParams({ plan });
   if (examKey) params.set('exam', examKey);
