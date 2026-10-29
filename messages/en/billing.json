@@ -1,31 +1,49 @@
 {
   "plans": {
+    "exam_pass": {
+      "name": "Single Exam Pass",
+      "tagline": "One exam of your choice for six months. Paid once; it does not renew."
+    },
+    "plus": {
+      "name": "Plus",
+      "tagline": "Every exam on the site, billed monthly or yearly until you cancel."
+    },
+    "premium": {
+      "name": "Premium",
+      "tagline": "Everything in Plus, and the AI tutor."
+    },
     "all_access": {
-      "name": "All access",
-      "tagline": "Every exam on the site, plus the AI tutor.",
-      "perPeriod": "per month",
-      "scope": "Every exam"
+      "name": "All access (earlier plan)",
+      "tagline": "Every exam on the site, plus the AI tutor. No longer sold."
     },
     "single_exam": {
-      "name": "Single exam",
-      "tagline": "Full use of the one exam you choose. Hold several if you prepare for more than one.",
-      "perPeriod": "per month, per exam",
-      "scope": "One exam of your choice"
+      "name": "Single exam (earlier plan)",
+      "tagline": "One exam of your choice, billed monthly. No longer sold."
+    },
+    "legacyPremium": {
+      "name": "Premium (earlier plan)"
     },
     "free": {
       "name": "Free",
-      "tagline": "Guides, sample questions and a free diagnostic for every exam."
+      "tagline": "Guides, sample questions, a free diagnostic for every exam and tracking of your official practice scores."
     },
-    "vatNote": "Prices in euros, VAT included. Billed monthly; renews automatically until you cancel."
+    "vatNote": "Prices in euros, VAT included.",
+    "summaryNote": "VAT included. The pass is paid once and does not renew; Plus renews until you cancel, and the yearly price is charged in full at the start of each year."
+  },
+  "prices": {
+    "exam_pass": "{price} once",
+    "plus_month": "{price} a month",
+    "plus_year": "{price} a year"
   },
   "features": {
     "guides": "Exam guides, format and scoring pages",
     "samples": "Sample questions",
     "diagnostic": "The free diagnostic for every exam",
-    "practice": "Topic practice and retries, with fresh questions every session",
+    "official_scores": "Tracking your official practice-test scores",
+    "practice": "Topic practice and retries with worked explanations, fresh questions every session",
     "timed_section": "Timed sections at the published pace",
     "simulation": "Full-length simulations, where the exam offers one",
-    "study_plan": "Study plan and readiness",
+    "study_plan": "Study plan and progress tracking",
     "ai_tutor": "AI tutor: hints, deeper explanations, after-test guides"
   },
   "crumbs": {
@@ -37,46 +55,72 @@
   "pricing": {
     "meta": {
       "title": "Plans and pricing",
-      "description": "All access for {allAccessPrice} a month, or a single exam for {singleExamPrice} a month. Guides, sample questions and a diagnostic for every exam stay free. VAT included; cancel any time."
+      "description": "A Single Exam Pass for {passPrice} once, or Plus for {plusMonthly} a month or {plusYearly} a year. Guides, sample questions, a diagnostic for every exam and official score tracking stay free. VAT included."
     },
     "eyebrow": "Plans",
-    "heading": "Practise every exam, or just the one you are sitting",
+    "heading": "Prepare for the exam you are sitting, or for all of them",
     "headingForExam": "Plans for your {exam} preparation",
-    "lead": "Guides, sample questions and a diagnostic for every exam are free. A plan opens practice, timed sections, full simulations and the study plan.",
+    "lead": "Guides, sample questions, a diagnostic for every exam and tracking of your official practice scores are free. A Single Exam Pass or Plus opens practice, timed sections, full simulations, the study plan and progress tracking, for the formats each exam has open.",
     "notEnforced": {
       "title": "Everything is free right now",
       "body": "Payments are not switched on for this site yet, so every exam and every format is open to everyone."
     },
     "testMode": "Test mode: checkout uses Stripe test cards and charges nothing.",
     "reasons": {
-      "diagnosticTaken": "You have taken the free diagnostic. Choose a plan to keep practising with fresh questions.",
-      "practice": "Practice sessions are part of a paid plan.",
-      "timed_section": "Timed sections are part of a paid plan.",
-      "simulation": "Full-length simulations are part of a paid plan.",
-      "study_plan": "The study plan and readiness view are part of a paid plan.",
-      "ai_tutor": "The AI tutor is part of All access."
+      "diagnosticTaken": "You have taken the free diagnostic. A Single Exam Pass or Plus lets you keep practising with fresh questions.",
+      "practice": "Practice sessions need a Single Exam Pass or Plus.",
+      "timed_section": "Timed sections need a Single Exam Pass or Plus.",
+      "simulation": "Full-length simulations need a Single Exam Pass or Plus.",
+      "study_plan": "The study plan and progress tracking need a Single Exam Pass or Plus.",
+      "ai_tutor": "The AI tutor will come with Premium, which is coming soon and cannot be bought yet."
     },
     "current": {
-      "allAccess": "You have All access: every exam and the AI tutor are open to you.",
-      "singleExam": "Your single-exam plans: {exams}.",
+      "allAccess": "Your plan includes every exam.",
+      "allAccessTutor": "Your plan includes every exam and the AI tutor.",
+      "singleExam": "You have access to: {exams}.",
       "manage": "Manage your plans"
     },
     "perMonth": "/ month",
-    "perMonthPerExam": "/ month per exam",
-    "featured": "Most complete",
+    "perYear": "/ year",
     "free": {
       "cta": "Take a free diagnostic",
       "ctaExams": "Choose an exam"
     },
-    "single": {
+    "pass": {
+      "once": "once",
+      "term": "Six months of access from the day your payment is confirmed. It does not renew.",
+      "noTutor": "The AI tutor is not included.",
       "examLabel": "Exam",
-      "owned": "(your plan)",
-      "coveredByAll": "All access already includes every exam.",
+      "owned": "(you have access)",
+      "unavailableOption": "(not available yet)",
+      "coveredByAll": "Your plan already includes every exam.",
+      "noneAvailable": "No exam has a practice format open yet, so no pass can be bought today. Formats open as their questions pass human review.",
       "cta": "Continue to checkout"
     },
-    "all": {
-      "cta": "Choose All access",
-      "owned": "You have this plan"
+    "plus": {
+      "badge": "Every exam",
+      "yearlySaving": "Save {percent}% compared with monthly billing.",
+      "yearlyApprox": "Approximately {perMonth}/month, billed {price} annually.",
+      "coverage": "Covers the practice formats each exam has open. Today that is {open, plural, =0 {no exam} one {# exam} other {# exams}} out of {total}; the table below shows which.",
+      "noTutor": "The AI tutor is not included.",
+      "owned": "You have a plan that includes every exam",
+      "ctaYearly": "Choose yearly: {price} a year",
+      "ctaMonthly": "Choose monthly: {price} a month"
+    },
+    "premium": {
+      "badge": "Coming soon",
+      "planned": "Planned price: {monthly} a month or {yearly} a year.",
+      "limits": "Not on sale yet. The AI tutor will have usage limits, stated before you buy.",
+      "cta": "Not on sale yet"
+    },
+    "exams": {
+      "heading": "What you can practise today",
+      "lead": "Every question is reviewed and approved by a person before it is used, so a practice format opens only once it has enough approved questions. A Single Exam Pass can be bought only for an exam with at least one practice format open.",
+      "caption": "Practice formats open, by exam",
+      "exam": "Exam",
+      "status": "Practice today",
+      "open": "{count, plural, one {# practice format open: a pass is available} other {# practice formats open: a pass is available}}",
+      "closed": "Not available yet: no practice format has enough approved questions"
     },
     "accountNote": "Buying a plan needs a free account. If you have been practising as a guest, your history comes with you.",
     "matrix": {
@@ -89,9 +133,11 @@
     "smallPrint": {
       "heading": "How billing works",
       "currency": "Prices are in euros and include VAT.",
-      "renewal": "Plans renew every month until you cancel. Cancel any time from your account; the plan stays on until the end of the month you paid for.",
+      "pass": "A Single Exam Pass is paid once. Its six months start when your payment is confirmed, and it ends on the date shown in your account. It never renews and is never charged again.",
+      "renewal": "Plus renews every month or every year until you cancel. The yearly price is charged in full at the start of each year. Cancel any time from your account; Plus stays on until the end of the period you paid for.",
       "withdrawal": "Access starts as soon as you pay. At checkout you are asked to confirm that you want it straight away and that the 14-day right of withdrawal ends when it starts.",
       "cards": "Card details are entered in fields provided by Stripe, our payment provider, and go straight to Stripe. They never reach our servers.",
+      "earlier": "A plan bought before these prices keeps everything it included, at its price, until it ends. We do not move anyone to a new plan or price without telling them first.",
       "terms": "Terms of sale",
       "privacy": "Privacy notice"
     }
@@ -102,15 +148,19 @@
     },
     "eyebrow": "Checkout",
     "title": "Choose your plan and pay",
-    "lead": "Monthly, VAT included, cancel any time from your account.",
+    "lead": "VAT included. The pass is paid once; Plus renews until you cancel.",
+    "notices": {
+      "premium": "Premium is coming soon and cannot be bought yet. These are the plans on sale now.",
+      "earlier": "That plan is no longer sold. These are the plans on sale now."
+    },
     "unavailable": {
       "title": "Payments are not available right now",
       "body": "Nothing can be bought on this site at the moment, so nothing will be charged. Everything that is open stays open.",
       "back": "Back to pricing"
     },
     "allAccess": {
-      "title": "You already have All access",
-      "body": "Every exam and the AI tutor are already open to you, so there is nothing more to buy.",
+      "title": "Your plan already includes every exam",
+      "body": "Every exam is already open to you, so there is nothing more to buy.",
       "manage": "Manage your plans"
     }
   },
@@ -124,6 +174,8 @@
       "lead": "{plan} is open to you now.",
       "leadExam": "{plan} for {exam} is open to you now.",
       "renews": "It renews on {date} and every month after that, until you cancel.",
+      "renewsYearly": "It renews on {date} and every year after that, until you cancel.",
+      "passUntil": "Your access to {exam} runs until {date}. The pass does not renew and nothing more will be charged.",
       "receipt": "Stripe, our payment provider, sends a receipt to {email}.",
       "practise": "Start practising {exam}",
       "exams": "Choose an exam",
@@ -147,7 +199,7 @@
     },
     "expired": {
       "title": "This checkout has expired",
-      "body": "The payment was not completed in time, so nothing was charged. Start a new checkout whenever you are ready.",
+      "body": "The payment was not completed, so nothing was charged. Start a new checkout whenever you are ready.",
       "retry": "Start again"
     },
     "missing": {
@@ -159,11 +211,17 @@
   },
   "form": {
     "planLegend": "Plan",
+    "offers": {
+      "pass": "One exam for six months. Paid once; no renewal.",
+      "plus": "Every exam. Renews until you cancel."
+    },
     "examLabel": "Exam",
     "examPlaceholder": "Choose an exam",
-    "examOwned": "(your plan)",
-    "examRequired": "Choose the exam this plan is for.",
-    "examHint": "A single-exam plan covers one exam. You can hold several, one for each exam you are preparing for.",
+    "examOwned": "(you have access)",
+    "examUnavailable": "(not available yet)",
+    "examRequired": "Choose the exam this pass is for.",
+    "examHint": "A pass covers one exam for six months. Only exams with at least one practice format open can be chosen.",
+    "examInitialUnavailable": "The exam you came from has no practice format open yet, so a pass for it cannot be bought today.",
     "countryLabel": "Country of residence",
     "countryPlaceholder": "Choose your country",
     "countryHint": "Used to apply the right VAT. The price you pay does not change.",
@@ -172,7 +230,7 @@
     "testMode": "Test mode: use card 4242 4242 4242 4242, any future date and any CVC. For 3-D Secure, use 4000 0027 6000 3184.",
     "secure": "Card details are entered in secure fields provided by Stripe and go straight to Stripe; they never reach our servers.",
     "loadingFields": "Loading the secure card fields…",
-    "consent": "I want my plan to start now. I understand that I lose my 14-day right of withdrawal once access starts.",
+    "consent": "I want my access to start now. I understand that I lose my 14-day right of withdrawal once access starts.",
     "consentTerms": "Terms of sale",
     "consentTermsNewTab": "(opens in a new tab)",
     "consentRequired": "Please tick this box to continue.",
@@ -187,23 +245,35 @@
       "plan": "Plan",
       "exam": "Exam",
       "examNone": "Not chosen yet",
+      "oneTime": "One payment",
       "monthly": "Monthly price",
+      "yearly": "Yearly price, charged upfront",
       "vat": "VAT",
       "vatIncluded": "Included",
       "vatByCountry": "Included, at your country’s rate",
       "dueToday": "Due today",
-      "then": "Then {price} every month from {date}, until you cancel.",
-      "cancel": "Cancel any time from your account. Your plan stays on until the end of the month you paid for."
+      "passTerm": "Six months of access from your confirmed payment: paying today, until {date}.",
+      "passNoRenewal": "Paid once. It does not renew and nothing more is charged.",
+      "thenMonthly": "Then {price} every month from {date}, until you cancel.",
+      "thenYearly": "Then {price} every year from {date}, until you cancel.",
+      "cancel": "Cancel any time from your account. Plus stays on until the end of the period you paid for."
     }
   },
   "manager": {
     "none": "You have no plan. Guides, sample questions and a diagnostic for every exam are free.",
     "seePlans": "See plans",
     "addPlan": "Add a plan",
-    "price": "{price} a month, VAT included",
+    "prices": {
+      "once": "{price} once, VAT included",
+      "month": "{price} a month, VAT included",
+      "year": "{price} a year, VAT included"
+    },
     "renews": "Renews on {date}",
     "ends": "Ends on {date}; it will not renew",
     "accessUntil": "Access until {date}",
+    "passUntil": "Access until {date}",
+    "passNoRenewal": "Paid once; it does not renew.",
+    "earlierNote": "An earlier plan: it keeps everything it included, at the price you agreed, until it ends.",
     "statuses": {
       "active": "Active",
       "trialing": "Active",
@@ -212,7 +282,12 @@
       "paused": "Paused",
       "canceled": "Ended",
       "incomplete": "Waiting for payment",
-      "incomplete_expired": "Checkout expired"
+      "incomplete_expired": "Checkout expired",
+      "paid": "Active",
+      "pending": "Waiting for payment",
+      "void": "Not paid",
+      "refunded": "Refunded",
+      "expired": "Ended"
     },
     "pastDue": "The last renewal payment did not go through. Stripe will try again over the next days; your access continues meanwhile. Update your card to pay now.",
     "cancel": "Cancel at end of period",
@@ -235,15 +310,16 @@
       "cancel": "Cancel",
       "loading": "Loading the secure card fields…",
       "secure": "Card details go straight to Stripe in secure fields; they never reach our servers.",
-      "saved": "Your new card is saved and will be used for every plan.",
-      "savedAndRetried": "Your new card is saved and will be used for every plan. We charged the new card for the renewal that had failed.",
+      "saved": "Your new card is saved and will be used for every plan that renews.",
+      "savedAndRetried": "Your new card is saved and will be used for every plan that renews. We charged the new card for the renewal that had failed.",
       "failed": "The card could not be saved. Your previous card is unchanged.",
       "network": "We could not reach the server. Your previous card is unchanged."
     },
-    "history": "Earlier plans"
+    "history": "Earlier plans and passes"
   },
   "upgrade": {
     "eyebrow": "Part of a paid plan",
+    "eyebrowSoon": "Coming soon",
     "titles": {
       "practice": "{hasExam, select, yes {Practise {exam} as often as you need} other {Practise this exam as often as you need}}",
       "timed_section": "{hasExam, select, yes {Timed sections for {exam}} other {Timed sections for this exam}}",
@@ -251,17 +327,20 @@
       "study_plan": "{hasExam, select, yes {A study plan for {exam}} other {A study plan for this exam}}",
       "ai_tutor": "The AI tutor",
       "diagnostic": "The free diagnostic",
+      "official_scores": "Your official practice scores",
       "guides": "Guides",
       "samples": "Sample questions"
     },
     "leads": {
-      "practice": "Topic practice with fresh questions every session, retries of what you missed, timed sections and simulations.",
+      "practice": "Topic practice with worked explanations and fresh questions every session, retries of what you missed, timed sections and simulations, for the formats this exam has open.",
       "timed_section": "Timed sections at the published pace, with results by topic.",
       "simulation": "Full-length simulations under the published rules, where the exam offers one.",
-      "study_plan": "A dated plan to your test date, and a readiness view built from your own results.",
+      "study_plan": "A dated plan to your test date, and progress tracking built from your own results.",
       "ai_tutor": "Hints while you practise, deeper explanations after you answer, and a guide after every test."
     },
-    "planLine": "{plan}: {price} {period}",
+    "passLine": "{plan}: {price} once, six months for this exam",
+    "plusLine": "{plan}: {monthly} a month or {yearly} a year, every exam",
+    "tutorComingSoon": "The AI tutor will come with Premium, which is coming soon and cannot be bought yet. No plan on sale today includes it.",
     "seePlans": "See plans",
     "choosePlan": "Choose {plan}",
     "freeDiagnostic": "Try the free diagnostic first"
@@ -270,15 +349,18 @@
     "billingOff": "Payments are not switched on for this site yet. Nothing was charged.",
     "accountRequired": "Create an account first, so your plan has somewhere to live. Your guest practice comes with you.",
     "consentRequired": "Please confirm that you want access straight away and that the 14-day withdrawal right then ends.",
-    "unknownPlan": "That plan does not exist.",
-    "unknownExam": "Choose the exam this plan is for.",
-    "alreadyAllAccess": "You already have All access, which includes every exam.",
-    "alreadyThisExam": "You already have a plan for this exam.",
+    "unknownPlan": "That plan is not on sale.",
+    "comingSoon": "Premium is coming soon and cannot be bought yet. Nothing was charged.",
+    "unknownExam": "Choose the exam this pass is for.",
+    "examUnavailable": "A pass for this exam cannot be bought yet: none of its practice formats has enough reviewed questions to open. Nothing was charged.",
+    "alreadyAllAccess": "You already have a plan that includes every exam.",
+    "alreadyThisExam": "You already have access to this exam.",
     "misconfigured": "Payments are not set up correctly yet. Nothing was charged.",
     "unavailable": "The payment provider is busy. Nothing was charged; please try again in a minute.",
     "failed": "The payment provider could not complete that. Nothing was charged.",
     "retry": "That request was already sent with different details. Reload the page and try again.",
     "unknownSubscription": "That subscription was not found.",
+    "unknownPass": "That pass was not found.",
     "notChangeable": "That subscription has already ended.",
     "noBillingAccount": "There is no billing account yet. Choose a plan first.",
     "cardNotSaved": "The new card was not confirmed. Your previous card is unchanged.",
@@ -288,12 +370,13 @@
     "entitlement": {
       "accountRequired": "Create a free account to take the free diagnostic. Your guest practice comes with you.",
       "upgradeRequired": {
-        "practice": "Practice sessions for this exam are part of a paid plan. The diagnostic stays free.",
-        "timed_section": "Timed sections for this exam are part of a paid plan. The diagnostic stays free.",
-        "simulation": "Full-length simulations are part of a paid plan. The diagnostic stays free.",
-        "study_plan": "The study plan and readiness view are part of a paid plan for this exam.",
-        "ai_tutor": "The AI tutor is part of the All access plan.",
+        "practice": "Practice sessions for this exam need a Single Exam Pass or Plus. The diagnostic stays free.",
+        "timed_section": "Timed sections for this exam need a Single Exam Pass or Plus. The diagnostic stays free.",
+        "simulation": "Full-length simulations need a Single Exam Pass or Plus. The diagnostic stays free.",
+        "study_plan": "The study plan and progress tracking for this exam need a Single Exam Pass or Plus.",
+        "ai_tutor": "The AI tutor will be part of Premium, which is coming soon and cannot be bought yet.",
         "diagnostic": "The diagnostic is free.",
+        "official_scores": "Tracking your official practice scores is free.",
         "guides": "Guides are free.",
         "samples": "Sample questions are free."
       }

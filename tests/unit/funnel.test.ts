@@ -10,7 +10,7 @@ import {
   subjectFor,
 } from '@/lib/analytics/funnel';
 import { recordResponse, startAttempt, submitAttempt } from '@/lib/attempts/service';
-import { createSubscription } from '@/lib/billing/service';
+import { startCheckout } from '@/lib/billing/service';
 import { storeSubscription } from '@/lib/billing/store';
 import { ON, fakeStripe, nowSeconds, stripeSubscription } from './helpers/fake-stripe';
 import { requireExamConfig } from '@/lib/exams/registry';
@@ -168,9 +168,9 @@ describe('purchases', () => {
     expect(await totals()).toEqual([expect.objectContaining({ event: 'purchase', subject: 'bocconi-undergraduate', count: 1 })]);
   });
 
-  it('counts an All access purchase under the exam it was bought from', async () => {
+  it('counts a Plus purchase under the exam it was bought from', async () => {
     const user = await createUser(db);
-    const subscription = stripeSubscription({ userId: user, plan: 'all_access' });
+    const subscription = stripeSubscription({ userId: user, plan: 'plus' });
     subscription.metadata = { ...subscription.metadata, source_exam: 'bocconi-law' };
     await storeSubscription(db, user, subscription, { syncedAt: nowSeconds() });
     expect(await totals()).toEqual([expect.objectContaining({ event: 'purchase', subject: 'bocconi-law', count: 1 })]);
@@ -185,16 +185,16 @@ describe('checkout keeps the exam', () => {
 
   it('counts a checkout start under the exam, and passes it as metadata without touching the price', async () => {
     const fake = fakeStripe();
-    await createSubscription(db, await buyer(), { plan: 'all_access', sourceExam: 'bocconi-law', consent: true, requestId: 'req-00000001' }, { settings: ON, stripe: fake.api });
+    await startCheckout(db, await buyer(), { offer: 'plus_month', sourceExam: 'bocconi-law', consent: true, requestId: 'req-00000001' }, { settings: ON, stripe: fake.api });
     const params = fake.called('subscriptions.create')[0]!.args[0] as { metadata: Record<string, string>; items: unknown };
-    expect(params.metadata).toMatchObject({ plan: 'all_access', source_exam: 'bocconi-law' });
-    expect(params.items).toEqual([{ price: 'price_all', quantity: 1 }]);
+    expect(params.metadata).toMatchObject({ plan: 'plus', source_exam: 'bocconi-law' });
+    expect(params.items).toEqual([{ price: 'price_plus_month', quantity: 1 }]);
     expect(await totals()).toEqual([expect.objectContaining({ event: 'checkout_start', subject: 'bocconi-law', count: 1 })]);
   });
 
   it('ignores an exam it does not know', async () => {
     const fake = fakeStripe();
-    await createSubscription(db, await buyer(), { plan: 'all_access', sourceExam: 'https://evil.example', consent: true, requestId: 'req-00000002' }, { settings: ON, stripe: fake.api });
+    await startCheckout(db, await buyer(), { offer: 'plus_month', sourceExam: 'https://evil.example', consent: true, requestId: 'req-00000002' }, { settings: ON, stripe: fake.api });
     const params = fake.called('subscriptions.create')[0]!.args[0] as { metadata: Record<string, string> };
     expect(params.metadata).not.toHaveProperty('source_exam');
     expect(params.metadata).not.toHaveProperty('exam_key');
