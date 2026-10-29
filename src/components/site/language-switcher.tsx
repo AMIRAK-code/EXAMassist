@@ -73,7 +73,7 @@ export function LanguageSwitcher({
         className="inline-flex min-h-11 items-center gap-2 rounded-md px-2 text-[0.9375rem] font-medium text-ink-muted hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
       >
         <Flag locale={locale} />
-        {compact ? null : <span className="uppercase tracking-wide">{locale}</span>}
+        {compact ? null : <span className="hidden uppercase tracking-wide min-[400px]:inline">{locale}</span>}
         <svg aria-hidden="true" viewBox="0 0 12 12" className={`h-3 w-3 transition-transform ${open ? 'rotate-180' : ''}`}>
           <path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.5" />
         </svg>

@@ -34,7 +34,7 @@ export async function SiteHeader({ account, locale, deferred = false }: { accoun
     const learner = state !== 'visitor';
     const primary = learner ? LEARNER_NAV : PUBLIC_NAV;
     return (
-      <div className="relative mx-auto flex h-16 max-w-6xl items-center gap-4 px-4 sm:px-6">
+      <div className="relative mx-auto flex h-16 max-w-6xl items-center gap-2 px-4 sm:gap-4 sm:px-6">
         <Link
           href="/"
           aria-label={t('site.homeLabel', { name: SITE.name })}
@@ -42,7 +42,7 @@ export async function SiteHeader({ account, locale, deferred = false }: { accoun
         >
           {/* The brand files in public/brand are the source of truth; never redraw the mark in text.
               PNG, not SVG: the SVG's lettering is live Arial text, which a device without Arial would redraw. */}
-          <img src="/brand/uniexamer-logo.png" alt="" width={125} height={30} className="block" />
+          <img src="/brand/uniexamer-logo.png" alt="" width={125} height={30} className="block h-auto w-[110px] sm:w-[125px]" />
         </Link>
 
         <nav aria-label={t('nav.mainLabel')} className="ms-4 hidden lg:block">

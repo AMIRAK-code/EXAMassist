@@ -2,7 +2,7 @@ import { Link } from '@/i18n/navigation';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/server';
-import { pageAlternates } from '@/i18n/alternates';
+import { CONTENT_LANG, pageAlternates } from '@/i18n/alternates';
 import type { Locale } from '@/i18n/locales';
 import { EXAM_HUBS, getConfigsForHub, getHub } from '@/lib/exams/registry';
 import { describePolicy } from '@/lib/assessment/navigation';
@@ -82,6 +82,7 @@ export default async function FormatGuidePage({ params }: Props) {
           articleSchema({
             siteUrl: siteUrl(),
             url: (await pageAlternates(params, `/exams/${hub.slug}/format`)).canonical,
+            image: `/og/exam-${hub.slug}.png`,
             headline: t('format.metaTitle', { name: hub.name }),
             description: hub.tagline,
             datePublished: verifiedOn,
@@ -114,7 +115,7 @@ export default async function FormatGuidePage({ params }: Props) {
 
       {/* At the smaller size a line gained on a font swap moves the page less (§18). */}
       <Callout title={t('format.inShort')} className="mt-6" textClassName="text-sm">
-        {hub.tagline}
+        <span lang={CONTENT_LANG}>{hub.tagline}</span>
       </Callout>
 
       {configs.map((config) => (
@@ -127,15 +128,15 @@ export default async function FormatGuidePage({ params }: Props) {
             no download, so it cannot gain a line when the interface font
             arrives and push the tables below it (0.016 at 768 px, §18).
           */}
-          <p className="mt-3 font-serif text-ink">{config.summary}</p>
+          <p lang={CONTENT_LANG} className="mt-3 font-serif text-ink">{config.summary}</p>
           <dl className="mt-4 space-y-2 text-sm">
             <div>
               <dt className="font-medium text-ink-muted">{t('format.versionDescribed')}</dt>
-              <dd className="text-ink-subtle">{config.versionLabel}</dd>
+              <dd lang={CONTENT_LANG} className="text-ink-subtle">{config.versionLabel}</dd>
             </div>
             <div>
               <dt className="font-medium text-ink-muted">{t('format.admissionsCycle')}</dt>
-              <dd className="text-ink-subtle">{config.admissionsCycle}</dd>
+              <dd lang={CONTENT_LANG} className="text-ink-subtle">{config.admissionsCycle}</dd>
             </div>
           </dl>
 
@@ -161,7 +162,7 @@ export default async function FormatGuidePage({ params }: Props) {
               <tbody>
                 {config.sections.map((section) => (
                   <tr key={section.key} className="border-b border-line last:border-0 align-top">
-                    <th scope="row" className="px-4 py-3 text-left font-normal">{section.name}</th>
+                    <th lang={CONTENT_LANG} scope="row" className="px-4 py-3 text-left font-normal">{section.name}</th>
                     <td className="px-4 py-3">{section.officialQuestionCount ?? t('table.notPublished')}</td>
                     <td className="px-4 py-3 tabular-nums">
                       {section.officialTimeMinutes === null
@@ -171,7 +172,7 @@ export default async function FormatGuidePage({ params }: Props) {
                     <td className="px-4 py-3">
                       {t(`format.calculator.${section.calculator}`)}
                       {section.calculatorNote ? (
-                        <span className="block text-xs text-ink-muted">{section.calculatorNote}</span>
+                        <span lang={CONTENT_LANG} className="block text-xs text-ink-muted">{section.calculatorNote}</span>
                       ) : null}
                     </td>
                   </tr>
@@ -226,7 +227,7 @@ export default async function FormatGuidePage({ params }: Props) {
           </dl>
 
           {config.scoring.notes.length > 0 ? (
-            <ul className="mt-4 list-disc space-y-1.5 ps-5 text-sm text-ink-muted">
+            <ul lang={CONTENT_LANG} className="mt-4 list-disc space-y-1.5 ps-5 text-sm text-ink-muted">
               {config.scoring.notes.map((note) => (
                 <li key={note}>{note}</li>
               ))}
@@ -234,15 +235,17 @@ export default async function FormatGuidePage({ params }: Props) {
           ) : null}
 
           <Alert tone="info" title={t('format.scaledScoreTitle')} className="mt-5">
-            {config.scoring.scaledEstimate.enabled
-              ? config.scoring.scaledEstimate.method
-              : config.scoring.scaledEstimate.reason}
+            <span lang={CONTENT_LANG}>
+              {config.scoring.scaledEstimate.enabled
+                ? config.scoring.scaledEstimate.method
+                : config.scoring.scaledEstimate.reason}
+            </span>
           </Alert>
 
           {/* Taxonomy */}
           <h3 className="mt-8 font-heading text-xl font-semibold">{t('format.testedHeading')}</h3>
           <p className="mt-2 text-ink-muted">{t('format.testedLead', { publisher: config.publisher })}</p>
-          <ul className="mt-3 space-y-3">
+          <ul lang={CONTENT_LANG} className="mt-3 space-y-3">
             {config.domains.map((domain) => (
               <li key={domain.slug}>
                 <h4 className="font-medium">
@@ -270,7 +273,7 @@ export default async function FormatGuidePage({ params }: Props) {
                 {t('format.unpublishedHeading', { publisher: config.publisher })}
               </h3>
               <p className="mt-2 text-ink-muted">{t('format.unpublishedLead')}</p>
-              <ul className="mt-3 list-disc space-y-1.5 ps-5 text-sm text-ink-muted">
+              <ul lang={CONTENT_LANG} className="mt-3 list-disc space-y-1.5 ps-5 text-sm text-ink-muted">
                 {config.unverified.map((rule) => (
                   <li key={rule}>{rule}</li>
                 ))}

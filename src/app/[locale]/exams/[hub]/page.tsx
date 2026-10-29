@@ -2,8 +2,8 @@ import { Link } from '@/i18n/navigation';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/server';
-import { languageAlternates, pageAlternates } from '@/i18n/alternates';
-import type { Locale } from '@/i18n/locales';
+import { CONTENT_LANG, languageAlternates, pageAlternates } from '@/i18n/alternates';
+import { LOCALE_INFO, localizePath, type Locale } from '@/i18n/locales';
 import { getDb } from '@/lib/db';
 import { EXAM_HUBS, getConfigsForHub, getHub } from '@/lib/exams/registry';
 import { blueprintAvailability, examCoverage } from '@/lib/attempts/availability';
@@ -30,6 +30,9 @@ import { BOCCONI_HUB_SLUG, bocconiLandingData } from '@/lib/exams/bocconi-landin
 import { BOCCONI_FACTS_CHECKED_ON } from '@/lib/exams/bocconi-facts';
 import { BocconiLanding } from '@/components/exams/bocconi-landing';
 import { ViewBeacon } from '@/components/exams/view-beacon';
+import { HubEssentials } from '@/components/exams/hub-essentials';
+import { billingSettings } from '@/lib/billing/config';
+import { guidesForHub } from '@/lib/content/guides';
 import { isSnapshotRequest } from '@/lib/seo/static-pages';
 
 export const dynamic = 'force-dynamic';
@@ -48,8 +51,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (hub.slug === BOCCONI_HUB_SLUG) return bocconiMetadata(locale as Locale);
 
   const title = t('metaTitle', { name: hub.name });
-  // The tagline is the exam's own summary from its config, as published.
-  const description = hub.tagline;
+  // A snippet-length summary; the tagline stays the format guide's "In short".
+  const description = hub.metaDescription;
   const alternates = (await pageAlternates(params, `/exams/${hub.slug}`));
   return {
     title,
@@ -121,7 +124,8 @@ export default async function ExamHubPage({ params }: Props) {
       <Container>
         <JsonLd
           data={[
-            breadcrumbSchema(siteUrl(), trail),
+            // This page is translated in full, so its trail points at the same language.
+            breadcrumbSchema(siteUrl(), trail.map((crumb) => (crumb.href ? { ...crumb, href: localizePath(crumb.href, locale as Locale) } : crumb))),
             webPageSchema({
               siteUrl: siteUrl(),
               url,
@@ -130,6 +134,7 @@ export default async function ExamHubPage({ params }: Props) {
               // The date the Bocconi facts on the page were last checked against Bocconi's own pages.
               dateModified: BOCCONI_FACTS_CHECKED_ON,
               about: 'Bocconi Online Test',
+              inLanguage: LOCALE_INFO[locale as Locale].htmlLang,
             }),
           ]}
         />
@@ -142,6 +147,10 @@ export default async function ExamHubPage({ params }: Props) {
   }
 
   const verifiedOn = configs[0]?.verifiedOn ?? '';
+  const offered = (await Promise.all(configs.map((config) => blueprintAvailability(db, config))))
+    .flat()
+    .filter((entry) => entry.available)
+    .map((entry) => entry.blueprint);
 
   return (
     <Container>
@@ -158,6 +167,7 @@ export default async function ExamHubPage({ params }: Props) {
             dateModified: verifiedOn,
             publisherName: SITE.publisher,
             authorName: SITE.publisher,
+            image: `/og/exam-${hub.slug}.png`,
           }),
         ]}
       />
@@ -172,6 +182,7 @@ export default async function ExamHubPage({ params }: Props) {
       */}
       <PageHeader eyebrow={hub.publisher} title={hub.name} />
       <OfficialNote />
+      <HubEssentials hub={hub} offered={offered} billingOn={billingSettings().enforced} guides={guidesForHub(hub.slug)} />
 
       {/* The direct answer, first: what this exam is, in one block. */}
       {(await Promise.all(configs.map(async (config) => {
@@ -201,12 +212,12 @@ export default async function ExamHubPage({ params }: Props) {
               summary reflowing on a font swap has nothing beneath it in view.
             */}
             <Card className="mb-6 md:grid md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] md:gap-x-6">
-              <p className="text-ink">{config.summary}</p>
+              <p lang={CONTENT_LANG} className="text-ink">{config.summary}</p>
               <div className="mt-4 md:mt-0">
                 <DefinitionList
                   items={[
-                    { term: t('hub.term.version'), value: config.versionLabel },
-                    { term: t('hub.term.cycle'), value: config.admissionsCycle },
+                    { term: t('hub.term.version'), value: <span lang={CONTENT_LANG}>{config.versionLabel}</span> },
+                    { term: t('hub.term.cycle'), value: <span lang={CONTENT_LANG}>{config.admissionsCycle}</span> },
                     {
                       term: t('hub.term.verifiedOn'),
                       value: (
@@ -277,7 +288,7 @@ export default async function ExamHubPage({ params }: Props) {
                 <tbody>
                   {config.sections.map((section) => (
                     <tr key={section.key} className="border-b border-line last:border-0">
-                      <th scope="row" className="px-4 py-3 text-left font-normal">
+                      <th lang={CONTENT_LANG} scope="row" className="px-4 py-3 text-left font-normal">
                         {section.name}
                       </th>
                       <td className="px-4 py-3">{section.officialQuestionCount ?? t('table.notPublished')}</td>
@@ -312,8 +323,8 @@ export default async function ExamHubPage({ params }: Props) {
               <ul className="grid gap-3 sm:grid-cols-2">
                 {offered.map((entry) => (
                   <Card as="li" key={entry.blueprint.id}>
-                    <h4 className="font-heading text-lg font-semibold">{entry.blueprint.label}</h4>
-                    <p className="mt-1 text-sm text-ink-muted">{entry.blueprint.description}</p>
+                    <h4 lang={CONTENT_LANG} className="font-heading text-lg font-semibold">{entry.blueprint.label}</h4>
+                    <p lang={CONTENT_LANG} className="mt-1 text-sm text-ink-muted">{entry.blueprint.description}</p>
                     <div className="mt-3">
                       <FidelityBadge fidelity={entry.blueprint.fidelity} />
                     </div>
@@ -360,7 +371,7 @@ export default async function ExamHubPage({ params }: Props) {
             {/* What is not simulated */}
             {!config.capabilities.fullSimulation.available ? (
               <Alert tone="info" title={t('hub.noSimulationTitle')} className="mt-6">
-                {(config.capabilities.fullSimulation as { reason: string }).reason}
+                <span lang={CONTENT_LANG}>{(config.capabilities.fullSimulation as { reason: string }).reason}</span>
               </Alert>
             ) : null}
           </section>
