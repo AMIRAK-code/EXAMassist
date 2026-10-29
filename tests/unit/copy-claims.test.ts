@@ -3,7 +3,8 @@ import { GUEST_TTL_DAYS } from '@/lib/auth/session';
 import fs from 'node:fs';
 import path from 'node:path';
 import { LOCALES } from '@/i18n/locales';
-import { INDEPENDENCE_NOTICE, SITE } from '@/lib/site';
+import { CONTACT, INDEPENDENCE_NOTICE, SITE, SOCIAL_LINKS } from '@/lib/site';
+import { SUPPORT } from '@/lib/support';
 
 /**
  * Public statements that describe behaviour, checked against the behaviour.
@@ -41,5 +42,30 @@ describe('editorial claims', () => {
     expect(INDEPENDENCE_NOTICE).not.toMatch(/editorial team/i);
     expect(INDEPENDENCE_NOTICE).toMatch(/AI-assisted/);
     expect(SITE.publisher).not.toMatch(/editorial/i);
+  });
+});
+
+describe('support promise', () => {
+  it('states one reply promise, one business day, everywhere and in every language', () => {
+    expect(SUPPORT.firstReplyBusinessDays).toBe(1);
+    expect(SUPPORT.email).toBe(CONTACT.support);
+    const read = (locale: string, ns: string) => JSON.parse(fs.readFileSync(path.resolve(`messages/${locale}/${ns}.json`), 'utf8'));
+    for (const locale of LOCALES) {
+      const common = read(locale, 'common') as { footer: { support: { note: string } } };
+      const about = read(locale, 'about') as { support: { meta: { description: string }; how: { reply: string }; promise: { body: string } } };
+      const home = read(locale, 'home') as { support: { body: string; replyTime: { value: string } } };
+      // Every statement of the promise takes the number from SUPPORT, and none states another one.
+      for (const text of [common.footer.support.note, about.support.meta.description, about.support.how.reply, about.support.promise.body, home.support.body, home.support.replyTime.value]) {
+        expect(text, locale).toContain('{days, plural,');
+        expect(text, locale).not.toMatch(/\b(24|48|72)\b/);
+      }
+    }
+    expect(CONTACT.support).toBe('support@uniexamer.com');
+    expect(CONTACT.info).toBe('info@uniexamer.com');
+  });
+
+  it('links every profile over https, and lists each once', () => {
+    expect(new Set(SOCIAL_LINKS.map((link) => link.href)).size).toBe(SOCIAL_LINKS.length);
+    for (const link of SOCIAL_LINKS) expect(link.href).toMatch(/^https:\/\//);
   });
 });

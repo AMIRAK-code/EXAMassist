@@ -49,6 +49,7 @@ export function llmsTxt(): string {
     '',
     link('Editorial standards', '/about/editorial-standards', 'how the practice questions are written, independently solved and checked before publication.'),
     link('How scoring works', '/about/how-scoring-works', 'what a practice score means, and what it cannot tell you about an official score.'),
+    link('Support', '/about/support', 'how to reach the team: support mail is answered by a person within 48 hours, not by an AI agent.'),
     '',
     '## Optional',
     '',
