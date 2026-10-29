@@ -8,11 +8,11 @@
   "editorialStandards": {
     "meta": {
       "title": "Estándares editoriales",
-      "description": "Cómo crea, revisa y publica UniExamer las preguntas de práctica: redacción original con ayuda de IA, resolución a ciegas por un revisor de IA independiente, comparación automática con la clave de respuestas y cuarentena en lugar de correcciones discretas."
+      "description": "Cómo crea, revisa y publica UniExamer las preguntas de práctica: redacción original con ayuda de IA, resolución a ciegas por un revisor de IA independiente, comparación automática con la clave de respuestas, aprobación por un revisor humano identificado por su nombre y cuarentena en lugar de correcciones discretas."
     },
     "title": "Estándares editoriales",
     "lead": "Qué tiene que cumplirse antes de mostrar una pregunta a nadie y qué nos negamos a afirmar sobre ella después.",
-    "inShort": "Todas las preguntas de práctica de {name} son material original elaborado con ayuda de IA. Antes de publicarse, un revisor de IA independiente la resuelve desde cero sin ver la respuesta propuesta, y la comparación entre esa solución y la clave la hace el mismo código de puntuación que usa la aplicación. Cuando no coinciden, la pregunta se pone en cuarentena, no se corrige discretamente. Hoy no consta ninguna revisión humana pregunta por pregunta, y lo decimos en lugar de darlo a entender. Las etiquetas de dificultad son un criterio editorial, no estadísticas calibradas, y cada afirmación que hacemos sobre el formato de un examen cita a la entidad que lo organiza y está fechada.",
+    "inShort": "Todas las preguntas de práctica de {name} son material original elaborado con ayuda de IA. Antes de publicarse, un revisor de IA independiente la resuelve desde cero sin ver la respuesta propuesta, y la comparación entre esa solución y la clave la hace el mismo código de puntuación que usa la aplicación. Cuando no coinciden, la pregunta se pone en cuarentena, no se corrige discretamente. Después solo se ofrece cuando un revisor humano identificado por su nombre, autorizado para ese examen y que no figura entre sus autores, ha aprobado esa versión exacta; la resolución de la IA es un control de calidad y nunca cuenta como esa revisión. Las etiquetas de dificultad son un criterio editorial, no estadísticas calibradas, y cada afirmación que hacemos sobre el formato de un examen cita a la entidad que lo organiza y está fechada.",
     "original": {
       "heading": "1. Todas las preguntas son originales",
       "p1": "El contrato de preguntas admite una única procedencia para todo lo que llega a un estudiante: <code>original</code>, de nuestra propiedad. No reproducimos, adaptamos ni parafraseamos bancos de preguntas oficiales, modelos de examen retirados ni preguntas de ningún otro editor, y no existe ninguna ruta en el código que permita publicar una pregunta de otra procedencia.",
@@ -23,7 +23,7 @@
       "intro": "La publicación es un estado, no una opinión. Estos son los únicos cinco estados que puede tener una pregunta, y solo uno de ellos se muestra a los estudiantes.",
       "draft": "En redacción. Todo lo que un modelo ayudó a redactar entra aquí y no puede saltarse la cola. Los borradores nunca se muestran a un estudiante.",
       "inReview": "En cola para la resolución independiente a ciegas. Es el único estado que recoge la exportación para revisión.",
-      "published": "Ha superado todas las comprobaciones automáticas y la resolución independiente. Solo las preguntas publicadas se usan en la práctica, los diagnósticos y las simulaciones.",
+      "published": "Ha superado todas las comprobaciones automáticas y la resolución independiente de la IA. Una pregunta publicada solo se usa en la práctica, los diagnósticos y las simulaciones cuando un revisor humano identificado por su nombre ha aprobado su versión exacta actual; una modificación retira esa aprobación hasta que se revise el nuevo texto.",
       "quarantined": "El revisor no estuvo de acuerdo con la clave de respuestas o no pudo confirmar que solo una respuesta sea válida. La pregunta se retira del banco con el motivo registrado y queda fuera hasta que se reescribe y supera una nueva resolución a ciegas.",
       "retired": "Retirada deliberadamente: sustituida, o vuelta incorrecta por un cambio en el examen. Los resultados que ya la incluyen no cambian, porque un intento apunta a una versión inmutable de la pregunta."
     },
@@ -77,7 +77,7 @@
       },
       "humanReview": {
         "term": "Revisión humana de cada pregunta",
-        "value": "Hoy no consta. Ninguna ficha de pregunta nombra a un revisor humano, así que no afirmamos que lo haya. Tampoco se vuelven a leer todavía las explicaciones de forma independiente para valorar su calidad didáctica."
+        "value": "Obligatoria antes de ofrecer cualquier pregunta. Un revisor identificado por su nombre, autorizado para ese examen y que no figura entre los autores de la pregunta, aprueba su versión exacta actual tras comprobar la clave de respuesta, la explicación, la redacción y la adecuación al temario. Cualquier modificación anula la aprobación hasta que se apruebe el nuevo texto. La página de revisión de la pregunta indica el nombre del revisor, sus credenciales tal como aceptó mostrarlas, la fecha y esas cuatro comprobaciones. La resolución a ciegas de la IA nunca cuenta como esta revisión."
       },
       "reports": {
         "term": "Avisos de los estudiantes",

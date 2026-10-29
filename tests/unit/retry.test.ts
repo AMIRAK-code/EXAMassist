@@ -14,7 +14,7 @@ import { skillPerformance } from '@/lib/learning/recommend';
 import { domainPerformance, recentAttemptAccuracies } from '@/lib/learning/queries';
 import { buildDashboard } from '@/lib/learning/dashboard';
 import { getResultsSummary } from '@/lib/learning/results';
-import { createTestDb, createUser, seedQuestions } from './helpers/test-db';
+import { approveForTest, createTestDb, createUser, seedQuestions } from './helpers/test-db';
 
 /**
  * Retries and new-question practice (Phase 4). A retry is its own attempt: it
@@ -50,7 +50,7 @@ async function finish(userId: string, wrong: number[], overrides: Record<string,
 const questionsOf = async (attemptId: string) =>
   ((await db.prepare('SELECT question_id AS q, question_version_id AS v FROM attempt_items WHERE attempt_id = ? ORDER BY position').all(attemptId)) as Array<{ q: string; v: string }>);
 
-/** Publishes a corrected version 2 of a question and makes it current. */
+/** Publishes a corrected version 2 of a question, approved by a (test-fixture) reviewer, and makes it current. */
 async function publishCorrection(questionId: string): Promise<string> {
   const current = (await db.prepare('SELECT * FROM question_versions WHERE question_id = ? ORDER BY version DESC LIMIT 1').get(questionId)) as Record<string, unknown>;
   const id = randomUUID();
@@ -58,6 +58,7 @@ async function publishCorrection(questionId: string): Promise<string> {
   const values = columns.map((column) => (column === 'id' ? id : column === 'version' ? Number(current.version) + 1 : current[column]));
   (await db.prepare(`INSERT INTO question_versions (${columns.join(', ')}) VALUES (${columns.map(() => '?').join(', ')})`).run(...values));
   (await db.prepare('UPDATE questions SET current_version = current_version + 1 WHERE id = ?').run(questionId));
+  (await approveForTest(db, id));
   return id;
 }
 

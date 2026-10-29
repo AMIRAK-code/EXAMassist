@@ -8,11 +8,11 @@
   "editorialStandards": {
     "meta": {
       "title": "Standardy redakcyjne",
-      "description": "Jak UniExamer tworzy, sprawdza i publikuje pytania ćwiczeniowe: oryginalne pytania przygotowane z pomocą AI, rozwiązanie bez znajomości odpowiedzi przez osobnego recenzenta AI, mechaniczne porównanie z kluczem odpowiedzi i kwarantanna zamiast cichej poprawki."
+      "description": "Jak UniExamer tworzy, sprawdza i publikuje pytania ćwiczeniowe: oryginalne pytania przygotowane z pomocą AI, rozwiązanie bez znajomości odpowiedzi przez osobnego recenzenta AI, mechaniczne porównanie z kluczem odpowiedzi, zatwierdzenie przez recenzenta-człowieka wskazanego z nazwiska i kwarantanna zamiast cichej poprawki."
     },
     "title": "Standardy redakcyjne",
     "lead": "Co musi być spełnione, zanim pytanie zostanie komukolwiek pokazane, i czego potem nie twierdzimy na jego temat.",
-    "inShort": "Każde pytanie ćwiczeniowe w serwisie {name} to oryginalny materiał przygotowany z pomocą AI. Przed publikacją osobny recenzent AI rozwiązuje je od zera, nie widząc proponowanej odpowiedzi, a jego rozwiązanie porównuje z kluczem ten sam kod punktacji, którego używa aplikacja. Jeśli wyniki się różnią, pytanie trafia do kwarantanny — nie jest po cichu poprawiane. Obecnie nie odnotowujemy weryfikacji poszczególnych pytań przez człowieka i mówimy o tym otwarcie, zamiast to sugerować. Poziomy trudności to ocena redakcyjna, a nie skalibrowane statystyki, a każda nasza informacja o formacie egzaminu powołuje się na organizatora i jest opatrzona datą.",
+    "inShort": "Każde pytanie ćwiczeniowe w serwisie {name} to oryginalny materiał przygotowany z pomocą AI. Przed publikacją osobny recenzent AI rozwiązuje je od zera, nie widząc proponowanej odpowiedzi, a jego rozwiązanie porównuje z kluczem ten sam kod punktacji, którego używa aplikacja. Jeśli wyniki się różnią, pytanie trafia do kwarantanny — nie jest po cichu poprawiane. Następnie pytanie jest udostępniane dopiero wtedy, gdy wskazany z nazwiska recenzent-człowiek, upoważniony do tego egzaminu i niebędący jego autorem, zatwierdzi dokładnie tę wersję; rozwiązanie AI to kontrola jakości i nigdy nie zastępuje tej weryfikacji. Poziomy trudności to ocena redakcyjna, a nie skalibrowane statystyki, a każda nasza informacja o formacie egzaminu powołuje się na organizatora i jest opatrzona datą.",
     "original": {
       "heading": "1. Wszystkie pytania są oryginalne",
       "p1": "Specyfikacja pytań dopuszcza dokładnie jedno pochodzenie dla wszystkiego, co trafia do uczącego się: <code>original</code>, czyli materiał należący do nas. Nie powielamy, nie adaptujemy ani nie parafrazujemy oficjalnych baz pytań, wycofanych arkuszy ani zadań żadnego innego wydawcy, a w kodzie nie istnieje ścieżka, która pozwoliłaby opublikować pytanie o innym pochodzeniu.",
@@ -23,7 +23,7 @@
       "intro": "Publikacja to stan, a nie opinia. Pytanie może mieć tylko jeden z tych pięciu stanów, a uczącym się udostępniany jest tylko jeden z nich.",
       "draft": "W trakcie pisania. Wszystko, co powstało z pomocą modelu, trafia tutaj i nie może ominąć kolejki. Wersje robocze nigdy nie są pokazywane uczącym się.",
       "inReview": "W kolejce do niezależnego rozwiązania bez znajomości odpowiedzi. To jedyny stan, z którego eksport do przeglądu pobiera pytania.",
-      "published": "Przeszło wszystkie automatyczne kontrole i niezależne rozwiązanie. Tylko opublikowane pytania pojawiają się w ćwiczeniach, testach diagnostycznych i symulacjach.",
+      "published": "Przeszło wszystkie automatyczne kontrole i niezależne rozwiązanie AI. Opublikowane pytanie pojawia się w ćwiczeniach, testach diagnostycznych i symulacjach dopiero wtedy, gdy wskazany z nazwiska recenzent-człowiek zatwierdzi jego dokładną bieżącą wersję; każda zmiana cofa to zatwierdzenie, dopóki nowy tekst nie zostanie zweryfikowany.",
       "quarantined": "Recenzent nie zgodził się z kluczem odpowiedzi albo nie mógł potwierdzić, że pasuje tylko jedna odpowiedź. Pytanie zostaje wycofane z bazy z odnotowaniem powodu i pozostaje poza nią, dopóki nie zostanie przepisane i nie przejdzie nowego rozwiązania bez znajomości odpowiedzi.",
       "retired": "Wycofane celowo — zastąpione nowszym albo nieaktualne po zmianie egzaminu. Wyniki, które już się do niego odwołują, pozostają nienaruszone, bo każde podejście wskazuje na niezmienną wersję pytania."
     },
@@ -77,7 +77,7 @@
       },
       "humanReview": {
         "term": "Weryfikacja każdego pytania przez człowieka",
-        "value": "Obecnie nieodnotowywana. Żaden rekord pytania nie wskazuje recenzenta-człowieka, więc tego nie twierdzimy. Wyjaśnienia nie są też jeszcze niezależnie czytane ponownie pod kątem wartości dydaktycznej."
+        "value": "Wymagana, zanim jakiekolwiek pytanie zostanie udostępnione. Recenzent wskazany z nazwiska, upoważniony do tego egzaminu i niebędący autorem pytania, zatwierdza jego dokładną bieżącą wersję po sprawdzeniu klucza odpowiedzi, wyjaśnienia, sformułowań i zgodności z programem. Każda zmiana unieważnia zatwierdzenie, dopóki nowy tekst nie zostanie zatwierdzony. Strona przeglądu pytania podaje nazwisko recenzenta, jego kwalifikacje w brzmieniu, na które się zgodził, datę i te cztery sprawdzenia. Rozwiązanie AI w ciemno nigdy nie jest liczone jako ta weryfikacja."
       },
       "reports": {
         "term": "Zgłoszenia uczących się",

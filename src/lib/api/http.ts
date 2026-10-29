@@ -7,6 +7,8 @@ import { EntitlementError } from '@/lib/billing/entitlements';
 import { ForbiddenError, UnauthorizedError } from '@/lib/auth/session';
 import { EmailDeliveryError } from '@/lib/email/send';
 import { TutorError } from '@/lib/tutor/service';
+import { ReviewError } from '@/lib/content/human-review';
+import { OfficialScoreError } from '@/lib/learning/official-scores';
 
 /**
  * Shared HTTP helpers for route handlers: one error shape, one CSRF check,
@@ -38,6 +40,13 @@ export function toErrorResponse(error: unknown): NextResponse {
     return fail(error.code, error.message, error.status, error.detail);
   }
   if (error instanceof TutorError) {
+    return fail(error.code, error.message, error.status, error.detail);
+  }
+  if (error instanceof ReviewError) {
+    return fail(error.code, error.message, error.status);
+  }
+  if (error instanceof OfficialScoreError) {
+    // The detail names the field and the published bounds, so the form can say which score is wrong.
     return fail(error.code, error.message, error.status, error.detail);
   }
   if (error instanceof BillingError) {

@@ -4,6 +4,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { wrapSqlite, type Db } from '@/lib/db';
 import type { AnswerKey, ExamConfig } from '@/lib/assessment/types';
+import type { QuestionVersionRow, StimulusRow } from '@/lib/db/rows';
+import { contentFromRows, reviewFingerprint } from '@/lib/content/human-review';
 
 /**
  * Test harness: a real SQLite database with the real migrations applied, and
@@ -47,6 +49,56 @@ export interface SeedOptions {
   /** Override the answer key for every question (defaults to option "a"). */
   correctOptionId?: string;
   state?: 'published' | 'draft';
+  /**
+   * Record a synthetic test-fixture approval of every question, so engine
+   * tests run against a pool new sessions may use. Defaults to true; tests of
+   * the approval gate itself pass false.
+   */
+  humanApproved?: boolean;
+}
+
+/** Writes the content fingerprint the seeder would write for this version row. */
+export async function fingerprintVersion(db: Db, versionId: string): Promise<string> {
+  const row = (await db.prepare('SELECT * FROM question_versions WHERE id = ?').get(versionId)) as QuestionVersionRow;
+  const stimulus = row.stimulus_id
+    ? ((await db.prepare('SELECT * FROM stimuli WHERE id = ? AND version = ?').get(row.stimulus_id, row.stimulus_version)) as StimulusRow)
+    : null;
+  const fingerprint = reviewFingerprint(contentFromRows(row, stimulus));
+  (await db.prepare('UPDATE question_versions SET review_fingerprint = ? WHERE id = ?').run(fingerprint, versionId));
+  return fingerprint;
+}
+
+/**
+ * A synthetic approval in a disposable test database: a decision row written
+ * straight into the ledger, the way recordReview would, without a reviewer
+ * account. It stands for "a reviewer approved this", nothing more, and exists
+ * only in tests.
+ */
+export async function approveForTest(
+  db: Db,
+  versionId: string,
+  options: { outcome?: 'approved' | 'changes_requested'; at?: string } = {},
+): Promise<void> {
+  const row = (await db
+    .prepare('SELECT question_id, version, exam_key, review_fingerprint FROM question_versions WHERE id = ?')
+    .get(versionId)) as { question_id: string; version: number; exam_key: string; review_fingerprint: string | null };
+  const at = options.at ?? new Date().toISOString();
+  (await db.prepare(
+    `INSERT INTO question_reviews (id, question_id, question_version_id, question_version, review_fingerprint, exam_key,
+       reviewer_user_id, reviewer_name, reviewer_credentials, outcome, checked_json, notes, reviewed_on, created_at)
+     VALUES (?, ?, ?, ?, ?, ?, NULL, 'Test fixture reviewer', 'Synthetic approval in a unit-test database', ?, ?, NULL, ?, ?)`,
+  ).run(
+    randomUUID(),
+    row.question_id,
+    versionId,
+    row.version,
+    row.review_fingerprint ?? 'missing',
+    row.exam_key,
+    options.outcome ?? 'approved',
+    JSON.stringify(['answer-key', 'explanation', 'wording', 'syllabus-alignment']),
+    at.slice(0, 10),
+    at,
+  ));
 }
 
 /**
@@ -109,6 +161,8 @@ export async function seedQuestions(db: Db, config: ExamConfig, options: SeedOpt
         `hash-${questionId}`,
         now,
       ));
+      (await fingerprintVersion(db, versionId));
+      if (options.humanApproved ?? true) (await approveForTest(db, versionId));
       ids.push(questionId);
     }
   }

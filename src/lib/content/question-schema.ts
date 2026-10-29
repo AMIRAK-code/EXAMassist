@@ -35,6 +35,12 @@ export const provenanceSchema = z.object({
   /** Set when a model drafted the item; such items always enter as 'draft'. */
   aiAssisted: z.boolean(),
   notes: z.string().default(''),
+  /**
+   * People who edited the item after drafting. Like the author, none of them
+   * may approve it (src/lib/content/human-review.ts). Optional, so files
+   * without it are unchanged.
+   */
+  editedBy: z.array(z.string().min(1)).optional(),
 });
 
 export const reviewSchema = z.object({

@@ -3,7 +3,7 @@ import type { Blueprint, ExamConfig } from '@/lib/assessment/types';
 import { getPool } from '@/lib/content/repository';
 import { availabilityFromPool } from '@/lib/attempts/availability';
 import { chooseFreeTest } from '@/lib/attempts/service';
-import { expertReviewedCount } from '@/lib/content/expert-reviews';
+import { humanApprovedCount } from '@/lib/content/human-review';
 import { initialSample } from '@/lib/home/home-data';
 import type { SampleView } from '@/lib/content/sample-view';
 import { getConfigsForHub, getHub, type ExamHub } from './registry';
@@ -111,14 +111,8 @@ export async function bocconiLandingData(db: Db): Promise<BocconiLandingData> {
     }),
   );
 
-  // Current published versions, so only a review of the version learners see counts.
+  // Only an approval of the content learners are served now counts (human-review.ts).
   const examKeys = configs.map((c) => c.examKey);
-  const versions = (await db
-    .prepare(
-      `SELECT id, current_version AS version FROM questions
-       WHERE state = 'published' AND exam_key IN (${examKeys.map(() => '?').join(', ')})`,
-    )
-    .all(...examKeys)) as Array<{ id: string; version: number }>;
 
   return {
     hub,
@@ -126,6 +120,6 @@ export async function bocconiLandingData(db: Db): Promise<BocconiLandingData> {
     totalQuestions: tests.reduce((sum, t) => sum + t.questions, 0),
     openFormats: tests.reduce((sum, t) => sum + t.formats.filter((f) => f.available).length, 0),
     sample: await initialSample(db, BOCCONI_HUB_SLUG),
-    expertReviewed: expertReviewedCount(examKeys, new Map(versions.map((v) => [v.id, Number(v.version)]))),
+    expertReviewed: await humanApprovedCount(db, examKeys),
   };
 }

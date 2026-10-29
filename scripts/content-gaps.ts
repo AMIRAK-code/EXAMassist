@@ -12,6 +12,11 @@ import { resolveParts } from '../src/lib/attempts/service';
  *
  * --include-review counts items still in review as if they were published,
  * to plan the next authoring wave while a review is in flight.
+ *
+ * This counts every published file as if it were human-approved, which only
+ * approved items are (src/lib/content/human-review.ts). For the plan against
+ * the approved pool, with non-overlapping sets, passages and variants
+ * accounted for, use `npm run content:coverage`.
  */
 
 interface Need {

@@ -331,7 +331,8 @@
     "viewsLabel": "Widoki planu nauki",
     "views": {
       "plan": "Plan",
-      "progress": "Postępy i gotowość"
+      "progress": "Postępy i gotowość",
+      "scores": "Testy oficjalne"
     },
     "examsLabel": "Egzaminy w Twoim planie nauki",
     "notices": {
@@ -347,7 +348,7 @@
       "sessionClosed": "Ta sesja jest już ukończona, pominięta albo zapisana jako opuszczona.",
       "notEnoughNew": "Na tę sesję zostało za mało nowych dla Ciebie pytań. Dostosuj plan, aby zamienić ją na utrwalanie, albo ją pomiń.",
       "insufficientContent": "Na tę sesję nie ma teraz wystarczająco wielu sprawdzonych pytań.",
-      "nothingToReview": "Nie ma teraz pytań z błędami do ponownego zadania: od tamtej pory padła na nie poprawna odpowiedź albo są poprawiane.",
+      "nothingToReview": "Nie ma teraz pytań z błędami do ponownego zadania: od tamtej pory padła na nie poprawna odpowiedź albo są weryfikowane.",
       "rateLimited": "W krótkim czasie rozpoczęto zbyt wiele sesji. Spróbuj ponownie za kilka minut.",
       "dateChosen": "Data egzaminu zapisana. To teraz jedyna data dla tego egzaminu."
     }
@@ -531,5 +532,100 @@
     "dateHint": "Jedna data dla tego egzaminu. Korzysta z niej też Twój plan nauki, który zaproponuje dostosowanie, gdy data się zmieni.",
     "save": "Zapisz cel",
     "saved": "Zapisano."
+  },
+  "officialScores": {
+    "meta": {
+      "title": "Wyniki oficjalnych testów próbnych",
+      "description": "Zapisuj wyniki uzyskane w oficjalnych testach próbnych i śledź je w czasie — osobno od tego, co mierzy UniExamer."
+    },
+    "title": "Wyniki oficjalnych testów próbnych",
+    "label": "Wynik oficjalnego testu próbnego wpisany przez użytkownika — niezweryfikowany niezależnie.",
+    "lead": "Zapisuj wyniki uzyskane w testach próbnych opublikowanych przez samego organizatora egzaminu, dokładnie tak, jak podało je jego narzędzie. Trzymamy je osobno od tego, co mierzy UniExamer: nie sprawdzamy ich u organizatora, nie przeliczamy na inną skalę i nie przewidujemy oficjalnego wyniku na podstawie Twoich ćwiczeń tutaj.",
+    "chooseLead": "Wybierz egzamin, dla którego chcesz zapisywać wyniki oficjalnych testów próbnych.",
+    "unsupportedTitle": "Dla egzaminu {exam} nie można jeszcze zapisywać wyników oficjalnych testów próbnych",
+    "unsupportedBody": "Zapisujemy wynik tylko na skali sprawdzonej na stronach samego organizatora, dla testu próbnego, który on publikuje. Dla tego egzaminu nie udało się jeszcze żadnej sprawdzić.",
+    "latest": {
+      "title": "Ostatni wynik oficjalnego testu próbnego",
+      "none": "Nie zapisano jeszcze żadnego wyniku oficjalnego testu próbnego dla egzaminu {exam}.",
+      "which": "{test} · {provider} · {date}",
+      "target": "Twój cel",
+      "noTarget": "Nie ustawiono celu",
+      "atTarget": "dokładnie Twój cel",
+      "aboveTarget": "{points} powyżej Twojego celu",
+      "belowTarget": "{points} poniżej Twojego celu",
+      "notComparable": "Ten wynik nie jest na tej samej skali i w tej samej wersji egzaminu co Twój cel, więc nie są one porównywane.",
+      "repeat": "To było Twoje {n}. podejście do tego testu próbnego. Wcześniejsza znajomość pytań może podnieść kolejny wynik, więc każdą zmianę oceniaj ostrożnie."
+    },
+    "measured": {
+      "title": "Zmierzone w UniExamer",
+      "body": "Twoja trafność, tempo i pokrycie tematów z ćwiczeń tutaj są na stronie Postępy. Opisują Twoje przygotowanie; nie są szacunkiem oficjalnego wyniku i nigdy nie są mieszane z wynikami na tej stronie.",
+      "link": "Postępy i gotowość",
+      "setTarget": "Ustaw cel na stronie Postępy, aby zobaczyć, jak każdy wynik wypada na jego tle."
+    },
+    "history": {
+      "title": "Historia",
+      "separateScales": "Wyniki z różnych wersji egzaminu lub skal są wymienione osobno i nigdy nie są porównywane.",
+      "caption": "Twoje zapisane wyniki: {version}, od najnowszego.",
+      "date": "Data",
+      "test": "Test próbny",
+      "sections": "Wyniki części",
+      "change": "Zmiana",
+      "actions": "Działania",
+      "repeatBadge": "Podejście {n}. do tego testu",
+      "firstOnScale": "Pierwszy wynik na tej skali",
+      "changeVs": "{change} od {date}",
+      "nothingToCompare": "Brak wspólnego wyniku z poprzednim podejściem",
+      "edit": "Edytuj",
+      "editLabel": "Edytuj wynik testu {test}",
+      "delete": "Usuń",
+      "deleteLabel": "Usuń wynik testu {test}",
+      "confirmDelete": "Usunąć ten wynik? Tej operacji nie można cofnąć.",
+      "confirm": "Usuń",
+      "cancel": "Anuluj",
+      "deleteFailed": "Nie udało się usunąć. Spróbuj ponownie."
+    },
+    "form": {
+      "addTitle": "Zapisz wynik",
+      "editTitle": "Edytuj ten wynik",
+      "version": "Wersja egzaminu i skala",
+      "versionHint": "Wyniki są porównywane tylko z innymi z tej samej wersji i skali.",
+      "provider": "Wydawca",
+      "testName": "Test próbny",
+      "testNameHint": "Tak, jak nazywa go organizator, np. „Practice Test 4”. Dzięki temu rozpoznajemy powtórki tego samego testu.",
+      "takenOn": "Data podejścia",
+      "overall": "Wynik łączny",
+      "overallHint": "Od {min} do {max}, co {step}. Zostaw puste, jeśli go nie otrzymano.",
+      "noOverall": "Ta wersja egzaminu nie podaje jednego wyniku łącznego. Wpisz otrzymane wyniki części.",
+      "sections": "Wyniki części",
+      "sectionsHint": "Wpisz tylko otrzymane wyniki, resztę zostaw pustą. Nic nie jest uzupełniane za Ciebie.",
+      "rangeHint": "od {min} do {max}, co {step}",
+      "optional": "(opcjonalnie)",
+      "notes": "Notatki",
+      "notesHint": "Widzisz je tylko Ty: np. warunki, w jakich pisano test.",
+      "save": "Zapisz wynik",
+      "saveChanges": "Zapisz zmiany",
+      "cancel": "Anuluj",
+      "saved": "Zapisano."
+    },
+    "errors": {
+      "title": "Nie udało się zapisać wyniku",
+      "offScale": "{field}: wartość musi mieścić się między {min} a {max}, co {step}.",
+      "totalMismatch": "Według opublikowanej przez organizatora reguły wpisane wyniki części dają wynik łączny {expected}. Sprawdź wynik łączny i wyniki części.",
+      "noScore": "Wpisz co najmniej jeden wynik.",
+      "futureDate": "Data nie może być w przyszłości.",
+      "invalidDate": "Wpisz datę podejścia do testu.",
+      "notFound": "Ten wynik już nie istnieje.",
+      "generic": "Nie udało się zapisać. Sprawdź pola i połączenie, a potem spróbuj ponownie."
+    },
+    "facts": {
+      "title": "O tych skalach",
+      "sources": "Sprawdzono na stronach samego organizatora dnia {date}:"
+    },
+    "summary": {
+      "title": "Wyniki oficjalnych testów próbnych",
+      "latest": "Ostatni: {score} w teście {test}, {date}.",
+      "separate": "Wpisane przez Ciebie z testów próbnych samego organizatora; pokazywane obok tego, co zmierzył UniExamer, nigdy razem z tym.",
+      "link": "Zobacz i zapisuj wyniki oficjalnych testów próbnych"
+    }
   }
 }

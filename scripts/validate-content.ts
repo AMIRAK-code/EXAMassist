@@ -9,9 +9,14 @@ import { eligiblePool, isMeasurementFormat } from '../src/lib/attempts/eligibili
  * support. Part of `npm run verify`.
  *
  *   npx tsx scripts/validate-content.ts
+ *
+ * This check reads files only. It can say an item is structurally valid and
+ * passed the automated gates (state "published"), but not whether a human has
+ * approved it: approvals live in the database's review ledger, and only an
+ * approved item is served (src/lib/content/human-review.ts). The availability
+ * below is therefore what the bank COULD run once approved. What each format
+ * still needs, against the approved pool, is `npm run content:coverage`.
  */
-
-const TARGET_PER_EXAM = 20;
 
 function main(): void {
   // Optional argv filter, so an author can check only their own files while
@@ -34,20 +39,20 @@ function main(): void {
   }
 
   // --- Coverage ------------------------------------------------------------
-  console.log('Coverage by exam');
-  console.log('exam                      published  target  domains   gaps');
+  console.log('Coverage by exam ("published" = structurally valid and passed the automated gates; not yet served without human approval)');
+  console.log('exam                      published  in review  domains   gaps');
   const coverage = summariseCoverage(questions);
   for (const row of coverage) {
     const gap = row.missingDomains.length > 0 ? row.missingDomains.join(', ') : '-';
     console.log(
       `  ${(row.draftConfig ? `${row.examKey} (draft)` : row.examKey).padEnd(24)}${String(row.published).padStart(6)}` +
-        `${String(TARGET_PER_EXAM).padStart(8)}` +
+        `${String(row.inReview).padStart(11)}` +
         `${String(`${row.domainsCovered}/${row.domainsTotal}`).padStart(9)}   ${gap.slice(0, 80)}`,
     );
   }
 
   // --- What the bank can actually run --------------------------------------
-  console.log('\nBlueprint availability (can the reviewed pool fill it without repeats?)');
+  console.log('\nBlueprint availability IF every published item were human-approved (can that pool fill it without repeats?)');
   const published = questions.filter((q) => q.question.state === 'published');
 
   for (const config of EXAM_CONFIGS) {
@@ -77,15 +82,12 @@ function main(): void {
   }
 
   // --- Summary -------------------------------------------------------------
-  const belowTarget = coverage.filter((c) => c.published < TARGET_PER_EXAM);
   console.log('\n---');
   console.log(`${errors.length} error(s), ${warnings.length} warning(s).`);
-  if (belowTarget.length > 0) {
-    console.log(
-      `${belowTarget.length} exam(s) below the ${TARGET_PER_EXAM}-question target: ` +
-        belowTarget.map((c) => `${c.examKey} (${c.published})`).join(', '),
-    );
-  }
+  console.log(
+    'Human approval is recorded in the database and is not visible to this file check. Nothing above is served until ' +
+      'approved; `npm run content:coverage` reports what each format needs against the approved pool.',
+  );
 
   if (errors.length > 0) process.exit(1);
 }

@@ -331,7 +331,8 @@
     "viewsLabel": "Çalışma planı görünümleri",
     "views": {
       "plan": "Plan",
-      "progress": "İlerleme ve hazırlık"
+      "progress": "İlerleme ve hazırlık",
+      "scores": "Resmî denemeler"
     },
     "examsLabel": "Çalışma planınızdaki sınavlar",
     "notices": {
@@ -347,7 +348,7 @@
       "sessionClosed": "Bu oturum zaten tamamlandı, atlandı ya da kaçırılmış olarak kaydedildi.",
       "notEnoughNew": "Bu oturum için görmediğiniz çok az soru kaldı. Oturumu pekiştirmeye dönüştürmek için planınızı düzenleyin ya da oturumu atlayın.",
       "insufficientContent": "Bu oturum için şu anda yeterli incelenmiş soru yok.",
-      "nothingToReview": "Şu anda yeniden sorulacak kaçırılmış soru yok: bunları o zamandan beri doğru yanıtladınız ya da düzeltiliyorlar.",
+      "nothingToReview": "Şu anda yeniden sorulacak kaçırılmış soru yok: bunları o zamandan beri doğru yanıtladınız ya da inceleniyorlar.",
       "rateLimited": "Kısa sürede çok fazla oturum başlatıldı. Birkaç dakika sonra yeniden deneyin.",
       "dateChosen": "Sınav tarihi kaydedildi. Bu sınav için artık geçerli olan tek tarih bu."
     }
@@ -531,5 +532,100 @@
     "dateHint": "Bu sınav için tek tarihiniz. Çalışma planınız da bunu kullanır ve tarih değiştiğinde planı düzenlemeyi önerir.",
     "save": "Hedefi kaydet",
     "saved": "Kaydedildi."
+  },
+  "officialScores": {
+    "meta": {
+      "title": "Resmî deneme puanları",
+      "description": "Resmî deneme sınavlarında aldığınız puanları kaydedin ve zaman içinde izleyin; UniExamer’ın ölçtüklerinden ayrı tutulur."
+    },
+    "title": "Resmî deneme puanları",
+    "label": "Kullanıcının girdiği resmî deneme sonucu — bağımsız olarak doğrulanmamıştır.",
+    "lead": "Sınavı düzenleyen kurumun kendi yayımladığı deneme sınavlarında aldığınız puanları, kurumun kendi aracının bildirdiği şekliyle kaydedin. Bunları UniExamer’ın ölçtüklerinden ayrı tutarız: kurumla doğrulamayız, başka bir ölçeğe çevirmeyiz ve buradaki çalışmanızdan resmî bir puan tahmin etmeyiz.",
+    "chooseLead": "Resmî deneme sonuçlarını kaydetmek için bir sınav seçin.",
+    "unsupportedTitle": "{exam} için henüz resmî deneme sonucu kaydedilemiyor",
+    "unsupportedBody": "Bir sonucu yalnızca kurumun kendi sayfalarında doğruladığımız bir ölçekte ve kurumun yayımladığı bir deneme sınavı için kaydediyoruz. Bu sınav için henüz böyle bir doğrulama yapamadık.",
+    "latest": {
+      "title": "En son resmî deneme sonucu",
+      "none": "{exam} için henüz bir resmî deneme sonucu kaydetmediniz.",
+      "which": "{test} · {provider} · {date}",
+      "target": "Hedefiniz",
+      "noTarget": "Hedef belirlenmedi",
+      "atTarget": "tam olarak hedefiniz",
+      "aboveTarget": "hedefinizin {points} puan üstünde",
+      "belowTarget": "hedefinizin {points} puan altında",
+      "notComparable": "Bu sonuç hedefinizle aynı ölçekte ve aynı sınav sürümünde değil, bu yüzden ikisi karşılaştırılmıyor.",
+      "repeat": "Bu, bu deneme sınavına {n}. girişinizdi. Soruları daha önce görmüş olmak sonraki puanı yükseltebilir; bu yüzden değişimleri dikkatle yorumlayın."
+    },
+    "measured": {
+      "title": "UniExamer’da ölçülenler",
+      "body": "Buradaki çalışmanızdan gelen doğruluk, hız ve konu kapsamı İlerleme sayfasındadır. Bunlar hazırlığınızı anlatır; resmî bir puan tahmini değildir ve bu sayfadaki sonuçlarla asla karıştırılmaz.",
+      "link": "İlerleme ve hazırlık",
+      "setTarget": "Her sonucun hedefinizle nasıl karşılaştırıldığını görmek için İlerleme sayfasında bir hedef belirleyin."
+    },
+    "history": {
+      "title": "Geçmiş",
+      "separateScales": "Farklı sınav sürümlerindeki veya ölçeklerdeki sonuçlar ayrı listelenir ve asla karşılaştırılmaz.",
+      "caption": "{version} için kayıtlı sonuçlarınız, en yeniden eskiye.",
+      "date": "Tarih",
+      "test": "Deneme sınavı",
+      "sections": "Bölüm puanları",
+      "change": "Değişim",
+      "actions": "İşlemler",
+      "repeatBadge": "Bu teste {n}. giriş",
+      "firstOnScale": "Bu ölçekteki ilk sonuç",
+      "changeVs": "{date} tarihinden bu yana {change}",
+      "nothingToCompare": "Önceki sonuçla ortak puan yok",
+      "edit": "Düzenle",
+      "editLabel": "{test} sonucunu düzenle",
+      "delete": "Sil",
+      "deleteLabel": "{test} sonucunu sil",
+      "confirmDelete": "Bu sonuç silinsin mi? Bu işlem geri alınamaz.",
+      "confirm": "Sil",
+      "cancel": "Vazgeç",
+      "deleteFailed": "Silinemedi. Tekrar deneyin."
+    },
+    "form": {
+      "addTitle": "Sonuç kaydet",
+      "editTitle": "Bu sonucu düzenle",
+      "version": "Sınav sürümü ve ölçek",
+      "versionHint": "Sonuçlar yalnızca aynı sürüm ve ölçekteki diğer sonuçlarla karşılaştırılır.",
+      "provider": "Yayımlayan",
+      "testName": "Deneme sınavı",
+      "testNameHint": "Kurumun verdiği adla, örneğin “Practice Test 4”. Aynı sınavın tekrarları bu adla fark edilir.",
+      "takenOn": "Giriş tarihi",
+      "overall": "Toplam puan",
+      "overallHint": "{min} ile {max} arasında, {step} adımlarla. Almadıysanız boş bırakın.",
+      "noOverall": "Bu sınav sürümü tek bir toplam puan bildirmez. Aldığınız bölüm puanlarını girin.",
+      "sections": "Bölüm puanları",
+      "sectionsHint": "Yalnızca aldığınız puanları girin, gerisini boş bırakın. Sizin yerinize hiçbir şey doldurulmaz.",
+      "rangeHint": "{min} – {max}, {step} adımlarla",
+      "optional": "(isteğe bağlı)",
+      "notes": "Notlar",
+      "notesHint": "Bunları yalnızca siz görürsünüz; örneğin sınava hangi koşullarda girdiğiniz.",
+      "save": "Sonucu kaydet",
+      "saveChanges": "Değişiklikleri kaydet",
+      "cancel": "Vazgeç",
+      "saved": "Kaydedildi."
+    },
+    "errors": {
+      "title": "Sonuç kaydedilemedi",
+      "offScale": "{field}, {min} ile {max} arasında ve {step} adımlarla olmalıdır.",
+      "totalMismatch": "Kurumun yayımladığı kurala göre girdiğiniz bölüm puanları {expected} toplam puanını verir. Toplam puanı ve bölümleri kontrol edin.",
+      "noScore": "En az bir puan girin.",
+      "futureDate": "Tarih gelecekte olamaz.",
+      "invalidDate": "Sınava girdiğiniz tarihi girin.",
+      "notFound": "Bu sonuç artık mevcut değil.",
+      "generic": "Kaydedilemedi. Alanları ve bağlantınızı kontrol edip tekrar deneyin."
+    },
+    "facts": {
+      "title": "Bu ölçekler hakkında",
+      "sources": "{date} tarihinde kurumun kendi sayfalarında kontrol edildi:"
+    },
+    "summary": {
+      "title": "Resmî deneme sonuçları",
+      "latest": "En son: {test} sınavında {score}, {date}.",
+      "separate": "Kurumun kendi deneme sınavlarından sizin girdiğiniz sonuçlar; UniExamer’ın ölçtüklerinin yanında gösterilir, asla onlara katılmaz.",
+      "link": "Resmî deneme puanlarını görüntüleyin ve kaydedin"
+    }
   }
 }

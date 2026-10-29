@@ -21,7 +21,7 @@ import { QuestionTutor } from '@/components/tutor/tutor-panel';
 import { tutorEnabled } from '@/lib/tutor/config';
 import { loadEntitlements } from '@/lib/billing/entitlements';
 import { pricingPath } from '@/lib/billing/config';
-import { expertReviewFor } from '@/lib/content/expert-reviews';
+import { standingApprovalFor } from '@/lib/content/human-review';
 
 type ResultsT = Awaited<ReturnType<typeof getTranslations<'results'>>>;
 type Option = { id: string; label: string };
@@ -169,7 +169,7 @@ export default async function QuestionReviewPage({
           <p className="mt-3 text-xs text-ink-subtle">
             {t(question.difficultyBasis === 'empirical' ? 'review.difficultyEmpirical' : 'review.difficultyEditorial')}
           </p>
-          <ExpertReviewLine t={t} locale={locale} questionId={item.questionId} version={review.questionVersion} />
+          <ExpertReviewLine t={t} locale={locale} questionVersionId={item.questionVersionId} servedLocale={question.locale} />
         </section>
 
         {/* Optional AI tutor: a second, labelled explanation built on the reviewed one above. */}
@@ -269,22 +269,31 @@ export default async function QuestionReviewPage({
 }
 
 /**
- * Who checked this question. A human expert review is named only when one is
- * recorded for this exact version (content/expert-reviews.json); otherwise the
- * line says what did happen, so nothing implies a review that was not done.
+ * Who checked this question. A human review is named only when an approval of
+ * this exact version, with the content the learner saw, stands in the review
+ * ledger (src/lib/content/human-review.ts); otherwise the line says what did
+ * happen, so nothing implies a review that was not done. The reviewer read the
+ * English original, so a translated question says so.
  */
-function ExpertReviewLine({
+async function ExpertReviewLine({
   t,
   locale,
-  questionId,
-  version,
+  questionVersionId,
+  servedLocale,
 }: {
   t: ResultsT;
   locale: string;
-  questionId: string;
-  version: number;
+  questionVersionId: string;
+  servedLocale: string;
 }) {
-  const expert = expertReviewFor(questionId, version);
+  const approval = await standingApprovalFor(getDb(), questionVersionId);
+  const expert = approval
+    ? {
+        reviewer: { name: approval.reviewerName, credentials: approval.reviewerCredentials },
+        reviewedOn: approval.reviewedOn,
+        checked: approval.checked,
+      }
+    : null;
   if (!expert) {
     return (
       <p className="mt-1 text-xs text-ink-subtle">
@@ -317,6 +326,7 @@ function ExpertReviewLine({
         checked,
         time: (chunks) => <time dateTime={expert.reviewedOn}>{chunks}</time>,
       })}
+      {servedLocale !== 'en' ? ` ${t('review.expertReviewOriginal')}` : null}
     </p>
   );
 }
