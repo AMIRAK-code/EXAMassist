@@ -81,10 +81,15 @@ reset can fail there (error 1102) until the account is on Workers Paid.
 
 Rendering any page costs more than 10 ms too (a median of 28 ms, and 381 ms
 for the home page, measured in Workers Observability on 2026-10-27). So
-`cf:deploy` uploads twice: after the first upload it fetches every public page,
-in every language, from the live site and saves it into `.open-next/assets`,
-and the second upload serves those files without running the Worker at all
-(`scripts/snapshot-pages.ts`, `src/lib/seo/static-pages.ts`). `/pricing` and
+`cf:deploy` uploads twice. The first upload is a new version that receives no
+traffic (`wrangler versions upload`); the script fetches every public page, in
+every language, from that version's preview URL
+(`<version>-examer.<subdomain>.workers.dev`, enabled by `preview_urls` in
+`wrangler.jsonc`) and saves it into `.open-next/assets`. Only the second
+upload is deployed, so visitors move straight to a version that serves those
+files without running the Worker at all (`scripts/snapshot-pages.ts`,
+`src/lib/seo/static-pages.ts`). Until 29 October 2026 the first upload was
+deployed at once, and visitors got error 1102 for as long as the snapshot ran. `/pricing` and
 everything behind sign-in stay dynamic. Saved pages never pass through
 `src/proxy.ts`, so a small inline script makes the same language choice on
 them (cookie, then browser languages). The saved pages change only when you
@@ -93,17 +98,18 @@ deploy, so deploy again after publishing questions straight to the database.
 Fetching about 150 pages in a row keeps the Worker over the Free plan's CPU
 limit for minutes at a time (pages answer 503), so the snapshot pauses between
 pages and retries each one for about nine minutes. A full snapshot takes 5 to
-15 minutes. If it still gives up, the first upload stays live with every page
-rendered by the Worker; run `npm run cf:snapshot` in the same folder to carry on
-with the same build. It keeps the pages already saved, then uploads again.
+15 minutes, and only the deploy waits for it. If it still gives up, nothing is
+deployed and visitors stay on the current version; run `npm run cf:snapshot` in
+the same folder to carry on with the same build and its preview URL. It keeps the
+pages already saved, then deploys.
 
 Static files are answered for any hostname before the Worker's own redirects
 run, so the snapshot step needs two Single Redirects in Cloudflare (Rules →
 Redirect Rules): `www.uniexamer.com/*` to `https://uniexamer.com/${1}` in the
 uniexamer.com zone, and hostname `exam.assist365.app` to
 `concat("https://uniexamer.com", http.request.uri.path)` in the assist365.app
-zone, both 301 and keeping the query string. Without them `cf:deploy` warns
-and leaves every page dynamic.
+zone, both 301 and keeping the query string. Without them `cf:deploy` stops
+before deploying.
 
 ### Commands
 

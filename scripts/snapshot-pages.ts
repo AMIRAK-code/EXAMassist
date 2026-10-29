@@ -1,14 +1,20 @@
 /**
- * Saves the public pages of the live deployment as static files in the Worker's
+ * Saves the public pages of a new version as static files in the Worker's
  * assets, so Cloudflare serves them without running the Worker
  * (src/lib/seo/static-pages.ts). `npm run cf:deploy` (scripts/cloudflare.ts)
- * runs this between its two uploads:
+ * runs this between an upload and the deploy:
  *
- *   1. build, and deploy the Worker as it is: every page is rendered;
- *   2. fetch each public page from that deployment, as an anonymous visitor;
- *   3. deploy again with those files among the assets.
+ *   1. build, and upload the Worker as a new version that receives no traffic;
+ *   2. fetch each public page from that version's preview URL, as an anonymous
+ *      visitor;
+ *   3. deploy with those files among the assets: visitors move to a version
+ *      that already has every public page as a file.
  *
- * The pages are the new deployment's own output, so they reference exactly the
+ * Until 2026-10-29 step 1 deployed the version straight away, so visitors got
+ * it before its pages were saved; on the Free plan they then hit error 1102
+ * (CPU limit) for as long as the snapshot took, twice that day.
+ *
+ * The pages are the new version's own output, so they reference exactly the
  * scripts and styles uploaded with them. They change only at the next deploy:
  * after publishing questions straight to the database, deploy again to refresh
  * the counts the pages show.
@@ -19,6 +25,7 @@
  * So the snapshot pauses between pages, backs off for several minutes before
  * giving up on one, and keeps the pages an earlier run saved from the same
  * build, so `npm run cf:snapshot` can carry on where a failed run stopped.
+ * Only the deploy waits for this now; visitors stay on the current version.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -88,20 +95,37 @@ export async function assertHostsRedirect(site: string, hosts: readonly string[]
 }
 
 /**
- * Writes the files into `assetsDir` and returns the paths saved. A page an
- * earlier run saved from this build (its HTML carries the build id) is kept;
+ * The preview URL of the version `wrangler versions upload` (behind
+ * `opennextjs-cloudflare upload`) just made, from what it printed:
+ * "Version Preview URL: https://<id>-examer.<subdomain>.workers.dev". Null
+ * when the Worker has preview URLs off, or the upload printed none.
+ */
+export function previewUrlFrom(output: string): string | null {
+  // Strip colour codes before matching.
+  const plain = output.replace(/\u001b\[[0-9;]*m/g, '');
+  const match = /Version Preview URL:\s*(https:\/\/[^\s]+\.workers\.dev)\b/i.exec(plain);
+  return match ? match[1].replace(/\/+$/, '') : null;
+}
+
+/**
+ * Writes the files into `assetsDir` and returns the paths saved. Pages are
+ * fetched from `origin` (the new version's preview URL; `site` if not given),
+ * while `site` is the production address the sitemap lists them under. A page
+ * an earlier run saved from this build (its HTML carries the build id) is kept;
  * files without the id (robots.txt, the sitemap, icons) are always fetched.
  */
 export async function snapshotPublicPages(
-  options: { site: string; assetsDir: string; buildId: string },
+  options: { site: string; origin?: string; assetsDir: string; buildId: string },
   deps: FetchDeps = {},
 ): Promise<string[]> {
   const { site, assetsDir, buildId } = options;
+  const origin = (options.origin ?? site).replace(/\/+$/, '');
   const sleep = deps.sleep ?? realSleep;
-  // Only HTML carries the build id, so first wait for the new deployment to
+  // Only HTML carries the build id, so first wait for the new version to
   // answer there; then the sitemap and robots.txt are surely its own.
-  await fetchLive(`${site}/`, buildId, deps);
-  const sitemap = (await fetchLive(`${site}/sitemap.xml`, buildId, deps)).toString('utf8');
+  await fetchLive(`${origin}/`, buildId, deps);
+  const sitemap = (await fetchLive(`${origin}/sitemap.xml`, buildId, deps)).toString('utf8');
+  if (!sitemap.includes(`<loc>${site}`)) throw new Error(`The sitemap at ${origin} does not list ${site}: is NEXT_PUBLIC_SITE_URL set?`);
   const paths = staticPagePaths(sitemapUrls(sitemap));
   if (paths.length < 10) throw new Error(`The live sitemap lists too few pages (${paths.length}): is indexing on?`);
 
@@ -113,7 +137,7 @@ export async function snapshotPublicPages(
       continue;
     }
     const started = Date.now();
-    const body = await fetchLive(`${site}${pathname}`, buildId, deps);
+    const body = await fetchLive(`${origin}${pathname}`, buildId, deps);
     fs.mkdirSync(path.dirname(file), { recursive: true });
     fs.writeFileSync(file, body);
     const took = Date.now() - started;
