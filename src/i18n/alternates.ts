@@ -2,15 +2,41 @@ import { siteUrl } from '@/lib/site';
 import { DEFAULT_LOCALE, LOCALES, LOCALE_INFO, isLocale, localizePath, type Locale } from './locales';
 
 /**
+ * The language exam details and guide articles are written in, whatever the
+ * interface language: the exam configurations (src/lib/exams/configs) and the
+ * guides (src/lib/content/guides.ts) exist once, in English. Elements showing
+ * them carry this as their lang attribute.
+ */
+export const CONTENT_LANG = 'en';
+
+/** Exam hubs translated in full, body included, into every interface language. */
+const TRANSLATED_HUBS = new Set(['bocconi-online-test']);
+
+/**
+ * Whether a page's main content exists only in English: every guide, every
+ * format guide, and every exam hub except those in TRANSLATED_HUBS. Such a page
+ * is still served in each interface language (navigation and labels
+ * translated), but those versions are the same English article in a different
+ * frame, not translations. So they all name the English page as canonical,
+ * only en and x-default are offered as alternates, and only the English
+ * address is in the sitemap. Add a path to the translated set only when its
+ * whole body is translated and reviewed.
+ */
+export function isEnglishOnlyPath(path: string): boolean {
+  if (path.startsWith('/guides/')) return true;
+  const exam = /^\/exams\/([^/]+)(\/format)?$/.exec(path);
+  if (!exam) return false;
+  return Boolean(exam[2]) || !TRANSLATED_HUBS.has(exam[1]);
+}
+
+/**
  * Canonical URL and hreflang alternates for one page, for Next's metadata
  * `alternates`. `path` is the page's English path ("/exams/gmat"). Every
  * language version points at all the others, plus x-default (English).
  */
 export function languageAlternates(path: string, locale: Locale) {
   const base = siteUrl().replace(/\/$/, '');
-  // Guide bodies are currently English in every interface locale. Do not
-  // advertise translated navigation as five translations of the article.
-  if (path.startsWith('/guides/')) {
+  if (isEnglishOnlyPath(path)) {
     const canonical = `${base}${path}`;
     return { canonical, languages: { en: canonical, 'x-default': canonical } };
   }

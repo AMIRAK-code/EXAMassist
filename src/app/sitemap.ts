@@ -5,7 +5,7 @@ import { BOCCONI_HUB_SLUG } from '@/lib/exams/bocconi-landing';
 import { absoluteUrl, indexingEnabled } from '@/lib/site';
 import { listGuides } from '@/lib/content/guides';
 import { PAGE_DATES } from '@/lib/content/page-dates';
-import { languageAlternates } from '@/i18n/alternates';
+import { isEnglishOnlyPath, languageAlternates } from '@/i18n/alternates';
 import { LOCALES } from '@/i18n/locales';
 
 /**
@@ -70,11 +70,12 @@ type Entry = MetadataRoute.Sitemap[number];
 /**
  * Every language has its own address (src/i18n/routing.ts), so each page is
  * listed once per language, and every entry names all of them (hreflang and
- * x-default), exactly as the pages do (src/i18n/alternates.ts).
+ * x-default), exactly as the pages do (src/i18n/alternates.ts). A page whose
+ * content exists only in English is listed once, at its English address.
  */
 function inEveryLanguage(entry: Entry): Entry[] {
   const path = new URL(entry.url).pathname;
-  const locales = path.startsWith('/guides/') ? (['en'] as const) : LOCALES;
+  const locales = isEnglishOnlyPath(path) ? (['en'] as const) : LOCALES;
   return locales.map((locale) => {
     const { canonical, languages } = languageAlternates(path, locale);
     return { ...entry, url: canonical, alternates: { languages } };

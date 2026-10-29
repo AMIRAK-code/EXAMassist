@@ -2,7 +2,7 @@ import { Link } from '@/i18n/navigation';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/server';
-import { languageAlternates, pageAlternates } from '@/i18n/alternates';
+import { CONTENT_LANG, languageAlternates, pageAlternates } from '@/i18n/alternates';
 import type { Locale } from '@/i18n/locales';
 import { getDb } from '@/lib/db';
 import { EXAM_HUBS, getConfigsForHub, getHub } from '@/lib/exams/registry';
@@ -201,12 +201,12 @@ export default async function ExamHubPage({ params }: Props) {
               summary reflowing on a font swap has nothing beneath it in view.
             */}
             <Card className="mb-6 md:grid md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] md:gap-x-6">
-              <p className="text-ink">{config.summary}</p>
+              <p lang={CONTENT_LANG} className="text-ink">{config.summary}</p>
               <div className="mt-4 md:mt-0">
                 <DefinitionList
                   items={[
-                    { term: t('hub.term.version'), value: config.versionLabel },
-                    { term: t('hub.term.cycle'), value: config.admissionsCycle },
+                    { term: t('hub.term.version'), value: <span lang={CONTENT_LANG}>{config.versionLabel}</span> },
+                    { term: t('hub.term.cycle'), value: <span lang={CONTENT_LANG}>{config.admissionsCycle}</span> },
                     {
                       term: t('hub.term.verifiedOn'),
                       value: (
@@ -277,7 +277,7 @@ export default async function ExamHubPage({ params }: Props) {
                 <tbody>
                   {config.sections.map((section) => (
                     <tr key={section.key} className="border-b border-line last:border-0">
-                      <th scope="row" className="px-4 py-3 text-left font-normal">
+                      <th lang={CONTENT_LANG} scope="row" className="px-4 py-3 text-left font-normal">
                         {section.name}
                       </th>
                       <td className="px-4 py-3">{section.officialQuestionCount ?? t('table.notPublished')}</td>
@@ -312,8 +312,8 @@ export default async function ExamHubPage({ params }: Props) {
               <ul className="grid gap-3 sm:grid-cols-2">
                 {offered.map((entry) => (
                   <Card as="li" key={entry.blueprint.id}>
-                    <h4 className="font-heading text-lg font-semibold">{entry.blueprint.label}</h4>
-                    <p className="mt-1 text-sm text-ink-muted">{entry.blueprint.description}</p>
+                    <h4 lang={CONTENT_LANG} className="font-heading text-lg font-semibold">{entry.blueprint.label}</h4>
+                    <p lang={CONTENT_LANG} className="mt-1 text-sm text-ink-muted">{entry.blueprint.description}</p>
                     <div className="mt-3">
                       <FidelityBadge fidelity={entry.blueprint.fidelity} />
                     </div>
@@ -360,7 +360,7 @@ export default async function ExamHubPage({ params }: Props) {
             {/* What is not simulated */}
             {!config.capabilities.fullSimulation.available ? (
               <Alert tone="info" title={t('hub.noSimulationTitle')} className="mt-6">
-                {(config.capabilities.fullSimulation as { reason: string }).reason}
+                <span lang={CONTENT_LANG}>{(config.capabilities.fullSimulation as { reason: string }).reason}</span>
               </Alert>
             ) : null}
           </section>

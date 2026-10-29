@@ -27,7 +27,44 @@ export interface Guide {
   updatedOn: string;
   readingMinutes: number;
   bodyMd: string;
+  /** Worked sample questions, shown after the body (src/components/guides/sample-questions.tsx). */
+  samples?: SampleQuestionSet;
   sources: GuideSource[];
+}
+
+/**
+ * Original sample questions published in a guide. They are teaching examples,
+ * kept out of the question bank so that a published answer never spoils a
+ * scored session.
+ */
+export interface SampleQuestionSet {
+  sections: SampleSection[];
+  /** Markdown after the last question: next steps, official resources, authorship. */
+  afterMd: string;
+}
+
+export interface SampleSection {
+  /** Anchor id, also used in the table of contents. */
+  id: string;
+  heading: string;
+  introMd: string;
+  questions: SampleQuestion[];
+}
+
+export interface SampleQuestion {
+  /** Anchor id, unique within the guide. */
+  id: string;
+  title: string;
+  /** The official topic or question type it practises, as the test maker names it. */
+  topic: string;
+  stimulusMd?: string;
+  stemMd: string;
+  /** `note` explains why a wrong option is tempting and wrong; empty for the key. */
+  options: Array<{ id: string; text: string; note: string }>;
+  answer: string;
+  workingMd: string;
+  /** What carries over to the next question of this kind. */
+  lesson: string;
 }
 
 const GUIDES: Guide[] = [
