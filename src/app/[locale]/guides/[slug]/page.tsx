@@ -7,6 +7,7 @@ import { SITE, shareImages, siteUrl } from '@/lib/site';
 import { pageAlternates } from '@/i18n/alternates';
 import { Markdown } from '@/components/content';
 import { SampleQuestions } from '@/components/guides/sample-questions';
+import { GuideClickBeacon, ViewBeacon } from '@/components/exams/view-beacon';
 import { freeTestPath } from '@/lib/billing/config';
 import { Breadcrumbs, ButtonLink, Callout, Card, Container, PageHeader } from '@/components/ui';
 import { JsonLd, articleSchema, breadcrumbSchema } from '@/components/seo/json-ld';
@@ -86,96 +87,100 @@ export default async function GuidePage({ params }: Props) {
         ]}
       />
       <Breadcrumbs trail={trail} />
+      {/* Guides are served as static files, so the page reports its own view and its clicks into practice. */}
+      <ViewBeacon subject={guide.slug} kind="guide" />
+      <GuideClickBeacon subject={guide.slug}>
 
-      {/*
-        A guide is read at length, so its answer and body are set in the
-        design system's reading serif (§6), like passages and questions. In
-        the interface font, every paragraph above the fold reflowed when the
-        font arrived: 0.04 on desktop in every lab load, and up to 0.13 in the
-        worst case (docs/REDESIGN.md §18.1). The title and labels keep the
-        interface face.
-      */}
-      <article lang="en">
-        <header className="mb-8">
-          <PageHeader eyebrow={hub?.name ?? t('general')} title={guide.title} />
+        {/*
+          A guide is read at length, so its answer and body are set in the
+          design system's reading serif (§6), like passages and questions. In
+          the interface font, every paragraph above the fold reflowed when the
+          font arrived: 0.04 on desktop in every lab load, and up to 0.13 in the
+          worst case (docs/REDESIGN.md §18.1). The title and labels keep the
+          interface face.
+        */}
+        <article lang="en">
+          <header className="mb-8">
+            <PageHeader eyebrow={hub?.name ?? t('general')} title={guide.title} />
 
-          {/*
-            The direct answer, before the body: what a reader needs in one
-            paragraph, and the passage most likely to be quoted if this page is
-            cited elsewhere.
-          */}
-          <Callout title={t('article.inShort')} className="-mt-2" textClassName="font-serif">
-            {guide.answer}
-          </Callout>
+            {/*
+              The direct answer, before the body: what a reader needs in one
+              paragraph, and the passage most likely to be quoted if this page is
+              cited elsewhere.
+            */}
+            <Callout title={t('article.inShort')} className="-mt-2" textClassName="font-serif">
+              {guide.answer}
+            </Callout>
 
-          <p className="mt-4 text-sm text-ink-subtle">
-            {t.rich('article.published', {
-              publisher: SITE.publisher,
-              date: formatDate(guide.publishedOn),
-              time: (chunks) => <time dateTime={guide.publishedOn}>{chunks}</time>,
-            })}
-            {guide.updatedOn !== guide.publishedOn ? (
-              <>
-                {' · '}
-                {t.rich('article.updated', {
-                  date: formatDate(guide.updatedOn),
-                  time: (chunks) => <time dateTime={guide.updatedOn}>{chunks}</time>,
-                })}
-              </>
-            ) : null}
-            {` · ${t('readingTime', { minutes: guide.readingMinutes })}`}
-          </p>
-        </header>
+            <p className="mt-4 text-sm text-ink-subtle">
+              {t.rich('article.published', {
+                publisher: SITE.publisher,
+                date: formatDate(guide.publishedOn),
+                time: (chunks) => <time dateTime={guide.publishedOn}>{chunks}</time>,
+              })}
+              {guide.updatedOn !== guide.publishedOn ? (
+                <>
+                  {' · '}
+                  {t.rich('article.updated', {
+                    date: formatDate(guide.updatedOn),
+                    time: (chunks) => <time dateTime={guide.updatedOn}>{chunks}</time>,
+                  })}
+                </>
+              ) : null}
+              {` · ${t('readingTime', { minutes: guide.readingMinutes })}`}
+            </p>
+          </header>
 
-        <Markdown source={guide.bodyMd} className="prose-academic font-serif" />
+          <Markdown source={guide.bodyMd} className="prose-academic font-serif" />
         {guide.samples ? <SampleQuestions set={guide.samples} /> : null}
 
-        <section aria-labelledby="sources-heading" className="mt-10">
-          <h2 id="sources-heading" className="font-heading text-xl font-semibold">
-            {t('article.sources')}
-          </h2>
-          <ol className="mt-3 space-y-2 text-sm">
-            {guide.sources.map((source, index) => (
-              <li key={source.url}>
-                <span className="text-ink-subtle">[{index + 1}]</span>{' '}
-                <a href={source.url} rel="noopener noreferrer" target="_blank">
-                  {source.label}
-                  <span className="sr-only"> {t('article.opensInNewTab')}</span>
-                  <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" className="ms-1 inline-block align-baseline">
-                    <path d="M5 2H2.5v7.5H10V7M7 2h3v3M10 2 5.5 6.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </a>{' '}
-                <span className="text-ink-muted">— {source.publisher}</span>
-              </li>
-            ))}
-          </ol>
-        </section>
-      </article>
+          <section aria-labelledby="sources-heading" className="mt-10">
+            <h2 id="sources-heading" className="font-heading text-xl font-semibold">
+              {t('article.sources')}
+            </h2>
+            <ol className="mt-3 space-y-2 text-sm">
+              {guide.sources.map((source, index) => (
+                <li key={source.url}>
+                  <span className="text-ink-subtle">[{index + 1}]</span>{' '}
+                  <a href={source.url} rel="noopener noreferrer" target="_blank">
+                    {source.label}
+                    <span className="sr-only"> {t('article.opensInNewTab')}</span>
+                    <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" className="ms-1 inline-block align-baseline">
+                      <path d="M5 2H2.5v7.5H10V7M7 2h3v3M10 2 5.5 6.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </a>{' '}
+                  <span className="text-ink-muted">— {source.publisher}</span>
+                </li>
+              ))}
+            </ol>
+          </section>
+        </article>
 
-      {hub ? (
-        <Card className="mt-10">
-          <h2 className="font-heading text-lg font-semibold">{t('article.practiseTitle')}</h2>
-          <p className="mt-1 text-sm text-ink-muted">{t('article.practiseBody')}</p>
-          <div className="mt-4 flex flex-wrap gap-3">
-            {hub.slug === 'bocconi-online-test' ? (
-              <ButtonLink href={freeTestPath(guide.examKeys[0])}>{t('article.tryFreeBocconi')}</ButtonLink>
-            ) : (
-              <ButtonLink href={`/practice/${guide.examKeys[0]}`}>{t('article.startPractising')}</ButtonLink>
-            )}
-            <ButtonLink href={`/exams/${hub.slug}`} variant="secondary">
-              {hub.slug === 'bocconi-online-test'
-                ? t('article.bocconiPreparation')
-                : t('article.hubGuide', { exam: hub.name })}
-            </ButtonLink>
-          </div>
-        </Card>
-      ) : null}
+        {hub ? (
+          <Card className="mt-10">
+            <h2 className="font-heading text-lg font-semibold">{t('article.practiseTitle')}</h2>
+            <p className="mt-1 text-sm text-ink-muted">{t('article.practiseBody')}</p>
+            <div className="mt-4 flex flex-wrap gap-3">
+              {hub.slug === 'bocconi-online-test' ? (
+                <ButtonLink href={freeTestPath(guide.examKeys[0])}>{t('article.tryFreeBocconi')}</ButtonLink>
+              ) : (
+                <ButtonLink href={`/practice/${guide.examKeys[0]}`}>{t('article.startPractising')}</ButtonLink>
+              )}
+              <ButtonLink href={`/exams/${hub.slug}`} variant="secondary">
+                {hub.slug === 'bocconi-online-test'
+                  ? t('article.bocconiPreparation')
+                  : t('article.hubGuide', { exam: hub.name })}
+              </ButtonLink>
+            </div>
+          </Card>
+        ) : null}
 
-      <div className="mt-8">
-        <ButtonLink href="/guides" variant="secondary" size="sm">
-          {t('article.allGuides')}
-        </ButtonLink>
-      </div>
+        <div className="mt-8">
+          <ButtonLink href="/guides" variant="secondary" size="sm">
+            {t('article.allGuides')}
+          </ButtonLink>
+        </div>
+      </GuideClickBeacon>
     </Container>
   );
 }
