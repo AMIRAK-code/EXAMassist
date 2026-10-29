@@ -11,8 +11,17 @@ import { JsonLd, breadcrumbSchema } from '@/components/seo/json-ld';
 import { EXAM_CONFIGS, examTestName, getExamConfig } from '@/lib/exams/registry';
 import { countPageView, subjectFor } from '@/lib/analytics/funnel';
 import { billingSettings, checkoutPath, freeTestPath } from '@/lib/billing/config';
+import { allExamSaleStatuses } from '@/lib/billing/availability';
 import { loadEntitlements } from '@/lib/billing/entitlements';
-import { PLANS, featureMatrix, formatPrice, type PlanKey } from '@/lib/billing/plans';
+import {
+  DISPLAYED_PLANS,
+  PRICES,
+  annualSaving,
+  featureMatrix,
+  formatPrice,
+  formatWholePrice,
+  type DisplayedPlan,
+} from '@/lib/billing/plans';
 import { Alert, Badge, Breadcrumbs, ButtonLink, Card, Container, PageHeader, buttonClass, cx, fieldClass } from '@/components/ui';
 
 export const dynamic = 'force-dynamic';
@@ -24,8 +33,9 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const t = await getTranslations({ locale, namespace: 'billing.pricing.meta' });
   const title = t('title');
   const description = t('description', {
-    allAccessPrice: formatPrice(PLANS.all_access.amount, locale),
-    singleExamPrice: formatPrice(PLANS.single_exam.amount, locale),
+    passPrice: formatPrice(PRICES.exam_pass.amount, locale),
+    plusMonthly: formatPrice(PRICES.plus_month.amount, locale),
+    plusYearly: formatPrice(PRICES.plus_year.amount, locale),
   });
   const alternates = (await pageAlternates(params, '/pricing'));
   return {
@@ -67,17 +77,28 @@ export default async function PricingPage({
   const exam = typeof query.exam === 'string' ? getExamConfig(query.exam) : undefined;
   await countPageView(db, 'pricing_view', subjectFor(exam?.examKey), await headers());
 
+  // What can be delivered today: a pass is sold only for an exam with an open practice format.
+  const sale = new Map((await allExamSaleStatuses(db)).map((status) => [status.examKey, status]));
+  const openExams = [...sale.values()].filter((status) => status.sellable).length;
+
   const hasAll = owned?.hasAllAccess ?? false;
+  const hasTutor = owned?.can('ai_tutor') ?? false;
   const ownedExams = new Set(owned?.singleExamKeys ?? []);
   const canBuy = settings.checkoutAvailable;
+  const buyable = (examKey: string) => Boolean(sale.get(examKey)?.sellable) && !ownedExams.has(examKey);
+  const passDefault = exam && buyable(exam.examKey) ? exam.examKey : EXAM_CONFIGS.find((config) => buyable(config.examKey))?.examKey;
   const reasonKey = typeof query.reason === 'string' && Object.prototype.hasOwnProperty.call(REASONS, query.reason) ? REASONS[query.reason] : undefined;
   const reason = reasonKey ? t(`pricing.reasons.${reasonKey}`) : undefined;
+  const saving = annualSaving();
   // Feature labels in the page's language (featureMatrix's own labels are English).
   const matrix = featureMatrix().map((row) => ({ ...row, label: t(`features.${row.feature}`) }));
-  const planColumns: Array<{ key: 'free' | PlanKey; name: string }> = [
+  const planColumns: Array<{ key: 'free' | DisplayedPlan; name: string; note?: string }> = [
     { key: 'free', name: t('plans.free.name') },
-    { key: 'single_exam', name: t('plans.single_exam.name') },
-    { key: 'all_access', name: t('plans.all_access.name') },
+    ...DISPLAYED_PLANS.map((key) => ({
+      key,
+      name: t(`plans.${key}.name`),
+      note: key === 'premium' ? t('pricing.premium.badge') : undefined,
+    })),
   ];
   const trail = [{ href: '/', label: t('crumbs.home') }, { label: t('crumbs.pricing') }];
   // Structured data carries full URLs, so it needs the language prefix the links add on their own.
@@ -85,6 +106,7 @@ export default async function PricingPage({
   // A plain HTML form does not go through the locale-aware Link, so it gets the prefixed path itself.
   const checkoutAction = getPathname({ href: '/checkout', locale });
   const markLabels = { included: t('pricing.matrix.included'), notIncluded: t('pricing.matrix.notIncluded') };
+  const source = exam ? `&source=${encodeURIComponent(exam.examKey)}` : '';
 
   return (
     <Container>
@@ -103,7 +125,7 @@ export default async function PricingPage({
           </Alert>
         ) : null}
         {canBuy && !settings.livemode ? <p className="text-sm text-ink-muted">{t('pricing.testMode')}</p> : null}
-        {reason && !hasAll ? (
+        {reason && !(hasAll && reasonKey !== 'ai_tutor') ? (
           <Alert tone="caution" role="status">
             <p>{reason}</p>
           </Alert>
@@ -112,7 +134,9 @@ export default async function PricingPage({
           <Alert tone="positive">
             <p>
               {hasAll
-                ? t('pricing.current.allAccess')
+                ? hasTutor
+                  ? t('pricing.current.allAccessTutor')
+                  : t('pricing.current.allAccess')
                 : t('pricing.current.singleExam', {
                     exams: format.list([...ownedExams].map((key) => getExamConfig(key)?.shortName ?? key)),
                   })}{' '}
@@ -122,7 +146,8 @@ export default async function PricingPage({
         ) : null}
       </div>
 
-      <ul className="grid gap-5 lg:grid-cols-3" aria-label={t('pricing.eyebrow')}>
+      <ul className="grid gap-5 md:grid-cols-2 xl:grid-cols-4" aria-label={t('pricing.eyebrow')}>
+        {/* Free */}
         <Card as="li" padding="lg" className="flex flex-col">
           <h2 className="font-heading text-xl font-semibold">{t('plans.free.name')}</h2>
           <p className="mt-1 text-sm text-ink-muted">{t('plans.free.tagline')}</p>
@@ -138,72 +163,167 @@ export default async function PricingPage({
           </ButtonLink>
         </Card>
 
+        {/* Single Exam Pass */}
         <Card as="li" padding="lg" className="flex flex-col">
-          <h2 className="font-heading text-xl font-semibold">{t('plans.single_exam.name')}</h2>
-          <p className="mt-1 text-sm text-ink-muted">{t('plans.single_exam.tagline')}</p>
+          <h2 className="font-heading text-xl font-semibold">{t('plans.exam_pass.name')}</h2>
+          <p className="mt-1 text-sm text-ink-muted">{t('plans.exam_pass.tagline')}</p>
           <p className="mt-4">
-            <span className="font-heading text-4xl font-semibold tracking-tight">{price(PLANS.single_exam.amount)}</span>
-            <span className="text-ink-muted"> {t('pricing.perMonthPerExam')}</span>
+            <span className="font-heading text-4xl font-semibold tracking-tight">{price(PRICES.exam_pass.amount)}</span>
+            <span className="text-ink-muted"> {t('pricing.pass.once')}</span>
           </p>
-          <FeatureList included={matrix.filter((row) => row.plans.single_exam).map((row) => row.label)} labels={markLabels} />
+          <p className="mt-2 text-sm font-medium">{t('pricing.pass.term')}</p>
+          <FeatureList included={matrix.filter((row) => !row.free && row.plans.exam_pass).map((row) => row.label)} labels={markLabels} />
+          <p className="mt-3 text-sm text-ink-muted">{t('pricing.pass.noTutor')}</p>
           <div className="mt-6 flex-1" />
           {hasAll ? (
-            <p className="text-sm text-ink-muted">{t('pricing.single.coveredByAll')}</p>
+            <p className="text-sm text-ink-muted">{t('pricing.pass.coveredByAll')}</p>
+          ) : !passDefault ? (
+            <p className="text-sm text-ink-muted">{t('pricing.pass.noneAvailable')}</p>
           ) : canBuy ? (
             // A plain GET form: the exam picker works without JavaScript.
             <form action={checkoutAction} method="get" className="space-y-3">
-              <input type="hidden" name="plan" value="single_exam" />
+              <input type="hidden" name="plan" value="exam_pass" />
               <div>
                 <label htmlFor="pricing-exam" className="mb-1.5 block text-sm font-medium">
-                  {t('pricing.single.examLabel')}
+                  {t('pricing.pass.examLabel')}
                 </label>
-                <select id="pricing-exam" name="exam" defaultValue={exam?.examKey ?? EXAM_CONFIGS[0]?.examKey} className={fieldClass()}>
+                <select id="pricing-exam" name="exam" defaultValue={passDefault} className={fieldClass()}>
                   {EXAM_CONFIGS.map((config) => (
-                    <option key={config.examKey} value={config.examKey} disabled={ownedExams.has(config.examKey)}>
+                    <option key={config.examKey} value={config.examKey} disabled={!buyable(config.examKey)}>
                       {config.name}
-                      {ownedExams.has(config.examKey) ? ` ${t('pricing.single.owned')}` : ''}
+                      {ownedExams.has(config.examKey)
+                        ? ` ${t('pricing.pass.owned')}`
+                        : !sale.get(config.examKey)?.sellable
+                          ? ` ${t('pricing.pass.unavailableOption')}`
+                          : ''}
                     </option>
                   ))}
                 </select>
               </div>
               <button type="submit" className={buttonClass({ variant: 'secondary', full: true })}>
-                {t('pricing.single.cta')}
+                {t('pricing.pass.cta')}
               </button>
             </form>
           ) : null}
         </Card>
 
+        {/* Plus */}
         <Card as="li" padding="lg" className="flex flex-col border-2 border-accent">
           <div className="flex items-center justify-between gap-2">
-            <h2 className="font-heading text-xl font-semibold">{t('plans.all_access.name')}</h2>
-            <Badge tone="accent">{t('pricing.featured')}</Badge>
+            <h2 className="font-heading text-xl font-semibold">{t('plans.plus.name')}</h2>
+            <Badge tone="accent">{t('pricing.plus.badge')}</Badge>
           </div>
-          <p className="mt-1 text-sm text-ink-muted">{t('plans.all_access.tagline')}</p>
+          <p className="mt-1 text-sm text-ink-muted">{t('plans.plus.tagline')}</p>
           <p className="mt-4">
-            <span className="font-heading text-4xl font-semibold tracking-tight">{price(PLANS.all_access.amount)}</span>
+            <span className="font-heading text-4xl font-semibold tracking-tight">{price(PRICES.plus_month.amount)}</span>
             <span className="text-ink-muted"> {t('pricing.perMonth')}</span>
           </p>
-          <FeatureList included={matrix.filter((row) => row.plans.all_access).map((row) => row.label)} labels={markLabels} />
+          <p className="mt-2">
+            <span className="font-heading text-2xl font-semibold tracking-tight">{price(PRICES.plus_year.amount)}</span>
+            <span className="text-ink-muted"> {t('pricing.perYear')}</span>
+          </p>
+          <p className="mt-1 text-sm font-medium text-positive">{t('pricing.plus.yearlySaving', { percent: saving.percent })}</p>
+          <p className="text-sm text-ink-muted">
+            {t('pricing.plus.yearlyApprox', {
+              perMonth: formatWholePrice(saving.perMonthCents, locale),
+              price: price(PRICES.plus_year.amount),
+            })}
+          </p>
+          <FeatureList included={matrix.filter((row) => !row.free && row.plans.plus).map((row) => row.label)} labels={markLabels} />
+          <p className="mt-3 text-sm text-ink-muted">
+            {t('pricing.plus.coverage', { open: openExams, total: EXAM_CONFIGS.length })}
+          </p>
+          <p className="mt-2 text-sm text-ink-muted">{t('pricing.plus.noTutor')}</p>
           <div className="mt-6 flex-1" />
           {hasAll ? (
-            <p className="text-sm font-semibold text-positive">{t('pricing.all.owned')}</p>
+            <p className="text-sm font-semibold text-positive">{t('pricing.plus.owned')}</p>
           ) : canBuy ? (
-            <ButtonLink href={`${checkoutPath('all_access')}${exam ? `&source=${encodeURIComponent(exam.examKey)}` : ''}`} full>
-              {t('pricing.all.cta')}
-            </ButtonLink>
+            <div className="space-y-2">
+              <ButtonLink href={`${checkoutPath('plus_year')}${source}`} full>
+                {t('pricing.plus.ctaYearly', { price: price(PRICES.plus_year.amount) })}
+              </ButtonLink>
+              <ButtonLink href={`${checkoutPath('plus_month')}${source}`} variant="secondary" full>
+                {t('pricing.plus.ctaMonthly', { price: price(PRICES.plus_month.amount) })}
+              </ButtonLink>
+            </div>
           ) : null}
+        </Card>
+
+        {/* Premium: announced, not sold. The checkout refuses it on the server too. */}
+        <Card as="li" padding="lg" className="flex flex-col">
+          <div className="flex items-center justify-between gap-2">
+            <h2 className="font-heading text-xl font-semibold">{t('plans.premium.name')}</h2>
+            <Badge tone="neutral">{t('pricing.premium.badge')}</Badge>
+          </div>
+          <p className="mt-1 text-sm text-ink-muted">{t('plans.premium.tagline')}</p>
+          <p className="mt-4 text-sm">
+            {t('pricing.premium.planned', {
+              monthly: price(PRICES.premium_month.amount),
+              yearly: price(PRICES.premium_year.amount),
+            })}
+          </p>
+          <FeatureList included={matrix.filter((row) => !row.free && row.plans.premium).map((row) => row.label)} labels={markLabels} />
+          <p className="mt-3 text-sm text-ink-muted">{t('pricing.premium.limits')}</p>
+          <div className="mt-6 flex-1" />
+          <span
+            aria-disabled="true"
+            className={cx(buttonClass({ variant: 'secondary', full: true }), 'pointer-events-none cursor-not-allowed opacity-60')}
+          >
+            {t('pricing.premium.cta')}
+          </span>
         </Card>
       </ul>
 
       <p className="mt-3 text-sm text-ink-muted">{t('plans.vatNote')}</p>
       {canBuy && (!user || user.isGuest) ? <p className="mt-1 text-sm text-ink-muted">{t('pricing.accountNote')}</p> : null}
 
+      <section aria-labelledby="exams-heading" className="mt-12">
+        <h2 id="exams-heading" className="font-heading text-2xl font-semibold">
+          {t('pricing.exams.heading')}
+        </h2>
+        <p className="mt-2 max-w-3xl text-ink-muted">{t('pricing.exams.lead')}</p>
+        <div className="mt-4 overflow-x-auto rounded-card border border-line bg-surface">
+          <table className="w-full min-w-[34rem] border-collapse text-sm">
+            <caption className="sr-only">{t('pricing.exams.caption')}</caption>
+            <thead>
+              <tr className="border-b border-line bg-surface-sunken">
+                <th scope="col" className="px-4 py-3 text-start font-semibold">
+                  {t('pricing.exams.exam')}
+                </th>
+                <th scope="col" className="px-4 py-3 text-start font-semibold">
+                  {t('pricing.exams.status')}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {EXAM_CONFIGS.map((config) => {
+                const status = sale.get(config.examKey);
+                return (
+                  <tr key={config.examKey} className="border-b border-line last:border-b-0">
+                    <th scope="row" className="px-4 py-3 text-start font-normal">
+                      {config.name}
+                    </th>
+                    <td className="px-4 py-3">
+                      {status?.sellable ? (
+                        <span className="text-positive">{t('pricing.exams.open', { count: status.openFormats.length })}</span>
+                      ) : (
+                        <span className="text-ink-muted">{t('pricing.exams.closed')}</span>
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
       <section aria-labelledby="matrix-heading" className="mt-12">
         <h2 id="matrix-heading" className="font-heading text-2xl font-semibold">
           {t('pricing.matrix.heading')}
         </h2>
         <div className="mt-4 overflow-x-auto rounded-card border border-line bg-surface">
-          <table className="w-full min-w-[34rem] border-collapse text-sm">
+          <table className="w-full min-w-[40rem] border-collapse text-sm">
             <caption className="sr-only">{t('pricing.matrix.caption')}</caption>
             <thead>
               <tr className="border-b border-line bg-surface-sunken">
@@ -213,6 +333,7 @@ export default async function PricingPage({
                 {planColumns.map((column) => (
                   <th key={column.key} scope="col" className="px-4 py-3 text-center font-semibold">
                     {column.name}
+                    {column.note ? <span className="block text-xs font-normal text-ink-muted">{column.note}</span> : null}
                   </th>
                 ))}
               </tr>
@@ -243,7 +364,7 @@ export default async function PricingPage({
           {t('pricing.smallPrint.heading')}
         </h2>
         <ul className="mt-3 list-disc space-y-2 ps-5 text-sm text-ink-muted">
-          {(['currency', 'renewal', 'withdrawal', 'cards'] as const).map((line) => (
+          {(['currency', 'pass', 'renewal', 'withdrawal', 'cards', 'earlier'] as const).map((line) => (
             <li key={line}>{t(`pricing.smallPrint.${line}`)}</li>
           ))}
         </ul>

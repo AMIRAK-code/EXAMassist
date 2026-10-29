@@ -1,31 +1,49 @@
 {
   "plans": {
+    "exam_pass": {
+      "name": "Karnet na jeden egzamin",
+      "tagline": "Jeden wybrany egzamin przez sześć miesięcy. Płacisz raz; karnet się nie odnawia."
+    },
+    "plus": {
+      "name": "Plus",
+      "tagline": "Wszystkie egzaminy w serwisie, płatność miesięczna lub roczna, dopóki nie anulujesz."
+    },
+    "premium": {
+      "name": "Premium",
+      "tagline": "Wszystko, co w Plus, oraz tutor AI."
+    },
     "all_access": {
-      "name": "Pełny dostęp",
-      "tagline": "Wszystkie egzaminy w serwisie oraz tutor AI.",
-      "perPeriod": "miesięcznie",
-      "scope": "Wszystkie egzaminy"
+      "name": "Pełny dostęp (wcześniejszy plan)",
+      "tagline": "Wszystkie egzaminy w serwisie oraz tutor AI. Nie jest już sprzedawany."
     },
     "single_exam": {
-      "name": "Jeden egzamin",
-      "tagline": "Pełne korzystanie z jednego wybranego egzaminu. Możesz mieć kilka takich planów, jeśli przygotowujesz się do więcej niż jednego.",
-      "perPeriod": "miesięcznie za egzamin",
-      "scope": "Jeden wybrany egzamin"
+      "name": "Jeden egzamin (wcześniejszy plan)",
+      "tagline": "Jeden wybrany egzamin, płatność miesięczna. Nie jest już sprzedawany."
+    },
+    "legacyPremium": {
+      "name": "Premium (wcześniejszy plan)"
     },
     "free": {
       "name": "Bezpłatny",
-      "tagline": "Przewodniki, przykładowe pytania i bezpłatny test diagnostyczny dla każdego egzaminu."
+      "tagline": "Przewodniki, przykładowe pytania, bezpłatny test diagnostyczny dla każdego egzaminu i zapis Twoich wyników z oficjalnych testów próbnych."
     },
-    "vatNote": "Ceny w euro, z VAT. Płatność co miesiąc; plan odnawia się automatycznie, dopóki go nie anulujesz."
+    "vatNote": "Ceny w euro, z VAT.",
+    "summaryNote": "Ceny z VAT. Karnet opłacasz raz i się nie odnawia; Plus odnawia się, dopóki go nie anulujesz, a cena roczna jest pobierana w całości na początku każdego roku."
+  },
+  "prices": {
+    "exam_pass": "{price} jednorazowo",
+    "plus_month": "{price} miesięcznie",
+    "plus_year": "{price} rocznie"
   },
   "features": {
     "guides": "Przewodniki po egzaminach, strony o formacie i punktacji",
     "samples": "Przykładowe pytania",
     "diagnostic": "Bezpłatny test diagnostyczny dla każdego egzaminu",
-    "practice": "Ćwiczenia z tematów i powtórki, z nowymi pytaniami w każdej sesji",
+    "official_scores": "Zapis Twoich wyników z oficjalnych testów próbnych",
+    "practice": "Ćwiczenia z tematów i powtórki z rozwiązaniami krok po kroku, nowe pytania w każdej sesji",
     "timed_section": "Sekcje na czas w oficjalnym tempie",
     "simulation": "Pełne symulacje, jeśli egzamin je przewiduje",
-    "study_plan": "Plan nauki i ocena gotowości",
+    "study_plan": "Plan nauki i śledzenie postępów",
     "ai_tutor": "Tutor AI: podpowiedzi, szczegółowe wyjaśnienia, omówienia po teście"
   },
   "crumbs": {
@@ -37,46 +55,72 @@
   "pricing": {
     "meta": {
       "title": "Plany i ceny",
-      "description": "Pełny dostęp za {allAccessPrice} miesięcznie albo jeden egzamin za {singleExamPrice} miesięcznie. Przewodniki, przykładowe pytania i test diagnostyczny dla każdego egzaminu pozostają bezpłatne. Ceny z VAT; możesz zrezygnować w dowolnym momencie."
+      "description": "Karnet na jeden egzamin za {passPrice} jednorazowo albo Plus za {plusMonthly} miesięcznie lub {plusYearly} rocznie. Przewodniki, przykładowe pytania, test diagnostyczny dla każdego egzaminu i zapis oficjalnych wyników pozostają bezpłatne. Ceny z VAT."
     },
     "eyebrow": "Plany",
-    "heading": "Ćwicz do wszystkich egzaminów albo tylko do tego, który zdajesz",
+    "heading": "Przygotuj się do egzaminu, który zdajesz, albo do wszystkich",
     "headingForExam": "Plany na przygotowanie: {exam}",
-    "lead": "Przewodniki, przykładowe pytania i test diagnostyczny dla każdego egzaminu są bezpłatne. Plan odblokowuje ćwiczenia, sekcje na czas, pełne symulacje i plan nauki.",
+    "lead": "Przewodniki, przykładowe pytania, test diagnostyczny dla każdego egzaminu i zapis Twoich wyników z oficjalnych testów próbnych są bezpłatne. Karnet na jeden egzamin lub Plus otwiera ćwiczenia, sekcje na czas, pełne symulacje, plan nauki i śledzenie postępów w formatach, które dany egzamin ma już otwarte.",
     "notEnforced": {
       "title": "Teraz wszystko jest bezpłatne",
       "body": "Płatności w tym serwisie nie są jeszcze włączone, więc wszystkie egzaminy i wszystkie formaty są dostępne dla każdego."
     },
     "testMode": "Tryb testowy: płatność korzysta z testowych kart Stripe i niczego nie pobiera.",
     "reasons": {
-      "diagnosticTaken": "Bezpłatny test diagnostyczny masz już za sobą. Wybierz plan, aby dalej ćwiczyć na nowych pytaniach.",
-      "practice": "Sesje ćwiczeń są częścią płatnego planu.",
-      "timed_section": "Sekcje na czas są częścią płatnego planu.",
-      "simulation": "Pełne symulacje są częścią płatnego planu.",
-      "study_plan": "Plan nauki i ocena gotowości są częścią płatnego planu.",
-      "ai_tutor": "Tutor AI jest częścią planu Pełny dostęp."
+      "diagnosticTaken": "Masz już za sobą bezpłatny test diagnostyczny. Z Karnetem na jeden egzamin lub z Plus możesz dalej ćwiczyć na nowych pytaniach.",
+      "practice": "Sesje ćwiczeń wymagają Karnetu na jeden egzamin lub Plus.",
+      "timed_section": "Sekcje na czas wymagają Karnetu na jeden egzamin lub Plus.",
+      "simulation": "Pełne symulacje wymagają Karnetu na jeden egzamin lub Plus.",
+      "study_plan": "Plan nauki i śledzenie postępów wymagają Karnetu na jeden egzamin lub Plus.",
+      "ai_tutor": "Tutor AI pojawi się w planie Premium, który będzie dostępny wkrótce i nie można go jeszcze kupić."
     },
     "current": {
-      "allAccess": "Masz Pełny dostęp: wszystkie egzaminy i tutor AI są dla Ciebie dostępne.",
-      "singleExam": "Twoje plany Jeden egzamin: {exams}.",
-      "manage": "Zarządzaj planami"
+      "allAccess": "Twój plan obejmuje wszystkie egzaminy.",
+      "allAccessTutor": "Twój plan obejmuje wszystkie egzaminy i tutora AI.",
+      "singleExam": "Masz dostęp do: {exams}.",
+      "manage": "Zarządzaj swoimi planami"
     },
     "perMonth": "/ miesiąc",
-    "perMonthPerExam": "/ miesiąc za egzamin",
-    "featured": "Najpełniejszy",
+    "perYear": "/ rok",
     "free": {
       "cta": "Zrób bezpłatny test diagnostyczny",
       "ctaExams": "Wybierz egzamin"
     },
-    "single": {
+    "pass": {
+      "once": "jednorazowo",
+      "term": "Sześć miesięcy dostępu od dnia potwierdzenia płatności. Karnet się nie odnawia.",
+      "noTutor": "Tutor AI nie jest wliczony.",
       "examLabel": "Egzamin",
-      "owned": "(Twój plan)",
-      "coveredByAll": "Pełny dostęp obejmuje już wszystkie egzaminy.",
+      "owned": "(masz dostęp)",
+      "unavailableOption": "(jeszcze niedostępny)",
+      "coveredByAll": "Twój plan obejmuje już wszystkie egzaminy.",
+      "noneAvailable": "Żaden egzamin nie ma jeszcze otwartego formatu ćwiczeń, więc dziś nie można kupić karnetu. Formaty otwierają się, gdy ich pytania przejdą weryfikację przez człowieka.",
       "cta": "Przejdź do płatności"
     },
-    "all": {
-      "cta": "Wybierz Pełny dostęp",
-      "owned": "Masz ten plan"
+    "plus": {
+      "badge": "Wszystkie egzaminy",
+      "yearlySaving": "Oszczędzasz {percent}% w porównaniu z płatnością miesięczną.",
+      "yearlyApprox": "Około {perMonth}/miesiąc, płatne {price} rocznie.",
+      "coverage": "Obejmuje formaty ćwiczeń, które dany egzamin ma otwarte. Dziś dotyczy to {open, plural, =0 {żadnego egzaminu} one {# egzaminu} few {# egzaminów} many {# egzaminów} other {# egzaminu}} z {total}; tabela poniżej pokazuje, których.",
+      "noTutor": "Tutor AI nie jest wliczony.",
+      "owned": "Masz plan obejmujący wszystkie egzaminy",
+      "ctaYearly": "Wybierz roczny: {price} rocznie",
+      "ctaMonthly": "Wybierz miesięczny: {price} miesięcznie"
+    },
+    "premium": {
+      "badge": "Wkrótce",
+      "planned": "Planowana cena: {monthly} miesięcznie lub {yearly} rocznie.",
+      "limits": "Jeszcze niedostępny w sprzedaży. Tutor AI będzie miał limity korzystania, podane przed zakupem.",
+      "cta": "Jeszcze niedostępny w sprzedaży"
+    },
+    "exams": {
+      "heading": "Co możesz ćwiczyć już dziś",
+      "lead": "Każde pytanie jest sprawdzane i zatwierdzane przez człowieka, zanim zostanie użyte, więc format ćwiczeń otwiera się dopiero wtedy, gdy ma wystarczająco dużo zatwierdzonych pytań. Karnet na jeden egzamin można kupić tylko dla egzaminu z co najmniej jednym otwartym formatem ćwiczeń.",
+      "caption": "Otwarte formaty ćwiczeń według egzaminu",
+      "exam": "Egzamin",
+      "status": "Ćwiczenia dziś",
+      "open": "{count, plural, one {# otwarty format ćwiczeń: karnet dostępny} few {# otwarte formaty ćwiczeń: karnet dostępny} many {# otwartych formatów ćwiczeń: karnet dostępny} other {# otwartego formatu ćwiczeń: karnet dostępny}}",
+      "closed": "Jeszcze niedostępny: żaden format ćwiczeń nie ma wystarczająco dużo zatwierdzonych pytań"
     },
     "accountNote": "Do zakupu planu potrzebne jest bezpłatne konto. Jeśli ćwiczysz jako gość, Twoja historia zostanie przeniesiona.",
     "matrix": {
@@ -89,9 +133,11 @@
     "smallPrint": {
       "heading": "Jak działają płatności",
       "currency": "Ceny podane są w euro i zawierają VAT.",
-      "renewal": "Plany odnawiają się co miesiąc, dopóki ich nie anulujesz. Możesz anulować plan w dowolnym momencie na swoim koncie; działa on do końca opłaconego miesiąca.",
+      "pass": "Karnet na jeden egzamin opłacasz raz. Jego sześć miesięcy zaczyna się z chwilą potwierdzenia płatności i kończy w dniu podanym na Twoim koncie. Nigdy się nie odnawia i nie pobieramy za niego kolejnych opłat.",
+      "renewal": "Plus odnawia się co miesiąc lub co rok, dopóki go nie anulujesz. Cena roczna jest pobierana w całości na początku każdego roku. Możesz anulować w dowolnym momencie na swoim koncie; Plus działa do końca opłaconego okresu.",
       "withdrawal": "Dostęp zaczyna się od razu po zapłacie. Przy płatności poprosimy Cię o potwierdzenie, że chcesz go otrzymać natychmiast i że 14-dniowe prawo odstąpienia od umowy wygasa z chwilą rozpoczęcia dostępu.",
       "cards": "Dane karty wpisujesz w polach udostępnianych przez Stripe, naszego operatora płatności, i trafiają one bezpośrednio do Stripe. Nigdy nie docierają do naszych serwerów.",
+      "earlier": "Plan kupiony przed wprowadzeniem tych cen zachowuje wszystko, co obejmował, w swojej cenie, aż do zakończenia. Nikogo nie przenosimy na nowy plan ani nową cenę bez wcześniejszej informacji.",
       "terms": "Warunki sprzedaży",
       "privacy": "Informacja o prywatności"
     }
@@ -102,16 +148,20 @@
     },
     "eyebrow": "Płatność",
     "title": "Wybierz plan i zapłać",
-    "lead": "Co miesiąc, z VAT, z możliwością anulowania w dowolnym momencie na Twoim koncie.",
+    "lead": "Ceny z VAT. Karnet opłacasz raz; Plus odnawia się, dopóki go nie anulujesz.",
+    "notices": {
+      "premium": "Premium pojawi się wkrótce i nie można go jeszcze kupić. Oto plany, które są teraz w sprzedaży.",
+      "earlier": "Ten plan nie jest już sprzedawany. Oto plany, które są teraz w sprzedaży."
+    },
     "unavailable": {
       "title": "Płatności są teraz niedostępne",
       "body": "Obecnie w tym serwisie nie można niczego kupić, więc nic nie zostanie pobrane. Wszystko, co jest dostępne, pozostaje dostępne.",
       "back": "Wróć do cennika"
     },
     "allAccess": {
-      "title": "Masz już Pełny dostęp",
-      "body": "Wszystkie egzaminy i tutor AI są już dla Ciebie dostępne, więc nie ma nic więcej do kupienia.",
-      "manage": "Zarządzaj planami"
+      "title": "Twój plan obejmuje już wszystkie egzaminy",
+      "body": "Wszystkie egzaminy są już dla Ciebie otwarte, więc nie ma nic więcej do kupienia.",
+      "manage": "Zarządzaj swoimi planami"
     }
   },
   "complete": {
@@ -124,6 +174,8 @@
       "lead": "Plan {plan} jest już dla Ciebie dostępny.",
       "leadExam": "Plan {plan} dla egzaminu {exam} jest już dla Ciebie dostępny.",
       "renews": "Odnowi się {date}, a potem co miesiąc, dopóki go nie anulujesz.",
+      "renewsYearly": "Odnawia się {date}, a potem co rok, dopóki nie anulujesz.",
+      "passUntil": "Twój dostęp do {exam} trwa do {date}. Karnet się nie odnawia i nie pobierzemy żadnych dalszych opłat.",
       "receipt": "Stripe, nasz operator płatności, wyśle potwierdzenie płatności na adres {email}.",
       "practise": "Zacznij ćwiczyć: {exam}",
       "exams": "Wybierz egzamin",
@@ -147,7 +199,7 @@
     },
     "expired": {
       "title": "Ta płatność wygasła",
-      "body": "Płatność nie została ukończona na czas, więc nic nie zostało pobrane. Rozpocznij nową płatność, kiedy zechcesz.",
+      "body": "Płatność nie została dokończona, więc nic nie zostało pobrane. Rozpocznij nową płatność, kiedy zechcesz.",
       "retry": "Zacznij od nowa"
     },
     "missing": {
@@ -159,11 +211,17 @@
   },
   "form": {
     "planLegend": "Plan",
+    "offers": {
+      "pass": "Jeden egzamin przez sześć miesięcy. Jednorazowa płatność; bez odnowienia.",
+      "plus": "Wszystkie egzaminy. Odnawia się, dopóki nie anulujesz."
+    },
     "examLabel": "Egzamin",
     "examPlaceholder": "Wybierz egzamin",
-    "examOwned": "(Twój plan)",
-    "examRequired": "Wybierz egzamin, którego dotyczy ten plan.",
-    "examHint": "Plan Jeden egzamin obejmuje jeden egzamin. Możesz mieć kilka takich planów, po jednym na każdy egzamin, do którego się przygotowujesz.",
+    "examOwned": "(masz dostęp)",
+    "examUnavailable": "(jeszcze niedostępny)",
+    "examRequired": "Wybierz egzamin, którego dotyczy ten karnet.",
+    "examHint": "Karnet obejmuje jeden egzamin przez sześć miesięcy. Można wybrać tylko egzaminy z co najmniej jednym otwartym formatem ćwiczeń.",
+    "examInitialUnavailable": "Egzamin, z którego przychodzisz, nie ma jeszcze otwartego formatu ćwiczeń, więc dziś nie można kupić na niego karnetu.",
     "countryLabel": "Kraj zamieszkania",
     "countryPlaceholder": "Wybierz kraj",
     "countryHint": "Potrzebny do naliczenia właściwego VAT. Cena, którą płacisz, się nie zmienia.",
@@ -172,7 +230,7 @@
     "testMode": "Tryb testowy: użyj karty 4242 4242 4242 4242, dowolnej przyszłej daty i dowolnego kodu CVC. Do testu 3-D Secure użyj karty 4000 0027 6000 3184.",
     "secure": "Dane karty wpisujesz w bezpiecznych polach udostępnianych przez Stripe i trafiają one bezpośrednio do Stripe; nigdy nie docierają do naszych serwerów.",
     "loadingFields": "Ładowanie bezpiecznych pól karty…",
-    "consent": "Chcę, aby mój plan zaczął działać od razu. Rozumiem, że z chwilą rozpoczęcia dostępu tracę 14-dniowe prawo odstąpienia od umowy.",
+    "consent": "Chcę, aby mój dostęp zaczął działać od razu. Rozumiem, że z chwilą rozpoczęcia dostępu tracę 14-dniowe prawo odstąpienia od umowy.",
     "consentTerms": "Warunki sprzedaży",
     "consentTermsNewTab": "(otwiera się w nowej karcie)",
     "consentRequired": "Zaznacz to pole, aby kontynuować.",
@@ -187,23 +245,35 @@
       "plan": "Plan",
       "exam": "Egzamin",
       "examNone": "Jeszcze nie wybrano",
+      "oneTime": "Płatność jednorazowa",
       "monthly": "Cena miesięczna",
+      "yearly": "Cena roczna, płatna z góry",
       "vat": "VAT",
       "vatIncluded": "W cenie",
       "vatByCountry": "W cenie, według stawki Twojego kraju",
       "dueToday": "Do zapłaty dziś",
-      "then": "Następnie {price} co miesiąc od {date}, dopóki nie anulujesz.",
-      "cancel": "Możesz anulować w dowolnym momencie na swoim koncie. Plan działa do końca opłaconego miesiąca."
+      "passTerm": "Sześć miesięcy dostępu od potwierdzonej płatności: płacąc dziś, do {date}.",
+      "passNoRenewal": "Płacisz raz. Karnet się nie odnawia i nie pobieramy dalszych opłat.",
+      "thenMonthly": "Następnie {price} co miesiąc od {date}, dopóki nie anulujesz.",
+      "thenYearly": "Następnie {price} co rok od {date}, dopóki nie anulujesz.",
+      "cancel": "Możesz anulować w dowolnym momencie na swoim koncie. Plus działa do końca opłaconego okresu."
     }
   },
   "manager": {
     "none": "Nie masz żadnego planu. Przewodniki, przykładowe pytania i test diagnostyczny dla każdego egzaminu są bezpłatne.",
     "seePlans": "Zobacz plany",
     "addPlan": "Dodaj plan",
-    "price": "{price} miesięcznie, z VAT",
+    "prices": {
+      "once": "{price} jednorazowo, z VAT",
+      "month": "{price} miesięcznie, z VAT",
+      "year": "{price} rocznie, z VAT"
+    },
     "renews": "Odnawia się {date}",
     "ends": "Kończy się {date}; nie zostanie odnowiony",
     "accessUntil": "Dostęp do {date}",
+    "passUntil": "Dostęp do {date}",
+    "passNoRenewal": "Opłacony jednorazowo; nie odnawia się.",
+    "earlierNote": "Wcześniejszy plan: zachowuje wszystko, co obejmował, w uzgodnionej cenie, aż do zakończenia.",
     "statuses": {
       "active": "Aktywny",
       "trialing": "Aktywny",
@@ -212,7 +282,12 @@
       "paused": "Wstrzymany",
       "canceled": "Zakończony",
       "incomplete": "Oczekuje na płatność",
-      "incomplete_expired": "Płatność wygasła"
+      "incomplete_expired": "Płatność wygasła",
+      "paid": "Aktywny",
+      "pending": "Oczekuje na płatność",
+      "void": "Nieopłacony",
+      "refunded": "Zwrócony",
+      "expired": "Zakończony"
     },
     "pastDue": "Ostatnia płatność za odnowienie nie powiodła się. Stripe spróbuje ponownie w ciągu najbliższych dni; do tego czasu Twój dostęp trwa. Zaktualizuj kartę, aby zapłacić teraz.",
     "cancel": "Anuluj z końcem okresu",
@@ -235,15 +310,16 @@
       "cancel": "Anuluj",
       "loading": "Ładowanie bezpiecznych pól karty…",
       "secure": "Dane karty trafiają bezpośrednio do Stripe przez bezpieczne pola; nigdy nie docierają do naszych serwerów.",
-      "saved": "Nowa karta została zapisana i będzie używana do wszystkich planów.",
-      "savedAndRetried": "Nowa karta została zapisana i będzie używana do wszystkich planów. Obciążyliśmy nową kartę kwotą odnowienia, które wcześniej się nie powiodło.",
+      "saved": "Nowa karta została zapisana i będzie używana do wszystkich odnawianych planów.",
+      "savedAndRetried": "Nowa karta została zapisana i będzie używana do wszystkich odnawianych planów. Obciążyliśmy nową kartę kwotą odnowienia, które wcześniej się nie powiodło.",
       "failed": "Nie udało się zapisać karty. Poprzednia karta pozostaje bez zmian.",
       "network": "Nie udało się połączyć z serwerem. Poprzednia karta pozostaje bez zmian."
     },
-    "history": "Wcześniejsze plany"
+    "history": "Wcześniejsze plany i karnety"
   },
   "upgrade": {
     "eyebrow": "Część płatnego planu",
+    "eyebrowSoon": "Wkrótce",
     "titles": {
       "practice": "{hasExam, select, yes {Ćwicz tyle, ile potrzebujesz: {exam}} other {Ćwicz do tego egzaminu tyle, ile potrzebujesz}}",
       "timed_section": "{hasExam, select, yes {Sekcje na czas: {exam}} other {Sekcje na czas do tego egzaminu}}",
@@ -251,17 +327,20 @@
       "study_plan": "{hasExam, select, yes {Plan nauki: {exam}} other {Plan nauki do tego egzaminu}}",
       "ai_tutor": "Tutor AI",
       "diagnostic": "Bezpłatny test diagnostyczny",
+      "official_scores": "Twoje wyniki z oficjalnych testów próbnych",
       "guides": "Przewodniki",
       "samples": "Przykładowe pytania"
     },
     "leads": {
-      "practice": "Ćwiczenia z tematów z nowymi pytaniami w każdej sesji, powtórki błędnie rozwiązanych pytań, sekcje na czas i symulacje.",
+      "practice": "Ćwiczenia z tematów z rozwiązaniami krok po kroku i nowymi pytaniami w każdej sesji, powtórki tego, co poszło źle, sekcje na czas i symulacje, w formatach, które ten egzamin ma otwarte.",
       "timed_section": "Sekcje na czas w oficjalnym tempie, z wynikami według tematów.",
       "simulation": "Pełne symulacje według oficjalnych zasad, jeśli egzamin je przewiduje.",
-      "study_plan": "Plan z datami aż do dnia egzaminu i ocena gotowości oparta na Twoich własnych wynikach.",
+      "study_plan": "Plan z datami aż do dnia egzaminu i śledzenie postępów na podstawie Twoich własnych wyników.",
       "ai_tutor": "Podpowiedzi podczas ćwiczeń, szczegółowe wyjaśnienia po udzieleniu odpowiedzi i omówienie po każdym teście."
     },
-    "planLine": "{plan}: {price} {period}",
+    "passLine": "{plan}: {price} jednorazowo, sześć miesięcy na ten egzamin",
+    "plusLine": "{plan}: {monthly} miesięcznie lub {yearly} rocznie, wszystkie egzaminy",
+    "tutorComingSoon": "Tutor AI pojawi się w planie Premium, który będzie dostępny wkrótce i nie można go jeszcze kupić. Żaden plan dostępny dziś w sprzedaży go nie obejmuje.",
     "seePlans": "Zobacz plany",
     "choosePlan": "Wybierz plan {plan}",
     "freeDiagnostic": "Najpierw wypróbuj bezpłatny test diagnostyczny"
@@ -270,15 +349,18 @@
     "billingOff": "Płatności w tym serwisie nie są jeszcze włączone. Nic nie zostało pobrane.",
     "accountRequired": "Najpierw załóż konto, aby Twój plan miał się do czego przypisać. Twoje ćwiczenia jako gość zostaną przeniesione.",
     "consentRequired": "Potwierdź, że chcesz otrzymać dostęp od razu i że z tą chwilą wygasa 14-dniowe prawo odstąpienia od umowy.",
-    "unknownPlan": "Taki plan nie istnieje.",
-    "unknownExam": "Wybierz egzamin, którego dotyczy ten plan.",
-    "alreadyAllAccess": "Masz już Pełny dostęp, który obejmuje wszystkie egzaminy.",
-    "alreadyThisExam": "Masz już plan na ten egzamin.",
+    "unknownPlan": "Ten plan nie jest w sprzedaży.",
+    "comingSoon": "Premium pojawi się wkrótce i nie można go jeszcze kupić. Nic nie zostało pobrane.",
+    "unknownExam": "Wybierz egzamin, którego dotyczy ten karnet.",
+    "examUnavailable": "Na ten egzamin nie można jeszcze kupić karnetu: żaden z jego formatów ćwiczeń nie ma wystarczająco dużo sprawdzonych pytań, by się otworzyć. Nic nie zostało pobrane.",
+    "alreadyAllAccess": "Masz już plan obejmujący wszystkie egzaminy.",
+    "alreadyThisExam": "Masz już dostęp do tego egzaminu.",
     "misconfigured": "Płatności nie są jeszcze poprawnie skonfigurowane. Nic nie zostało pobrane.",
     "unavailable": "Operator płatności jest teraz przeciążony. Nic nie zostało pobrane; spróbuj ponownie za minutę.",
     "failed": "Operator płatności nie mógł dokończyć tej operacji. Nic nie zostało pobrane.",
     "retry": "To żądanie zostało już wysłane z innymi danymi. Odśwież stronę i spróbuj ponownie.",
     "unknownSubscription": "Nie znaleziono tej subskrypcji.",
+    "unknownPass": "Nie znaleziono tego karnetu.",
     "notChangeable": "Ta subskrypcja już się zakończyła.",
     "noBillingAccount": "Nie masz jeszcze konta rozliczeniowego. Najpierw wybierz plan.",
     "cardNotSaved": "Nowa karta nie została potwierdzona. Poprzednia karta pozostaje bez zmian.",
@@ -288,12 +370,13 @@
     "entitlement": {
       "accountRequired": "Załóż bezpłatne konto, aby zrobić bezpłatny test diagnostyczny. Twoje ćwiczenia jako gość zostaną przeniesione.",
       "upgradeRequired": {
-        "practice": "Sesje ćwiczeń do tego egzaminu są częścią płatnego planu. Test diagnostyczny pozostaje bezpłatny.",
-        "timed_section": "Sekcje na czas do tego egzaminu są częścią płatnego planu. Test diagnostyczny pozostaje bezpłatny.",
-        "simulation": "Pełne symulacje są częścią płatnego planu. Test diagnostyczny pozostaje bezpłatny.",
-        "study_plan": "Plan nauki i ocena gotowości są częścią płatnego planu dla tego egzaminu.",
-        "ai_tutor": "Tutor AI jest częścią planu Pełny dostęp.",
+        "practice": "Sesje ćwiczeń z tego egzaminu wymagają Karnetu na jeden egzamin lub Plus. Test diagnostyczny pozostaje bezpłatny.",
+        "timed_section": "Sekcje na czas z tego egzaminu wymagają Karnetu na jeden egzamin lub Plus. Test diagnostyczny pozostaje bezpłatny.",
+        "simulation": "Pełne symulacje wymagają Karnetu na jeden egzamin lub Plus. Test diagnostyczny pozostaje bezpłatny.",
+        "study_plan": "Plan nauki i śledzenie postępów dla tego egzaminu wymagają Karnetu na jeden egzamin lub Plus.",
+        "ai_tutor": "Tutor AI będzie częścią planu Premium, który pojawi się wkrótce i nie można go jeszcze kupić.",
         "diagnostic": "Test diagnostyczny jest bezpłatny.",
+        "official_scores": "Zapis wyników z oficjalnych testów próbnych jest bezpłatny.",
         "guides": "Przewodniki są bezpłatne.",
         "samples": "Przykładowe pytania są bezpłatne."
       }

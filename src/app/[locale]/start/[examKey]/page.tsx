@@ -11,8 +11,9 @@ import { getBlueprint, getExamConfig, getHubForConfig } from '@/lib/exams/regist
 import { freeTestFor, freeTestPreview } from '@/lib/attempts/service';
 import { tutorSettings } from '@/lib/tutor/config';
 import { freeTestPath, pricingPath } from '@/lib/billing/config';
+import { examSaleStatus } from '@/lib/billing/availability';
 import { loadEntitlements } from '@/lib/billing/entitlements';
-import { PLANS, PLAN_COPY } from '@/lib/billing/plans';
+import { PRICES } from '@/lib/billing/plans';
 import { Breadcrumbs, Container } from '@/components/ui';
 import { Onboarding, type OnboardingStep } from './onboarding';
 
@@ -48,6 +49,7 @@ export default async function StartPage({ params }: { params: Promise<{ locale: 
   if (entitlements.can('practice', config.examKey)) redirect({ href: `/practice/${config.examKey}`, locale });
 
   const t = await getTranslations('practice');
+  const tBilling = await getTranslations('billing');
   const format = await getFormatter();
   const price = (cents: number) => format.number(cents / 100, { style: 'currency', currency: 'EUR' });
 
@@ -101,14 +103,22 @@ export default async function StartPage({ params }: { params: Promise<{ locale: 
 
   const freeNeedsAccount = !entitlements.can('diagnostic', config.examKey);
   const first = user && !freeNeedsAccount ? await freeTestFor(db, user.id, config.examKey) : null;
+  // A pass is sold only while this exam has a practice format open (src/lib/billing/availability.ts).
+  const passOnSale = (await examSaleStatus(db, config.examKey))?.sellable ?? false;
   const choice = {
     paid: [
-      t('start.paid.single', {
-        plan: PLAN_COPY.plans.single_exam.name,
-        exam: config.shortName,
-        price: price(PLANS.single_exam.amount),
+      passOnSale
+        ? t('start.paid.single', {
+            plan: tBilling('plans.exam_pass.name'),
+            exam: config.shortName,
+            price: price(PRICES.exam_pass.amount),
+          })
+        : t('start.paid.singleUnavailable', { plan: tBilling('plans.exam_pass.name'), exam: config.shortName }),
+      t('start.paid.all', {
+        plan: tBilling('plans.plus.name'),
+        monthly: price(PRICES.plus_month.amount),
+        yearly: price(PRICES.plus_year.amount),
       }),
-      t('start.paid.all', { plan: PLAN_COPY.plans.all_access.name, price: price(PLANS.all_access.amount) }),
       t('start.paid.vat'),
     ],
     free: first

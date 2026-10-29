@@ -3,8 +3,8 @@ import { Link } from '@/i18n/navigation';
 import type { BocconiLandingData, BocconiTestSummary } from '@/lib/exams/bocconi-landing';
 import { BOCCONI_ADVICE, BOCCONI_FACTS_CHECKED_ON, BOCCONI_FAQ, BOCCONI_SOURCES } from '@/lib/exams/bocconi-facts';
 import { checkoutPath, freeTestPath, pricingPath } from '@/lib/billing/config';
-import { PLANS } from '@/lib/billing/plans';
-import { Badge, ButtonLink, Card, FidelityBadge, StatusBadge, cx } from '@/components/ui';
+import { PlanSummaryCards } from '@/components/billing/plan-summary-cards';
+import { ButtonLink, Card, FidelityBadge, StatusBadge, cx } from '@/components/ui';
 import { OfficialNote } from './official-note';
 
 /**
@@ -70,7 +70,6 @@ export function BocconiLanding({ data, hasFullAccess, billingOn }: BocconiLandin
   const ug = data.tests.find((test) => test.config.examKey === UG);
   const law = data.tests.find((test) => test.config.examKey === LAW);
   const checked = format.dateTime(new Date(BOCCONI_FACTS_CHECKED_ON), DATE);
-  const price = (cents: number) => format.number(cents / 100, { style: 'currency', currency: 'EUR' });
   const strong = (chunks: React.ReactNode) => <strong>{chunks}</strong>;
 
   return (
@@ -286,31 +285,11 @@ export function BocconiLanding({ data, hasFullAccess, billingOn }: BocconiLandin
           {t('plans.heading')}
         </h2>
         <p className="mt-2 max-w-3xl text-ink-muted">{t('plans.lead')}</p>
-        <ul className="mt-6 grid max-w-3xl gap-4 sm:grid-cols-2" aria-label={t('plans.label')}>
-          <Card as="li" padding="lg" className="border-2 border-accent">
-            <div className="flex items-center justify-between gap-2">
-              <h3 className="font-heading text-xl font-semibold">{t('plans.singleName')}</h3>
-              <Badge tone="accent">{t('plans.singleBadge')}</Badge>
-            </div>
-            <p className="mt-3">
-              <span className="font-heading text-4xl font-semibold tracking-tight">{price(PLANS.single_exam.amount)}</span>
-              <span className="text-ink-muted"> {t('plans.perMonth')}</span>
-            </p>
-            <p className="mt-1 text-sm text-ink-muted">{t('plans.singleBody')}</p>
-          </Card>
-          <Card as="li" padding="lg">
-            <h3 className="font-heading text-xl font-semibold">{t('plans.allName')}</h3>
-            <p className="mt-3">
-              <span className="font-heading text-4xl font-semibold tracking-tight">{price(PLANS.all_access.amount)}</span>
-              <span className="text-ink-muted"> {t('plans.perMonth')}</span>
-            </p>
-            <p className="mt-1 text-sm text-ink-muted">{t('plans.allBody')}</p>
-          </Card>
-        </ul>
-        <p className="mt-3 max-w-3xl text-sm text-ink-muted">{t('plans.cancel')}</p>
+        {/* The plans on sale, priced and worded by the billing catalogue (one source with /pricing). */}
+        <PlanSummaryCards className="mt-6" />
         <div className="mt-5 flex flex-wrap gap-3">
-          <ButtonLink href={checkoutPath('single_exam', UG)}>{t('plans.chooseBocconi')}</ButtonLink>
-          <ButtonLink href={checkoutPath('single_exam', LAW)} variant="secondary">
+          <ButtonLink href={checkoutPath('exam_pass', UG)}>{t('plans.chooseBocconi')}</ButtonLink>
+          <ButtonLink href={checkoutPath('exam_pass', LAW)} variant="secondary">
             {t('plans.chooseLaw')}
           </ButtonLink>
           <ButtonLink href={pricingPath(UG)} variant="quiet">

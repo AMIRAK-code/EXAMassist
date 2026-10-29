@@ -2,10 +2,11 @@ import type Stripe from 'stripe';
 import type { Db } from '@/lib/db';
 import { getExamConfig } from '@/lib/exams/registry';
 import { countEvent, subjectFor } from '@/lib/analytics/funnel';
-import { ACCESS_POLICY, planForLookupKey, type PlanKey } from './plans';
+import { ACCESS_POLICY, PASS_ACCESS_MONTHS, PLANS, addCalendarMonths, planForLookupKey, type PlanKey } from './plans';
 
 /**
- * The local copy of Stripe customers and subscriptions (migration 012).
+ * The local copy of Stripe customers, subscriptions (migration 012) and
+ * Single Exam Passes (migration 016).
  *
  * Stripe is the source of truth. Every write here comes from a Stripe object
  * (a webhook payload, or one fetched just now) and carries the time that
@@ -101,7 +102,7 @@ export function snapshotFromStripe(subscription: Stripe.Subscription): Subscript
   const lookupKey = item?.price?.lookup_key ?? null;
   const plan = planForLookupKey(lookupKey);
   const customerId = idOf(subscription.customer);
-  if (!plan || !customerId) return null;
+  if (!plan || !customerId || PLANS[plan].billing !== 'subscription') return null;
   // The billing period lives on the item in current API versions, and on the
   // subscription in older ones.
   const legacy = subscription as unknown as { current_period_end?: number };
@@ -111,7 +112,7 @@ export function snapshotFromStripe(subscription: Stripe.Subscription): Subscript
     id: subscription.id,
     customerId,
     plan,
-    examKey: plan === 'single_exam' && examKey && getExamConfig(examKey) ? examKey : null,
+    examKey: PLANS[plan].scope === 'one-exam' && examKey && getExamConfig(examKey) ? examKey : null,
     status: subscription.status,
     lookupKey,
     currentPeriodEnd: periodEnd ? new Date(periodEnd * 1000).toISOString() : null,
@@ -141,7 +142,7 @@ export async function storeSubscription(
 ): Promise<StoreResult> {
   const snapshot = snapshotFromStripe(subscription);
   if (!snapshot) return { stored: false, newlyActive: false, row: null };
-  if (snapshot.plan === 'single_exam' && !snapshot.examKey) {
+  if (PLANS[snapshot.plan].scope === 'one-exam' && !snapshot.examKey) {
     console.error('[billing] single-exam subscription without a known exam_key:', snapshot.id);
   }
   const now = options.now ?? new Date();
@@ -191,6 +192,204 @@ export async function storeSubscription(
     await countEvent(db, 'purchase', subjectFor(subject), 'n/a', now);
   }
   return { stored: true, newlyActive, row: await getSubscriptionRow(db, snapshot.id) };
+}
+
+// ---------------------------------------------------------------------------
+// Single Exam Passes (migration 016)
+// ---------------------------------------------------------------------------
+
+/** pending: invoice open, not paid. paid: access for its term. void: abandoned. refunded: fully refunded, access ended. */
+export type PassStatus = 'pending' | 'paid' | 'void' | 'refunded';
+
+export interface PassRow {
+  stripe_invoice_id: string;
+  user_id: string;
+  stripe_customer_id: string;
+  stripe_payment_intent_id: string | null;
+  plan: PlanKey;
+  exam_key: string;
+  price_lookup_key: string;
+  amount: number;
+  currency: string;
+  status: PassStatus;
+  access_starts_at: string | null;
+  access_ends_at: string | null;
+  withdrawal_waiver_at: string | null;
+  source_exam: string | null;
+  stripe_synced_at: number;
+  created_at: string;
+  updated_at: string;
+}
+
+/** Metadata on every pass invoice we create; an invoice without it is not one of our passes. */
+export const PASS_INVOICE_PURPOSE = 'exam_pass';
+
+function normalisePass(row: PassRow): PassRow {
+  return { ...row, amount: Number(row.amount), stripe_synced_at: Number(row.stripe_synced_at) };
+}
+
+export async function listPasses(db: Db, userId: string): Promise<PassRow[]> {
+  const rows = (await db
+    .prepare('SELECT * FROM billing_passes WHERE user_id = ? ORDER BY created_at, stripe_invoice_id')
+    .all(userId)) as PassRow[];
+  return rows.map(normalisePass);
+}
+
+export async function getPassRow(db: Db, invoiceId: string): Promise<PassRow | null> {
+  const row = (await db.prepare('SELECT * FROM billing_passes WHERE stripe_invoice_id = ?').get(invoiceId)) as PassRow | undefined;
+  return row ? normalisePass(row) : null;
+}
+
+export async function getPassByPaymentIntent(db: Db, paymentIntentId: string): Promise<PassRow | null> {
+  const row = (await db.prepare('SELECT * FROM billing_passes WHERE stripe_payment_intent_id = ?').get(paymentIntentId)) as
+    | PassRow
+    | undefined;
+  return row ? normalisePass(row) : null;
+}
+
+export interface PassSnapshot {
+  invoiceId: string;
+  customerId: string;
+  examKey: string;
+  lookupKey: string;
+  status: Exclude<PassStatus, 'refunded'>;
+  /** When Stripe marked the invoice paid (unix seconds); null until then. */
+  paidAt: number | null;
+  paymentIntentId: string | null;
+  amount: number;
+  currency: string;
+  userIdHint: string | null;
+}
+
+/**
+ * What this site needs from a Stripe invoice that pays for a Single Exam
+ * Pass, or null when the invoice is not one of ours (another product's
+ * invoice, a subscription's invoice, or one naming an exam or price we do not
+ * sell). Only our server writes this metadata.
+ */
+export function passSnapshotFromInvoice(invoice: Stripe.Invoice): PassSnapshot | null {
+  const metadata = invoice.metadata ?? {};
+  if (metadata.examer_purchase !== PASS_INVOICE_PURPOSE) return null;
+  const customerId = idOf(invoice.customer);
+  const examKey = metadata.exam_key;
+  const lookupKey = metadata.price_lookup_key;
+  const plan = planForLookupKey(lookupKey);
+  if (!invoice.id || !customerId || !examKey || !getExamConfig(examKey) || !lookupKey || !plan || PLANS[plan].billing !== 'one-time') {
+    return null;
+  }
+  const paid = invoice.status === 'paid';
+  const payment = invoice.payments?.data?.find((entry) => entry.status === 'paid') ?? null;
+  return {
+    invoiceId: invoice.id,
+    customerId,
+    examKey,
+    lookupKey,
+    status: paid ? 'paid' : invoice.status === 'void' || invoice.status === 'uncollectible' ? 'void' : 'pending',
+    paidAt: paid ? (invoice.status_transitions?.paid_at ?? null) : null,
+    paymentIntentId: idOf(payment?.payment?.payment_intent ?? null),
+    amount: paid ? invoice.amount_paid : invoice.amount_due,
+    currency: invoice.currency,
+    userIdHint: metadata.examer_user_id ?? null,
+  };
+}
+
+export interface PassStoreResult {
+  stored: boolean;
+  /** The pass just became paid: counted as a purchase. */
+  newlyPaid: boolean;
+  row: PassRow | null;
+}
+
+/**
+ * Writes a pass invoice for a user. The access term starts when Stripe
+ * recorded the payment and lasts PASS_ACCESS_MONTHS calendar months; it is set
+ * once and never moved by a later sync. A refunded pass stays refunded, a
+ * paid one never goes back to pending, and a state older than the stored one
+ * (`syncedAt`, unix seconds) is ignored.
+ */
+export async function storePass(
+  db: Db,
+  userId: string,
+  invoice: Stripe.Invoice,
+  options: { syncedAt: number; now?: Date; withdrawalWaiverAt?: string | null; sourceExam?: string | null },
+): Promise<PassStoreResult> {
+  const snapshot = passSnapshotFromInvoice(invoice);
+  if (!snapshot) return { stored: false, newlyPaid: false, row: null };
+  const now = options.now ?? new Date();
+  const at = now.toISOString();
+  const before = await getPassRow(db, snapshot.invoiceId);
+  if (before) {
+    const stale = before.stripe_synced_at > options.syncedAt;
+    const final = before.status === 'refunded' || (before.status === 'paid' && snapshot.status !== 'paid');
+    if (stale || final || before.user_id !== userId) return { stored: false, newlyPaid: false, row: before };
+  }
+
+  let startsAt = before?.access_starts_at ?? null;
+  let endsAt = before?.access_ends_at ?? null;
+  if (snapshot.status === 'paid' && !startsAt) {
+    // Stripe's own record of the payment; the moment of this sync only if Stripe gave none.
+    const start = snapshot.paidAt ? new Date(snapshot.paidAt * 1000) : now;
+    startsAt = start.toISOString();
+    endsAt = addCalendarMonths(start, PASS_ACCESS_MONTHS).toISOString();
+  }
+
+  await linkCustomer(db, userId, snapshot.customerId, now);
+  await db
+    .prepare(
+      `INSERT INTO billing_passes (
+         stripe_invoice_id, user_id, stripe_customer_id, stripe_payment_intent_id, plan, exam_key, price_lookup_key,
+         amount, currency, status, access_starts_at, access_ends_at, withdrawal_waiver_at, source_exam,
+         stripe_synced_at, created_at, updated_at
+       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+       ON CONFLICT (stripe_invoice_id) DO UPDATE SET
+         stripe_payment_intent_id = COALESCE(excluded.stripe_payment_intent_id, billing_passes.stripe_payment_intent_id),
+         amount = excluded.amount,
+         currency = excluded.currency,
+         status = excluded.status,
+         access_starts_at = excluded.access_starts_at,
+         access_ends_at = excluded.access_ends_at,
+         withdrawal_waiver_at = COALESCE(billing_passes.withdrawal_waiver_at, excluded.withdrawal_waiver_at),
+         source_exam = COALESCE(billing_passes.source_exam, excluded.source_exam),
+         stripe_synced_at = excluded.stripe_synced_at,
+         updated_at = excluded.updated_at`,
+    )
+    .run(
+      snapshot.invoiceId,
+      userId,
+      snapshot.customerId,
+      snapshot.paymentIntentId,
+      'exam_pass',
+      snapshot.examKey,
+      snapshot.lookupKey,
+      snapshot.amount,
+      snapshot.currency,
+      snapshot.status,
+      startsAt,
+      endsAt,
+      options.withdrawalWaiverAt ?? null,
+      options.sourceExam ?? null,
+      options.syncedAt,
+      before?.created_at ?? at,
+      at,
+    );
+
+  const newlyPaid = snapshot.status === 'paid' && before?.status !== 'paid';
+  if (newlyPaid) await countEvent(db, 'purchase', subjectFor(snapshot.examKey), 'n/a', now);
+  return { stored: true, newlyPaid, row: await getPassRow(db, snapshot.invoiceId) };
+}
+
+/** A fully refunded pass: its access ends now. Final; a later sync never reopens it. */
+export async function markPassRefunded(db: Db, invoiceId: string, syncedAt: number, now = new Date()): Promise<PassRow | null> {
+  await db
+    .prepare(
+      `UPDATE billing_passes
+          SET status = 'refunded',
+              stripe_synced_at = CASE WHEN stripe_synced_at > ? THEN stripe_synced_at ELSE ? END,
+              updated_at = ?
+        WHERE stripe_invoice_id = ? AND status = 'paid'`,
+    )
+    .run(syncedAt, syncedAt, now.toISOString(), invoiceId);
+  return getPassRow(db, invoiceId);
 }
 
 /** Records a processed webhook event. False when it was already recorded. */

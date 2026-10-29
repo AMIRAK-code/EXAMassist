@@ -13,7 +13,9 @@ import { billingErrorMessage, stripeLocale } from './locale';
 
 /**
  * The learner's plans, managed on our own account page: no hosted Stripe
- * pages. Cancel at the end of the paid month, undo that, and replace the card
+ * pages. A Single Exam Pass shows its exam and the date its access ends (it
+ * was paid once, so there is nothing to cancel). A subscription can be
+ * cancelled at the end of the paid period, resumed, and paid with a new card
  * through a SetupIntent confirmed in the same styled Payment Element as the
  * checkout. The server re-checks ownership of everything it is asked to change.
  * Its words are in the `billing` catalogue (`manager.*`).
@@ -21,16 +23,22 @@ import { billingErrorMessage, stripeLocale } from './locale';
 
 export interface ManagedSubscription {
   id: string;
-  /** The plan's key ('all_access', 'single_exam'): its name is then shown in the page's language. */
+  /** A renewing subscription, or a Single Exam Pass paid once. */
+  kind: 'subscription' | 'pass';
+  /** The plan's key ('plus', 'exam_pass', 'legacyPremium', …): its name is then shown in the page's language. */
   plan?: string;
-  /** Shown when `plan` is not given or not a current plan. */
+  /** Shown when `plan` is not given or not a known plan. */
   planName: string;
+  /** A plan no longer sold, kept with its benefits and price until it ends. */
+  earlier: boolean;
   examName: string | null;
   status: string;
   /** Gives access now. */
   live: boolean;
-  /** Null for a subscription on an earlier price. */
+  /** Null for a subscription on a price from before the current catalogue. */
   amount: number | null;
+  interval: 'once' | 'month' | 'year' | null;
+  /** Renewal or end of the paid period (subscription); end of access (pass). */
   periodEnd: string | null;
   cancelAtPeriodEnd: boolean;
   changeable: boolean;
@@ -90,8 +98,10 @@ export function SubscriptionManager({
   const planName = usePlanName();
   const router = useRouter();
   const [notice, setNotice] = useState(initialNotice);
-  const current = subscriptions.filter((s) => s.live || s.status === 'past_due');
-  const past = subscriptions.filter((s) => !current.includes(s) && s.status !== 'incomplete' && s.status !== 'incomplete_expired');
+  const current = subscriptions.filter((s) => s.live || (s.kind === 'subscription' && s.status === 'past_due'));
+  const hidden = new Set(['incomplete', 'incomplete_expired', 'pending', 'void']);
+  const past = subscriptions.filter((s) => !current.includes(s) && !hidden.has(s.status));
+  const renewing = current.some((s) => s.kind === 'subscription');
 
   return (
     <div className="space-y-5">
@@ -130,7 +140,7 @@ export function SubscriptionManager({
         </p>
       ) : null}
 
-      {canManage && publishableKey && (current.length > 0 || card) ? (
+      {canManage && publishableKey && (renewing || card) ? (
         <CardSection
           card={card}
           fresh={cardFresh}
@@ -178,6 +188,27 @@ function SubscriptionCard({
   const [error, setError] = useState<string | null>(null);
   const end = subscription.periodEnd ? day(subscription.periodEnd) : '';
 
+  if (subscription.kind === 'pass') {
+    return (
+      <Card as="li" className="bg-surface">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div className="min-w-0">
+            <h3 className="font-heading text-lg font-semibold">
+              {planName(subscription)}
+              {subscription.examName ? <span className="font-normal text-ink-muted">: {subscription.examName}</span> : null}
+            </h3>
+            {subscription.amount !== null ? (
+              <p className="mt-1 text-sm text-ink-muted">{t('manager.prices.once', { price: formatPrice(subscription.amount, locale) })}</p>
+            ) : null}
+            {end ? <p className="mt-1 text-sm font-medium">{t('manager.passUntil', { date: end })}</p> : null}
+            <p className="mt-1 text-sm text-ink-muted">{t('manager.passNoRenewal')}</p>
+          </div>
+          <Badge tone="positive">{statusLabel(t, subscription.status)}</Badge>
+        </div>
+      </Card>
+    );
+  }
+
   async function change(cancelAtPeriodEnd: boolean) {
     setBusy(true);
     setError(null);
@@ -200,8 +231,13 @@ function SubscriptionCard({
             {subscription.examName ? <span className="font-normal text-ink-muted">: {subscription.examName}</span> : null}
           </h3>
           {subscription.amount !== null ? (
-            <p className="mt-1 text-sm text-ink-muted">{t('manager.price', { price: formatPrice(subscription.amount, locale) })}</p>
+            <p className="mt-1 text-sm text-ink-muted">
+              {t(subscription.interval === 'year' ? 'manager.prices.year' : 'manager.prices.month', {
+                price: formatPrice(subscription.amount, locale),
+              })}
+            </p>
           ) : null}
+          {subscription.earlier ? <p className="mt-1 text-sm text-ink-muted">{t('manager.earlierNote')}</p> : null}
           {end ? (
             <p className="mt-1 text-sm">
               {subscription.status === 'past_due'

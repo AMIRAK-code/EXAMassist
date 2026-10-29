@@ -34,6 +34,14 @@ export interface StripeApi {
   };
   invoices: {
     pay(id: string, params?: Stripe.InvoicePayParams, options?: Opts): Promise<Stripe.Invoice>;
+    /** A Single Exam Pass is one one-off invoice: created, given its line, finalised, then paid in the browser. */
+    create(params: Stripe.InvoiceCreateParams, options?: Opts): Promise<Stripe.Invoice>;
+    retrieve(id: string, params?: Stripe.InvoiceRetrieveParams, options?: Opts): Promise<Stripe.Invoice>;
+    finalizeInvoice(id: string, params?: Stripe.InvoiceFinalizeInvoiceParams, options?: Opts): Promise<Stripe.Invoice>;
+    voidInvoice(id: string, params?: Stripe.InvoiceVoidInvoiceParams, options?: Opts): Promise<Stripe.Invoice>;
+  };
+  invoiceItems: {
+    create(params: Stripe.InvoiceItemCreateParams, options?: Opts): Promise<Stripe.InvoiceItem>;
   };
 }
 

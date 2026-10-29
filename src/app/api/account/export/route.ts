@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getDb } from '@/lib/db';
 import { SITE } from '@/lib/site';
-import { getCustomerId, listSubscriptions } from '@/lib/billing/store';
+import { getCustomerId, listPasses, listSubscriptions } from '@/lib/billing/store';
 import type {
   AttemptItemRow,
   AttemptPartRow,
@@ -195,6 +195,8 @@ export async function GET() {
     // A database still awaiting 012 has no such tables, and nothing to export.
     const billingCustomer = await getCustomerId(db, user.id).catch(() => null);
     const billingSubscriptions = await listSubscriptions(db, user.id).catch(() => []);
+    // Single Exam Passes (migration 016); none on a database still awaiting it.
+    const billingPasses = await listPasses(db, user.id).catch(() => []);
 
     const partsByAttempt = new Map<string, AttemptPartRow[]>();
     for (const part of parts) {
@@ -246,6 +248,19 @@ export async function GET() {
           status: row.status,
           currentPeriodEnd: row.current_period_end,
           cancelsAtPeriodEnd: Number(row.cancel_at_period_end) === 1,
+          withdrawalWaiverAt: row.withdrawal_waiver_at,
+          createdAt: row.created_at,
+          updatedAt: row.updated_at,
+        })),
+        passes: billingPasses.map((row) => ({
+          stripeInvoiceId: row.stripe_invoice_id,
+          plan: row.plan,
+          examKey: row.exam_key,
+          status: row.status,
+          amountCents: row.amount,
+          currency: row.currency,
+          accessStartsAt: row.access_starts_at,
+          accessEndsAt: row.access_ends_at,
           withdrawalWaiverAt: row.withdrawal_waiver_at,
           createdAt: row.created_at,
           updatedAt: row.updated_at,
