@@ -73,7 +73,7 @@ const GUIDES: Guide[] = [
     slug: 'bocconi-test-negative-marking-when-to-guess',
     title: 'Negative marking on the Bocconi Online Test: when to guess and when to leave a blank',
     answer:
-      'Guess when you can rule out at least one option. The Bocconi Online Test for bachelor and law programmes scores +1 for a correct answer, 0 for a blank and −0.2 for a wrong answer (−0.33 on three-option critical-thinking items). A blind guess among five options is worth only +0.04 points on average, barely more than a blank, while every option you eliminate makes a guess clearly worthwhile. The master’s form of the test penalises a wrong answer more heavily, at −0.25.',
+      'Guess when you can rule out at least one option. The Bocconi Online Test for bachelor and law programmes scores +1 for a correct answer, 0 for a blank and −0.2 for a wrong answer (−0.33 on three-option critical-thinking items). If a question has five options (Bocconi does not say how many most have), a blind guess is worth only +0.04 points on average, barely more than a blank, while every option you eliminate makes a guess clearly worthwhile. The master’s form of the test penalises a wrong answer more heavily, at −0.25.',
     description:
       'How Bocconi’s +1 / 0 / −0.2 scoring changes guessing strategy on the bachelor and law test, worked through with the actual arithmetic for the 2027-28 admissions cycle, and how the master’s form’s −0.25 penalty changes it.',
     examKeys: ['bocconi-undergraduate', 'bocconi-law'],
