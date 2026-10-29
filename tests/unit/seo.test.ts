@@ -88,7 +88,7 @@ describe('the sitemap in production', () => {
     expect(new Set(urls).size).toBe(urls.length);
     const expected = [
       '/', '/exams', '/guides', '/pricing',
-      '/about/editorial-standards', '/about/how-scoring-works', '/about/privacy', '/about/terms',
+      '/about/editorial-standards', '/about/how-scoring-works', '/about/privacy', '/about/support', '/about/terms',
       ...EXAM_HUBS.flatMap((hub) => [`/exams/${hub.slug}`, `/exams/${hub.slug}/format`]),
       ...listGuides().map((guide) => `/guides/${guide.slug}`),
     ].flatMap((path) => LOCALES.map((locale) => localizePath(path, locale)));
