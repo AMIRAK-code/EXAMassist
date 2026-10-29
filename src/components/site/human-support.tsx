@@ -44,7 +44,10 @@ export async function HumanSupport({ accent }: { accent: (chunks: ReactNode) => 
               {t('cta', { email: SUPPORT.email })}
             </a>
           </p>
-          <p className="mt-4 text-sm text-ink-muted">
+          <p className="mt-4 text-sm">
+            <Link href="/about/support">{t('howItWorks')}</Link>
+          </p>
+          <p className="mt-2 text-sm text-ink-muted">
             {t.rich('questionReports', { link: (chunks) => <Link href="/report-question">{chunks}</Link> })}
           </p>
         </div>

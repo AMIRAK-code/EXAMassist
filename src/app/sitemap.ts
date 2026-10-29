@@ -49,6 +49,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page('/pricing', PAGE_DATES.pricing.updated, 'monthly', 0.6),
     page('/about/editorial-standards', PAGE_DATES.editorialStandards.updated, 'monthly', 0.5),
     page('/about/how-scoring-works', PAGE_DATES.howScoringWorks.updated, 'monthly', 0.5),
+    page('/about/support', PAGE_DATES.support.updated, 'monthly', 0.4),
     page('/about/privacy', PAGE_DATES.privacy.updated, 'yearly', 0.3),
     page('/about/terms', PAGE_DATES.terms.updated, 'yearly', 0.3),
   ];

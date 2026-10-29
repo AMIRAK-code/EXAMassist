@@ -19,6 +19,8 @@ export const PAGE_DATES = {
   privacy: { published: '2026-09-22', updated: '2026-10-27' },
   /** The terms show this as "last reviewed". */
   terms: { updated: '2026-10-27' },
+  /** Why support is answered by people, and how to reach them. */
+  support: { published: '2026-10-28', updated: '2026-10-28' },
   /** Plans and prices: Premium from 2026-10-05, All access and Single exam on /pricing from 2026-10-27. */
   pricing: { published: '2026-10-05', updated: '2026-10-27' },
 } as const satisfies Record<string, PageDates>;
