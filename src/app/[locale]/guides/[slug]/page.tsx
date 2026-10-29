@@ -28,13 +28,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
   const alternates = (await pageAlternates(params, `/guides/${guide.slug}`));
   return {
-    title: guide.title,
+    title: guide.metaTitle ?? guide.title,
     description: guide.description,
     alternates,
     openGraph: {
       type: 'article',
       url: alternates.canonical,
-      title: `${guide.title} | ${SITE.shortName}`,
+      title: `${guide.metaTitle ?? guide.title} | ${SITE.shortName}`,
       description: guide.description,
       publishedTime: guide.publishedOn,
       modifiedTime: guide.updatedOn,

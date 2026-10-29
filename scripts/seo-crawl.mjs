@@ -102,7 +102,9 @@ for (const [url, p] of Object.entries(pages)) {
     (titles[p.title] ??= []).push(at);
     if (p.description) (descriptions[p.description] ??= []).push(at);
   }
-  for (const [lang, href] of p.hreflang) {
+  // hreflang counts only on a canonical, indexable page; copies that name another canonical are ignored by search engines.
+  const selfCanonical = !noindex && normal(p.canonical ?? '') === normal(url);
+  for (const [lang, href] of selfCanonical ? p.hreflang : []) {
     const target = pages[normal(href)];
     if (!target) add('hreflang target not crawled', `${at} ${lang} ${href}`);
     else if (target.status !== 200) add('hreflang target not 200', `${at} ${lang} ${href} (${target.status})`);
