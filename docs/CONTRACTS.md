@@ -56,13 +56,19 @@ sets them from a mechanical comparison.
 `difficultyBasis` is `'editorial'` unless there is validated response data.
 There is none, so it is always `'editorial'`.
 
+`published` in a content file means the automated gates passed. It does not
+make a question servable: that needs a human approval (section 9).
+
 ## 4. The two availability gates — `src/lib/attempts/availability.ts`
 
 A practice format is offered only if **both** pass:
 
 1. **Rules** — `config.capabilities`, decided from the research record.
-2. **Content** — `checkBlueprintSufficiency` confirms the reviewed pool can fill
-   the blueprint without repeating a question.
+2. **Content** — `checkBlueprintSufficiency` confirms the pool can fill the
+   blueprint without repeating a question. The pool is `getPool`: published
+   AND human-approved as it stands (section 9), minus public samples for
+   measured formats (`eligiblePool`). The coverage report
+   (`src/lib/content/coverage.ts`) uses exactly this pool.
 
 When either fails, the format is hidden **and the reason is displayed**. Do not
 add a code path that offers a format without consulting this.
@@ -110,6 +116,32 @@ feature matrix live only in `src/lib/billing/plans.ts`.
   page.
 - With `BILLING_ENFORCED` not `true`, everything is open; with it `true` and
   a Stripe key missing, the check throws rather than opening anything.
+
+## 9. Human approval — `src/lib/content/human-review.ts`
+
+A question version reaches a new session or a public page only with a standing
+human approval of its exact current content (docs/EXPERT-REVIEW.md).
+
+- One predicate, `humanApprovalSql`, in every query that builds a session or
+  shows a question publicly; `standingApproval` is the same rule in code.
+- An approval binds to `question_versions.id` AND `review_fingerprint`. The
+  fingerprint covers everything learner-facing; the seeder writes it from the
+  file, through `versionColumns` in `seed-plan.ts`, which the tests share.
+- `question_reviews` is append-only. Decisions are recorded only through
+  `recordReview`, which checks the acting account's reviewer authorisation,
+  exam, authorship, the current version and the fingerprint.
+- The seeder refuses to rewrite the content of a version any attempt points
+  at, and logs new versions, content changes and state changes in `audit_log`.
+- Nothing may insert approvals except `recordReview`, and the test fixtures,
+  which run only against throwaway databases.
+
+## 10. Official practice scores — `src/lib/learning/official-scores.ts`
+
+Learner-entered results from the test makers' own practice tests. Scales,
+sections and total rules come only from the test makers' published pages, with
+sources and the date checked. Results are compared only on the same scale and
+version; nothing is converted, predicted or verified, and every surface says
+"User-entered official practice result — not independently verified."
 
 ## Changing a contract
 

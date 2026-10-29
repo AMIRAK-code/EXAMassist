@@ -8,6 +8,7 @@ import { getHub, listHubs } from '@/lib/exams/registry';
 import { buildHomeData, initialSample, sourceExample, type MatrixRow } from '@/lib/home/home-data';
 import { ExamPreview } from '@/components/home/exam-preview';
 import { EditorialLine } from '@/components/site/editorial-line';
+import { HumanSupport } from '@/components/site/human-support';
 import { buttonClass, cx } from '@/components/ui';
 import { JsonLd, organizationSchema, webSiteSchema } from '@/components/seo/json-ld';
 import { getCurrentUser } from '@/lib/auth/session';
@@ -293,7 +294,10 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
         </div>
       </section>
 
-      {/* --- 5. Final call to action ---------------------------------------- */}
+      {/* --- 5. Human support ----------------------------------------------- */}
+      <HumanSupport accent={accentTag} />
+
+      {/* --- 6. Final call to action ---------------------------------------- */}
       <section aria-labelledby="final-heading" className="border-t-[1.5px] border-ink bg-highlight">
         <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:py-28">
           <h2 id="final-heading" className="display-xl max-w-[14ch]">

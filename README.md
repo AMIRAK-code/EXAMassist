@@ -116,6 +116,7 @@ and leaves every page dynamic.
 | `npm run e2e` | Browser tests (Playwright); prepares its own database |
 | `npm run db:migrate` / `db:seed` / `db:reset` | Database lifecycle |
 | `npm run content:validate` | Validate the question bank and report coverage |
+| `npm run content:coverage [-- --write]` | Blueprint coverage against human-approved questions, the dry run of the approval policy, and the authoring backlog (docs/coverage/) |
 | `npm run content:draft -- --exam=… --domain=…` | Draft questions with Claude into the review queue (`in_review`); `--dry-run` shows the request without calling the model. See docs/AUTHORING-BRIEF.md |
 | `npm run stripe:setup` | Create or check the Stripe products and prices for the plans (`-- --dry-run` to only report); see [`docs/BILLING.md`](docs/BILLING.md) |
 | `npx tsx scripts/validate-configs.ts` | Validate the exam configurations |
@@ -145,8 +146,9 @@ and leaves every page dynamic.
 
 - **Bocconi preparation and search** — the Bocconi landing page, its
   supporting guides, the funnel counts and the Search Console runbook are in
-  [`docs/BOCCONI-SEARCH.md`](docs/BOCCONI-SEARCH.md); recording a human expert
-  review is in [`docs/EXPERT-REVIEW.md`](docs/EXPERT-REVIEW.md); Search Console setup and the indexing
+  [`docs/BOCCONI-SEARCH.md`](docs/BOCCONI-SEARCH.md); human review, which every
+  served question needs, is in [`docs/EXPERT-REVIEW.md`](docs/EXPERT-REVIEW.md)
+  and its rollout in [`docs/HUMAN-APPROVAL-ROLLOUT.md`](docs/HUMAN-APPROVAL-ROLLOUT.md); Search Console setup and the indexing
   audit are in [`docs/GOOGLE_SEARCH_CONSOLE_SETUP.md`](docs/GOOGLE_SEARCH_CONSOLE_SETUP.md).
 - **Search and AI visibility** — robots policy, share images, llms.txt,
   IndexNow, what to run after a deploy and what needs the owners' accounts:

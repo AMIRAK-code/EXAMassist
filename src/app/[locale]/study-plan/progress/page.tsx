@@ -20,6 +20,8 @@ import { loadEntitlements } from '@/lib/billing/entitlements';
 import { UpgradePrompt } from '@/components/billing/upgrade-prompt';
 import { PlanningExamSwitcher, PlanningNotice, PlanningViews } from '@/components/planning/planning-views';
 import { DateConflictCard } from '@/components/planning/plan-parts';
+import { buildHistory, listOfficialScores, officialScoreExam } from '@/lib/learning/official-scores';
+import { OfficialScoresSummaryCard } from '@/components/official-scores/score-history';
 
 export const dynamic = 'force-dynamic';
 
@@ -112,6 +114,16 @@ export default async function ReadinessPage({ searchParams }: { searchParams: Pr
     />
   );
 
+  // Results the learner entered from the test maker's own practice tests,
+  // shown beside (never mixed into) what was measured here.
+  const officialScores = officialScoreExam(config.examKey) ? (
+    <OfficialScoresSummaryCard
+      history={buildHistory(config.examKey, await listOfficialScores(db, user.id, config.examKey), target?.targetScore ?? null)}
+      examKey={config.examKey}
+      examName={config.shortName}
+    />
+  ) : null;
+
   return (
     <Container>
       <Breadcrumbs trail={trail} />
@@ -134,12 +146,14 @@ export default async function ReadinessPage({ searchParams }: { searchParams: Pr
             <p>{t('progress.noAnswersLead')}</p>
           </EmptyState>
           {targetForm}
+          {officialScores}
         </div>
       ) : (
         <div className="space-y-10">
           <ReadinessReport assessment={assessment} config={config} />
           <SuggestionsList examKey={config.examKey} suggestions={suggestions} planHref={planningHref('plan', config.examKey)} />
           {targetForm}
+          {officialScores}
 
           {hub ? (
             <p className="text-sm">

@@ -34,7 +34,9 @@ export default defineConfig({
   webServer: {
     // Playwright starts webServer before globalSetup, so the database is
     // prepared here rather than in a setup hook.
-    command: `npx tsx scripts/reset.ts && npm run start -- --port ${PORT}`,
+    // The fixture approves every published question in this throwaway
+    // database only, so journeys have content under the human-approval rule.
+    command: `npx tsx scripts/reset.ts && npx tsx tests/e2e/approve-fixture.ts && npm run start -- --port ${PORT}`,
     url: baseURL,
     reuseExistingServer: !process.env.CI,
     timeout: 180_000,

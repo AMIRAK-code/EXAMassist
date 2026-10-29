@@ -3,6 +3,7 @@ import type { QuestionVersionRow, StimulusRow } from '@/lib/db/rows';
 import type { PoolItem } from '@/lib/assessment/select';
 import { answerKeySchema, type AnswerKey, type ResponseType } from '@/lib/assessment/types';
 import type { ContentLocale, QuestionTranslation, StimulusTranslation } from './question-schema';
+import { humanApprovalSql } from './human-review';
 
 /**
  * Question bank reads.
@@ -180,13 +181,17 @@ export async function getQuestionVersion(db: Db, questionVersionId: string): Pro
     | undefined;
 }
 
-/** The version of a question currently being served, if it is published. */
+/**
+ * The version of a question currently being served: published, and approved
+ * by a human reviewer as it stands now (human-review.ts).
+ */
 export async function getPublishedVersion(db: Db, questionId: string): Promise<QuestionVersionRow | undefined> {
   return (await db
     .prepare(
       `SELECT qv.* FROM question_versions qv
        JOIN questions q ON q.id = qv.question_id AND q.current_version = qv.version
-       WHERE q.id = ? AND q.state = 'published' AND qv.state = 'published'`,
+       WHERE q.id = ? AND q.state = 'published' AND qv.state = 'published'
+         AND ${humanApprovalSql('qv')}`,
     )
     .get(questionId)) as QuestionVersionRow | undefined;
 }
@@ -200,14 +205,7 @@ export async function getQuestionVersions(db: Db, ids: readonly string[]): Promi
   return new Map(rows.map((row) => [row.id, row]));
 }
 
-/**
- * Candidate pool for selection: published items only, annotated with when this
- * learner last saw each question so selection can prefer fresh material.
- */
-export async function getPool(db: Db, examKey: string, userId: string | null): Promise<PoolItem[]> {
-  const rows = (await db
-    .prepare(
-      `SELECT
+const POOL_COLUMNS = `
          qv.id                AS questionVersionId,
          qv.question_id       AS questionId,
          qv.section_key       AS sectionKey,
@@ -215,7 +213,20 @@ export async function getPool(db: Db, examKey: string, userId: string | null): P
          qv.skill_slug        AS skillSlug,
          qv.response_type     AS responseType,
          qv.difficulty        AS difficulty,
-         qv.stimulus_id       AS stimulusId,
+         qv.stimulus_id       AS stimulusId`;
+
+/**
+ * Candidate pool for every new session: published items that a human reviewer
+ * has approved as they stand now (human-review.ts), annotated with when this
+ * learner last saw each question so selection can prefer fresh material.
+ *
+ * This is the one place a new session's questions come from. A published item
+ * without a standing human approval is not in it, whatever passed before.
+ */
+export async function getPool(db: Db, examKey: string, userId: string | null): Promise<PoolItem[]> {
+  const rows = (await db
+    .prepare(
+      `SELECT ${POOL_COLUMNS},
          (
            SELECT MAX(ai.first_seen_at)
            FROM attempt_items ai
@@ -224,17 +235,52 @@ export async function getPool(db: Db, examKey: string, userId: string | null): P
          )                    AS lastSeenAt
        FROM question_versions qv
        JOIN questions q ON q.id = qv.question_id AND q.current_version = qv.version
-       WHERE qv.exam_key = ? AND qv.state = 'published' AND q.state = 'published'`,
+       WHERE qv.exam_key = ? AND qv.state = 'published' AND q.state = 'published'
+         AND ${humanApprovalSql('qv')}`,
     )
     .all(userId ?? '', examKey)) as PoolItem[];
   return rows;
+}
+
+/** A current question version with where it stands, for coverage and approval reports. Never used to build a session. */
+export interface CandidateItem extends PoolItem {
+  examKey: string;
+  state: string;
+  humanApproved: boolean;
+  reviewFingerprint: string | null;
+  stemMd: string;
+}
+
+/**
+ * Every current question version of an exam, whatever its state, with whether
+ * it holds a standing human approval: the same predicate `getPool` applies.
+ */
+export async function getCandidates(db: Db, examKey: string): Promise<CandidateItem[]> {
+  const rows = (await db
+    .prepare(
+      `SELECT ${POOL_COLUMNS},
+         NULL                 AS lastSeenAt,
+         qv.exam_key          AS examKey,
+         q.state              AS state,
+         qv.review_fingerprint AS reviewFingerprint,
+         qv.stem_md           AS stemMd,
+         CASE WHEN ${humanApprovalSql('qv')} THEN 1 ELSE 0 END AS humanApproved
+       FROM question_versions qv
+       JOIN questions q ON q.id = qv.question_id AND q.current_version = qv.version
+       WHERE qv.exam_key = ?`,
+    )
+    .all(examKey)) as Array<Omit<CandidateItem, 'humanApproved'> & { humanApproved: number }>;
+  return rows.map((row) => ({ ...row, humanApproved: Number(row.humanApproved) === 1 }));
 }
 
 export interface CoverageRow {
   examKey: string;
   sectionKey: string;
   domainSlug: string;
+  /** Published by the content file: passed the automated gates. Not necessarily served. */
   published: number;
+  /** Published AND human-approved as it stands: what new sessions can draw on. */
+  approved: number;
   draft: number;
   inReview: number;
   quarantined: number;
@@ -251,6 +297,7 @@ export async function getCoverage(db: Db, examKey?: string): Promise<CoverageRow
          qv.section_key  AS sectionKey,
          qv.domain_slug  AS domainSlug,
          SUM(CASE WHEN qv.state = 'published'   THEN 1 ELSE 0 END) AS published,
+         SUM(CASE WHEN qv.state = 'published' AND q.state = 'published' AND ${humanApprovalSql('qv')} THEN 1 ELSE 0 END) AS approved,
          SUM(CASE WHEN qv.state = 'draft'       THEN 1 ELSE 0 END) AS draft,
          SUM(CASE WHEN qv.state = 'in_review'   THEN 1 ELSE 0 END) AS inReview,
          SUM(CASE WHEN qv.state = 'quarantined' THEN 1 ELSE 0 END) AS quarantined
@@ -263,13 +310,15 @@ export async function getCoverage(db: Db, examKey?: string): Promise<CoverageRow
     .all(...params)) as CoverageRow[];
 }
 
+/** Questions new sessions can draw on: published and human-approved. */
 export async function countPublished(db: Db, examKey: string): Promise<number> {
   const row = (await db
     .prepare(
       `SELECT COUNT(*) AS n
        FROM question_versions qv
        JOIN questions q ON q.id = qv.question_id AND q.current_version = qv.version
-       WHERE qv.exam_key = ? AND qv.state = 'published' AND q.state = 'published'`,
+       WHERE qv.exam_key = ? AND qv.state = 'published' AND q.state = 'published'
+         AND ${humanApprovalSql('qv')}`,
     )
     .get(examKey)) as { n: number };
   return row.n;

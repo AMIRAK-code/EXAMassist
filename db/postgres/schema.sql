@@ -84,7 +84,8 @@ CREATE TABLE question_versions (
   content_hash               TEXT NOT NULL,
   created_at                 TEXT NOT NULL,
   UNIQUE (question_id, version),
-  translations_json          TEXT                        -- checked translations by locale (013)
+  translations_json          TEXT,                       -- checked translations by locale (013)
+  review_fingerprint         TEXT                        -- learner-facing content fingerprint (014)
 );
 
 CREATE TABLE exam_configs (
@@ -384,6 +385,53 @@ CREATE TABLE funnel_counts (
   PRIMARY KEY (day, event, subject, source)
 );
 
+CREATE TABLE reviewers (
+  user_id              TEXT PRIMARY KEY REFERENCES users (id) ON DELETE CASCADE,
+  public_name          TEXT NOT NULL,
+  public_credentials   TEXT NOT NULL,
+  exam_keys_json       TEXT NOT NULL,
+  author_aliases_json  TEXT NOT NULL DEFAULT '[]',
+  granted_by           TEXT NOT NULL,
+  granted_at           TEXT NOT NULL,
+  confirmed_at         TEXT,
+  revoked_at           TEXT,
+  revoked_by           TEXT,
+  revoke_reason        TEXT,
+  updated_at           TEXT NOT NULL
+);
+
+CREATE TABLE question_reviews (
+  id                    TEXT PRIMARY KEY,
+  question_id           TEXT NOT NULL,
+  question_version_id   TEXT NOT NULL REFERENCES question_versions (id),
+  question_version      BIGINT NOT NULL,
+  review_fingerprint    TEXT NOT NULL,
+  exam_key              TEXT NOT NULL,
+  reviewer_user_id      TEXT REFERENCES users (id) ON DELETE SET NULL,
+  reviewer_name         TEXT NOT NULL,
+  reviewer_credentials  TEXT NOT NULL,
+  outcome               TEXT NOT NULL,
+  checked_json          TEXT NOT NULL,
+  notes                 TEXT,
+  reviewed_on           TEXT NOT NULL,
+  created_at            TEXT NOT NULL
+);
+
+CREATE TABLE official_practice_scores (
+  id                   TEXT PRIMARY KEY,
+  user_id              TEXT NOT NULL REFERENCES users (id) ON DELETE CASCADE,
+  exam_key             TEXT NOT NULL,
+  scale_key            TEXT NOT NULL,
+  provider_key         TEXT NOT NULL,
+  test_name            TEXT NOT NULL,
+  taken_on             TEXT NOT NULL,
+  overall_score        DOUBLE PRECISION,
+  section_scores_json  TEXT NOT NULL DEFAULT '{}',
+  notes                TEXT,
+  created_at           TEXT NOT NULL,
+  updated_at           TEXT NOT NULL
+);
+
 CREATE INDEX idx_users_role ON users (role);
 
 CREATE INDEX idx_users_guest_created ON users (is_guest, created_at);
@@ -449,6 +497,14 @@ CREATE INDEX idx_billing_subscriptions_user ON billing_subscriptions (user_id, s
 
 CREATE INDEX idx_billing_subscriptions_customer ON billing_subscriptions (stripe_customer_id);
 
+CREATE INDEX idx_question_reviews_version ON question_reviews (question_version_id, created_at);
+
+CREATE INDEX idx_question_reviews_question ON question_reviews (question_id, created_at);
+
+CREATE INDEX idx_question_reviews_reviewer ON question_reviews (reviewer_user_id, created_at);
+
+CREATE INDEX idx_official_scores_user ON official_practice_scores (user_id, exam_key, taken_on);
+
 ALTER TABLE examer.users ENABLE ROW LEVEL SECURITY;
 ALTER TABLE examer.sessions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE examer.stimuli ENABLE ROW LEVEL SECURITY;
@@ -477,6 +533,9 @@ ALTER TABLE examer.billing_customers ENABLE ROW LEVEL SECURITY;
 ALTER TABLE examer.billing_subscriptions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE examer.billing_events ENABLE ROW LEVEL SECURITY;
 ALTER TABLE examer.funnel_counts ENABLE ROW LEVEL SECURITY;
+ALTER TABLE examer.reviewers ENABLE ROW LEVEL SECURITY;
+ALTER TABLE examer.question_reviews ENABLE ROW LEVEL SECURITY;
+ALTER TABLE examer.official_practice_scores ENABLE ROW LEVEL SECURITY;
 REVOKE ALL ON SCHEMA examer FROM PUBLIC, anon, authenticated;
 CREATE TABLE _migrations (name TEXT PRIMARY KEY, applied_at TEXT NOT NULL);
 INSERT INTO _migrations (name, applied_at) VALUES
@@ -492,6 +551,8 @@ INSERT INTO _migrations (name, applied_at) VALUES
 ('010_billing.sql', '2026-10-05T00:00:00.000Z'),
 ('011_funnel_counts.sql', '2026-10-07T00:00:00.000Z'),
 ('012_stripe_subscriptions.sql', '2026-10-23T00:00:00.000Z'),
-('013_content_translations.sql', '2026-10-27T00:00:00.000Z');
+('013_content_translations.sql', '2026-10-27T00:00:00.000Z'),
+('014_human_review.sql', '2026-10-28T00:00:00.000Z'),
+('015_official_practice_scores.sql', '2026-10-28T00:00:00.000Z');
 ALTER TABLE examer._migrations ENABLE ROW LEVEL SECURITY;
 COMMIT;
