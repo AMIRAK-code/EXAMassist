@@ -5,23 +5,24 @@ import {
   BillingError,
   billingOverview,
   cancelBeforeDeletion,
-  createSubscription,
   finishCardUpdate,
   setCancelAtPeriodEnd,
   startCardUpdate,
+  startCheckout,
   syncSubscriptionForUser,
   type BillingUser,
-  type CreateSubscriptionInput,
+  type CheckoutInput,
 } from '@/lib/billing/service';
 import { getCustomerId, getSubscriptionRow } from '@/lib/billing/store';
-import { PLANS } from '@/lib/billing/plans';
-import { OFF, ON, fakeStripe, stripeSubscription } from './helpers/fake-stripe';
+import { PRICES } from '@/lib/billing/plans';
+import { OFF, ON, fakeStripe, stripePrice, stripeSubscription } from './helpers/fake-stripe';
 import { createTestDb, createUser } from './helpers/test-db';
 
 /**
- * Creating and managing subscriptions against a mocked Stripe client. The
- * Stripe API is not reachable from the test environment, and no test here
- * tries: every call goes to the fake in helpers/fake-stripe.ts.
+ * Buying and managing Plus (and the earlier subscriptions people still hold)
+ * against a mocked Stripe client. The Stripe API is not reachable from the
+ * test environment, and no test here tries: every call goes to the fake in
+ * helpers/fake-stripe.ts. The Single Exam Pass is in billing-passes.test.ts.
  */
 
 let db: Db;
@@ -33,8 +34,8 @@ beforeEach(async () => {
   user = { id, email: `${id}@example.invalid`, displayName: 'Ada', isGuest: false };
 });
 
-const buy = (input: Partial<CreateSubscriptionInput>, fake = fakeStripe(), settings = ON) =>
-  createSubscription(db, user, { plan: 'all_access', consent: true, requestId: 'req-00000001', ...input }, { settings, stripe: fake.api });
+const buy = (input: Partial<CheckoutInput>, fake = fakeStripe(), settings = ON) =>
+  startCheckout(db, user, { offer: 'plus_month', consent: true, requestId: 'req-00000001', ...input }, { settings, stripe: fake.api });
 
 async function rejection(promise: Promise<unknown>) {
   const error = await promise.then(() => null, (e: unknown) => e);
@@ -42,44 +43,56 @@ async function rejection(promise: Promise<unknown>) {
   return error as BillingError;
 }
 
-describe('creating a subscription', () => {
-  it('creates the customer, finds the price by lookup key and creates an incomplete subscription', async () => {
-    const fake = fakeStripe();
-    const created = await buy({ plan: 'all_access', sourceExam: 'gmat' }, fake);
+async function giveEarlierPlan(userId: string, lookupKey: string) {
+  const at = new Date().toISOString();
+  await db
+    .prepare(
+      `INSERT INTO billing_subscriptions (stripe_subscription_id, user_id, stripe_customer_id, plan, exam_key, status,
+         price_lookup_key, current_period_end, cancel_at_period_end, withdrawal_waiver_at, stripe_synced_at, created_at, updated_at)
+       VALUES ('sub_earlier', ?, 'cus_earlier', 'all_access', NULL, 'active', ?, ?, 0, NULL, 0, ?, ?)`,
+    )
+    .run(userId, lookupKey, new Date(Date.now() + 20 * 86_400_000).toISOString(), at, at);
+}
 
-    expect(created).toMatchObject({ intent: 'payment', status: 'incomplete', clientSecret: expect.stringMatching(/^pi_.+_secret_/) });
+describe('buying Plus', () => {
+  it('creates the customer, finds the monthly price by lookup key and creates an incomplete subscription', async () => {
+    const fake = fakeStripe();
+    const created = await buy({ sourceExam: 'gmat' }, fake);
+
+    expect(created).toMatchObject({ kind: 'subscription', intent: 'payment', status: 'incomplete', clientSecret: expect.stringMatching(/^pi_.+_secret_/) });
     expect(fake.called('customers.create')[0]!.args[0]).toMatchObject({ email: user.email, name: 'Ada', metadata: { examer_user_id: user.id } });
-    expect(fake.called('prices.list')[0]!.args[0]).toMatchObject({ lookup_keys: [PLANS.all_access.lookupKey], active: true });
+    expect(fake.called('prices.list')[0]!.args[0]).toMatchObject({ lookup_keys: [PRICES.plus_month.lookupKey], active: true });
 
     const [params, options] = fake.called('subscriptions.create')[0]!.args as [Stripe.SubscriptionCreateParams, Stripe.RequestOptions];
     expect(params).toMatchObject({
       customer: 'cus_new',
-      items: [{ price: 'price_all', quantity: 1 }],
+      items: [{ price: 'price_plus_month', quantity: 1 }],
       payment_behavior: 'default_incomplete',
       payment_settings: { save_default_payment_method: 'on_subscription' },
       expand: ['latest_invoice.confirmation_secret', 'pending_setup_intent'],
-      metadata: { examer_user_id: user.id, plan: 'all_access', source_exam: 'gmat', withdrawal_waiver_at: expect.any(String) },
+      metadata: { examer_user_id: user.id, plan: 'plus', price_key: 'plus_month', source_exam: 'gmat', withdrawal_waiver_at: expect.any(String) },
     });
     expect(params.metadata).not.toHaveProperty('exam_key');
     expect(params).not.toHaveProperty('automatic_tax');
-    expect(options.idempotencyKey).toBe(`examer-sub-${user.id}-all_access-all-req-00000001`);
+    expect(options.idempotencyKey).toBe(`examer-sub-${user.id}-plus_month-req-00000001`);
 
     expect(await getCustomerId(db, user.id)).toBe('cus_new');
-    expect(await getSubscriptionRow(db, created.subscriptionId)).toMatchObject({
+    expect(await getSubscriptionRow(db, created.id)).toMatchObject({
       user_id: user.id,
-      plan: 'all_access',
+      plan: 'plus',
+      exam_key: null,
+      price_lookup_key: PRICES.plus_month.lookupKey,
       status: 'incomplete',
       withdrawal_waiver_at: expect.any(String),
     });
   });
 
-  it('carries the exam on a single-exam subscription as metadata exam_key', async () => {
+  it('sells the yearly price as a yearly subscription, charged upfront', async () => {
     const fake = fakeStripe();
-    const created = await buy({ plan: 'single_exam', examKey: 'digital-sat' }, fake);
+    const created = await buy({ offer: 'plus_year' }, fake);
     const [params] = fake.called('subscriptions.create')[0]!.args as [Stripe.SubscriptionCreateParams];
-    expect(params.items).toEqual([{ price: 'price_single', quantity: 1 }]);
-    expect(params.metadata).toMatchObject({ plan: 'single_exam', exam_key: 'digital-sat' });
-    expect(await getSubscriptionRow(db, created.subscriptionId)).toMatchObject({ plan: 'single_exam', exam_key: 'digital-sat' });
+    expect(params.items).toEqual([{ price: 'price_plus_year', quantity: 1 }]);
+    expect(await getSubscriptionRow(db, created.id)).toMatchObject({ plan: 'plus', price_lookup_key: PRICES.plus_year.lookupKey });
   });
 
   it('returns the SetupIntent secret when nothing is due now', async () => {
@@ -87,12 +100,15 @@ describe('creating a subscription', () => {
     expect(created).toMatchObject({ intent: 'setup', clientSecret: expect.stringMatching(/^seti_.+_secret_/) });
   });
 
-  it('reuses the subscription still waiting for the same plan instead of creating another', async () => {
+  it('reuses the subscription still waiting for the same price instead of creating another', async () => {
     const fake = fakeStripe();
     const first = await buy({}, fake);
     const second = await buy({ requestId: 'req-00000002' }, fake);
-    expect(second.subscriptionId).toBe(first.subscriptionId);
+    expect(second.id).toBe(first.id);
     expect(fake.called('subscriptions.create')).toHaveLength(1);
+    // Switching to yearly is a different price: a new subscription.
+    await buy({ offer: 'plus_year', requestId: 'req-00000003' }, fake);
+    expect(fake.called('subscriptions.create')).toHaveLength(2);
   });
 
   it('asks Stripe Tax for VAT and stores the country when automatic tax is on', async () => {
@@ -104,35 +120,60 @@ describe('creating a subscription', () => {
     expect(fake.called('subscriptions.create')[0]!.args[0]).toMatchObject({ automatic_tax: { enabled: true } });
   });
 
-  it('refuses guests, missing consent, unknown plans and exams, before calling Stripe', async () => {
+  it('refuses guests, missing consent and anything not on sale, before calling Stripe', async () => {
     const fake = fakeStripe();
     const guest = { ...user, isGuest: true, email: null };
     expect(
-      await rejection(createSubscription(db, guest, { plan: 'all_access', consent: true, requestId: 'req-00000001' }, { settings: ON, stripe: fake.api })),
+      await rejection(startCheckout(db, guest, { offer: 'plus_month', consent: true, requestId: 'req-00000001' }, { settings: ON, stripe: fake.api })),
     ).toMatchObject({ code: 'account-required', status: 403 });
     expect((await rejection(buy({ consent: false }, fake))).code).toBe('consent-required');
-    expect((await rejection(buy({ plan: 'lifetime' as never }, fake))).code).toBe('unknown-plan');
-    expect((await rejection(buy({ plan: 'single_exam' }, fake))).code).toBe('unknown-exam');
-    expect((await rejection(buy({ plan: 'single_exam', examKey: 'https://evil.example' }, fake))).code).toBe('unknown-exam');
+    expect((await rejection(buy({ offer: 'lifetime' as never }, fake))).code).toBe('unknown-plan');
+    // The earlier plans are honoured for their holders, never sold again.
+    expect((await rejection(buy({ offer: 'all_access_month' }, fake))).code).toBe('unknown-plan');
+    expect((await rejection(buy({ offer: 'single_exam_month', examKey: 'gmat' }, fake))).code).toBe('unknown-plan');
+    expect(fake.calls).toHaveLength(0);
+  });
+
+  it('refuses Premium on the server, monthly or yearly, whatever the page sent', async () => {
+    const fake = fakeStripe();
+    // Even if someone created the Premium prices in Stripe by hand.
+    fake.state.prices[PRICES.premium_month.lookupKey] = stripePrice('premium_month');
+    for (const offer of ['premium_month', 'premium_year'] as const) {
+      expect(await rejection(buy({ offer }, fake))).toMatchObject({ code: 'coming-soon', status: 409, messageKey: 'comingSoon' });
+    }
     expect(fake.calls).toHaveLength(0);
   });
 
   it('never sells what the learner already has', async () => {
     const fake = fakeStripe({ createdStatus: 'active' });
-    await buy({ plan: 'single_exam', examKey: 'gmat' }, fake);
-    expect(await rejection(buy({ plan: 'single_exam', examKey: 'gmat', requestId: 'req-00000002' }, fake))).toMatchObject({
+    await buy({}, fake);
+    expect(await rejection(buy({ offer: 'plus_year', requestId: 'req-00000002' }, fake))).toMatchObject({
       code: 'already-subscribed',
       status: 409,
     });
-    // Another exam is fine; then All access covers everything.
-    await buy({ plan: 'single_exam', examKey: 'lsat', requestId: 'req-00000003' }, fake);
-    await buy({ plan: 'all_access', requestId: 'req-00000004' }, fake);
-    expect((await rejection(buy({ plan: 'single_exam', examKey: 'gre', requestId: 'req-00000005' }, fake))).code).toBe('already-subscribed');
+    // Plus covers every exam, so no pass is sold beside it.
+    expect((await rejection(buy({ offer: 'exam_pass', examKey: 'gmat', requestId: 'req-00000003' }, fake))).code).toBe('already-subscribed');
   });
 
-  it('says payments are misconfigured, not that the card failed, when a price is missing', async () => {
-    const error = await rejection(buy({}, fakeStripe({ prices: {} })));
-    expect(error).toMatchObject({ code: 'billing-misconfigured', status: 503 });
+  it('does not sell Plus over an earlier plan that already covers every exam', async () => {
+    await giveEarlierPlan(user.id, 'examer_premium_monthly_v1');
+    const fake = fakeStripe();
+    expect((await rejection(buy({}, fake))).code).toBe('already-subscribed');
+    expect(fake.called('subscriptions.create')).toHaveLength(0);
+  });
+
+  it('says payments are misconfigured, not that the card failed, when a price is missing or differs from the page', async () => {
+    expect(await rejection(buy({}, fakeStripe({ prices: {} })))).toMatchObject({ code: 'billing-misconfigured', status: 503 });
+    const wrongAmount = fakeStripe();
+    wrongAmount.state.prices[PRICES.plus_month.lookupKey] = stripePrice('plus_month', { unit_amount: 899 });
+    expect((await rejection(buy({}, wrongAmount))).code).toBe('billing-misconfigured');
+    const exclusive = fakeStripe();
+    exclusive.state.prices[PRICES.plus_month.lookupKey] = stripePrice('plus_month', { tax_behavior: 'exclusive' });
+    expect((await rejection(buy({}, exclusive))).code).toBe('billing-misconfigured');
+    const wrongInterval = fakeStripe();
+    wrongInterval.state.prices[PRICES.plus_year.lookupKey] = stripePrice('plus_month', { lookup_key: PRICES.plus_year.lookupKey, unit_amount: 5999 });
+    expect((await rejection(buy({ offer: 'plus_year' }, wrongInterval))).code).toBe('billing-misconfigured');
+    for (const fake of [wrongAmount, exclusive, wrongInterval]) expect(fake.called('subscriptions.create')).toHaveLength(0);
   });
 
   it('turns Stripe outages into a retryable message that says nothing was charged', async () => {
@@ -152,7 +193,7 @@ describe('creating a subscription', () => {
 describe('managing subscriptions', () => {
   async function activePlan(fake = fakeStripe({ createdStatus: 'active' })) {
     const created = await buy({}, fake);
-    return { id: created.subscriptionId, fake };
+    return { id: created.id, fake };
   }
 
   it('cancels at period end and resumes, for the owner only', async () => {
@@ -179,7 +220,10 @@ describe('managing subscriptions', () => {
     expect(await startCardUpdate(db, user.id, { settings: ON, stripe: fake.api })).toEqual({ clientSecret: 'seti_new_secret_z' });
     expect(fake.called('setupIntents.create')[0]!.args[0]).toMatchObject({ customer: 'cus_new', usage: 'off_session' });
 
-    fake.state.subscriptions.set(id, stripeSubscription({ id, customer: 'cus_new', userId: user.id, status: 'past_due', latestInvoice: 'in_failed' }));
+    fake.state.subscriptions.set(
+      id,
+      stripeSubscription({ id, plan: 'plus', customer: 'cus_new', userId: user.id, status: 'past_due', latestInvoice: 'in_failed' }),
+    );
     await db.prepare("UPDATE billing_subscriptions SET status = 'past_due'").run();
     fake.state.setupIntents.seti_done = { customer: 'cus_new', status: 'succeeded', payment_method: 'pm_new' };
     const result = await finishCardUpdate(db, user.id, 'seti_done', { settings: ON, stripe: fake.api });
@@ -203,10 +247,10 @@ describe('managing subscriptions', () => {
   it('refreshes the state after the browser confirms, for the owner only', async () => {
     const fake = fakeStripe();
     const created = await buy({}, fake);
-    fake.state.subscriptions.set(created.subscriptionId, stripeSubscription({ id: created.subscriptionId, customer: 'cus_new', userId: user.id, status: 'active' }));
-    expect((await syncSubscriptionForUser(db, user.id, created.subscriptionId, { settings: ON, stripe: fake.api })).status).toBe('active');
+    fake.state.subscriptions.set(created.id, stripeSubscription({ id: created.id, plan: 'plus', customer: 'cus_new', userId: user.id, status: 'active' }));
+    expect((await syncSubscriptionForUser(db, user.id, created.id, { settings: ON, stripe: fake.api })).status).toBe('active');
     const stranger = await createUser(db);
-    expect((await rejection(syncSubscriptionForUser(db, stranger, created.subscriptionId, { settings: ON, stripe: fake.api }))).code).toBe(
+    expect((await rejection(syncSubscriptionForUser(db, stranger, created.id, { settings: ON, stripe: fake.api }))).code).toBe(
       'unknown-subscription',
     );
   });
@@ -216,7 +260,7 @@ describe('managing subscriptions', () => {
     expect((await billingOverview(db, user.id, { settings: ON, stripe: fake.api })).fresh).toBe(true);
     fake.state.fail = new Error('offline');
     const overview = await billingOverview(db, user.id, { settings: ON, stripe: fake.api });
-    expect(overview).toMatchObject({ fresh: false, card: null });
+    expect(overview).toMatchObject({ fresh: false, card: null, passes: [] });
     expect(overview.subscriptions).toHaveLength(1);
   });
 

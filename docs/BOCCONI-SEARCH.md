@@ -116,7 +116,7 @@ days:
 | Plans page views carrying a Bocconi exam | `funnel_counts` (`pricing_view`) |
 | Free Bocconi tests started and finished | the `attempts` table (free-test sessions) |
 | Checkouts started from a Bocconi exam | `funnel_counts` (`checkout_start`) |
-| Plans bought from a Bocconi exam | `funnel_counts` (`purchase`), and in Stripe as subscription metadata `exam_key` (Single exam) or `source_exam` (All access bought from that exam's pages); see docs/BILLING.md |
+| Plans bought from a Bocconi exam | `funnel_counts` (`purchase`), and in Stripe as metadata `exam_key` on the Single Exam Pass invoice, or `source_exam` (Plus bought from that exam's pages); see docs/BILLING.md |
 
 All of these are daily totals with no identifier, IP address, cookie or user
 agent stored, so no consent banner is needed and the privacy notice says so.

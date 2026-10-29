@@ -1,31 +1,49 @@
 {
   "plans": {
+    "exam_pass": {
+      "name": "Pass singolo esame",
+      "tagline": "Un esame a tua scelta per sei mesi. Si paga una volta sola e non si rinnova."
+    },
+    "plus": {
+      "name": "Plus",
+      "tagline": "Tutti gli esami del sito, con addebito mensile o annuale finché non disdici."
+    },
+    "premium": {
+      "name": "Premium",
+      "tagline": "Tutto ciò che offre Plus, più il tutor IA."
+    },
     "all_access": {
-      "name": "Accesso completo",
-      "tagline": "Tutti gli esami del sito, più il tutor IA.",
-      "perPeriod": "al mese",
-      "scope": "Tutti gli esami"
+      "name": "Accesso completo (piano precedente)",
+      "tagline": "Tutti gli esami del sito, più il tutor IA. Non più in vendita."
     },
     "single_exam": {
-      "name": "Singolo esame",
-      "tagline": "Uso completo dell’esame che scegli. Puoi averne più di uno se ti prepari a più esami.",
-      "perPeriod": "al mese, per esame",
-      "scope": "Un esame a tua scelta"
+      "name": "Singolo esame (piano precedente)",
+      "tagline": "Un esame a tua scelta, con addebito mensile. Non più in vendita."
+    },
+    "legacyPremium": {
+      "name": "Premium (piano precedente)"
     },
     "free": {
       "name": "Gratis",
-      "tagline": "Guide, domande di esempio e un test diagnostico gratuito per ogni esame."
+      "tagline": "Guide, domande di esempio, un test diagnostico gratuito per ogni esame e il registro dei tuoi punteggi nelle simulazioni ufficiali."
     },
-    "vatNote": "Prezzi in euro, IVA inclusa. Addebito mensile; il piano si rinnova automaticamente finché non lo disdici."
+    "vatNote": "Prezzi in euro, IVA inclusa.",
+    "summaryNote": "IVA inclusa. Il pass si paga una volta sola e non si rinnova; Plus si rinnova finché non lo disdici, e il prezzo annuale viene addebitato per intero all’inizio di ogni anno."
+  },
+  "prices": {
+    "exam_pass": "{price} una tantum",
+    "plus_month": "{price} al mese",
+    "plus_year": "{price} all’anno"
   },
   "features": {
     "guides": "Guide agli esami, pagine su formato e punteggio",
     "samples": "Domande di esempio",
     "diagnostic": "Il test diagnostico gratuito per ogni esame",
-    "practice": "Esercitazioni per argomento e ripassi, con domande nuove a ogni sessione",
+    "official_scores": "Registro dei tuoi punteggi nelle simulazioni ufficiali",
+    "practice": "Esercitazioni per argomento e ripassi con spiegazioni svolte, domande nuove a ogni sessione",
     "timed_section": "Sezioni a tempo al ritmo ufficiale",
     "simulation": "Simulazioni complete, quando l’esame le prevede",
-    "study_plan": "Piano di studio e livello di preparazione",
+    "study_plan": "Piano di studio e monitoraggio dei progressi",
     "ai_tutor": "Tutor IA: suggerimenti, spiegazioni approfondite, guide dopo il test"
   },
   "crumbs": {
@@ -37,46 +55,72 @@
   "pricing": {
     "meta": {
       "title": "Piani e prezzi",
-      "description": "Accesso completo a {allAccessPrice} al mese, oppure un singolo esame a {singleExamPrice} al mese. Guide, domande di esempio e un test diagnostico per ogni esame restano gratuiti. IVA inclusa; puoi disdire in qualsiasi momento."
+      "description": "Un Pass singolo esame a {passPrice} una tantum, oppure Plus a {plusMonthly} al mese o {plusYearly} all’anno. Guide, domande di esempio, un test diagnostico per ogni esame e il registro dei punteggi ufficiali restano gratuiti. IVA inclusa."
     },
     "eyebrow": "Piani",
-    "heading": "Esercitati su tutti gli esami, o solo su quello che devi sostenere",
+    "heading": "Preparati all’esame che devi sostenere, o a tutti",
     "headingForExam": "Piani per la tua preparazione: {exam}",
-    "lead": "Guide, domande di esempio e un test diagnostico per ogni esame sono gratuiti. Un piano sblocca le esercitazioni, le sezioni a tempo, le simulazioni complete e il piano di studio.",
+    "lead": "Guide, domande di esempio, un test diagnostico per ogni esame e il registro dei tuoi punteggi nelle simulazioni ufficiali sono gratuiti. Un Pass singolo esame o Plus sblocca esercitazioni, sezioni a tempo, simulazioni complete, piano di studio e monitoraggio dei progressi, per i formati che ogni esame ha già aperti.",
     "notEnforced": {
       "title": "Al momento è tutto gratuito",
       "body": "I pagamenti non sono ancora attivi su questo sito, quindi ogni esame e ogni formato sono aperti a tutti."
     },
     "testMode": "Modalità di prova: il pagamento usa le carte di test di Stripe e non addebita nulla.",
     "reasons": {
-      "diagnosticTaken": "Hai svolto il test diagnostico gratuito. Scegli un piano per continuare a esercitarti con domande nuove.",
-      "practice": "Le sessioni di esercitazione fanno parte di un piano a pagamento.",
-      "timed_section": "Le sezioni a tempo fanno parte di un piano a pagamento.",
-      "simulation": "Le simulazioni complete fanno parte di un piano a pagamento.",
-      "study_plan": "Il piano di studio e la valutazione della preparazione fanno parte di un piano a pagamento.",
-      "ai_tutor": "Il tutor IA è incluso in Accesso completo."
+      "diagnosticTaken": "Hai svolto il test diagnostico gratuito. Con un Pass singolo esame o con Plus puoi continuare a esercitarti con domande nuove.",
+      "practice": "Le sessioni di esercitazione richiedono un Pass singolo esame o Plus.",
+      "timed_section": "Le sezioni a tempo richiedono un Pass singolo esame o Plus.",
+      "simulation": "Le simulazioni complete richiedono un Pass singolo esame o Plus.",
+      "study_plan": "Il piano di studio e il monitoraggio dei progressi richiedono un Pass singolo esame o Plus.",
+      "ai_tutor": "Il tutor IA arriverà con Premium, che sarà disponibile a breve e non si può ancora acquistare."
     },
     "current": {
-      "allAccess": "Hai Accesso completo: tutti gli esami e il tutor IA sono a tua disposizione.",
-      "singleExam": "I tuoi piani Singolo esame: {exams}.",
+      "allAccess": "Il tuo piano include tutti gli esami.",
+      "allAccessTutor": "Il tuo piano include tutti gli esami e il tutor IA.",
+      "singleExam": "Hai accesso a: {exams}.",
       "manage": "Gestisci i tuoi piani"
     },
     "perMonth": "/ mese",
-    "perMonthPerExam": "/ mese per esame",
-    "featured": "Il più completo",
+    "perYear": "/ anno",
     "free": {
       "cta": "Fai un test diagnostico gratuito",
       "ctaExams": "Scegli un esame"
     },
-    "single": {
+    "pass": {
+      "once": "una tantum",
+      "term": "Sei mesi di accesso dal giorno in cui il pagamento è confermato. Non si rinnova.",
+      "noTutor": "Il tutor IA non è incluso.",
       "examLabel": "Esame",
-      "owned": "(il tuo piano)",
-      "coveredByAll": "Accesso completo include già tutti gli esami.",
+      "owned": "(hai già accesso)",
+      "unavailableOption": "(non ancora disponibile)",
+      "coveredByAll": "Il tuo piano include già tutti gli esami.",
+      "noneAvailable": "Nessun esame ha ancora un formato di esercitazione aperto, quindi oggi non si può acquistare alcun pass. I formati si aprono man mano che le loro domande superano la revisione umana.",
       "cta": "Procedi al pagamento"
     },
-    "all": {
-      "cta": "Scegli Accesso completo",
-      "owned": "Hai già questo piano"
+    "plus": {
+      "badge": "Tutti gli esami",
+      "yearlySaving": "Risparmi il {percent}% rispetto all’addebito mensile.",
+      "yearlyApprox": "Circa {perMonth}/mese, addebitati {price} all’anno.",
+      "coverage": "Comprende i formati di esercitazione che ogni esame ha aperti. Oggi {open, plural, =0 {non c’è ancora nessun esame} one {è # esame} other {sono # esami}} su {total}; la tabella qui sotto indica quali.",
+      "noTutor": "Il tutor IA non è incluso.",
+      "owned": "Hai un piano che include tutti gli esami",
+      "ctaYearly": "Scegli l’annuale: {price} all’anno",
+      "ctaMonthly": "Scegli il mensile: {price} al mese"
+    },
+    "premium": {
+      "badge": "Prossimamente",
+      "planned": "Prezzo previsto: {monthly} al mese o {yearly} all’anno.",
+      "limits": "Non ancora in vendita. Il tutor IA avrà limiti di utilizzo, indicati prima dell’acquisto.",
+      "cta": "Non ancora in vendita"
+    },
+    "exams": {
+      "heading": "Su cosa puoi esercitarti oggi",
+      "lead": "Ogni domanda viene controllata e approvata da una persona prima di essere usata, quindi un formato di esercitazione si apre solo quando ha abbastanza domande approvate. Il Pass singolo esame si può acquistare solo per un esame con almeno un formato di esercitazione aperto.",
+      "caption": "Formati di esercitazione aperti, per esame",
+      "exam": "Esame",
+      "status": "Esercitazione oggi",
+      "open": "{count, plural, one {# formato di esercitazione aperto: pass disponibile} other {# formati di esercitazione aperti: pass disponibile}}",
+      "closed": "Non ancora disponibile: nessun formato di esercitazione ha abbastanza domande approvate"
     },
     "accountNote": "Per acquistare un piano serve un account gratuito. Se finora hai fatto pratica come ospite, la tua cronologia viene conservata.",
     "matrix": {
@@ -89,9 +133,11 @@
     "smallPrint": {
       "heading": "Come funzionano i pagamenti",
       "currency": "I prezzi sono in euro e includono l’IVA.",
-      "renewal": "I piani si rinnovano ogni mese finché non li disdici. Puoi disdire in qualsiasi momento dal tuo account; il piano resta attivo fino alla fine del mese già pagato.",
+      "pass": "Il Pass singolo esame si paga una volta sola. I suoi sei mesi iniziano quando il pagamento è confermato e terminano alla data indicata nel tuo account. Non si rinnova mai e non viene più addebitato.",
+      "renewal": "Plus si rinnova ogni mese o ogni anno finché non lo disdici. Il prezzo annuale viene addebitato per intero all’inizio di ogni anno. Puoi disdire in qualsiasi momento dal tuo account; Plus resta attivo fino alla fine del periodo già pagato.",
       "withdrawal": "L’accesso inizia non appena paghi. Al momento del pagamento ti chiediamo di confermare che vuoi iniziare subito e che il diritto di recesso di 14 giorni termina quando l’accesso inizia.",
       "cards": "I dati della carta vengono inseriti in campi forniti da Stripe, il nostro fornitore di servizi di pagamento, e arrivano direttamente a Stripe. Non raggiungono mai i nostri server.",
+      "earlier": "Un piano acquistato prima di questi prezzi mantiene tutto ciò che includeva, al suo prezzo, fino alla sua scadenza. Non spostiamo nessuno su un nuovo piano o un nuovo prezzo senza avvisarlo prima.",
       "terms": "Condizioni di vendita",
       "privacy": "Informativa sulla privacy"
     }
@@ -102,15 +148,19 @@
     },
     "eyebrow": "Pagamento",
     "title": "Scegli il tuo piano e paga",
-    "lead": "Addebito mensile, IVA inclusa, puoi disdire in qualsiasi momento dal tuo account.",
+    "lead": "IVA inclusa. Il pass si paga una volta sola; Plus si rinnova finché non lo disdici.",
+    "notices": {
+      "premium": "Premium arriverà a breve e non si può ancora acquistare. Questi sono i piani in vendita ora.",
+      "earlier": "Quel piano non è più in vendita. Questi sono i piani in vendita ora."
+    },
     "unavailable": {
       "title": "I pagamenti non sono disponibili al momento",
       "body": "Al momento non è possibile acquistare nulla su questo sito, quindi non ti verrà addebitato nulla. Tutto ciò che è aperto resta aperto.",
       "back": "Torna ai prezzi"
     },
     "allAccess": {
-      "title": "Hai già Accesso completo",
-      "body": "Tutti gli esami e il tutor IA sono già a tua disposizione, quindi non c’è altro da acquistare.",
+      "title": "Il tuo piano include già tutti gli esami",
+      "body": "Tutti gli esami sono già a tua disposizione, quindi non c’è altro da acquistare.",
       "manage": "Gestisci i tuoi piani"
     }
   },
@@ -124,6 +174,8 @@
       "lead": "{plan} è ora a tua disposizione.",
       "leadExam": "{plan} per {exam} è ora a tua disposizione.",
       "renews": "Si rinnova il {date} e poi ogni mese, finché non lo disdici.",
+      "renewsYearly": "Si rinnova il {date} e poi ogni anno, finché non lo disdici.",
+      "passUntil": "Il tuo accesso a {exam} dura fino al {date}. Il pass non si rinnova e non ti verrà addebitato altro.",
       "receipt": "Stripe, il nostro fornitore di servizi di pagamento, invia una ricevuta a {email}.",
       "practise": "Inizia a esercitarti: {exam}",
       "exams": "Scegli un esame",
@@ -147,7 +199,7 @@
     },
     "expired": {
       "title": "Questo pagamento è scaduto",
-      "body": "Il pagamento non è stato completato in tempo, quindi non è stato addebitato nulla. Avvia un nuovo pagamento quando vuoi.",
+      "body": "Il pagamento non è stato completato, quindi non è stato addebitato nulla. Avvia un nuovo pagamento quando vuoi.",
       "retry": "Ricomincia"
     },
     "missing": {
@@ -159,11 +211,17 @@
   },
   "form": {
     "planLegend": "Piano",
+    "offers": {
+      "pass": "Un esame per sei mesi. Si paga una volta sola; nessun rinnovo.",
+      "plus": "Tutti gli esami. Si rinnova finché non disdici."
+    },
     "examLabel": "Esame",
     "examPlaceholder": "Scegli un esame",
-    "examOwned": "(il tuo piano)",
-    "examRequired": "Scegli l’esame a cui è destinato questo piano.",
-    "examHint": "Un piano Singolo esame copre un solo esame. Puoi averne più di uno, uno per ogni esame a cui ti stai preparando.",
+    "examOwned": "(hai già accesso)",
+    "examUnavailable": "(non ancora disponibile)",
+    "examRequired": "Scegli l’esame a cui è destinato questo pass.",
+    "examHint": "Un pass copre un esame per sei mesi. Si possono scegliere solo gli esami con almeno un formato di esercitazione aperto.",
+    "examInitialUnavailable": "L’esame da cui arrivi non ha ancora un formato di esercitazione aperto, quindi oggi non si può acquistare un pass per quell’esame.",
     "countryLabel": "Paese di residenza",
     "countryPlaceholder": "Scegli il tuo paese",
     "countryHint": "Serve per applicare l’IVA corretta. Il prezzo che paghi non cambia.",
@@ -172,7 +230,7 @@
     "testMode": "Modalità di prova: usa la carta 4242 4242 4242 4242, una data futura qualsiasi e un CVC qualsiasi. Per 3-D Secure, usa 4000 0027 6000 3184.",
     "secure": "I dati della carta vengono inseriti in campi sicuri forniti da Stripe e arrivano direttamente a Stripe; non raggiungono mai i nostri server.",
     "loadingFields": "Caricamento dei campi sicuri della carta…",
-    "consent": "Voglio che il mio piano inizi subito. Sono consapevole che, una volta iniziato l’accesso, perdo il diritto di recesso di 14 giorni.",
+    "consent": "Voglio che il mio accesso inizi subito. Sono consapevole che, una volta iniziato l’accesso, perdo il diritto di recesso di 14 giorni.",
     "consentTerms": "Condizioni di vendita",
     "consentTermsNewTab": "(si apre in una nuova scheda)",
     "consentRequired": "Seleziona questa casella per continuare.",
@@ -187,23 +245,35 @@
       "plan": "Piano",
       "exam": "Esame",
       "examNone": "Non ancora scelto",
+      "oneTime": "Pagamento unico",
       "monthly": "Prezzo mensile",
+      "yearly": "Prezzo annuale, addebitato in anticipo",
       "vat": "IVA",
       "vatIncluded": "Inclusa",
       "vatByCountry": "Inclusa, all’aliquota del tuo paese",
       "dueToday": "Da pagare oggi",
-      "then": "Poi {price} ogni mese dal {date}, finché non disdici.",
-      "cancel": "Puoi disdire in qualsiasi momento dal tuo account. Il piano resta attivo fino alla fine del mese già pagato."
+      "passTerm": "Sei mesi di accesso dal pagamento confermato: se paghi oggi, fino al {date}.",
+      "passNoRenewal": "Si paga una volta sola. Non si rinnova e non ti viene addebitato altro.",
+      "thenMonthly": "Poi {price} ogni mese dal {date}, finché non disdici.",
+      "thenYearly": "Poi {price} ogni anno dal {date}, finché non disdici.",
+      "cancel": "Puoi disdire in qualsiasi momento dal tuo account. Plus resta attivo fino alla fine del periodo già pagato."
     }
   },
   "manager": {
     "none": "Non hai nessun piano. Guide, domande di esempio e un test diagnostico per ogni esame sono gratuiti.",
     "seePlans": "Vedi i piani",
     "addPlan": "Aggiungi un piano",
-    "price": "{price} al mese, IVA inclusa",
+    "prices": {
+      "once": "{price} una tantum, IVA inclusa",
+      "month": "{price} al mese, IVA inclusa",
+      "year": "{price} all’anno, IVA inclusa"
+    },
     "renews": "Si rinnova il {date}",
     "ends": "Termina il {date}; non verrà rinnovato",
     "accessUntil": "Accesso fino al {date}",
+    "passUntil": "Accesso fino al {date}",
+    "passNoRenewal": "Pagato una volta sola; non si rinnova.",
+    "earlierNote": "Un piano precedente: mantiene tutto ciò che includeva, al prezzo concordato, fino alla sua scadenza.",
     "statuses": {
       "active": "Attivo",
       "trialing": "Attivo",
@@ -212,7 +282,12 @@
       "paused": "In pausa",
       "canceled": "Terminato",
       "incomplete": "In attesa di pagamento",
-      "incomplete_expired": "Pagamento scaduto"
+      "incomplete_expired": "Pagamento scaduto",
+      "paid": "Attivo",
+      "pending": "In attesa di pagamento",
+      "void": "Non pagato",
+      "refunded": "Rimborsato",
+      "expired": "Terminato"
     },
     "pastDue": "L’ultimo pagamento di rinnovo non è andato a buon fine. Stripe riproverà nei prossimi giorni; nel frattempo il tuo accesso continua. Aggiorna la carta per pagare subito.",
     "cancel": "Disdici a fine periodo",
@@ -235,15 +310,16 @@
       "cancel": "Annulla",
       "loading": "Caricamento dei campi sicuri della carta…",
       "secure": "I dati della carta arrivano direttamente a Stripe tramite campi sicuri; non raggiungono mai i nostri server.",
-      "saved": "La nuova carta è stata salvata e verrà usata per tutti i piani.",
-      "savedAndRetried": "La nuova carta è stata salvata e verrà usata per tutti i piani. Abbiamo addebitato sulla nuova carta il rinnovo che non era andato a buon fine.",
+      "saved": "La nuova carta è stata salvata e verrà usata per tutti i piani che si rinnovano.",
+      "savedAndRetried": "La nuova carta è stata salvata e verrà usata per tutti i piani che si rinnovano. Abbiamo addebitato sulla nuova carta il rinnovo che non era andato a buon fine.",
       "failed": "Non è stato possibile salvare la carta. La carta precedente resta invariata.",
       "network": "Non siamo riusciti a raggiungere il server. La carta precedente resta invariata."
     },
-    "history": "Piani precedenti"
+    "history": "Piani e pass precedenti"
   },
   "upgrade": {
     "eyebrow": "Incluso in un piano a pagamento",
+    "eyebrowSoon": "Prossimamente",
     "titles": {
       "practice": "{hasExam, select, yes {Esercitati su {exam} quanto vuoi} other {Esercitati su questo esame quanto vuoi}}",
       "timed_section": "{hasExam, select, yes {Sezioni a tempo per {exam}} other {Sezioni a tempo per questo esame}}",
@@ -251,17 +327,20 @@
       "study_plan": "{hasExam, select, yes {Un piano di studio per {exam}} other {Un piano di studio per questo esame}}",
       "ai_tutor": "Il tutor IA",
       "diagnostic": "Il test diagnostico gratuito",
+      "official_scores": "I tuoi punteggi nelle simulazioni ufficiali",
       "guides": "Guide",
       "samples": "Domande di esempio"
     },
     "leads": {
-      "practice": "Esercitazioni per argomento con domande nuove a ogni sessione, ripasso delle domande sbagliate, sezioni a tempo e simulazioni.",
+      "practice": "Esercitazioni per argomento con spiegazioni svolte e domande nuove a ogni sessione, ripasso delle domande sbagliate, sezioni a tempo e simulazioni, per i formati che questo esame ha aperti.",
       "timed_section": "Sezioni a tempo al ritmo ufficiale, con i risultati per argomento.",
       "simulation": "Simulazioni complete secondo le regole ufficiali, quando l’esame le prevede.",
-      "study_plan": "Un piano con le date fino al giorno del test e una valutazione della preparazione basata sui tuoi risultati.",
+      "study_plan": "Un piano con le date fino al giorno del test e il monitoraggio dei progressi basato sui tuoi risultati.",
       "ai_tutor": "Suggerimenti mentre ti eserciti, spiegazioni approfondite dopo ogni risposta e una guida dopo ogni test."
     },
-    "planLine": "{plan}: {price} {period}",
+    "passLine": "{plan}: {price} una tantum, sei mesi per questo esame",
+    "plusLine": "{plan}: {monthly} al mese o {yearly} all’anno, tutti gli esami",
+    "tutorComingSoon": "Il tutor IA arriverà con Premium, che sarà disponibile a breve e non si può ancora acquistare. Nessun piano oggi in vendita lo include.",
     "seePlans": "Vedi i piani",
     "choosePlan": "Scegli {plan}",
     "freeDiagnostic": "Prova prima il test diagnostico gratuito"
@@ -270,15 +349,18 @@
     "billingOff": "I pagamenti non sono ancora attivi su questo sito. Non è stato addebitato nulla.",
     "accountRequired": "Crea prima un account, così il tuo piano ha un posto in cui stare. Le esercitazioni svolte come ospite vengono conservate.",
     "consentRequired": "Conferma che vuoi l’accesso immediato e che, a quel punto, il diritto di recesso di 14 giorni termina.",
-    "unknownPlan": "Questo piano non esiste.",
-    "unknownExam": "Scegli l’esame a cui è destinato questo piano.",
-    "alreadyAllAccess": "Hai già Accesso completo, che include tutti gli esami.",
-    "alreadyThisExam": "Hai già un piano per questo esame.",
+    "unknownPlan": "Questo piano non è in vendita.",
+    "comingSoon": "Premium arriverà a breve e non si può ancora acquistare. Non è stato addebitato nulla.",
+    "unknownExam": "Scegli l’esame a cui è destinato questo pass.",
+    "examUnavailable": "Non si può ancora acquistare un pass per questo esame: nessuno dei suoi formati di esercitazione ha abbastanza domande revisionate per aprirsi. Non è stato addebitato nulla.",
+    "alreadyAllAccess": "Hai già un piano che include tutti gli esami.",
+    "alreadyThisExam": "Hai già accesso a questo esame.",
     "misconfigured": "I pagamenti non sono ancora configurati correttamente. Non è stato addebitato nulla.",
     "unavailable": "Il fornitore dei pagamenti è sovraccarico. Non è stato addebitato nulla; riprova tra un minuto.",
     "failed": "Il fornitore dei pagamenti non è riuscito a completare l’operazione. Non è stato addebitato nulla.",
     "retry": "Questa richiesta è già stata inviata con dati diversi. Ricarica la pagina e riprova.",
     "unknownSubscription": "Abbonamento non trovato.",
+    "unknownPass": "Pass non trovato.",
     "notChangeable": "Questo abbonamento è già terminato.",
     "noBillingAccount": "Non hai ancora un account di fatturazione. Scegli prima un piano.",
     "cardNotSaved": "La nuova carta non è stata confermata. La carta precedente resta invariata.",
@@ -288,12 +370,13 @@
     "entitlement": {
       "accountRequired": "Crea un account gratuito per svolgere il test diagnostico gratuito. Le esercitazioni svolte come ospite vengono conservate.",
       "upgradeRequired": {
-        "practice": "Le sessioni di esercitazione per questo esame fanno parte di un piano a pagamento. Il test diagnostico resta gratuito.",
-        "timed_section": "Le sezioni a tempo per questo esame fanno parte di un piano a pagamento. Il test diagnostico resta gratuito.",
-        "simulation": "Le simulazioni complete fanno parte di un piano a pagamento. Il test diagnostico resta gratuito.",
-        "study_plan": "Il piano di studio e la valutazione della preparazione fanno parte di un piano a pagamento per questo esame.",
-        "ai_tutor": "Il tutor IA è incluso nel piano Accesso completo.",
+        "practice": "Le sessioni di esercitazione per questo esame richiedono un Pass singolo esame o Plus. Il test diagnostico resta gratuito.",
+        "timed_section": "Le sezioni a tempo per questo esame richiedono un Pass singolo esame o Plus. Il test diagnostico resta gratuito.",
+        "simulation": "Le simulazioni complete richiedono un Pass singolo esame o Plus. Il test diagnostico resta gratuito.",
+        "study_plan": "Il piano di studio e il monitoraggio dei progressi per questo esame richiedono un Pass singolo esame o Plus.",
+        "ai_tutor": "Il tutor IA farà parte di Premium, che arriverà a breve e non si può ancora acquistare.",
         "diagnostic": "Il test diagnostico è gratuito.",
+        "official_scores": "Il registro dei punteggi nelle simulazioni ufficiali è gratuito.",
         "guides": "Le guide sono gratuite.",
         "samples": "Le domande di esempio sono gratuite."
       }
