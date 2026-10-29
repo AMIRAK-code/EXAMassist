@@ -18,6 +18,8 @@ export interface GuideSource {
 export interface Guide {
   slug: string;
   title: string;
+  /** A shorter title for search results when `title` (the headline) runs long. */
+  metaTitle?: string;
   /** The direct answer, shown before the body and used as the meta description. */
   answer: string;
   description: string;
@@ -71,6 +73,7 @@ const GUIDES: Guide[] = [
   bocconiSampleGuide,
   {
     slug: 'bocconi-test-negative-marking-when-to-guess',
+    metaTitle: 'Bocconi test negative marking: when to guess',
     title: 'Negative marking on the Bocconi Online Test: when to guess and when to leave a blank',
     answer:
       'Guess when you can rule out at least one option. The Bocconi Online Test for bachelor and law programmes scores +1 for a correct answer, 0 for a blank and −0.2 for a wrong answer (−0.33 on three-option critical-thinking items). If a question has five options (Bocconi does not say how many most have), a blind guess is worth only +0.04 points on average, barely more than a blank, while every option you eliminate makes a guess clearly worthwhile. The master’s form of the test penalises a wrong answer more heavily, at −0.25.',
@@ -163,6 +166,7 @@ The blank-or-guess call only becomes automatic with practice under the real scor
   },
   {
     slug: 'bocconi-undergraduate-vs-law-test',
+    metaTitle: 'Bocconi undergraduate vs Law test: which to take',
     title: 'Bocconi undergraduate test or Bocconi Law test: which one to take',
     answer:
       'Take the standard Online Bocconi Test unless you are applying only to Bocconi’s Law School programmes. The standard test is valid for every bachelor programme, Law included; the Law test can only be used for programmes in the legal area. Both are 50 questions in 75 minutes with the same scoring, but the standard test is half mathematics, while the Law test is mostly logic, critical thinking and verbal reasoning.',
@@ -244,6 +248,7 @@ Our [Bocconi Online Test preparation](/exams/bocconi-online-test) page covers bo
   },
   {
     slug: 'bocconi-test-preparation-plan',
+    metaTitle: 'Bocconi test preparation plan, week by week',
     title: 'How to prepare for the Bocconi Online Test: a week-by-week plan',
     answer:
       'Start with a short diagnostic to find your weakest areas, spend most of the following weeks on untimed topic practice in those areas without a calculator, add timed 50-question sets in the last weeks, and use Bocconi’s free official simulation as a dress rehearsal. The test is 50 questions in 75 minutes with negative marking and no way back, so a plan has to train accuracy, pace and a blank-or-guess rule, not just content.',
@@ -321,6 +326,7 @@ On our [Bocconi Online Test preparation](/exams/bocconi-online-test) page you ca
   },
   {
     slug: 'lsat-without-logic-games',
+    metaTitle: 'The LSAT without logic games: the test today',
     title: 'The LSAT no longer has logic games: what the test looks like now',
     answer:
       'Analytical Reasoning — the "logic games" section — was removed from the LSAT in August 2024 and replaced by a second Logical Reasoning section. The current test is four 35-minute sections: two scored Logical Reasoning sections, one scored Reading Comprehension section, and one unscored variable section that can be either type.',
@@ -381,6 +387,7 @@ Your score is based on **the number of questions you answered correctly** across
   },
   {
     slug: 'why-practice-tests-cannot-give-you-a-real-sat-score',
+    metaTitle: 'Why SAT practice tests can’t give a real score',
     title: 'Why no honest SAT practice test can give you a real 400–1600 score',
     answer:
       'Because College Board does not score the digital SAT by counting correct answers. It uses Item Response Theory, so your section score depends on which questions you got right, not just how many — College Board states that two students with the same number correct can receive different section scores. The parameters that make that calculation possible are not published, so any 400–1600 number produced outside Bluebook is an estimate built on guesswork.',
