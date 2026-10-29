@@ -77,8 +77,10 @@ export interface ExamHub {
    */
   variantLabels?: Record<string, string>;
   publisher: string;
-  /** One sentence, used on cards and as the meta description seed. */
+  /** One sentence, used on cards and as the format guide’s summary. */
   tagline: string;
+  /** The search snippet for the hub page: at most about 155 characters, English. */
+  metaDescription: string;
   audiences: Audience[];
   /** Config keys served by this hub, in display order. */
   configKeys: string[];
@@ -99,6 +101,7 @@ export const EXAM_HUBS: readonly ExamHub[] = [
     publisher: 'Università Bocconi',
     tagline:
       'The Online Bocconi test for Bocconi bachelor and law programmes, in its standard and law forms: 50 questions in 75 minutes, with negative marking and strictly forward-only navigation.',
+    metaDescription: 'Prepare for the Bocconi admission test with original questions, worked answers and timed practice for the undergraduate and Law tests.',
     audiences: ['undergraduate', 'law'],
     configKeys: ['bocconi-undergraduate', 'bocconi-law'],
     otherRoutes: [
@@ -131,6 +134,7 @@ export const EXAM_HUBS: readonly ExamHub[] = [
     publisher: 'Università Bocconi',
     tagline:
       'Admission to Bocconi Master of Science and MA programmes: the graduate Online Bocconi test (50 questions in 75 minutes, −0.25 for a wrong answer, 15 out of 50 to be considered), or the GMAT or GRE instead.',
+    metaDescription: 'Bocconi Master’s admission test: 50 questions in 75 minutes, −0.25 per wrong answer, 15 out of 50 to be considered. Format, scoring and practice.',
     audiences: ['graduate'],
     configKeys: ['bocconi-graduate'],
     otherRoutes: [
@@ -163,6 +167,7 @@ export const EXAM_HUBS: readonly ExamHub[] = [
     publisher: 'College Board',
     tagline:
       'The two-stage adaptive digital SAT: two Reading and Writing modules and two Math modules, 2 hours 14 minutes of testing.',
+    metaDescription: 'Digital SAT format and scoring: two adaptive Reading and Writing modules and two Math modules, with original practice questions and explanations.',
     audiences: ['undergraduate'],
     configKeys: ['digital-sat'],
     order: 3,
@@ -175,6 +180,7 @@ export const EXAM_HUBS: readonly ExamHub[] = [
     publisher: 'ACT',
     tagline:
       'The shorter enhanced ACT: English, Mathematics and Reading as the core test, with Science and Writing optional.',
+    metaDescription: 'Enhanced ACT format and scoring: English, Math and Reading as the core test, Science optional, with original practice questions and explanations.',
     audiences: ['undergraduate'],
     configKeys: ['enhanced-act'],
     order: 4,
@@ -187,6 +193,7 @@ export const EXAM_HUBS: readonly ExamHub[] = [
     publisher: 'LSAC',
     tagline:
       'The current LSAT: four 35-minute sections of Logical Reasoning and Reading Comprehension. Analytical Reasoning was removed in August 2024.',
+    metaDescription: 'The current LSAT without logic games: Logical Reasoning and Reading Comprehension sections, timing and scoring, with original practice questions.',
     audiences: ['law'],
     configKeys: ['lsat'],
     order: 5,
@@ -199,6 +206,7 @@ export const EXAM_HUBS: readonly ExamHub[] = [
     publisher: 'GMAC',
     tagline:
       'The current GMAT, previously branded the Focus Edition: Quantitative Reasoning, Verbal Reasoning and Data Insights, 64 questions in 2 hours 15 minutes.',
+    metaDescription: 'GMAT format and scoring: Quantitative Reasoning, Verbal Reasoning and Data Insights, 64 questions in 2 hours 15 minutes, with original practice.',
     audiences: ['graduate'],
     configKeys: ['gmat'],
     order: 6,
@@ -211,6 +219,7 @@ export const EXAM_HUBS: readonly ExamHub[] = [
     publisher: 'ETS',
     tagline:
       'The shorter GRE General Test: one Analytical Writing task plus two Verbal and two Quantitative sections, about 1 hour 58 minutes.',
+    metaDescription: 'GRE General Test format and scoring: Analytical Writing, Verbal and Quantitative sections in about 1 hour 58 minutes, with original practice.',
     audiences: ['graduate'],
     configKeys: ['gre'],
     order: 7,
@@ -224,6 +233,7 @@ export const EXAM_HUBS: readonly ExamHub[] = [
     publisher: 'Politecnico di Torino',
     tagline:
       'Politecnico di Torino’s in-person admission tests: TIL-I for Engineering, 42 questions in 90 minutes, and TIL-A for Architecture, 50 questions in 100 minutes, both with a penalty for wrong answers.',
+    metaDescription: 'Politecnico di Torino TIL-I and TIL-A admission tests: sections, timing and penalties for wrong answers, with original practice questions.',
     audiences: ['undergraduate'],
     configKeys: ['polito-til-i', 'polito-til-a'],
     order: 8,
@@ -237,6 +247,7 @@ export const EXAM_HUBS: readonly ExamHub[] = [
     publisher: 'CISIA',
     tagline:
       'The online admission tests many Italian universities use: TOLC-E for economics, 36 questions in 90 minutes; TOLC-F for pharmacy, 50 questions in 72 minutes; and TOLC-I for engineering, 50 questions in 110 minutes. Each university sets its own pass mark.',
+    metaDescription: 'CISIA TOLC-E, TOLC-F and TOLC-I for Italian university admission: sections, timing and scoring, with original practice questions.',
     audiences: ['undergraduate'],
     configKeys: ['tolc-e', 'tolc-f', 'tolc-i'],
     order: 9,
@@ -256,6 +267,7 @@ export const DRAFT_EXAM_HUBS: readonly ExamHub[] = [
     publisher: 'Università degli Studi di Torino',
     tagline:
       'Admission to the University of Turin’s SAA School of Management: the TOLC-E for the Italian-taught business bachelor’s programmes, the SAT for the English-taught Business & Management, and SAA’s own selection for its MBA programmes.',
+    metaDescription: 'Admission to the University of Turin’s SAA School of Management: TOLC-E, the SAT and SAA’s own selection, by programme.',
     audiences: ['undergraduate', 'graduate'],
     configKeys: ['tolc-e'],
     otherRoutes: [
