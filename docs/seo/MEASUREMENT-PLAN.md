@@ -37,7 +37,7 @@ Search data lags 2–3 days, the sample is small, and admissions demand is seaso
 - Landing pages: impressions, clicks, CTR and average position per exam hub and guide, by language prefix and country.
 - Outcomes: free tests started per 100 exam-page views (site-wide trend), and guide-click rate per guide.
 - Retire or merge any guide with no impressions after 90 days only if it also has no internal value (do not delete the sourced exam facts).
-- Re-run the live crawl (`node crawl.mjs https://uniexamer.com`; the script is described in REPORT-2026-10-29.md) and compare with the 2026-10-29 baseline.
+- Re-run the live crawl (`node scripts/seo-crawl.mjs https://uniexamer.com`) and compare with the 2026-10-29 baseline in REPORT-2026-10-29.md.
 
 ## Baseline on 29 October 2026
 
