@@ -15,11 +15,13 @@ export const SITE = {
   /** Used in titles: "<page> | <tagline-safe short name>". */
   shortName: 'UniExamer',
   /**
-   * Other names people may search for: Examer was the name until October 2026,
-   * and the domain is uniexamer.com. Offered to search engines as WebSite and
-   * Organization `alternateName`.
+   * Other names people may search for: "Uni Examer" is the same name written
+   * as two words, Examer was the name until October 2026, and the domain is
+   * uniexamer.com. Offered to search engines as WebSite and Organization
+   * `alternateName`. Only genuine names of this site belong here: never
+   * misspellings, and never another service's name.
    */
-  alternateNames: ['Examer', 'uniexamer.com'],
+  alternateNames: ['Uni Examer', 'Examer', 'uniexamer.com'],
   tagline: 'Bocconi, SAT & University Admission Test Practice',
   description:
     'Prepare for Bocconi, SAT, TOLC and more with original practice questions, worked explanations and timed tests. Start free with UniExamer.',

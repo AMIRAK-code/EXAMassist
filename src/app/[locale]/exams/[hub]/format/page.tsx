@@ -82,6 +82,7 @@ export default async function FormatGuidePage({ params }: Props) {
           articleSchema({
             siteUrl: siteUrl(),
             url: (await pageAlternates(params, `/exams/${hub.slug}/format`)).canonical,
+            image: `/og/exam-${hub.slug}.png`,
             headline: t('format.metaTitle', { name: hub.name }),
             description: hub.tagline,
             datePublished: verifiedOn,
