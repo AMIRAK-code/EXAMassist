@@ -137,10 +137,12 @@ and leaves every page dynamic.
   solved by a second reviewer before publication.
 - **Public educational pages** — exam hubs, format and scoring guides, and
   editorial guides, server-rendered with canonical URLs and structured data.
-- **Paid plans** — All access (€39/month) and Single exam (€19.99/month per
-  exam) through Stripe, with the pricing page, checkout and plan management on
-  the site's own pages; guides, sample questions and a diagnostic for every
-  exam stay free. Off unless `BILLING_ENFORCED=true`. Plans, prices and the
+- **Paid plans** — a Single Exam Pass (€23.99 once, one exam for six months)
+  and Plus (€7.99/month or €59.99/year, every exam) through Stripe, with
+  Premium (adds the AI tutor) announced but not sold; the pricing page,
+  checkout and plan management are on the site's own pages; guides, sample
+  questions, a diagnostic for every exam and official score tracking stay
+  free. Off unless `BILLING_ENFORCED=true`. Plans, prices and the
   feature matrix are in `src/lib/billing/plans.ts`; setup, webhooks and the
   go-live checklist in [`docs/BILLING.md`](docs/BILLING.md).
 
