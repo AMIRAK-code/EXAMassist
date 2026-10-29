@@ -1,17 +1,22 @@
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
-import { assertHostsRedirect, snapshotPublicPages } from './snapshot-pages';
+import { assertHostsRedirect, previewUrlFrom, snapshotPublicPages } from './snapshot-pages';
 
 /**
  * Builds (and optionally deploys) the Cloudflare Workers site: npm run cf:build / cf:deploy.
  *
- * A deploy uploads twice: once as built, then again with the public pages of
- * that first upload saved as static files, which Cloudflare serves without
- * running the Worker (scripts/snapshot-pages.ts, src/lib/seo/static-pages.ts).
- * If the snapshot gives up, the first upload stays live with every page
- * rendered; npm run cf:snapshot then redoes only the snapshot and the second
- * upload, from the same folder and build.
+ * A deploy uploads twice. First the build becomes a new version that gets no
+ * traffic, and its public pages are saved from that version's preview URL as
+ * static files, which Cloudflare serves without running the Worker
+ * (scripts/snapshot-pages.ts, src/lib/seo/static-pages.ts). Then the build is
+ * deployed with those files, and only that moves visitors over. On the Workers
+ * Free plan a page the Worker has to render can fail with error 1102 (CPU
+ * limit), so visitors must never get a version whose pages are not files yet:
+ * if anything fails before the final deploy, visitors stay on the current
+ * version, and npm run cf:snapshot carries on from the same folder and build.
+ *
+ * Preview URLs must be on for the Worker ("preview_urls" in wrangler.jsonc).
  *
  * OpenNext copies .env, .env.local and .env.<mode>(.local) into the Worker bundle,
  * and those files hold local secrets and DATABASE_URL. So this refuses to run next
@@ -51,34 +56,46 @@ async function main(): Promise<void> {
     const result = spawnSync(process.execPath, [cli, step], { stdio: 'inherit', env });
     if (result.status !== 0) throw new Error(`opennextjs-cloudflare ${step} failed.`);
   };
-  if (command === 'snapshot') {
-    if (!fs.existsSync(path.join('.next', 'BUILD_ID')) || !fs.existsSync(path.join('.open-next', 'assets'))) {
-      throw new Error('No build here to snapshot: run npm run cf:deploy.');
-    }
-  } else {
-    for (const step of command === 'build' ? ['build'] : ['build', 'deploy']) run(step);
-  }
-  if (command === 'build') return;
+  const previewFile = path.join('.open-next', 'preview-url.txt');
+  const stillLive = 'Visitors are still on the current version; nothing was deployed.';
 
-  // The first upload is live and renders every page. Now the public pages.
+  let preview: string;
+  if (command === 'snapshot') {
+    if (!fs.existsSync(path.join('.next', 'BUILD_ID')) || !fs.existsSync(previewFile)) {
+      throw new Error('No uploaded build here to snapshot: run npm run cf:deploy.');
+    }
+    preview = fs.readFileSync(previewFile, 'utf8').trim();
+  } else {
+    run('build');
+    if (command === 'build') return;
+    // A new version, with no traffic: `wrangler versions upload` under OpenNext.
+    const upload = spawnSync(process.execPath, [cli, 'upload'], { env, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024, stdio: ['inherit', 'pipe', 'pipe'] });
+    process.stdout.write(upload.stdout ?? '');
+    process.stderr.write(upload.stderr ?? '');
+    if (upload.status !== 0) throw new Error(`opennextjs-cloudflare upload failed. ${stillLive}`);
+    const found = previewUrlFrom(`${upload.stdout}\n${upload.stderr}`);
+    if (!found) {
+      throw new Error(`The upload printed no preview URL: are preview URLs on ("preview_urls" in wrangler.jsonc)? ${stillLive}`);
+    }
+    preview = found;
+    fs.writeFileSync(previewFile, preview);
+  }
+
+  // Save the public pages from the new version, which nobody is sent to yet.
   const site = (vars.NEXT_PUBLIC_SITE_URL ?? '').replace(/\/+$/, '');
   const siteHost = new URL(site).host;
   const otherHosts = (wrangler.routes ?? []).map((route) => route.pattern).filter((host) => host !== siteHost);
   try {
     await assertHostsRedirect(site, otherHosts);
   } catch (error: unknown) {
-    console.warn(`\nPublic pages NOT saved as static files; every page stays rendered by the Worker.\n${(error as Error).message}`);
-    return;
+    throw new Error(`${(error as Error).message}\n${stillLive}`);
   }
   const buildId = fs.readFileSync(path.join('.next', 'BUILD_ID'), 'utf8').trim();
-  console.log(`\nSaving the public pages of build ${buildId} as static files.`);
-  const saved = await snapshotPublicPages({ site, assetsDir: path.join('.open-next', 'assets'), buildId }).catch((error: unknown) => {
-    throw new Error(
-      `${(error as Error).message}\nThe first upload is live, with every page rendered by the Worker. ` +
-        'Run npm run cf:snapshot in this folder to carry on with the snapshot and the second upload.',
-    );
+  console.log(`\nSaving the public pages of build ${buildId} from ${preview} as static files.`);
+  const saved = await snapshotPublicPages({ site, origin: preview, assetsDir: path.join('.open-next', 'assets'), buildId }).catch((error: unknown) => {
+    throw new Error(`${(error as Error).message}\n${stillLive} Run npm run cf:snapshot in this folder to carry on.`);
   });
-  console.log(`\nSaved ${saved.length} public pages as static files. Uploading them.\n`);
+  console.log(`\nSaved ${saved.length} public pages as static files. Deploying them.\n`);
   run('deploy');
 }
 
