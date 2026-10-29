@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { ATTEMPTS, fetchLive, retryDelay, snapshotPublicPages } from '../../scripts/snapshot-pages';
+import { ATTEMPTS, fetchLive, previewUrlFrom, retryDelay, snapshotPublicPages } from '../../scripts/snapshot-pages';
 
 /**
  * The deploy-time snapshot of public pages (scripts/snapshot-pages.ts). On the
@@ -87,5 +87,44 @@ describe('saving the pages', () => {
     // One pause after each page fetched except the last; no retries were needed.
     expect(sleep).toHaveBeenCalledTimes(paths.length - 2);
     expect(sleep.mock.calls.every(([ms]) => ms === 1500)).toBe(true);
+  });
+
+  it('fetches from the new version’s preview URL, and saves each page under its production path', async () => {
+    const preview = 'https://5cf2951b-examer.example.workers.dev';
+    const get = fakeSite();
+    const sleep = vi.fn(async (_ms: number) => {});
+
+    await snapshotPublicPages({ site, origin: preview, assetsDir, buildId: BUILD }, { fetch: get, sleep });
+
+    const fetched = get.mock.calls.map(([input]) => String(input));
+    expect(fetched.every((url) => url.startsWith(preview))).toBe(true);
+    expect(fetched).toContain(`${preview}/it/exams`);
+    expect(fs.readFileSync(path.join(assetsDir, 'it', 'exams.html'), 'utf8')).toContain(`${preview}/it/exams`);
+  });
+
+  it('refuses a sitemap that does not list the production site, before saving anything', async () => {
+    const get = vi.fn(async (input: string | URL | Request) =>
+      String(input).endsWith('/sitemap.xml')
+        ? new Response('<urlset><url><loc>http://localhost:3000/</loc></url></urlset>', { headers: { 'content-type': 'application/xml' } })
+        : html(`<p>${BUILD}</p>`),
+    );
+    await expect(
+      snapshotPublicPages({ site, origin: 'https://x-examer.example.workers.dev', assetsDir, buildId: BUILD }, { fetch: get, sleep: async () => {} }),
+    ).rejects.toThrow('does not list https://example.test');
+    expect(fs.readdirSync(assetsDir)).toEqual([]);
+  });
+});
+
+describe('finding the new version’s preview URL', () => {
+  it('reads it from what the upload printed, colour codes and all', () => {
+    const printed =
+      'Uploaded examer (12.3 sec)\n\u001b[32mWorker Version ID:\u001b[39m 5cf2951b-5f79-4bb9-a868-0151e604bfe9\n' +
+      '\u001b[32mVersion Preview URL:\u001b[39m https://5cf2951b-examer.uniexamer.workers.dev\n';
+    expect(previewUrlFrom(printed)).toBe('https://5cf2951b-examer.uniexamer.workers.dev');
+  });
+
+  it('finds none when preview URLs are off, so the deploy stops before visitors move', () => {
+    expect(previewUrlFrom('Uploaded examer (12.3 sec)\nWorker Version ID: 5cf2951b\n')).toBeNull();
+    expect(previewUrlFrom('Version Preview URL: https://uniexamer.com')).toBeNull();
   });
 });
