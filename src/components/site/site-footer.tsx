@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { CONTACT, SITE, SOCIAL_LINKS } from '@/lib/site';
+import { SUPPORT } from '@/lib/support';
 import { listHubs } from '@/lib/exams/registry';
 import { EditorialLine } from './editorial-line';
 import { MailIcon, SocialIcon } from './social-icons';
@@ -98,7 +99,7 @@ export async function SiteFooter() {
                 <MailIcon />
                 {CONTACT.support}
               </a>
-              <p className="mt-2 max-w-xs leading-relaxed text-ink-inverse-muted">{t('footer.support.note')}</p>
+              <p className="mt-2 max-w-xs leading-relaxed text-ink-inverse-muted">{t('footer.support.note', { days: SUPPORT.firstReplyBusinessDays })}</p>
               <p className="mt-2">
                 <Link href="/about/support" className={FOOTER_LINK}>
                   {t('footer.support.link')}

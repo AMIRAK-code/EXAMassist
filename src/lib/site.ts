@@ -34,8 +34,7 @@ export const SITE = {
 
 /**
  * Where to write to us. Support mail is answered by a person on the team
- * within 48 hours (the footer says so in every language); info is for
- * everything else.
+ * within the time set in src/lib/support.ts; info is for everything else.
  */
 export const CONTACT = {
   support: 'support@uniexamer.com',
