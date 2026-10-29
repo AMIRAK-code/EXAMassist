@@ -4,6 +4,10 @@ import { PAGE_DATES } from '@/lib/content/page-dates';
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { CONTACT, shareImages, SITE, siteUrl } from '@/lib/site';
+import { SUPPORT } from '@/lib/support';
+
+/** The reply promise, from the one place it is set. */
+const days = SUPPORT.firstReplyBusinessDays;
 import { Breadcrumbs, Card, Container } from '@/components/ui';
 import { JsonLd, breadcrumbSchema } from '@/components/seo/json-ld';
 import { MailIcon } from '@/components/site/social-icons';
@@ -23,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'about.support.meta' });
   const alternates = await pageAlternates(params, PATH);
-  const description = t('description', { name: SITE.name, email: CONTACT.support });
+  const description = t('description', { name: SITE.name, email: CONTACT.support, days: SUPPORT.firstReplyBusinessDays });
   return {
     title: t('title'),
     description,
@@ -63,7 +67,7 @@ export default async function SupportPage({ params }: Props) {
           <MailIcon />
           <a href={`mailto:${CONTACT.support}`}>{CONTACT.support}</a>
         </p>
-        <p className="mt-2 text-ink-muted">{t.rich('support.how.reply', { strong })}</p>
+        <p className="mt-2 text-ink-muted">{t.rich('support.how.reply', { strong, days })}</p>
       </Card>
 
       <div className="prose-academic mt-10">
@@ -79,7 +83,7 @@ export default async function SupportPage({ params }: Props) {
         <h2>{t('support.how.heading')}</h2>
         <ul>
           <li>{t.rich('support.how.write', { strong, support: mail(CONTACT.support), email: CONTACT.support })}</li>
-          <li>{t.rich('support.how.reply', { strong })}</li>
+          <li>{t.rich('support.how.reply', { strong, days })}</li>
           <li>{t.rich('support.how.include', { strong })}</li>
           <li>
             {t.rich('support.how.question', {
@@ -91,7 +95,7 @@ export default async function SupportPage({ params }: Props) {
         </ul>
 
         <h2>{t('support.promise.heading')}</h2>
-        <p>{t('support.promise.body')}</p>
+        <p>{t('support.promise.body', { days })}</p>
         <p>
           {t.rich('support.promise.privacy', {
             link: (chunks) => <Link href="/about/privacy">{chunks}</Link>,
