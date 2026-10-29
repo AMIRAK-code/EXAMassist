@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/server';
 import { CONTENT_LANG, languageAlternates, pageAlternates } from '@/i18n/alternates';
-import type { Locale } from '@/i18n/locales';
+import { LOCALE_INFO, localizePath, type Locale } from '@/i18n/locales';
 import { getDb } from '@/lib/db';
 import { EXAM_HUBS, getConfigsForHub, getHub } from '@/lib/exams/registry';
 import { blueprintAvailability, examCoverage } from '@/lib/attempts/availability';
@@ -48,8 +48,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (hub.slug === BOCCONI_HUB_SLUG) return bocconiMetadata(locale as Locale);
 
   const title = t('metaTitle', { name: hub.name });
-  // The tagline is the exam's own summary from its config, as published.
-  const description = hub.tagline;
+  // A snippet-length summary; the tagline stays the format guide's "In short".
+  const description = hub.metaDescription;
   const alternates = (await pageAlternates(params, `/exams/${hub.slug}`));
   return {
     title,
@@ -121,7 +121,8 @@ export default async function ExamHubPage({ params }: Props) {
       <Container>
         <JsonLd
           data={[
-            breadcrumbSchema(siteUrl(), trail),
+            // This page is translated in full, so its trail points at the same language.
+            breadcrumbSchema(siteUrl(), trail.map((crumb) => (crumb.href ? { ...crumb, href: localizePath(crumb.href, locale as Locale) } : crumb))),
             webPageSchema({
               siteUrl: siteUrl(),
               url,
@@ -130,6 +131,7 @@ export default async function ExamHubPage({ params }: Props) {
               // The date the Bocconi facts on the page were last checked against Bocconi's own pages.
               dateModified: BOCCONI_FACTS_CHECKED_ON,
               about: 'Bocconi Online Test',
+              inLanguage: LOCALE_INFO[locale as Locale].htmlLang,
             }),
           ]}
         />
@@ -158,6 +160,7 @@ export default async function ExamHubPage({ params }: Props) {
             dateModified: verifiedOn,
             publisherName: SITE.publisher,
             authorName: SITE.publisher,
+            image: `/og/exam-${hub.slug}.png`,
           }),
         ]}
       />

@@ -7,7 +7,7 @@ import sitemap from '@/app/sitemap';
 import { organizationSchema, webSiteSchema } from '@/components/seo/json-ld';
 import { listGuides } from '@/lib/content/guides';
 import { EXAM_HUBS } from '@/lib/exams/registry';
-import { googleSiteVerification } from '@/lib/site';
+import { SITE as SITE_CONFIG, googleSiteVerification } from '@/lib/site';
 import { LOCALES, localizePath, splitLocale } from '@/i18n/locales';
 import { isEnglishOnlyPath, pageAlternates } from '@/i18n/alternates';
 
@@ -227,7 +227,7 @@ describe('llms.txt in production', () => {
     production();
     const text = await llmsTxtRoute().text();
     expect(text.startsWith('# UniExamer\n')).toBe(true);
-    expect(text).toContain('Also known as Examer and uniexamer.com.');
+    expect(text).toContain('Also known as Uni Examer, Examer and uniexamer.com.');
     expect(text).toContain('not affiliated with');
   });
 
@@ -238,7 +238,8 @@ describe('llms.txt in production', () => {
 });
 
 describe('site name in structured data', () => {
-  it('offers the former name, Examer, and the domain as alternate names', () => {
+  it('offers the two-word spelling, the former name and the domain as alternate names, and nothing else', () => {
+    expect(SITE_CONFIG.alternateNames).toEqual(['Uni Examer', 'Examer', 'uniexamer.com']);
     expect(webSiteSchema(SITE, 'UniExamer', ['Examer', 'uniexamer.com']).alternateName).toEqual(['Examer', 'uniexamer.com']);
     expect(organizationSchema(SITE, 'UniExamer', 'd', ['Examer']).alternateName).toEqual(['Examer']);
     expect(organizationSchema(SITE, 'UniExamer', 'd').logo).toBe(`${SITE}/brand/uniexamer-symbol.png`);

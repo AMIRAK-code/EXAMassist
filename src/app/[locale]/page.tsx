@@ -104,8 +104,8 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
     <div className={accent.variable}>
       <JsonLd
         data={[
-          organizationSchema(siteUrl(), SITE.name, tSite('description')),
-          webSiteSchema(siteUrl(), SITE.name),
+          organizationSchema(siteUrl(), SITE.name, tSite('description'), SITE.alternateNames),
+          webSiteSchema(siteUrl(), SITE.name, SITE.alternateNames),
         ]}
       />
 

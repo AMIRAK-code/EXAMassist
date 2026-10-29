@@ -81,6 +81,7 @@ export default async function GuidePage({ params }: Props) {
             dateModified: guide.updatedOn,
             publisherName: SITE.publisher,
             authorName: SITE.publisher,
+            image: `/og/guide-${guide.slug}.png`,
           }),
         ]}
       />
