@@ -20,7 +20,14 @@ import { getExamConfig, getHubForConfig } from '@/lib/exams/registry';
  * database without migration 011 simply records nothing.
  */
 
-export type FunnelEvent = 'landing_view' | 'pricing_view' | 'checkout_start' | 'purchase';
+/**
+ * guide_view counts a guide being read; guide_click counts a click from a
+ * guide to an exam page or into practice. Their subject is the guide's slug.
+ */
+export type FunnelEvent = 'landing_view' | 'pricing_view' | 'checkout_start' | 'purchase' | 'guide_view' | 'guide_click';
+
+/** The events a page may report from the browser (src/app/api/views/route.ts). */
+export type ReportedEvent = 'landing_view' | 'guide_view' | 'guide_click';
 export type TrafficSource = 'search' | 'ai' | 'internal' | 'other' | 'direct' | 'n/a';
 
 /** Assistants and AI search products that send visitors with a referrer. */
@@ -133,10 +140,11 @@ export async function countReportedView(
   db: Db,
   subject: string,
   report: { referrer: string | null; userAgent: string | null; ownHost: string | null },
+  event: ReportedEvent = 'landing_view',
 ): Promise<void> {
   try {
     if (isLikelyBot(report.userAgent)) return;
-    await countEvent(db, 'landing_view', subject, classifyReferrer(report.referrer, report.ownHost));
+    await countEvent(db, event, subject, classifyReferrer(report.referrer, report.ownHost));
   } catch {
     // Never let measurement break a page.
   }
@@ -158,6 +166,9 @@ export interface FunnelReport {
   freeTestCompletions: number;
   checkoutStarts: number;
   purchases: number;
+  /** Views of this exam's guides, and clicks from them to an exam page or practice. */
+  guideViews: number;
+  guideClicks: number;
 }
 
 const SOURCES: TrafficSource[] = ['search', 'ai', 'internal', 'other', 'direct', 'n/a'];
@@ -166,9 +177,12 @@ const SOURCES: TrafficSource[] = ['search', 'ai', 'internal', 'other', 'direct',
  * The Bocconi funnel (or any hub's) over a date range, inclusive, in UTC days.
  * Landing views are counted per hub; every later step per exam key.
  */
-export async function funnelReport(db: Db, options: { hubSlug: string; examKeys: string[]; from: string; to: string }): Promise<FunnelReport> {
-  const { hubSlug, examKeys, from, to } = options;
-  const subjects = [hubSlug, ...examKeys];
+export async function funnelReport(
+  db: Db,
+  options: { hubSlug: string; examKeys: string[]; from: string; to: string; guideSlugs?: string[] },
+): Promise<FunnelReport> {
+  const { hubSlug, examKeys, from, to, guideSlugs = [] } = options;
+  const subjects = [hubSlug, ...examKeys, ...guideSlugs];
   const placeholders = subjects.map(() => '?').join(', ');
 
   let rows: Array<{ event: string; subject: string; source: string; total: number }> = [];
@@ -188,12 +202,16 @@ export async function funnelReport(db: Db, options: { hubSlug: string; examKeys:
   let pricingViews = 0;
   let checkoutStarts = 0;
   let purchases = 0;
+  let guideViews = 0;
+  let guideClicks = 0;
   for (const row of rows) {
     const total = Number(row.total);
     if (row.event === 'landing_view' && row.subject === hubSlug) landingViews[row.source as TrafficSource] = (landingViews[row.source as TrafficSource] ?? 0) + total;
     else if (row.event === 'pricing_view') pricingViews += total;
     else if (row.event === 'checkout_start') checkoutStarts += total;
     else if (row.event === 'purchase') purchases += total;
+    else if (row.event === 'guide_view') guideViews += total;
+    else if (row.event === 'guide_click') guideClicks += total;
   }
 
   // The free test, read from the sessions themselves: started_at decides the day.
@@ -222,6 +240,8 @@ export async function funnelReport(db: Db, options: { hubSlug: string; examKeys:
     freeTestCompletions,
     checkoutStarts,
     purchases,
+    guideViews,
+    guideClicks,
   };
 }
 

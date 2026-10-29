@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { getDb } from '@/lib/db';
 import { requireAdmin } from '@/lib/auth/guards';
 import { funnelReport } from '@/lib/analytics/funnel';
+import { guidesForHub } from '@/lib/content/guides';
 import { listHubs } from '@/lib/exams/registry';
 import { Breadcrumbs, Card, Container, PageHeader } from '@/components/ui';
 
@@ -29,7 +30,8 @@ export default async function FunnelPage({ searchParams }: { searchParams: Promi
   const days = Math.min(Math.max(Number.parseInt(query.days ?? '28', 10) || 28, 1), 366);
   const to = new Date().toISOString().slice(0, 10);
   const from = new Date(Date.now() - (days - 1) * DAY_MS).toISOString().slice(0, 10);
-  const report = await funnelReport(getDb(), { hubSlug: hub.slug, examKeys: hub.configKeys, from, to });
+  const guides = guidesForHub(hub.slug);
+  const report = await funnelReport(getDb(), { hubSlug: hub.slug, examKeys: hub.configKeys, from, to, guideSlugs: guides.map((g) => g.slug) });
 
   const rate = (n: number, d: number) => (d > 0 ? `${Math.round((n / d) * 1000) / 10}%` : '—');
   const steps = [
@@ -85,6 +87,12 @@ export default async function FunnelPage({ searchParams }: { searchParams: Promi
           </tbody>
         </table>
       </Card>
+
+      <h2 className="mt-8 font-heading text-xl font-semibold">This exam’s guides</h2>
+      <p className="mt-2 text-sm text-ink-muted">
+        {guides.length} guides · {report.guideViews} views · {report.guideClicks} clicks to an exam page or practice
+        {report.guideViews > 0 ? ` (${rate(report.guideClicks, report.guideViews)} of views)` : ''}
+      </p>
 
       <h2 className="mt-8 font-heading text-xl font-semibold">Where exam page visits came from</h2>
       <ul className="mt-3 grid gap-2 text-sm sm:grid-cols-3">

@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const title = `${SITE.name} — ${t('tagline')}`;
   const alternates = (await pageAlternates(params, '/'));
   return {
-    title,
+    title: { absolute: title },
     description: t('description'),
     alternates,
     openGraph: {
@@ -105,8 +105,8 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
     <div className={accent.variable}>
       <JsonLd
         data={[
-          organizationSchema(siteUrl(), SITE.name, tSite('description')),
-          webSiteSchema(siteUrl(), SITE.name),
+          organizationSchema(siteUrl(), SITE.name, tSite('description'), SITE.alternateNames),
+          webSiteSchema(siteUrl(), SITE.name, SITE.alternateNames),
         ]}
       />
 

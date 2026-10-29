@@ -19,7 +19,7 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'exams.index' });
-  const title = t('title');
+  const title = t('metaTitle');
   const description = t('metaDescription');
   const alternates = (await pageAlternates(params, '/exams'));
   return {

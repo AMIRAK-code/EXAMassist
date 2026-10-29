@@ -15,14 +15,16 @@ export const SITE = {
   /** Used in titles: "<page> | <tagline-safe short name>". */
   shortName: 'UniExamer',
   /**
-   * Other names people may search for: Examer was the name until October 2026,
-   * and the domain is uniexamer.com. Offered to search engines as WebSite and
-   * Organization `alternateName`.
+   * Other names people may search for: "Uni Examer" is the same name written
+   * as two words, Examer was the name until October 2026, and the domain is
+   * uniexamer.com. Offered to search engines as WebSite and Organization
+   * `alternateName`. Only genuine names of this site belong here: never
+   * misspellings, and never another service's name.
    */
-  alternateNames: ['Examer', 'uniexamer.com'],
-  tagline: 'Admission test preparation, verified against official sources',
+  alternateNames: ['Uni Examer', 'Examer', 'uniexamer.com'],
+  tagline: 'Bocconi, SAT & University Admission Test Practice',
   description:
-    'Practice questions, exam format guides and timed practice for the Bocconi Online Test (bachelor, law and master’s forms), Digital SAT, Enhanced ACT, LSAT, GMAT, GRE, CISIA TOLC and Politecnico di Torino TIL, with a free test for every account. Every format claim is sourced to the test maker.',
+    'Prepare for Bocconi, SAT, TOLC and more with original practice questions, worked explanations and timed tests. Start free with UniExamer.',
   locale: 'en',
   /**
    * Publisher identity shown on public content and in structured data. Not
@@ -34,8 +36,7 @@ export const SITE = {
 
 /**
  * Where to write to us. Support mail is answered by a person on the team
- * within 48 hours (the footer says so in every language); info is for
- * everything else.
+ * within the time set in src/lib/support.ts; info is for everything else.
  */
 export const CONTACT = {
   support: 'support@uniexamer.com',

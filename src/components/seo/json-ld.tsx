@@ -1,4 +1,8 @@
 import { CONTACT, SOCIAL_LINKS } from '@/lib/site';
+import { LOCALES, LOCALE_INFO } from '@/i18n/locales';
+
+/** Every language the site is offered in, as BCP 47 tags. */
+const SITE_LANGUAGES = LOCALES.map((code) => LOCALE_INFO[code].htmlLang);
 
 /**
  * Structured data.
@@ -28,7 +32,7 @@ export function organizationSchema(siteUrl: string, name: string, description: s
     '@id': `${siteUrl}#organization`,
     name,
     ...(alternateNames.length > 0 ? { alternateName: [...alternateNames] } : {}),
-    url: siteUrl,
+    url: `${siteUrl}/`,
     // Raster and square, as Google asks of an organisation logo (at least 112 x 112).
     logo: `${siteUrl}/brand/uniexamer-symbol.png`,
     description,
@@ -37,7 +41,7 @@ export function organizationSchema(siteUrl: string, name: string, description: s
       'An independent exam preparation resource, not affiliated with or endorsed by any test maker.',
     sameAs: SOCIAL_LINKS.map((link) => link.href),
     contactPoint: [
-      { '@type': 'ContactPoint', contactType: 'customer support', email: CONTACT.support, availableLanguage: ['en', 'it', 'tr', 'es', 'pl'] },
+      { '@type': 'ContactPoint', contactType: 'customer support', email: CONTACT.support, availableLanguage: SITE_LANGUAGES },
       { '@type': 'ContactPoint', contactType: 'general enquiries', email: CONTACT.info },
     ],
   };
@@ -54,9 +58,9 @@ export function webSiteSchema(siteUrl: string, name: string, alternateNames: rea
     '@id': `${siteUrl}#website`,
     name,
     ...(alternateNames.length > 0 ? { alternateName: [...alternateNames] } : {}),
-    url: siteUrl,
+    url: `${siteUrl}/`,
     publisher: { '@id': `${siteUrl}#organization` },
-    inLanguage: 'en',
+    inLanguage: SITE_LANGUAGES,
   };
 }
 
@@ -72,6 +76,8 @@ export function webPageSchema(options: {
   description: string;
   dateModified: string;
   about: string;
+  /** The page's language, as a BCP 47 tag. */
+  inLanguage?: string;
 }) {
   return {
     '@context': 'https://schema.org',
@@ -80,7 +86,7 @@ export function webPageSchema(options: {
     url: options.url,
     name: options.name,
     description: options.description,
-    inLanguage: 'en',
+    inLanguage: options.inLanguage ?? 'en',
     dateModified: options.dateModified,
     about: { '@type': 'Thing', name: options.about },
     isPartOf: { '@id': `${options.siteUrl}#website` },
@@ -114,17 +120,26 @@ export function articleSchema(options: {
   dateModified: string;
   publisherName: string;
   authorName: string;
+  /** The share image's path or URL (src/lib/site.ts shareImages). */
+  image?: string;
+  /** The article's language, as a BCP 47 tag; guides and exam details are English. */
+  inLanguage?: string;
 }) {
+  const image = options.image ? (options.image.startsWith('/') ? `${options.siteUrl}${options.image}` : options.image) : undefined;
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: options.headline,
     description: options.description,
+    url: options.url,
+    ...(image ? { image: [image] } : {}),
     datePublished: options.datePublished,
     dateModified: options.dateModified,
-    inLanguage: 'en',
+    inLanguage: options.inLanguage ?? 'en',
     mainEntityOfPage: { '@type': 'WebPage', '@id': options.url },
-    author: { '@type': 'Organization', name: options.authorName },
+    // The site's own team writes everything; no person is named because no record names one.
+    author: { '@type': 'Organization', '@id': `${options.siteUrl}#organization`, name: options.authorName, url: `${options.siteUrl}/` },
     publisher: { '@id': `${options.siteUrl}#organization` },
+    isPartOf: { '@id': `${options.siteUrl}#website` },
   };
 }

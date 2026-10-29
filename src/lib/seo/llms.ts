@@ -19,7 +19,7 @@ export function llmsTxt(): string {
   return [
     `# ${SITE.name}`,
     '',
-    `> ${SITE.description} Also known as ${SITE.alternateNames.join(' and ')}.`,
+    `> ${SITE.description} Also known as ${SITE.alternateNames.slice(0, -1).join(', ')} and ${SITE.alternateNames.at(-1)}.`,
     '',
     INDEPENDENCE_NOTICE,
     '',

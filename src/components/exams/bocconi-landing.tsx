@@ -33,6 +33,7 @@ const LAW = 'bocconi-law';
 
 /** The guides this page links to; each label is `bocconi.guides.<key>`. */
 export const BOCCONI_GUIDE_LINKS = [
+  { href: '/guides/bocconi-admission-test-sample-questions', key: 'samples' },
   { href: '/exams/bocconi-online-test/format', key: 'format' },
   { href: '/guides/bocconi-undergraduate-vs-law-test', key: 'vsLaw' },
   { href: '/guides/bocconi-test-preparation-plan', key: 'plan' },
