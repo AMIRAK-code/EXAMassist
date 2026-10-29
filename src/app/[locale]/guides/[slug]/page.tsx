@@ -6,6 +6,7 @@ import { getHub } from '@/lib/exams/registry';
 import { SITE, shareImages, siteUrl } from '@/lib/site';
 import { pageAlternates } from '@/i18n/alternates';
 import { Markdown } from '@/components/content';
+import { SampleQuestions } from '@/components/guides/sample-questions';
 import { freeTestPath } from '@/lib/billing/config';
 import { Breadcrumbs, ButtonLink, Callout, Card, Container, PageHeader } from '@/components/ui';
 import { JsonLd, articleSchema, breadcrumbSchema } from '@/components/seo/json-ld';
@@ -126,6 +127,7 @@ export default async function GuidePage({ params }: Props) {
         </header>
 
         <Markdown source={guide.bodyMd} className="prose-academic font-serif" />
+        {guide.samples ? <SampleQuestions set={guide.samples} /> : null}
 
         <section aria-labelledby="sources-heading" className="mt-10">
           <h2 id="sources-heading" className="font-heading text-xl font-semibold">
