@@ -8,6 +8,12 @@ import { DEFAULT_LOCALE, LOCALES, LOCALE_INFO, isLocale, localizePath, type Loca
  */
 export function languageAlternates(path: string, locale: Locale) {
   const base = siteUrl().replace(/\/$/, '');
+  // Guide bodies are currently English in every interface locale. Do not
+  // advertise translated navigation as five translations of the article.
+  if (path.startsWith('/guides/')) {
+    const canonical = `${base}${path}`;
+    return { canonical, languages: { en: canonical, 'x-default': canonical } };
+  }
   const languages: Record<string, string> = {};
   for (const code of LOCALES) languages[LOCALE_INFO[code].htmlLang] = `${base}${localizePath(path, code)}`;
   languages['x-default'] = `${base}${localizePath(path, 'en')}`;
