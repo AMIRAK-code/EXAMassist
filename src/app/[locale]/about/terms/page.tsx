@@ -100,6 +100,7 @@ export default async function TermsPage({ params }: Props) {
           <li>{t('terms.plans.start')}</li>
           <li>{t('terms.plans.failed')}</li>
           <li>{t('terms.plans.priceChange')}</li>
+          <li>{t('terms.plans.refund')}</li>
           <li>{t('terms.plans.deletion')}</li>
         </ul>
 
