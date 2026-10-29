@@ -425,6 +425,43 @@ export function stemSimilarity(a: string, b: string): number {
 
 export const NEAR_DUPLICATE = 0.6;
 
+/** Stem overlap, numbers masked, at which two items are the same template with new numbers. */
+export const TEMPLATE_VARIANT = 0.85;
+/**
+ * Below this many distinct words a stem is a question type ("What number
+ * comes next in the sequence?"), not a template, and masking its numbers
+ * would make unrelated items look alike.
+ */
+const MIN_TEMPLATE_WORDS = 12;
+
+function maskNumbers(text: string): string {
+  return text.replace(/\d+(?:[.,]\d+)?/g, ' num ');
+}
+
+/** Stem similarity with every number masked, or 0 when either stem is too short to identify a template. */
+export function templateSimilarity(a: string, b: string): number {
+  const x = maskNumbers(a);
+  const y = maskNumbers(b);
+  const length = (text: string) => new Set(text.toLowerCase().replace(/[^a-z]+/g, ' ').split(' ').filter((w) => w.length > 2)).size;
+  if (Math.min(length(x), length(y)) < MIN_TEMPLATE_WORDS) return 0;
+  return stemSimilarity(x, y);
+}
+
+/**
+ * Whether two items are variants of one question: most of the same words, or
+ * the same template with different numbers. Items on different stimuli are
+ * never variants of each other: there the passage carries the content, and a
+ * shared stock question ("Which choice best states the main idea?") is not.
+ */
+export function areVariants(
+  a: { stemMd: string; stimulusId: string | null },
+  b: { stemMd: string; stimulusId: string | null },
+  thresholds: { nearDuplicate: number; templateVariant: number } = { nearDuplicate: NEAR_DUPLICATE, templateVariant: TEMPLATE_VARIANT },
+): boolean {
+  if (a.stimulusId !== b.stimulusId) return false;
+  return stemSimilarity(a.stemMd, b.stemMd) >= thresholds.nearDuplicate || templateSimilarity(a.stemMd, b.stemMd) >= thresholds.templateVariant;
+}
+
 /** Reasons a draft cannot go to review; empty when it can. */
 export function checkDraft(question: Question, rules: DraftingRules, bank: Question[], stimulusIds: Set<string>): string[] {
   const reasons: string[] = [];
@@ -465,6 +502,14 @@ export function checkDraft(question: Question, rules: DraftingRules, bank: Quest
     const similarity = stemSimilarity(question.stemMd, other.stemMd);
     if (similarity >= NEAR_DUPLICATE) {
       reasons.push(`near-duplicate of ${other.id} (${Math.round(similarity * 100)}% of words shared)`);
+      break;
+    }
+    // The same template with new numbers adds nothing a set can measure
+    // twice, and would inflate coverage (src/lib/content/coverage.ts).
+    const sameStimulus = (question.stimulusRef?.id ?? null) === (other.stimulusRef?.id ?? null);
+    const template = sameStimulus ? templateSimilarity(question.stemMd, other.stemMd) : 0;
+    if (template >= TEMPLATE_VARIANT) {
+      reasons.push(`the same template as ${other.id} with different numbers (${Math.round(template * 100)}% of words shared, numbers aside)`);
       break;
     }
   }

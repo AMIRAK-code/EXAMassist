@@ -52,7 +52,8 @@ export default async function StartPage({ params }: { params: Promise<{ locale: 
   const price = (cents: number) => format.number(cents / 100, { style: 'currency', currency: 'EUR' });
 
   const hub = getHubForConfig(config.examKey);
-  const reviewed = (await getCoverage(db, config.examKey)).reduce((sum, row) => sum + Number(row.published), 0);
+  // Questions a learner can actually be served: published and human-approved.
+  const reviewed = (await getCoverage(db, config.examKey)).reduce((sum, row) => sum + Number(row.approved), 0);
   const preview = await freeTestPreview(db, config.examKey);
   const timedSections = config.blueprints.filter((b) => b.mode === 'practice' && b.timing !== 'untimed').length;
   const fullMock = config.capabilities.fullSimulation.available && config.blueprints.some((b) => b.mode === 'simulation');

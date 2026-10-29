@@ -331,7 +331,8 @@
     "viewsLabel": "Viste del piano di studio",
     "views": {
       "plan": "Piano",
-      "progress": "Progressi e preparazione"
+      "progress": "Progressi e preparazione",
+      "scores": "Prove ufficiali"
     },
     "examsLabel": "Esami nel tuo piano di studio",
     "notices": {
@@ -531,5 +532,100 @@
     "dateHint": "La tua unica data per questo esame. La usa anche il tuo piano di studio, che ti propone di adattarsi quando cambia.",
     "save": "Salva l’obiettivo",
     "saved": "Salvato."
+  },
+  "officialScores": {
+    "meta": {
+      "title": "Punteggi delle prove ufficiali",
+      "description": "Registra i punteggi ottenuti nelle prove di esercitazione ufficiali e seguili nel tempo, separati da ciò che misura UniExamer."
+    },
+    "title": "Punteggi delle prove ufficiali",
+    "label": "Risultato di una prova ufficiale inserito da te — non verificato in modo indipendente.",
+    "lead": "Registra i punteggi ottenuti nelle prove di esercitazione pubblicate dall’ente che organizza il test, esattamente come li ha riportati il suo strumento. Li teniamo separati da ciò che misura UniExamer: non li verifichiamo con l’ente, non li convertiamo in un’altra scala e non prevediamo un punteggio ufficiale a partire dalla tua pratica qui.",
+    "chooseLead": "Scegli un esame per cui registrare i risultati delle prove ufficiali.",
+    "unsupportedTitle": "Per {exam} non è ancora possibile registrare risultati di prove ufficiali",
+    "unsupportedBody": "Registriamo un risultato solo su una scala verificata sulle pagine dell’ente stesso, per una prova di esercitazione pubblicata dall’ente. Per questo esame non abbiamo ancora potuto verificarne una.",
+    "latest": {
+      "title": "Ultimo risultato di una prova ufficiale",
+      "none": "Non hai ancora registrato alcun risultato di prove ufficiali per {exam}.",
+      "which": "{test} · {provider} · {date}",
+      "target": "Il tuo obiettivo",
+      "noTarget": "Nessun obiettivo impostato",
+      "atTarget": "esattamente il tuo obiettivo",
+      "aboveTarget": "{points} sopra il tuo obiettivo",
+      "belowTarget": "{points} sotto il tuo obiettivo",
+      "notComparable": "Questo risultato non è sulla stessa scala e versione del test del tuo obiettivo, quindi i due non vengono confrontati.",
+      "repeat": "Era il tentativo n. {n} con questa prova. Aver già visto le domande può alzare un punteggio successivo, quindi interpreta ogni variazione con cautela."
+    },
+    "measured": {
+      "title": "Misurato in UniExamer",
+      "body": "Accuratezza, ritmo e copertura degli argomenti della tua pratica qui sono nella pagina Progressi. Descrivono la tua preparazione; non sono una stima di un punteggio ufficiale e non vengono mai mescolati con i risultati di questa pagina.",
+      "link": "Progressi e preparazione",
+      "setTarget": "Imposta un obiettivo nella pagina Progressi per vedere come ogni risultato si confronta con esso."
+    },
+    "history": {
+      "title": "Storico",
+      "separateScales": "I risultati su versioni del test o scale diverse sono elencati separatamente e non vengono mai confrontati.",
+      "caption": "I tuoi risultati registrati su {version}, dal più recente.",
+      "date": "Data",
+      "test": "Prova",
+      "sections": "Punteggi per sezione",
+      "change": "Variazione",
+      "actions": "Azioni",
+      "repeatBadge": "Tentativo n. {n} di questa prova",
+      "firstOnScale": "Primo risultato su questa scala",
+      "changeVs": "{change} rispetto al {date}",
+      "nothingToCompare": "Nessun punteggio in comune con il risultato precedente",
+      "edit": "Modifica",
+      "editLabel": "Modifica il risultato di {test}",
+      "delete": "Elimina",
+      "deleteLabel": "Elimina il risultato di {test}",
+      "confirmDelete": "Eliminare questo risultato? L’operazione non si può annullare.",
+      "confirm": "Elimina",
+      "cancel": "Annulla",
+      "deleteFailed": "Non è stato possibile eliminarlo. Riprova."
+    },
+    "form": {
+      "addTitle": "Registra un risultato",
+      "editTitle": "Modifica questo risultato",
+      "version": "Versione del test e scala",
+      "versionHint": "I risultati vengono confrontati solo con altri sulla stessa versione e scala.",
+      "provider": "Pubblicata da",
+      "testName": "Prova",
+      "testNameHint": "Come la chiama l’ente, per esempio “Practice Test 4”. Serve a riconoscere quando ripeti la stessa prova.",
+      "takenOn": "Data di svolgimento",
+      "overall": "Punteggio complessivo",
+      "overallHint": "Da {min} a {max}, a intervalli di {step}. Lascialo vuoto se non l’hai ricevuto.",
+      "noOverall": "Questa versione del test non riporta un unico punteggio complessivo. Inserisci i punteggi per sezione che hai ricevuto.",
+      "sections": "Punteggi per sezione",
+      "sectionsHint": "Inserisci solo i punteggi che hai ricevuto e lascia vuoti gli altri. Nulla viene compilato al posto tuo.",
+      "rangeHint": "da {min} a {max}, intervalli di {step}",
+      "optional": "(facoltativo)",
+      "notes": "Note",
+      "notesHint": "Le vedi solo tu: per esempio, le condizioni in cui hai svolto la prova.",
+      "save": "Salva il risultato",
+      "saveChanges": "Salva le modifiche",
+      "cancel": "Annulla",
+      "saved": "Salvato."
+    },
+    "errors": {
+      "title": "Non è stato possibile salvare il risultato",
+      "offScale": "{field} deve essere compreso tra {min} e {max}, a intervalli di {step}.",
+      "totalMismatch": "Secondo la regola pubblicata dall’ente, i punteggi per sezione che hai inserito danno un punteggio complessivo di {expected}. Controlla il punteggio complessivo e le sezioni.",
+      "noScore": "Inserisci almeno un punteggio.",
+      "futureDate": "La data non può essere nel futuro.",
+      "invalidDate": "Inserisci la data in cui hai svolto la prova.",
+      "notFound": "Questo risultato non esiste più.",
+      "generic": "Non è stato possibile salvarlo. Controlla i campi e la connessione, poi riprova."
+    },
+    "facts": {
+      "title": "Informazioni su queste scale",
+      "sources": "Verificato sulle pagine dell’ente stesso il {date}:"
+    },
+    "summary": {
+      "title": "Risultati delle prove ufficiali",
+      "latest": "Ultimo: {score} in {test}, {date}.",
+      "separate": "Inseriti da te dalle prove di esercitazione dell’ente stesso; mostrati accanto, mai dentro, ciò che ha misurato UniExamer.",
+      "link": "Vedi e registra i punteggi delle prove ufficiali"
+    }
   }
 }

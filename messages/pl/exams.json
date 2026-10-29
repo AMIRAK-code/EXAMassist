@@ -102,7 +102,7 @@
     },
     "formatGuideLink": "Przeczytaj pełny przewodnik po formacie i punktacji, ze wszystkimi źródłami →",
     "practiseHeading": "Ćwicz do tego egzaminu",
-    "coverage": "{items, plural, one {# sprawdzone pytanie} few {# sprawdzone pytania} many {# sprawdzonych pytań} other {# sprawdzonego pytania}} z {covered} spośród {total} tematów. Pytania są oryginalne i przygotowane z pomocą AI; przed publikacją każde z nich rozwiązał osobny recenzent AI, nie znając odpowiedzi.",
+    "coverage": "{items, plural, one {# sprawdzone pytanie} few {# sprawdzone pytania} many {# sprawdzonych pytań} other {# sprawdzonego pytania}} z {covered} spośród {total} tematów. Pytania są oryginalne i przygotowane z pomocą AI; przed publikacją każde z nich rozwiązał osobny recenzent AI, nie znając odpowiedzi. Następnie każde z nich, zanim zostanie udostępnione, zatwierdza wskazany z nazwiska recenzent-człowiek.",
     "howChecked": "Jak sprawdzamy pytania",
     "noFormatsTitle": "Do tego egzaminu nie ma jeszcze dostępnych formatów ćwiczeń",
     "noFormatsBody": "Baza pytań jest wciąż za mała, by wypełnić jakikolwiek format bez powtarzania pytań. Tymczasem przewodnik powyżej jest kompletny i opatrzony źródłami.",
@@ -288,9 +288,9 @@
       "difficulty": "<strong>Poziomy trudności to nasza ocena,</strong> a nie statystyki prawdziwych kandydatów.",
       "grouped": "<strong>Symulacje grupują obszary.</strong> Prawdziwy test miesza obszary na kolejnych ekranach w kolejności, której Bocconi nie publikuje; nasze pełne symulacje podają je jako kolejne bloki w ramach jednego 75-minutowego limitu czasu.",
       "small": "<strong>W niektórych obszarach baza jest wciąż mała.</strong> Zobacz tabelę powyżej: w części obszarów mamy tylko kilka pytań więcej, niż zadaje prawdziwy test, więc przy kolejnych pełnych symulacjach pytania zaczną się powtarzać.",
-      "expertNone": "Żadne pytanie nie zostało jeszcze sprawdzone przez eksperta-człowieka.",
-      "expertSome": "{count, plural, one {# pytanie ma odnotowaną weryfikację przez eksperta-człowieka; pozostałe nie.} few {# pytania mają odnotowaną weryfikację przez eksperta-człowieka; pozostałe nie.} many {# pytań ma odnotowaną weryfikację przez eksperta-człowieka; pozostałe nie.} other {# pytania ma odnotowaną weryfikację przez eksperta-człowieka; pozostałe nie.}}",
-      "review": "Przed publikacją osobny recenzent AI rozwiązuje każde pytanie bez znajomości odpowiedzi, a program porównuje jego odpowiedź z kluczem. Jeśli pytanie sprawdziła wykwalifikowana osoba, strona przeglądu pytania podaje jej nazwisko."
+      "expertNone": "Żadne pytanie nie zostało jeszcze zatwierdzone przez recenzenta-człowieka, więc na razie nie można tu ćwiczyć.",
+      "expertSome": "{count, plural, one {Dostępne jest # pytanie zatwierdzone przez recenzenta-człowieka wskazanego z nazwiska; strona przeglądu podaje, kto je zatwierdził.} few {Dostępne są # pytania zatwierdzone przez recenzenta-człowieka wskazanego z nazwiska; każda strona przeglądu podaje, kto je zatwierdził.} many {Dostępnych jest # pytań zatwierdzonych przez recenzenta-człowieka wskazanego z nazwiska; każda strona przeglądu podaje, kto je zatwierdził.} other {Dostępne jest # pytania zatwierdzonego przez recenzenta-człowieka wskazanego z nazwiska; każda strona przeglądu podaje, kto je zatwierdził.}}",
+      "review": "Przed publikacją osobny recenzent AI rozwiązuje każde pytanie bez znajomości odpowiedzi, a program porównuje jego odpowiedź z kluczem. Następnie pytanie jest udostępniane dopiero wtedy, gdy wykwalifikowana osoba wskazana z nazwiska zatwierdzi jego dokładną wersję, a strona przeglądu pytania podaje jej nazwisko."
     },
     "rules": {
       "heading": "Zasady Bocconi w skrócie",
@@ -330,7 +330,7 @@
     },
     "trust": {
       "heading": "Jak powstają pytania i jak zgłosić problem",
-      "body": "Każde pytanie jest przygotowywane z pomocą AI na podstawie listy tematów Bocconi. Przed publikacją osobny recenzent AI rozwiązuje je, nie widząc klucza odpowiedzi, a program porównuje obie odpowiedzi; niezgodność oznacza, że pytanie nie trafia do bazy. Kontrolujemy też wybrane próbki bazy: w październiku 2026 roku ponowne rozwiązanie 36 pytań Bocconi przez osobnych recenzentów AI, bez znajomości odpowiedzi, nie wykazało żadnego błędnego klucza ani pytania z dwiema możliwymi do obrony odpowiedziami. Wykazało natomiast drobniejsze usterki w treści, wyjaśnieniach lub tekście dla czytników ekranu w 15 pytaniach, które zostały poprawione lub czekają na ponowną weryfikację. <link>Nasze standardy redakcyjne</link>",
+      "body": "Każde pytanie jest przygotowywane z pomocą AI na podstawie listy tematów Bocconi. Przed publikacją osobny recenzent AI rozwiązuje je, nie widząc klucza odpowiedzi, a program porównuje obie odpowiedzi; niezgodność oznacza, że pytanie nie trafia do bazy. Kontrolujemy też wybrane próbki bazy: w październiku 2026 roku ponowne rozwiązanie 36 pytań Bocconi przez osobnych recenzentów AI, bez znajomości odpowiedzi, nie wykazało żadnego błędnego klucza ani pytania z dwiema możliwymi do obrony odpowiedziami. Wykazało natomiast drobniejsze usterki w treści, wyjaśnieniach lub tekście dla czytników ekranu w 15 pytaniach, które zostały poprawione lub czekają na ponowną weryfikację. Ponadto pytanie jest udostępniane dopiero wtedy, gdy wskazany z nazwiska recenzent-człowiek zatwierdzi jego dokładną wersję. <link>Nasze standardy redakcyjne</link>",
       "report": "<strong>Uważasz, że odpowiedź jest błędna?</strong> Po dowolnej sesji otwórz stronę przeglądu pytania i wybierz „Zgłoś problem z tym pytaniem” albo skorzystaj z <link>formularza zgłoszenia</link>, podając identyfikator pytania. Konto nie jest potrzebne. Jeśli klucz odpowiedzi okaże się błędny albo da się obronić drugą odpowiedź, pytanie zostaje wycofane, a nie po cichu poprawione, a Twoje wcześniejsze wyniki zachowują wersję, którą Ci pokazano."
     },
     "guides": {

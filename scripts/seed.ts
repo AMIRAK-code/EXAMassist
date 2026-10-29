@@ -6,6 +6,9 @@ import { contentHash, loadContent, summariseCoverage } from '../src/lib/content/
 import { servableQuestionTranslations, servableStimulusTranslations, withoutTranslations } from '../src/lib/content/translations';
 import { EXAM_CONFIGS, getExamConfig } from '../src/lib/exams/registry';
 import { hashPassword } from '../src/lib/auth/password';
+import { planSeed, stimulusColumns, versionColumns, type ExistingVersion } from '../src/lib/content/seed-plan';
+import { humanApprovedCount } from '../src/lib/content/human-review';
+import type { QuestionVersionRow, StimulusRow } from '../src/lib/db/rows';
 
 loadEnvConfig(process.cwd(), true);
 
@@ -73,6 +76,43 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
+  // What this run would change, worked out before writing anything
+  // (src/lib/content/seed-plan.ts): each version's content fingerprint, which
+  // human approvals it would void, and any rewrite of a version that learners'
+  // attempts already point at, which is refused.
+  const stimulusRows = (await db.prepare('SELECT * FROM stimuli').all()) as StimulusRow[];
+  const stimulusByKey = new Map(stimulusRows.map((row) => [`${row.id}@${row.version}`, row]));
+  const existing = new Map<string, ExistingVersion>(
+    ((await db.prepare('SELECT * FROM question_versions').all()) as QuestionVersionRow[]).map((row) => [
+      `${row.question_id}@${row.version}`,
+      { row, stimulus: row.stimulus_id ? stimulusByKey.get(`${row.stimulus_id}@${row.stimulus_version}`) ?? null : null },
+    ]),
+  );
+  const inAttempts = new Set(
+    ((await db.prepare('SELECT DISTINCT question_version_id AS id FROM attempt_items').all()) as Array<{ id: string }>).map((r) => r.id),
+  );
+  const previousStates = new Map(
+    ((await db.prepare('SELECT id, state FROM questions').all()) as Array<{ id: string; state: string }>).map((r) => [r.id, r.state]),
+  );
+  const plan = planSeed(
+    questions.map((q) => q.question),
+    stimuli.map((s) => s.stimulus),
+    existing,
+    inAttempts,
+  );
+  if (plan.conflicts.length > 0) {
+    console.error(`\nRefusing to seed: ${plan.conflicts.length} version(s) would rewrite what learners were shown.`);
+    for (const conflict of plan.conflicts.slice(0, 30)) console.error(`  ${conflict.message}`);
+    process.exit(1);
+  }
+  const fingerprints = new Map(plan.questions.map((p) => [p.question.id, p]));
+  const audit = async (action: string, entityId: string, payload: unknown) => {
+    (await db.prepare(
+      `INSERT INTO audit_log (actor_user_id, action, entity_type, entity_id, payload_json, created_at)
+       VALUES (NULL, ?, 'question', ?, ?, ?)`,
+    ).run(action, entityId, JSON.stringify({ source: 'seed', ...(payload as object) }), now));
+  };
+
   const seedAll = db.transaction(async () => {
     for (const { stimulus } of stimuli) {
       (await db.prepare(
@@ -82,19 +122,7 @@ async function main(): Promise<void> {
          ON CONFLICT(id, version) DO UPDATE SET
            kind = excluded.kind, title = excluded.title, body_md = excluded.body_md,
            data_json = excluded.data_json, accessibility_text = excluded.accessibility_text`,
-      ).run(
-        stimulus.id,
-        stimulus.version,
-        stimulus.examKey,
-        stimulus.kind,
-        stimulus.title,
-        stimulus.bodyMd,
-        stimulus.data ? JSON.stringify(stimulus.data) : null,
-        stimulus.accessibilityText,
-        JSON.stringify(stimulus.provenance),
-        stimulus.rightsStatus,
-        now,
-      ));
+      ).run(...Object.values(stimulusColumns(stimulus)), now));
       // Checked translations only (src/lib/content/translations.ts).
       const stimulusTranslations = servableStimulusTranslations(stimulus);
       (await db.prepare('UPDATE stimuli SET translations_json = ? WHERE id = ? AND version = ?').run(
@@ -105,6 +133,7 @@ async function main(): Promise<void> {
     }
 
     for (const { question } of questions) {
+      const planned = fingerprints.get(question.id)!;
       (await db.prepare(
         `INSERT INTO questions (id, exam_key, current_version, state, created_at, updated_at)
          VALUES (?, ?, ?, ?, ?, ?)
@@ -127,36 +156,8 @@ async function main(): Promise<void> {
         );
       }
 
-      const row = [
-        question.examKey,
-        question.sectionKey,
-        question.domainSlug,
-        question.skillSlug,
-        question.subskillSlug,
-        question.responseType,
-        question.difficulty,
-        question.difficultyBasis,
-        question.stemMd,
-        question.instructionsMd,
-        question.options.length > 0 ? JSON.stringify(question.options) : null,
-        JSON.stringify(question.answerKey),
-        question.explanationMd,
-        Object.keys(question.distractorRationale).length > 0
-          ? JSON.stringify(question.distractorRationale)
-          : null,
-        question.estimatedSeconds,
-        question.stimulusRef?.id ?? null,
-        question.stimulusRef?.version ?? null,
-        question.accessibilityText,
-        JSON.stringify(question.provenance),
-        question.rightsStatus,
-        question.review.author,
-        question.review.reviewer,
-        question.review.reviewedOn,
-        question.review.notes,
-        question.state,
-        hash,
-      ];
+      // In the column order of the statements below (src/lib/content/seed-plan.ts).
+      const row = Object.values(versionColumns(question, hash, planned.fingerprint));
 
       if (existing) {
         (await db.prepare(
@@ -166,7 +167,7 @@ async function main(): Promise<void> {
              options_json = ?, correct_json = ?, explanation_md = ?, distractor_rationale_json = ?,
              estimated_seconds = ?, stimulus_id = ?, stimulus_version = ?, accessibility_text = ?,
              provenance = ?, rights_status = ?, author = ?, reviewer = ?, reviewed_at = ?,
-             review_notes = ?, state = ?, content_hash = ?
+             review_notes = ?, state = ?, content_hash = ?, review_fingerprint = ?
            WHERE id = ?`,
         ).run(...row, existing.id));
       } else {
@@ -176,9 +177,26 @@ async function main(): Promise<void> {
              response_type, difficulty, difficulty_basis, stem_md, instructions_md, options_json,
              correct_json, explanation_md, distractor_rationale_json, estimated_seconds,
              stimulus_id, stimulus_version, accessibility_text, provenance, rights_status,
-             author, reviewer, reviewed_at, review_notes, state, content_hash, created_at
-           ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+             author, reviewer, reviewed_at, review_notes, state, content_hash, review_fingerprint, created_at
+           ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         ).run(randomUUID(), question.id, question.version, ...row, now));
+      }
+
+      // The audit trail of publication decisions and content changes
+      // (shown on the admin review page beside the review history).
+      const previousState = previousStates.get(question.id) ?? null;
+      if (planned.isNewVersion) {
+        (await audit('question.version_added', question.id, { version: question.version, state: question.state, fingerprint: planned.fingerprint }));
+      } else if (planned.contentChanged) {
+        (await audit('question.content_changed', question.id, {
+          version: question.version,
+          previousFingerprint: planned.previousFingerprint,
+          fingerprint: planned.fingerprint,
+          note: 'Human approvals of the previous content no longer apply.',
+        }));
+      }
+      if (previousState !== question.state) {
+        (await audit('question.state_changed', question.id, { version: question.version, from: previousState, to: question.state }));
       }
       // Checked translations only, refreshed on every seed without a new version.
       const translations = servableQuestionTranslations(question);
@@ -221,11 +239,15 @@ async function main(): Promise<void> {
   }
 
   // --- Coverage ------------------------------------------------------------
+  // "published" is what the content files say: the automated gates passed.
+  // Only "approved" is served: published AND a standing human approval of the
+  // current content (src/lib/content/human-review.ts).
   console.log('\nContent coverage by exam');
-  console.log('exam                      published  draft  review  quarantined  domains');
+  console.log('exam                      published  approved  draft  review  quarantined  domains');
   for (const row of summariseCoverage(questions).filter((r) => !r.draftConfig)) {
     console.log(
       `  ${row.examKey.padEnd(24)}${String(row.published).padStart(6)}` +
+        `${String(await humanApprovedCount(db, [row.examKey])).padStart(10)}` +
         `${String(row.draft).padStart(8)}${String(row.inReview).padStart(8)}` +
         `${String(row.quarantined).padStart(13)}` +
         `${String(`${row.domainsCovered}/${row.domainsTotal}`).padStart(10)}`,

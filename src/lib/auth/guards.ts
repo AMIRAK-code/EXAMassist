@@ -1,5 +1,7 @@
 import { notFound, redirect } from 'next/navigation';
 import { getCurrentUser, type AuthUser } from './session';
+import { getDb } from '@/lib/db';
+import { getReviewer, type ReviewerProfile } from '@/lib/content/human-review';
 
 /**
  * Page-level authorization guards.
@@ -51,6 +53,23 @@ export async function requireEditorial(returnPath: string): Promise<AuthUser> {
   }
   if (user.role !== 'admin' && user.role !== 'editor') notFound();
   return user;
+}
+
+/**
+ * The human review screens: editorial staff, and anyone an administrator has
+ * authorised as a reviewer (who need not be staff). A withdrawn reviewer is a
+ * learner again. What a reviewer may DECIDE is checked separately, on every
+ * write, by recordReview.
+ */
+export async function requireReviewAccess(returnPath: string): Promise<{ user: AuthUser; reviewer: ReviewerProfile | null }> {
+  const user = await getCurrentUser();
+  if (!user || user.isGuest) {
+    redirect(`/sign-in?next=${encodeURIComponent(safeReturnPath(returnPath))}`);
+  }
+  const reviewer = await getReviewer(getDb(), user.id);
+  const isStaff = user.role === 'admin' || user.role === 'editor';
+  if (!isStaff && (!reviewer || reviewer.status === 'revoked')) notFound();
+  return { user, reviewer };
 }
 
 /** Administrators only. */

@@ -617,7 +617,7 @@ export async function startRetry(db: Db, input: StartRetryInput): Promise<StartR
     throw new AttemptError(
       'nothing-to-retry',
       unavailable.length > 0
-        ? 'Those questions are being revised, so they cannot be asked again yet.'
+        ? 'Those questions are under review, so they cannot be asked again yet.'
         : 'There are no missed questions to retry here.',
       409,
       { unavailable },

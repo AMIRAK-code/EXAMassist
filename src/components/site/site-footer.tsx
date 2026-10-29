@@ -3,6 +3,7 @@ import { Link } from '@/i18n/navigation';
 import { SITE } from '@/lib/site';
 import { listHubs } from '@/lib/exams/registry';
 import { EditorialLine } from './editorial-line';
+import { SUPPORT, supportMailto } from '@/lib/support';
 
 const LEARN = [
   { href: '/pricing', key: 'pricing' },
@@ -12,6 +13,7 @@ const LEARN = [
 ] as const;
 
 const HELP = [
+  { href: '/#support', key: 'humanSupport' },
   { href: '/report-question', key: 'reportQuestion' },
   { href: '/about/privacy', key: 'privacy' },
   { href: '/about/terms', key: 'terms' },
@@ -51,6 +53,12 @@ export async function SiteFooter() {
               <img src="/brand/uniexamer-logo-white.png" alt={SITE.name} width={125} height={30} className="block" />
             </p>
             <EditorialLine onInk className="mt-3 max-w-xs leading-relaxed text-ink-inverse-muted" />
+            <p className="mt-4 max-w-xs leading-relaxed text-ink-inverse-muted">
+              {t('footer.supportLine', { days: SUPPORT.firstReplyBusinessDays })}{' '}
+              <a href={supportMailto()} className="text-ink-inverse hover:text-ink-inverse">
+                {SUPPORT.email}
+              </a>
+            </p>
           </div>
           <Column id="footer-exams" title={t('footer.exams')} items={exams} />
           <Column id="footer-learn" title={t('footer.learn')} items={label(LEARN)} />

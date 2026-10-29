@@ -1,3 +1,5 @@
+import { SUPPORT } from '@/lib/support';
+
 /**
  * Structured data.
  *
@@ -33,6 +35,13 @@ export function organizationSchema(siteUrl: string, name: string, description: s
     // An explicit, honest statement of independence.
     disambiguatingDescription:
       'An independent exam preparation resource, not affiliated with or endorsed by any test maker.',
+    // Human support, answered by a person in every language of the site (src/lib/support.ts).
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      email: SUPPORT.email,
+      availableLanguage: [...SUPPORT.languages],
+    },
   };
 }
 

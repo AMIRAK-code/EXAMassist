@@ -14,6 +14,8 @@ import type {
 } from '@/lib/db/rows';
 import { toErrorResponse } from '@/lib/api/http';
 import { requireUser } from '@/lib/auth/session';
+import { listOfficialScores } from '@/lib/learning/official-scores';
+import { getReviewer } from '@/lib/content/human-review';
 
 /**
  * Everything we hold about the learner who is asking, as one JSON file.
@@ -163,6 +165,29 @@ export async function GET() {
       created_at: string;
       expires_at: string;
       consumed_at: string | null;
+    }>;
+
+    // Results the learner entered from official practice tests (migration 015).
+    // A database awaiting 015 has none, which must not break the rest.
+    const officialScores = await listOfficialScores(db, user.id).catch(() => []);
+    // For someone who reviews questions: their authorisation, and every
+    // decision they recorded (migration 014).
+    const reviewer = await getReviewer(db, user.id).catch(() => null);
+    const reviewDecisionsMade = (await db
+      .prepare(
+        `SELECT question_id, question_version, exam_key, outcome, checked_json, notes, reviewed_on, created_at
+           FROM question_reviews WHERE reviewer_user_id = ? ORDER BY created_at`,
+      )
+      .all(user.id)
+      .catch(() => [])) as Array<{
+      question_id: string;
+      question_version: number;
+      exam_key: string;
+      outcome: string;
+      checked_json: string;
+      notes: string | null;
+      reviewed_on: string;
+      created_at: string;
     }>;
 
     // Plans (migration 012): which Stripe customer pays for this account and
@@ -375,6 +400,44 @@ export async function GET() {
             statusAt: row.status_at,
           })),
       })),
+      officialPracticeScores: {
+        note:
+          'Results you entered from practice tests published by the test makers. They are your own statements; ' +
+          `${SITE.name} has not verified them.`,
+        results: officialScores.map((row) => ({
+          examKey: row.examKey,
+          scale: row.scaleKey,
+          provider: row.providerKey,
+          testName: row.testName,
+          takenOn: row.takenOn,
+          overallScore: row.overallScore,
+          sectionScores: row.sectionScores,
+          notes: row.notes,
+          createdAt: row.createdAt,
+          updatedAt: row.updatedAt,
+        })),
+      },
+      questionReviewer: reviewer
+        ? {
+            publicName: reviewer.publicName,
+            publicCredentials: reviewer.publicCredentials,
+            exams: reviewer.examKeys,
+            authorAliases: reviewer.authorAliases,
+            authorisedAt: reviewer.grantedAt,
+            confirmedAt: reviewer.confirmedAt,
+            withdrawnAt: reviewer.revokedAt,
+            decisions: reviewDecisionsMade.map((row) => ({
+              questionId: row.question_id,
+              questionVersion: row.question_version,
+              examKey: row.exam_key,
+              outcome: row.outcome,
+              checked: parseJson(row.checked_json),
+              notes: row.notes,
+              reviewedOn: row.reviewed_on,
+              recordedAt: row.created_at,
+            })),
+          }
+        : null,
       aiTutor: {
         note:
           'AI after-test guides generated for you, and a log of your AI tutor requests. Shared hints and ' +

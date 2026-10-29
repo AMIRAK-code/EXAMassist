@@ -5,12 +5,14 @@ import { planningHref, type PlanningView } from '@/lib/learning/planning';
 import { Alert, cx } from '@/components/ui';
 
 /**
- * The two views of the study plan: what to do (Plan) and what the evidence
- * says (Progress & readiness). Plain links, so they work without JavaScript;
- * the current one is marked for assistive technology as well as by fill.
+ * The views of the study plan: what to do (Plan), what the evidence here says
+ * (Progress & readiness), and the official practice results the learner
+ * entered (Official practice scores), kept apart from what UniExamer measures.
+ * Plain links, so they work without JavaScript; the current one is marked for
+ * assistive technology as well as by fill.
  */
 
-const VIEWS: PlanningView[] = ['plan', 'progress'];
+const VIEWS: PlanningView[] = ['plan', 'progress', 'scores'];
 
 const PILL = 'inline-flex min-h-11 items-center gap-2 rounded-full border-[1.5px] px-4 text-sm font-semibold no-underline';
 const PILL_ON = 'border-ink bg-ink text-ink-inverse hover:text-ink-inverse';

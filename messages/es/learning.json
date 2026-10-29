@@ -331,7 +331,8 @@
     "viewsLabel": "Vistas del plan de estudio",
     "views": {
       "plan": "Plan",
-      "progress": "Progreso y preparación"
+      "progress": "Progreso y preparación",
+      "scores": "Prácticas oficiales"
     },
     "examsLabel": "Exámenes de tu plan de estudio",
     "notices": {
@@ -531,5 +532,100 @@
     "dateHint": "Tu única fecha para este examen. Tu plan de estudio también la usa y te ofrece ajustarse cuando cambia.",
     "save": "Guardar objetivo",
     "saved": "Guardado."
+  },
+  "officialScores": {
+    "meta": {
+      "title": "Puntuaciones de prácticas oficiales",
+      "description": "Registra las puntuaciones que obtuviste en exámenes de práctica oficiales y síguelas en el tiempo, separadas de lo que mide UniExamer."
+    },
+    "title": "Puntuaciones de prácticas oficiales",
+    "label": "Resultado de práctica oficial introducido por el usuario — no verificado de forma independiente.",
+    "lead": "Registra las puntuaciones que obtuviste en exámenes de práctica publicados por la propia entidad que organiza el examen, tal como las indicó su herramienta. Las mantenemos separadas de lo que mide UniExamer: no las comprobamos con la entidad, no las convertimos a otra escala ni predecimos una puntuación oficial a partir de tu práctica aquí.",
+    "chooseLead": "Elige un examen para registrar resultados de prácticas oficiales.",
+    "unsupportedTitle": "Todavía no se pueden registrar resultados de prácticas oficiales de {exam}",
+    "unsupportedBody": "Solo registramos un resultado en una escala que hemos comprobado en las páginas de la propia entidad, para un examen de práctica que ella publica. Para este examen aún no hemos podido comprobar ninguna.",
+    "latest": {
+      "title": "Último resultado de práctica oficial",
+      "none": "Todavía no has registrado ningún resultado de práctica oficial de {exam}.",
+      "which": "{test} · {provider} · {date}",
+      "target": "Tu objetivo",
+      "noTarget": "Sin objetivo",
+      "atTarget": "exactamente tu objetivo",
+      "aboveTarget": "{points} por encima de tu objetivo",
+      "belowTarget": "{points} por debajo de tu objetivo",
+      "notComparable": "Este resultado no está en la misma escala ni en la misma versión del examen que tu objetivo, así que no se comparan.",
+      "repeat": "Era tu intento n.º {n} con este examen de práctica. Haber visto antes las preguntas puede subir una puntuación posterior, así que interpreta cualquier cambio con cautela."
+    },
+    "measured": {
+      "title": "Medido en UniExamer",
+      "body": "Tu precisión, ritmo y cobertura de temas en la práctica de aquí están en la página de Progreso. Describen tu preparación; no son una estimación de una puntuación oficial y nunca se mezclan con los resultados de esta página.",
+      "link": "Progreso y preparación",
+      "setTarget": "Fija un objetivo en la página de Progreso para ver cómo se compara cada resultado con él."
+    },
+    "history": {
+      "title": "Historial",
+      "separateScales": "Los resultados de versiones del examen o escalas distintas se muestran por separado y nunca se comparan.",
+      "caption": "Tus resultados registrados en {version}, del más reciente al más antiguo.",
+      "date": "Fecha",
+      "test": "Examen de práctica",
+      "sections": "Puntuaciones por sección",
+      "change": "Cambio",
+      "actions": "Acciones",
+      "repeatBadge": "Intento n.º {n} de este examen",
+      "firstOnScale": "Primer resultado en esta escala",
+      "changeVs": "{change} desde el {date}",
+      "nothingToCompare": "Ninguna puntuación en común con el resultado anterior",
+      "edit": "Editar",
+      "editLabel": "Editar el resultado de {test}",
+      "delete": "Eliminar",
+      "deleteLabel": "Eliminar el resultado de {test}",
+      "confirmDelete": "¿Eliminar este resultado? No se puede deshacer.",
+      "confirm": "Eliminar",
+      "cancel": "Cancelar",
+      "deleteFailed": "No se pudo eliminar. Inténtalo de nuevo."
+    },
+    "form": {
+      "addTitle": "Registrar un resultado",
+      "editTitle": "Editar este resultado",
+      "version": "Versión del examen y escala",
+      "versionHint": "Los resultados solo se comparan con otros de la misma versión y escala.",
+      "provider": "Publicado por",
+      "testName": "Examen de práctica",
+      "testNameHint": "Como lo llama la entidad, por ejemplo “Practice Test 4”. Así se detectan las repeticiones del mismo examen.",
+      "takenOn": "Fecha de realización",
+      "overall": "Puntuación total",
+      "overallHint": "De {min} a {max}, en intervalos de {step}. Déjala en blanco si no la recibiste.",
+      "noOverall": "Esta versión del examen no da una puntuación total única. Introduce las puntuaciones por sección que recibiste.",
+      "sections": "Puntuaciones por sección",
+      "sectionsHint": "Introduce solo las puntuaciones que recibiste y deja el resto en blanco. No rellenamos nada por ti.",
+      "rangeHint": "de {min} a {max}, intervalos de {step}",
+      "optional": "(opcional)",
+      "notes": "Notas",
+      "notesHint": "Solo las ves tú: por ejemplo, las condiciones en que hiciste el examen.",
+      "save": "Guardar resultado",
+      "saveChanges": "Guardar cambios",
+      "cancel": "Cancelar",
+      "saved": "Guardado."
+    },
+    "errors": {
+      "title": "No se pudo guardar el resultado",
+      "offScale": "{field} debe estar entre {min} y {max}, en intervalos de {step}.",
+      "totalMismatch": "Según la regla publicada por la entidad, las puntuaciones por sección que introdujiste dan una puntuación total de {expected}. Revisa la puntuación total y las secciones.",
+      "noScore": "Introduce al menos una puntuación.",
+      "futureDate": "La fecha no puede ser futura.",
+      "invalidDate": "Introduce la fecha en que hiciste el examen.",
+      "notFound": "Ese resultado ya no existe.",
+      "generic": "No se pudo guardar. Revisa los campos y tu conexión e inténtalo de nuevo."
+    },
+    "facts": {
+      "title": "Sobre estas escalas",
+      "sources": "Comprobado en las páginas de la propia entidad el {date}:"
+    },
+    "summary": {
+      "title": "Resultados de prácticas oficiales",
+      "latest": "Último: {score} en {test}, {date}.",
+      "separate": "Introducidos por ti a partir de los exámenes de práctica de la propia entidad; se muestran junto a lo que midió UniExamer, nunca dentro.",
+      "link": "Ver y registrar puntuaciones de prácticas oficiales"
+    }
   }
 }

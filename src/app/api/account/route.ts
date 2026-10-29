@@ -101,9 +101,13 @@ export async function PATCH(request: Request) {
  * Deletes the account for real.
  *
  * The user row goes, and ON DELETE CASCADE takes sessions, attempts, attempt
- * parts, items, events, results, bookmarks, the review queue, goals, and study
- * plans with their sessions, with it. Content reports are kept for the editorial record but are unlinked
- * from the person who filed them.
+ * parts, items, events, results, bookmarks, the review queue, goals, study
+ * plans with their sessions, official practice results (015) and any reviewer
+ * authorisation (014) with it. Content reports are kept for the editorial record but are unlinked
+ * from the person who filed them. A reviewer's recorded decisions are kept
+ * the same way (ON DELETE SET NULL): they are the audit trail of what was
+ * approved, and carry only the public name and credentials the reviewer
+ * agreed to show.
  */
 export async function DELETE(request: Request) {
   try {

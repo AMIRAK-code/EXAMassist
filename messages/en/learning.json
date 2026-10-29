@@ -331,7 +331,8 @@
     "viewsLabel": "Study plan views",
     "views": {
       "plan": "Plan",
-      "progress": "Progress & readiness"
+      "progress": "Progress & readiness",
+      "scores": "Official practice scores"
     },
     "examsLabel": "Exams in your study plan",
     "notices": {
@@ -347,7 +348,7 @@
       "sessionClosed": "That session is already completed, skipped or recorded as missed.",
       "notEnoughNew": "Too few questions you have not seen are left for that session. Adjust your plan to turn it into revision, or skip it.",
       "insufficientContent": "Not enough reviewed questions are available for that session right now.",
-      "nothingToReview": "There are no missed questions to ask again right now: you have answered them correctly since, or they are being revised.",
+      "nothingToReview": "There are no missed questions to ask again right now: you have answered them correctly since, or they are under review.",
       "rateLimited": "Too many sessions were started in a short time. Try again in a few minutes.",
       "dateChosen": "Exam date saved. That is now the one date for this exam."
     }
@@ -531,5 +532,100 @@
     "dateHint": "Your one date for this exam. Your study plan uses it too, and offers to adjust when it changes.",
     "save": "Save goal",
     "saved": "Saved."
+  },
+  "officialScores": {
+    "meta": {
+      "title": "Official practice scores",
+      "description": "Record the scores you received on official practice tests and follow them over time, kept apart from what UniExamer measures."
+    },
+    "title": "Official practice scores",
+    "label": "User-entered official practice result — not independently verified.",
+    "lead": "Record the scores you received on practice tests published by the test maker itself, exactly as its own tool reported them. We keep them apart from what UniExamer measures: we do not check them with the test maker, convert them to another scale, or predict an official score from your practice here.",
+    "chooseLead": "Choose an exam to record official practice results for.",
+    "unsupportedTitle": "Official practice results can’t be recorded for {exam} yet",
+    "unsupportedBody": "We record a result only on a scale we have checked against the test maker’s own pages, for a practice test the test maker publishes. We have not been able to check one for this exam yet.",
+    "latest": {
+      "title": "Latest official practice result",
+      "none": "You have not recorded an official practice result for {exam} yet.",
+      "which": "{test} · {provider} · {date}",
+      "target": "Your target",
+      "noTarget": "No target set",
+      "atTarget": "exactly your target",
+      "aboveTarget": "{points} above your target",
+      "belowTarget": "{points} below your target",
+      "notComparable": "This result is not on the same scale and test version as your target, so the two are not compared.",
+      "repeat": "This was sitting {n} of this practice test. Having seen the questions before can raise a later score, so read any change with care."
+    },
+    "measured": {
+      "title": "Measured in UniExamer",
+      "body": "Your accuracy, pace and topic coverage from practice here are on the Progress page. They describe your preparation; they are not an estimate of an official score, and they are never mixed with the results on this page.",
+      "link": "Progress & readiness",
+      "setTarget": "Set a target on the Progress page to see how each result compares with it."
+    },
+    "history": {
+      "title": "History",
+      "separateScales": "Results on different test versions or scales are listed separately and never compared.",
+      "caption": "Your recorded results on {version}, newest first.",
+      "date": "Date",
+      "test": "Practice test",
+      "sections": "Section scores",
+      "change": "Change",
+      "actions": "Actions",
+      "repeatBadge": "Sitting {n} of this test",
+      "firstOnScale": "First result on this scale",
+      "changeVs": "{change} since {date}",
+      "nothingToCompare": "No score in common with the previous result",
+      "edit": "Edit",
+      "editLabel": "Edit the result for {test}",
+      "delete": "Delete",
+      "deleteLabel": "Delete the result for {test}",
+      "confirmDelete": "Delete this result? This cannot be undone.",
+      "confirm": "Delete",
+      "cancel": "Cancel",
+      "deleteFailed": "It could not be deleted. Try again."
+    },
+    "form": {
+      "addTitle": "Record a result",
+      "editTitle": "Edit this result",
+      "version": "Test version and scale",
+      "versionHint": "Results are only compared with others on the same version and scale.",
+      "provider": "Published by",
+      "testName": "Practice test",
+      "testNameHint": "As the test maker names it, for example “Practice Test 4”. It is how repeats of the same test are spotted.",
+      "takenOn": "Date taken",
+      "overall": "Overall score",
+      "overallHint": "From {min} to {max}, in steps of {step}. Leave it blank if you did not receive one.",
+      "noOverall": "This test version reports no single overall score. Enter the section scores you received.",
+      "sections": "Section scores",
+      "sectionsHint": "Enter only the scores you received and leave the rest blank. Nothing is filled in for you.",
+      "rangeHint": "{min} to {max}, steps of {step}",
+      "optional": "(optional)",
+      "notes": "Notes",
+      "notesHint": "Only you see these: for example, the conditions you took the test in.",
+      "save": "Save result",
+      "saveChanges": "Save changes",
+      "cancel": "Cancel",
+      "saved": "Saved."
+    },
+    "errors": {
+      "title": "That result could not be saved",
+      "offScale": "{field} must be between {min} and {max}, in steps of {step}.",
+      "totalMismatch": "By the test maker’s published rule, the section scores you entered give an overall score of {expected}. Check the overall score and the sections.",
+      "noScore": "Enter at least one score.",
+      "futureDate": "The date cannot be in the future.",
+      "invalidDate": "Enter the date you took the test.",
+      "notFound": "That result no longer exists.",
+      "generic": "It could not be saved. Check the fields and your connection, then try again."
+    },
+    "facts": {
+      "title": "About these scales",
+      "sources": "Checked against the test maker’s own pages on {date}:"
+    },
+    "summary": {
+      "title": "Official practice results",
+      "latest": "Latest: {score} on {test}, {date}.",
+      "separate": "Entered by you from the test maker’s own practice tests; shown beside, never inside, what UniExamer measured.",
+      "link": "View and record official practice scores"
+    }
   }
 }

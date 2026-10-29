@@ -4,6 +4,7 @@ import { getDb } from '@/lib/db';
 import { requireEditorial } from '@/lib/auth/guards';
 import { EXAM_CONFIGS, getHubForConfig } from '@/lib/exams/registry';
 import { examCoverage } from '@/lib/attempts/availability';
+import { humanApprovedCount } from '@/lib/content/human-review';
 import { Alert, Badge, Breadcrumbs, ButtonLink, Card, Container, PageHeader, Stat } from '@/components/ui';
 
 /**
@@ -30,13 +31,13 @@ const PIPELINE = [
   },
   {
     state: 'in_review',
-    label: 'In review',
-    blurb: 'Waiting for a blind solve by a separate reviewer and a uniqueness check.',
+    label: 'In automated review',
+    blurb: 'Waiting for the AI blind solve and uniqueness check. Automated QA, not human review.',
   },
   {
     state: 'published',
     label: 'Published',
-    blurb: 'Reviewed and live in the practice pool. Editing one means a new version row.',
+    blurb: 'Passed the automated gates. Served to new sessions only once a human reviewer approves its exact current content.',
   },
   {
     state: 'retired',
@@ -116,6 +117,12 @@ export default async function AdminOverviewPage() {
   const versionCount = (n: string) => versionStates.find((r) => r.state === n)?.n ?? 0;
   const flagCount = (s: string) => flagStatuses.find((r) => r.status === s)?.n ?? 0;
 
+  const approvedPerExam = new Map(
+    await Promise.all(EXAM_CONFIGS.map(async (config) => [config.examKey, await humanApprovedCount(db, [config.examKey])] as const)),
+  );
+  const approvedTotal = [...approvedPerExam.values()].reduce((sum, n) => sum + n, 0);
+  const awaitingHuman = Math.max(0, questionCount('published') - approvedTotal);
+
   const totalQuestions = questionStates.reduce((sum, row) => sum + row.n, 0);
   const totalVersions = versionStates.reduce((sum, row) => sum + row.n, 0);
   const openFlags = flagCount('open');
@@ -150,16 +157,28 @@ export default async function AdminOverviewPage() {
         lead="What the question bank currently holds, what is waiting on a human, and how much of each exam's taxonomy is actually covered."
       />
 
-      <p className="-mt-4 mb-6 text-sm">
-        <Link href="/admin/funnel">Exam funnel: page views, free tests and purchases (admins)</Link>
-      </p>
+      <ul className="-mt-4 mb-6 flex flex-wrap gap-x-6 gap-y-1 text-sm">
+        <li>
+          <Link href="/admin/review">Human review queue</Link>
+        </li>
+        <li>
+          <Link href="/admin/coverage">Blueprint coverage and authoring backlog</Link>
+        </li>
+        <li>
+          <Link href="/admin/reviewers">Reviewers (admins)</Link>
+        </li>
+        <li>
+          <Link href="/admin/funnel">Exam funnel: page views, free tests and purchases (admins)</Link>
+        </li>
+      </ul>
 
-      <Alert tone="info" title="This area is read-only">
+      <Alert tone="info" title="Content is edited in version control">
         <p>
           Questions are authored as JSON files under <code>content/questions</code>, validated by{' '}
           <code>npm run content:validate</code> and loaded with <code>npm run db:seed</code>. Nothing
-          here edits content, so the file in version control is always the truth. Content reports are
-          the one thing you resolve from the browser.
+          here edits content, so the file in version control is always the truth. Two things are decided
+          in the browser: content reports, and human review decisions, which are what make a published
+          question available to learners.
         </p>
       </Alert>
 
@@ -239,13 +258,13 @@ export default async function AdminOverviewPage() {
           </Card>
 
           <Card>
-            <Stat labelAs="h3" label="In review" value={questionCount('in_review')} />
+            <Stat labelAs="h3" label="Awaiting human approval" value={awaitingHuman} />
             <p className="mt-1 text-sm text-ink-muted">
-              Awaiting a blind solve by a separate reviewer before publication.
+              Published questions no reviewer has approved as they stand. Not served until one does.
             </p>
             <div className="mt-4">
-              <ButtonLink href="/admin/questions?state=in_review" size="sm" variant="secondary">
-                See the queue
+              <ButtonLink href="/admin/review" size="sm" variant={awaitingHuman > 0 ? 'primary' : 'secondary'}>
+                Open the review queue
               </ButtonLink>
             </div>
           </Card>
@@ -267,9 +286,10 @@ export default async function AdminOverviewPage() {
           Coverage by exam
         </h2>
         <p className="mt-1 max-w-3xl text-ink-muted">
-          &ldquo;Published&rdquo; is what the selection pool can actually draw on; the topic column is
-          how many of the exam&rsquo;s configured domains have at least one published question. A thin
-          bank is shown as a thin bank.
+          &ldquo;Human-approved&rdquo; is what the selection pool can actually draw on; &ldquo;Published&rdquo;
+          only means the automated gates passed. The topic column is how many of the exam&rsquo;s configured
+          domains have at least one served question. A thin bank is shown as a thin bank; see{' '}
+          <Link href="/admin/coverage">coverage</Link> for what each format still needs.
         </p>
 
         <div
@@ -290,6 +310,9 @@ export default async function AdminOverviewPage() {
                 </th>
                 <th scope="col" className="px-4 py-3 text-end font-semibold">
                   Published
+                </th>
+                <th scope="col" className="px-4 py-3 text-end font-semibold">
+                  Human-approved (served)
                 </th>
                 <th scope="col" className="px-4 py-3 text-end font-semibold">
                   In review
@@ -324,6 +347,7 @@ export default async function AdminOverviewPage() {
                     </span>
                   </th>
                   <td className="px-4 py-3 text-end tabular-nums">{row.published}</td>
+                  <td className="px-4 py-3 text-end tabular-nums">{approvedPerExam.get(row.config.examKey) ?? 0}</td>
                   <td className="px-4 py-3 text-end tabular-nums">{row.inReview}</td>
                   <td className="px-4 py-3 text-end tabular-nums">{row.draft}</td>
                   <td className="px-4 py-3 text-end tabular-nums">{row.retired}</td>

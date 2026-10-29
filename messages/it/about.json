@@ -8,11 +8,11 @@
   "editorialStandards": {
     "meta": {
       "title": "Standard editoriali",
-      "description": "Come UniExamer crea, verifica e pubblica le domande di esercitazione: stesura originale con l’assistenza dell’IA, risoluzione alla cieca da parte di un revisore IA separato, confronto automatico con la chiave di risposta e quarantena invece di correzioni silenziose."
+      "description": "Come UniExamer crea, verifica e pubblica le domande di esercitazione: stesura originale con l’assistenza dell’IA, risoluzione alla cieca da parte di un revisore IA separato, confronto automatico con la chiave di risposta, approvazione da parte di un revisore umano indicato per nome e quarantena invece di correzioni silenziose."
     },
     "title": "Standard editoriali",
     "lead": "Che cosa deve essere vero prima che una domanda venga mostrata a qualcuno, e che cosa ci rifiutiamo di affermare su di essa in seguito.",
-    "inShort": "Ogni domanda di esercitazione su {name} è materiale originale, realizzato con l’assistenza dell’IA. Prima della pubblicazione, un revisore IA separato la risolve da zero senza vedere la risposta proposta, e il confronto tra quella soluzione e la chiave viene fatto dallo stesso codice di correzione usato dall’app. Quando le due non coincidono, la domanda viene messa in quarantena, non corretta in silenzio. Oggi non risulta alcuna revisione umana domanda per domanda, e lo diciamo invece di lasciarlo intendere. Le etichette di difficoltà sono un giudizio editoriale, non statistiche calibrate, e ogni affermazione che facciamo sul formato di un esame cita l’ente che organizza il test ed è datata.",
+    "inShort": "Ogni domanda di esercitazione su {name} è materiale originale, realizzato con l’assistenza dell’IA. Prima della pubblicazione, un revisore IA separato la risolve da zero senza vedere la risposta proposta, e il confronto tra quella soluzione e la chiave viene fatto dallo stesso codice di correzione usato dall’app. Quando le due non coincidono, la domanda viene messa in quarantena, non corretta in silenzio. Viene poi proposta solo dopo che un revisore umano indicato per nome, autorizzato per quell’esame e non tra i suoi autori, ne ha approvato la versione esatta; la risoluzione dell’IA è un controllo di qualità e non vale mai come quella revisione. Le etichette di difficoltà sono un giudizio editoriale, non statistiche calibrate, e ogni affermazione che facciamo sul formato di un esame cita l’ente che organizza il test ed è datata.",
     "original": {
       "heading": "1. Tutte le domande sono originali",
       "p1": "Il contratto delle domande ammette una sola provenienza per tutto ciò che arriva a uno studente: <code>original</code>, di nostra proprietà. Non riproduciamo, adattiamo né parafrasiamo banche di domande ufficiali, prove ritirate o domande di qualsiasi altro editore, e nel codice non esiste alcun percorso che permetta di pubblicare una domanda di altra provenienza.",
@@ -23,7 +23,7 @@
       "intro": "La pubblicazione è uno stato, non un’opinione. Questi sono gli unici cinque stati che una domanda può avere, e solo uno di essi viene mostrato agli studenti.",
       "draft": "In fase di stesura. Tutto ciò che un modello ha aiutato a redigere entra qui e non può saltare la coda. Le bozze non vengono mai mostrate a uno studente.",
       "inReview": "In coda per la risoluzione indipendente alla cieca. È l’unico stato che l’esportazione per la revisione prende in carico.",
-      "published": "Ha superato tutti i controlli automatici e la risoluzione indipendente. Solo le domande pubblicate vengono usate nelle esercitazioni, nei test diagnostici e nelle simulazioni.",
+      "published": "Ha superato tutti i controlli automatici e la risoluzione indipendente dell’IA. Una domanda pubblicata viene usata nelle esercitazioni, nei test diagnostici e nelle simulazioni solo dopo che un revisore umano indicato per nome ne ha approvato la versione esatta attuale; una modifica ritira l’approvazione finché il nuovo testo non viene revisionato.",
       "quarantined": "Il revisore non era d’accordo con la chiave di risposta, oppure non ha potuto confermare che una sola risposta funzioni. La domanda viene ritirata dalla banca con il motivo registrato e resta fuori finché non viene riscritta e supera una nuova risoluzione alla cieca.",
       "retired": "Ritirata deliberatamente: sostituita, oppure resa errata da un cambiamento dell’esame. I risultati che la citano già restano intatti, perché un tentativo fa riferimento a una versione immutabile della domanda."
     },
@@ -77,7 +77,7 @@
       },
       "humanReview": {
         "term": "Revisione umana di ogni domanda",
-        "value": "Oggi non registrata. Nessuna scheda di domanda indica un revisore umano, quindi non ne dichiariamo uno. Nemmeno le spiegazioni vengono ancora rilette in modo indipendente per valutarne la qualità didattica."
+        "value": "Obbligatoria prima che una domanda venga proposta. Un revisore indicato per nome, autorizzato per quell’esame e non tra gli autori della domanda, ne approva la versione esatta attuale dopo aver verificato la chiave di risposta, la spiegazione, la formulazione e l’aderenza al programma. Qualsiasi modifica annulla l’approvazione finché il nuovo testo non viene approvato. La pagina di revisione della domanda riporta il nome del revisore, le sue credenziali come ha accettato di mostrarle, la data e quelle quattro verifiche. La risoluzione alla cieca dell’IA non vale mai come questa revisione."
       },
       "reports": {
         "term": "Segnalazioni degli studenti",

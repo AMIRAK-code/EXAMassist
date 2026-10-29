@@ -8,11 +8,11 @@
   "editorialStandards": {
     "meta": {
       "title": "Editorial standards",
-      "description": "How UniExamer creates, checks and publishes practice questions: original, AI-assisted drafting, a blind solve by a separate AI reviewer, mechanical comparison against the answer key, and quarantine instead of quiet correction."
+      "description": "How UniExamer creates, checks and publishes practice questions: original, AI-assisted drafting, a blind solve by a separate AI reviewer, mechanical comparison against the answer key, approval by a named human reviewer, and quarantine instead of quiet correction."
     },
     "title": "Editorial standards",
     "lead": "What has to be true before a question is shown to anyone, and what we refuse to claim about it afterwards.",
-    "inShort": "Every practice question on {name} is original, AI-assisted material. Before it is published, a separate AI reviewer solves it from scratch without seeing the proposed answer, and the comparison between that solution and the key is made by the same scoring code the app uses. When the two disagree the question is quarantined — not quietly corrected. No per-question human review is recorded today, and we say so rather than imply one. Difficulty labels are editorial judgement, not calibrated statistics, and every claim we make about an exam’s format is sourced to the test maker and dated.",
+    "inShort": "Every practice question on {name} is original, AI-assisted material. Before it is published, a separate AI reviewer solves it from scratch without seeing the proposed answer, and the comparison between that solution and the key is made by the same scoring code the app uses. When the two disagree the question is quarantined — not quietly corrected. It is then served only after a named human reviewer, authorised for that exam and not one of its authors, has approved that exact version; the AI solve is quality control and never counts as that review. Difficulty labels are editorial judgement, not calibrated statistics, and every claim we make about an exam’s format is sourced to the test maker and dated.",
     "original": {
       "heading": "1. All questions are original",
       "p1": "The question contract permits exactly one provenance for anything that reaches a learner: <code>original</code>, owned by us. We do not reproduce, adapt or paraphrase official question banks, retired forms, or any other publisher’s items, and there is no code path that would let a question of another provenance be published.",
@@ -23,7 +23,7 @@
       "intro": "Publication is a state, not an opinion. These are the only five states a question can hold, and only one of them is served to learners.",
       "draft": "Being written. Anything a model helped draft enters here and cannot skip the queue. Drafts are never delivered to a learner.",
       "inReview": "Queued for the blind independent solve. This is the only state the review export picks up.",
-      "published": "Passed every automatic check and the independent solve. Only published questions are served in practice, diagnostics and simulations.",
+      "published": "Passed every automatic check and the independent AI solve. A published question is served in practice, diagnostics and simulations only once a named human reviewer has approved its exact current version; an edit withdraws that approval until the new text is reviewed.",
       "quarantined": "The reviewer disagreed with the answer key, or could not confirm that only one answer works. The question is withdrawn from the bank with the reason recorded, and stays out until it is rewritten and passes a new blind solve.",
       "retired": "Withdrawn deliberately — superseded, or made wrong by a change to the exam. Results that already reference it are untouched, because an attempt points at an immutable question version."
     },
@@ -77,7 +77,7 @@
       },
       "humanReview": {
         "term": "Human review of each question",
-        "value": "Not recorded today. No question record names a human reviewer, so we do not claim one. Explanations are not yet independently re-read for teaching quality either."
+        "value": "Required before any question is served. A named reviewer, authorised for that exam and not one of the question’s authors, approves its exact current version after checking the answer key, the explanation, the wording and the syllabus alignment. Any edit voids the approval until the new text is approved. The question’s review page names the reviewer, their credentials as they agreed to show them, the date and those four checks. The AI blind solve is never counted as this review."
       },
       "reports": {
         "term": "Learner reports",

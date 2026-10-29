@@ -9,9 +9,13 @@ import { chooseExam, examLabel, examsPractised, type ExamChoice } from './dashbo
  * practised, planned or set a goal for.
  */
 
-export type PlanningView = 'plan' | 'progress';
+export type PlanningView = 'plan' | 'progress' | 'scores';
 
-const PATHS: Record<PlanningView, string> = { plan: '/study-plan', progress: '/study-plan/progress' };
+const PATHS: Record<PlanningView, string> = {
+  plan: '/study-plan',
+  progress: '/study-plan/progress',
+  scores: '/study-plan/scores',
+};
 
 export function planningHref(view: PlanningView, examKey: string | null): string {
   return examKey ? `${PATHS[view]}?exam=${encodeURIComponent(examKey)}` : PATHS[view];

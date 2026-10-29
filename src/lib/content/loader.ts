@@ -10,7 +10,6 @@ import {
   type Stimulus,
 } from './question-schema';
 import { DRAFT_EXAM_CONFIGS, EXAM_CONFIGS, getDraftExamConfig, getExamConfig } from '@/lib/exams/registry';
-import { validateExpertReviews } from './expert-reviews';
 
 /**
  * Loads and validates the file-based question bank.
@@ -198,6 +197,16 @@ export function loadContent(): LoadResult {
     const stimulus = question.stimulusRef
       ? stimuli.find((s) => s.stimulus.id === question.stimulusRef?.id)
       : undefined;
+    // The served question and its human approval are both tied to the exact
+    // stimulus version (human-review.ts), so a reference must name one that exists.
+    if (question.stimulusRef && stimulus && stimulus.stimulus.version !== question.stimulusRef.version) {
+      issues.push({
+        file: rel,
+        level: 'error',
+        code: 'stimulus-version-mismatch',
+        message: `Stimulus "${question.stimulusRef.id}" is at v${stimulus.stimulus.version}, not v${question.stimulusRef.version}.`,
+      });
+    }
     if (question.stimulusRef && stimulus && stimulus.stimulus.examKey !== question.examKey) {
       issues.push({
         file: rel,
@@ -222,11 +231,6 @@ export function loadContent(): LoadResult {
     } else {
       seen.set(question.id, file);
     }
-  }
-
-  // The human expert review ledger must point at real question versions.
-  for (const issue of validateExpertReviews(questions.map(({ question: q }) => ({ id: q.id, examKey: q.examKey, version: q.version })))) {
-    issues.push({ ...issue, file: 'content/expert-reviews.json' });
   }
 
   return { questions, stimuli, issues };

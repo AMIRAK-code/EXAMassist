@@ -87,6 +87,8 @@ export interface QuestionVersionRow {
   created_at: string;
   /** Checked other-language versions, keyed by locale (migration 013). */
   translations_json?: string | null;
+  /** Fingerprint of the learner-facing content, written by the seeder (migration 014). */
+  review_fingerprint?: string | null;
 }
 
 export interface StimulusRow {

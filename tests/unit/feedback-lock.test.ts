@@ -292,6 +292,9 @@ describe('migration 003 on existing data', () => {
     rawOld.pragma('foreign_keys = ON');
     const old = wrapSqlite(rawOld);
     (await migrateUpTo(old, '002_exam_targets.sql'));
+    // Additive, and needed by today's pool query, which serves only
+    // human-approved questions (014); it touches nothing 003 rewrites.
+    (await old.exec(fs.readFileSync('db/migrations/014_human_review.sql', 'utf8')));
     const user = (await createUser(old));
     (await seedQuestions(old, SAT, { perDomain: 6 }));
 
