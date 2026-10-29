@@ -20,9 +20,9 @@ export const SITE = {
    * Organization `alternateName`.
    */
   alternateNames: ['Examer', 'uniexamer.com'],
-  tagline: 'Admission test preparation, verified against official sources',
+  tagline: 'Bocconi, SAT & University Admission Test Practice',
   description:
-    'Practice questions, exam format guides and timed practice for the Bocconi Online Test (bachelor, law and master’s forms), Digital SAT, Enhanced ACT, LSAT, GMAT, GRE, CISIA TOLC and Politecnico di Torino TIL, with a free test for every account. Every format claim is sourced to the test maker.',
+    'Prepare for Bocconi, SAT, TOLC and more with original practice questions, worked explanations and timed tests. Start free with UniExamer.',
   locale: 'en',
   /**
    * Publisher identity shown on public content and in structured data. Not

@@ -74,7 +74,8 @@ type Entry = MetadataRoute.Sitemap[number];
  */
 function inEveryLanguage(entry: Entry): Entry[] {
   const path = new URL(entry.url).pathname;
-  return LOCALES.map((locale) => {
+  const locales = path.startsWith('/guides/') ? (['en'] as const) : LOCALES;
+  return locales.map((locale) => {
     const { canonical, languages } = languageAlternates(path, locale);
     return { ...entry, url: canonical, alternates: { languages } };
   });

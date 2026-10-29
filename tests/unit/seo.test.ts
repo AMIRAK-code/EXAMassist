@@ -82,7 +82,7 @@ describe('robots.txt in production', () => {
 });
 
 describe('the sitemap in production', () => {
-  it('lists every public hub, format guide, guide and fixed page once per language, on the production domain', () => {
+  it('lists translated pages per language and English-only articles once', () => {
     production();
     const urls = sitemap().map((entry) => entry.url);
     expect(new Set(urls).size).toBe(urls.length);
@@ -90,8 +90,8 @@ describe('the sitemap in production', () => {
       '/', '/exams', '/guides', '/pricing',
       '/about/editorial-standards', '/about/how-scoring-works', '/about/privacy', '/about/support', '/about/terms',
       ...EXAM_HUBS.flatMap((hub) => [`/exams/${hub.slug}`, `/exams/${hub.slug}/format`]),
-      ...listGuides().map((guide) => `/guides/${guide.slug}`),
     ].flatMap((path) => LOCALES.map((locale) => localizePath(path, locale)));
+    expected.push(...listGuides().map((guide) => `/guides/${guide.slug}`));
     expect(urls.sort()).toEqual(expected.map((path) => `${SITE}${path}`).sort());
   });
 
@@ -99,7 +99,8 @@ describe('the sitemap in production', () => {
     production();
     for (const entry of sitemap()) {
       const languages = entry.alternates?.languages as Record<string, string>;
-      expect(Object.keys(languages).sort(), entry.url).toEqual([...LOCALES, 'x-default'].sort());
+      const locales = new URL(entry.url).pathname.startsWith('/guides/') ? ['en'] : [...LOCALES];
+      expect(Object.keys(languages).sort(), entry.url).toEqual([...locales, 'x-default'].sort());
       expect(Object.values(languages), entry.url).toContain(entry.url);
       expect(languages['x-default'], entry.url).toBe(languages.en);
     }
@@ -131,6 +132,16 @@ describe('the sitemap in production', () => {
 });
 
 describe('canonical and hreflang on the pages', () => {
+  it('consolidates untranslated guide bodies even when their navigation is localized', async () => {
+    production();
+    const path = '/guides/bocconi-admission-test-sample-questions';
+    for (const locale of LOCALES) {
+      expect(await pageAlternates(Promise.resolve({ locale }), path)).toEqual({
+        canonical: `${SITE}${path}`,
+        languages: { en: `${SITE}${path}`, 'x-default': `${SITE}${path}` },
+      });
+    }
+  });
   it('makes each language version its own canonical, and lists them all with English as x-default', async () => {
     production();
     const italian = await pageAlternates(Promise.resolve({ locale: 'it' }), '/exams/gmat');

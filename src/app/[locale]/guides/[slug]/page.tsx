@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/server';
 import { getGuide, listGuides } from '@/lib/content/guides';
 import { getHub } from '@/lib/exams/registry';
-import { SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
+import { SITE, shareImages, siteUrl } from '@/lib/site';
 import { pageAlternates } from '@/i18n/alternates';
 import { Markdown } from '@/components/content';
 import { freeTestPath } from '@/lib/billing/config';
@@ -58,6 +58,7 @@ export default async function GuidePage({ params }: Props) {
     });
 
   const hub = getHub(guide.hubSlug);
+  const articleUrl = (await pageAlternates(params, `/guides/${guide.slug}`)).canonical;
   const trail = [
     { href: '/', label: t('breadcrumbs.home') },
     { href: '/guides', label: t('breadcrumbs.guides') },
@@ -72,7 +73,7 @@ export default async function GuidePage({ params }: Props) {
           breadcrumbSchema(siteUrl(), ldTrail),
           articleSchema({
             siteUrl: siteUrl(),
-            url: absoluteUrl(localizePath(`/guides/${guide.slug}`, locale as Locale)),
+            url: articleUrl,
             headline: guide.title,
             description: guide.description,
             datePublished: guide.publishedOn,
@@ -92,7 +93,7 @@ export default async function GuidePage({ params }: Props) {
         worst case (docs/REDESIGN.md §18.1). The title and labels keep the
         interface face.
       */}
-      <article>
+      <article lang="en">
         <header className="mb-8">
           <PageHeader eyebrow={hub?.name ?? t('general')} title={guide.title} />
 
