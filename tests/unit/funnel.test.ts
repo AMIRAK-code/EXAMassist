@@ -101,6 +101,24 @@ describe('counting', () => {
     ]);
   });
 
+  it('counts guide views and clicks from a guide into practice, under the guide, and reports them with its exam', async () => {
+    const report = { userAgent: CHROME, ownHost: 'uniexamer.com' };
+    const guide = 'bocconi-admission-test-sample-questions';
+    await countReportedView(db, guide, { ...report, referrer: 'https://www.google.com/' }, 'guide_view');
+    await countReportedView(db, guide, { ...report, referrer: null }, 'guide_view');
+    await countReportedView(db, guide, { ...report, referrer: null }, 'guide_click');
+    await countReportedView(db, guide, { userAgent: 'Googlebot/2.1', ownHost: 'uniexamer.com', referrer: null }, 'guide_view');
+    const rows = await totals();
+    expect(rows.map((r) => [r.event, r.subject, r.source, r.count])).toEqual([
+      ['guide_click', guide, 'direct', 1],
+      ['guide_view', guide, 'direct', 1],
+      ['guide_view', guide, 'search', 1],
+    ]);
+    const today = new Date().toISOString().slice(0, 10);
+    const bocconi = await funnelReport(db, { hubSlug: 'bocconi-online-test', examKeys: ['bocconi-undergraduate'], from: today, to: today, guideSlugs: [guide] });
+    expect(bocconi).toMatchObject({ guideViews: 2, guideClicks: 1, landingTotal: 0 });
+  });
+
   it('never breaks a page when the table is missing', async () => {
     await db.exec('DROP TABLE funnel_counts');
     await expect(countEvent(db, 'purchase', 'none')).resolves.toBeUndefined();

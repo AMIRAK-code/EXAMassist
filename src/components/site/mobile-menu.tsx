@@ -70,7 +70,8 @@ export function MobileMenu({
             <path d="M2.5 5h13M2.5 9h13M2.5 13h13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
           )}
         </svg>
-        {open ? t('nav.close') : t('nav.menu')}
+        {/* On a phone the icon alone, so the header fits 320 px; the label stays for screen readers. */}
+        <span className="sr-only sm:not-sr-only">{open ? t('nav.close') : t('nav.menu')}</span>
       </button>
 
       <div

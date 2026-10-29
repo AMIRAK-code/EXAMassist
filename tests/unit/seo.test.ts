@@ -7,9 +7,9 @@ import sitemap from '@/app/sitemap';
 import { organizationSchema, webSiteSchema } from '@/components/seo/json-ld';
 import { listGuides } from '@/lib/content/guides';
 import { EXAM_HUBS } from '@/lib/exams/registry';
-import { googleSiteVerification } from '@/lib/site';
+import { SITE as SITE_CONFIG, googleSiteVerification } from '@/lib/site';
 import { LOCALES, localizePath, splitLocale } from '@/i18n/locales';
-import { pageAlternates } from '@/i18n/alternates';
+import { isEnglishOnlyPath, pageAlternates } from '@/i18n/alternates';
 
 /**
  * What search engines are told in production: robots.txt, the sitemap and the
@@ -36,6 +36,18 @@ afterEach(() => {
 type Rule = { userAgent?: string | string[]; allow?: string | string[]; disallow?: string | string[] };
 const list = (value: string | string[] | undefined) => (value === undefined ? [] : Array.isArray(value) ? value : [value]);
 const groupFor = (rules: Rule[], agent: string) => rules.find((r) => list(r.userAgent).includes(agent));
+
+/** Pages translated in full, body included: one address per language. */
+const TRANSLATED = [
+  '/', '/exams', '/guides', '/pricing', '/exams/bocconi-online-test',
+  '/about/editorial-standards', '/about/how-scoring-works', '/about/privacy', '/about/support', '/about/terms',
+];
+/** Pages whose body exists only in English, whatever the interface language: one address. */
+const ENGLISH_ONLY = [
+  ...EXAM_HUBS.filter((hub) => hub.slug !== 'bocconi-online-test').map((hub) => `/exams/${hub.slug}`),
+  ...EXAM_HUBS.map((hub) => `/exams/${hub.slug}/format`),
+  ...listGuides().map((guide) => `/guides/${guide.slug}`),
+];
 
 describe('robots.txt in production', () => {
   it('lets every crawler that falls back to * (Googlebot, bingbot) reach public pages, and keeps it out of private ones', () => {
@@ -82,16 +94,11 @@ describe('robots.txt in production', () => {
 });
 
 describe('the sitemap in production', () => {
-  it('lists every public hub, format guide, guide and fixed page once per language, on the production domain', () => {
+  it('lists translated pages per language and English-only articles once', () => {
     production();
     const urls = sitemap().map((entry) => entry.url);
     expect(new Set(urls).size).toBe(urls.length);
-    const expected = [
-      '/', '/exams', '/guides', '/pricing',
-      '/about/editorial-standards', '/about/how-scoring-works', '/about/privacy', '/about/support', '/about/terms',
-      ...EXAM_HUBS.flatMap((hub) => [`/exams/${hub.slug}`, `/exams/${hub.slug}/format`]),
-      ...listGuides().map((guide) => `/guides/${guide.slug}`),
-    ].flatMap((path) => LOCALES.map((locale) => localizePath(path, locale)));
+    const expected = [...TRANSLATED.flatMap((path) => LOCALES.map((locale) => localizePath(path, locale))), ...ENGLISH_ONLY];
     expect(urls.sort()).toEqual(expected.map((path) => `${SITE}${path}`).sort());
   });
 
@@ -99,7 +106,8 @@ describe('the sitemap in production', () => {
     production();
     for (const entry of sitemap()) {
       const languages = entry.alternates?.languages as Record<string, string>;
-      expect(Object.keys(languages).sort(), entry.url).toEqual([...LOCALES, 'x-default'].sort());
+      const locales = ENGLISH_ONLY.includes(new URL(entry.url).pathname) ? ['en'] : [...LOCALES];
+      expect(Object.keys(languages).sort(), entry.url).toEqual([...locales, 'x-default'].sort());
       expect(Object.values(languages), entry.url).toContain(entry.url);
       expect(languages['x-default'], entry.url).toBe(languages.en);
     }
@@ -128,21 +136,51 @@ describe('the sitemap in production', () => {
     process.env.SEARCH_INDEXING_ENABLED = 'false';
     expect(sitemap()).toEqual([]);
   });
+
+  it('has reciprocal hreflang: every alternate is itself listed, naming the same set', () => {
+    production();
+    const entries = new Map(sitemap().map((entry) => [entry.url, entry.alternates?.languages as Record<string, string>]));
+    for (const [url, languages] of entries) {
+      for (const [code, href] of Object.entries(languages)) {
+        expect(entries.has(href), `${url} -> ${code} ${href}`).toBe(true);
+        expect(entries.get(href), `${url} -> ${code}`).toEqual(languages);
+      }
+    }
+  });
 });
 
 describe('canonical and hreflang on the pages', () => {
-  it('makes each language version its own canonical, and lists them all with English as x-default', async () => {
+  it('consolidates untranslated guide bodies even when their navigation is localized', async () => {
     production();
-    const italian = await pageAlternates(Promise.resolve({ locale: 'it' }), '/exams/gmat');
+    const path = '/guides/bocconi-admission-test-sample-questions';
+    for (const locale of LOCALES) {
+      expect(await pageAlternates(Promise.resolve({ locale }), path)).toEqual({
+        canonical: `${SITE}${path}`,
+        languages: { en: `${SITE}${path}`, 'x-default': `${SITE}${path}` },
+      });
+    }
+  });
+  it('consolidates exam hubs and format guides whose details are shown in English', async () => {
+    production();
+    for (const path of ['/exams/gmat', '/exams/politecnico-di-torino-til', '/exams/bocconi-online-test/format']) {
+      expect(isEnglishOnlyPath(path), path).toBe(true);
+      for (const locale of LOCALES) expect((await pageAlternates(Promise.resolve({ locale }), path)).canonical).toBe(`${SITE}${path}`);
+    }
+    for (const path of TRANSLATED) expect(isEnglishOnlyPath(path), path).toBe(false);
+  });
+
+  it('makes each language version of a translated page its own canonical, and lists them all with English as x-default', async () => {
+    production();
+    const italian = await pageAlternates(Promise.resolve({ locale: 'it' }), '/exams/bocconi-online-test');
     expect(italian).toEqual({
-      canonical: `${SITE}/it/exams/gmat`,
+      canonical: `${SITE}/it/exams/bocconi-online-test`,
       languages: {
-        en: `${SITE}/exams/gmat`,
-        it: `${SITE}/it/exams/gmat`,
-        tr: `${SITE}/tr/exams/gmat`,
-        es: `${SITE}/es/exams/gmat`,
-        pl: `${SITE}/pl/exams/gmat`,
-        'x-default': `${SITE}/exams/gmat`,
+        en: `${SITE}/exams/bocconi-online-test`,
+        it: `${SITE}/it/exams/bocconi-online-test`,
+        tr: `${SITE}/tr/exams/bocconi-online-test`,
+        es: `${SITE}/es/exams/bocconi-online-test`,
+        pl: `${SITE}/pl/exams/bocconi-online-test`,
+        'x-default': `${SITE}/exams/bocconi-online-test`,
       },
     });
     expect((await pageAlternates(Promise.resolve({ locale: 'en' }), '/')).canonical).toBe(`${SITE}/`);
@@ -189,7 +227,7 @@ describe('llms.txt in production', () => {
     production();
     const text = await llmsTxtRoute().text();
     expect(text.startsWith('# UniExamer\n')).toBe(true);
-    expect(text).toContain('Also known as Examer and uniexamer.com.');
+    expect(text).toContain('Also known as Uni Examer, Examer and uniexamer.com.');
     expect(text).toContain('not affiliated with');
   });
 
@@ -200,7 +238,8 @@ describe('llms.txt in production', () => {
 });
 
 describe('site name in structured data', () => {
-  it('offers the former name, Examer, and the domain as alternate names', () => {
+  it('offers the two-word spelling, the former name and the domain as alternate names, and nothing else', () => {
+    expect(SITE_CONFIG.alternateNames).toEqual(['Uni Examer', 'Examer', 'uniexamer.com']);
     expect(webSiteSchema(SITE, 'UniExamer', ['Examer', 'uniexamer.com']).alternateName).toEqual(['Examer', 'uniexamer.com']);
     expect(organizationSchema(SITE, 'UniExamer', 'd', ['Examer']).alternateName).toEqual(['Examer']);
     expect(organizationSchema(SITE, 'UniExamer', 'd').logo).toBe(`${SITE}/brand/uniexamer-symbol.png`);
