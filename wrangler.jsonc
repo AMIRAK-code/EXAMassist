@@ -26,6 +26,10 @@
     { "pattern": "exam.assist365.app", "custom_domain": true }
   ],
   "workers_dev": false,
+  // Each uploaded version gets its own <version>-examer.<subdomain>.workers.dev
+  // address, which no visitor is sent to: `npm run cf:deploy` saves the public
+  // pages from there before it moves traffic (scripts/cloudflare.ts).
+  "preview_urls": true,
   // examer-db: the examer_app login against the Supabase session pooler (port
   // 5432), TLS verify-full against the Supabase root CA, and query caching off
   // because the app always needs its own latest writes. Not the transaction
