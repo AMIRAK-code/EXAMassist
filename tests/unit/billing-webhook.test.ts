@@ -142,8 +142,22 @@ describe('events', () => {
     expect(fake.called('subscriptions.retrieve')).toHaveLength(2);
   });
 
+  it('stores a Plus subscription, yearly too', async () => {
+    await deliver(event('customer.subscription.created', stripeSubscription({ userId: user, plan: 'plus', lookupKey: 'examer_plus_year_v1' })));
+    expect(await getSubscriptionRow(db, 'sub_test_1')).toMatchObject({ plan: 'plus', exam_key: null, price_lookup_key: 'examer_plus_year_v1' });
+    const entitlements = await loadEntitlements(db, user, { settings: ON });
+    expect(entitlements.can('practice', 'gmat')).toBe(true);
+    expect(entitlements.can('ai_tutor', 'gmat')).toBe(false);
+  });
+
+  it('keeps a first-generation Premium subscription with everything it was sold with', async () => {
+    await deliver(event('customer.subscription.updated', stripeSubscription({ userId: user, plan: 'all_access', lookupKey: 'examer_premium_yearly_v1' })));
+    expect(await getSubscriptionRow(db, 'sub_test_1')).toMatchObject({ plan: 'all_access', price_lookup_key: 'examer_premium_yearly_v1' });
+    expect((await loadEntitlements(db, user, { settings: ON })).can('ai_tutor', 'gmat')).toBe(true);
+  });
+
   it('acknowledges event types it does not handle without recording them', async () => {
-    const body = event('charge.refunded', { id: 'ch_1' });
+    const body = event('payment_intent.created', { id: 'pi_1' });
     expect(await deliver(body)).toMatchObject({ handled: false, duplicate: false });
     expect(await db.prepare('SELECT COUNT(*) AS n FROM billing_events').get()).toEqual({ n: 0 });
   });

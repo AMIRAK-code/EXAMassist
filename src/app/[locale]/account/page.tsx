@@ -11,8 +11,8 @@ import { listExamTargets } from '@/lib/learning/queries';
 import { examLabel } from '@/lib/learning/dashboard';
 import { Breadcrumbs, Alert, Badge, ButtonLink, Card, Container, DefinitionList, PageHeader } from '@/components/ui';
 import { billingSettings, pricingPath } from '@/lib/billing/config';
-import { grantIsLive, loadEntitlements, toGrant } from '@/lib/billing/entitlements';
-import { PLANS, PLAN_COPY } from '@/lib/billing/plans';
+import { grantIsLive, loadEntitlements, passToGrant, toGrant } from '@/lib/billing/entitlements';
+import { PLANS, PLAN_COPY, isLegacyPremium, priceForLookupKey } from '@/lib/billing/plans';
 import { BillingError, billingOverview, finishCardUpdate, type BillingOverview } from '@/lib/billing/service';
 import { SubscriptionManager, type ManagedSubscription } from '@/components/billing/subscription-manager';
 import {
@@ -220,7 +220,7 @@ export default async function AccountPage({
               <>
                 {entitlements.isStaff ? <p className="mb-4 text-sm text-ink-muted">{t('billing.staff')}</p> : null}
                 <SubscriptionManager
-                  subscriptions={(overview?.subscriptions ?? []).map(toManaged)}
+                  subscriptions={[...(overview?.passes ?? []).map(passToManaged), ...(overview?.subscriptions ?? []).map(toManaged)]}
                   card={overview?.card ?? null}
                   cardFresh={overview?.fresh ?? false}
                   publishableKey={settings.publishableKey}
@@ -269,19 +269,50 @@ export default async function AccountPage({
   );
 }
 
-/** A stored subscription, as the plan manager shows it. */
+/**
+ * A stored subscription, as the plan manager shows it. An earlier plan is
+ * named as it was sold and shown with the price it was sold at, so nobody is
+ * moved to a new plan or price without seeing it.
+ */
 function toManaged(row: BillingOverview['subscriptions'][number]): ManagedSubscription {
   const grant = toGrant(row);
+  const price = priceForLookupKey(row.price_lookup_key);
+  const legacyPremium = isLegacyPremium(row.price_lookup_key);
   return {
     id: row.stripe_subscription_id,
-    planName: PLAN_COPY.plans[row.plan].name,
+    kind: 'subscription',
+    plan: legacyPremium ? 'legacyPremium' : row.plan,
+    planName: legacyPremium ? PLAN_COPY.legacyPremium.name : (PLAN_COPY.plans[row.plan]?.name ?? row.plan),
+    earlier: legacyPremium || PLANS[row.plan]?.status === 'legacy',
     examName: row.exam_key ? (getExamConfig(row.exam_key)?.name ?? row.exam_key) : null,
     status: row.status,
     live: grantIsLive(grant),
-    // A subscription on an earlier price (LEGACY_LOOKUP_KEYS) shows no current price.
-    amount: row.price_lookup_key === PLANS[row.plan].lookupKey ? PLANS[row.plan].amount : null,
+    // The first Premium prices (LEGACY_LOOKUP_KEYS) predate PRICES: no amount is shown for them.
+    amount: price?.amount ?? null,
+    interval: price?.interval ?? null,
     periodEnd: row.current_period_end,
     cancelAtPeriodEnd: grant.cancelAtPeriodEnd,
     changeable: ['active', 'trialing', 'past_due'].includes(row.status),
+  };
+}
+
+/** A Single Exam Pass, as the plan manager shows it: the exam and the date its access ends. */
+function passToManaged(row: BillingOverview['passes'][number]): ManagedSubscription {
+  const live = grantIsLive(passToGrant(row));
+  return {
+    id: row.stripe_invoice_id,
+    kind: 'pass',
+    plan: row.plan,
+    planName: PLAN_COPY.plans.exam_pass.name,
+    earlier: false,
+    examName: getExamConfig(row.exam_key)?.name ?? row.exam_key,
+    // A paid pass past its six months has simply ended.
+    status: row.status === 'paid' && !live ? 'expired' : row.status,
+    live,
+    amount: row.amount,
+    interval: 'once',
+    periodEnd: row.access_ends_at,
+    cancelAtPeriodEnd: false,
+    changeable: false,
   };
 }

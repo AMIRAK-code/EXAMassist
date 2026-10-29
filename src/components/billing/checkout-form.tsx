@@ -5,7 +5,7 @@ import { Elements, PaymentElement, useElements, useStripe } from '@stripe/react-
 import type { Appearance, Stripe, StripeElementsOptionsMode } from '@stripe/stripe-js';
 import { useLocale, useTranslations } from 'next-intl';
 import { Link, getPathname, usePathname } from '@/i18n/navigation';
-import { formatPrice } from '@/lib/billing/plans';
+import { PASS_ACCESS_MONTHS, addCalendarMonths, annualSaving, formatPrice } from '@/lib/billing/plans';
 import { Alert, Badge, Button, Card, cx, fieldClass } from '@/components/ui';
 import { appearanceFromDocument, buildAppearance, elementFonts } from './stripe-appearance';
 import { stripeFor } from './stripe-loader';
@@ -15,39 +15,44 @@ import { billingErrorMessage, countryOptions, stripeLocale } from './locale';
 /**
  * The checkout, on this site's own page.
  *
- * Plan picker, exam picker, order summary, consent and every message are
+ * Offer picker, exam picker, order summary, consent and every message are
  * ours, from the `billing` catalogue (`form.*`). The card fields are Stripe's
  * Payment Element (Stripe's iframes, so card data never reaches our server)
  * styled with the Appearance API from our CSS tokens, so they look like the
  * rest of the form, and told the page's language so Stripe's own labels and
  * errors match it.
  *
- * The Payment Element is shown straight away ("deferred intent"). On Pay:
+ * The Payment Element is shown straight away ("deferred intent": 'payment'
+ * mode for the Single Exam Pass, 'subscription' mode for Plus). On Pay:
  *   1. elements.submit() validates the card fields,
- *   2. the server creates the subscription (payment_behavior
- *      'default_incomplete') and returns its client secret,
+ *   2. the server creates the purchase (the pass invoice, or the Plus
+ *      subscription with payment_behavior 'default_incomplete') and returns
+ *      its client secret; the server alone decides whether it may be sold,
  *   3. stripe.confirmPayment() (or confirmSetup() when nothing is due now)
  *      completes it, including any 3-D Secure challenge, and the learner
- *      lands on /checkout/complete, our own confirmation page.
+ *      lands on /checkout/complete, our own confirmation page, which asks
+ *      Stripe (on the server) whether the payment went through.
  */
 
-export interface CheckoutPlanOption {
+export interface CheckoutOffer {
+  /** A price key from plans.ts (OFFERS). */
   key: string;
   name: string;
   tagline: string;
-  perPeriod: string;
   amount: number;
+  interval: 'once' | 'month' | 'year';
   needsExam: boolean;
 }
 
 export interface CheckoutFormProps {
   publishableKey: string;
   testMode: boolean;
-  plans: CheckoutPlanOption[];
-  initialPlan: string;
+  offers: CheckoutOffer[];
+  initialOffer: string;
   initialExam: string | null;
   sourceExam: string | null;
-  exams: Array<{ key: string; name: string }>;
+  /** Every exam, and whether a pass can be bought for it today. */
+  exams: Array<{ key: string; name: string; available: boolean }>;
   ownedExamKeys: string[];
   email: string;
   name: string | null;
@@ -64,8 +69,8 @@ export function CheckoutForm(props: CheckoutFormProps) {
   const [stripe, setStripe] = useState<Promise<Stripe | null> | null>(null);
   const [appearance, setAppearance] = useState<Appearance>(() => buildAppearance());
   const [origin, setOrigin] = useState('');
-  const [plan, setPlan] = useState(props.initialPlan);
-  const selected = props.plans.find((p) => p.key === plan) ?? props.plans[0]!;
+  const [offer, setOffer] = useState(props.initialOffer);
+  const selected = props.offers.find((o) => o.key === offer) ?? props.offers[0]!;
 
   // Stripe.js and the token values exist only in the browser.
   useEffect(() => {
@@ -76,7 +81,8 @@ export function CheckoutForm(props: CheckoutFormProps) {
 
   const options = useMemo<StripeElementsOptionsMode>(
     () => ({
-      mode: 'subscription',
+      // A pass is paid once; Plus is a subscription. Elements is updated in place when this changes.
+      mode: selected.interval === 'once' ? 'payment' : 'subscription',
       amount: selected.amount,
       currency: 'eur',
       paymentMethodTypes: ['card'],
@@ -84,20 +90,20 @@ export function CheckoutForm(props: CheckoutFormProps) {
       fonts: origin ? elementFonts(origin) : [],
       locale: stripeLocale(locale),
     }),
-    [selected.amount, appearance, origin, locale],
+    [selected.interval, selected.amount, appearance, origin, locale],
   );
 
   return (
     <Elements stripe={stripe} options={options}>
-      <CheckoutBody {...props} plan={plan} setPlan={setPlan} selected={selected} origin={origin} ready={Boolean(stripe)} />
+      <CheckoutBody {...props} offer={offer} setOffer={setOffer} selected={selected} origin={origin} ready={Boolean(stripe)} />
     </Elements>
   );
 }
 
 function CheckoutBody({
-  plans,
-  plan,
-  setPlan,
+  offers,
+  offer,
+  setOffer,
   selected,
   initialExam,
   sourceExam,
@@ -110,9 +116,9 @@ function CheckoutBody({
   origin,
   ready,
 }: CheckoutFormProps & {
-  plan: string;
-  setPlan: (plan: string) => void;
-  selected: CheckoutPlanOption;
+  offer: string;
+  setOffer: (offer: string) => void;
+  selected: CheckoutOffer;
   origin: string;
   ready: boolean;
 }) {
@@ -123,7 +129,8 @@ function CheckoutBody({
   const elements = useElements();
   const id = useId();
   const euros = (cents: number) => formatPrice(cents, locale);
-  const [exam, setExam] = useState(initialExam && !ownedExamKeys.includes(initialExam) ? initialExam : '');
+  const buyable = (key: string) => exams.some((e) => e.key === key && e.available) && !ownedExamKeys.includes(key);
+  const [exam, setExam] = useState(initialExam && buyable(initialExam) ? initialExam : '');
   const [country, setCountry] = useState('');
   const [consent, setConsent] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -132,15 +139,21 @@ function CheckoutBody({
   const [touched, setTouched] = useState(false);
   const [requestId] = useState(newRequestId);
   const errorRef = useRef<HTMLDivElement>(null);
+  const saving = annualSaving();
 
   const examMissing = selected.needsExam && !exam;
   const countryMissing = collectCountry && !country;
   const examName = exams.find((e) => e.key === exam)?.name;
-  const renewsOn = useMemo(() => {
-    const date = new Date();
-    date.setMonth(date.getMonth() + 1);
-    return new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'long', year: 'numeric' }).format(date);
-  }, [locale]);
+  const initialUnavailable = Boolean(initialExam && selected.needsExam && !buyable(initialExam));
+  const day = (date: Date) => new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'long', year: 'numeric' }).format(date);
+  const dates = useMemo(() => {
+    const today = new Date();
+    const nextMonth = new Date(today);
+    nextMonth.setMonth(nextMonth.getMonth() + 1);
+    const nextYear = new Date(today);
+    nextYear.setFullYear(nextYear.getFullYear() + 1);
+    return { nextMonth, nextYear, passEnds: addCalendarMonths(today, PASS_ACCESS_MONTHS) };
+  }, []);
   const countries = useMemo(
     () => (collectCountry ? countryOptions(COUNTRY_CODES, locale) : []),
     [collectCountry, locale],
@@ -176,12 +189,12 @@ function CheckoutBody({
       return; // Stripe shows the field error inside the element.
     }
 
-    // 2. The subscription, created by our server.
-    const response = await fetch('/api/billing/subscriptions', {
+    // 2. The purchase, created by our server, which decides whether it may be sold.
+    const response = await fetch('/api/billing/checkout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'examer' },
       body: JSON.stringify({
-        plan,
+        offer,
         examKey: selected.needsExam ? exam : null,
         sourceExam,
         consent: true,
@@ -205,8 +218,9 @@ function CheckoutBody({
     // 3. Confirm with Stripe, 3-D Secure included. Card payments finish here
     //    without leaving the page; anything that needs a redirect comes back
     //    to the same confirmation page.
+    const param = data.kind === 'pass' ? 'pass' : 'subscription';
     const returnUrl = `${origin}${getPathname({
-      href: `/checkout/complete?subscription=${encodeURIComponent(data.subscriptionId)}`,
+      href: `/checkout/complete?${param}=${encodeURIComponent(data.id)}`,
       locale,
     })}`;
     const billingDetails = { email, ...(name ? { name } : {}) };
@@ -230,6 +244,13 @@ function CheckoutBody({
     window.location.assign(returnUrl);
   }
 
+  const periodRow =
+    selected.interval === 'once'
+      ? t('form.summary.oneTime')
+      : selected.interval === 'year'
+        ? t('form.summary.yearly')
+        : t('form.summary.monthly');
+
   return (
     <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem]">
       <form onSubmit={(event) => void submit(event)} noValidate className="space-y-8">
@@ -248,9 +269,9 @@ function CheckoutBody({
 
         <fieldset>
           <legend className="mb-3 font-heading text-lg font-semibold">{t('form.planLegend')}</legend>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {plans.map((option) => {
-              const checked = option.key === plan;
+          <div className="grid gap-3 sm:grid-cols-3">
+            {offers.map((option) => {
+              const checked = option.key === offer;
               return (
                 <label
                   key={option.key}
@@ -262,10 +283,10 @@ function CheckoutBody({
                 >
                   <input
                     type="radio"
-                    name="plan"
+                    name="offer"
                     value={option.key}
                     checked={checked}
-                    onChange={() => setPlan(option.key)}
+                    onChange={() => setOffer(option.key)}
                     disabled={busy}
                     className="sr-only"
                   />
@@ -281,11 +302,13 @@ function CheckoutBody({
                       {checked ? <span className="size-2 rounded-full bg-accent-contrast" /> : null}
                     </span>
                   </span>
-                  <span className="mt-1 text-sm">
-                    <span className="font-semibold">{euros(option.amount)}</span>{' '}
-                    <span className="text-ink-muted">{option.perPeriod}</span>
+                  <span className="mt-1 text-sm font-semibold">{t(`prices.${option.key}`, { price: euros(option.amount) })}</span>
+                  {option.interval === 'year' ? (
+                    <span className="mt-1 text-sm text-positive">{t('pricing.plus.yearlySaving', { percent: saving.percent })}</span>
+                  ) : null}
+                  <span className="mt-2 text-sm text-ink-muted">
+                    {option.interval === 'once' ? t('form.offers.pass') : t('form.offers.plus')}
                   </span>
-                  <span className="mt-2 text-sm text-ink-muted">{option.tagline}</span>
                 </label>
               );
             })}
@@ -310,9 +333,9 @@ function CheckoutBody({
               {exams.map((option) => {
                 const owned = ownedExamKeys.includes(option.key);
                 return (
-                  <option key={option.key} value={option.key} disabled={owned}>
+                  <option key={option.key} value={option.key} disabled={owned || !option.available}>
                     {option.name}
-                    {owned ? ` ${t('form.examOwned')}` : ''}
+                    {owned ? ` ${t('form.examOwned')}` : !option.available ? ` ${t('form.examUnavailable')}` : ''}
                   </option>
                 );
               })}
@@ -320,6 +343,9 @@ function CheckoutBody({
             <p id={`${id}-exam-hint`} className="mt-1.5 text-sm text-ink-muted">
               {t('form.examHint')}
             </p>
+            {initialUnavailable && !exam ? (
+              <p className="mt-1.5 text-sm text-caution">{t('form.examInitialUnavailable')}</p>
+            ) : null}
             {touched && examMissing ? (
               <p id={`${id}-exam-error`} className="mt-1.5 text-sm text-negative">
                 {t('form.examRequired')}
@@ -432,7 +458,7 @@ function CheckoutBody({
                 value={examName ?? <span className="text-ink-muted">{t('form.summary.examNone')}</span>}
               />
             ) : null}
-            <SummaryRow term={t('form.summary.monthly')} value={euros(selected.amount)} />
+            <SummaryRow term={periodRow} value={euros(selected.amount)} />
             <SummaryRow
               term={t('form.summary.vat')}
               value={collectCountry ? t('form.summary.vatByCountry') : t('form.summary.vatIncluded')}
@@ -442,8 +468,21 @@ function CheckoutBody({
             <span className="font-semibold">{t('form.summary.dueToday')}</span>
             <span className="font-heading text-2xl font-semibold tabular-nums">{euros(selected.amount)}</span>
           </div>
-          <p className="mt-3 text-sm text-ink-muted">{t('form.summary.then', { price: euros(selected.amount), date: renewsOn })}</p>
-          <p className="mt-2 text-sm text-ink-muted">{t('form.summary.cancel')}</p>
+          {selected.interval === 'once' ? (
+            <>
+              <p className="mt-3 text-sm text-ink-muted">{t('form.summary.passTerm', { date: day(dates.passEnds) })}</p>
+              <p className="mt-2 text-sm text-ink-muted">{t('form.summary.passNoRenewal')}</p>
+            </>
+          ) : (
+            <>
+              <p className="mt-3 text-sm text-ink-muted">
+                {selected.interval === 'year'
+                  ? t('form.summary.thenYearly', { price: euros(selected.amount), date: day(dates.nextYear) })
+                  : t('form.summary.thenMonthly', { price: euros(selected.amount), date: day(dates.nextMonth) })}
+              </p>
+              <p className="mt-2 text-sm text-ink-muted">{t('form.summary.cancel')}</p>
+            </>
+          )}
         </Card>
       </aside>
     </div>
