@@ -72,6 +72,21 @@ export class StripeNotConfiguredError extends Error {
 }
 
 /**
+ * The events the webhook endpoint sends (docs/BILLING.md). handleWebhook
+ * acknowledges any other type without acting on it; scripts/stripe-setup.ts
+ * enables exactly these on the endpoint it creates.
+ */
+export const WEBHOOK_EVENTS = [
+  'customer.subscription.created',
+  'customer.subscription.updated',
+  'customer.subscription.deleted',
+  'invoice.paid',
+  'invoice.payment_failed',
+  'invoice.voided',
+  'charge.refunded',
+] as const satisfies readonly Stripe.WebhookEndpointCreateParams.EnabledEvent[];
+
+/**
  * Verifies a webhook delivery against the raw request body and returns the
  * event. Throws Stripe's signature error for anything that does not verify,
  * including a delivery older than five minutes (a replay).

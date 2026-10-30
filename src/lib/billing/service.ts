@@ -27,7 +27,7 @@ import {
   type PassRow,
   type SubscriptionRow,
 } from './store';
-import { asStripeError, isSignatureError, stripeClient, verifyWebhookEvent, type StripeApi } from './stripe';
+import { WEBHOOK_EVENTS, asStripeError, isSignatureError, stripeClient, verifyWebhookEvent, type StripeApi } from './stripe';
 
 /**
  * Payments through Stripe, sold and managed on this site's own pages.
@@ -676,15 +676,7 @@ export async function billingOverview(db: Db, userId: string, options: BillingDe
 // ---------------------------------------------------------------------------
 
 /** The events to enable on the webhook endpoint (docs/BILLING.md). */
-export const HANDLED_EVENTS = new Set([
-  'customer.subscription.created',
-  'customer.subscription.updated',
-  'customer.subscription.deleted',
-  'invoice.paid',
-  'invoice.payment_failed',
-  'invoice.voided',
-  'charge.refunded',
-]);
+export const HANDLED_EVENTS = new Set<string>(WEBHOOK_EVENTS);
 
 export interface WebhookResult {
   type: string;
