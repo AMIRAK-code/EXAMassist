@@ -340,6 +340,14 @@ In this order. Nothing here has been done; the code ships with payments off.
    style settings do not override `auto_advance: false` on pass invoices.
 6. **Live setup.** Live keys as Worker secrets, `npm run stripe:setup` with
    the live key, webhook endpoint with the seven events, server starts.
+   `npx tsx scripts/stripe-setup.ts --connect` does all of it in one run: it
+   asks for the live secret key (not echoed) and publishable key, creates the
+   products and prices, creates the webhook endpoint at
+   `https://uniexamer.com/api/billing/webhook` with the seven events and the
+   SDK's API version, and stores `STRIPE_SECRET_KEY`,
+   `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` and `STRIPE_WEBHOOK_SECRET` with
+   `wrangler secret bulk`, so no key is printed or saved to a file. Run it
+   yourself in a terminal signed in to Cloudflare (`npx wrangler whoami`).
 7. **Legal sign-off** (items below), then set `BILLING_ENFORCED=true` and
    redeploy. Only then is anything sold.
 
