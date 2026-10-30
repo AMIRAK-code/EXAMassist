@@ -85,8 +85,8 @@ function main(): void {
   console.log('\n---');
   console.log(`${errors.length} error(s), ${warnings.length} warning(s).`);
   console.log(
-    'Human approval is recorded in the database and is not visible to this file check. Nothing above is served until ' +
-      'approved; `npm run content:coverage` reports what each format needs against the approved pool.',
+    'Human approval is recorded in the database and is not visible to this file check. While HUMAN_APPROVAL_REQUIRED ' +
+      'is "true", nothing above is served until approved; `npm run content:coverage` reports what each format needs.',
   );
 
   if (errors.length > 0) process.exit(1);
