@@ -43,6 +43,10 @@
     // Production is the one deployment search engines may index (canonical
     // https://uniexamer.com). Previews and the Vercel backup keep "false".
     "SEARCH_INDEXING_ENABLED": "true"
+    // Unset: questions that passed the automatic checks and the blind AI solve
+    // are served. Set HUMAN_APPROVAL_REQUIRED to "true" to serve only questions a
+    // named human reviewer has approved (src/lib/content/human-review.ts), and
+    // change the public copy that describes it at the same time.
   },
   "observability": { "enabled": true }
 }
