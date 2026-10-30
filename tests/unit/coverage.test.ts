@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import type { ExamConfig } from '@/lib/assessment/types';
 import { requireExamConfig } from '@/lib/exams/registry';
 import { resolveParts } from '@/lib/attempts/service';
@@ -12,6 +12,12 @@ import {
   type CoverageItem,
 } from '@/lib/content/coverage';
 import { approveForTest, createTestDb, seedQuestions } from './helpers/test-db';
+
+// Written for the rule while human approval is required (HUMAN_APPROVAL_REQUIRED=true);
+// the default, where it is not, has its own test in human-review.test.ts.
+beforeEach(() => { process.env.HUMAN_APPROVAL_REQUIRED = 'true'; });
+afterEach(() => { delete process.env.HUMAN_APPROVAL_REQUIRED; });
+
 
 /**
  * The coverage plan measures only what new sessions may use (published AND

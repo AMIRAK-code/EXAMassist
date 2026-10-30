@@ -3,7 +3,7 @@ import type { QuestionVersionRow, StimulusRow } from '@/lib/db/rows';
 import type { PoolItem } from '@/lib/assessment/select';
 import { answerKeySchema, type AnswerKey, type ResponseType } from '@/lib/assessment/types';
 import type { ContentLocale, QuestionTranslation, StimulusTranslation } from './question-schema';
-import { humanApprovalSql } from './human-review';
+import { humanApprovalSql, servableSql } from './human-review';
 
 /**
  * Question bank reads.
@@ -182,8 +182,9 @@ export async function getQuestionVersion(db: Db, questionVersionId: string): Pro
 }
 
 /**
- * The version of a question currently being served: published, and approved
- * by a human reviewer as it stands now (human-review.ts).
+ * The version of a question currently being served: published, and, while
+ * human approval is required, approved by a human reviewer as it stands now
+ * (human-review.ts).
  */
 export async function getPublishedVersion(db: Db, questionId: string): Promise<QuestionVersionRow | undefined> {
   return (await db
@@ -191,7 +192,7 @@ export async function getPublishedVersion(db: Db, questionId: string): Promise<Q
       `SELECT qv.* FROM question_versions qv
        JOIN questions q ON q.id = qv.question_id AND q.current_version = qv.version
        WHERE q.id = ? AND q.state = 'published' AND qv.state = 'published'
-         AND ${humanApprovalSql('qv')}`,
+         AND ${servableSql('qv')}`,
     )
     .get(questionId)) as QuestionVersionRow | undefined;
 }
@@ -236,7 +237,7 @@ export async function getPool(db: Db, examKey: string, userId: string | null): P
        FROM question_versions qv
        JOIN questions q ON q.id = qv.question_id AND q.current_version = qv.version
        WHERE qv.exam_key = ? AND qv.state = 'published' AND q.state = 'published'
-         AND ${humanApprovalSql('qv')}`,
+         AND ${servableSql('qv')}`,
     )
     .all(userId ?? '', examKey)) as PoolItem[];
   return rows;
@@ -297,7 +298,7 @@ export async function getCoverage(db: Db, examKey?: string): Promise<CoverageRow
          qv.section_key  AS sectionKey,
          qv.domain_slug  AS domainSlug,
          SUM(CASE WHEN qv.state = 'published'   THEN 1 ELSE 0 END) AS published,
-         SUM(CASE WHEN qv.state = 'published' AND q.state = 'published' AND ${humanApprovalSql('qv')} THEN 1 ELSE 0 END) AS approved,
+         SUM(CASE WHEN qv.state = 'published' AND q.state = 'published' AND ${servableSql('qv')} THEN 1 ELSE 0 END) AS approved,
          SUM(CASE WHEN qv.state = 'draft'       THEN 1 ELSE 0 END) AS draft,
          SUM(CASE WHEN qv.state = 'in_review'   THEN 1 ELSE 0 END) AS inReview,
          SUM(CASE WHEN qv.state = 'quarantined' THEN 1 ELSE 0 END) AS quarantined
@@ -310,7 +311,7 @@ export async function getCoverage(db: Db, examKey?: string): Promise<CoverageRow
     .all(...params)) as CoverageRow[];
 }
 
-/** Questions new sessions can draw on: published and human-approved. */
+/** Questions new sessions can draw on: published (and human-approved while that is required). */
 export async function countPublished(db: Db, examKey: string): Promise<number> {
   const row = (await db
     .prepare(
@@ -318,7 +319,7 @@ export async function countPublished(db: Db, examKey: string): Promise<number> {
        FROM question_versions qv
        JOIN questions q ON q.id = qv.question_id AND q.current_version = qv.version
        WHERE qv.exam_key = ? AND qv.state = 'published' AND q.state = 'published'
-         AND ${humanApprovalSql('qv')}`,
+         AND ${servableSql('qv')}`,
     )
     .get(examKey)) as { n: number };
   return row.n;

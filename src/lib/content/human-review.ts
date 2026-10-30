@@ -190,6 +190,28 @@ export function humanApprovalSql(qv = 'qv'): string {
               AND hx.created_at > hr.created_at)))`;
 }
 
+/**
+ * Whether a question must hold a standing human approval before a new session
+ * or a public page may show it: the HUMAN_APPROVAL_REQUIRED variable, "true" to
+ * require it. Set by the owners: required from 2026-10-29, not required since
+ * 2026-10-30 (the variable is unset), while reviewers work through the bank.
+ *
+ * While it is off, questions that passed the automatic checks and the blind AI
+ * solve are served, the public copy says that no per-question human review is
+ * recorded, and the approvals that do exist are still recorded and shown on
+ * each question's review page. Turning it on closes every question without a
+ * standing approval, so change the public copy (editorial standards, home
+ * page, Bocconi page, practice and pricing notes) at the same time.
+ */
+export function humanApprovalRequired(env: Record<string, string | undefined> = process.env): boolean {
+  return env.HUMAN_APPROVAL_REQUIRED?.trim().toLowerCase() === 'true';
+}
+
+/** SQL predicate for what new sessions and public pages may serve: `humanApprovalSql` while approval is required. */
+export function servableSql(qv = 'qv'): string {
+  return humanApprovalRequired() ? humanApprovalSql(qv) : '1 = 1';
+}
+
 export interface ReviewDecision {
   questionVersionId: string;
   reviewFingerprint: string;
@@ -227,7 +249,7 @@ export type ApprovalStatus =
  * (automated gates passed) AND a standing human approval of the current content.
  */
 export function eligibleForNewSessions(questionState: string, versionState: string, humanApproved: boolean): boolean {
-  return questionState === 'published' && versionState === 'published' && humanApproved;
+  return questionState === 'published' && versionState === 'published' && (humanApproved || !humanApprovalRequired());
 }
 
 export function approvalStatus(state: string, humanApproved: boolean, latestOutcome: ReviewOutcome | null): ApprovalStatus {

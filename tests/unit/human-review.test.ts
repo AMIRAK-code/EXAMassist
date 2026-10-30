@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto';
-import { beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import type { Db } from '@/lib/db';
 import type { QuestionVersionRow, StimulusRow } from '@/lib/db/rows';
 import type { AuthUser } from '@/lib/auth/session';
@@ -28,6 +28,12 @@ import { planSeed, stimulusColumns, stimulusFileFor, versionColumns } from '@/li
 import { getAttemptState, startAttempt } from '@/lib/attempts/service';
 import { blueprintAvailability } from '@/lib/attempts/availability';
 import { approveForTest, createTestDb, createUser, fingerprintVersion, seedQuestions } from './helpers/test-db';
+
+// Written for the rule while human approval is required (HUMAN_APPROVAL_REQUIRED=true);
+// the default, where it is not, has its own test in human-review.test.ts.
+beforeEach(() => { process.env.HUMAN_APPROVAL_REQUIRED = 'true'; });
+afterEach(() => { delete process.env.HUMAN_APPROVAL_REQUIRED; });
+
 
 /**
  * Mandatory human approval. A published question reaches a new session only
@@ -161,6 +167,26 @@ describe('the content fingerprint', () => {
     expect(fp({ ...withStimulus, tags: ['new-tag'] })).toBe(base);
     expect(fp({ ...withStimulus, translations: {} })).toBe(base);
   }, 30_000);
+});
+
+describe('while human approval is not required (the default)', () => {
+  it('serves published questions without one, and still records and shows an approval', async () => {
+    delete process.env.HUMAN_APPROVAL_REQUIRED;
+    const db = await createTestDb();
+    const admin = await account(db, 'admin');
+    await seedQuestions(db, SAT, { perDomain: 6, humanApproved: false });
+    const pool = await getPool(db, SAT.examKey, null);
+    expect(pool.length).toBeGreaterThan(0);
+    expect(await countPublished(db, SAT.examKey)).toBe(pool.length);
+    expect((await blueprintAvailability(db, SAT)).some((format) => format.available)).toBe(true);
+    expect(await humanApprovedCount(db, [SAT.examKey])).toBe(0);
+
+    const reviewer = await activeReviewer(db, admin);
+    const row = await currentVersion(db, pool[0].questionId);
+    const record = await recordReview(db, reviewer, approval(row), new Date('2026-10-30T10:00:00Z'));
+    expect((await standingApprovalFor(db, row.id))?.id).toBe(record.id);
+    expect(await humanApprovedCount(db, [SAT.examKey])).toBe(1);
+  });
 });
 
 describe('publication requires a standing human approval', () => {

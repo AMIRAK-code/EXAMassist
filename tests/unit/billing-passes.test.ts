@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, onTestFinished } from 'vitest';
 import Stripe from 'stripe';
 import type { Db } from '@/lib/db';
 import { requireExamConfig } from '@/lib/exams/registry';
@@ -66,7 +66,9 @@ describe('what can be sold', () => {
     expect(await examSaleStatus(db, 'no-such-exam')).toBeNull();
   });
 
-  it('does not count questions that lack a standing human approval', async () => {
+  it('does not count questions that lack a standing human approval while one is required', async () => {
+    process.env.HUMAN_APPROVAL_REQUIRED = 'true';
+    onTestFinished(() => { delete process.env.HUMAN_APPROVAL_REQUIRED; });
     const fresh = await createTestDb();
     await seedQuestions(fresh, SAT, { perDomain: 8, humanApproved: false });
     expect((await examSaleStatus(fresh, SAT.examKey))?.sellable).toBe(false);
