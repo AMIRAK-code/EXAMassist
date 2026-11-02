@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/server';
 import { CONTENT_LANG, languageAlternates, pageAlternates } from '@/i18n/alternates';
-import { LOCALE_INFO, localizePath, type Locale } from '@/i18n/locales';
+import { DEFAULT_LOCALE, LOCALE_INFO, localizePath, type Locale } from '@/i18n/locales';
 import { getDb } from '@/lib/db';
 import { EXAM_HUBS, getConfigsForHub, getHub } from '@/lib/exams/registry';
 import { blueprintAvailability, examCoverage } from '@/lib/attempts/availability';
@@ -29,11 +29,13 @@ import { loadEntitlements } from '@/lib/billing/entitlements';
 import { BOCCONI_HUB_SLUG, bocconiLandingData } from '@/lib/exams/bocconi-landing';
 import { BOCCONI_FACTS_CHECKED_ON } from '@/lib/exams/bocconi-facts';
 import { BocconiLanding } from '@/components/exams/bocconi-landing';
-import { ViewBeacon } from '@/components/exams/view-beacon';
+import { PracticeClickBeacon, ViewBeacon } from '@/components/exams/view-beacon';
 import { HubEssentials } from '@/components/exams/hub-essentials';
 import { billingSettings } from '@/lib/billing/config';
 import { guidesForHub } from '@/lib/content/guides';
 import { isSnapshotRequest } from '@/lib/seo/static-pages';
+import { hubContent, hubUpdatedOn } from '@/lib/exams/hub-content';
+import { HubDetailsNote, HubIntro, HubSamples } from '@/components/exams/hub-content';
 
 export const dynamic = 'force-dynamic';
 
@@ -50,7 +52,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!hub) return { title: t('fallbackTitle') };
   if (hub.slug === BOCCONI_HUB_SLUG) return bocconiMetadata(locale as Locale);
 
-  const title = t('metaTitle', { name: hub.name });
+  // The editorial title is English, like the content; other languages keep their translated title.
+  const content = locale === DEFAULT_LOCALE ? hubContent(hub.slug) : undefined;
+  const title = content?.metaTitle ?? t('metaTitle', { name: hub.name });
   // A snippet-length summary; the tagline stays the format guide's "In short".
   const description = hub.metaDescription;
   const alternates = (await pageAlternates(params, `/exams/${hub.slug}`));
@@ -140,13 +144,15 @@ export default async function ExamHubPage({ params }: Props) {
         />
         <Breadcrumbs trail={trail} />
         {beacon}
-        <BocconiLanding data={data} hasFullAccess={fullAccess} billingOn={entitlements.enforced} />
-
+        <PracticeClickBeacon subject={hub.slug}>
+          <BocconiLanding data={data} hasFullAccess={fullAccess} billingOn={entitlements.enforced} />
+        </PracticeClickBeacon>
       </Container>
     );
   }
 
   const verifiedOn = configs[0]?.verifiedOn ?? '';
+  const content = hubContent(hub.slug);
   const offered = (await Promise.all(configs.map((config) => blueprintAvailability(db, config))))
     .flat()
     .filter((entry) => entry.available)
@@ -160,11 +166,11 @@ export default async function ExamHubPage({ params }: Props) {
           articleSchema({
             siteUrl: siteUrl(),
             url,
-            headline: t('hub.metaTitle', { name: hub.name }),
+            headline: content?.metaTitle ?? t('hub.metaTitle', { name: hub.name }),
             description: hub.tagline,
-            // Real dates only: this is the date the facts were verified.
+            // Real dates only: when the facts were verified, and when the page's own content last changed.
             datePublished: verifiedOn,
-            dateModified: verifiedOn,
+            dateModified: hubUpdatedOn(hub.slug, verifiedOn),
             publisherName: SITE.publisher,
             authorName: SITE.publisher,
             image: `/og/exam-${hub.slug}.png`,
@@ -175,14 +181,20 @@ export default async function ExamHubPage({ params }: Props) {
       {beacon}
 
       {/*
-        No lead: the tagline repeated the summary below it, and gained a line
+        No tagline lead: it repeated the summary below it, and gained a line
         when the interface font arrived, pushing the page down (0.0199 in the
         worst case, docs/REDESIGN.md §18). It stays the page's description, and
-        the format guide's "In short".
+        the format guide's "In short". A hub's editorial lead (HubIntro) is set
+        in the reading serif, which needs no download.
       */}
-      <PageHeader eyebrow={hub.publisher} title={hub.name} />
+      <PracticeClickBeacon subject={hub.slug}>
+      <div lang={content ? CONTENT_LANG : undefined}>
+        <PageHeader eyebrow={hub.publisher} title={content?.headline ?? hub.name} />
+      </div>
       <OfficialNote />
+      {content ? <HubIntro content={content} /> : null}
       <HubEssentials hub={hub} offered={offered} billingOn={billingSettings().enforced} guides={guidesForHub(hub.slug)} />
+      {content ? <HubDetailsNote content={content} /> : null}
 
       {/* The direct answer, first: what this exam is, in one block. */}
       {(await Promise.all(configs.map(async (config) => {
@@ -378,8 +390,11 @@ export default async function ExamHubPage({ params }: Props) {
         );
       })))}
 
+      {content ? <HubSamples content={content} /> : null}
+
       {/* Routes into the same institution that another hub's test serves. */}
       <OtherRoutes routes={hub.otherRoutes ?? []} institution={hub.publisher} />
+      </PracticeClickBeacon>
     </Container>
   );
 }

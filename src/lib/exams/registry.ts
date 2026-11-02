@@ -232,8 +232,8 @@ export const EXAM_HUBS: readonly ExamHub[] = [
     variantLabels: { 'polito-til-i': 'Engineering (TIL-I)', 'polito-til-a': 'Architecture (TIL-A)' },
     publisher: 'Politecnico di Torino',
     tagline:
-      'Politecnico di Torino’s in-person admission tests: TIL-I for Engineering, 42 questions in 90 minutes, and TIL-A for Architecture, 50 questions in 100 minutes, both with a penalty for wrong answers.',
-    metaDescription: 'Politecnico di Torino TIL-I and TIL-A admission tests: sections, timing and penalties for wrong answers, with original practice questions.',
+      'Politecnico di Torino’s own in-person admission tests up to 2026/27: TIL-I for Engineering, 42 questions in 90 minutes, and TIL-A for Architecture, 50 questions in 100 minutes, both with a penalty for wrong answers. From 2027/28 PoliTo admits with CISIA tests instead.',
+    metaDescription: 'From 2027/28 PoliTo replaces the TIL with CISIA tests taken in person: TOLC for national candidates, CEnT-S for international ones. What is confirmed so far.',
     audiences: ['undergraduate'],
     configKeys: ['polito-til-i', 'polito-til-a'],
     order: 8,
@@ -247,7 +247,7 @@ export const EXAM_HUBS: readonly ExamHub[] = [
     publisher: 'CISIA',
     tagline:
       'The online admission tests many Italian universities use: TOLC-E for economics, 36 questions in 90 minutes; TOLC-F for pharmacy, 50 questions in 72 minutes; and TOLC-I for engineering, 50 questions in 110 minutes. Each university sets its own pass mark.',
-    metaDescription: 'CISIA TOLC-E, TOLC-F and TOLC-I for Italian university admission: sections, timing and scoring, with original practice questions.',
+    metaDescription: 'TOLC-E: 36 questions in 90 minutes; TOLC-I: 50 in 110; TOLC-F: 50 in 72. Scoring, the 2026 rules, what is known for 2027 and worked sample questions.',
     audiences: ['undergraduate'],
     configKeys: ['tolc-e', 'tolc-f', 'tolc-i'],
     order: 9,
