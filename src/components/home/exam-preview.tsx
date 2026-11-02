@@ -46,7 +46,6 @@ export function ExamPreview({
   initialSample: Loaded;
   intro: ReactNode;
 }) {
-  const tGuest = useTranslations('common.guest');
   const t = useTranslations('home.sample');
   const tHome = useTranslations('home');
   const format = useFormatter();
@@ -192,7 +191,7 @@ export function ExamPreview({
               .join(' · ')
               .replace(/^./, (c) => c.toLocaleUpperCase(locale))}
           </p>
-          <p className="max-w-[52ch] text-sm leading-relaxed text-ink-subtle">{tGuest('noteShort')}</p>
+          <p className="max-w-[52ch] text-sm leading-relaxed text-ink-subtle">{tHome('hero.accountNote')}</p>
         </div>
       </div>
 

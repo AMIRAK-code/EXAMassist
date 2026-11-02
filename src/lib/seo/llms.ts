@@ -1,6 +1,7 @@
 import { EXAM_HUBS, getConfigsForHub } from '@/lib/exams/registry';
 import { listGuides } from '@/lib/content/guides';
 import { INDEPENDENCE_NOTICE, SITE, absoluteUrl } from '@/lib/site';
+import { SUPPORT } from '@/lib/support';
 
 /**
  * /llms.txt (https://llmstxt.org): a plain Markdown map of the public pages
@@ -49,7 +50,7 @@ export function llmsTxt(): string {
     '',
     link('Editorial standards', '/about/editorial-standards', 'how the practice questions are written, independently solved and checked before publication.'),
     link('How scoring works', '/about/how-scoring-works', 'what a practice score means, and what it cannot tell you about an official score.'),
-    link('Support', '/about/support', 'how to reach the team: support mail is answered by a person within 48 hours, not by an AI agent.'),
+    link('Support', '/about/support', `how to reach the team: support mail is answered by a person, not by an AI agent, within ${SUPPORT.firstReplyBusinessDays === 1 ? 'one business day' : `${SUPPORT.firstReplyBusinessDays} business days`}.`),
     '',
     '## Optional',
     '',
