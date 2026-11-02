@@ -19,8 +19,9 @@
  *   npm run stripe:setup -- --connect # the live setup for the production Worker
  *
  * --connect is release step 6 in docs/BILLING.md in one go. It asks for the
- * live secret key (not echoed) and the live publishable key instead of reading
- * them from a file, does the above, creates the webhook endpoint for the site
+ * live secret key (shown as asterisks) and the live publishable key, typed,
+ * pasted or taken from the clipboard with Enter on an empty line, instead of
+ * reading them from a file, does the above, creates the webhook endpoint for the site
  * (`--site=https://…`, default https://uniexamer.com) with the events
  * handleWebhook expects, and stores the keys and the endpoint's signing secret
  * as Worker secrets through `wrangler secret bulk`. Nothing secret is printed
@@ -33,7 +34,6 @@
  * network calls to Stripe, so it does not run in the test suite.
  */
 import { spawnSync } from 'node:child_process';
-import { createInterface } from 'node:readline/promises';
 import { loadEnvConfig } from '@next/env';
 import Stripe from 'stripe';
 import { CURRENCY, PLANS, PLAN_COPY, PRICES, PRICE_KEYS, type PriceDefinition } from '../src/lib/billing/plans';
@@ -52,18 +52,47 @@ function describe(price: PriceDefinition): string {
 /** Drops what a terminal may add around pasted text (bracketed paste, stray control characters). */
 const cleanInput = (value: string) => value.replace(/\x1b\[20[01]~/g, '').replace(/[\x00-\x1f\x7f]/g, '').trim();
 
-/** Reads a line without echoing it, for the secret key. */
-function askHidden(question: string): Promise<string> {
+/** The clipboard's text (Windows and macOS), or '' where it cannot be read. */
+function readClipboard(): string {
+  const result =
+    process.platform === 'win32'
+      ? spawnSync('powershell', ['-NoProfile', '-Command', 'Get-Clipboard -Raw'], { encoding: 'utf8' })
+      : process.platform === 'darwin'
+        ? spawnSync('pbpaste', [], { encoding: 'utf8' })
+        : null;
+  return result?.status === 0 ? cleanInput(result.stdout) : '';
+}
+
+function clearClipboard(): void {
+  if (process.platform === 'win32') spawnSync('powershell', ['-NoProfile', '-Command', 'Set-Clipboard -Value $null']);
+  else if (process.platform === 'darwin') spawnSync('pbcopy', [], { input: '' });
+}
+
+/**
+ * Reads one key. Some terminals cannot paste into a program reading key by
+ * key, so Enter on an empty line (or Ctrl+V) takes the key from the
+ * clipboard instead. A secret key is echoed as asterisks and, when it came
+ * from the clipboard, the clipboard is cleared afterwards.
+ */
+function askKey(question: string, secret: boolean): Promise<string> {
   const stdin = process.stdin;
   if (!stdin.isTTY) return Promise.reject(new Error('--connect asks for the keys and needs an interactive terminal.'));
   process.stdout.write(question);
   return new Promise((resolve, reject) => {
     let value = '';
+    let fromClipboard = false;
+    const show = (text: string) => process.stdout.write(secret ? '*'.repeat(text.length) : text);
     const done = (error: Error | null) => {
       stdin.off('data', onData);
       stdin.setRawMode(false);
       stdin.pause();
-      process.stdout.write('\n');
+      if (!error && !cleanInput(value)) {
+        value = readClipboard();
+        fromClipboard = true;
+        show(value);
+      }
+      process.stdout.write(fromClipboard && value ? '  (from the clipboard)\n' : '\n');
+      if (secret && fromClipboard && value) clearClipboard();
       if (error) reject(error);
       else resolve(cleanInput(value));
     };
@@ -71,8 +100,18 @@ function askHidden(question: string): Promise<string> {
       for (const char of chunk) {
         if (char === '\r' || char === '\n') return done(null);
         if (char === '\u0003') return done(new Error('Cancelled.'));
-        if (char === '\u007f' || char === '\b') value = value.slice(0, -1);
-        else value += char;
+        if (char === '\u0016') {
+          const pasted = readClipboard();
+          value += pasted;
+          fromClipboard = true;
+          show(pasted);
+        } else if (char === '\u007f' || char === '\b') {
+          if (value) process.stdout.write('\b \b');
+          value = value.slice(0, -1);
+        } else if (char >= ' ') {
+          value += char;
+          show(char);
+        }
       }
     };
     stdin.setRawMode(true);
@@ -80,15 +119,6 @@ function askHidden(question: string): Promise<string> {
     stdin.resume();
     stdin.on('data', onData);
   });
-}
-
-async function ask(question: string): Promise<string> {
-  const rl = createInterface({ input: process.stdin, output: process.stdout });
-  try {
-    return cleanInput(await rl.question(question));
-  } finally {
-    rl.close();
-  }
 }
 
 /**
@@ -138,9 +168,10 @@ async function main(): Promise<void> {
   let key = process.env.STRIPE_SECRET_KEY?.trim();
   let publishableKey: string | null = null;
   if (connect) {
-    key = await askHidden('Stripe LIVE secret key (sk_live_… or rk_live_…, not shown): ');
+    console.log('For each key: copy it in the Stripe dashboard, then press Enter here (or paste it and press Enter).\n');
+    key = await askKey('Stripe LIVE secret key (sk_live_… or rk_live_…): ', true);
     if (!/^(sk|rk)_live_\w+$/.test(key)) throw new Error('That is not a live secret key. --connect only stores live keys on the production Worker.');
-    publishableKey = await ask('Stripe LIVE publishable key (pk_live_…): ');
+    publishableKey = await askKey('Stripe LIVE publishable key (pk_live_…): ', false);
     if (!/^pk_live_\w+$/.test(publishableKey)) throw new Error('That is not a live publishable key (pk_live_…).');
   }
   if (!key) throw new Error('STRIPE_SECRET_KEY is not set (see .env.example and docs/BILLING.md).');
