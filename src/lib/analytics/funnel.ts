@@ -88,7 +88,11 @@ export function subjectFor(examKey: string | null | undefined): string {
 
 const dayOf = (now: Date) => now.toISOString().slice(0, 10);
 
-/** Adds 1 to today's total. Never throws. */
+/**
+ * Adds 1 to today's total. Never throws. Inside a caller's transaction (a
+ * purchase being stored) the count runs in its own savepoint: in PostgreSQL a
+ * failed statement would otherwise abort the caller's transaction with it.
+ */
 export async function countEvent(
   db: Db,
   event: FunnelEvent,
@@ -97,12 +101,14 @@ export async function countEvent(
   now = new Date(),
 ): Promise<void> {
   try {
-    await db
-      .prepare(
-        `INSERT INTO funnel_counts (day, event, subject, source, count) VALUES (?, ?, ?, ?, 1)
-         ON CONFLICT(day, event, subject, source) DO UPDATE SET count = count + 1`,
-      )
-      .run(dayOf(now), event, subject, source);
+    await db.transaction(async () => {
+      await db
+        .prepare(
+          `INSERT INTO funnel_counts (day, event, subject, source, count) VALUES (?, ?, ?, ?, 1)
+           ON CONFLICT(day, event, subject, source) DO UPDATE SET count = count + 1`,
+        )
+        .run(dayOf(now), event, subject, source);
+    })();
   } catch (error) {
     // Most likely migration 011 is not applied yet. A count is never worth a failed page.
     console.warn('[funnel] not counted:', event, error instanceof Error ? error.message : error);

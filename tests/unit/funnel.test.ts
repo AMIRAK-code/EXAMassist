@@ -1,5 +1,7 @@
+import { AsyncLocalStorage } from 'node:async_hooks';
 import { beforeEach, describe, expect, it } from 'vitest';
 import type { Db } from '@/lib/db';
+import { postgresSql } from '@/lib/db/postgres-sql';
 import {
   classifyReferrer,
   countEvent,
@@ -119,6 +121,13 @@ describe('counting', () => {
     expect(bocconi).toMatchObject({ guideViews: 2, guideClicks: 1, landingTotal: 0 });
   });
 
+  it('adds to its own table once translated for PostgreSQL', async () => {
+    const sent: string[] = [];
+    const recording: Db = { ...db, prepare: (sql) => { sent.push(sql); return db.prepare(sql); } };
+    await countEvent(recording, 'purchase', 'none');
+    expect(sent.map(postgresSql)).toEqual([expect.stringContaining('DO UPDATE SET count = funnel_counts.count + 1')]);
+  });
+
   it('never breaks a page when the table is missing', async () => {
     await db.exec('DROP TABLE funnel_counts');
     await expect(countEvent(db, 'purchase', 'none')).resolves.toBeUndefined();
@@ -168,9 +177,46 @@ describe('the funnel report', () => {
   });
 });
 
+/**
+ * The test database with PostgreSQL's rule for errors: a failed statement
+ * aborts its transaction, and every later statement in it fails until a
+ * rollback (to a savepoint) clears it. SQLite carries on regardless.
+ */
+function abortingLikePostgres(inner: Db): Db {
+  const frame = new AsyncLocalStorage<{ aborted: boolean }>();
+  async function guard<T>(run: () => Promise<T>): Promise<T> {
+    const current = frame.getStore();
+    if (current?.aborted) throw new Error('current transaction is aborted, commands ignored until end of transaction block');
+    try { return await run(); } catch (error) { if (current) current.aborted = true; throw error; }
+  }
+  return {
+    ...inner,
+    prepare(sql) {
+      const statement = inner.prepare(sql);
+      return {
+        get: (...params) => guard(() => statement.get(...params)),
+        all: (...params) => guard(() => statement.all(...params)),
+        run: (...params) => guard(() => statement.run(...params)),
+      };
+    },
+    exec: (sql) => guard(() => inner.exec(sql)),
+    transaction: (fn) => (...args) => inner.transaction(() => frame.run({ aborted: false }, () => fn(...args)))(),
+  };
+}
+
 describe('purchases', () => {
   const totals = async () =>
     db.prepare("SELECT event, subject, count FROM funnel_counts WHERE event IN ('purchase', 'checkout_start') ORDER BY event").all();
+
+  it('never takes the purchase down with it when the count fails inside the transaction storing it', async () => {
+    const user = await createUser(db);
+    const postgres = abortingLikePostgres(db);
+    await db.exec('DROP TABLE funnel_counts');
+    const subscription = stripeSubscription({ userId: user, plan: 'plus' });
+    // The webhook stores a payment inside one transaction (src/lib/billing/service.ts).
+    const stored = await postgres.transaction(() => storeSubscription(postgres, user, subscription, { syncedAt: nowSeconds() }))();
+    expect(stored).toMatchObject({ stored: true, newlyActive: true, row: { status: 'active' } });
+  });
 
   it('counts a subscription’s first activation once, not renewals or recoveries', async () => {
     const user = await createUser(db);

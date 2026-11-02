@@ -3,7 +3,8 @@ export function postgresSql(sql: string): string {
   const normalized = sql
     .replace(/json_extract\(payload_json, '\$\.partIndex'\)/g, "CAST(payload_json::jsonb ->> 'partIndex' AS BIGINT)")
     .replace(/MAX\(COALESCE\(response_clock, 0\) \+ 1, \?\)/g, 'GREATEST(COALESCE(response_clock, 0) + 1, ?)')
-    .replace(/SET count = count \+ 1/g, 'SET count = rate_limits.count + 1');
+    // An upsert's bare `count` is ambiguous in PostgreSQL (the row or `excluded`): use the row of its own table.
+    .replace(/(INSERT INTO (\w+)[\s\S]*?SET count = )count \+ 1/g, '$1$2.count + 1');
   const tokens = normalized.match(/'(?:''|[^'])*'|"(?:""|[^"])*"|--[^\n]*|\/\*[\s\S]*?\*\/|[A-Za-z_][A-Za-z0-9_]*|\s+|./g) ?? [];
   const aliases = new Set<string>();
   let afterAs = false;
