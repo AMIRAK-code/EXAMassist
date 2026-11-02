@@ -11,6 +11,8 @@ import { guidesForHub } from '@/lib/content/guides';
 import { Callout, Alert, Breadcrumbs, ButtonLink, Card, Container } from '@/components/ui';
 import { JsonLd, articleSchema, breadcrumbSchema } from '@/components/seo/json-ld';
 import { OfficialNote } from '@/components/exams/official-note';
+import { hubContent, hubUpdatedOn } from '@/lib/exams/hub-content';
+import { HubStatus } from '@/components/exams/hub-content';
 
 type Props = { params: Promise<{ locale: string; hub: string }> };
 
@@ -73,6 +75,7 @@ export default async function FormatGuidePage({ params }: Props) {
     { label: t('breadcrumb.format') },
   ];
   const verifiedOn = configs[0]?.verifiedOn ?? '';
+  const content = hubContent(hub.slug);
 
   return (
     <Container size="narrow">
@@ -86,7 +89,8 @@ export default async function FormatGuidePage({ params }: Props) {
             headline: t('format.metaTitle', { name: hub.name }),
             description: hub.tagline,
             datePublished: verifiedOn,
-            dateModified: verifiedOn,
+            // The cycle status shown below counts as this page's content too.
+            dateModified: hubUpdatedOn(hub.slug, verifiedOn),
             publisherName: SITE.publisher,
             authorName: SITE.publisher,
           }),
@@ -117,6 +121,9 @@ export default async function FormatGuidePage({ params }: Props) {
       <Callout title={t('format.inShort')} className="mt-6" textClassName="text-sm">
         <span lang={CONTENT_LANG}>{hub.tagline}</span>
       </Callout>
+
+      {/* Where the next admissions cycle stands, before rules that may belong to the last one. */}
+      {content ? <HubStatus content={content} className="mt-6" /> : null}
 
       {configs.map((config) => (
         <section key={config.examKey} className="mt-10" aria-labelledby={`fmt-${config.examKey}`}>
