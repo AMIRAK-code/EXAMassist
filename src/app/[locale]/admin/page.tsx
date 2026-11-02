@@ -170,6 +170,9 @@ export default async function AdminOverviewPage() {
         <li>
           <Link href="/admin/funnel">Exam funnel: page views, free tests and purchases (admins)</Link>
         </li>
+        <li>
+          <Link href="/admin/users">Users: accounts, sign-ins and activity (admins)</Link>
+        </li>
       </ul>
 
       <Alert tone="info" title="Content is edited in version control">
