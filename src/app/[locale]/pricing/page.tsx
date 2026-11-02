@@ -1,3 +1,4 @@
+import { PlusOffer } from '@/components/billing/plus-offer';
 import type { Metadata } from 'next';
 import { getFormatter, getTranslations } from 'next-intl/server';
 import { Link, getPathname } from '@/i18n/navigation';
@@ -16,10 +17,8 @@ import { loadEntitlements } from '@/lib/billing/entitlements';
 import {
   DISPLAYED_PLANS,
   PRICES,
-  annualSaving,
   featureMatrix,
   formatPrice,
-  formatWholePrice,
   type DisplayedPlan,
 } from '@/lib/billing/plans';
 import { Alert, Badge, Breadcrumbs, ButtonLink, Card, Container, PageHeader, buttonClass, cx, fieldClass } from '@/components/ui';
@@ -89,7 +88,6 @@ export default async function PricingPage({
   const passDefault = exam && buyable(exam.examKey) ? exam.examKey : EXAM_CONFIGS.find((config) => buyable(config.examKey))?.examKey;
   const reasonKey = typeof query.reason === 'string' && Object.prototype.hasOwnProperty.call(REASONS, query.reason) ? REASONS[query.reason] : undefined;
   const reason = reasonKey ? t(`pricing.reasons.${reasonKey}`) : undefined;
-  const saving = annualSaving();
   // Feature labels in the page's language (featureMatrix's own labels are English).
   const matrix = featureMatrix().map((row) => ({ ...row, label: t(`features.${row.feature}`) }));
   const planColumns: Array<{ key: 'free' | DisplayedPlan; name: string; note?: string }> = [
@@ -106,19 +104,28 @@ export default async function PricingPage({
   // A plain HTML form does not go through the locale-aware Link, so it gets the prefixed path itself.
   const checkoutAction = getPathname({ href: '/checkout', locale });
   const markLabels = { included: t('pricing.matrix.included'), notIncluded: t('pricing.matrix.notIncluded') };
-  const source = exam ? `&source=${encodeURIComponent(exam.examKey)}` : '';
+  const returnTo = exam ? (reasonKey === 'study_plan' ? `/study-plan?exam=${exam.examKey}` : `/practice/${exam.examKey}`) : '/exams';
+  const source = `${exam ? `&source=${encodeURIComponent(exam.examKey)}` : ''}&next=${encodeURIComponent(returnTo)}`;
 
   return (
     <Container>
       <JsonLd data={breadcrumbSchema(siteUrl(), schemaTrail)} />
       <Breadcrumbs trail={trail} />
+      <div className="grid gap-6 border-b border-line pb-4 lg:grid-cols-[1fr_20rem] lg:items-end">
       <PageHeader
         eyebrow={t('pricing.eyebrow')}
         title={exam ? t('pricing.headingForExam', { exam: examTestName(exam) }) : t('pricing.heading')}
-        lead={t('pricing.lead')}
+        lead={t('experience.lead')}
       />
+      <div className="mb-8 rounded-control border border-accent-line bg-accent-soft p-5">
+        <p className="eyebrow">{t('experience.yourFocus')}</p>
+        <p className="mt-2 font-heading text-2xl font-semibold">{exam ? examTestName(exam) : t('pricing.plus.badge')}</p>
+        <p className="mt-2 text-sm text-ink-muted">{reason ?? t('experience.focusBody')}</p>
+        <Link href="#exams-heading" className="mt-3 inline-block text-sm font-semibold">{t('pricing.exams.heading')} ↗</Link>
+      </div>
+      </div>
 
-      <div className="mb-8 space-y-4">
+      <div className="my-8 space-y-4">
         {!entitlements.enforced ? (
           <Alert tone="info" title={t('pricing.notEnforced.title')}>
             <p>{t('pricing.notEnforced.body')}</p>
@@ -146,7 +153,7 @@ export default async function PricingPage({
         ) : null}
       </div>
 
-      <ul className="grid gap-5 md:grid-cols-2 xl:grid-cols-4" aria-label={t('pricing.eyebrow')}>
+      <ul className="grid gap-5 md:grid-cols-2 xl:grid-cols-[0.85fr_1.1fr_1.1fr_0.85fr]" aria-label={t('pricing.eyebrow')}>
         {/* Free */}
         <Card as="li" padding="lg" className="flex flex-col">
           <h2 className="font-heading text-xl font-semibold">{t('plans.free.name')}</h2>
@@ -171,9 +178,11 @@ export default async function PricingPage({
             <span className="font-heading text-4xl font-semibold tracking-tight">{price(PRICES.exam_pass.amount)}</span>
             <span className="text-ink-muted"> {t('pricing.pass.once')}</span>
           </p>
-          <p className="mt-2 text-sm font-medium">{t('pricing.pass.term')}</p>
+          <p className="mt-2 text-sm font-semibold text-accent-ink">{t('experience.passLabel')}</p>
+          <p className="mt-2 text-sm text-ink-muted">{t('pricing.pass.term')}</p>
           <FeatureList included={matrix.filter((row) => !row.free && row.plans.exam_pass).map((row) => row.label)} labels={markLabels} />
           <p className="mt-3 text-sm text-ink-muted">{t('pricing.pass.noTutor')}</p>
+          <p className="mt-2 text-xs text-ink-muted">{t('experience.formatsNote')}</p>
           <div className="mt-6 flex-1" />
           {hasAll ? (
             <p className="text-sm text-ink-muted">{t('pricing.pass.coveredByAll')}</p>
@@ -183,6 +192,8 @@ export default async function PricingPage({
             // A plain GET form: the exam picker works without JavaScript.
             <form action={checkoutAction} method="get" className="space-y-3">
               <input type="hidden" name="plan" value="exam_pass" />
+              <input type="hidden" name="next" value={returnTo} />
+              {exam ? <input type="hidden" name="source" value={exam.examKey} /> : null}
               <div>
                 <label htmlFor="pricing-exam" className="mb-1.5 block text-sm font-medium">
                   {t('pricing.pass.examLabel')}
@@ -208,45 +219,19 @@ export default async function PricingPage({
         </Card>
 
         {/* Plus */}
-        <Card as="li" padding="lg" className="flex flex-col border-2 border-accent">
+        <Card as="li" padding="lg" className="relative flex flex-col border-2 border-accent shadow-raised">
           <div className="flex items-center justify-between gap-2">
             <h2 className="font-heading text-xl font-semibold">{t('plans.plus.name')}</h2>
             <Badge tone="accent">{t('pricing.plus.badge')}</Badge>
           </div>
           <p className="mt-1 text-sm text-ink-muted">{t('plans.plus.tagline')}</p>
-          <p className="mt-4">
-            <span className="font-heading text-4xl font-semibold tracking-tight">{price(PRICES.plus_month.amount)}</span>
-            <span className="text-ink-muted"> {t('pricing.perMonth')}</span>
-          </p>
-          <p className="mt-2">
-            <span className="font-heading text-2xl font-semibold tracking-tight">{price(PRICES.plus_year.amount)}</span>
-            <span className="text-ink-muted"> {t('pricing.perYear')}</span>
-          </p>
-          <p className="mt-1 text-sm font-medium text-positive">{t('pricing.plus.yearlySaving', { percent: saving.percent })}</p>
-          <p className="text-sm text-ink-muted">
-            {t('pricing.plus.yearlyApprox', {
-              perMonth: formatWholePrice(saving.perMonthCents, locale),
-              price: price(PRICES.plus_year.amount),
-            })}
-          </p>
+          <PlusOffer canBuy={canBuy && openExams > 0} owned={hasAll} source={source}>
           <FeatureList included={matrix.filter((row) => !row.free && row.plans.plus).map((row) => row.label)} labels={markLabels} />
           <p className="mt-3 text-sm text-ink-muted">
             {t('pricing.plus.coverage', { open: openExams, total: EXAM_CONFIGS.length })}
           </p>
           <p className="mt-2 text-sm text-ink-muted">{t('pricing.plus.noTutor')}</p>
-          <div className="mt-6 flex-1" />
-          {hasAll ? (
-            <p className="text-sm font-semibold text-positive">{t('pricing.plus.owned')}</p>
-          ) : canBuy ? (
-            <div className="space-y-2">
-              <ButtonLink href={`${checkoutPath('plus_year')}${source}`} full>
-                {t('pricing.plus.ctaYearly', { price: price(PRICES.plus_year.amount) })}
-              </ButtonLink>
-              <ButtonLink href={`${checkoutPath('plus_month')}${source}`} variant="secondary" full>
-                {t('pricing.plus.ctaMonthly', { price: price(PRICES.plus_month.amount) })}
-              </ButtonLink>
-            </div>
-          ) : null}
+          </PlusOffer>
         </Card>
 
         {/* Premium: announced, not sold. The checkout refuses it on the server too. */}
@@ -282,7 +267,7 @@ export default async function PricingPage({
           {t('pricing.exams.heading')}
         </h2>
         <p className="mt-2 max-w-3xl text-ink-muted">{t('pricing.exams.lead')}</p>
-        <div className="mt-4 overflow-x-auto rounded-card border border-line bg-surface">
+        <div tabIndex={0} className="relative mt-4 overflow-x-auto rounded-card border border-line bg-surface focus-visible:outline-2 focus-visible:outline-accent">
           <table className="w-full min-w-[34rem] border-collapse text-sm">
             <caption className="sr-only">{t('pricing.exams.caption')}</caption>
             <thead>
@@ -305,7 +290,10 @@ export default async function PricingPage({
                     </th>
                     <td className="px-4 py-3">
                       {status?.sellable ? (
-                        <span className="text-positive">{t('pricing.exams.open', { count: status.openFormats.length })}</span>
+                        <div><span className="text-positive">{t('pricing.exams.open', { count: status.openFormats.length })}</span>
+                        <ul className="mt-2 flex flex-wrap gap-2" aria-label={t('pricing.exams.status')}>
+                          {[...new Set(config.blueprints.filter(b => status.openFormats.includes(b.id)).map(b => b.mode === 'simulation' ? 'simulation' : b.timing === 'untimed' ? 'practice' : 'timed_section'))].map(feature => <li key={feature}><Badge tone="neutral">{t(`features.${feature}`)}</Badge></li>)}
+                        </ul></div>
                       ) : (
                         <span className="text-ink-muted">{t('pricing.exams.closed')}</span>
                       )}
@@ -322,7 +310,7 @@ export default async function PricingPage({
         <h2 id="matrix-heading" className="font-heading text-2xl font-semibold">
           {t('pricing.matrix.heading')}
         </h2>
-        <div className="mt-4 overflow-x-auto rounded-card border border-line bg-surface">
+        <div tabIndex={0} className="relative mt-4 overflow-x-auto rounded-card border border-line bg-surface focus-visible:outline-2 focus-visible:outline-accent">
           <table className="w-full min-w-[40rem] border-collapse text-sm">
             <caption className="sr-only">{t('pricing.matrix.caption')}</caption>
             <thead>

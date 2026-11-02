@@ -40,7 +40,7 @@
     "samples": "Preguntas de ejemplo",
     "diagnostic": "El diagnóstico gratuito de cada examen",
     "official_scores": "Registro de tus puntuaciones en los simulacros oficiales",
-    "practice": "Práctica por temas y repasos con explicaciones resueltas, preguntas nuevas en cada sesión",
+    "practice": "Práctica por tema y nuevos intentos con explicaciones resueltas",
     "timed_section": "Secciones cronometradas al ritmo oficial",
     "simulation": "Simulacros completos, cuando el examen los ofrece",
     "study_plan": "Plan de estudio y seguimiento del progreso",
@@ -63,7 +63,7 @@
     "lead": "Las guías, las preguntas de ejemplo, un diagnóstico para cada examen y el registro de tus puntuaciones en los simulacros oficiales son gratuitos. Un Pase de un examen o Plus abre la práctica, las secciones cronometradas, los simulacros completos, el plan de estudio y el seguimiento del progreso, en los formatos que cada examen tiene abiertos.",
     "notEnforced": {
       "title": "Ahora mismo todo es gratis",
-      "body": "Los pagos aún no están activados en este sitio, así que todos los exámenes y todos los formatos están abiertos para todo el mundo."
+      "body": "Los pagos aún no están activados. Toda la práctica disponible sigue siendo gratuita."
     },
     "testMode": "Modo de prueba: el pago usa tarjetas de prueba de Stripe y no cobra nada.",
     "reasons": {
@@ -136,7 +136,7 @@
       "pass": "El Pase de un examen se paga una sola vez. Sus seis meses empiezan cuando se confirma tu pago y terminan en la fecha que aparece en tu cuenta. Nunca se renueva y no se vuelve a cobrar.",
       "renewal": "Plus se renueva cada mes o cada año hasta que lo canceles. El precio anual se cobra completo al inicio de cada año. Puedes cancelar en cualquier momento desde tu cuenta; Plus sigue activo hasta el final del periodo que has pagado.",
       "withdrawal": "El acceso empieza en cuanto pagas. Al pagar, te pedimos que confirmes que lo quieres de inmediato y que el derecho de desistimiento de 14 días termina cuando empieza el acceso.",
-      "cards": "Los datos de la tarjeta se introducen en campos proporcionados por Stripe, nuestro proveedor de pagos, y van directamente a Stripe. Nunca llegan a nuestros servidores.",
+      "cards": "Stripe recoge los datos de pago de forma segura. Nunca llegan a nuestros servidores.",
       "earlier": "Un plan comprado antes de estos precios conserva todo lo que incluía, a su precio, hasta que termine. No pasamos a nadie a un plan o un precio nuevo sin avisarle antes.",
       "terms": "Condiciones de venta",
       "privacy": "Aviso de privacidad"
@@ -147,8 +147,8 @@
       "title": "Pago"
     },
     "eyebrow": "Pago",
-    "title": "Elige tu plan y paga",
-    "lead": "IVA incluido. El pase se paga una sola vez; Plus se renueva hasta que canceles.",
+    "title": "Revisa tu plan",
+    "lead": "Revisa el plan y continúa a Stripe para pagar. El pase se paga una sola vez; Plus se renueva hasta que lo canceles.",
     "notices": {
       "premium": "Premium llegará pronto y todavía no se puede comprar. Estos son los planes a la venta ahora.",
       "earlier": "Ese plan ya no se vende. Estos son los planes a la venta ahora."
@@ -183,12 +183,12 @@
     },
     "processing": {
       "title": "Tu pago se está procesando",
-      "body": "Tu banco aún no ha confirmado el pago. Tu plan empezará en cuanto lo haga; actualiza esta página dentro de un minuto.",
+      "body": "Esperamos la confirmación del pago y la activación del acceso. No pagues de nuevo. Actualiza en un momento o consulta tu cuenta.",
       "refresh": "Actualizar"
     },
     "pending": {
       "title": "Esperando tu pago",
-      "body": "Todavía no hemos recibido la confirmación de este pago. Si acabas de pagar, actualiza esta página en un momento. Si dejaste el pago a medias, puedes volver a intentarlo; no se ha cobrado nada.",
+      "body": "Esperamos la confirmación del pago y la activación del acceso. No pagues de nuevo. Actualiza en un momento o consulta tu cuenta.",
       "refresh": "Actualizar",
       "retry": "Volver al pago"
     },
@@ -207,7 +207,12 @@
       "body": "Puede que pertenezca a otra cuenta. Tus planes aparecen en la página de tu cuenta.",
       "account": "Tu cuenta"
     },
-    "pricing": "Ver planes"
+    "pricing": "Ver planes",
+    "ended": {
+      "title": "Tu acceso ha terminado",
+      "body": "Este plan ya no da acceso. Consulta el estado y las fechas en tu cuenta o elige otro plan.",
+      "retry": "Ver planes disponibles"
+    }
   },
   "form": {
     "planLegend": "Plan",
@@ -237,8 +242,8 @@
     "pay": "Pagar {price} y empezar",
     "paying": "Procesando el pago…",
     "errorTitle": "El pago no se ha completado",
-    "networkError": "No hemos podido conectar con el servidor. Comprueba tu conexión e inténtalo de nuevo. No se ha cobrado nada.",
-    "genericError": "Algo ha salido mal. No se ha cobrado nada; inténtalo de nuevo.",
+    "networkError": "No pudimos confirmar el estado del checkout. Comprueba tu conexión y tu cuenta antes de volver a intentarlo.",
+    "genericError": "No pudimos confirmar el estado del checkout. Comprueba tu conexión y tu cuenta antes de volver a intentarlo.",
     "alreadySubscribed": "Gestiona tus planes",
     "summary": {
       "heading": "Resumen del pedido",
@@ -381,5 +386,22 @@
         "samples": "Las preguntas de ejemplo son gratuitas."
       }
     }
+  },
+  "experience": {
+    "billingPeriod": "Periodo de facturación",
+    "month": "Mensual",
+    "year": "Anual",
+    "passLabel": "Un pago · 6 meses · Sin renovación",
+    "lead": "Empieza con los recursos gratuitos. Elige práctica para un examen o mantén tus opciones abiertas con Plus.",
+    "yourFocus": "Tu objetivo de estudio",
+    "focusBody": "Elige el acceso que se adapte a tu preparación. Los recursos gratuitos siguen siendo gratuitos.",
+    "renewal": "Se renueva hasta que canceles. Gestiona tu plan desde tu cuenta.",
+    "secureTitle": "Pago seguro con Stripe",
+    "secureBody": "Revisa tu pedido y después introduce tus datos de pago en Stripe. Los métodos disponibles se muestran al pagar.",
+    "continue": "Continuar al pago · {price}",
+    "cancelled": "Se ha cerrado el checkout. Tu selección aparece abajo. Si ya enviaste un pago, consulta tu cuenta antes de intentarlo otra vez.",
+    "waiting": "Esperamos la confirmación del pago y la activación del acceso. No pagues de nuevo. Actualiza en un momento o consulta tu cuenta.",
+    "resume": "Sigue estudiando",
+    "formatsNote": "Los formatos varían según el examen. Solo están disponibles los indicados como abiertos abajo."
   }
 }

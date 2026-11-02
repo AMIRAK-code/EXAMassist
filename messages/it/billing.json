@@ -40,7 +40,7 @@
     "samples": "Domande di esempio",
     "diagnostic": "Il test diagnostico gratuito per ogni esame",
     "official_scores": "Registro dei tuoi punteggi nelle simulazioni ufficiali",
-    "practice": "Esercitazioni per argomento e ripassi con spiegazioni svolte, domande nuove a ogni sessione",
+    "practice": "Esercizi per argomento e nuovi tentativi con spiegazioni svolte",
     "timed_section": "Sezioni a tempo al ritmo ufficiale",
     "simulation": "Simulazioni complete, quando l’esame le prevede",
     "study_plan": "Piano di studio e monitoraggio dei progressi",
@@ -63,7 +63,7 @@
     "lead": "Guide, domande di esempio, un test diagnostico per ogni esame e il registro dei tuoi punteggi nelle simulazioni ufficiali sono gratuiti. Un Pass singolo esame o Plus sblocca esercitazioni, sezioni a tempo, simulazioni complete, piano di studio e monitoraggio dei progressi, per i formati che ogni esame ha già aperti.",
     "notEnforced": {
       "title": "Al momento è tutto gratuito",
-      "body": "I pagamenti non sono ancora attivi su questo sito, quindi ogni esame e ogni formato sono aperti a tutti."
+      "body": "I pagamenti non sono ancora attivi. Tutte le esercitazioni attualmente disponibili restano gratuite."
     },
     "testMode": "Modalità di prova: il pagamento usa le carte di test di Stripe e non addebita nulla.",
     "reasons": {
@@ -136,7 +136,7 @@
       "pass": "Il Pass singolo esame si paga una volta sola. I suoi sei mesi iniziano quando il pagamento è confermato e terminano alla data indicata nel tuo account. Non si rinnova mai e non viene più addebitato.",
       "renewal": "Plus si rinnova ogni mese o ogni anno finché non lo disdici. Il prezzo annuale viene addebitato per intero all’inizio di ogni anno. Puoi disdire in qualsiasi momento dal tuo account; Plus resta attivo fino alla fine del periodo già pagato.",
       "withdrawal": "L’accesso inizia non appena paghi. Al momento del pagamento ti chiediamo di confermare che vuoi iniziare subito e che il diritto di recesso di 14 giorni termina quando l’accesso inizia.",
-      "cards": "I dati della carta vengono inseriti in campi forniti da Stripe, il nostro fornitore di servizi di pagamento, e arrivano direttamente a Stripe. Non raggiungono mai i nostri server.",
+      "cards": "Stripe raccoglie i dati di pagamento in modo sicuro. Non raggiungono mai i nostri server.",
       "earlier": "Un piano acquistato prima di questi prezzi mantiene tutto ciò che includeva, al suo prezzo, fino alla sua scadenza. Non spostiamo nessuno su un nuovo piano o un nuovo prezzo senza avvisarlo prima.",
       "terms": "Condizioni di vendita",
       "privacy": "Informativa sulla privacy"
@@ -147,8 +147,8 @@
       "title": "Pagamento"
     },
     "eyebrow": "Pagamento",
-    "title": "Scegli il tuo piano e paga",
-    "lead": "IVA inclusa. Il pass si paga una volta sola; Plus si rinnova finché non lo disdici.",
+    "title": "Controlla il tuo piano",
+    "lead": "Controlla il piano, poi prosegui su Stripe per pagare. Il pass si paga una sola volta; Plus si rinnova finché non lo annulli.",
     "notices": {
       "premium": "Premium arriverà a breve e non si può ancora acquistare. Questi sono i piani in vendita ora.",
       "earlier": "Quel piano non è più in vendita. Questi sono i piani in vendita ora."
@@ -183,12 +183,12 @@
     },
     "processing": {
       "title": "Il pagamento è in elaborazione",
-      "body": "La tua banca non ha ancora confermato il pagamento. Il piano inizia non appena arriva la conferma; aggiorna questa pagina tra un minuto.",
+      "body": "Attendiamo la conferma del pagamento e l’attivazione dell’accesso. Non pagare di nuovo. Aggiorna tra poco o controlla il tuo account.",
       "refresh": "Aggiorna"
     },
     "pending": {
       "title": "In attesa del pagamento",
-      "body": "Non abbiamo ancora ricevuto la conferma di questo pagamento. Se hai appena pagato, aggiorna questa pagina tra un momento. Se non hai completato il pagamento, puoi riprovare; non è stato addebitato nulla.",
+      "body": "Attendiamo la conferma del pagamento e l’attivazione dell’accesso. Non pagare di nuovo. Aggiorna tra poco o controlla il tuo account.",
       "refresh": "Aggiorna",
       "retry": "Torna al pagamento"
     },
@@ -207,7 +207,12 @@
       "body": "Potrebbe appartenere a un altro account. I tuoi piani sono elencati nella pagina del tuo account.",
       "account": "Il tuo account"
     },
-    "pricing": "Vedi i piani"
+    "pricing": "Vedi i piani",
+    "ended": {
+      "title": "Il tuo accesso è terminato",
+      "body": "Questo piano non dà più accesso. Controlla stato e date nel tuo account oppure scegli un nuovo piano.",
+      "retry": "Vedi i piani disponibili"
+    }
   },
   "form": {
     "planLegend": "Piano",
@@ -237,8 +242,8 @@
     "pay": "Paga {price} e inizia",
     "paying": "Pagamento in corso…",
     "errorTitle": "Il pagamento non è andato a buon fine",
-    "networkError": "Non siamo riusciti a raggiungere il server. Controlla la connessione e riprova. Non è stato addebitato nulla.",
-    "genericError": "Qualcosa è andato storto. Non è stato addebitato nulla; riprova.",
+    "networkError": "Non possiamo confermare lo stato del checkout. Controlla la connessione e il tuo account prima di riprovare.",
+    "genericError": "Non possiamo confermare lo stato del checkout. Controlla la connessione e il tuo account prima di riprovare.",
     "alreadySubscribed": "Gestisci i tuoi piani",
     "summary": {
       "heading": "Riepilogo dell’ordine",
@@ -381,5 +386,22 @@
         "samples": "Le domande di esempio sono gratuite."
       }
     }
+  },
+  "experience": {
+    "billingPeriod": "Periodo di fatturazione",
+    "month": "Mensile",
+    "year": "Annuale",
+    "passLabel": "Un pagamento · 6 mesi · Nessun rinnovo",
+    "lead": "Inizia con le risorse gratuite. Scegli la pratica per un esame o tieni aperte più possibilità con Plus.",
+    "yourFocus": "Il tuo obiettivo",
+    "focusBody": "Scegli l’accesso adatto alla tua preparazione. Le risorse gratuite restano gratuite.",
+    "renewal": "Si rinnova fino alla cancellazione. Gestisci il piano dal tuo account.",
+    "secureTitle": "Pagamento sicuro con Stripe",
+    "secureBody": "Controlla il riepilogo, poi inserisci i dati di pagamento su Stripe. I metodi disponibili sono mostrati al checkout.",
+    "continue": "Continua al pagamento · {price}",
+    "cancelled": "Il checkout è stato chiuso. La tua selezione è riportata sotto. Se hai già inviato un pagamento, controlla il tuo account prima di riprovare.",
+    "waiting": "Attendiamo la conferma del pagamento e l’attivazione dell’accesso. Non pagare di nuovo. Aggiorna tra poco o controlla il tuo account.",
+    "resume": "Continua a studiare",
+    "formatsNote": "I formati variano per esame. Sono disponibili solo quelli indicati come aperti qui sotto."
   }
 }
