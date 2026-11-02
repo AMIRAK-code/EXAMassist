@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next';
 import { EXAM_HUBS, getConfigsForHub } from '@/lib/exams/registry';
 import { BOCCONI_FACTS_CHECKED_ON } from '@/lib/exams/bocconi-facts';
 import { BOCCONI_HUB_SLUG } from '@/lib/exams/bocconi-landing';
+import { hubUpdatedOn } from '@/lib/exams/hub-content';
 import { absoluteUrl, indexingEnabled } from '@/lib/site';
 import { listGuides } from '@/lib/content/guides';
 import { PAGE_DATES } from '@/lib/content/page-dates';
@@ -30,8 +31,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   if (!indexingEnabled()) return [];
 
   const hubs = EXAM_HUBS.map((hub) => {
-    // The date the exam facts were last verified: a real date, never "now".
-    const verified = latest(getConfigsForHub(hub.slug).map((config) => config.verifiedOn));
+    // The date the exam facts were last verified, or the hub's own content
+    // last changed (src/lib/exams/hub-content.ts): real dates, never "now".
+    const verified = hubUpdatedOn(hub.slug, latest(getConfigsForHub(hub.slug).map((config) => config.verifiedOn)));
     const hubDate = hub.slug === BOCCONI_HUB_SLUG ? latest([BOCCONI_FACTS_CHECKED_ON, verified]) : verified;
     return { hub, verified, hubDate };
   });
