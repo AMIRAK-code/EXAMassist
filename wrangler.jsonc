@@ -42,7 +42,13 @@
     "NEXT_PUBLIC_SITE_URL": "https://uniexamer.com",
     // Production is the one deployment search engines may index (canonical
     // https://uniexamer.com). Previews and the Vercel backup keep "false".
-    "SEARCH_INDEXING_ENABLED": "true"
+    "SEARCH_INDEXING_ENABLED": "true",
+    // The paywall (docs/BILLING.md). Needs the Worker secrets STRIPE_SECRET_KEY,
+    // NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY and STRIPE_WEBHOOK_SECRET (live keys,
+    // stored by `npx tsx scripts/stripe-setup.ts --connect`); without them the
+    // server refuses to start rather than give paid access away. Prices are
+    // charged as listed with VAT inside them; STRIPE_AUTOMATIC_TAX stays unset.
+    "BILLING_ENFORCED": "true"
     // Unset: questions that passed the automatic checks and the blind AI solve
     // are served. Set HUMAN_APPROVAL_REQUIRED to "true" to serve only questions a
     // named human reviewer has approved (src/lib/content/human-review.ts), and
