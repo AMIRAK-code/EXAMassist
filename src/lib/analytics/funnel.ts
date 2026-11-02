@@ -25,9 +25,19 @@ import { getExamConfig, getHubForConfig } from '@/lib/exams/registry';
  * guide to an exam page or into practice. Their subject is the guide's slug.
  * practice_click counts a click from an exam page into practice (practice,
  * onboarding or the free test), under the hub's slug and the coarse source of
- * the visit that brought the reader to the exam page.
+ * the visit that brought the reader to the exam page. sign_in counts an
+ * account holder signing in (password, email code or password reset), with
+ * subject 'none': sessions are deleted at sign-out, so they keep no history.
  */
-export type FunnelEvent = 'landing_view' | 'pricing_view' | 'checkout_start' | 'purchase' | 'guide_view' | 'guide_click' | 'practice_click';
+export type FunnelEvent =
+  | 'landing_view'
+  | 'pricing_view'
+  | 'checkout_start'
+  | 'purchase'
+  | 'guide_view'
+  | 'guide_click'
+  | 'practice_click'
+  | 'sign_in';
 
 /** The events a page may report from the browser (src/app/api/views/route.ts). */
 export type ReportedEvent = 'landing_view' | 'guide_view' | 'guide_click' | 'practice_click';

@@ -2,6 +2,7 @@ import { createHash, randomBytes, randomUUID } from 'node:crypto';
 import { cookies } from 'next/headers';
 import { getDb, type Db } from '@/lib/db';
 import type { SessionRow, UserRow } from '@/lib/db/rows';
+import { countEvent } from '@/lib/analytics/funnel';
 
 /**
  * Database-backed sessions.
@@ -74,6 +75,16 @@ export async function createSession(db: Db, userId: string, isGuest = false, now
   ).run(hashToken(token), userId, now.toISOString(), expiresAt.toISOString(), now.toISOString()));
 
   return { token, expiresAt };
+}
+
+/**
+ * A returning account holder's session: password, email code or password
+ * reset. Adds 1 to the day's sign-in total, which keeps no trace of who.
+ */
+export async function createSignInSession(db: Db, userId: string, now = new Date()): Promise<IssuedSession> {
+  const session = await createSession(db, userId, false, now);
+  await countEvent(db, 'sign_in', 'none', 'n/a', now);
+  return session;
 }
 
 export async function resolveSession(db: Db, token: string | undefined, now = new Date()): Promise<AuthUser | null> {

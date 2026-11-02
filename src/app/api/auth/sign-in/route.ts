@@ -5,7 +5,7 @@ import type { UserRow } from '@/lib/db/rows';
 import { assertSameOrigin, fail, ok, readJson, toErrorResponse } from '@/lib/api/http';
 import { verifyPassword } from '@/lib/auth/password';
 import { callerKey, checkRateLimit } from '@/lib/auth/rate-limit';
-import { SESSION_COOKIE, createSession, sessionCookieOptions } from '@/lib/auth/session';
+import { SESSION_COOKIE, createSignInSession, sessionCookieOptions } from '@/lib/auth/session';
 
 const bodySchema = z.object({
   email: z.string().trim().toLowerCase().email().max(254),
@@ -47,7 +47,7 @@ export async function POST(request: Request) {
     }
 
     const now = new Date();
-    const session = (await createSession(db, user.id, false, now));
+    const session = (await createSignInSession(db, user.id, now));
     const store = await cookies();
     store.set(SESSION_COOKIE, session.token, sessionCookieOptions(session.expiresAt));
 

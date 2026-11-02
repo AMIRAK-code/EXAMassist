@@ -5,7 +5,7 @@ import { assertSameOrigin, fail, ok, readJson, toErrorResponse } from '@/lib/api
 import { CODE_FAILURE_MESSAGES, normaliseCode, resetPasswordWithCode } from '@/lib/auth/email-codes';
 import { MAX_PASSWORD_LENGTH } from '@/lib/auth/password';
 import { callerKey, checkRateLimit } from '@/lib/auth/rate-limit';
-import { SESSION_COOKIE, createSession, sessionCookieOptions } from '@/lib/auth/session';
+import { SESSION_COOKIE, createSignInSession, sessionCookieOptions } from '@/lib/auth/session';
 
 /**
  * Sets a new password with a code from /api/auth/code. Every existing session
@@ -40,7 +40,7 @@ export async function POST(request: Request) {
       return fail(`code-${result.failure}`, CODE_FAILURE_MESSAGES[result.failure], 400);
     }
 
-    const session = (await createSession(db, result.user.id, false));
+    const session = (await createSignInSession(db, result.user.id));
     const store = await cookies();
     store.set(SESSION_COOKIE, session.token, sessionCookieOptions(session.expiresAt));
 
