@@ -4,32 +4,148 @@
     {
       "name": "examer",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "start"],
+      "runtimeArgs": [
+        "run",
+        "start"
+      ],
       "port": 3000
     },
     {
       "name": "examer-dev",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
       "port": 3000
     },
     {
       "name": "examer-inspect-dev",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["--prefix", "C:\\Users\\Inrebus\\AppData\\Local\\Temp\\claude\\C--Users-Inrebus-Desktop-EXAMassist\\64c1433c-3596-472e-8b71-fef70c31143c\\scratchpad\\inspect", "run", "dev", "--", "-p", "3100"],
+      "runtimeArgs": [
+        "--prefix",
+        "C:\\Users\\Inrebus\\AppData\\Local\\Temp\\claude\\C--Users-Inrebus-Desktop-EXAMassist\\64c1433c-3596-472e-8b71-fef70c31143c\\scratchpad\\inspect",
+        "run",
+        "dev",
+        "--",
+        "-p",
+        "3100"
+      ],
       "port": 3100
     },
     {
       "name": "examer-baseline",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["--prefix", "C:\\Users\\Inrebus\\AppData\\Local\\Temp\\claude\\C--Users-Inrebus-Desktop-EXAMassist\\64c1433c-3596-472e-8b71-fef70c31143c\\scratchpad\\baseline", "run", "start", "--", "-p", "3300"],
+      "runtimeArgs": [
+        "--prefix",
+        "C:\\Users\\Inrebus\\AppData\\Local\\Temp\\claude\\C--Users-Inrebus-Desktop-EXAMassist\\64c1433c-3596-472e-8b71-fef70c31143c\\scratchpad\\baseline",
+        "run",
+        "start",
+        "--",
+        "-p",
+        "3300"
+      ],
       "port": 3300
     },
     {
       "name": "examer-inspect-prod",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["--prefix", "C:\\Users\\Inrebus\\AppData\\Local\\Temp\\claude\\C--Users-Inrebus-Desktop-EXAMassist\\64c1433c-3596-472e-8b71-fef70c31143c\\scratchpad\\inspect", "run", "start", "--", "-p", "3100"],
+      "runtimeArgs": [
+        "--prefix",
+        "C:\\Users\\Inrebus\\AppData\\Local\\Temp\\claude\\C--Users-Inrebus-Desktop-EXAMassist\\64c1433c-3596-472e-8b71-fef70c31143c\\scratchpad\\inspect",
+        "run",
+        "start",
+        "--",
+        "-p",
+        "3100"
+      ],
       "port": 3100
+    },
+    {
+      "name": "examer-bocconi-verify",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "C:\\Users\\Inrebus\\AppData\\Local\\Temp\\claude\\C--Users-Inrebus-Desktop-EXAMassist\\7ecbf4e8-68a3-41d2-987c-b151e583e44a\\scratchpad\\verify\\serve.mjs"
+      ],
+      "port": 3200
+    },
+    {
+      "name": "static-verify-next",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "C:\\Users\\Inrebus\\AppData\\Local\\Temp\\claude\\C--Users-Inrebus-Desktop-EXAMassist\\a6d2014b-ed64-4422-9515-7c9984e0da3d\\scratchpad\\merge-verify",
+        "run",
+        "start",
+        "--",
+        "-p",
+        "3300"
+      ],
+      "port": 3300
+    },
+    {
+      "name": "merge-verify-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "C:\\Users\\Inrebus\\AppData\\Local\\Temp\\claude\\C--Users-Inrebus-Desktop-EXAMassist\\a6d2014b-ed64-4422-9515-7c9984e0da3d\\scratchpad\\merge-verify",
+        "run",
+        "dev",
+        "--",
+        "--webpack",
+        "-p",
+        "3302"
+      ],
+      "port": 3302
+    },
+    {
+      "name": "static-verify-assets",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "C:\\Users\\Inrebus\\AppData\\Local\\Temp\\claude\\C--Users-Inrebus-Desktop-EXAMassist\\a6d2014b-ed64-4422-9515-7c9984e0da3d\\scratchpad\\assets-first.mjs",
+        "C:\\Users\\Inrebus\\AppData\\Local\\Temp\\claude\\C--Users-Inrebus-Desktop-EXAMassist\\a6d2014b-ed64-4422-9515-7c9984e0da3d\\scratchpad\\merge-verify\\tmp\\assets",
+        "3300",
+        "3301"
+      ],
+      "port": 3301
+    },
+    {
+      "name": "cf-worker-preview",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "C:\\Users\\Inrebus\\AppData\\Local\\Temp\\claude\\C--Users-Inrebus-Desktop-EXAMassist\\a6d2014b-ed64-4422-9515-7c9984e0da3d\\scratchpad\\cf-preview.mjs"
+      ],
+      "port": 8787
+    },
+    {
+      "name": "verify-human-review",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "C:\\Users\\Inrebus\\AppData\\Local\\Temp\\claude\\C--Users-Inrebus-Desktop-EXAMassist\\029c4a64-b444-4da6-91b0-5a18fb5cbf39\\scratchpad\\verify",
+        "run",
+        "dev",
+        "--",
+        "--webpack",
+        "-p",
+        "3400"
+      ],
+      "port": 3400
+    },
+    {
+      "name": "seo-release-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "C:\\Users\\Inrebus\\Desktop\\EXAMassist\\.claude\\worktrees\\seo-release",
+        "run",
+        "dev",
+        "--",
+        "--webpack",
+        "-p",
+        "3500"
+      ],
+      "port": 3500
     }
   ]
 }
