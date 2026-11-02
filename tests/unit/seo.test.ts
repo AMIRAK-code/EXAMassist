@@ -7,6 +7,7 @@ import sitemap from '@/app/sitemap';
 import { organizationSchema, webSiteSchema } from '@/components/seo/json-ld';
 import { listGuides } from '@/lib/content/guides';
 import { EXAM_HUBS } from '@/lib/exams/registry';
+import { listHubContent } from '@/lib/exams/hub-content';
 import { SITE as SITE_CONFIG, googleSiteVerification } from '@/lib/site';
 import { LOCALES, localizePath, splitLocale } from '@/i18n/locales';
 import { isEnglishOnlyPath, pageAlternates } from '@/i18n/alternates';
@@ -87,6 +88,20 @@ describe('robots.txt in production', () => {
     }
   });
 
+  it('keeps crawlers out of the private areas in every language, not only at the English paths', () => {
+    production();
+    const star = groupFor(robots().rules as Rule[], '*')!;
+    const blocked = (path: string) => list(star.disallow).some((prefix) => path.startsWith(prefix));
+    for (const locale of LOCALES) {
+      for (const path of ['/practice/tolc-e', '/start/tolc-e', '/free-test/tolc-e', '/checkout', '/sign-in', '/sign-up', '/account', '/attempt/1', '/dashboard']) {
+        expect(blocked(localizePath(path, locale)), localizePath(path, locale)).toBe(true);
+      }
+      for (const path of ['/', '/exams', '/exams/cisia-tolc', '/pricing', '/guides', '/about/support']) {
+        expect(blocked(localizePath(path, locale)), localizePath(path, locale)).toBe(false);
+      }
+    }
+  });
+
   it('closes everything on a deployment that may not be indexed', () => {
     process.env.SEARCH_INDEXING_ENABLED = 'false';
     expect(robots().rules).toEqual([{ userAgent: '*', disallow: '/' }]);
@@ -129,6 +144,15 @@ describe('the sitemap in production', () => {
       expect((entry.lastModified as Date).getTime(), entry.url).toBeLessThanOrEqual(today.getTime());
       expect(entry.changeFrequency, entry.url).toBeTruthy();
       expect(entry.priority, entry.url).toBeGreaterThan(0);
+    }
+  });
+
+  it('dates an exam hub and its format guide by the hub’s own content when it changed after the facts were verified', () => {
+    production();
+    const dated = (path: string) => (sitemap().find((entry) => entry.url === `${SITE}${path}`)!.lastModified as Date).toISOString().slice(0, 10);
+    for (const [slug, content] of listHubContent()) {
+      expect(dated(`/exams/${slug}`), slug).toBe(content.updatedOn);
+      expect(dated(`/exams/${slug}/format`), slug).toBe(content.updatedOn);
     }
   });
 

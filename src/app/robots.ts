@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { absoluteUrl, indexingEnabled } from '@/lib/site';
+import { DEFAULT_LOCALE, LOCALES, localizePath } from '@/i18n/locales';
 
 /**
  * robots.txt.
@@ -45,8 +46,7 @@ export default function robots(): MetadataRoute.Robots {
     };
   }
 
-  const privateAreas = [
-    '/api/',
+  const areas = [
     '/attempt/',
     '/dashboard',
     '/account',
@@ -59,6 +59,13 @@ export default function robots(): MetadataRoute.Robots {
     '/checkout',
     '/start/',
     '/free-test/',
+  ];
+  // Every language has its own prefix (/it/practice/...), and a rule matches
+  // from the start of the path, so each area is listed once per language.
+  const privateAreas = [
+    '/api/',
+    ...areas,
+    ...LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).flatMap((locale) => areas.map((area) => localizePath(area, locale))),
   ];
 
   return {
