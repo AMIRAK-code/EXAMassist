@@ -39,6 +39,30 @@ export function GuideClickBeacon({ subject, children }: { subject: string; child
   );
 }
 
+/** The ways into practice only, in any language. */
+const INTO_PRACTICE_PATH = /^(?:\/(?:it|tr|es|pl))?\/(?:practice|free-test|start)(?:\/|$)/;
+
+/**
+ * Counts clicks from an exam page into practice, for the daily totals in
+ * /admin/funnel. Wraps the page. Sends the exam page's own referrer, which the
+ * server reduces to a coarse source, so clicks by visitors who came from a
+ * search engine can be told apart; never who clicked.
+ */
+export function PracticeClickBeacon({ subject, children }: { subject: string; children: ReactNode }) {
+  return (
+    <div
+      onClickCapture={(event) => {
+        const link = (event.target as Element).closest?.('a[href]') as HTMLAnchorElement | null;
+        if (link && link.origin === window.location.origin && INTO_PRACTICE_PATH.test(link.pathname)) {
+          report({ subject, kind: 'practice_click', referrer: document.referrer });
+        }
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
 function report(body: { subject: string; kind: string; referrer: string }) {
   void fetch('/api/views', {
     method: 'POST',

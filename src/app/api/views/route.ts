@@ -9,8 +9,9 @@ import type { ReportedEvent } from '@/lib/analytics/funnel';
  * A static page reporting its own view (src/components/exams/view-beacon.tsx),
  * because the page is a static file the server does not render: an exam page
  * (kind "exam", the default), a guide ("guide"), or a click from a guide to
- * an exam page or practice ("guide_click"). Only the daily total by coarse
- * source is kept, as for every other view.
+ * an exam page or practice ("guide_click"), or a click from an exam page into
+ * practice ("practice_click", with the referrer of the exam-page visit). Only
+ * the daily total by coarse source is kept, as for every other view.
  */
 export async function POST(request: Request) {
   try {
@@ -22,7 +23,8 @@ export async function POST(request: Request) {
       kind === 'exam' && getHub(subject) ? 'landing_view'
         : kind === 'guide' && getGuide(subject) ? 'guide_view'
           : kind === 'guide_click' && getGuide(subject) ? 'guide_click'
-            : null;
+            : kind === 'practice_click' && getHub(subject) ? 'practice_click'
+              : null;
     if (event) {
       await countReportedView(getDb(), subject, {
         referrer: typeof body?.referrer === 'string' && body.referrer ? body.referrer.slice(0, 2048) : null,

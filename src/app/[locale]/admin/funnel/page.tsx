@@ -36,6 +36,8 @@ export default async function FunnelPage({ searchParams }: { searchParams: Promi
   const rate = (n: number, d: number) => (d > 0 ? `${Math.round((n / d) * 1000) / 10}%` : '—');
   const steps = [
     { label: 'Exam page views (people, not crawlers)', value: report.landingTotal, of: null },
+    { label: 'Clicks from the exam page into practice', value: Object.values(report.practiceClicks).reduce((a, b) => a + b, 0), of: report.landingTotal },
+    { label: 'Clicks into practice by visitors from a search engine (of their views)', value: report.practiceClicks.search, of: report.landingViews.search },
     { label: 'Plans page views from this exam', value: report.pricingViews, of: report.landingTotal },
     { label: 'Free tests started', value: report.freeTestStarts, of: report.landingTotal },
     { label: 'Free tests finished', value: report.freeTestCompletions, of: report.freeTestStarts },
