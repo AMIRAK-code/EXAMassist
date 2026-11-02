@@ -50,4 +50,11 @@ describe('PostgreSQL SQL compatibility', () => {
     expect(postgresSql("SELECT MAX(COALESCE(response_clock, 0) + 1, ?) FROM attempt_items WHERE json_extract(payload_json, '$.partIndex') = ?"))
       .toBe("SELECT GREATEST(COALESCE(response_clock, 0) + 1, $1) FROM attempt_items WHERE CAST(payload_json::jsonb ->> 'partIndex' AS BIGINT) = $2");
   });
+  it('qualifies the running count of an upsert with its own table, and leaves a plain update alone', () => {
+    expect(postgresSql('INSERT INTO funnel_counts (day, count) VALUES (?, 1) ON CONFLICT(day) DO UPDATE SET count = count + 1'))
+      .toBe('INSERT INTO funnel_counts (day, count) VALUES ($1, 1) ON CONFLICT(day) DO UPDATE SET count = funnel_counts.count + 1');
+    expect(postgresSql('INSERT INTO rate_limits (bucket, count) VALUES (?, 1)\n ON CONFLICT(bucket) DO UPDATE SET count = count + 1'))
+      .toBe('INSERT INTO rate_limits (bucket, count) VALUES ($1, 1)\n ON CONFLICT(bucket) DO UPDATE SET count = rate_limits.count + 1');
+    expect(postgresSql('UPDATE plans SET count = count + 1 WHERE id = ?')).toBe('UPDATE plans SET count = count + 1 WHERE id = $1');
+  });
 });
