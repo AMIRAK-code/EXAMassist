@@ -19,6 +19,29 @@ Organic search versus other channels: `landing_view`, `guide_view` and `practice
 
 Practice starts from guides: `guide_click` counts the click, not the session that may follow. Report it as "clicks into practice", not "practice starts".
 
+## The 28-day report (added 2 November 2026)
+
+One report every 28 days, always the same windows and the same filters, so each number can be compared with the last. Day 0 is the day this branch is deployed; the first report covers days 1–28 against the 28 days before day 1. Search Console data lags 2–3 days, so run each report on day 31, 59, 87… for the window ending three days earlier. Keep each report as a dated file next to this one (`docs/seo/report-28d-YYYY-MM-DD.md`) and never edit an old one.
+
+**A. Search Console (owner, signed in to Google).** Property `sc-domain:uniexamer.com` (or the URL-prefix property in use). Performance → Search results, date range "Compare → custom": the 28 days ending on the report date vs the 28 days before.
+
+1. **Branded**: Query filter → Custom (regex) → `uni ?examer|examer`. Record clicks, impressions, CTR, average position.
+2. **Non-branded**: Query filter → Custom (regex) → *Doesn't match regex* → `uni ?examer|examer`. Record the same four. Never add (1) and (2) to compare with the total: Google omits anonymised queries from query-filtered views, so (1) + (2) is less than the total; record the total separately.
+3. **Priority pages**, each with Page filter "URL is exactly": `/exams/cisia-tolc`, `/it/exams/cisia-tolc`, `/exams/politecnico-di-torino-til`, `/exams/bocconi-online-test`, `/guides/bocconi-test-preparation-plan`, `/guides/bocconi-admission-test-sample-questions`, `/`. For each: clicks, impressions, CTR, position, and the top five queries marked branded/non-branded and by intent (EXAM-INTENT-MAP.md §2a).
+4. **Italian vs English**: Page filter "URL contains" `/it/`, then "Doesn't contain" `/it/` (and the other prefixes).
+5. **URL Inspection** for the same seven URLs: indexed or not, Google-selected canonical vs user-declared, last crawl date. Expected after this release: `/it/exams/cisia-tolc` is its own canonical; `/tr/`, `/es/`, `/pl/` versions of the TOLC hub are "Alternate page with proper canonical tag".
+6. **Sitemaps**: status, last read, discovered URLs (74 on this release: one more than before, the Italian TOLC hub).
+
+**B. First-party counts (no tracking added).** On a machine that can reach the production database, with its read-only settings: `npx tsx scripts/seo-report.ts --to=YYYY-MM-DD` (same end date as A). It prints, per exam page and guide, views and clicks into practice by coarse source, search share and click rate, against the previous 28 days, and, separately, practice sessions started and completed per exam. Paste it into the report file. `/admin/funnel` shows the same counts for one exam at a time.
+
+**C. How to read them together.**
+
+- Report clicks from search (A) and clicks into practice from search visits (B) as two different steps. Report completed practice sessions (B, second table) as a site-wide total: nothing links a session to the visit it came from, by design, so never present "organic visitors who completed a session".
+- A first-party "search" view is any search engine and both branded and non-branded queries; only Search Console can split by query.
+- The first-party counts do not separate `/exams/cisia-tolc` from `/it/exams/cisia-tolc` (the subject is the hub); use A.4 for the language split.
+- Bocconi's Winter session (25 November 2026 – 26 January 2027), PoliTo's coming 2027/28 calls and CISIA's 2027 calendar (by 31 December) move demand on their own. Note them beside any change.
+- If access to Search Console is missing at a checkpoint, write "not read" in the report. Never estimate a number.
+
 ## 30 / 60 / 90 days from the release
 
 Search data lags 2–3 days, the sample is small, and admissions demand is seasonal (Bocconi's Winter session runs 25 November 2026 to 26 January 2027; TOLC sessions run through the year). Compare like periods and do not attribute a change to SEO work without a matching change in the pages concerned.

@@ -29,6 +29,6 @@ export const PAGE_DATES = {
 } as const satisfies Record<string, PageDates>;
 
 /** "22 September 2026", the same in every time zone. */
-export function longDate(iso: string): string {
-  return new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+export function longDate(iso: string, lang: string = 'en-GB'): string {
+  return new Date(`${iso}T00:00:00Z`).toLocaleDateString(lang === 'en' ? 'en-GB' : lang, { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 }

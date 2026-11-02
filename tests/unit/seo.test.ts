@@ -43,9 +43,11 @@ const TRANSLATED = [
   '/', '/exams', '/guides', '/pricing', '/exams/bocconi-online-test',
   '/about/editorial-standards', '/about/how-scoring-works', '/about/privacy', '/about/support', '/about/terms',
 ];
+/** Pages translated into some languages only: one address per language their body exists in. */
+const PARTLY_TRANSLATED: Record<string, string[]> = { '/exams/cisia-tolc': ['en', 'it'] };
 /** Pages whose body exists only in English, whatever the interface language: one address. */
 const ENGLISH_ONLY = [
-  ...EXAM_HUBS.filter((hub) => hub.slug !== 'bocconi-online-test').map((hub) => `/exams/${hub.slug}`),
+  ...EXAM_HUBS.filter((hub) => hub.slug !== 'bocconi-online-test').map((hub) => `/exams/${hub.slug}`).filter((path) => !PARTLY_TRANSLATED[path]),
   ...EXAM_HUBS.map((hub) => `/exams/${hub.slug}/format`),
   ...listGuides().map((guide) => `/guides/${guide.slug}`),
 ];
@@ -113,7 +115,11 @@ describe('the sitemap in production', () => {
     production();
     const urls = sitemap().map((entry) => entry.url);
     expect(new Set(urls).size).toBe(urls.length);
-    const expected = [...TRANSLATED.flatMap((path) => LOCALES.map((locale) => localizePath(path, locale))), ...ENGLISH_ONLY];
+    const expected = [
+      ...TRANSLATED.flatMap((path) => LOCALES.map((locale) => localizePath(path, locale))),
+      ...ENGLISH_ONLY,
+      ...Object.entries(PARTLY_TRANSLATED).flatMap(([path, locales]) => locales.map((locale) => localizePath(path, locale as (typeof LOCALES)[number]))),
+    ];
     expect(urls.sort()).toEqual(expected.map((path) => `${SITE}${path}`).sort());
   });
 
@@ -121,7 +127,8 @@ describe('the sitemap in production', () => {
     production();
     for (const entry of sitemap()) {
       const languages = entry.alternates?.languages as Record<string, string>;
-      const locales = ENGLISH_ONLY.includes(new URL(entry.url).pathname) ? ['en'] : [...LOCALES];
+      const { path } = splitLocale(new URL(entry.url).pathname);
+      const locales = ENGLISH_ONLY.includes(path) ? ['en'] : PARTLY_TRANSLATED[path] ?? [...LOCALES];
       expect(Object.keys(languages).sort(), entry.url).toEqual([...locales, 'x-default'].sort());
       expect(Object.values(languages), entry.url).toContain(entry.url);
       expect(languages['x-default'], entry.url).toBe(languages.en);
@@ -191,6 +198,20 @@ describe('canonical and hreflang on the pages', () => {
       for (const locale of LOCALES) expect((await pageAlternates(Promise.resolve({ locale }), path)).canonical).toBe(`${SITE}${path}`);
     }
     for (const path of TRANSLATED) expect(isEnglishOnlyPath(path), path).toBe(false);
+  });
+
+  it('gives a hub translated into some languages a canonical of its own in those, and English everywhere else', async () => {
+    production();
+    const path = '/exams/cisia-tolc';
+    expect(isEnglishOnlyPath(path)).toBe(false);
+    const languages = { en: `${SITE}${path}`, it: `${SITE}/it${path}`, 'x-default': `${SITE}${path}` };
+    expect(await pageAlternates(Promise.resolve({ locale: 'it' }), path)).toEqual({ canonical: `${SITE}/it${path}`, languages });
+    expect(await pageAlternates(Promise.resolve({ locale: 'en' }), path)).toEqual({ canonical: `${SITE}${path}`, languages });
+    for (const locale of ['tr', 'es', 'pl']) {
+      expect(await pageAlternates(Promise.resolve({ locale }), path), locale).toEqual({ canonical: `${SITE}${path}`, languages });
+    }
+    // Its format guide is still English only.
+    expect(isEnglishOnlyPath(`${path}/format`)).toBe(true);
   });
 
   it('makes each language version of a translated page its own canonical, and lists them all with English as x-default', async () => {

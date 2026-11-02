@@ -2,7 +2,7 @@ import { Link } from '@/i18n/navigation';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/server';
-import { CONTENT_LANG, languageAlternates, pageAlternates } from '@/i18n/alternates';
+import { CONTENT_LANG, isTranslatedFor, languageAlternates, pageAlternates } from '@/i18n/alternates';
 import { DEFAULT_LOCALE, LOCALE_INFO, localizePath, type Locale } from '@/i18n/locales';
 import { getDb } from '@/lib/db';
 import { EXAM_HUBS, getConfigsForHub, getHub } from '@/lib/exams/registry';
@@ -35,7 +35,8 @@ import { billingSettings } from '@/lib/billing/config';
 import { guidesForHub } from '@/lib/content/guides';
 import { isSnapshotRequest } from '@/lib/seo/static-pages';
 import { hubContent, hubUpdatedOn } from '@/lib/exams/hub-content';
-import { HubDetailsNote, HubIntro, HubSamples } from '@/components/exams/hub-content';
+import { blueprintTextIt, examDetailsTranslation } from '@/lib/exams/hub-details-it';
+import { HubDetailsNote, HubIntro, HubSamples, HubStudyPlan, HubTranslationNote } from '@/components/exams/hub-content';
 
 export const dynamic = 'force-dynamic';
 
@@ -52,11 +53,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!hub) return { title: t('fallbackTitle') };
   if (hub.slug === BOCCONI_HUB_SLUG) return bocconiMetadata(locale as Locale);
 
-  // The editorial title is English, like the content; other languages keep their translated title.
-  const content = locale === DEFAULT_LOCALE ? hubContent(hub.slug) : undefined;
+  // The editorial title is in the content's language: English, or a full
+  // translation. Other languages keep their translated generic title.
+  const content = locale === DEFAULT_LOCALE || isTranslatedFor(`/exams/${hub.slug}`, locale as Locale) ? hubContent(hub.slug, locale) : undefined;
   const title = content?.metaTitle ?? t('metaTitle', { name: hub.name });
   // A snippet-length summary; the tagline stays the format guide's "In short".
-  const description = hub.metaDescription;
+  const description = content?.metaDescription ?? hub.metaDescription;
   const alternates = (await pageAlternates(params, `/exams/${hub.slug}`));
   return {
     title,
@@ -152,7 +154,24 @@ export default async function ExamHubPage({ params }: Props) {
   }
 
   const verifiedOn = configs[0]?.verifiedOn ?? '';
-  const content = hubContent(hub.slug);
+  // A hub translated into this language shows every part of it in this
+  // language; otherwise the content and the exam details are English.
+  const translated = locale !== DEFAULT_LOCALE && isTranslatedFor(`/exams/${hub.slug}`, locale as Locale);
+  const contentLang = translated ? LOCALE_INFO[locale as Locale].htmlLang : CONTENT_LANG;
+  const content = hubContent(hub.slug, translated ? locale : DEFAULT_LOCALE);
+  const details = (config: (typeof configs)[number]) => {
+    const local = translated ? examDetailsTranslation(config.examKey, locale) : undefined;
+    return {
+      name: local?.name ?? config.name,
+      scaleLabel: local?.scaleLabel ?? config.scoring.officialScale?.label,
+      summary: local?.summary ?? config.summary,
+      versionLabel: local?.versionLabel ?? config.versionLabel,
+      admissionsCycle: local?.admissionsCycle ?? config.admissionsCycle,
+      section: (key: string, name: string) => local?.sections[key] ?? name,
+      blueprint: (b: { label: string; description: string }) => (locale === 'it' && translated ? blueprintTextIt(config, b) : undefined) ?? b,
+    };
+  };
+  const breadcrumbs = translated ? trail.map((crumb) => (crumb.href ? { ...crumb, href: localizePath(crumb.href, locale as Locale) } : crumb)) : trail;
   const offered = (await Promise.all(configs.map((config) => blueprintAvailability(db, config))))
     .flat()
     .filter((entry) => entry.available)
@@ -162,18 +181,19 @@ export default async function ExamHubPage({ params }: Props) {
     <Container>
       <JsonLd
         data={[
-          breadcrumbSchema(siteUrl(), trail),
+          breadcrumbSchema(siteUrl(), breadcrumbs),
           articleSchema({
             siteUrl: siteUrl(),
             url,
             headline: content?.metaTitle ?? t('hub.metaTitle', { name: hub.name }),
-            description: hub.tagline,
+            description: content?.metaDescription ?? hub.tagline,
             // Real dates only: when the facts were verified, and when the page's own content last changed.
             datePublished: verifiedOn,
             dateModified: hubUpdatedOn(hub.slug, verifiedOn),
             publisherName: SITE.publisher,
             authorName: SITE.publisher,
             image: `/og/exam-${hub.slug}.png`,
+            inLanguage: contentLang,
           }),
         ]}
       />
@@ -188,19 +208,22 @@ export default async function ExamHubPage({ params }: Props) {
         in the reading serif, which needs no download.
       */}
       <PracticeClickBeacon subject={hub.slug}>
-      <div lang={content ? CONTENT_LANG : undefined}>
+      <div lang={content ? contentLang : undefined}>
         <PageHeader eyebrow={hub.publisher} title={content?.headline ?? hub.name} />
       </div>
-      <OfficialNote />
-      {content ? <HubIntro content={content} /> : null}
+      {/* The note says the exam details are in English; a translated hub has none left in English. */}
+      {translated ? null : <OfficialNote />}
+      {content?.translationNote ? <HubTranslationNote content={content} lang={contentLang} /> : null}
+      {content ? <HubIntro content={content} lang={contentLang} /> : null}
       <HubEssentials hub={hub} offered={offered} billingOn={billingSettings().enforced} guides={guidesForHub(hub.slug)} />
-      {content ? <HubDetailsNote content={content} /> : null}
+      {content ? <HubDetailsNote content={content} lang={contentLang} /> : null}
 
       {/* The direct answer, first: what this exam is, in one block. */}
       {(await Promise.all(configs.map(async (config) => {
         const coverage = (await examCoverage(db, config));
         const availability = (await blueprintAvailability(db, config));
         const offered = availability.filter((a) => a.available);
+        const text = details(config);
         const unavailable = availability.filter((a) => !a.available);
 
         return (
@@ -211,11 +234,11 @@ export default async function ExamHubPage({ params }: Props) {
           >
             {configs.length > 1 ? (
               <h2 id={`config-${config.examKey}`} className="mb-3 font-heading text-2xl font-semibold">
-                {config.name}
+                {text.name}
               </h2>
             ) : (
               <h2 id={`config-${config.examKey}`} className="sr-only">
-                {config.name}
+                {text.name}
               </h2>
             )}
 
@@ -224,12 +247,12 @@ export default async function ExamHubPage({ params }: Props) {
               summary reflowing on a font swap has nothing beneath it in view.
             */}
             <Card className="mb-6 md:grid md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] md:gap-x-6">
-              <p lang={CONTENT_LANG} className="text-ink">{config.summary}</p>
+              <p lang={contentLang} className="text-ink">{text.summary}</p>
               <div className="mt-4 md:mt-0">
                 <DefinitionList
                   items={[
-                    { term: t('hub.term.version'), value: <span lang={CONTENT_LANG}>{config.versionLabel}</span> },
-                    { term: t('hub.term.cycle'), value: <span lang={CONTENT_LANG}>{config.admissionsCycle}</span> },
+                    { term: t('hub.term.version'), value: <span lang={contentLang}>{text.versionLabel}</span> },
+                    { term: t('hub.term.cycle'), value: <span lang={contentLang}>{text.admissionsCycle}</span> },
                     {
                       term: t('hub.term.verifiedOn'),
                       value: (
@@ -249,7 +272,7 @@ export default async function ExamHubPage({ params }: Props) {
                       term: t('hub.term.scoring'),
                       value: config.scoring.officialScale
                         ? t('hub.scale', {
-                            label: config.scoring.officialScale.label,
+                            label: text.scaleLabel ?? config.scoring.officialScale.label,
                             min: config.scoring.officialScale.min,
                             max: config.scoring.officialScale.max,
                           })
@@ -275,12 +298,12 @@ export default async function ExamHubPage({ params }: Props) {
             {/* Focusable, so the table can be scrolled sideways from the keyboard on a narrow screen. */}
             <div
               role="region"
-              aria-label={t('hub.structureRegion', { name: config.name })}
+              aria-label={t('hub.structureRegion', { name: text.name })}
               tabIndex={0}
               className="mb-6 relative overflow-x-auto rounded-card border border-line bg-surface"
             >
               <table className="w-full border-collapse text-sm">
-                <caption className="sr-only">{t('hub.structureCaption', { name: config.name, publisher: config.publisher })}</caption>
+                <caption className="sr-only">{t('hub.structureCaption', { name: text.name, publisher: config.publisher })}</caption>
                 <thead>
                   <tr className="border-b border-line">
                     <th scope="col" className="px-4 py-3 text-left font-semibold">
@@ -300,8 +323,8 @@ export default async function ExamHubPage({ params }: Props) {
                 <tbody>
                   {config.sections.map((section) => (
                     <tr key={section.key} className="border-b border-line last:border-0">
-                      <th lang={CONTENT_LANG} scope="row" className="px-4 py-3 text-left font-normal">
-                        {section.name}
+                      <th lang={contentLang} scope="row" className="px-4 py-3 text-left font-normal">
+                        {text.section(section.key, section.name)}
                       </th>
                       <td className="px-4 py-3">{section.officialQuestionCount ?? t('table.notPublished')}</td>
                       <td className="px-4 py-3 tabular-nums">{minutes(section.officialTimeMinutes)}</td>
@@ -335,8 +358,8 @@ export default async function ExamHubPage({ params }: Props) {
               <ul className="grid gap-3 sm:grid-cols-2">
                 {offered.map((entry) => (
                   <Card as="li" key={entry.blueprint.id}>
-                    <h4 lang={CONTENT_LANG} className="font-heading text-lg font-semibold">{entry.blueprint.label}</h4>
-                    <p lang={CONTENT_LANG} className="mt-1 text-sm text-ink-muted">{entry.blueprint.description}</p>
+                    <h4 lang={contentLang} className="font-heading text-lg font-semibold">{text.blueprint(entry.blueprint).label}</h4>
+                    <p lang={contentLang} className="mt-1 text-sm text-ink-muted">{text.blueprint(entry.blueprint).description}</p>
                     <div className="mt-3">
                       <FidelityBadge fidelity={entry.blueprint.fidelity} />
                     </div>
@@ -354,7 +377,7 @@ export default async function ExamHubPage({ params }: Props) {
                       <StatusBadge status={entry.blockedBy === 'rules' ? 'notoffered' : 'notyet'}>
                         {t(entry.blockedBy === 'rules' ? 'status.notoffered' : 'status.notyet')}
                       </StatusBadge>
-                      <span className="font-medium">{entry.blueprint.label}</span>
+                      <span lang={contentLang} className="font-medium">{text.blueprint(entry.blueprint).label}</span>
                       <span className="text-ink-muted">
                         {entry.blockedBy === 'rules'
                           ? t('availability.rulesNotVerified')
@@ -390,7 +413,8 @@ export default async function ExamHubPage({ params }: Props) {
         );
       })))}
 
-      {content ? <HubSamples content={content} /> : null}
+      {content ? <HubSamples content={content} lang={contentLang} /> : null}
+      {content ? <HubStudyPlan content={content} lang={contentLang} /> : null}
 
       {/* Routes into the same institution that another hub's test serves. */}
       <OtherRoutes routes={hub.otherRoutes ?? []} institution={hub.publisher} />
