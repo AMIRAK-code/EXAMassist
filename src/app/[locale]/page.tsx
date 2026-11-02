@@ -17,6 +17,7 @@ import { ContinueStrip } from '@/components/home/continue-strip';
 import { ContinueStripLoader } from '@/components/home/continue-strip-loader';
 import { isSnapshotRequest } from '@/lib/seo/static-pages';
 import { pageAlternates } from '@/i18n/alternates';
+import { ClientMessages } from '@/i18n/client-messages';
 import type { Locale } from '@/i18n/locales';
 import { accent } from '../_fonts/accent';
 
@@ -102,6 +103,8 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
   const snapshot = isSnapshotRequest(await headers());
 
   return (
+    // The sample question and the continue line are client components.
+    <ClientMessages pick={['common', 'home', 'player.stimulus']}>
     <div className={accent.variable}>
       <JsonLd
         data={[
@@ -320,5 +323,6 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
         </div>
       </section>
     </div>
+    </ClientMessages>
   );
 }

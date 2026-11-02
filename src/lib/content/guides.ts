@@ -257,8 +257,8 @@ Our [Bocconi Online Test preparation](/exams/bocconi-online-test) page covers bo
     examKeys: ['bocconi-undergraduate', 'bocconi-law'],
     hubSlug: 'bocconi-online-test',
     publishedOn: '2026-10-07',
-    updatedOn: '2026-10-07',
-    readingMinutes: 6,
+    updatedOn: '2026-11-02',
+    readingMinutes: 8,
     sources: [
       {
         label: 'Online Bocconi test: structure, topic lists, scoring and the free simulation',
@@ -289,13 +289,26 @@ These are Bocconi's published rules, and every step below follows from them.
 
 The standard test is Mathematics 24, Reading comprehension 11, Numerical reasoning 6 and Critical thinking 9. The Law test is Mathematics 5, Reading comprehension 11, Numerical reasoning 6, Logic and critical thinking 18 and Verbal reasoning 10.
 
+## What to study in each area
+
+Bocconi publishes a topic list for every area on its [test page](https://www.unibocconi.it/en/applying-bocconi/bachelor-and-law-programs/application-and-admissions/online-bocconi-test). For the standard test it comes down to this:
+
+| Area | Questions | What it covers |
+| --- | ---: | --- |
+| Mathematics | 24 | Algebra (expressions, first- and second-degree equations and inequalities, systems, absolute values), functions and their graphs, plane and analytic geometry (lines, parabolas, circles), trigonometry, sets, logarithms and exponentials, counting and combinatorics, probability including conditional probability, descriptive statistics, percentages and unit conversions |
+| Reading comprehension | 11 | Passages, some on economic topics with data: what the text states and what it implies |
+| Numerical reasoning | 6 | Tables and charts: picking out the data that matters, ignoring the rest, and calculating by hand |
+| Critical thinking | 9 | Interpreting a text, drawing conclusions, rejecting conclusions it does not support, and judging statements true, false or not deducible |
+
+Mathematics is almost half the test, so a gap there costs the most. The Law test has only 5 mathematics questions and adds logic and verbal reasoning instead: the [undergraduate vs Law guide](/guides/bocconi-undergraduate-vs-law-test) compares the two. To see what each question type looks like, with every step worked out, read the [eleven sample questions](/guides/bocconi-admission-test-sample-questions).
+
 ## An eight-week plan (our advice)
 
 Everything from here on is our advice, not a Bocconi rule. Eight weeks of four or five short sessions a week suits most applicants; compress it if your test date is closer.
 
 | Weeks | Focus | What to do |
 | --- | --- | --- |
-| 1 | Find your gaps | One short diagnostic across all areas. List the three topics where you lost most marks. |
+| 1 | Find your gaps | One short diagnostic across all areas; if you have never seen the question types, read the [worked sample questions](/guides/bocconi-admission-test-sample-questions) first. List the three topics where you lost most marks. |
 | 2–4 | Fix the biggest gaps | Untimed topic practice on those topics, about 10 questions a session. Read every explanation, including for the questions you got right. No calculator, ever. |
 | 5 | Widen | Mixed practice across all areas, so weaker topics come back while stronger ones stay sharp. Retry the questions you missed in weeks 2–4. |
 | 6 | Add the clock | Your first timed 50-question set under the real rules. Afterwards, check where the time went and which wrong answers were guesses. |
