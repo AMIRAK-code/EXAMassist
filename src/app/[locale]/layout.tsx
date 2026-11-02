@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
+import { pickMessages } from '@/i18n/client-messages';
 import '../globals.css';
 import { SITE, indexingEnabled, shareImages, siteUrl } from '@/lib/site';
 import { getCurrentUser } from '@/lib/auth/session';
@@ -65,7 +66,8 @@ export default async function LocaleLayout({ children, params }: Props) {
     <html lang={LOCALE_INFO[locale].htmlLang} className={sans.variable}>
       <body className="flex min-h-screen flex-col">
         {snapshot ? <script dangerouslySetInnerHTML={{ __html: localeScript(locale, (typeof routing.localeCookie === 'object' && routing.localeCookie.name) || 'NEXT_LOCALE') }} /> : null}
-        <NextIntlClientProvider>
+        {/* Only the header's catalogue reaches the browser here: src/i18n/client-messages.tsx. */}
+        <NextIntlClientProvider messages={pickMessages(await getMessages(), ['common'])}>
           <a href="#main" className="skip-link">
             {t('skipToContent')}
           </a>
