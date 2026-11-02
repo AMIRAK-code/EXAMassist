@@ -18,6 +18,7 @@ import { tutorEnabled } from '@/lib/tutor/config';
 import { pricingPath } from '@/lib/billing/config';
 import { loadEntitlements } from '@/lib/billing/entitlements';
 import { UpgradePrompt } from '@/components/billing/upgrade-prompt';
+import { PlanSummaryCards } from '@/components/billing/plan-summary-cards';
 import { getExamConfig, getHubForConfig } from '@/lib/exams/registry';
 import { Alert, Breadcrumbs, ButtonLink, Card, Container, PageHeader } from '@/components/ui';
 
@@ -123,11 +124,12 @@ export default async function ResultsPage({
       <WhereMarksWentLost summary={summary} />
       <NextSteps summary={summary} />
       {offer ? (
-        <Card padding="lg" className="mb-10 border-2 border-accent">
+        <Card padding="lg" className="mb-10 border border-accent-line border-s-4 border-s-accent bg-accent-soft/40 shadow-card">
           <h2 className="font-heading text-xl font-semibold">
             {t('page.offerTitle', { exam: offerHub?.name ?? offer.name })}
           </h2>
           <p className="mt-2 text-ink-muted">{t('page.offerBody', { exam: offerHub?.label ?? offer.shortName })}</p>
+          <PlanSummaryCards className="mt-5" />
           <div className="mt-4 flex flex-wrap gap-3">
             <ButtonLink href={pricingPath(offer.examKey, 'diagnostic-taken')}>
               {t('page.offerPlans', { exam: offerHub?.label ?? offer.shortName })}

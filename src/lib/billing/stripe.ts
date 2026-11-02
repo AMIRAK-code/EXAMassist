@@ -13,6 +13,7 @@ import { billingSettings, type BillingSettings } from './config';
 type Opts = Stripe.RequestOptions;
 
 export interface StripeApi {
+  checkout?: Stripe['checkout'];
   customers: {
     create(params: Stripe.CustomerCreateParams, options?: Opts): Promise<Stripe.Customer>;
     retrieve(id: string, params?: Stripe.CustomerRetrieveParams, options?: Opts): Promise<Stripe.Customer | Stripe.DeletedCustomer>;
@@ -77,6 +78,10 @@ export class StripeNotConfiguredError extends Error {
  * enables exactly these on the endpoint it creates.
  */
 export const WEBHOOK_EVENTS = [
+  'checkout.session.completed',
+  'checkout.session.async_payment_succeeded',
+  'checkout.session.async_payment_failed',
+  'checkout.session.expired',
   'customer.subscription.created',
   'customer.subscription.updated',
   'customer.subscription.deleted',

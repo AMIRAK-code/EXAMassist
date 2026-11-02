@@ -40,7 +40,7 @@
     "samples": "Sample questions",
     "diagnostic": "The free diagnostic for every exam",
     "official_scores": "Tracking your official practice-test scores",
-    "practice": "Topic practice and retries with worked explanations, fresh questions every session",
+    "practice": "Topic practice and retries with worked explanations",
     "timed_section": "Timed sections at the published pace",
     "simulation": "Full-length simulations, where the exam offers one",
     "study_plan": "Study plan and progress tracking",
@@ -63,7 +63,7 @@
     "lead": "Guides, sample questions, a diagnostic for every exam and tracking of your official practice scores are free. A Single Exam Pass or Plus opens practice, timed sections, full simulations, the study plan and progress tracking, for the formats each exam has open.",
     "notEnforced": {
       "title": "Everything is free right now",
-      "body": "Payments are not switched on for this site yet, so every exam and every format is open to everyone."
+      "body": "Payments are not switched on yet. All currently available practice remains free."
     },
     "testMode": "Test mode: checkout uses Stripe test cards and charges nothing.",
     "reasons": {
@@ -136,7 +136,7 @@
       "pass": "A Single Exam Pass is paid once. Its six months start when your payment is confirmed, and it ends on the date shown in your account. It never renews and is never charged again.",
       "renewal": "Plus renews every month or every year until you cancel. The yearly price is charged in full at the start of each year. Cancel any time from your account; Plus stays on until the end of the period you paid for.",
       "withdrawal": "Access starts as soon as you pay. At checkout you are asked to confirm that you want it straight away and that the 14-day right of withdrawal ends when it starts.",
-      "cards": "Card details are entered in fields provided by Stripe, our payment provider, and go straight to Stripe. They never reach our servers.",
+      "cards": "Payment details are collected securely by Stripe. They never reach our servers.",
       "earlier": "A plan bought before these prices keeps everything it included, at its price, until it ends. We do not move anyone to a new plan or price without telling them first.",
       "terms": "Terms of sale",
       "privacy": "Privacy notice"
@@ -147,8 +147,8 @@
       "title": "Checkout"
     },
     "eyebrow": "Checkout",
-    "title": "Choose your plan and pay",
-    "lead": "VAT included. The pass is paid once; Plus renews until you cancel.",
+    "title": "Review your plan",
+    "lead": "Review your plan, then continue to Stripe to pay. The pass is paid once; Plus renews until you cancel.",
     "notices": {
       "premium": "Premium is coming soon and cannot be bought yet. These are the plans on sale now.",
       "earlier": "That plan is no longer sold. These are the plans on sale now."
@@ -183,12 +183,12 @@
     },
     "processing": {
       "title": "Your payment is being processed",
-      "body": "Your bank has not confirmed the payment yet. Your plan starts as soon as it does; refresh this page in a minute.",
+      "body": "We are waiting for payment confirmation and access activation. Do not pay again. Refresh in a moment, or check your account.",
       "refresh": "Refresh"
     },
     "pending": {
       "title": "Waiting for your payment",
-      "body": "We have not received confirmation of this payment yet. If you have just paid, refresh this page in a moment. If you left the payment unfinished, you can try again; nothing has been charged.",
+      "body": "We are waiting for payment confirmation and access activation. Do not pay again. Refresh in a moment, or check your account.",
       "refresh": "Refresh",
       "retry": "Back to checkout"
     },
@@ -207,7 +207,12 @@
       "body": "It may belong to a different account. Your plans are listed on your account page.",
       "account": "Your account"
     },
-    "pricing": "See plans"
+    "pricing": "See plans",
+    "ended": {
+      "title": "Your access has ended",
+      "body": "This plan no longer provides access. Check your account for its status and dates, or choose a new plan.",
+      "retry": "See available plans"
+    }
   },
   "form": {
     "planLegend": "Plan",
@@ -237,8 +242,8 @@
     "pay": "Pay {price} and start",
     "paying": "Processing payment…",
     "errorTitle": "The payment did not go through",
-    "networkError": "We could not reach the server. Check your connection and try again. Nothing was charged.",
-    "genericError": "Something went wrong. Nothing was charged; please try again.",
+    "networkError": "We could not confirm the checkout status. Check your connection and your account before trying again.",
+    "genericError": "We could not confirm the checkout status. Check your connection and your account before trying again.",
     "alreadySubscribed": "Manage your plans",
     "summary": {
       "heading": "Order summary",
@@ -381,5 +386,22 @@
         "samples": "Sample questions are free."
       }
     }
+  },
+  "experience": {
+    "billingPeriod": "Billing period",
+    "month": "Monthly",
+    "year": "Yearly",
+    "passLabel": "One payment · 6 months · No renewal",
+    "lead": "Start with what is free. Choose focused practice for one exam, or keep your options open with Plus.",
+    "yourFocus": "Your study focus",
+    "focusBody": "Choose the access that fits your preparation. Your free resources stay free.",
+    "renewal": "Renews until cancelled. Manage your plan from your account.",
+    "secureTitle": "Secure checkout with Stripe",
+    "secureBody": "Review your order here, then enter your payment details securely on Stripe. Available payment methods are shown at checkout.",
+    "continue": "Continue to payment · {price}",
+    "cancelled": "Checkout was closed. Your selection is saved below. Check your account before trying again if you already submitted a payment.",
+    "waiting": "We are waiting for payment confirmation and access activation. Do not pay again. Refresh in a moment, or check your account.",
+    "resume": "Continue learning",
+    "formatsNote": "Practice formats vary by exam. Only formats listed as open below are available."
   }
 }

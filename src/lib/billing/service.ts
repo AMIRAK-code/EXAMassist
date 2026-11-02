@@ -30,25 +30,10 @@ import {
 import { WEBHOOK_EVENTS, asStripeError, isSignatureError, stripeClient, verifyWebhookEvent, type StripeApi } from './stripe';
 
 /**
- * Payments through Stripe, sold and managed on this site's own pages.
- *
- * - The checkout page collects the card in Stripe's Payment Element (Stripe's
- *   iframes; card data never reaches this server). On "Pay", the server
- *   creates what is being bought and returns the client secret the browser
- *   confirms, 3-D Secure included:
- *     Plus (monthly or yearly)  a subscription, payment_behavior
- *                               'default_incomplete': the client secret of its
- *                               first payment (or SetupIntent when nothing is due)
- *     Single Exam Pass          a one-off invoice for the pass price, finalised
- *                               without auto-advance (Stripe never charges it on
- *                               its own): the client secret of its payment
- *   Premium is announced but not sold: the server refuses it.
- * - A pass gives access only once Stripe records the payment (the invoice.paid
- *   webhook, or the invoice read back from Stripe by the server), for six
- *   calendar months from that moment. The browser's word is never enough.
- * - The account page cancels a subscription at period end, resumes it, and
- *   replaces the card through a SetupIntent: no hosted Stripe pages anywhere.
- * - Webhooks keep the local copy in step (store.ts), idempotently.
+ * Billing lifecycle, verified webhooks and existing account management.
+ * New purchases use hosted Checkout Sessions (checkout-sessions.ts).
+ * Legacy inline checkout helpers remain for compatibility; the public checkout
+ * route no longer calls them. New-session grants are written by webhooks only.
  */
 
 /**
@@ -170,7 +155,7 @@ export interface BillingUser {
 }
 
 /** The user's Stripe customer, created on the first purchase. A stored one deleted in Stripe is replaced. */
-export async function ensureCustomer(db: Db, user: BillingUser, stripe: StripeApi, now = new Date()): Promise<string> {
+export async function ensureCustomer(db: Db, user: BillingUser, stripe: Pick<StripeApi, 'customers'>, now = new Date()): Promise<string> {
   const existing = await getCustomerId(db, user.id);
   if (existing) {
     try {
@@ -203,7 +188,7 @@ export async function ensureCustomer(db: Db, user: BillingUser, stripe: StripeAp
  * behaviour or interval differs from plans.ts is refused: the buyer must be
  * charged exactly what the page showed.
  */
-export async function priceIdFor(stripe: StripeApi, key: PriceKey): Promise<string> {
+export async function priceIdFor(stripe: Pick<StripeApi, 'prices'>, key: PriceKey): Promise<string> {
   const wanted = PRICES[key];
   const found = await stripe.prices.list({ lookup_keys: [wanted.lookupKey], active: true, limit: 1 });
   const price = found.data[0];
@@ -236,6 +221,8 @@ export interface CheckoutInput {
   examKey?: string | null;
   /** The exam the learner came from, for counting; never changes the plan. */
   sourceExam?: string | null;
+  /** Internal destination to resume after payment, validated before storage. */
+  returnTo?: string | null;
   /** The buyer asked for immediate access and acknowledged losing the withdrawal right. */
   consent: boolean;
   /** One per checkout page view, so a double click cannot create two purchases. */
@@ -381,7 +368,7 @@ async function createSubscription(db: Db, context: CheckoutContext, offer: Price
       customer,
       items: [{ price, quantity: 1 }],
       payment_behavior: 'default_incomplete',
-      payment_settings: { save_default_payment_method: 'on_subscription', payment_method_types: ['card'] },
+      payment_settings: { save_default_payment_method: 'on_subscription' },
       expand: SUBSCRIPTION_EXPAND,
       metadata,
       ...(settings.automaticTax ? { automatic_tax: { enabled: true } } : {}),
@@ -553,7 +540,7 @@ export async function startCardUpdate(db: Db, userId: string, options: BillingDe
     const intent = await stripe.setupIntents.create({
       customer,
       usage: 'off_session',
-      payment_method_types: ['card'],
+      automatic_payment_methods: { enabled: true },
       metadata: { examer_user_id: userId, purpose: 'card_update' },
     });
     if (!intent.client_secret) throw billingError('billing-failed', 'failed', 502);
@@ -636,7 +623,7 @@ async function refreshPendingPasses(db: Db, userId: string, stripe: StripeApi, n
   );
   for (const row of pending) {
     const invoice = await stripe.invoices.retrieve(row.stripe_invoice_id, { expand: ['payments'] });
-    await storePass(db, userId, invoice, { syncedAt: seconds(now), now });
+    if (invoice.metadata?.checkout_flow !== 'sessions') await storePass(db, userId, invoice, { syncedAt: seconds(now), now });
   }
 }
 
@@ -654,7 +641,7 @@ export async function billingOverview(db: Db, userId: string, options: BillingDe
     let card: CardSummary | null = null;
     for (const subscription of list.data) {
       if (!snapshotFromStripe(subscription)) continue;
-      await storeSubscription(db, userId, subscription, { syncedAt: seconds(now), now });
+      if (subscription.metadata?.checkout_flow !== 'sessions') await storeSubscription(db, userId, subscription, { syncedAt: seconds(now), now });
       if (!card && CHANGEABLE.has(subscription.status)) card = cardOf(subscription.default_payment_method);
     }
     await refreshPendingPasses(db, userId, stripe, now);
@@ -738,6 +725,42 @@ export async function handleWebhook(
   if (!HANDLED_EVENTS.has(event.type)) return { type: event.type, duplicate: false, handled: false };
   if (await eventSeen(db, event.id)) return { type: event.type, duplicate: true, handled: false };
 
+  if (event.type.startsWith('checkout.session.')) {
+    const session = event.data.object as Stripe.Checkout.Session;
+    if (session.metadata?.checkout_flow !== 'sessions') return { type: event.type, duplicate: false, handled: false };
+    const userId = session.metadata.examer_user_id;
+    if (!userId || !(await userExists(db, userId)) || idOf(session.customer) !== await getCustomerId(db, userId)) {
+      return { type: event.type, duplicate: false, handled: false };
+    }
+    const paid = session.payment_status === 'paid' || session.payment_status === 'no_payment_required';
+    const failed = event.type === 'checkout.session.async_payment_failed';
+    let invoice: Stripe.Invoice | null = null;
+    let subscription: Stripe.Subscription | null = null;
+    if (paid && !failed && event.type !== 'checkout.session.expired') {
+      if (!stripe) throw billingError('billing-unavailable', 'unavailable', 503);
+      if (session.mode === 'payment') {
+        const invoiceId = idOf(session.invoice) ?? (stripe.checkout
+          ? idOf((await stripe.checkout.sessions.retrieve(session.id)).invoice) : null);
+        // Checkout's invoice can be created after the completion event. Return
+        // an error so Stripe retries; invoice.paid also handles this ordering.
+        if (!invoiceId) throw billingError('billing-unavailable', 'unavailable', 503);
+        invoice = await stripe.invoices.retrieve(invoiceId, { expand: ['payments'] });
+        if (invoice.status !== 'paid' || !passSnapshotFromInvoice(invoice)) throw billingError('billing-unavailable', 'unavailable', 503);
+      } else if (session.mode === 'subscription' && idOf(session.subscription)) {
+        subscription = await stripe.subscriptions.retrieve(idOf(session.subscription)!);
+      }
+    }
+    return db.transaction(async () => {
+      if (!(await recordEvent(db, event, true, now))) return { type: event.type, duplicate: true, handled: false };
+      const consent = { syncedAt: Math.max(event.created, seconds(now)), now, withdrawalWaiverAt: new Date(session.created * 1000).toISOString(), sourceExam: session.metadata?.source_exam };
+      if (invoice) await storePass(db, userId, invoice, consent);
+      if (subscription) await storeSubscription(db, userId, subscription, consent);
+      const status = invoice || subscription ? 'fulfilled' : failed ? 'failed' : event.type === 'checkout.session.expired' ? 'expired' : 'processing';
+      await db.prepare("UPDATE billing_checkouts SET status = ? WHERE user_id = ? AND session_id = ? AND status NOT IN ('fulfilled', 'failed', 'expired')").run(status, userId, session.id);
+      return { type: event.type, duplicate: false, handled: true, userId };
+    })();
+  }
+
   if (event.type === 'charge.refunded') return handleRefund(db, event, now);
   if (event.type.startsWith('invoice.')) {
     const invoice = event.data.object as Stripe.Invoice;
@@ -758,6 +781,18 @@ export async function handleWebhook(
     }
   }
   const ours = subscription && snapshotFromStripe(subscription) ? subscription : null;
+  if (ours?.metadata?.checkout_flow === 'sessions') {
+    const before = await getSubscriptionRow(db, ours.id);
+    if (!before || !['active', 'trialing', 'past_due'].includes(before.status)) {
+      const invoiceId = idOf(ours.latest_invoice);
+      const invoice = stripe && invoiceId ? await stripe.invoices.retrieve(invoiceId) : null;
+      // An asynchronous method can create an active subscription before its
+      // first payment settles. Only a paid invoice may activate new access.
+      if (['active', 'trialing', 'past_due'].includes(ours.status) && invoice?.status !== 'paid') {
+        return { type: event.type, duplicate: false, handled: false };
+      }
+    }
+  }
   const userId = ours
     ? await resolveUser(db, { userId: ours.metadata?.examer_user_id ?? null, customerId: idOf(ours.customer) }, stripe)
     : null;

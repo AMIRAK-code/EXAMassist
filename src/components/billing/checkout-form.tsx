@@ -1,38 +1,19 @@
 'use client';
 
 import { useEffect, useId, useMemo, useRef, useState, type FormEvent } from 'react';
-import { Elements, PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import type { Appearance, Stripe, StripeElementsOptionsMode } from '@stripe/stripe-js';
+
 import { useLocale, useTranslations } from 'next-intl';
-import { Link, getPathname, usePathname } from '@/i18n/navigation';
+import { Link, getPathname } from '@/i18n/navigation';
 import { PASS_ACCESS_MONTHS, addCalendarMonths, annualSaving, formatPrice } from '@/lib/billing/plans';
 import { Alert, Badge, Button, Card, cx, fieldClass } from '@/components/ui';
-import { appearanceFromDocument, buildAppearance, elementFonts } from './stripe-appearance';
-import { stripeFor } from './stripe-loader';
-import { COUNTRY_CODES } from './countries';
-import { billingErrorMessage, countryOptions, stripeLocale } from './locale';
 
-/**
- * The checkout, on this site's own page.
- *
- * Offer picker, exam picker, order summary, consent and every message are
- * ours, from the `billing` catalogue (`form.*`). The card fields are Stripe's
- * Payment Element (Stripe's iframes, so card data never reaches our server)
- * styled with the Appearance API from our CSS tokens, so they look like the
- * rest of the form, and told the page's language so Stripe's own labels and
- * errors match it.
- *
- * The Payment Element is shown straight away ("deferred intent": 'payment'
- * mode for the Single Exam Pass, 'subscription' mode for Plus). On Pay:
- *   1. elements.submit() validates the card fields,
- *   2. the server creates the purchase (the pass invoice, or the Plus
- *      subscription with payment_behavior 'default_incomplete') and returns
- *      its client secret; the server alone decides whether it may be sold,
- *   3. stripe.confirmPayment() (or confirmSetup() when nothing is due now)
- *      completes it, including any 3-D Secure challenge, and the learner
- *      lands on /checkout/complete, our own confirmation page, which asks
- *      Stripe (on the server) whether the payment went through.
- */
+
+import { COUNTRY_CODES } from './countries';
+import { billingErrorMessage, countryOptions } from './locale';
+import { checkoutPath } from '@/lib/billing/config';
+import type { PriceKey } from '@/lib/billing/plans';
+
+/** Branded order review; payment details are collected by Stripe Checkout. */
 
 export interface CheckoutOffer {
   /** A price key from plans.ts (OFFERS). */
@@ -45,17 +26,15 @@ export interface CheckoutOffer {
 }
 
 export interface CheckoutFormProps {
-  publishableKey: string;
   testMode: boolean;
   offers: CheckoutOffer[];
   initialOffer: string;
   initialExam: string | null;
   sourceExam: string | null;
+  returnTo?: string | null;
   /** Every exam, and whether a pass can be bought for it today. */
   exams: Array<{ key: string; name: string; available: boolean }>;
   ownedExamKeys: string[];
-  email: string;
-  name: string | null;
   collectCountry: boolean;
 }
 
@@ -65,39 +44,9 @@ function newRequestId(): string {
 }
 
 export function CheckoutForm(props: CheckoutFormProps) {
-  const locale = useLocale();
-  const [stripe, setStripe] = useState<Promise<Stripe | null> | null>(null);
-  const [appearance, setAppearance] = useState<Appearance>(() => buildAppearance());
-  const [origin, setOrigin] = useState('');
   const [offer, setOffer] = useState(props.initialOffer);
-  const selected = props.offers.find((o) => o.key === offer) ?? props.offers[0]!;
-
-  // Stripe.js and the token values exist only in the browser.
-  useEffect(() => {
-    setAppearance(appearanceFromDocument());
-    setOrigin(window.location.origin);
-    setStripe(stripeFor(props.publishableKey));
-  }, [props.publishableKey]);
-
-  const options = useMemo<StripeElementsOptionsMode>(
-    () => ({
-      // A pass is paid once; Plus is a subscription. Elements is updated in place when this changes.
-      mode: selected.interval === 'once' ? 'payment' : 'subscription',
-      amount: selected.amount,
-      currency: 'eur',
-      paymentMethodTypes: ['card'],
-      appearance,
-      fonts: origin ? elementFonts(origin) : [],
-      locale: stripeLocale(locale),
-    }),
-    [selected.interval, selected.amount, appearance, origin, locale],
-  );
-
-  return (
-    <Elements stripe={stripe} options={options}>
-      <CheckoutBody {...props} offer={offer} setOffer={setOffer} selected={selected} origin={origin} ready={Boolean(stripe)} />
-    </Elements>
-  );
+  const selected = props.offers.find(o => o.key === offer) ?? props.offers[0]!;
+  return <CheckoutBody {...props} offer={offer} setOffer={setOffer} selected={selected} />;
 }
 
 function CheckoutBody({
@@ -107,26 +56,18 @@ function CheckoutBody({
   selected,
   initialExam,
   sourceExam,
+  returnTo,
   exams,
   ownedExamKeys,
-  email,
-  name,
   collectCountry,
   testMode,
-  origin,
-  ready,
 }: CheckoutFormProps & {
   offer: string;
   setOffer: (offer: string) => void;
   selected: CheckoutOffer;
-  origin: string;
-  ready: boolean;
 }) {
   const t = useTranslations('billing');
   const locale = useLocale();
-  const pathname = usePathname();
-  const stripe = useStripe();
-  const elements = useElements();
   const id = useId();
   const euros = (cents: number) => formatPrice(cents, locale);
   const buyable = (key: string) => exams.some((e) => e.key === key && e.available) && !ownedExamKeys.includes(key);
@@ -134,7 +75,6 @@ function CheckoutBody({
   const [country, setCountry] = useState('');
   const [consent, setConsent] = useState(false);
   const [busy, setBusy] = useState(false);
-  const [elementReady, setElementReady] = useState(false);
   const [error, setError] = useState<{ message: string; manage?: boolean } | null>(null);
   const [touched, setTouched] = useState(false);
   const [requestId] = useState(newRequestId);
@@ -148,10 +88,8 @@ function CheckoutBody({
   const day = (date: Date) => new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'long', year: 'numeric' }).format(date);
   const dates = useMemo(() => {
     const today = new Date();
-    const nextMonth = new Date(today);
-    nextMonth.setMonth(nextMonth.getMonth() + 1);
-    const nextYear = new Date(today);
-    nextYear.setFullYear(nextYear.getFullYear() + 1);
+    const nextMonth = addCalendarMonths(today, 1);
+    const nextYear = addCalendarMonths(today, 12);
     return { nextMonth, nextYear, passEnds: addCalendarMonths(today, PASS_ACCESS_MONTHS) };
   }, []);
   const countries = useMemo(
@@ -173,7 +111,6 @@ function CheckoutBody({
     if (busy) return;
     setTouched(true);
     setError(null);
-    if (!stripe || !elements) return;
     if (examMissing || countryMissing || !consent) {
       // Our own fields say what is wrong, beside each one; move to the first.
       const first = examMissing ? `${id}-exam` : countryMissing ? `${id}-country` : `${id}-consent`;
@@ -182,21 +119,15 @@ function CheckoutBody({
     }
     setBusy(true);
 
-    // 1. Validate the card fields before anything is created.
-    const submitted = await elements.submit();
-    if (submitted.error) {
-      setBusy(false);
-      return; // Stripe shows the field error inside the element.
-    }
-
-    // 2. The purchase, created by our server, which decides whether it may be sold.
     const response = await fetch('/api/billing/checkout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'examer' },
       body: JSON.stringify({
         offer,
+        locale,
         examKey: selected.needsExam ? exam : null,
         sourceExam,
+        returnTo,
         consent: true,
         requestId,
         country: collectCountry ? country : null,
@@ -208,40 +139,15 @@ function CheckoutBody({
       const code = data?.error?.code;
       if (code === 'unauthorized' || code === 'account-required') {
         // `next` is the path without the language prefix; sign-up adds it back.
-        const next = encodeURIComponent(pathname + window.location.search);
+        const next = encodeURIComponent(checkoutPath(offer as PriceKey, selected.needsExam ? exam : null) + (sourceExam ? `&source=${encodeURIComponent(sourceExam)}` : '') + (returnTo ? `&next=${encodeURIComponent(returnTo)}` : ''));
         window.location.assign(getPathname({ href: `/sign-up?next=${next}`, locale }));
         return;
       }
       return fail(billingErrorMessage(t, data?.error, t('form.genericError')), code === 'already-subscribed');
     }
 
-    // 3. Confirm with Stripe, 3-D Secure included. Card payments finish here
-    //    without leaving the page; anything that needs a redirect comes back
-    //    to the same confirmation page.
-    const param = data.kind === 'pass' ? 'pass' : 'subscription';
-    const returnUrl = `${origin}${getPathname({
-      href: `/checkout/complete?${param}=${encodeURIComponent(data.id)}`,
-      locale,
-    })}`;
-    const billingDetails = { email, ...(name ? { name } : {}) };
-    if (data.intent === 'payment' && data.clientSecret) {
-      const result = await stripe.confirmPayment({
-        elements,
-        clientSecret: data.clientSecret,
-        confirmParams: { return_url: returnUrl, payment_method_data: { billing_details: billingDetails } },
-        redirect: 'if_required',
-      });
-      if (result.error) return fail(result.error.message ?? t('form.genericError'));
-    } else if (data.intent === 'setup' && data.clientSecret) {
-      const result = await stripe.confirmSetup({
-        elements,
-        clientSecret: data.clientSecret,
-        confirmParams: { return_url: returnUrl, payment_method_data: { billing_details: billingDetails } },
-        redirect: 'if_required',
-      });
-      if (result.error) return fail(result.error.message ?? t('form.genericError'));
-    }
-    window.location.assign(returnUrl);
+    if (!data?.url) return fail(t('form.genericError'));
+    window.location.assign(data.url);
   }
 
   const periodRow =
@@ -253,7 +159,7 @@ function CheckoutBody({
 
   return (
     <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem]">
-      <form onSubmit={(event) => void submit(event)} noValidate className="space-y-8">
+      <form onSubmit={(event) => void submit(event)} noValidate aria-busy={busy} className="space-y-8">
         {error ? (
           <div ref={errorRef} tabIndex={-1} className="outline-none">
             <Alert tone="negative" role="alert" title={t('form.errorTitle')}>
@@ -390,26 +296,10 @@ function CheckoutBody({
         <fieldset>
           <legend className="mb-3 font-heading text-lg font-semibold">{t('form.paymentLegend')}</legend>
           {testMode ? <p className="mb-4 rounded-card bg-surface-sunken p-3 text-sm text-ink-muted">{t('form.testMode')}</p> : null}
-          {/* Holds the height of the fields while they load, so nothing below jumps. */}
-          <div className="relative min-h-[11rem]">
-            {!elementReady ? (
-              <p className="absolute inset-0 text-sm text-ink-muted" aria-live="polite">
-                {t('form.loadingFields')}
-              </p>
-            ) : null}
-            {ready ? (
-              <PaymentElement
-                onReady={() => setElementReady(true)}
-                options={{
-                  layout: 'tabs',
-                  fields: { billingDetails: { email: 'never' } },
-                  defaultValues: { billingDetails: { email, ...(name ? { name } : {}) } },
-                  wallets: { applePay: 'auto', googlePay: 'auto' },
-                }}
-              />
-            ) : null}
+          <div className="rounded-control border border-accent-line bg-accent-soft p-5">
+            <p className="font-semibold">{t('experience.secureTitle')}</p>
+            <p className="mt-2 text-sm text-ink-muted">{t('experience.secureBody')}</p>
           </div>
-          <p className="mt-3 text-xs text-ink-subtle">{t('form.secure')}</p>
         </fieldset>
 
         <div>
@@ -440,13 +330,13 @@ function CheckoutBody({
           ) : null}
         </div>
 
-        <Button type="submit" size="lg" full loading={busy} disabled={!stripe || !elements || !elementReady}>
-          {busy ? t('form.paying') : t('form.pay', { price: euros(selected.amount) })}
+        <Button type="submit" size="lg" full loading={busy} disabled={busy}>
+          {busy ? t('form.paying') : t('experience.continue', { price: euros(selected.amount) })}
         </Button>
       </form>
 
       <aside aria-labelledby={`${id}-summary`} className="lg:sticky lg:top-24 lg:self-start">
-        <Card padding="lg">
+        <Card padding="lg" className="border-t-4 border-t-accent shadow-raised">
           <h2 id={`${id}-summary`} className="font-heading text-lg font-semibold">
             {t('form.summary.heading')}
           </h2>

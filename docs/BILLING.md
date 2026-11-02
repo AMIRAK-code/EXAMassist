@@ -1,21 +1,15 @@
 # Billing
 
-Paid plans through Stripe, sold and managed on the site's own pages. Card
-details are typed into Stripe's Payment Element (Stripe's iframes), styled
-with the Appearance API to look like our own fields, so they never reach this
-server. There is no hosted Stripe Checkout and no hosted billing portal.
+The branded pricing page, order review and subscription management stay inside
+UniExamer. New purchases use hosted Stripe Checkout Sessions with dynamic
+payment methods. Card replacement for existing subscribers uses the existing
+SetupIntent flow. Credentials and price resolution stay server-side.
 
-> **Payments are not switched on.** The catalogue below (decided by the owner
-> on 2026-10-29) is implemented, but nothing is sold until the owner has
-> verified the production tax configuration and followed
-> [Release steps](#release-steps-before-anything-is-sold). Until then
-> `BILLING_ENFORCED` stays unset and everything stays free.
->
-> **Not tested against the live Stripe API.** The development environment
-> cannot reach api.stripe.com, so every automated test uses a mocked Stripe
-> client (`tests/unit/helpers/fake-stripe.ts`); webhook signatures are made and
-> checked with Stripe's own SDK. Run the test-mode rehearsal in the release
-> steps end to end before going live.
+> **Payments remain off.** This implementation does not enable live billing,
+> change existing subscriptions, apply production migrations or create charges.
+> The owner declined a sandbox rehearsal on 2026-11-02. Automated provider mocks
+> are used instead; they do not establish live payment readiness. See
+> [PAYWALL-VALIDATION.md](PAYWALL-VALIDATION.md) and the release steps below.
 
 ## Plans and the feature matrix
 
@@ -60,7 +54,7 @@ Notes on the matrix:
   practice, a timed section or a full-length simulation that the engine's own
   availability check (`blueprintAvailability`, approved questions only) can
   fill. Diagnostics, the review mode and essay-only formats do not count. The
-  rule is in `src/lib/billing/availability.ts`; `startCheckout` enforces it on
+  rule is in `src/lib/billing/availability.ts`; `startHostedCheckout` enforces it on
   the server (409 `exam-unavailable`), and the pricing and checkout pages show
   every exam with whether it can be bought and why not. Plus says how many
   exams have a format open today and links to the same table.
@@ -132,15 +126,16 @@ src/lib/billing/
   availability.ts  Which exams a pass may be sold for (an open paid practice format)
   entitlements.ts  The one access helper: decideAccess (pure), loadEntitlements, requireEntitlement
   store.ts         The local copy of customers, subscriptions and passes; processed webhook events
-  service.ts       startCheckout (Plus / pass), cancel/resume, card update, webhooks, deletion
+  checkout-sessions.ts Server-priced hosted checkout, duplicate protection, tax registration check
+  service.ts       Legacy checkout helpers, cancel/resume, card update, verified webhooks, deletion
   stripe.ts        The `stripe` SDK client (fetch HTTP client: Node and Workers) and webhook verification
   upgrade.ts       Where a refused learner is sent (the pricing page for that exam)
 
 src/app/[locale]/pricing/            Free, Single Exam Pass, Plus, Premium (coming soon), exam availability, matrix
-src/app/[locale]/checkout/           Our checkout: offer picker, exam picker, order summary, consent, Payment Element
-src/app/[locale]/checkout/complete/  Our confirmation page (?subscription=sub_… or ?pass=in_…), checked with Stripe by the server
+src/app/[locale]/checkout/           Our order review: offer picker, exam picker, order summary, consent, continue to Stripe
+src/app/[locale]/checkout/complete/  Our confirmation page (?session_id=cs_…); ownership checked with Stripe, access read from webhook-owned rows
 src/app/[locale]/account/ (#billing) Passes with exam and expiry date; subscriptions with renewal, cancel/resume, card
-src/app/api/billing/checkout            POST: start a purchase, return the client secret (the server decides what may be sold)
+src/app/api/billing/checkout            POST: validate eligibility and return a Checkout Session URL
 src/app/api/billing/subscriptions/[id]  PATCH: cancel at period end / resume
 src/app/api/billing/setup-intent        POST: SetupIntent for a new card
 src/app/api/billing/payment-method      POST: make the confirmed card the default everywhere
@@ -148,6 +143,7 @@ src/app/api/billing/webhook             Stripe webhooks
 src/components/billing/          Checkout form, plan manager, upgrade prompt, plan summary cards, Appearance mapping
 db/migrations/012_stripe_subscriptions.sql  billing_customers, billing_subscriptions, billing_events
 db/migrations/016_exam_passes.sql           billing_passes
+db/migrations/017_checkout_sessions.sql     billing_checkouts (one pending checkout slot per user)
 ```
 
 **Entitlements.** A learner's grants are their subscriptions
@@ -167,37 +163,29 @@ pricing page for that exam; every caller turns it into that link or an
 `UpgradePrompt`, never an error page. For the AI tutor the prompt says it will
 come with Premium and offers nothing to buy.
 
-**Checkout flow.** The Payment Element is shown at once in "deferred intent"
-mode (`mode: 'payment'` for the pass, `'subscription'` for Plus; the offer's
-amount; `paymentMethodTypes: ['card']`). On Pay the browser runs
-`elements.submit()`, then `POST /api/billing/checkout` with the offer. The
-server (`startCheckout`) refuses Premium (409 `coming-soon`), the earlier
-plans (400 `unknown-plan`), a pass for an exam without an open format (409
-`exam-unavailable`) and anything the learner already holds (409
-`already-subscribed`); then it creates the customer (once per account,
-metadata `examer_user_id`) and:
+**Checkout flow.** The browser sends only the offer key, selected exam, source
+exam, locale, consent and a request id. The server rejects unavailable formats,
+Premium, legacy offers, owned access, and existing paid or pending subscriptions.
+It resolves and validates the EUR amount, tax behavior and recurring interval
+against plans.ts; no browser-supplied Stripe price or entitlement is accepted.
 
-- **Plus**: a subscription with `payment_behavior: 'default_incomplete'`,
-  metadata `plan`, `price_key`, `source_exam`, `withdrawal_waiver_at`; it
-  returns the first invoice's PaymentIntent secret
-  (`latest_invoice.confirmation_secret`) or the `pending_setup_intent`'s.
-  A still-incomplete subscription for the same price is reused.
-- **Single Exam Pass**: a one-off invoice (`collection_method:
-  'charge_automatically'`, **`auto_advance: false`**, so Stripe never charges
-  it by itself), one invoice item for the pass price, finalised with
-  `auto_advance: false`; metadata `examer_purchase: 'exam_pass'`, `plan`,
-  `exam_key`, `price_lookup_key`, `examer_user_id`, `withdrawal_waiver_at`. It
-  returns the invoice's `confirmation_secret`. A pending pass row is stored. A
-  pass invoice still open for the same exam is reused (two tabs, a reload);
-  one older than a day is voided, so a learner can never pay twice for one
-  exam.
+A persistent per-user checkout slot is locked during creation (Postgres row lock).
+An open matching session is reused across tabs; changing the selection expires
+the old session. A completed session awaiting a delayed payment or webhook sends
+the learner to its status page instead of charging again. Stable Stripe
+idempotency keys protect retries. Existing subscribers use account management.
 
-The browser calls `stripe.confirmPayment` / `confirmSetup` with
-`redirect: 'if_required'` and `return_url` = `/checkout/complete?…`, so 3-D
-Secure runs in Stripe's modal and any redirect comes back to our
-confirmation page. That page asks Stripe on the server (subscription, or the
-invoice with its payment) and shows success only on Stripe's answer. Requests
-carry a per-page idempotency key.
+Pass sessions use payment mode with invoice creation and app metadata; Plus uses
+subscription mode. Payment methods are selected dynamically by Stripe. Billing
+addresses are collected by Stripe. Automatic tax is enabled only by the existing
+environment flag and only after an active tax registration is found; the flag is
+not enabled by this work. This check does not replace business tax review.
+
+Authentication and cancellation keep the selected offer, exam and source exam.
+The success page verifies session ownership and reads local grants; it never
+writes access. It shows processing until the signed webhook has stored access,
+and provides a refresh and account link. Existing legacy return links remain
+readable. Account cancellation, resumption and card replacement are preserved.
 
 **Webhooks** (`handleWebhook`): the signature is verified on the raw body
 with `stripe.webhooks.constructEventAsync` (5-minute tolerance); an event id
@@ -213,7 +201,18 @@ with VibeAssist) are acknowledged and left alone. The event id and the change
 are written in one transaction. 400 for a bad signature, 200 for processed or
 duplicate, 500 (Stripe retries) when the update could not be stored.
 
-**Looks like the site.** `src/components/billing/stripe-appearance.ts` reads
+Checkout session completion and asynchronous success fetch the paid invoice or
+subscription before storing access. Unpaid completion only records processing;
+asynchronous failure and expiry do not grant access. A new subscription reported
+active before its first delayed payment settles is withheld until a paid invoice
+is verified. The session creation time records the consent acknowledgement when
+the signed completion event is processed. Renewals, cancellation, full/partial
+refunds and legacy access retain the existing policies above.
+
+**Looks like the site.** The paywall reuses UniExamer's logo, fonts, ivory surfaces
+and blue accent. Hosted Checkout receives the same name/background/button colors.
+The following Appearance integration is retained for account card replacement:
+ `src/components/billing/stripe-appearance.ts` reads
 our CSS tokens (`--color-accent`, `--color-surface`, `--radius-control`, …)
 from the page at run time and maps them to Appearance variables and rules
 mirroring `fieldClass()`. The interface font is served from `/fonts/` with
@@ -233,7 +232,7 @@ Stripe product names. The terms of sale are in `about.json`
 | Variable | Where | Notes |
 | --- | --- | --- |
 | `BILLING_ENFORCED` | server | `true` turns the paywall on. Default `false`: everything free, no keys needed (local dev, unit and e2e tests). |
-| `STRIPE_SECRET_KEY` | server only | `sk_test_…`/`sk_live_…`, or a restricted key with write access to Customers, Subscriptions, SetupIntents, **Invoices and Invoice Items** and read access to Prices. |
+| `STRIPE_SECRET_KEY` | server only | `sk_test_…`/`sk_live_…`, or a restricted key with write access to Customers, Subscriptions, SetupIntents, **Checkout Sessions, Invoices and Invoice Items**, read access to Prices and (when automatic tax is enabled) Tax Registrations. |
 | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | browser | Same mode as the secret key. Read at run time and passed to the page, not inlined at build time. |
 | `STRIPE_WEBHOOK_SECRET` | server only | `whsec_…` of the webhook endpoint (or of `stripe listen` locally). |
 | `STRIPE_AUTOMATIC_TAX` | server | `true` only after Stripe Tax is set up: checkout then asks for the country and Stripe computes VAT inside the inclusive price, for passes and Plus alike. |
@@ -269,6 +268,10 @@ once with the test key and once with the live key.
 In the Stripe dashboard (Developers → Webhooks) add
 `https://<site>/api/billing/webhook` with these events:
 
+- `checkout.session.completed`
+- `checkout.session.async_payment_succeeded`
+- `checkout.session.async_payment_failed`
+- `checkout.session.expired`
 - `customer.subscription.created`
 - `customer.subscription.updated`
 - `customer.subscription.deleted`
@@ -281,19 +284,12 @@ Copy its signing secret into `STRIPE_WEBHOOK_SECRET`.
 
 ### 4. Local development
 
-```bash
-# .env.local: test keys, and BILLING_ENFORCED=true to see the paywall
-stripe login
-stripe listen --forward-to localhost:3000/api/billing/webhook   # prints whsec_… for STRIPE_WEBHOOK_SECRET
-npm run dev
-```
-
-Test cards: `4242 4242 4242 4242` (succeeds), `4000 0027 6000 3184` (3-D
-Secure), `4000 0000 0000 0341` (attaches, then fails on payment; use it to
-rehearse `past_due` with `stripe trigger invoice.payment_failed` or a test
-clock). Without `stripe listen`, the confirmation and account pages still
-read the subscription or pass invoice from Stripe directly, but renewals,
-refunds and cancellations made in the dashboard only arrive through webhooks.
+Use an isolated local database and BILLING_ENFORCED=false for visual previews.
+Run npm run verify for type, content, translation and mocked billing checks.
+No test cards are used on a live account. Real decline, delayed-payment and
+renewal rehearsals remain unperformed because the owner declined a sandbox.
+Webhooks are required for new Checkout Session purchases: the return page does
+not grant access as a fallback when webhook delivery is missing.
 
 ## Release steps (before anything is sold)
 
@@ -313,15 +309,16 @@ In this order. Nothing here has been done; the code ships with payments off.
    `db/postgres/012_stripe_subscriptions.sql` (if still pending in
    production: it copies the first Premium subscribers as earlier plans that
    keep the AI tutor), then 013, 014, 015 as already planned
-   (docs/HUMAN-APPROVAL-ROLLOUT.md), then **`db/postgres/016_exam_passes.sql`**.
-   016 only adds `billing_passes`. Apply it **before** deploying this code:
+   (docs/HUMAN-APPROVAL-ROLLOUT.md), then **`db/postgres/016_exam_passes.sql`** and **`db/postgres/017_checkout_sessions.sql`**.
+   016 adds `billing_passes`; 017 adds the backend-only, RLS-protected checkout slot. Apply them **before** deploying this code:
    the pricing, checkout and account pages read the table (the entitlement
    check alone fails closed without it).
 3. **Deploy with `BILLING_ENFORCED` unset** (or `false`). Everything stays
    free; the pricing page shows the new plans with "Everything is free right
    now".
-4. **Stripe (test mode first).** Set test keys, run `npm run stripe:setup`,
-   create the webhook endpoint with the seven events above, then rehearse:
+4. **Payment rehearsal (not performed; owner declined sandbox).** Automated mocks
+   cover the scenarios below. A future authorized rehearsal would set isolated keys, run `npm run stripe:setup`,
+   create the webhook endpoint with the events listed above above, then rehearse:
    buy a pass (with and without 3-D Secure) for an exam with an open format,
    try one for an exam without (refused), buy Plus monthly and yearly, a
    declined card, cancel and resume Plus, update the card, a failed renewal
@@ -336,14 +333,13 @@ In this order. Nothing here has been done; the code ships with payments off.
    for the pass, the invoice/receipt email is the durable-medium confirmation
    of the waiver below), retry schedule and what happens after the last retry
    (Billing → Revenue recovery: cancel the subscription is recommended), Radar
-   rules, 3-D Secure. Check that "Automatically finalize and charge invoices"
-   style settings do not override `auto_advance: false` on pass invoices.
+   rules, 3-D Secure. Verify Checkout payment methods, invoice/receipt delivery and webhook delivery.
 6. **Live setup.** Live keys as Worker secrets, `npm run stripe:setup` with
-   the live key, webhook endpoint with the seven events, server starts.
+   the live key, webhook endpoint with the events listed above, server starts.
    `npx tsx scripts/stripe-setup.ts --connect` does all of it in one run: it
    asks for the live secret key (not echoed) and publishable key, creates the
    products and prices, creates the webhook endpoint at
-   `https://uniexamer.com/api/billing/webhook` with the seven events and the
+   `https://uniexamer.com/api/billing/webhook` with the events listed above and the
    SDK's API version, and stores `STRIPE_SECRET_KEY`,
    `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` and `STRIPE_WEBHOOK_SECRET` with
    `wrangler secret bulk`, so no key is printed or saved to a file. Run it

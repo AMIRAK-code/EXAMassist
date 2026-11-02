@@ -40,7 +40,7 @@
     "samples": "Örnek sorular",
     "diagnostic": "Her sınav için ücretsiz seviye belirleme testi",
     "official_scores": "Resmî deneme sınavı puanlarınızın takibi",
-    "practice": "Çözümlü açıklamalarla konu alıştırmaları ve tekrarlar, her oturumda yeni sorular",
+    "practice": "Çözümlü açıklamalarla konu çalışması ve tekrar denemeleri",
     "timed_section": "Resmî tempoda zamanlı bölümler",
     "simulation": "Sınavda varsa tam uzunlukta deneme sınavları",
     "study_plan": "Çalışma planı ve ilerleme takibi",
@@ -63,7 +63,7 @@
     "lead": "Rehberler, örnek sorular, her sınav için bir seviye belirleme testi ve resmî deneme sınavı puanlarınızın takibi ücretsizdir. Tek Sınav Paketi ya da Plus; alıştırmaları, zamanlı bölümleri, tam deneme sınavlarını, çalışma planını ve ilerleme takibini her sınavın açık formatları için açar.",
     "notEnforced": {
       "title": "Şu anda her şey ücretsiz",
-      "body": "Bu sitede ödemeler henüz etkin değil; bu nedenle tüm sınavlar ve tüm formatlar herkese açık."
+      "body": "Ödemeler henüz etkin değil. Şu anda kullanılabilen tüm çalışmalar ücretsiz kalır."
     },
     "testMode": "Test modu: ödeme adımında Stripe test kartları kullanılır ve hiçbir ücret alınmaz.",
     "reasons": {
@@ -136,7 +136,7 @@
       "pass": "Tek Sınav Paketi tek seferlik ödenir. Altı aylık süresi ödemeniz onaylandığında başlar ve hesabınızda gösterilen tarihte sona erer. Hiçbir zaman yenilenmez ve tekrar ücret alınmaz.",
       "renewal": "Plus, siz iptal edene kadar her ay ya da her yıl yenilenir. Yıllık ücret her yılın başında tamamı peşin olarak tahsil edilir. Hesabınızdan istediğiniz zaman iptal edebilirsiniz; Plus, ödemesini yaptığınız dönemin sonuna kadar açık kalır.",
       "withdrawal": "Erişim, ödeme yaptığınız anda başlar. Ödeme sırasında erişimin hemen başlamasını istediğinizi ve 14 günlük cayma hakkının erişim başladığında sona erdiğini onaylamanız istenir.",
-      "cards": "Kart bilgileri, ödeme hizmeti sağlayıcımız Stripe’ın sunduğu alanlara girilir ve doğrudan Stripe’a iletilir. Bu bilgiler hiçbir zaman sunucularımıza ulaşmaz.",
+      "cards": "Ödeme bilgileri Stripe tarafından güvenli şekilde alınır. Sunucularımıza asla ulaşmaz.",
       "earlier": "Bu fiyatlardan önce satın alınan bir plan, sona erene kadar kapsadığı her şeyi kendi fiyatıyla korur. Kimseyi önceden haber vermeden yeni bir plana ya da fiyata geçirmeyiz.",
       "terms": "Satış koşulları",
       "privacy": "Gizlilik bildirimi"
@@ -147,8 +147,8 @@
       "title": "Ödeme"
     },
     "eyebrow": "Ödeme",
-    "title": "Planınızı seçin ve ödeyin",
-    "lead": "KDV dahildir. Paket tek seferlik ödenir; Plus siz iptal edene kadar yenilenir.",
+    "title": "Planını gözden geçir",
+    "lead": "Planını gözden geçir, ardından ödeme için Stripe’a devam et. Geçiş tek seferliktir; Plus iptal edene kadar yenilenir.",
     "notices": {
       "premium": "Premium yakında gelecek ve henüz satın alınamıyor. Şu anda satışta olan planlar bunlar.",
       "earlier": "Bu plan artık satılmıyor. Şu anda satışta olan planlar bunlar."
@@ -183,12 +183,12 @@
     },
     "processing": {
       "title": "Ödemeniz işleniyor",
-      "body": "Bankanız ödemeyi henüz onaylamadı. Onay gelir gelmez planınız başlar; bir dakika sonra bu sayfayı yenileyin.",
+      "body": "Ödeme onayını ve erişimin etkinleştirilmesini bekliyoruz. Tekrar ödeme yapma. Biraz sonra yenile veya hesabını kontrol et.",
       "refresh": "Yenile"
     },
     "pending": {
       "title": "Ödemeniz bekleniyor",
-      "body": "Bu ödemenin onayını henüz almadık. Ödemeyi az önce yaptıysanız birazdan bu sayfayı yenileyin. Ödemeyi yarıda bıraktıysanız yeniden deneyebilirsiniz; hiçbir ücret alınmadı.",
+      "body": "Ödeme onayını ve erişimin etkinleştirilmesini bekliyoruz. Tekrar ödeme yapma. Biraz sonra yenile veya hesabını kontrol et.",
       "refresh": "Yenile",
       "retry": "Ödemeye dön"
     },
@@ -207,7 +207,12 @@
       "body": "Başka bir hesaba ait olabilir. Planlarınız hesap sayfanızda listelenir.",
       "account": "Hesabınız"
     },
-    "pricing": "Planları görün"
+    "pricing": "Planları görün",
+    "ended": {
+      "title": "Erişimin sona erdi",
+      "body": "Bu plan artık erişim sağlamıyor. Durumu ve tarihleri hesabından kontrol et veya yeni bir plan seç.",
+      "retry": "Mevcut planları gör"
+    }
   },
   "form": {
     "planLegend": "Plan",
@@ -237,8 +242,8 @@
     "pay": "{price} öde ve başla",
     "paying": "Ödeme işleniyor…",
     "errorTitle": "Ödeme gerçekleşmedi",
-    "networkError": "Sunucuya ulaşamadık. Bağlantınızı kontrol edip yeniden deneyin. Hiçbir ücret alınmadı.",
-    "genericError": "Bir sorun oluştu. Hiçbir ücret alınmadı; lütfen yeniden deneyin.",
+    "networkError": "Ödeme durumunu doğrulayamadık. Tekrar denemeden önce bağlantını ve hesabını kontrol et.",
+    "genericError": "Ödeme durumunu doğrulayamadık. Tekrar denemeden önce bağlantını ve hesabını kontrol et.",
     "alreadySubscribed": "Planlarınızı yönetin",
     "summary": {
       "heading": "Sipariş özeti",
@@ -381,5 +386,22 @@
         "samples": "Örnek sorular ücretsizdir."
       }
     }
+  },
+  "experience": {
+    "billingPeriod": "Faturalandırma dönemi",
+    "month": "Aylık",
+    "year": "Yıllık",
+    "passLabel": "Tek ödeme · 6 ay · Yenileme yok",
+    "lead": "Ücretsiz kaynaklarla başla. Tek bir sınava odaklan veya Plus ile seçeneklerini açık tut.",
+    "yourFocus": "Çalışma hedefin",
+    "focusBody": "Hazırlığına uygun erişimi seç. Ücretsiz kaynaklar ücretsiz kalır.",
+    "renewal": "İptal edilene kadar yenilenir. Planını hesabından yönet.",
+    "secureTitle": "Stripe ile güvenli ödeme",
+    "secureBody": "Siparişini burada kontrol et, ardından ödeme bilgilerini Stripe üzerinden güvenle gir. Kullanılabilir yöntemler ödeme sırasında gösterilir.",
+    "continue": "Ödemeye devam et · {price}",
+    "cancelled": "Ödeme ekranı kapatıldı. Seçimin aşağıda korunuyor. Ödeme gönderdiysen tekrar denemeden önce hesabını kontrol et.",
+    "waiting": "Ödeme onayını ve erişimin etkinleştirilmesini bekliyoruz. Tekrar ödeme yapma. Biraz sonra yenile veya hesabını kontrol et.",
+    "resume": "Çalışmaya devam et",
+    "formatsNote": "Çalışma formatları sınava göre değişir. Yalnızca aşağıda açık olarak listelenen formatlar kullanılabilir."
   }
 }

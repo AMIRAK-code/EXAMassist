@@ -3,12 +3,14 @@ import { getFormatter, getTranslations } from 'next-intl/server';
 import { Link, redirect } from '@/i18n/navigation';
 import { pageAlternates } from '@/i18n/alternates';
 import { getCurrentUser } from '@/lib/auth/session';
+import { safeNext } from '@/lib/auth/next-path';
 import { getDb } from '@/lib/db';
 import { getExamConfig } from '@/lib/exams/registry';
 import { checkoutPath, pricingPath } from '@/lib/billing/config';
 import { grantIsLive, passToGrant, toGrant } from '@/lib/billing/entitlements';
 import { priceForLookupKey } from '@/lib/billing/plans';
-import { BillingError, syncPassForUser, syncSubscriptionForUser } from '@/lib/billing/service';
+import { stripeClient } from '@/lib/billing/stripe';
+import { getCustomerId, getPassRow, getSubscriptionRow } from '@/lib/billing/store';
 import type { PassRow, SubscriptionRow } from '@/lib/billing/store';
 import { Alert, Breadcrumbs, ButtonLink, Card, Container, PageHeader } from '@/components/ui';
 
@@ -26,8 +28,8 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   };
 }
 
-type Query = { subscription?: string; pass?: string; redirect_status?: string };
-type State = 'processing' | 'pending' | 'failed' | 'expired';
+type Query = { subscription?: string; pass?: string; redirect_status?: string; session_id?: string };
+type State = 'processing' | 'pending' | 'failed' | 'ended';
 
 /** What was bought, as the page needs it: a Plus (or earlier) subscription, or a Single Exam Pass. */
 interface Purchase {
@@ -40,6 +42,7 @@ interface Purchase {
   until: string | null;
   interval: 'once' | 'month' | 'year' | null;
   retryHref: string;
+  cancelAtEnd?: boolean;
 }
 
 function fromSubscription(row: SubscriptionRow): Purchase {
@@ -53,6 +56,7 @@ function fromSubscription(row: SubscriptionRow): Purchase {
     until: row.current_period_end,
     interval: price?.interval ?? null,
     retryHref: checkoutPath(price?.key ?? 'plus_month'),
+    cancelAtEnd: Boolean(row.cancel_at_period_end),
   };
 }
 
@@ -62,8 +66,8 @@ function fromPass(row: PassRow): Purchase {
     plan: row.plan,
     examKey: row.exam_key,
     // Paid means Stripe recorded the payment; the date shown says how long it lasts.
-    live: row.status === 'paid' || grantIsLive(passToGrant(row)),
-    ended: row.status === 'void' || row.status === 'refunded',
+    live: grantIsLive(passToGrant(row)),
+    ended: row.status === 'void' || row.status === 'refunded' || (row.status === 'paid' && !grantIsLive(passToGrant(row))),
     until: row.access_ends_at,
     interval: 'once',
     retryHref: checkoutPath('exam_pass', row.exam_key),
@@ -79,18 +83,50 @@ export default async function CheckoutCompletePage({ params, searchParams }: { p
     format.dateTime(new Date(iso), { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
   const subscriptionId = typeof query.subscription === 'string' && /^sub_[A-Za-z0-9]+$/.test(query.subscription) ? query.subscription : null;
   const invoiceId = !subscriptionId && typeof query.pass === 'string' && /^in_[A-Za-z0-9]+$/.test(query.pass) ? query.pass : null;
-  const here = `/checkout/complete${subscriptionId ? `?subscription=${subscriptionId}` : invoiceId ? `?pass=${invoiceId}` : ''}`;
+  const sessionId = typeof query.session_id === 'string' && /^cs_[A-Za-z0-9_]+$/.test(query.session_id) ? query.session_id : null;
+  const here = `/checkout/complete${sessionId ? `?session_id=${sessionId}` : subscriptionId ? `?subscription=${subscriptionId}` : invoiceId ? `?pass=${invoiceId}` : ''}`;
   const user = await getCurrentUser();
   if (!user) return redirect({ href: `/sign-in?next=${encodeURIComponent(here)}`, locale });
 
   let purchase: Purchase | null = null;
-  try {
-    // Webhooks may be a moment behind the browser: ask Stripe now, from the
-    // server. Only Stripe's answer opens access; the browser's word never does.
-    if (subscriptionId) purchase = fromSubscription(await syncSubscriptionForUser(getDb(), user.id, subscriptionId));
-    else if (invoiceId) purchase = fromPass(await syncPassForUser(getDb(), user.id, invoiceId));
-  } catch (error) {
-    if (!(error instanceof BillingError)) throw error;
+  let sessionPending = false;
+  let sessionExpired = false;
+  let sessionFailed = false;
+  let sourceExam: string | null = null;
+  let returnTo: string | null = null;
+  // The return page only reads webhook-owned records. A redirect never grants access.
+  const db = getDb();
+  if (sessionId) {
+    try {
+      const session = await stripeClient().checkout.sessions.retrieve(sessionId);
+      const customer = typeof session.customer === 'string' ? session.customer : session.customer?.id;
+      if (session.metadata?.examer_user_id === user.id && customer === await getCustomerId(db, user.id)) {
+        sourceExam = session.metadata?.source_exam ?? null;
+        returnTo = safeNext(session.metadata?.return_to);
+        const sub = typeof session.subscription === 'string' ? session.subscription : session.subscription?.id;
+        const inv = typeof session.invoice === 'string' ? session.invoice : session.invoice?.id;
+        const row = sub ? await getSubscriptionRow(db, sub) : inv ? await getPassRow(db, inv) : null;
+        if (row?.user_id === user.id) purchase = 'stripe_subscription_id' in row ? fromSubscription(row) : fromPass(row);
+        sessionExpired = session.status === 'expired';
+        const checkout = await db.prepare('SELECT status FROM billing_checkouts WHERE user_id = ? AND session_id = ?').get(user.id, session.id) as { status: string } | undefined;
+        sessionFailed = checkout?.status === 'failed';
+        sessionPending = !purchase && !sessionExpired;
+      }
+    } catch { sessionPending = true; }
+  } else {
+    const row = subscriptionId ? await getSubscriptionRow(db, subscriptionId) : invoiceId ? await getPassRow(db, invoiceId) : null;
+    if (row?.user_id === user.id) purchase = 'stripe_subscription_id' in row ? fromSubscription(row) : fromPass(row);
+  }
+  if (sessionPending || sessionExpired || sessionFailed) {
+    return <Container size="narrow"><Card padding="lg" className="border-t-4 border-t-accent">
+      <p className="eyebrow">{t('complete.eyebrow')}</p>
+      <h1 className="mt-3 font-heading text-3xl font-semibold">{t(sessionFailed ? 'complete.failed.title' : sessionExpired ? 'complete.expired.title' : 'complete.processing.title')}</h1>
+      <p role="status" className="mt-4 text-ink-muted">{t(sessionFailed ? 'complete.failed.body' : sessionExpired ? 'complete.expired.body' : 'experience.waiting')}</p>
+      <div className="mt-6 flex flex-wrap gap-3">
+        {!sessionExpired && !sessionFailed ? <ButtonLink href={here}>{t('complete.processing.refresh')}</ButtonLink> : <ButtonLink href={pricingPath(sourceExam)}>{t('complete.pricing')}</ButtonLink>}
+        <ButtonLink href="/account#billing" variant="secondary">{t('complete.success.manage')}</ButtonLink>
+      </div>
+    </Card></Container>;
   }
 
   const trail = [
@@ -114,12 +150,12 @@ export default async function CheckoutCompletePage({ params, searchParams }: { p
     );
   }
 
-  const exam = purchase.examKey ? getExamConfig(purchase.examKey) : undefined;
+  const exam = getExamConfig(purchase.examKey ?? sourceExam ?? '');
   const planName = t.has(`plans.${purchase.plan}.name`) ? t(`plans.${purchase.plan}.name`) : purchase.plan;
   const state: State | 'success' = purchase.live
     ? 'success'
     : purchase.ended
-      ? 'expired'
+      ? 'ended'
       : query.redirect_status === 'failed'
         ? 'failed'
         : query.redirect_status === 'processing'
@@ -145,7 +181,7 @@ export default async function CheckoutCompletePage({ params, searchParams }: { p
             <p>
               {purchase.kind === 'pass'
                 ? t('complete.success.passUntil', { exam: exam?.name ?? '', date: until })
-                : purchase.interval === 'year'
+                : purchase.cancelAtEnd ? t('manager.ends', { date: until }) : purchase.interval === 'year'
                   ? t('complete.success.renewsYearly', { date: until })
                   : t('complete.success.renews', { date: until })}
             </p>
@@ -153,7 +189,7 @@ export default async function CheckoutCompletePage({ params, searchParams }: { p
           {user.email ? <p className="mt-1">{t('complete.success.receipt', { email: user.email })}</p> : null}
         </Alert>
         <div className="flex flex-wrap gap-3">
-          {exam ? (
+          {returnTo ? <ButtonLink href={returnTo}>{t('experience.resume')}</ButtonLink> : exam ? (
             <ButtonLink href={`/practice/${exam.examKey}`}>{t('complete.success.practise', { exam: exam.shortName })}</ButtonLink>
           ) : (
             <ButtonLink href="/exams">{t('complete.success.exams')}</ButtonLink>
@@ -176,8 +212,8 @@ export default async function CheckoutCompletePage({ params, searchParams }: { p
           {state === 'processing' || state === 'pending' ? (
             <ButtonLink href={here}>{t(`complete.${state}.refresh`)}</ButtonLink>
           ) : null}
-          {state === 'failed' || state === 'expired' || state === 'pending' ? (
-            <ButtonLink href={purchase.retryHref} variant={state === 'pending' ? 'secondary' : 'primary'}>
+          {state === 'failed' || state === 'ended' ? (
+            <ButtonLink href={purchase.retryHref}>
               {t(`complete.${state}.retry`)}
             </ButtonLink>
           ) : null}

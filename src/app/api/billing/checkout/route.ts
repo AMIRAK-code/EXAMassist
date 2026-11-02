@@ -4,7 +4,9 @@ import { assertSameOrigin, fail, ok, readJson, toErrorResponse } from '@/lib/api
 import { callerKey, checkRateLimit } from '@/lib/auth/rate-limit';
 import { requireUser } from '@/lib/auth/session';
 import { PRICE_KEYS, type PriceKey } from '@/lib/billing/plans';
-import { BILLING_COPY, startCheckout } from '@/lib/billing/service';
+import { startHostedCheckout } from '@/lib/billing/checkout-sessions';
+import { LOCALES } from '@/i18n/locales';
+import { BILLING_COPY } from '@/lib/billing/service';
 
 export const dynamic = 'force-dynamic';
 
@@ -19,18 +21,19 @@ const bodySchema = z.object({
   examKey: z.string().max(64).nullish(),
   /** The exam the learner came from; never changes the plan or the price. */
   sourceExam: z.string().max(64).nullish(),
+  returnTo: z.string().max(400).nullish(),
   /** The EU withdrawal-right acknowledgement. Must be ticked. */
   consent: z.literal(true),
   /** One per checkout page view: the idempotency key for Stripe. */
   requestId: z.string().regex(/^[A-Za-z0-9-]{8,64}$/),
+  locale: z.enum(LOCALES).default('en'),
   country: z.string().regex(/^[A-Za-z]{2}$/).nullish(),
 });
 
 /**
- * Creates what the checkout page is about to pay for (a Plus subscription, or
- * the invoice of a Single Exam Pass) and returns the client secret the browser
- * confirms with Stripe.js. The acting user comes from the session; whether it
- * may be sold is decided by the server (startCheckout), never by the page.
+ * Returns a hosted Checkout Session URL after server-side eligibility and
+ * price validation. Payment collection is delegated to Stripe; access is
+ * activated by verified webhooks only.
  */
 export async function POST(request: Request) {
   try {
@@ -47,14 +50,15 @@ export async function POST(request: Request) {
     }
 
     const body = await readJson(request, bodySchema);
-    const started = await startCheckout(db, user, {
+    const started = await startHostedCheckout(db, user, {
       offer: body.offer,
       examKey: body.examKey ?? null,
       sourceExam: body.sourceExam ?? null,
+      returnTo: body.returnTo ?? null,
       consent: body.consent,
       requestId: body.requestId,
       country: body.country ?? null,
-    });
+    }, { origin: new URL(request.url).origin, locale: body.locale });
     return ok(started);
   } catch (error) {
     return toErrorResponse(error);

@@ -40,7 +40,7 @@
     "samples": "Przykładowe pytania",
     "diagnostic": "Bezpłatny test diagnostyczny dla każdego egzaminu",
     "official_scores": "Zapis Twoich wyników z oficjalnych testów próbnych",
-    "practice": "Ćwiczenia z tematów i powtórki z rozwiązaniami krok po kroku, nowe pytania w każdej sesji",
+    "practice": "Ćwiczenia tematyczne i powtórki z wyjaśnieniami rozwiązań",
     "timed_section": "Sekcje na czas w oficjalnym tempie",
     "simulation": "Pełne symulacje, jeśli egzamin je przewiduje",
     "study_plan": "Plan nauki i śledzenie postępów",
@@ -63,7 +63,7 @@
     "lead": "Przewodniki, przykładowe pytania, test diagnostyczny dla każdego egzaminu i zapis Twoich wyników z oficjalnych testów próbnych są bezpłatne. Karnet na jeden egzamin lub Plus otwiera ćwiczenia, sekcje na czas, pełne symulacje, plan nauki i śledzenie postępów w formatach, które dany egzamin ma już otwarte.",
     "notEnforced": {
       "title": "Teraz wszystko jest bezpłatne",
-      "body": "Płatności w tym serwisie nie są jeszcze włączone, więc wszystkie egzaminy i wszystkie formaty są dostępne dla każdego."
+      "body": "Płatności nie są jeszcze włączone. Wszystkie obecnie dostępne ćwiczenia pozostają bezpłatne."
     },
     "testMode": "Tryb testowy: płatność korzysta z testowych kart Stripe i niczego nie pobiera.",
     "reasons": {
@@ -136,7 +136,7 @@
       "pass": "Karnet na jeden egzamin opłacasz raz. Jego sześć miesięcy zaczyna się z chwilą potwierdzenia płatności i kończy w dniu podanym na Twoim koncie. Nigdy się nie odnawia i nie pobieramy za niego kolejnych opłat.",
       "renewal": "Plus odnawia się co miesiąc lub co rok, dopóki go nie anulujesz. Cena roczna jest pobierana w całości na początku każdego roku. Możesz anulować w dowolnym momencie na swoim koncie; Plus działa do końca opłaconego okresu.",
       "withdrawal": "Dostęp zaczyna się od razu po zapłacie. Przy płatności poprosimy Cię o potwierdzenie, że chcesz go otrzymać natychmiast i że 14-dniowe prawo odstąpienia od umowy wygasa z chwilą rozpoczęcia dostępu.",
-      "cards": "Dane karty wpisujesz w polach udostępnianych przez Stripe, naszego operatora płatności, i trafiają one bezpośrednio do Stripe. Nigdy nie docierają do naszych serwerów.",
+      "cards": "Stripe bezpiecznie zbiera dane płatności. Nigdy nie trafiają one na nasze serwery.",
       "earlier": "Plan kupiony przed wprowadzeniem tych cen zachowuje wszystko, co obejmował, w swojej cenie, aż do zakończenia. Nikogo nie przenosimy na nowy plan ani nową cenę bez wcześniejszej informacji.",
       "terms": "Warunki sprzedaży",
       "privacy": "Informacja o prywatności"
@@ -147,8 +147,8 @@
       "title": "Płatność"
     },
     "eyebrow": "Płatność",
-    "title": "Wybierz plan i zapłać",
-    "lead": "Ceny z VAT. Karnet opłacasz raz; Plus odnawia się, dopóki go nie anulujesz.",
+    "title": "Sprawdź swój plan",
+    "lead": "Sprawdź plan, a następnie przejdź do Stripe, aby zapłacić. Pass opłacasz raz; Plus odnawia się do anulowania.",
     "notices": {
       "premium": "Premium pojawi się wkrótce i nie można go jeszcze kupić. Oto plany, które są teraz w sprzedaży.",
       "earlier": "Ten plan nie jest już sprzedawany. Oto plany, które są teraz w sprzedaży."
@@ -183,12 +183,12 @@
     },
     "processing": {
       "title": "Twoja płatność jest przetwarzana",
-      "body": "Twój bank jeszcze nie potwierdził płatności. Plan zacznie działać, gdy tylko to nastąpi; odśwież tę stronę za minutę.",
+      "body": "Czekamy na potwierdzenie płatności i aktywację dostępu. Nie płać ponownie. Odśwież za chwilę lub sprawdź swoje konto.",
       "refresh": "Odśwież"
     },
     "pending": {
       "title": "Czekamy na Twoją płatność",
-      "body": "Nie otrzymaliśmy jeszcze potwierdzenia tej płatności. Jeśli płatność została właśnie wykonana, odśwież tę stronę za chwilę. Jeśli płatność nie została dokończona, możesz spróbować ponownie; nic nie zostało pobrane.",
+      "body": "Czekamy na potwierdzenie płatności i aktywację dostępu. Nie płać ponownie. Odśwież za chwilę lub sprawdź swoje konto.",
       "refresh": "Odśwież",
       "retry": "Wróć do płatności"
     },
@@ -207,7 +207,12 @@
       "body": "Może należeć do innego konta. Twoje plany znajdziesz na stronie swojego konta.",
       "account": "Twoje konto"
     },
-    "pricing": "Zobacz plany"
+    "pricing": "Zobacz plany",
+    "ended": {
+      "title": "Twój dostęp wygasł",
+      "body": "Ten plan nie zapewnia już dostępu. Sprawdź jego status i daty na koncie lub wybierz nowy plan.",
+      "retry": "Zobacz dostępne plany"
+    }
   },
   "form": {
     "planLegend": "Plan",
@@ -237,8 +242,8 @@
     "pay": "Zapłać {price} i zacznij",
     "paying": "Przetwarzanie płatności…",
     "errorTitle": "Płatność nie została zrealizowana",
-    "networkError": "Nie udało się połączyć z serwerem. Sprawdź połączenie i spróbuj ponownie. Nic nie zostało pobrane.",
-    "genericError": "Coś poszło nie tak. Nic nie zostało pobrane; spróbuj ponownie.",
+    "networkError": "Nie udało się potwierdzić stanu płatności. Sprawdź połączenie i konto przed ponowną próbą.",
+    "genericError": "Nie udało się potwierdzić stanu płatności. Sprawdź połączenie i konto przed ponowną próbą.",
     "alreadySubscribed": "Zarządzaj planami",
     "summary": {
       "heading": "Podsumowanie zamówienia",
@@ -381,5 +386,22 @@
         "samples": "Przykładowe pytania są bezpłatne."
       }
     }
+  },
+  "experience": {
+    "billingPeriod": "Okres rozliczeniowy",
+    "month": "Miesięcznie",
+    "year": "Rocznie",
+    "passLabel": "Jedna płatność · 6 miesięcy · Bez odnowienia",
+    "lead": "Zacznij od darmowych zasobów. Wybierz ćwiczenia do jednego egzaminu lub zachowaj więcej możliwości z Plus.",
+    "yourFocus": "Twój cel nauki",
+    "focusBody": "Wybierz dostęp odpowiedni do swoich przygotowań. Darmowe zasoby pozostają darmowe.",
+    "renewal": "Odnawia się do momentu anulowania. Zarządzaj planem na swoim koncie.",
+    "secureTitle": "Bezpieczna płatność przez Stripe",
+    "secureBody": "Sprawdź zamówienie, a następnie bezpiecznie podaj dane płatności w Stripe. Dostępne metody zobaczysz podczas płatności.",
+    "continue": "Przejdź do płatności · {price}",
+    "cancelled": "Ekran płatności został zamknięty. Twój wybór znajduje się poniżej. Jeśli płatność została już wysłana, sprawdź konto przed ponowną próbą.",
+    "waiting": "Czekamy na potwierdzenie płatności i aktywację dostępu. Nie płać ponownie. Odśwież za chwilę lub sprawdź swoje konto.",
+    "resume": "Kontynuuj naukę",
+    "formatsNote": "Formaty zależą od egzaminu. Dostępne są tylko te oznaczone poniżej jako otwarte."
   }
 }
