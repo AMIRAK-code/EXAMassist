@@ -119,7 +119,7 @@ export function SubscriptionManager({
           </ButtonLink>
         </div>
       ) : (
-        <ul className="space-y-4">
+        <ul className="space-y-5">
           {current.map((subscription) => (
             <SubscriptionCard
               key={subscription.id}
@@ -190,7 +190,7 @@ function SubscriptionCard({
 
   if (subscription.kind === 'pass') {
     return (
-      <Card as="li" className="bg-surface">
+      <Card as="li" className="border-s-4 border-s-accent bg-surface shadow-card">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div className="min-w-0">
             <h3 className="font-heading text-lg font-semibold">
@@ -223,7 +223,7 @@ function SubscriptionCard({
   }
 
   return (
-    <Card as="li" className="bg-surface">
+    <Card as="li" className="border-s-4 border-s-accent bg-surface shadow-card">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="min-w-0">
           <h3 className="font-heading text-lg font-semibold">

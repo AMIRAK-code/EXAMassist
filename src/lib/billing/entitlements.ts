@@ -285,7 +285,9 @@ async function refreshStale(db: Db, userId: string, rows: SubscriptionRow[], str
   for (const row of stale) {
     try {
       const fresh = await stripe.subscriptions.retrieve(row.stripe_subscription_id);
-      await storeSubscription(db, userId, fresh, { syncedAt: Math.floor(now.getTime() / 1000), now });
+      if (fresh.metadata?.checkout_flow !== 'sessions') {
+        await storeSubscription(db, userId, fresh, { syncedAt: Math.floor(now.getTime() / 1000), now });
+      }
     } catch (error) {
       console.error('[billing] could not refresh a stale subscription:', error instanceof Error ? error.message : error);
     }

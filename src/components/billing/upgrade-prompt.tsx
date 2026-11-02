@@ -1,7 +1,7 @@
 import { useLocale, useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { ButtonLink, Card, cx } from '@/components/ui';
-import { checkoutPath, freeTestPath, pricingPath } from '@/lib/billing/config';
+import { freeTestPath, pricingPath } from '@/lib/billing/config';
 import { PLANS, PRICES, formatPrice, type Feature } from '@/lib/billing/plans';
 
 /**
@@ -38,7 +38,7 @@ export function UpgradePrompt({
   const plus = PLANS.plus.status === 'on-sale' && PLANS.plus.features.includes(feature);
   const nothingOnSale = !pass && !plus;
   return (
-    <Card padding="lg" className={cx('border-2 border-accent', className)}>
+    <Card padding="lg" className={cx('relative overflow-hidden border border-accent-line border-s-4 border-s-accent bg-accent-soft/40', className)}>
       <p className="eyebrow">{nothingOnSale ? t('upgrade.eyebrowSoon') : t('upgrade.eyebrow')}</p>
       <Heading className="mt-2 font-heading text-xl font-semibold">
         {t(`upgrade.titles.${feature}`, { hasExam: examName ? 'yes' : 'no', exam: examName ?? '' })}
@@ -48,12 +48,12 @@ export function UpgradePrompt({
         <p className="mt-4 text-sm">{t('upgrade.tutorComingSoon')}</p>
       ) : (
         <>
-          <ul className="mt-4 space-y-1 text-sm">
+          <ul className="mt-5 grid gap-3 text-sm sm:grid-cols-2">
             {pass ? (
-              <li>{t('upgrade.passLine', { plan: t('plans.exam_pass.name'), price: price(PRICES.exam_pass.amount) })}</li>
+              <li className="rounded-control border border-line bg-surface p-4">{t('upgrade.passLine', { plan: t('plans.exam_pass.name'), price: price(PRICES.exam_pass.amount) })}</li>
             ) : null}
             {plus ? (
-              <li>
+              <li className="rounded-control border border-line bg-surface p-4">
                 {t('upgrade.plusLine', {
                   plan: t('plans.plus.name'),
                   monthly: price(PRICES.plus_month.amount),
@@ -66,10 +66,7 @@ export function UpgradePrompt({
         </>
       )}
       <div className="mt-5 flex flex-wrap items-center gap-3">
-        {pass && examKey ? (
-          <ButtonLink href={checkoutPath('exam_pass', examKey)}>{t('upgrade.choosePlan', { plan: t('plans.exam_pass.name') })}</ButtonLink>
-        ) : null}
-        <ButtonLink href={pricingPath(examKey, feature)} variant={pass && examKey ? 'secondary' : 'primary'}>
+        <ButtonLink href={pricingPath(examKey, feature)}>
           {t('upgrade.seePlans')}
         </ButtonLink>
         {offerDiagnostic && examKey && feature !== 'ai_tutor' ? (

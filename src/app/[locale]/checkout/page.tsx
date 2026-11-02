@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { Link, redirect } from '@/i18n/navigation';
 import { pageAlternates } from '@/i18n/alternates';
 import { getCurrentUser } from '@/lib/auth/session';
+import { safeNext } from '@/lib/auth/next-path';
 import { getDb } from '@/lib/db';
 import { EXAM_CONFIGS, getExamConfig } from '@/lib/exams/registry';
 import { billingSettings, checkoutPath, pricingPath } from '@/lib/billing/config';
@@ -26,7 +27,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   };
 }
 
-type Query = { plan?: string; exam?: string; source?: string };
+type Query = { cancelled?: string; plan?: string; exam?: string; source?: string; next?: string };
 
 /**
  * What `?plan=` asks for, and why the page shows something else when it does.
@@ -49,7 +50,8 @@ export default async function CheckoutPage({ params, searchParams }: { params: P
   const exam = typeof query.exam === 'string' && getExamConfig(query.exam) ? query.exam : null;
   const { offer, notice } = chooseOffer(query.plan, Boolean(exam));
   const source = typeof query.source === 'string' && getExamConfig(query.source) ? query.source : exam;
-  const here = `${checkoutPath(offer, PLANS[PRICES[offer].plan].scope === 'one-exam' ? exam : null)}${source && source !== exam ? `&source=${encodeURIComponent(source)}` : ''}`;
+  const returnTo = safeNext(query.next);
+  const here = `${checkoutPath(offer, PLANS[PRICES[offer].plan].scope === 'one-exam' ? exam : null)}${source ? `&source=${encodeURIComponent(source)}` : ''}${returnTo ? `&next=${encodeURIComponent(returnTo)}` : ''}`;
 
   // A plan needs an account to live in. Guests sign up first and keep their
   // guest history (the existing sign-up flow claims it), then come back here,
@@ -106,23 +108,22 @@ export default async function CheckoutPage({ params, searchParams }: { params: P
     <Container>
       <Breadcrumbs trail={trail} />
       <PageHeader eyebrow={t('checkout.eyebrow')} title={t('checkout.title')} lead={t('checkout.lead')} />
+      {query.cancelled === '1' ? <Alert tone="info" role="status" className="mb-6"><p>{t('experience.cancelled')}</p></Alert> : null}
       {notice ? (
         <Alert tone="info" className="mb-6">
           <p>{t(`checkout.notices.${notice}`)}</p>
         </Alert>
       ) : null}
       <CheckoutForm
-        publishableKey={settings.publishableKey}
         testMode={!settings.livemode}
         offers={offers}
         initialOffer={offer}
         initialExam={exam}
         sourceExam={source}
+        returnTo={returnTo}
         exams={EXAM_CONFIGS.map((config) => ({ key: config.examKey, name: config.name, available: sale.get(config.examKey) ?? false }))}
         ownedExamKeys={owned.singleExamKeys}
-        email={user.email ?? ''}
-        name={user.displayName}
-        collectCountry={settings.automaticTax}
+        collectCountry={false}
       />
     </Container>
   );

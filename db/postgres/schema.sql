@@ -564,6 +564,16 @@ ALTER TABLE examer.reviewers ENABLE ROW LEVEL SECURITY;
 ALTER TABLE examer.question_reviews ENABLE ROW LEVEL SECURITY;
 ALTER TABLE examer.official_practice_scores ENABLE ROW LEVEL SECURITY;
 REVOKE ALL ON SCHEMA examer FROM PUBLIC, anon, authenticated;
+-- One outstanding checkout per learner, shared across tabs and billing intervals.
+CREATE TABLE billing_checkouts (
+  user_id TEXT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+  attempt_id TEXT NOT NULL,
+  session_id TEXT,
+  offer TEXT,
+  exam_key TEXT,
+  status TEXT NOT NULL DEFAULT 'pending'
+);
+ALTER TABLE billing_checkouts ENABLE ROW LEVEL SECURITY;
 CREATE TABLE _migrations (name TEXT PRIMARY KEY, applied_at TEXT NOT NULL);
 INSERT INTO _migrations (name, applied_at) VALUES
 ('001_core.sql', '2026-09-30T10:28:36.291Z'),
@@ -581,6 +591,7 @@ INSERT INTO _migrations (name, applied_at) VALUES
 ('013_content_translations.sql', '2026-10-27T00:00:00.000Z'),
 ('014_human_review.sql', '2026-10-28T00:00:00.000Z'),
 ('015_official_practice_scores.sql', '2026-10-28T00:00:00.000Z'),
-('016_exam_passes.sql', '2026-10-29T00:00:00.000Z');
+('016_exam_passes.sql', '2026-10-29T00:00:00.000Z'),
+('017_checkout_sessions.sql', '2026-11-02T00:00:00.000Z');
 ALTER TABLE examer._migrations ENABLE ROW LEVEL SECURITY;
 COMMIT;
