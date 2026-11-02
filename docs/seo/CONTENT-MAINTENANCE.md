@@ -1,6 +1,6 @@
 # Keeping public content accurate
 
-Written 29 October 2026. Applies to the exam hubs, format guides, guides and sample questions. The rules already in the code stay the rules: exam facts live in the configurations with their source and `verifiedOn` date, guide dates change only when the substance changes (`src/lib/content/guides.ts`, `src/lib/content/page-dates.ts`), and nothing is labelled as reviewed by a human expert unless a named, qualified person reviewed it.
+Written 29 October 2026; PoliTo, CISIA and sample-question rows updated 2 November 2026. Applies to the exam hubs, format guides, guides and sample questions. The rules already in the code stay the rules: exam facts live in the configurations with their source and `verifiedOn` date, guide dates change only when the substance changes (`src/lib/content/guides.ts`, `src/lib/content/page-dates.ts`), and nothing is labelled as reviewed by a human expert unless a named, qualified person reviewed it.
 
 ## Facts that expire
 
@@ -8,8 +8,9 @@ Written 29 October 2026. Applies to the exam hubs, format guides, guides and sam
 | --- | --- | --- | --- |
 | Bocconi undergraduate and Law: structure, scoring, sessions, fees, attempts | `src/lib/exams/configs/bocconi-{undergraduate,law}.ts`, `src/lib/exams/bocconi-facts.ts`, sample-questions guide intro | Every 3 months, and when Bocconi publishes the 2028/29 rules (expected around July 2027) | unibocconi.it test page and the Instructions and Rules of Conduct PDF |
 | Bocconi graduate test and GMAT/GRE thresholds | `bocconi-graduate.ts`, Bocconi master hub routes | Before each admission round (next: Round III, 27 January 2027) | unibocconi.it MSc/MA admissions pages |
-| PoliTo TIL-I and TIL-A | `polito-til-{i,a}.ts` | **Now**: the configs describe the 2026/27 call only | polito.it admission test page and the yearly call (bando) |
-| CISIA TOLC-E, -F, -I | `tolc-{e,f,i}.ts`, `src/lib/exams/tolc-rules.ts` | In January 2027: CISIA announces structural changes by 31 December | cisiaonline.it structure and syllabus pages, Regolamento TOLC |
+| PoliTo admission for 2027/28 (TIL replaced by CISIA tests) | `src/lib/exams/hub-content.ts` (`polito`: status, routes), registry tagline and `metaDescription` | **Every two weeks until PoliTo publishes the 2027/28 calls** ("being finalised", checked 2026-11-02), then rewrite the status: which TOLC each programme needs, thresholds, dates, SAT, Architecture | polito.it admission test page and calls page |
+| PoliTo TIL-I and TIL-A (2026/27 only, the last TIL cycle) | `polito-til-{i,a}.ts` | Not again, unless PoliTo brings the TIL back; decide then whether to keep TIL practice open | the archived 2026/27 calls |
+| CISIA TOLC-E, -F, -I | `tolc-{e,f,i}.ts`, `src/lib/exams/tolc-rules.ts`, `hub-content.ts` (`cisia`: status) | In January 2027: CISIA announces structural changes by 31 December (Regolamento 2026, art. 1.2). Also when the 2027 calendar appears | cisiaonline.it structure and syllabus pages, Regolamento TOLC, testcisia.it calendar |
 | Digital SAT, Enhanced ACT, LSAT, GMAT, GRE | their configs | Every 6 months, and on any announced format change | the test makers' pages listed in each config |
 | Support promise (one business day, five languages) | `src/lib/support.ts`, `src/lib/site.ts` | When the owners change it | owners' decision |
 | Social profiles in `sameAs` | `SOCIAL_LINKS` in `src/lib/site.ts` | When a profile is renamed or closed | the profiles themselves |
@@ -23,6 +24,7 @@ When a fact changes: update the configuration and its `verifiedOn`, re-read ever
 ## Sample questions
 
 - New sample questions are written as new items, never copied from the bank (`tests/unit/guides.test.ts` checks this), so publishing an answer spoils no scored session.
+- The test only compares wording. On 2 November 2026 three of five first-draft TOLC samples matched bank questions in substance (the same equation as a TIL-I item, the same numbers for a removed-mean problem, the same "every student who passed" negation), and the wording check caught only the first; two more candidates (a NaOH solution, a perpendicular line through (1, 2)) were already in the bank too. The bank and the drafts come from the same kind of AI assistance and converge on textbook set-ups. Before publishing, search `content/questions` for each sample's numbers and key nouns, not just its sentence, and prefer unusual set-ups. A sample that teaches the same idea with a different answer is fine; one whose answer can be read across to a bank item is not.
 - Each question is solved independently before publishing; arithmetic, units, the passage's support for the key, uniqueness of the key and every distractor's explanation are checked.
 - A translated sample set is published only after a fluent reviewer has checked the questions, the options and the explanations in that language.
 

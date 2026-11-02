@@ -6,7 +6,7 @@ import type { NavigationPolicy } from '@/lib/assessment/types';
  */
 
 export const TOLC_REGULATION_2026 = 'https://www.cisiaonline.it/sites/default/files/Regolamenti/Regolamento-TOLC-2026.pdf';
-export const TOLC_RULES_PAGE = 'https://www.cisiaonline.it/en/tolc/all-about-tolc/TOLC-rules';
+export const TOLC_RULES_PAGE = 'https://www.cisiaonline.it/en/tolc/all-about-TOLC/TOLC-rules';
 
 /**
  * Sections are taken in order, each with its own clock; a closed section

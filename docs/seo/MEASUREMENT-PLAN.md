@@ -10,11 +10,12 @@ Written 29 October 2026. The site promises one cookie (the session) and no third
 | Which URLs are indexed, and which canonical Google chose | Search Console → Pages and URL Inspection | Expect the localized copies of English-only pages (every guide, every format guide, every hub except Bocconi) to show "Alternate page with proper canonical tag". That is intended. |
 | Exam-page views by coarse source (search, AI assistant, this site, other site, none) | `funnel_counts`, event `landing_view` | /admin/funnel. Static pages report their own view from the browser. |
 | Guide views, and clicks from a guide to an exam page or into practice | `funnel_counts`, events `guide_view` and `guide_click` (since 2026-10-29) | Subject is the guide slug; /admin/funnel shows them per exam. |
+| Clicks from an exam page into practice, onboarding or the free test, by the coarse source of the exam-page visit | `funnel_counts`, event `practice_click` (added 2026-11-02, live once deployed) | Subject is the hub slug; /admin/funnel shows the total and the search-engine share against search-engine views. This is the closest the site gets to "organic visitors who went on to practise" without tracking anyone. |
 | Free tests started and finished | `attempts` (free-test sessions) | Read from the sessions themselves, so never double-counted. |
 | Plans page views, checkouts started, purchases from an exam | `funnel_counts` (`pricing_view`, `checkout_start`, `purchase`) | Only meaningful once payments are switched on. |
 | Accounts created | `users.created_at` where `is_guest = 0` | Not attributable to a page or a search; read it as a site-wide trend only. |
 
-Organic search versus other channels: `landing_view` and `guide_view` carry a coarse source, so "search" is the organic share for those pages. Nothing downstream (free test, purchase) knows the source of the visit, by design. Conversion from organic search can therefore only be inferred from trends, never attributed per visit; say so whenever reporting it.
+Organic search versus other channels: `landing_view`, `guide_view` and `practice_click` carry a coarse source, so "search" is the organic share for those steps. Nothing after the click (onboarding, sign-up, free test, purchase) knows the source of the visit, by design. Conversion from organic search can therefore only be inferred from trends, never attributed per visit; say so whenever reporting it.
 
 Practice starts from guides: `guide_click` counts the click, not the session that may follow. Report it as "clicks into practice", not "practice starts".
 
@@ -38,6 +39,26 @@ Search data lags 2–3 days, the sample is small, and admissions demand is seaso
 - Outcomes: free tests started per 100 exam-page views (site-wide trend), and guide-click rate per guide.
 - Retire or merge any guide with no impressions after 90 days only if it also has no internal value (do not delete the sourced exam facts).
 - Re-run the live crawl (`node scripts/seo-crawl.mjs https://uniexamer.com`) and compare with the 2026-10-29 baseline in REPORT-2026-10-29.md.
+
+## Baseline on 2 November 2026 (Search Console, read by the owner)
+
+The three-month report held data for 26–31 October only: 10 clicks, 312 impressions, 3.2% CTR, average position 33. Sitemap: success, 73 URLs discovered, last read 31 October. The sitewide indexing report was still processing. Pages:
+
+| Page | Impressions | Clicks | Avg. position | Changed on 2 November |
+| --- | ---: | ---: | ---: | --- |
+| `/exams/politecnico-di-torino-til` (indexed, valid breadcrumbs) | 48 | 0 | 6.5 | Rewritten around the 2027/28 switch to CISIA; new title and description |
+| `/guides/bocconi-test-preparation-plan` | 40 | 0 | 47.6 | Topic list by area, links to the worked samples |
+| `/exams/cisia-tolc` | 37 | 0 | 6.2 | Lead, 2027 status, five worked samples; new title and description |
+| `/exams/bocconi-master` | 11 | 1 | 21.6 | Not changed |
+
+Six days of data cannot show a trend or a CTR problem: 48 impressions with no click at position 6.5 is within what chance allows. Query-level data was not read (the session's browser is not signed in to Google). Compare like with like: from the deploy date, 28 days against the 28 days before, per page, and note that Bocconi's Winter session (25 November–26 January) and PoliTo's coming calls will change demand on their own.
+
+**What to read at each checkpoint for the three priority pages**
+
+- Search Console → Pages → URL inspection for the TIL hub, the TOLC hub and the plan guide: indexed, Google-selected canonical = declared, last crawl after the deploy.
+- Performance → filter page = each URL → Queries tab: list the queries, split them by the intent types in EXAM-INTENT-MAP.md §2a, and check whether the TIL page now gets "2027/28", "TOLC" or "CISIA" queries.
+- Performance → Search appearance: none is expected (no rich-result markup is used for questions; FAQ and practice-problem results are retired).
+- /admin/funnel for `politecnico-di-torino-til` and `cisia-tolc`: landing views by source, and practice clicks against search-engine views.
 
 ## Baseline on 29 October 2026
 
