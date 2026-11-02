@@ -121,6 +121,22 @@ describe('counting', () => {
     expect(bocconi).toMatchObject({ guideViews: 2, guideClicks: 1, landingTotal: 0 });
   });
 
+  it('counts clicks from an exam page into practice under the hub, by where the exam-page visit came from', async () => {
+    const report = { userAgent: CHROME, ownHost: 'uniexamer.com' };
+    await countReportedView(db, 'cisia-tolc', { ...report, referrer: 'https://www.google.it/' }, 'practice_click');
+    await countReportedView(db, 'cisia-tolc', { ...report, referrer: 'https://www.google.it/' }, 'practice_click');
+    await countReportedView(db, 'cisia-tolc', { ...report, referrer: null }, 'practice_click');
+    await countReportedView(db, 'cisia-tolc', { ...report, referrer: 'https://www.google.it/' }, 'landing_view');
+    await countReportedView(db, 'cisia-tolc', { userAgent: 'Googlebot/2.1', ownHost: 'uniexamer.com', referrer: null }, 'practice_click');
+    const today = new Date().toISOString().slice(0, 10);
+    const tolc = await funnelReport(db, { hubSlug: 'cisia-tolc', examKeys: ['tolc-e'], from: today, to: today });
+    expect(tolc.practiceClicks).toMatchObject({ search: 2, direct: 1, ai: 0 });
+    expect(tolc.landingViews.search).toBe(1);
+    // Another hub's report does not see them.
+    const til = await funnelReport(db, { hubSlug: 'politecnico-di-torino-til', examKeys: ['polito-til-i'], from: today, to: today });
+    expect(Object.values(til.practiceClicks).every((n) => n === 0)).toBe(true);
+  });
+
   it('adds to its own table once translated for PostgreSQL', async () => {
     const sent: string[] = [];
     const recording: Db = { ...db, prepare: (sql) => { sent.push(sql); return db.prepare(sql); } };

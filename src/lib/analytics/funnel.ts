@@ -23,11 +23,14 @@ import { getExamConfig, getHubForConfig } from '@/lib/exams/registry';
 /**
  * guide_view counts a guide being read; guide_click counts a click from a
  * guide to an exam page or into practice. Their subject is the guide's slug.
+ * practice_click counts a click from an exam page into practice (practice,
+ * onboarding or the free test), under the hub's slug and the coarse source of
+ * the visit that brought the reader to the exam page.
  */
-export type FunnelEvent = 'landing_view' | 'pricing_view' | 'checkout_start' | 'purchase' | 'guide_view' | 'guide_click';
+export type FunnelEvent = 'landing_view' | 'pricing_view' | 'checkout_start' | 'purchase' | 'guide_view' | 'guide_click' | 'practice_click';
 
 /** The events a page may report from the browser (src/app/api/views/route.ts). */
-export type ReportedEvent = 'landing_view' | 'guide_view' | 'guide_click';
+export type ReportedEvent = 'landing_view' | 'guide_view' | 'guide_click' | 'practice_click';
 export type TrafficSource = 'search' | 'ai' | 'internal' | 'other' | 'direct' | 'n/a';
 
 /** Assistants and AI search products that send visitors with a referrer. */
@@ -175,6 +178,8 @@ export interface FunnelReport {
   /** Views of this exam's guides, and clicks from them to an exam page or practice. */
   guideViews: number;
   guideClicks: number;
+  /** Clicks from the exam page into practice, by where the exam-page visit came from. */
+  practiceClicks: Record<TrafficSource, number>;
 }
 
 const SOURCES: TrafficSource[] = ['search', 'ai', 'internal', 'other', 'direct', 'n/a'];
@@ -205,6 +210,7 @@ export async function funnelReport(
   }
 
   const landingViews = Object.fromEntries(SOURCES.map((s) => [s, 0])) as Record<TrafficSource, number>;
+  const practiceClicks = Object.fromEntries(SOURCES.map((s) => [s, 0])) as Record<TrafficSource, number>;
   let pricingViews = 0;
   let checkoutStarts = 0;
   let purchases = 0;
@@ -213,6 +219,7 @@ export async function funnelReport(
   for (const row of rows) {
     const total = Number(row.total);
     if (row.event === 'landing_view' && row.subject === hubSlug) landingViews[row.source as TrafficSource] = (landingViews[row.source as TrafficSource] ?? 0) + total;
+    else if (row.event === 'practice_click' && row.subject === hubSlug) practiceClicks[row.source as TrafficSource] = (practiceClicks[row.source as TrafficSource] ?? 0) + total;
     else if (row.event === 'pricing_view') pricingViews += total;
     else if (row.event === 'checkout_start') checkoutStarts += total;
     else if (row.event === 'purchase') purchases += total;
@@ -248,6 +255,7 @@ export async function funnelReport(
     purchases,
     guideViews,
     guideClicks,
+    practiceClicks,
   };
 }
 
