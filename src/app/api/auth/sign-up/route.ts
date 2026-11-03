@@ -3,7 +3,6 @@ import { cookies } from 'next/headers';
 import { z } from 'zod';
 import { getDb } from '@/lib/db';
 import { assertSameOrigin, fail, ok, readJson, toErrorResponse } from '@/lib/api/http';
-import { emailCodesMailer, prepareVerificationEmail } from '@/lib/auth/email-codes';
 import { checkPasswordStrength, hashPassword } from '@/lib/auth/password';
 import { callerKey, checkRateLimit } from '@/lib/auth/rate-limit';
 import {
@@ -12,7 +11,6 @@ import {
   getCurrentUser,
   sessionCookieOptions,
 } from '@/lib/auth/session';
-import { deliverAfterResponse } from '@/lib/email/deliver';
 import { emailLocale } from '@/lib/email/messages';
 
 const bodySchema = z.object({
@@ -86,20 +84,10 @@ export async function POST(request: Request) {
     const store = await cookies();
     store.set(SESSION_COOKIE, session.token, sessionCookieOptions(session.expiresAt));
 
-    // A confirmation code, when this deployment can send email. The account
-    // exists either way: nothing here may fail the sign-up itself.
-    let verificationSent = false;
-    const mailer = emailCodesMailer();
-    if (mailer) {
-      try {
-        deliverAfterResponse(mailer, await prepareVerificationEmail(db, { id: userId, email: body.email, locale }, { now }));
-        verificationSent = true;
-      } catch (error) {
-        console.error('[sign-up] could not issue a confirmation code:', error instanceof Error ? error.message : error);
-      }
-    }
-
-    return ok({ userId, upgradedFromGuest: Boolean(guest?.isGuest), verificationSent }, { status: 201 });
+    // No confirmation email here: the address is confirmed when it first has
+    // to be relied on, before a purchase (lib/billing) or by any emailed code
+    // (a password reset, a sign-in code), whichever comes first.
+    return ok({ userId, upgradedFromGuest: Boolean(guest?.isGuest) }, { status: 201 });
   } catch (error) {
     return toErrorResponse(error);
   }

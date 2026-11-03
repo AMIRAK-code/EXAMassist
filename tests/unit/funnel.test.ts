@@ -260,7 +260,7 @@ describe('purchases', () => {
 describe('checkout keeps the exam', () => {
   const buyer = async () => {
     const id = await createUser(db);
-    return { id, email: `${id}@example.invalid`, displayName: null, isGuest: false };
+    return { id, email: `${id}@example.invalid`, displayName: null, isGuest: false, emailVerifiedAt: '2026-01-01T00:00:00.000Z' };
   };
 
   it('counts a checkout start under the exam, and passes it as metadata without touching the price', async () => {
