@@ -5,8 +5,10 @@ import { pageAlternates } from '@/i18n/alternates';
 import type { Locale } from '@/i18n/locales';
 import { getCurrentUser } from '@/lib/auth/session';
 import { emailCodesMailer } from '@/lib/auth/email-codes';
+import { googleSettings, isGoogleNotice } from '@/lib/auth/google';
 import { safeNext, withNext } from '@/lib/auth/next-path';
 import { Alert, Breadcrumbs, Card, Container, PageHeader } from '@/components/ui';
+import { GoogleButton } from '@/components/auth/google-button';
 import { SignInForm } from './sign-in-form';
 
 export const dynamic = 'force-dynamic';
@@ -30,7 +32,7 @@ export default async function SignInPage({
   searchParams,
 }: {
   params: Params;
-  searchParams: Promise<{ next?: string | string[] }>;
+  searchParams: Promise<{ next?: string | string[]; google?: string | string[] }>;
 }) {
   const locale = (await params).locale as Locale;
   const t = await getTranslations('auth');
@@ -44,6 +46,10 @@ export default async function SignInPage({
   const signUpHref = withNext('/sign-up', next);
   // Code sign-in and password reset need email, which a deployment may not have.
   const emailCodes = emailCodesMailer() !== null;
+  // Likewise Google sign-in needs an OAuth client.
+  const google = googleSettings() !== null;
+  // Set by the Google callback when a sign-in did not finish.
+  const googleNotice = isGoogleNotice(query.google) ? query.google : null;
 
   return (
     <Container size="narrow">
@@ -62,8 +68,15 @@ export default async function SignInPage({
         </Alert>
       ) : null}
 
+      {googleNotice ? (
+        <Alert tone={googleNotice === 'cancelled' ? 'info' : 'negative'} title={t('google.noticeTitle')} className="mb-6">
+          <p>{t(`google.notice.${googleNotice}`)}</p>
+        </Alert>
+      ) : null}
+
       <Card>
         <h2 className="sr-only">{t('signIn.formHeading')}</h2>
+        {google ? <GoogleButton locale={locale} next={next} label={t('google.continue')} or={t('google.or')} /> : null}
         <SignInForm
           next={next}
           forgotHref={emailCodes ? withNext('/forgot-password', next) : null}

@@ -8,6 +8,7 @@ import type {
   AttemptResultRow,
   AttemptRow,
   BookmarkRow,
+  OAuthIdentityRow,
   ReviewQueueRow,
   StudyPlanRow,
   UserRow,
@@ -197,6 +198,11 @@ export async function GET() {
     const billingSubscriptions = await listSubscriptions(db, user.id).catch(() => []);
     // Single Exam Passes (migration 016); none on a database still awaiting it.
     const billingPasses = await listPasses(db, user.id).catch(() => []);
+    // The linked Google account (migration 018); none on a database still awaiting it.
+    const google = (await db
+      .prepare("SELECT subject, email, created_at, last_used_at FROM oauth_identities WHERE user_id = ? AND provider = 'google'")
+      .get(user.id)
+      .catch(() => undefined)) as Pick<OAuthIdentityRow, 'subject' | 'email' | 'created_at' | 'last_used_at'> | undefined;
 
     const partsByAttempt = new Map<string, AttemptPartRow[]>();
     for (const part of parts) {
@@ -239,6 +245,14 @@ export async function GET() {
         createdAt: account.created_at,
         updatedAt: account.updated_at,
       },
+      googleSignIn: google
+        ? {
+            googleAccountId: google.subject,
+            emailWhenLinked: google.email,
+            linkedAt: google.created_at,
+            lastUsedAt: google.last_used_at,
+          }
+        : null,
       billing: {
         stripeCustomerId: billingCustomer,
         subscriptions: billingSubscriptions.map((row) => ({
