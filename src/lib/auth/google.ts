@@ -290,6 +290,13 @@ export type LinkResult =
  *
  * An account that already has a different Google identity is never taken
  * over: that is a conflict.
+ *
+ * Every account this links or creates leaves with its address confirmed
+ * (`email_verified_at`, never overwriting an earlier date), which is what
+ * checkout asks for. The caller passes only claims whose `email_verified`
+ * Google set. The one exception is an account found by its `sub` whose
+ * address no longer matches Google's: Google has vouched for a different
+ * address, so this one is left as it was.
  */
 export async function linkGoogleAccount(
   db: Db,
@@ -342,7 +349,7 @@ export async function linkGoogleAccount(
     if (context.guestUserId) {
       const upgraded = (await db.prepare(
         `UPDATE users SET email = ?, password_hash = NULL, display_name = ?, is_guest = 0, locale = ?,
-                          email_verified_at = ?, updated_at = ?
+                          email_verified_at = COALESCE(email_verified_at, ?), updated_at = ?
          WHERE id = ? AND is_guest = 1 AND deleted_at IS NULL`,
       ).run(claims.email, claims.givenName, context.locale, nowIso, nowIso, context.guestUserId));
       if (upgraded.changes === 1) {
