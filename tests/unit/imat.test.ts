@@ -106,13 +106,15 @@ describe('the IMAT question bank', () => {
 });
 
 describe('Italian versions of the IMAT questions', () => {
-  // "0.10" in English is "0,10" (or "0{,}10" in TeX) in Italian, and "period 3" may read "terzo
-  // periodo"; the numbers themselves must not change.
+  // "0.10" in English is "0,10" (or "0{,}10" in TeX) in Italian, "period 3"
+  // may read "terzo periodo", and blood group O is written "gruppo 0"; the
+  // numbers themselves must not change.
   const ORDINALS: Record<string, string> = { primo: '1', terzo: '3', quarto: '4', quinto: '5' };
   const numbers = (text: string) =>
     (
       text
         .replace(/\b(primo|terzo|quarto|quinto) periodo\b/g, (_, word: string) => `${ORDINALS[word]} periodo`)
+        .replace(/\bgruppo (sanguigno )?0\b/g, 'gruppo $1O')
         .replace(/(\d)(?:,|\{,\})(\d)/g, '$1.$2')
         .match(/\d+(?:\.\d+)?/g) ?? []
     ).sort();

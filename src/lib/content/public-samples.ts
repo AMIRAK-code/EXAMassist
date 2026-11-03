@@ -87,6 +87,16 @@ export const PUBLIC_SAMPLES: readonly PublicSample[] = [
     use: 'homepage-sample',
   },
   {
+    // Added 3 November 2026. The IMAT bank held exactly one 60-question form,
+    // so this ABO genetics question was written and blind-solved twice to be
+    // the sample: biology now has 24 questions, one more than the simulation
+    // needs, and excluding this one closes nothing.
+    questionId: 'imat-bio-abo-blood-groups-024',
+    examKey: 'imat',
+    hubSlug: 'imat',
+    use: 'homepage-sample',
+  },
+  {
     // Shown with its key and explanation in the homepage's mistake-notebook
     // demonstration until that section was removed on 24 September 2026. Its
     // answer has been public, so it stays out of measurement formats.
@@ -105,11 +115,6 @@ export const WITHHELD_SAMPLES: Readonly<Record<string, string>> = {
   // Bocconi Master, TIL and TOLC were withheld here until 3 November 2026, while
   // their banks were too small to spare a question. A new hub whose bank cannot
   // spare one yet goes here, with its reason.
-  // Added 3 November 2026. The IMAT bank holds exactly one 60-question form
-  // in the published subject mix, so any public item would close the
-  // simulation. The worked samples on /guides/imat-sample-questions are kept
-  // out of the bank and stand in for one.
-  imat: 'The IMAT question bank holds exactly one full 60-question form. A sample question will be published once the bank is large enough that making one public does not close the simulation.',
 };
 
 export const PUBLIC_SAMPLE_IDS: ReadonlySet<string> = new Set(PUBLIC_SAMPLES.map((s) => s.questionId));
