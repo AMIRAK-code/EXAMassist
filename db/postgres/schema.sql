@@ -600,6 +600,23 @@ CREATE TABLE oauth_requests (
 CREATE INDEX idx_oauth_requests_expires ON oauth_requests (expires_at);
 ALTER TABLE examer.oauth_identities ENABLE ROW LEVEL SECURITY;
 ALTER TABLE examer.oauth_requests ENABLE ROW LEVEL SECURITY;
+-- Access an administrator gives by hand (019): Plus or a one-exam pass for a
+-- fixed term, without a payment. Revoking stamps revoked_at.
+CREATE TABLE access_grants (
+  id           TEXT PRIMARY KEY,
+  user_id      TEXT NOT NULL REFERENCES users (id) ON DELETE CASCADE,
+  plan         TEXT NOT NULL,
+  exam_key     TEXT,
+  starts_at    TEXT NOT NULL,
+  ends_at      TEXT NOT NULL,
+  reason       TEXT NOT NULL,
+  granted_by   TEXT NOT NULL,
+  created_at   TEXT NOT NULL,
+  revoked_at   TEXT,
+  revoked_by   TEXT
+);
+CREATE INDEX idx_access_grants_user ON access_grants (user_id);
+ALTER TABLE examer.access_grants ENABLE ROW LEVEL SECURITY;
 CREATE TABLE _migrations (name TEXT PRIMARY KEY, applied_at TEXT NOT NULL);
 INSERT INTO _migrations (name, applied_at) VALUES
 ('001_core.sql', '2026-09-30T10:28:36.291Z'),
@@ -619,6 +636,7 @@ INSERT INTO _migrations (name, applied_at) VALUES
 ('015_official_practice_scores.sql', '2026-10-28T00:00:00.000Z'),
 ('016_exam_passes.sql', '2026-10-29T00:00:00.000Z'),
 ('017_checkout_sessions.sql', '2026-11-02T00:00:00.000Z'),
-('018_google_sign_in.sql', '2026-11-03T00:00:00.000Z');
+('018_google_sign_in.sql', '2026-11-03T00:00:00.000Z'),
+('019_access_grants.sql', '2026-11-03T00:00:00.000Z');
 ALTER TABLE examer._migrations ENABLE ROW LEVEL SECURITY;
 COMMIT;

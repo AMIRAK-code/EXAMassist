@@ -94,6 +94,10 @@ export async function startHostedCheckout(
       success_url: `${location.origin}${localizePath('/checkout/complete', location.locale)}?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${location.origin}${localizePath(back, location.locale)}`,
       customer_update: { address: 'auto' },
+      // Stripe's own "Add promotion code" box. Codes live only in Stripe
+      // (Dashboard -> Product catalogue -> Coupons), which checks their
+      // limits; fulfilment keys on metadata and payment status, never the amount.
+      allow_promotion_codes: true,
       ...(settings.automaticTax ? { automatic_tax: { enabled: true } } : {}),
       ...(plan.billing === 'one-time'
         ? { invoice_creation: { enabled: true, invoice_data: { metadata } }, payment_intent_data: { metadata } }

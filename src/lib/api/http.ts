@@ -9,6 +9,7 @@ import { EmailDeliveryError } from '@/lib/email/send';
 import { TutorError } from '@/lib/tutor/service';
 import { ReviewError } from '@/lib/content/human-review';
 import { OfficialScoreError } from '@/lib/learning/official-scores';
+import { AdminError } from '@/lib/admin/users';
 
 /**
  * Shared HTTP helpers for route handlers: one error shape, one CSRF check,
@@ -43,6 +44,9 @@ export function toErrorResponse(error: unknown): NextResponse {
     return fail(error.code, error.message, error.status, error.detail);
   }
   if (error instanceof ReviewError) {
+    return fail(error.code, error.message, error.status);
+  }
+  if (error instanceof AdminError) {
     return fail(error.code, error.message, error.status);
   }
   if (error instanceof OfficialScoreError) {
