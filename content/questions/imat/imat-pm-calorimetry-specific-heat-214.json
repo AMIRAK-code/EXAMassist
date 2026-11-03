@@ -1,0 +1,126 @@
+{
+  "id": "imat-pm-calorimetry-specific-heat-214",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-physics-maths",
+  "skillSlug": "imat-phys-thermo-waves",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A $100\\ \\text{g}$ metal block at $95\\,^{\\circ}\\text{C}$ is placed in $300\\ \\text{g}$ of water at $20\\,^{\\circ}\\text{C}$ in an insulated container. When thermal equilibrium is reached, the block and the water are both at $25\\,^{\\circ}\\text{C}$. The specific heat capacity of water is $4200\\ \\text{J/(kg·K)}$. Assuming no heat is exchanged with the container or the surroundings, what is the specific heat capacity of the metal, in $\\text{J/(kg·K)}$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$100$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$300$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$840$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$900$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$4500$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "In an insulated container, the heat the block gives out equals the heat the water takes in, and each is $Q = mc\\,\\Delta T$, where $\\Delta T$ is the change in **that object's own** temperature. A change of $1\\,^{\\circ}\\text{C}$ is a change of $1\\ \\text{K}$, so the temperatures can be used as given.\n\nWater: it warms from $20\\,^{\\circ}\\text{C}$ to $25\\,^{\\circ}\\text{C}$, so $\\Delta T = 5\\ \\text{K}$ and\n\n$$Q = 0.3\\ \\text{kg} \\times 4200\\ \\text{J/(kg·K)} \\times 5\\ \\text{K} = 6300\\ \\text{J}$$\n\nBlock: it cools from $95\\,^{\\circ}\\text{C}$ to $25\\,^{\\circ}\\text{C}$, so $\\Delta T = 70\\ \\text{K}$ and\n\n$$c = \\frac{Q}{m\\,\\Delta T} = \\frac{6300\\ \\text{J}}{0.1\\ \\text{kg} \\times 70\\ \\text{K}} = 900\\ \\text{J/(kg·K)}$$\n\nCheck with ratios: the water has three times the block's mass, and the block's temperature changed $14$ times as much as the water's, so $c = 4200 \\times \\frac{3}{14} = 900\\ \\text{J/(kg·K)}$. A value well below water's is what you should expect for a metal.",
+  "distractorRationale": {
+    "a": "This swaps the masses, pairing $0.1\\ \\text{kg}$ with the water and $0.3\\ \\text{kg}$ with the block: $\\frac{0.1 \\times 4200 \\times 5}{0.3 \\times 70} = \\frac{2100}{21} = 100$. Each mass belongs with its own temperature change.",
+    "b": "This leaves out the masses, as if the block and the water had the same mass: $\\frac{4200 \\times 5}{70} = 300$. The water has three times the block's mass, so it takes in three times as much heat for each kelvin it warms.",
+    "c": "This takes the block's temperature change as $95 - 20 = 75\\ \\text{K}$, the gap between the two starting temperatures: $\\frac{6300}{0.1 \\times 75} = 840$. The block only cools to the final $25\\,^{\\circ}\\text{C}$, a change of $70\\ \\text{K}$.",
+    "e": "This uses the final temperature, $25\\,^{\\circ}\\text{C}$, as the water's temperature change: $\\frac{0.3 \\times 4200 \\times 25}{0.1 \\times 70} = 4500$. The water started at $20\\,^{\\circ}\\text{C}$, so it warmed by only $5\\ \\text{K}$."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A 100 gram metal block at 95 degrees Celsius is placed in 300 grams of water at 20 degrees Celsius in an insulated container, and both end at 25 degrees Celsius. The specific heat capacity of water is 4200 joules per kilogram per kelvin. Find the specific heat capacity of the metal. The five choices, each in joules per kilogram per kelvin, are 100, 300, 840, 900 and 4500.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "imat-syllabus-fix-author",
+    "aiAssisted": true,
+    "notes": "Original item, written on 3 November 2026 to replace imat-pm-wave-new-medium-211, because waves are not in the physics syllabus of D.M. 1005/2026, Allegato A, while thermodynamics is. Values chosen so the arithmetic is mental and the result is close to a real light metal's; the metal is not named, so the answer must be calculated rather than recalled. Each wrong choice comes from one specific slip in the heat balance. Other exams in the bank have mixing items that ask for a final temperature; this one asks for the unknown specific heat capacity instead."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "imat-syllabus-fix-author",
+    "reviewer": "imat-blind-reviewer-3",
+    "reviewedOn": "2026-11-03",
+    "independentSolve": {
+      "solvedBy": "imat-blind-reviewer-3",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Heat gained by water = 0.3 x 4200 x 5 = 6300 J; heat lost by block = 0.1 x c x 70 = 7c, so c = 900 J/(kg K). 840 is the trap from using 75 K instead of 70 K for the block, not a defensible reading."
+    },
+    "notes": "Author solved the item twice, once with the full heat balance and once with mass and temperature-change ratios, and argued for each wrong choice; each fails on a specific, named slip. On 3 November 2026 two blind solvers (imat-blind-reviewer-3 and imat-blind-reviewer-4) worked separately from the blinded export, with options already in final ascending order; both reached the key and neither found a second defensible answer or a defect in the data. The Italian version was solved blind from the Italian and judged faithful (translations.it.check)."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "physics",
+    "thermodynamics",
+    "calorimetry",
+    "specific-heat"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Un blocchetto di metallo di $100\\ \\text{g}$ a $95\\,^{\\circ}\\text{C}$ viene immerso in $300\\ \\text{g}$ d'acqua a $20\\,^{\\circ}\\text{C}$, in un recipiente termicamente isolato. Raggiunto l'equilibrio termico, il blocchetto e l'acqua si trovano entrambi a $25\\,^{\\circ}\\text{C}$. Il calore specifico dell'acqua è $4200\\ \\text{J/(kg·K)}$. Supponendo che non ci siano scambi di calore con il recipiente né con l'ambiente, qual è il calore specifico del metallo, in $\\text{J/(kg·K)}$?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$100$"
+        },
+        {
+          "id": "b",
+          "textMd": "$300$"
+        },
+        {
+          "id": "c",
+          "textMd": "$840$"
+        },
+        {
+          "id": "d",
+          "textMd": "$900$"
+        },
+        {
+          "id": "e",
+          "textMd": "$4500$"
+        }
+      ],
+      "explanationMd": "In un recipiente isolato, il calore ceduto dal blocchetto è uguale al calore assorbito dall'acqua, e per ciascuno vale $Q = mc\\,\\Delta T$, dove $\\Delta T$ è la variazione della temperatura **di quel corpo**. Una variazione di $1\\,^{\\circ}\\text{C}$ equivale a una variazione di $1\\ \\text{K}$, quindi le temperature si possono usare così come sono date.\n\nAcqua: si scalda da $20\\,^{\\circ}\\text{C}$ a $25\\,^{\\circ}\\text{C}$, quindi $\\Delta T = 5\\ \\text{K}$ e\n\n$$Q = 0{,}3\\ \\text{kg} \\times 4200\\ \\text{J/(kg·K)} \\times 5\\ \\text{K} = 6300\\ \\text{J}$$\n\nBlocchetto: si raffredda da $95\\,^{\\circ}\\text{C}$ a $25\\,^{\\circ}\\text{C}$, quindi $\\Delta T = 70\\ \\text{K}$ e\n\n$$c = \\frac{Q}{m\\,\\Delta T} = \\frac{6300\\ \\text{J}}{0{,}1\\ \\text{kg} \\times 70\\ \\text{K}} = 900\\ \\text{J/(kg·K)}$$\n\nVerifica con i rapporti: l'acqua ha una massa tripla rispetto al blocchetto, e la temperatura del blocchetto è variata $14$ volte più di quella dell'acqua, quindi $c = 4200 \\times \\frac{3}{14} = 900\\ \\text{J/(kg·K)}$. Un valore molto più basso di quello dell'acqua è ciò che ci si aspetta per un metallo.",
+      "distractorRationale": {
+        "a": "Qui si scambiano le masse, associando $0{,}1\\ \\text{kg}$ all'acqua e $0{,}3\\ \\text{kg}$ al blocchetto: $\\frac{0{,}1 \\times 4200 \\times 5}{0{,}3 \\times 70} = \\frac{2100}{21} = 100$. Ogni massa va con la propria variazione di temperatura.",
+        "b": "Qui si trascurano le masse, come se il blocchetto e l'acqua avessero la stessa massa: $\\frac{4200 \\times 5}{70} = 300$. L'acqua ha una massa tripla rispetto al blocchetto, quindi assorbe il triplo del calore per ogni kelvin di aumento.",
+        "c": "Qui si prende come variazione di temperatura del blocchetto $95 - 20 = 75\\ \\text{K}$, la differenza tra le due temperature iniziali: $\\frac{6300}{0{,}1 \\times 75} = 840$. Il blocchetto si raffredda solo fino ai $25\\,^{\\circ}\\text{C}$ finali, una variazione di $70\\ \\text{K}$.",
+        "e": "Qui si usa la temperatura finale, $25\\,^{\\circ}\\text{C}$, come variazione di temperatura dell'acqua: $\\frac{0{,}3 \\times 4200 \\times 25}{0{,}1 \\times 70} = 4500$. L'acqua partiva da $20\\,^{\\circ}\\text{C}$, quindi si è scaldata solo di $5\\ \\text{K}$."
+      },
+      "accessibilityText": "Un blocchetto di metallo di 100 grammi a 95 gradi Celsius viene immerso in 300 grammi d'acqua a 20 gradi Celsius in un recipiente isolato, e alla fine entrambi si trovano a 25 gradi Celsius. Il calore specifico dell'acqua è 4200 joule al chilogrammo per kelvin. Trovare il calore specifico del metallo. Le cinque alternative, tutte in joule al chilogrammo per kelvin, sono 100, 300, 840, 900 e 4500.",
+      "check": {
+        "translatedBy": "imat-syllabus-fix-author",
+        "checkedBy": "imat-italian-checker-3",
+        "checkedOn": "2026-11-03",
+        "answerPreserved": true,
+        "notes": "Solved blind from the Italian: faithful, idiomatic, correct school terminology (calore specifico, recipiente termicamente isolato); no wording changes needed."
+      }
+    }
+  }
+}
