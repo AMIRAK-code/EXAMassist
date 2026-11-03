@@ -59,6 +59,7 @@ const WHAT_WE_HOLD = [
   'reports',
   'tutor',
   'billing',
+  'staff',
   'rateLimits',
   'totals',
 ] as const;

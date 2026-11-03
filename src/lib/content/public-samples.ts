@@ -66,6 +66,26 @@ export const PUBLIC_SAMPLES: readonly PublicSample[] = [
     hubSlug: 'lsat',
     use: 'homepage-sample',
   },
+  // Added 3 November 2026, once each bank had grown: checked one by one that
+  // excluding the question closes no format that is open without it.
+  {
+    questionId: 'bocconi-grad-quant-remote-share-028',
+    examKey: 'bocconi-graduate',
+    hubSlug: 'bocconi-master',
+    use: 'homepage-sample',
+  },
+  {
+    questionId: 'tolc-e-logic-seq-interleaved-607',
+    examKey: 'tolc-e',
+    hubSlug: 'cisia-tolc',
+    use: 'homepage-sample',
+  },
+  {
+    questionId: 'polito-til-i-math-geometry-similar-triangle-areas-007',
+    examKey: 'polito-til-i',
+    hubSlug: 'politecnico-di-torino-til',
+    use: 'homepage-sample',
+  },
   {
     // Shown with its key and explanation in the homepage's mistake-notebook
     // demonstration until that section was removed on 24 September 2026. Its
@@ -82,15 +102,9 @@ export const PUBLIC_SAMPLES: readonly PublicSample[] = [
  * state for these rather than a question it cannot stand behind.
  */
 export const WITHHELD_SAMPLES: Readonly<Record<string, string>> = {
-  'bocconi-master':
-    'The graduate Bocconi test bank is new and small. Making one of its questions public would take it out of every diagnostic and timed set, so no sample is shown until the bank is larger.',
-  // Added 29 September 2026. A public sample is excluded from every measured
-  // format, and a new bank sized close to one full test cannot spare one
-  // without closing a timed section. Choose one once the bank has grown.
-  'politecnico-di-torino-til':
-    'The TIL question bank is new. A sample question will be published once the bank is large enough that making one public does not close a timed section.',
-  'cisia-tolc':
-    'The TOLC question bank is new. A sample question will be published once the bank is large enough that making one public does not close a timed section.',
+  // Bocconi Master, TIL and TOLC were withheld here until 3 November 2026, while
+  // their banks were too small to spare a question. A new hub whose bank cannot
+  // spare one yet goes here, with its reason.
   // Added 3 November 2026. The IMAT bank holds exactly one 60-question form
   // in the published subject mix, so any public item would close the
   // simulation. The worked samples on /guides/imat-sample-questions are kept

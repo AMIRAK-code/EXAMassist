@@ -276,6 +276,10 @@
         "term": "Facturación (solo si compras un plan)",
         "value": "Cuando compras un plan, creamos un cliente para ti en Stripe, nuestro proveedor de pagos, con tu dirección de correo electrónico, tu nombre visible si lo has configurado y el id de tu cuenta, y guardamos los id de cliente y de suscripción de Stripe, cada plan y el examen que cubre, su estado, su fecha de renovación y el momento en que pediste acceso inmediato y aceptaste el fin del derecho de desistimiento. Los datos de tu tarjeta se escriben en campos proporcionados por Stripe en nuestras páginas de pago y de cuenta y van directamente a Stripe; nunca llegan a nuestros servidores. En la página de tu cuenta mostramos la marca de la tarjeta y los cuatro últimos dígitos, obtenidos de Stripe."
       },
+      "staff": {
+        "term": "Qué puede ver y cambiar nuestro equipo",
+        "value": "Nuestros administradores pueden ver tu cuenta: tu dirección de correo, tu nombre visible, cuándo te registraste y tu última actividad, cómo inicias sesión, tus planes y pagos tal como constan aquí y los totales de tu práctica. Los usan para responder a solicitudes de asistencia y gestionar el acceso. Pueden darte un plan durante un número fijo de días sin pago, retirar el acceso que dieron y cambiar el rol de una cuenta; cada uno de estos cambios queda registrado con quién lo hizo, cuándo y por qué, y se incluye en la exportación de tus datos. Nunca ven tu contraseña ni los datos de tu tarjeta."
+      },
       "rateLimits": {
         "term": "Contadores de límite de solicitudes",
         "value": "Para evitar abusos, contamos las solicitudes de cada usuario en intervalos fijos. La clave del contador es un hash SHA-256 de un identificador, así que nunca se escribe una dirección IP sin cifrar en la base de datos."
