@@ -5,7 +5,7 @@ Researched 2 November 2026. **Nothing has been sent, posted or submitted**, no a
 ## Principles
 
 - Say in the first lines that the sender works on UniExamer. Never imply affiliation with Bocconi, CISIA or PoliTo, or that anyone has reviewed or endorsed the material.
-- Say that the samples are original and AI-assisted, that no human subject expert has reviewed them yet, that the Italian TOLC page awaits a fluent reviewer, and that the site has paid plans.
+- Say that the samples are original and AI-assisted and that the site has paid plans. Do not name reviewers or say the material was "reviewed by teachers" unless the reviewers agreed to be named (docs/review/README.md).
 - No link requests in exchange for anything, no score predictions, one message per destination, no follow-up chains.
 - A correction is sent for the reader's sake; it carries no link to us unless the link is the context.
 - Send only after the branch is deployed (the Italian TOLC page and the TOLC-F samples exist only from then).
@@ -17,6 +17,8 @@ Researched 2 November 2026. **Nothing has been sent, posted or submitted**, no a
 | TOLC page in Italian, 8 worked samples (3 TOLC-I, 3 TOLC-E including a passage, 2 TOLC-F), every wrong option explained, a six-week plan | https://uniexamer.com/it/exams/cisia-tolc | Teachers running TOLC preparation, orientation teams, applicants |
 | PoliTo's switch from the TIL to CISIA tests for 2027/28, confirmed vs not yet published, with PoliTo's sources | https://uniexamer.com/exams/politecnico-di-torino-til (English) | PoliTo orientation, schools sending students to PoliTo |
 | Bocconi: 11 worked samples; preparation plan; negative-marking guide | https://uniexamer.com/guides/bocconi-admission-test-sample-questions and two linked guides | Teachers and applicants preparing the Bocconi test |
+| Bocconi Master’s test: 3 worked samples (verbal, data insight, quantitative) and the rules | https://uniexamer.com/exams/bocconi-master | Master’s applicants choosing between the Bocconi test, GMAT and GRE |
+| IMAT: 5 worked samples, one per area, with the 2026/27 rules from the MUR decree (no IMAT practice sessions) | https://uniexamer.com/guides/imat-sample-questions | Applicants to English-taught medicine, liceo biology and chemistry teachers |
 
 ## Destinations, in order
 
@@ -53,7 +55,7 @@ Replace `[Nome]` / `[Name]` with the sender. Every message names the affiliation
 >
 > Vi scrivo perché gli studenti di quinta che seguono quest'anno il Progetto saranno, se ho capito bene il vostro comunicato del 23 luglio 2026 e la pagina sul test di ammissione, la prima coorte che per il 2027/28 sosterrà i test CISIA (TOLC@UNI o CEnT@UNI) invece del TIL. I docenti che tengono le ore di Matematica e Fisica potrebbero voler mostrare in classe qualche esempio nel formato del TOLC.
 >
-> Abbiamo una pagina gratuita in italiano con otto quesiti originali svolti (TOLC-I, TOLC-E e TOLC-F), in cui è spiegata anche ogni opzione sbagliata: https://uniexamer.com/it/exams/cisia-tolc. Per trasparenza: i quesiti sono stati preparati con l'aiuto dell'intelligenza artificiale, nessun docente li ha ancora revisionati, la traduzione italiana attende la rilettura di un madrelingua, non sono quesiti ufficiali, e il sito offre anche piani a pagamento. Una seconda pagina, in inglese, riassume il passaggio dal TIL ai test CISIA citando le vostre pagine: https://uniexamer.com/exams/politecnico-di-torino-til. Se trovate imprecisioni, le correggiamo subito.
+> Abbiamo una pagina gratuita in italiano con otto quesiti originali svolti (TOLC-I, TOLC-E e TOLC-F), in cui è spiegata anche ogni opzione sbagliata: https://uniexamer.com/it/exams/cisia-tolc. Per trasparenza: i quesiti sono stati preparati con l'aiuto dell'intelligenza artificiale, non sono quesiti ufficiali, e il sito offre anche piani a pagamento. Una seconda pagina, in inglese, riassume il passaggio dal TIL ai test CISIA citando le vostre pagine: https://uniexamer.com/exams/politecnico-di-torino-til. Se trovate imprecisioni, le correggiamo subito.
 >
 > Non chiedo nulla in cambio: se il materiale è utile ai docenti, usatelo liberamente, altrimenti ignorate pure questa mail.
 >
@@ -68,7 +70,7 @@ Replace `[Nome]` / `[Name]` with the sender. Every message names the affiliation
 >
 > ho visto la circolare sul corso di logica in preparazione ai TOLC. Lavoro su UniExamer, un sito indipendente di esercitazione per i test di ammissione, non affiliato al CISIA, e vi segnalo una risorsa gratuita che potrebbe servire alla discussione in classe.
 >
-> Alla pagina https://uniexamer.com/it/exams/cisia-tolc ci sono otto quesiti originali nel formato del TOLC-I, del TOLC-E e del TOLC-F, con la spiegazione del perché ogni opzione sbagliata è sbagliata: spesso è proprio nella risposta "quasi giusta" che gli studenti perdono punti. Per correttezza: i quesiti sono preparati con l'aiuto dell'intelligenza artificiale, non sono ancora stati rivisti da un insegnante, la traduzione attende la rilettura di un madrelingua, non sono quesiti ufficiali, e il sito ha anche piani a pagamento. Se in classe notate un errore o una spiegazione poco chiara, mi farebbe molto piacere saperlo.
+> Alla pagina https://uniexamer.com/it/exams/cisia-tolc ci sono otto quesiti originali nel formato del TOLC-I, del TOLC-E e del TOLC-F, con la spiegazione del perché ogni opzione sbagliata è sbagliata: spesso è proprio nella risposta "quasi giusta" che gli studenti perdono punti. Per correttezza: i quesiti sono preparati con l'aiuto dell'intelligenza artificiale, non sono quesiti ufficiali, e il sito ha anche piani a pagamento. Se in classe notate un errore o una spiegazione poco chiara, mi farebbe molto piacere saperlo.
 >
 > Grazie per il vostro lavoro e buon proseguimento d'anno,
 > [Nome], UniExamer
@@ -83,7 +85,7 @@ Replace `[Nome]` / `[Name]` with the sender. Every message names the affiliation
 >
 > La vostra pagina "Preparare i test in ingresso" spiega con chiarezza anche il passaggio dai TOLC in inglese al CEnT-S. Vi segnalo, solo come possibile complemento alle simulazioni del CISIA, una pagina gratuita in italiano con quesiti originali svolti nel formato del TOLC-E, del TOLC-I e del TOLC-F, in cui è spiegata ogni opzione sbagliata: https://uniexamer.com/it/exams/cisia-tolc.
 >
-> Per trasparenza: i quesiti sono preparati con l'aiuto dell'intelligenza artificiale, non sono ancora stati revisionati da un docente, non sono ufficiali, e il sito offre anche piani a pagamento. Se la pagina segnala solo risorse istituzionali, non serve rispondere.
+> Per trasparenza: i quesiti sono preparati con l'aiuto dell'intelligenza artificiale, non sono ufficiali, e il sito offre anche piani a pagamento. Se la pagina segnala solo risorse istituzionali, non serve rispondere.
 >
 > Cordiali saluti,
 > [Nome], UniExamer

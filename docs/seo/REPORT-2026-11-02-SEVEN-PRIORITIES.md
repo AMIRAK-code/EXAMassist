@@ -2,6 +2,13 @@
 
 Branch `seo/seven-priorities`, from `main` at 48eff40. **Not deployed, not merged, nothing submitted to a search engine, no message sent.** Companion documents: [PUBLIC-INFO-AUDIT-2026-11-02.md](PUBLIC-INFO-AUDIT-2026-11-02.md), [OUTREACH-PLAN.md](OUTREACH-PLAN.md), [MEASUREMENT-PLAN.md](MEASUREMENT-PLAN.md) (28-day procedure), [../review/README.md](../review/README.md) (human review), [EXAM-INTENT-MAP.md](EXAM-INTENT-MAP.md). The work already on `main` from earlier today (REPORT-2026-11-02.md: TOLC samples, PoliTo rewrite, lighter pages, robots in every language, `practice_click`) is kept as it was.
 
+## Update, 3 November 2026 (owners' instructions)
+
+- **Human review: done, per the owners.** The pages no longer say the samples are unreviewed, and the Italian TOLC page no longer carries the "awaiting review" note. They name no reviewer either: no names, credentials or consent were provided, so none are on the site. To show them, record them in `content/reviews/editorial-samples.json` first (docs/review/README.md); the tests still refuse a review claim without that record.
+- **"Everything is free": skipped** at the owners' request. The fixes to "a diagnostic for every exam" and the home guest line stay, since they are separate claims.
+- **New free samples.** The Bocconi Master's page (`/exams/bocconi-master`) now has three worked samples, one per area (verbal reasoning, data insight, quantitative reasoning), plus a lead built from Bocconi's graduate test page, re-read today: 50 questions in 75 minutes, +1/0/−0.25 or −0.33, the 15/50 floor, 3 attempts. Its title is unchanged, since it already has impressions. A new guide, `/guides/imat-sample-questions`, has five worked IMAT questions, one per area, plus the 2026/27 rules read first-hand from the MUR decree (D.M. 6 August 2026, n. 1005): 60 questions, five options, 100 minutes; Reading 4, Logic 5, Biology 23, Chemistry 15, Physics and maths 13; +1.5/−0.4/0; a 20-point threshold for EU and resident candidates. The guide says plainly that UniExamer offers no IMAT practice sessions; the IMAT configuration stays a draft. Every new sample was checked against the bank by wording (automated) and by set-up (by hand).
+- **Search Console through Claude in Chrome: not possible today.** No Chrome browser is connected to the extension (`list_connected_browsers` returned none, and two connection attempts failed). Nothing was read; no figures are estimated. To do it: open Chrome with the Claude extension signed in to the same account, then ask again.
+
 ## 1. Italian TOLC content
 
 **Done.** `/it/exams/cisia-tolc` is now a full Italian page: lead, 2027 status, the eight worked samples (every option, working and lesson), the six-week plan, the sources list, and the exam details that came from the English configurations (exam names, summaries, version and cycle lines, section names, scale labels and every practice format's label and description). It carries its own canonical, `hreflang` en/it/x-default (reciprocal on the English page), `lang="it"`, an Italian title and description, Italian breadcrumbs and `inLanguage: it` in its Article data, and a sitemap entry. The `/tr`, `/es` and `/pl` versions still name the English page as canonical. A visible note at the top says the translation awaits a fluent reviewer. The format guide (`/exams/cisia-tolc/format`) stays English only.
@@ -46,7 +53,7 @@ Facts re-checked on CISIA's Italian pages and PDF on 2 November 2026 (session no
 
 ## Validation in this branch
 
-- `npm run verify`: typecheck and content validation clean; 55 test files, 882 tests, all passing on the final run. The first run had one failure (a test requires every `common.guest` string to state the guest lifetime), fixed by moving the new home line into the `home` catalogue.
+- `npm run verify`: typecheck and content validation clean; 55 test files, 880 tests, all passing on the final run (3 November; two tests that required "not reviewed" wording were removed on the owners' instruction). The first run had one failure (a test requires every `common.guest` string to state the guest lifetime), fixed by moving the new home line into the `home` catalogue.
 - `npm run build` (Next.js production build, on Windows: the Cloudflare bundle was **not** built here and must not be).
 - Local production server (`next start`, local SQLite seeded from the repository, no production data): every changed page answers 200 in the languages checked, with no "Application error", missing message or IMAT string; Italian hub checks as in item 1; home in five languages; pricing and llms.txt copy; sitemap 74 URLs (one more than before: the Italian TOLC hub), and the deploy snapshot list is unchanged at 166 paths (every language of every sitemap page was already saved).
 - Not run: Playwright e2e and accessibility suites, Rich Results Test, a Cloudflare preview deploy.
@@ -66,15 +73,15 @@ Error 1102 is the Worker exceeding its CPU limit (10 ms on the Free plan). Publi
 **Deploy (only `npm run cf:deploy`, never `wrangler deploy` directly)**
 
 - [ ] The upload prints a preview URL (new version, no traffic yet).
-- [ ] The snapshot step saves **166** paths with no error; `/it/exams/cisia-tolc`, `/exams/cisia-tolc` and `/` are among them. If any page fails, the script stops before the final deploy and visitors stay on the current version: fix, then `npm run cf:snapshot` in the same folder.
+- [ ] The snapshot step saves **171** paths with no error (166 before this release, plus the IMAT guide in five languages); `/it/exams/cisia-tolc`, `/exams/cisia-tolc`, `/exams/bocconi-master`, `/guides/imat-sample-questions` and `/` are among them. If any page fails, the script stops before the final deploy and visitors stay on the current version: fix, then `npm run cf:snapshot` in the same folder.
 - [ ] Only then does the final deploy run.
 
 **After (within 15 minutes)**
 
-- [ ] For `/`, `/it`, `/exams/cisia-tolc`, `/it/exams/cisia-tolc`, `/exams/bocconi-online-test`, `/guides/bocconi-test-preparation-plan`, `/sitemap.xml`, `/robots.txt`, `/llms.txt`: request each six times in a row; every answer is 200, never 503/1102, and the pages are served as static files: `curl -sI` shows `Cache-Control: public, max-age=0, must-revalidate` (a page the Worker rendered shows `private, no-cache, no-store`, as `/pricing` does by design). Checked on the live site on 2 November 2026: `/exams/cisia-tolc` static, `/pricing` Worker.
+- [ ] For `/`, `/it`, `/exams/cisia-tolc`, `/it/exams/cisia-tolc`, `/exams/bocconi-online-test`, `/exams/bocconi-master`, `/guides/imat-sample-questions`, `/guides/bocconi-test-preparation-plan`, `/sitemap.xml`, `/robots.txt`, `/llms.txt`: request each six times in a row; every answer is 200, never 503/1102, and the pages are served as static files: `curl -sI` shows `Cache-Control: public, max-age=0, must-revalidate` (a page the Worker rendered shows `private, no-cache, no-store`, as `/pricing` does by design). Checked on the live site on 2 November 2026: `/exams/cisia-tolc` static, `/pricing` Worker.
 - [ ] `/pricing` (dynamic by design, runs the Worker): six requests, all 200. If 1102 appears there, it predates this release; note it.
-- [ ] `/it/exams/cisia-tolc`: canonical is itself; hreflang en, it, x-default; Italian heading and the "awaiting review" note. `/tr/exams/cisia-tolc`: canonical is the English page.
-- [ ] `sitemap.xml` lists 74 URLs including `/it/exams/cisia-tolc`.
+- [ ] `/it/exams/cisia-tolc`: canonical is itself; hreflang en, it, x-default; Italian heading. `/tr/exams/cisia-tolc`: canonical is the English page.
+- [ ] `sitemap.xml` lists 75 URLs including `/it/exams/cisia-tolc` and `/guides/imat-sample-questions`.
 - [ ] Home heading reads "University admission test practice, with worked explanations." in English and translated in `/it`, `/tr`, `/es`, `/pl`.
 - [ ] Sign-in, practice start and checkout still behave as before (one quick pass as a test account; no billing or auth code changed).
 - [ ] If anything above fails: roll back to the previous Worker version in the Cloudflare dashboard (Workers → examer → Deployments), then investigate.

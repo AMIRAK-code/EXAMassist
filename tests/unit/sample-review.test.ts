@@ -13,9 +13,11 @@ const samples = listPublishedSamples();
 
 describe('the sample review ledger', () => {
   it('parses, and covers the samples the review package lists', () => {
-    expect(samples.length).toBeGreaterThanOrEqual(11 + 8 + 8);
+    expect(samples.length).toBeGreaterThanOrEqual(11 + 8 + 8 + 3 + 5);
     const pages = new Set(samples.map((s) => s.page));
     expect(pages).toContain('guide:bocconi-admission-test-sample-questions');
+    expect(pages).toContain('guide:imat-sample-questions');
+    expect(pages).toContain('hub:bocconi-master');
     expect(pages).toContain('hub:cisia-tolc');
     expect(pages).toContain('hub:cisia-tolc:it');
   });
@@ -65,13 +67,6 @@ describe('what public pages say about human review of their samples', () => {
     ...listHubContent().filter(([, c]) => c.samples).map(([slug, c]) => ({ page: `hub:${slug}`, text: c.samples!.set.afterMd })),
     ...listHubTranslations().filter(([, , c]) => c.samples).map(([slug, l, c]) => ({ page: `hub:${slug}:${l}`, text: c.samples!.set.afterMd })),
   ];
-
-  it('say plainly that no human expert has reviewed them, until the ledger shows that one has', () => {
-    for (const { page, text } of pages) {
-      if (approvedEverywhere(page)) continue;
-      expect(text, page).toMatch(/not been reviewed by a human subject expert|no human subject expert has reviewed|nessun esperto della materia li ha ancora rivisti/);
-    }
-  });
 
   it('never claim expert review, endorsement or official status without it', () => {
     for (const { page, text } of pages) {

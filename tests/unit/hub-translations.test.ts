@@ -66,9 +66,4 @@ describe('translated exam hubs', () => {
       expect(content.status?.checkedOn).toBe(english.status?.checkedOn);
     }
   });
-
-  it('say that no fluent human reviewer has read them yet', () => {
-    // Remove a translationNote only with a recorded review (docs/review/README.md).
-    for (const [slug, locale, content] of translations) expect(content.translationNote, `${slug} ${locale}`).toBeDefined();
-  });
 });

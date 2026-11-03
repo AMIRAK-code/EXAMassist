@@ -8,6 +8,7 @@
  */
 
 import { bocconiSampleGuide } from './bocconi-sample-guide';
+import { imatSampleGuide } from './imat-sample-guide';
 
 export interface GuideSource {
   label: string;
@@ -71,6 +72,7 @@ export interface SampleQuestion {
 
 const GUIDES: Guide[] = [
   bocconiSampleGuide,
+  imatSampleGuide,
   {
     slug: 'bocconi-test-negative-marking-when-to-guess',
     metaTitle: 'Bocconi test negative marking: when to guess',
