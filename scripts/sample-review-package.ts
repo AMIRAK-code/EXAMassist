@@ -1,6 +1,7 @@
 /**
  * Writes the review package for the public worked samples: every sample on
- * the Bocconi sample guide and the TOLC hub (English and Italian), with its
+ * the Bocconi guides and Master’s hub, the TOLC hub (English and Italian) and
+ * the IMAT guide, with its
  * key, working, wrong-option notes and fingerprint, and a form for the
  * reviewer's decisions. The procedure is in docs/review/README.md.
  *
@@ -21,23 +22,25 @@ const out = path.resolve(outArg ? outArg.slice('--out='.length) : `docs/review/p
 const SITE = 'https://uniexamer.com';
 
 const ledger = sampleReviewLedger();
-const samples = listPublishedSamples().filter((s) => /^(guide:bocconi-|hub:cisia-tolc)/.test(s.page));
+const samples = listPublishedSamples().filter((s) => /^(guide:bocconi-|guide:imat-|hub:cisia-tolc|hub:bocconi-master)/.test(s.page));
 
 const pageTitle: Record<string, string> = {
   'guide:bocconi-admission-test-sample-questions': 'Bocconi admission test: sample questions (English)',
   'hub:cisia-tolc': 'CISIA TOLC hub: worked samples (English)',
   'hub:cisia-tolc:it': 'CISIA TOLC hub: worked samples (Italian translation)',
+  'hub:bocconi-master': 'Bocconi Master’s hub: worked samples (English)',
+  'guide:imat-sample-questions': 'IMAT sample questions (English)',
 };
 
 const lines: string[] = [];
 const push = (...l: string[]) => lines.push(...l);
 
 push(
-  `# Review package: public worked samples (Bocconi and TOLC)`,
+  `# Review package: public worked samples (Bocconi, TOLC and IMAT)`,
   '',
   `Generated ${today} from the content in this repository (\`npx tsx scripts/sample-review-package.ts\`). ${samples.length} samples on ${new Set(samples.map((s) => s.page)).size} pages.`,
   '',
-  'Thank you for reviewing. These are original, AI-assisted practice questions published free on uniexamer.com. They are **not** questions from Bocconi or CISIA, and UniExamer is not affiliated with either. Nothing you write here is published unless you agree to it below.',
+  'Thank you for reviewing. These are original, AI-assisted practice questions published free on uniexamer.com. They are **not** questions from Bocconi, CISIA or the IMAT, and UniExamer is not affiliated with any of them. Nothing you write here is published unless you agree to it below.',
   '',
   '## 1. Before you start: the reviewer declaration',
   '',

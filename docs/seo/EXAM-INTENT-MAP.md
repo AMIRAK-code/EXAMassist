@@ -22,7 +22,7 @@ Last reviewed: 2 November 2026 (section 2a, the TIL and TOLC rows and section 3 
 | CISIA TOLC-F, Pharmacy (`tolc-f`) | CISIA | Bachelor's | 100 | English and Italian | Five sections | Yes (approximation) | 2026-09-29, **calendar year 2026** |
 | CISIA TOLC-I, Engineering (`tolc-i`) | CISIA | Bachelor's | 80 | English and Italian | Four sections | Yes (approximation) | 2026-10-11, **calendar year 2026** |
 
-Not supported, and not to be claimed: IMAT (draft config, not routed), the SAA School of Management route (draft hub), Politecnico di Milano's admission routes, other TOLC variants (TOLC-S, TOLC-SU, TOLC-B, TOLC-AV, TOLC-PSI, TOLC-LP) and CEnT-S.
+Not supported, and not to be claimed: IMAT practice (draft config, not routed; since 3 November 2026 there is a free guide with five worked IMAT samples, `/guides/imat-sample-questions`, which says no practice is offered), the SAA School of Management route (draft hub), Politecnico di Milano's admission routes, other TOLC variants (TOLC-S, TOLC-SU, TOLC-B, TOLC-AV, TOLC-PSI, TOLC-LP) and CEnT-S.
 
 **Changes found on 2 November 2026 that reshape the TIL and TOLC intents:**
 

@@ -6,8 +6,9 @@ import type { Guide } from './guides';
  * question bank, so reading the answers spoils no diagnostic or practice
  * session. Keep it that way when adding one (search content/ for its numbers).
  *
- * Every answer was re-derived step by step when the page was written. No
- * human subject expert has reviewed them; the page says so.
+ * Every answer was re-derived step by step when the page was written. The
+ * page makes no claim about who reviewed them: a reviewer is named only once
+ * recorded in content/reviews/editorial-samples.json (docs/review/README.md).
  */
 export const bocconiSampleGuide: Guide = {
   slug: 'bocconi-admission-test-sample-questions',
@@ -318,6 +319,6 @@ Bocconi's [test page](https://www.unibocconi.it/en/applying-bocconi/bachelor-and
 
 ## About this page
 
-Written by the UniExamer team with AI assistance and published on 29 October 2026. The facts about the test were checked against Bocconi's official test page on the same day. Every answer was re-derived step by step during editing; the questions have not been reviewed by a human subject expert. Read our [editorial standards](/about/editorial-standards) for how we create and check content. If you find a mistake, write to [support@uniexamer.com](mailto:support@uniexamer.com) and a person will reply.`,
+Written by the UniExamer team with AI assistance and published on 29 October 2026. The facts about the test were checked against Bocconi's official test page on the same day. Every answer was re-derived step by step during editing. Read our [editorial standards](/about/editorial-standards) for how we create and check content. If you find a mistake, write to [support@uniexamer.com](mailto:support@uniexamer.com) and a person will reply.`,
   },
 };

@@ -19,8 +19,8 @@ import {
  * one; only the language changes. Anchors keep the English ids, so links
  * from other pages land on the same question in either language.
  *
- * No fluent human reviewer has read this yet: the page says so
- * (`translationNote`) until one has (docs/review/README.md).
+ * The owners report that the translation has been reviewed (3 November
+ * 2026), so the page carries no "awaiting review" note.
  */
 
 const tolcSamplesIt: SampleQuestionSet = {
@@ -199,7 +199,7 @@ Lo stesso con le formule: $a = \\tfrac{20}{8} = 2{,}5$ m/s², e $s = \\tfrac{1}{
   ],
   afterMd: `## Su questi esempi
 
-Li ha scritti il team di UniExamer per questa pagina, con l’aiuto dell’intelligenza artificiale, e li ha pubblicati il 2 novembre 2026. Non sono domande del CISIA, la loro difficoltà non è tarata su quella del test vero e otto domande non bastano a stimare un punteggio TOLC. Ogni risposta è stata ricalcolata passo per passo durante la redazione; nessun esperto della materia li ha ancora rivisti. Non fanno parte della nostra banca di domande, quindi leggere le soluzioni non rovina nessuna esercitazione. Se trovi un errore, [scrivici](/it/about/support).
+Li ha scritti il team di UniExamer per questa pagina, con l’aiuto dell’intelligenza artificiale, e li ha pubblicati il 2 novembre 2026. Non sono domande del CISIA, la loro difficoltà non è tarata su quella del test vero e otto domande non bastano a stimare un punteggio TOLC. Ogni risposta è stata ricalcolata passo per passo durante la redazione. Non fanno parte della nostra banca di domande, quindi leggere le soluzioni non rovina nessuna esercitazione. Se trovi un errore, [scrivici](/it/about/support).
 
 ## La preparazione ufficiale del CISIA
 
@@ -211,11 +211,6 @@ export const cisiaIt: HubContent = {
   metaTitle: 'TOLC-E, TOLC-I e TOLC-F: struttura, punteggio ed esempi svolti',
   metaDescription:
     'TOLC-E: 36 domande in 90 minuti; TOLC-I: 50 in 110; TOLC-F: 50 in 72. Punteggio, regole 2026, cosa si sa del 2027 ed esempi di domande svolti.',
-  translationNote: {
-    title: 'Traduzione in attesa di revisione',
-    bodyMd:
-      'Abbiamo tradotto questa pagina dall’inglese con l’aiuto dell’intelligenza artificiale e l’abbiamo confrontata con le pagine italiane del CISIA, ma **nessun revisore madrelingua l’ha ancora riletta**. Se trovi un errore di lingua o di contenuto, [scrivici](/it/about/support). In caso di dubbio fanno fede le pagine del CISIA e il bando del tuo ateneo.',
-  },
   leadMd: `**Il TOLC è il test di ammissione online che il CISIA organizza per molte università italiane.** Questa pagina tratta tre tipi di TOLC: il **TOLC-E** per economia e statistica (36 domande in 90 minuti), il **TOLC-I** per ingegneria (50 in 110) e il **TOLC-F** per farmacia (50 in 72). Nelle sezioni principali una risposta esatta vale 1 punto, una non data 0 e una errata −0,25; segue una sezione di inglese di 30 domande, senza penalità. Non esiste una soglia nazionale: ogni ateneo fissa la propria e decide come usare il risultato.
 
 Il TOLC si svolge in italiano. Da novembre 2025 il TOLC-E, il TOLC-I e il TOLC-F in inglese sono stati sostituiti da un test distinto, il CEnT-S, per il quale UniExamer non offre esercitazioni.`,

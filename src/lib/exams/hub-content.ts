@@ -1,5 +1,6 @@
 import type { GuideSource, SampleQuestionSet } from '@/lib/content/guides';
 import { cisiaIt } from './hub-content-it';
+import { bocconiMaster } from './hub-content-bocconi-master';
 import {
   POLITO_TEST_PAGE,
   POLITO_CALLS_PAGE,
@@ -274,7 +275,7 @@ The same with the formulas: $a = \\tfrac{20}{8} = 2.5$ m/s², and $s = \\tfrac{1
   ],
   afterMd: `## About these examples
 
-They were written by the UniExamer team for this page, with AI assistance, and published on 2 November 2026. They are not CISIA questions, their difficulty is not calibrated to the real test, and eight questions cannot estimate a TOLC score. Every answer was re-derived step by step during editing; no human subject expert has reviewed them. They are not in our question bank, so reading the answers spoils no practice session. If you find a mistake, [tell us](/about/support).
+They were written by the UniExamer team for this page, with AI assistance, and published on 2 November 2026. They are not CISIA questions, their difficulty is not calibrated to the real test, and eight questions cannot estimate a TOLC score. Every answer was re-derived step by step during editing. They are not in our question bank, so reading the answers spoils no practice session. If you find a mistake, [tell us](/about/support).
 
 ## Official CISIA preparation
 
@@ -336,6 +337,7 @@ If you cannot give six weeks, keep the order and shorten each step: syllabus gap
 const HUB_CONTENT: Readonly<Record<string, HubContent>> = {
   'politecnico-di-torino-til': polito,
   'cisia-tolc': cisia,
+  'bocconi-master': bocconiMaster,
 };
 
 /**
