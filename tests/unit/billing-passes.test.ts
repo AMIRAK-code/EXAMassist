@@ -39,7 +39,7 @@ beforeEach(async () => {
   // Approved questions for the SAT only: GMAT has no practice format open.
   await seedQuestions(db, SAT, { perDomain: 8 });
   const id = await createUser(db);
-  user = { id, email: `${id}@example.invalid`, displayName: 'Ada', isGuest: false };
+  user = { id, email: `${id}@example.invalid`, displayName: 'Ada', isGuest: false, emailVerifiedAt: '2026-01-01T00:00:00.000Z' };
 });
 
 const buy = (input: Partial<CheckoutInput>, fake = fakeStripe(), forUser = user) =>
