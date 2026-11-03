@@ -8,9 +8,9 @@
   },
   "setup": {
     "metaFallbackTitle": "Esercitazione",
-    "metaTitle": "Esercitati per il {exam}",
-    "metaDescription": "Scegli un argomento, la difficoltà e la durata della sessione, poi esercitati per il {exam} con domande originali e spiegazioni complete.",
-    "title": "Esercitati per il {exam}",
+    "metaTitle": "Esercitazioni {exam}",
+    "metaDescription": "Scegli un argomento, la difficoltà e la durata della sessione, poi esercitati con domande originali {exam} e spiegazioni complete.",
+    "title": "Esercitazioni {exam}",
     "lead": "Esercitati per argomento, senza limiti di tempo, oppure scegli un altro formato qui sotto.",
     "empty": {
       "title": "Non ci sono ancora domande revisionate per questo esame",
@@ -20,7 +20,7 @@
     "topic": {
       "title": "Esercitazione per argomento",
       "body": "Senza limiti di tempo. Puoi cambiare risposta liberamente, poi verificarla per vedere la spiegazione svolta; una risposta verificata non si può più modificare.",
-      "ignoredFilter": "Il link indicava un argomento o un’abilità che il {exam} non prevede, quindi non è stato applicato alcun filtro."
+      "ignoredFilter": "Il link indicava un argomento o un’abilità che non fa parte del programma ({exam}), quindi non è stato applicato alcun filtro."
     },
     "otherFormats": "Altri formati",
     "questionCount": "{count, plural, one {# domanda} other {# domande}}",
@@ -86,7 +86,7 @@
       "includeSeen": "Includi le domande già viste ({count})",
       "wholeDomain": "Esercitati su tutto {domain} ({count})",
       "mixedDifficulty": "Usa la difficoltà mista ({count})",
-      "everyTopic": "Esercitati su tutti gli argomenti del {exam} ({count})"
+      "everyTopic": "Esercitati su tutti gli argomenti {exam} ({count})"
     },
     "summary": {
       "count": "<strong>{count, plural, one {# domanda} other {# domande}}</strong> da {scope}",
@@ -99,7 +99,7 @@
       "newOnly": "solo nuove per te",
       "untimed": "senza tempo",
       "check": "verifica ogni risposta per vederne la spiegazione svolta",
-      "bank": "{count} domande revisionate del {exam} nella banca"
+      "bank": "{count} domande {exam} revisionate nella banca"
     },
     "nothing": "Con queste impostazioni non c’è nulla da avviare.",
     "preparing": "Stiamo preparando la sessione…",
@@ -129,7 +129,7 @@
   "start": {
     "metaTitle": "Per iniziare",
     "intro": {
-      "title": "Preparati per il {exam}",
+      "title": "Preparazione {exam}",
       "lead": "L’esame reale ha {count, plural, one {una sezione} other {# sezioni}}, come pubblicato dall’ente che lo organizza:",
       "questions": "{count, plural, one {# domanda} other {# domande}}",
       "minutes": "{count, plural, one {# minuto} other {# minuti}}"
@@ -137,7 +137,7 @@
     "how": {
       "eyebrow": "Come funziona l’esercitazione",
       "title": "Esercitati come funziona l’esame",
-      "leadCount": "{count, plural, one {# domanda revisionata del {exam}} other {# domande revisionate del {exam}}}, ciascuna con la spiegazione svolta.",
+      "leadCount": "{count, plural, one {# domanda {exam} revisionata} other {# domande {exam} revisionate}}, ciascuna con la spiegazione svolta.",
       "lead": "Domande revisionate, ciascuna con la spiegazione svolta.",
       "topic": "Esercitazione per argomento: scegli argomenti e difficoltà, senza limiti di tempo, con la spiegazione svolta appena verifichi una risposta.",
       "timed": "{count, plural, one {Una sezione a tempo} other {# sezioni a tempo}} al ritmo ufficiale.",
@@ -154,10 +154,10 @@
       "tutor": "Un tutor IA per suggerimenti e spiegazioni più approfondite, entro un limite giornaliero."
     },
     "paid": {
-      "single": "{plan}: i formati di esercitazione del {exam} aperti oggi, per sei mesi, {price} una tantum.",
+      "single": "{plan}: i formati di esercitazione {exam} aperti oggi, per sei mesi, {price} una tantum.",
       "all": "{plan}: tutti gli esami del sito, {monthly} al mese o {yearly} all’anno.",
       "vat": "IVA inclusa. Il pass non si rinnova; Plus si può disdire in qualsiasi momento dal tuo account.",
-      "singleUnavailable": "{plan} per il {exam}: non ancora disponibile, perché nessun formato di esercitazione ha abbastanza domande revisionate."
+      "singleUnavailable": "{plan}, {exam}: non ancora disponibile, perché nessun formato di esercitazione ha abbastanza domande revisionate."
     },
     "free": {
       "open": "Il tuo test diagnostico gratuito è ancora aperto: riprendi da dove avevi lasciato.",
@@ -189,7 +189,7 @@
   },
   "freeTest": {
     "metaTitle": "Il tuo test diagnostico gratuito",
-    "title": "Il tuo test diagnostico gratuito per il {exam}",
+    "title": "Il tuo test diagnostico {exam} gratuito",
     "leadTimed": "{questions, plural, one {# domanda} other {# domande}} in {sections, plural, one {una sezione} other {# sezioni}}, circa {minutes, plural, one {# minuto} other {# minuti}}, con risultati completi e una spiegazione svolta per ogni risposta.",
     "leadUntimed": "{questions, plural, one {# domanda} other {# domande}} in {sections, plural, one {una sezione} other {# sezioni}}, senza limiti di tempo, con risultati completi e una spiegazione svolta per ogni risposta.",
     "notices": {
@@ -226,7 +226,7 @@
     },
     "notReady": {
       "title": "Non ancora disponibile",
-      "body": "Non ci sono ancora abbastanza domande revisionate del {exam} per creare il test diagnostico. La guida al formato e al punteggio è completa ed è già utile adesso.",
+      "body": "Non ci sono ancora abbastanza domande {exam} revisionate per creare il test diagnostico. La guida al formato e al punteggio è completa ed è già utile adesso.",
       "guide": "Leggi la guida al formato e al punteggio"
     },
     "plans": "Vedi i piani",

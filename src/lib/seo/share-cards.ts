@@ -29,7 +29,7 @@ export function shareCards(): ShareCard[] {
       key: `exam-${hub.slug}`,
       eyebrow: hub.slug === 'bocconi-online-test' ? 'Practice questions · free test · official rules' : 'Format · timing · scoring · practice',
       title: hub.slug === 'bocconi-online-test' ? `${hub.name} preparation` : `${hub.name}: format, timing and scoring`,
-      footnote: `Independent · not affiliated with ${hub.publisher}`,
+      footnote: `Independent · not affiliated with ${hub.publisherShort ?? hub.publisher}`,
     })),
     ...listGuides().map((guide) => {
       const hub = getHub(guide.hubSlug);
@@ -37,7 +37,7 @@ export function shareCards(): ShareCard[] {
         key: `guide-${guide.slug}`,
         eyebrow: hub ? `Guide · ${hub.name}` : 'Guide',
         title: guide.title,
-        footnote: hub ? `Independent · not affiliated with ${hub.publisher}` : 'Independent of every test maker',
+        footnote: hub ? `Independent · not affiliated with ${hub.publisherShort ?? hub.publisher}` : 'Independent of every test maker',
       };
     }),
   ];

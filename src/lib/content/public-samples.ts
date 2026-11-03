@@ -91,6 +91,11 @@ export const WITHHELD_SAMPLES: Readonly<Record<string, string>> = {
     'The TIL question bank is new. A sample question will be published once the bank is large enough that making one public does not close a timed section.',
   'cisia-tolc':
     'The TOLC question bank is new. A sample question will be published once the bank is large enough that making one public does not close a timed section.',
+  // Added 3 November 2026. The IMAT bank holds exactly one 60-question form
+  // in the published subject mix, so any public item would close the
+  // simulation. The worked samples on /guides/imat-sample-questions are kept
+  // out of the bank and stand in for one.
+  imat: 'The IMAT question bank holds exactly one full 60-question form. A sample question will be published once the bank is large enough that making one public does not close the simulation.',
 };
 
 export const PUBLIC_SAMPLE_IDS: ReadonlySet<string> = new Set(PUBLIC_SAMPLES.map((s) => s.questionId));

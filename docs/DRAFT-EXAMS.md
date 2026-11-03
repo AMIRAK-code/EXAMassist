@@ -20,22 +20,12 @@ never claims otherwise: every `verifiedOn` reads `not yet verified`.
 > only an unfinished snapshot of that work. On merging `main`, its verified
 > configs replaced the drafts here, and the TOLC-E and PoliTo exams are live.
 
-## IMAT (draft config `imat`)
+## IMAT (live since 3 November 2026)
 
-The national entrance test for the English-taught medicine, dentistry and
-veterinary programmes. 60 original questions are written, blind-reviewed and
-published in the bank, each with a checked Italian version (a study aid: the
-real IMAT is English-only).
-
-To verify against the 2026/27 ministerial decree and its annex:
-
-- [ ] 60 questions in 100 minutes; the subject mix 4 / 5 / 23 / 15 / 13; five
-      options per question; free movement between questions.
-- [ ] Scoring +1.5 / 0 / -0.4, and the minimum score to enter the ranking.
-- [ ] That the 2025 filter-semester reform does not apply to the
-      English-taught programmes in 2026/27.
-- [ ] Test date, registration window, places.
-- [ ] Syllabus per subject.
+No longer a draft. The config was verified first-hand against D.M. 1005 of
+6 August 2026, its annexes and tables (docs/research/imat.md), moved to
+`EXAM_CONFIGS`, and given the hub `/exams/imat`. Re-verify when the 2027/28
+decree is published.
 
 ## SAA School of Management, University of Turin (draft hub `saa-turin`)
 

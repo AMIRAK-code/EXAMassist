@@ -168,7 +168,7 @@ export default async function ExamHubPage({ params }: Props) {
       versionLabel: local?.versionLabel ?? config.versionLabel,
       admissionsCycle: local?.admissionsCycle ?? config.admissionsCycle,
       section: (key: string, name: string) => local?.sections[key] ?? name,
-      blueprint: (b: { label: string; description: string }) => (locale === 'it' && translated ? blueprintTextIt(config, b) : undefined) ?? b,
+      blueprint: (b: { id: string; label: string; description: string }) => (locale === 'it' && translated ? blueprintTextIt(config, b) : undefined) ?? b,
     };
   };
   const breadcrumbs = translated ? trail.map((crumb) => (crumb.href ? { ...crumb, href: localizePath(crumb.href, locale as Locale) } : crumb)) : trail;
