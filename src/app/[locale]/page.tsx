@@ -124,10 +124,9 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
           intro={
             <>
               <p className="eyebrow">{t('hero.eyebrow', { exams: listHubs().map((h) => h.label).join(' · ') })}</p>
-              <h1 className="display-xl">
-                {t('hero.titleLine1')}
-                <br />
-                {t.rich('hero.titleLine2', {
+              {/* What the product is, in the heading; the slogan stays as supporting copy. */}
+              <h1 className="display-l">
+                {t.rich('hero.title', {
                   accent: (chunks) => (
                     <span className="highlight">
                       <Accent>{chunks}</Accent>
@@ -135,9 +134,10 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
                   ),
                 })}
               </h1>
-              <p className="max-w-[30ch] text-[clamp(1.25rem,1.1rem+0.6vw,1.5rem)] leading-snug text-ink-muted">
-                {t('hero.lede')}
+              <p className="font-heading text-[clamp(1.25rem,1.1rem+0.6vw,1.5rem)] font-semibold leading-snug text-ink">
+                {t('hero.slogan')}
               </p>
+              <p className="max-w-[44ch] text-lg leading-snug text-ink-muted">{t('hero.lede')}</p>
             </>
           }
         />

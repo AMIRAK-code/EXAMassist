@@ -3,7 +3,7 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { listGuides, type Guide } from '@/lib/content/guides';
 import { EXAM_HUBS } from '@/lib/exams/registry';
-import { listHubContent, type HubContent } from '@/lib/exams/hub-content';
+import { listHubContent, listHubTranslations, type HubContent } from '@/lib/exams/hub-content';
 import type { SampleQuestionSet } from '@/lib/content/guides';
 
 /**
@@ -37,6 +37,8 @@ function hubMarkdownOf(content: HubContent): string {
     content.detailsNote?.bodyMd ?? '',
     content.samples?.introMd ?? '',
     ...samplesMarkdown(content.samples?.set),
+    content.studyPlan?.bodyMd ?? '',
+    content.translationNote?.bodyMd ?? '',
   ].join('\n');
 }
 
@@ -44,7 +46,14 @@ function hubMarkdownOf(content: HubContent): string {
 const PAGES = [
   ...listGuides().map((guide) => ({ name: guide.slug, markdown: markdownOf(guide), sources: guide.sources })),
   ...listHubContent().map(([slug, content]) => ({ name: `hub ${slug}`, markdown: hubMarkdownOf(content), sources: content.sources })),
+  ...listHubTranslations().map(([slug, locale, content]) => ({ name: `hub ${slug} (${locale})`, markdown: hubMarkdownOf(content), sources: content.sources })),
 ];
+
+/** A translated page links to the same pages in its own language: /it/exams/... is /exams/... */
+const withoutLocale = (link: string) => link.replace(/^\/(?:it|tr|es|pl)(?=\/|$)/, '') || '/';
+
+/** The ways into practice a page may link to: real exams only. */
+const PRACTICE_PATHS = new Set(EXAM_HUBS.flatMap((hub) => hub.configKeys.map((key) => `/practice/${key}`)));
 
 const PUBLIC_PATHS = new Set([
   '/', '/exams', '/guides', '/pricing',
@@ -59,8 +68,8 @@ describe('guide and exam hub links', () => {
       const links = [...page.markdown.matchAll(/\]\(([^)\s]+)\)/g)].map((m) => m[1]);
       for (const link of links) {
         if (link.startsWith('/')) {
-          const [route] = link.split('#');
-          expect(PUBLIC_PATHS.has(route), `${page.name}: ${link}`).toBe(true);
+          const [route] = withoutLocale(link).split('#');
+          expect(PUBLIC_PATHS.has(route) || PRACTICE_PATHS.has(route), `${page.name}: ${link}`).toBe(true);
         } else if (link.startsWith('mailto:')) {
           expect(link, page.name).toMatch(/^mailto:[a-z]+@uniexamer\.com$/);
         } else {
@@ -86,7 +95,8 @@ describe('guide and exam hub links', () => {
       ]),
     );
     for (const page of PAGES) {
-      for (const [, route, anchor] of page.markdown.matchAll(/\]\((\/exams\/[^)#\s]+)#([^)\s]+)\)/g)) {
+      for (const [, localized, anchor] of page.markdown.matchAll(/\]\(((?:\/(?:it|tr|es|pl))?\/exams\/[^)#\s]+)#([^)\s]+)\)/g)) {
+        const route = withoutLocale(localized);
         expect(anchors.get(route)?.has(anchor), `${page.name}: ${route}#${anchor}`).toBe(true);
       }
     }
@@ -98,6 +108,7 @@ describe('published sample questions', () => {
   const samples = [
     ...listGuides().filter((guide) => guide.samples).map((guide) => ({ slug: guide.slug, samples: guide.samples })),
     ...listHubContent().filter(([, c]) => c.samples).map(([slug, c]) => ({ slug: `hub ${slug}`, samples: c.samples!.set })),
+    ...listHubTranslations().filter(([, , c]) => c.samples).map(([slug, locale, c]) => ({ slug: `hub ${slug} (${locale})`, samples: c.samples!.set })),
   ];
 
   it('exist, so this suite checks something', () => {
