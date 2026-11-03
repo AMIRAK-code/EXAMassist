@@ -52,6 +52,7 @@ const WHAT_WE_HOLD = [
   'language',
   'guest',
   'credentials',
+  'google',
   'codes',
   'profile',
   'history',
@@ -64,9 +65,9 @@ const WHAT_WE_HOLD = [
 
 const WHAT_WE_DO_NOT = ['advertising', 'analytics', 'cards', 'cookies', 'selling', 'ai', 'marketing'] as const;
 
-const WHY = ['signedIn', 'language', 'history', 'fix', 'tutor', 'codes', 'abuse'] as const;
+const WHY = ['signedIn', 'language', 'history', 'fix', 'tutor', 'codes', 'google', 'abuse'] as const;
 
-const SECURITY = ['passwords', 'sessions', 'codes', 'scoping', 'origin', 'rateLimitKeys'] as const;
+const SECURITY = ['passwords', 'sessions', 'codes', 'google', 'scoping', 'origin', 'rateLimitKeys'] as const;
 
 const CONTROLS = ['export', 'delete', 'signOut', 'guest', 'language'] as const;
 

@@ -16,7 +16,7 @@ export const PAGE_DATES = {
   home: { updated: '2026-10-28' },
   editorialStandards: { published: '2026-09-22', updated: '2026-09-24' },
   howScoringWorks: { published: '2026-09-22', updated: '2026-09-24' },
-  privacy: { published: '2026-09-22', updated: '2026-10-27' },
+  privacy: { published: '2026-09-22', updated: '2026-11-03' },
   /** The terms show this as "last reviewed". */
   terms: { updated: '2026-10-29' },
   /** Why support is answered by people, and how to reach them. */
