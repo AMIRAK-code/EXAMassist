@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { getDb } from '@/lib/db';
 import { SITE } from '@/lib/site';
 import { getCustomerId, listPasses, listSubscriptions } from '@/lib/billing/store';
+import { listAccessGrantsOrNone } from '@/lib/billing/access-grants';
 import type {
   AttemptItemRow,
   AttemptPartRow,
@@ -198,6 +199,8 @@ export async function GET() {
     const billingSubscriptions = await listSubscriptions(db, user.id).catch(() => []);
     // Single Exam Passes (migration 016); none on a database still awaiting it.
     const billingPasses = await listPasses(db, user.id).catch(() => []);
+    // Access an administrator gave (migration 019); none on a database still awaiting it.
+    const accessGiven = await listAccessGrantsOrNone(db, user.id);
     // The linked Google account (migration 018); none on a database still awaiting it.
     const google = (await db
       .prepare("SELECT subject, email, created_at, last_used_at FROM oauth_identities WHERE user_id = ? AND provider = 'google'")
@@ -278,6 +281,14 @@ export async function GET() {
           withdrawalWaiverAt: row.withdrawal_waiver_at,
           createdAt: row.created_at,
           updatedAt: row.updated_at,
+        })),
+        accessGivenByStaff: accessGiven.map((row) => ({
+          plan: row.plan,
+          examKey: row.exam_key,
+          startsAt: row.starts_at,
+          endsAt: row.ends_at,
+          reason: row.reason,
+          revokedAt: row.revoked_at,
         })),
       },
       emailCodes: emailCodes.map((row) => ({
