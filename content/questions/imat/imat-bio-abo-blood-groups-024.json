@@ -1,0 +1,126 @@
+{
+  "id": "imat-bio-abo-blood-groups-024",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-biology",
+  "skillSlug": "imat-bio-genetics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A woman with blood group A and a man with blood group B have a first child with blood group O. What is the probability that their second child has blood group AB?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$0$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\tfrac{1}{8}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\tfrac{1}{4}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\tfrac{1}{2}$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$\\tfrac{3}{4}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Start from the child with blood group O. Group O means genotype $ii$: the child received one recessive $i$ allele from **each** parent. So the mother, who is group A, must be $I^A i$, and the father, who is group B, must be $I^B i$.\n\nEach parent passes on either allele with probability $\\tfrac{1}{2}$, independently, and each child is a new, independent event. A child is AB only if it receives $I^A$ from the mother **and** $I^B$ from the father:\n\n$$P(\\text{AB}) = \\tfrac{1}{2} \\times \\tfrac{1}{2} = \\tfrac{1}{4}$$\n\nThe cross gives four equally likely genotypes: $I^A I^B$ is group AB, $I^A i$ group A, $I^B i$ group B and $ii$ group O. The first child being O does not change the odds for the second.\n\nThe key step is using the O child as evidence about the parents' genotypes. $I^A$ and $I^B$ are codominant, and both are dominant over $i$.",
+  "distractorRationale": {
+    "a": "This assumes an AB child is impossible once an O child has been born. In fact the O child proves that both parents carry $i$ alongside $I^A$ or $I^B$, so an AB child remains possible whenever $I^A$ and $I^B$ are both passed on.",
+    "b": "This multiplies in an extra factor of $\\tfrac{1}{2}$, as if the first child's group, or the child's sex, had to be accounted for. Each child is an independent event, and blood group is not sex-linked.",
+    "d": "This takes $I^A$ from the mother as certain and halves only once, but she passes $I^A$ with probability $\\tfrac{1}{2}$, just as the father passes $I^B$ with probability $\\tfrac{1}{2}$.",
+    "e": "This is the probability that the child is **not** group O ($1 - \\tfrac{1}{4}$), which covers groups A, B and AB together, not AB alone."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": "A text-only genetics question: a mother with blood group A and a father with blood group B have a first child with blood group O. What is the probability that their second child has blood group AB? The five choices are probabilities: 0, one eighth, one quarter, one half and three quarters. No figure is shown.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "imat-biology-author",
+    "aiAssisted": true,
+    "notes": "Original item on ABO inheritance written on 3 November 2026 as the IMAT homepage sample, so the bank can spare one question without closing the simulation. The distractors test ignoring the evidence of the O child, an extra factor of one half, halving only once, and the complement of O."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "imat-biology-author",
+    "reviewer": "imat-blind-reviewer-3",
+    "reviewedOn": "2026-11-03",
+    "independentSolve": {
+      "solvedBy": "imat-blind-reviewer-3",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "A first child of group O (genotype ii) must receive an i allele from each parent, so the mother is IA i and the father is IB i. For AB the child needs IA from the mother (1/2) and IB from the father (1/2), so 1/2 x 1/2 = 1/4; the first child does not affect the second (independent events)."
+    },
+    "notes": "Author solved the item twice and argued against each wrong option. Two blind solvers (imat-blind-reviewer-3 and imat-blind-reviewer-4) each reached the key independently on 3 November 2026 and found no second defensible answer; the first is recorded above."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "biology",
+    "genetics",
+    "abo-blood-groups",
+    "codominance"
+  ],
+  "translations": {
+    "it": {
+      "stemMd": "Una donna di gruppo sanguigno A e un uomo di gruppo sanguigno B hanno un primo figlio di gruppo sanguigno 0. Qual è la probabilità che il loro secondo figlio sia di gruppo AB?",
+      "instructionsMd": null,
+      "options": [
+        {
+          "id": "a",
+          "textMd": "$0$"
+        },
+        {
+          "id": "b",
+          "textMd": "$\\tfrac{1}{8}$"
+        },
+        {
+          "id": "c",
+          "textMd": "$\\tfrac{1}{4}$"
+        },
+        {
+          "id": "d",
+          "textMd": "$\\tfrac{1}{2}$"
+        },
+        {
+          "id": "e",
+          "textMd": "$\\tfrac{3}{4}$"
+        }
+      ],
+      "explanationMd": "Si parte dal figlio di gruppo 0. Il gruppo 0 corrisponde al genotipo $ii$: il figlio ha ricevuto un allele recessivo $i$ da **ciascun** genitore. Quindi la madre, di gruppo A, deve essere $I^A i$, e il padre, di gruppo B, deve essere $I^B i$.\n\nOgni genitore trasmette l'uno o l'altro allele con probabilità $\\tfrac{1}{2}$, in modo indipendente, e ogni figlio è un evento nuovo e indipendente. Un figlio è AB solo se riceve $I^A$ dalla madre **e** $I^B$ dal padre:\n\n$$P(\\text{AB}) = \\tfrac{1}{2} \\times \\tfrac{1}{2} = \\tfrac{1}{4}$$\n\nL'incrocio dà quattro genotipi ugualmente probabili: $I^A I^B$ corrisponde al gruppo AB, $I^A i$ al gruppo A, $I^B i$ al gruppo B e $ii$ al gruppo 0. Il fatto che il primo figlio sia di gruppo 0 non cambia le probabilità per il secondo.\n\nIl passaggio chiave è usare il figlio di gruppo 0 come indizio sui genotipi dei genitori. $I^A$ e $I^B$ sono codominanti, ed entrambi sono dominanti su $i$.",
+      "distractorRationale": {
+        "a": "Presuppone che un figlio AB sia impossibile dopo la nascita di un figlio di gruppo 0. In realtà il figlio di gruppo 0 dimostra che entrambi i genitori portano $i$ insieme a $I^A$ o a $I^B$, quindi un figlio AB resta possibile ogni volta che vengono trasmessi sia $I^A$ sia $I^B$.",
+        "b": "Introduce un ulteriore fattore $\\tfrac{1}{2}$, come se si dovesse tener conto del gruppo del primo figlio o del sesso del nascituro. Ogni figlio è un evento indipendente, e il gruppo sanguigno non è legato al sesso.",
+        "d": "Considera certo che la madre trasmetta $I^A$ e dimezza una sola volta, ma la madre trasmette $I^A$ con probabilità $\\tfrac{1}{2}$, così come il padre trasmette $I^B$ con probabilità $\\tfrac{1}{2}$.",
+        "e": "È la probabilità che il figlio **non** sia di gruppo 0 ($1 - \\tfrac{1}{4}$), che comprende insieme i gruppi A, B e AB, non il solo AB."
+      },
+      "accessibilityText": "Una domanda di genetica solo testuale: una madre di gruppo sanguigno A e un padre di gruppo sanguigno B hanno un primo figlio di gruppo 0. Qual è la probabilità che il secondo figlio sia di gruppo AB? Le cinque opzioni sono probabilità: 0, un ottavo, un quarto, un mezzo e tre quarti. Non è mostrata alcuna figura.",
+      "check": {
+        "translatedBy": "imat-biology-author",
+        "checkedBy": "imat-italian-checker-4",
+        "checkedOn": "2026-11-03",
+        "answerPreserved": true,
+        "notes": "Italian stem and options match the English exactly, use the Italian '0' for group O, and read naturally."
+      }
+    }
+  }
+}
