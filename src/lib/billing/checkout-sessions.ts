@@ -8,7 +8,7 @@ import { allExamSaleStatuses, examSaleStatus } from './availability';
 import { assertBillingConfig, checkoutPath } from './config';
 import { loadEntitlements } from './entitlements';
 import { PLANS, PRICES, isPriceKey, priceForLookupKey } from './plans';
-import { billingError, ensureCustomer, priceIdFor, type BillingUser, type CheckoutInput } from './service';
+import { assertCanBuy, billingError, ensureCustomer, priceIdFor, type BillingUser, type CheckoutInput } from './service';
 import { PASS_INVOICE_PURPOSE, getCustomerId } from './store';
 import { stripeClient } from './stripe';
 
@@ -23,7 +23,7 @@ export async function startHostedCheckout(
 ) {
   const settings = options.settings ?? assertBillingConfig();
   if (!settings.checkoutAvailable) throw billingError('billing-off', 'billingOff', 503);
-  if (user.isGuest || !user.email) throw billingError('account-required', 'accountRequired', 403);
+  assertCanBuy(user);
   if (!input.consent) throw billingError('consent-required', 'consentRequired');
   if (!isPriceKey(input.offer)) throw billingError('unknown-plan', 'unknownPlan');
   const price = PRICES[input.offer];
