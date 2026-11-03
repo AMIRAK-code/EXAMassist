@@ -23,8 +23,8 @@ import { billingErrorMessage, stripeLocale } from './locale';
 
 export interface ManagedSubscription {
   id: string;
-  /** A renewing subscription, or a Single Exam Pass paid once. */
-  kind: 'subscription' | 'pass';
+  /** A renewing subscription, a Single Exam Pass paid once, or access UniExamer gave. */
+  kind: 'subscription' | 'pass' | 'grant';
   /** The plan's key ('plus', 'exam_pass', 'legacyPremium', …): its name is then shown in the page's language. */
   plan?: string;
   /** Shown when `plan` is not given or not a known plan. */
@@ -99,7 +99,7 @@ export function SubscriptionManager({
   const router = useRouter();
   const [notice, setNotice] = useState(initialNotice);
   const current = subscriptions.filter((s) => s.live || (s.kind === 'subscription' && s.status === 'past_due'));
-  const hidden = new Set(['incomplete', 'incomplete_expired', 'pending', 'void']);
+  const hidden = new Set(['incomplete', 'incomplete_expired', 'pending', 'void', 'revoked']);
   const past = subscriptions.filter((s) => !current.includes(s) && !hidden.has(s.status));
   const renewing = current.some((s) => s.kind === 'subscription');
 
@@ -188,7 +188,7 @@ function SubscriptionCard({
   const [error, setError] = useState<string | null>(null);
   const end = subscription.periodEnd ? day(subscription.periodEnd) : '';
 
-  if (subscription.kind === 'pass') {
+  if (subscription.kind === 'pass' || subscription.kind === 'grant') {
     return (
       <Card as="li" className="border-s-4 border-s-accent bg-surface shadow-card">
         <div className="flex flex-wrap items-start justify-between gap-3">
@@ -201,7 +201,7 @@ function SubscriptionCard({
               <p className="mt-1 text-sm text-ink-muted">{t('manager.prices.once', { price: formatPrice(subscription.amount, locale) })}</p>
             ) : null}
             {end ? <p className="mt-1 text-sm font-medium">{t('manager.passUntil', { date: end })}</p> : null}
-            <p className="mt-1 text-sm text-ink-muted">{t('manager.passNoRenewal')}</p>
+            <p className="mt-1 text-sm text-ink-muted">{t(subscription.kind === 'grant' ? 'manager.grantNote' : 'manager.passNoRenewal')}</p>
           </div>
           <Badge tone="positive">{statusLabel(t, subscription.status)}</Badge>
         </div>

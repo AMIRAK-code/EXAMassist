@@ -11,7 +11,9 @@ import { listExamTargets } from '@/lib/learning/queries';
 import { examLabel } from '@/lib/learning/dashboard';
 import { Breadcrumbs, Alert, Badge, ButtonLink, Card, Container, DefinitionList, PageHeader } from '@/components/ui';
 import { billingSettings, pricingPath } from '@/lib/billing/config';
-import { grantIsLive, loadEntitlements, passToGrant, toGrant } from '@/lib/billing/entitlements';
+import { accessGrantToGrant, grantIsLive, loadEntitlements, passToGrant, toGrant } from '@/lib/billing/entitlements';
+import { listAccessGrantsOrNone } from '@/lib/billing/access-grants';
+import type { AccessGrantRow } from '@/lib/db/rows';
 import { PLANS, PLAN_COPY, isLegacyPremium, priceForLookupKey } from '@/lib/billing/plans';
 import { BillingError, billingOverview, finishCardUpdate, type BillingOverview } from '@/lib/billing/service';
 import { SubscriptionManager, type ManagedSubscription } from '@/components/billing/subscription-manager';
@@ -90,6 +92,7 @@ export default async function AccountPage({
     }
   }
   const overview: BillingOverview | null = showBilling && !user.isGuest ? await billingOverview(getDb(), user.id) : null;
+  const given = overview ? await listAccessGrantsOrNone(getDb(), user.id) : [];
 
   // Exam names are data from the exam configs and stay as published.
   const examOptions = EXAM_CONFIGS.map((config) => ({
@@ -220,7 +223,11 @@ export default async function AccountPage({
               <>
                 {entitlements.isStaff ? <p className="mb-4 text-sm text-ink-muted">{t('billing.staff')}</p> : null}
                 <SubscriptionManager
-                  subscriptions={[...(overview?.passes ?? []).map(passToManaged), ...(overview?.subscriptions ?? []).map(toManaged)]}
+                  subscriptions={[
+                    ...given.map(grantToManaged),
+                    ...(overview?.passes ?? []).map(passToManaged),
+                    ...(overview?.subscriptions ?? []).map(toManaged),
+                  ]}
                   card={overview?.card ?? null}
                   cardFresh={overview?.fresh ?? false}
                   publishableKey={settings.publishableKey}
@@ -293,6 +300,26 @@ function toManaged(row: BillingOverview['subscriptions'][number]): ManagedSubscr
     periodEnd: row.current_period_end,
     cancelAtPeriodEnd: grant.cancelAtPeriodEnd,
     changeable: ['active', 'trialing', 'past_due'].includes(row.status),
+  };
+}
+
+/** Access an administrator gave, as the plan manager shows it: like a pass, but nothing was charged. */
+function grantToManaged(row: AccessGrantRow): ManagedSubscription {
+  const live = grantIsLive(accessGrantToGrant(row));
+  return {
+    id: row.id,
+    kind: 'grant',
+    plan: row.plan,
+    planName: PLAN_COPY.plans[row.plan].name,
+    earlier: false,
+    examName: row.exam_key ? (getExamConfig(row.exam_key)?.name ?? row.exam_key) : null,
+    status: row.revoked_at ? 'revoked' : live ? 'active' : 'expired',
+    live,
+    amount: null,
+    interval: null,
+    periodEnd: row.ends_at,
+    cancelAtPeriodEnd: false,
+    changeable: false,
   };
 }
 

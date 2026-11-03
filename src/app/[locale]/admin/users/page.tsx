@@ -1,12 +1,16 @@
+import { Link } from '@/i18n/navigation';
 import type { Metadata } from 'next';
 import { getDb } from '@/lib/db';
 import { requireAdmin } from '@/lib/auth/guards';
 import { accountReport, type Split } from '@/lib/analytics/accounts';
-import { Breadcrumbs, Card, Container, PageHeader, Stat } from '@/components/ui';
+import { listUsers } from '@/lib/admin/users';
+import { Badge, Breadcrumbs, Button, ButtonLink, Card, Container, PageHeader, Stat, fieldClass } from '@/components/ui';
 
 /**
- * Accounts, sign-ins and activity, from src/lib/analytics/accounts.ts. Totals
- * only: no row here says anything about a person. Admins only, never indexed.
+ * Accounts, sign-ins and activity (src/lib/analytics/accounts.ts), then the
+ * people behind them (src/lib/admin/users.ts): search by email, open an
+ * account to see what it has and change its access or role. Admins only,
+ * never indexed.
  */
 
 export const dynamic = 'force-dynamic';
@@ -17,10 +21,26 @@ export const metadata: Metadata = {
 };
 
 const split = (s: Split) => `${s.registered} with an account, ${s.guests} ${s.guests === 1 ? 'guest' : 'guests'}`;
+const day = (iso: string | null) => (iso ? iso.slice(0, 10) : '—');
 
-export default async function UsersPage() {
+type Search = { q?: string; page?: string; guests?: string };
+
+function pageHref(search: Search, page: number): string {
+  const params = new URLSearchParams();
+  if (search.q) params.set('q', search.q);
+  if (search.guests === '1') params.set('guests', '1');
+  if (page > 1) params.set('page', String(page));
+  const query = params.toString();
+  return `/admin/users${query ? `?${query}` : ''}#people`;
+}
+
+export default async function UsersPage({ searchParams }: { searchParams: Promise<Search> }) {
   await requireAdmin('/admin/users');
-  const report = await accountReport(getDb());
+  const search = await searchParams;
+  const db = getDb();
+  const report = await accountReport(db);
+  const page = Math.max(1, Number.parseInt(search.page ?? '1', 10) || 1);
+  const people = await listUsers(db, { query: search.q, page, includeGuests: search.guests === '1' });
 
   const cards = [
     {
@@ -40,7 +60,7 @@ export default async function UsersPage() {
       <PageHeader
         eyebrow="Internal"
         title="Users"
-        lead="Accounts, sign-ins and activity. Totals only; nothing here identifies a person."
+        lead="Accounts, sign-ins and activity, then the people themselves: find an account to see what it has, give or take back access, or change its role."
       />
 
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -51,6 +71,74 @@ export default async function UsersPage() {
           </Card>
         ))}
       </ul>
+
+      <h2 id="people" className="mt-10 font-heading text-xl font-semibold">People</h2>
+      <form method="get" action="/admin/users#people" className="mt-3 flex flex-wrap items-end gap-3">
+        <div className="min-w-0 flex-1 sm:max-w-md">
+          <label htmlFor="people-q" className="mb-1.5 block text-sm font-medium">Email address, or part of it</label>
+          <input id="people-q" name="q" type="search" defaultValue={search.q ?? ''} className={fieldClass('w-full')} />
+        </div>
+        <label className="flex items-center gap-2 text-sm">
+          <input type="checkbox" name="guests" value="1" defaultChecked={search.guests === '1'} />
+          Include guests
+        </label>
+        <Button type="submit" variant="secondary">Search</Button>
+        {search.q || search.guests === '1' ? <ButtonLink href="/admin/users#people" variant="quiet">Clear</ButtonLink> : null}
+      </form>
+
+      <Card className="mt-4 overflow-x-auto">
+        {people.users.length === 0 ? (
+          <p className="text-sm text-ink-muted">{search.q ? `No account matches “${search.q}”.` : 'No accounts yet.'}</p>
+        ) : (
+          <table className="w-full min-w-[44rem] border-collapse text-sm">
+            <caption className="sr-only">Accounts, newest first</caption>
+            <thead>
+              <tr className="border-b border-line">
+                <th scope="col" className="py-2 pe-3 text-left font-semibold">Account</th>
+                <th scope="col" className="py-2 pe-3 text-left font-semibold">Joined</th>
+                <th scope="col" className="py-2 pe-3 text-left font-semibold">Last seen</th>
+                <th scope="col" className="py-2 pe-3 text-left font-semibold">Email</th>
+                <th scope="col" className="py-2 text-left font-semibold">Access now</th>
+              </tr>
+            </thead>
+            <tbody>
+              {people.users.map((person) => (
+                <tr key={person.id} className="border-b border-line align-top last:border-0">
+                  <th scope="row" className="py-2 pe-3 text-left font-normal">
+                    <Link href={`/admin/users/${encodeURIComponent(person.id)}`} className="font-medium break-all">
+                      {person.email ?? (person.isGuest ? 'Guest' : '(no email)')}
+                    </Link>
+                    {person.displayName ? <span className="block text-ink-muted">{person.displayName}</span> : null}
+                    {person.role !== 'learner' ? <Badge tone="accent" className="mt-1">{person.role}</Badge> : null}
+                  </th>
+                  <td className="py-2 pe-3 tabular-nums">{day(person.createdAt)}</td>
+                  <td className="py-2 pe-3 tabular-nums">{day(person.lastSeenAt)}</td>
+                  <td className="py-2 pe-3">
+                    {person.isGuest ? '—' : person.emailVerifiedAt ? 'Confirmed' : 'Not confirmed'}
+                    {person.google ? <span className="block text-ink-muted">Google linked</span> : null}
+                  </td>
+                  <td className="py-2">
+                    {person.role !== 'learner' ? (
+                      'Every exam (staff)'
+                    ) : person.access.length > 0 ? (
+                      person.access.join(', ')
+                    ) : (
+                      <span className="text-ink-muted">Free</span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </Card>
+      {people.page > 1 || people.hasMore ? (
+        <nav aria-label="Pages of accounts" className="mt-3 flex gap-3 text-sm">
+          {people.page > 1 ? <Link href={pageHref(search, people.page - 1)}>← Newer</Link> : null}
+          <span className="text-ink-muted">Page {people.page}</span>
+          {people.hasMore ? <Link href={pageHref(search, people.page + 1)}>Older →</Link> : null}
+        </nav>
+      ) : null}
 
       <h2 className="mt-10 font-heading text-xl font-semibold">Week by week</h2>
       <Card className="mt-3">
@@ -86,13 +174,9 @@ export default async function UsersPage() {
             : 'No sign-in has been counted yet: counting starts with the deploy that added this page.'}
         </p>
         <p>
-          &ldquo;Signed in now&rdquo; and &ldquo;active&rdquo; come from open sessions, which are deleted when someone
-          signs out or a session expires, so both can only undercount. A guest who later signs up keeps the date they
-          first arrived. Deleted accounts are left out of the figures above.
-        </p>
-        <p>
-          Individual accounts are in Supabase: project Examer, Table Editor, schema <code>examer</code>, table{' '}
-          <code>users</code>.
+          &ldquo;Signed in now&rdquo;, &ldquo;active&rdquo; and &ldquo;last seen&rdquo; come from open sessions, which
+          are deleted when someone signs out or a session expires, so all three can only undercount. A guest who later
+          signs up keeps the date they first arrived. Deleted accounts are left out.
         </p>
       </div>
     </Container>

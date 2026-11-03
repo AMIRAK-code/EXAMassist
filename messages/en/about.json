@@ -276,6 +276,10 @@
         "term": "Billing (only if you buy a plan)",
         "value": "When you buy a plan we create a customer for you at Stripe, our payment provider, with your email address, your display name if you set one, and your account id, and we keep the Stripe customer and subscription ids, each plan and the exam it covers, its status, its renewal date, and when you asked for immediate access and acknowledged the end of the withdrawal right. Your card details are typed into fields provided by Stripe on our checkout and account pages and go straight to Stripe; they never reach our servers. We show the card brand and last four digits, read from Stripe, on your account page."
       },
+      "staff": {
+        "term": "What our team can see and change",
+        "value": "Our administrators can see your account: your email address, display name, when you joined and were last active, how you sign in, your plans and payments as recorded here, and totals of your practice. They use this to answer support requests and to manage access. They can give you a plan for a set number of days without payment, end access they gave, and change an account’s role; each of these changes is recorded with who made it, when and why, and is included in your data export. They never see your password or your card details."
+      },
       "rateLimits": {
         "term": "Rate-limit counters",
         "value": "To stop abuse we count requests per caller in fixed windows. The counter key is a SHA-256 hash of an identifier, so a raw IP address is never written to the database."

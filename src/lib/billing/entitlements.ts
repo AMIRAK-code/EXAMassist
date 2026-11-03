@@ -9,6 +9,8 @@ import {
   type Feature,
   type PlanKey,
 } from './plans';
+import type { AccessGrantRow } from '@/lib/db/rows';
+import { listAccessGrantsOrNone } from './access-grants';
 import { listPasses, listSubscriptions, storeSubscription, type PassRow, type SubscriptionRow } from './store';
 import type { StripeApi } from './stripe';
 
@@ -31,22 +33,24 @@ import type { StripeApi } from './stripe';
  *                              earlier plans     exactly what they were sold with
  *                                                (the first Premium and All access
  *                                                keep the AI tutor) until they end
+ *                              given by an admin Plus or one exam, as above, from the
+ *                                                grant until its end or revocation
  */
 
 export interface Grant {
-  /** A renewing subscription, or a Single Exam Pass paid once. */
-  kind: 'subscription' | 'pass';
-  /** The Stripe subscription id, or the pass's invoice id. */
+  /** A renewing subscription, a Single Exam Pass paid once, or access an administrator gave. */
+  kind: 'subscription' | 'pass' | 'grant';
+  /** The Stripe subscription id, the pass's invoice id, or the grant's id. */
   id: string;
   plan: PlanKey;
   /** The exam a one-exam plan covers; null for an all-exams plan. */
   examKey: string | null;
-  /** Stripe's subscription status, or the pass status (pending, paid, void, refunded). */
+  /** Stripe's subscription status, the pass status (pending, paid, void, refunded), or a grant's (active, revoked). */
   status: string;
-  /** End of the paid period (subscription) or of the access term (pass). */
+  /** End of the paid period (subscription) or of the access term (pass, grant). */
   currentPeriodEnd: string | null;
   cancelAtPeriodEnd: boolean;
-  /** The Stripe price it was bought at. */
+  /** The Stripe price it was bought at; null for a grant. */
   lookupKey: string | null;
 }
 
@@ -62,6 +66,7 @@ export type DecisionReason =
   | 'free'
   | 'subscription'
   | 'pass'
+  | 'grant'
   | 'account-required'
   | 'upgrade-required';
 
@@ -82,6 +87,10 @@ export function grantIsLive(grant: Pick<Grant, 'status' | 'currentPeriodEnd'> & 
   if (grant.kind === 'pass') {
     // Paid once, for a fixed term: no renewal, so no grace and no open end.
     return grant.status === 'paid' && end !== null && now.getTime() < end;
+  }
+  if (grant.kind === 'grant') {
+    // Given for a fixed term, ended early only by revocation.
+    return grant.status === 'active' && end !== null && now.getTime() < end;
   }
   if (ACCESS_POLICY.grantingStatuses.includes(grant.status)) {
     return end === null || now.getTime() < end + ACCESS_POLICY.renewalGraceHours * 3_600_000;
@@ -125,7 +134,7 @@ export function decideAccess(input: {
 
   const now = input.now ?? new Date();
   const grant = subject.grants.find((g) => grantIsLive(g, now) && grantCovers(g, feature, examKey));
-  if (grant) return { allowed: true, reason: grant.kind === 'pass' ? 'pass' : 'subscription', grant };
+  if (grant) return { allowed: true, reason: grant.kind, grant };
   return { allowed: false, reason: 'upgrade-required', ...upgrade };
 }
 
@@ -152,6 +161,19 @@ export function passToGrant(row: PassRow): Grant {
     currentPeriodEnd: row.access_ends_at,
     cancelAtPeriodEnd: false,
     lookupKey: row.price_lookup_key,
+  };
+}
+
+export function accessGrantToGrant(row: AccessGrantRow): Grant {
+  return {
+    kind: 'grant',
+    id: row.id,
+    plan: row.plan,
+    examKey: row.exam_key,
+    status: row.revoked_at ? 'revoked' : 'active',
+    currentPeriodEnd: row.ends_at,
+    cancelAtPeriodEnd: false,
+    lookupKey: null,
   };
 }
 
@@ -269,7 +291,8 @@ export async function loadEntitlements(db: Db, userId: string | null, deps: Enti
     console.error('[billing] could not read passes:', error instanceof Error ? error.message : error);
     return [] as PassRow[];
   });
-  const grants = [...rows.map(toGrant), ...passes.map(passToGrant)];
+  const given = await listAccessGrantsOrNone(db, userId);
+  const grants = [...rows.map(toGrant), ...passes.map(passToGrant), ...given.map(accessGrantToGrant)];
   return new Entitlements(true, { role: user.role, isGuest: Number(user.is_guest) === 1, grants }, now);
 }
 
