@@ -45,6 +45,7 @@ import { WEBHOOK_EVENTS, asStripeError, isSignatureError, stripeClient, verifyWe
 export const BILLING_COPY = {
   billingOff: 'Payments are not switched on for this site yet. Nothing was charged.',
   accountRequired: 'Create an account first, so your plan has somewhere to live. Your guest practice comes with you.',
+  emailUnverified: 'Confirm your email address first, so your receipt and account codes reach you. Nothing was charged.',
   consentRequired: 'Please confirm that you want access straight away and that the 14-day withdrawal right then ends.',
   unknownPlan: 'That plan is not on sale.',
   comingSoon: 'Premium is coming soon and cannot be bought yet. Nothing was charged.',
@@ -152,6 +153,18 @@ export interface BillingUser {
   email: string | null;
   displayName: string | null;
   isGuest: boolean;
+  /** When the address was confirmed. Needed to buy; missing counts as unconfirmed. */
+  emailVerifiedAt?: string | null;
+}
+
+/**
+ * Who may start a purchase: a registered account whose address is confirmed.
+ * Sign-up does not ask for confirmation, so this is where it is first needed:
+ * the receipt, and any code to recover the account, go to that address.
+ */
+export function assertCanBuy(user: BillingUser): void {
+  if (user.isGuest || !user.email) throw billingError('account-required', 'accountRequired', 403);
+  if (!user.emailVerifiedAt) throw billingError('email-unverified', 'emailUnverified', 403);
 }
 
 /** The user's Stripe customer, created on the first purchase. A stored one deleted in Stripe is replaced. */
@@ -276,7 +289,7 @@ export async function startCheckout(
   const { settings, stripe: maybeStripe, now } = resolveDeps(options);
   if (!settings.checkoutAvailable) throw billingError('billing-off', 'billingOff', 503);
   const stripe = requireStripe(maybeStripe);
-  if (user.isGuest || !user.email) throw billingError('account-required', 'accountRequired', 403);
+  assertCanBuy(user);
   if (input.consent !== true) throw billingError('consent-required', 'consentRequired', 400);
   if (!isPriceKey(input.offer)) throw billingError('unknown-plan', 'unknownPlan', 400);
   const price = PRICES[input.offer];

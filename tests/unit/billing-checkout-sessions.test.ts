@@ -16,7 +16,7 @@ beforeEach(async () => {
   db = await createTestDb();
   await seedQuestions(db, requireExamConfig('digital-sat'), { perDomain: 8 });
   const id = await createUser(db);
-  user = { id, email: `${id}@example.invalid`, displayName: 'Learner', isGuest: false };
+  user = { id, email: `${id}@example.invalid`, displayName: 'Learner', isGuest: false, emailVerifiedAt: '2026-01-01T00:00:00.000Z' };
 });
 
 function provider() {
@@ -50,6 +50,15 @@ async function deliver(p: ReturnType<typeof provider>, type: string, object: unk
 }
 
 describe('Checkout Sessions', () => {
+  it('refuses an account whose email is not confirmed, before calling Stripe', async () => {
+    const p = provider();
+    for (const emailVerifiedAt of [null, undefined]) {
+      user = { ...user, emailVerifiedAt };
+      await expect(buy(p)).rejects.toMatchObject({ code: 'email-unverified', status: 403, messageKey: 'emailUnverified' });
+    }
+    expect(p.creates).toHaveLength(0);
+  });
+
   it.each(['exam_pass', 'plus_month', 'plus_year'] as const)('uses validated server prices and dynamic methods for %s', async offer => {
     const p = provider();
     await buy(p, offer);
