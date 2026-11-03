@@ -137,6 +137,7 @@ export default async function CheckoutPage({ params, searchParams }: { params: P
         ownedExamKeys={owned.singleExamKeys}
         collectCountry={false}
       />
+      <p className="mt-4 text-sm text-ink-muted">{t('checkout.promoCode')}</p>
     </Container>
   );
 }
