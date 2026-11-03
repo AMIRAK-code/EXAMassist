@@ -81,6 +81,18 @@ export default async function CheckoutPage({ params, searchParams }: { params: P
     );
   }
 
+  // Buying is the first thing that needs a confirmed address (startCheckout
+  // refuses without one). The code brings them straight back here.
+  if (!user.emailVerifiedAt) {
+    return (
+      <Container size="narrow">
+        <Breadcrumbs trail={trail} />
+        <PageHeader eyebrow={t('checkout.eyebrow')} title={t('checkout.confirmEmail.title')} lead={t('checkout.confirmEmail.body')} />
+        <ButtonLink href={`/verify-email?next=${encodeURIComponent(here)}`}>{t('checkout.confirmEmail.action')}</ButtonLink>
+      </Container>
+    );
+  }
+
   const db = getDb();
   const owned = await loadEntitlements(db, user.id, { settings: { ...settings, enforced: true } });
   if (owned.hasAllAccess) {

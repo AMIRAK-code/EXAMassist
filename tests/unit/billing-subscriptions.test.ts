@@ -31,7 +31,7 @@ let user: BillingUser;
 beforeEach(async () => {
   db = await createTestDb();
   const id = await createUser(db);
-  user = { id, email: `${id}@example.invalid`, displayName: 'Ada', isGuest: false };
+  user = { id, email: `${id}@example.invalid`, displayName: 'Ada', isGuest: false, emailVerifiedAt: '2026-01-01T00:00:00.000Z' };
 });
 
 const buy = (input: Partial<CheckoutInput>, fake = fakeStripe(), settings = ON) =>
@@ -126,6 +126,10 @@ describe('buying Plus', () => {
     expect(
       await rejection(startCheckout(db, guest, { offer: 'plus_month', consent: true, requestId: 'req-00000001' }, { settings: ON, stripe: fake.api })),
     ).toMatchObject({ code: 'account-required', status: 403 });
+    const unconfirmed = { ...user, emailVerifiedAt: null };
+    expect(
+      await rejection(startCheckout(db, unconfirmed, { offer: 'plus_month', consent: true, requestId: 'req-00000001' }, { settings: ON, stripe: fake.api })),
+    ).toMatchObject({ code: 'email-unverified', status: 403 });
     expect((await rejection(buy({ consent: false }, fake))).code).toBe('consent-required');
     expect((await rejection(buy({ offer: 'lifetime' as never }, fake))).code).toBe('unknown-plan');
     // The earlier plans are honoured for their holders, never sold again.

@@ -88,13 +88,7 @@ export function SignUpForm({
       return;
     }
 
-    // A confirmation code is on its way: ask for it now, while the email is
-    // fresh. The page lets them skip straight on to where they were going.
-    router.push(
-      answer.body?.verificationSent
-        ? `/verify-email?sent=1&next=${encodeURIComponent(destination)}`
-        : destination,
-    );
+    router.push(destination);
     router.refresh();
   }
 
