@@ -361,6 +361,52 @@ describe('the ID token', () => {
   });
 });
 
+describe('confirmed addresses, which checkout requires', () => {
+  const earlier = '2026-10-01T00:00:00.000Z';
+
+  it('a new account made by Google sign-in is confirmed when it is created', async () => {
+    const result = await finish(await signInAs(alice));
+    if (!result.ok) throw new Error(`sign-in failed: ${result.failure}`);
+    expect((await userRow(result.user.id)).email_verified_at).toBe(NOW.toISOString());
+    expect(result.user.email_verified_at).toBe(NOW.toISOString());
+  });
+
+  it('an existing account is confirmed when Google is linked, keeping an earlier confirmation date', async () => {
+    const unconfirmed = await createUser(db);
+    const linkedNow = await finish(await signInAs({ sub: '5005', email: `${unconfirmed}@example.invalid` }));
+    expect(linkedNow).toMatchObject({ ok: true, created: false });
+    expect((await userRow(unconfirmed)).email_verified_at).toBe(NOW.toISOString());
+
+    const confirmed = await createUser(db);
+    await db.prepare('UPDATE users SET email_verified_at = ? WHERE id = ?').run(earlier, confirmed);
+    const linkedLater = await finish(await signInAs({ sub: '6006', email: `${confirmed}@example.invalid` }));
+    expect(linkedLater).toMatchObject({ ok: true, created: false });
+    expect((await userRow(confirmed)).email_verified_at).toBe(earlier);
+  });
+
+  it('a guest upgraded through Google sign-in is confirmed', async () => {
+    const guestId = await createUser(db, { isGuest: true });
+    expect((await userRow(guestId)).email_verified_at).toBeNull();
+    const result = await finish(await signInAs(alice), { guestUserId: guestId });
+    expect(result).toMatchObject({ ok: true, upgradedFromGuest: true });
+    expect((await userRow(guestId)).email_verified_at).toBe(NOW.toISOString());
+  });
+
+  it('nothing is confirmed when Google has not confirmed the address', async () => {
+    const existing = await createUser(db);
+    const guestId = await createUser(db, { isGuest: true });
+
+    const forExisting = await finish(await signInAs({ sub: '7007', email: `${existing}@example.invalid`, email_verified: false }));
+    const forGuest = await finish(await signInAs({ ...alice, email_verified: false }), { guestUserId: guestId });
+
+    expect(forExisting).toMatchObject({ ok: false, failure: 'unverified-email' });
+    expect(forGuest).toMatchObject({ ok: false, failure: 'unverified-email' });
+    expect(await userRow(existing)).toMatchObject({ email_verified_at: null, password_hash: 'x' });
+    expect(await userRow(guestId)).toMatchObject({ email_verified_at: null, is_guest: 1, email: null });
+    expect(await identities()).toEqual([]);
+  });
+});
+
 describe('linking accounts', () => {
   it('creates a new account with a confirmed address and the first name', async () => {
     const result = await finish(await signInAs(alice, { next: '/practice', locale: 'it' }));
