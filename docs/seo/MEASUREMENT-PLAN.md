@@ -97,6 +97,8 @@ Read through Claude in Chrome on 3 November 2026, read-only (no indexing request
 
 **What this means.** The site moved from `exam.assist365.app` on about 27 October; the old address answers 301 to the same path on uniexamer.com, but **no Change of address has been filed** in the `exam.assist365.app` property (its form shows no new site selected). Google still treats the old address as the original of at least the English TOLC hub, so that page cannot rank as uniexamer.com. Filing the change of address (old property → Settings → Change of address → uniexamer.com → Validate & update) is the fix docs/GOOGLE_SEARCH_CONSOLE_SETUP.md already describes; keep the redirects for at least 180 days. Re-inspect `/exams/cisia-tolc` a week after filing.
 
+**Filed on 3 November 2026** (owner-approved, through Claude in Chrome): `exam.assist365.app` → `uniexamer.com`. Validation passed the required checks (301 from the homepage, both sites verified). The recommended sample-page check found redirects on three pages and "couldn't fetch" two (`/` and `/guides/bocconi-test-preparation-plan`). Both answer 301 to the same path on uniexamer.com, also for a Googlebot user agent (checked with curl the same minute), so that was a fetch problem on Google's side. Search Console now shows "This site is currently moving", started 3 November 2026. Keep the redirects and the old property for at least 180 days (to May 2027), and do not press "Cancel move".
+
 ## Baseline on 2 November 2026 (Search Console, read by the owner)
 
 The three-month report held data for 26–31 October only: 10 clicks, 312 impressions, 3.2% CTR, average position 33. Sitemap: success, 73 URLs discovered, last read 31 October. The sitewide indexing report was still processing. Pages:
