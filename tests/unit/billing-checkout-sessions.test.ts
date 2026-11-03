@@ -62,7 +62,7 @@ describe('Checkout Sessions', () => {
   it.each(['exam_pass', 'plus_month', 'plus_year'] as const)('uses validated server prices and dynamic methods for %s', async offer => {
     const p = provider();
     await buy(p, offer);
-    expect(p.creates[0]).toMatchObject({ mode: offer === 'exam_pass' ? 'payment' : 'subscription', locale: 'it', metadata: { source_exam: 'digital-sat' } });
+    expect(p.creates[0]).toMatchObject({ mode: offer === 'exam_pass' ? 'payment' : 'subscription', locale: 'it', metadata: { source_exam: 'digital-sat' }, allow_promotion_codes: true });
     expect(p.creates[0]).not.toHaveProperty('payment_method_types');
     expect(p.creates[0].success_url).toContain('/it/checkout/complete?session_id={CHECKOUT_SESSION_ID}');
     expect(p.creates[0].cancel_url).toContain('cancelled=1');
@@ -122,6 +122,17 @@ describe('Checkout Sessions', () => {
     expect((await getPassRow(db, invoice.id))?.access_ends_at).toBe(before?.access_ends_at);
     await deliver(p, 'charge.refunded', { payment_intent: 'pi_paid', refunded: true });
     expect((await getPassRow(db, invoice.id))?.status).toBe('refunded');
+  });
+  it('grants a pass paid at a promotion-code discount, recording what was paid', async () => {
+    const p = provider(); await buy(p);
+    const session = p.sessions.get('cs_test_1')!;
+    session.status = 'complete'; session.payment_status = 'paid'; session.invoice = 'in_promo';
+    const invoice = stripeInvoice({ id: 'in_promo', userId: user.id, customer: 'cus_new', examKey: 'digital-sat', status: 'paid', paymentIntent: 'pi_promo' });
+    invoice.amount_paid = 100;
+    p.base.state.invoices.set(invoice.id, invoice);
+    await deliver(p, 'checkout.session.completed', session);
+    expect(await getPassRow(db, 'in_promo')).toMatchObject({ status: 'paid', amount: 100 });
+    expect((await loadEntitlements(db, user.id, { settings: ON })).can('practice', 'digital-sat')).toBe(true);
   });
   it.each(['active', 'past_due'] as const)('does not grant a new %s subscription before its first delayed payment settles', async status => {
     const p = provider(); await buy(p, 'plus_month');

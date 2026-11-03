@@ -68,6 +68,21 @@ export interface OAuthRequestRow {
   consumed_at: string | null;
 }
 
+/** Access an administrator gave by hand (migration 019). */
+export interface AccessGrantRow {
+  id: string;
+  user_id: string;
+  plan: 'plus' | 'exam_pass';
+  exam_key: string | null;
+  starts_at: string;
+  ends_at: string;
+  reason: string;
+  granted_by: string;
+  created_at: string;
+  revoked_at: string | null;
+  revoked_by: string | null;
+}
+
 export interface QuestionRow {
   id: string;
   exam_key: string;
