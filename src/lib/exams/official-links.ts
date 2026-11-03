@@ -25,3 +25,9 @@ export const CISIA_CENT_PAGE_IT = 'https://www.cisiaonline.it/cent/tutto-sul-CEn
 export const CISIA_TOLC_E_SYLLABUS_IT = 'https://www.cisiaonline.it/tolc/tolc-e/struttura-della-prova-e-sillabo';
 export const CISIA_TOLC_I_SYLLABUS_IT = 'https://www.cisiaonline.it/tolc/tolc-i/struttura-della-prova-e-sillabo';
 export const CISIA_TOLC_F_SYLLABUS_IT = 'https://www.cisiaonline.it/tolc/tolc-f/struttura-della-prova-e-sillabo';
+
+// Bocconi's graduate test (re-read 3 November 2026).
+export const BOCCONI_GRADUATE_TEST_PAGE =
+  'https://www.unibocconi.it/en/applying-bocconi/master-science-and-ma-programs/application-and-admissions/online-bocconi-test-international-graduate-applicants';
+export const BOCCONI_GRADUATE_GMAT_GRE =
+  'https://www.unibocconi.it/en/applying-bocconi/master-science-and-ma-programs/application-and-admissions/gmat-and-gre-test';
