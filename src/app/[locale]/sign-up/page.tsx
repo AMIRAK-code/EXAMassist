@@ -6,10 +6,12 @@ import type { Locale } from '@/i18n/locales';
 import { getDb } from '@/lib/db';
 import { getCurrentUser } from '@/lib/auth/session';
 import { emailCodesMailer } from '@/lib/auth/email-codes';
+import { googleSettings } from '@/lib/auth/google';
 import { safeNext, withNext } from '@/lib/auth/next-path';
 import { examTestName, getExamConfig } from '@/lib/exams/registry';
 import { MIN_PASSWORD_LENGTH } from '@/lib/auth/password';
 import { Alert, Breadcrumbs, Card, Container, PageHeader } from '@/components/ui';
+import { GoogleButton } from '@/components/auth/google-button';
 import { SignUpForm } from './sign-up-form';
 
 export const dynamic = 'force-dynamic';
@@ -83,6 +85,15 @@ export default async function SignUpPage({
 
       <Card>
         <h2 className="sr-only">{t('signUp.formHeading')}</h2>
+        {googleSettings() !== null ? (
+          <GoogleButton
+            locale={locale}
+            next={next}
+            label={t('google.continue')}
+            or={t('google.or')}
+            hint={t('google.signUpHint')}
+          />
+        ) : null}
         <SignUpForm next={next} minPasswordLength={MIN_PASSWORD_LENGTH} emailCodes={emailCodesMailer() !== null} />
       </Card>
 

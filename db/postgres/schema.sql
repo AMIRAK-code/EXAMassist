@@ -574,6 +574,32 @@ CREATE TABLE billing_checkouts (
   status TEXT NOT NULL DEFAULT 'pending'
 );
 ALTER TABLE billing_checkouts ENABLE ROW LEVEL SECURITY;
+-- Sign in with Google (018): the linked Google subject per account, and
+-- sign-ins that have been started and not yet finished.
+CREATE TABLE oauth_identities (
+  provider      TEXT NOT NULL,
+  subject       TEXT NOT NULL,
+  user_id       TEXT NOT NULL REFERENCES users (id) ON DELETE CASCADE,
+  email         TEXT NOT NULL,
+  created_at    TEXT NOT NULL,
+  last_used_at  TEXT NOT NULL,
+  PRIMARY KEY (provider, subject)
+);
+CREATE UNIQUE INDEX idx_oauth_identities_user ON oauth_identities (user_id, provider);
+CREATE TABLE oauth_requests (
+  id             TEXT PRIMARY KEY,
+  provider       TEXT NOT NULL,
+  code_verifier  TEXT NOT NULL,
+  nonce_hash     TEXT NOT NULL,
+  next_path      TEXT,
+  locale         TEXT NOT NULL,
+  created_at     TEXT NOT NULL,
+  expires_at     TEXT NOT NULL,
+  consumed_at    TEXT
+);
+CREATE INDEX idx_oauth_requests_expires ON oauth_requests (expires_at);
+ALTER TABLE examer.oauth_identities ENABLE ROW LEVEL SECURITY;
+ALTER TABLE examer.oauth_requests ENABLE ROW LEVEL SECURITY;
 CREATE TABLE _migrations (name TEXT PRIMARY KEY, applied_at TEXT NOT NULL);
 INSERT INTO _migrations (name, applied_at) VALUES
 ('001_core.sql', '2026-09-30T10:28:36.291Z'),
@@ -592,6 +618,7 @@ INSERT INTO _migrations (name, applied_at) VALUES
 ('014_human_review.sql', '2026-10-28T00:00:00.000Z'),
 ('015_official_practice_scores.sql', '2026-10-28T00:00:00.000Z'),
 ('016_exam_passes.sql', '2026-10-29T00:00:00.000Z'),
-('017_checkout_sessions.sql', '2026-11-02T00:00:00.000Z');
+('017_checkout_sessions.sql', '2026-11-02T00:00:00.000Z'),
+('018_google_sign_in.sql', '2026-11-03T00:00:00.000Z');
 ALTER TABLE examer._migrations ENABLE ROW LEVEL SECURITY;
 COMMIT;
