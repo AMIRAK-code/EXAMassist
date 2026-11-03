@@ -40,6 +40,7 @@ export const EXAM_CONFIGS: readonly ExamConfig[] = [
   tolcEConfig,
   tolcFConfig,
   tolcIConfig,
+  imatConfig,
 ];
 
 /**
@@ -51,7 +52,7 @@ export const EXAM_CONFIGS: readonly ExamConfig[] = [
  * docs/research/ and its `unverified` list holds only what the official
  * sources genuinely leave open.
  */
-export const DRAFT_EXAM_CONFIGS: readonly ExamConfig[] = [imatConfig];
+export const DRAFT_EXAM_CONFIGS: readonly ExamConfig[] = [];
 
 export type Audience = 'undergraduate' | 'law' | 'graduate';
 
@@ -77,6 +78,8 @@ export interface ExamHub {
    */
   variantLabels?: Record<string, string>;
   publisher: string;
+  /** The publisher where space is tight (share images), when its full name is long. */
+  publisherShort?: string;
   /** One sentence, used on cards and as the format guide’s summary. */
   tagline: string;
   /** The search snippet for the hub page: at most about 155 characters, English. */
@@ -252,6 +255,20 @@ export const EXAM_HUBS: readonly ExamHub[] = [
     configKeys: ['tolc-e', 'tolc-f', 'tolc-i'],
     order: 9,
   },
+  {
+    slug: 'imat',
+    name: 'IMAT',
+    shortName: 'IMAT',
+    label: 'IMAT',
+    publisher: 'Ministero dell’Università e della Ricerca',
+    publisherShort: 'the Italian ministry (MUR)',
+    tagline:
+      'The national admission test for the English-taught degrees in Medicine and Surgery, Dentistry and Veterinary Medicine at Italian public universities: 60 questions in 100 minutes, +1.5 for a right answer and −0.4 for a wrong one.',
+    metaDescription: 'IMAT: 60 questions in 100 minutes, +1.5 / −0.4, 20 points to be ranked. The 2026/27 rules from the MUR decree, what is known for 2027/28, and practice.',
+    audiences: ['undergraduate'],
+    configKeys: ['imat'],
+    order: 10,
+  },
 ];
 
 /**
@@ -284,7 +301,7 @@ export const DRAFT_EXAM_HUBS: readonly ExamHub[] = [
         note: 'SAA appears to run its own selection for its MBA programmes. Whether it asks for or accepts a GMAT or GRE score is unverified; until SAA’s own pages are read, no test is linked here.',
       },
     ],
-    order: 10,
+    order: 11,
   },
 ];
 

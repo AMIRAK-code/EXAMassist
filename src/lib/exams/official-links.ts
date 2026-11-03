@@ -31,3 +31,15 @@ export const BOCCONI_GRADUATE_TEST_PAGE =
   'https://www.unibocconi.it/en/applying-bocconi/master-science-and-ma-programs/application-and-admissions/online-bocconi-test-international-graduate-applicants';
 export const BOCCONI_GRADUATE_GMAT_GRE =
   'https://www.unibocconi.it/en/applying-bocconi/master-science-and-ma-programs/application-and-admissions/gmat-and-gre-test';
+
+// IMAT, a.y. 2026/27 (docs/research/imat.md), read on 3 November 2026.
+export const MUR_IMAT_DECREE_2026 = 'https://www.mur.gov.it/it/atti-e-normativa/decreto-ministeriale-n-1005-del-06-08-2026';
+export const MUR_IMAT_ANNEXES_2026 =
+  'https://www.mur.gov.it/sites/default/files/2026-08/Decreto%20Ministeriale%20n.%201005%20Allegati%201_2_3.pdf';
+export const MUR_IMAT_SYLLABUS_2026 =
+  'https://www.mur.gov.it/sites/default/files/2026-08/Decreto%20Ministeriale%20n.%201005%20Allegato%20A.pdf';
+export const MUR_IMAT_PLACES_2026 =
+  'https://www.mur.gov.it/sites/default/files/2026-08/Decreto%20Ministeriale%20n.%201005%20Tabella%20B%20posti.pdf';
+export const MUR_IMAT_PLACES_UPDATE_2026 = 'https://www.mur.gov.it/it/atti-e-normativa/decreto-ministeriale-n-1472-del-30-10-2026';
+export const IMAT_REFORM_EXCLUSION = 'https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2025-05-15;71~art8';
+export const UNIVERSITALY = 'https://www.universitaly.it/';

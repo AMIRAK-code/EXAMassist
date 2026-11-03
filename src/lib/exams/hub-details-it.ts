@@ -21,6 +21,12 @@ export interface ExamDetailsTranslation {
   versionLabel: string;
   admissionsCycle: string;
   sections: Readonly<Record<string, string>>;
+  /**
+   * Formats whose English text is written by hand in the configuration rather
+   * than by sectionedBlueprints' sentence patterns (the IMAT's single block),
+   * translated by hand, by blueprint id.
+   */
+  blueprints?: Readonly<Record<string, { label: string; description: string }>>;
 }
 
 const TOLC_CYCLE_IT = 'Anno solare 2026 (il CISIA comunica le modifiche alla struttura dei TOLC entro il 31 dicembre di ogni anno)';
@@ -57,6 +63,31 @@ const IT: Readonly<Record<string, ExamDetailsTranslation>> = {
     admissionsCycle: TOLC_CYCLE_IT,
     sections: { mathematics: 'Matematica', logic: 'Logica', sciences: 'Scienze', 'verbal-comprehension': 'Comprensione verbale' },
   },
+  imat: {
+    name: 'IMAT - test di ammissione ai corsi di Medicina in lingua inglese',
+    scaleLabel: 'Punteggio IMAT su 90',
+    summary:
+      'Il test nazionale di ammissione ai corsi di laurea in lingua inglese in Medicina e chirurgia, Odontoiatria e protesi dentaria e Medicina veterinaria delle università italiane, stabilito dal Ministero dell’Università e della Ricerca e gestito dal CINECA. È un’unica prova su carta di 60 quesiti a cinque opzioni in 100 minuti, in inglese: competenze di lettura e conoscenze acquisite negli studi 4, ragionamento logico e problemi 5, biologia 23, chimica 15, fisica e matematica 13. Una risposta esatta vale 1,5 punti, una non data 0 e una errata −0,4, su un massimo di 90. I candidati comunitari, e quelli non comunitari residenti in Italia, devono ottenere almeno 20 punti per entrare in graduatoria; le graduatorie nazionali sono due, una per Medicina e Odontoiatria e una per Medicina veterinaria, e l’ammissione dipende dalla posizione in graduatoria rispetto ai posti di ciascun ateneo.',
+    versionLabel:
+      'L’IMAT per l’ammissione ai corsi in lingua inglese di Medicina e chirurgia, Odontoiatria e Medicina veterinaria, a.a. 2026/27. Struttura, punteggio, soglia e programma verificati sul decreto ministeriale (D.M. 1005 del 6 agosto 2026) e sui suoi allegati.',
+    admissionsCycle: 'Anno accademico 2026/27 (prova svolta il 29 settembre 2026; il decreto per il 2027/28 non è ancora stato pubblicato)',
+    sections: { imat: 'IMAT' },
+    blueprints: {
+      'simulation-full': {
+        label: 'Simulazione completa - IMAT',
+        description:
+          'La struttura dell’IMAT 2026/27: 60 quesiti in un unico blocco di 100 minuti, con la ripartizione per materia pubblicata e libertà di muoversi tra i quesiti. In inglese, come il giorno della prova.',
+      },
+      diagnostic: {
+        label: 'Verifica diagnostica delle competenze - IMAT',
+        description: 'Una breve verifica su tutte le materie dell’IMAT, con tempi larghi, per capire da quali materie cominciare.',
+      },
+      practice: {
+        label: 'Esercitazione - IMAT',
+        description: 'Una serie di 10 domande senza limiti di tempo. Prima di iniziare scegli materia, argomento, difficoltà e numero di domande.',
+      },
+    },
+  },
 };
 
 const TRANSLATIONS: Readonly<Record<string, Readonly<Record<string, ExamDetailsTranslation>>>> = { it: IT };
@@ -78,10 +109,11 @@ export function listExamDetailsTranslations(): Array<[string, string]> {
  */
 export function blueprintTextIt(
   config: Pick<ExamConfig, 'examKey'>,
-  blueprint: Pick<Blueprint, 'label' | 'description'>,
+  blueprint: Pick<Blueprint, 'id' | 'label' | 'description'>,
 ): { label: string; description: string } | undefined {
   const details = IT[config.examKey];
   if (!details) return undefined;
+  if (details.blueprints) return details.blueprints[blueprint.id];
   // Section names appear in the English sentences as the config writes them; their keys are the same words, hyphenated.
   return blueprintSentences(blueprint, (name) => details.sections[name.toLowerCase().replace(/\s+/g, '-')]);
 }

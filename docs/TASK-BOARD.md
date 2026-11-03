@@ -136,7 +136,8 @@ Evidence commands are runnable from the repository root.
    errors, a practice session with feedback, results and review pages with
    maths, and the study plan.
 9. **Draft exams waiting on first-hand verification** (added 21 October 2026,
-   updated 27 October). The IMAT config and the SAA School of Management
-   (University of Turin) hub are written but unverified: their official hosts
-   were unreachable from the build environment. They are validated but never
-   served. Checklist and go-live steps: docs/DRAFT-EXAMS.md.
+   updated 3 November). The SAA School of Management (University of Turin)
+   hub is written but unverified: its official hosts were unreachable from the
+   build environment. It is validated but never served. Checklist and go-live
+   steps: docs/DRAFT-EXAMS.md. The IMAT went live on 3 November 2026, verified
+   against the 2026/27 decree (docs/research/imat.md).

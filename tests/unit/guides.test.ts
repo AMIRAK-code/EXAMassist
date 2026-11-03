@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { listGuides, type Guide } from '@/lib/content/guides';
-import { EXAM_HUBS } from '@/lib/exams/registry';
+import { EXAM_HUBS, requireExamConfig } from '@/lib/exams/registry';
 import { listHubContent, listHubTranslations, type HubContent } from '@/lib/exams/hub-content';
 import type { SampleQuestionSet } from '@/lib/content/guides';
 
@@ -68,8 +68,14 @@ describe('guide and exam hub links', () => {
       const links = [...page.markdown.matchAll(/\]\(([^)\s]+)\)/g)].map((m) => m[1]);
       for (const link of links) {
         if (link.startsWith('/')) {
-          const [route] = withoutLocale(link).split('#');
+          const [route, query = ''] = withoutLocale(link).split('#')[0].split('?');
           expect(PUBLIC_PATHS.has(route) || PRACTICE_PATHS.has(route), `${page.name}: ${link}`).toBe(true);
+          // A practice link may preset a domain, which must be one of that exam's.
+          const domain = new URLSearchParams(query).get('domain');
+          if (domain !== null) {
+            expect(PRACTICE_PATHS.has(route), `${page.name}: ${link}`).toBe(true);
+            expect(requireExamConfig(route.split('/')[2]).domains.map((d) => d.slug), `${page.name}: ${link}`).toContain(domain);
+          }
         } else if (link.startsWith('mailto:')) {
           expect(link, page.name).toMatch(/^mailto:[a-z]+@uniexamer\.com$/);
         } else {
