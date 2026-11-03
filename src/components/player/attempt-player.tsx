@@ -78,7 +78,7 @@ export function AttemptPlayer({
     Object.fromEntries(part?.items.map((item) => [item.position, item.locked]) ?? []),
   );
   const [notice, setNotice] = useState<Notice | null>(null);
-  const [remaining, setRemaining] = useState<number | null>(part?.remainingSeconds ?? null);
+  const [remaining, setRemaining] = useState<number | null>(model.remainingSeconds ?? null);
   const [submitting, setSubmitting] = useState(false);
   const [moving, setMoving] = useState(false);
   const [checking, setChecking] = useState(false);
@@ -205,7 +205,10 @@ export function AttemptPlayer({
   const pageStart = currentPage * pageSize;
   const pageItems = part ? part.items.slice(pageStart, pageStart + pageSize) : [];
   const answeredCount = part ? part.items.filter((i) => responses[i.position] != null).length : 0;
-  const timed = part?.deadlineAt != null;
+  // The deadline that binds now: the part's own clock, or the whole attempt's
+  // when the format is timed overall (effectiveDeadline on the server).
+  const deadlineAt = model.deadlineAt;
+  const timed = deadlineAt != null;
 
   function isFree(target: number): boolean {
     return !!policy && (policy.allowBackWithinPart || Math.floor(target / pageSize) === currentPage);
@@ -233,8 +236,8 @@ export function AttemptPlayer({
   // Purely a display of the server's deadline. When it reaches zero we ask the
   // server what actually happened rather than deciding locally.
   useEffect(() => {
-    if (part?.deadlineAt == null) return;
-    const deadline = new Date(part.deadlineAt).getTime();
+    if (deadlineAt == null) return;
+    const deadline = new Date(deadlineAt).getTime();
     let asked = false;
     // Offline, a refresh would fail (or show the browser's offline page), so
     // it waits for the connection. The server decides what the clock meant.
@@ -258,7 +261,7 @@ export function AttemptPlayer({
       window.clearInterval(id);
       window.removeEventListener('online', online);
     };
-  }, [part?.deadlineAt, router]);
+  }, [deadlineAt, router]);
 
   // Move focus to the question heading on navigation, so screen reader and
   // keyboard users land in the right place instead of at the top of the page.

@@ -44,7 +44,7 @@ const TRANSLATED = [
   '/about/editorial-standards', '/about/how-scoring-works', '/about/privacy', '/about/support', '/about/terms',
 ];
 /** Pages translated into some languages only: one address per language their body exists in. */
-const PARTLY_TRANSLATED: Record<string, string[]> = { '/exams/cisia-tolc': ['en', 'it'] };
+const PARTLY_TRANSLATED: Record<string, string[]> = { '/exams/cisia-tolc': ['en', 'it'], '/exams/imat': ['en', 'it'] };
 /** Pages whose body exists only in English, whatever the interface language: one address. */
 const ENGLISH_ONLY = [
   ...EXAM_HUBS.filter((hub) => hub.slug !== 'bocconi-online-test').map((hub) => `/exams/${hub.slug}`).filter((path) => !PARTLY_TRANSLATED[path]),
@@ -200,9 +200,8 @@ describe('canonical and hreflang on the pages', () => {
     for (const path of TRANSLATED) expect(isEnglishOnlyPath(path), path).toBe(false);
   });
 
-  it('gives a hub translated into some languages a canonical of its own in those, and English everywhere else', async () => {
+  it.each(['/exams/cisia-tolc', '/exams/imat'])('gives a hub translated into some languages a canonical of its own in those, and English everywhere else: %s', async (path) => {
     production();
-    const path = '/exams/cisia-tolc';
     expect(isEnglishOnlyPath(path)).toBe(false);
     const languages = { en: `${SITE}${path}`, it: `${SITE}/it${path}`, 'x-default': `${SITE}${path}` };
     expect(await pageAlternates(Promise.resolve({ locale: 'it' }), path)).toEqual({ canonical: `${SITE}/it${path}`, languages });

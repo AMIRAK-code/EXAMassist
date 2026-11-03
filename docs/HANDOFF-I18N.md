@@ -12,7 +12,7 @@ items 1 and 2 were finished in a local session on 28 October 2026.
   - Bachelor & Law hub.
   - Bocconi Master hub: the graduate test config, and routes to GMAT/GRE with Bocconi's published minimums.
   - 33 blind-reviewed graduate questions.
-- **IMAT:** a draft config, never served until verified. 60 blind-reviewed questions, each with a checked Italian version.
+- **IMAT:** live since 3 November 2026 (verified against the 2026/27 decree, docs/research/imat.md). 60 blind-reviewed questions, each with a checked Italian version.
 - **Italian question versions:** all 79 TOLC-E, 100 TOLC-F and 80 TOLC-I questions and their passages have checked Italian versions.
   - Tooling: `scripts/export-translation-batch.ts` and `scripts/apply-translation-check.ts`.
   - Migration **013** stores only checked translations, plus each attempt's content language.

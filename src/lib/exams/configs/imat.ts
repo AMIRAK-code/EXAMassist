@@ -4,31 +4,38 @@ import { studyNavigation } from '../sectioned-blueprints';
 /**
  * IMAT - International Medical Admissions Test, a.y. 2026/27.
  *
- * The national admission test for the English-taught degree programmes in
- * Medicine and Surgery, Dentistry and Veterinary Medicine at Italian public
- * universities, set by the Ministry of University and Research (MUR). The
- * 2025 reform that replaced the entrance test with a "filter semester" for the
- * Italian-taught programmes is reported NOT to apply to the English-taught
- * ones, which still admit by the IMAT ranking.
+ * The national admission test for the English-taught degrees in Medicine and
+ * Surgery, Dentistry and Veterinary Medicine at Italian universities, set by
+ * the Ministry of University and Research (MUR) and run by CINECA. The 2025
+ * reform that replaced the entrance test with a "semestre filtro" does not
+ * apply to the English-taught degrees (D.Lgs. 71/2025, art. 8 c. 3).
  *
- * DRAFT. Nothing here has been verified first-hand: mur.gov.it and
- * universitaly.it were unreachable from the build environment, and the
- * third-party guides that could be read disagree with each other (even on the
- * 2026 test date). The format below follows the IMAT as set in recent
- * ministerial decrees, as the author understood it. The config is in
- * `DRAFT_EXAM_CONFIGS` until the 2026/27 decree and its annex are read.
+ * Verified first-hand on 3 November 2026 against D.M. 1005 of 6 August 2026,
+ * its annexes and tables (docs/research/imat.md): 60 five-option questions
+ * in 100 minutes, in English, on paper; +1.5 / 0 / -0.4, out of 90; 20 points
+ * to be ranked. The 2026/27 test was held on 29 September 2026. Nothing has
+ * been published for 2027/28.
  *
  * The real IMAT is in English only. Questions here are also offered in
  * Italian as a study aid, because many candidates study the sciences in
- * Italian; the simulation is always in English.
+ * Italian; the simulation is always in English (sessionContentLocale).
  */
 
-const MUR_ADMISSIONS = 'https://www.mur.gov.it/it/aree-tematiche/universita/accesso-ai-corsi-a-numero-programmato';
+const MUR_DECREE_2026 = 'https://www.mur.gov.it/it/atti-e-normativa/decreto-ministeriale-n-1005-del-06-08-2026';
+const MUR_ANNEXES_2026 =
+  'https://www.mur.gov.it/sites/default/files/2026-08/Decreto%20Ministeriale%20n.%201005%20Allegati%201_2_3.pdf';
+const MUR_SYLLABUS_2026 =
+  'https://www.mur.gov.it/sites/default/files/2026-08/Decreto%20Ministeriale%20n.%201005%20Allegato%20A.pdf';
+const REFORM_EXCLUSION = 'https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2025-05-15;71~art8';
 const UNIVERSITALY = 'https://www.universitaly.it/';
-const UNVERIFIED_ON = 'not yet verified';
+const VERIFIED_ON = '2026-11-03';
 const SECTION_KEY = 'imat';
 
-/** One block, free movement and changes throughout (as drafted; unverified). */
+/**
+ * One paper booklet for the whole 100 minutes: nothing in the decree divides
+ * the time or fixes an order, so candidates move freely and may correct an
+ * answer once (Allegato 1). On screen, free movement and changes throughout.
+ */
 const navigation: NavigationPolicy = {
   allowBackWithinPart: true,
   allowForwardSkip: true,
@@ -39,7 +46,7 @@ const navigation: NavigationPolicy = {
   bookmarkLimitPerPart: null,
   editLimitPerPart: null,
   enforcement: 'server',
-  source: MUR_ADMISSIONS,
+  source: MUR_ANNEXES_2026,
 };
 
 const AREAS = [
@@ -81,14 +88,14 @@ const blueprints: Blueprint[] = [
     id: 'simulation-full',
     label: 'Full simulation - IMAT',
     mode: 'simulation',
-    description: `The drafted IMAT structure: ${TOTAL} questions in one 100-minute block, in the published subject mix, with free movement between questions. In English, as on the day.`,
+    description: `The 2026/27 IMAT structure: ${TOTAL} questions in one 100-minute block, in the published subject mix, with free movement between questions. In English, as on the day.`,
     parts: AREAS.map((area) => areaPart('simulation', area, area.questions, null)),
     timing: 'overall',
     overallTimeLimitSeconds: 100 * 60,
     pauseBehaviour: 'clock_runs',
     fidelity: 'approximation',
     fidelityNote:
-      'Follows the IMAT format as drafted (60 questions, 100 minutes, +1.5 / 0 / -0.4), not yet verified against the 2026/27 ministerial decree. Our questions are original and their difficulty is editorial.',
+      'Follows the 2026/27 decree (60 questions, 100 minutes, +1.5 / 0 / -0.4). The real test is on paper and its questions are written by CINECA; ours are original, on screen, and their difficulty is editorial.',
   },
   {
     id: 'diagnostic',
@@ -131,20 +138,38 @@ const blueprints: Blueprint[] = [
 
 export const imatConfig: ExamConfig = {
   examKey: 'imat',
-  version: '2026.10-draft',
+  version: '2026.11',
   name: 'IMAT - International Medical Admissions Test',
   shortName: 'IMAT',
-  publisher: 'Ministero dell’Università e della Ricerca (MUR)',
+  publisher: 'Ministero dell’Università e della Ricerca',
   versionLabel:
-    'IMAT for admission to the English-taught Medicine and Surgery, Dentistry and Veterinary Medicine programmes at Italian public universities, a.y. 2026/27. DRAFT: format and scoring not yet verified against the 2026/27 ministerial decree.',
-  admissionsCycle: 'Academic year 2026/27 (draft; to be confirmed against the ministerial decree)',
-  verifiedOn: UNVERIFIED_ON,
+    'IMAT for admission to the English-taught degrees in Medicine and Surgery, Dentistry and Veterinary Medicine, a.y. 2026/27. Structure, scoring, threshold and syllabus verified from the ministerial decree (D.M. 1005 of 6 August 2026) and its annexes.',
+  admissionsCycle: 'Academic year 2026/27 (test held on 29 September 2026; the 2027/28 decree has not been published yet)',
+  verifiedOn: VERIFIED_ON,
   audience: ['undergraduate'],
   summary:
-    'The national entrance test for the English-taught medicine, dentistry and veterinary programmes at Italian public universities. It is 60 multiple-choice questions in 100 minutes: Reading skills and knowledge acquired in studies 4, Logical reasoning and problems 5, Biology 23, Chemistry 15, Physics and mathematics 13. A correct answer scores 1.5, a blank 0 and a wrong answer -0.4, for a maximum of 90; candidates are ranked nationally, and a minimum score is required to enter the ranking. The test is in English. Draft summary, not yet verified against the 2026/27 decree.',
+    'The national admission test for the English-taught degrees in Medicine and Surgery, Dentistry and Veterinary Medicine at Italian universities, set by the Ministry of University and Research and run by CINECA. It is one paper test of 60 questions with five options in 100 minutes, in English: Reading skills and knowledge acquired in studies 4, Logical reasoning and problems 5, Biology 23, Chemistry 15, Physics and mathematics 13. A correct answer scores 1.5, a blank 0 and a wrong answer -0.4, for a maximum of 90. EU candidates, and non-EU candidates resident in Italy, need at least 20 points to be ranked; there are two national rankings, one for Medicine and Dentistry and one for Veterinary Medicine, and admission depends on the ranking against the places at each university.',
   sources: [
-    { label: 'MUR: admission to programmes with limited places', url: MUR_ADMISSIONS, publisher: 'MUR', verifiedOn: UNVERIFIED_ON },
-    { label: 'Universitaly: registration for the IMAT', url: UNIVERSITALY, publisher: 'MUR / CINECA', verifiedOn: UNVERIFIED_ON },
+    {
+      label: 'D.M. 1005 of 6 August 2026: IMAT 2026/27, arts. 1-3 (format, date, scoring, threshold, rankings)',
+      url: MUR_DECREE_2026,
+      publisher: 'Ministero dell’Università e della Ricerca',
+      verifiedOn: VERIFIED_ON,
+    },
+    {
+      label: 'D.M. 1005/2026, Allegati 1-3: conduct of the test, registration and rankings, language certificates',
+      url: MUR_ANNEXES_2026,
+      publisher: 'Ministero dell’Università e della Ricerca',
+      verifiedOn: VERIFIED_ON,
+    },
+    { label: 'D.M. 1005/2026, Allegato A: syllabus', url: MUR_SYLLABUS_2026, publisher: 'Ministero dell’Università e della Ricerca', verifiedOn: VERIFIED_ON },
+    {
+      label: 'D.Lgs. 71/2025, art. 8 c. 3: the 2025 reform does not apply to English-taught degrees',
+      url: REFORM_EXCLUSION,
+      publisher: 'Normattiva',
+      verifiedOn: VERIFIED_ON,
+    },
+    { label: 'Universitaly: registration, scores and rankings', url: UNIVERSITALY, publisher: 'Ministero dell’Università e della Ricerca', verifiedOn: VERIFIED_ON },
   ],
   sections: [
     {
@@ -154,10 +179,14 @@ export const imatConfig: ExamConfig = {
       officialQuestionCount: String(TOTAL),
       officialTimeMinutes: 100,
       calculator: 'none',
-      calculatorNote: 'No calculator (as drafted; unverified). Candidates are reported to be barred from bringing calculators, phones or any other aid.',
+      calculatorNote:
+        'No calculator. The decree bans phones, tablets, smartwatches and "similar equipment", manuals and notes, and candidates write only with the pen the venue supplies (Allegato 1).',
       navigation,
       responseTypes: ['single_select'],
-      notes: AREAS.map((a) => `${a.name}: ${a.questions} questions (drafted, unverified).`),
+      notes: [
+        ...AREAS.map((a) => `${a.name}: ${a.questions} questions (art. 2 c. 2).`),
+        'One paper booklet and answer sheet, in English; one correction allowed per question (Allegato 1).',
+      ],
     },
   ],
   domains: [
@@ -167,7 +196,7 @@ export const imatConfig: ExamConfig = {
       sectionKey: SECTION_KEY,
       description: 'Reading comprehension and general knowledge from secondary school studies.',
       officialShare: '4 of 60 questions',
-      source: MUR_ADMISSIONS,
+      source: MUR_SYLLABUS_2026,
       skills: [
         skill('imat-read-comprehension', 'Reading comprehension', 'Understanding and drawing conclusions from short texts.'),
         skill('imat-read-general-knowledge', 'Knowledge acquired in studies', 'Literary, historical, philosophical, social and institutional culture from secondary school.'),
@@ -179,7 +208,7 @@ export const imatConfig: ExamConfig = {
       sectionKey: SECTION_KEY,
       description: 'Reasoning from given information, and problems solved by reasoning.',
       officialShare: '5 of 60 questions',
-      source: MUR_ADMISSIONS,
+      source: MUR_SYLLABUS_2026,
       skills: [
         skill('imat-logic-critical', 'Critical thinking', 'Assumptions, conclusions, flaws and the strength of arguments.'),
         skill('imat-logic-problem-solving', 'Problem solving', 'Numerical and spatial problems solved with reasoning and simple arithmetic.'),
@@ -191,7 +220,7 @@ export const imatConfig: ExamConfig = {
       sectionKey: SECTION_KEY,
       description: 'Secondary-school biology.',
       officialShare: '23 of 60 questions',
-      source: MUR_ADMISSIONS,
+      source: MUR_SYLLABUS_2026,
       skills: [
         skill('imat-bio-molecules-cells', 'Biomolecules and the cell', 'Chemistry of living things, cell structure and function, membranes and transport.'),
         skill('imat-bio-bioenergetics', 'Bioenergetics', 'Enzymes, respiration and photosynthesis.'),
@@ -207,7 +236,7 @@ export const imatConfig: ExamConfig = {
       sectionKey: SECTION_KEY,
       description: 'Secondary-school chemistry.',
       officialShare: '15 of 60 questions',
-      source: MUR_ADMISSIONS,
+      source: MUR_SYLLABUS_2026,
       skills: [
         skill('imat-chem-atoms-periodic', 'Atoms and the periodic table', 'Atomic structure, electron configuration and periodic trends.'),
         skill('imat-chem-bonding', 'Bonding and molecules', 'Chemical bonds, molecular shape and intermolecular forces.'),
@@ -222,7 +251,7 @@ export const imatConfig: ExamConfig = {
       sectionKey: SECTION_KEY,
       description: 'Secondary-school physics and mathematics.',
       officialShare: '13 of 60 questions',
-      source: MUR_ADMISSIONS,
+      source: MUR_SYLLABUS_2026,
       skills: [
         skill('imat-math-algebra-functions', 'Algebra and functions', 'Equations, inequalities, exponentials, logarithms and functions.'),
         skill('imat-math-geometry-trig', 'Geometry and trigonometry', 'Plane and analytic geometry, and trigonometry.'),
@@ -237,7 +266,7 @@ export const imatConfig: ExamConfig = {
   choiceOptions: {
     count: 5,
     basis: 'published',
-    note: 'Five options per question in recent ministerial decrees; not yet verified first-hand, like the rest of this draft config.',
+    note: 'Five options, one correct (D.M. 1005/2026, art. 2 c. 2).',
   },
   scoring: {
     pointsCorrect: 1.5,
@@ -249,37 +278,45 @@ export const imatConfig: ExamConfig = {
       min: -24,
       max: 90,
       increment: 0.1,
-      note: 'Raw penalty-adjusted score (drafted, unverified): 1.5 per correct answer, -0.4 per wrong answer, 0 per blank. The minimum shown is the arithmetic floor if every answer were wrong.',
+      note: 'The raw penalty-adjusted score (art. 3 c. 4): 1.5 per correct answer, -0.4 per wrong answer, 0 per blank. The minimum shown is the arithmetic floor if every answer were wrong.',
     },
     scaledEstimate: { enabled: false, reason: 'Nothing to estimate: the IMAT reports the raw penalty-adjusted score.' },
     rawProjection: {
       scoredItems: TOTAL,
       reportFactor: 1,
-      thresholds: [],
-      noThresholdReason:
-        'A minimum score to enter the national ranking is reported for 2026/27 but has not yet been verified against the ministerial decree, so it is not shown. Admission itself depends on the ranking against the places at each university, which changes every year.',
-      conditions: '60 questions in one 100-minute block, in English, no calculator',
-      caveats: ['Ties and the order of preferences are settled by rules in the decree, which this projection ignores.'],
+      thresholds: [
+        {
+          value: 20,
+          label: '20 points',
+          meaning:
+            'The minimum to be placed in the national ranking, for EU candidates and non-EU candidates resident in Italy (non-EU candidates resident abroad need more than 0). It is not an admission score: places go by ranking.',
+          source: MUR_DECREE_2026,
+        },
+      ],
+      noThresholdReason: null,
+      conditions: '60 questions in one 100-minute block, in English, on paper, no calculator',
+      caveats: [
+        'Admission depends on the ranking against each year’s places at each university, which no projection can know.',
+        'Ties are settled by the subject scores, an English certificate, disability and age, in that order (art. 3 c. 6); this projection ignores them.',
+      ],
     },
     notes: [
-      'Scoring as drafted: +1.5 correct, 0 blank, -0.4 wrong. With five options a blind guess has an expected value of 1.5 x 0.2 - 0.4 x 0.8 = -0.02, slightly negative; eliminating even one option makes guessing worth it.',
+      'Scoring: +1.5 correct, 0 blank, -0.4 wrong (art. 3 c. 4). With five options a blind guess has an expected value of 1.5 x 0.2 - 0.4 x 0.8 = -0.02, slightly negative; eliminating even one option makes guessing worth it.',
       'The real test is in English only. Italian versions of our questions are a study aid.',
     ],
   },
   capabilities: {
     fullSimulation: {
-      available: false,
-      reason: 'The IMAT format has not yet been verified against the 2026/27 ministerial decree. A simulation opens once it is.',
+      available: true,
+      note: 'Structure, time, answer format and scoring are set by the 2026/27 decree and verified. Labelled an approximation because the real test is on paper, its questions are CINECA’s, and no clause describes moving through the booklet.',
     },
     adaptiveRouting: { available: false, reason: 'The IMAT is not adaptive: every candidate answers the same 60-question form.' },
     scaledScoreEstimate: { available: false, reason: 'There is no scaled score: the IMAT reports the raw penalty-adjusted score.' },
   },
   unverified: [
-    'Every structural fact: 60 questions, 100 minutes, the subject mix (4 / 5 / 23 / 15 / 13), five options per question, and free movement throughout.',
-    'The scoring rule (+1.5 / 0 / -0.4) and the minimum score to enter the ranking for 2026/27.',
-    'That the 2025 filter-semester reform does not apply to the English-taught programmes in 2026/27.',
-    'The 2026/27 test date, registration window and number of places.',
-    'The syllabus for each subject, against the annex to the 2026/27 decree.',
+    'Everything about 2027/28: the decree, the date, the places and whether the format or scoring change. Not published as of 3 November 2026.',
+    'Free movement through the 100 minutes: it follows from the single paper booklet, but no clause states it.',
+    'The registration fee, published only on Universitaly while registration is open.',
   ],
   contentLocales: ['en', 'it'],
 };

@@ -28,7 +28,8 @@ export async function HubEssentials({
 
   const can = {
     practice: offered.some((b) => b.mode === 'practice' && b.timing === 'untimed'),
-    timed: offered.some((b) => b.mode !== 'simulation' && b.timing !== 'untimed'),
+    // The diagnostic is timed generously, not to the published clock.
+    timed: offered.some((b) => b.mode !== 'simulation' && b.mode !== 'diagnostic' && b.timing !== 'untimed'),
     simulation: offered.some((b) => b.mode === 'simulation'),
   };
   const items: Array<{ key: string; node: React.ReactNode }> = [];

@@ -1,6 +1,8 @@
 import type { GuideSource, SampleQuestionSet } from '@/lib/content/guides';
 import { cisiaIt } from './hub-content-it';
 import { bocconiMaster } from './hub-content-bocconi-master';
+import { imat } from './hub-content-imat';
+import { imatIt } from './hub-content-imat-it';
 import {
   POLITO_TEST_PAGE,
   POLITO_CALLS_PAGE,
@@ -338,6 +340,7 @@ const HUB_CONTENT: Readonly<Record<string, HubContent>> = {
   'politecnico-di-torino-til': polito,
   'cisia-tolc': cisia,
   'bocconi-master': bocconiMaster,
+  imat,
 };
 
 /**
@@ -349,6 +352,7 @@ const HUB_CONTENT: Readonly<Record<string, HubContent>> = {
  */
 const HUB_TRANSLATIONS: Readonly<Record<string, Readonly<Record<string, HubContent>>>> = {
   'cisia-tolc': { it: cisiaIt },
+  imat: { it: imatIt },
 };
 
 /** The hub's editorial content in `locale`, or in English when it has no translation (`undefined` for English-only callers). */

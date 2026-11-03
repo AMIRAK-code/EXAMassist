@@ -5,10 +5,10 @@ import type { Guide } from './guides';
  * the test, with the 2026/27 rules read first-hand from the MUR decree
  * (D.M. 6 agosto 2026, n. 1005, art. 2 and 3) on 3 November 2026.
  *
- * UniExamer has no IMAT practice: the IMAT configuration is still a draft
- * (src/lib/exams/configs/imat.ts, DRAFT_EXAM_CONFIGS), so this guide has no
- * exam hub (`hubSlug` matches none) and the page shows no practice links. Its
- * questions are kept out of the question bank, like every published sample.
+ * The IMAT hub (/exams/imat) and practice opened on 3 November 2026, when the
+ * configuration was verified against the same decree (docs/research/imat.md).
+ * These questions are kept out of the question bank, like every published
+ * sample, so reading them spoils no practice session.
  */
 
 const MUR_DECREE_2026 = 'https://www.mur.gov.it/it/atti-e-normativa/decreto-ministeriale-n-1005-del-06-08-2026';
@@ -40,7 +40,7 @@ These are the rules of the ministerial decree for 2026/27 ([D.M. 1005 of 6 Augus
 - **60 questions, five options each, one correct, in 100 minutes** (art. 2): 4 on reading skills and knowledge acquired in studies, 5 on logical reasoning and problems, 23 on biology, 15 on chemistry and 13 on physics and mathematics.
 - **Scoring** (art. 3.4): +1.5 for a right answer, −0.4 for a wrong one, 0 for a blank; 90 points at most.
 - **Threshold** (art. 3.2–3.3): EU candidates and non-EU candidates resident in Italy need at least 20 points to be ranked. Non-EU candidates resident abroad need a score above 0, on their own reserved places.
-- **One test for all three degrees** (art. 2.1), the same in every venue. In 2026 it was held on 29 September, with registration on [Universitaly](${UNIVERSITALY}).
+- **One test for all three degrees** (art. 2.1), the same in every venue, on paper and in English. In 2026 it was held on 29 September, with registration on [Universitaly](${UNIVERSITALY}); at registration each candidate chose Medicine and Dentistry or Veterinary Medicine, which have separate national rankings.
 - The 2025 reform that replaced the entrance test with a "semestre filtro" concerns the Italian-taught degrees; the English-taught ones still admit by the IMAT.
 
 ## Guessing, with these numbers
@@ -49,7 +49,7 @@ With five options, a blind guess is worth $\\tfrac15 \\times 1.5 - \\tfrac45 \\t
 
 ## What UniExamer offers for the IMAT
 
-Only these worked examples, free to read. We do not offer IMAT practice sessions or simulations, and nothing here predicts an IMAT score. The questions are original, not past IMAT questions, and they are in English, like the real test.`,
+These worked examples are free to read. The [IMAT page](/exams/imat) has the full 2026/27 rules, the places by university and a study plan, and IMAT practice: sets by subject and topic, a diagnostic and a 60-question simulation in 100 minutes. Practice questions can also be shown in Italian while you study; the simulation is always in English, like the real test. Nothing here predicts an IMAT score. The questions are original, not past IMAT questions.`,
   samples: {
     sections: [
       {
