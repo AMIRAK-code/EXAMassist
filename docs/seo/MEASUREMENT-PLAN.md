@@ -63,6 +63,40 @@ Search data lags 2–3 days, the sample is small, and admissions demand is seaso
 - Retire or merge any guide with no impressions after 90 days only if it also has no internal value (do not delete the sourced exam facts).
 - Re-run the live crawl (`node scripts/seo-crawl.mjs https://uniexamer.com`) and compare with the 2026-10-29 baseline in REPORT-2026-10-29.md.
 
+## Baseline on 3 November 2026 (Search Console, read in the owner's Chrome)
+
+Read through Claude in Chrome on 3 November 2026, read-only (no indexing request, sitemap submission or setting change). Property `sc-domain:uniexamer.com`. The report's data ends on **31 October**, so "28 days" covers only 26–31 October, the days the property has data for. Nothing below is estimated.
+
+**Totals (web search):** 10 clicks, 312 impressions, CTR 3.2%, average position 33.
+
+| Slice | Clicks | Impressions | Avg. position | Note |
+| --- | ---: | ---: | ---: | --- |
+| Branded (regex `uni ?examer\|examer`) | 0 | 3 | 20.3 | Only query: "examer" |
+| Non-branded (doesn't match the regex) | 0 | 143 | 55.1 | 78 queries |
+| Anonymised (total minus both) | 10 | 166 | – | Google withholds these queries; every click so far is in this group |
+
+**Top non-branded queries by impressions:** "bocconi test preparation" (11, position 63.7), "gre test" (6, 34.3), "bocconi preparation" (5, 51.2), "gre exam" (5, 66.2), "digital sat format time" (4), "old gmat format" (4), "cisia" (3, position 10.0), "bocconi test preparation centre" (3, 13.3), "bocconi test prep centre" (3, 15.3). TOLC queries are small but close: "til-a" (2, 9.0), "tolc@uni" (1, 8.0), "cisia tolc-e" (1, 9.0), "cisia tolc economia" (1, 10.0), "si può usare la calcolatrice al tolc" (1, 27.0). Several Greek and Polish Bocconi and GRE queries appear.
+
+**Pages with clicks:** `/` 3 (49 impressions, position 2.7), `/it` 3 (4, 2.0), `/premium` 1 (29, 6.1: now a permanent redirect, 308, to `/pricing`), `/about/how-scoring-works` 1 (19), `/exams/bocconi-master` 1 (11, 21.6), `/exams/politecnico-di-torino-til/format` 1 (5). Priority pages without clicks: `/exams/politecnico-di-torino-til` 48 impressions at 6.5, `/guides/bocconi-test-preparation-plan` 40 at 47.6, `/exams/cisia-tolc` 37 at 6.2, `/it/exams/cisia-tolc` 21 at 55.1, `/exams/bocconi-online-test` 11 at 66.9. 59 pages had impressions, including `http://` and `www.` addresses (redirected).
+
+**Sitemap:** `https://uniexamer.com/sitemap.xml`, submitted 27 October, last read 2 November, Success, 73 pages discovered. **Page indexing report:** still "Processing data".
+
+**URL Inspection:**
+
+| URL | Indexed | Google-selected canonical | Last crawl |
+| --- | --- | --- | --- |
+| `/` | Yes | Same as declared | 3 Nov 2026 |
+| `/exams` | Yes | (not expanded) | – |
+| `/exams/cisia-tolc` | **No**: "Duplicate, Google chose different canonical than user" | **`https://exam.assist365.app/exams/cisia-tolc`** (the old address, which now answers 301 to uniexamer.com) | 3 Nov 2026 |
+| `/it/exams/cisia-tolc` | Yes | Same as declared (self) | 29 Oct 2026 |
+| `/exams/politecnico-di-torino-til` | Yes | Same as declared | 29 Oct 2026 (before the 2 November rewrite) |
+| `/exams/bocconi-online-test` | Yes | Same as declared | 3 Nov 2026 |
+| `/exams/bocconi-master` | Yes | Same as declared | 2 Nov 2026 |
+| `/guides/bocconi-test-preparation-plan` | Yes | Same as declared | – |
+| `/guides/bocconi-admission-test-sample-questions` | Yes | Same as declared | 29 Oct 2026 |
+
+**What this means.** The site moved from `exam.assist365.app` on about 27 October; the old address answers 301 to the same path on uniexamer.com, but **no Change of address has been filed** in the `exam.assist365.app` property (its form shows no new site selected). Google still treats the old address as the original of at least the English TOLC hub, so that page cannot rank as uniexamer.com. Filing the change of address (old property → Settings → Change of address → uniexamer.com → Validate & update) is the fix docs/GOOGLE_SEARCH_CONSOLE_SETUP.md already describes; keep the redirects for at least 180 days. Re-inspect `/exams/cisia-tolc` a week after filing.
+
 ## Baseline on 2 November 2026 (Search Console, read by the owner)
 
 The three-month report held data for 26–31 October only: 10 clicks, 312 impressions, 3.2% CTR, average position 33. Sitemap: success, 73 URLs discovered, last read 31 October. The sitewide indexing report was still processing. Pages:
