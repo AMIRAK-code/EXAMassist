@@ -8,6 +8,7 @@
  */
 
 import { bocconiSampleGuide } from './bocconi-sample-guide';
+import { imatSampleGuide } from './imat-sample-guide';
 
 export interface GuideSource {
   label: string;
@@ -71,6 +72,7 @@ export interface SampleQuestion {
 
 const GUIDES: Guide[] = [
   bocconiSampleGuide,
+  imatSampleGuide,
   {
     slug: 'bocconi-test-negative-marking-when-to-guess',
     metaTitle: 'Bocconi test negative marking: when to guess',
@@ -308,12 +310,14 @@ Everything from here on is our advice, not a Bocconi rule. Eight weeks of four o
 
 | Weeks | Focus | What to do |
 | --- | --- | --- |
-| 1 | Find your gaps | One short diagnostic across all areas; if you have never seen the question types, read the [worked sample questions](/guides/bocconi-admission-test-sample-questions) first. List the three topics where you lost most marks. |
+| 1 | Find your gaps | One short diagnostic across all areas ([standard test](/practice/bocconi-undergraduate) or [Law test](/practice/bocconi-law)); if you have never seen the question types, read the [worked sample questions](/guides/bocconi-admission-test-sample-questions) first. List the three topics where you lost most marks. |
 | 2–4 | Fix the biggest gaps | Untimed topic practice on those topics, about 10 questions a session. Read every explanation, including for the questions you got right. No calculator, ever. |
 | 5 | Widen | Mixed practice across all areas, so weaker topics come back while stronger ones stay sharp. Retry the questions you missed in weeks 2–4. |
-| 6 | Add the clock | Your first timed 50-question set under the real rules. Afterwards, check where the time went and which wrong answers were guesses. |
+| 6 | Add the clock | Your first timed 50-question set under the real rules: the full simulation on the same [practice page](/practice/bocconi-undergraduate). Afterwards, check where the time went and which wrong answers were guesses. |
 | 7 | Rehearse | A second timed set, then Bocconi's own free online simulation, to practise in the real interface. |
 | 8 | Taper | Short reviews of your mistake notebook. No new topics. Check your equipment and room against Bocconi's rules of conduct. |
+
+On UniExamer the diagnostic is free with an account; topic practice, timed sets and full simulations may need a plan ([plans and what stays free](/pricing)). Bocconi's own simulation is free on its [test page](https://www.unibocconi.it/en/applying-bocconi/bachelor-and-law-programs/application-and-admissions/online-bocconi-test).
 
 ### Three habits to build along the way
 

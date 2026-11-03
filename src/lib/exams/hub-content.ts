@@ -1,13 +1,29 @@
 import type { GuideSource, SampleQuestionSet } from '@/lib/content/guides';
+import { cisiaIt } from './hub-content-it';
+import { bocconiMaster } from './hub-content-bocconi-master';
+import {
+  POLITO_TEST_PAGE,
+  POLITO_CALLS_PAGE,
+  POLITO_PRESS_NOTE,
+  POLITO_CALL_ENGINEERING_2026_27,
+  CISIA_CENT_PAGE,
+  CISIA_CENT_S_STRUCTURE,
+  CISIA_TOLC_ABOUT,
+  CISIA_REGULATION_2026,
+  CISIA_CALENDAR,
+  CISIA_PRACTICE,
+  CISIA_MOOC,
+} from './official-links';
 
 /**
  * Editorial content for an exam hub page, beyond what the exam configurations
  * hold: the direct answer under the heading, where the next admissions cycle
  * stands, which test to prepare for, and worked sample questions.
  *
- * English only, like the configurations: these hubs are English-only pages
- * (src/i18n/alternates.ts). The Bocconi hub has its own landing page and is
- * not listed here.
+ * Written in English, like the configurations. A hub is served as an
+ * English-only page (src/i18n/alternates.ts) unless it has a full
+ * translation in HUB_TRANSLATIONS below. The Bocconi hub has its own landing
+ * page and is not listed here.
  *
  * Every fact about a future cycle is either confirmed by the test maker's
  * own pages, with a link, or listed as not published yet. `updatedOn` is the
@@ -30,25 +46,15 @@ export interface HubContent {
   detailsNote?: { title: string; bodyMd: string };
   /** Worked examples: original, AI-assisted, kept out of the question bank. */
   samples?: { id: string; heading: string; introMd: string; set: SampleQuestionSet };
+  /** How to prepare, week by week, with links into practice. */
+  studyPlan?: { id: string; heading: string; bodyMd: string };
+  /** The search snippet, when it differs from the registry's English one (translations). */
+  metaDescription?: string;
+  /** Shown at the top of a translation that no fluent human reviewer has checked yet. */
+  translationNote?: { title: string; bodyMd: string };
   updatedOn: string;
   sources: GuideSource[];
 }
-
-const POLITO_TEST_PAGE =
-  'https://www.polito.it/en/education/applying-studying-graduating/admissions-and-enrolment/bachelor-s-degree-programmes/admission-test';
-const POLITO_CALLS_PAGE =
-  'https://www.polito.it/en/education/applying-studying-graduating/admissions-and-enrolment/bachelor-s-degree-programmes/calls-for-application-regulations-and-ranking-lists';
-const POLITO_PRESS_NOTE =
-  'https://www.polito.it/ateneo/comunicazione-e-ufficio-stampa/poliflash/test-d-ingresso-20262027-il-politecnico-sempre-piu';
-const POLITO_CALL_ENGINEERING_2026_27 =
-  'https://www.polito.it/sites/default/files/2025-12/Call%20for%20applications%20for%20admissions%20Engineering%20_%20LP%202026-27.pdf';
-const CISIA_CENT_PAGE = 'https://www.cisiaonline.it/en/cent/all-about-CEnT/all-about-CEnT';
-const CISIA_CENT_S_STRUCTURE = 'https://www.cisiaonline.it/en/cent/cent-s/structure-and-syllabus';
-const CISIA_TOLC_ABOUT = 'https://www.cisiaonline.it/en/tolc/all-about-TOLC/what-is-the-TOLC';
-const CISIA_REGULATION_2026 = 'https://www.cisiaonline.it/sites/default/files/Regolamenti/Regolamento-TOLC-2026.pdf';
-const CISIA_CALENDAR = 'https://testcisia.it/calendario.php';
-const CISIA_PRACTICE = 'https://www.cisiaonline.it/prepararsi/tolc-esercitazioni';
-const CISIA_MOOC = 'https://www.cisiaonline.it/prepararsi/mooc';
 
 const polito: HubContent = {
   headline: 'Politecnico di Torino admission test: from TIL to CISIA',
@@ -168,7 +174,7 @@ The same with the formulas: $a = \\tfrac{20}{8} = 2.5$ m/s², and $s = \\tfrac{1
       id: 'tolc-e-samples',
       heading: 'TOLC-E sample questions',
       introMd:
-        'One question from each of two TOLC-E sections. On the real test each section has 30 minutes: 13 Logic questions, 10 Verbal comprehension and 13 Mathematics, also without a calculator.',
+        'One question from each TOLC-E section. On the real test each section has 30 minutes: 13 Logic questions, 10 Verbal comprehension and 13 Mathematics, also without a calculator.',
       questions: [
         {
           id: 'tolc-sample-ratio',
@@ -204,12 +210,72 @@ The same with the formulas: $a = \\tfrac{20}{8} = 2.5$ m/s², and $s = \\tfrac{1
             '“Only people who registered can attend” makes registering a necessary condition for attending: if someone attended, they registered. Option A says exactly this about Giulia. The rule does not make registering sufficient, so options B, C and D, which all treat it as if it were, are not certain.',
           lesson: '“Only A can B” means “if B, then A”. A is necessary, not sufficient: watch for options that turn the rule around.',
         },
+        {
+          id: 'tolc-sample-library-fines',
+          title: 'What a passage supports',
+          topic: 'Verbal comprehension: inference from a passage',
+          stimulusMd: `For decades, public libraries charged a small fine for every day a book was returned late. The fines were meant to get books back on time, but several city libraries that have abolished them report a result that surprised their own staff: the number of books returned did not fall, and many borrowers who had stopped using the library came back. Librarians explain that the fines rarely changed the behaviour of regular borrowers, who returned their books on time anyway, while for people on low incomes a growing debt was a reason to stay away altogether, often with the book still at home. Collecting the fines, moreover, cost some libraries almost as much in staff time as the fines brought in.`,
+          stemMd: 'Which of the following statements is supported by the passage?',
+          options: [
+            { id: 'A', text: 'Late fines were the main source of income for city libraries.', note: 'The passage says only that collecting the fines cost some libraries almost as much as they brought in. It says nothing about their share of a library’s income.' },
+            { id: 'B', text: 'Once fines were abolished, regular borrowers returned their books later.', note: 'The passage says the number of books returned did not fall, and that the fines rarely changed what regular borrowers did.' },
+            { id: 'C', text: 'For some borrowers, the fines worked against the purpose they were meant to serve.', note: '' },
+            { id: 'D', text: 'Every library that abolished fines got more of its books back.', note: 'Two steps too far: the passage speaks of several city libraries, not every library, and says the number of returns did not fall, not that it rose.' },
+            { id: 'E', text: 'Librarians expected returns to rise once the fines were abolished.', note: 'The result “surprised their own staff”, so the staff did not expect it.' },
+          ],
+          answer: 'C',
+          workingMd:
+            'The fines were meant to get books back on time. For people on low incomes, the passage says, the growing debt was a reason to stay away, “often with the book still at home”: for them the fines kept books away instead of bringing them back. That is option C, restated in general terms. Every other option either adds something the passage does not say (A, D) or contradicts it (B, E).',
+          lesson: 'An option that the passage supports restates it, often in more general words. Reject an option as soon as one word in it (every, main, expected) goes beyond the text.',
+        },
+      ],
+    },
+    {
+      id: 'tolc-f-samples',
+      heading: 'TOLC-F sample questions',
+      introMd:
+        'One question from each of the two longest TOLC-F sections. On the real test Biology and Chemistry each give you 20 minutes for 15 questions: under a minute and a half a question, without a calculator.',
+      questions: [
+        {
+          id: 'tolc-sample-peptide-water',
+          title: 'Water released when a protein chain forms',
+          topic: 'Biology: biological molecules',
+          stemMd: 'An unbranched polypeptide chain of 10 amino acids is built by condensation reactions. How many molecules of water are released in building it?',
+          options: [
+            { id: 'A', text: '0', note: 'Condensation releases water. It is the reverse reaction, hydrolysis, that uses one molecule of water to break each bond.' },
+            { id: 'B', text: '5', note: 'Pairs the amino acids into five dipeptides, but those five dipeptides must then be joined to each other too, by four more bonds.' },
+            { id: 'C', text: '9', note: '' },
+            { id: 'D', text: '10', note: 'One per amino acid. Water is released once per peptide bond, and an open chain of 10 amino acids has only 9 bonds between neighbours.' },
+            { id: 'E', text: '18', note: 'Counts two per bond, the –OH and the –H, but they leave together as a single molecule of water.' },
+          ],
+          answer: 'C',
+          workingMd:
+            'Each peptide bond joins the carboxyl group of one amino acid to the amino group of the next, and forming it releases one molecule of water: an –OH from one amino acid and an –H from the other. An unbranched chain of $n$ amino acids has $n - 1$ bonds between neighbours, so 10 amino acids need 9 bonds and release 9 molecules of water.',
+          lesson: 'In a chain of $n$ units joined end to end there are $n - 1$ links: count the bonds, not the units. The same holds for polysaccharides and nucleic acids.',
+        },
+        {
+          id: 'tolc-sample-oxygen-percentage',
+          title: 'A percentage by mass',
+          topic: 'Chemistry: the mole and chemical formulas',
+          stemMd: 'What percentage of the mass of calcium carbonate, $\\mathrm{CaCO_3}$, is oxygen? (Relative atomic masses: Ca = 40, C = 12, O = 16.)',
+          options: [
+            { id: 'A', text: '12%', note: 'This is carbon’s share: 12 of every 100 grams.' },
+            { id: 'B', text: '16%', note: 'Counts one oxygen atom; the formula has three.' },
+            { id: 'C', text: '40%', note: 'This is calcium’s share: 40 of every 100 grams.' },
+            { id: 'D', text: '48%', note: '' },
+            { id: 'E', text: '60%', note: 'Three of the five atoms are oxygen, but the question asks about mass, and an oxygen atom is lighter than a calcium atom.' },
+          ],
+          answer: 'D',
+          workingMd:
+            'The molar mass of $\\mathrm{CaCO_3}$ is $40 + 12 + 3 \\times 16 = 100$ g/mol. Oxygen contributes $3 \\times 16 = 48$ g of every 100 g, so 48% of the mass.',
+          lesson: 'Percentage by mass = (number of atoms × atomic mass) ÷ molar mass. Multiply by the subscript, and compare masses, not numbers of atoms.',
+        },
       ],
     },
   ],
   afterMd: `## About these examples
 
-They were written by the UniExamer team for this page, with AI assistance, and published on 2 November 2026. They are not CISIA questions, their difficulty is not calibrated to the real test, and five questions cannot estimate a TOLC score. Every answer was re-derived step by step during editing; no human subject expert has reviewed them. They are not in our question bank, so reading the answers spoils no practice session. If you find a mistake, [tell us](/about/support).
+They were written by the UniExamer team for this page, with AI assistance, and published on 2 November 2026. They are not CISIA questions, their difficulty is not calibrated to the real test, and eight questions cannot estimate a TOLC score. Every answer was re-derived step by step during editing. They are not in our question bank, so reading the answers spoils no practice session. If you find a mistake, [tell us](/about/support).
 
 ## Official CISIA preparation
 
@@ -242,8 +308,20 @@ The TOLC is an Italian-language test. Since November 2025 the English TOLC-E, TO
     id: 'samples',
     heading: 'Worked sample questions',
     introMd:
-      'Five original questions in the TOLC format: five options, one correct, no calculator. Try each before opening the answer; the explanation covers every wrong option, because the reasons people choose them are what carry over to the next question.',
+      'Eight original questions in the TOLC format, from the TOLC-I, the TOLC-E and the TOLC-F: five options, one correct, no calculator. Try each before opening the answer; the explanation covers every wrong option, because the reasons people choose them are what carry over to the next question.',
     set: tolcSamples,
+  },
+  studyPlan: {
+    id: 'study-plan',
+    heading: 'How to prepare: a six-week plan',
+    bodyMd: `**First, read your university’s call for applications.** It says which TOLC you need, whether the at-home TOLC@CASA counts, the minimum score and what it applies to: some engineering degrees look only at the TOLC-I Mathematics section, others at a weighted total. That decides where your hours go. There is no national pass mark, and no practice score, ours included, can tell you your TOLC result.
+
+1. **Weeks 1–2: the syllabus, untimed.** Go through CISIA’s syllabus for your TOLC topic by topic, starting with Mathematics, which every type includes. Fill gaps with CISIA’s free [MOOCs](${CISIA_MOOC}) (basic mathematics, and physics, chemistry and biology for the TOLC-I and TOLC-F), then do untimed practice by topic: [TOLC-E](/practice/tolc-e), [TOLC-I](/practice/tolc-i) or [TOLC-F](/practice/tolc-f). Write down why you missed each question, not only that you did.
+2. **Weeks 3–4: one timed section every other day.** Take each section at its real length and clock, without a calculator, and review every wrong answer and every blank the same day. The [worked samples above](/exams/cisia-tolc#samples) show the kind of review that pays: why each wrong option tempts.
+3. **Week 5: full simulations.** Two complete simulations a few days apart, in one sitting, at the time of day you will sit the test. Fix your guessing rule before the day: a blind guess among five options is worth 0 on average (1/5 − 4/5 × 0.25), but once you can rule out one option a guess is worth +0.06, so answer.
+4. **Week 6: CISIA’s own material, then rest.** Use the exercises and simulations in CISIA’s [practice area](${CISIA_PRACTICE}) (free after registering with CISIA, in Italian) to get used to the real interface. Book early: each type of TOLC can be taken once per calendar month, so a missed threshold costs you a month.
+
+If you cannot give six weeks, keep the order and shorten each step: syllabus gaps first, timed sections second, a full simulation last.`,
   },
   updatedOn: '2026-11-02',
   sources: [
@@ -259,10 +337,36 @@ The TOLC is an Italian-language test. Since November 2025 the English TOLC-E, TO
 const HUB_CONTENT: Readonly<Record<string, HubContent>> = {
   'politecnico-di-torino-til': polito,
   'cisia-tolc': cisia,
+  'bocconi-master': bocconiMaster,
 };
 
-export function hubContent(slug: string): HubContent | undefined {
+/**
+ * Hub content translated in full, by language. A translation listed here is
+ * served at its own address, with its own canonical and hreflang
+ * (src/i18n/alternates.ts reads `translatedHubLocales`), so add one only when
+ * every part of the hub that is English otherwise, the exam details included
+ * (src/lib/exams/hub-details-it.ts), is translated too.
+ */
+const HUB_TRANSLATIONS: Readonly<Record<string, Readonly<Record<string, HubContent>>>> = {
+  'cisia-tolc': { it: cisiaIt },
+};
+
+/** The hub's editorial content in `locale`, or in English when it has no translation (`undefined` for English-only callers). */
+export function hubContent(slug: string, locale: string = 'en'): HubContent | undefined {
+  if (locale !== 'en') return HUB_TRANSLATIONS[slug]?.[locale];
   return HUB_CONTENT[slug];
+}
+
+/** The languages, other than English, a hub is translated into in full. */
+export function translatedHubLocales(slug: string): string[] {
+  return Object.keys(HUB_TRANSLATIONS[slug] ?? {});
+}
+
+/** Every translation, for tests: [slug, locale, content]. */
+export function listHubTranslations(): Array<[string, string, HubContent]> {
+  return Object.entries(HUB_TRANSLATIONS).flatMap(([slug, byLocale]) =>
+    Object.entries(byLocale).map(([locale, content]): [string, string, HubContent] => [slug, locale, content]),
+  );
 }
 
 /**

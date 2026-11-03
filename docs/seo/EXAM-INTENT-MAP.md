@@ -22,7 +22,7 @@ Last reviewed: 2 November 2026 (section 2a, the TIL and TOLC rows and section 3 
 | CISIA TOLC-F, Pharmacy (`tolc-f`) | CISIA | Bachelor's | 100 | English and Italian | Five sections | Yes (approximation) | 2026-09-29, **calendar year 2026** |
 | CISIA TOLC-I, Engineering (`tolc-i`) | CISIA | Bachelor's | 80 | English and Italian | Four sections | Yes (approximation) | 2026-10-11, **calendar year 2026** |
 
-Not supported, and not to be claimed: IMAT (draft config, not routed), the SAA School of Management route (draft hub), Politecnico di Milano's admission routes, other TOLC variants (TOLC-S, TOLC-SU, TOLC-B, TOLC-AV, TOLC-PSI, TOLC-LP) and CEnT-S.
+Not supported, and not to be claimed: IMAT practice (draft config, not routed; since 3 November 2026 there is a free guide with five worked IMAT samples, `/guides/imat-sample-questions`, which says no practice is offered), the SAA School of Management route (draft hub), Politecnico di Milano's admission routes, other TOLC variants (TOLC-S, TOLC-SU, TOLC-B, TOLC-AV, TOLC-PSI, TOLC-LP) and CEnT-S.
 
 **Changes found on 2 November 2026 that reshape the TIL and TOLC intents:**
 
@@ -30,9 +30,9 @@ Not supported, and not to be claimed: IMAT (draft config, not routed), the SAA S
 - The English TOLC-E, TOLC-I and TOLC-F were replaced by the CEnT-S from November 2025 (CISIA's CEnT page). The TOLC is an Italian-language test. Many university pages that rank for "TOLC-E in English" are stale on this.
 - No 2027 TOLC calendar or regulation is published; CISIA announces structural changes by 31 December.
 
-Access today: payments are not switched on in production, so every open format is free (the pricing page says so). The paid model under development keeps the free diagnostic and the public guides free.
+Access today (corrected 2 November 2026): payments **are** switched on in production. Guides, worked samples, the diagnostic for each exam that has one open (with an account) and official-score tracking are free; practice, timed sections and simulations need a Single Exam Pass or Plus (docs/seo/PUBLIC-INFO-AUDIT-2026-11-02.md).
 
-Interface languages: the whole interface is in English, Italian, Turkish, Spanish and Polish. Fully translated public pages are the home page, the exam directory, the Bocconi Bachelor & Law hub, the guide index, pricing, and the about pages. Every other exam hub, every format guide and every guide article is English inside a translated frame; their language versions now point to the English page as canonical (`isEnglishOnlyPath` in `src/i18n/alternates.ts`).
+Interface languages: the whole interface is in English, Italian, Turkish, Spanish and Polish. Fully translated public pages are the home page, the exam directory, the Bocconi Bachelor & Law hub, the guide index, pricing, and the about pages; the CISIA TOLC hub is also translated into Italian (since 2 November 2026, awaiting a fluent reviewer), with its own canonical and hreflang. Every other exam hub, every format guide and every guide article is English inside a translated frame; their language versions now point to the English page as canonical (`isEnglishOnlyPath` in `src/i18n/alternates.ts`).
 
 ## 2a. Priority exams: intent type to page (2 November 2026)
 
@@ -66,7 +66,7 @@ One primary page per intent. A second page may link to it, but must not compete 
 | Bocconi: which test to take | "Bocconi law test vs online test" | `/guides/bocconi-undergraduate-vs-law-test` | English only. |
 | Bocconi: study plan | "how to prepare for Bocconi test", "Bocconi test study plan" | `/guides/bocconi-test-preparation-plan` | English only. |
 | Bocconi master's test | "Bocconi master admission test", "Bocconi graduate test" | `/exams/bocconi-master` | No guide or samples yet. |
-| CISIA TOLC (E, F, I) | "TOLC-E", "test TOLC simulazione", "TOLC-I esercizi" | `/exams/cisia-tolc` | Lead, 2027 status and five worked samples added 2026-11-02. **Gap**: the audience searches in Italian, the questions exist in Italian, but the hub body is English. |
+| CISIA TOLC (E, F, I) | "TOLC-E", "test TOLC simulazione", "TOLC-I esercizi" | `/exams/cisia-tolc` and `/it/exams/cisia-tolc` | Lead, 2027 status, eight worked samples (TOLC-I, TOLC-E with a passage, TOLC-F) and a six-week plan; Italian version since 2026-11-02, awaiting a fluent reviewer. The format guide is still English only. |
 | PoliTo admission (TIL until 2026/27, CISIA from 2027/28) | "TIL Politecnico Torino", "test TIL-I", "Politecnico di Torino admission test" | `/exams/politecnico-di-torino-til` | Rewritten around the 2027/28 switch on 2026-11-02. Re-check PoliTo every two weeks until the calls appear. |
 | Digital SAT | "digital SAT practice", "SAT score from practice test" | `/exams/digital-sat`; score question → `/guides/why-practice-tests-cannot-give-you-a-real-sat-score` | English; very competitive intent, low priority for content. |
 | Enhanced ACT, LSAT, GMAT, GRE | "enhanced ACT changes", "LSAT without logic games" | Their hubs; LSAT change → `/guides/lsat-without-logic-games` | English; competitive; keep accurate, do not expand first. |
@@ -79,7 +79,7 @@ Ordered by relevance to what the product does well, the likely audience (Italian
 Re-ordered 2 November 2026. Items 2 and 3 of the 29 October list are done (TOLC samples on the hub; TIL re-verified, which found the switch to CISIA).
 
 1. **PoliTo 2027/28 calls.** Check PoliTo every two weeks; when the calls appear, rewrite the hub's status and routes (which TOLC per programme, thresholds, dates, SAT, Architecture) and decide with the owners whether TIL practice stays open. If PoliTo confirms TOLC-I for Engineering, add PoliTo to the TOLC hub's lead.
-2. **TOLC in Italian.** Translate the TOLC hub, its samples and the format guide into Italian, reviewed by a fluent reader against CISIA's Italian pages, then move `cisia-tolc` into `TRANSLATED_HUBS`. The questions already exist in Italian. Highest demand-side value, blocked on a reviewer.
+2. **TOLC in Italian.** Done for the hub on 2 November 2026 (`HUB_TRANSLATIONS` in `src/lib/exams/hub-content.ts`; its own canonical in Italian only). Remaining: a fluent reviewer's check (docs/review/README.md), then remove the page's "awaiting review" note; the format guide `/exams/cisia-tolc/format` is still English only.
 3. **A dedicated TOLC-E sample-questions guide** (10–12 items across Logic, Verbal comprehension and Mathematics, including a passage), only if Search Console shows sample-question queries reaching `/exams/cisia-tolc`. Follow the overlap rule in CONTENT-MAINTENANCE.md.
 4. **Bocconi master's test**: a short guide on choosing between the Bocconi graduate test, GMAT and GRE, from the existing verified facts.
 5. **Italian Bocconi sample questions**, once the English page shows impressions in Search Console and a reviewer can check the Italian.

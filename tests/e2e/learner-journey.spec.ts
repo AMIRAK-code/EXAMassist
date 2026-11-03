@@ -60,7 +60,7 @@ test.beforeEach(() => resetRateLimits());
 test.describe('discovery', () => {
   test('a visitor can reach an exam guide from the homepage', async ({ page }) => {
     await page.goto('/');
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('Big ambitions');
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('University admission test practice');
 
     await page.getByRole('link', { name: 'Choose your exam' }).click();
     await expect(page).toHaveURL(/\/exams$/);

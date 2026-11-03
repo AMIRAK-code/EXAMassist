@@ -6,8 +6,7 @@ import { hubUpdatedOn } from '@/lib/exams/hub-content';
 import { absoluteUrl, indexingEnabled } from '@/lib/site';
 import { listGuides } from '@/lib/content/guides';
 import { PAGE_DATES } from '@/lib/content/page-dates';
-import { isEnglishOnlyPath, languageAlternates } from '@/i18n/alternates';
-import { LOCALES } from '@/i18n/locales';
+import { contentLocales, languageAlternates } from '@/i18n/alternates';
 
 /**
  * XML sitemap.
@@ -72,12 +71,13 @@ type Entry = MetadataRoute.Sitemap[number];
 /**
  * Every language has its own address (src/i18n/routing.ts), so each page is
  * listed once per language, and every entry names all of them (hreflang and
- * x-default), exactly as the pages do (src/i18n/alternates.ts). A page whose
- * content exists only in English is listed once, at its English address.
+ * x-default), exactly as the pages do (src/i18n/alternates.ts). A page is
+ * listed only in the languages its content exists in: once, at its English
+ * address, when its content exists only in English.
  */
 function inEveryLanguage(entry: Entry): Entry[] {
   const path = new URL(entry.url).pathname;
-  const locales = isEnglishOnlyPath(path) ? (['en'] as const) : LOCALES;
+  const locales = contentLocales(path);
   return locales.map((locale) => {
     const { canonical, languages } = languageAlternates(path, locale);
     return { ...entry, url: canonical, alternates: { languages } };
