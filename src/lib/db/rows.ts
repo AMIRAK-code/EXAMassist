@@ -45,6 +45,29 @@ export interface EmailCodeRow {
   consumed_at: string | null;
 }
 
+/** An account's link to a sign-in provider (migration 018). */
+export interface OAuthIdentityRow {
+  provider: 'google';
+  subject: string;
+  user_id: string;
+  email: string;
+  created_at: string;
+  last_used_at: string;
+}
+
+/** A provider sign-in that was started and not yet finished (migration 018). */
+export interface OAuthRequestRow {
+  id: string;
+  provider: 'google';
+  code_verifier: string;
+  nonce_hash: string;
+  next_path: string | null;
+  locale: string;
+  created_at: string;
+  expires_at: string;
+  consumed_at: string | null;
+}
+
 export interface QuestionRow {
   id: string;
   exam_key: string;
