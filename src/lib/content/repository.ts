@@ -3,7 +3,7 @@ import type { QuestionVersionRow, StimulusRow } from '@/lib/db/rows';
 import type { PoolItem } from '@/lib/assessment/select';
 import { answerKeySchema, type AnswerKey, type ResponseType } from '@/lib/assessment/types';
 import type { ContentLocale, QuestionTranslation, StimulusTranslation } from './question-schema';
-import { humanApprovalSql, servableSql } from './human-review';
+import { changesRequestedSql, humanApprovalSql, servableSql } from './human-review';
 
 /**
  * Question bank reads.
@@ -248,13 +248,19 @@ export interface CandidateItem extends PoolItem {
   examKey: string;
   state: string;
   humanApproved: boolean;
+  /** A reviewer asked for changes to this content and nobody approved it since. */
+  changesRequested: boolean;
   reviewFingerprint: string | null;
   stemMd: string;
+  /** As recorded on the version, so a reviewer is never offered their own work. */
+  author: string;
+  provenance: string;
 }
 
 /**
  * Every current question version of an exam, whatever its state, with whether
- * it holds a standing human approval: the same predicate `getPool` applies.
+ * it holds a standing human approval or an outstanding request for changes:
+ * the predicates `getPool` applies.
  */
 export async function getCandidates(db: Db, examKey: string): Promise<CandidateItem[]> {
   const rows = (await db
@@ -265,13 +271,22 @@ export async function getCandidates(db: Db, examKey: string): Promise<CandidateI
          q.state              AS state,
          qv.review_fingerprint AS reviewFingerprint,
          qv.stem_md           AS stemMd,
-         CASE WHEN ${humanApprovalSql('qv')} THEN 1 ELSE 0 END AS humanApproved
+         qv.author            AS author,
+         qv.provenance        AS provenance,
+         CASE WHEN ${humanApprovalSql('qv')} THEN 1 ELSE 0 END AS humanApproved,
+         CASE WHEN ${changesRequestedSql('qv')} THEN 1 ELSE 0 END AS changesRequested
        FROM question_versions qv
        JOIN questions q ON q.id = qv.question_id AND q.current_version = qv.version
        WHERE qv.exam_key = ?`,
     )
-    .all(examKey)) as Array<Omit<CandidateItem, 'humanApproved'> & { humanApproved: number }>;
-  return rows.map((row) => ({ ...row, humanApproved: Number(row.humanApproved) === 1 }));
+    .all(examKey)) as Array<
+    Omit<CandidateItem, 'humanApproved' | 'changesRequested'> & { humanApproved: number; changesRequested: number }
+  >;
+  return rows.map((row) => ({
+    ...row,
+    humanApproved: Number(row.humanApproved) === 1,
+    changesRequested: Number(row.changesRequested) === 1,
+  }));
 }
 
 export interface CoverageRow {
