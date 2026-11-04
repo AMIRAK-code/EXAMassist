@@ -19,10 +19,11 @@ import {
   standingApprovalFor,
   verifiedFingerprint,
 } from '@/lib/content/human-review';
-import { STATUS_LABEL, STATUS_TONE } from '@/lib/content/review-queue';
+import { STATUS_TONE, nextForReviewer, reviewQueue, statusLabel } from '@/lib/content/review-queue';
 import { Alert, Badge, Breadcrumbs, Card, Container, PageHeader } from '@/components/ui';
 import { Markdown, Stimulus } from '@/components/content';
 import { ReviewForm } from './review-form';
+import { SolveChoices, SolveFirstProvider, WhenAnswered } from './solve-first';
 
 /**
  * One question, as a reviewer needs to judge it: rendered exactly as learners
@@ -45,8 +46,15 @@ const CRITERION_LABEL: Record<(typeof REVIEW_CRITERIA)[number], string> = {
   'syllabus-alignment': 'Syllabus alignment',
 };
 
-export default async function ReviewQuestionPage({ params }: { params: Promise<{ questionId: string }> }) {
+export default async function ReviewQuestionPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ questionId: string }>;
+  searchParams: Promise<{ exam?: string; decided?: string; prev?: string }>;
+}) {
   const { questionId } = await params;
+  const query = await searchParams;
   const { user, reviewer } = await requireReviewAccess(`/admin/review/${questionId}`);
   const db = getDb();
 
@@ -74,6 +82,25 @@ export default async function ReviewQuestionPage({ params }: { params: Promise<{
   const trail = await questionAuditTrail(db, questionId);
   const latestOnContent = history.find((h) => h.questionVersionId === row.id && h.reviewFingerprint === fingerprint.stored) ?? null;
   const status = approvalStatus(question.state, approval !== null, latestOnContent?.outcome ?? null);
+
+  // Where "next" leads: this reviewer's queue, in queue order, narrowed to the exam they filtered on.
+  let nextHref: string | null = null;
+  if (reviewer?.status === 'active') {
+    const examFilter = query.exam && reviewer.examKeys.includes(query.exam) ? query.exam : null;
+    const next = nextForReviewer(
+      await reviewQueue(db, examFilter ? [examFilter] : reviewer.examKeys),
+      reviewer,
+      { email: user.email, displayName: user.displayName },
+      questionId,
+    );
+    if (next) {
+      nextHref = `/admin/review/${encodeURIComponent(next.questionId)}${examFilter ? `?exam=${encodeURIComponent(examFilter)}` : ''}`;
+    }
+  }
+  const justDecided =
+    query.decided === 'approved' || query.decided === 'changes_requested'
+      ? { outcome: query.decided, questionId: (query.prev ?? '').slice(0, 120) }
+      : null;
 
   // The automated evidence lives in the authored file; best effort, as on the inventory page.
   let solve: { solvedBy: string; agreesWithKey: boolean; uniquenessChecked: boolean; workingNotes: string } | null = null;
@@ -118,10 +145,22 @@ export default async function ReviewQuestionPage({ params }: { params: Promise<{
       <PageHeader eyebrow={`${config.name} · version ${row.version}`} title={questionId} />
 
       <div className="mb-8 flex flex-wrap items-center gap-2">
-        <Badge tone={STATUS_TONE[status]}>{STATUS_LABEL[status]}</Badge>
+        <Badge tone={STATUS_TONE[status]}>{statusLabel(status)}</Badge>
         <Badge tone="neutral">Content file state: {question.state}</Badge>
         {aiAssisted ? <Badge tone="neutral">AI-assisted draft</Badge> : null}
       </div>
+
+      {justDecided ? (
+        <Alert tone="positive" role="status" className="mb-8">
+          <p>
+            {justDecided.outcome === 'approved' ? 'Approval' : 'Request for changes'} recorded for{' '}
+            <Link href={`/admin/review/${encodeURIComponent(justDecided.questionId)}`} className="font-mono">
+              {justDecided.questionId}
+            </Link>
+            . This is the next question in your queue.
+          </p>
+        </Alert>
+      ) : null}
 
       {approval ? (
         <Alert tone="positive" className="mb-8" title="Human-approved as it stands">
@@ -132,6 +171,7 @@ export default async function ReviewQuestionPage({ params }: { params: Promise<{
         </Alert>
       ) : null}
 
+      <SolveFirstProvider>
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem]">
         <div className="min-w-0 space-y-8">
           <section aria-labelledby="as-seen-heading">
@@ -148,31 +188,42 @@ export default async function ReviewQuestionPage({ params }: { params: Promise<{
                 <Markdown source={reviewable.instructionsMd} className="prose-academic question-text mb-3 text-sm text-ink-muted" />
               ) : null}
               <Markdown source={reviewable.stemMd} className="prose-academic question-body question-text mb-5" />
-              {reviewable.options.length > 0 ? (
-                <ul className="space-y-2 text-sm">
-                  {reviewable.options.map((option) => {
-                    const isKey = keyIds.includes(option.id);
-                    const rationale = reviewable.distractorRationale[option.id];
-                    return (
-                      <li key={option.id} className={`rounded-card border p-3 ${isKey ? 'border-positive-line bg-positive-soft' : 'border-line'}`}>
-                        <div className="flex gap-3">
-                          <span className="font-semibold">{option.label}</span>
-                          <Markdown source={option.textMd} className="question-text min-w-0 flex-1" />
-                          {isKey ? <Badge tone="positive">Key</Badge> : null}
-                        </div>
-                        {rationale ? (
-                          <div className="mt-2 border-t border-line pt-2 text-ink-muted">
-                            <span className="text-xs font-semibold uppercase tracking-wide">Why it is wrong</span>
-                            <Markdown source={rationale} className="question-text mt-1" />
-                          </div>
-                        ) : !isKey ? (
-                          <p className="mt-2 text-xs text-negative">No distractor note recorded for this choice.</p>
-                        ) : null}
-                      </li>
-                    );
-                  })}
-                </ul>
-              ) : null}
+              <SolveChoices
+                keyIds={keyIds}
+                keyDescription={describeAnswerKey(reviewable.answerKey, reviewable.options)}
+                options={reviewable.options.map((option) => ({
+                  id: option.id,
+                  label: option.label,
+                  content: <Markdown source={option.textMd} className="question-text" />,
+                }))}
+                answered={
+                  reviewable.options.length > 0 ? (
+                    <ul className="space-y-2 text-sm">
+                      {reviewable.options.map((option) => {
+                        const isKey = keyIds.includes(option.id);
+                        const rationale = reviewable.distractorRationale[option.id];
+                        return (
+                          <li key={option.id} className={`rounded-card border p-3 ${isKey ? 'border-positive-line bg-positive-soft' : 'border-line'}`}>
+                            <div className="flex gap-3">
+                              <span className="font-semibold">{option.label}</span>
+                              <Markdown source={option.textMd} className="question-text min-w-0 flex-1" />
+                              {isKey ? <Badge tone="positive">Key</Badge> : null}
+                            </div>
+                            {rationale ? (
+                              <div className="mt-2 border-t border-line pt-2 text-ink-muted">
+                                <span className="text-xs font-semibold uppercase tracking-wide">Why it is wrong</span>
+                                <Markdown source={rationale} className="question-text mt-1" />
+                              </div>
+                            ) : !isKey ? (
+                              <p className="mt-2 text-xs text-negative">No distractor note recorded for this choice.</p>
+                            ) : null}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  ) : null
+                }
+              />
               {reviewable.accessibilityText ? (
                 <p className="mt-4 text-xs text-ink-muted">
                   <span className="font-semibold">Screen-reader text:</span> {reviewable.accessibilityText}
@@ -185,6 +236,7 @@ export default async function ReviewQuestionPage({ params }: { params: Promise<{
             <h2 id="key-heading" className="font-heading text-2xl font-semibold">
               Answer key and explanation
             </h2>
+            <WhenAnswered title="The key and the explanation">
             <Card className="mt-4" padding="lg">
               <p className="text-sm">
                 <span className="font-semibold">Keyed answer:</span> {describeAnswerKey(reviewable.answerKey, reviewable.options)}
@@ -195,6 +247,7 @@ export default async function ReviewQuestionPage({ params }: { params: Promise<{
                 estimated {row.estimated_seconds} s
               </p>
             </Card>
+            </WhenAnswered>
           </section>
 
           <section aria-labelledby="syllabus-heading">
@@ -235,6 +288,7 @@ export default async function ReviewQuestionPage({ params }: { params: Promise<{
             <h2 id="qa-heading" className="font-heading text-2xl font-semibold">
               Automated checks (not human review)
             </h2>
+            <WhenAnswered title="The AI blind solve and its working">
             <Card className="mt-4" padding="lg">
               <p className="text-sm text-ink-muted">
                 These are machine checks and an AI blind solve. They are why the item reached this queue; they do not
@@ -257,6 +311,7 @@ export default async function ReviewQuestionPage({ params }: { params: Promise<{
                 </dd>
               </dl>
             </Card>
+            </WhenAnswered>
           </section>
         </div>
 
@@ -269,9 +324,20 @@ export default async function ReviewQuestionPage({ params }: { params: Promise<{
               {blocked ? (
                 <Alert tone="info">
                   <p>{blocked}</p>
+                  {nextHref ? (
+                    <p className="mt-2">
+                      <Link href={nextHref}>Go to the next question in your queue</Link>
+                    </p>
+                  ) : null}
                 </Alert>
               ) : (
-                <ReviewForm questionVersionId={row.id} reviewFingerprint={fingerprint.stored!} criteria={REVIEW_CRITERIA.map((c) => ({ value: c, label: CRITERION_LABEL[c] }))} />
+                <ReviewForm
+                  questionId={questionId}
+                  questionVersionId={row.id}
+                  reviewFingerprint={fingerprint.stored!}
+                  criteria={REVIEW_CRITERIA.map((c) => ({ value: c, label: CRITERION_LABEL[c] }))}
+                  nextHref={nextHref}
+                />
               )}
             </div>
           </section>
@@ -338,6 +404,7 @@ export default async function ReviewQuestionPage({ params }: { params: Promise<{
           </section>
         </aside>
       </div>
+      </SolveFirstProvider>
     </Container>
   );
 }

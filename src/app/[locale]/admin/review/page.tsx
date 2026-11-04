@@ -3,20 +3,22 @@ import type { Metadata } from 'next';
 import { getDb } from '@/lib/db';
 import { requireReviewAccess } from '@/lib/auth/guards';
 import { EXAM_CONFIGS, getExamConfig, labelsFor } from '@/lib/exams/registry';
-import { STATUS_LABEL, STATUS_ORDER, STATUS_TONE, countByStatus, reviewQueue } from '@/lib/content/review-queue';
-import type { ApprovalStatus } from '@/lib/content/human-review';
-import { Alert, Badge, Breadcrumbs, Button, Card, Container, EmptyState, PageHeader, Stat, fieldClass } from '@/components/ui';
+import { STATUS_ORDER, STATUS_TONE, countByStatus, nextForReviewer, reviewQueue, statusLabel } from '@/lib/content/review-queue';
+import { humanApprovalRequired, type ApprovalStatus } from '@/lib/content/human-review';
+import { Alert, Badge, Breadcrumbs, Button, ButtonLink, Card, Container, EmptyState, PageHeader, Stat, fieldClass } from '@/components/ui';
 import { InlineMarkdown } from '@/components/content';
 import { ReviewerConfirm } from './reviewer-confirm';
 
 /**
  * The human review queue.
  *
- * Every question a learner can be served needs a named, authorised person's
- * approval of its exact current content (src/lib/content/human-review.ts).
- * This screen lists what is waiting for one. Reviewers see the exams they are
- * authorised for; editors and administrators see everything, read-only unless
- * they are also authorised reviewers.
+ * A named, authorised person approves a question's exact current content, or
+ * sends it back (src/lib/content/human-review.ts). While approval is required
+ * only approved questions are served; while it is optional, everything that
+ * passed the automated checks is served except what a reviewer sent back.
+ * This screen lists what is waiting, most-seen first. Reviewers see the exams
+ * they are authorised for; editors and administrators see everything,
+ * read-only unless they are also authorised reviewers.
  */
 
 export const dynamic = 'force-dynamic';
@@ -44,8 +46,14 @@ export default async function ReviewQueuePage({
     ? (query.status as ApprovalStatus)
     : 'awaiting-human-review';
 
+  const required = humanApprovalRequired();
   const rows = await reviewQueue(db, exam ? [exam] : visibleExams);
   const counts = countByStatus(rows);
+  const first =
+    reviewer?.status === 'active'
+      ? nextForReviewer(rows, reviewer, { email: user.email, displayName: user.displayName }, '')
+      : null;
+  const examQuery = exam ? `?exam=${encodeURIComponent(exam)}` : '';
   const shown = rows.filter((row) => row.status === status);
   const limited = shown.slice(0, ROW_LIMIT);
 
@@ -62,7 +70,11 @@ export default async function ReviewQueuePage({
       <PageHeader
         eyebrow="Internal"
         title="Human review queue"
-        lead="A question is served to a new session only after a named, authorised reviewer approves its exact current content. AI drafting, the AI blind solve and automated checks come first, but none of them counts as human approval."
+        lead={
+          required
+            ? 'A question is served to a new session only after a named, authorised reviewer approves its exact current content. AI drafting, the AI blind solve and automated checks come first, but none of them counts as human approval.'
+            : 'Human approval is optional for now: questions that passed the automated checks and the AI blind solve are served while they wait here. An approval is shown to learners with your name; a request for changes takes the question out of new sessions at once. None of the automated checks counts as human approval.'
+        }
       />
 
       {reviewer ? (
@@ -88,7 +100,19 @@ export default async function ReviewQueuePage({
             <div className="mt-5">
               <ReviewerConfirm name={reviewer.publicName} credentials={reviewer.publicCredentials} />
             </div>
-          ) : null}
+          ) : first ? (
+            <div className="mt-5 flex flex-wrap items-center gap-4">
+              <ButtonLink href={`/admin/review/${encodeURIComponent(first.questionId)}${examQuery}`}>
+                Start reviewing
+              </ButtonLink>
+              <p className="text-sm text-ink-muted">
+                {counts['awaiting-human-review']} waiting{exam ? ` for ${getExamConfig(exam)?.shortName ?? exam}` : ''}. Questions
+                learners reported or see most come first; after each decision the next one opens.
+              </p>
+            </div>
+          ) : (
+            <p className="mt-5 text-sm text-ink-muted">Nothing is waiting for you{exam ? ' in this exam' : ''}.</p>
+          )}
         </Card>
       ) : (
         <Alert tone="info" className="mb-8" title="You can read this queue but not decide">
@@ -111,17 +135,26 @@ export default async function ReviewQueuePage({
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {(['approved', 'awaiting-human-review', 'changes-requested', 'in-automated-review'] as const).map((key) => (
             <Card key={key}>
-              <Stat labelAs="h3" label={STATUS_LABEL[key]} value={counts[key]} />
+              <Stat labelAs="h3" label={statusLabel(key, required)} value={counts[key]} />
             </Card>
           ))}
         </div>
         {counts.approved === 0 ? (
-          <Alert tone="caution" className="mt-5" title="No question is human-approved yet">
-            <p>
-              Until reviewers approve questions, new sessions have nothing to draw on and every practice format for
-              these exams is closed. Sessions learners already started keep their questions.
-            </p>
-          </Alert>
+          required ? (
+            <Alert tone="caution" className="mt-5" title="No question is human-approved yet">
+              <p>
+                Until reviewers approve questions, new sessions have nothing to draw on and every practice format for
+                these exams is closed. Sessions learners already started keep their questions.
+              </p>
+            </Alert>
+          ) : (
+            <Alert tone="info" className="mt-5" title="No question is human-approved yet">
+              <p>
+                Learners are being served questions that passed the automated checks, and the public pages say that most
+                questions have not been checked by a person. Each approval is shown on that question's review page.
+              </p>
+            </Alert>
+          )
         ) : null}
 
         <div role="region" aria-labelledby="summary-heading" tabIndex={0} className="mt-5 overflow-x-auto rounded-card border border-line bg-surface">
@@ -173,7 +206,7 @@ export default async function ReviewQueuePage({
             <label htmlFor="queue-status" className="text-sm font-medium">Status</label>
             <select id="queue-status" name="status" defaultValue={status} className={fieldClass('sm:w-80')}>
               {STATUS_ORDER.map((value) => (
-                <option key={value} value={value}>{`${STATUS_LABEL[value]} (${counts[value]})`}</option>
+                <option key={value} value={value}>{`${statusLabel(value, required)} (${counts[value]})`}</option>
               ))}
             </select>
           </div>
@@ -193,8 +226,17 @@ export default async function ReviewQueuePage({
               return (
                 <Card as="li" key={row.questionVersionId}>
                   <div className="flex flex-wrap items-center gap-2">
-                    <Badge tone={STATUS_TONE[row.status]}>{STATUS_LABEL[row.status]}</Badge>
-                    <Link href={`/admin/review/${encodeURIComponent(row.questionId)}`} className="font-mono text-sm">
+                    <Badge tone={STATUS_TONE[row.status]}>{statusLabel(row.status, required)}</Badge>
+                    {row.priority.openReports > 0 ? (
+                      <Badge tone="negative">
+                        {row.priority.openReports} open learner report{row.priority.openReports === 1 ? '' : 's'}
+                      </Badge>
+                    ) : null}
+                    {row.priority.publicSample ? <Badge tone="accent">Public sample</Badge> : null}
+                    {row.priority.timesServed > 0 ? (
+                      <Badge tone="neutral">Given to learners {row.priority.timesServed}×</Badge>
+                    ) : null}
+                    <Link href={`/admin/review/${encodeURIComponent(row.questionId)}${examQuery}`} className="font-mono text-sm">
                       {row.questionId}
                     </Link>
                     <span className="text-sm text-ink-muted">v{row.version}</span>

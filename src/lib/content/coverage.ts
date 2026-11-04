@@ -68,13 +68,15 @@ export function planFor(examKey: string): CoveragePlanSettings {
 export interface CoverageItem extends PoolItem {
   state: string;
   humanApproved: boolean;
+  /** A reviewer sent the current content back; not served either way. */
+  changesRequested?: boolean;
   stemMd: string;
 }
 
 export type ItemBucket = 'approved' | 'awaiting-human-review' | 'in-automated-review' | 'quarantined' | 'draft' | 'retired';
 
-export function bucketOf(item: Pick<CoverageItem, 'state' | 'humanApproved'>): ItemBucket {
-  if (eligibleForNewSessions(item.state, item.state, item.humanApproved)) return 'approved';
+export function bucketOf(item: Pick<CoverageItem, 'state' | 'humanApproved' | 'changesRequested'>): ItemBucket {
+  if (eligibleForNewSessions(item.state, item.state, item.humanApproved, item.changesRequested ?? false)) return 'approved';
   if (item.state === 'published') return 'awaiting-human-review';
   if (item.state === 'in_review') return 'in-automated-review';
   return item.state as ItemBucket;
