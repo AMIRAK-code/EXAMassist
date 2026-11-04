@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { getDb } from '@/lib/db';
 import { requireAdmin } from '@/lib/auth/guards';
 import { EXAM_CONFIGS, getExamConfig } from '@/lib/exams/registry';
-import { listReviewers } from '@/lib/content/human-review';
+import { humanApprovalRequired, listReviewers } from '@/lib/content/human-review';
 import { Alert, Badge, Breadcrumbs, Card, Container, PageHeader } from '@/components/ui';
 import { GrantReviewerForm, RevokeReviewer } from './reviewer-admin';
 
@@ -33,7 +33,11 @@ export default async function ReviewersPage() {
       <PageHeader
         eyebrow="Internal"
         title="Reviewers"
-        lead="The people authorised to approve questions. Only their approval of a question's exact current content makes it available to learners."
+        lead={
+          humanApprovalRequired()
+            ? "The people authorised to approve questions. Only their approval of a question's exact current content makes it available to learners."
+            : "The people authorised to approve questions, or send them back. While approval is optional, their approval is shown to learners with their name, and a request for changes takes a question out of new sessions."
+        }
       />
 
       <Alert tone="caution" className="mb-8" title="Authorise only real, qualified people">
@@ -49,7 +53,9 @@ export default async function ReviewersPage() {
           Current reviewers
         </h2>
         {reviewers.length === 0 ? (
-          <p className="mt-3 text-ink-muted">No reviewer has been authorised yet, so no question can be approved and none is served.</p>
+          <p className="mt-3 text-ink-muted">{humanApprovalRequired()
+              ? 'No reviewer has been authorised yet, so no question can be approved and none is served.'
+              : 'No reviewer has been authorised yet, so no question can be approved. Questions that passed the automated checks are served meanwhile.'}</p>
         ) : (
           <ul className="mt-4 space-y-3">
             {reviewers.map((reviewer) => (

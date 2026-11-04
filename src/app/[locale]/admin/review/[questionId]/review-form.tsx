@@ -1,25 +1,35 @@
 'use client';
 
 import { useId, useState } from 'react';
-import { useRouter } from '@/i18n/navigation';
+import { Link, useRouter } from '@/i18n/navigation';
 import { Alert, Button, fieldClass } from '@/components/ui';
+import { useAnswerRevealed } from './solve-first';
 
 /**
  * Approve, or request changes. An approval needs all four checks ticked; a
  * request for changes needs a note saying what to change. The server enforces
  * both, along with everything about who may decide; this only saves a round trip.
+ *
+ * After a decision the reviewer goes straight to the next question in their
+ * queue (`nextHref`), which says on arrival what was recorded.
  */
 export function ReviewForm({
+  questionId,
   questionVersionId,
   reviewFingerprint,
   criteria,
+  nextHref,
 }: {
+  questionId: string;
   questionVersionId: string;
   reviewFingerprint: string;
   criteria: Array<{ value: string; label: string }>;
+  /** The next question in this reviewer's queue, with its query string, or null at the end. */
+  nextHref: string | null;
 }) {
   const router = useRouter();
   const notesId = useId();
+  const answered = useAnswerRevealed();
   const [checked, setChecked] = useState<string[]>([]);
   const [notes, setNotes] = useState('');
   const [busy, setBusy] = useState<'approved' | 'changes_requested' | null>(null);
@@ -45,13 +55,35 @@ export function ReviewForm({
       body: JSON.stringify({ questionVersionId, reviewFingerprint, outcome, checked, notes }),
     }).catch(() => null);
     const data: { error?: { message?: string } } | null = await response?.json().catch(() => null);
-    setBusy(null);
     if (!response?.ok) {
+      setBusy(null);
       setMessage({ tone: 'negative', text: data?.error?.message ?? 'The decision could not be saved. Try again.' });
       return;
     }
-    setMessage({ tone: 'positive', text: outcome === 'approved' ? 'Approval recorded.' : 'Request for changes recorded.' });
+    if (nextHref) {
+      const separator = nextHref.includes('?') ? '&' : '?';
+      router.push(`${nextHref}${separator}decided=${outcome}&prev=${encodeURIComponent(questionId)}`);
+      return;
+    }
+    setBusy(null);
+    setMessage({
+      tone: 'positive',
+      text: `${outcome === 'approved' ? 'Approval recorded.' : 'Request for changes recorded.'} That was the last question waiting for you.`,
+    });
     router.refresh();
+  }
+
+  if (!answered) {
+    return (
+      <Alert tone="info">
+        <p>Answer the question first, or choose to show the answer. The decision form appears once the key is showing.</p>
+        {nextHref ? (
+          <p className="mt-2">
+            <Link href={nextHref}>Skip to the next question</Link>
+          </p>
+        ) : null}
+      </Alert>
+    );
   }
 
   return (
@@ -98,15 +130,21 @@ export function ReviewForm({
       </div>
       <div className="flex flex-wrap gap-3">
         <Button type="button" onClick={() => decide('approved')} loading={busy === 'approved'} disabled={busy !== null}>
-          Approve this version
+          {nextHref ? 'Approve and go to the next' : 'Approve this version'}
         </Button>
         <Button type="button" variant="secondary" onClick={() => decide('changes_requested')} loading={busy === 'changes_requested'} disabled={busy !== null}>
           Request changes
         </Button>
       </div>
+      {nextHref ? (
+        <p className="text-sm">
+          <Link href={nextHref}>Skip this one for now</Link>
+        </p>
+      ) : null}
       <p className="text-xs text-ink-muted">
         Your approval is shown to learners with your public name, credentials, the date and these four checks, only for
-        this version and only while its content is unchanged.
+        this version and only while its content is unchanged. A request for changes takes the question out of new
+        sessions straight away.
       </p>
     </form>
   );

@@ -23,7 +23,9 @@ const PATH = '/about/editorial-standards';
 /**
  * Real dates: written on 2026-09-22; revised on 2026-09-24 to state plainly
  * which checks are done by a model and that no per-question human review is
- * recorded, and again that day to record the option-letter correction.
+ * recorded, and again that day to record the option-letter correction;
+ * revised on 2026-11-04, when named reviewers began, to say that most
+ * questions have not been checked by a person and where an approval shows.
  */
 const PUBLISHED = PAGE_DATES.editorialStandards.published;
 const UPDATED = PAGE_DATES.editorialStandards.updated;

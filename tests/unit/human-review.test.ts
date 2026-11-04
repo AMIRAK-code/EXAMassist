@@ -28,6 +28,7 @@ import { planSeed, stimulusColumns, stimulusFileFor, versionColumns } from '@/li
 import { getAttemptState, startAttempt } from '@/lib/attempts/service';
 import { blueprintAvailability } from '@/lib/attempts/availability';
 import { approveForTest, createTestDb, createUser, fingerprintVersion, seedQuestions } from './helpers/test-db';
+import { byReviewPriority, nextForReviewer, reviewQueue, statusLabel, type QueueRow } from '@/lib/content/review-queue';
 
 // Written for the rule while human approval is required (HUMAN_APPROVAL_REQUIRED=true);
 // the default, where it is not, has its own test in human-review.test.ts.
@@ -186,6 +187,97 @@ describe('while human approval is not required (the default)', () => {
     const record = await recordReview(db, reviewer, approval(row), new Date('2026-10-30T10:00:00Z'));
     expect((await standingApprovalFor(db, row.id))?.id).toBe(record.id);
     expect(await humanApprovedCount(db, [SAT.examKey])).toBe(1);
+  });
+});
+
+describe('a request for changes while human approval is not required', () => {
+  it('takes the question out of new sessions until someone approves that content', async () => {
+    delete process.env.HUMAN_APPROVAL_REQUIRED;
+    const db = await createTestDb();
+    const admin = await account(db, 'admin');
+    await seedQuestions(db, SAT, { perDomain: 6, humanApproved: false });
+    const before = await getPool(db, SAT.examKey, null);
+    const target = before[0].questionId;
+    const row = await currentVersion(db, target);
+
+    const first = await activeReviewer(db, admin, { name: 'Maria Rossi' });
+    await recordReview(db, first, approval(row, { outcome: 'changes_requested', checked: [], notes: 'The key should be C, not B.' }), new Date('2026-11-04T09:00:00Z'));
+
+    const after = await getPool(db, SAT.examKey, null);
+    expect(after.map((item) => item.questionId)).not.toContain(target);
+    expect(after.length).toBe(before.length - 1);
+    expect(await countPublished(db, SAT.examKey)).toBe(after.length);
+    expect(await getPublishedVersion(db, target)).toBeUndefined();
+    const candidate = (await getCandidates(db, SAT.examKey)).find((item) => item.questionId === target)!;
+    expect(candidate.changesRequested).toBe(true);
+    expect(candidate.humanApproved).toBe(false);
+
+    // A second reviewer who disagrees approves the same content: the latest decision counts.
+    const second = await activeReviewer(db, admin, { name: 'Luca Bianchi' });
+    await recordReview(db, second, approval(row), new Date('2026-11-04T10:00:00Z'));
+    expect((await getPool(db, SAT.examKey, null)).map((item) => item.questionId)).toContain(target);
+    expect((await getCandidates(db, SAT.examKey)).find((item) => item.questionId === target)!.changesRequested).toBe(false);
+  });
+
+  it('labels a question awaiting review as served only while approval is optional', () => {
+    expect(statusLabel('awaiting-human-review', false)).toMatch(/served meanwhile/);
+    expect(statusLabel('awaiting-human-review', true)).toMatch(/not served/);
+    expect(statusLabel('changes-requested', false)).toMatch(/not served/);
+  });
+});
+
+describe('the order of the review queue', () => {
+  function row(questionId: string, priority: Partial<QueueRow['priority']>, extra: Partial<QueueRow> = {}): QueueRow {
+    return {
+      questionId,
+      questionVersionId: `${questionId}-v1`,
+      examKey: SAT.examKey,
+      status: 'awaiting-human-review',
+      author: 'digital-sat-author',
+      provenance: '{"authoredBy":"digital-sat-author"}',
+      priority: { publicSample: false, openReports: 0, timesServed: 0, ...priority },
+      ...extra,
+    } as QueueRow;
+  }
+
+  it('puts learner reports first, then public samples, then what learners see most', () => {
+    const rows = [
+      row('q-plain', {}),
+      row('q-served-3', { timesServed: 3 }),
+      row('q-sample', { publicSample: true }),
+      row('q-reported', { openReports: 1 }),
+      row('q-served-9', { timesServed: 9 }),
+    ].sort(byReviewPriority);
+    expect(rows.map((r) => r.questionId)).toEqual(['q-reported', 'q-sample', 'q-served-9', 'q-served-3', 'q-plain']);
+  });
+
+  it('offers the next question a reviewer may decide on, never their own work or another exam', () => {
+    const reviewer = { userId: 'u1', publicName: 'Maria Rossi', authorAliases: ['wave-author'], examKeys: [SAT.examKey] };
+    const account = { email: 'maria@example.invalid', displayName: null };
+    const rows = [
+      row('q-current', { openReports: 2 }),
+      row('q-approved', { openReports: 1 }, { status: 'approved' }),
+      row('q-mine', { publicSample: true }, { author: 'wave-author', provenance: '{}' }),
+      row('q-other-exam', { timesServed: 5 }, { examKey: 'gre' }),
+      row('q-next', { timesServed: 1 }),
+    ];
+    expect(nextForReviewer(rows, reviewer, account, 'q-current')?.questionId).toBe('q-next');
+    expect(nextForReviewer(rows.slice(0, 4), reviewer, account, 'q-current')).toBeNull();
+  });
+
+  it('counts open learner reports and marks the public samples', async () => {
+    const db = await createTestDb();
+    await seedQuestions(db, SAT, { perDomain: 6, humanApproved: false });
+    const target = (await getCandidates(db, SAT.examKey))[3].questionId;
+    for (const status of ['open', 'open', 'rejected']) {
+      await db
+        .prepare('INSERT INTO content_flags (id, question_id, reason, status, created_at) VALUES (?, ?, ?, ?, ?)')
+        .run(randomUUID(), target, 'wrong-answer', status, '2026-11-04T08:00:00Z');
+    }
+    const queue = await reviewQueue(db, [SAT.examKey]);
+    expect(queue[0].questionId).toBe(target);
+    expect(queue[0].priority.openReports).toBe(2);
+    expect(queue.slice(1).every((r) => r.priority.openReports === 0)).toBe(true);
   });
 });
 

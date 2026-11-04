@@ -5,9 +5,17 @@ solves it blind (`scripts/apply-review.ts`). That is automated quality control.
 It stays, and it is useful, but it is not human review and nothing on the site
 treats it as one.
 
-Since migration 014, **a question is served to a new session only when a
-named, authorised human reviewer has approved its exact current content.**
-The rule lives in one place, `humanApprovalSql` in
+Which questions a new session may draw on depends on the Worker variable
+`HUMAN_APPROVAL_REQUIRED`:
+
+- **Unset (the rule since 2026-10-30):** approval is optional. Everything that
+  passed the automated gates is served, **except a question a reviewer sent
+  back for changes**, which leaves new sessions at once and stays out until
+  its content changes or someone approves it.
+- **`"true"`:** a question is served only when a named, authorised human
+  reviewer has approved its exact current content.
+
+The rule lives in one place, `servableSql` in
 `src/lib/content/human-review.ts`, and every path that builds a new session or
 shows a question publicly goes through it (`getPool`, `getPublishedVersion`).
 Sessions learners already started keep the question versions they pinned.
@@ -59,12 +67,18 @@ reviewer records a request for changes on that question.
 2. The first time, read the line that will be shown beside your approvals. If
    it is accurate, tick the box and **Confirm and start reviewing**. If it is
    not, ask the administrator to correct it; do not confirm a wrong line.
-3. The queue lists questions awaiting human review for your exams. Open one.
+3. The queue lists questions awaiting human review for your exams, in the
+   order they matter most: open learner reports first, then the public
+   samples (anyone can read their key), then the questions learners have been
+   given most. **Start reviewing** opens the first one; after each decision the
+   next one opens by itself, and **Skip** moves on without deciding.
 4. The page shows the question as learners see it (stimulus, choices,
-   screen-reader text), the keyed answer, the explanation, the note on every
-   wrong choice, the syllabus alignment (section, domain with its official
-   share, skill, the taxonomy source), the automated checks (labelled as such),
-   the review history and the publication log.
+   screen-reader text) and the syllabus alignment (section, domain with its
+   official share, skill, the taxonomy source). The keyed answer, the
+   explanation, the note on every wrong choice and the AI blind solve stay
+   hidden until you pick an answer (or choose to show it); if your answer
+   differs from the key, the page says so. The review history and the
+   publication log are in the side column.
 5. Solve it yourself before reading the key. Then check, yourself:
    - **Answer key:** exactly one defensible answer, and it is the keyed one.
    - **Explanation:** correct, and it teaches the method; each distractor note

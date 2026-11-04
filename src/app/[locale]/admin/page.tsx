@@ -4,7 +4,7 @@ import { getDb } from '@/lib/db';
 import { requireEditorial } from '@/lib/auth/guards';
 import { EXAM_CONFIGS, getHubForConfig } from '@/lib/exams/registry';
 import { examCoverage } from '@/lib/attempts/availability';
-import { humanApprovedCount } from '@/lib/content/human-review';
+import { humanApprovalRequired, humanApprovedCount } from '@/lib/content/human-review';
 import { Alert, Badge, Breadcrumbs, ButtonLink, Card, Container, PageHeader, Stat } from '@/components/ui';
 
 /**
@@ -263,7 +263,8 @@ export default async function AdminOverviewPage() {
           <Card>
             <Stat labelAs="h3" label="Awaiting human approval" value={awaitingHuman} />
             <p className="mt-1 text-sm text-ink-muted">
-              Published questions no reviewer has approved as they stand. Not served until one does.
+              Published questions no reviewer has approved as they stand.{' '}
+              {humanApprovalRequired() ? 'Not served until one does.' : 'Served meanwhile, while approval is optional.'}
             </p>
             <div className="mt-4">
               <ButtonLink href="/admin/review" size="sm" variant={awaitingHuman > 0 ? 'primary' : 'secondary'}>
