@@ -59,5 +59,84 @@
       "approximation": "Yakın bir yaklaşım",
       "practice_only": "Çalışma alıştırması, simülasyon değil"
     }
+  },
+  "panels": {
+    "close": "Kapat",
+    "browse": {
+      "open": "Sınavlar ve rehberler",
+      "heading": "Göz at",
+      "allExams": "Tüm sınavlar",
+      "overview": "Genel bakış",
+      "format": "Format ve puanlama",
+      "practice": "Alıştırma yap",
+      "practiceVariant": "Alıştırma yap: {variant}",
+      "guidesHeading": "Rehberler",
+      "allGuides": "Tüm rehberler"
+    },
+    "study": {
+      "open": "Çalışma planı",
+      "heading": "Çalışma planı",
+      "loading": "Çalışma planınız yükleniyor…",
+      "error": "Çalışma planınız şu anda yüklenemedi.",
+      "retry": "Tekrar dene",
+      "promptTitle": "Çalışma planınız, her sayfanın yanında",
+      "promptVisitor": "Hazırlandığınız sınavları, ilerlemenizi, en sık yaptığınız hataları ve sırada ne olduğunu görmek için giriş yapın.",
+      "promptGuest": "Misafir olarak yaptığınız alıştırmalar bu tarayıcıda 7 gün saklanır. Bunları saklamak ve ilerlemenizi, sık yaptığınız hataları ve sıradaki oturumunuzu burada görmek için bir hesap oluşturun.",
+      "empty": "Henüz bir sınava hazırlanmıyorsunuz. Bir sınavda alıştırma yapın; ilerlemeniz ve sıradaki oturumunuz burada görünür.",
+      "chooseExam": "Bir sınav seçin",
+      "resume": {
+        "title": "Yarım kalan oturum",
+        "detail": "{exam}, soru {question} / {count}",
+        "others": "{count, plural, one {(ve yarım kalan # oturum daha)} other {(ve yarım kalan # oturum daha)}}",
+        "action": "Devam et"
+      },
+      "next": {
+        "title": "Sıradaki oturum",
+        "fromPlan": "{exam} planınızdan.",
+        "forExam": "{exam} için."
+      },
+      "exams": {
+        "title": "Hazırlandıklarınız",
+        "reason": {
+          "unfinished": "Devam ediyor",
+          "recent": "Yakın zamanda",
+          "plan": "Plan",
+          "pass": "Paket",
+          "target": "Hedef"
+        },
+        "answered": "Şimdiye kadar {count, plural, one {# yanıt} other {# yanıt}}; doğru oranının gösterilmesi için {more, plural, one {# yanıt daha} other {# yanıt daha}} gerekiyor",
+        "accuracy": "Doğru oranı {share, number, percent} ({count, plural, one {# yanıt} other {# yanıt}})",
+        "readiness": "Hazırlık: {band}",
+        "topics": "Çalışılan konular: {covered} / {total}",
+        "plan": "Plan: {total} oturumdan {done} tanesi tamamlandı",
+        "examDate": "Sınav tarihiniz: {date}, {days, plural, =0 {bugün} one {# gün sonra} other {# gün sonra}}",
+        "due": "{count, plural, one {Tekrar edilecek # soru} other {Tekrar edilecek # soru}}"
+      },
+      "mistakes": {
+        "title": "Sık yapılan hatalar",
+        "detail": "{exam} · {kind, select, skill {beceri} other {konu}} · {scored} sorudan {correct} doğru",
+        "none": "Henüz öne çıkan bir şey yok. Bir beceri ya da konu, sorularından en az {min} tanesini yanıtladığınızda ve doğru oranınız {share, number, percent} altında kaldığında burada görünür.",
+        "labels": "Kendi etiketleriniz: {labels}",
+        "label": "{label} ({count})"
+      },
+      "review": {
+        "due": "{count, plural, one {Tekrar zamanı gelen # soru var.} other {Tekrar zamanı gelen # soru var.}}",
+        "next": "Şu an tekrar edilecek soru yok; sıradaki soru {date} tarihinde geri gelecek.",
+        "none": "Defterinizde tekrar edilecek bir şey yok.",
+        "open": "Defteri açın"
+      },
+      "activity": {
+        "title": "Bu hafta",
+        "answered": "{count, plural, =0 {Son 7 günde yanıt yok} one {Son 7 günde # yanıt} other {Son 7 günde # yanıt}}",
+        "streak": "{days, plural, one {Üst üste # gün} other {Üst üste # gün}}",
+        "streakAtLeast": "Üst üste {days} gün ya da daha fazla",
+        "daysLabel": "Günlük yanıtlar",
+        "day": "{date}: {count, plural, =0 {yanıt yok} one {# yanıt} other {# yanıt}}"
+      },
+      "links": {
+        "dashboard": "Panel",
+        "studyPlan": "Çalışma planınızın tamamı"
+      }
+    }
   }
 }
