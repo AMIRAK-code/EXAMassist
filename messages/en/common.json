@@ -26,7 +26,17 @@
     "start": "Start",
     "startPractising": "Start practising",
     "menu": "Menu",
-    "close": "Close"
+    "close": "Close",
+    "barLabel": "Shortcuts",
+    "short": {
+      "dashboard": "Dashboard",
+      "exams": "Exams",
+      "bocconi": "Bocconi",
+      "guides": "Guides",
+      "howScoringWorks": "Scoring",
+      "mistakeNotebook": "Notebook",
+      "studyPlan": "Plan"
+    }
   },
   "guest": {
     "note": "You are practising as a guest. This browser keeps your practice for 7 days from when you started. Create an account to keep it.",
@@ -58,6 +68,85 @@
       "exam_accurate": "Matches the published exam rules",
       "approximation": "Close approximation",
       "practice_only": "Study practice, not a simulation"
+    }
+  },
+  "panels": {
+    "close": "Close",
+    "browse": {
+      "open": "Exams & guides",
+      "heading": "Browse",
+      "allExams": "All exams",
+      "overview": "Overview",
+      "format": "Format and scoring",
+      "practice": "Practice",
+      "practiceVariant": "Practice: {variant}",
+      "guidesHeading": "Guides",
+      "allGuides": "All guides"
+    },
+    "study": {
+      "open": "Study plan",
+      "heading": "Study plan",
+      "loading": "Loading your study plan…",
+      "error": "Your study plan could not be loaded just now.",
+      "retry": "Try again",
+      "promptTitle": "Your study plan, beside every page",
+      "promptVisitor": "Sign in to see the exams you are working on, your progress, the mistakes you make most and what to do next.",
+      "promptGuest": "As a guest, this browser keeps your practice for 7 days. Create an account to keep it, and to see your progress, common mistakes and next session here.",
+      "empty": "You are not working on an exam yet. Practise one, and your progress and next session will show here.",
+      "chooseExam": "Choose an exam",
+      "resume": {
+        "title": "Unfinished session",
+        "detail": "{exam}, question {question} of {count}",
+        "others": "{count, plural, one {(and # more unfinished)} other {(and # more unfinished)}}",
+        "action": "Continue"
+      },
+      "next": {
+        "title": "Next session",
+        "fromPlan": "From your {exam} plan.",
+        "forExam": "For {exam}."
+      },
+      "exams": {
+        "title": "Working on",
+        "reason": {
+          "unfinished": "In progress",
+          "recent": "Recent",
+          "plan": "Plan",
+          "pass": "Pass",
+          "target": "Goal"
+        },
+        "answered": "{count, plural, one {# answer} other {# answers}} so far; {more, plural, one {# more} other {# more}} before a share correct is shown",
+        "accuracy": "{share, number, percent} correct over {count, plural, one {# answer} other {# answers}}",
+        "readiness": "Readiness: {band}",
+        "topics": "Topics practised: {covered} of {total}",
+        "plan": "Plan: {done} of {total} sessions done",
+        "examDate": "Your exam date: {date}, {days, plural, =0 {today} one {in # day} other {in # days}}",
+        "due": "{count, plural, one {# question due for review} other {# questions due for review}}"
+      },
+      "mistakes": {
+        "title": "Common mistakes",
+        "detail": "{exam} · {kind, select, skill {skill} other {topic}} · {correct} of {scored} correct",
+        "none": "Nothing stands out yet. A skill or topic shows here once you have answered at least {min} of its questions and got fewer than {share, number, percent} right.",
+        "labels": "Your own labels: {labels}",
+        "label": "{label} ({count})"
+      },
+      "review": {
+        "due": "{count, plural, one {# question is due for review.} other {# questions are due for review.}}",
+        "next": "Nothing due; the next question comes back on {date}.",
+        "none": "Nothing in your notebook to review.",
+        "open": "Open the notebook"
+      },
+      "activity": {
+        "title": "This week",
+        "answered": "{count, plural, =0 {No answers in the last 7 days} one {# answer in the last 7 days} other {# answers in the last 7 days}}",
+        "streak": "{days, plural, one {# day in a row} other {# days in a row}}",
+        "streakAtLeast": "{days} or more days in a row",
+        "daysLabel": "Answers per day",
+        "day": "{date}: {count, plural, =0 {no answers} one {# answer} other {# answers}}"
+      },
+      "links": {
+        "dashboard": "Dashboard",
+        "studyPlan": "Full study plan"
+      }
     }
   }
 }
