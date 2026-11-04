@@ -26,7 +26,17 @@
     "start": "Inizia",
     "startPractising": "Inizia a esercitarti",
     "menu": "Menu",
-    "close": "Chiudi"
+    "close": "Chiudi",
+    "barLabel": "Scorciatoie",
+    "short": {
+      "dashboard": "Bacheca",
+      "exams": "Esami",
+      "bocconi": "Bocconi",
+      "guides": "Guide",
+      "howScoringWorks": "Punteggio",
+      "mistakeNotebook": "Errori",
+      "studyPlan": "Piano"
+    }
   },
   "guest": {
     "note": "Ti stai esercitando come ospite. Questo browser conserva le tue esercitazioni per 7 giorni dall’inizio. Crea un account per conservarle.",
@@ -58,6 +68,85 @@
       "exam_accurate": "Rispetta le regole ufficiali del test",
       "approximation": "Approssimazione fedele",
       "practice_only": "Esercitazione di studio, non una simulazione"
+    }
+  },
+  "panels": {
+    "close": "Chiudi",
+    "browse": {
+      "open": "Esami e guide",
+      "heading": "Sfoglia",
+      "allExams": "Tutti gli esami",
+      "overview": "Panoramica",
+      "format": "Formato e punteggio",
+      "practice": "Esercitati",
+      "practiceVariant": "Esercitati: {variant}",
+      "guidesHeading": "Guide",
+      "allGuides": "Tutte le guide"
+    },
+    "study": {
+      "open": "Piano di studio",
+      "heading": "Piano di studio",
+      "loading": "Caricamento del tuo piano di studio…",
+      "error": "Al momento non è stato possibile caricare il tuo piano di studio.",
+      "retry": "Riprova",
+      "promptTitle": "Il tuo piano di studio, accanto a ogni pagina",
+      "promptVisitor": "Accedi per vedere gli esami che stai preparando, i tuoi progressi, gli errori che fai più spesso e cosa fare dopo.",
+      "promptGuest": "Come ospite, questo browser conserva le tue esercitazioni per 7 giorni. Crea un account per conservarle e per vedere qui i tuoi progressi, gli errori più frequenti e la prossima sessione.",
+      "empty": "Non stai ancora preparando nessun esame. Esercitati su uno e qui vedrai i tuoi progressi e la prossima sessione.",
+      "chooseExam": "Scegli un esame",
+      "resume": {
+        "title": "Sessione da finire",
+        "detail": "{exam}, domanda {question} di {count}",
+        "others": "{count, plural, one {(e # altra da finire)} other {(e altre # da finire)}}",
+        "action": "Continua"
+      },
+      "next": {
+        "title": "Prossima sessione",
+        "fromPlan": "Dal tuo piano per {exam}.",
+        "forExam": "Per {exam}."
+      },
+      "exams": {
+        "title": "In preparazione",
+        "reason": {
+          "unfinished": "In corso",
+          "recent": "Recente",
+          "plan": "Piano",
+          "pass": "Pass",
+          "target": "Obiettivo"
+        },
+        "answered": "{count, plural, one {# risposta} other {# risposte}} finora; {more, plural, one {ne serve ancora #} other {ne servono altre #}} per mostrare la percentuale di risposte corrette",
+        "accuracy": "{share, number, percent} di risposte corrette su {count, plural, one {#} other {#}}",
+        "readiness": "Preparazione: {band}",
+        "topics": "Argomenti affrontati: {covered} su {total}",
+        "plan": "Piano: {done} sessioni su {total} completate",
+        "examDate": "La data del tuo esame: {date}, {days, plural, =0 {oggi} one {tra # giorno} other {tra # giorni}}",
+        "due": "{count, plural, one {# domanda da ripassare} other {# domande da ripassare}}"
+      },
+      "mistakes": {
+        "title": "Errori frequenti",
+        "detail": "{exam} · {kind, select, skill {abilità} other {argomento}} · {correct, plural, one {# corretta} other {# corrette}} su {scored}",
+        "none": "Per ora non emerge nulla. Un’abilità o un argomento compare qui quando hai risposto ad almeno {min} delle sue domande e ne hai indovinate meno del {share, number, percent}.",
+        "labels": "Le tue etichette: {labels}",
+        "label": "{label} ({count})"
+      },
+      "review": {
+        "due": "{count, plural, one {# domanda è da ripassare.} other {# domande sono da ripassare.}}",
+        "next": "Niente da ripassare ora; la prossima domanda torna il {date}.",
+        "none": "Nel tuo quaderno non c’è niente da ripassare.",
+        "open": "Apri il quaderno"
+      },
+      "activity": {
+        "title": "Questa settimana",
+        "answered": "{count, plural, =0 {Nessuna risposta negli ultimi 7 giorni} one {# risposta negli ultimi 7 giorni} other {# risposte negli ultimi 7 giorni}}",
+        "streak": "{days, plural, one {# giorno di fila} other {# giorni di fila}}",
+        "streakAtLeast": "{days} o più giorni di fila",
+        "daysLabel": "Risposte al giorno",
+        "day": "{date}: {count, plural, =0 {nessuna risposta} one {# risposta} other {# risposte}}"
+      },
+      "links": {
+        "dashboard": "Bacheca",
+        "studyPlan": "Piano di studio completo"
+      }
     }
   }
 }

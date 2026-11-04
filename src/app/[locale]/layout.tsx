@@ -9,6 +9,8 @@ import { SITE, indexingEnabled, shareImages, siteUrl } from '@/lib/site';
 import { getCurrentUser } from '@/lib/auth/session';
 import { SiteFooter } from '@/components/site/site-footer';
 import { SiteHeader } from '@/components/site/site-header';
+import { SidePanels } from '@/components/site/side-panels';
+import { browseTree } from '@/lib/content/browse';
 import type { AccountState } from '@/components/site/nav-items';
 import { routing } from '@/i18n/routing';
 import { LOCALE_INFO, type Locale } from '@/i18n/locales';
@@ -74,9 +76,10 @@ export default async function LocaleLayout({ children, params }: Props) {
 
           <SiteHeader account={account} locale={locale} deferred={snapshot} />
 
-          <main id="main" className="flex-1">
+          {/* The browse and study-plan panels beside the page, where they belong (src/components/site/panel-paths.ts). */}
+          <SidePanels browse={browseTree()} account={account} deferred={snapshot}>
             {children}
-          </main>
+          </SidePanels>
 
           <SiteFooter />
         </NextIntlClientProvider>

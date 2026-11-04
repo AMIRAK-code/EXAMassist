@@ -26,7 +26,17 @@
     "start": "Zacznij",
     "startPractising": "Zacznij ćwiczyć",
     "menu": "Menu",
-    "close": "Zamknij"
+    "close": "Zamknij",
+    "barLabel": "Skróty",
+    "short": {
+      "dashboard": "Panel",
+      "exams": "Egzaminy",
+      "bocconi": "Bocconi",
+      "guides": "Przewodniki",
+      "howScoringWorks": "Punktacja",
+      "mistakeNotebook": "Błędy",
+      "studyPlan": "Plan"
+    }
   },
   "guest": {
     "note": "Ćwiczysz jako gość. Ta przeglądarka przechowuje Twoje ćwiczenia przez 7 dni od rozpoczęcia. Załóż konto, aby je zachować.",
@@ -58,6 +68,85 @@
       "exam_accurate": "Zgodne z opublikowanymi zasadami egzaminu",
       "approximation": "Bliskie przybliżenie",
       "practice_only": "Ćwiczenia do nauki, nie symulacja"
+    }
+  },
+  "panels": {
+    "close": "Zamknij",
+    "browse": {
+      "open": "Egzaminy i przewodniki",
+      "heading": "Przeglądaj",
+      "allExams": "Wszystkie egzaminy",
+      "overview": "Przegląd",
+      "format": "Format i punktacja",
+      "practice": "Ćwicz",
+      "practiceVariant": "Ćwicz: {variant}",
+      "guidesHeading": "Przewodniki",
+      "allGuides": "Wszystkie przewodniki"
+    },
+    "study": {
+      "open": "Plan nauki",
+      "heading": "Plan nauki",
+      "loading": "Wczytywanie Twojego planu nauki…",
+      "error": "Nie udało się teraz wczytać Twojego planu nauki.",
+      "retry": "Spróbuj ponownie",
+      "promptTitle": "Twój plan nauki obok każdej strony",
+      "promptVisitor": "Zaloguj się, aby zobaczyć egzaminy, do których się przygotowujesz, swoje postępy, najczęstsze błędy i to, co robić dalej.",
+      "promptGuest": "Ćwiczysz jako gość, więc ta przeglądarka przechowuje Twoje ćwiczenia przez 7 dni. Załóż konto, aby je zachować i widzieć tu swoje postępy, najczęstsze błędy i następną sesję.",
+      "empty": "Nie przygotowujesz się jeszcze do żadnego egzaminu. Poćwicz do jednego, a Twoje postępy i następna sesja pojawią się tutaj.",
+      "chooseExam": "Wybierz egzamin",
+      "resume": {
+        "title": "Niedokończona sesja",
+        "detail": "{exam}, pytanie {question} z {count}",
+        "others": "{count, plural, one {(i # inna niedokończona)} few {(i # inne niedokończone)} many {(i # innych niedokończonych)} other {(i # innej niedokończonej)}}",
+        "action": "Kontynuuj"
+      },
+      "next": {
+        "title": "Następna sesja",
+        "fromPlan": "Z Twojego planu: {exam}.",
+        "forExam": "Egzamin: {exam}."
+      },
+      "exams": {
+        "title": "W przygotowaniu",
+        "reason": {
+          "unfinished": "W toku",
+          "recent": "Niedawno",
+          "plan": "Plan",
+          "pass": "Karnet",
+          "target": "Cel"
+        },
+        "answered": "{count, plural, one {# odpowiedź} few {# odpowiedzi} many {# odpowiedzi} other {# odpowiedzi}} do tej pory; odsetek poprawnych pojawi się po {more, plural, one {# kolejnej} few {# kolejnych} many {# kolejnych} other {# kolejnej}}",
+        "accuracy": "{share, number, percent} poprawnych z {count, plural, one {# odpowiedzi} few {# odpowiedzi} many {# odpowiedzi} other {# odpowiedzi}}",
+        "readiness": "Gotowość: {band}",
+        "topics": "Przećwiczone tematy: {covered} z {total}",
+        "plan": "Plan: ukończone sesje {done} z {total}",
+        "examDate": "Data Twojego egzaminu: {date}, {days, plural, =0 {dzisiaj} one {za # dzień} few {za # dni} many {za # dni} other {za # dnia}}",
+        "due": "{count, plural, one {# pytanie do powtórki} few {# pytania do powtórki} many {# pytań do powtórki} other {# pytania do powtórki}}"
+      },
+      "mistakes": {
+        "title": "Częste błędy",
+        "detail": "{exam} · {kind, select, skill {umiejętność} other {temat}} · {correct} z {scored} poprawnie",
+        "none": "Na razie nic się nie wyróżnia. Umiejętność lub temat pojawi się tutaj, gdy odpowiesz na co najmniej {min} pytania z tego zakresu, a poprawnych będzie mniej niż {share, number, percent}.",
+        "labels": "Twoje etykiety: {labels}",
+        "label": "{label} ({count})"
+      },
+      "review": {
+        "due": "{count, plural, one {# pytanie czeka na powtórkę.} few {# pytania czekają na powtórkę.} many {# pytań czeka na powtórkę.} other {# pytania czeka na powtórkę.}}",
+        "next": "Nic nie czeka; następne pytanie wróci {date}.",
+        "none": "W Twoim zeszycie nie ma nic do powtórki.",
+        "open": "Otwórz zeszyt"
+      },
+      "activity": {
+        "title": "Ten tydzień",
+        "answered": "{count, plural, =0 {Brak odpowiedzi w ostatnich 7 dniach} one {# odpowiedź w ostatnich 7 dniach} few {# odpowiedzi w ostatnich 7 dniach} many {# odpowiedzi w ostatnich 7 dniach} other {# odpowiedzi w ostatnich 7 dniach}}",
+        "streak": "{days, plural, one {# dzień z rzędu} few {# dni z rzędu} many {# dni z rzędu} other {# dnia z rzędu}}",
+        "streakAtLeast": "{days} lub więcej dni z rzędu",
+        "daysLabel": "Odpowiedzi dziennie",
+        "day": "{date}: {count, plural, =0 {brak odpowiedzi} one {# odpowiedź} few {# odpowiedzi} many {# odpowiedzi} other {# odpowiedzi}}"
+      },
+      "links": {
+        "dashboard": "Panel",
+        "studyPlan": "Cały plan nauki"
+      }
     }
   }
 }
