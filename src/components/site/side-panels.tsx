@@ -19,8 +19,8 @@ type Which = 'browse' | 'study';
  * every exam and guide; on the right, the learner's study plan.
  *
  * From the `wide` breakpoint both sit beside the page, each scrolling on its
- * own. Below it they would crowd the page, so a bar above the content opens
- * either one as a modal drawer: the browser's own <dialog>, so focus stays in
+ * own. Below it they would crowd the page, so a tab on each edge of the
+ * screen opens its panel as a modal drawer: the browser's own <dialog>, so focus stays in
  * it, Escape closes it and focus returns to the button. Pages where they would
  * distract (src/components/site/panel-paths.ts) get the main column alone.
  *
@@ -70,13 +70,14 @@ export function SidePanels({
         </div>
       </div>
 
-      <main id="main" className="min-w-0">
-        <div className="border-b border-line bg-surface wide:hidden">
-          <div className="mx-auto flex max-w-6xl flex-wrap gap-2 px-4 py-2 sm:px-6">
-            <PanelButton which="browse" opener={openers.browse} open={open} onOpen={setOpen} label={t('browse.open')} />
-            <PanelButton which="study" opener={openers.study} open={open} onOpen={setOpen} label={t('study.open')} />
-          </div>
-        </div>
+      {/* Before <main> so they come first from the keyboard; the skip link passes them. */}
+      <div className="wide:hidden">
+        <PanelButton which="browse" opener={openers.browse} open={open} onOpen={setOpen} label={t('browse.open')} />
+        <PanelButton which="study" opener={openers.study} open={open} onOpen={setOpen} label={t('study.open')} />
+      </div>
+
+      {/* A phone's 16 px page gutter is narrower than the edge tabs: widen it to their 24 px. */}
+      <main id="main" className="min-w-0 px-2 sm:px-0">
         {children}
       </main>
 
@@ -116,6 +117,12 @@ export function SidePanels({
   );
 }
 
+/**
+ * A panel's tab on its own edge of the screen, just under the sticky header:
+ * an icon showing which side the panel opens from, named for screen readers
+ * and in a tooltip. It sits in the page gutter (24 px wide, 44 px tall), so it
+ * takes no row of its own.
+ */
 function PanelButton({
   which,
   opener,
@@ -129,6 +136,7 @@ function PanelButton({
   onOpen: (which: Which) => void;
   label: string;
 }) {
+  const start = which === 'browse';
   return (
     <button
       ref={opener}
@@ -136,17 +144,20 @@ function PanelButton({
       aria-haspopup="dialog"
       aria-expanded={open === which}
       aria-controls={`${which}-drawer`}
+      aria-label={label}
+      title={label}
       onClick={() => onOpen(which)}
-      className="inline-flex min-h-11 items-center gap-2 rounded-control border border-line-strong bg-paper px-3 text-sm font-semibold text-ink hover:border-ink"
+      className={
+        'fixed top-[4.75rem] z-30 inline-flex h-11 w-6 items-center justify-center border border-line-strong bg-paper text-ink shadow-raised hover:border-ink hover:bg-surface ' +
+        (start ? 'start-0 rounded-e-control border-s-0' : 'end-0 rounded-s-control border-e-0')
+      }
     >
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-        {which === 'browse' ? (
-          <path d="M2 3.5h12M2 8h12M2 12.5h8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-        ) : (
-          <path d="M3 2.5h10v11H3zM5.5 6h5M5.5 9h5M5.5 12h3" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" strokeLinecap="round" />
-        )}
+      {/* A window with its side bar shaded: the side the panel opens from. */}
+      <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true" className={start ? undefined : '-scale-x-100'}>
+        <rect x="2" y="3" width="14" height="12" rx="2" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M6.75 3v12" stroke="currentColor" strokeWidth="1.5" />
+        <rect x="2.75" y="3.75" width="3.25" height="10.5" rx="1" fill="currentColor" opacity="0.35" />
       </svg>
-      {label}
     </button>
   );
 }
