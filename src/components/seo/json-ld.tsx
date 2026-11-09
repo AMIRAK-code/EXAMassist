@@ -143,3 +143,77 @@ export function articleSchema(options: {
     isPartOf: { '@id': `${options.siteUrl}#website` },
   };
 }
+
+/**
+ * A free online course, as its course page shows it: what it teaches, who
+ * provides it, that it costs nothing, and its lessons in order. The course
+ * runs whenever the learner wants (no dates), online, and every lesson's
+ * reading time is shown on the page, so the workload is their sum.
+ */
+export function courseSchema(options: {
+  siteUrl: string;
+  url: string;
+  name: string;
+  description: string;
+  /** The exam the course prepares for, as its maker names it. */
+  about: string;
+  dateModified: string;
+  /** Total reading and check time in minutes. */
+  minutes: number;
+  syllabus: Array<{ name: string; description: string }>;
+  lessons: Array<{ name: string; url: string }>;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Course',
+    '@id': options.url,
+    name: options.name,
+    description: options.description,
+    url: options.url,
+    inLanguage: 'en',
+    dateModified: options.dateModified,
+    about: { '@type': 'Thing', name: options.about },
+    provider: { '@type': 'Organization', '@id': `${options.siteUrl}#organization`, name: 'UniExamer', sameAs: `${options.siteUrl}/` },
+    publisher: { '@id': `${options.siteUrl}#organization` },
+    isAccessibleForFree: true,
+    offers: [{ '@type': 'Offer', category: 'Free', price: 0, priceCurrency: 'EUR' }],
+    hasCourseInstance: [{ '@type': 'CourseInstance', courseMode: 'Online', courseWorkload: `PT${options.minutes}M` }],
+    syllabusSections: options.syllabus.map((section) => ({ '@type': 'Syllabus', name: section.name, description: section.description })),
+    hasPart: options.lessons.map((lesson, index) => ({ '@type': 'LearningResource', position: index + 1, name: lesson.name, url: lesson.url })),
+  };
+}
+
+/** One lesson of a course: a free learning resource that is part of it. */
+export function lessonSchema(options: {
+  siteUrl: string;
+  url: string;
+  name: string;
+  description: string;
+  courseUrl: string;
+  courseName: string;
+  /** The exam topic it teaches. */
+  teaches: string[];
+  minutes: number;
+  datePublished: string;
+  dateModified: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'LearningResource',
+    '@id': options.url,
+    name: options.name,
+    description: options.description,
+    url: options.url,
+    inLanguage: 'en',
+    learningResourceType: 'Lesson',
+    educationalUse: 'Self-study',
+    teaches: options.teaches,
+    timeRequired: `PT${options.minutes}M`,
+    isAccessibleForFree: true,
+    datePublished: options.datePublished,
+    dateModified: options.dateModified,
+    isPartOf: { '@type': 'Course', '@id': options.courseUrl, name: options.courseName },
+    author: { '@type': 'Organization', '@id': `${options.siteUrl}#organization`, name: 'UniExamer' },
+    publisher: { '@id': `${options.siteUrl}#organization` },
+  };
+}

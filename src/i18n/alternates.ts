@@ -18,8 +18,9 @@ const TRANSLATED_HUBS = new Set(['bocconi-online-test']);
  * guide exist only in English. An exam hub exists in every language when it
  * is in TRANSLATED_HUBS; otherwise in English plus the languages its
  * editorial content and exam details are translated into in full
- * (HUB_TRANSLATIONS in src/lib/exams/hub-content.ts). Every other page is
- * translated in full.
+ * (HUB_TRANSLATIONS in src/lib/exams/hub-content.ts). Course and lesson pages
+ * (src/lib/courses) are written in English only, like the guides. Every other
+ * page, the course and guide listings included, is translated in full.
  *
  * A page is still served in each interface language (navigation and labels
  * translated), but a version in a language its content does not exist in is
@@ -29,7 +30,7 @@ const TRANSLATED_HUBS = new Set(['bocconi-online-test']);
  * sitemap. Add a language only when the page's whole body is translated.
  */
 export function contentLocales(path: string): readonly Locale[] {
-  if (path.startsWith('/guides/')) return [DEFAULT_LOCALE];
+  if (path.startsWith('/guides/') || path.startsWith('/courses/')) return [DEFAULT_LOCALE];
   const exam = /^\/exams\/([^/]+)(\/format)?$/.exec(path);
   if (!exam) return LOCALES;
   if (exam[2]) return [DEFAULT_LOCALE];
