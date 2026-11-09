@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-exp20261105-0026",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "biology",
+  "domainSlug": "tolcf-biology",
+  "skillSlug": "tolcf-bio-genetics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A recessive trait appears only in individuals with genotype aa. Two unaffected heterozygous parents have a child. What is the probability that this child has the trait?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "0"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "1/4"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "1/2"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "3/4"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "1"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Each heterozygous parent transmits a with probability one half. The child must receive a from both parents, so multiply one half by one half to obtain one quarter. The four equally likely combinations are AA, Aa, aA and aa; only the last is affected.",
+  "distractorRationale": {
+    "c": "This is the probability of a heterozygous child, not an affected child.",
+    "d": "This is the probability of an unaffected phenotype.",
+    "a": "Both parents can pass on the recessive allele.",
+    "e": "The parents can also pass on the dominant allele."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-f",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-f",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Aa x Aa gives aa in one of four equally likely genotype outcomes."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

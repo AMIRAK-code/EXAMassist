@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-undergraduate-exp20261105-134",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-reading-comprehension",
+  "skillSlug": "reading-explicit-information",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "What error does the owner make?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Using an average without accounting for the changed order count."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Counting collection orders twice."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Treating 15 euros as a percentage."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Assuming the bakery sells no bread."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The missing factor is the number of deliveries, which dropped enough to offset the larger order value. The passage gives no evidence of double counting.",
+  "distractorRationale": {
+    "c": "This changes or extends a claim beyond the passage. The missing factor is the number of deliveries, which dropped enough to offset the larger order value. The passage gives no evidence of double counting.",
+    "d": "This confuses the relevant measure, scope, or stated condition. The missing factor is the number of deliveries, which dropped enough to offset the larger order value. The passage gives no evidence of double counting.",
+    "b": "This claim is not the conclusion supported by the cited passage evidence. The missing factor is the number of deliveries, which dropped enough to offset the larger order value. The passage gives no evidence of double counting."
+  },
+  "estimatedSeconds": 55,
+  "stimulusRef": {
+    "id": "bocconi-undergraduate-exp20261105-delivery-minimum",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-undergraduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-undergraduate",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Owner ignores the quantity decline when interpreting average order value."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

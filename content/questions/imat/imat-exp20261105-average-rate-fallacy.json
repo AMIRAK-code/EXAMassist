@@ -1,0 +1,81 @@
+{
+  "id": "imat-exp20261105-average-rate-fallacy",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-logic",
+  "skillSlug": "imat-logic-critical",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A hospital's waiting time fell in each of its two departments, yet its overall average waiting time rose. Which information could explain this?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "A much larger share of patients attended the department with the longer waits."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Both departments treated exactly the same patient shares as before."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "All waits in both departments became identical."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The units changed from minutes to metres."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "No patients attended either department."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "An overall average weights departmental averages by patient counts. A shift towards the slower department can outweigh improvements within both departments. Compare weights as well as component averages.",
+  "distractorRationale": {
+    "e": "An average would not be defined.",
+    "c": "Then the weighted average cannot exceed that common value.",
+    "b": "Fixed weights would preserve the direction of both improvements.",
+    "d": "This is a measurement error, not a valid weighted-average explanation."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-imat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-imat",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Greater weight of longer-wait department can raise aggregate despite both within-department declines."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

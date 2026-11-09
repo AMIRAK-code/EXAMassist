@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-exp20261105-0178",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "logic",
+  "domainSlug": "tolcf-logic",
+  "skillSlug": "tolcf-logic-propositions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A cabinet can be opened only if both a code and a key are available. The key is available, but the code is not. What follows?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The code becomes available whenever the key is present."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The cabinet can be opened because one condition is met."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The cabinet cannot be opened under the stated rule."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The cabinet can be opened only at night."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The key must be defective."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "“Only if both” makes the conjunction of code and key a necessary condition. A missing code makes that conjunction false, so opening is ruled out. Possessing one necessary component is not enough to satisfy a requirement for both.",
+  "distractorRationale": {
+    "b": "Both conditions are necessary, not either one alone.",
+    "d": "No time restriction is given.",
+    "e": "The absence of the code does not imply a defective key.",
+    "a": "The premises explicitly say the code is absent."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-f",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-f",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Opening requires both code and key; missing code excludes opening."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

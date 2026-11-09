@@ -1,0 +1,81 @@
+{
+  "id": "imat-exp20261105-necessary-laboratory",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-logic",
+  "skillSlug": "imat-logic-critical",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A laboratory allows a sample to be processed only if its label is legible. Sample R was processed. What must follow if the rule was obeyed?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Sample R was the only sample processed."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "No unprocessed sample had a legible label."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Sample R had the highest priority."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Sample R had a legible label."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Every legibly labelled sample was processed."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Only if makes legibility necessary for processing. Processing R therefore implies its label was legible. The converse, that all legible samples are processed, does not follow.",
+  "distractorRationale": {
+    "a": "The rule gives no count.",
+    "c": "Priority is not mentioned.",
+    "e": "The rule states a necessary, not sufficient, condition.",
+    "b": "An eligible sample might remain unprocessed for other reasons."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-imat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-imat",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Processed implies legible label by stated necessary condition."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

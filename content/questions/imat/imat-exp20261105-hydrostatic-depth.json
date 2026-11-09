@@ -1,0 +1,81 @@
+{
+  "id": "imat-exp20261105-hydrostatic-depth",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-physics-maths",
+  "skillSlug": "imat-phys-mechanics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A diver descends from 2 m to 5 m below a freshwater surface. Taking density 1000 kg/m cubed and g=10 m/s squared, by how much does hydrostatic pressure increase?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "3000 Pa"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "50000 Pa"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "70000 Pa"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "30000 Pa"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "20000 Pa"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The pressure change is density times g times depth change: 1000 times 10 times (5−2)=30000 Pa. Atmospheric pressure cancels when taking the difference.",
+  "distractorRationale": {
+    "b": "This is gauge pressure at the final depth, not the increase.",
+    "c": "This adds depths rather than taking the difference.",
+    "a": "This omits the factor g=10.",
+    "e": "This is gauge pressure at the initial depth."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-imat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-imat",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Pressure incrementrho*g*Deltah=1000*10*3=30000Pa."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

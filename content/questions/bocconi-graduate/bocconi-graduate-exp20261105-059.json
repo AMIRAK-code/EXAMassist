@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-graduate-exp20261105-059",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-data-insight",
+  "skillSlug": "grad-data-reading-displays",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "How many checked files are incomplete?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "24"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "98"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "302"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "400"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Subtract qualifying cases from the total: 400-302=98. The total already includes both outcomes, so subtraction counts each unsuccessful case exactly once.",
+  "distractorRationale": {
+    "a": "This includes only the middle category rather than all three.",
+    "c": "This counts qualifying cases rather than the complementary cases.",
+    "d": "This counts every case, including successful ones."
+  },
+  "estimatedSeconds": 55,
+  "stimulusRef": {
+    "id": "bocconi-graduate-exp20261105-loan-documentation",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): 400-302=98 incomplete."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

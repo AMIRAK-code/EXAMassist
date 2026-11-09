@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-exp20261105-0126",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolcf-mathematics",
+  "skillSlug": "tolcf-math-numbers",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A price rises by 25% and then falls by 20%. Compared with the original price, the final price is what?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "20% lower"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "10% higher"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "5% higher"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "5% lower"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Unchanged"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Let the original price be P. The two multipliers are 1.25 and 0.80, whose product is 1. Thus the final price is P. A numerical check using 100 gives 125 after the rise and 100 after the fall.",
+  "distractorRationale": {
+    "c": "Successive percentage changes have different bases and cannot simply be added.",
+    "d": "Subtracting the two percentages in reverse is not valid.",
+    "b": "The product of the change factors is one, not 1.10.",
+    "a": "This ignores the initial price rise."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-f",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-f",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Successive multipliers1.25*.80=1, unchanged."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

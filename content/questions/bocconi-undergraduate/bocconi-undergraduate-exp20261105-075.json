@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-undergraduate-exp20261105-075",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-numbers-ordering",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "If $0<x<1$, which is largest?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$x^2$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$x^3$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$x$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\sqrt{x}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "For a number between 0 and 1, decreasing a positive exponent increases the value. Thus $x^{1/2}>x>x^2>x^3$.",
+  "distractorRationale": {
+    "b": "Assumes the largest exponent produces the largest value.",
+    "c": "Does not account for the effect of a square root below 1.",
+    "a": "Assumes squaring always increases a positive number."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-undergraduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-undergraduate",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): For 0<x<1 smaller exponent gives larger value; exponent 1/2 wins."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

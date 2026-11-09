@@ -1,0 +1,81 @@
+{
+  "id": "lsat-exp20261105-053",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "lr1",
+  "domainSlug": "logical-reasoning",
+  "skillSlug": "lr-drawing-conclusions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Some members of the orchestra also teach. Every teacher in the orchestra reads music fluently. No fluent music reader is in the beginner class. Which must be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Every beginner belongs to the orchestra."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Some orchestra members are not in the beginner class."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "No orchestra member is in the beginner class."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Every fluent reader teaches."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "No teacher outside the orchestra reads fluently."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Start with the existing orchestra members who teach. They are fluent readers and therefore excluded from the beginner class. This establishes a particular conclusion, not a claim about every orchestra member.",
+  "distractorRationale": {
+    "c": "Only the teaching subset is covered by the chain.",
+    "d": "The teacher-to-fluent relation cannot be reversed.",
+    "a": "The premises establish no such membership.",
+    "e": "The premises say nothing about outside teachers."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "us-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Individually authored original draft. Requires blind independent solve and editorial review before publication."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "us-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-lsat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-lsat",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified\"; it checked for competing defensible answers and flagged none): Existing teacher-orchestra members read fluently, so cannot be beginners."
+    },
+    "notes": "Independent review pending; structural validation is not proof of correctness. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

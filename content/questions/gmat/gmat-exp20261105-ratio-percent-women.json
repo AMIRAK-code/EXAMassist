@@ -1,0 +1,81 @@
+{
+  "id": "gmat-exp20261105-ratio-percent-women",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-arithmetic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A department has 18 women and 12 men. If only men are added, how many must be added so women make up 45% of the department?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "6"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "8"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "10"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "12"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "22"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The women's count stays 18. Solve 18/(30+x)=0.45, giving total 40 and x=10. The final 18 out of 40 is 45%.",
+  "distractorRationale": {
+    "b": "This gives a total of 38, not 40.",
+    "e": "This is the final male count, not the number added.",
+    "d": "This gives a total of 42, not the needed 40.",
+    "a": "This gives women half of 36, or 50%."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): 18/(30+m)=.45 gives denominator40,m10."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

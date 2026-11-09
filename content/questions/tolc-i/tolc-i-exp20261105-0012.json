@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0012",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-arithmetic-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which expression is a factor of x³ + 8?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "x² + 4"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "x − 4"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "x + 2"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "x − 2"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "x + 8"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Use the sum-of-cubes identity: x³ + 2³ = (x + 2)(x² − 2x + 4). Alternatively, x = −2 makes the polynomial zero, confirming x + 2 as a factor.",
+  "distractorRationale": {
+    "d": "Substituting two gives sixteen, not zero.",
+    "e": "Substituting negative eight does not give zero.",
+    "a": "The sum-of-cubes factor is not this simple sum of squares.",
+    "b": "Substituting four does not give zero."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Sum cubes x³+2³ has factor x+2."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

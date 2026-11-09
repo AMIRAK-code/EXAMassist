@@ -1,0 +1,81 @@
+{
+  "id": "gmat-exp20261105-remainder-combination",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-arithmetic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Integer a leaves remainder 2 on division by 5, and integer b leaves remainder 4. What is the remainder when 3a+2b is divided by 5?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "0"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "1"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "2"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "3"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "4"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Replace a and b by their remainders within the expression: 3 times 2+2 times 4=14. Dividing 14 by 5 leaves remainder 4; multiples of 5 in a and b do not affect it.",
+  "distractorRationale": {
+    "a": "The weighted remainder sum is not a multiple of 5.",
+    "c": "This uses only a's remainder.",
+    "d": "This does not reduce the weighted sum correctly.",
+    "b": "This adds the original remainders without the coefficients."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): 3a+2b congruent3*2+2*4=14=4mod5."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

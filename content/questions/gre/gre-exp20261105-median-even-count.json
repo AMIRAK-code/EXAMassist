@@ -1,0 +1,81 @@
+{
+  "id": "gre-exp20261105-median-even-count",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-data-analysis",
+  "skillSlug": "data-descriptive-statistics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The ordered observations are 4,7,9,12,15,20. What is their median?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "9"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "10.5"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "11.1667"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "12"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "16"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "With six observations, average the third and fourth: (9+12)/2=10.5. The median uses position rather than the total of all observations.",
+  "distractorRationale": {
+    "c": "This approximates the mean, not the median.",
+    "d": "This selects only the upper middle observation.",
+    "a": "This selects only the lower middle observation.",
+    "e": "This is the range."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-gre",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gre",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Middle9,12 average10.5."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,75 @@
+{
+  "id": "digital-sat-exp20261105-029",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "algebra",
+  "skillSlug": "linear-inequalities",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A point $(x,y)$ must satisfy $y\\geq2x-1$ and $y<7-x$. Which listed point satisfies both?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$(3,5)$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$(2,4)$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$(0,-2)$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$(4,8)$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Substitute each coordinate into both conditions. At (2,4), the lower bound is 3 and the upper bound is 5, so 3≤4<5. A point must pass both checks.",
+  "distractorRationale": {
+    "a": "It fails y<7−x because 5 is not less than 4.",
+    "c": "It fails y≥2x−1 because −2 is below −1.",
+    "d": "It satisfies the lower bound but exceeds the upper bound 3."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "us-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Individually authored original draft. Requires blind independent solve and editorial review before publication."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "us-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-digital-sat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-digital-sat",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified\"; it checked for competing defensible answers and flagged none): At(2,4),4>=3 and4<5; other points fail."
+    },
+    "notes": "Independent review pending; structural validation is not proof of correctness. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

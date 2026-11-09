@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-a-exp20261105-191",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "mathematics-physics",
+  "domainSlug": "tila-physics",
+  "skillSlug": "tila-phys-thermal",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A 2 kg sample with specific heat 900 J/(kg·K) warms by 10 K. With no phase change, how much heat does it absorb?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "9000 J"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "18000 J"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "180 J"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "4500 J"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "1800 J"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Use Q=mcΔT. The product is 2 times 900 times 10=18000 joules, assuming the given specific heat is constant over the interval.",
+  "distractorRationale": {
+    "c": "This divides rather than multiplies by the temperature interval.",
+    "a": "This omits the mass factor.",
+    "e": "This omits the temperature change.",
+    "d": "This divides by mass instead of multiplying."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question. Historical 2026/27 TIL-A format; not a claim about the announced 2027/28 CISIA transition."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-a",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-a",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Q=mcDT=2times900times10=18000J."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

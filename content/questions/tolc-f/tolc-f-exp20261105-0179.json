@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-exp20261105-0179",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "logic",
+  "domainSlug": "tolcf-logic",
+  "skillSlug": "tolcf-logic-propositions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A report is accepted if it is signed and complete. The report was not accepted. Which statement must be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "It was signed and complete."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "It was complete but unsigned."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "It was signed but incomplete."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "It was unsigned or incomplete, or both."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "It was both unsigned and incomplete."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The rule is signed-and-complete implies accepted. Its contrapositive says not accepted implies not(signed-and-complete). By De Morgan’s law, that is unsigned or incomplete. The inclusive “or” also allows both deficiencies.",
+  "distractorRationale": {
+    "e": "Failure of a conjunction requires at least one missing part, not necessarily both.",
+    "c": "The premises do not identify which required part failed.",
+    "b": "This is possible but not forced over the other possibilities.",
+    "a": "That would trigger acceptance by the rule."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-f",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-f",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Signed-and-complete implies accepted; contraposition gives not-signed or not-complete."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

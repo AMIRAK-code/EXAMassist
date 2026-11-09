@@ -1,0 +1,75 @@
+{
+  "id": "digital-sat-exp20261105-033",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "advanced-math",
+  "skillSlug": "equivalent-expressions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "For $x\\ne3$, which expression is equivalent to $\\frac{x^2-9}{x-3}$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$x+3$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$x^2+3$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$x-3$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$1$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Factor the numerator as (x−3)(x+3). Since x≠3, cancel x−3 to obtain x+3. The restriction remains part of the original expression's domain.",
+  "distractorRationale": {
+    "c": "The numerator factors into both x−3 and x+3.",
+    "b": "Cancellation applies to factors, not separate terms.",
+    "d": "Only one factor cancels; x+3 remains."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "us-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Individually authored original draft. Requires blind independent solve and editorial review before publication."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "us-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-digital-sat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-digital-sat",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified\"; it checked for competing defensible answers and flagged none): Difference of squares cancels x-3 leaving x+3."
+    },
+    "notes": "Independent review pending; structural validation is not proof of correctness. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

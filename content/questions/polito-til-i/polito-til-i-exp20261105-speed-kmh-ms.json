@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-speed-kmh-ms",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "physics",
+  "domainSlug": "tili-physics",
+  "skillSlug": "tili-phys-vectors-units",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is 72 km/h expressed in m/s?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "2 m/s"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "72000 m/s"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "20 m/s"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "259.2 m/s"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "72 m/s"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Convert 72 km to 72000 m and one hour to 3600 s. Dividing gives 20 m/s; equivalently divide km/h by 3.6.",
+  "distractorRationale": {
+    "b": "This converts kilometres but not hours.",
+    "e": "This ignores the unit conversion.",
+    "a": "This introduces an extra factor of ten.",
+    "d": "This multiplies by 3.6 instead of dividing."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): 72/3.6=20m/s."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,110 @@
+{
+  "id": "gmat-exp20261105-data-048",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-graphics-interpretation",
+  "skillSlug": "gi-graphical-inference",
+  "subskillSlug": null,
+  "responseType": "two_part",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Select the dose with the highest observed yield in column \"observed\" and the strongest supported statement in column \"conclusion\".",
+  "instructionsMd": "Select exactly one answer in each named column. Both selections must be correct. The project presents separate column lists rather than the official interface’s shared matrix or drop-down controls.",
+  "options": [
+    {
+      "id": "observed-a",
+      "label": "A",
+      "textMd": "observed: 30kg"
+    },
+    {
+      "id": "observed-b",
+      "label": "B",
+      "textMd": "observed: 50kg"
+    },
+    {
+      "id": "observed-c",
+      "label": "C",
+      "textMd": "observed: 20kg"
+    },
+    {
+      "id": "observed-d",
+      "label": "D",
+      "textMd": "observed: 40kg"
+    },
+    {
+      "id": "conclusion-a",
+      "label": "A",
+      "textMd": "conclusion: Yields in this trial rose through30kg and then fell"
+    },
+    {
+      "id": "conclusion-b",
+      "label": "B",
+      "textMd": "conclusion: 30kg maximizes yield for every soil"
+    },
+    {
+      "id": "conclusion-c",
+      "label": "C",
+      "textMd": "conclusion: 35kg necessarily gives32 tonnes"
+    },
+    {
+      "id": "conclusion-d",
+      "label": "D",
+      "textMd": "conclusion: Fertilizer alone caused every difference in yield"
+    }
+  ],
+  "answerKey": {
+    "type": "two_part",
+    "selections": [
+      {
+        "columnId": "observed",
+        "optionId": "observed-a"
+      },
+      {
+        "columnId": "conclusion",
+        "optionId": "conclusion-a"
+      }
+    ]
+  },
+  "explanationMd": "The sequence of observed yields is18,24,30,33,31,28. Its maximum occurs at30kg. The pattern supports a description of this trial, while exact interpolation, universal optimality and causal attribution exceed the evidence.",
+  "distractorRationale": {
+    "observed-b": "The greatest dose did not give the greatest yield.",
+    "observed-c": "Its yield30 is below33.",
+    "observed-d": "Its yield31 is below33.",
+    "conclusion-b": "The trial does not test every soil.",
+    "conclusion-c": "No35kg observation or linear model is supplied.",
+    "conclusion-d": "Soil was not controlled."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "gmat-exp20261105-gi-yield",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original practice draft informed by current GMAC format descriptions. All business and study scenarios are invented; no official question is copied or paraphrased."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-expansion-verbal-data-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "conclusion-a,observed-a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Yields18,24,30,33,31,28 peak at30kg and then fall; uncontrolled soil prevents universal/cause claim."
+    },
+    "notes": "Author solution supplied. Independent blind solve and expert review remain pending."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

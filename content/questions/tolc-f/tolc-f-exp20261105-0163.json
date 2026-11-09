@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-exp20261105-0163",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "physics",
+  "domainSlug": "tolcf-physics",
+  "skillSlug": "tolcf-phys-fluids-thermo",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "How much heat is needed to raise 0.50 kg of water by 8 °C? Use c = 4200 J kg⁻¹ °C⁻¹ and ignore losses.",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "33,600 J"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "2100 J"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "1680 J"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "16,800 J"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "262.5 J"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Use Q = mcΔT. The calculation is 0.50 × 4200 × 8 = 16,800 J. A temperature difference of eight degrees has the same numerical size in kelvins, so no offset conversion is needed.",
+  "distractorRationale": {
+    "b": "This includes mass and specific heat but ignores the temperature change.",
+    "a": "This assumes one kilogram instead of half a kilogram.",
+    "e": "This divides by the temperature rise rather than multiplying.",
+    "c": "This is ten times too small."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-f",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-f",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Heat mcDeltaT=.5*4200*8=16800J."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

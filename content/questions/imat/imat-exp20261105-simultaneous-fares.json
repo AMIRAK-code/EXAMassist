@@ -1,0 +1,81 @@
+{
+  "id": "imat-exp20261105-simultaneous-fares",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-physics-maths",
+  "skillSlug": "imat-math-algebra-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Two adult tickets and three child tickets cost 31 units. One adult ticket and one child ticket cost 13 units. What is the child-ticket price?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "18 units"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "3 units"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "13 units"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "8 units"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "5 units"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Double the second relation to obtain two adults plus two children for 26. Subtract this from 31 to get one child at 5; the adult price is then 8. Both totals check.",
+  "distractorRationale": {
+    "d": "This is the adult-ticket price.",
+    "a": "This subtracts the totals without accounting for ticket counts.",
+    "b": "This is a ticket count, not the solved price.",
+    "c": "This is the combined price of one of each."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-imat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-imat",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Twice adult-plus-child13 gives2A+2C26;subtract from31 yields child5."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-graduate-exp20261105-187",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-verbal-reasoning",
+  "skillSlug": "grad-verbal-argument-analysis",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which statement cannot be true in any permitted order?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Orders must be in position 1."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Products and Customers must not occupy consecutive positions."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Products and Customers must occupy consecutive positions, in either order."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Products must precede Customers."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Test whether each proposed statement can be added consistently to the rules. \"Orders must be in position 1.\" is incompatible with every permitted order. The alternative statements each have a complete valid example, given in their feedback. To check impossibility, enumerate placements for the most restricted item or block, then remove every case breaking a rule.\n\nComplete permitted orders (each arrow advances one position):\n- Accounts → Products → Branches → Orders → Customers\n- Accounts → Products → Customers → Orders → Branches\n- Branches → Products → Accounts → Orders → Customers\n- Customers → Products → Accounts → Orders → Branches",
+  "distractorRationale": {
+    "b": "This is possible, as demonstrated by Accounts → Products → Branches → Orders → Customers, which obeys all the original conditions.",
+    "d": "This is possible, as demonstrated by Accounts → Products → Branches → Orders → Customers, which obeys all the original conditions.",
+    "c": "This is possible, as demonstrated by Accounts → Products → Customers → Orders → Branches, which obeys all the original conditions."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "bocconi-graduate-exp20261105-data-import",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Independently enumerated all 120 permutations of Accounts, Branches, Customers, Orders, Products. Rules Products must be in position 2. Accounts must precede Orders. Branches and Customers must not occupy consecutive positions. Orders must not be in position 5. leave 4 valid orders: Accounts>Products>Branches>Orders>Customers; Accounts>Products>Customers>Orders>Branches; Branches>Products>Accounts>Orders>Customers; Customers>Products>Accounts>Orders>Branches. Choice true counts: a=2, b=0, c=3, d=2; impossible requires zero matches."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

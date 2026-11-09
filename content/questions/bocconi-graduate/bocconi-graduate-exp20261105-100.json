@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-graduate-exp20261105-100",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-data-insight",
+  "skillSlug": "grad-data-derived-conclusions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the value of x+y for real numbers x and y?\n\n(1) $x+y=11$.\n\n(2) $x-y=3$.\n\nWhich assessment of sufficiency is correct?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Together the statements are sufficient, but neither is sufficient alone."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Statement (2) alone is sufficient, but statement (1) alone is not."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Even together the statements are not sufficient."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Statement (1) alone is sufficient, but statement (2) alone is not."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The sum equation directly gives the requested value, even without determining x and y separately. The difference equation allows many pairs with different sums. Solving both unknowns is unnecessary.",
+  "distractorRationale": {
+    "b": "Assess each statement separately before combining them. The sum equation directly gives the requested value, even without determining x and y separately. The difference equation allows many pairs with different sums. Solving both unknowns is unnecessary.",
+    "a": "Assess each statement separately before combining them. The sum equation directly gives the requested value, even without determining x and y separately. The difference equation allows many pairs with different sums. Solving both unknowns is unnecessary.",
+    "c": "Assess each statement separately before combining them. The sum equation directly gives the requested value, even without determining x and y separately. The difference equation allows many pairs with different sums. Solving both unknowns is unnecessary."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): First explicitly fixes requested sum11; difference3 alone permits many sums."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

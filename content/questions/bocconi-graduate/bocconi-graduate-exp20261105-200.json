@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-graduate-exp20261105-200",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-verbal-reasoning",
+  "skillSlug": "grad-verbal-argument-analysis",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Suppose the additional condition is: Acorn must be in position 1. Which further statement must then be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Acorn and Beacon must not occupy consecutive positions."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Acorn must be in position 2."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Acorn must be in position 3."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Acorn must not be in position 1."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "First restrict attention to orders satisfying the extra condition as well as the original rules. There are 1 such orders. \"Acorn and Beacon must not occupy consecutive positions.\" holds throughout this restricted set; the other statements fail on the explicit examples in their feedback.\n\nThe remaining orders are:\n- Acorn → Estuary → Dune → Beacon → Crest",
+  "distractorRationale": {
+    "d": "Even with the additional condition, Acorn → Estuary → Dune → Beacon → Crest is permitted and makes this statement false.",
+    "b": "Even with the additional condition, Acorn → Estuary → Dune → Beacon → Crest is permitted and makes this statement false.",
+    "c": "Even with the additional condition, Acorn → Estuary → Dune → Beacon → Crest is permitted and makes this statement false."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "bocconi-graduate-exp20261105-client-migrations",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Independently enumerated all 120 permutations of Acorn, Beacon, Crest, Dune, Estuary. Rules Crest must be in position 5. Acorn must be immediately followed by Estuary. Dune must precede Beacon. Additional condition: Acorn must be in position 1 leave 1 valid orders: Acorn>Estuary>Dune>Beacon>Crest. Choice true counts: a=1, b=0, c=0, d=0; necessary requires all matches."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

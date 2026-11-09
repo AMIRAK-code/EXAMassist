@@ -1,0 +1,107 @@
+{
+  "id": "gmat-exp20261105-data-058",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-two-part-analysis",
+  "skillSlug": "tpa-simultaneous-equations",
+  "subskillSlug": null,
+  "responseType": "two_part",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A lab mixes a20% salt solution and a50% salt solution to make30litres of a32% solution. Volumes add and no salt is lost. Select litres of20% solution in column \"low\" and litres of50% solution in column \"high\".",
+  "instructionsMd": "Select exactly one answer in each named column. Both selections must be correct. The project presents separate column lists rather than the official interface’s shared matrix or drop-down controls.",
+  "options": [
+    {
+      "id": "low-a",
+      "label": "A",
+      "textMd": "low: 15"
+    },
+    {
+      "id": "low-b",
+      "label": "B",
+      "textMd": "low: 20"
+    },
+    {
+      "id": "low-c",
+      "label": "C",
+      "textMd": "low: 18"
+    },
+    {
+      "id": "low-d",
+      "label": "D",
+      "textMd": "low: 12"
+    },
+    {
+      "id": "high-a",
+      "label": "A",
+      "textMd": "high: 15"
+    },
+    {
+      "id": "high-b",
+      "label": "B",
+      "textMd": "high: 10"
+    },
+    {
+      "id": "high-c",
+      "label": "C",
+      "textMd": "high: 12"
+    },
+    {
+      "id": "high-d",
+      "label": "D",
+      "textMd": "high: 18"
+    }
+  ],
+  "answerKey": {
+    "type": "two_part",
+    "selections": [
+      {
+        "columnId": "low",
+        "optionId": "low-c"
+      },
+      {
+        "columnId": "high",
+        "optionId": "high-c"
+      }
+    ]
+  },
+  "explanationMd": "Let high volume h and low volume30-h. Salt balance is0.20(30-h)+0.50h=0.32(30). Thus6+0.30h=9.6, so h=12 and low=18.",
+  "distractorRationale": {
+    "low-a": "Equal volumes give35%, not32%.",
+    "low-b": "With10litres high, the concentration is30%.",
+    "low-d": "This reverses the mixture amounts and gives38%.",
+    "high-a": "This yields35%.",
+    "high-b": "This yields30%.",
+    "high-d": "This yields38%."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original practice draft informed by current GMAC format descriptions. All business and study scenarios are invented; no official question is copied or paraphrased."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-expansion-verbal-data-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "high-c,low-c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Low+high30 and .2low+.5high9.6 yield high12 low18."
+    },
+    "notes": "Author solution supplied. Independent blind solve and expert review remain pending."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

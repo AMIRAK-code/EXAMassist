@@ -1,0 +1,75 @@
+{
+  "id": "tolc-f-exp20261105-0139",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolcf-mathematics",
+  "skillSlug": "tolcf-math-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A solid cylinder has radius 3 cm and height 8 cm. A cylindrical hole of radius 1 cm is drilled along its axis through the entire height. What volume of solid remains?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "64π cm³"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "8π cm³"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "32π cm³"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "80π cm³"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "72π cm³"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Subtract the removed cylindrical volume from the original volume. Both cylinders have height 8 cm, so the remaining volume is π(3² − 1²) × 8 = π(9 − 1) × 8 = 64π cm³. The result is less than the original 72π cm³ by exactly the removed 8π cm³.",
+  "distractorRationale": {
+    "e": "This is the original cylinder volume before removing the hole.",
+    "b": "This is the volume removed, not the volume remaining.",
+    "c": "This squares the difference of radii, giving π(3−1)² × 8, instead of subtracting their squared radii.",
+    "d": "This adds the removed volume to the original instead of subtracting it."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "A solid cylinder has radius 3 cm and height 8 cm. A cylindrical hole of radius 1 cm is drilled along its axis through the entire height. What volume of solid remains?",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content. Replaced during AI audit to remove a near-duplicate; human review remains pending."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

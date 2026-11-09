@@ -1,0 +1,81 @@
+{
+  "id": "imat-exp20261105-exp-growth-time",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-physics-maths",
+  "skillSlug": "imat-math-algebra-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A culture's population is modelled by N(t)=N(0) times 2 to the power t/3, with t in hours. How long does an eightfold increase take?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "3 hours"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "8 hours"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "9 hours"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "24 hours"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "6 hours"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Eight equals 2 cubed, so t/3 must equal 3. Therefore t=9 hours. Count three doubling intervals rather than multiplying the time by eight.",
+  "distractorRationale": {
+    "b": "The growth factor is not the elapsed time.",
+    "a": "This gives only a doubling.",
+    "d": "This treats each factor of eight as a doubling interval.",
+    "e": "This gives a fourfold increase."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-imat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-imat",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Eightfold=2³, t/3=3 gives9hours."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

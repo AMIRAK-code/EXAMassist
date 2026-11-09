@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-exp20261105-0183",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "logic",
+  "domainSlug": "tolcf-logic",
+  "skillSlug": "tolcf-logic-propositions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "All trainees who handle cultures wear gloves. No person wearing gloves uses the touchscreen. Lina is a trainee who used the touchscreen. What must follow?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Lina did not handle cultures."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Lina handled cultures without gloves."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Everyone who avoids the touchscreen handles cultures."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "No trainee ever uses the touchscreen."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Lina is not a trainee."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Using the touchscreen implies Lina was not wearing gloves under the second rule. If she had handled cultures as a trainee, the first rule would require gloves. Therefore she did not handle cultures. The reasoning uses contraposition and the stated trainee status.",
+  "distractorRationale": {
+    "e": "The premise explicitly identifies her as a trainee.",
+    "b": "That would violate the universal rule for trainees.",
+    "c": "This reverses and strengthens the given implications.",
+    "d": "Only glove-wearing people are excluded from it."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-f",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-f",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Touchscreen use excludes gloves; culture handling by trainee requires gloves; Lina did not handle."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

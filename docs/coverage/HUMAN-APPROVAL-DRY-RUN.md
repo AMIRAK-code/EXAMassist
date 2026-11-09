@@ -1,6 +1,6 @@
 # Mandatory human approval: dry-run impact
 
-Generated 2026-10-29 by `npm run content:coverage -- --write` from the content files in this checkout; no approvals: the review ledger is empty, as it is in any database right after migration 014.
+Generated 2026-11-09 by `npm run content:coverage -- --write` from the content files in this checkout; no approvals: the review ledger is empty, as it is in any database right after migration 014.
 It reads no database other than the one named, and changes nothing.
 
 "Before" is the rule until now: a question is served once its content file says `published` (automated
@@ -9,7 +9,7 @@ exact current content by an authorised human reviewer. A format is open when the
 repeating a question (`checkBlueprintSufficiency`, public samples excluded from measured formats) and its
 exam's rules allow it.
 
-**Summary:** 963 published question(s), 0 human-approved. 66 format(s) open before, 0 after.
+**Summary:** 3711 published question(s), 0 human-approved. 78 format(s) open before, 0 after.
 
 Attempts already made are not affected: they keep the question versions they pinned, their results and
 their review pages. What closes is the start of NEW sessions, the free test included, and public sample
@@ -20,7 +20,7 @@ content you deploy.
 
 ### SAT (Digital SAT) (`digital-sat`)
 
-151 published question(s); 0 with a current human approval.
+342 published question(s); 0 with a current human approval.
 
 | Format | Mode | Before (published pool) | After (strict policy) | Note |
 | --- | --- | --- | --- | --- |
@@ -36,23 +36,23 @@ Public sample `digital-sat-rw-words-in-context-cochineal-039` (home page and exa
 
 ### The ACT (Enhanced ACT) (`enhanced-act`)
 
-47 published question(s); 0 with a current human approval.
+245 published question(s); 0 with a current human approval.
 
 | Format | Mode | Before (published pool) | After (strict policy) | Note |
 | --- | --- | --- | --- | --- |
 | Enhanced ACT diagnostic (`diagnostic`) | diagnostic, measured | open | closed (short 17) | **becomes unavailable** |
 | Custom practice set (`practice`) | practice | open | closed (short 10) | **becomes unavailable** |
-| Timed English section (50 questions, 35 minutes) (`timed-english`) | practice, measured | closed (short 42) | closed (short 50) |  |
-| Timed Mathematics section (45 questions, 50 minutes) (`timed-math`) | practice, measured | closed (short 37) | closed (short 45) |  |
-| Timed Reading section (36 questions, 40 minutes) (`timed-reading`) | practice, measured | closed (short 29) | closed (short 36) |  |
-| Timed Science section (40 questions, 40 minutes) (`timed-science`) | practice, measured | closed (short 17) | closed (short 40) |  |
+| Timed English section (50 questions, 35 minutes) (`timed-english`) | practice, measured | open | closed (short 50) | **becomes unavailable** |
+| Timed Mathematics section (45 questions, 50 minutes) (`timed-math`) | practice, measured | open | closed (short 45) | **becomes unavailable** |
+| Timed Reading section (36 questions, 40 minutes) (`timed-reading`) | practice, measured | open | closed (short 36) | **becomes unavailable** |
+| Timed Science section (40 questions, 40 minutes) (`timed-science`) | practice, measured | open | closed (short 40) | **becomes unavailable** |
 | Timed Writing essay (1 prompt, 40 minutes) (`timed-writing`) | practice, measured | closed (short 1) | closed (short 1) | includes an essay part (outside this work) |
 
 Public sample `enhanced-act-math-quadratic-minimum-008` (home page and exam hub): **hidden until approved**.
 
 ### Law School Admission Test (LSAT) (`lsat`)
 
-46 published question(s); 0 with a current human approval.
+244 published question(s); 0 with a current human approval.
 
 | Format | Mode | Before (published pool) | After (strict policy) | Note |
 | --- | --- | --- | --- | --- |
@@ -60,28 +60,28 @@ Public sample `enhanced-act-math-quadratic-minimum-008` (home page and exam hub)
 | Custom practice set (`practice`) | practice | open | closed (short 10) | **becomes unavailable** |
 | Timed section: Logical Reasoning 1 (`timed-lr1`) | practice, measured | open | closed (short 24) | **becomes unavailable** |
 | Timed section: Logical Reasoning 2 (`timed-lr2`) | practice, measured | open | closed (short 24) | **becomes unavailable** |
-| Timed section: Reading Comprehension (`timed-rc`) | practice, measured | closed (short 7) | closed (short 27) |  |
+| Timed section: Reading Comprehension (`timed-rc`) | practice, measured | open | closed (short 27) | **becomes unavailable** |
 | Timed: LSAT Argumentative Writing (`timed-writing`) | practice, measured | closed (short 1) | closed (short 1) | includes an essay part (outside this work) |
 
 Public sample `lsat-lr-compost-supported-127` (home page and exam hub): **hidden until approved**.
 
 ### GMAT Exam (`gmat`)
 
-37 published question(s); 0 with a current human approval.
+232 published question(s); 0 with a current human approval.
 
 | Format | Mode | Before (published pool) | After (strict policy) | Note |
 | --- | --- | --- | --- | --- |
 | GMAT diagnostic (`diagnostic`) | diagnostic, measured | open | closed (short 15) | **becomes unavailable** |
 | Practice set (`practice`) | practice | open | closed (short 10) | **becomes unavailable** |
-| Timed Quantitative Reasoning section (`timed-quantitative-reasoning`) | practice, measured | closed (short 2) | closed (short 21) |  |
-| Timed Verbal Reasoning section (`timed-verbal-reasoning`) | practice, measured | closed (short 17) | closed (short 23) |  |
-| Timed Data Insights section (`timed-data-insights`) | practice, measured | closed (short 9) | closed (short 20) |  |
+| Timed Quantitative Reasoning section (`timed-quantitative-reasoning`) | practice, measured | open | closed (short 21) | **becomes unavailable** |
+| Timed Verbal Reasoning section (`timed-verbal-reasoning`) | practice, measured | open | closed (short 23) | **becomes unavailable** |
+| Timed Data Insights section (`timed-data-insights`) | practice, measured | open | closed (short 20) | **becomes unavailable** |
 
 Public sample `gmat-ps-units-digit-cycles-204` (home page and exam hub): **hidden until approved**.
 
 ### GRE General Test (`gre`)
 
-73 published question(s); 0 with a current human approval.
+257 published question(s); 0 with a current human approval.
 
 | Format | Mode | Before (published pool) | After (strict policy) | Note |
 | --- | --- | --- | --- | --- |
@@ -97,7 +97,7 @@ Public sample `gre-verbal-tc-fossil-record-014` (home page and exam hub): **hidd
 
 ### Online Bocconi Test (standard variant) (`bocconi-undergraduate`)
 
-124 published question(s); 0 with a current human approval.
+318 published question(s); 0 with a current human approval.
 
 | Format | Mode | Before (published pool) | After (strict policy) | Note |
 | --- | --- | --- | --- | --- |
@@ -110,7 +110,7 @@ Public sample `bocconi-ug-alg-quadratic-inequality-002` (home page and exam hub)
 
 ### Bocconi Online Test - Law (`bocconi-law`)
 
-83 published question(s); 0 with a current human approval.
+279 published question(s); 0 with a current human approval.
 
 | Format | Mode | Before (published pool) | After (strict policy) | Note |
 | --- | --- | --- | --- | --- |
@@ -121,17 +121,19 @@ Public sample `bocconi-ug-alg-quadratic-inequality-002` (home page and exam hub)
 
 ### Online Bocconi Test (international graduate applicants) (`bocconi-graduate`)
 
-33 published question(s); 0 with a current human approval.
+228 published question(s); 0 with a current human approval.
 
 | Format | Mode | Before (published pool) | After (strict policy) | Note |
 | --- | --- | --- | --- | --- |
 | Bocconi graduate diagnostic skill check (`diagnostic`) | diagnostic, measured | open | closed (short 12) | **becomes unavailable** |
 | Bocconi graduate practice set (`practice`) | practice | open | closed (short 10) | **becomes unavailable** |
-| Full-length timed Bocconi graduate block (50 items, 75 minutes) (`timed-online-test`) | practice, measured | closed (short 17) | closed (short 50) |  |
+| Full-length timed Bocconi graduate block (50 items, 75 minutes) (`timed-online-test`) | practice, measured | open | closed (short 50) | **becomes unavailable** |
+
+Public sample `bocconi-grad-quant-remote-share-028` (home page and exam hub): **hidden until approved**.
 
 ### Politecnico di Torino TIL-I (Engineering) (`polito-til-i`)
 
-50 published question(s); 0 with a current human approval.
+235 published question(s); 0 with a current human approval.
 
 | Format | Mode | Before (published pool) | After (strict policy) | Note |
 | --- | --- | --- | --- | --- |
@@ -143,9 +145,11 @@ Public sample `bocconi-ug-alg-quadratic-inequality-002` (home page and exam hub)
 | Physics: timed section (10 questions, 22 minutes) (`timed-physics`) | practice, measured | open | closed (short 10) | **becomes unavailable** |
 | Basic technical knowledge: timed section (6 questions, 12 minutes) (`timed-technical-knowledge`) | practice, measured | open | closed (short 6) | **becomes unavailable** |
 
+Public sample `polito-til-i-math-geometry-similar-triangle-areas-007` (home page and exam hub): **hidden until approved**.
+
 ### Politecnico di Torino TIL-A (Architecture) (`polito-til-a`)
 
-60 published question(s); 0 with a current human approval.
+245 published question(s); 0 with a current human approval.
 
 | Format | Mode | Before (published pool) | After (strict policy) | Note |
 | --- | --- | --- | --- | --- |
@@ -160,7 +164,7 @@ Public sample `bocconi-ug-alg-quadratic-inequality-002` (home page and exam hub)
 
 ### CISIA TOLC-E (Economics) (`tolc-e`)
 
-79 published question(s); 0 with a current human approval.
+273 published question(s); 0 with a current human approval.
 
 | Format | Mode | Before (published pool) | After (strict policy) | Note |
 | --- | --- | --- | --- | --- |
@@ -171,9 +175,11 @@ Public sample `bocconi-ug-alg-quadratic-inequality-002` (home page and exam hub)
 | Verbal comprehension: timed section (10 questions, 30 minutes) (`timed-verbal-comprehension`) | practice, measured | open | closed (short 10) | **becomes unavailable** |
 | Mathematics: timed section (13 questions, 30 minutes) (`timed-mathematics`) | practice, measured | open | closed (short 13) | **becomes unavailable** |
 
+Public sample `tolc-e-logic-seq-interleaved-607` (home page and exam hub): **hidden until approved**.
+
 ### CISIA TOLC-F (Pharmacy) (`tolc-f`)
 
-100 published question(s); 0 with a current human approval.
+294 published question(s); 0 with a current human approval.
 
 | Format | Mode | Before (published pool) | After (strict policy) | Note |
 | --- | --- | --- | --- | --- |
@@ -188,7 +194,7 @@ Public sample `bocconi-ug-alg-quadratic-inequality-002` (home page and exam hub)
 
 ### CISIA TOLC-I (Engineering) (`tolc-i`)
 
-80 published question(s); 0 with a current human approval.
+267 published question(s); 0 with a current human approval.
 
 | Format | Mode | Before (published pool) | After (strict policy) | Note |
 | --- | --- | --- | --- | --- |
@@ -199,3 +205,15 @@ Public sample `bocconi-ug-alg-quadratic-inequality-002` (home page and exam hub)
 | Logic: timed section (10 questions, 20 minutes) (`timed-logic`) | practice, measured | open | closed (short 10) | **becomes unavailable** |
 | Sciences: timed section (10 questions, 20 minutes) (`timed-sciences`) | practice, measured | open | closed (short 10) | **becomes unavailable** |
 | Verbal comprehension: timed section (10 questions, 20 minutes) (`timed-verbal-comprehension`) | practice, measured | open | closed (short 10) | **becomes unavailable** |
+
+### IMAT - International Medical Admissions Test (`imat`)
+
+252 published question(s); 0 with a current human approval.
+
+| Format | Mode | Before (published pool) | After (strict policy) | Note |
+| --- | --- | --- | --- | --- |
+| Full simulation - IMAT (`simulation-full`) | simulation, measured | open | closed (short 60) | **becomes unavailable** |
+| IMAT diagnostic skill check (`diagnostic`) | diagnostic, measured | open | closed (short 14) | **becomes unavailable** |
+| IMAT practice set (`practice`) | practice | open | closed (short 10) | **becomes unavailable** |
+
+Public sample `imat-bio-abo-blood-groups-024` (home page and exam hub): **hidden until approved**.

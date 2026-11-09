@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0094",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A laboratory has the rule: if a sample is contaminated, it is isolated or destroyed, or both. A sample is neither isolated nor destroyed. What follows?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "It was isolated and then destroyed."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "It is contaminated but exempt from the rule."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "It is not contaminated."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Every uncontaminated sample is neither isolated nor destroyed."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "It must be the only sample in the laboratory."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The consequent is an inclusive disjunction. Neither outcome makes that consequent false, so contraposition rules out contamination. This does not establish the converse for every uncontaminated sample.",
+  "distractorRationale": {
+    "b": "No exemption is given.",
+    "a": "That conflicts with the stated absence of both outcomes.",
+    "e": "No sample count is supplied.",
+    "d": "This reverses the implication and is not established."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Contamination implies isolated-or-destroyed; neither means uncontaminated."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

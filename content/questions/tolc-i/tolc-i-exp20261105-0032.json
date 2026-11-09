@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0032",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A cube has total surface area 150 cm². What is its volume?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "125 cm³"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "150 cm³"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "25 cm³"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "1000 cm³"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "75 cm³"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "If edge length is s, surface area is 6s² = 150. Thus s² = 25 and s = 5 cm. Volume is s³ = 125 cm³. First recover the linear dimension before cubing it.",
+  "distractorRationale": {
+    "c": "This is the area of one face numerically.",
+    "b": "This relabels the given surface area as volume.",
+    "e": "This divides the surface area without finding the edge.",
+    "d": "This uses an edge length of ten rather than five."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): 6s²=150 gives s=5, volume125."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,75 @@
+{
+  "id": "polito-til-i-exp20261105-log-product",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tili-mathematics",
+  "skillSlug": "tili-math-analytic-exp-log",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "For all positive $a$ and $b$, which expression is identically equal to $\\log_{10}(ab)$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "log base 10 of a divided by log base 10 of b"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The difference of the logarithms"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "log base 10 of a plus log base 10 of b"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The product of the two logarithms"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "a+b"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The product rule is log(ab)=log(a)+log(b) for positive arguments and a common valid base. Positivity ensures both separate logarithms are defined.",
+  "distractorRationale": {
+    "b": "This corresponds to a quotient.",
+    "a": "This is a change-of-base ratio, not the product rule.",
+    "e": "Taking logarithms does not remove their operation this way.",
+    "d": "Logarithms turn products into sums, not products."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

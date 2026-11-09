@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0124",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A box holds €1 and €2 coins, 18 coins in total, worth €29. How many €2 coins are there?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "7"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "9"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "11"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "14"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "18"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "If all eighteen coins were €1, the value would be €18. The extra €11 comes from replacing eleven of them with €2 coins, each adding one euro. Thus there are eleven €2 coins and seven €1 coins.",
+  "distractorRationale": {
+    "a": "This is the number of €1 coins.",
+    "b": "Equal coin counts would total €27.",
+    "d": "This would give a total of €32.",
+    "e": "All €2 coins would total €36."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Let x two-euro coins; 2x+(18-x)=29 gives x=11."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

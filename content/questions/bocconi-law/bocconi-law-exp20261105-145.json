@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-law-exp20261105-145",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-deductive-conditions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which complete order satisfies every stated condition?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Clay → Stone → Bronze → Wood → Glass"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Bronze → Clay → Glass → Stone → Wood"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Stone → Wood → Glass → Bronze → Clay"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Stone → Bronze → Wood → Clay → Glass"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Check each rule against Stone → Wood → Glass → Bronze → Clay. Every precedence, position, and separation condition holds. Each alternative violates at least one explicit rule; the corresponding violated condition is identified in its feedback.",
+  "distractorRationale": {
+    "b": "This order violates: Glass must be immediately followed by Bronze. Wood must precede Clay.",
+    "a": "This order violates: Glass must be immediately followed by Bronze. Wood must precede Clay. Bronze and Stone must not occupy consecutive positions.",
+    "d": "This order violates: Glass must be immediately followed by Bronze. Bronze and Stone must not occupy consecutive positions."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": {
+    "id": "bocconi-law-exp20261105-exhibit-installation",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-law",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-law",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Independently enumerated all 120 permutations of Bronze, Clay, Glass, Stone, Wood. Rules Glass must be immediately followed by Bronze. Wood must precede Clay. Bronze and Stone must not occupy consecutive positions. leave 9 valid orders: Glass>Bronze>Wood>Clay>Stone; Glass>Bronze>Wood>Stone>Clay; Stone>Glass>Bronze>Wood>Clay; Stone>Wood>Clay>Glass>Bronze; Stone>Wood>Glass>Bronze>Clay; Wood>Clay>Stone>Glass>Bronze; Wood>Glass>Bronze>Clay>Stone; Wood>Stone>Clay>Glass>Bronze; Wood>Stone>Glass>Bronze>Clay. Choice true counts: a=0, b=0, c=0, d=1; valid complete order requires one matches."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

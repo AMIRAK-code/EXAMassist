@@ -1,0 +1,110 @@
+{
+  "id": "gmat-exp20261105-data-047",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-graphics-interpretation",
+  "skillSlug": "gi-discern-relationships",
+  "subskillSlug": null,
+  "responseType": "two_part",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In column \"equality\", select the quantity at which prices are equal. In column \"saving\", select the saving from choosing A instead of B for250 copies.",
+  "instructionsMd": "Select exactly one answer in each named column. Both selections must be correct. The project presents separate column lists rather than the official interface’s shared matrix or drop-down controls.",
+  "options": [
+    {
+      "id": "equality-a",
+      "label": "A",
+      "textMd": "equality: 300 copies"
+    },
+    {
+      "id": "equality-b",
+      "label": "B",
+      "textMd": "equality: 200 copies"
+    },
+    {
+      "id": "equality-c",
+      "label": "C",
+      "textMd": "equality: 120 copies"
+    },
+    {
+      "id": "equality-d",
+      "label": "D",
+      "textMd": "equality: 100 copies"
+    },
+    {
+      "id": "saving-a",
+      "label": "A",
+      "textMd": "saving: A costs30 euros more"
+    },
+    {
+      "id": "saving-b",
+      "label": "B",
+      "textMd": "saving: 30 euros"
+    },
+    {
+      "id": "saving-c",
+      "label": "C",
+      "textMd": "saving: 60 euros"
+    },
+    {
+      "id": "saving-d",
+      "label": "D",
+      "textMd": "saving: 50 euros"
+    }
+  ],
+  "answerKey": {
+    "type": "two_part",
+    "selections": [
+      {
+        "columnId": "equality",
+        "optionId": "equality-b"
+      },
+      {
+        "columnId": "saving",
+        "optionId": "saving-b"
+      }
+    ]
+  },
+  "explanationMd": "The plotted lines intersect at(200,200). A’s slope is0.40 euro/copy with intercept120; B costs1 euro/copy. At250 copies the prices are220 and250, a saving of30 with A.",
+  "distractorRationale": {
+    "equality-a": "At300 copies the prices differ by60.",
+    "equality-c": "120 is A’s fixed price, not the intersection quantity.",
+    "equality-d": "At100 copies A costs160 and B100.",
+    "saving-a": "At250 copies A costs220 versus B250.",
+    "saving-c": "This is the saving for300 copies.",
+    "saving-d": "At250 copies A costs220, not200."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "gmat-exp20261105-gi-contracts",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original practice draft informed by current GMAC format descriptions. All business and study scenarios are invented; no official question is copied or paraphrased."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-expansion-verbal-data-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "equality-b,saving-b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): A=120+.4q and B=q equal atq200; at250 costs220 vs250, saving30."
+    },
+    "notes": "Author solution supplied. Independent blind solve and expert review remain pending."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

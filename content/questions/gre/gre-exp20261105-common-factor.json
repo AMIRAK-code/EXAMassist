@@ -1,0 +1,81 @@
+{
+  "id": "gre-exp20261105-common-factor",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-algebra",
+  "skillSlug": "alg-factoring-simplifying",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which is a complete factorisation of 6x squared−15x over the integers?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "3x(2x−5)"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "3x(2x+5)"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "6x(x−15)"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "x(6x−15)"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "3(2x−5)"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Both terms share 3x. Factoring it out leaves 2x−5, whose coefficients share no further integer factor. Expanding restores the original expression.",
+  "distractorRationale": {
+    "d": "This is valid but not complete because 3 remains common inside.",
+    "c": "This produces a −90x term.",
+    "b": "This reverses the sign of the second term.",
+    "e": "This drops a factor of x."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-gre",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gre",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Commonintegerfactor3x leavesprimitiveirreducible2x-5."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

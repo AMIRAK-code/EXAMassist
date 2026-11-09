@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0043",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-analytic-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the midpoint of the segment joining (−4, 7) and (6, −1)?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "(1, 3)"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "(1, 4)"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "(2, 6)"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "(−1, 3)"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "(5, −4)"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Average corresponding coordinates: horizontal coordinate (−4 + 6)/2 = 1 and vertical coordinate (7 − 1)/2 = 3. The midpoint must lie halfway along both coordinate changes, giving (1,3).",
+  "distractorRationale": {
+    "c": "This adds coordinates but fails to divide by two.",
+    "e": "This uses half the coordinate differences rather than their averages.",
+    "d": "This makes a sign error in the horizontal average.",
+    "b": "This does not average seven and negative one correctly."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Midpoint averages coordinates: (2/2,6/2)=(1,3)."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

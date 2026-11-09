@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0106",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-sequences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A sequence begins 0,1. Each later term equals the preceding term plus twice the term before that. What is the seventh term?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "11"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "13"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "21"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "22"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "43"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Continue carefully: 0,1,1,3,5,11,21. For example the seventh is 11+2×5=21. The term before the preceding one receives the factor two.",
+  "distractorRationale": {
+    "a": "This is the sixth term.",
+    "b": "This follows a different recurrence.",
+    "d": "This doubles the previous term without the correct earlier contribution.",
+    "e": "This is the eighth term."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Recurrence0,1,1,3,5,11,21; seventh21."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

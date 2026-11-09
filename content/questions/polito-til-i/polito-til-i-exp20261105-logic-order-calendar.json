@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-logic-order-calendar",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "reading-logic",
+  "domainSlug": "tili-logic",
+  "skillSlug": "tili-logic-orders",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Tasks P, Q, R, S and T each take one day, Monday to Friday. P is before R; Q is immediately before S; T is Wednesday; R is Friday. On which day must P occur?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Thursday"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Monday"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Wednesday"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Friday"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Tuesday"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The only available consecutive pair for Q,S is Monday,Tuesday: Wednesday is occupied and Friday is occupied. That leaves Thursday for P, before R on Friday.",
+  "distractorRationale": {
+    "d": "Friday is assigned to R.",
+    "c": "Wednesday is assigned to T.",
+    "b": "Then the adjacent pair Q,S cannot fit around Wednesday.",
+    "e": "Then no remaining consecutive pair fits Q,S."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): QSimmediatepair onlyMonTuefits; TWed RFri leavesPThu."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,107 @@
+{
+  "id": "gmat-exp20261105-data-053",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-two-part-analysis",
+  "skillSlug": "tpa-simultaneous-equations",
+  "subskillSlug": null,
+  "responseType": "two_part",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A museum sold80 tickets: adult tickets cost12 euros and student tickets7 euros. Revenue was760 euros. Select the adult count in column \"adult\" and the student count in column \"student\".",
+  "instructionsMd": "Select exactly one answer in each named column. Both selections must be correct. The project presents separate column lists rather than the official interface’s shared matrix or drop-down controls.",
+  "options": [
+    {
+      "id": "adult-a",
+      "label": "A",
+      "textMd": "adult: 30"
+    },
+    {
+      "id": "adult-b",
+      "label": "B",
+      "textMd": "adult: 50"
+    },
+    {
+      "id": "adult-c",
+      "label": "C",
+      "textMd": "adult: 60"
+    },
+    {
+      "id": "adult-d",
+      "label": "D",
+      "textMd": "adult: 40"
+    },
+    {
+      "id": "student-a",
+      "label": "A",
+      "textMd": "student: 30"
+    },
+    {
+      "id": "student-b",
+      "label": "B",
+      "textMd": "student: 50"
+    },
+    {
+      "id": "student-c",
+      "label": "C",
+      "textMd": "student: 60"
+    },
+    {
+      "id": "student-d",
+      "label": "D",
+      "textMd": "student: 40"
+    }
+  ],
+  "answerKey": {
+    "type": "two_part",
+    "selections": [
+      {
+        "columnId": "adult",
+        "optionId": "adult-d"
+      },
+      {
+        "columnId": "student",
+        "optionId": "student-d"
+      }
+    ]
+  },
+  "explanationMd": "If a+s=80 and12a+7s=760, subtracting7(a+s)=560 gives5a=200. Thus a=40 and s=40. Both equations are satisfied.",
+  "distractorRationale": {
+    "adult-a": "Then revenue would be710.",
+    "adult-b": "Then revenue would be810.",
+    "adult-c": "Then revenue would be860.",
+    "student-a": "With50 adults this gives810 euros.",
+    "student-b": "With30 adults this gives710 euros.",
+    "student-c": "With20 adults this gives660 euros."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original practice draft informed by current GMAC format descriptions. All business and study scenarios are invented; no official question is copied or paraphrased."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-expansion-verbal-data-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "adult-d,student-d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): 12a+7(80-a)=760 gives5a200,a40 and students40."
+    },
+    "notes": "Author solution supplied. Independent blind solve and expert review remain pending."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

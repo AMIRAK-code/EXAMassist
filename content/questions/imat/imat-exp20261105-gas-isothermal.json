@@ -1,0 +1,81 @@
+{
+  "id": "imat-exp20261105-gas-isothermal",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-physics-maths",
+  "skillSlug": "imat-phys-thermo-waves",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "An ideal gas is compressed isothermally from 6 L to 2 L without changing its amount. How does its pressure change?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "It doubles."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "It becomes zero."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "It remains unchanged."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "It becomes one third as large."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "It triples."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "At fixed temperature and amount, pressure times volume is constant. Reducing volume by a factor of three therefore increases pressure by a factor of three.",
+  "distractorRationale": {
+    "c": "That would require another variable to change.",
+    "d": "Pressure rises when volume falls isothermally.",
+    "b": "A compressed gas does not lose all pressure.",
+    "a": "The volume ratio is three, not two."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-imat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-imat",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Constant-temperature PV gives P2/P1=6/2=3."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0009",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-arithmetic-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "If x + 1/x = 5 with x ≠ 0, what is x² + 1/x²?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "10"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "15"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "23"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "25"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "27"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Square the given relation: x² + 2 + 1/x² = 25. Subtract two to obtain 23. There is no need to solve the quadratic for x because the desired symmetric expression is determined directly.",
+  "distractorRationale": {
+    "d": "This forgets the cross term two in the squared expression.",
+    "e": "This adds rather than subtracts the cross term.",
+    "a": "This doubles the given relation instead of squaring.",
+    "b": "This has no basis in the algebraic identity."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Squaring given identity gives x²+2+1/x²=25, required23."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0082",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "All members of group R belong to group S. Some members of S belong to group T. Which extra statement would guarantee that some R members belong to T?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Some S members do not belong to T."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Every T member belongs to S."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Every R member belongs to S."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "No T member belongs to R."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Every S member belongs to R."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "The existing S–T overlap supplies at least one person in both groups. If every S member is also in R, that person is in R and T. Repeating R’s inclusion in S or placing T within S does not ensure overlap with R.",
+  "distractorRationale": {
+    "d": "This would prevent the desired conclusion.",
+    "c": "This merely repeats the first premise.",
+    "a": "This does not connect the existing S–T overlap to R.",
+    "b": "T could still lie entirely outside R within S."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Every S in R transfers existing S-and-T witnesses into R-and-T."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

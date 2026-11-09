@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-exp20261105-0187",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "logic",
+  "domainSlug": "tolcf-logic",
+  "skillSlug": "tolcf-logic-graphs-tables",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Three filters have cost and expected lifetime as follows: P €18 for 6 months; Q €24 for 10 months; R €30 for 12 months. Ignoring replacement labour and discounting, which has the lowest cost per month?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Q"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "P and Q tie."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "R"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "P"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "All three tie."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Divide each price by its lifetime. P costs €3 per month, Q €2.40 and R €2.50. Q is cheapest per month even though P has the lowest purchase price and R the longest lifetime.",
+  "distractorRationale": {
+    "d": "Its monthly cost is €3, higher than the alternatives.",
+    "c": "Its monthly cost is €2.50, slightly above Q’s €2.40.",
+    "b": "Their cost-to-lifetime ratios differ.",
+    "e": "Equal-looking increments in prices do not give equal monthly costs."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-f",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-f",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Monthly costs P3,Q2.4,R2.5; Q lowest."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

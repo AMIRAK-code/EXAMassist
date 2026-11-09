@@ -1,0 +1,81 @@
+{
+  "id": "imat-exp20261105-frameshift-insertion",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-biology",
+  "skillSlug": "imat-bio-genetics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "One nucleotide is inserted near the beginning of a protein-coding sequence, after the start codon. No second mutation occurs. What is the most likely immediate coding consequence?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Only the inserted nucleotide is translated as a whole amino acid."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The entire chromosome doubles in number."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The reading frame must remain unchanged."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "All upstream codons necessarily change."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The downstream codon reading frame changes."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "A ribosome groups bases into triplets from the start site. Adding one base shifts downstream grouping and can introduce a premature stop; earlier codons remain unchanged.",
+  "distractorRationale": {
+    "c": "A one-base insertion is not a multiple of three.",
+    "b": "A local insertion does not duplicate chromosomes.",
+    "a": "Codons contain three bases, not one.",
+    "d": "Codons before the insertion are unaffected."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-imat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-imat",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Single nucleotide insertion shifts downstream triplet reading frame."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

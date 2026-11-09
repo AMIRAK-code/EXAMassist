@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0093",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-sequences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A sequence begins 2, 5. Each later term is the sum of the preceding two. What is the sixth term?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "12"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "19"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "24"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "31"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "50"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Continue by the stated recurrence: 2, 5, 7, 12, 19, 31. Each update uses the two immediately preceding terms. The explicit rule removes ambiguity about possible patterns.",
+  "distractorRationale": {
+    "b": "This is the fifth term.",
+    "c": "This adds nonconsecutive terms.",
+    "e": "This is the seventh term.",
+    "a": "This is the fourth term."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Terms 2,5,7,12,19,31."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

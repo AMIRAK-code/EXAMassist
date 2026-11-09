@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0049",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-analytic-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "The line y = x + k is tangent to the parabola y = x². For which k does this occur?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "k = 1/4"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "k = 1"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "k = −1"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "k = 0"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "k = −1/4"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Intersections satisfy x² − x − k = 0. Tangency means a repeated root, so the discriminant 1 + 4k must equal zero. Hence k = −1/4. The tangent point has x = 1/2.",
+  "distractorRationale": {
+    "a": "This makes the intersection discriminant positive rather than zero.",
+    "d": "The line then intersects at x = 0 and x = 1.",
+    "b": "This gives two distinct intersections.",
+    "c": "This gives no real intersections."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Intersection x²-x-k=0 tangent when discriminant 1+4k=0."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

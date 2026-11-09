@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0086",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Exactly two of three switches P, Q and R are on. If P is on, Q is off. If R is off, P is on. Which switch must be on?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "All three"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "R"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Q"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Neither P nor Q"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "P"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "If R were off, P would be on, which would force Q off. That would leave only one switch on, contradicting the total of two. Therefore R is on. Either P or Q can supply the second on switch.",
+  "distractorRationale": {
+    "e": "Q and R can be on while P is off.",
+    "c": "P and R can be on while Q is off.",
+    "d": "Exactly two switches are on, so one of them must be on.",
+    "a": "The first condition permits exactly two, not three."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): R off would force P on and then Q off, leaving only one on contrary exactlytwo; R must on."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

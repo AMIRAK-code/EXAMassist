@@ -1,0 +1,58 @@
+{
+  "id": "gre-exp20261105-factorial-trailing",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-arithmetic",
+  "skillSlug": "arith-integer-properties",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "How many zeros occur at the end of the decimal representation of 18 factorial?",
+  "instructionsMd": "Enter a numerical answer.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 3
+      }
+    ],
+    "acceptedStrings": [
+      "3"
+    ]
+  },
+  "explanationMd": "Each trailing zero requires a factor 10, hence a pair of factors 2 and 5. Twos are plentiful; the factors 5, 10 and 15 supply three fives, and no multiple of 25 occurs. Thus there are three zeros.",
+  "distractorRationale": {},
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-gre",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gre",
+      "solvedAnswer": "3",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Multiples5in18factorial three, no25, gives3trailingzeros."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

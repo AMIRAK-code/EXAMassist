@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0104",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-sequences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A positive sequence starts at 64 and each next term is the positive square root of the preceding term. What is the third term?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "2√2"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "4"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "2"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "√2"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "8"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The first term is 64 and the second is √64=8. The third is √8=2√2. The rule specifies positive square roots, so no negative branch is included.",
+  "distractorRationale": {
+    "e": "This is the second term.",
+    "b": "The square root of eight is not four.",
+    "c": "This applies a different division pattern.",
+    "d": "This omits a factor of two from the square root of eight."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Terms64,8,sqrt8=2sqrt2; third is2sqrt2."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

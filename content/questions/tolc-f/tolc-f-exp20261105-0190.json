@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-exp20261105-0190",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "logic",
+  "domainSlug": "tolcf-logic",
+  "skillSlug": "tolcf-logic-graphs-tables",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A timetable gives departures at 08:10, 08:35, 09:05 and 09:40. A passenger arrives at 08:36. How long must the passenger wait for the next departure?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "1 minute"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "64 minutes"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "25 minutes"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "30 minutes"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "29 minutes"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "The 08:35 departure has just been missed, so the next is 09:05. From 08:36 to 09:00 is 24 minutes and then five more minutes gives 29. Use the arrival time, not simply the scheduled interval.",
+  "distractorRationale": {
+    "a": "This measures time since the previous departure.",
+    "d": "This is the interval between two departures, not the passenger’s wait.",
+    "b": "This skips the 09:05 departure.",
+    "c": "This is the first listed departure interval."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-f",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-f",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Next departure09:05 minus08:36=29minutes."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

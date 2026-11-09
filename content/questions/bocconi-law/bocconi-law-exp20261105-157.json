@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-law-exp20261105-157",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-deductive-conditions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which complete order satisfies every stated condition?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Bridge → Court → Dock → Hall → Tower"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Dock → Court → Bridge → Tower → Hall"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Hall → Court → Dock → Bridge → Tower"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Court → Hall → Tower → Bridge → Dock"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Check each rule against Dock → Court → Bridge → Tower → Hall. Every precedence, position, and separation condition holds. Each alternative violates at least one explicit rule; the corresponding violated condition is identified in its feedback.",
+  "distractorRationale": {
+    "a": "This order violates: Bridge must occur after Court and before Hall. Tower must not be in position 5. Dock and Hall must not occupy consecutive positions.",
+    "d": "This order violates: Bridge must occur after Court and before Hall.",
+    "c": "This order violates: Bridge must occur after Court and before Hall. Tower must not be in position 5."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": {
+    "id": "bocconi-law-exp20261105-inspection-visits",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-law",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-law",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Independently enumerated all 120 permutations of Bridge, Court, Dock, Hall, Tower. Rules Bridge must occur after Court and before Hall. Tower must not be in position 5. Dock and Hall must not occupy consecutive positions. leave 10 valid orders: Court>Bridge>Dock>Tower>Hall; Court>Bridge>Hall>Tower>Dock; Court>Dock>Bridge>Tower>Hall; Court>Dock>Tower>Bridge>Hall; Court>Tower>Dock>Bridge>Hall; Dock>Court>Bridge>Tower>Hall; Dock>Court>Tower>Bridge>Hall; Dock>Tower>Court>Bridge>Hall; Tower>Court>Dock>Bridge>Hall; Tower>Dock>Court>Bridge>Hall. Choice true counts: a=0, b=0, c=0, d=1; valid complete order requires one matches."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

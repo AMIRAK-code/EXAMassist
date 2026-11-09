@@ -1,0 +1,75 @@
+{
+  "id": "gre-exp20261105-replacement-marbles",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-data-analysis",
+  "skillSlug": "data-elementary-probability",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A jar holds 3 green and 2 yellow marbles. A marble is selected uniformly at random, replaced, and then a second is selected uniformly at random independently. What is the probability both are yellow?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "1/10"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "4/25"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "6/25"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "8/25"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "2/5"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Replacement restores the original composition. Each yellow probability is 2/5, and the independent draws multiply to 4/25.",
+  "distractorRationale": {
+    "a": "This uses a without-replacement calculation.",
+    "d": "This doubles the one ordered event unnecessarily.",
+    "e": "This counts only one draw.",
+    "c": "This is the probability of green then yellow."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

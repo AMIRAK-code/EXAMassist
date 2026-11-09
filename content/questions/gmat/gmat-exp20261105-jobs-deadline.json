@@ -1,0 +1,81 @@
+{
+  "id": "gmat-exp20261105-jobs-deadline",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-applied-arithmetic-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Three identical workers can complete a job in 8 days. After all three work for 2 days, one leaves. How many additional days do the remaining two need, at unchanged rates?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "3"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "6"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "8"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "9"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "12"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The job requires 24 worker-days. Six are completed in the first two days, leaving 18. Two workers need 18/2=9 additional days.",
+  "distractorRationale": {
+    "b": "This uses the original three-worker rate for the remainder.",
+    "a": "This miscounts the remaining worker-days.",
+    "e": "This assigns the full job to two workers without credit for completed work.",
+    "c": "This repeats the original full-job duration."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Total24worker-days; first6used leaves18 over2workers=9days."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

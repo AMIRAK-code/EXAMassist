@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-a-exp20261105-0102",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "logical-reasoning",
+  "domainSlug": "tila-logic",
+  "skillSlug": "tila-logic-symbolic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A binary string is transformed by reversing its order, then replacing every 0 with 1 and every 1 with 0. What does 10110 become?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "01001"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "01100"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "01101"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "10010"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "10110"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Reversing 10110 gives 01101. Complementing each digit then gives 10010. Both operations must be applied in the stated order.",
+  "distractorRationale": {
+    "c": "This complements without reversing.",
+    "b": "This reverses some digits incorrectly.",
+    "a": "This is just the reversal without complementing.",
+    "e": "The transformation does not leave this string unchanged."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content. Historical 2026/27 TIL-A-format practice; not a claim of alignment to the announced 2027/28 replacement admission tests."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-a",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-a",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Reverse10110->01101 complement10010."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

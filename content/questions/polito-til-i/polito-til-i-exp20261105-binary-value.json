@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-binary-value",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "technical-knowledge",
+  "domainSlug": "tili-computer-science",
+  "skillSlug": "tili-cs-data-units",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "What decimal integer is represented by the unsigned binary number 10110?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "11"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "20"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "22"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "26"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "10110"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The set positions have values 16,4 and 2. Adding them gives 22. Binary place values double moving left: 1,2,4,8,16.",
+  "distractorRationale": {
+    "a": "This shifts all place values one position too low.",
+    "d": "This assigns a value to a zero bit.",
+    "e": "This reads the digits as a decimal numeral.",
+    "b": "This omits the final set bit's contribution."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Binary weights16+4+2=22."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

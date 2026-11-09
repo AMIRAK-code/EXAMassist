@@ -1,0 +1,75 @@
+{
+  "id": "digital-sat-exp20261105-064",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "advanced-math",
+  "skillSlug": "nonlinear-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A model is $N(t)=50\\cdot3^{t/4}$. Which equivalent form most directly shows the growth factor for each one-unit increase in $t$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$N(t)=50(3/4)^t$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$N(t)=50\\cdot3^t/4$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$N(t)=50(12)^t$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$N(t)=50(3^{1/4})^t$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Use the exponent identity 3^(t/4)=(3^(1/4))^t. The one-unit growth factor is the fourth root of 3, while 3 is the factor over four time units.",
+  "distractorRationale": {
+    "a": "Dividing an exponent is not the same as dividing the base.",
+    "b": "The denominator belongs in the exponent.",
+    "c": "This multiplies the base by the time denominator incorrectly."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "us-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Individually authored original draft. Requires blind independent solve and editorial review before publication."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "us-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-digital-sat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-digital-sat",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified\"; it checked for competing defensible answers and flagged none): 3^(t/4)=(3^(1/4))^t identifies unit multiplier."
+    },
+    "notes": "Independent review pending; structural validation is not proof of correctness. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

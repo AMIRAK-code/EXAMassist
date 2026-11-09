@@ -1,0 +1,81 @@
+{
+  "id": "imat-exp20261105-triangle-height-area",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-physics-maths",
+  "skillSlug": "imat-math-geometry-trig",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "An isosceles triangle has equal sides of length 13 and base 10. What is its area?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "30"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "50"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "60"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "65"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "120"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The altitude bisects the base into lengths 5. Its height is the square root of 13 squared−5 squared, or 12. Area is one half times 10 times 12 = 60.",
+  "distractorRationale": {
+    "b": "This assumes the height equals the base.",
+    "d": "This uses a side as the perpendicular height.",
+    "a": "This halves the base twice.",
+    "e": "This omits the one-half in the area formula."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-imat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-imat",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Isosceles height sqrt169-25=12;area.5*10*12=60."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

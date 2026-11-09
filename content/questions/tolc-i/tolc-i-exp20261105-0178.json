@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0178",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "sciences",
+  "domainSlug": "tolci-sciences",
+  "skillSlug": "tolci-sci-thermo",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "For an ideal gas, internal energy depends only on temperature. During an isothermal expansion, the gas does 200 J of work. How much heat must it absorb?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "−200 J"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "400 J"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "0 J"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "100 J"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "200 J"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Isothermal ideal-gas expansion has ΔU = 0. With work done by the gas positive, ΔU = Q − W implies Q = W = 200 J. Heat input exactly replaces the energy leaving as work.",
+  "distractorRationale": {
+    "c": "Constant temperature means zero internal-energy change, not zero heat transfer.",
+    "a": "Rejecting heat while doing work would lower internal energy.",
+    "b": "This double-counts the required energy input.",
+    "d": "This supplies only half the energy transferred as work."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Isothermal ideal gas DeltaU0 so Q=W=200J absorbed."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0023",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "For which k does x² + kx + 9 = 0 have exactly one distinct real root?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "k = 0"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "k = −6 or k = 6"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "k = 9 only"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "k = 6 only"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "k = 3 or k = −3"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "A repeated real root requires discriminant k² − 36 = 0. Thus k² = 36 and k = ±6. The resulting polynomials are (x + 3)² and (x − 3)².",
+  "distractorRationale": {
+    "d": "The discriminant condition also allows negative six.",
+    "e": "These values give negative discriminants.",
+    "c": "This gives two distinct real roots.",
+    "a": "This gives x² + 9 = 0 with no real roots."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Repeated root discriminant k²-36=0 gives k=±6."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

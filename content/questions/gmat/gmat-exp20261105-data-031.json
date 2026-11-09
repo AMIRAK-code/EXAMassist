@@ -1,0 +1,84 @@
+{
+  "id": "gmat-exp20261105-data-031",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-multi-source-reasoning",
+  "skillSlug": "msr-draw-combined-inferences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which service can be selected under all the stated requirements?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Glade"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Frost"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "None of the services"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Islet"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Haven"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The shipment weighs18 times2=36kg. Apply capacity, deadline, and budget together. Frost is timely but costs162; Glade is late; Haven lacks capacity. Islet meets all three and costs150 euros.",
+  "distractorRationale": {
+    "b": "Its cost is90+2(36)=162 euros, exceeding the160-euro budget.",
+    "a": "Arrival on day4 misses the day3 deadline.",
+    "e": "Its30kg maximum is below the36kg shipment mass.",
+    "c": "Islet meets the45kg limit, day3 deadline, and150-euro price."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "gmat-exp20261105-msr-cold-chain",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original practice draft informed by current GMAC format descriptions. All business and study scenarios are invented; no official question is copied or paraphrased."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-expansion-verbal-data-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Mass18*2=36kg; Frost meets mass/time costs162 over160; Islet150 meets45kg andday3; others fail deadline ormass."
+    },
+    "notes": "Author solution supplied. Independent blind solve and expert review remain pending. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

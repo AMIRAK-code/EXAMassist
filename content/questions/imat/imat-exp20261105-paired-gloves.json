@@ -1,0 +1,81 @@
+{
+  "id": "imat-exp20261105-paired-gloves",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-logic",
+  "skillSlug": "imat-logic-problem-solving",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A drawer contains 8 left-hand and 8 right-hand gloves. Without looking, what is the minimum number that must be taken to guarantee at least one left and one right glove?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "2"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "8"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "9"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "10"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "16"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "In the worst case the first eight are all left-hand or all right-hand gloves. The ninth must be of the other type, guaranteeing a pair. This is a worst-case question, not an average probability.",
+  "distractorRationale": {
+    "b": "All eight could come from one handedness.",
+    "d": "Nine already guarantees a glove of the other handedness.",
+    "a": "The two gloves could have the same handedness.",
+    "e": "Taking every glove is unnecessary."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-imat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-imat",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Worst draw8same handedness, ninth guarantees other."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,81 @@
+{
+  "id": "imat-exp20261105-work-team",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-logic",
+  "skillSlug": "imat-logic-problem-solving",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Six identical pumps empty a tank in 10 hours at constant rates. How long would four of these pumps take on the same full tank?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "15 hours"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "12 hours"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "10 hours"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "24 hours"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "6 hours"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The job requires 6 times 10=60 pump-hours. Four pumps need 60/4=15 hours. Time is inversely proportional to the number of equal-rate pumps.",
+  "distractorRationale": {
+    "b": "This does not preserve total pump-hours.",
+    "e": "Fewer pumps cannot finish sooner at the same rate.",
+    "d": "This uses an unrelated ratio.",
+    "c": "This ignores the reduction in total pumping rate."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-imat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-imat",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Constant pump-hours6*10=60, four pumps need60/4=15h."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

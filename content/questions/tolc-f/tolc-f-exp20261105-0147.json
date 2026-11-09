@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-exp20261105-0147",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolcf-mathematics",
+  "skillSlug": "tolcf-math-probability",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Two independent events have probabilities P(U) = 0.4 and P(V) = 0.3. What is the probability that exactly one occurs?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "0.12"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "0.42"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "0.46"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "0.58"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "0.70"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Exactly one means U without V or V without U. Independence gives 0.4 × 0.7 + 0.3 × 0.6 = 0.28 + 0.18 = 0.46. As a check, neither (0.42), exactly one (0.46) and both (0.12) sum to one.",
+  "distractorRationale": {
+    "e": "This adds the probabilities but includes the overlap twice.",
+    "a": "This is the probability both occur.",
+    "d": "This is the probability at least one occurs.",
+    "b": "This is the probability neither occurs."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-f",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-f",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Exactly one=.4*.7+.6*.3=.28+.18=.46."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-undergraduate-exp20261105-089",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-probability-conditional-bayes",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A box is chosen at random from two boxes. One contains 2 gold and 1 silver token; the other contains 1 gold and 3 silver tokens. A drawn token is gold. What is the probability the first box was chosen?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "1/2"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "2/3"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "8/11"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "3/4"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The gold contributions are $(1/2)(2/3)=1/3$ and $(1/2)(1/4)=1/8$. Divide the first by their sum: $(1/3)/(11/24)=8/11$.",
+  "distractorRationale": {
+    "b": "Uses likelihood without updating the box probability.",
+    "a": "Keeps the prior despite informative evidence.",
+    "d": "Counts gold tokens across boxes as though each token were equally sampled."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-undergraduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-undergraduate",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Bayes weights 1/3 and 1/8; ratio (1/3)/(11/24)=8/11."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

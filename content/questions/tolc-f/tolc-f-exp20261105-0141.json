@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-exp20261105-0141",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolcf-mathematics",
+  "skillSlug": "tolcf-math-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A map has scale 1:25,000. Two points are 6 cm apart on the map. What distance does this represent?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "150 km"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "1.5 km"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "15 km"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "150 m"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "0.24 km"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Multiply the map length by the scale factor: 6 × 25,000 = 150,000 cm. Since 100,000 cm equals 1 km, the real distance is 1.5 km. Keep units visible through the conversion.",
+  "distractorRationale": {
+    "d": "This is ten times too small after converting centimetres to metres.",
+    "c": "This is ten times too large.",
+    "e": "This divides by the scale instead of multiplying.",
+    "a": "This fails to convert centimetres to kilometres correctly."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-f",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-f",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): 6*25000cm=150000cm=1500m=1.5km."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

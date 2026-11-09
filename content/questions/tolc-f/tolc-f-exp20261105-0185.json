@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-exp20261105-0185",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "logic",
+  "domainSlug": "tolcf-logic",
+  "skillSlug": "tolcf-logic-graphs-tables",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A clinic records appointments and missed appointments: North 80 and 8; South 60 and 9; East 100 and 10. Which clinic has the highest missed-appointment rate?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "South"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "North and East tie for the highest rate."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "East"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "North"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "All three have the same rate."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Compare proportions, not raw missed counts. North has 8/80 = 10%, South 9/60 = 15%, and East 10/100 = 10%. South has the largest rate even though East has the largest number of missed appointments.",
+  "distractorRationale": {
+    "d": "Its rate is 8/80 = 10%, below South’s rate.",
+    "c": "Its rate is 10/100 = 10%, despite the largest missed count.",
+    "b": "They tie at 10%, but South is higher at 15%.",
+    "e": "The South proportion differs from the other two."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-f",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-f",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Rates North10%,South15%,East10%; South highest."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

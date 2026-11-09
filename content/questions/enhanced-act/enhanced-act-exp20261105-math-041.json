@@ -1,0 +1,75 @@
+{
+  "id": "enhanced-act-exp20261105-math-041",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "math",
+  "domainSlug": "act-math-statistics-and-probability",
+  "skillSlug": "act-math-stat-bivariate-relationships",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A fitted line predicts monthly cost $y$ from usage $x$ by $y=12+0.8x$. What does the slope mean?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Every observed point lies exactly on the fitted line."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Predicted cost increases by 0.8 units for each additional usage unit."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Cost is always exactly twelve units."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Usage increases by twelve units whenever cost increases."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The coefficient of x gives the change in predicted y per unit change in x. It is 0.8 cost units per usage unit; the model does not assert zero residuals.",
+  "distractorRationale": {
+    "a": "A fitted model can have residual errors.",
+    "c": "Twelve is the intercept, not a constant total.",
+    "d": "This reverses variables and misuses the intercept."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-enhanced-act",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-enhanced-act",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified\"; it checked for competing defensible answers and flagged none): Coefficient.8 is predicted additional cost per usage unit."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

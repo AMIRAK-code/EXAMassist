@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0048",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-analytic-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which equation describes a circle centred at the origin and passing through (3,4)?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "x + y = 7"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "(x − 3)² + (y − 4)² = 25"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "x² + y² = 25"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "x² + y² = 5"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "x² + y² = 7"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The radius is the distance from the origin to (3,4), namely five. A circle centred at the origin has equation x² + y² = r², so the right side is 25. The point satisfies 9 + 16 = 25.",
+  "distractorRationale": {
+    "d": "Five is the radius, while the equation uses radius squared.",
+    "e": "This adds coordinates rather than their squares.",
+    "b": "This moves the centre to the point rather than keeping it at the origin.",
+    "a": "This is a line, not a circle."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Radius²=3²+4²=25, centered at origin."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0030",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-polynomials",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the coefficient of x² in (x + 2)(x² − 3x + 5)?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "−6"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "5"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "−3"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "2"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "−1"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Only two products contribute to x²: x(−3x) = −3x² and 2(x²) = 2x². Their sum is −x², so the coefficient is −1. There is no need to expand every term.",
+  "distractorRationale": {
+    "c": "This counts the x times −3x contribution but omits 2 times x².",
+    "d": "This counts only the second contribution.",
+    "b": "This is unrelated to the combined x² terms.",
+    "a": "This comes from the x term produced by 2 times −3x."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): x² contributions -3x²+2x² give coefficient -1."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

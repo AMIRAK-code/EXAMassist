@@ -1,0 +1,81 @@
+{
+  "id": "imat-exp20261105-neutralisation-moles",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-chemistry",
+  "skillSlug": "imat-chem-stoichiometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "What volume of 0.20 mol/L sodium hydroxide exactly neutralises 30 mL of 0.10 mol/L hydrochloric acid?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "3 mL"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "30 mL"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "60 mL"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "150 mL"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "15 mL"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "The acid supplies 0.030 times 0.10 = 0.003 mol H+. The one-to-one reaction needs 0.003 mol hydroxide, requiring 0.003/0.20 = 0.015 L, or 15 mL.",
+  "distractorRationale": {
+    "b": "Equal volumes would require equal concentrations.",
+    "a": "This loses a factor of five in the mole balance.",
+    "d": "This introduces a factor-of-ten error.",
+    "c": "This reverses the concentration ratio."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-imat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-imat",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Acid moles.030*.10=.003; basevolume.003/.20=.015L=15mL."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

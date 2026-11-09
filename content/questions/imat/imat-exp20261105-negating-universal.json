@@ -1,0 +1,81 @@
+{
+  "id": "imat-exp20261105-negating-universal",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-logic",
+  "skillSlug": "imat-logic-critical",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A report states: Every specimen in tray T is sterile. What is the logical negation of this statement?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "At least one specimen in tray T is not sterile."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "At least one specimen outside tray T is sterile."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "No specimen in tray T is sterile."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Every specimen in tray T is sterile or labelled."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Most specimens in tray T are not sterile."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "A universal statement is false if there is at least one counterexample. Negation does not require all or most specimens to fail the property.",
+  "distractorRationale": {
+    "b": "That says nothing about tray T.",
+    "d": "This can be true alongside the original.",
+    "c": "This is stronger than needed to negate every.",
+    "e": "A single exception already defeats the original."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-imat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-imat",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Negation of everyTsterile is at leastoneTnotsterile."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

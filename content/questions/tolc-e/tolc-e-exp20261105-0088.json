@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0088",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Every parcel in shelf A is insured. Every insured parcel is tracked. Which fact would contradict these rules?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "A tracked parcel is not insured."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "An insured parcel is on shelf B."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "A tracked parcel is on shelf A."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "An empty shelf A exists."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "An untracked parcel is on shelf A."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Shelf A implies insured and insured implies tracked. A parcel on shelf A must therefore be tracked. An untracked one there would violate the chain, while the converse relationships are not required.",
+  "distractorRationale": {
+    "a": "Tracking may occur without insurance.",
+    "b": "The rules do not restrict all insured parcels to shelf A.",
+    "d": "Universal implications can hold when there are no parcels on the shelf.",
+    "c": "That is consistent with the implication chain."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Shelf A implies insured implies tracked, so an untracked A parcel contradicts."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-a-exp20261105-0148",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "drawing-representation",
+  "domainSlug": "tila-drawing",
+  "skillSlug": "tila-draw-graphs-diagrams",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A plan is drawn at scale 1:100. A wall measures 6.5 cm on the plan. What is its real length?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "6.5 m"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "0.65 m"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "650 m"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "65 m"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "6.5 cm"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Multiply the drawing length by100:6.5 cm becomes650 cm. Converting to metres gives6.5 m. Both the scale operation and unit conversion are necessary.",
+  "distractorRationale": {
+    "d": "This adds an extra factor of ten.",
+    "b": "This loses a factor of ten when converting centimetres to metres.",
+    "c": "The scaled result is650 centimetres, not metres.",
+    "e": "This ignores the scale factor."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content. Historical 2026/27 TIL-A-format practice; not a claim of alignment to the announced 2027/28 replacement admission tests."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-a",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-a",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): 6.5cm times100=650cm=6.5m."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

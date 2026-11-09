@@ -1,0 +1,107 @@
+{
+  "id": "gmat-exp20261105-data-059",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-two-part-analysis",
+  "skillSlug": "tpa-evaluate-tradeoffs",
+  "subskillSlug": null,
+  "responseType": "two_part",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A firm can fund exactly two distinct projects with a combined budget at most10 units. Projects have(cost,benefit): J(6,11), K(4,7), L(5,10), M(3,6). Benefits add. Select the lower-cost and higher-cost projects in the feasible pair with greatest total benefit.",
+  "instructionsMd": "Select exactly one answer in each named column. Both selections must be correct. The project presents separate column lists rather than the official interface’s shared matrix or drop-down controls.",
+  "options": [
+    {
+      "id": "lower-a",
+      "label": "A",
+      "textMd": "lower: J"
+    },
+    {
+      "id": "lower-b",
+      "label": "B",
+      "textMd": "lower: K"
+    },
+    {
+      "id": "lower-c",
+      "label": "C",
+      "textMd": "lower: M"
+    },
+    {
+      "id": "lower-d",
+      "label": "D",
+      "textMd": "lower: L"
+    },
+    {
+      "id": "higher-a",
+      "label": "A",
+      "textMd": "higher: M"
+    },
+    {
+      "id": "higher-b",
+      "label": "B",
+      "textMd": "higher: J"
+    },
+    {
+      "id": "higher-c",
+      "label": "C",
+      "textMd": "higher: K"
+    },
+    {
+      "id": "higher-d",
+      "label": "D",
+      "textMd": "higher: L"
+    }
+  ],
+  "answerKey": {
+    "type": "two_part",
+    "selections": [
+      {
+        "columnId": "lower",
+        "optionId": "lower-b"
+      },
+      {
+        "columnId": "higher",
+        "optionId": "higher-b"
+      }
+    ]
+  },
+  "explanationMd": "Feasible pairs J+K cost10 benefit18; J+M cost9 benefit17; K+L cost9 benefit17; K+M cost7 benefit13; L+M cost8 benefit16. J+L exceeds budget. The unique maximum is J+K.",
+  "distractorRationale": {
+    "lower-a": "J is the higher-cost member of its feasible pairs.",
+    "lower-c": "M+J gives17, below K+J at18.",
+    "lower-d": "L cannot be the lower-cost member of a feasible pair with J.",
+    "higher-a": "M is cheapest and cannot be the higher-cost member.",
+    "higher-c": "K paired with M gives13.",
+    "higher-d": "L+K gives17 and L+M gives16."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original practice draft informed by current GMAC format descriptions. All business and study scenarios are invented; no official question is copied or paraphrased."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-expansion-verbal-data-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "higher-b,lower-b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Feasible JK18,JM17,KL17,KM13,LM16 benefit; JLcost11 infeasible. JK maximum with lowerK4 higherJ6."
+    },
+    "notes": "Author solution supplied. Independent blind solve and expert review remain pending."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

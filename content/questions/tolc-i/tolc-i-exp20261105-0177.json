@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0177",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "sciences",
+  "domainSlug": "tolci-sciences",
+  "skillSlug": "tolci-sci-thermo",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A thermally insulated container is stirred vigorously with a paddle. No heat crosses its boundary. Can its internal energy increase?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Yes, because mechanical work can transfer energy into it."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Only if energy conservation fails."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "No, because energy can enter only as heat."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "No, because insulation prevents every form of energy transfer."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Yes, but only if its mass doubles."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "An adiabatic boundary excludes heat transfer but not work. Stirring does work on the fluid, which can increase its internal energy and temperature. The first law tracks both channels of energy transfer.",
+  "distractorRationale": {
+    "c": "The first law includes work as well as heat.",
+    "d": "Thermal insulation prevents heat transfer, not necessarily shaft work.",
+    "e": "Work input can increase internal energy without mass change.",
+    "b": "The increase is consistent with energy conservation through work."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Insulation excludes heat, not paddle work, which increases internal energy."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

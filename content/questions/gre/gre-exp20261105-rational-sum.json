@@ -1,0 +1,78 @@
+{
+  "id": "gre-exp20261105-rational-sum",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-algebra",
+  "skillSlug": "alg-factoring-simplifying",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "For nonzero x, what is 1/x + 1/(2x)?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "3/x"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "2/(3x)"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "2/x squared"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "3/(2x)"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "1/(3x)"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Use common denominator 2x: 1/x=2/(2x). Adding 1/(2x) yields 3/(2x). The nonzero condition ensures both original fractions are defined.",
+  "distractorRationale": {
+    "e": "This combines denominators without preserving values.",
+    "a": "This doubles the correct result.",
+    "b": "Adding denominators is not valid.",
+    "c": "This incorrectly moves the denominator coefficient 2 into the numerator and combines the two x factors as if multiplying; addition instead requires a common denominator."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question.",
+    "editedBy": [
+      "ai-audit-us-2026-11-05"
+    ]
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

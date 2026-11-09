@@ -1,0 +1,81 @@
+{
+  "id": "imat-exp20261105-osmosis-impermeant",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-biology",
+  "skillSlug": "imat-bio-molecules-cells",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A membrane allows water but not sucrose to cross. Side X contains 0.1 mol/L sucrose and side Y contains 0.4 mol/L sucrose, initially at equal pressure. Which net movement begins?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Water from X to Y"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Equal net flows of water in both directions"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Water from Y to X"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Sucrose from Y to X"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "No water movement because sucrose cannot cross"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The more concentrated sucrose solution has lower water potential at equal pressure. Water therefore moves from the dilute side X to the concentrated side Y until opposing pressure or concentration changes reduce net flux.",
+  "distractorRationale": {
+    "b": "Equal opposing flows would give zero net flow, unlike the stated initial conditions.",
+    "d": "The membrane is impermeable to sucrose.",
+    "e": "Solute impermeability is what sustains the osmotic difference.",
+    "c": "This reverses the initial osmotic direction."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-imat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-imat",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Lower-soluteX has higher water potential, net water flows XtoY."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

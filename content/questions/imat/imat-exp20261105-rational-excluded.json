@@ -1,0 +1,81 @@
+{
+  "id": "imat-exp20261105-rational-excluded",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-physics-maths",
+  "skillSlug": "imat-math-algebra-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "For x not equal to 3, simplify (x squared minus 9)/(x−3).",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "x−3"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "x+3 for all real x, including 3"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "x squared+3"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "1"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "x+3"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Factor the numerator as (x−3)(x+3), then cancel the nonzero factor x−3. The original domain restriction remains even though the simplified formula itself has a value at 3.",
+  "distractorRationale": {
+    "a": "This cancels the wrong factor.",
+    "b": "The original expression remains undefined at 3.",
+    "c": "Factoring does not preserve the squared term this way.",
+    "d": "The numerator and denominator are not identical."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-imat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-imat",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Cancel(x-3)from difference-of-squares givesx+3on original domainxnot3; explicit all-real extension distractor invalid domain."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

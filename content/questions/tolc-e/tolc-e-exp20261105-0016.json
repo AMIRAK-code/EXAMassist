@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0016",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-powers-exp-log",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "For x > 0 and x ≠ 1, what is logₓ(x³)?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "x³"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "3"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "3x"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "x"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "1/3"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "By definition logₓ(x³) is the exponent to which x must be raised to produce x³, namely 3. The base restrictions x > 0 and x ≠ 1 make the real logarithm valid.",
+  "distractorRationale": {
+    "d": "The logarithm asks for an exponent, not the base.",
+    "c": "This multiplies the exponent and base incorrectly.",
+    "a": "This reports the argument rather than its logarithm.",
+    "e": "This would arise from reversing base and argument."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Log base x of x cubed is 3 for admissible bases."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

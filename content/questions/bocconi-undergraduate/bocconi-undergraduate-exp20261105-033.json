@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-undergraduate-exp20261105-033",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-analytic-points-distances",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A point on the x-axis is equidistant from $(1,2)$ and $(5,4)$. What is its x-coordinate?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "1.5"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "3"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "4.5"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "6"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Set squared distances equal: $(x-1)^2+4=(x-5)^2+16$. Cancellation gives $8x=36$. The midpoint x-value alone is insufficient because the heights differ.",
+  "distractorRationale": {
+    "b": "Uses the midpoint of x-coordinates despite unequal vertical distances.",
+    "d": "Makes a sign error moving the squared constants.",
+    "a": "Uses half the horizontal separation with the wrong offset."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-undergraduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-undergraduate",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): (x-1)²+4=(x-5)²+16 yields 8x=36."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

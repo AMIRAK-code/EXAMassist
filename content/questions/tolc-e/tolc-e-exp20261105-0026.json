@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0026",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-polynomials",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "If (x + a)(x + b) = x² − 7x + 10 for all x, what is a + b?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "−7"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "−10"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "10"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "7"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "3"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Expansion gives x² + (a + b)x + ab. Matching coefficients with the identity yields a + b = −7 and ab = 10. Coefficient comparison avoids needing to solve for a and b separately.",
+  "distractorRationale": {
+    "d": "This loses the sign of the linear coefficient.",
+    "c": "This is the product ab, not the sum.",
+    "b": "This is neither the required linear coefficient nor the constant.",
+    "e": "This could come from comparing the factors’ magnitudes incorrectly."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Linear coefficient equals a+b=-7."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

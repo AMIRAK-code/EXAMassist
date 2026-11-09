@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-law-exp20261105-195",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-deductive-conditions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which statement cannot be true in any permitted order?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Edict and Code must not occupy consecutive positions."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Edict must precede Code."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Edict and Code must occupy consecutive positions, in either order."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Code must be in position 3."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Test whether each proposed statement can be added consistently to the rules. \"Code must be in position 3.\" is incompatible with every permitted order. The alternative statements each have a complete valid example, given in their feedback. To check impossibility, enumerate placements for the most restricted item or block, then remove every case breaking a rule.\n\nComplete permitted orders (each arrow advances one position):\n- Code → Edict → Accord → Deed → Bill\n- Edict → Accord → Deed → Bill → Code",
+  "distractorRationale": {
+    "a": "This is possible, as demonstrated by Edict → Accord → Deed → Bill → Code, which obeys all the original conditions.",
+    "b": "This is possible, as demonstrated by Edict → Accord → Deed → Bill → Code, which obeys all the original conditions.",
+    "c": "This is possible, as demonstrated by Code → Edict → Accord → Deed → Bill, which obeys all the original conditions."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "bocconi-law-exp20261105-document-exhibition",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-law",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-law",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Independently enumerated all 120 permutations of Accord, Bill, Code, Deed, Edict. Rules Code must occupy position 1 or position 5. Accord must precede Deed. Bill and Edict must not occupy consecutive positions. Exactly 1 other item must occur between Accord and Bill. leave 2 valid orders: Code>Edict>Accord>Deed>Bill; Edict>Accord>Deed>Bill>Code. Choice true counts: a=1, b=0, c=1, d=1; impossible requires zero matches."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

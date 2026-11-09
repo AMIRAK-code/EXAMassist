@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-exp20261105-0100",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "chemistry",
+  "domainSlug": "tolcf-chemistry",
+  "skillSlug": "tolcf-chem-solutions-acids-bases",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Twenty millilitres of 0.20 mol L⁻¹ HCl are mixed with 30 mL of 0.10 mol L⁻¹ NaOH. Assuming volumes add, what is the excess H⁺ concentration?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "0.080 mol L⁻¹"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "0.060 mol L⁻¹"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "0.001 mol L⁻¹"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "0.020 mol L⁻¹"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "0.10 mol L⁻¹"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Acid supplies 0.020 × 0.20 = 0.004 mol H⁺. Base supplies 0.030 × 0.10 = 0.003 mol OH⁻, leaving 0.001 mol H⁺. Divide by the total 0.050 L to obtain 0.020 mol L⁻¹. Subtract amounts before calculating final concentration.",
+  "distractorRationale": {
+    "e": "This subtracts starting concentrations without accounting for different volumes.",
+    "c": "This confuses excess moles with molarity.",
+    "a": "This divides initial acid moles by total volume before subtracting neutralized acid.",
+    "b": "This is the base amount divided by total volume, not excess acid."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-f",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-f",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Acid .004mol minus base .003mol leaves .001mol H+ in .050L =.020M."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0087",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the negation of “Both motors are running”?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Neither motor is running."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "At least one motor is not running."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "At least one motor is running."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Both motors are running slowly."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Exactly one motor is running."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The original is a conjunction of two running statements. Its negation is that at least one component is false. It allows either one or both motors to be stopped.",
+  "distractorRationale": {
+    "a": "This is stronger than required; just one stopped motor negates the original.",
+    "e": "The negation also allows neither to run.",
+    "c": "This can be true when both are running.",
+    "d": "This still entails that both are running."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Negate conjunction: at least one motor not running."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

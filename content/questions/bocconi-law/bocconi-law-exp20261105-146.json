@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-law-exp20261105-146",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-deductive-conditions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which statement must be true in every permitted order?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Bronze must not be in position 2."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Bronze must be in position 3."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Glass must precede Bronze."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Bronze must be in position 2."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Combine the ordering and placement constraints rather than assuming one example is unique. The statement \"Glass must precede Bronze.\" holds in all 9 permitted orders. Generate the cases by placing any fixed-position item and adjacent block first, then discard arrangements that violate a remaining rule. For each alternative, an explicit permitted counterexample appears in its feedback.\n\nComplete permitted orders (each arrow advances one position):\n- Glass → Bronze → Wood → Clay → Stone\n- Glass → Bronze → Wood → Stone → Clay\n- Stone → Glass → Bronze → Wood → Clay\n- Stone → Wood → Clay → Glass → Bronze\n- Stone → Wood → Glass → Bronze → Clay\n- Wood → Clay → Stone → Glass → Bronze\n- Wood → Glass → Bronze → Clay → Stone\n- Wood → Stone → Clay → Glass → Bronze\n- Wood → Stone → Glass → Bronze → Clay",
+  "distractorRationale": {
+    "a": "A counterexample satisfying all the rules is Glass → Bronze → Wood → Clay → Stone. Thus this statement is not necessary.",
+    "b": "A counterexample satisfying all the rules is Glass → Bronze → Wood → Clay → Stone. Thus this statement is not necessary.",
+    "d": "A counterexample satisfying all the rules is Stone → Glass → Bronze → Wood → Clay. Thus this statement is not necessary."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "bocconi-law-exp20261105-exhibit-installation",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-law",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-law",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Independently enumerated all 120 permutations of Bronze, Clay, Glass, Stone, Wood. Rules Glass must be immediately followed by Bronze. Wood must precede Clay. Bronze and Stone must not occupy consecutive positions. leave 9 valid orders: Glass>Bronze>Wood>Clay>Stone; Glass>Bronze>Wood>Stone>Clay; Stone>Glass>Bronze>Wood>Clay; Stone>Wood>Clay>Glass>Bronze; Stone>Wood>Glass>Bronze>Clay; Wood>Clay>Stone>Glass>Bronze; Wood>Glass>Bronze>Clay>Stone; Wood>Stone>Clay>Glass>Bronze; Wood>Stone>Glass>Bronze>Clay. Choice true counts: a=7, b=2, c=9, d=2; necessary requires all matches."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

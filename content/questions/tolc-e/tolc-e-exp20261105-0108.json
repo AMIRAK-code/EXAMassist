@@ -1,0 +1,75 @@
+{
+  "id": "tolc-e-exp20261105-0108",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-sequences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A sequence is defined by a₁ = 2 and aₙ₊₁ = aₙ + n for n ≥ 1. What is a₅?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "7"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "10"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "11"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "12"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "16"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The increments from the first to fifth term are 1, 2, 3 and 4. Add them to the starting value: 2 + 1 + 2 + 3 + 4 = 12. The index on the update determines the increment, not the new term number.",
+  "distractorRationale": {
+    "b": "This omits the initial value two when summing the increments.",
+    "c": "This misadds one of the increments.",
+    "e": "The first four increments sum to ten and the initial value is two; sixteen does not follow the specified updates.",
+    "a": "This stops before applying all four updates."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

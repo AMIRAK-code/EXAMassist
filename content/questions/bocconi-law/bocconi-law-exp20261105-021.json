@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-law-exp20261105-021",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-numerical-reasoning",
+  "skillSlug": "law-numrsn-charts-and-tables",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which office completed the largest proportion within five days?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "All categories have the same rate"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Office South"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Office Central"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Office North"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Compute the rates separately: Office North: 30/40=75%; Office Central: 52/80=65%; Office South: 108/120=90%. Compare these proportions rather than raw successful counts. The highest rate is 90%.",
+  "distractorRationale": {
+    "d": "Compare each numerator with its own denominator. The rates are 75%, 65%, 90%; this claim does not identify all and only the highest-rate categories.",
+    "c": "Compare each numerator with its own denominator. The rates are 75%, 65%, 90%; this claim does not identify all and only the highest-rate categories.",
+    "a": "The ratios differ; equal rates cannot be inferred from the raw totals."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": {
+    "id": "bocconi-law-exp20261105-translation-requests",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-law",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-law",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Office rates .75,.65,.9; South largest."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

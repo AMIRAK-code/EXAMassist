@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0115",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A square grid has 4 rows and 5 columns of cells. How many cells touch the outside boundary?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "6"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "12"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "14"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "18"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "20"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "There are twenty cells total. The interior consists of (4−2)×(5−2)=2×3=6 cells. Subtracting leaves fourteen boundary cells. This avoids double-counting corners.",
+  "distractorRationale": {
+    "e": "This counts interior cells as well.",
+    "d": "This counts corners twice when adding edge rows and columns.",
+    "b": "This undercounts the boundary cells.",
+    "a": "This is the number of interior cells."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Boundary cells20minus interior(4-2)*(5-2)=6 yields14."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

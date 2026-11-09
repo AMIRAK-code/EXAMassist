@@ -1,0 +1,81 @@
+{
+  "id": "imat-exp20261105-heat-capacity",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-physics-maths",
+  "skillSlug": "imat-phys-thermo-waves",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "How much heat raises 0.5 kg of water by 4 degrees Celsius? Use specific heat 4200 J/(kg degree Celsius) and neglect losses.",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "4200 J"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "8400 J"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "2100 J"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "16800 J"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "525 J"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Heat is mcΔT=0.5 times 4200 times 4=8400 J. Specific heat is energy per mass per degree, so both the mass and temperature change must be included.",
+  "distractorRationale": {
+    "d": "This uses 1 kg instead of 0.5 kg.",
+    "e": "This divides by temperature rise instead of multiplying.",
+    "c": "This omits the temperature rise.",
+    "a": "This uses the specific heat as the total energy."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-imat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-imat",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): HeatmcDeltaT=.5*4200*4=8400J."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,75 @@
+{
+  "id": "gmat-exp20261105-data-027",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-table-analysis",
+  "skillSlug": "ta-analyze-spreadsheet-data",
+  "subskillSlug": null,
+  "responseType": "multi_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Select every statement supported by the table and cost definition.",
+  "instructionsMd": "Select every statement supported by the sources. Leave unsupported statements unselected. All selections must be correct to earn credit; this adapts separate yes/no rows to the project’s select-all control.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Laurel has lower total cost than Nacre over five years."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Marten has the lowest total cost over every positive number of years."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Juniper and Kestrel have equal total cost over three years."
+    }
+  ],
+  "answerKey": {
+    "type": "multi_select",
+    "optionIds": [
+      "c",
+      "a"
+    ],
+    "grading": "exact"
+  },
+  "explanationMd": "Three-year costs for Juniper and Kestrel are30+36=66 and42+24=66 thousand euros. Five-year costs are80 for Laurel and85 for Nacre. A purchase-price ranking is not necessarily a lifetime-cost ranking.",
+  "distractorRationale": {
+    "b": "Its low purchase price is offset by high annual cost; over3years it costs70 versus66 for Juniper and Kestrel."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "gmat-exp20261105-table-equipment-options",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original practice draft informed by current GMAC format descriptions. All business and study scenarios are invented; no official question is copied or paraphrased."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-expansion-verbal-data-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "a,c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): 3year totals Juniper66 Kestrel66;5year Laurel80<Nacre85; Marten25+15n eventually exceeds others."
+    },
+    "notes": "Author solution supplied. Independent blind solve and expert review remain pending. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

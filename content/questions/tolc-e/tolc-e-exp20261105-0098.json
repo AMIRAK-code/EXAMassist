@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0098",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-sequences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A sequence begins at 1 and adds consecutive odd numbers starting with 3. What is the sixth term?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "12"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "25"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "31"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "36"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "49"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The terms are 1, 4, 9, 16, 25 and 36, formed by adding 3, 5, 7, 9 and 11. These are consecutive square numbers, so the sixth term is also recognized as 6².",
+  "distractorRationale": {
+    "b": "This is the fifth term.",
+    "e": "This is the seventh term.",
+    "c": "This does not add the prescribed odd increments.",
+    "a": "This treats the pattern as a constant increment."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Terms 1,4,9,16,25,36; sixth 36."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0102",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-sequences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A sequence has nth term 2n − 1 for positive integer n. Which term equals 37?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The seventy-third term"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The twentieth term"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The nineteenth term"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The eighteenth term"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The thirty-seventh term"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Set 2n − 1 = 37. Then 2n = 38 and n = 19. The formula describes odd numbers, with the nineteenth equal to 37.",
+  "distractorRationale": {
+    "d": "That term is 35.",
+    "b": "That term is 39.",
+    "e": "This confuses term value with term position.",
+    "a": "This applies the formula to the value instead of solving for the index."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): 2n-1=37 gives n=19."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

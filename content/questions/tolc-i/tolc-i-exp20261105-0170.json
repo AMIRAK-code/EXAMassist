@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0170",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "sciences",
+  "domainSlug": "tolci-sciences",
+  "skillSlug": "tolci-sci-mechanics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A lever is balanced. A 20 N force acts 0.30 m from the pivot on one side. What force is needed 0.50 m from the pivot on the other side, with both forces perpendicular to the lever?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "33.3 N"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "6 N"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "20 N"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "12 N"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "10 N"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Balance requires equal opposing torques: 20 × 0.30 = F × 0.50. The first torque is 6 N m, so F = 12 N. A longer arm needs a smaller force for the same torque.",
+  "distractorRationale": {
+    "a": "This reverses the arm-length ratio.",
+    "c": "Equal forces balance only with equal lever arms.",
+    "b": "This is the first torque numerically, not the balancing force.",
+    "e": "This uses an incorrect lever-arm relation."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Balance moments20*.30=F*.50 givesF12N."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

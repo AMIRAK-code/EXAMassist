@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-law-exp20261105-177",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-deductive-conditions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which complete order satisfies every stated condition?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Ethics → Access → Safety → Records → Practice"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Ethics → Records → Safety → Access → Practice"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Access → Records → Safety → Ethics → Practice"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Records → Ethics → Practice → Access → Safety"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Check each rule against Ethics → Access → Safety → Records → Practice. Every precedence, position, and separation condition holds. Each alternative violates at least one explicit rule; the corresponding violated condition is identified in its feedback.",
+  "distractorRationale": {
+    "c": "This order violates: Ethics and Safety must not occupy consecutive positions.",
+    "d": "This order violates: Safety must occur after Access and before Practice. Records must occupy position 2 or position 4.",
+    "b": "This order violates: Safety must occur after Access and before Practice."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": {
+    "id": "bocconi-law-exp20261105-training-modules",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-law",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-law",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Independently enumerated all 120 permutations of Access, Records, Safety, Ethics, Practice. Rules Safety must occur after Access and before Practice. Records must occupy position 2 or position 4. Ethics and Safety must not occupy consecutive positions. leave 4 valid orders: Access>Records>Safety>Practice>Ethics; Access>Safety>Practice>Records>Ethics; Ethics>Access>Safety>Records>Practice; Ethics>Records>Access>Safety>Practice. Choice true counts: a=0, b=0, c=0, d=1; valid complete order requires one matches."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

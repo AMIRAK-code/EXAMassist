@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-graduate-exp20261105-069",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-data-insight",
+  "skillSlug": "grad-data-reading-displays",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which invoice group has the highest automatic-match share?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "All categories have the same rate"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Overseas"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Domestic"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Regional"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Compute the rates separately: Domestic: 90/100=90%; Regional: 120/150=80%; Overseas: 175/250=70%. Compare these proportions rather than raw successful counts. The highest rate is 90%.",
+  "distractorRationale": {
+    "d": "Compare each numerator with its own denominator. The rates are 90%, 80%, 70%; this claim does not identify all and only the highest-rate categories.",
+    "b": "Compare each numerator with its own denominator. The rates are 90%, 80%, 70%; this claim does not identify all and only the highest-rate categories.",
+    "a": "The ratios differ; equal rates cannot be inferred from the raw totals."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": {
+    "id": "bocconi-graduate-exp20261105-invoice-matching",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Match rates .9,.8,.7 make Domestic highest."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

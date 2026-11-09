@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-law-exp20261105-200",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-deductive-conditions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Suppose the additional condition is: Advice must be in position 1. Which further statement must then be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Advice and Negotiation must not occupy consecutive positions."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Advice must not be in position 1."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Advice must be in position 3."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Advice must be in position 2."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "First restrict attention to orders satisfying the extra condition as well as the original rules. There are 2 such orders. \"Advice and Negotiation must not occupy consecutive positions.\" holds throughout this restricted set; the other statements fail on the explicit examples in their feedback.\n\nThe remaining orders are:\n- Advice → Evidence → Negotiation → Procedure → Review\n- Advice → Procedure → Evidence → Negotiation → Review",
+  "distractorRationale": {
+    "b": "Even with the additional condition, Advice → Evidence → Negotiation → Procedure → Review is permitted and makes this statement false.",
+    "d": "Even with the additional condition, Advice → Evidence → Negotiation → Procedure → Review is permitted and makes this statement false.",
+    "c": "Even with the additional condition, Advice → Evidence → Negotiation → Procedure → Review is permitted and makes this statement false."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "bocconi-law-exp20261105-case-workshops",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-law",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-law",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Independently enumerated all 120 permutations of Advice, Evidence, Negotiation, Procedure, Review. Rules Review must be in position 5. Evidence must be immediately followed by Negotiation. Advice must precede Procedure. Additional condition: Advice must be in position 1 leave 2 valid orders: Advice>Evidence>Negotiation>Procedure>Review; Advice>Procedure>Evidence>Negotiation>Review. Choice true counts: a=2, b=0, c=0, d=0; necessary requires all matches."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

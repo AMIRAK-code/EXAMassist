@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-exp20261105-0186",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "logic",
+  "domainSlug": "tolcf-logic",
+  "skillSlug": "tolcf-logic-graphs-tables",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A laboratory processed 40, 55, 45 and 60 samples on Monday through Thursday, respectively. On which day was the increase over the preceding day greatest?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Tuesday to Wednesday"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "No day-to-day increase occurred."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Monday to Tuesday only"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Wednesday to Thursday only"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Monday to Tuesday and Wednesday to Thursday tie."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Compute consecutive differences: 55 − 40 = 15, 45 − 55 = −10, and 60 − 45 = 15. The two increases are equal and greatest. The largest daily total alone does not identify a uniquely largest increase.",
+  "distractorRationale": {
+    "c": "The increase of 15 is matched from Wednesday to Thursday.",
+    "a": "This is a decrease of 10 rather than an increase.",
+    "d": "The increase of 15 is matched from Monday to Tuesday.",
+    "b": "Two transitions have positive increases."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-f",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-f",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Successive changes+15,-10,+15 show tied increases."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

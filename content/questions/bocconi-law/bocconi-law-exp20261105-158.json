@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-law-exp20261105-158",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-deductive-conditions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which statement must be true in every permitted order?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Bridge must be in position 3."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Bridge must not be in position 2."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Bridge must be in position 2."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Court and Hall must not occupy consecutive positions."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Combine the ordering and placement constraints rather than assuming one example is unique. The statement \"Court and Hall must not occupy consecutive positions.\" holds in all 10 permitted orders. Generate the cases by placing any fixed-position item and adjacent block first, then discard arrangements that violate a remaining rule. For each alternative, an explicit permitted counterexample appears in its feedback.\n\nComplete permitted orders (each arrow advances one position):\n- Court → Bridge → Dock → Tower → Hall\n- Court → Bridge → Hall → Tower → Dock\n- Court → Dock → Bridge → Tower → Hall\n- Court → Dock → Tower → Bridge → Hall\n- Court → Tower → Dock → Bridge → Hall\n- Dock → Court → Bridge → Tower → Hall\n- Dock → Court → Tower → Bridge → Hall\n- Dock → Tower → Court → Bridge → Hall\n- Tower → Court → Dock → Bridge → Hall\n- Tower → Dock → Court → Bridge → Hall",
+  "distractorRationale": {
+    "b": "A counterexample satisfying all the rules is Court → Bridge → Dock → Tower → Hall. Thus this statement is not necessary.",
+    "a": "A counterexample satisfying all the rules is Court → Bridge → Dock → Tower → Hall. Thus this statement is not necessary.",
+    "c": "A counterexample satisfying all the rules is Court → Dock → Bridge → Tower → Hall. Thus this statement is not necessary."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "bocconi-law-exp20261105-inspection-visits",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-law",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-law",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Independently enumerated all 120 permutations of Bridge, Court, Dock, Hall, Tower. Rules Bridge must occur after Court and before Hall. Tower must not be in position 5. Dock and Hall must not occupy consecutive positions. leave 10 valid orders: Court>Bridge>Dock>Tower>Hall; Court>Bridge>Hall>Tower>Dock; Court>Dock>Bridge>Tower>Hall; Court>Dock>Tower>Bridge>Hall; Court>Tower>Dock>Bridge>Hall; Dock>Court>Bridge>Tower>Hall; Dock>Court>Tower>Bridge>Hall; Dock>Tower>Court>Bridge>Hall; Tower>Court>Dock>Bridge>Hall; Tower>Dock>Court>Bridge>Hall. Choice true counts: a=8, b=2, c=10, d=2; necessary requires all matches."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

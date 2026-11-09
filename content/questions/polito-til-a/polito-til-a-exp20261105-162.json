@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-a-exp20261105-162",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "mathematics-physics",
+  "domainSlug": "tila-mathematics",
+  "skillSlug": "tila-math-numbers",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A material costs 80 units per panel. Its price rises by 25% and then falls by 20%. What is the final panel price?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "75 units"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "80 units"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "100 units"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "64 units"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "84 units"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The rise gives 80 times 1.25=100. The subsequent reduction gives 100 times 0.8=80. The percentage bases differ, so subtracting percentage rates is not valid.",
+  "distractorRationale": {
+    "c": "This stops after the price rise.",
+    "a": "The reductions are not additive amounts of five units.",
+    "e": "This treats the percentage changes as a net five percent increase.",
+    "d": "This applies only the reduction to the initial price."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question. Historical 2026/27 TIL-A format; not a claim about the announced 2027/28 CISIA transition."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-a",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-a",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): 80times1.25times.8=80."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

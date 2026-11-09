@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0068",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "If f(x) = x + 2 and h(x) = f(f(f(x))), what is h(x)?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "(x + 2)³"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "x + 6"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "3x + 2"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "x + 8"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "3x + 6"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Each application adds two. The first gives x + 2, the second x + 4 and the third x + 6. Distinguish iteration under composition from multiplication or exponentiation of values.",
+  "distractorRationale": {
+    "c": "Repeated composition adds two each time rather than adding copies of x.",
+    "d": "This applies four additions of two rather than three.",
+    "a": "Composition is not cubing the function value.",
+    "e": "This is three times f(x), not three nested applications."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Three additions of 2 yield x+6."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

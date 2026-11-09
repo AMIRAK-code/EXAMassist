@@ -1,0 +1,81 @@
+{
+  "id": "gmat-exp20261105-fraction-increase-denominator",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-arithmetic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A positive fraction is 3/7. The same positive number is added to its numerator and denominator. The resulting fraction must be what?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Less than 3/7"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Equal to 3/7"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Exactly 1"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Greater than 3/7 but less than 1"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Greater than 1"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "For t>0, (3+t)/(7+t) exceeds 3/7 because 7(3+t)>3(7+t). The denominator still exceeds the numerator, so the fraction remains below 1.",
+  "distractorRationale": {
+    "e": "The denominator remains larger by 4.",
+    "a": "Adding the same positive amount moves this proper fraction towards 1.",
+    "c": "The numerator and denominator remain unequal.",
+    "b": "Equal addition is not equal scaling."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): (3+t)/(7+t) exceeds3/7 by4t/[7(7+t)] and stays below1 for positivet."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

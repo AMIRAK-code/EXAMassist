@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0110",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A password uses three different letters from P,Q,R,S. P must be included. How many ordered passwords are possible?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "6"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "9"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "12"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "18"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "24"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Choose P’s position in three ways. Fill the other two positions with two distinct letters from the remaining three in 3×2 ways. Total is 3×6=18. Equivalently subtract the six passwords without P from all twenty-four.",
+  "distractorRationale": {
+    "b": "This undercounts orderings of the other two letters.",
+    "c": "This misses some possible positions for P.",
+    "e": "This includes passwords that omit P.",
+    "a": "This fixes one pair of other letters instead of allowing all choices."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Pick two of other3 then permute three letters:3*6=18."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

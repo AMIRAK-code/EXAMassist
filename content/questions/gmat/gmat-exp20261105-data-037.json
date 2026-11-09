@@ -1,0 +1,84 @@
+{
+  "id": "gmat-exp20261105-data-037",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-multi-source-reasoning",
+  "skillSlug": "msr-draw-combined-inferences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which pair has the lowest combined cost under the specified comparison?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Shore and Valley"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Ridge and Valley"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Ridge and Shore."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "No pair is feasible"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Two Ridge plans"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Ridge costs180 at900GB. Shore costs120+0.20(900-600)=180. Valley costs210. All can carry900GB, and distinct providers make Ridge plus Shore a feasible360-euro pair.",
+  "distractorRationale": {
+    "a": "Their combined cost is390 euros, above the360-euro pair.",
+    "e": "The decision requires different providers and independence.",
+    "d": "Shore can carry900GB by paying for300GB of extra traffic.",
+    "b": "Their combined cost is390 euros, above Ridge and Shore at360."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "gmat-exp20261105-msr-data-link",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original practice draft informed by current GMAC format descriptions. All business and study scenarios are invented; no official question is copied or paraphrased."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-expansion-verbal-data-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Ridge180 and Shore120+.2*300=180 total360, below RidgeValley390 and ShoreValley390; same-provider duplicate forbidden."
+    },
+    "notes": "Author solution supplied. Independent blind solve and expert review remain pending. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

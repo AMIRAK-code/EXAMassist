@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0034",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A right circular cone has radius 3 cm and slant height 5 cm. What is its vertical height?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "5 cm"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "2 cm"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "4 cm"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "8 cm"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "√34 cm"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The radius, vertical height and slant height form a right triangle, with slant height as hypotenuse. Hence h² = 5² − 3² = 16, so h = 4 cm.",
+  "distractorRationale": {
+    "b": "Subtracting lengths directly does not apply to this right triangle.",
+    "e": "This adds squared radius and slant height instead of subtracting.",
+    "a": "The slant height is longer than the vertical height.",
+    "d": "Adding radius and slant height gives no relevant dimension."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Cone height sqrt(slant²-radius²)=sqrt25-9=4."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

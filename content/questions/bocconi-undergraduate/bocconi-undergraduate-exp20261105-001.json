@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-undergraduate-exp20261105-001",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-algebra-expressions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "For real $x\\ne3$, simplify $(x^2-9)/(x-3)$.",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$x+3$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$x^2+3$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$x-3$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$1$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Factor the numerator as $(x-3)(x+3)$ and cancel only the common nonzero factor. The original exclusion $x\\ne3$ remains even though the simplified expression is defined there.",
+  "distractorRationale": {
+    "c": "Cancels terms instead of a common factor.",
+    "b": "Does not divide the quadratic factor correctly.",
+    "d": "Cancels the whole numerator as if it equalled the denominator."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-undergraduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-undergraduate",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Factor (x-3)(x+3) and cancel nonzero x-3."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}
