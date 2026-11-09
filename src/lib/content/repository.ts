@@ -225,6 +225,42 @@ const POOL_COLUMNS = `
  * without a standing human approval is not in it, whatever passed before.
  */
 export async function getPool(db: Db, examKey: string, userId: string | null): Promise<PoolItem[]> {
+  return getPoolRows(db, examKey, userId);
+}
+
+/**
+ * The pool items a session in this language can show: the question, and its
+ * stimulus when it has one, both have a checked version in the language. It is
+ * the rule `presentedWithText` applies to each question, applied before
+ * selection, so a session in Italian never falls back to English for a question
+ * that has no Italian version. Chosen on 2026-11-09, when English-only
+ * questions joined banks that are also served in Italian; English sessions draw
+ * on the whole pool.
+ */
+export async function servableInLocale(db: Db, pool: readonly PoolItem[], locale: ServedLocale): Promise<PoolItem[]> {
+  if (locale === 'en' || pool.length === 0) return [...pool];
+  const keep = new Set<string>();
+  for (let start = 0; start < pool.length; start += 400) {
+    const ids = pool.slice(start, start + 400).map((item) => item.questionVersionId);
+    const rows = (await db
+      .prepare(
+        `SELECT qv.id AS id, qv.stimulus_id AS stimulusId,
+                qv.translations_json AS questionText, s.translations_json AS stimulusText
+           FROM question_versions qv
+           LEFT JOIN stimuli s ON s.id = qv.stimulus_id AND s.version = qv.stimulus_version
+          WHERE qv.id IN (${ids.map(() => '?').join(', ')})`,
+      )
+      .all(...ids)) as Array<{ id: string; stimulusId: string | null; questionText: string | null; stimulusText: string | null }>;
+    for (const row of rows) {
+      if (!translationIn<QuestionText>(row.questionText, locale)) continue;
+      if (row.stimulusId && !translationIn<StimulusText>(row.stimulusText, locale)) continue;
+      keep.add(row.id);
+    }
+  }
+  return pool.filter((item) => keep.has(item.questionVersionId));
+}
+
+async function getPoolRows(db: Db, examKey: string, userId: string | null): Promise<PoolItem[]> {
   const rows = (await db
     .prepare(
       `SELECT ${POOL_COLUMNS},
