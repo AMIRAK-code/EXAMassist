@@ -163,7 +163,11 @@ export function sessionCookieOptions(expiresAt: Date) {
 /** The signed-in user, or null. Never throws. */
 export async function getCurrentUser(): Promise<AuthUser | null> {
   const store = await cookies();
-  return (await resolveSession(getDb(), store.get(SESSION_COOKIE)?.value));
+  const token = store.get(SESSION_COOKIE)?.value;
+  // No cookie, no session: an anonymous request (and a page prerendered at
+  // build time, which has no cookies) never opens the database.
+  if (!token) return null;
+  return (await resolveSession(getDb(), token));
 }
 
 export class UnauthorizedError extends Error {

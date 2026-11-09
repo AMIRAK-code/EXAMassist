@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { ATTEMPTS, fetchLive, previewUrlFrom, retryDelay, snapshotPublicPages } from '../../scripts/snapshot-pages';
+import { ATTEMPTS, fetchLive, previewUrlFrom, retryDelay, savePrerenderedPages, snapshotPublicPages } from '../../scripts/snapshot-pages';
 
 /**
  * The deploy-time snapshot of public pages (scripts/snapshot-pages.ts). On the
@@ -112,6 +112,52 @@ describe('saving the pages', () => {
       snapshotPublicPages({ site, origin: 'https://x-examer.example.workers.dev', assetsDir, buildId: BUILD }, { fetch: get, sleep: async () => {} }),
     ).rejects.toThrow('does not list https://example.test');
     expect(fs.readdirSync(assetsDir)).toEqual([]);
+  });
+});
+
+describe('saving the pages prerendered at build time', () => {
+  let root = '';
+  beforeEach(() => {
+    root = fs.mkdtempSync(path.join(os.tmpdir(), 'prerendered-'));
+  });
+  afterEach(() => {
+    fs.rmSync(root, { recursive: true, force: true });
+  });
+
+  const write = (relative: string, body: string) => {
+    const file = path.join(root, ...relative.split('/'));
+    fs.mkdirSync(path.dirname(file), { recursive: true });
+    fs.writeFileSync(file, body);
+  };
+
+  it('saves each prerendered page under its production path, and drops OpenNext’s copy of it', () => {
+    const routes = ['/en/courses', '/it/courses/gmat', '/en/courses/gmat/how-the-gmat-works', '/_not-found', '/icon.svg'];
+    write('.next/prerender-manifest.json', JSON.stringify({ routes: Object.fromEntries(routes.map((route) => [route, {}])) }));
+    for (const route of ['/en/courses', '/it/courses/gmat', '/en/courses/gmat/how-the-gmat-works', '/_not-found']) {
+      write(`.next/server/app${route}.html`, `<p>${BUILD} ${route}</p>`);
+    }
+    const entry = (route: string) => `.open-next/cache/${BUILD}/route-cache/APP_PAGE/abc123/$${route}.cache`;
+    for (const route of ['/en/courses', '/it/courses/gmat', '/en/courses/gmat/how-the-gmat-works', '/_not-found', '/en/exams']) write(entry(route), '{}');
+
+    const saved = savePrerenderedPages({
+      nextDir: path.join(root, '.next'),
+      assetsDir: path.join(root, '.open-next', 'assets'),
+      cacheDir: path.join(root, '.open-next', 'cache'),
+    });
+
+    expect(saved.sort()).toEqual(['/courses', '/courses/gmat/how-the-gmat-works', '/it/courses/gmat']);
+    const asset = (file: string) => fs.readFileSync(path.join(root, '.open-next', 'assets', ...file.split('/')), 'utf8');
+    expect(asset('courses.html')).toBe(`<p>${BUILD} /en/courses</p>`);
+    expect(asset('it/courses/gmat.html')).toBe(`<p>${BUILD} /it/courses/gmat</p>`);
+    expect(asset('courses/gmat/how-the-gmat-works.html')).toContain('/en/courses/gmat/how-the-gmat-works');
+    // Not a page in a language: no file, and its cache entry stays, as do the dynamic pages'.
+    expect(fs.existsSync(path.join(root, '.open-next', 'assets', '_not-found.html'))).toBe(false);
+    const left = (route: string) => fs.existsSync(path.join(root, ...entry(route).split('/')));
+    expect(left('/_not-found')).toBe(true);
+    expect(left('/en/exams')).toBe(true);
+    expect(left('/en/courses')).toBe(false);
+    expect(left('/it/courses/gmat')).toBe(false);
+    expect(left('/en/courses/gmat/how-the-gmat-works')).toBe(false);
   });
 });
 

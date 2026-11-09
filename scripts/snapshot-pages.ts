@@ -30,7 +30,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { sitemapUrls } from '../src/lib/seo/indexnow';
-import { SNAPSHOT_HEADER, assetFileFor, staticPagePaths } from '../src/lib/seo/static-pages';
+import { SNAPSHOT_HEADER, assetFileFor, prerenderedPagePath, staticPagePaths } from '../src/lib/seo/static-pages';
 
 // "bot" keeps these requests out of the page-view totals (src/lib/analytics/funnel.ts).
 const USER_AGENT = 'ExamerSnapshot/1.0 (deploy bot)';
@@ -105,6 +105,55 @@ export function previewUrlFrom(output: string): string | null {
   const plain = output.replace(/\u001b\[[0-9;]*m/g, '');
   const match = /Version Preview URL:\s*(https:\/\/[^\s]+\.workers\.dev)\b/i.exec(plain);
   return match ? match[1].replace(/\/+$/, '') : null;
+}
+
+/**
+ * Pages Next.js prerendered at build time are already what the snapshot would
+ * save: this build's own HTML, rendered for everyone. Those are the study
+ * courses (`dynamic = 'force-static'`), which cost the Worker too much CPU to
+ * render per request. Writes each into `assetsDir` under its production path
+ * before the upload, so the new version serves them as files from the start,
+ * the snapshot keeps them (they carry the build id), and no request for them
+ * runs the Worker.
+ *
+ * Then drops OpenNext's own copy of those pages from `cacheDir`: the upload
+ * puts that folder into the assets as well (static-assets incremental cache,
+ * open-next.config.ts), with each page's RSC and prefetch data beside its HTML,
+ * about 650 MB for the courses, for requests that the files above now answer.
+ * Returns the paths saved.
+ */
+export function savePrerenderedPages(options: { nextDir: string; assetsDir: string; cacheDir?: string }): string[] {
+  const { nextDir, assetsDir, cacheDir } = options;
+  const manifest = JSON.parse(fs.readFileSync(path.join(nextDir, 'prerender-manifest.json'), 'utf8')) as {
+    routes: Record<string, unknown>;
+  };
+  const saved = new Map<string, string>();
+  for (const route of Object.keys(manifest.routes)) {
+    const pathname = prerenderedPagePath(route);
+    const html = path.join(nextDir, 'server', 'app', `${route}.html`);
+    if (!pathname || !fs.existsSync(html)) continue;
+    const file = path.join(assetsDir, assetFileFor(pathname));
+    fs.mkdirSync(path.dirname(file), { recursive: true });
+    fs.copyFileSync(html, file);
+    saved.set(route, pathname);
+  }
+
+  if (cacheDir && fs.existsSync(cacheDir)) {
+    // An entry is <cacheDir>/<build id>/.../<route>.cache, e.g. ".../$/en/courses/gmat.cache".
+    const routes = new Set(saved.keys());
+    for (const relative of fs.readdirSync(cacheDir, { recursive: true, encoding: 'utf8' })) {
+      const file = path.join(cacheDir, relative);
+      if (!relative.endsWith('.cache') || !fs.statSync(file).isFile()) continue;
+      const key = `/${relative.slice(0, -'.cache'.length).split(path.sep).join('/')}`;
+      for (let at = 0; at >= 0; at = key.indexOf('/', at + 1)) {
+        if (routes.has(key.slice(at))) {
+          fs.rmSync(file);
+          break;
+        }
+      }
+    }
+  }
+  return [...saved.values()];
 }
 
 /**

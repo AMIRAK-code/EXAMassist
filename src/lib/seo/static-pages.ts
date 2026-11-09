@@ -15,13 +15,25 @@
  * src/proxy.ts makes on a bare path) work in the browser instead when the
  * request carries SNAPSHOT_HEADER.
  */
-import { DEFAULT_LOCALE, LOCALES, localizePath, splitLocale, type Locale } from '@/i18n/locales';
+import { DEFAULT_LOCALE, LOCALES, isLocale, localizePath, splitLocale, type Locale } from '@/i18n/locales';
 
 /** Sent by the deploy's snapshot; pages that see it defer per-visitor parts to the browser. */
 export const SNAPSHOT_HEADER = 'x-examer-snapshot';
 
 export function isSnapshotRequest(headers: { get(name: string): string | null }): boolean {
   return headers.get(SNAPSHOT_HEADER) === '1';
+}
+
+/**
+ * Whether this render is shared by every visitor, so the layout must leave the
+ * per-visitor parts to the browser: the deploy's snapshot of a page, or a page
+ * Next.js prerenders at build time. The study courses are prerendered
+ * (`dynamic = 'force-static'` on their pages), because rendering a lesson on
+ * the Worker costs several times the Free plan's CPU limit; Next.js gives such
+ * a render empty request headers, while a real request always has some.
+ */
+export function isSharedRender(headers: { get(name: string): string | null; keys(): Iterator<string> }): boolean {
+  return isSnapshotRequest(headers) || headers.keys().next().done === true;
 }
 
 /**
@@ -65,6 +77,19 @@ export function staticPagePaths(sitemapUrls: readonly string[]): string[] {
 export function localeScript(pageLocale: Locale, cookieName: string): string {
   const args = [pageLocale, LOCALES, DEFAULT_LOCALE, cookieName].map((value) => JSON.stringify(value)).join(',');
   return `(function(P,L,D,N){try{var m=document.cookie.match(new RegExp("(?:^|; )"+N+"=([^;]*)")),c=m?decodeURIComponent(m[1]):null;function a(){var n=navigator.languages||[navigator.language||""];for(var i=0;i<n.length;i++){var x=String(n[i]).toLowerCase();for(var j=0;j<L.length;j++)if(x===L[j]||x.split("-")[0]===L[j])return L[j]}return D}if(P===D){var w=c&&L.indexOf(c)>=0?c:a();if(w!==D){location.replace("/"+w+(location.pathname==="/"?"":location.pathname)+location.search+location.hash);return}}if(c?c!==P:a()!==P)document.cookie=N+"="+P+"; path=/; max-age=31536000; samesite=lax"}catch(e){}})(${args});`;
+}
+
+/**
+ * The address of a page Next.js prerendered at build time, from its route in
+ * the prerender manifest. Those routes always name the language
+ * ("/en/courses/gmat"), while English addresses have none (src/i18n/routing.ts).
+ * Null for anything that is not a page in one of the languages, such as the
+ * icons and the not-found page.
+ */
+export function prerenderedPagePath(route: string): string | null {
+  const [, first, ...rest] = route.split('/');
+  if (!isLocale(first)) return null;
+  return localizePath(`/${rest.join('/')}`, first);
 }
 
 /**

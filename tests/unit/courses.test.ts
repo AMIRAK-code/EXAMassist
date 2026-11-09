@@ -100,6 +100,15 @@ describe('what is free', () => {
       expect(source).not.toMatch(/loadEntitlements|getCurrentUser|cookies\(|headers\(/);
     }
   });
+
+  it('renders every course page at build time, never on the Worker', () => {
+    // Rendering a lesson per request exceeds the Workers Free plan's CPU limit
+    // (error 1102), so each page is prerendered in every language.
+    for (const file of ['page.tsx', '[course]/page.tsx', '[course]/[lesson]/page.tsx']) {
+      const source = fs.readFileSync(path.join('src', 'app', '[locale]', 'courses', file), 'utf8');
+      expect(source, file).toMatch(/^export const dynamic = 'force-static';$/m);
+    }
+  });
 });
 
 describe('course pages in search', () => {

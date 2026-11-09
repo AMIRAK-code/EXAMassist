@@ -14,6 +14,9 @@ import { JsonLd, breadcrumbSchema, courseSchema } from '@/components/seo/json-ld
 
 type Props = { params: Promise<{ locale: string; course: string }> };
 
+/* Rendered at build time, like the lessons ([lesson]/page.tsx says why). */
+export const dynamic = 'force-static';
+
 export function generateStaticParams() {
   return listCourses().map((course) => ({ course: course.slug }));
 }

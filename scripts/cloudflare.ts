@@ -1,7 +1,7 @@
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
-import { assertHostsRedirect, previewUrlFrom, snapshotPublicPages } from './snapshot-pages';
+import { assertHostsRedirect, previewUrlFrom, savePrerenderedPages, snapshotPublicPages } from './snapshot-pages';
 
 /**
  * Builds (and optionally deploys) the Cloudflare Workers site: npm run cf:build / cf:deploy.
@@ -10,11 +10,14 @@ import { assertHostsRedirect, previewUrlFrom, snapshotPublicPages } from './snap
  * traffic, and its public pages are saved from that version's preview URL as
  * static files, which Cloudflare serves without running the Worker
  * (scripts/snapshot-pages.ts, src/lib/seo/static-pages.ts). Then the build is
- * deployed with those files, and only that moves visitors over. On the Workers
- * Free plan a page the Worker has to render can fail with error 1102 (CPU
- * limit), so visitors must never get a version whose pages are not files yet:
- * if anything fails before the final deploy, visitors stay on the current
- * version, and npm run cf:snapshot carries on from the same folder and build.
+ * deployed with those files, and only that moves visitors over. Pages Next.js
+ * prerenders at build time (the study courses) become files straight from the
+ * build, before the first upload, so the snapshot never asks the Worker for
+ * them. On the Workers Free plan a page the Worker has to render can fail with
+ * error 1102 (CPU limit), so visitors must never get a version whose pages are
+ * not files yet: if anything fails before the final deploy, visitors stay on
+ * the current version, and npm run cf:snapshot carries on from the same folder
+ * and build.
  *
  * Preview URLs must be on for the Worker ("preview_urls" in wrangler.jsonc).
  *
@@ -67,6 +70,12 @@ async function main(): Promise<void> {
     preview = fs.readFileSync(previewFile, 'utf8').trim();
   } else {
     run('build');
+    const prerendered = savePrerenderedPages({
+      nextDir: '.next',
+      assetsDir: path.join('.open-next', 'assets'),
+      cacheDir: path.join('.open-next', 'cache'),
+    });
+    console.log(`\nSaved ${prerendered.length} pages prerendered at build time (the courses) as static files.`);
     if (command === 'build') return;
     // A new version, with no traffic: `wrangler versions upload` under OpenNext.
     const upload = spawnSync(process.execPath, [cli, 'upload'], { env, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024, stdio: ['inherit', 'pipe', 'pipe'] });
