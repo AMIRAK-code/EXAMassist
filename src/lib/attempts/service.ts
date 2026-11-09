@@ -3,6 +3,7 @@ import type { Db } from '@/lib/db';
 import type { AttemptItemRow, AttemptPartRow, AttemptRow, QuestionVersionRow } from '@/lib/db/rows';
 import {
   getPool,
+  servableInLocale,
   getQuestionVersions,
   toPresented,
   toReviewable,
@@ -383,7 +384,10 @@ export async function startAttempt(db: Db, input: StartAttemptInput): Promise<St
     config.examKey,
   );
 
-  const rawPool = await getPool(db, input.examKey, input.userId);
+  // The session's language is fixed before its questions are chosen: a session
+  // in Italian draws only questions with a checked Italian version.
+  const contentLocale = sessionContentLocale(config, freeTest ? 'diagnostic' : requested!.mode, input.contentLocale);
+  const rawPool = await servableInLocale(db, await getPool(db, input.examKey, input.userId), contentLocale);
   let blueprint: Blueprint;
   let parts: BlueprintPart[];
   let pool: PoolItem[];
@@ -464,7 +468,7 @@ export async function startAttempt(db: Db, input: StartAttemptInput): Promise<St
       toIso(now),
       toIso(now),
     ));
-    (await storeContentLocale(db, attemptId, sessionContentLocale(config, blueprint.mode, input.contentLocale)));
+    (await storeContentLocale(db, attemptId, contentLocale));
 
     (await Promise.all(plannedParts.map(async ({ part, items, policy }, partIndex) => {
       const isFirst = partIndex === 0;
@@ -1583,7 +1587,7 @@ async function openNextPart(db: Db, attemptId: string, userId: string, fromIndex
   const run = db.transaction(async () => {
     if (routing && nextBlueprintPart) {
       const rerouted = applyRoute(nextBlueprintPart.selection, nextBlueprintPart.itemCount, routing.route);
-      const pool = eligiblePool((await getPool(db, attempt.exam_key, userId)), blueprint);
+      const pool = eligiblePool(await servableInLocale(db, await getPool(db, attempt.exam_key, userId), servedLocale(attempt)), blueprint);
       const used = new Set(items.map((i) => i.question_id));
       const rng = createRng(`${attempt.seed}:reroute:${nextIndex}`);
       const selection = selectItems(pool, rerouted, nextBlueprintPart.itemCount, rng, {

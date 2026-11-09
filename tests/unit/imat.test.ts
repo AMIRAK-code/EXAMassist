@@ -119,8 +119,14 @@ describe('Italian versions of the IMAT questions', () => {
         .match(/\d+(?:\.\d+)?/g) ?? []
     ).sort();
 
-  it('exist for every published question, checked and served', () => {
-    for (const q of published) {
+  // Since 2026-11-09 the bank also holds English-only questions: a session in
+  // Italian draws only on the questions below (servableInLocale), so it never
+  // mixes languages, and English sessions draw on everything.
+  const inItalian = published.filter((q) => q.translations?.it);
+
+  it('are checked and served wherever they exist, and still fill Italian practice and the diagnostic on their own', () => {
+    expect(inItalian.length).toBeGreaterThanOrEqual(60);
+    for (const q of inItalian) {
       const it = servableQuestionTranslations(q)?.it;
       expect(it, q.id).toBeDefined();
       expect(q.translations!.it!.check.answerPreserved, q.id).toBe(true);
@@ -128,10 +134,12 @@ describe('Italian versions of the IMAT questions', () => {
       expect(it!.stemMd, q.id).not.toBe(q.stemMd);
       expect(it!.explanationMd.length, q.id).toBeGreaterThan(100);
     }
+    const open = availabilityFromPool(poolOf(inItalian), IMAT).filter((entry) => entry.available).map((entry) => entry.blueprint.id);
+    expect(open).toEqual(expect.arrayContaining(['practice', 'diagnostic']));
   });
 
   it('keep every number of the stem and the options', () => {
-    for (const q of published) {
+    for (const q of inItalian) {
       const it = q.translations!.it!;
       expect(numbers(it.stemMd), `${q.id} stem`).toEqual(numbers(q.stemMd));
       q.options.forEach((o, i) => expect(numbers(it.options[i].textMd), `${q.id} ${o.id}`).toEqual(numbers(o.textMd)));
