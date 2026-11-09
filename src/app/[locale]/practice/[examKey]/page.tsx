@@ -26,6 +26,7 @@ import {
   StatusBadge,
   buttonClass,
 } from '@/components/ui';
+import { formatDescription, formatLabel } from '@/lib/exams/format-labels';
 
 export const dynamic = 'force-dynamic';
 
@@ -231,8 +232,8 @@ export default async function PracticeSetupPage({
                 <Card as="li" key={entry.blueprint.id}>
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div className="min-w-0">
-                      <h3 className="font-heading text-lg font-semibold">{entry.blueprint.label}</h3>
-                      <p className="mt-1 text-sm text-ink-muted">{entry.blueprint.description}</p>
+                      <h3 className="font-heading text-lg font-semibold">{formatLabel(config.examKey, entry.blueprint, locale)}</h3>
+                      <p className="mt-1 text-sm text-ink-muted">{formatDescription(config.examKey, entry.blueprint, locale)}</p>
                       <div className="mt-3 flex flex-wrap items-center gap-2">
                         <FidelityBadge fidelity={entry.blueprint.fidelity} />
                         <Badge tone="neutral">

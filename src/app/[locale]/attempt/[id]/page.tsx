@@ -13,6 +13,7 @@ import { pendingOwner } from '@/lib/player/owner';
 import { AttemptPlayer } from '@/components/player/attempt-player';
 import { tutorEnabled } from '@/lib/tutor/config';
 import { loadEntitlements } from '@/lib/billing/entitlements';
+import { formatFidelityNote, formatLabel } from '@/lib/exams/format-labels';
 
 // A live attempt is personal state: never cached, never indexed.
 export const dynamic = 'force-dynamic';
@@ -72,7 +73,11 @@ export default async function AttemptPage({ params }: { params: Promise<{ locale
   return (
     <AttemptPlayer
       key={`${state.id}:${state.currentPartIndex}`}
-      model={toPlayerModel(state)}
+      model={toPlayerModel({
+        ...state,
+        blueprintLabel: formatLabel(state.examKey, { id: state.blueprintId, label: state.blueprintLabel }, locale),
+        fidelityNote: formatFidelityNote(state.examKey, { id: state.blueprintId, fidelityNote: state.fidelityNote }, locale),
+      })}
       owner={pendingOwner(user.id)}
       tutorEnabled={tutor}
     />

@@ -1,6 +1,6 @@
 import { Link } from '@/i18n/navigation';
 import type { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 import { pageAlternates } from '@/i18n/alternates';
 import type { Locale } from '@/i18n/locales';
 import { getDb } from '@/lib/db';
@@ -22,6 +22,7 @@ import { PlanningExamSwitcher, PlanningNotice, PlanningViews } from '@/component
 import { DateConflictCard } from '@/components/planning/plan-parts';
 import { buildHistory, listOfficialScores, officialScoreExam } from '@/lib/learning/official-scores';
 import { OfficialScoresSummaryCard } from '@/components/official-scores/score-history';
+import { formatLabel } from '@/lib/exams/format-labels';
 
 export const dynamic = 'force-dynamic';
 
@@ -102,7 +103,7 @@ export default async function ReadinessPage({ searchParams }: { searchParams: Pr
     allFacets: (await practiceFacets(db, config)),
     unseenFacets: practice ? facetsFromPool((await getPool(db, config.examKey, user.id)).filter((item) => item.lastSeenAt === null), config, practice) : [],
     retryable: (await retryableMissed(db, user.id, config.examKey)).length,
-    timedFormat: timed ? { label: timed.blueprint.label } : null,
+    timedFormat: timed ? { label: formatLabel(config.examKey, timed.blueprint, await getLocale()) } : null,
   });
 
   const targetForm = (

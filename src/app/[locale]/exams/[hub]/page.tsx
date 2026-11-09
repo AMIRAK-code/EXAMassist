@@ -36,6 +36,7 @@ import { guidesForHub } from '@/lib/content/guides';
 import { isSnapshotRequest } from '@/lib/seo/static-pages';
 import { hubContent, hubUpdatedOn } from '@/lib/exams/hub-content';
 import { blueprintTextIt, examDetailsTranslation } from '@/lib/exams/hub-details-it';
+import { formatDescription, formatLabel } from '@/lib/exams/format-labels';
 import { HubDetailsNote, HubIntro, HubSamples, HubStudyPlan, HubTranslationNote } from '@/components/exams/hub-content';
 
 export const dynamic = 'force-dynamic';
@@ -168,7 +169,17 @@ export default async function ExamHubPage({ params }: Props) {
       versionLabel: local?.versionLabel ?? config.versionLabel,
       admissionsCycle: local?.admissionsCycle ?? config.admissionsCycle,
       section: (key: string, name: string) => local?.sections[key] ?? name,
-      blueprint: (b: { id: string; label: string; description: string }) => (locale === 'it' && translated ? blueprintTextIt(config, b) : undefined) ?? b,
+      // A format's name and description are translated on every page, not only on a translated hub
+      // (src/lib/exams/format-labels.ts); a translated Italian hub keeps its own sentences.
+      blueprint: (b: { id: string; label: string; description: string }) => {
+        const hubText = locale === 'it' && translated ? blueprintTextIt(config, b) : undefined;
+        if (hubText) return { ...hubText, lang: contentLang };
+        return {
+          label: formatLabel(config.examKey, b, locale),
+          description: formatDescription(config.examKey, b, locale),
+          lang: LOCALE_INFO[locale as Locale].htmlLang,
+        };
+      },
     };
   };
   const breadcrumbs = translated ? trail.map((crumb) => (crumb.href ? { ...crumb, href: localizePath(crumb.href, locale as Locale) } : crumb)) : trail;
@@ -358,8 +369,8 @@ export default async function ExamHubPage({ params }: Props) {
               <ul className="grid gap-3 sm:grid-cols-2">
                 {offered.map((entry) => (
                   <Card as="li" key={entry.blueprint.id}>
-                    <h4 lang={contentLang} className="font-heading text-lg font-semibold">{text.blueprint(entry.blueprint).label}</h4>
-                    <p lang={contentLang} className="mt-1 text-sm text-ink-muted">{text.blueprint(entry.blueprint).description}</p>
+                    <h4 lang={text.blueprint(entry.blueprint).lang} className="font-heading text-lg font-semibold">{text.blueprint(entry.blueprint).label}</h4>
+                    <p lang={text.blueprint(entry.blueprint).lang} className="mt-1 text-sm text-ink-muted">{text.blueprint(entry.blueprint).description}</p>
                     <div className="mt-3">
                       <FidelityBadge fidelity={entry.blueprint.fidelity} />
                     </div>
@@ -377,7 +388,7 @@ export default async function ExamHubPage({ params }: Props) {
                       <StatusBadge status={entry.blockedBy === 'rules' ? 'notoffered' : 'notyet'}>
                         {t(entry.blockedBy === 'rules' ? 'status.notoffered' : 'status.notyet')}
                       </StatusBadge>
-                      <span lang={contentLang} className="font-medium">{text.blueprint(entry.blueprint).label}</span>
+                      <span lang={text.blueprint(entry.blueprint).lang} className="font-medium">{text.blueprint(entry.blueprint).label}</span>
                       <span className="text-ink-muted">
                         {entry.blockedBy === 'rules'
                           ? t('availability.rulesNotVerified')

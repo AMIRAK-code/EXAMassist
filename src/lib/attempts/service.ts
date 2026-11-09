@@ -1474,6 +1474,8 @@ export interface UnfinishedAttempt {
   id: string;
   examKey: string;
   examName: string;
+  blueprintId: string;
+  /** The configuration's English name; pages show formatLabel() in the visitor's language. */
   blueprintLabel: string;
   mode: AttemptRow['mode'];
   startedAt: string;
@@ -1519,6 +1521,7 @@ export async function listUnfinishedAttempts(db: Db, userId: string, now = new D
       id,
       examKey: attempt.exam_key,
       examName: config.name,
+      blueprintId: blueprint.id,
       blueprintLabel: blueprint.label,
       mode: attempt.mode,
       startedAt: attempt.started_at,
