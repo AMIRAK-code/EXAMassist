@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0064",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-trigonometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is cos(2θ) if cos θ = 1/3?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "−7/9"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "7/9"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "2/3"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "−1/3"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "1/9"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Use cos(2θ)=2cos²θ−1. Substitution gives 2/9−1=−7/9. The result is determined by cosine alone and does not require choosing a quadrant for θ.",
+  "distractorRationale": {
+    "b": "This loses the negative sign after subtracting one.",
+    "c": "This incorrectly doubles cosine instead of the angle.",
+    "d": "This does not follow the double-angle identity.",
+    "e": "This squares cosine but omits the rest of the formula."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Double-angle2cos²-1=2/9-1=-7/9."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-logic-puzzle-drawers",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "reading-logic",
+  "domainSlug": "tili-logic",
+  "skillSlug": "tili-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Exactly one of four drawers holds a key. A clue truthfully says the key is neither in the top drawer nor the bottom drawer. A second truthful clue excludes the drawer immediately above the bottom drawer. Numbering from the top, where is the key?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Drawer 1"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Either drawer 2 or drawer 3"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Drawer 2"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Drawer 4"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Drawer 3"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The first clue leaves drawers 2 and 3. The drawer immediately above bottom drawer 4 is drawer 3, so the second clue leaves only drawer 2.",
+  "distractorRationale": {
+    "d": "The first clue excludes the bottom drawer.",
+    "b": "The second clue distinguishes these two drawers.",
+    "a": "The first clue excludes the top drawer.",
+    "e": "The second clue excludes the drawer above the bottom."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Eliminate1and4 then3 leaves2."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

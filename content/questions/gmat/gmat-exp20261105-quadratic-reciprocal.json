@@ -1,0 +1,75 @@
+{
+  "id": "gmat-exp20261105-quadratic-reciprocal",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-elementary-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A workshop sells q units in a day, where q is an integer from 0 to 30. Each unit sells for (70-2q) euros. The daily cost is 100+10q euros, including the fixed cost even when no units are sold. What is the maximum possible daily profit, defined as revenue minus cost?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "30 euros"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "350 euros"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "900 euros"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "150 euros"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "450 euros"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Revenue is q(70-2q), so profit is -2q squared+60q-100. Completing the square gives 350-2(q-15) squared. The subtracted square is nonnegative, so profit cannot exceed 350 euros. The feasible integer quantity q=15 attains that bound.",
+  "distractorRationale": {
+    "d": "The quantity 15 that maximizes profit is not a profit of 150; substituting q=15 gives revenue 600 and costs 250.",
+    "e": "Omitting the fixed cost of 100 overstates the maximum profit by 100.",
+    "c": "Multiplying the linear contribution coefficient 60 by the maximizing quantity 15 ignores both the quadratic price reduction and fixed cost.",
+    "a": "Thirty is the quantity limit, not a monetary profit. At q=30, profit is actually -100 euros."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question. AI audit replaced a cross-exam duplicate reciprocal identity with an original quadratic profit model on 2026-11-05."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

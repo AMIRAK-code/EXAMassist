@@ -1,0 +1,84 @@
+{
+  "id": "gre-exp20261105-rc-auction-ranking-similar",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "verbal-1",
+  "domainSlug": "verbal-reading-comprehension",
+  "skillSlug": "rc-author-assumptions-perspective",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Why compare sellers with similar recent sales?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "To reduce pre-existing popularity differences when examining the effect of display position"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "To avoid observing later purchases"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "To make the ranking entirely random forever"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "To exclude all successful sellers"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "To guarantee identical products and customers"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Matching on recent sales helps hold the ranking's underlying popularity measure more nearly constant. Varying position then gives a clearer test of visibility, though it does not guarantee perfect equivalence in all respects.",
+  "distractorRationale": {
+    "c": "The proposal is temporary and limited.",
+    "e": "Similar sales do not guarantee those identities.",
+    "d": "The design does not require failure.",
+    "b": "Later purchases are the outcome measured."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": {
+    "id": "gre-exp20261105-passage-auction-ranking",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-gre",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gre",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Similarpriorsalescontrolsinitialpopularitydifference, notallproductqualities."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

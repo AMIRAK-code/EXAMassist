@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-undergraduate-exp20261105-105",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-numerical-reasoning",
+  "skillSlug": "numerical-reasoning-charts-tables",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which tool category converted the highest proportion of enquiries?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Building"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Garden"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Cleaning"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "All categories have the same rate"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Compute the rates separately: Garden: 48/80=60%; Building: 90/120=75%; Cleaning: 130/200=65%. Compare these proportions rather than raw successful counts. The highest rate is 75%.",
+  "distractorRationale": {
+    "b": "Compare each numerator with its own denominator. The rates are 60%, 75%, 65%; this claim does not identify all and only the highest-rate categories.",
+    "c": "Compare each numerator with its own denominator. The rates are 60%, 75%, 65%; this claim does not identify all and only the highest-rate categories.",
+    "d": "The ratios differ; equal rates cannot be inferred from the raw totals."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": {
+    "id": "bocconi-undergraduate-exp20261105-rental-tools",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-undergraduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-undergraduate",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Conversion rates .6,.75,.65 make Building highest."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

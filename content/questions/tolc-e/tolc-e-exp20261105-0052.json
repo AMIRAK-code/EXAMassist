@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0052",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-analytic-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which set of points is described by y > 2x − 1?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Only the point (0,−1)"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The open half-plane above the line y = 2x − 1"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The line itself including all boundary points"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Only points with positive x"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The open half-plane below the line"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "For each x, the condition requires a y coordinate larger than the line’s value 2x − 1. This is the region above the line. Because the inequality is strict, boundary points are not included.",
+  "distractorRationale": {
+    "c": "The strict inequality excludes the line.",
+    "e": "The greater-than sign selects larger y values.",
+    "d": "The condition can hold for positive or negative x.",
+    "a": "That point lies on the excluded boundary."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Strict y greater than line describes open upper half-plane."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

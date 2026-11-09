@@ -1,0 +1,81 @@
+{
+  "id": "imat-exp20261105-relative-risk-denominator",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-logic",
+  "skillSlug": "imat-logic-critical",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Town P recorded twice as many cycling injuries as town Q. A speaker concludes that an individual cycling trip is riskier in P. What missing information is most relevant?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The colour of each town hall"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The date each town was founded"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The number of letters in the cyclists' names"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The towns' alphabetical order"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The number of cycling trips made in each town"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Risk per trip requires injuries divided by trip count. More injuries can reflect more cycling rather than a greater chance of injury on each trip. The exposure denominator is essential.",
+  "distractorRationale": {
+    "b": "This does not establish present trip-level risk.",
+    "d": "This has no bearing on injury risk per trip.",
+    "c": "This does not measure exposure.",
+    "a": "This is unrelated to the denominator."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-imat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-imat",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Per-trip injury risk needs injury counts divided by corresponding cycling trip exposures."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

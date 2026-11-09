@@ -1,0 +1,81 @@
+{
+  "id": "imat-exp20261105-overlap-guarantee",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-logic",
+  "skillSlug": "imat-logic-critical",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "In a group of 30 students, 18 study biology and 17 study chemistry. What is the smallest possible number studying both?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "0"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "5"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "12"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "17"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "18"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The union cannot exceed 30. Since 18+17=35 counts overlapping students twice, at least 35−30=5 must belong to both. An arrangement with five in both is possible.",
+  "distractorRationale": {
+    "a": "The two group sizes sum to more than 30.",
+    "e": "The overlap cannot exceed the smaller group of 17.",
+    "d": "This assumes all chemistry students also study biology.",
+    "c": "This is the number not studying biology."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-imat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-imat",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Minimum overlap18+17-30=5by inclusion-exclusion."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

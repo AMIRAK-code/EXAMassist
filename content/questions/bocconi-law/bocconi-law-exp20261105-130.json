@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-law-exp20261105-130",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-deductive-conditions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which statement must be true in every permitted order?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Ash must be in position 3."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Birch and Elm must occupy consecutive positions, in either order."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Ash must not be in position 1."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Ash must be in position 1."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Combine the ordering and placement constraints rather than assuming one example is unique. The statement \"Birch and Elm must occupy consecutive positions, in either order.\" holds in all 9 permitted orders. Generate the cases by placing any fixed-position item and adjacent block first, then discard arrangements that violate a remaining rule. For each alternative, an explicit permitted counterexample appears in its feedback.\n\nComplete permitted orders (each arrow advances one position):\n- Ash → Birch → Elm → Cedar → Fir\n- Ash → Birch → Elm → Fir → Cedar\n- Ash → Cedar → Birch → Elm → Fir\n- Ash → Cedar → Fir → Birch → Elm\n- Ash → Fir → Birch → Elm → Cedar\n- Ash → Fir → Cedar → Birch → Elm\n- Birch → Elm → Ash → Cedar → Fir\n- Birch → Elm → Ash → Fir → Cedar\n- Birch → Elm → Fir → Ash → Cedar",
+  "distractorRationale": {
+    "c": "A counterexample satisfying all the rules is Ash → Birch → Elm → Cedar → Fir. Thus this statement is not necessary.",
+    "a": "A counterexample satisfying all the rules is Ash → Birch → Elm → Cedar → Fir. Thus this statement is not necessary.",
+    "d": "A counterexample satisfying all the rules is Birch → Elm → Ash → Cedar → Fir. Thus this statement is not necessary."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "bocconi-law-exp20261105-hearing-order",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-law",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-law",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Independently enumerated all 120 permutations of Ash, Birch, Cedar, Elm, Fir. Rules Ash must precede Cedar. Birch must be immediately followed by Elm. Fir must not be in position 1. leave 9 valid orders: Ash>Birch>Elm>Cedar>Fir; Ash>Birch>Elm>Fir>Cedar; Ash>Cedar>Birch>Elm>Fir; Ash>Cedar>Fir>Birch>Elm; Ash>Fir>Birch>Elm>Cedar; Ash>Fir>Cedar>Birch>Elm; Birch>Elm>Ash>Cedar>Fir; Birch>Elm>Ash>Fir>Cedar; Birch>Elm>Fir>Ash>Cedar. Choice true counts: a=3, b=2, c=9, d=6; necessary requires all matches."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

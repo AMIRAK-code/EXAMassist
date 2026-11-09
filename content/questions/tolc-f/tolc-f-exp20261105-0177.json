@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-exp20261105-0177",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "logic",
+  "domainSlug": "tolcf-logic",
+  "skillSlug": "tolcf-logic-propositions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Every refrigerated sample is labelled. Some labelled samples are expired. Which conclusion must follow?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "No expired sample is refrigerated."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "No unlabelled sample is refrigerated."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Every labelled sample is refrigerated."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Every expired sample is labelled."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Some refrigerated samples are expired."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The universal statement “refrigerated implies labelled” is equivalent to its contrapositive: not labelled implies not refrigerated. The second premise establishes an overlap between labelled and expired samples but does not connect expiration to refrigeration strongly enough for the other conclusions.",
+  "distractorRationale": {
+    "e": "The expired labelled samples need not be among the refrigerated ones.",
+    "c": "This reverses the stated implication.",
+    "a": "The premises do not exclude such an overlap.",
+    "d": "Only some labelled samples are said to be expired."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-f",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-f",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Refrigerated implies labelled; contrapositive unlabelled implies not refrigerated."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

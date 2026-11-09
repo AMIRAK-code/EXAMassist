@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-graph-circle-region",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tili-mathematics",
+  "skillSlug": "tili-math-graphs",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which inequality describes the closed disk of radius 3 centred at the origin?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "x squared+y squared≤9"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "x squared+y squared≥9"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "x squared−y squared≤9"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "x squared+y squared=9"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "x+y≤3"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Distance from the origin is the square root of x squared+y squared. Requiring it to be at most 3 gives x squared+y squared≤9, including interior and boundary.",
+  "distractorRationale": {
+    "c": "This is not a circular disk.",
+    "d": "This describes only the boundary circle.",
+    "e": "This describes a half-plane.",
+    "b": "This describes the exterior including the boundary."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Distance²fromorigin≤radius² givesx²+y²≤9."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0079",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A student may submit the project if and only if both the fee is paid and the form is signed. The project may be submitted, and the fee is paid. What else is certain?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The fee was paid yesterday."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The form was signed by two people."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The form is signed."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Every student has submitted a project."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The project has already been accepted for an award."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The equivalence makes paid fee and signed form necessary together for permission to submit. Because permission holds, both conditions hold. Knowing the fee is paid does not remove the requirement for the signature.",
+  "distractorRationale": {
+    "a": "The timing of payment is not stated.",
+    "b": "No signer count is specified.",
+    "d": "The condition concerns one student and permission, not universal submission.",
+    "e": "Submission permission does not establish an award."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Submission eligibility requires both payment and signature; signature follows."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

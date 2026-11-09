@@ -1,0 +1,81 @@
+{
+  "id": "gmat-exp20261105-production-overtime",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-applied-arithmetic-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A workshop produces 240 parts in 6 hours at a constant normal rate. During overtime its rate is 25% higher. How many parts can it produce in 3 overtime hours?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "60"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "120"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "150"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "180"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "300"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The normal rate is 240/6=40 parts/hour. Overtime rate is 50, and three hours yield 150 parts. Apply the percentage to the rate before multiplying by time.",
+  "distractorRationale": {
+    "b": "This uses the normal rate without the increase.",
+    "e": "This uses six overtime hours.",
+    "a": "This uses the hours ratio without the hourly rate.",
+    "d": "This applies a 50% increase rather than 25%."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Normal40parts/h increased25%=50; threehours150."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

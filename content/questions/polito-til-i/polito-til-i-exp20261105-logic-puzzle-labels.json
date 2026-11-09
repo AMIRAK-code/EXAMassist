@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-logic-puzzle-labels",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "reading-logic",
+  "domainSlug": "tili-logic",
+  "skillSlug": "tili-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Three boxes contain only red balls, only blue balls, and a mixture of red and blue balls respectively. Their labels Red, Blue and Mixed are all wrong. A ball drawn from the box labelled Mixed is red. What does that box contain?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Only blue balls"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Only red balls"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "A mixture"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "No balls"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Its content cannot be determined."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The box labelled Mixed is not mixed. It must therefore be one of the single-colour boxes. Drawing a red ball establishes that it is the red-only box.",
+  "distractorRationale": {
+    "d": "A ball was drawn from it.",
+    "c": "Its Mixed label is known to be wrong.",
+    "a": "A red ball was drawn from it.",
+    "e": "The wrong label excludes a mixture, and the sample excludes blue-only."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): WrongMixedlabel excludesmixed; drawredexcludesblueonly."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

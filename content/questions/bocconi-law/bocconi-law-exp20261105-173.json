@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-law-exp20261105-173",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-deductive-conditions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which complete order satisfies every stated condition?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Essay → Speech → Decree → Charter → Poem"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Poem → Decree → Essay → Charter → Speech"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Decree → Poem → Charter → Speech → Essay"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Charter → Decree → Essay → Poem → Speech"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Check each rule against Essay → Speech → Decree → Charter → Poem. Every precedence, position, and separation condition holds. Each alternative violates at least one explicit rule; the corresponding violated condition is identified in its feedback.",
+  "distractorRationale": {
+    "d": "This order violates: Speech must be immediately followed by Decree. Essay must precede Charter.",
+    "c": "This order violates: Speech must be immediately followed by Decree. Essay must precede Charter.",
+    "b": "This order violates: Speech must be immediately followed by Decree. Poem must not be in position 1."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": {
+    "id": "bocconi-law-exp20261105-translation-queue",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-law",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-law",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Independently enumerated all 120 permutations of Charter, Decree, Essay, Poem, Speech. Rules Speech must be immediately followed by Decree. Essay must precede Charter. Poem must not be in position 1. leave 9 valid orders: Essay>Charter>Poem>Speech>Decree; Essay>Charter>Speech>Decree>Poem; Essay>Poem>Charter>Speech>Decree; Essay>Poem>Speech>Decree>Charter; Essay>Speech>Decree>Charter>Poem; Essay>Speech>Decree>Poem>Charter; Speech>Decree>Essay>Charter>Poem; Speech>Decree>Essay>Poem>Charter; Speech>Decree>Poem>Essay>Charter. Choice true counts: a=0, b=0, c=0, d=1; valid complete order requires one matches."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

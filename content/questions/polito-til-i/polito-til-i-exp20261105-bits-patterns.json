@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-bits-patterns",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "technical-knowledge",
+  "domainSlug": "tili-computer-science",
+  "skillSlug": "tili-cs-data-units",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "How many distinct bit patterns can be represented by 5 bits?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "5"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "10"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "25"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "32"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "64"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Each bit has two possible values independently. Five positions therefore give 2 to the fifth=32 patterns, including the all-zero pattern.",
+  "distractorRationale": {
+    "e": "This is the number for 6 bits.",
+    "a": "This counts positions rather than patterns.",
+    "b": "Each position doubles the total, not adds two.",
+    "c": "This squares the bit count rather than raising 2 to it."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Five independent binary positions give2^5=32."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

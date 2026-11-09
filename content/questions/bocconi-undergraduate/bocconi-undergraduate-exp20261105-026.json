@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-undergraduate-exp20261105-026",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-functions-graphs",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "For positive $x$, which function decreases as $x$ increases?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$y=\\log_2 x$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$y=1/x$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$y=x^2$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$y=2^x$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "For positive inputs, taking a reciprocal reverses size: if x grows, 1/x shrinks. The square, exponential with base above 1, and logarithm with base above 1 all increase here.",
+  "distractorRationale": {
+    "d": "Confuses exponential growth with decay.",
+    "a": "Confuses a logarithm with its reciprocal.",
+    "c": "Ignores that squaring is increasing on positive inputs."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-undergraduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-undergraduate",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Reciprocal has derivative -1/x²<0 for positive x."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

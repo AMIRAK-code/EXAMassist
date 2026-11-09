@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-exp20261105-0154",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "physics",
+  "domainSlug": "tolcf-physics",
+  "skillSlug": "tolcf-phys-mechanics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A cart starts from rest with constant acceleration 3 m s⁻². How far does it travel in 4 s?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "16 m"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "12 m"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "48 m"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "6 m"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "24 m"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "For constant acceleration from rest, displacement is one half times acceleration times time squared. Thus s = 0.5 × 3 × 4² = 24 m. The final speed is 12 m s⁻¹, so average speed is 6 m s⁻¹ and 6 × 4 confirms 24 m.",
+  "distractorRationale": {
+    "b": "This is the final speed numerically, not the distance.",
+    "c": "This omits the factor one half in the displacement formula.",
+    "d": "This divides where the time should be squared.",
+    "a": "This uses time squared without the acceleration factor."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-f",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-f",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): From rest s=.5at²=.5*3*16=24m."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

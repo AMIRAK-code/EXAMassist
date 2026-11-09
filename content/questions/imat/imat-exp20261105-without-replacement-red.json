@@ -1,0 +1,75 @@
+{
+  "id": "imat-exp20261105-without-replacement-red",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-physics-maths",
+  "skillSlug": "imat-math-probability-statistics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A bag holds 4 red and 3 blue counters. Two are drawn without replacement. What is the probability both are red?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "1/7"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "2/7"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "16/49"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "4/7"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "6/7"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The first red probability is 4/7; after a red is removed, the next is 3/6. Multiply to obtain 12/42=2/7. The denominator changes because there is no replacement.",
+  "distractorRationale": {
+    "a": "This halves the correct probability without reason.",
+    "e": "There are six favourable unordered red pairs among 21 total pairs, so the probability is 6/21, not 6/7.",
+    "c": "This treats the draws as independent with replacement.",
+    "d": "This is only the first-draw probability."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

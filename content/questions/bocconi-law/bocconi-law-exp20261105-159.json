@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-law-exp20261105-159",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-deductive-conditions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which statement cannot be true in any permitted order?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Tower and Hall must occupy consecutive positions, in either order."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Tower and Hall must not occupy consecutive positions."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Hall must be in position 1."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Tower must precede Hall."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Test whether each proposed statement can be added consistently to the rules. \"Hall must be in position 1.\" is incompatible with every permitted order. The alternative statements each have a complete valid example, given in their feedback. To check impossibility, enumerate placements for the most restricted item or block, then remove every case breaking a rule.\n\nComplete permitted orders (each arrow advances one position):\n- Court → Bridge → Dock → Tower → Hall\n- Court → Bridge → Hall → Tower → Dock\n- Court → Dock → Bridge → Tower → Hall\n- Court → Dock → Tower → Bridge → Hall\n- Court → Tower → Dock → Bridge → Hall\n- Dock → Court → Bridge → Tower → Hall\n- Dock → Court → Tower → Bridge → Hall\n- Dock → Tower → Court → Bridge → Hall\n- Tower → Court → Dock → Bridge → Hall\n- Tower → Dock → Court → Bridge → Hall",
+  "distractorRationale": {
+    "b": "This is possible, as demonstrated by Court → Dock → Tower → Bridge → Hall, which obeys all the original conditions.",
+    "d": "This is possible, as demonstrated by Court → Bridge → Dock → Tower → Hall, which obeys all the original conditions.",
+    "a": "This is possible, as demonstrated by Court → Bridge → Dock → Tower → Hall, which obeys all the original conditions."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "bocconi-law-exp20261105-inspection-visits",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-law",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-law",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Independently enumerated all 120 permutations of Bridge, Court, Dock, Hall, Tower. Rules Bridge must occur after Court and before Hall. Tower must not be in position 5. Dock and Hall must not occupy consecutive positions. leave 10 valid orders: Court>Bridge>Dock>Tower>Hall; Court>Bridge>Hall>Tower>Dock; Court>Dock>Bridge>Tower>Hall; Court>Dock>Tower>Bridge>Hall; Court>Tower>Dock>Bridge>Hall; Dock>Court>Bridge>Tower>Hall; Dock>Court>Tower>Bridge>Hall; Dock>Tower>Court>Bridge>Hall; Tower>Court>Dock>Bridge>Hall; Tower>Dock>Court>Bridge>Hall. Choice true counts: a=6, b=0, c=9, d=4; impossible requires zero matches."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

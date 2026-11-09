@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0099",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-sequences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "An ordered list is formed by repeating the block red, blue, blue, green. What colour is in position 47, counting the first position as 1?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Green"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Blue"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Yellow"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Red"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The colour cannot be determined"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Divide 47 by the block length four: 47 = 4 × 11 + 3. Position 47 is the third entry of a block, which is blue. The starting index matters when interpreting the remainder.",
+  "distractorRationale": {
+    "d": "Red occupies positions with remainder one on division by four.",
+    "a": "Green occupies positions divisible by four.",
+    "c": "Yellow never appears in the repeated block.",
+    "e": "The complete repeating rule and starting position are specified."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Position 47 has residue 3 modulo 4, blue."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

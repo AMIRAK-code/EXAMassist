@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-coulomb-distance",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "physics",
+  "domainSlug": "tili-physics",
+  "skillSlug": "tili-phys-electricity",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Two fixed point charges are separated by distance r. If separation doubles, what happens to the magnitude of their electrostatic force?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "It becomes one quarter."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "It doubles."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "It quadruples."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "It halves."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "It is unchanged."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Coulomb force is proportional to 1/r squared. Replacing r by 2r multiplies the denominator by four and reduces force to one quarter.",
+  "distractorRationale": {
+    "d": "The force follows an inverse-square law.",
+    "e": "Separation is part of Coulomb's law.",
+    "b": "Increasing separation weakens the force.",
+    "c": "This reverses the inverse-square dependence."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Inverse-square separation scaling givesF/4."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

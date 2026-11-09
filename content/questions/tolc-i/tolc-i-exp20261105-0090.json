@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0090",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "An engineer says, “If the material is brittle, it fractures without much plastic deformation.” Which observation would refute this universal rule?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "A brittle material that undergoes substantial plastic deformation before fracturing."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "A material whose brittleness is unknown."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "A nonbrittle material that deforms substantially."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "A brittle material that fractures with little deformation."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "A nonbrittle material that fractures with little deformation."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "To refute “if P then Q,” find P true and Q false. A brittle material with substantial plastic deformation is exactly that combination. Nonbrittle cases cannot refute a rule restricted to brittle materials.",
+  "distractorRationale": {
+    "c": "The rule does not constrain nonbrittle materials.",
+    "d": "That supports the rule rather than refuting it.",
+    "e": "The rule does not say only brittle materials can do this.",
+    "b": "Without knowing the antecedent, this does not establish a counterexample."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Universal brittle implies little deformation is refuted by brittle substantial-deformation example."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

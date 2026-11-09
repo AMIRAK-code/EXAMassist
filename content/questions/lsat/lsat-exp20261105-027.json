@@ -1,0 +1,81 @@
+{
+  "id": "lsat-exp20261105-027",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "lr1",
+  "domainSlug": "logical-reasoning",
+  "skillSlug": "lr-reasoning-patterns",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "If the alarm had worked, the guard would have been notified. The guard was not notified. Therefore the alarm did not work. Which argument has the same form?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Some members are singers. All singers practise, so all members practise."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The oven is hot because its thermostat is high."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "If the soil is dry, watering is needed. The soil is not dry, so watering is not needed."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "If the parcel had been scanned, a tracking entry would exist. No entry exists, so the parcel was not scanned."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "If the lamp is on, the room is lit. The room is lit, so the lamp is on."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The pattern denies a necessary consequence: if the first event occurred, the second would occur; the second did not occur; therefore the first did not occur. The tracking argument uses that same valid structure.",
+  "distractorRationale": {
+    "b": "This is a causal explanation rather than a conditional denial.",
+    "e": "This affirms the consequent.",
+    "c": "This denies the antecedent.",
+    "a": "This changes a particular premise into a universal conclusion."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "us-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Individually authored original draft. Requires blind independent solve and editorial review before publication."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "us-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-lsat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-lsat",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified\"; it checked for competing defensible answers and flagged none): If scanned then entry; no entry implies not scanned, same modus tollens."
+    },
+    "notes": "Independent review pending; structural validation is not proof of correctness. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

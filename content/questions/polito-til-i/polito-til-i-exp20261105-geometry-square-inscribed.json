@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-geometry-square-inscribed",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tili-mathematics",
+  "skillSlug": "tili-math-euclidean-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A square is inscribed in a circle of radius 5. What is the square's area?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "20"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "25"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "50"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "75"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "100"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The square's diagonal is the circle's diameter, 10. Since diagonal squared equals twice side squared, area is side squared=100/2=50.",
+  "distractorRationale": {
+    "e": "This uses diameter as the side rather than diagonal.",
+    "b": "This uses radius as the square's side.",
+    "a": "This does not use the diagonal-area relation.",
+    "d": "This has no consistent square geometry."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Diagonaldiameter10; area diagonal²/2=50."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

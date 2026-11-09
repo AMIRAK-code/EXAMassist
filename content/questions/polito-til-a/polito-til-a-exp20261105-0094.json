@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-a-exp20261105-0094",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "logical-reasoning",
+  "domainSlug": "tila-logic",
+  "skillSlug": "tila-logic-verbal",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "If the sensor fails, a red light appears. A red light appears. Which additional premise would make sensor failure logically certain?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "A red light appears only if the sensor fails."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The sensor sometimes works."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "A working sensor can also produce a red light."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The light is easy to see."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The sensor is near the door."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The original implication alone cannot be reversed. The added only-if statement supplies red light implies failure. Together with the observed red light, that implication entails sensor failure.",
+  "distractorRationale": {
+    "b": "This does not rule out other causes of red light.",
+    "d": "Visibility does not establish its sole cause.",
+    "e": "Location is irrelevant to the implication.",
+    "c": "This permits the alternative the inference must exclude."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content. Historical 2026/27 TIL-A-format practice; not a claim of alignment to the announced 2027/28 replacement admission tests."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-a",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-a",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Addconversered->failed yieldsfailurefromred."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

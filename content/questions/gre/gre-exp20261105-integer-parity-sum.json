@@ -1,0 +1,81 @@
+{
+  "id": "gre-exp20261105-integer-parity-sum",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-arithmetic",
+  "skillSlug": "arith-integer-properties",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "If p is even and q is odd, which expression must be odd?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "p+q+1"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "2q"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "p squared+q squared"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "p squared+q+1"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "pq"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "An even integer squared remains even and an odd integer squared remains odd. Their sum is odd. Each alternative includes an even product or adds two odd contributions.",
+  "distractorRationale": {
+    "a": "Even plus odd plus one is even.",
+    "b": "Twice any integer is even.",
+    "d": "Even plus odd plus one is even.",
+    "e": "A product containing an even factor is even."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-gre",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gre",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Even²plusodd²odd; othersalleven."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-graduate-exp20261105-159",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-verbal-reasoning",
+  "skillSlug": "grad-verbal-argument-analysis",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which statement cannot be true in any permitted order?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Eris and Daro must occupy consecutive positions, in either order."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Eris and Corin must not occupy consecutive positions."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Eris and Daro must not occupy consecutive positions."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Bex and Eris must occupy consecutive positions, in either order."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Test whether each proposed statement can be added consistently to the rules. \"Bex and Eris must occupy consecutive positions, in either order.\" is incompatible with every permitted order. The alternative statements each have a complete valid example, given in their feedback. To check impossibility, enumerate placements for the most restricted item or block, then remove every case breaking a rule.\n\nComplete permitted orders (each arrow advances one position):\n- Eris → Corin → Bex → Daro → Arden\n- Eris → Daro → Bex → Corin → Arden",
+  "distractorRationale": {
+    "c": "This is possible, as demonstrated by Eris → Corin → Bex → Daro → Arden, which obeys all the original conditions.",
+    "b": "This is possible, as demonstrated by Eris → Daro → Bex → Corin → Arden, which obeys all the original conditions.",
+    "a": "This is possible, as demonstrated by Eris → Daro → Bex → Corin → Arden, which obeys all the original conditions."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "bocconi-graduate-exp20261105-supplier-presentations",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Independently enumerated all 120 permutations of Arden, Bex, Corin, Daro, Eris. Rules Bex must be in position 3. Eris must precede Arden. Exactly 1 other item must occur between Corin and Daro. leave 2 valid orders: Eris>Corin>Bex>Daro>Arden; Eris>Daro>Bex>Corin>Arden. Choice true counts: a=1, b=0, c=1, d=1; impossible requires zero matches."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

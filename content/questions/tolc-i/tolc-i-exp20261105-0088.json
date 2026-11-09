@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0088",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "All cables in tray X are insulated. At least one cable in tray Y is not insulated. What must be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "At least one cable in tray Y is not in tray X."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Every cable in tray Y is uninsulated."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "No cable in tray Y is in tray X."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Every cable in tray X is also in tray Y."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "No insulated cable is in tray Y."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The known uninsulated cable in Y cannot belong to X, because every X cable is insulated. That establishes at least one Y member outside X. It does not determine where other Y cables are located.",
+  "distractorRationale": {
+    "c": "Only the uninsulated cable is forced outside tray X.",
+    "d": "No inclusion of X in Y is given.",
+    "b": "Only at least one is specified.",
+    "e": "Tray Y may contain other insulated cables."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Existing uninsulated Y cable cannot lie in wholly insulated X."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

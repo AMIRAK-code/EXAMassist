@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0039",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Solve |x − 2| < 3.",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "−3 < x < 3"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "x < 5"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "−1 < x < 5"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "x < −1 or x > 5"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "−1 ≤ x ≤ 5"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Absolute value measures distance: x must lie within three units of 2. Algebraically, −3 < x − 2 < 3, so adding two gives −1 < x < 5. Both bounds are necessary.",
+  "distractorRationale": {
+    "d": "That describes points more than three units from two.",
+    "a": "This forgets the centre shift of two.",
+    "e": "The strict inequality excludes the endpoints.",
+    "b": "This ignores the lower bound."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): -3<x-2<3 becomes -1<x<5."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

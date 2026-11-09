@@ -1,0 +1,81 @@
+{
+  "id": "lsat-exp20261105-003",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "lr1",
+  "domainSlug": "logical-reasoning",
+  "skillSlug": "lr-drawing-conclusions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Every repair covered by the factory warranty must be performed by an accredited technician. Some repairs performed by accredited technicians are not covered by the factory warranty. No battery replacement is covered by that warranty. Which must be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Every uncovered repair is a battery replacement."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Some battery replacements are performed by accredited technicians."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "No accredited technician replaces batteries."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Every repair by an accredited technician is covered."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "A covered repair cannot be a battery replacement."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Treat the last premise as an exclusion: warranty-covered repairs and battery replacements do not overlap. The first premise requires accreditation for coverage but does not make accreditation sufficient for coverage.",
+  "distractorRationale": {
+    "c": "Accreditation does not restrict the kinds of uncovered work performed.",
+    "d": "The second sentence explicitly rules out this converse.",
+    "b": "No overlap between these two groups is stated.",
+    "a": "Other kinds of uncovered repairs remain possible."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "us-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Individually authored original draft. Requires blind independent solve and editorial review before publication."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "us-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-lsat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-lsat",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified\"; it checked for competing defensible answers and flagged none): No battery replacement covered directly excludes covered repair being one."
+    },
+    "notes": "Independent review pending; structural validation is not proof of correctness. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

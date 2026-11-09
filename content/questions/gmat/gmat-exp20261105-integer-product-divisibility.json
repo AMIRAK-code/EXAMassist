@@ -1,0 +1,81 @@
+{
+  "id": "gmat-exp20261105-integer-product-divisibility",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-arithmetic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A positive integer n is divisible by 6 but not by 4. Which statement must be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "n is divisible by 12."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "n/3 is odd."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "n leaves remainder 1 when divided by 2."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "n/2 is odd."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "n is prime."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Divisibility by 6 makes n even. If n/2 were even, n would be divisible by 4, contrary to the condition. Hence n/2 must be odd.",
+  "distractorRationale": {
+    "a": "Divisibility by 12 would imply divisibility by 4.",
+    "b": "Since n is divisible by 6, n/3 is even.",
+    "c": "It is even because it is divisible by 6.",
+    "e": "A positive multiple of 6 is composite."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Divisible6 means even; notdivisible4 means exactly one factor2 so n/2 odd."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

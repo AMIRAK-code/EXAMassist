@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0057",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A cone and cylinder have the same base radius and height. How does the cone’s volume compare with the cylinder’s?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "It is three times as large."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "It is one ninth as large."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "It is one third as large."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "It is equal."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "It is one half as large."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Cylinder volume is πr²h, whereas cone volume is πr²h/3. With identical r and h, their ratio is exactly one third. No extra length scaling is involved.",
+  "distractorRationale": {
+    "e": "The cone volume formula has factor one third, not one half.",
+    "d": "Equal base and height do not make these different solids have equal volumes.",
+    "a": "This reverses the cone-to-cylinder ratio.",
+    "b": "This squares a factor that is already a volume ratio."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Cone volume pi r²h/3 versus cylinder pi r²h."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

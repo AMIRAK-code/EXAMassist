@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0023",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-polynomials",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Expand (2x − 3)².",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "2x² − 6x + 9"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "4x² − 12x + 9"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "4x² − 6x + 9"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "4x² − 9"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "4x² + 9"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Use (a − b)² = a² − 2ab + b² with a = 2x and b = 3. This gives 4x² − 12x + 9. Multiplying the two identical binomials directly confirms the doubled cross term.",
+  "distractorRationale": {
+    "e": "This omits the cross term.",
+    "d": "This confuses a square with a difference-of-squares product.",
+    "a": "This fails to square the coefficient two correctly.",
+    "c": "This includes only one of the two cross products."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Square is 4x²-12x+9."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

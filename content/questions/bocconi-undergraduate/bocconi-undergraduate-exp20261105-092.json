@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-undergraduate-exp20261105-092",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-problem-solving",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A runner covers half a route at 6 km/h and half at 12 km/h. What is the average speed?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "9 km/h"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "18 km/h"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "10 km/h"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "8 km/h"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "For two equal 6 km halves, the times are 1 hour and 0.5 hour. Total distance 12 km divided by 1.5 hours gives 8 km/h. Equal distances do not imply equal times.",
+  "distractorRationale": {
+    "a": "Takes the arithmetic mean of speeds.",
+    "c": "Weights the faster segment too heavily.",
+    "b": "Adds speeds as if the runner covered both halves simultaneously."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-undergraduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-undergraduate",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Equal distances give harmonic mean 2/(1/6+1/12)=8."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

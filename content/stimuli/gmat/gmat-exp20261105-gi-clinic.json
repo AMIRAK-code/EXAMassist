@@ -1,0 +1,66 @@
+{
+  "id": "gmat-exp20261105-gi-clinic",
+  "version": 1,
+  "examKey": "gmat",
+  "kind": "chart",
+  "title": "Clinic staffing and waiting",
+  "bodyMd": "Each point represents one different clinic observed once. Staff counts and mean waiting times are observational; no randomized intervention was conducted.",
+  "data": {
+    "columns": [
+      {
+        "key": "staff",
+        "label": "Staff on duty"
+      },
+      {
+        "key": "wait",
+        "label": "wait"
+      }
+    ],
+    "rows": [
+      {
+        "staff": 2,
+        "wait": 45
+      },
+      {
+        "staff": 3,
+        "wait": 38
+      },
+      {
+        "staff": 4,
+        "wait": 33
+      },
+      {
+        "staff": 5,
+        "wait": 29
+      },
+      {
+        "staff": 6,
+        "wait": 41
+      },
+      {
+        "staff": 7,
+        "wait": 21
+      }
+    ],
+    "caption": "Each point represents one different clinic observed once. Staff counts and mean waiting times are observational; no randomized intervention was conducted.",
+    "chart": {
+      "type": "scatter",
+      "xKey": "staff",
+      "yKeys": [
+        "wait"
+      ],
+      "xLabel": "Staff on duty",
+      "yLabel": "Mean wait (minutes)"
+    }
+  },
+  "accessibilityText": "The chart plots the values in the accompanying accessible data table. Axes and units are identified in the chart and column headings.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Invented scenario and data for original practice; not official GMAC material."
+  },
+  "rightsStatus": "original-owned",
+  "state": "in_review",
+  "translations": {}
+}

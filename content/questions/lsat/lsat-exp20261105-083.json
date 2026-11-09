@@ -1,0 +1,81 @@
+{
+  "id": "lsat-exp20261105-083",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "lr1",
+  "domainSlug": "logical-reasoning",
+  "skillSlug": "lr-drawing-conclusions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "No confidential memo is distributed publicly. All memos approved for the public briefing are distributed publicly. A particular memo is confidential. Which follows?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "That memo is not approved for the public briefing."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Every memo not approved for the briefing is confidential."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Every publicly distributed memo concerns the briefing."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The memo contains inaccurate information."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "No confidential memo is ever distributed internally."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Approval implies public distribution, while confidentiality excludes it. A confidential memo therefore cannot satisfy the approval condition. The conclusion follows by combining the two rules in the direction given.",
+  "distractorRationale": {
+    "e": "The restriction concerns public distribution.",
+    "d": "Confidentiality does not imply inaccuracy.",
+    "c": "Other public distribution is possible.",
+    "b": "The inference cannot be reversed."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "us-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Individually authored original draft. Requires blind independent solve and editorial review before publication."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "us-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-lsat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-lsat",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified\"; it checked for competing defensible answers and flagged none): Confidential implies not publicly distributed; briefing-approved implies public, hence not approved."
+    },
+    "notes": "Independent review pending; structural validation is not proof of correctness. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0098",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-sequences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A sequence lists positive integers divisible by 3 but not by 2, in increasing order. What is its eighth term?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "24"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "39"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "45"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "48"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "51"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The retained numbers are odd multiples of three: 3,9,15,21,27,33,39,45. They form an arithmetic sequence with first term three and difference six, giving 3+7×6=45.",
+  "distractorRationale": {
+    "a": "This lists all multiples of three without excluding even ones.",
+    "b": "This is the seventh retained term.",
+    "d": "This is even and therefore excluded.",
+    "e": "This is the ninth retained term."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Odd multiples3 are3,9,... common difference6; eighth3+7*6=45."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

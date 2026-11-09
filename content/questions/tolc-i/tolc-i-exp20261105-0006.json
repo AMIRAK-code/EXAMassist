@@ -1,0 +1,75 @@
+{
+  "id": "tolc-i-exp20261105-0006",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-arithmetic-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A binary number is 10110₂. What is its value in base ten?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "11"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "20"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "22"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "26"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "10110"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The place values are 16,8,4,2,1. The nonzero bits select 16 + 4 + 2 = 22. Binary digits are weights of powers of two, not powers of ten.",
+  "distractorRationale": {
+    "a": "This divides the correct value by two, as if the final zero were removed and the binary number were 1011.",
+    "b": "This ignores the final nonzero two’s place.",
+    "d": "The nonzero place values are sixteen, four and two; twenty-six incorrectly substitutes eight for four.",
+    "e": "This reads the binary digits as a decimal number."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

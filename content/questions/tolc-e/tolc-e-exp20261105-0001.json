@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0001",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-numbers",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "An invoice includes 20% tax and totals €216. What was the price before tax?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "€180"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "€259.20"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "€172.80"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "€200"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "€196"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "If the pre-tax price is p, the total is 1.20p. Therefore p = 216/1.20 = 180. Checking 20% of 180 gives 36, and 180 + 36 = 216. Reverse a percentage increase by division, not subtraction from the final value.",
+  "distractorRationale": {
+    "c": "This removes 20% of the tax-inclusive price rather than reversing the multiplier.",
+    "e": "This subtracts the percentage as if it were a currency amount.",
+    "d": "This does not produce €216 after adding 20%.",
+    "b": "This adds the tax a second time."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Pre-tax amount is 216/1.20=180."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

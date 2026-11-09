@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-exp20261105-0093",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "chemistry",
+  "domainSlug": "tolcf-chemistry",
+  "skillSlug": "tolcf-chem-solutions-acids-bases",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "At 25 °C, a solution has hydrogen-ion concentration 10⁻³ mol L⁻¹. What is its pH?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "0.001"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "−3"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "7"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "3"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "11"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Apply the definition pH = −log₁₀[H⁺]. Since log₁₀(10⁻³) = −3, the pH is 3. A value below 7 at 25 °C is consistent with an acidic solution.",
+  "distractorRationale": {
+    "b": "The minus sign in pH = −log₁₀[H⁺] cancels the negative exponent.",
+    "e": "This would be the pOH under the stated temperature conditions.",
+    "a": "This is the concentration, not its negative logarithm.",
+    "c": "Neutral water has a different hydrogen-ion concentration."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-f",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-f",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): pH=-log10(10^-3)=3."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

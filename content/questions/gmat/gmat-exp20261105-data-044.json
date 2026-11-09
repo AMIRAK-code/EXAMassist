@@ -1,0 +1,110 @@
+{
+  "id": "gmat-exp20261105-data-044",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-graphics-interpretation",
+  "skillSlug": "gi-scatter-plots",
+  "subskillSlug": null,
+  "responseType": "two_part",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Select the description of the overall association in column \"pattern\" and the defensible conclusion in column \"inference\".",
+  "instructionsMd": "Select exactly one answer in each named column. Both selections must be correct. The project presents separate column lists rather than the official interface’s shared matrix or drop-down controls.",
+  "options": [
+    {
+      "id": "pattern-a",
+      "label": "A",
+      "textMd": "pattern: Generally negative, with an exception at six staff"
+    },
+    {
+      "id": "pattern-b",
+      "label": "B",
+      "textMd": "pattern: Strictly decreasing at every increase in staff"
+    },
+    {
+      "id": "pattern-c",
+      "label": "C",
+      "textMd": "pattern: Generally positive"
+    },
+    {
+      "id": "pattern-d",
+      "label": "D",
+      "textMd": "pattern: Exactly linear"
+    },
+    {
+      "id": "inference-a",
+      "label": "A",
+      "textMd": "inference: The data alone do not establish that adding staff causes shorter waits"
+    },
+    {
+      "id": "inference-b",
+      "label": "B",
+      "textMd": "inference: Adding one staff member always reduces waiting"
+    },
+    {
+      "id": "inference-c",
+      "label": "C",
+      "textMd": "inference: The six-staff clinic must have recorded its data incorrectly"
+    },
+    {
+      "id": "inference-d",
+      "label": "D",
+      "textMd": "inference: All clinics would have zero wait with eight staff"
+    }
+  ],
+  "answerKey": {
+    "type": "two_part",
+    "selections": [
+      {
+        "columnId": "pattern",
+        "optionId": "pattern-a"
+      },
+      {
+        "columnId": "inference",
+        "optionId": "inference-a"
+      }
+    ]
+  },
+  "explanationMd": "Waiting generally declines as staff count rises, but the six-staff clinic has a higher wait than the five-staff clinic. Observed association does not isolate causation or justify an extrapolated exact prediction.",
+  "distractorRationale": {
+    "pattern-b": "Waiting rises from29 to41 at six staff.",
+    "pattern-c": "Most higher-staff clinics have lower waits.",
+    "pattern-d": "The changes in waiting time are unequal.",
+    "inference-b": "The six-staff clinic breaks even the observational pattern.",
+    "inference-c": "An unusual point need not be an error.",
+    "inference-d": "Extrapolation beyond the observations is unsupported."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "gmat-exp20261105-gi-clinic",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original practice draft informed by current GMAC format descriptions. All business and study scenarios are invented; no official question is copied or paraphrased."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-expansion-verbal-data-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "inference-a,pattern-a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Wait generally drops45 to21 with exception41 atstaff6; observational clinics do not identify causal intervention."
+    },
+    "notes": "Author solution supplied. Independent blind solve and expert review remain pending."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

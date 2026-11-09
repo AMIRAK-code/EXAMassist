@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0055",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-analytic-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the minimum value of f(x) = x² + 2x + 5 over real x?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "−1"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "5"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "4"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "−4"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "0"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Complete the square: f(x)=(x+1)²+4. The square is at least zero and reaches zero at x=−1, so the minimum output is four. Distinguish the minimizing input from the minimum value.",
+  "distractorRationale": {
+    "b": "This is the value at zero, not the minimum.",
+    "a": "This is the input where the minimum occurs.",
+    "e": "The completed square has an additional positive constant.",
+    "d": "This reverses the sign of the minimum."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Complete square(x+1)²+4 yields minimum4."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

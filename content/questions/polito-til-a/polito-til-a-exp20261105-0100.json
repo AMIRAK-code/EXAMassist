@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-a-exp20261105-0100",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "logical-reasoning",
+  "domainSlug": "tila-logic",
+  "skillSlug": "tila-logic-symbolic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In a pattern, each term is the sum of the preceding two. The first terms are 3, 4, 7, 11, 18. What is the next term?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "25"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "28"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "29"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "31"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "36"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The next term uses the immediately preceding pair, eleven and eighteen. Their sum is twenty-nine. Earlier terms verify the same recurrence: seven plus eleven gives eighteen.",
+  "distractorRationale": {
+    "a": "This adds eighteen to seven rather than to eleven.",
+    "e": "This doubles the last term instead of using both previous terms.",
+    "b": "Eleven plus eighteen is twenty-nine.",
+    "d": "This is not the sum of the two preceding terms."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content. Historical 2026/27 TIL-A-format practice; not a claim of alignment to the announced 2027/28 replacement admission tests."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-a",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-a",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Next11+18=29."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

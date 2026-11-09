@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0200",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "sciences",
+  "domainSlug": "tolci-sciences",
+  "skillSlug": "tolci-sci-chemistry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A solution contains 0.40 mol sodium chloride in 2.0 L. Assuming complete dissociation, what is the sodium-ion concentration?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "0.20 mol/L"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "0.40 mol/L"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "0.60 mol/L"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "0.80 mol/L"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "0.10 mol/L"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Each formula unit of NaCl gives one sodium ion, so sodium amount is 0.40 mol. Dividing by 2.0 L gives 0.20 mol/L. Chloride has the same individual concentration; adding both would give total ion concentration, a different quantity.",
+  "distractorRationale": {
+    "b": "This uses moles as if they were already concentration.",
+    "d": "This multiplies by volume rather than dividing.",
+    "e": "This incorrectly divides again because the salt gives two ion types.",
+    "c": "This does not follow the amount-to-volume ratio."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): NaCl gives1Na+perunit, sodium concentration.40/2=.20M."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0089",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A process is authorized if and only if its certificate is valid. The certificate is valid. Which conclusion follows?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The certificate is permanent."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The process is unauthorized unless a new condition is invented."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Every process is authorized."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The process is authorized."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The process has already been completed."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "An if-and-only-if rule gives both directions. Valid certificate implies authorization, and authorization implies valid certificate. The given valid certificate therefore establishes authorization, not execution or permanence.",
+  "distractorRationale": {
+    "e": "Authorization is not completion.",
+    "a": "Validity now does not establish indefinite validity.",
+    "c": "The statement concerns the process with the valid certificate.",
+    "b": "The equivalence already makes certificate validity sufficient."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Biconditional valid certificate implies authorization."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

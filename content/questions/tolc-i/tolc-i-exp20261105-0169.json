@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0169",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "sciences",
+  "domainSlug": "tolci-sciences",
+  "skillSlug": "tolci-sci-mechanics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Water flows steadily through a pipe that narrows from cross-sectional area 6 cm² to 2 cm². Treat water as incompressible. How does its speed change?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "It triples."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "It stays unchanged."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "It doubles."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "It increases ninefold."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "It becomes one third as large."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "For steady incompressible flow, volume flow rate Av is constant. Thus 6v₁ = 2v₂, giving v₂ = 3v₁. The same volume must pass each section in the same time.",
+  "distractorRationale": {
+    "e": "Continuity requires higher speed in the smaller area.",
+    "b": "Equal speed would reduce the volume flow rate in the narrow section.",
+    "c": "The area ratio is three, not two.",
+    "d": "Speed is inversely proportional to area, not area squared."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Continuity A1v1=A2v2 makes v2/v1=6/2=3."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

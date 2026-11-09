@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0093",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "All members of team A are trained. Some trained people are not members of team A. Which statement is correct?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Team A has every trained person."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Training is necessary for team A membership but not sufficient to establish it."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "No team A member is trained."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Training guarantees team A membership."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "No trained person can join team A."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Membership implies training, making training necessary. The existence of trained people outside the team shows training alone does not establish membership. The two statements distinguish subset inclusion from equality.",
+  "distractorRationale": {
+    "d": "The second premise gives trained nonmembers.",
+    "c": "This contradicts the first premise.",
+    "a": "The second premise explicitly denies this.",
+    "e": "The premises do not prohibit membership."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): TeamA implies training, while trained nonmembers disprove sufficiency."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

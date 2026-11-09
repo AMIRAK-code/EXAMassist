@@ -1,0 +1,62 @@
+{
+  "id": "gmat-exp20261105-gi-distribution",
+  "version": 1,
+  "examKey": "gmat",
+  "kind": "chart",
+  "title": "Parcel mass distribution",
+  "bodyMd": "The bars count all40 parcels. Each bar is a half-open interval: its lower mass is included and its upper mass excluded. No individual masses within a bin are provided.",
+  "data": {
+    "columns": [
+      {
+        "key": "mass",
+        "label": "Mass interval"
+      },
+      {
+        "key": "count",
+        "label": "count"
+      }
+    ],
+    "rows": [
+      {
+        "mass": "0 to <2 kg",
+        "count": 4
+      },
+      {
+        "mass": "2 to <4 kg",
+        "count": 8
+      },
+      {
+        "mass": "4 to <6 kg",
+        "count": 16
+      },
+      {
+        "mass": "6 to <8 kg",
+        "count": 10
+      },
+      {
+        "mass": "8 to <10 kg",
+        "count": 2
+      }
+    ],
+    "caption": "The bars count all40 parcels. Each bar is a half-open interval: its lower mass is included and its upper mass excluded. No individual masses within a bin are provided.",
+    "chart": {
+      "type": "bar",
+      "xKey": "mass",
+      "yKeys": [
+        "count"
+      ],
+      "xLabel": "Mass interval",
+      "yLabel": "Parcel count"
+    }
+  },
+  "accessibilityText": "The chart plots the values in the accompanying accessible data table. Axes and units are identified in the chart and column headings.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Invented scenario and data for original practice; not official GMAC material."
+  },
+  "rightsStatus": "original-owned",
+  "state": "in_review",
+  "translations": {}
+}

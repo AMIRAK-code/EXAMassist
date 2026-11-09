@@ -1,0 +1,75 @@
+{
+  "id": "enhanced-act-exp20261105-math-019",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "math",
+  "domainSlug": "act-math-functions",
+  "skillSlug": "act-math-fn-composition-transformation-inverse",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "If $f(x)=2x-1$ and $g(x)=x^2+2$, what is $g(f(3))$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "11"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "21"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "25"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "27"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "First f(3)=5. Then g(5)=5 squared+2=27. The order follows the nested expression from inside outward; reversing it gives 21.",
+  "distractorRationale": {
+    "c": "This omits the plus two in g after squaring.",
+    "b": "This computes f(g(3)) instead of the specified order.",
+    "a": "This computes g(3) without first applying f."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-enhanced-act",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-enhanced-act",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified\"; it checked for competing defensible answers and flagged none): f(3)=5;g(5)=25+2=27."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

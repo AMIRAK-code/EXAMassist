@@ -1,0 +1,75 @@
+{
+  "id": "polito-til-i-exp20261105-number-gcd-tiles",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tili-mathematics",
+  "skillSlug": "tili-math-numbers",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A 84 cm by 126 cm rectangle is tiled by identical squares with integer side length in centimetres, in a grid aligned with the rectangle, without gaps or cutting. What is the largest possible square side?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "42 cm"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "14 cm"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "126 cm"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "84 cm"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "21 cm"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The square side must divide both dimensions. The greatest common divisor of 84 and 126 is 42, giving a 2-by-3 grid of squares.",
+  "distractorRationale": {
+    "b": "This also works but is smaller than 42.",
+    "c": "This exceeds the shorter side.",
+    "d": "This does not divide 126.",
+    "e": "This works but is not the largest common divisor."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

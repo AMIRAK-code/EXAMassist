@@ -1,0 +1,81 @@
+{
+  "id": "lsat-exp20261105-070",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "lr1",
+  "domainSlug": "logical-reasoning",
+  "skillSlug": "lr-reasoning-patterns",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Some members of the choir are doctors. All doctors in the choir work at the hospital. Therefore some choir members work at the hospital. Which parallels this?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "All novels are books. This is a book. Therefore this is a novel."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "All atlases are books. Some books are illustrated. Therefore all atlases are illustrated."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Some books on this shelf are atlases. All atlases on this shelf are illustrated. Therefore some books on this shelf are illustrated."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "No atlas is a novel. Some books are atlases. Therefore no book is a novel."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Some books are old. Some old objects are valuable. Therefore some books are valuable."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The original starts with an existing subset and applies a universal property to that subset. The atlas argument preserves the same particular-to-particular inference through a universal middle premise.",
+  "distractorRationale": {
+    "e": "The two particular subsets need not overlap.",
+    "b": "The particular overlap does not cover all atlases.",
+    "d": "The conclusion improperly generalizes an exclusion.",
+    "a": "This affirms the consequent."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "us-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Individually authored original draft. Requires blind independent solve and editorial review before publication."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "us-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-lsat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-lsat",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified\"; it checked for competing defensible answers and flagged none): Some shelf books atlases, all those atlases illustrated, implies some shelf books illustrated."
+    },
+    "notes": "Independent review pending; structural validation is not proof of correctness. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0086",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Some poets are architects. No architect in this group is retired. Which claim cannot be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "No retired person is an architect in the group."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Some non-poets are architects."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Some poets are not architects."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Some poets are not retired."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Every poet in the group is retired."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "At least one poet is an architect, and every architect in the group is not retired. Therefore at least one poet is not retired, contradicting the claim that every poet is retired. The other claims are compatible with the premises.",
+  "distractorRationale": {
+    "d": "This follows from the poet-architect overlap.",
+    "b": "The premises do not rule out additional architects.",
+    "c": "The premises allow poets outside the overlap.",
+    "a": "This is equivalent to the second premise."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Existing poet-architects are not retired, contradicting universal retired poets."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

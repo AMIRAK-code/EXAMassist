@@ -1,0 +1,75 @@
+{
+  "id": "digital-sat-exp20261105-086",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "geometry-and-trigonometry",
+  "skillSlug": "right-triangles-and-trigonometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Angles $a$ and $b$ are the acute angles of a right triangle. If $\\sin a=\\frac{5}{13}$, what is $\\cos b$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\frac{5}{13}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\frac{5}{12}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\frac{12}{13}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\frac{13}{5}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The acute angles are complementary: b=90°−a. The cofunction identity gives cos b=sin a=5/13. No side calculation is required.",
+  "distractorRationale": {
+    "d": "A cosine cannot exceed 1 for a real angle.",
+    "c": "This is cos a, not cos b.",
+    "b": "This is tangent of a, not the cosine of the complementary angle."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "us-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Individually authored original draft. Requires blind independent solve and editorial review before publication."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "us-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-digital-sat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-digital-sat",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified\"; it checked for competing defensible answers and flagged none): Complementary angles give cos b=sin a=5/13."
+    },
+    "notes": "Independent review pending; structural validation is not proof of correctness. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

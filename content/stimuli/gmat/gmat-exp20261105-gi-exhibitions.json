@@ -1,0 +1,67 @@
+{
+  "id": "gmat-exp20261105-gi-exhibitions",
+  "version": 1,
+  "examKey": "gmat",
+  "kind": "chart",
+  "title": "Exhibition attendance",
+  "bodyMd": "Each visitor bought exactly one full-price or concession ticket; the two bars for a venue are disjoint counts.",
+  "data": {
+    "columns": [
+      {
+        "key": "venue",
+        "label": "Venue"
+      },
+      {
+        "key": "full",
+        "label": "full"
+      },
+      {
+        "key": "concession",
+        "label": "concession"
+      }
+    ],
+    "rows": [
+      {
+        "venue": "Atrium",
+        "full": 120,
+        "concession": 80
+      },
+      {
+        "venue": "Beacon",
+        "full": 180,
+        "concession": 60
+      },
+      {
+        "venue": "Court",
+        "full": 150,
+        "concession": 150
+      },
+      {
+        "venue": "Dome",
+        "full": 200,
+        "concession": 50
+      }
+    ],
+    "caption": "Each visitor bought exactly one full-price or concession ticket; the two bars for a venue are disjoint counts.",
+    "chart": {
+      "type": "bar",
+      "xKey": "venue",
+      "yKeys": [
+        "full",
+        "concession"
+      ],
+      "xLabel": "Venue",
+      "yLabel": "Tickets sold"
+    }
+  },
+  "accessibilityText": "The chart plots the values in the accompanying accessible data table. Axes and units are identified in the chart and column headings.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Invented scenario and data for original practice; not official GMAC material."
+  },
+  "rightsStatus": "original-owned",
+  "state": "in_review",
+  "translations": {}
+}

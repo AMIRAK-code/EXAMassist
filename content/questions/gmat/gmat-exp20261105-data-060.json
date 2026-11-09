@@ -1,0 +1,107 @@
+{
+  "id": "gmat-exp20261105-data-060",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-two-part-analysis",
+  "skillSlug": "tpa-relationships-between-entities",
+  "subskillSlug": null,
+  "responseType": "two_part",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "An archive rule states: every record marked confidential is encrypted. Some encrypted records are public. No public record is confidential. In column \"must\", select a conclusion that must follow. In column \"possible\", select a situation consistent with all rules.",
+  "instructionsMd": "Select exactly one answer in each named column. Both selections must be correct. The project presents separate column lists rather than the official interface’s shared matrix or drop-down controls.",
+  "options": [
+    {
+      "id": "must-a",
+      "label": "A",
+      "textMd": "must: Some encrypted records are not confidential"
+    },
+    {
+      "id": "must-b",
+      "label": "B",
+      "textMd": "must: Every encrypted record is confidential"
+    },
+    {
+      "id": "must-c",
+      "label": "C",
+      "textMd": "must: No confidential record exists"
+    },
+    {
+      "id": "must-d",
+      "label": "D",
+      "textMd": "must: Every public record is encrypted"
+    },
+    {
+      "id": "possible-a",
+      "label": "A",
+      "textMd": "possible: Some encrypted records are neither public nor confidential"
+    },
+    {
+      "id": "possible-b",
+      "label": "B",
+      "textMd": "possible: A public confidential record exists"
+    },
+    {
+      "id": "possible-c",
+      "label": "C",
+      "textMd": "possible: A confidential unencrypted record exists"
+    },
+    {
+      "id": "possible-d",
+      "label": "D",
+      "textMd": "possible: No encrypted public record exists"
+    }
+  ],
+  "answerKey": {
+    "type": "two_part",
+    "selections": [
+      {
+        "columnId": "must",
+        "optionId": "must-a"
+      },
+      {
+        "columnId": "possible",
+        "optionId": "possible-a"
+      }
+    ]
+  },
+  "explanationMd": "The encrypted public records are not confidential, proving the must conclusion. Rules allow additional encrypted records outside both public and confidential categories, so that situation is possible but not required.",
+  "distractorRationale": {
+    "must-b": "The public encrypted records contradict this.",
+    "must-c": "The rules allow confidential encrypted records.",
+    "must-d": "Only some encrypted records are said to be public.",
+    "possible-b": "Public and confidential records cannot overlap.",
+    "possible-c": "Every confidential record must be encrypted.",
+    "possible-d": "The explicit some-premise requires at least one."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original practice draft informed by current GMAC format descriptions. All business and study scenarios are invented; no official question is copied or paraphrased."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-expansion-verbal-data-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "must-a,possible-a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Encrypted public witness cannot be confidential, proving some encrypted nonconfidential; additional neither-public-norconfidential encrypted records allowed."
+    },
+    "notes": "Author solution supplied. Independent blind solve and expert review remain pending."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0100",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-sequences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A machine writes the numbers 2, 4, 8, 16, …, doubling each time. What is the first written number greater than 100?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "64"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "100"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "102"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "128"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "256"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Continuing after 16 gives 32, 64 and 128. Sixty-four is below 100 and the next term, 128, exceeds it. The condition asks for the first crossing, not any later qualifying term.",
+  "distractorRationale": {
+    "a": "This is still below 100.",
+    "b": "The sequence does not include 100.",
+    "e": "This is greater than 100 but is not the first such number.",
+    "c": "This would come from adding rather than doubling."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Doublings reach 64 then 128, first over 100."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

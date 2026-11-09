@@ -1,0 +1,75 @@
+{
+  "id": "tolc-f-exp20261105-0138",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolcf-mathematics",
+  "skillSlug": "tolcf-math-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A square is inscribed in a semicircle of radius 5 cm. Two adjacent vertices lie on the diameter, and the other two lie on the semicircular arc. What is the square’s side length?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "10 cm"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "2√5 cm"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "5 cm"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "4 cm"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "5√2 cm"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Let the side length be s. The square is centered on the perpendicular bisector of the diameter because its two upper vertices lie on the same circle. An upper vertex is s/2 horizontally and s vertically from the circle center. Thus (s/2)² + s² = 25, giving 5s²/4 = 25 and s = 2√5 cm.",
+  "distractorRationale": {
+    "c": "A side of five would place an upper vertex at distance √(25+6.25), beyond the radius.",
+    "e": "This is the side of a square inscribed in a full circle of radius five, not this semicircle arrangement.",
+    "a": "Ten is the diameter; a square this high cannot fit in the semicircle.",
+    "d": "For side four, an upper vertex has squared radius 4+16=20, so it is inside rather than on the arc."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "A square is inscribed in a semicircle of radius 5 cm. Two adjacent vertices lie on the diameter, and the other two lie on the semicircular arc. What is the square’s side length?",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content. Replaced during AI audit to remove a near-duplicate; human review remains pending."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

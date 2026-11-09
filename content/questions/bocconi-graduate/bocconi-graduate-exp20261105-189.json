@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-graduate-exp20261105-189",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-verbal-reasoning",
+  "skillSlug": "grad-verbal-argument-analysis",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which complete order satisfies every stated condition?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Flint → Juniper → Harbour → Quartz → Cedar"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Juniper → Cedar → Quartz → Flint → Harbour"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Cedar → Flint → Harbour → Juniper → Quartz"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Juniper → Flint → Cedar → Quartz → Harbour"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Check each rule against Juniper → Cedar → Quartz → Flint → Harbour. Every precedence, position, and separation condition holds. Each alternative violates at least one explicit rule; the corresponding violated condition is identified in its feedback.",
+  "distractorRationale": {
+    "c": "This order violates: Exactly 2 other items must occur between Cedar and Harbour. Quartz must be immediately followed by Flint.",
+    "a": "This order violates: Exactly 2 other items must occur between Cedar and Harbour. Quartz must be immediately followed by Flint.",
+    "d": "This order violates: Exactly 2 other items must occur between Cedar and Harbour. Quartz must be immediately followed by Flint."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": {
+    "id": "bocconi-graduate-exp20261105-investment-pitches",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Independently enumerated all 120 permutations of Cedar, Flint, Harbour, Juniper, Quartz. Rules Exactly 2 other items must occur between Cedar and Harbour. Quartz must be immediately followed by Flint. Juniper must not be in position 3. leave 4 valid orders: Cedar>Quartz>Flint>Harbour>Juniper; Harbour>Quartz>Flint>Cedar>Juniper; Juniper>Cedar>Quartz>Flint>Harbour; Juniper>Harbour>Quartz>Flint>Cedar. Choice true counts: a=0, b=0, c=0, d=1; valid complete order requires one matches."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

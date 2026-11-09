@@ -1,0 +1,75 @@
+{
+  "id": "imat-exp20261105-microscopy-scale",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-biology",
+  "skillSlug": "imat-bio-molecules-cells",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A cell measures 36 mm in a printed micrograph labelled as 1200 times actual size. What is its actual diameter?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "3 micrometres"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "0.03 micrometres"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "300 micrometres"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "43.2 millimetres"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "30 micrometres"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Divide image size by magnification: 36/1200 = 0.03 mm. Since one millimetre contains 1000 micrometres, the cell is 30 micrometres across. Check that the actual cell is much smaller than its image.",
+  "distractorRationale": {
+    "b": "This fails the millimetre-to-micrometre conversion.",
+    "d": "Actual size must be the 36 mm image size divided by 1200; 43.2 mm would even exceed the image size.",
+    "c": "This divides by 120 rather than 1200.",
+    "a": "This introduces an extra factor of ten."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-graduate-exp20261105-170",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-verbal-reasoning",
+  "skillSlug": "grad-verbal-argument-analysis",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which statement must be true in every permitted order?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Alignment must not be in position 1."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Alignment must be in position 2."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Cooling must not be in position 3."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Alignment must be in position 1."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Combine the ordering and placement constraints rather than assuming one example is unique. The statement \"Cooling must not be in position 3.\" holds in all 4 permitted orders. Generate the cases by placing any fixed-position item and adjacent block first, then discard arrangements that violate a remaining rule. For each alternative, an explicit permitted counterexample appears in its feedback.\n\nComplete permitted orders (each arrow advances one position):\n- Alignment → Cooling → Electrical → Drive → Balance\n- Drive → Cooling → Electrical → Alignment → Balance\n- Electrical → Alignment → Balance → Cooling → Drive\n- Electrical → Drive → Balance → Cooling → Alignment",
+  "distractorRationale": {
+    "a": "A counterexample satisfying all the rules is Alignment → Cooling → Electrical → Drive → Balance. Thus this statement is not necessary.",
+    "b": "A counterexample satisfying all the rules is Alignment → Cooling → Electrical → Drive → Balance. Thus this statement is not necessary.",
+    "d": "A counterexample satisfying all the rules is Drive → Cooling → Electrical → Alignment → Balance. Thus this statement is not necessary."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "bocconi-graduate-exp20261105-factory-checks",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Independently enumerated all 120 permutations of Alignment, Balance, Cooling, Drive, Electrical. Rules Cooling must occupy position 2 or position 4. Electrical must precede Balance. Exactly 2 other items must occur between Alignment and Drive. leave 4 valid orders: Alignment>Cooling>Electrical>Drive>Balance; Drive>Cooling>Electrical>Alignment>Balance; Electrical>Alignment>Balance>Cooling>Drive; Electrical>Drive>Balance>Cooling>Alignment. Choice true counts: a=3, b=1, c=4, d=1; necessary requires all matches."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

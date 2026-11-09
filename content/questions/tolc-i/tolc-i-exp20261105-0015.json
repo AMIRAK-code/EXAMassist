@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0015",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Solve x² = 4x over the real numbers.",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "No real solutions"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "x = −4 or x = 4"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Only x = 0"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Only x = 4"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "x = 0 or x = 4"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Move all terms to one side and factor: x² − 4x = x(x − 4) = 0. Either factor can be zero, giving x = 0 or 4. Avoid dividing by an expression that may be zero.",
+  "distractorRationale": {
+    "d": "Dividing by x would lose the zero solution.",
+    "c": "The nonzero factor also gives a root.",
+    "b": "This treats the equation as x² = 16.",
+    "a": "Both zero and four satisfy the original equation."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): x²-4x=x(x-4)=0 gives0or4."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

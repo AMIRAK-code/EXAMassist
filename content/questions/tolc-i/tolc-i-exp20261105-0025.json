@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0025",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the solution set of (x − 3)/(x − 1) ≥ 0?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "x < 1 or x > 3"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "x ≤ 1 or x ≥ 3"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "All real x except 1"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "x < 1 or x ≥ 3"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "1 < x ≤ 3"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Critical points are one, where the expression is undefined, and three, where it is zero. The numerator and denominator share a sign for x < 1 and x > 3. Include three because equality is allowed, but always exclude one.",
+  "distractorRationale": {
+    "e": "The quotient is negative between the critical points.",
+    "b": "The denominator vanishes at one, which must be excluded.",
+    "a": "The numerator may be zero, so three should be included.",
+    "c": "The interval between one and three gives a negative quotient."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Sign chart at1pole and3zero gives x<1 or x>=3."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

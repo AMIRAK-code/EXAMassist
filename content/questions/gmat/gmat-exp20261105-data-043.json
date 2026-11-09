@@ -1,0 +1,110 @@
+{
+  "id": "gmat-exp20261105-data-043",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-graphics-interpretation",
+  "skillSlug": "gi-xy-graphs",
+  "subskillSlug": null,
+  "responseType": "two_part",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Complete both statements. Column \"fall\": the greatest absolute fall between consecutive readings was ___ million cubic metres. Column \"rise\": the March-to-April percentage rise was ___.",
+  "instructionsMd": "Select exactly one answer in each named column. Both selections must be correct. The project presents separate column lists rather than the official interface’s shared matrix or drop-down controls.",
+  "options": [
+    {
+      "id": "fall-a",
+      "label": "A",
+      "textMd": "fall: 22"
+    },
+    {
+      "id": "fall-b",
+      "label": "B",
+      "textMd": "fall: 12"
+    },
+    {
+      "id": "fall-c",
+      "label": "C",
+      "textMd": "fall: 9"
+    },
+    {
+      "id": "fall-d",
+      "label": "D",
+      "textMd": "fall: 18"
+    },
+    {
+      "id": "rise-a",
+      "label": "A",
+      "textMd": "rise: 12.5%"
+    },
+    {
+      "id": "rise-b",
+      "label": "B",
+      "textMd": "rise: 25%"
+    },
+    {
+      "id": "rise-c",
+      "label": "C",
+      "textMd": "rise: 18%"
+    },
+    {
+      "id": "rise-d",
+      "label": "D",
+      "textMd": "rise: 20%"
+    }
+  ],
+  "answerKey": {
+    "type": "two_part",
+    "selections": [
+      {
+        "columnId": "fall",
+        "optionId": "fall-b"
+      },
+      {
+        "columnId": "rise",
+        "optionId": "rise-b"
+      }
+    ]
+  },
+  "explanationMd": "The consecutive changes are -12,+4,+18,-9. The largest fall has magnitude12. March-to-April growth is(90-72)/72=25%.",
+  "distractorRationale": {
+    "fall-a": "This is not a consecutive-month difference.",
+    "fall-c": "This is the April-to-May fall; January-to-February falls by12.",
+    "fall-d": "This is an increase, not a fall.",
+    "rise-a": "The rise18 divided by72 is0.25.",
+    "rise-c": "18 is the absolute rise, not the percentage of72.",
+    "rise-d": "This uses the ending value90 as denominator."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "gmat-exp20261105-gi-reservoir",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original practice draft informed by current GMAC format descriptions. All business and study scenarios are invented; no official question is copied or paraphrased."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-expansion-verbal-data-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "fall-b,rise-b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Consecutive changes -12,+4,+18,-9; greatest fall12 and March-April18/72=25%."
+    },
+    "notes": "Author solution supplied. Independent blind solve and expert review remain pending."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

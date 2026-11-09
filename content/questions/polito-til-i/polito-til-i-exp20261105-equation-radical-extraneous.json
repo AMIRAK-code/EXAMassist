@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-equation-radical-extraneous",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tili-mathematics",
+  "skillSlug": "tili-math-algebraic-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "For real x, solve the square root of (x+6)=x.",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "There is no real solution."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "x=6 only"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "x=3 or x=−2"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "x=3 only"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "x=−2 only"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The square root is nonnegative, so x≥0. Squaring gives x squared−x−6=0, with candidates 3 and −2. Reject −2 by the sign condition; x=3 gives √9=3.",
+  "distractorRationale": {
+    "e": "This root of the squared equation makes the original right side negative.",
+    "c": "The negative candidate is extraneous.",
+    "b": "This fails substitution.",
+    "a": "Three satisfies the original equation."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Squaredroots3,-2; nonnegativerightside excludes-2."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

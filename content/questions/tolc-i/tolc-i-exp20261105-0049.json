@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0049",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-analytic-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A function has values f(1)=4, f(2)=7 and f(3)=10 and is known to be linear. What is f(5)?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "13"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "15"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "16"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "19"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "20"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "A linear function with equal input steps has constant output differences. The difference is three, so f(x)=3x+1. At five this gives sixteen. The statement that the function is linear is needed to determine the continuation.",
+  "distractorRationale": {
+    "a": "This is the value at four.",
+    "b": "This ignores the intercept of one.",
+    "e": "This multiplies the first output by the new input.",
+    "d": "This advances one step too far."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Linear difference3 gives f(x)=3x+1, f5=16."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

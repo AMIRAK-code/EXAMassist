@@ -1,0 +1,84 @@
+{
+  "id": "tolc-i-exp20261105-0126",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "verbal-comprehension",
+  "domainSlug": "tolci-verbal",
+  "skillSlug": "tolci-verbal-inferred",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Why could a lower alert count fail to show improved software reliability?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Recovery time cannot be observed."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Reliability is identical to message volume."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "A lower count always proves more failures."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Changed reporting rules can reduce messages without reducing failures."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Grouping messages necessarily prevents every interruption."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The same underlying events may generate fewer notifications under new grouping rules. Therefore the count is partly a property of the reporting system. Service interruptions and recovery provide separate evidence about reliability.",
+  "distractorRationale": {
+    "c": "The passage supports neither direction from count alone.",
+    "e": "Grouping changes reporting rather than directly repairing software.",
+    "b": "The team explicitly separates the measures.",
+    "a": "The team tracks it as a reliability-related outcome."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": {
+    "id": "tolc-i-exp20261105-passage-software-log",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Grouping changes message count even if underlying failures unchanged."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

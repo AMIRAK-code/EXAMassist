@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0041",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Two consecutive positive integers have product 156. What is the smaller integer?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "6"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "11"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "12"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "13"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "14"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Let the smaller integer be n. Then n(n + 1) = 156, or n² + n − 156 = 0. Factor as (n − 12)(n + 13) = 0. Positivity leaves n = 12, and 12 × 13 checks the product.",
+  "distractorRationale": {
+    "b": "Eleven times twelve is 132.",
+    "d": "Thirteen is the larger member of the required pair.",
+    "e": "Fourteen times fifteen is 210.",
+    "a": "Six times seven is 42."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): 12*13=156; smaller positive integer is 12."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

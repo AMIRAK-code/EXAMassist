@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-undergraduate-exp20261105-062",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-logexp-identities",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "If $\\log_2 3=t$, express $\\log_2 24$.",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$t+8$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$t/3$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$t+3$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$3t$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Factor 24 as $3\\times2^3$. The product rule gives $\\log_2 3+\\log_2 8=t+3$.",
+  "distractorRationale": {
+    "a": "Adds the factor 8 instead of its logarithm.",
+    "b": "Treats a product as a quotient of logarithms.",
+    "d": "Treats multiplication of arguments as multiplication of logs."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-undergraduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-undergraduate",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): 24=3 times 2³, so logarithm t+3."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

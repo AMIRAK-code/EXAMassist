@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0110",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Five seats are in a row. Eva sits in the middle. Finn sits immediately to Eva’s right. Gia sits at an end and next to Hal. Ira takes the remaining seat. Who sits in the first seat from the left?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Eva"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Gia"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Finn"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Hal"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Ira"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Eva and Finn occupy seats 3 and 4. Gia cannot take seat 5 because her neighbour would then be Finn, not Hal. Thus Gia is in seat 1, Hal in seat 2 and Ira in seat 5.",
+  "distractorRationale": {
+    "d": "Hal must be next to Gia at the available left end pair.",
+    "e": "Ira occupies the only remaining right-end seat.",
+    "a": "Eva is fixed in the middle seat.",
+    "c": "Finn is fixed immediately right of the middle."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Eva3 Finn4 leave 1,2,5; adjacent Gia/Hal must occupy 1,2 with Gia end1."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

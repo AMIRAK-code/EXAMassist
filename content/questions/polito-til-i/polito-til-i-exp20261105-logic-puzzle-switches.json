@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-logic-puzzle-switches",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "reading-logic",
+  "domainSlug": "tili-logic",
+  "skillSlug": "tili-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A row has three switches, initially all off. An operation reverses exactly two switches. Can a sequence of operations leave exactly one switch on?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Yes, by reversing two overlapping pairs."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "No, because no switch can ever turn on."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "No, because the number of on switches always remains even."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Yes, by reversing the same pair twice."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Yes, by reversing each pair once."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Flipping two bits changes the number of on switches by 2, 0 or minus 2. Its parity stays even from the initial zero, so one on switch is impossible.",
+  "distractorRationale": {
+    "d": "That returns the pair to its starting state.",
+    "a": "That leaves two switches on, not one.",
+    "e": "Each switch is reversed twice and ends off.",
+    "b": "One operation turns two switches on."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Twoflips changeoncountbyevenamount, parityeveninvariant."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

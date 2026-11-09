@@ -1,0 +1,84 @@
+{
+  "id": "gmat-exp20261105-data-040",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-multi-source-reasoning",
+  "skillSlug": "msr-recognize-discrepancies",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which assessment of the draft summary is correct?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "It reverses the samples; Nori exceeds Mica by3 units."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "It should compare only the blank readings and ignore samples."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "It is correct because equal raw readings always imply equal corrected activity."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "It proves a biological difference caused by afternoon sampling."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "It overlooks different run blanks; Mica’s corrected activity exceeds Nori’s by3 units."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Apply each run’s own correction: Mica14 and Nori11. Matching raw readings do not mean matching corrected measurements when baselines differ.",
+  "distractorRationale": {
+    "c": "The protocol subtracts different blanks for the two runs.",
+    "a": "Mica is18-4=14, while Nori is18-7=11.",
+    "b": "Corrected activity requires both raw reading and blank.",
+    "d": "The sources prohibit biological causal conclusions from these data alone."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "gmat-exp20261105-msr-enzyme-assay",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original practice draft informed by current GMAC format descriptions. All business and study scenarios are invented; no official question is copied or paraphrased."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-expansion-verbal-data-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Mica18-4=14 versus Nori18-7=11, difference3."
+    },
+    "notes": "Author solution supplied. Independent blind solve and expert review remain pending. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

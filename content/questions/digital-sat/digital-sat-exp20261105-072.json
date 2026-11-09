@@ -1,0 +1,75 @@
+{
+  "id": "digital-sat-exp20261105-072",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "problem-solving-and-data-analysis",
+  "skillSlug": "two-variable-data",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A model predicts a plant height of 18 centimeters at week 2 and 42 centimeters at week 8. Assuming a linear relationship, what height does it predict at week 5?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$24$ centimeters"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$60$ centimeters"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$30$ centimeters"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$36$ centimeters"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The rate is (42−18)/(8−2)=4 centimeters per week. Week 5 is three weeks after week 2, so the prediction is 18+3(4)=30 centimeters.",
+  "distractorRationale": {
+    "d": "This uses an incorrect elapsed interval from week two.",
+    "b": "This adds the two given heights rather than interpolating.",
+    "a": "This is the total increase over six weeks, not the height at week five."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "us-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Individually authored original draft. Requires blind independent solve and editorial review before publication."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "us-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-digital-sat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-digital-sat",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified\"; it checked for competing defensible answers and flagged none): Week5 is midpoint2 and8; height midpoint18 and42=30."
+    },
+    "notes": "Independent review pending; structural validation is not proof of correctness. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

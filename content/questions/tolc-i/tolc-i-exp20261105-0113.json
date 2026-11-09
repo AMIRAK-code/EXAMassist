@@ -1,0 +1,75 @@
+{
+  "id": "tolc-i-exp20261105-0113",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A worker completes 18 components in 45 minutes at a constant rate. How many are completed in 2 hours?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "24"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "36"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "40"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "48"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "54"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The rate is 18/45=0.4 component per minute. Two hours is 120 minutes, giving 0.4×120=48 components. Convert time units before scaling.",
+  "distractorRationale": {
+    "b": "This doubles output for ninety minutes rather than 120.",
+    "c": "This does not apply the constant rate correctly.",
+    "e": "This uses three forty-five-minute periods, which exceed two hours.",
+    "a": "Twenty-four is the number completed in one hour; the requested two hours requires twice that amount."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

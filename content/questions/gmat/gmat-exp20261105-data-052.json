@@ -1,0 +1,110 @@
+{
+  "id": "gmat-exp20261105-data-052",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-graphics-interpretation",
+  "skillSlug": "gi-discern-relationships",
+  "subskillSlug": null,
+  "responseType": "two_part",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Select the largest observed ratio of transactions to visitors in column \"ratio\" and the statement guaranteed by the displayed data in column \"claim\".",
+  "instructionsMd": "Select exactly one answer in each named column. Both selections must be correct. The project presents separate column lists rather than the official interface’s shared matrix or drop-down controls.",
+  "options": [
+    {
+      "id": "ratio-a",
+      "label": "A",
+      "textMd": "ratio: 0.40"
+    },
+    {
+      "id": "ratio-b",
+      "label": "B",
+      "textMd": "ratio: 0.30"
+    },
+    {
+      "id": "ratio-c",
+      "label": "C",
+      "textMd": "ratio: 0.50"
+    },
+    {
+      "id": "ratio-d",
+      "label": "D",
+      "textMd": "ratio: 100"
+    },
+    {
+      "id": "claim-a",
+      "label": "A",
+      "textMd": "claim: A higher visitor count did not always accompany a higher transaction count"
+    },
+    {
+      "id": "claim-b",
+      "label": "B",
+      "textMd": "claim: Exactly40% of visitors bought something on the150-visitor day"
+    },
+    {
+      "id": "claim-c",
+      "label": "C",
+      "textMd": "claim: Transactions always rose with visitors"
+    },
+    {
+      "id": "claim-d",
+      "label": "D",
+      "textMd": "claim: Every day with200 visitors has50 transactions"
+    }
+  ],
+  "answerKey": {
+    "type": "two_part",
+    "selections": [
+      {
+        "columnId": "ratio",
+        "optionId": "ratio-a"
+      },
+      {
+        "columnId": "claim",
+        "optionId": "claim-a"
+      }
+    ]
+  },
+  "explanationMd": "The ratios are0.30,0.40,0.25,0.40,0.30. Transactions fall at two increases in visitors, so their relationship is not strictly increasing. Transaction-to-visitor ratio need not equal purchaser conversion when repeat transactions are possible.",
+  "distractorRationale": {
+    "ratio-b": "Days with150 or250 visitors have higher ratios.",
+    "ratio-c": "No plotted day has this ratio.",
+    "ratio-d": "This is a transaction count rather than a ratio.",
+    "claim-b": "Multiple transactions per purchaser are possible.",
+    "claim-c": "Transactions fall from60 to50 and from100 to90.",
+    "claim-d": "One observation does not establish every such day."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "gmat-exp20261105-gi-visitors-sales",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original practice draft informed by current GMAC format descriptions. All business and study scenarios are invented; no official question is copied or paraphrased."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-expansion-verbal-data-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "claim-a,ratio-a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Ratios.3,.4,.25,.4,.3 max.4; visitors150->200 increases while transactions60->50 declines; transactions not unique buyers."
+    },
+    "notes": "Author solution supplied. Independent blind solve and expert review remain pending."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

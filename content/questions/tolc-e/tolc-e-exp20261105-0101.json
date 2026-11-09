@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0101",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-sequences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Starting from 50, a sequence alternately subtracts 6 and adds 2, beginning with subtraction. What is the value after six operations?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "14"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "26"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "38"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "42"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "44"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Each pair of operations changes the value by −6 + 2 = −4. Six operations contain three pairs, for a total change of −12. The final value is 50 − 12 = 38.",
+  "distractorRationale": {
+    "d": "This applies only two subtract-add cycles.",
+    "a": "This subtracts six at every operation and ignores additions.",
+    "e": "This stops after the first operation.",
+    "b": "This subtracts four at every operation instead of every pair."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Six operations are three subtract-6/add-2 pairs: 50-12=38."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

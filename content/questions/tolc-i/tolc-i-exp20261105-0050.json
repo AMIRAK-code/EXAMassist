@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0050",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-analytic-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "The graphs y = x² and y = 2x + 3 intersect at which horizontal coordinates?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "x = 0 and x = 3"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "x = 1 and x = −3"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "x = 1 and x = 3"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "x = −1 and x = 3"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Only x = 3"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Set the expressions equal: x² = 2x + 3, so x² − 2x − 3 = (x − 3)(x + 1) = 0. The two roots are three and negative one, both valid real intersections.",
+  "distractorRationale": {
+    "b": "This reverses both roots’ signs.",
+    "a": "Zero does not satisfy equality of the two functions.",
+    "c": "The smaller root is negative.",
+    "e": "This loses the second valid intersection."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Solve x²-2x-3=(x-3)(x+1)=0 gives-1,3."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-undergraduate-exp20261105-009",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-algebra-expressing-quantities",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A rectangular poster has area $A$ and width $w$. A border of width $b$ is added outside all sides. What is the new area?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$(w+2b)(A+2b)$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$A+4b$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$(w+2b)(A/w+2b)$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$(w+b)(A/w+b)$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The original height is $A/w$. Each dimension gains b at both ends, hence 2b. Multiply the enlarged dimensions; lengths cannot be added directly to an area.",
+  "distractorRationale": {
+    "d": "Counts a border on only one end of each dimension.",
+    "b": "Adds lengths to an area without accounting for strips and corners.",
+    "a": "Mistakes area for height."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-undergraduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-undergraduate",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Original height A/w; both dimensions increase by 2b."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

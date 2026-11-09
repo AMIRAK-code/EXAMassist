@@ -1,0 +1,107 @@
+{
+  "id": "gmat-exp20261105-data-056",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-two-part-analysis",
+  "skillSlug": "tpa-relationships-between-entities",
+  "subskillSlug": null,
+  "responseType": "two_part",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In a four-person ordering, all positions1–4 are occupied once. N comes before P. Q comes immediately after N. R is not in position4. In column \"first\", select the person necessarily in position1. In column \"last\", select the person necessarily in position4.",
+  "instructionsMd": "Select exactly one answer in each named column. Both selections must be correct. The project presents separate column lists rather than the official interface’s shared matrix or drop-down controls.",
+  "options": [
+    {
+      "id": "first-a",
+      "label": "A",
+      "textMd": "first: Cannot be uniquely determined"
+    },
+    {
+      "id": "first-b",
+      "label": "B",
+      "textMd": "first: N"
+    },
+    {
+      "id": "first-c",
+      "label": "C",
+      "textMd": "first: R"
+    },
+    {
+      "id": "first-d",
+      "label": "D",
+      "textMd": "first: Q"
+    },
+    {
+      "id": "last-a",
+      "label": "A",
+      "textMd": "last: P"
+    },
+    {
+      "id": "last-b",
+      "label": "B",
+      "textMd": "last: N"
+    },
+    {
+      "id": "last-c",
+      "label": "C",
+      "textMd": "last: Q"
+    },
+    {
+      "id": "last-d",
+      "label": "D",
+      "textMd": "last: R"
+    }
+  ],
+  "answerKey": {
+    "type": "two_part",
+    "selections": [
+      {
+        "columnId": "first",
+        "optionId": "first-a"
+      },
+      {
+        "columnId": "last",
+        "optionId": "last-a"
+      }
+    ]
+  },
+  "explanationMd": "N,Q form a consecutive block and P follows N. The valid orders are N,Q,R,P; N,Q,P,R is excluded because R is last; R,N,Q,P also works. N,Q cannot occupy3,4 because P then has no later available position. Thus P is last while either N or R can be first.",
+  "distractorRationale": {
+    "first-b": "R,N,Q,P is valid.",
+    "first-c": "N,Q,R,P is valid.",
+    "first-d": "Q must follow N.",
+    "last-b": "N must precede Q and P.",
+    "last-c": "If Q were fourth,N would be third and P could not follow N in a free later position.",
+    "last-d": "The premise explicitly excludes R from fourth."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original practice draft informed by current GMAC format descriptions. All business and study scenarios are invented; no official question is copied or paraphrased."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-expansion-verbal-data-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "first-a,last-a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Valid NQRP, RNQP, NQPR? R cannot4 excludes NQPR; RNQP and NQRP permit N orR first but P alwayslast."
+    },
+    "notes": "Author solution supplied. Independent blind solve and expert review remain pending."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

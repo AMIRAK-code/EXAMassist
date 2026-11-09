@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-a-exp20261105-168",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "mathematics-physics",
+  "domainSlug": "tila-mathematics",
+  "skillSlug": "tila-math-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Two materials cost 4 and 7 units per kilogram. A 10 kg mixture costs 55 units in total. How many kilograms of the more expensive material are used?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "7 kg"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "10 kg"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "5 kg"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "4 kg"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "6 kg"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Let h be the higher-price mass. Then 7h+4(10−h)=55, giving 3h=15 and h=5 kg.",
+  "distractorRationale": {
+    "d": "This gives cost 52 rather than 55.",
+    "a": "This confuses the price per kilogram with the quantity.",
+    "e": "This gives cost 58 rather than 55.",
+    "b": "This would cost seventy units."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question. Historical 2026/27 TIL-A format; not a claim about the announced 2027/28 CISIA transition."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-a",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-a",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): 7h+4(10-h)=55 ->3h15 h5kg."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

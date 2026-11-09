@@ -1,0 +1,75 @@
+{
+  "id": "digital-sat-exp20261105-056",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "advanced-math",
+  "skillSlug": "nonlinear-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A population is modeled by $P(t)=480(1.07)^t$. Which statement describes the model?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The population increases by 7 individuals per time unit."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The population doubles every 7 time units."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The population increases by 7 percent for each one-unit increase in t."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The initial population is 1.07."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The multiplier for a one-unit increase in t is 1.07=1+0.07. Thus the modeled increase is 7 percent of the current amount each time unit, starting from 480.",
+  "distractorRationale": {
+    "b": "The growth factor does not imply that doubling interval.",
+    "a": "The model uses a multiplicative percentage, not a fixed increment.",
+    "d": "The initial value is P(0)=480, whereas 1.07 is the growth multiplier."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "us-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Individually authored original draft. Requires blind independent solve and editorial review before publication."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "us-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-digital-sat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-digital-sat",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified\"; it checked for competing defensible answers and flagged none): Multiplier1.07 means7% per time unit."
+    },
+    "notes": "Independent review pending; structural validation is not proof of correctness. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

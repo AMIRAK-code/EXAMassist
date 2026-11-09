@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-a-exp20261105-0108",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "logical-reasoning",
+  "domainSlug": "tila-logic",
+  "skillSlug": "tila-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Four models A, B, C and D occupy four successive positions. A is immediately before B, C is first and D is last. Which model is third?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "B"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The position cannot be determined."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "C"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "A"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "D"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Place model C first and model D fourth, as the conditions state. Models A and B must then fill the second and third positions, and since A comes immediately before B, A is second and model B is third.",
+  "distractorRationale": {
+    "d": "A must precede B in the two middle positions.",
+    "c": "C is explicitly first.",
+    "e": "D is explicitly last.",
+    "b": "Only the middle positions remain for A and B."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content. Historical 2026/27 TIL-A-format practice; not a claim of alignment to the announced 2027/28 replacement admission tests."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-a",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-a",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): C,A,B,D onlyorder henceBthird."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key. On import (2026-11-09) the explanation was reworded to say \"model B\": the models are named A to D, so the bare letter read like an option letter after the choices were reordered. Stem, choices and key are unchanged."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

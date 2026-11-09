@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-dimension-tolerance",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "technical-knowledge",
+  "domainSlug": "tili-representation",
+  "skillSlug": "tili-rep-conventions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A shaft diameter is specified as 20.0 mm with tolerance plus or minus 0.2 mm. Which measured diameter is outside the permitted interval?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "20.2 mm"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "19.8 mm"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "20.3 mm"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "20.0 mm"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "19.9 mm"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The permitted range is 19.8 through 20.2 mm inclusive. A diameter of 20.3 exceeds the upper limit; the other values are inside or on a boundary.",
+  "distractorRationale": {
+    "a": "This is the allowed upper boundary.",
+    "e": "This lies within the interval.",
+    "b": "This is the allowed lower boundary.",
+    "d": "This is the nominal dimension."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Permittedclosedinterval19.8to20.2 excludes20.3only."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

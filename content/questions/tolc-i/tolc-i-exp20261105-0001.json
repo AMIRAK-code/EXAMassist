@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0001",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-arithmetic-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which integer is the greatest common divisor of 84 and 126?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "6"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "14"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "21"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "42"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "252"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Factor 84 = 2² × 3 × 7 and 126 = 2 × 3² × 7. Take the minimum exponent of each common prime, giving 2 × 3 × 7 = 42. Both numbers are integer multiples of 42.",
+  "distractorRationale": {
+    "c": "Twenty-one divides both but is not the greatest common divisor.",
+    "b": "Fourteen divides both but is not the greatest.",
+    "e": "This is the least common multiple, not a divisor.",
+    "a": "Six is a common divisor but smaller than another available one."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Euclidean subtraction126-84=42 and84=2*42 gives gcd42."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

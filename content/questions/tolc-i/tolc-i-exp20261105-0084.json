@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0084",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Some technicians are supervisors. No supervisor works the night shift. Which conclusion is required?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "No technician works the night shift."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Some technicians do not work the night shift."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Some night-shift workers are supervisors."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Every person outside the night shift is a technician."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Every technician is a supervisor."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The technicians who are supervisors exist because of “some.” The universal exclusion of supervisors from night work applies to those people. Therefore at least some technicians are not night-shift workers, but others may be.",
+  "distractorRationale": {
+    "a": "Technicians outside the supervisor overlap may work nights.",
+    "e": "Only some overlap is stated.",
+    "c": "That contradicts the second premise.",
+    "d": "This reverses and broadens the information."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Existing technician-supervisors cannot work nights, witnessing some nonnight technicians."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

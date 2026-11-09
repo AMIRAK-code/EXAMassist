@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0085",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A warning is issued if pressure exceeds the limit. No warning was issued. Assuming the rule was followed, what follows?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Pressure did not exceed the limit."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Pressure exceeded the limit but the rule was followed."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Every warning is caused only by pressure."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Pressure must have been exactly zero."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The pressure gauge was removed."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The implication is excess pressure → warning. With no warning and compliance assumed, contraposition gives no excess pressure. The exact pressure and other possible warning causes remain unspecified.",
+  "distractorRationale": {
+    "d": "Not exceeding a limit does not specify zero.",
+    "b": "That would require a warning.",
+    "e": "No information about gauge presence is given.",
+    "c": "The rule gives a sufficient cause, not the only cause."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Exceedance implies warning, so no warning excludes exceedance."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

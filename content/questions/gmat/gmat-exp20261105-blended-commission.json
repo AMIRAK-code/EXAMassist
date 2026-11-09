@@ -1,0 +1,81 @@
+{
+  "id": "gmat-exp20261105-blended-commission",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-applied-arithmetic-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A salesperson earns 4% commission on the first 5000 units of monthly sales and 6% on sales above 5000. What commission is earned on 8000 units of sales?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "180"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "320"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "380"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "400"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "480"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The first bracket gives 0.04 times 5000=200. The remaining 3000 gives 180. Total commission is 380; progressive brackets must be calculated separately.",
+  "distractorRationale": {
+    "d": "This averages rates without the correct bracket amounts.",
+    "a": "This counts only the excess-sales commission.",
+    "b": "This applies 4% to every sale.",
+    "e": "This applies 6% to every sale."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): .04*5000+.06*3000=380."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

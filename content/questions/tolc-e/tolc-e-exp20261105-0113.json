@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0113",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A shop has three boxes labelled “pens,” “pencils” and “mixed.” Every label is wrong. One item drawn from the box labelled “mixed” is a pen. What does that box contain?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Pens only"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "No items"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The contents cannot be determined"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "A mixture of pens and pencils"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Pencils only"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The box labelled mixed cannot actually be mixed. It must therefore contain only pens or only pencils. Drawing a pen eliminates pencils-only, leaving pens-only. The key is choosing a box whose incorrect label excludes the mixed case.",
+  "distractorRationale": {
+    "e": "The observed pen rules this out.",
+    "d": "Its mixed label is known to be wrong.",
+    "b": "An item was drawn from it.",
+    "c": "The wrong-label condition and observed pen identify it."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Mixed-labelled box cannot be mixed and drawn pen excludes pencils-only; hence pens-only."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

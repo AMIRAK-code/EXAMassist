@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0087",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A switch is on exactly when the indicator is green. The indicator is not green. What must be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The indicator will turn green in one minute."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The indicator is red."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The switch is on."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The switch has been removed."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The switch is off."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "“Exactly when” expresses an equivalence between on and green. If green is false, on must also be false. This determines the switch state but not the indicator’s particular alternative appearance.",
+  "distractorRationale": {
+    "c": "That would require a green indicator.",
+    "b": "Not green does not specify which alternative colour or state occurs.",
+    "d": "No removal is implied.",
+    "a": "No timing information is given."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Biconditional identifies on with green; non-green forces not on/off."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

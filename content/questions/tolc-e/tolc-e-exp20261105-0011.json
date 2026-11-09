@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0011",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-powers-exp-log",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "For positive x, which expression equals log₂(8x)?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "8log₂x"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "3 + log₂x"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "3log₂x"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "log₂x − 3"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "log₂8 + x"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Use the product rule: log₂(8x) = log₂8 + log₂x. Since 8 = 2³, log₂8 = 3. The condition x > 0 ensures the logarithms are defined.",
+  "distractorRationale": {
+    "a": "A product inside a logarithm becomes a sum, not this multiplication.",
+    "e": "The second term must also be a logarithm.",
+    "c": "This would correspond to log₂(x³), not log₂(8x).",
+    "d": "That would describe log₂(x/8)."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Product log is log2(8)+log2(x)=3+log2(x)."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

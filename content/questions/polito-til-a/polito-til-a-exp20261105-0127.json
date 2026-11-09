@@ -1,0 +1,75 @@
+{
+  "id": "polito-til-a-exp20261105-0127",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "drawing-representation",
+  "domainSlug": "tila-drawing",
+  "skillSlug": "tila-draw-orthographic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A solid is made from unit cubes at all integer grid cells with x = 0, 1, 2 and y = 0, with column heights 1, 3, 2 respectively. Looking along y, what is the upper outline from left to right? In the view, increasing x runs from left to right.",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "One column of height 6"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Heights 1, 3, 2"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Heights 1, 2, 3"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Heights 2, 3, 1"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Heights 3, 3, 3"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The viewing direction removes y-depth while retaining x and z. There is one depth row, so each visible x-column has exactly its stated height. The resulting stepped elevation is one, three, two.",
+  "distractorRationale": {
+    "e": "The outline does not fill all columns to the maximum height.",
+    "c": "This sorts heights instead of preserving position.",
+    "a": "The x positions remain distinct in this view.",
+    "d": "This reverses the specified left-to-right x direction."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content. Historical 2026/27 TIL-A-format practice; not a claim of alignment to the announced 2027/28 replacement admission tests."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

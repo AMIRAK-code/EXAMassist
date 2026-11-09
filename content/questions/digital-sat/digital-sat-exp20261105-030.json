@@ -1,0 +1,75 @@
+{
+  "id": "digital-sat-exp20261105-030",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "algebra",
+  "skillSlug": "linear-inequalities",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A company must produce at least 120 units using machines that make 8 and 11 units per hour. If the first machine runs for 4 hours and the second runs for $h$ hours, which condition on $h$ is necessary and sufficient?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$h\\leq8$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$h\\geq8$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$h\\geq\\frac{120}{11}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$h\\geq11$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The first machine produces 8(4)=32 units. Thus 32+11h≥120, giving 11h≥88 and h≥8. Eight hours reaches exactly the target.",
+  "distractorRationale": {
+    "a": "Producing at least the target requires enough time, not an upper bound.",
+    "c": "This ignores the first machine's 32 units.",
+    "d": "This confuses the hourly production rate with the required time."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "us-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Individually authored original draft. Requires blind independent solve and editorial review before publication."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "us-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-digital-sat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-digital-sat",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified\"; it checked for competing defensible answers and flagged none): 32+11h>=120 implies h>=8."
+    },
+    "notes": "Independent review pending; structural validation is not proof of correctness. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

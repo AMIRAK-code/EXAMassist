@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0056",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A square’s diagonal is 10 cm. What is its area?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "50 cm²"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "25 cm²"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "20 cm²"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "100 cm²"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "100√2 cm²"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "For side s, the diagonal satisfies d² = 2s². Thus the area s² equals d²/2 = 100/2 = 50 cm². The diagonal is longer than the side, so area must be less than 100 cm².",
+  "distractorRationale": {
+    "d": "This treats the diagonal as the side length.",
+    "b": "This halves the diagonal and squares it without the correct geometry.",
+    "c": "This doubles the diagonal but does not calculate area.",
+    "e": "This applies the diagonal factor in the wrong direction."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Square area diagonal²/2=100/2=50."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

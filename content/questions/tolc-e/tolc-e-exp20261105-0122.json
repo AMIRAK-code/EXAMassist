@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0122",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A row of 11 trees is planted at equal spacing of 4 m. What is the distance from the first tree to the last?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "48 m"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "44 m"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "40 m"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "36 m"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "4 m"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Eleven trees create ten gaps between the first and last. Each gap is four metres, so total distance is 10 × 4 = 40 m. Objects and intervals differ by one in a single row.",
+  "distractorRationale": {
+    "b": "This counts eleven intervals instead of ten.",
+    "d": "This counts only nine intervals.",
+    "a": "This adds an extra interval at each end.",
+    "e": "This is only the distance between adjacent trees."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Eleven trees delimit ten gaps, 10*4=40m."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

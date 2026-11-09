@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-undergraduate-exp20261105-002",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-algebra-expressions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "For positive $a,b$, which expression equals $\\sqrt{72a^2b^3}$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$6a\\sqrt{2b}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$36a^2b^2\\sqrt{2b}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$6ab\\sqrt{2b}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$6ab\\sqrt2$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Write the radicand as $36a^2b^2(2b)$. Taking the square root of each square factor gives $6ab\\sqrt{2b}$. Squaring this result recovers the original radicand.",
+  "distractorRationale": {
+    "b": "Fails to take square roots of the extracted factors.",
+    "a": "Omits the extracted factor b.",
+    "d": "Loses one factor of b inside the radical."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-undergraduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-undergraduate",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Extract square factor 36a²b², leaving 2b."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

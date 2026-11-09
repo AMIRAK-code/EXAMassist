@@ -1,0 +1,75 @@
+{
+  "id": "digital-sat-exp20261105-038",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "advanced-math",
+  "skillSlug": "equivalent-expressions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The expression $x^2+bx+36$ equals $(x+p)^2$ for a positive constant $p$. What is $b$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$6$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$12$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$18$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$36$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Expanding gives x²+2px+p². Since p²=36 and p>0, p=6. Therefore b=2p=12.",
+  "distractorRationale": {
+    "a": "This is p, but the linear coefficient is 2p.",
+    "c": "This incorrectly halves the constant term.",
+    "d": "The constant coefficient is p², not the linear coefficient."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "us-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Individually authored original draft. Requires blind independent solve and editorial review before publication."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "us-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-digital-sat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-digital-sat",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified\"; it checked for competing defensible answers and flagged none): p²=36,p=6,so b=2p=12."
+    },
+    "notes": "Independent review pending; structural validation is not proof of correctness. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

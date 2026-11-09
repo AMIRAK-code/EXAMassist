@@ -1,0 +1,75 @@
+{
+  "id": "digital-sat-exp20261105-032",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "algebra",
+  "skillSlug": "linear-inequalities",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "The inequalities $y>3x+2$ and $y\\leq ax-4$ have a common solution with $x=2$. Which condition on $a$ is equivalent to that possibility?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$a<6$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$a>3$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$a>6$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$a\\geq6$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "At x=2, the bounds are y>8 and y≤2a−4. Such a y exists exactly when 2a−4>8, giving a>6. Equality leaves no allowable value.",
+  "distractorRationale": {
+    "a": "This puts the upper bound below the strict lower bound.",
+    "b": "Comparing slopes alone ignores the intercepts and the specified x.",
+    "d": "At a=6 the upper bound is 8, incompatible with y>8."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "us-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Individually authored original draft. Requires blind independent solve and editorial review before publication."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "us-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-digital-sat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-digital-sat",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified\"; it checked for competing defensible answers and flagged none): At x=2 need8<2a-4, hence a>6."
+    },
+    "notes": "Independent review pending; structural validation is not proof of correctness."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

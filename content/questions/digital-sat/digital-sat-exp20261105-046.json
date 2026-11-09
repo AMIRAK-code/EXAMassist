@@ -1,0 +1,55 @@
+{
+  "id": "digital-sat-exp20261105-046",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "advanced-math",
+  "skillSlug": "nonlinear-equations-and-systems",
+  "subskillSlug": null,
+  "responseType": "numeric_entry",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A real number $x$ satisfies $0<x<10$ and $\\frac{1}{x}+\\frac{1}{10-x}=\\frac{5}{12}$. What is the greater possible value of $x$?",
+  "instructionsMd": "Enter the numerical answer.",
+  "options": [],
+  "answerKey": {
+    "type": "numeric_entry",
+    "accepted": [
+      {
+        "kind": "exact",
+        "value": 6
+      }
+    ],
+    "acceptedStrings": [
+      "6"
+    ]
+  },
+  "explanationMd": "Combine the fractions using the nonzero denominator x(10−x). Their numerator is (10−x)+x=10, so 10/[x(10−x)]=5/12. Cross-multiplication gives 120=50x−5x², or x²−10x+24=0. Factor as (x−4)(x−6)=0. Both values lie between zero and ten and satisfy the original equation; the greater is 6.",
+  "distractorRationale": {},
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "us-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Individually authored original draft; independent solve pending.",
+    "editedBy": [
+      "ai-audit-us-2026-11-05"
+    ]
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "us-exams-expansion-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author checked arithmetic; independent review pending."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

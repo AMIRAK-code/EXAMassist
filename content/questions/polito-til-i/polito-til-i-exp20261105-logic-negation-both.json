@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-logic-negation-both",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "reading-logic",
+  "domainSlug": "tili-logic",
+  "skillSlug": "tili-logic-negation",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the negation of \"Both valves are open\"?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "At least one valve is open."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Neither valve exists."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "At least one valve is not open."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Exactly one valve is open."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Both valves are closed."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Negating a conjunction gives a disjunction of negations: the first valve is not open or the second is not open, including the case where neither is open.",
+  "distractorRationale": {
+    "b": "The issue is the state of the given valves.",
+    "a": "This is compatible with both being open.",
+    "d": "Both being closed also negates the statement.",
+    "e": "One closed valve already negates the statement."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Notbothopen meansatleastonenotopen, includingbothclosed."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0067",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "For f(x) = 1/x, which statement holds on the interval x > 0?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "It is strictly increasing."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "It takes negative values."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "It is strictly decreasing."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "It is constant."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "It reaches zero at x = 1."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "If 0 < a < b, multiplying 1/a > 1/b by positive ab gives b > a. Thus the reciprocal function decreases as positive input increases. It approaches zero for large input but never attains zero.",
+  "distractorRationale": {
+    "a": "Larger positive denominators give smaller reciprocals.",
+    "d": "Different positive inputs give different outputs.",
+    "b": "The reciprocal of a positive number is positive.",
+    "e": "Its value at one is one and it never equals zero."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Reciprocal on positive inputs strictly decreases as denominator grows."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-incline-no-friction",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "physics",
+  "domainSlug": "tili-physics",
+  "skillSlug": "tili-phys-dynamics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A block slides on a frictionless incline at 30 degrees to the horizontal. Using g=10 m/s squared, what is its acceleration down the incline?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "10 m/s squared"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "5 m/s squared"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "5 times the square root of 3 m/s squared"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "20 m/s squared"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Zero"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The parallel component of weight is mg sin30 degrees. Dividing by mass gives a=g sin30=10 times one half=5 m/s squared.",
+  "distractorRationale": {
+    "d": "The acceleration cannot exceed g in this simple model.",
+    "a": "Only the component parallel to the incline accelerates the block.",
+    "c": "This is the normal gravitational component's magnitude.",
+    "e": "Gravity has a nonzero component down the slope."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Slopeaccelerationgsin30=5m/s²."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

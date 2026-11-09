@@ -1,0 +1,81 @@
+{
+  "id": "imat-exp20261105-gas-volume-ratio",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-chemistry",
+  "skillSlug": "imat-chem-stoichiometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "At the same temperature and pressure, nitrogen and hydrogen react as N2 + 3 H2 → 2 NH3. What hydrogen volume is required for 4 L of nitrogen, assuming ideal-gas behaviour?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "8 L"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "24 L"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "4 L"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "12 L"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "1.33 L"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Equal-temperature, equal-pressure gas volumes are proportional to moles. Three volumes of hydrogen react with one of nitrogen, so 4 L requires 12 L.",
+  "distractorRationale": {
+    "e": "This reverses the ratio.",
+    "b": "This introduces an extra factor of two.",
+    "c": "This ignores the three-to-one ratio.",
+    "a": "This uses the ammonia coefficient instead of hydrogen's."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-imat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-imat",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Same T,P gas volume stoichiometry3H2perN2,4L needs12L."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

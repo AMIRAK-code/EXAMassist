@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-energy-drop-speed",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "physics",
+  "domainSlug": "tili-physics",
+  "skillSlug": "tili-phys-work-energy",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A small object starts from rest 5 m above the ground and falls without air resistance. With g=10 m/s squared, what speed does it have just before impact?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "10 m/s"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "25 m/s"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "100 m/s"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "5 m/s"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "50 m/s"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Conservation gives mgh=one half mv squared. Thus v squared=2gh=100 and v=10 m/s. Mass cancels from the calculation.",
+  "distractorRationale": {
+    "d": "This uses height as speed.",
+    "e": "This uses gh without taking the correct square root.",
+    "c": "This is the squared speed's numerical value.",
+    "b": "This does not satisfy energy conservation."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): v²=2gh=100 so speed10m/s."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

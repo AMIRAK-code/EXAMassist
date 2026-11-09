@@ -1,0 +1,81 @@
+{
+  "id": "imat-exp20261105-vaccine-trial-control",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-logic",
+  "skillSlug": "imat-logic-critical",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Researchers compare a new treatment with usual care by randomly assigning eligible volunteers to groups. What is the main inferential advantage of random assignment?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "It ensures the sample perfectly represents every population."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "It guarantees that every patient improves."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "It reduces systematic baseline differences between treatment groups."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "It makes a control group unnecessary."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "It removes all measurement error automatically."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Random allocation helps balance known and unknown baseline factors in expectation. This supports causal comparison, but does not guarantee outcomes, population representativeness or error-free measurement.",
+  "distractorRationale": {
+    "b": "Randomisation does not guarantee efficacy.",
+    "d": "The comparison still requires a control.",
+    "e": "Measurement quality remains a separate issue.",
+    "a": "Random assignment is not the same as random sampling."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-imat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-imat",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Randomization reduces systematic baseline confounding between treatment/control groups."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

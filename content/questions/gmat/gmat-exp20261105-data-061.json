@@ -1,0 +1,107 @@
+{
+  "id": "gmat-exp20261105-data-061",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-two-part-analysis",
+  "skillSlug": "tpa-dependent-independent-tasks",
+  "subskillSlug": null,
+  "responseType": "two_part",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A retailer buys100 items at8 euros each. It sells60 items at12 euros each and all remaining items at a single discounted price. There are no other costs or revenues. Column \"breakeven\": choose the discounted price giving zero overall profit. Column \"target\": choose the discounted price giving200 euros overall profit.",
+  "instructionsMd": "Select exactly one answer in each named column. Both selections must be correct. The project presents separate column lists rather than the official interface’s shared matrix or drop-down controls.",
+  "options": [
+    {
+      "id": "breakeven-a",
+      "label": "A",
+      "textMd": "breakeven: 8 euros"
+    },
+    {
+      "id": "breakeven-b",
+      "label": "B",
+      "textMd": "breakeven: 4 euros"
+    },
+    {
+      "id": "breakeven-c",
+      "label": "C",
+      "textMd": "breakeven: 5 euros"
+    },
+    {
+      "id": "breakeven-d",
+      "label": "D",
+      "textMd": "breakeven: 2 euros"
+    },
+    {
+      "id": "target-a",
+      "label": "A",
+      "textMd": "target: 5 euros"
+    },
+    {
+      "id": "target-b",
+      "label": "B",
+      "textMd": "target: 8 euros"
+    },
+    {
+      "id": "target-c",
+      "label": "C",
+      "textMd": "target: 12 euros"
+    },
+    {
+      "id": "target-d",
+      "label": "D",
+      "textMd": "target: 7 euros"
+    }
+  ],
+  "answerKey": {
+    "type": "two_part",
+    "selections": [
+      {
+        "columnId": "breakeven",
+        "optionId": "breakeven-d"
+      },
+      {
+        "columnId": "target",
+        "optionId": "target-d"
+      }
+    ]
+  },
+  "explanationMd": "Total cost800 and first-stage revenue720 leave40 items. For break-even,720+40p=800 gives p=2. For profit200,720+40p=1000 gives p=7. Each target uses the same earlier sales; the second task does not use the first task’s price.",
+  "distractorRationale": {
+    "breakeven-a": "This recovers each remaining item’s unit cost but also adds profit from earlier sales.",
+    "breakeven-b": "This produces80 euros total profit.",
+    "breakeven-c": "This produces120 euros profit.",
+    "target-a": "Total revenue920 yields120 euros profit.",
+    "target-b": "Total revenue1040 yields240 euros profit.",
+    "target-c": "Total revenue1200 yields400 euros profit."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original practice draft informed by current GMAC format descriptions. All business and study scenarios are invented; no official question is copied or paraphrased."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-expansion-verbal-data-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "breakeven-d,target-d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Cost800, first revenue720,40 remain: breakeven(800-720)/40=2; target(1000-720)/40=7."
+    },
+    "notes": "Author solution supplied. Independent blind solve and expert review remain pending."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

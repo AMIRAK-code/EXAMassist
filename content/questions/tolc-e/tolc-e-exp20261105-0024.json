@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0024",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-polynomials",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Factor x² + x − 12.",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "(x + 3)(x − 4)"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "(x + 4)(x − 3)"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "(x + 4)(x + 3)"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "(x + 6)(x − 2)"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "(x − 4)(x − 3)"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Find two numbers whose product is −12 and sum is 1. They are 4 and −3, giving the stated factors. Expanding produces x² + (4 − 3)x − 12, checking both coefficients.",
+  "distractorRationale": {
+    "a": "This produces a middle coefficient of −1.",
+    "d": "This produces a middle coefficient of 4.",
+    "e": "This gives a positive constant term.",
+    "c": "This also gives a positive constant and a different middle term."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Factors need product -12 and sum 1, namely 4,-3."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,75 @@
+{
+  "id": "gmat-exp20261105-data-033",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-multi-source-reasoning",
+  "skillSlug": "msr-recognize-discrepancies",
+  "subskillSlug": null,
+  "responseType": "multi_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A summary memo makes the following claims. Select every claim supported by all three sources.",
+  "instructionsMd": "Select every statement supported by the sources. Leave unsupported statements unselected. All selections must be correct to earn credit; this adapts separate yes/no rows to the project’s select-all control.",
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "A160-euro budget permits Frost at its quoted price."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Frost satisfies the shipment’s mass and deadline requirements."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Haven can meet the requirements by dividing the boxes into two shipments."
+    }
+  ],
+  "answerKey": {
+    "type": "multi_select",
+    "optionIds": [
+      "b"
+    ],
+    "grading": "exact"
+  },
+  "explanationMd": "Frost can carry36kg and arrives on day2, so its physical and timing requirements are satisfied. Its162-euro price fails the separate budget test. Splitting to use Haven is forbidden, even if separate loads would fit.",
+  "distractorRationale": {
+    "c": "The dispatch note explicitly requires all boxes to travel together in one shipment.",
+    "a": "Frost costs162 euros, so the budget is insufficient without authorization."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "gmat-exp20261105-msr-cold-chain",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original practice draft informed by current GMAC format descriptions. All business and study scenarios are invented; no official question is copied or paraphrased."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-expansion-verbal-data-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Frost36<=40 andday2<=3; Haven30kg fails and splitting barred; Frost162 exceeds160."
+    },
+    "notes": "Author solution supplied. Independent blind solve and expert review remain pending. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

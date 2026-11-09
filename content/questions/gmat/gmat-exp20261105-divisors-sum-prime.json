@@ -1,0 +1,81 @@
+{
+  "id": "gmat-exp20261105-divisors-sum-prime",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-arithmetic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A positive integer has exactly three positive divisors. Which form must it have?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "A prime number itself"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The product of two distinct primes"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Any even integer"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The square of a prime number"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The cube of a prime number"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "A prime square p squared has divisors 1,p,p squared. The divisor-count formula shows that a total of three requires one prime exponent of two, since three is prime.",
+  "distractorRationale": {
+    "c": "Even integers can have many different divisor counts.",
+    "b": "That has four positive divisors.",
+    "e": "That has four positive divisors.",
+    "a": "That has two positive divisors."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Exactly3 divisors requires prime-power exponent2, hence prime square."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

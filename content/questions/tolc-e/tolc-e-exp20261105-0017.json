@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0017",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-powers-exp-log",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which is the rationalized form of 3/(√5 − 2)?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "3/(√5 + 2)"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "√5 + 2"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "3√5 + 6"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "3√5 − 6"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "3√5/5"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Multiply numerator and denominator by the conjugate √5 + 2. The denominator becomes 5 − 4 = 1, leaving 3(√5 + 2) = 3√5 + 6. Multiplication by the same factor above and below preserves the fraction.",
+  "distractorRationale": {
+    "d": "This keeps the wrong sign after multiplying by the conjugate.",
+    "b": "This loses the numerator factor of three.",
+    "a": "Changing the denominator alone does not preserve the value.",
+    "e": "This treats the denominator as √5 and ignores the −2."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Multiply by conjugate; denominator 5-4=1; numerator 3sqrt5+6."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

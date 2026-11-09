@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0078",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "No ceramic cup in a collection is cracked. Some blue cups in the collection are cracked. What must follow?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Every blue cup is cracked."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Every nonceramic cup is blue."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "No blue cup is ceramic."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Some ceramic cups are cracked."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Some blue cups are not ceramic."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "The cracked blue cups exist. Because ceramic cups cannot be cracked under the first premise, those particular blue cups must be nonceramic. The conclusion applies to some blue cups, not necessarily all of them.",
+  "distractorRationale": {
+    "c": "Only the cracked blue cups are known to be nonceramic.",
+    "b": "The premises do not describe all nonceramic cups.",
+    "d": "This directly contradicts the first premise.",
+    "a": "The second premise says some, not all."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Cracked blue cups cannot be ceramic because ceramic cups are never cracked."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,75 @@
+{
+  "id": "digital-sat-exp20261105-042",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "advanced-math",
+  "skillSlug": "equivalent-expressions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "If $x-y=4$ and $x^2-y^2=52$, what is $x+y$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$13$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$26$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$48$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$56$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Use x²−y²=(x−y)(x+y). Substitute 52=4(x+y), so x+y=13. The identity avoids solving separately for both variables.",
+  "distractorRationale": {
+    "d": "This adds unrelated expressions.",
+    "b": "This introduces an unnecessary factor of 2.",
+    "c": "This subtracts the two given quantities rather than factoring."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "us-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Individually authored original draft. Requires blind independent solve and editorial review before publication."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "us-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-digital-sat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-digital-sat",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified\"; it checked for competing defensible answers and flagged none): (x-y)(x+y)=52 gives x+y=52/4=13."
+    },
+    "notes": "Independent review pending; structural validation is not proof of correctness. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

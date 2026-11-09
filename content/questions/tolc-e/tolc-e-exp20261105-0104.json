@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0104",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-sequences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The sequence 100, 90, 81, … is defined by multiplying each term by 0.9. What is the fourth term?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "65.61"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "72"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "72.9"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "73"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "80"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The recurrence is multiplicative, so the fourth term is 81 × 0.9 = 72.9. The decreases themselves become smaller. Do not replace a fixed percentage decrease with a fixed absolute decrease.",
+  "distractorRationale": {
+    "b": "This subtracts nine instead of taking ninety percent of 81.",
+    "d": "This rounds even though no rounding is requested.",
+    "e": "This assumes a fixed ten-unit decrease.",
+    "a": "This is the fifth term."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Fourth term 81*0.9=72.9."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-law-exp20261105-011",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-mathematics",
+  "skillSlug": "law-math-sets",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which set identity is always true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$P\\cap Q=P\\cup Q$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$(P\\cap Q)\\subseteq P$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$(P\\cup Q)\\subseteq P$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$P\\subseteq(P\\cap Q)$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "An element in the intersection must belong to both sets, and therefore to P. The reverse containment can fail if P has an element outside Q.",
+  "distractorRationale": {
+    "a": "Confuses intersection and union.",
+    "d": "Reverses the guaranteed containment.",
+    "c": "Ignores elements that occur only in Q."
+  },
+  "estimatedSeconds": 55,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-law",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-law",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Any common element of P and Q belongs to P; other identities fail for disjoint nonempty sets."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

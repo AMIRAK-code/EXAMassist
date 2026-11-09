@@ -1,0 +1,75 @@
+{
+  "id": "digital-sat-exp20261105-085",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "geometry-and-trigonometry",
+  "skillSlug": "right-triangles-and-trigonometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In a right triangle, an acute angle $\\theta$ has opposite side 8 and hypotenuse 17. What is $\\cos\\theta$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\frac{8}{17}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\frac{8}{15}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\frac{15}{17}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\frac{17}{15}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The adjacent leg is √(17²−8²)=√225=15. Cosine is adjacent divided by hypotenuse, so cos θ=15/17.",
+  "distractorRationale": {
+    "a": "This is sin θ, using the opposite side.",
+    "b": "This is tangent, using opposite over adjacent rather than adjacent over hypotenuse.",
+    "d": "This reverses adjacent over hypotenuse."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "us-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Individually authored original draft. Requires blind independent solve and editorial review before publication."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "us-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-digital-sat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-digital-sat",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified\"; it checked for competing defensible answers and flagged none): Adjacent sqrt(289-64)=15; cosine15/17."
+    },
+    "notes": "Independent review pending; structural validation is not proof of correctness. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

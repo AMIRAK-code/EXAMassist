@@ -1,0 +1,81 @@
+{
+  "id": "imat-exp20261105-two-truth-conditions",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-logic",
+  "skillSlug": "imat-logic-problem-solving",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Three labels describe a box: label P says it contains a red ball; label Q says it contains no red ball; label R says it contains a blue ball. Exactly two labels are true. What must be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "All three labels are true."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The box contains no red ball."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The box contains a blue ball."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The box is empty."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The box contains a red ball."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "P and Q are exact negations, so exactly one is true. To reach a total of two true labels, R must also be true. Red-ball presence remains undetermined.",
+  "distractorRationale": {
+    "e": "Either P or Q can be the true member of their pair.",
+    "b": "Either P or Q can be true.",
+    "a": "P and Q are contradictory.",
+    "d": "That would make only Q true."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-imat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-imat",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): P andQ are exact negations, henceonealreadytrue;secondtrue requires R blue."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

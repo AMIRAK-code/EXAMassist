@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0135",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-arguments",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A report states that a town’s total water use fell while its population also fell. It concludes that each resident used less water. What additional information is needed?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Whether the town name has changed."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Only the total number of roads."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The relative sizes of the water-use decline and population decline."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The number of letters in residents’ surnames."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The colour of the water towers."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Per-person use is total use divided by population. Both numerator and denominator fell, so the ratio could fall, rise or stay constant depending on their relative changes. Totals alone do not determine the per-person trend.",
+  "distractorRationale": {
+    "e": "This does not determine per-person consumption.",
+    "a": "Name changes are irrelevant to the ratio.",
+    "d": "This has no bearing on water use per person.",
+    "b": "Road count does not resolve the denominator change."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Per-resident use is total/population, requiring comparison of proportional declines."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,81 @@
+{
+  "id": "gmat-exp20261105-mean-change-add",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-arithmetic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A data set has 12 observations with mean 15. Two observations, 8 and 10, are removed. What is the mean of the remaining observations?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "13.5"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "14.4"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "15"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "16.2"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "18"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The original total is 180. Removing 18 leaves 162 across 10 observations, giving 16.2. Removing below-average values raises the mean, which checks the direction.",
+  "distractorRationale": {
+    "b": "This does not use the correct total and count.",
+    "e": "This is the removed total, not the remaining mean.",
+    "a": "This divides the remaining total by the original count.",
+    "c": "The removed values are below the original mean, so the mean rises."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Originalsum180 minus18=162 over10 gives16.2."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

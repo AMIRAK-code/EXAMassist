@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-graduate-exp20261105-173",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-verbal-reasoning",
+  "skillSlug": "grad-verbal-argument-analysis",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which complete order satisfies every stated condition?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Logistics → People → Marketing → Finance → Technology"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "People → Technology → Finance → Logistics → Marketing"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "People → Finance → Technology → Logistics → Marketing"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Finance → Logistics → Marketing → People → Technology"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Check each rule against People → Technology → Finance → Logistics → Marketing. Every precedence, position, and separation condition holds. Each alternative violates at least one explicit rule; the corresponding violated condition is identified in its feedback.",
+  "distractorRationale": {
+    "d": "This order violates: People must be in position 1.",
+    "a": "This order violates: People must be in position 1. Finance must precede Marketing.",
+    "c": "This order violates: Logistics and Technology must not occupy consecutive positions. Finance must not be in position 2."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": {
+    "id": "bocconi-graduate-exp20261105-manager-briefings",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Independently enumerated all 120 permutations of Finance, Logistics, Marketing, People, Technology. Rules People must be in position 1. Finance must precede Marketing. Logistics and Technology must not occupy consecutive positions. Finance must not be in position 2. leave 4 valid orders: People>Logistics>Finance>Marketing>Technology; People>Logistics>Finance>Technology>Marketing; People>Technology>Finance>Logistics>Marketing; People>Technology>Finance>Marketing>Logistics. Choice true counts: a=0, b=0, c=0, d=1; valid complete order requires one matches."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

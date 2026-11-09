@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-graduate-exp20261105-161",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-verbal-reasoning",
+  "skillSlug": "grad-verbal-argument-analysis",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which complete order satisfies every stated condition?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Costs → Payroll → Sales → Inventory → Assets"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Assets → Costs → Inventory → Payroll → Sales"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Payroll → Costs → Inventory → Assets → Sales"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Assets → Inventory → Sales → Payroll → Costs"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Check each rule against Assets → Inventory → Sales → Payroll → Costs. Every precedence, position, and separation condition holds. Each alternative violates at least one explicit rule; the corresponding violated condition is identified in its feedback.",
+  "distractorRationale": {
+    "b": "This order violates: Costs and Payroll must occupy consecutive positions, in either order. Sales must not be in position 5.",
+    "a": "This order violates: Inventory must occur after Assets and before Sales.",
+    "c": "This order violates: Inventory must occur after Assets and before Sales. Sales must not be in position 5."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": {
+    "id": "bocconi-graduate-exp20261105-audit-workstream",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Independently enumerated all 120 permutations of Assets, Costs, Inventory, Payroll, Sales. Rules Inventory must occur after Assets and before Sales. Costs and Payroll must occupy consecutive positions, in either order. Sales must not be in position 5. leave 2 valid orders: Assets>Inventory>Sales>Costs>Payroll; Assets>Inventory>Sales>Payroll>Costs. Choice true counts: a=0, b=0, c=0, d=1; valid complete order requires one matches."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

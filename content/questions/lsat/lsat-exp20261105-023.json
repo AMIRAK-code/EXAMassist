@@ -1,0 +1,81 @@
+{
+  "id": "lsat-exp20261105-023",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "lr1",
+  "domainSlug": "logical-reasoning",
+  "skillSlug": "lr-drawing-conclusions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "No outdoor exhibit is insured unless it is secured overnight. Some outdoor exhibits are insured. Every insured exhibit has been valued by an assessor. Which must be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Every valued exhibit is outdoors."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Some outdoor exhibits are both secured overnight and valued by an assessor."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Some insured outdoor exhibits are not secured overnight."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "No indoor exhibit has been valued."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Every secured exhibit is insured."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Use the explicitly existing insured outdoor exhibits as witnesses. Each must satisfy the security condition and, because it is insured, the valuation condition. No converse of either rule is needed.",
+  "distractorRationale": {
+    "e": "Security is necessary, not sufficient, for insurance.",
+    "d": "The premises do not exclude indoor valuations.",
+    "a": "Valuation does not imply location.",
+    "c": "This contradicts the security requirement."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "us-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Individually authored original draft. Requires blind independent solve and editorial review before publication."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "us-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-lsat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-lsat",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified\"; it checked for competing defensible answers and flagged none): Some insured outdoor exists; insured requires overnight security and valuation."
+    },
+    "notes": "Independent review pending; structural validation is not proof of correctness. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

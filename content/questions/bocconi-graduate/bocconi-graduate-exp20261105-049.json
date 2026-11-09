@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-graduate-exp20261105-049",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-data-insight",
+  "skillSlug": "grad-data-reading-displays",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which mode has the highest on-time proportion?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Road"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Sea"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "All categories have the same rate"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Rail"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Compute the rates separately: Rail: 92/100=92%; Road: 132/150=88%; Sea: 200/250=80%. Compare these proportions rather than raw successful counts. The highest rate is 92%.",
+  "distractorRationale": {
+    "a": "Compare each numerator with its own denominator. The rates are 92%, 88%, 80%; this claim does not identify all and only the highest-rate categories.",
+    "b": "Compare each numerator with its own denominator. The rates are 92%, 88%, 80%; this claim does not identify all and only the highest-rate categories.",
+    "c": "The ratios differ; equal rates cannot be inferred from the raw totals."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": {
+    "id": "bocconi-graduate-exp20261105-freight-on-time",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): On-time rates .92,.88,.8 make Rail highest."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

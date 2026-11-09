@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-undergraduate-exp20261105-113",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-numerical-reasoning",
+  "skillSlug": "numerical-reasoning-charts-tables",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which site sold the largest share of its available desk-days?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Canal"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Station"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Arcade"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "All categories have the same rate"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Compute the rates separately: Arcade: 90/120=75%; Station: 126/180=70%; Canal: 270/300=90%. Compare these proportions rather than raw successful counts. The highest rate is 90%.",
+  "distractorRationale": {
+    "c": "Compare each numerator with its own denominator. The rates are 75%, 70%, 90%; this claim does not identify all and only the highest-rate categories.",
+    "b": "Compare each numerator with its own denominator. The rates are 75%, 70%, 90%; this claim does not identify all and only the highest-rate categories.",
+    "d": "The ratios differ; equal rates cannot be inferred from the raw totals."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": {
+    "id": "bocconi-undergraduate-exp20261105-shared-desks",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-undergraduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-undergraduate",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Sold proportions .75,.7,.9 make Canal highest."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

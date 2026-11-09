@@ -1,0 +1,81 @@
+{
+  "id": "imat-exp20261105-hardy-weinberg-recessive",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-biology",
+  "skillSlug": "imat-bio-evolution-ecology",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "In a large randomly mating population at Hardy-Weinberg equilibrium, 9% of individuals show a fully penetrant autosomal recessive trait. What fraction are heterozygous at that locus?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "9%"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "30%"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "42%"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "49%"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "91%"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The recessive phenotype frequency is q squared = 0.09, so q = 0.3 and p = 0.7. Heterozygotes occur at 2pq = 2 times 0.7 times 0.3 = 0.42. The equilibrium assumption is essential to this inference.",
+  "distractorRationale": {
+    "d": "This is the dominant homozygote frequency.",
+    "e": "This is the total unaffected frequency.",
+    "b": "This is the recessive allele frequency.",
+    "a": "This is the recessive homozygote frequency."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-imat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-imat",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): q²=.09 givesq=.3,p=.7,2pq=.42."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-graduate-exp20261105-057",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-data-insight",
+  "skillSlug": "grad-data-reading-displays",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which category has the highest completeness rate?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Micro"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Medium"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "All categories have the same rate"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Small"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Compute the rates separately: Micro: 56/80=70%; Small: 96/120=80%; Medium: 150/200=75%. Compare these proportions rather than raw successful counts. The highest rate is 80%.",
+  "distractorRationale": {
+    "a": "Compare each numerator with its own denominator. The rates are 70%, 80%, 75%; this claim does not identify all and only the highest-rate categories.",
+    "b": "Compare each numerator with its own denominator. The rates are 70%, 80%, 75%; this claim does not identify all and only the highest-rate categories.",
+    "c": "The ratios differ; equal rates cannot be inferred from the raw totals."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": {
+    "id": "bocconi-graduate-exp20261105-loan-documentation",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Completeness rates .7,.8,.75 make Small highest."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-a-exp20261105-0085",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "logical-reasoning",
+  "domainSlug": "tila-logic",
+  "skillSlug": "tila-logic-verbal",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Either the east gate or the west gate, but not both, is open. The east gate is closed. What follows?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Both gates are closed."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Both gates are open."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The west gate is open."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The west gate is closed."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The east gate is open at night."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The exclusive alternative requires exactly one open gate. Closing the east gate leaves the west as the sole possibility. No temporal prediction is implied.",
+  "distractorRationale": {
+    "a": "At least one must be open.",
+    "b": "This violates the exclusive condition.",
+    "d": "That would leave neither open.",
+    "e": "No night-time condition is given."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content. Historical 2026/27 TIL-A-format practice; not a claim of alignment to the announced 2027/28 replacement admission tests."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-a",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-a",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): ExactlyoneopenandnotEast meansWest."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,81 @@
+{
+  "id": "gmat-exp20261105-average-speed-stops",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-applied-arithmetic-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A delivery van covers 90 km at 45 km/h, stops for 30 minutes, then covers 60 km at 40 km/h. What is its average speed over the whole elapsed time?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "45 km/h"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "40 km/h"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "42.5 km/h"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "150/3.5 km/h"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "37.5 km/h"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Driving takes 2 and 1.5 hours; the stop adds 0.5, making 4 hours. Total distance 150 divided by 4 gives 37.5 km/h.",
+  "distractorRationale": {
+    "c": "This averages the two driving speeds and ignores time weights and the stop.",
+    "d": "This excludes the stop from elapsed time.",
+    "b": "This uses only the second-leg speed.",
+    "a": "This uses only the first-leg speed."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Elapsed2+.5+1.5=4h;150/4=37.5."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

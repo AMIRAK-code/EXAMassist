@@ -1,0 +1,110 @@
+{
+  "id": "gmat-exp20261105-data-045",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-graphics-interpretation",
+  "skillSlug": "gi-bar-charts",
+  "subskillSlug": null,
+  "responseType": "two_part",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In column \"share\", select the venue with the largest concession share of all its tickets. In column \"combined\", select the percentage of all tickets across the four venues that were concession tickets.",
+  "instructionsMd": "Select exactly one answer in each named column. Both selections must be correct. The project presents separate column lists rather than the official interface’s shared matrix or drop-down controls.",
+  "options": [
+    {
+      "id": "share-a",
+      "label": "A",
+      "textMd": "share: Atrium"
+    },
+    {
+      "id": "share-b",
+      "label": "B",
+      "textMd": "share: Beacon"
+    },
+    {
+      "id": "share-c",
+      "label": "C",
+      "textMd": "share: Dome"
+    },
+    {
+      "id": "share-d",
+      "label": "D",
+      "textMd": "share: Court"
+    },
+    {
+      "id": "combined-a",
+      "label": "A",
+      "textMd": "combined: 35%"
+    },
+    {
+      "id": "combined-b",
+      "label": "B",
+      "textMd": "combined: 44%"
+    },
+    {
+      "id": "combined-c",
+      "label": "C",
+      "textMd": "combined: 50%"
+    },
+    {
+      "id": "combined-d",
+      "label": "D",
+      "textMd": "combined: 34 34/99%"
+    }
+  ],
+  "answerKey": {
+    "type": "two_part",
+    "selections": [
+      {
+        "columnId": "share",
+        "optionId": "share-d"
+      },
+      {
+        "columnId": "combined",
+        "optionId": "combined-d"
+      }
+    ]
+  },
+  "explanationMd": "Shares are80/200=40%,60/240=25%,150/300=50%,50/250=20%. Total concessions=340 and total tickets=990;340/990 times100=34 34/99%.",
+  "distractorRationale": {
+    "share-a": "Its concession share is40%, below Court50%.",
+    "share-b": "Its concession share is25%.",
+    "share-c": "Its concession share is20%.",
+    "combined-a": "The unweighted average of venue shares is not the combined share.",
+    "combined-b": "There are340 concession tickets out of990, not44%.",
+    "combined-c": "Only Court has a concession share of50%."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "gmat-exp20261105-gi-exhibitions",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original practice draft informed by current GMAC format descriptions. All business and study scenarios are invented; no official question is copied or paraphrased."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-expansion-verbal-data-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "combined-d,share-d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Concession shares40%,25%,50%,20%; Court highest. Overall340/990=34 34/99%."
+    },
+    "notes": "Author solution supplied. Independent blind solve and expert review remain pending."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,81 @@
+{
+  "id": "gmat-exp20261105-route-delay",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-applied-arithmetic-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A driver plans to travel 150 km at 50 km/h. After travelling 50 km at that speed, a delay of 30 minutes occurs. At what constant speed must the remaining distance be travelled to arrive at the planned time?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "60 km/h"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "100 km/h"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "75 km/h"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "200/3 km/h"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "50 km/h"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The planned trip takes 3 hours. One hour of driving plus half an hour delay leaves 1.5 hours for 100 km. Speed must be 100/1.5=200/3 km/h.",
+  "distractorRationale": {
+    "c": "This arrives earlier than the planned time.",
+    "e": "This leaves the delay uncompensated.",
+    "b": "This uses only one hour despite 1.5 hours remaining.",
+    "a": "This takes too long for the remaining 100 km."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Planned3h; firstleg1h plusdelay.5 leaves1.5h for100km,200/3km/h."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

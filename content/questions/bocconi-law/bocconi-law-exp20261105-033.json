@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-law-exp20261105-033",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-numerical-reasoning",
+  "skillSlug": "law-numrsn-charts-and-tables",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which area had the highest successful-service proportion?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Urban"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Suburban"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Rural"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "All categories have the same rate"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Compute the rates separately: Urban: 72/80=90%; Suburban: 128/160=80%; Rural: 112/160=70%. Compare these proportions rather than raw successful counts. The highest rate is 90%.",
+  "distractorRationale": {
+    "b": "Compare each numerator with its own denominator. The rates are 90%, 80%, 70%; this claim does not identify all and only the highest-rate categories.",
+    "c": "Compare each numerator with its own denominator. The rates are 90%, 80%, 70%; this claim does not identify all and only the highest-rate categories.",
+    "d": "The ratios differ; equal rates cannot be inferred from the raw totals."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": {
+    "id": "bocconi-law-exp20261105-notice-service",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-law",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-law",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Service shares .9,.8,.7 make Urban highest."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

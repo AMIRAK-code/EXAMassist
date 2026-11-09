@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-a-exp20261105-0095",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "logical-reasoning",
+  "domainSlug": "tila-logic",
+  "skillSlug": "tila-logic-symbolic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A sequence follows the rule add 3, then multiply by 2, repeating. Starting with 2, it reads 2, 5, 10, 13, 26. What is next?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "23"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "28"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "29"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "39"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "52"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The operations alternate +3 and ×2. After 13 is doubled to 26, the next operation is +3. This gives 29 without inventing another pattern.",
+  "distractorRationale": {
+    "e": "The next operation is addition, not multiplication.",
+    "b": "The addition is three, not two.",
+    "d": "This multiplies by an unstated factor.",
+    "a": "The rule adds rather than subtracts three."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content. Historical 2026/27 TIL-A-format practice; not a claim of alignment to the announced 2027/28 replacement admission tests."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-a",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-a",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Alternating+3, times2 next26+3=29."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

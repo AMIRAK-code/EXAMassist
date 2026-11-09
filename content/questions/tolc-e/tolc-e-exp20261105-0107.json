@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0107",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-sequences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Numbers are written in rows: row 1 contains 1; row 2 contains 2,3; row 3 contains 4,5,6; and each next row has one more entry. What is the final number in row 6?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "15"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "18"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "21"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "28"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "36"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The final entry equals the total number of entries through row six: 1 + 2 + 3 + 4 + 5 + 6 = 21. This is the sixth triangular number, also 6 × 7/2.",
+  "distractorRationale": {
+    "a": "This is the final number in row five.",
+    "b": "This does not sum all row lengths through six.",
+    "d": "This is the final number in row seven.",
+    "e": "This squares the row number rather than adding row lengths."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Final entry triangular sum 1+2+3+4+5+6=21."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

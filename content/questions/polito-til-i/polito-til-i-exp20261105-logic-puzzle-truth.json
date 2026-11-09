@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-logic-puzzle-truth",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "reading-logic",
+  "domainSlug": "tili-logic",
+  "skillSlug": "tili-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A and B each either always tell the truth or always lie. A says, \"B and I are both liars.\" Which description is consistent?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "No assignment is consistent."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Both tell the truth."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "A is a liar and B tells the truth."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Both are liars."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "A tells the truth and B lies."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "A cannot be truthful because the statement calls A a liar. Thus A lies, so the statement that both are liars is false; B must tell the truth.",
+  "distractorRationale": {
+    "e": "A's statement incorrectly calls A a liar.",
+    "d": "A's statement would then be true, contradicting A's type.",
+    "a": "A liar with truthful B makes A's statement false consistently.",
+    "b": "A's statement would then be false."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): TruthfulAimpossible; liarA makesbothliarsfalse, henceBtruthful."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

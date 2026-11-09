@@ -1,0 +1,81 @@
+{
+  "id": "gmat-exp20261105-inequality-fraction-positive",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-elementary-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "For positive x, which condition is equivalent to 6/x<3?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "x<−2"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "x<2"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "x=2"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "x>1/2"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "x>2"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Because x is positive, multiply without reversing: 6<3x. Divide by 3 to obtain x>2. At x=2 the original expression equals 3 and is excluded.",
+  "distractorRationale": {
+    "a": "This contradicts positivity.",
+    "b": "Multiplying by positive x preserves the inequality, leading the other way.",
+    "d": "This reverses the division of 6 by 3.",
+    "c": "This gives equality rather than the strict inequality."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Positive multiplication gives6<3x, equivalentx>2."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

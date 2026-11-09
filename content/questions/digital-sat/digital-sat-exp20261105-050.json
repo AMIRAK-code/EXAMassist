@@ -1,0 +1,75 @@
+{
+  "id": "digital-sat-exp20261105-050",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "advanced-math",
+  "skillSlug": "nonlinear-equations-and-systems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "The roots of $x^2-10x+c=0$ differ by 4. What is $c$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$21$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$24$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$25$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$40$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The roots have sum 10. If they are r and r+4, then 2r+4=10, giving 3 and 7. Their product is c=21. Check: (x−3)(x−7)=x²−10x+21.",
+  "distractorRationale": {
+    "b": "This gives roots 4 and 6, whose difference is 2.",
+    "c": "This gives a repeated root, with difference zero.",
+    "d": "This multiplies the sum and difference rather than the roots."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "us-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Individually authored original draft. Requires blind independent solve and editorial review before publication."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "us-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-digital-sat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-digital-sat",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified\"; it checked for competing defensible answers and flagged none): Roots sum10 and differ4, so7 and3; product21."
+    },
+    "notes": "Independent review pending; structural validation is not proof of correctness."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

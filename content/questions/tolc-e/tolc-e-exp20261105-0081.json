@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0081",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Exactly one of the following is true: “The ticket is valid” and “The ticket is discounted.” If the ticket is discounted, what follows?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "It is not valid."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "It was bought online."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Its price must be zero."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Neither statement is true."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "It is valid as well."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "“Exactly one” is an exclusive condition. Once discounted is true, valid must be false to prevent both being true. The statement supplies no information about price magnitude or purchase channel.",
+  "distractorRationale": {
+    "e": "That would make both statements true.",
+    "c": "Discounted does not specify a free ticket.",
+    "b": "Purchase method is not mentioned.",
+    "d": "Discounted is given as true."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Exactly one true and discounted true forces valid false."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

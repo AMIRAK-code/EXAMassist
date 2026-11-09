@@ -1,0 +1,58 @@
+{
+  "id": "gmat-exp20261105-gi-response",
+  "version": 1,
+  "examKey": "gmat",
+  "kind": "chart",
+  "title": "Support response times",
+  "bodyMd": "The bars show all50 resolved support tickets. The first interval includes zero; each other interval includes its lower endpoint and excludes its upper endpoint.",
+  "data": {
+    "columns": [
+      {
+        "key": "time",
+        "label": "Response time"
+      },
+      {
+        "key": "tickets",
+        "label": "tickets"
+      }
+    ],
+    "rows": [
+      {
+        "time": "0 to <1 hour",
+        "tickets": 10
+      },
+      {
+        "time": "1 to <2 hours",
+        "tickets": 15
+      },
+      {
+        "time": "2 to <4 hours",
+        "tickets": 20
+      },
+      {
+        "time": "4 to <8 hours",
+        "tickets": 5
+      }
+    ],
+    "caption": "The bars show all50 resolved support tickets. The first interval includes zero; each other interval includes its lower endpoint and excludes its upper endpoint.",
+    "chart": {
+      "type": "bar",
+      "xKey": "time",
+      "yKeys": [
+        "tickets"
+      ],
+      "xLabel": "Response time",
+      "yLabel": "Ticket count"
+    }
+  },
+  "accessibilityText": "The chart plots the values in the accompanying accessible data table. Axes and units are identified in the chart and column headings.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Invented scenario and data for original practice; not official GMAC material."
+  },
+  "rightsStatus": "original-owned",
+  "state": "in_review",
+  "translations": {}
+}

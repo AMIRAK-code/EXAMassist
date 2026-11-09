@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0073",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "All invoices approved by the director are archived. No archived invoice is missing a reference number. Which statement must be true?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Every archived invoice was approved by the director."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Every invoice approved by the director has a reference number."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "No invoice with a reference number is archived."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Some approved invoices lack reference numbers."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Every invoice with a reference number was approved by the director."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Follow the chain: director-approved implies archived, and archived implies not missing a reference number. Therefore approval implies possession of a reference number. Neither implication can simply be reversed.",
+  "distractorRationale": {
+    "e": "This reverses the implication.",
+    "a": "Archiving may occur for other invoices as well.",
+    "d": "The two premises rule this out.",
+    "c": "The premises allow and require such invoices when approved."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Approval implies archived implies reference number."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

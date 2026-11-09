@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0117",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A train departs every 18 minutes, beginning at 08:00. Which of these is a departure time?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "08:50"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "09:00"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "09:20"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "09:12"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "09:32"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Departure times differ from 08:00 by multiples of eighteen minutes. Seventy-two minutes is four intervals, giving 09:12. Check every proposed time against this interval rule.",
+  "distractorRationale": {
+    "a": "Fifty minutes is not a multiple of eighteen.",
+    "b": "Sixty minutes is not a multiple of eighteen.",
+    "c": "Eighty minutes is not a multiple of eighteen.",
+    "e": "Ninety-two minutes is not a multiple of eighteen."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Departures every18min include offset72min,09:12."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

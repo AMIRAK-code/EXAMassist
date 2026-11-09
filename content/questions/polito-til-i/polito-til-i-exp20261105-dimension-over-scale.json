@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-dimension-over-scale",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "technical-knowledge",
+  "domainSlug": "tili-representation",
+  "skillSlug": "tili-rep-conventions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A technical drawing states that written dimensions govern over measured paper lengths. A line measures 4 cm on a distorted print but is labelled 120 mm. What nominal length should be used?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The length is necessarily unknowable."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "480 mm"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "120 mm"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "40 mm"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "4 mm"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The convention is explicitly stated: the labelled dimension takes precedence. Print distortion can alter paper measurements without changing the specified nominal size.",
+  "distractorRationale": {
+    "a": "The governing written dimension is supplied.",
+    "b": "This multiplies unrelated values.",
+    "d": "This relies on the distorted print rather than the stated dimension.",
+    "e": "This also misconverts the measured paper length."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Givenrule useswritten120mm ratherthan distortedmeasurement."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

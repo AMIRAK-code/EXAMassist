@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-exp20261105-0165",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "physics",
+  "domainSlug": "tolcf-physics",
+  "skillSlug": "tolcf-phys-fluids-thermo",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A fixed amount of ideal gas is heated from 300 K to 450 K at constant volume. How does its pressure change?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "It becomes 1.5 times its initial value."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "It becomes 150 times its initial value."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "It stays unchanged."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "It becomes 0.67 times its initial value."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "It doubles."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "From PV = nRT, with n and V fixed, pressure is proportional to absolute temperature. The ratio is 450/300 = 1.5. Kelvin temperatures, rather than Celsius values, must be used in this proportionality.",
+  "distractorRationale": {
+    "d": "At constant volume, pressure rises with absolute temperature.",
+    "e": "The absolute temperature increases by a factor of 1.5, not two.",
+    "c": "The temperature change affects pressure when volume and amount are fixed.",
+    "b": "A temperature difference is not a pressure ratio."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-f",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-f",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Fixed-volume ideal gas pressure proportional absolute temperature;450/300=1.5."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

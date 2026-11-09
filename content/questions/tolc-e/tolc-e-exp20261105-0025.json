@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0025",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-polynomials",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "For x ≠ 0 and x ≠ 2, simplify (x² − 4)/(x² − 2x).",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "(x + 2)/(x − 2)"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "(x − 2)/x"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "x + 2"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "1"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "(x + 2)/x"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Factor numerator as (x − 2)(x + 2) and denominator as x(x − 2). Cancel the nonzero common factor x − 2, leaving (x + 2)/x. The original exclusions x ≠ 0,2 must still be retained.",
+  "distractorRationale": {
+    "b": "The factor x − 2 cancels, leaving x + 2.",
+    "a": "The denominator also contains a factor x.",
+    "d": "Only one common factor cancels, not every term.",
+    "c": "This drops the remaining denominator x."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Cancel x-2 in (x-2)(x+2)/[x(x-2)]."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

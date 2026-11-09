@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-law-exp20261105-014",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-mathematics",
+  "skillSlug": "law-math-real-number-ordering",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which inequality follows from $x<y$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$x^2<y^2$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$-x<-y$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$x-7<y-7$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$1/x>1/y$ for all nonzero x,y"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Adding the same real number preserves order, so subtracting 7 does too. Squaring and reciprocation need extra sign conditions; negation reverses order.",
+  "distractorRationale": {
+    "a": "Assumes squaring preserves order across all real numbers.",
+    "d": "Ignores the case of opposite signs.",
+    "b": "Fails to reverse order on negation."
+  },
+  "estimatedSeconds": 55,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-law",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-law",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Subtract same7 preserves order; squaring, reciprocals and negation do not generally."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

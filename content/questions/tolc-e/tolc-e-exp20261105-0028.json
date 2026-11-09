@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0028",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-polynomials",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "For nonzero x, simplify 6x³ divided by 2x⁻².",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "3x⁻⁶"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "3/x⁵"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "12x⁵"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "3x⁵"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "3x"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Divide coefficients to get 6/2 = 3. For powers of the same nonzero base, subtract exponents: 3 − (−2) = 5. Thus the quotient is 3x⁵. The nonzero restriction makes the negative power meaningful.",
+  "distractorRationale": {
+    "e": "This adds the exponents instead of subtracting the negative exponent.",
+    "a": "This multiplies exponents incorrectly.",
+    "c": "This multiplies coefficients rather than dividing them.",
+    "b": "This reverses the exponent’s sign."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Coefficients divide to 3 and exponents subtract 3-(-2)=5."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

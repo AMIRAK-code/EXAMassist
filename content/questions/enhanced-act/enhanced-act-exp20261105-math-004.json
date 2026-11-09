@@ -1,0 +1,75 @@
+{
+  "id": "enhanced-act-exp20261105-math-004",
+  "version": 1,
+  "examKey": "enhanced-act",
+  "sectionKey": "math",
+  "domainSlug": "act-math-number-and-quantity",
+  "skillSlug": "act-math-nq-vectors-and-matrices",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Let $A=\\begin{pmatrix}1&2\\\\3&0\\end{pmatrix}$ and $b=\\begin{pmatrix}4\\\\-1\\end{pmatrix}$. What is the column vector $Ab$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\begin{pmatrix}12\\\\2\\end{pmatrix}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$\\begin{pmatrix}6\\\\12\\end{pmatrix}$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\begin{pmatrix}4\\\\-2\\end{pmatrix}$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$\\begin{pmatrix}2\\\\12\\end{pmatrix}$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The first component is 1 times 4 plus 2 times −1, giving 2. The second is 3 times 4 plus 0 times −1, giving 12.",
+  "distractorRationale": {
+    "a": "This reverses the order of the two row results.",
+    "b": "The first dot product subtracts two because the second component of b is negative.",
+    "c": "This multiplies only individual entries, not full row-column products."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-enhanced-act",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-enhanced-act",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified\"; it checked for competing defensible answers and flagged none): Rows dot b give4-2=2 and12+0=12."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,81 @@
+{
+  "id": "gmat-exp20261105-weighted-defect-rate",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-arithmetic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Plant X makes 300 units with a 2% defect rate; plant Y makes 100 units with a 6% defect rate. What is the combined defect rate?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "2%"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "3%"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "4%"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "6%"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "8%"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Expected defective counts are 6 from each plant, totalling 12 among 400 units. The weighted rate is 12/400=3%, closer to the larger plant's rate.",
+  "distractorRationale": {
+    "e": "This adds percentages.",
+    "a": "This ignores the second plant.",
+    "c": "This averages rates without weighting by output.",
+    "d": "This uses only the higher rate."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Defects6+6=12 over400 gives3%."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

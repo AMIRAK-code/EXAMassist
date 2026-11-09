@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-braking-distance",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "physics",
+  "domainSlug": "tili-physics",
+  "skillSlug": "tili-phys-kinematics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A car moving at 20 m/s brakes with constant deceleration magnitude 5 m/s squared. What distance does it travel before stopping?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "4 m"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "80 m"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "20 m"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "40 m"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "100 m"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Use final speed squared=initial speed squared+2as. With final speed zero and a=−5, 0=400−10s, so s=40 m. Average speed 10 m/s for 4 s gives the same result.",
+  "distractorRationale": {
+    "c": "This omits the correct average speed or factor.",
+    "a": "This is the stopping time's numerical value.",
+    "e": "This does not satisfy the kinematic relation.",
+    "b": "This uses initial speed throughout the stopping time."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): 0=400-10s gives40m; time4s averagespeed10."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

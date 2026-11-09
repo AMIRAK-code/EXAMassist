@@ -1,0 +1,110 @@
+{
+  "id": "gmat-exp20261105-data-046",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-graphics-interpretation",
+  "skillSlug": "gi-statistical-distributions",
+  "subskillSlug": null,
+  "responseType": "two_part",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Select the interval necessarily containing the median mass in column \"median\" and the exact percentage of parcels weighing at least6kg in column \"tail\".",
+  "instructionsMd": "Select exactly one answer in each named column. Both selections must be correct. The project presents separate column lists rather than the official interface’s shared matrix or drop-down controls.",
+  "options": [
+    {
+      "id": "median-a",
+      "label": "A",
+      "textMd": "median: 6 to less than8kg"
+    },
+    {
+      "id": "median-b",
+      "label": "B",
+      "textMd": "median: Exactly5kg"
+    },
+    {
+      "id": "median-c",
+      "label": "C",
+      "textMd": "median: 4 to less than6kg"
+    },
+    {
+      "id": "median-d",
+      "label": "D",
+      "textMd": "median: 2 to less than4kg"
+    },
+    {
+      "id": "tail-a",
+      "label": "A",
+      "textMd": "tail: 35%"
+    },
+    {
+      "id": "tail-b",
+      "label": "B",
+      "textMd": "tail: 70%"
+    },
+    {
+      "id": "tail-c",
+      "label": "C",
+      "textMd": "tail: 30%"
+    },
+    {
+      "id": "tail-d",
+      "label": "D",
+      "textMd": "tail: 25%"
+    }
+  ],
+  "answerKey": {
+    "type": "two_part",
+    "selections": [
+      {
+        "columnId": "median",
+        "optionId": "median-c"
+      },
+      {
+        "columnId": "tail",
+        "optionId": "tail-c"
+      }
+    ]
+  },
+  "explanationMd": "Cumulative counts are4,12,28,38,40. Both middle observations,20 and21, lie in the4-to-under6kg bin, so their average lies there too. The upper two bins contain12/40=30%.",
+  "distractorRationale": {
+    "median-a": "The20th and21st masses precede6kg.",
+    "median-b": "The bin does not identify the exact median.",
+    "median-d": "Only12 parcels lie below4kg.",
+    "tail-a": "There are12, not14, parcels at least6kg.",
+    "tail-b": "This is the share below6kg.",
+    "tail-d": "This omits the two parcels in the highest bin."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "gmat-exp20261105-gi-distribution",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original practice draft informed by current GMAC format descriptions. All business and study scenarios are invented; no official question is copied or paraphrased."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-expansion-verbal-data-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "median-c,tail-c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Cumulative counts4,12,28,38,40 put20th/21st in4<=mass<6; tail(10+2)/40=30%."
+    },
+    "notes": "Author solution supplied. Independent blind solve and expert review remain pending."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

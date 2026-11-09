@@ -1,0 +1,75 @@
+{
+  "id": "digital-sat-exp20261105-020",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "algebra",
+  "skillSlug": "systems-of-two-linear-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A shop sells 38 notebooks and folders in total. Notebooks cost 5 dollars each and folders cost 2 dollars each; total revenue is 142 dollars. How many notebooks were sold?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$16$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$22$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$28$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$38$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Let n+f=38 and 5n+2f=142. Subtract twice the count equation: 3n=66, so n=22. Then f=16 and revenue is 110+32=142.",
+  "distractorRationale": {
+    "a": "This is the number of folders.",
+    "c": "This approximately divides revenue by notebook price and ignores folders.",
+    "d": "This treats all items as notebooks."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "us-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Individually authored original draft. Requires blind independent solve and editorial review before publication."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "us-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-digital-sat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-digital-sat",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified\"; it checked for competing defensible answers and flagged none): 5n+2(38-n)=142 gives n=22."
+    },
+    "notes": "Independent review pending; structural validation is not proof of correctness. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

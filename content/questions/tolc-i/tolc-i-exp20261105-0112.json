@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0112",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A digital counter shows every integer from 0 to 99 once. How many displayed numbers contain the digit 7?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "10"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "11"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "18"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "19"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "20"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "There are ten numbers from 70 to 79 and ten ending in 7 from 7 to 97. The number 77 belongs to both groups, so total distinct numbers are 10+10−1=19.",
+  "distractorRationale": {
+    "a": "This counts only one position for the digit.",
+    "e": "This counts 77 twice.",
+    "c": "This excludes 77 altogether after correcting overlap.",
+    "b": "This misses many numbers with seven in the units position."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Ten numbers with units7 and ten with tens7 overlap77once;19."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

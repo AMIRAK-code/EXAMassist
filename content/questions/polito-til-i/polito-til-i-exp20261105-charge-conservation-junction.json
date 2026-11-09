@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-charge-conservation-junction",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "physics",
+  "domainSlug": "tili-physics",
+  "skillSlug": "tili-phys-electricity",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "At a circuit junction, currents of 2 A and 3 A enter. One outgoing branch carries 1.5 A. What current leaves through the only other branch in steady state?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "5 A"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "3.5 A"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "6.5 A"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "0.5 A"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "1 A"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Charge conservation gives total incoming current 5 A equal to total outgoing current. The unknown is 5−1.5=3.5 A.",
+  "distractorRationale": {
+    "a": "This ignores the other outgoing branch.",
+    "e": "This subtracts incoming currents from one another.",
+    "c": "This adds the known outgoing current rather than subtracting it.",
+    "d": "This does not balance total current."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): 5Ain minus1.5Aout leaves3.5A."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-law-exp20261105-151",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-deductive-conditions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which statement cannot be true in any permitted order?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Ciro and Enzo must not occupy consecutive positions."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Enzo and Bela must not occupy consecutive positions."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Enzo must precede Dina."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Enzo and Bela must occupy consecutive positions, in either order."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Test whether each proposed statement can be added consistently to the rules. \"Ciro and Enzo must not occupy consecutive positions.\" is incompatible with every permitted order. The alternative statements each have a complete valid example, given in their feedback. To check impossibility, enumerate placements for the most restricted item or block, then remove every case breaking a rule.\n\nComplete permitted orders (each arrow advances one position):\n- Ada → Bela → Dina → Ciro → Enzo\n- Ada → Ciro → Enzo → Bela → Dina\n- Bela → Dina → Ciro → Enzo → Ada\n- Ciro → Enzo → Bela → Dina → Ada",
+  "distractorRationale": {
+    "c": "This is possible, as demonstrated by Ada → Ciro → Enzo → Bela → Dina, which obeys all the original conditions.",
+    "d": "This is possible, as demonstrated by Ada → Ciro → Enzo → Bela → Dina, which obeys all the original conditions.",
+    "b": "This is possible, as demonstrated by Ada → Bela → Dina → Ciro → Enzo, which obeys all the original conditions."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "bocconi-law-exp20261105-debate-speakers",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-law",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-law",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Independently enumerated all 120 permutations of Ada, Bela, Ciro, Dina, Enzo. Rules Ada must occupy position 1 or position 5. Bela must precede Dina. Ciro must precede Enzo. Bela and Ciro must not occupy consecutive positions. leave 4 valid orders: Ada>Bela>Dina>Ciro>Enzo; Ada>Ciro>Enzo>Bela>Dina; Bela>Dina>Ciro>Enzo>Ada; Ciro>Enzo>Bela>Dina>Ada. Choice true counts: a=2, b=0, c=2, d=2; impossible requires zero matches."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

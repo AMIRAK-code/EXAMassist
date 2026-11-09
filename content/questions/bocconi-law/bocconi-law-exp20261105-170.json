@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-law-exp20261105-170",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-logic-and-critical-thinking",
+  "skillSlug": "law-logic-deductive-conditions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which statement must be true in every permitted order?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Origins must be in position 1."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Ritual must not be in position 2."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Origins must not be in position 1."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Origins must be in position 2."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Combine the ordering and placement constraints rather than assuming one example is unique. The statement \"Ritual must not be in position 2.\" holds in all 6 permitted orders. Generate the cases by placing any fixed-position item and adjacent block first, then discard arrangements that violate a remaining rule. For each alternative, an explicit permitted counterexample appears in its feedback.\n\nComplete permitted orders (each arrow advances one position):\n- Origins → Trade → Ritual → Legacy → Change\n- Origins → Trade → Legacy → Ritual → Change\n- Origins → Change → Ritual → Legacy → Trade\n- Origins → Change → Legacy → Ritual → Trade\n- Trade → Origins → Legacy → Change → Ritual\n- Change → Origins → Legacy → Trade → Ritual",
+  "distractorRationale": {
+    "c": "A counterexample satisfying all the rules is Origins → Trade → Ritual → Legacy → Change. Thus this statement is not necessary.",
+    "d": "A counterexample satisfying all the rules is Origins → Trade → Ritual → Legacy → Change. Thus this statement is not necessary.",
+    "a": "A counterexample satisfying all the rules is Trade → Origins → Legacy → Change → Ritual. Thus this statement is not necessary."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "bocconi-law-exp20261105-gallery-panels",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-law",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-law",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Independently enumerated all 120 permutations of Origins, Trade, Ritual, Change, Legacy. Rules Origins must precede Legacy. Exactly 2 other items must occur between Trade and Change. Ritual must not be in position 1. Origins and Ritual must not occupy consecutive positions. leave 6 valid orders: Origins>Trade>Ritual>Legacy>Change; Origins>Trade>Legacy>Ritual>Change; Origins>Change>Ritual>Legacy>Trade; Origins>Change>Legacy>Ritual>Trade; Trade>Origins>Legacy>Change>Ritual; Change>Origins>Legacy>Trade>Ritual. Choice true counts: a=2, b=2, c=6, d=4; necessary requires all matches."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

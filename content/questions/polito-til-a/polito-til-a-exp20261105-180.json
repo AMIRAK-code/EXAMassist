@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-a-exp20261105-180",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "mathematics-physics",
+  "domainSlug": "tila-mathematics",
+  "skillSlug": "tila-math-analytic-trig",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A point on the unit circle is at angle 210° measured counterclockwise from the positive x-axis. What are its coordinates?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$(\\sqrt3/2,-1/2)$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$(-\\sqrt3/2,1/2)$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$(-1/2,-\\sqrt3/2)$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$(-\\sqrt3/2,-1/2)$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$(\\sqrt3/2,1/2)$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "The angle is 180+30 degrees, in the third quadrant. Both coordinates are negative, with magnitudes cos30=√3/2 and sin30=1/2.",
+  "distractorRationale": {
+    "a": "This lies in the fourth quadrant.",
+    "e": "This is the first-quadrant point at thirty degrees.",
+    "b": "The y-coordinate must be negative in the third quadrant.",
+    "c": "This swaps sine and cosine, giving a different angle."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question. Historical 2026/27 TIL-A format; not a claim about the announced 2027/28 CISIA transition."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-a",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-a",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): 210=180+30 thirdquadrantcoordinatesnegative sqrt3/2,1/2."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}
