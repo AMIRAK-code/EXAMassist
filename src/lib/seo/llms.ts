@@ -1,5 +1,6 @@
 import { EXAM_HUBS, getConfigsForHub } from '@/lib/exams/registry';
 import { listGuides } from '@/lib/content/guides';
+import { courseLessons, coursePath, lessonCount, lessonPath, listCourses } from '@/lib/courses';
 import { INDEPENDENCE_NOTICE, SITE, absoluteUrl } from '@/lib/site';
 import { SUPPORT } from '@/lib/support';
 
@@ -45,6 +46,14 @@ export function llmsTxt(): string {
     '## Guides',
     '',
     ...listGuides().map((guide) => link(guide.title, `/guides/${guide.slug}`, guide.description)),
+    '',
+    '## Courses',
+    '',
+    link('Courses', '/courses', 'free, structured courses for the GRE, the GMAT and the Bocconi bachelor’s admission test.'),
+    ...listCourses().flatMap((course) => [
+      link(course.title, coursePath(course), `${course.description} ${lessonCount(course)} lessons.`),
+      ...courseLessons(course).map((lesson) => `  ${link(lesson.title, lessonPath(course, lesson), lesson.summary)}`),
+    ]),
     '',
     `## About ${SITE.name}`,
     '',

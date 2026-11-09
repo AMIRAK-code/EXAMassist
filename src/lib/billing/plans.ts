@@ -27,8 +27,8 @@
  */
 
 /**
- * What can be free or paid. `guides`, `samples` and `official_scores` are
- * never gated in code; they are listed so the matrix on the pricing page is
+ * What can be free or paid. `guides` (which includes the study courses,
+ * src/lib/courses), `samples` and `official_scores` are never gated in code; they are listed so the matrix on the pricing page is
  * complete.
  *
  * - `diagnostic`: the exam's free diagnostic. It is the fixed "free test"
@@ -219,7 +219,7 @@ export const PLAN_COPY = {
     tagline: 'Guides, sample questions, a free diagnostic for every exam and official score tracking.',
   },
   features: {
-    guides: 'Exam guides, format and scoring pages',
+    guides: 'Exam guides, study courses, format and scoring pages',
     samples: 'Sample questions',
     diagnostic: 'The free diagnostic for every exam',
     official_scores: 'Tracking your official practice-test scores',
