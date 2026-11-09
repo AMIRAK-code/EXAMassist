@@ -15,6 +15,16 @@ import { JsonLd, breadcrumbSchema, lessonSchema } from '@/components/seo/json-ld
 
 type Props = { params: Promise<{ locale: string; course: string; lesson: string }> };
 
+/*
+ * Every lesson is rendered at build time, in every language, and served from
+ * there. Rendering one on the Worker (its Markdown and KaTeX, and the whole
+ * course catalogue it is loaded with) took several times the CPU the Workers
+ * Free plan allows a request, so almost every lesson failed with error 1102.
+ * Nothing here depends on the visitor: the layout treats this render as one
+ * shared by everyone (src/lib/seo/static-pages.ts, isSharedRender).
+ */
+export const dynamic = 'force-static';
+
 export function generateStaticParams() {
   return listCourses().flatMap((course) => courseLessons(course).map((lesson) => ({ course: course.slug, lesson: lesson.slug })));
 }

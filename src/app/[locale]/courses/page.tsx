@@ -13,6 +13,9 @@ const PATH = '/courses';
 
 type Props = { params: Promise<{ locale: string }> };
 
+/* Rendered at build time, like the lessons ([course]/[lesson]/page.tsx says why). */
+export const dynamic = 'force-static';
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'courses.index.meta' });
