@@ -1,6 +1,15 @@
 import { describe, expect, it } from 'vitest';
 import { ACCOUNT_HINT_KEY, readAccountHint, rememberAccount } from '@/lib/auth/account-hint';
-import { DYNAMIC_PUBLIC_PATHS, STATIC_EXTRA_PATHS, assetFileFor, isSnapshotRequest, localeScript, staticPagePaths } from '@/lib/seo/static-pages';
+import {
+  DYNAMIC_PUBLIC_PATHS,
+  STATIC_EXTRA_PATHS,
+  assetFileFor,
+  isSharedRender,
+  isSnapshotRequest,
+  localeScript,
+  prerenderedPagePath,
+  staticPagePaths,
+} from '@/lib/seo/static-pages';
 import { LOCALES } from '@/i18n/locales';
 
 /**
@@ -47,6 +56,16 @@ describe('the pages saved as files', () => {
     expect(assetFileFor('/apple-icon.png')).toBe('apple-icon.png');
   });
 
+  it('serves a page prerendered at build time under its production address', () => {
+    expect(prerenderedPagePath('/en/courses')).toBe('/courses');
+    expect(prerenderedPagePath('/en/courses/gmat/how-the-gmat-works')).toBe('/courses/gmat/how-the-gmat-works');
+    expect(prerenderedPagePath('/it/courses/gmat')).toBe('/it/courses/gmat');
+    expect(prerenderedPagePath('/en')).toBe('/');
+    expect(prerenderedPagePath('/pl')).toBe('/pl');
+    expect(prerenderedPagePath('/_not-found')).toBeNull();
+    expect(prerenderedPagePath('/icon.svg')).toBeNull();
+  });
+
   it('refuses anything that could write outside the assets directory', () => {
     expect(() => assetFileFor('/../wrangler.jsonc')).toThrow();
     expect(() => assetFileFor('exams')).toThrow();
@@ -57,6 +76,14 @@ describe('the pages saved as files', () => {
     expect(isSnapshotRequest(new Headers({ 'x-examer-snapshot': '1' }))).toBe(true);
     expect(isSnapshotRequest(new Headers({ 'x-examer-snapshot': 'yes' }))).toBe(false);
     expect(isSnapshotRequest(new Headers())).toBe(false);
+  });
+
+  it('treats the snapshot and a build-time render as shared, and a visitor’s request as theirs', () => {
+    expect(isSharedRender(new Headers({ host: 'uniexamer.com', 'x-examer-snapshot': '1' }))).toBe(true);
+    // A page prerendered with dynamic = 'force-static' gets empty headers.
+    expect(isSharedRender(new Headers())).toBe(true);
+    expect(isSharedRender(new Headers({ host: 'uniexamer.com', cookie: 'examer_session=abc' }))).toBe(false);
+    expect(isSharedRender(new Headers({ 'x-examer-snapshot': 'yes' }))).toBe(false);
   });
 });
 

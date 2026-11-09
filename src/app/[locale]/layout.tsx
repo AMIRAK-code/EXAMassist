@@ -15,7 +15,7 @@ import type { AccountState } from '@/components/site/nav-items';
 import { routing } from '@/i18n/routing';
 import { LOCALE_INFO, type Locale } from '@/i18n/locales';
 import { languageAlternates } from '@/i18n/alternates';
-import { isSnapshotRequest, localeScript } from '@/lib/seo/static-pages';
+import { isSharedRender, localeScript } from '@/lib/seo/static-pages';
 import { sans } from '../_fonts/sans';
 
 type Props = { children: React.ReactNode; params: Promise<{ locale: string }> };
@@ -60,9 +60,10 @@ export default async function LocaleLayout({ children, params }: Props) {
   const t = await getTranslations({ locale, namespace: 'common' });
   const user = await getCurrentUser();
   const account: AccountState = !user ? 'visitor' : user.isGuest ? 'guest' : 'registered';
-  // A page being saved as a static file is served to everyone and never passes
-  // through src/proxy.ts: the browser decides the menu and the language.
-  const snapshot = isSnapshotRequest(await headers());
+  // A page being saved as a static file, or prerendered at build time (the
+  // courses), is served to everyone, and a saved file never passes through
+  // src/proxy.ts: the browser decides the menu and the language.
+  const snapshot = isSharedRender(await headers());
 
   return (
     <html lang={LOCALE_INFO[locale].htmlLang} className={sans.variable}>
