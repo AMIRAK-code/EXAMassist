@@ -138,7 +138,7 @@ const blueprints: Blueprint[] = [
 
 export const imatConfig: ExamConfig = {
   examKey: 'imat',
-  version: '2026.11',
+  version: '2026.11.1',
   name: 'IMAT - International Medical Admissions Test',
   shortName: 'IMAT',
   publisher: 'Ministero dell’Università e della Ricerca',
@@ -257,7 +257,10 @@ export const imatConfig: ExamConfig = {
         skill('imat-math-geometry-trig', 'Geometry and trigonometry', 'Plane and analytic geometry, and trigonometry.'),
         skill('imat-math-probability-statistics', 'Probability and statistics', 'Elementary probability and statistics.'),
         skill('imat-phys-mechanics', 'Mechanics and fluids', 'Kinematics, dynamics, energy and fluids.'),
-        skill('imat-phys-thermo-waves', 'Thermodynamics and waves', 'Heat, gas laws, waves and optics.'),
+        // The slug keeps "waves" because questions and attempts are filed under it. Annex A of
+        // D.M. 1005/2026 lists thermodynamics but no waves or optics, so the name and description
+        // say only what is examined (2026.11.1).
+        skill('imat-phys-thermo-waves', 'Thermodynamics', 'Temperature and heat, heat balances, the gas laws and the principles of thermodynamics.'),
         skill('imat-phys-electricity', 'Electricity and magnetism', 'Charge, fields, circuits and magnetism.'),
       ],
     },
