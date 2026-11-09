@@ -21,14 +21,14 @@ entitlement checks and `scripts/stripe-setup.ts` all read from it.
 
 | Plan | Price (VAT included) | Billing | Covers |
 | --- | --- | --- | --- |
-| Free | €0 | – | Guides and public pages, sample questions, the free diagnostic for every exam, official practice-score tracking |
+| Free | €0 | – | Guides, study courses and public pages, sample questions, the free diagnostic for every exam, official practice-score tracking |
 | Single Exam Pass | €23.99 once | Paid once; **six calendar months** from the confirmed payment; never renews | The one exam chosen at checkout |
 | Plus | €7.99 / month or €59.99 / year | Renews until cancelled; the yearly price is charged in full upfront | Every exam |
 | Premium | Coming soon (planned €14.99 / month or €119 / year) | **Not on sale**: shown, refused at checkout on the server | Plus and the AI tutor |
 
 | Feature | Free | Pass | Plus | Premium (soon) |
 | --- | --- | --- | --- | --- |
-| Exam guides, format and scoring pages (`guides`) | yes | yes | yes | yes |
+| Exam guides, study courses, format and scoring pages (`guides`) | yes | yes | yes | yes |
 | Sample questions (`samples`) | yes | yes | yes | yes |
 | The free diagnostic for every exam (`diagnostic`) | yes (needs an account) | yes | yes | yes |
 | Official practice-score tracking (`official_scores`) | yes | yes | yes | yes |
