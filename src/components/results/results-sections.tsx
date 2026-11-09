@@ -1,4 +1,5 @@
 import { useLocale, useTranslations } from 'next-intl';
+import { formatFidelityNote } from '@/lib/exams/format-labels';
 import { Link } from '@/i18n/navigation';
 import type { ResultItem, ResultsSummary } from '@/lib/learning/results';
 import { isMiss } from '@/lib/learning/results';
@@ -321,6 +322,7 @@ export function QuestionList({ summary }: { summary: ResultsSummary }) {
 }
 
 export function HowToRead({ summary }: { summary: ResultsSummary }) {
+  const locale = useLocale();
   const t = useTranslations('results.howToRead');
   const { methodology } = summary;
   const facts = methodology.officialFacts;
@@ -341,7 +343,9 @@ export function HowToRead({ summary }: { summary: ResultsSummary }) {
         </div>
         <div>
           <h3 className="text-sm font-semibold uppercase tracking-wide text-ink-subtle">{t('approximation')}</h3>
-          <p className="mt-2 text-sm text-ink-muted">{summary.fidelityNote || methodology.ourApproximation.fidelityNote}</p>
+          <p className="mt-2 text-sm text-ink-muted">{summary.fidelityNote
+              ? formatFidelityNote(summary.examKey, { id: summary.blueprintId, fidelityNote: summary.fidelityNote }, locale)
+              : methodology.ourApproximation.fidelityNote}</p>
         </div>
         <div>
           <h3 className="text-sm font-semibold uppercase tracking-wide text-ink-subtle">{t('notProvided')}</h3>

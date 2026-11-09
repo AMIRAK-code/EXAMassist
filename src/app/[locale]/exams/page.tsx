@@ -46,7 +46,7 @@ export default async function ExamsPage({ params }: Props) {
     blurb: t(`index.groups.${audience}.blurb`),
   }));
 
-  const { matrix, asOf } = (await buildHomeData(db));
+  const { matrix, asOf } = (await buildHomeData(db, new Date(), locale));
 
   const hubs = (await Promise.all(listHubs().map(async (hub) => {
     const configs = hub.configKeys.map(requireExamConfig);

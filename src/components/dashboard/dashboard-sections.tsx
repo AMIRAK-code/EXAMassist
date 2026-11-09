@@ -1,6 +1,7 @@
-import { useFormatter, useTranslations } from 'next-intl';
+import { useFormatter, useLocale, useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import type { UnfinishedAttempt } from '@/lib/attempts/service';
+import { formatLabel } from '@/lib/exams/format-labels';
 import { examDisplayName, type DashboardData, type ExamChoice, type ExamDashboard, type NextStep } from '@/lib/learning/dashboard';
 import { MIN_ATTEMPTS_FOR_SIGNAL } from '@/lib/learning/recommend';
 import { renderText } from '@/lib/learning/text';
@@ -55,6 +56,7 @@ export function GuestNote({ guest }: { guest: NonNullable<DashboardData['guest']
 
 export function UnfinishedList({ items }: { items: UnfinishedAttempt[] }) {
   const t = useTranslations('learning.dashboard.unfinished');
+  const locale = useLocale();
   const remaining = (seconds: number | null) =>
     seconds === null ? null : seconds < 60 ? t('underAMinute') : t('minutesLeft', { minutes: Math.floor(seconds / 60) });
   return (
@@ -77,7 +79,9 @@ export function UnfinishedList({ items }: { items: UnfinishedAttempt[] }) {
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="min-w-0">
                   <p className="text-xs font-semibold uppercase tracking-wide text-ink-subtle">{examDisplayName(item.examKey)}</p>
-                  <h3 className="mt-1 font-heading text-lg font-semibold">{item.blueprintLabel}</h3>
+                  <h3 className="mt-1 font-heading text-lg font-semibold">
+                    {formatLabel(item.examKey, { id: item.blueprintId, label: item.blueprintLabel }, locale)}
+                  </h3>
                   <p className="mt-1 text-sm text-ink-muted">{where}</p>
                 </div>
                 <ButtonLink href={`/attempt/${item.id}`} className="shrink-0">
@@ -286,6 +290,7 @@ export function TopicLandscape({ exam }: { exam: ExamDashboard }) {
 
 export function RecentSessions({ exam }: { exam: ExamDashboard }) {
   const t = useTranslations('learning.dashboard.recent');
+  const locale = useLocale();
   const shortDate = useShortDate();
   if (exam.recent.length === 0) return null;
   return (
@@ -309,7 +314,7 @@ export function RecentSessions({ exam }: { exam: ExamDashboard }) {
             <Card as="li" key={session.id} padding="sm">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="min-w-0">
-                  <h3 className="font-medium">{session.label}</h3>
+                  <h3 className="font-medium">{formatLabel(exam.examKey, { id: session.blueprintId, label: session.label }, locale)}</h3>
                   <p className="mt-1 text-sm text-ink-muted">{`${shortDate(session.finishedAt)} · ${outcome}`}</p>
                 </div>
                 <div className="flex shrink-0 items-center gap-3">

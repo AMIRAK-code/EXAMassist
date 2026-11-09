@@ -22,6 +22,7 @@ import { tutorEnabled } from '@/lib/tutor/config';
 import { loadEntitlements } from '@/lib/billing/entitlements';
 import { pricingPath } from '@/lib/billing/config';
 import { standingApprovalFor } from '@/lib/content/human-review';
+import { formatLabel } from '@/lib/exams/format-labels';
 
 type ResultsT = Awaited<ReturnType<typeof getTranslations<'results'>>>;
 type Option = { id: string; label: string };
@@ -90,7 +91,7 @@ export default async function QuestionReviewPage({
   return (
     <Container size="narrow">
       <Breadcrumbs trail={trail} />
-      <p className="eyebrow mb-3">{`${review.examShortName} · ${review.blueprintLabel}`}</p>
+      <p className="eyebrow mb-3">{`${review.examShortName} · ${formatLabel(review.examKey, { id: review.blueprintId, label: review.blueprintLabel }, locale)}`}</p>
       <h1 className="font-heading text-3xl font-semibold">{t('review.heading', { n: ordinal, total: review.total })}</h1>
       <p className="mt-2 text-sm text-ink-muted">{`${item.domainName} · ${item.skillName}`}</p>
 

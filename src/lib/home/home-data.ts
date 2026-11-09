@@ -6,6 +6,7 @@ import { homepageSampleFor } from '@/lib/content/public-samples';
 import { loadSampleView, type SampleView } from '@/lib/content/sample-view';
 import { listHubs, requireExamConfig, type ExamHub } from '@/lib/exams/registry';
 import type { FormatStatus } from '@/components/ui';
+import { formatLabel } from '@/lib/exams/format-labels';
 
 /**
  * Everything the homepage states about the bank and its formats.
@@ -103,13 +104,13 @@ function cellFor(entry: BlueprintAvailability | undefined): FormatCell {
   };
 }
 
-function timedCell(entries: BlueprintAvailability[]): FormatCell {
+function timedCell(entries: BlueprintAvailability[], nameOf: (blueprint: BlueprintAvailability['blueprint']) => string): FormatCell {
   const timed = entries.filter((entry) => isTimedSection(entry.blueprint));
   if (timed.length === 0) return { status: 'notoffered', ...NO_DETAIL };
   const open = timed.filter((entry) => entry.available);
   if (open.length > 0) {
-    // Section names come from the exam configuration and stay as published.
-    const names = open.map((entry) => shortFormatName(entry.blueprint.label)).join(' · ');
+    // Section names come from the exam configuration, in the page's language (format-labels.ts).
+    const names = open.map((entry) => shortFormatName(nameOf(entry.blueprint))).join(' · ');
     const rest = timed.length - open.length;
     return rest > 0
       ? {
@@ -120,7 +121,7 @@ function timedCell(entries: BlueprintAvailability[]): FormatCell {
       : { status: 'open', detail: names, message: { key: 'formats.detail.timedOpen', values: { names } } };
   }
   const closest = [...timed].sort((a, b) => a.shortfall - b.shortfall)[0];
-  const name = shortFormatName(closest.blueprint.label);
+  const name = shortFormatName(nameOf(closest.blueprint));
   return {
     status: 'notyet',
     detail: `Closest: ${name}, ${closest.itemsAvailable} of ${closest.itemsRequested}`,
@@ -158,7 +159,7 @@ export interface HomeData {
   asOf: string;
 }
 
-export async function buildHomeData(db: Db, now = new Date()): Promise<HomeData> {
+export async function buildHomeData(db: Db, now = new Date(), locale = 'en'): Promise<HomeData> {
   const choices: ExamChoice[] = [];
   const matrix: MatrixRow[] = [];
 
@@ -175,7 +176,7 @@ export async function buildHomeData(db: Db, now = new Date()): Promise<HomeData>
         questions: snap.questions,
         practice: byId('practice')?.available ? { status: 'open', ...NO_DETAIL } : cellFor(byId('practice')),
         diagnostic: cellFor(byId('diagnostic')),
-        timed: timedCell(snap.availability),
+        timed: timedCell(snap.availability, (blueprint) => formatLabel(snap.config.examKey, blueprint, locale)),
         simulation: simulationCell(snap),
       });
     }
