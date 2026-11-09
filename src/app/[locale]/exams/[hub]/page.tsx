@@ -29,6 +29,7 @@ import { loadEntitlements } from '@/lib/billing/entitlements';
 import { BOCCONI_HUB_SLUG, bocconiLandingData } from '@/lib/exams/bocconi-landing';
 import { BOCCONI_FACTS_CHECKED_ON } from '@/lib/exams/bocconi-facts';
 import { BocconiLanding } from '@/components/exams/bocconi-landing';
+import { CourseCard } from '@/components/courses/course-card';
 import { PracticeClickBeacon, ViewBeacon } from '@/components/exams/view-beacon';
 import { HubEssentials } from '@/components/exams/hub-essentials';
 import { billingSettings } from '@/lib/billing/config';
@@ -150,6 +151,9 @@ export default async function ExamHubPage({ params }: Props) {
         <PracticeClickBeacon subject={hub.slug}>
           <BocconiLanding data={data} hasFullAccess={fullAccess} billingOn={entitlements.enforced} />
         </PracticeClickBeacon>
+        <div className="mt-10">
+          <CourseCard hubSlug={hub.slug} exam={hub.label} />
+        </div>
       </Container>
     );
   }
@@ -227,6 +231,7 @@ export default async function ExamHubPage({ params }: Props) {
       {content?.translationNote ? <HubTranslationNote content={content} lang={contentLang} /> : null}
       {content ? <HubIntro content={content} lang={contentLang} /> : null}
       <HubEssentials hub={hub} offered={offered} billingOn={billingSettings().enforced} guides={guidesForHub(hub.slug)} />
+      <CourseCard hubSlug={hub.slug} exam={hub.label} />
       {content ? <HubDetailsNote content={content} lang={contentLang} /> : null}
 
       {/* The direct answer, first: what this exam is, in one block. */}
