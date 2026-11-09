@@ -71,6 +71,8 @@ export interface TopicRow {
 
 export interface FinishedSession {
   id: string;
+  /** The format's id and its configuration's English name; shown through formatLabel(). */
+  blueprintId: string;
   label: string;
   status: 'submitted' | 'expired' | 'abandoned';
   finishedAt: string;
@@ -304,6 +306,7 @@ async function buildExamDashboard(
     topics,
     recent: finishedRows.slice(0, 5).map((row) => ({
       id: row.id,
+      blueprintId: row.blueprintId,
       label: blueprintLabel(row.blueprintId),
       status: row.status,
       finishedAt: row.submittedAt ?? row.startedAt,

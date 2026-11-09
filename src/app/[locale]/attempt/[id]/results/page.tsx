@@ -20,6 +20,7 @@ import { loadEntitlements } from '@/lib/billing/entitlements';
 import { UpgradePrompt } from '@/components/billing/upgrade-prompt';
 import { PlanSummaryCards } from '@/components/billing/plan-summary-cards';
 import { getExamConfig, getHubForConfig } from '@/lib/exams/registry';
+import { formatLabel } from '@/lib/exams/format-labels';
 import { Alert, Breadcrumbs, ButtonLink, Card, Container, PageHeader } from '@/components/ui';
 
 /**
@@ -97,7 +98,7 @@ export default async function ResultsPage({
       <PageHeader
         eyebrow={examLabel(summary.examKey)}
         title={t('page.title')}
-        lead={t('page.lead', { blueprint: summary.blueprintLabel, date: finished })}
+        lead={t('page.lead', { blueprint: formatLabel(summary.examKey, { id: summary.blueprintId, label: summary.blueprintLabel }, locale), date: finished })}
       />
 
       <LearningNotice code={query.notice} className="mb-6" />

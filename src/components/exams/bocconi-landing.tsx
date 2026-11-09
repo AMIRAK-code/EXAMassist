@@ -1,4 +1,4 @@
-import { useFormatter, useTranslations } from 'next-intl';
+import { useFormatter, useLocale, useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import type { BocconiLandingData, BocconiTestSummary } from '@/lib/exams/bocconi-landing';
 import { BOCCONI_ADVICE, BOCCONI_FACTS_CHECKED_ON, BOCCONI_FAQ, BOCCONI_SOURCES } from '@/lib/exams/bocconi-facts';
@@ -6,6 +6,7 @@ import { checkoutPath, freeTestPath, pricingPath } from '@/lib/billing/config';
 import { PlanSummaryCards } from '@/components/billing/plan-summary-cards';
 import { ButtonLink, Card, FidelityBadge, StatusBadge, cx } from '@/components/ui';
 import { OfficialNote } from './official-note';
+import { formatDescription, formatFidelityNote, formatLabel } from '@/lib/exams/format-labels';
 
 /**
  * The Bocconi landing page, served at the established hub URL
@@ -64,6 +65,7 @@ function Sources({ sources }: { sources: Array<{ label: string; url: string }> }
 }
 
 export function BocconiLanding({ data, hasFullAccess, billingOn }: BocconiLandingProps) {
+  const locale = useLocale();
   const t = useTranslations('exams.bocconi');
   const tExams = useTranslations('exams');
   const tSite = useTranslations('common.site');
@@ -247,7 +249,7 @@ export function BocconiLanding({ data, hasFullAccess, billingOn }: BocconiLandin
                 {test!.formats.map((entry) => (
                   <li key={entry.id} className="rounded-card border border-line bg-surface p-4">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="font-semibold">{entry.label}</span>
+                      <span className="font-semibold">{formatLabel(test!.config.examKey, entry, locale)}</span>
                       {entry.available ? (
                         <FidelityBadge fidelity={entry.fidelity} />
                       ) : (
@@ -258,7 +260,7 @@ export function BocconiLanding({ data, hasFullAccess, billingOn }: BocconiLandin
                     </div>
                     <p className="mt-1 text-sm text-ink-muted">
                       {entry.available
-                        ? entry.description
+                        ? formatDescription(test!.config.examKey, entry, locale)
                         : tExams('availability.notOpenYet', {
                             reason:
                               entry.blockedBy === 'rules'
@@ -269,7 +271,7 @@ export function BocconiLanding({ data, hasFullAccess, billingOn }: BocconiLandin
                     {entry.available ? (
                       <details className="mt-2 text-sm">
                         <summary className="cursor-pointer text-ink-muted">{t('formats.fidelityToggle')}</summary>
-                        <p className="mt-2 text-ink-muted">{entry.fidelityNote}</p>
+                        <p className="mt-2 text-ink-muted">{formatFidelityNote(test!.config.examKey, entry, locale)}</p>
                       </details>
                     ) : null}
                   </li>
@@ -460,6 +462,7 @@ function TestCard({
   hasFullAccess: boolean;
 }) {
   const t = useTranslations('exams.bocconi.card');
+  const locale = useLocale();
   const open = test.formats.filter((f) => f.available);
   const law = isLaw(test);
   // Area names and their published shares come from the exam configuration.
@@ -472,7 +475,7 @@ function TestCard({
       <h4 className="mt-4 text-sm font-semibold">{t('offerHeading')}</h4>
       <ul className="mt-2 list-disc space-y-1 ps-5 text-sm">
         <li>{t('offerQuestions', { count: test.questions })}</li>
-        <li>{t('offerFormats', { count: open.length, names: open.map((f) => f.label).join('; ') })}</li>
+        <li>{t('offerFormats', { count: open.length, names: open.map((f) => formatLabel(test.config.examKey, f, locale)).join('; ') })}</li>
         {test.freeTest ? (
           <li>
             {test.freeTest.minutes

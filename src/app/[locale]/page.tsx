@@ -1,7 +1,7 @@
 import { Link } from '@/i18n/navigation';
 import type { Metadata } from 'next';
 import { headers } from 'next/headers';
-import { getFormatter, getTranslations } from 'next-intl/server';
+import { getFormatter, getLocale, getTranslations } from 'next-intl/server';
 import { getDb } from '@/lib/db';
 import { googleSiteVerification, indexingEnabled, shareImages, SITE, siteUrl } from '@/lib/site';
 import { getHub, listHubs } from '@/lib/exams/registry';
@@ -87,7 +87,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
   const db = getDb();
   const hubSlug = query.exam && getHub(query.exam) ? query.exam : DEFAULT_HUB;
 
-  const home = (await buildHomeData(db));
+  const home = (await buildHomeData(db, new Date(), await getLocale()));
   const sample = (await initialSample(db, hubSlug));
   const source = sourceExample();
   const asOf = format.dateTime(new Date(home.asOf), DATE);

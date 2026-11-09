@@ -13,6 +13,7 @@ import { loadEntitlements } from '@/lib/billing/entitlements';
 import { Alert, Breadcrumbs, ButtonLink, Card, Container, PageHeader } from '@/components/ui';
 import { SubmitButton } from '@/components/submit-button';
 import { startFreeTestAction } from './actions';
+import { formatLabel } from '@/lib/exams/format-labels';
 
 export const dynamic = 'force-dynamic';
 
@@ -136,7 +137,7 @@ export default async function FreeTestPage({
         </Card>
       ) : preview ? (
         <Card padding="lg">
-          <h2 className="font-heading text-xl font-semibold">{preview.blueprint.label}</h2>
+          <h2 className="font-heading text-xl font-semibold">{formatLabel(config.examKey, preview.blueprint, locale)}</h2>
           <ul className="mt-3 list-disc space-y-1.5 ps-5 text-ink-muted">
             <li>{copy('preview.sameForEveryone')}</li>
             <li>

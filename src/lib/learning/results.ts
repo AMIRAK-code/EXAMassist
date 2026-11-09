@@ -73,6 +73,7 @@ export interface ResultsSummary {
   examKey: string;
   examShortName: string;
   status: AttemptRow['status'];
+  blueprintId: string;
   blueprintLabel: string;
   fidelityNote: string;
   finishedAt: string;
@@ -282,6 +283,7 @@ export async function getResultsSummary(db: Db, attemptId: string, userId: strin
     examKey: attempt.exam_key,
     examShortName: config.shortName,
     status: attempt.status,
+    blueprintId: attempt.blueprint_id,
     blueprintLabel: blueprint?.label ?? attempt.blueprint_id,
     fidelityNote: blueprint?.fidelityNote ?? '',
     finishedAt: attempt.submitted_at ?? result.computedAt,
@@ -311,6 +313,7 @@ export interface ReviewItem {
   attemptId: string;
   examKey: string;
   examShortName: string;
+  blueprintId: string;
   blueprintLabel: string;
   isRetry: boolean;
   total: number;
@@ -358,6 +361,7 @@ export async function getReviewItem(db: Db, attemptId: string, userId: string, o
     attemptId,
     examKey: attempt.exam_key,
     examShortName: config.shortName,
+    blueprintId: attempt.blueprint_id,
     blueprintLabel: blueprint?.label ?? attempt.blueprint_id,
     isRetry: isRetryAttempt(attempt),
     total: items.length,
