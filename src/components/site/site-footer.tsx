@@ -10,6 +10,7 @@ import { MailIcon, SocialIcon } from './social-icons';
 const LEARN = [
   { href: '/pricing', key: 'pricing' },
   { href: '/guides', key: 'guides' },
+  { href: '/courses', key: 'courses' },
   { href: '/about/how-scoring-works', key: 'howOurScoringWorks' },
   { href: '/about/editorial-standards', key: 'editorialStandards' },
 ] as const;

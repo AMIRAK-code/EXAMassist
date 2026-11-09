@@ -6,6 +6,7 @@ import robots from '@/app/robots';
 import sitemap from '@/app/sitemap';
 import { organizationSchema, webSiteSchema } from '@/components/seo/json-ld';
 import { listGuides } from '@/lib/content/guides';
+import { courseLessons, coursePath, lessonPath, listCourses } from '@/lib/courses';
 import { EXAM_HUBS } from '@/lib/exams/registry';
 import { listHubContent } from '@/lib/exams/hub-content';
 import { SITE as SITE_CONFIG, googleSiteVerification } from '@/lib/site';
@@ -40,7 +41,7 @@ const groupFor = (rules: Rule[], agent: string) => rules.find((r) => list(r.user
 
 /** Pages translated in full, body included: one address per language. */
 const TRANSLATED = [
-  '/', '/exams', '/guides', '/pricing', '/exams/bocconi-online-test',
+  '/', '/exams', '/guides', '/courses', '/pricing', '/exams/bocconi-online-test',
   '/about/editorial-standards', '/about/how-scoring-works', '/about/privacy', '/about/support', '/about/terms',
 ];
 /** Pages translated into some languages only: one address per language their body exists in. */
@@ -50,6 +51,7 @@ const ENGLISH_ONLY = [
   ...EXAM_HUBS.filter((hub) => hub.slug !== 'bocconi-online-test').map((hub) => `/exams/${hub.slug}`).filter((path) => !PARTLY_TRANSLATED[path]),
   ...EXAM_HUBS.map((hub) => `/exams/${hub.slug}/format`),
   ...listGuides().map((guide) => `/guides/${guide.slug}`),
+  ...listCourses().flatMap((course) => [coursePath(course), ...courseLessons(course).map((lesson) => lessonPath(course, lesson))]),
 ];
 
 describe('robots.txt in production', () => {
