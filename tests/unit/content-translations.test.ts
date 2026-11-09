@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import type { Db } from '@/lib/db';
 import { servableQuestionTranslations, sessionContentLocale, withoutTranslations } from '@/lib/content/translations';
 import type { QuestionTranslation } from '@/lib/content/question-schema';
-import { getQuestionVersion, toPresented, toReviewable } from '@/lib/content/repository';
+import { getPool, getQuestionVersion, servableInLocale, toPresented, toReviewable } from '@/lib/content/repository';
 import { getAttemptState, startAttempt } from '@/lib/attempts/service';
 import { requireExamConfig } from '@/lib/exams/registry';
 import { createTestDb, createUser, seedQuestions } from './helpers/test-db';
@@ -76,10 +76,10 @@ describe('serving checked Italian versions', () => {
   beforeEach(async () => {
     db = await createTestDb();
     learner = await createUser(db);
-    ids = await seedQuestions(db, TOLC);
-    // Every other question has a checked Italian version.
+    ids = await seedQuestions(db, TOLC, { perDomain: 8 });
+    // Every question but the first three has a checked Italian version.
     for (const [index, questionId] of ids.entries()) {
-      if (index % 2 === 0) {
+      if (index >= 3) {
         await db.prepare('UPDATE question_versions SET translations_json = ? WHERE question_id = ?').run(italian(`Domanda ${index}`), questionId);
       }
     }
@@ -91,17 +91,23 @@ describe('serving checked Italian versions', () => {
     return state.parts.flatMap((part) => part.items);
   }
 
-  it('shows translated questions in Italian and the rest in English', async () => {
+  it('draws an Italian session only from questions with a checked Italian version, so it never mixes languages', async () => {
     const items = await shownItems('it');
     expect(items.length).toBeGreaterThan(0);
     for (const item of items) {
-      const translated = ids.indexOf(item.questionId) % 2 === 0;
-      expect(item.question.locale).toBe(translated ? 'it' : 'en');
-      expect(item.question.stemMd.startsWith(translated ? 'Domanda' : 'Question')).toBe(true);
+      expect(ids.indexOf(item.questionId), item.questionId).toBeGreaterThanOrEqual(3);
+      expect(item.question.locale).toBe('it');
+      expect(item.question.stemMd.startsWith('Domanda')).toBe(true);
       // Ids and letters are the original's, so the key still points at the same choice.
       for (const option of item.question.options) expect(option.label).toBe(option.id.toUpperCase());
     }
-    expect(items.some((item) => item.question.locale === 'it')).toBe(true);
+  });
+
+  it('keeps every question for an English session, and only the translated ones for an Italian one', async () => {
+    const pool = await getPool(db, TOLC.examKey, null);
+    expect((await servableInLocale(db, pool, 'en')).length).toBe(pool.length);
+    const italianPool = await servableInLocale(db, pool, 'it');
+    expect(italianPool.map((item) => item.questionId).sort()).toEqual(ids.slice(3).sort());
   });
 
   it('stays in English unless Italian is asked for', async () => {
@@ -116,8 +122,8 @@ describe('serving checked Italian versions', () => {
          VALUES ('passage', 1, ?, 'passage', 'A passage', 'English text.', NULL, 'English text.', '{}', 'original-owned', ?)`,
       )
       .run(TOLC.examKey, now);
-    await db.prepare("UPDATE question_versions SET stimulus_id = 'passage', stimulus_version = 1 WHERE question_id = ?").run(ids[0]);
-    const row = (await db.prepare('SELECT id FROM question_versions WHERE question_id = ?').get(ids[0])) as { id: string };
+    await db.prepare("UPDATE question_versions SET stimulus_id = 'passage', stimulus_version = 1 WHERE question_id = ?").run(ids[3]);
+    const row = (await db.prepare('SELECT id FROM question_versions WHERE question_id = ?').get(ids[3])) as { id: string };
     const version = (await getQuestionVersion(db, row.id))!;
 
     const withoutPassage = await toPresented(db, version, 'it');
