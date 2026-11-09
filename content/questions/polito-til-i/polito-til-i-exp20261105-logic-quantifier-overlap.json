@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-logic-quantifier-overlap",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "reading-logic",
+  "domainSlug": "tili-logic",
+  "skillSlug": "tili-logic-quantifiers",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Some musicians are hikers. Some hikers are painters. Which assertion is NOT guaranteed?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Some musicians are painters."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Some painters are hikers."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Some hikers are musicians."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "At least one musician exists."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "At least one hiker exists."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The hikers who are musicians may be different from the hikers who are painters. The two overlaps do not require any musician-painter overlap.",
+  "distractorRationale": {
+    "e": "Each existential premise guarantees a hiker.",
+    "c": "The first overlap is symmetric.",
+    "d": "The first premise guarantees a musician.",
+    "b": "The second overlap is symmetric."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Twohikersubsetsneednotoverlap; allotherexistentialassertionsfollow."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,75 @@
+{
+  "id": "tolc-e-exp20261105-0115",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A lift starts on floor 2, goes up 5 floors, down 3, then up 4. On which floor does it finish?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "4"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "6"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "8"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "10"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "12"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Track signed changes from the starting position: 2 + 5 − 3 + 4 = 8. The intermediate floors are 7, 4 and 8. Distinguishing a change from an absolute floor number prevents confusion.",
+  "distractorRationale": {
+    "d": "This value does not follow the signed changes; after the first two moves the lift is on floor four, then rises to eight.",
+    "a": "Four is the floor after the downward move; this stops before the final rise.",
+    "e": "The signed changes have net increase six, giving floor eight rather than twelve.",
+    "b": "This forgets the starting floor."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-graduate-exp20261105-041",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-data-insight",
+  "skillSlug": "grad-data-reading-displays",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which supplier cohort has the highest acceptance rate?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "All categories have the same rate"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Assembly"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Forge"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Mould"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Compute the rates separately: Forge: 85/100=85%; Mould: 180/200=90%; Assembly: 255/300=85%. Compare these proportions rather than raw successful counts. The highest rate is 90%.",
+  "distractorRationale": {
+    "c": "Compare each numerator with its own denominator. The rates are 85%, 90%, 85%; this claim does not identify all and only the highest-rate categories.",
+    "b": "Compare each numerator with its own denominator. The rates are 85%, 90%, 85%; this claim does not identify all and only the highest-rate categories.",
+    "a": "The ratios differ; equal rates cannot be inferred from the raw totals."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": {
+    "id": "bocconi-graduate-exp20261105-supplier-inspection",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Acceptance rates .85,.9,.85 make Mould highest."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

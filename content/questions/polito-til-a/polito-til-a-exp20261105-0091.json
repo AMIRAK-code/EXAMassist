@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-a-exp20261105-0091",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "logical-reasoning",
+  "domainSlug": "tila-logic",
+  "skillSlug": "tila-logic-verbal",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "All blue labels are waterproof. No waterproof labels dissolve in the test. Which conclusion must hold?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "All waterproof labels are blue."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "All non-blue labels dissolve."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Some blue labels dissolve."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "No labels are waterproof."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "No blue labels dissolve in the test."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Blue labels are inside the waterproof class, which is excluded from the dissolving class. Therefore blue labels cannot dissolve. This conclusion does not require that any blue labels actually exist.",
+  "distractorRationale": {
+    "b": "No rule governs every non-blue label.",
+    "a": "This reverses the first premise.",
+    "c": "This contradicts the two inclusions.",
+    "d": "The premises do not establish that absence."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content. Historical 2026/27 TIL-A-format practice; not a claim of alignment to the announced 2027/28 replacement admission tests."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-a",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-a",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Blue implieswaterproof impliesnotdissolved."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

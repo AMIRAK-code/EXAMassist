@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0102",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-sequences",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A pattern repeats the block 1, 0, 0, 1, 0. What is the sum of its first 23 entries?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "8"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "9"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "10"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "11"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "23"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Each five-entry block sums to two. The first twenty entries contain four blocks, summing to eight. The remaining three entries are 1,0,0, adding one. Total is nine.",
+  "distractorRationale": {
+    "a": "This counts only four full blocks and ignores the remaining initial one.",
+    "c": "This counts a fifth complete block although only three entries of it are present.",
+    "d": "This overcounts the ones in the partial block.",
+    "e": "Most entries are zero, so the sum is not the entry count."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Four full five-entry blocks contain8ones; next1,0,0 adds1, total9."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

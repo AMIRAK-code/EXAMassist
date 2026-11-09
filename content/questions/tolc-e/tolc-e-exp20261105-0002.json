@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0002",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-numbers",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A number is increased by 40%. By what percentage must the result be reduced to return to the original number?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "140%"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "20%"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "200/7%"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "60%"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "40%"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The new value is 1.4 times the original. The fraction to remove is (1.4 − 1)/1.4 = 2/7. As a percentage this is 200/7%, about 28.57%. Multiplying 1.4 by the remaining fraction 5/7 gives one.",
+  "distractorRationale": {
+    "e": "The reduction is measured from the larger value, so the same percentage overcorrects.",
+    "b": "This reduction leaves the result above the original.",
+    "d": "This confuses the retained fraction with the needed reduction.",
+    "a": "A reduction above 100% cannot restore a positive original from a positive result."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Required fraction removed is 0.4/1.4=2/7=200/7 percent."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

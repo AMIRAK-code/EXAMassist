@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-exp20261105-0181",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "logic",
+  "domainSlug": "tolcf-logic",
+  "skillSlug": "tolcf-logic-propositions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Exactly one of two statements is true: “The parcel is in room 1” and “The parcel is not in room 2.” The parcel is in exactly one of rooms 1, 2 or 3. Where is it?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The conditions are inconsistent."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Room 3"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Room 1"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Either room 1 or room 2"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Room 2"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Test the three permitted locations. Room 1 makes both statements true; room 2 makes both false. Room 3 makes “in room 1” false and “not in room 2” true, satisfying the condition. Exhausting the three locations establishes uniqueness.",
+  "distractorRationale": {
+    "c": "Both statements would be true if the parcel were in room 1.",
+    "e": "Both statements would be false if the parcel were in room 2.",
+    "d": "Both possibilities violate the exactly-one-true condition.",
+    "a": "Room 3 makes the first statement false and the second true."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-f",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-f",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Room1 makes both true, room2 both false, room3 false/true, the only exclusive-one solution."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

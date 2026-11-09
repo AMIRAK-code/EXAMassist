@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-exp20261105-0188",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "logic",
+  "domainSlug": "tolcf-logic",
+  "skillSlug": "tolcf-logic-graphs-tables",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A stock record shows 120 units at the start of a day, 35 received, 48 issued and 7 damaged units removed. What should the closing stock be?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "114 units"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "72 units"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "210 units"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "107 units"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "100 units"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Treat stock as an accounting balance: closing = opening + receipts − issues − removals. The calculation is 120 + 35 − 48 − 7 = 100. Checking each movement’s direction prevents treating all recorded numbers as additions.",
+  "distractorRationale": {
+    "a": "This adds damaged units instead of removing them.",
+    "d": "This ignores the damaged units removed.",
+    "b": "This subtracts issues but ignores receipts and damage together.",
+    "c": "This adds movements that should be subtracted."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-f",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-f",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Stock120+35-48-7=100."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

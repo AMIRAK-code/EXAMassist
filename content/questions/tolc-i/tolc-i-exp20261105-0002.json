@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0002",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-arithmetic-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "For nonzero a and b, simplify (a²b⁻¹)³/(a⁴b⁻²).",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "a⁶/b³"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "a²/b"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "a²b"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "a¹⁰/b⁵"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "1/(a²b)"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Expand the numerator to a⁶b⁻³. Dividing by a⁴b⁻² subtracts exponents, leaving a²b⁻¹ = a²/b. Nonzero variables ensure all negative powers are defined.",
+  "distractorRationale": {
+    "c": "This mishandles the negative exponent of b.",
+    "a": "This stops after expanding the numerator.",
+    "d": "This adds exponents when division requires subtraction.",
+    "e": "This reverses the remaining exponent of a."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Numerator a6 b^-3 divided by a4 b^-2 gives a² b^-1=a²/b."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

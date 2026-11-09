@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0125",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A task requires 90 minutes of uninterrupted work. Available periods are 09:00–09:40, 10:00–11:20 and 13:15–14:50. Which period can accommodate it?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Only 13:15–14:50"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "None of the periods"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Both morning periods separately"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Only 10:00–11:20"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Only 09:00–09:40"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The three durations are forty, eighty and ninety-five minutes. Only the last is at least ninety minutes long. Because the work must be uninterrupted, separate shorter periods cannot be combined.",
+  "distractorRationale": {
+    "e": "This period lasts forty minutes.",
+    "d": "This period lasts eighty minutes.",
+    "c": "Neither morning period reaches ninety minutes.",
+    "b": "The afternoon period lasts ninety-five minutes."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Durations40,80,95 minutes; only afternoon reaches90."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

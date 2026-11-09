@@ -1,0 +1,81 @@
+{
+  "id": "gmat-exp20261105-quadratic-integer-range",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-elementary-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "For how many integers x is x squared−5x+6 less than or equal to zero?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "0"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "1"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "2"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "3"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "4"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Factor as (x−2)(x−3). The upward-opening quadratic is nonpositive from 2 through 3 inclusive. The only integers are 2 and 3.",
+  "distractorRationale": {
+    "b": "Both endpoints satisfy equality.",
+    "e": "This includes integers outside the nonpositive interval.",
+    "a": "The quadratic has real integer roots.",
+    "d": "There is no third integer between the roots."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Factor(x-2)(x-3)<=0 means2<=x<=3, twointegers."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

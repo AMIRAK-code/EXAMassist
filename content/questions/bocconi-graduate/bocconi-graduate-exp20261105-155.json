@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-graduate-exp20261105-155",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-verbal-reasoning",
+  "skillSlug": "grad-verbal-argument-analysis",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which statement cannot be true in any permitted order?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Export and Dashboard must not occupy consecutive positions."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Export must precede Dashboard."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Dashboard must be in position 1."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Export and Dashboard must occupy consecutive positions, in either order."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Test whether each proposed statement can be added consistently to the rules. \"Dashboard must be in position 1.\" is incompatible with every permitted order. The alternative statements each have a complete valid example, given in their feedback. To check impossibility, enumerate placements for the most restricted item or block, then remove every case breaking a rule.\n\nComplete permitted orders (each arrow advances one position):\n- Alerts → Dashboard → Chat → Billing → Export\n- Billing → Chat → Alerts → Dashboard → Export\n- Billing → Export → Alerts → Dashboard → Chat\n- Chat → Alerts → Dashboard → Billing → Export\n- Chat → Billing → Alerts → Dashboard → Export\n- Chat → Billing → Export → Alerts → Dashboard",
+  "distractorRationale": {
+    "a": "This is possible, as demonstrated by Alerts → Dashboard → Chat → Billing → Export, which obeys all the original conditions.",
+    "b": "This is possible, as demonstrated by Billing → Export → Alerts → Dashboard → Chat, which obeys all the original conditions.",
+    "d": "This is possible, as demonstrated by Billing → Chat → Alerts → Dashboard → Export, which obeys all the original conditions."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "bocconi-graduate-exp20261105-product-rollout",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Independently enumerated all 120 permutations of Alerts, Billing, Chat, Dashboard, Export. Rules Billing must precede Export. Alerts must be immediately followed by Dashboard. Chat and Export must not occupy consecutive positions. leave 6 valid orders: Alerts>Dashboard>Chat>Billing>Export; Billing>Chat>Alerts>Dashboard>Export; Billing>Export>Alerts>Dashboard>Chat; Chat>Alerts>Dashboard>Billing>Export; Chat>Billing>Alerts>Dashboard>Export; Chat>Billing>Export>Alerts>Dashboard. Choice true counts: a=4, b=0, c=2, d=2; impossible requires zero matches."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

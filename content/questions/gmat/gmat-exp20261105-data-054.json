@@ -1,0 +1,107 @@
+{
+  "id": "gmat-exp20261105-data-054",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-two-part-analysis",
+  "skillSlug": "tpa-evaluate-tradeoffs",
+  "subskillSlug": null,
+  "responseType": "two_part",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A survey team chooses one vehicle. Alder costs90 euros and carries4 people; Birch costs120 and carries6; Cedar costs150 and carries8; Elm costs100 and carries5. Ignore all other costs. In column \"five\", choose the cheapest vehicle carrying at least5 people. In column \"seven\", choose the cheapest carrying at least7.",
+  "instructionsMd": "Select exactly one answer in each named column. Both selections must be correct. The project presents separate column lists rather than the official interface’s shared matrix or drop-down controls.",
+  "options": [
+    {
+      "id": "five-a",
+      "label": "A",
+      "textMd": "five: Birch"
+    },
+    {
+      "id": "five-b",
+      "label": "B",
+      "textMd": "five: Cedar"
+    },
+    {
+      "id": "five-c",
+      "label": "C",
+      "textMd": "five: Elm"
+    },
+    {
+      "id": "five-d",
+      "label": "D",
+      "textMd": "five: Alder"
+    },
+    {
+      "id": "seven-a",
+      "label": "A",
+      "textMd": "seven: Birch"
+    },
+    {
+      "id": "seven-b",
+      "label": "B",
+      "textMd": "seven: Elm"
+    },
+    {
+      "id": "seven-c",
+      "label": "C",
+      "textMd": "seven: Cedar"
+    },
+    {
+      "id": "seven-d",
+      "label": "D",
+      "textMd": "seven: Alder"
+    }
+  ],
+  "answerKey": {
+    "type": "two_part",
+    "selections": [
+      {
+        "columnId": "five",
+        "optionId": "five-c"
+      },
+      {
+        "columnId": "seven",
+        "optionId": "seven-c"
+      }
+    ]
+  },
+  "explanationMd": "For five people, Elm,Birch,Cedar qualify, and Elm has the lowest cost100. For seven, only Cedar qualifies. Capacity must be checked before minimizing cost.",
+  "distractorRationale": {
+    "five-a": "Birch costs more than eligible Elm.",
+    "five-b": "Cedar costs more than eligible Elm.",
+    "five-d": "Alder fails the five-person minimum.",
+    "seven-a": "Birch carries only6.",
+    "seven-b": "Elm carries only5.",
+    "seven-d": "Alder carries only4."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original practice draft informed by current GMAC format descriptions. All business and study scenarios are invented; no official question is copied or paraphrased."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-expansion-verbal-data-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "five-c,seven-c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Atleast5 eligible Birch120,Cedar150,Elm100 selectsElm; atleast7 onlyCedar8."
+    },
+    "notes": "Author solution supplied. Independent blind solve and expert review remain pending."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

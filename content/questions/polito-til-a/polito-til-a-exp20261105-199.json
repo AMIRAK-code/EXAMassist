@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-a-exp20261105-199",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "mathematics-physics",
+  "domainSlug": "tila-physics",
+  "skillSlug": "tila-phys-electricity",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Two fixed point charges exert a force of magnitude F on each other. If their separation triples, with charges unchanged, what is the new force magnitude?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "9F"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "F/3"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "F"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "3F"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "F/9"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Coulomb's law has magnitude proportional to one over separation squared. Tripling separation multiplies its square by nine, dividing the force by nine.",
+  "distractorRationale": {
+    "c": "The distance change affects the force.",
+    "b": "Coulomb force depends on inverse square, not inverse distance.",
+    "d": "Increasing separation decreases the force.",
+    "a": "This reverses the inverse-square scaling."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question. Historical 2026/27 TIL-A format; not a claim about the announced 2027/28 CISIA transition."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-a",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-a",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Inverse-squaretriplingdistance dividesforce9."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,107 @@
+{
+  "id": "gmat-exp20261105-data-062",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-two-part-analysis",
+  "skillSlug": "tpa-complex-problems",
+  "subskillSlug": null,
+  "responseType": "two_part",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A delivery policy permits express shipping if and only if an order is prepaid and weighs at most5kg. A fragile order also requires protective packaging for any shipment. Order X is prepaid, weighs4kg, and is fragile but unpackaged. Order Y is unpaid, weighs3kg, and is not fragile. In column \"X\", select the single change sufficient to allow X to ship express. In column \"Y\", select the single change sufficient to allow Y to ship express. All unstated attributes remain unchanged.",
+  "instructionsMd": "Select exactly one answer in each named column. Both selections must be correct. The project presents separate column lists rather than the official interface’s shared matrix or drop-down controls.",
+  "options": [
+    {
+      "id": "x-a",
+      "label": "A",
+      "textMd": "X: Mark it prepaid"
+    },
+    {
+      "id": "x-b",
+      "label": "B",
+      "textMd": "X: Increase its weight to6kg"
+    },
+    {
+      "id": "x-c",
+      "label": "C",
+      "textMd": "X: Add protective packaging"
+    },
+    {
+      "id": "x-d",
+      "label": "D",
+      "textMd": "X: Reduce its weight to3kg"
+    },
+    {
+      "id": "y-a",
+      "label": "A",
+      "textMd": "Y: Reduce its weight to2kg"
+    },
+    {
+      "id": "y-b",
+      "label": "B",
+      "textMd": "Y: Increase its weight to5kg"
+    },
+    {
+      "id": "y-c",
+      "label": "C",
+      "textMd": "Y: Prepay the order"
+    },
+    {
+      "id": "y-d",
+      "label": "D",
+      "textMd": "Y: Add protective packaging"
+    }
+  ],
+  "answerKey": {
+    "type": "two_part",
+    "selections": [
+      {
+        "columnId": "x",
+        "optionId": "x-c"
+      },
+      {
+        "columnId": "y",
+        "optionId": "y-c"
+      }
+    ]
+  },
+  "explanationMd": "X satisfies both express-specific conditions but needs packaging to satisfy the rule for fragile shipments. Y meets the mass limit and has no packaging requirement, but must be prepaid. Each proposed change resolves exactly the unmet condition for that order.",
+  "distractorRationale": {
+    "x-a": "It is already prepaid.",
+    "x-b": "This fails the express weight limit and leaves packaging unresolved.",
+    "x-d": "It already meets the weight limit but remains unpackaged.",
+    "y-a": "Y already meets the weight limit and remains unpaid.",
+    "y-b": "This still leaves the prepayment requirement unsatisfied.",
+    "y-d": "Y is not fragile and still fails prepayment."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original practice draft informed by current GMAC format descriptions. All business and study scenarios are invented; no official question is copied or paraphrased."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-expansion-verbal-data-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "x-c,y-c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): X already prepaid and light but fragile requires packaging; Y meets mass and nonfragile so prepayment alone suffices."
+    },
+    "notes": "Author solution supplied. Independent blind solve and expert review remain pending."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

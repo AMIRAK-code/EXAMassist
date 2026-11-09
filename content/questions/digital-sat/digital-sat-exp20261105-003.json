@@ -1,0 +1,72 @@
+{
+  "id": "digital-sat-exp20261105-003",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "algebra",
+  "skillSlug": "linear-equations-one-variable",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A student solves $5(2x-3)=3x+20$. The student correctly writes $10x-15=3x+20$, but then incorrectly writes $7x=5$. Which equation corrects only this second step?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$7x=35$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$7x=20$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$13x=35$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$7x=-35$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Starting from the correctly distributed equation, subtract 3x from both sides to obtain 7x−15=20. Add 15 to both sides to obtain 7x=35. The student subtracted 15 from the right side instead of adding it. Checking the resulting solution x=5 in the original equation gives 35 on both sides.",
+  "distractorRationale": {
+    "d": "This reverses the sign of the entire constant total after moving the negative fifteen.",
+    "c": "This adds the variable coefficients instead of subtracting the same 3x from both sides.",
+    "b": "This removes the negative fifteen from the left without applying the same operation on the right."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "us-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Individually authored original draft. Requires blind independent solve and editorial review before publication.",
+    "editedBy": [
+      "ai-audit-us-2026-11-05"
+    ]
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "us-exams-expansion-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Independent review pending; structural validation is not proof of correctness. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

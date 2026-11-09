@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-exp20261105-0194",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "logic",
+  "domainSlug": "tolcf-logic",
+  "skillSlug": "tolcf-logic-math-reasoning",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A machine makes one mark every 3 seconds, beginning with a mark at time zero. How many marks has it made by time 30 seconds, including a mark at exactly 30 seconds?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "9"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "10"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "11"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "12"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "30"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Marks occur at 0, 3, 6, …, 30 seconds. There are 30/3 = 10 intervals but eleven marked times because both endpoints count. Distinguishing intervals from events is the key step.",
+  "distractorRationale": {
+    "b": "This counts the intervals but omits the initial mark at time zero.",
+    "a": "This omits both endpoint marks.",
+    "d": "This adds an extra mark beyond the two endpoints.",
+    "e": "This treats the mark rate as one per second."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-f",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-f",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Times0,3,...,30 have30/3+1=11marks."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

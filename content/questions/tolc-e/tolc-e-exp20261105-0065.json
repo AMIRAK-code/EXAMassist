@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0065",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which function is odd on the real numbers?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "f(x) = |x|"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "f(x) = x² + x"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "f(x) = x³ + 1"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "f(x) = x³ − x"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "f(x) = x²"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "An odd function satisfies f(−x) = −f(x). For x³ − x, substitution gives −x³ + x, exactly the negative of the original. The other choices contain even or constant parts that break this relation.",
+  "distractorRationale": {
+    "e": "This is even, not odd.",
+    "c": "The constant breaks the odd symmetry.",
+    "a": "Absolute value is even.",
+    "b": "The mixture does not satisfy f(−x) = −f(x)."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): (-x)³-(-x)=-(x³-x); other choices fail odd symmetry."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

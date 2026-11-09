@@ -1,0 +1,81 @@
+{
+  "id": "imat-exp20261105-age-equation",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-logic",
+  "skillSlug": "imat-logic-problem-solving",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A teacher is currently three times as old as a student. In 12 years the teacher will be twice as old as the student. How old is the student now?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "24 years"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "6 years"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "36 years"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "12 years"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "18 years"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Let the student's age be s and the teacher's 3s. Then 3s+12=2(s+12), giving s=12. Future ages are 48 and 24, confirming the condition.",
+  "distractorRationale": {
+    "c": "This is the teacher's current age.",
+    "a": "This is the student's age after 12 years, not now.",
+    "e": "This gives future ages 66 and 30, not a two-to-one ratio.",
+    "b": "This does not satisfy the future ratio."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-imat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-imat",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Teacher3s;3s+12=2(s+12) gives student12years."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

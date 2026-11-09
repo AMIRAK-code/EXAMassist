@@ -1,0 +1,75 @@
+{
+  "id": "imat-exp20261105-electrical-power",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-physics-maths",
+  "skillSlug": "imat-phys-electricity",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A resistor carries 0.5 A with 12 V across it. What power does it dissipate?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "12.5 W"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "144 W"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "24 W"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "3 W"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "6 W"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Electrical power is voltage times current: 12 times 0.5=6 W. The implied resistance is 24 ohms; I squared R also gives 6 W.",
+  "distractorRationale": {
+    "a": "Adding voltage and current is dimensionally invalid.",
+    "d": "This substitutes voltage for resistance in I²R, calculating 0.5² × 12; the actual resistance is 12/0.5 = 24 ohms.",
+    "c": "This divides voltage by current, giving resistance.",
+    "b": "This squares voltage without dividing by resistance."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

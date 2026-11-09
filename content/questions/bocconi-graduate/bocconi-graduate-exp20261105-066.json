@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-graduate-exp20261105-066",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-data-insight",
+  "skillSlug": "grad-data-derived-conclusions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "What percentage activated across all plans? Round to two decimal places if necessary.",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "30%"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "41.18%"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "66.67%"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "70%"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Add counts before dividing: 420 qualifying cases out of 600 total. The overall rate is 420/600 times 100=70%. Category denominators differ, so percentages need their proper weights.",
+  "distractorRationale": {
+    "a": "This is the complementary share, not the requested successful share.",
+    "b": "This incorrectly adds successful cases to a total that already includes them.",
+    "c": "This averages category percentages with equal weights instead of weighting by their different denominators."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": {
+    "id": "bocconi-graduate-exp20261105-membership-activation",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): 420/600=70% activated."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

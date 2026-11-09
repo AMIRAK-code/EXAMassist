@@ -1,0 +1,81 @@
+{
+  "id": "gmat-exp20261105-linear-unique-parameter",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-elementary-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "For what value of k does the equation kx+6=3x+6 have more than one real solution?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "0"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Any real k"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "6"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "−3"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "3"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Rearrange to (k−3)x=0. If k differs from 3, only x=0 works. If k=3, both sides are identical for every x, so there are infinitely many solutions.",
+  "distractorRationale": {
+    "c": "This also forces x=0.",
+    "a": "This forces x=0 rather than allowing multiple solutions.",
+    "d": "This forces x=0.",
+    "b": "Only equal coefficients make the equation an identity."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): (k-3)x=0 has multiple solutions only ifk3, when identity."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

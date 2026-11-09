@@ -1,0 +1,81 @@
+{
+  "id": "gmat-exp20261105-verbal-064",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "verbal-reasoning",
+  "domainSlug": "verbal-critical-reasoning",
+  "skillSlug": "cr-construct-argument",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A retailer has 80 outlets. Fifty offer repair services and 45 offer equipment rental. Every outlet offers at least one of the two. Which conclusion follows?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Fifteen outlets offer both services."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Every rental outlet also offers repairs."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Forty-five outlets offer only rental."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "No outlet offers both."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Thirty-five outlets offer rental but not repair."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Inclusion-exclusion gives overlap=50+45-80=15. Counting the two service groups separately counts shared outlets twice.",
+  "distractorRationale": {
+    "c": "Rental-only count is 45 minus the 15 overlap.",
+    "e": "Rental-only outlets number 30, not 35; 35 is the repair-only count.",
+    "b": "The group sizes and union require only 15 overlapping outlets.",
+    "d": "Disjoint groups would total 95, exceeding 80."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original practice draft informed by current GMAC format descriptions. All business and study scenarios are invented; no official question is copied or paraphrased."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-expansion-verbal-data-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Union80=50+45-both givesboth15."
+    },
+    "notes": "Author solution supplied. Independent blind solve and expert review remain pending. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

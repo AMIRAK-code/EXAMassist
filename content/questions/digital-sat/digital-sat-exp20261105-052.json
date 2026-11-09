@@ -1,0 +1,75 @@
+{
+  "id": "digital-sat-exp20261105-052",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "advanced-math",
+  "skillSlug": "nonlinear-equations-and-systems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "For $x\\ne-2$, the equation $\\frac{x^2-4}{x+2}=x+2$ has how many real solutions?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$1$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$0$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$2$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Infinitely many"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Factor and cancel the nonzero denominator to get x−2=x+2. Subtracting x yields −2=2, so no allowed real value works. The excluded value −2 cannot restore a solution.",
+  "distractorRationale": {
+    "c": "Factoring the numerator does not make its roots solutions to the original equation.",
+    "d": "The simplified sides differ by 4 for every allowed x.",
+    "a": "After cancellation the equation becomes x−2=x+2, which is impossible."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "us-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Individually authored original draft. Requires blind independent solve and editorial review before publication."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "us-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-digital-sat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-digital-sat",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified\"; it checked for competing defensible answers and flagged none): Cancellation gives x-2=x+2, impossible."
+    },
+    "notes": "Independent review pending; structural validation is not proof of correctness. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

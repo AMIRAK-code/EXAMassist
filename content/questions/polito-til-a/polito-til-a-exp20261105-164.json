@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-a-exp20261105-164",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "mathematics-physics",
+  "domainSlug": "tila-mathematics",
+  "skillSlug": "tila-math-numbers",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which number equals $\\sqrt{75}-\\sqrt{12}$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$\\sqrt{63}$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$3$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$\\sqrt3$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$7\\sqrt3$"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "$3\\sqrt3$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Factor perfect squares: square root of 75 is 5 square root of 3, and square root of 12 is 2 square root of 3. Their difference is 3 square root of 3.",
+  "distractorRationale": {
+    "d": "This adds the simplified coefficients.",
+    "c": "The simplified coefficients are five and two, not adjacent integers.",
+    "b": "The radical factor remains after subtraction.",
+    "a": "Square roots cannot be subtracted by subtracting radicands."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question. Historical 2026/27 TIL-A format; not a claim about the announced 2027/28 CISIA transition."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-a",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-a",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): 5sqrt3-2sqrt3=3sqrt3."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

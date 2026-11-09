@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0118",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A project uses 40 bolts. Large packs contain 12 bolts and small packs contain 5. What is the fewest total packs needed to obtain at least 40 bolts?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "3"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "4"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "5"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "6"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "8"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Three packs can hold at most 3×12=36 bolts, so at least four packs are required. Four large packs provide forty-eight bolts, satisfying the at-least requirement. Thus four is both feasible and minimal.",
+  "distractorRationale": {
+    "a": "Even three large packs contain only thirty-six bolts.",
+    "c": "Four large packs already supply enough bolts.",
+    "d": "This is more packs than necessary.",
+    "e": "This uses only small packs and ignores a smaller pack count."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Three largest packs max36<40; four large packs48 suffice, minimum4."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

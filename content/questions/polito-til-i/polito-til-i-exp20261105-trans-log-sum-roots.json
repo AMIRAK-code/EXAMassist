@@ -1,0 +1,75 @@
+{
+  "id": "polito-til-i-exp20261105-trans-log-sum-roots",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tili-mathematics",
+  "skillSlug": "tili-math-transcendental-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "For $x>0$, solve $\\log_{10}(x)+\\log_{10}(x+9)=1$.",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "x=1"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "x=10"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "x=−10"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "x=1 or x=−10"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "x=0"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Combine logs to obtain log(x(x+9))=1, so x squared+9x=10. Factoring gives (x−1)(x+10)=0; only x=1 is in the domain.",
+  "distractorRationale": {
+    "b": "This gives product 190, not 10.",
+    "e": "The logarithm is undefined.",
+    "d": "The negative root is inadmissible.",
+    "c": "This solves the polynomial but violates the logarithm domain."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

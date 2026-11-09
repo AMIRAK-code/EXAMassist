@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0020",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-equations",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Solve √(2x + 3) = x for real x.",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "x = −1"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "x = 3"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "x = 1"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "x = −3"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "x = 0"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The square root is nonnegative, so x ≥ 0. Squaring gives 2x + 3 = x², or (x − 3)(x + 1) = 0. Only x = 3 is nonnegative, and √9 = 3 verifies it.",
+  "distractorRationale": {
+    "a": "This root of the squared equation has a negative right side and fails the original.",
+    "c": "The left side is √5 rather than one.",
+    "d": "The radicand is negative.",
+    "e": "The left side is √3 rather than zero."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Require x>=0; squared equation x²-2x-3=0 yields3,-1, only3."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

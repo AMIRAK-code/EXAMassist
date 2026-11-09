@@ -1,0 +1,107 @@
+{
+  "id": "gmat-exp20261105-data-055",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-two-part-analysis",
+  "skillSlug": "tpa-dependent-independent-tasks",
+  "subskillSlug": null,
+  "responseType": "two_part",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A project has tasks A(2days), B(5days), C(3days) and D(4days). A starts at time0. B and C may start only after A finishes, and can run simultaneously. D may start only after both B and C finish. Ignore resource limits and use earliest starts. Select C’s finish time in column \"C\" and the project finish time in column \"project\".",
+  "instructionsMd": "Select exactly one answer in each named column. Both selections must be correct. The project presents separate column lists rather than the official interface’s shared matrix or drop-down controls.",
+  "options": [
+    {
+      "id": "c-a",
+      "label": "A",
+      "textMd": "C: 10days after time0"
+    },
+    {
+      "id": "c-b",
+      "label": "B",
+      "textMd": "C: 5days after time0"
+    },
+    {
+      "id": "c-c",
+      "label": "C",
+      "textMd": "C: 3days after time0"
+    },
+    {
+      "id": "c-d",
+      "label": "D",
+      "textMd": "C: 7days after time0"
+    },
+    {
+      "id": "project-a",
+      "label": "A",
+      "textMd": "project: 7days after time0"
+    },
+    {
+      "id": "project-b",
+      "label": "B",
+      "textMd": "project: 11days after time0"
+    },
+    {
+      "id": "project-c",
+      "label": "C",
+      "textMd": "project: 9days after time0"
+    },
+    {
+      "id": "project-d",
+      "label": "D",
+      "textMd": "project: 14days after time0"
+    }
+  ],
+  "answerKey": {
+    "type": "two_part",
+    "selections": [
+      {
+        "columnId": "c",
+        "optionId": "c-b"
+      },
+      {
+        "columnId": "project",
+        "optionId": "project-b"
+      }
+    ]
+  },
+  "explanationMd": "A finishes at2; B runs2–7 and C runs2–5. D starts at max(7,5)=7 and finishes at11. Adding all durations wrongly treats parallel tasks as serial.",
+  "distractorRationale": {
+    "c-a": "C need not wait for B.",
+    "c-c": "C cannot start before A finishes at2.",
+    "c-d": "7 is B’s finish.",
+    "project-a": "D still requires four days after time7.",
+    "project-c": "D waits for B at7, not merely C at5.",
+    "project-d": "B and C can run in parallel."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original practice draft informed by current GMAC format descriptions. All business and study scenarios are invented; no official question is copied or paraphrased."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-expansion-verbal-data-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "c-b,project-b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): A finishes2; C finishes2+3=5; B finishes7; D finishes7+4=11."
+    },
+    "notes": "Author solution supplied. Independent blind solve and expert review remain pending."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

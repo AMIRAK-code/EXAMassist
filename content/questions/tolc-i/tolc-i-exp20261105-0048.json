@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0048",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-analytic-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "For f(x) = 2/(x − 1), which line is a vertical asymptote?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "y = 1"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "x = 2"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "x = 1"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "x = 0"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "y = 0"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The denominator tends to zero at x = 1 while the numerator stays nonzero, causing unbounded function values near that input. Hence x = 1 is a vertical asymptote. The line y = 0 describes different, large-input behaviour.",
+  "distractorRationale": {
+    "a": "This is horizontal rather than vertical.",
+    "d": "The function is defined at zero.",
+    "e": "This is the horizontal asymptote.",
+    "b": "The function is defined at two."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Denominator vanishes at x=1, vertical asymptote."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

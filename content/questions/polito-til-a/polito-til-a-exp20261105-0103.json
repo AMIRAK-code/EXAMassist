@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-a-exp20261105-0103",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "logical-reasoning",
+  "domainSlug": "tila-logic",
+  "skillSlug": "tila-logic-symbolic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A grid cell is coded by row letter then column number. Moving one row down and two columns left from D7 reaches which cell, with rows increasing alphabetically downward?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "E5"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "C5"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "D5"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "F5"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "E9"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "One row down changes D to E. Two columns left changes seven to five. The combined coordinate is E5.",
+  "distractorRationale": {
+    "b": "This moves one row up.",
+    "e": "This moves two columns right.",
+    "d": "This moves two rows down.",
+    "c": "This leaves the row unchanged."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content. Historical 2026/27 TIL-A-format practice; not a claim of alignment to the announced 2027/28 replacement admission tests."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-a",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-a",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): RowDdownoneE column7lefttwo5 yieldsE5."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

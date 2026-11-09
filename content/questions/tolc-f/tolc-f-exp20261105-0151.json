@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-exp20261105-0151",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "physics",
+  "domainSlug": "tolcf-physics",
+  "skillSlug": "tolcf-phys-measures",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A length is reported as (20.0 ± 0.2) cm. What is its relative uncertainty as a percentage?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "0.2%"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "1%"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "2%"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "10%"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "100%"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Relative uncertainty is absolute uncertainty divided by the measured value: 0.2/20.0 = 0.01. Multiplying by 100 converts this to 1%. The units cancel because numerator and denominator are both lengths.",
+  "distractorRationale": {
+    "a": "This treats the absolute uncertainty as a percentage directly.",
+    "d": "This places the decimal point one place too high.",
+    "c": "This doubles the stated uncertainty without justification.",
+    "e": "This would mean uncertainty as large as the measured value."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-f",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-f",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Relative uncertainty .2/20*100=1%."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

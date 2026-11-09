@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-logic-negation-conditional",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "reading-logic",
+  "domainSlug": "tili-logic",
+  "skillSlug": "tili-logic-negation",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "What situation falsifies \"If the server is online, the dashboard is available\"?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The server is online and the dashboard is available."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The server is offline and the dashboard is unavailable."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The server is offline and the dashboard is available."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The dashboard is available regardless of server status."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The server is online and the dashboard is unavailable."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "An implication is false exactly when its antecedent is true and its consequent is false: online server together with unavailable dashboard.",
+  "distractorRationale": {
+    "d": "That would never violate the stated requirement.",
+    "b": "An absent antecedent does not falsify the implication.",
+    "a": "This satisfies the implication.",
+    "c": "The rule imposes no condition when the server is offline."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Implicationfalse onlyantecedenttrue consequentfalse."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

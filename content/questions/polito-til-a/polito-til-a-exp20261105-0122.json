@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-a-exp20261105-0122",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "drawing-representation",
+  "domainSlug": "tila-drawing",
+  "skillSlug": "tila-draw-orthographic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A rectangular block spans x = 0 to 8, y = 0 to 3 and z = 0 to 5. It is viewed orthographically along the positive y direction. What are the dimensions of its silhouette in the xz-plane?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "8 by 5"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "3 by 3"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "8 by 8"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "3 by 5"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "8 by 3"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Viewing along y collapses depth. The visible horizontal span is the x-range, eight units, and the vertical span is the z-range, five units. The block’s three-unit depth does not affect that silhouette.",
+  "distractorRationale": {
+    "e": "This uses the plan depth instead of height.",
+    "d": "This describes the side view along x.",
+    "c": "Depth and height do not add in orthographic projection.",
+    "b": "Neither visible span is the y-span."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content. Historical 2026/27 TIL-A-format practice; not a claim of alignment to the announced 2027/28 replacement admission tests."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-a",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-a",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Alongydepth removes3 leavesxwidth8,zheight5."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

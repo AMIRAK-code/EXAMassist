@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0118",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A book’s pages are numbered from 1 to 120. How many page numbers contain the digit 0?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "12"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "20"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "21"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "22"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "30"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "From 1 to 99, the qualifying numbers are 10,20,…,90, nine numbers. From 100 to 109, all ten qualify; 110 and 120 also qualify. Total 9 + 10 + 2 = 21. Count numbers, not occurrences of the digit.",
+  "distractorRationale": {
+    "a": "This counts only multiples of ten and misses 101 through 109.",
+    "b": "This omits one of the qualifying numbers at a boundary.",
+    "d": "This double-counts a number such as 100.",
+    "e": "This includes numbers that do not contain zero."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Below100 nine positive multiples10; 100-109 ten numbers; 110,120 two more, total21."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

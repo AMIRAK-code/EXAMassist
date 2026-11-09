@@ -1,0 +1,75 @@
+{
+  "id": "imat-exp20261105-independent-complement",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-physics-maths",
+  "skillSlug": "imat-math-probability-statistics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Two independent devices work with probabilities 0.8 and 0.9. What is the probability at least one works?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "0.02"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "0.17"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "0.72"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "0.98"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "1.70"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Use the complement: both fail with probability 0.2 times 0.1=0.02. Thus at least one works with probability 1−0.02=0.98.",
+  "distractorRationale": {
+    "e": "Adding probabilities ignores overlap and exceeds 1.",
+    "a": "This is the probability both fail.",
+    "c": "This is the probability both work.",
+    "b": "Independence gives both-failure probability 0.2 × 0.1 = 0.02; subtracting this from one gives 0.98, not 0.17."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

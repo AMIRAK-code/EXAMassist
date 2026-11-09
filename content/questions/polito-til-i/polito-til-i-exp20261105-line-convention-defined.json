@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-line-convention-defined",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "technical-knowledge",
+  "domainSlug": "tili-representation",
+  "skillSlug": "tili-rep-conventions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A drawing legend defines dashed lines as hidden edges and continuous thick lines as visible edges. What does a dashed segment represent?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "A material that is physically discontinuous"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "A dimension value"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "A cutting instruction necessarily"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "An edge visible in front of all surfaces"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "An edge obscured in the current view"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Use the supplied legend rather than guessing from appearance. A dashed line indicates an existing edge hidden from the chosen viewpoint, not a gap in the material.",
+  "distractorRationale": {
+    "d": "That contradicts the legend.",
+    "b": "The segment type does not encode a numerical dimension.",
+    "c": "The given legend does not assign that meaning.",
+    "a": "Dashed representation does not imply a broken object."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Definedlegend assigns dashedtohiddenedge."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

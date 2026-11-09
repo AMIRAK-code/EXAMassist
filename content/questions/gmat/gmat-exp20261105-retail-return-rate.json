@@ -1,0 +1,81 @@
+{
+  "id": "gmat-exp20261105-retail-return-rate",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-applied-arithmetic-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A retailer sold 600 items. Of the 10% returned, one third were resold. How many sold items were returned and not resold?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "20"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "40"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "60"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "200"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "540"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Returns total 60. One third, or 20, are resold, leaving 40 returned items not resold. Track the successive subsets rather than applying each fraction to total sales.",
+  "distractorRationale": {
+    "a": "This counts the resold returns.",
+    "c": "This counts all returns before resale.",
+    "d": "This applies one third to all sales.",
+    "e": "This counts items never returned."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Returned600*.1=60; unresoldtwo-thirds40."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

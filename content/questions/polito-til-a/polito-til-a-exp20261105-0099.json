@@ -1,0 +1,75 @@
+{
+  "id": "polito-til-a-exp20261105-0099",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "logical-reasoning",
+  "domainSlug": "tila-logic",
+  "skillSlug": "tila-logic-symbolic",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A code shifts each letter two places forward in the English alphabet, wrapping Z to B. How is ARCH encoded?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "YPYF"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "CTDI"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "CTEK"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "BSDI"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "CTEJ"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "The shifts are A→C, R→T, C→E and H→J. Combining those encoded letters gives CTEJ. The rule is applied independently to each letter.",
+  "distractorRationale": {
+    "d": "This shifts one place rather than two.",
+    "b": "The final two letters are not each shifted two places.",
+    "a": "This does not follow the specified uniform forward shift.",
+    "c": "H shifts to J, not K."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content. Historical 2026/27 TIL-A-format practice; not a claim of alignment to the announced 2027/28 replacement admission tests."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

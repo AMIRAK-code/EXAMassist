@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0006",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-numbers",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A group divides a bill equally. If 3 of the 12 people leave without paying, by what percentage does each remaining person’s share increase?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "75%"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "3%"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "300%"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "33⅓%"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "25%"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "If the bill is t, the share rises from t/12 to t/9. The ratio is 12/9 = 4/3, so the increase is 1/3, or 33⅓%. A fixed total spread across fewer people creates an inverse relationship.",
+  "distractorRationale": {
+    "e": "This is the fraction of people leaving, not the increase in each share.",
+    "a": "This is the fraction of people remaining.",
+    "b": "This confuses a person count with a percentage.",
+    "c": "This overstates the ratio between twelve and nine contributors."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Shares change from B/12 to B/9, ratio 4/3, increase one third."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

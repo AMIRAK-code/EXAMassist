@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-exp20261105-0144",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolcf-mathematics",
+  "skillSlug": "tolcf-math-probability",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Five measurements have mean 18. A sixth measurement of 30 is added. What is the new mean?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "19"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "20"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "21"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "23"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "24"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The original sum is 5 × 18 = 90. Adding 30 gives 120 across six measurements, so the new mean is 120/6 = 20. The old mean represents five observations and cannot be averaged equally with one new observation.",
+  "distractorRationale": {
+    "e": "This averages the old mean and the new value without weighting the five old observations.",
+    "a": "This underestimates the increase in the total.",
+    "c": "This does not divide the new total by six correctly.",
+    "d": "This treats the added observation as contributing too much weight."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-f",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-f",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Old sum90 plus30=120 over6 gives20."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

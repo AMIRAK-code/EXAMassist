@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-logic-order-boxes",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "reading-logic",
+  "domainSlug": "tili-logic",
+  "skillSlug": "tili-logic-orders",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Four boxes K, L, M and N stand in a row. K is left of L, M is immediately right of L, and N is not at either end. Which box must be at the right end?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "N"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "M"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "K"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "L"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The right-end box cannot be determined."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The adjacent pair L,M cannot occupy slots 1,2 because K must precede it. If the pair occupies 2,3, N would be last, which is forbidden. Therefore L,M occupy 3,4 and M is last.",
+  "distractorRationale": {
+    "a": "N is expressly excluded from the ends.",
+    "e": "The two possible positions of N both leave M last.",
+    "c": "K has L somewhere to its right.",
+    "d": "M must follow L."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): OnlyK,N,L,M satisfiesbothadjacencyandNinterior."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

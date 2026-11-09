@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-undergraduate-exp20261105-067",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-discrete-applied-combinatorics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A password has two distinct letters chosen from five, followed by one digit from 0 to 9. How many passwords are possible?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "90"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "100"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "200"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "250"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The letter positions have 5 and 4 choices, and the digit has 10. Multiply to get 200; swapping the letters changes the password.",
+  "distractorRationale": {
+    "a": "Excludes zero and ignores some letter arrangements.",
+    "d": "Allows repeated letters.",
+    "b": "Treats the two letter positions as unordered."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-undergraduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-undergraduate",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Ordered distinct letters 5 times 4, then 10 digits =200."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,69 @@
+{
+  "id": "bocconi-undergraduate-exp20261105-019",
+  "version": 1,
+  "examKey": "bocconi-undergraduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-ug-mathematics",
+  "skillSlug": "math-functions-notation",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Let $a_n=3n-2$. What is $a_2+a_5$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "9"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "13"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "17"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "19"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Compute the two indexed terms separately: $a_2=4$ and $a_5=13$. Their sum is 17. Evaluating at the sum of the indices would subtract the constant only once.",
+  "distractorRationale": {
+    "a": "Subtracts the two term values, 13-4=9, instead of adding them.",
+    "d": "Evaluates the formula at 7 instead of adding two terms.",
+    "b": "Reports only the fifth term."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

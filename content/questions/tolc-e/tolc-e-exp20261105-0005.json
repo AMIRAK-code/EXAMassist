@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0005",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-numbers",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "If a and b are negative real numbers with a < b, which inequality must hold?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "a + 1 > b + 1"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "a/b > 0 is false"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "a² < b²"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "1/a > 1/b"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "−a < −b"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "For negative a < b, the reciprocal function reverses order: for example −5 < −2 but −1/5 > −1/2. Algebraically, multiplying the proposed reciprocal inequality by ab, which is positive, gives b > a, the original condition.",
+  "distractorRationale": {
+    "c": "The more negative number has greater absolute value and hence greater square.",
+    "e": "Multiplication by a negative number reverses the inequality.",
+    "b": "A quotient of two negative numbers is positive.",
+    "a": "Adding the same number preserves the original inequality direction."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Reciprocal decreases on negative reals; dividing a<b by positive ab gives 1/b<1/a."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

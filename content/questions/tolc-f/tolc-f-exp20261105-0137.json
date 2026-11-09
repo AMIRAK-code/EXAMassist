@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-exp20261105-0137",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolcf-mathematics",
+  "skillSlug": "tolcf-math-functions-trig",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The function f(x) = 3x + 7 is invertible on the real numbers. What is f⁻¹(x)?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "(x + 7)/3"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "3x − 7"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "1/(3x + 7)"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "(x − 7)/3"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "3(x − 7)"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Set y = 3x + 7 and solve for x: x = (y − 7)/3. Relabel the input as x to obtain the inverse. Composing 3[(x − 7)/3] + 7 returns x, which verifies the formula.",
+  "distractorRationale": {
+    "b": "This changes a sign but does not reverse the multiplication by three.",
+    "c": "The reciprocal of a function is not its inverse under composition.",
+    "a": "The addition of seven must be undone by subtraction.",
+    "e": "The final step must divide by three, not multiply."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-f",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-f",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Invert y=3x+7 to x=(y-7)/3."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-if-nested-boundary",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "technical-knowledge",
+  "domainSlug": "tili-computer-science",
+  "skillSlug": "tili-cs-control-flow",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A program outputs LOW if n<10; otherwise it outputs MID if n<20; otherwise HIGH. What does it output for n=10?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "LOW"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Nothing"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "MID"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "HIGH"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Both LOW and MID"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The first test is false at 10. The second test is true because 10<20, so MID is selected. Strict versus inclusive inequalities determine boundary behaviour.",
+  "distractorRationale": {
+    "a": "The first comparison is strict, so 10 is not below 10.",
+    "d": "Ten is below 20.",
+    "b": "The otherwise branch handles the boundary.",
+    "e": "The branches are alternatives, not separate tests."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): 10<10false then10<20true producesMID."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

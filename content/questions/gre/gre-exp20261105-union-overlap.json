@@ -1,0 +1,78 @@
+{
+  "id": "gre-exp20261105-union-overlap",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-data-analysis",
+  "skillSlug": "data-elementary-probability",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Events E and F have probabilities 0.45 and 0.35, with intersection probability 0.15. What is the probability that at least one occurs?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "0.15"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "0.20"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "0.65"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "0.80"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "0.95"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Use inclusion–exclusion: P(E or F)=0.45+0.35−0.15=0.65. The overlap is counted twice in the sum and must be removed once.",
+  "distractorRationale": {
+    "e": "This adds the overlap instead of subtracting it.",
+    "b": "This is the probability of F occurring without E: 0.35−0.15=0.20, rather than the probability of their union.",
+    "a": "This is the intersection only.",
+    "d": "This double-counts the intersection."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question.",
+    "editedBy": [
+      "ai-audit-us-2026-11-05"
+    ]
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

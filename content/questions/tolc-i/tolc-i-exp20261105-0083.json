@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0083",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which statement is equivalent to “No alloy in this batch contains lead”?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Some alloys in the batch contain lead."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The batch contains no alloys."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "No alloy anywhere contains lead."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "All lead-free alloys are in this batch."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Every alloy in this batch is lead-free."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Saying no member has a property is equivalent to saying every member lacks it. The scope remains this batch. Nothing is claimed about alloys elsewhere or about the number of alloys in the batch.",
+  "distractorRationale": {
+    "a": "This contradicts the original.",
+    "d": "This reverses the relationship and expands its scope.",
+    "c": "This is much broader than the batch-specific claim.",
+    "b": "The original does not require the batch to be empty."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): No batch alloy containing lead means every batch alloy is lead-free."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

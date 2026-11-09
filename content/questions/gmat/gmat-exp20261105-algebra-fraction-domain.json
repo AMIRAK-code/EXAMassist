@@ -1,0 +1,81 @@
+{
+  "id": "gmat-exp20261105-algebra-fraction-domain",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-elementary-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "For real x with x not equal to 1 or −1, simplify (x squared−x)/(x squared−1).",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "1/(x+1)"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "x"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "(x−1)/(x+1)"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "x/(x+1)"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "x/(x−1)"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Factor numerator as x(x−1) and denominator as (x−1)(x+1), then cancel x−1 where defined. The stated exclusions keep both original denominator factors nonzero.",
+  "distractorRationale": {
+    "e": "This keeps the wrong denominator factor.",
+    "c": "This cancels the numerator's x rather than the common x−1.",
+    "b": "This incorrectly cancels the whole denominator.",
+    "a": "This drops the numerator factor x."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Factor x(x-1)/((x-1)(x+1)) and cancel permitted factor, giving x/(x+1)."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

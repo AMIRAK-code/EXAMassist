@@ -1,0 +1,81 @@
+{
+  "id": "imat-exp20261105-conditional-contrapositive",
+  "version": 1,
+  "examKey": "imat",
+  "sectionKey": "imat",
+  "domainSlug": "imat-logic",
+  "skillSlug": "imat-logic-critical",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "If a reagent is contaminated, the control test is positive. The control test is not positive. Assuming the rule is reliable, what follows?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The reagent contains no molecules."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The reagent is not contaminated."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The reagent is contaminated."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Every positive test proves contamination."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The test was never performed."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "From contaminated implies positive, the contrapositive is not positive implies not contaminated. The converse is not licensed; other causes of a positive result could exist.",
+  "distractorRationale": {
+    "d": "This incorrectly reverses the implication.",
+    "e": "A negative result does not imply absence of testing.",
+    "c": "This contradicts the rule and observation.",
+    "a": "This goes far beyond contamination status."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-imat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-imat",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Contaminated implies positive; negative test contrapositively implies not contaminated."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,75 @@
+{
+  "id": "tolc-e-exp20261105-0021",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-polynomials",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "After expanding and combining like terms, what is the degree of the polynomial (x³ − 2x + 1)² − x⁶ + 4x⁴?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "1"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "2"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "3"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "4"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "6"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Expand the square to x⁶ − 4x⁴ + 2x³ + 4x² − 4x + 1. The explicit subtraction of x⁶ and addition of 4x⁴ cancel the two highest-degree terms. The remaining leading term is 2x³, so the degree is 3.",
+  "distractorRationale": {
+    "a": "A nonzero cubic term remains, so the degree is greater than one.",
+    "b": "The term 2x³ remains in addition to the quadratic term.",
+    "d": "The quartic terms cancel: −4x⁴ + 4x⁴ = 0.",
+    "e": "The sextic terms cancel: x⁶ − x⁶ = 0."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": "After expanding and combining like terms, what is the degree of the polynomial (x³ − 2x + 1)² − x⁶ + 4x⁴?",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content. Replaced during AI audit to remove a near-duplicate; human review remains pending."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

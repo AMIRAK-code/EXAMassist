@@ -1,0 +1,110 @@
+{
+  "id": "gmat-exp20261105-data-050",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-graphics-interpretation",
+  "skillSlug": "gi-xy-graphs",
+  "subskillSlug": null,
+  "responseType": "two_part",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Select the first plotted year-end at which cumulative cash is positive in column \"positive\" and the net cash generated during year3 in column \"flow\".",
+  "instructionsMd": "Select exactly one answer in each named column. Both selections must be correct. The project presents separate column lists rather than the official interface’s shared matrix or drop-down controls.",
+  "options": [
+    {
+      "id": "positive-a",
+      "label": "A",
+      "textMd": "positive: Year4"
+    },
+    {
+      "id": "positive-b",
+      "label": "B",
+      "textMd": "positive: An exact date halfway through year3"
+    },
+    {
+      "id": "positive-c",
+      "label": "C",
+      "textMd": "positive: Year3"
+    },
+    {
+      "id": "positive-d",
+      "label": "D",
+      "textMd": "positive: Year2"
+    },
+    {
+      "id": "flow-a",
+      "label": "A",
+      "textMd": "flow: 30 thousand euros"
+    },
+    {
+      "id": "flow-b",
+      "label": "B",
+      "textMd": "flow: 120 thousand euros"
+    },
+    {
+      "id": "flow-c",
+      "label": "C",
+      "textMd": "flow: 45 thousand euros"
+    },
+    {
+      "id": "flow-d",
+      "label": "D",
+      "textMd": "flow: 20 thousand euros"
+    }
+  ],
+  "answerKey": {
+    "type": "two_part",
+    "selections": [
+      {
+        "columnId": "positive",
+        "optionId": "positive-c"
+      },
+      {
+        "columnId": "flow",
+        "optionId": "flow-c"
+      }
+    ]
+  },
+  "explanationMd": "The first positive plotted cumulative amount is20 at year3. Year3 net flow is the difference20-(-25)=45 thousand euros. Cumulative levels and period flows are different quantities.",
+  "distractorRationale": {
+    "positive-a": "Year3 is already positive.",
+    "positive-b": "Within-year timing is unspecified.",
+    "positive-d": "Cumulative cash is still negative25 at year2.",
+    "flow-a": "30 is the increment during year4.",
+    "flow-b": "This includes changes over all three years since year0.",
+    "flow-d": "20 is the cumulative amount at year3, not the year3 increment."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "gmat-exp20261105-gi-cash",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original practice draft informed by current GMAC format descriptions. All business and study scenarios are invented; no official question is copied or paraphrased."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-expansion-verbal-data-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "flow-c,positive-c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): First positive plotted cash atyear3=20; year3increment20-(-25)=45 thousand."
+    },
+    "notes": "Author solution supplied. Independent blind solve and expert review remain pending."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

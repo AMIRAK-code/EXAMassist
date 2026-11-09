@@ -1,0 +1,81 @@
+{
+  "id": "gmat-exp20261105-subscription-cancellation",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-applied-arithmetic-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A service starts with 500 subscribers. During a month 12% cancel, and then 60 new subscribers join. What is the net percentage change in subscriber count?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "6% increase"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "12% increase"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "0%"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "24% increase"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "12% decrease"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Twelve percent of 500 is 60, leaving 440. Adding 60 returns the total to 500, so the net change is zero.",
+  "distractorRationale": {
+    "e": "This counts cancellations without new subscribers.",
+    "b": "This counts new subscribers without cancellations.",
+    "d": "This adds opposing changes.",
+    "a": "This miscomputes the cancelled count."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): 500*.88+60=500, netzero."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

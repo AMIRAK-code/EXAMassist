@@ -1,0 +1,81 @@
+{
+  "id": "gmat-exp20261105-meeting-two-trains",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-applied-arithmetic-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Two trains begin 300 km apart and move towards each other at 70 and 80 km/h. How long until they meet?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "3.75 hours"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "20 hours"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "300/70 hours"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "2 hours"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "4 hours"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Their separation shrinks at 70+80=150 km/h. Dividing 300 by 150 gives 2 hours. Opposite directions towards each other require adding speeds.",
+  "distractorRationale": {
+    "e": "This uses an average speed without the combined motion.",
+    "b": "This uses the speed difference instead of the closing speed.",
+    "a": "This uses only the faster train's speed.",
+    "c": "This uses only the slower train's speed."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Closing speed70+80=150km/h;300/150=2h."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0074",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Some editors are translators. Every translator speaks more than one language. Which conclusion follows necessarily?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Some editors speak more than one language."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "No editor speaks only one language."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Every editor is a translator."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Every multilingual person is an editor."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Some translators are not editors."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The editors who are translators inherit the universal property of translators: speaking more than one language. Their existence is guaranteed by “some.” No claim about all editors or about translators outside that overlap is justified.",
+  "distractorRationale": {
+    "c": "The first premise establishes only some overlap.",
+    "d": "This reverses the translator-to-multilingual implication and adds editor status.",
+    "b": "Editors outside the translator group may be monolingual.",
+    "e": "The premises do not require translators outside the overlap."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Existing editor-translators are multilingual, so some editors are multilingual."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

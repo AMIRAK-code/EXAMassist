@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0014",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-powers-exp-log",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "For real x, which identity is always valid?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "√(x²) = x²"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "√(x²) = |x|"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "√(x²) = 2x"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "√(x²) = −x"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "√(x²) = x"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Squaring removes the sign of x, and the principal square root returns its nonnegative magnitude. That is exactly |x|. Testing x = −3 distinguishes the correct identity from the tempting answer x.",
+  "distractorRationale": {
+    "e": "This fails for negative x because the principal square root is nonnegative.",
+    "d": "This fails for positive x.",
+    "a": "This fails except for special values.",
+    "c": "This confuses a square root with a derivative-like operation."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Principal square root is nonnegative, hence sqrt(x²)=|x| for both signs."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

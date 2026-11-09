@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0080",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "If the alarm sounds, the guard investigates. If the guard investigates, a log entry is made. No log entry was made. Which statement follows?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "A log entry will be made next week."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The alarm sounded but was ignored."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The alarm did not sound."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The alarm is permanently broken."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The guard investigated without logging."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The implications form alarm → investigation → log entry. No log entry rules out investigation and then rules out an alarm sounding. This uses the rules as stated; it does not diagnose why no alarm sounded.",
+  "distractorRationale": {
+    "e": "That violates the second rule.",
+    "b": "That violates the first rule.",
+    "a": "No future conclusion follows.",
+    "d": "Absence of a sounding event does not prove malfunction."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Alarm implies investigation implies log; no log contrapositively excludes alarm."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

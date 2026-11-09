@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-exp20261105-0128",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolcf-mathematics",
+  "skillSlug": "tolcf-math-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the solution set of (x − 1)/(x + 2) < 0?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "−2 < x < 1"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "x < 1"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "x > −2"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "x < −2 or x > 1"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "−2 ≤ x ≤ 1"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The critical values are −2, where the expression is undefined, and 1, where its numerator is zero. Between them the numerator is negative and denominator positive, so the quotient is negative. Outside them the signs agree. Both endpoints must be excluded.",
+  "distractorRationale": {
+    "d": "Those intervals make numerator and denominator have the same sign.",
+    "e": "The denominator cannot be zero and the inequality is strict.",
+    "b": "This includes values below −2 where the quotient is positive.",
+    "c": "This includes values above 1 where the quotient is positive."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-f",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-f",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Opposite numerator/denominator signs hold between critical values -2 and1, endpoints excluded."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

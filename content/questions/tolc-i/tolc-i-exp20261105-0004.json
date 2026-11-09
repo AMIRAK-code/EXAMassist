@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0004",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-arithmetic-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which expression is equal to (x + y)² − (x − y)² for all real x and y?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "4x²y²"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "2x² + 2y²"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "4xy"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "2xy"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "0"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Expand both squares: x² + 2xy + y² minus x² − 2xy + y². The pure square terms cancel and the cross terms add to 4xy. Careful distribution of the subtraction sign is essential.",
+  "distractorRationale": {
+    "d": "This counts only half of the surviving cross terms.",
+    "b": "Those square terms cancel in the subtraction.",
+    "e": "The two squares are not generally equal.",
+    "a": "This incorrectly squares the cross product."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Expansions cancel x²+y² and give2xy-(-2xy)=4xy."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

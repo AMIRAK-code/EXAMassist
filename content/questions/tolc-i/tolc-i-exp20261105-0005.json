@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0005",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-arithmetic-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "For positive x, simplify √(18x²)/√2.",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "6x"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "3√x"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "9x"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "3|x|²"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "3x"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Combine the positive radicals to get √(9x²). This equals 3|x|, and x is positive, so the result is 3x. The sign condition permits removing the absolute value.",
+  "distractorRationale": {
+    "d": "This retains an unnecessary square after taking the root.",
+    "c": "This takes the square factor nine without its square root.",
+    "b": "The original variable was squared, so its square root is x for positive x.",
+    "a": "This mishandles the ratio of the radicals."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): sqrt(18x²)/sqrt2=sqrt(9x²)=3x for positive x."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

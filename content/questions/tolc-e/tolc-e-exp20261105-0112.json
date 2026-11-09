@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0112",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A clock gains 2 minutes every real hour. It is correct at noon. What time will it show after 6 real hours?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "6:06 p.m."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "5:48 p.m."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "6:02 p.m."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "6:20 p.m."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "6:12 p.m."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "Six real hours after noon is 6:00 p.m. The clock has gained 6 × 2 = 12 minutes, so it reads 6:12 p.m. Add accumulated error to the true time because the clock gains.",
+  "distractorRationale": {
+    "c": "This includes only one hour of gain.",
+    "b": "This treats a gaining clock as losing time.",
+    "a": "This gains only one minute per hour.",
+    "d": "This uses too many hours of accumulated gain."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Clock gains 12 minutes over six real hours; shows 18:12."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

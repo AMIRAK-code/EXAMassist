@@ -1,0 +1,110 @@
+{
+  "id": "gmat-exp20261105-data-051",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "data-insights",
+  "domainSlug": "di-graphics-interpretation",
+  "skillSlug": "gi-statistical-distributions",
+  "subskillSlug": null,
+  "responseType": "two_part",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "In column \"under2\", select the fraction resolved in less than2hours. In column \"mean\", select what can be concluded about the exact mean response time.",
+  "instructionsMd": "Select exactly one answer in each named column. Both selections must be correct. The project presents separate column lists rather than the official interface’s shared matrix or drop-down controls.",
+  "options": [
+    {
+      "id": "under2-a",
+      "label": "A",
+      "textMd": "under2: 1/5"
+    },
+    {
+      "id": "under2-b",
+      "label": "B",
+      "textMd": "under2: 1/2"
+    },
+    {
+      "id": "under2-c",
+      "label": "C",
+      "textMd": "under2: 3/10"
+    },
+    {
+      "id": "under2-d",
+      "label": "D",
+      "textMd": "under2: 9/10"
+    },
+    {
+      "id": "mean-a",
+      "label": "A",
+      "textMd": "mean: Exactly4hours"
+    },
+    {
+      "id": "mean-b",
+      "label": "B",
+      "textMd": "mean: It cannot be determined exactly from the bins"
+    },
+    {
+      "id": "mean-c",
+      "label": "C",
+      "textMd": "mean: Exactly2.05hours"
+    },
+    {
+      "id": "mean-d",
+      "label": "D",
+      "textMd": "mean: Exactly2hours"
+    }
+  ],
+  "answerKey": {
+    "type": "two_part",
+    "selections": [
+      {
+        "columnId": "under2",
+        "optionId": "under2-b"
+      },
+      {
+        "columnId": "mean",
+        "optionId": "mean-b"
+      }
+    ]
+  },
+  "explanationMd": "There are10+15=25 tickets below2hours, half of50. The histogram preserves interval counts but not exact times; different values within each bin produce different means.",
+  "distractorRationale": {
+    "under2-a": "This counts only the first bin.",
+    "under2-c": "This counts only the second bin.",
+    "under2-d": "This includes tickets taking at least2hours.",
+    "mean-a": "The right endpoint of a bin is not the overall mean.",
+    "mean-c": "Bin midpoints need not equal within-bin averages.",
+    "mean-d": "Half below2hours does not force mean2hours."
+  },
+  "estimatedSeconds": 120,
+  "stimulusRef": {
+    "id": "gmat-exp20261105-gi-response",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original practice draft informed by current GMAC format descriptions. All business and study scenarios are invented; no official question is copied or paraphrased."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "gmat-expansion-verbal-data-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "mean-b,under2-b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Under2 counts10+15=25/50=1/2; bins leave within-bin times unknown, so exact mean undetermined."
+    },
+    "notes": "Author solution supplied. Independent blind solve and expert review remain pending."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

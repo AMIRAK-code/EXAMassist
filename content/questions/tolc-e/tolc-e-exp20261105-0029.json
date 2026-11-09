@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0029",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-polynomials",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "For which k is x² + 6x + k a perfect square of a linear polynomial?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "k = 36"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "k = 6"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "k = 12"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "k = 9"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "k = 3"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "A monic square has form (x + a)² = x² + 2ax + a². The coefficient 2a = 6 gives a = 3, so k = a² = 9. The polynomial is then (x + 3)².",
+  "distractorRationale": {
+    "e": "Three is the number added to x, not its square in the constant term.",
+    "b": "This repeats the linear coefficient.",
+    "c": "This doubles the linear coefficient without matching the square identity.",
+    "a": "This squares six rather than half of six."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Completing square (x+3)² needs constant 9."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

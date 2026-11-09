@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-exp20261105-0191",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "logic",
+  "domainSlug": "tolcf-logic",
+  "skillSlug": "tolcf-logic-graphs-tables",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A chart lists laboratory electricity use of 800 kWh in April and 920 kWh in May. The number of tests rises from 400 to 500. Which statement is correct?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Electricity use per test stayed at 2 kWh."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Electricity use per test decreased."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Electricity use per test increased because total use rose."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The number of tests fell."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "May used less electricity in total."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "April used 800/400 = 2 kWh per test; May used 920/500 = 1.84 kWh per test. The per-test figure fell even though the total rose. The denominator grew proportionally more than the numerator.",
+  "distractorRationale": {
+    "c": "Total use alone ignores the larger test count.",
+    "a": "May’s ratio is 920/500 = 1.84 kWh.",
+    "d": "It rose from 400 to 500.",
+    "e": "The total increased from 800 to 920 kWh."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-f",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-f",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Per-test energy falls800/400=2 to920/500=1.84kWh."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

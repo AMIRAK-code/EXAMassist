@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0012",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-powers-exp-log",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "If log₃a = 2 and log₃b = −1, what is log₃(a²/b)?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "1"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "−5"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "3"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "5"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "4"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Apply power and quotient rules: log₃(a²/b) = 2log₃a − log₃b = 4 − (−1) = 5. Directly, a = 9 and b = 1/3, so a²/b = 243 = 3⁵.",
+  "distractorRationale": {
+    "c": "This combines the exponents without doubling the logarithm of a.",
+    "b": "This reverses the division in the logarithm rule.",
+    "a": "This ignores the power on a and mishandles the subtraction.",
+    "e": "This omits the contribution from dividing by b."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Log quotient is 2log3(a)-log3(b)=4-(-1)=5."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

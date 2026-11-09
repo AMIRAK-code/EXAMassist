@@ -146,16 +146,19 @@ describe('published sample questions', () => {
   });
 
   it('never repeat a stem from the question bank, so publishing an answer spoils no session', () => {
+    // Each file is reduced to plain words once: the bank holds thousands of questions.
     const bank = fs.readdirSync(path.resolve('content/questions'), { recursive: true, encoding: 'utf8' })
       .filter((file) => file.endsWith('.json'))
-      .map((file) => fs.readFileSync(path.resolve('content/questions', file), 'utf8').toLowerCase());
+      .map((file) =>
+        fs.readFileSync(path.resolve('content/questions', file), 'utf8').toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').replace(/\s+/g, ' '),
+      );
     for (const guide of samples) {
       for (const q of guide.samples!.sections.flatMap((s) => s.questions)) {
         // A distinctive run of words from the stem (or stimulus) must not appear in any bank file.
         const words = (q.stimulusMd ?? q.stemMd).toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').split(/\s+/).filter(Boolean);
         const probe = words.slice(2, 10).join(' ');
         if (words.length < 10) continue;
-        expect(bank.some((file) => file.replace(/[^a-z0-9 ]+/g, ' ').replace(/\s+/g, ' ').includes(probe)), `${q.id}: "${probe}"`).toBe(false);
+        expect(bank.some((file) => file.includes(probe)), `${q.id}: "${probe}"`).toBe(false);
       }
     }
   }, 30_000);

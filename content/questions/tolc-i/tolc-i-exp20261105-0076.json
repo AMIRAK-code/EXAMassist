@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0076",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolci-mathematics",
+  "skillSlug": "tolci-math-probability",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A fair die is rolled twice. What is the probability that the sum is 9?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "1/36"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "1/12"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "1/9"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "1/6"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "2/9"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "There are thirty-six equally likely ordered pairs. A sum of nine comes from (3,6), (4,5), (5,4) and (6,3), four pairs. Thus probability is 4/36=1/9.",
+  "distractorRationale": {
+    "d": "The six possible first rolls do not each have a matching second roll.",
+    "b": "This counts only three favourable ordered pairs.",
+    "e": "This double-counts the four favourable ordered pairs.",
+    "a": "This counts only one pair."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Sum9 outcomes(3,6),(4,5),(5,4),(6,3),4/36=1/9."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

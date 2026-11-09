@@ -1,0 +1,75 @@
+{
+  "id": "digital-sat-exp20261105-047",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "advanced-math",
+  "skillSlug": "nonlinear-equations-and-systems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "For which values of $c$ does $x^2+6x+c=0$ have no real solutions?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$c>36$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$c>9$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$c\\geq9$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$c<9$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The discriminant is 36−4c. No real roots require 36−4c<0, hence c>9. Equivalently, (x+3)²=9−c cannot equal a negative value.",
+  "distractorRationale": {
+    "c": "At c=9 there is one real root, so equality must be excluded.",
+    "a": "This forgets the factor 4 multiplying c in the discriminant.",
+    "d": "That makes the discriminant positive and gives two real roots."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "us-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Individually authored original draft. Requires blind independent solve and editorial review before publication."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "us-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-digital-sat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-digital-sat",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified\"; it checked for competing defensible answers and flagged none): Discriminant36-4c<0 gives c>9."
+    },
+    "notes": "Independent review pending; structural validation is not proof of correctness. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

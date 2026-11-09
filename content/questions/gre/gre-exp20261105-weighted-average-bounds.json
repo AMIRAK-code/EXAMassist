@@ -1,0 +1,81 @@
+{
+  "id": "gre-exp20261105-weighted-average-bounds",
+  "version": 1,
+  "examKey": "gre",
+  "sectionKey": "quant-1",
+  "domainSlug": "quant-data-analysis",
+  "skillSlug": "data-descriptive-statistics",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A group combines students with average score 60 and students with average score 90, with at least one student in each subgroup. Which combined average is impossible?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "65"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "70"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "75"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "80"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "90"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "A weighted mean with positive weight on both distinct values lies strictly between them. It cannot equal 90 while any positive weight remains on the subgroup averaging 60.",
+  "distractorRationale": {
+    "c": "This is achievable with equal group sizes.",
+    "a": "This is achievable with suitable positive subgroup sizes.",
+    "d": "This is achievable with a one-to-two lower-to-higher ratio.",
+    "b": "This is achievable with a two-to-one lower-to-higher ratio."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-gre",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gre",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Positiveweightedaverageof60,90 strictlybetween cannot90."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

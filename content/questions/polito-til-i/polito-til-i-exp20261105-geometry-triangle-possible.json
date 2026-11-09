@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-geometry-triangle-possible",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tili-mathematics",
+  "skillSlug": "tili-math-euclidean-geometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which set of lengths can form a nondegenerate triangle?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "1,4,7"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "2,3,5"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "2,6,9"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "3,3,7"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "4,6,9"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "The sum of the two shorter sides must exceed the longest. Only 4+6>9 satisfies the strict triangle inequality among the choices.",
+  "distractorRationale": {
+    "b": "The smaller sides sum exactly to the largest, giving a degenerate figure.",
+    "d": "Six is less than seven.",
+    "c": "Eight is less than nine.",
+    "a": "The smaller sides sum to less than the largest."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Only4+6>9; alternativesfailstricttriangleinequality."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

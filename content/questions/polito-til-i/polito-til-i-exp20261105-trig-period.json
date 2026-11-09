@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-trig-period",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "mathematics",
+  "domainSlug": "tili-mathematics",
+  "skillSlug": "tili-math-trigonometry",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "What is the least positive period of y=cos(3x), with x measured in radians?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "2π"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "π/3"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "2π/3"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "3π"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "6π"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "The argument must increase by 2π for a full cycle. Thus 3T=2π and T=2π/3. Multiplying input compresses the horizontal period.",
+  "distractorRationale": {
+    "e": "This multiplies instead of dividing the usual period.",
+    "a": "This ignores the factor 3 in the argument.",
+    "b": "This is only half a full cosine period.",
+    "d": "This scales in the wrong direction."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Argumentperiod2pi requires3T=2pi ->2pi/3."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

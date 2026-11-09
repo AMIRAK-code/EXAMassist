@@ -1,0 +1,75 @@
+{
+  "id": "digital-sat-exp20261105-016",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "algebra",
+  "skillSlug": "linear-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A taxi fare is linear in distance. A 4-mile trip costs 17 dollars and a 9-mile trip costs 32 dollars. Which function gives the fare $C(d)$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$C(d)=3d+5$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$C(d)=5d+3$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$C(d)=\\frac{17}{4}d$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$C(d)=3d+17$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "The extra five miles cost 15 dollars, giving 3 dollars per mile. Subtract 4×3 from 17 to find a 5-dollar initial fee. The model checks at nine miles: 27+5=32.",
+  "distractorRationale": {
+    "d": "The 17-dollar fare already includes four miles.",
+    "b": "This interchanges the per-mile rate and initial fee.",
+    "c": "This assumes no initial charge and fails the second trip."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "us-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Individually authored original draft. Requires blind independent solve and editorial review before publication."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "us-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-digital-sat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-digital-sat",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified\"; it checked for competing defensible answers and flagged none): Slope (32-17)/5=3 and intercept 5."
+    },
+    "notes": "Independent review pending; structural validation is not proof of correctness. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

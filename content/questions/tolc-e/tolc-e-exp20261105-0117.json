@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0117",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A train 150 m long passes a stationary observer in 10 seconds at constant speed. What is its speed?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "140 m s⁻¹"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "10 m s⁻¹"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "1500 m s⁻¹"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "0.067 m s⁻¹"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "15 m s⁻¹"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "To pass a point completely, the train moves one train length. Speed is therefore 150 m divided by 10 s, giving 15 m s⁻¹. No platform length is involved because the observer is stationary at a point.",
+  "distractorRationale": {
+    "c": "This multiplies length by time rather than dividing.",
+    "b": "This repeats the time as a speed.",
+    "d": "This inverts distance and time.",
+    "a": "Subtracting seconds from metres is invalid."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Train moves own length past observer, speed150/10=15m/s."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

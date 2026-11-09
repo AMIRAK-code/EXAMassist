@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0083",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which is equivalent to “It is not true that both the file is complete and the file is signed”?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "The file is incomplete and unsigned."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The file is incomplete or unsigned, or both."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "The file is incomplete and signed only."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The file is complete or signed."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "The file is complete and unsigned only."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "By De Morgan’s law, not(P and Q) means not P or not Q. At least one condition fails, and both may fail. The statement does not identify which part is missing.",
+  "distractorRationale": {
+    "a": "That is stronger than negating the conjunction.",
+    "d": "This can hold even when both are true, contrary to the original.",
+    "e": "This selects only one of several permitted cases.",
+    "c": "This also selects just one permitted case."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): De Morgan gives incomplete or unsigned inclusive."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

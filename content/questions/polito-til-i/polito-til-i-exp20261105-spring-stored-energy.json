@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-spring-stored-energy",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "physics",
+  "domainSlug": "tili-physics",
+  "skillSlug": "tili-phys-work-energy",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "An ideal spring of constant 200 N/m is compressed by 0.10 m. How much elastic potential energy is stored?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "0.1 J"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "2 J"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "10 J"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "1 J"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "20 J"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Elastic energy is one half kx squared. Substituting gives 0.5 times 200 times 0.01=1 J. Force kx and energy are different quantities.",
+  "distractorRationale": {
+    "b": "This omits the one-half factor.",
+    "c": "This uses displacement linearly instead of squared.",
+    "e": "This is the spring force's numerical value.",
+    "a": "This introduces a factor-of-ten error."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Half200times.1²=1J."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

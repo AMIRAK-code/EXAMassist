@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-graduate-exp20261105-029",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-quantitative-reasoning",
+  "skillSlug": "grad-quant-algebra-problem-solving",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A store sold 18 desks and chairs altogether for 1,140 euros. Each desk costs 90 euros and each chair 40 euros. Which conclusion is correct?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Exactly 10 desks were sold."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "The totals are inconsistent with whole items."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Exactly 8 desks were sold."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Exactly 9 desks were sold."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Writing d for desks gives 90d+40(18-d)=1140, so d=8.4. Since desks must be whole, the totals are inconsistent. Checking nearby integers gives different revenues.",
+  "distractorRationale": {
+    "c": "Rounds 8.4 down and changes the total revenue.",
+    "a": "Makes revenue 1220 euros instead.",
+    "d": "Makes revenue 1170 euros instead."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): 90d+40(18-d)=1140 gives d=8.4, impossible integer."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

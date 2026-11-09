@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-exp20261105-0200",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "logic",
+  "domainSlug": "tolcf-logic",
+  "skillSlug": "tolcf-logic-math-reasoning",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A tap fills a tank in 6 hours, while a drain empties a full tank in 9 hours. Both operate at constant rates. Starting empty, how long will filling take with both open?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "15 hours"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "18 hours"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "7.5 hours"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "3 hours"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "54 hours"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "The filling rate is 1/6 tank per hour and draining rate 1/9. Net rate is 1/6 − 1/9 = 1/18 tank per hour, so a full tank takes 18 hours. A slower result than six hours is consistent with simultaneous drainage.",
+  "distractorRationale": {
+    "d": "Subtracting completion times does not combine rates.",
+    "c": "Averaging completion times is not a net-rate calculation.",
+    "a": "Adding completion times does not give the combined time.",
+    "e": "This multiplies the times without taking the rate difference numerator into account."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-f",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-f",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Net fill rate1/6-1/9=1/18tank/hour, duration18hours."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

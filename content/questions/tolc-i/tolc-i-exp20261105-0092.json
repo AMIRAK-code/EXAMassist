@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0092",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-deduction",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Of statements U and V, at least one is true, but they cannot both be true. U is false. What is V?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Neither true nor false"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "False"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Impossible to determine"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Both true and false"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "True"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "The two conditions together mean exactly one statement is true. With U false, V must supply the required truth. Both false would violate at least one being true.",
+  "distractorRationale": {
+    "b": "That would leave neither statement true.",
+    "d": "Classical truth values do not permit this here.",
+    "c": "The exactly-one condition and U’s falsity determine V.",
+    "a": "The problem gives ordinary two-valued statements."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Exclusive disjunction plus U false forces V true."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

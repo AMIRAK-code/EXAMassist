@@ -1,0 +1,81 @@
+{
+  "id": "gmat-exp20261105-function-affine-difference",
+  "version": 1,
+  "examKey": "gmat",
+  "sectionKey": "quantitative-reasoning",
+  "domainSlug": "quant-problem-solving",
+  "skillSlug": "qps-elementary-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "For f(x)=ax+b, f(2)=9 and f(5)=21. What is f(8)?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "24"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "29"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "33"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "36"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "45"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "An input increase of 3 raises output by 12, so a=4. Another increase of 3 from 5 to 8 raises output from 21 to 33. The intercept is 1.",
+  "distractorRationale": {
+    "a": "This adds the input increment rather than the output increment.",
+    "e": "This scales outputs as if the intercept were zero.",
+    "b": "This does not preserve the constant slope.",
+    "d": "This ignores the intercept."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-gmat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-gmat",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Slope(21-9)/(5-2)=4; f8=21+3*4=33."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

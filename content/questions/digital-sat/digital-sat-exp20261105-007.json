@@ -1,0 +1,75 @@
+{
+  "id": "digital-sat-exp20261105-007",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "algebra",
+  "skillSlug": "linear-equations-two-variables",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A tank contains $v$ liters after $t$ minutes, with $3v+12t=270$. What is the rate of change of $v$ with respect to $t$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$-4$ liters per minute"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$-12$ liters per minute"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$4$ liters per minute"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$90$ liters per minute"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Solve for v: v=90−4t. The coefficient of t is the rate of change, −4 liters per minute. The intercept 90 instead describes the initial amount.",
+  "distractorRationale": {
+    "b": "This fails to divide by the coefficient of v.",
+    "d": "This is the initial volume, not the rate.",
+    "c": "The volume decreases as time increases."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "us-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Individually authored original draft. Requires blind independent solve and editorial review before publication."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "us-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-digital-sat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-digital-sat",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified\"; it checked for competing defensible answers and flagged none): v=90-4t has slope -4."
+    },
+    "notes": "Independent review pending; structural validation is not proof of correctness. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-logic-quantifier-vacuity",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "reading-logic",
+  "domainSlug": "tili-logic",
+  "skillSlug": "tili-logic-quantifiers",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Every document in an empty folder is signed. In ordinary classical logic, what follows about signed documents elsewhere?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "At least one signed document must exist elsewhere."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "No signed document exists anywhere."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Every document elsewhere is signed."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Nothing about whether signed documents exist elsewhere"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "At least one unsigned document exists elsewhere."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "A universal statement over an empty collection is true without any member satisfying its predicate. It supplies no information about documents outside that collection.",
+  "distractorRationale": {
+    "a": "A universal statement about an empty set supplies no existence claim.",
+    "c": "The statement applies only to this folder.",
+    "b": "The folder says nothing about other locations.",
+    "e": "No external existence claim is supplied."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Emptydomainuniversal imposesnoexistenceorpropertieselsewhere."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

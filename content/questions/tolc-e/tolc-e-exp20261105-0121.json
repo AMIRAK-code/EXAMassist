@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0121",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "logic",
+  "domainSlug": "tolce-logic",
+  "skillSlug": "tolce-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A password has two letters followed by one digit. Letters are chosen from A, B and C without repetition; the digit is chosen from 0 through 4. How many passwords are possible?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "6"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "15"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "25"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "30"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "45"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "There are three choices for the first letter and two remaining for the second, giving six ordered pairs. Each can be followed by any of five digits. Multiplication gives 3 × 2 × 5 = 30.",
+  "distractorRationale": {
+    "b": "This ignores the ordering of the two different letters.",
+    "e": "This allows repeated letters.",
+    "a": "This counts only the letter arrangements.",
+    "c": "This uses the wrong number of letter choices."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Letter choices3*2 and digit5, total30."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

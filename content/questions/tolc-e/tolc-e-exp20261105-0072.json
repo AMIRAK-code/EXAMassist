@@ -1,0 +1,81 @@
+{
+  "id": "tolc-e-exp20261105-0072",
+  "version": 1,
+  "examKey": "tolc-e",
+  "sectionKey": "mathematics",
+  "domainSlug": "tolce-mathematics",
+  "skillSlug": "tolce-math-functions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "A function has domain all real numbers and satisfies f(x + 4) = f(x) for every x. If f(1) = 7, which value must also be 7?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "f(13)"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "f(2)"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "f(0)"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "f(3)"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "f(4)"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Repeatedly applying the four-unit relation gives f(1) = f(5) = f(9) = f(13). The condition guarantees equality at inputs differing by multiples of four, but does not require equality at other offsets.",
+  "distractorRationale": {
+    "b": "A shift of one is not guaranteed by the stated period.",
+    "d": "A shift of two is not guaranteed.",
+    "e": "A shift of three from one is not guaranteed.",
+    "c": "The given relation does not force a shift of one."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-e",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-e",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Period four gives f(13)=f(9)=f(5)=f(1)=7."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

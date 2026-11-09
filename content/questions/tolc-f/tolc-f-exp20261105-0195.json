@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-exp20261105-0195",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "logic",
+  "domainSlug": "tolcf-logic",
+  "skillSlug": "tolcf-logic-math-reasoning",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Four workers each complete 6 identical tasks per hour. At the same individual rate, how many workers are needed to complete 180 tasks in 5 hours?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "4"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "5"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "6"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "30"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "36"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Each worker completes 6 × 5 = 30 tasks in five hours. To complete 180 tasks requires 180/30 = 6 workers. The initial four-worker information establishes the individual rate but is not a fixed staffing requirement.",
+  "distractorRationale": {
+    "a": "Four workers complete only 120 tasks in five hours.",
+    "b": "Five workers complete 150 tasks.",
+    "d": "This is the number of tasks per worker in five hours, not the worker count.",
+    "e": "This is the required total hourly task rate, not the number of workers."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-f",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-f",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Each worker completes30tasks in5h;180/30=6workers."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-a-exp20261105-166",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "mathematics-physics",
+  "domainSlug": "tila-mathematics",
+  "skillSlug": "tila-math-algebra",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "The perimeter of a rectangle is 46 m. Its length is 5 m greater than its width. What is its width?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "11.5 m"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "18 m"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "20.5 m"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "14 m"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "9 m"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "If width is w, length is w+5. Then 2w+2(w+5)=46, so 4w=36 and w=9. The length is 14 and the perimeter checks.",
+  "distractorRationale": {
+    "c": "This fails to account for both pairs of sides.",
+    "a": "This assumes a square and ignores the difference.",
+    "b": "This is twice the width, an intermediate value.",
+    "d": "This is the length."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question. Historical 2026/27 TIL-A format; not a claim about the announced 2027/28 CISIA transition."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-a",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-a",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): 2(w+w+5)=46 gives4w36 w9."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

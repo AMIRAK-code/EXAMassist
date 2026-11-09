@@ -1,0 +1,62 @@
+{
+  "id": "gmat-exp20261105-gi-visitors-sales",
+  "version": 1,
+  "examKey": "gmat",
+  "kind": "chart",
+  "title": "Shop traffic and sales",
+  "bodyMd": "Each point represents one day. Visitors and transactions are counts. Every transaction comes from a visitor, but a visitor may make more than one transaction.",
+  "data": {
+    "columns": [
+      {
+        "key": "visitors",
+        "label": "Visitors"
+      },
+      {
+        "key": "transactions",
+        "label": "transactions"
+      }
+    ],
+    "rows": [
+      {
+        "visitors": 100,
+        "transactions": 30
+      },
+      {
+        "visitors": 150,
+        "transactions": 60
+      },
+      {
+        "visitors": 200,
+        "transactions": 50
+      },
+      {
+        "visitors": 250,
+        "transactions": 100
+      },
+      {
+        "visitors": 300,
+        "transactions": 90
+      }
+    ],
+    "caption": "Each point represents one day. Visitors and transactions are counts. Every transaction comes from a visitor, but a visitor may make more than one transaction.",
+    "chart": {
+      "type": "scatter",
+      "xKey": "visitors",
+      "yKeys": [
+        "transactions"
+      ],
+      "xLabel": "Visitors",
+      "yLabel": "Transactions"
+    }
+  },
+  "accessibilityText": "The chart plots the values in the accompanying accessible data table. Axes and units are identified in the chart and column headings.",
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "gmat-expansion-verbal-data-author-20261105",
+    "aiAssisted": true,
+    "notes": "Invented scenario and data for original practice; not official GMAC material."
+  },
+  "rightsStatus": "original-owned",
+  "state": "in_review",
+  "translations": {}
+}

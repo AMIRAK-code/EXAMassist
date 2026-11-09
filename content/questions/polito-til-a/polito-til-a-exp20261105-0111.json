@@ -1,0 +1,75 @@
+{
+  "id": "polito-til-a-exp20261105-0111",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "logical-reasoning",
+  "domainSlug": "tila-logic",
+  "skillSlug": "tila-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A box holds red, blue and green tokens. Without looking, what is the minimum number that must be drawn to guarantee at least two of the same colour, assuming enough tokens of every colour?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "2"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "3"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "4"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "5"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "6"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "At most three tokens can be drawn with all colours different. A fourth must repeat one of the three colours. This is the pigeonhole principle and gives the smallest guaranteed count.",
+  "distractorRationale": {
+    "a": "Two draws can have different colours.",
+    "b": "Three draws can include one of each colour.",
+    "d": "Four already guarantees a repeat.",
+    "e": "This is more than the minimum guarantee."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content. Historical 2026/27 TIL-A-format practice; not a claim of alignment to the announced 2027/28 replacement admission tests."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,75 @@
+{
+  "id": "digital-sat-exp20261105-006",
+  "version": 1,
+  "examKey": "digital-sat",
+  "sectionKey": "math-module-1",
+  "domainSlug": "algebra",
+  "skillSlug": "linear-equations-one-variable",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "For a constant $b$, $7x+b=3(2x+5)$ has solution $x=-4$. What is $b$?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "$-19$"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "$11$"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "$15$"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "$19$"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Simplify to 7x+b=6x+15, so b=15−x. At x=−4, b=19. Directly, −28+19=−9 and 3(−8+5)=−9.",
+  "distractorRationale": {
+    "c": "This ignores the nonzero x term remaining after simplification.",
+    "b": "This subtracts the solution instead of adding its magnitude in b=15−x.",
+    "a": "This reverses the sign when isolating the constant."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "us-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Individually authored original draft. Requires blind independent solve and editorial review before publication."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "us-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-digital-sat",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-digital-sat",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified\"; it checked for competing defensible answers and flagged none): -28+b=-9 gives b=19."
+    },
+    "notes": "Independent review pending; structural validation is not proof of correctness. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

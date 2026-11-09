@@ -1,0 +1,81 @@
+{
+  "id": "tolc-i-exp20261105-0109",
+  "version": 1,
+  "examKey": "tolc-i",
+  "sectionKey": "logic",
+  "domainSlug": "tolci-logic",
+  "skillSlug": "tolci-logic-problems",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A technician cuts a 3 m cable into equal pieces of 25 cm without waste. How many pieces result?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "8"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "10"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "12"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "75"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "120"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "c"
+  },
+  "explanationMd": "Convert three metres to 300 centimetres. Divide by 25 centimetres per piece: 300/25=12. This asks for pieces, not the number of cuts.",
+  "distractorRationale": {
+    "a": "This uses an incorrect conversion or piece length.",
+    "b": "This would require thirty-centimetre pieces.",
+    "d": "This multiplies unlike length units instead of dividing.",
+    "e": "This introduces an extra factor of ten."
+  },
+  "estimatedSeconds": 100,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-i",
+      "solvedAnswer": "c",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): 3m=300cm;300/25=12pieces."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-graduate-exp20261105-197",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-verbal-reasoning",
+  "skillSlug": "grad-verbal-argument-analysis",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "Which complete order satisfies every stated condition?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Dune → Acorn → Estuary → Beacon → Crest"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "Dune → Beacon → Crest → Estuary → Acorn"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Acorn → Beacon → Crest → Dune → Estuary"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "Beacon → Dune → Estuary → Acorn → Crest"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "a"
+  },
+  "explanationMd": "Check each rule against Dune → Acorn → Estuary → Beacon → Crest. Every precedence, position, and separation condition holds. Each alternative violates at least one explicit rule; the corresponding violated condition is identified in its feedback.",
+  "distractorRationale": {
+    "c": "This order violates: Crest must be in position 5. Acorn must be immediately followed by Estuary. Dune must precede Beacon.",
+    "d": "This order violates: Acorn must be immediately followed by Estuary. Dune must precede Beacon.",
+    "b": "This order violates: Crest must be in position 5. Acorn must be immediately followed by Estuary."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": {
+    "id": "bocconi-graduate-exp20261105-client-migrations",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+      "solvedAnswer": "a",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Independently enumerated all 120 permutations of Acorn, Beacon, Crest, Dune, Estuary. Rules Crest must be in position 5. Acorn must be immediately followed by Estuary. Dune must precede Beacon. leave 3 valid orders: Acorn>Estuary>Dune>Beacon>Crest; Dune>Acorn>Estuary>Beacon>Crest; Dune>Beacon>Acorn>Estuary>Crest. Choice true counts: a=0, b=0, c=0, d=1; valid complete order requires one matches."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

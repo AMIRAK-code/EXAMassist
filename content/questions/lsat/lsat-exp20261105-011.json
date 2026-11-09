@@ -1,0 +1,78 @@
+{
+  "id": "lsat-exp20261105-011",
+  "version": 1,
+  "examKey": "lsat",
+  "sectionKey": "lr1",
+  "domainSlug": "logical-reasoning",
+  "skillSlug": "lr-assumptions",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A cafe can serve either soup or sandwiches at lunch, but not both. The owner says soup is the better choice because each serving yields a positive profit greater than the profit on a sandwich. Which assumption would make the reasoning sufficient?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "Some customers prefer soup."
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "A positive number of soup servings would be sold, at least as many as the number of sandwiches that would be sold, with no other difference in daily costs."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "Sandwiches can be eaten without cutlery."
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "The cafe has served sandwiches before."
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "Soup takes longer to prepare."
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Compare daily profit, not just unit margin. Let the positive soup margin be p and sandwich margin q, with p>q. The added assumption gives soup quantity S>0 and S at least sandwich quantity N. If q is nonnegative, pS>qS>=qN; if q is negative, positive soup profit exceeds the nonpositive sandwich contribution. Equal other costs therefore make soup strictly more profitable.",
+  "distractorRationale": {
+    "d": "Prior experience does not compare future daily profits.",
+    "e": "This could reduce sales or increase costs rather than justify the choice.",
+    "c": "That feature does not determine total profit.",
+    "a": "Some preference does not establish enough sales."
+  },
+  "estimatedSeconds": 85,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "us-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Individually authored original draft. Requires blind independent solve and editorial review before publication.",
+    "editedBy": [
+      "ai-audit-us-2026-11-05"
+    ]
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "us-exams-expansion-author",
+    "reviewer": null,
+    "reviewedOn": null,
+    "independentSolve": null,
+    "notes": "Independent review pending; structural validation is not proof of correctness. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "in_review",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

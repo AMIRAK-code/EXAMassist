@@ -1,0 +1,75 @@
+{
+  "id": "bocconi-graduate-exp20261105-028",
+  "version": 1,
+  "examKey": "bocconi-graduate",
+  "sectionKey": "online-test",
+  "domainSlug": "bocconi-grad-quantitative-reasoning",
+  "skillSlug": "grad-quant-algebra-problem-solving",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "A tank initially holds 80 litres. Water enters at 7 litres per minute and leaves at 3 litres per minute. When will it hold 140 litres?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "6 minutes"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "15 minutes"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "20 minutes"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "60/7 minutes"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Net inflow is 4 litres per minute. The required increase is 60 litres, so time=60/4=15 minutes.",
+  "distractorRationale": {
+    "c": "Uses only the outflow rate.",
+    "d": "Ignores the outflow.",
+    "a": "Adds inflow and outflow instead of subtracting."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-graduate",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): Net inflow 7-3=4, increase 60 takes 15 minutes."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

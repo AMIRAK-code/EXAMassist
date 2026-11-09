@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-a-exp20261105-197",
+  "version": 1,
+  "examKey": "polito-til-a",
+  "sectionKey": "mathematics-physics",
+  "domainSlug": "tila-physics",
+  "skillSlug": "tila-phys-electricity",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "An electrical model contains a 12 Ω branch and a 4 Ω branch connected in parallel. What resistance can replace the two branches?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "16 Ω"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "48 Ω"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "4 Ω"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "8 Ω"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "3 Ω"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "e"
+  },
+  "explanationMd": "For two parallel resistors, R=(12 times 4)/(12+4)=48/16=3 ohms. Equivalently reciprocal resistances add; both branches provide current paths.",
+  "distractorRationale": {
+    "b": "This uses the product without dividing by the sum.",
+    "d": "The arithmetic mean is not the parallel equivalent.",
+    "c": "The parallel equivalent must be smaller than the smaller positive resistor.",
+    "a": "This adds resistances as for a series connection."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question. Historical 2026/27 TIL-A format; not a claim about the announced 2027/28 CISIA transition."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-a",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-a",
+      "solvedAnswer": "e",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): Parallelproduct/sum48/16=3ohms."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

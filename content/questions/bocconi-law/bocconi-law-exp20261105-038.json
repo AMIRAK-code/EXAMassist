@@ -1,0 +1,78 @@
+{
+  "id": "bocconi-law-exp20261105-038",
+  "version": 1,
+  "examKey": "bocconi-law",
+  "sectionKey": "online-test-law",
+  "domainSlug": "law-numerical-reasoning",
+  "skillSlug": "law-numrsn-reasoning-over-calculation",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "medium",
+  "difficultyBasis": "editorial",
+  "stemMd": "What percentage of all invited parties accepted? Round to two decimal places if necessary.",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "37.79%"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "39.25%"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "58.33%"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "60.75%"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "d"
+  },
+  "explanationMd": "Add counts before dividing: 243 qualifying cases out of 400 total. The overall rate is 243/400 times 100=60.75%. Category denominators differ, so percentages need their proper weights.",
+  "distractorRationale": {
+    "b": "This is the complementary share, not the requested successful share.",
+    "a": "This incorrectly adds successful cases to a total that already includes them.",
+    "c": "This averages category percentages with equal weights instead of weighting by their different denominators."
+  },
+  "estimatedSeconds": 90,
+  "stimulusRef": {
+    "id": "bocconi-law-exp20261105-mediation-invitations",
+    "version": 1
+  },
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "bocconi-expansion-author-20261105",
+    "aiAssisted": true,
+    "notes": "Original research-informed practice draft. Contexts and data are invented for reasoning unless explicitly stated. No independent solve or human review has yet been recorded."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "bocconi-expansion-author-20261105",
+    "reviewer": "audit-2026-11-05-blind-resolve-bocconi-law",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-bocconi-law",
+      "solvedAnswer": "d",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"verified_key_agreement\"; it checked for competing defensible answers and flagged none): 243/400=60.75% accepted."
+    },
+    "notes": "Author solution supplied; pending independent blind solve and expert syllabus review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}

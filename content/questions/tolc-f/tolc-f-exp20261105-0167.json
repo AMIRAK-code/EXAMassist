@@ -1,0 +1,81 @@
+{
+  "id": "tolc-f-exp20261105-0167",
+  "version": 1,
+  "examKey": "tolc-f",
+  "sectionKey": "physics",
+  "domainSlug": "tolcf-physics",
+  "skillSlug": "tolcf-phys-fluids-thermo",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "hard",
+  "difficultyBasis": "editorial",
+  "stemMd": "Two equal masses of the same liquid at 20 °C and 60 °C are mixed in an insulated container of negligible heat capacity. No phase change occurs. What is the final temperature?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "50 °C"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "40 °C"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "20 °C"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "80 °C"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "30 °C"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Equal masses and equal specific heat mean equal temperature changes in opposite directions. If final temperature is T, heat balance gives T − 20 = 60 − T, so T = 40 °C. Insulation prevents net heat loss from the combined system.",
+  "distractorRationale": {
+    "e": "Equal heat capacities give equal weighting, not a bias toward the colder portion.",
+    "a": "This biases the result toward the warmer portion without a mass or heat-capacity difference.",
+    "d": "Adding temperatures does not conserve thermal energy.",
+    "c": "The warmer liquid transfers heat to the colder one."
+  },
+  "estimatedSeconds": 150,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "italian-exams-expansion-author",
+    "aiAssisted": true,
+    "notes": "Original English-language practice draft. Research and syllabus alignment are documented in the accompanying research report. Not official examination content."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "italian-exams-expansion-author",
+    "reviewer": "audit-2026-11-05-blind-resolve-tolc-f",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-tolc-f",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"key_matched\"; it checked for competing defensible answers and flagged none): Equal heat capacities balance at mean(20+60)/2=40C."
+    },
+    "notes": "Author checked reasoning. Awaiting independent blind solve and human editorial review. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-2026-11-05"
+  ],
+  "translations": {}
+}

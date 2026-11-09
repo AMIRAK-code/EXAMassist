@@ -1,0 +1,81 @@
+{
+  "id": "polito-til-i-exp20261105-assign-sequential",
+  "version": 1,
+  "examKey": "polito-til-i",
+  "sectionKey": "technical-knowledge",
+  "domainSlug": "tili-computer-science",
+  "skillSlug": "tili-cs-variables-assignment",
+  "subskillSlug": null,
+  "responseType": "single_select",
+  "difficulty": "easy",
+  "difficultyBasis": "editorial",
+  "stemMd": "A program performs these assignments in order: x=4; y=x+3; x=2*y. What are the final values of x and y?",
+  "instructionsMd": null,
+  "options": [
+    {
+      "id": "a",
+      "label": "A",
+      "textMd": "x=14, y=17"
+    },
+    {
+      "id": "b",
+      "label": "B",
+      "textMd": "x=14, y=7"
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "textMd": "x=4, y=7"
+    },
+    {
+      "id": "d",
+      "label": "D",
+      "textMd": "x=7, y=14"
+    },
+    {
+      "id": "e",
+      "label": "E",
+      "textMd": "x=8, y=7"
+    }
+  ],
+  "answerKey": {
+    "type": "single_select",
+    "optionId": "b"
+  },
+  "explanationMd": "Assignments execute in sequence. First y receives 7; then x receives twice that value, 14. Stored variables do not automatically track later changes in expressions used earlier.",
+  "distractorRationale": {
+    "c": "This ignores the final assignment.",
+    "e": "The final assignment uses y, not the original x.",
+    "a": "Changing x later does not retroactively update y.",
+    "d": "This swaps the variable values."
+  },
+  "estimatedSeconds": 60,
+  "stimulusRef": null,
+  "accessibilityText": null,
+  "provenance": {
+    "origin": "original",
+    "authoredBy": "codex-expansion-20261105-root",
+    "aiAssisted": true,
+    "notes": "Original practice draft. Official syllabus sources are recorded in the accompanying research note. Not an official exam question."
+  },
+  "rightsStatus": "original-owned",
+  "review": {
+    "author": "codex-expansion-20261105-root",
+    "reviewer": "audit-2026-11-05-blind-resolve-polito-til-i",
+    "reviewedOn": "2026-11-09",
+    "independentSolve": {
+      "solvedBy": "audit-2026-11-05-blind-resolve-polito-til-i",
+      "solvedAnswer": "b",
+      "agreesWithKey": true,
+      "uniquenessChecked": true,
+      "workingNotes": "Blind re-solve in the 5 November 2026 AI audit of this expansion (the review packet held no key, explanation or distractor notes; status \"solved-blind\"; it checked for competing defensible answers and flagged none): y becomes7 then x becomes14, y unchanged."
+    },
+    "notes": "Author-solved draft. Requires independent blind solve and human editorial review before publication. Options were reordered after review to remove answer-position bias; ids and labels were remapped with the key."
+  },
+  "state": "published",
+  "quarantine": null,
+  "tags": [
+    "expansion-20261105"
+  ],
+  "translations": {}
+}
