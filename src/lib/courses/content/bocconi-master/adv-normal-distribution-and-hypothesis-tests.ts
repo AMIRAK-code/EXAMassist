@@ -7,7 +7,7 @@ export const normalDistributionAndHypothesisTestsLesson: Lesson = {
   minutes: 25,
   objectives: [
     'Convert values to z-scores and use the 68–95–99.7 rule to estimate normal probabilities.',
-    md`Find the variance of $aX + b$ and of sums and differences of independent random variables.`,
+    'Find the variance of a scaled and shifted variable, and of sums and differences of independent random variables.',
     'Compute the standard error of a mean and a 95% confidence interval.',
     'Run a z-test for a mean, and say what Type I errors, Type II errors and p-values do and do not mean.',
   ],
