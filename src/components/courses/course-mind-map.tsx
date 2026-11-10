@@ -3,9 +3,9 @@
 import { useId, useState, type KeyboardEvent } from 'react';
 
 /**
- * An interactive mind map of a course: the test in the centre, its units as
+ * An interactive mind map of a course: the test on the left, its units as
  * branches (with what the test gives each area), and a unit's lessons fanned
- * out beside it when the unit is opened. One unit is open at a time, so the
+ * out to the right when the unit is opened. One unit is open at a time, so the
  * lesson titles never overlap; the first is open on load, so the page saved
  * as a static file (src/lib/seo/static-pages.ts) shows a full branch even
  * before any script runs.
@@ -47,12 +47,17 @@ const TONES = [
   { stroke: 'var(--color-ink-muted)', fill: 'var(--color-surface-sunken)', ink: 'var(--color-ink)' },
 ] as const;
 
-const WIDTH = 1120;
+// Left to right: the test, its branches, then the open branch's lessons,
+// which leaves the lesson titles the widest column.
+const WIDTH = 1000;
 const ROOT_W = 210;
+const ROOT_X = 10 + ROOT_W / 2;
 const BRANCH_W = 220;
-const LESSON_W = 300;
+const BRANCH_X = 420;
+const LESSON_W = 380;
+const LESSON_X = BRANCH_X + BRANCH_W / 2 + 70 + LESSON_W / 2;
 const LESSON_GAP = 46;
-const BRANCH_GAP = 120;
+const BRANCH_GAP = 96;
 
 function clip(text: string, max: number): string {
   return text.length <= max ? text : `${text.slice(0, max - 1).trimEnd()}…`;
@@ -79,22 +84,18 @@ export function CourseMindMap({
     }
   };
 
-  // Branches alternate right and left of the centre, top to bottom.
-  const right = branches.filter((_, i) => i % 2 === 0);
-  const left = branches.filter((_, i) => i % 2 === 1);
   const maxLessons = Math.max(0, ...branches.map((b) => b.lessons.length));
-  const height = Math.max(520, Math.max(right.length, left.length) * BRANCH_GAP + 80, maxLessons * LESSON_GAP + 80);
-  const cx = WIDTH / 2;
+  const height = Math.max(420, branches.length * BRANCH_GAP + 60, maxLessons * LESSON_GAP + 60);
+  const cx = ROOT_X;
   const cy = height / 2;
 
   const placed = branches.map((branch, index) => {
-    const side = index % 2 === 0 ? 1 : -1;
-    const column = side === 1 ? right : left;
-    const row = column.indexOf(branch);
-    const y = cy + (row - (column.length - 1) / 2) * BRANCH_GAP;
-    const x = cx + side * 250;
-    const lessonX = x + side * (BRANCH_W / 2 + 60 + LESSON_W / 2);
-    const top = Math.min(Math.max(y - ((branch.lessons.length - 1) * LESSON_GAP) / 2, 40), height - 40 - (branch.lessons.length - 1) * LESSON_GAP);
+    const side = 1;
+    const y = cy + (index - (branches.length - 1) / 2) * BRANCH_GAP;
+    const x = BRANCH_X;
+    const lessonX = LESSON_X;
+    const span = (branch.lessons.length - 1) * LESSON_GAP;
+    const top = Math.min(Math.max(y - span / 2, 30), height - 30 - span);
     return { branch, index, side, x, y, lessonX, top, tone: TONES[index % TONES.length] };
   });
 
@@ -181,7 +182,7 @@ export function CourseMindMap({
                   {clip(branch.title, 26)}
                 </text>
                 <text x={x} y={y + 16} textAnchor="middle" fontSize={12} fill={isOpen ? 'var(--color-accent-contrast)' : 'var(--color-ink-muted)'}>
-                  {clip([branch.note, labels.lessonCounts[branch.id]].filter(Boolean).join(' · '), 34)}
+                  {clip([branch.note, labels.lessonCounts[branch.id]].filter(Boolean).join(' · '), 40)}
                 </text>
               </g>
             );
@@ -197,7 +198,7 @@ export function CourseMindMap({
                       <title>{lesson.title}</title>
                       <rect x={lessonX - LESSON_W / 2} y={ly - 17} width={LESSON_W} height={34} rx={17} fill="var(--color-surface)" stroke={tone.stroke} strokeWidth={1.5} />
                       <text x={lessonX - LESSON_W / 2 + 16} y={ly + 5} fontSize={13} fill="var(--color-ink)">
-                        {clip(lesson.title, 40)}
+                        {clip(lesson.title, 54)}
                       </text>
                     </a>
                   );
