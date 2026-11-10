@@ -7,7 +7,7 @@ export const derivativesAndOptimisationLesson: Lesson = {
   minutes: 25,
   objectives: [
     'Differentiate powers, exponentials, logarithms, products, quotients and compositions by hand.',
-    md`Find a maximum or minimum where $f'(x) = 0$ and confirm it with the second derivative, or with $-\frac{b}{2a}$ for a parabola.`,
+    'Find a maximum or minimum where the first derivative is zero and confirm it with the second derivative, or with the vertex formula for a parabola.',
     'Maximise profit by setting marginal revenue equal to marginal cost, and check that the result is a maximum.',
     'Compute partial derivatives and the gradient of a function of two variables.',
   ],
