@@ -21,10 +21,10 @@ Bocconi describes verbal reasoning as reading comprehension, data and statements
 
 ### How to use the course
 
-Start with the two getting-started lessons, then work through the areas in any order. Take each check before you open the answers, and use the practice link to apply the idea on fresh questions. Every question in this course is original and written for UniExamer; none comes from Bocconi, and difficulty is our editorial judgement.
+Start with the two getting-started lessons, then work through the areas in any order. The last unit, Beyond basic maths, is optional: it covers derivatives and hypothesis tests, topics that appeared in a 2024 Bocconi sample but that the current test page does not mention. Take each check before you open the answers, and use the practice link to apply the idea on fresh questions. Every question in this course is original and written for UniExamer; none comes from Bocconi, and difficulty is our editorial judgement.
 `,
   publishedOn: '2026-11-09',
-  updatedOn: '2026-11-09',
+  updatedOn: '2026-11-10',
   sources: [
     { label: 'Online Bocconi test for international graduate applicants', url: 'https://www.unibocconi.it/en/applying-bocconi/master-science-and-ma-programs/application-and-admissions/online-bocconi-test-international-graduate-applicants', publisher: 'Università Bocconi' },
     { label: 'MSc and MA admissions', url: 'https://www.unibocconi.it/en/applying-bocconi/master-science-and-ma-programs/application-and-admissions/admissions', publisher: 'Università Bocconi' },
@@ -40,6 +40,7 @@ Start with the two getting-started lessons, then work through the areas in any o
       'verbal-reasoning': '24 questions',
       'data-insight': '16 questions',
       'quantitative-reasoning': '10 questions',
+      'beyond-basic-maths': 'Optional extras',
     },
   },
 };
