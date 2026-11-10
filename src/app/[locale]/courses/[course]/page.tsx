@@ -9,6 +9,7 @@ import { CONTENT_LANG, pageAlternates } from '@/i18n/alternates';
 import { localizePath, type Locale } from '@/i18n/locales';
 import { SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
 import { Markdown } from '@/components/content';
+import { CourseMindMap } from '@/components/courses/course-mind-map';
 import { Breadcrumbs, ButtonLink, Card, Container, PageHeader } from '@/components/ui';
 import { JsonLd, breadcrumbSchema, courseSchema } from '@/components/seo/json-ld';
 
@@ -96,6 +97,36 @@ export default async function CoursePage({ params }: Props) {
 
         <Markdown source={course.introMd} className="prose-academic font-serif" />
       </div>
+
+      {course.mindMap ? (
+        <section aria-labelledby="course-map" className="mt-12">
+          <h2 id="course-map" className="font-heading text-2xl font-semibold">
+            {t('mindMap.title')}
+          </h2>
+          <p className="mt-1 max-w-3xl text-ink-muted">{t('mindMap.lead')}</p>
+          <div className="mt-6" lang={CONTENT_LANG}>
+            <CourseMindMap
+              centre={course.mindMap.centre}
+              centreNote={course.mindMap.centreNote}
+              branches={course.units.map((unit) => ({
+                id: unit.slug,
+                title: unit.title,
+                note: course.mindMap?.branchNotes?.[unit.slug],
+                lessons: unit.lessons.map((lesson) => ({
+                  title: lesson.title,
+                  href: localizePath(lessonPath(course, lesson), locale as Locale),
+                  time: t('course.minutes', { minutes: lesson.minutes }),
+                })),
+              }))}
+              labels={{
+                map: t('mindMap.map', { course: course.title }),
+                hint: t('mindMap.hint'),
+                lessonCounts: Object.fromEntries(course.units.map((unit) => [unit.slug, t('mindMap.lessons', { count: unit.lessons.length })])),
+              }}
+            />
+          </div>
+        </section>
+      ) : null}
 
       <section aria-labelledby="course-contents" className="mt-12">
         <h2 id="course-contents" className="font-heading text-2xl font-semibold">
