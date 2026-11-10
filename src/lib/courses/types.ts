@@ -29,7 +29,7 @@ import type { SampleQuestion } from '@/lib/content/guides';
 /** Markdown with TeX: String.raw, so `\frac` stays `\frac`. */
 export const md = String.raw;
 
-export type CourseSlug = 'gre' | 'gmat' | 'bocconi' | 'bocconi-master';
+export type CourseSlug = 'gre' | 'gmat' | 'bocconi' | 'bocconi-master' | 'tolc-i';
 
 export interface CourseSource {
   label: string;
