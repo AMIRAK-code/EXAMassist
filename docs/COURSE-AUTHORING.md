@@ -122,6 +122,17 @@ deduced form, which have 3.
 | numerical-reasoning.ts | numerical-reasoning | charts-and-tables, relevant-and-superfluous-information, calculating-by-hand |
 | critical-thinking.ts | critical-thinking | true-false-or-cannot-be-deduced, drawing-valid-conclusions, excluding-unsupported-implications, quantifiers-and-conditionals |
 
+### Bocconi master's (`/courses/bocconi-master`, practice exam `bocconi-graduate`)
+
+Exam facts: `docs/research/bocconi-master-facts-2026-11-09.md` only. Checks have 4 options (Bocconi publishes no option count; our practice uses four).
+
+| Unit file | Unit slug | Lessons |
+| --- | --- | --- |
+| getting-started.ts | getting-started | how-the-bocconi-master-test-works, scoring-pacing-and-guessing |
+| verbal-reasoning.ts | verbal-reasoning | reading-passages-for-structure, main-idea-and-author-purpose, detail-and-inference-questions, data-and-statements, argument-structure, assumptions, strengthen-and-weaken, flaws-and-evaluation |
+| data-insight.ts | data-insight | reading-tables, bar-and-line-charts, pie-charts-and-shares, percentages-and-growth-in-data, averages-and-weighted-data, combining-tables-and-charts, data-sufficiency-basics, data-sufficiency-pitfalls |
+| quantitative-reasoning.ts | quantitative-reasoning | numbers-and-divisibility, fractions-ratios-and-proportions, percentages-and-successive-changes, equations-and-systems, quadratics-and-inequalities, rates-work-and-mixtures, counting-and-probability, averages-and-basic-statistics |
+
 ## Independent check
 
 The checker reads each lesson cold and, for every worked example and check
