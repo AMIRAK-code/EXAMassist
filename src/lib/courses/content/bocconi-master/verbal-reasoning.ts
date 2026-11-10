@@ -7,19 +7,23 @@ import { argumentStructureLesson } from './vr-argument-structure';
 import { assumptionsLesson } from './vr-assumptions';
 import { strengthenAndWeakenLesson } from './vr-strengthen-and-weaken';
 import { flawsAndEvaluationLesson } from './vr-flaws-and-evaluation';
+import { quantifiersAndConditionalsLesson } from './vr-quantifiers-and-conditionals';
+import { statisticalReasoningFlawsLesson } from './vr-statistical-reasoning-flaws';
 
 export const verbalReasoningUnit: Unit = {
   slug: 'verbal-reasoning',
   title: 'Verbal reasoning',
-  summary: 'The largest area of the test, 24 of 50 questions. Bocconi describes three item types: reading comprehension on passages, data and statements to judge true or false, and verbal critical reasoning on short arguments. These lessons cover reading for structure, main idea, detail and inference, data and statements, then argument structure, assumptions, strengthening and weakening, and flaws.',
+  summary: 'The largest area of the test, 24 of 50 questions. Bocconi describes three item types: reading comprehension on passages, data and statements to judge true or false, and verbal critical reasoning on short arguments. These lessons cover reading for structure, main idea, detail and inference, data and statements, then argument structure, quantifiers and conditionals, assumptions, strengthening and weakening, flaws, and the statistical flaws that arguments built on numbers often hide.',
   lessons: [
     readingPassagesForStructureLesson,
     mainIdeaAndAuthorPurposeLesson,
     detailAndInferenceQuestionsLesson,
     dataAndStatementsLesson,
     argumentStructureLesson,
+    quantifiersAndConditionalsLesson,
     assumptionsLesson,
     strengthenAndWeakenLesson,
     flawsAndEvaluationLesson,
+    statisticalReasoningFlawsLesson,
   ],
 };
