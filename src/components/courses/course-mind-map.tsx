@@ -52,7 +52,7 @@ const TONES = [
 const WIDTH = 1000;
 const ROOT_W = 210;
 const ROOT_X = 10 + ROOT_W / 2;
-const BRANCH_W = 220;
+const BRANCH_W = 250;
 const BRANCH_X = 420;
 const LESSON_W = 380;
 const LESSON_X = BRANCH_X + BRANCH_W / 2 + 70 + LESSON_W / 2;
@@ -168,6 +168,7 @@ export function CourseMindMap({
                 onKeyDown={onKey(branch.id)}
                 className="mind-map-branch cursor-pointer"
               >
+                <title>{branch.title}</title>
                 <rect
                   x={x - BRANCH_W / 2}
                   y={y - 34}
@@ -179,7 +180,7 @@ export function CourseMindMap({
                   strokeWidth={2}
                 />
                 <text x={x} y={y - 6} textAnchor="middle" fontSize={15} fontWeight={700} fill={isOpen ? 'var(--color-accent-contrast)' : tone.ink}>
-                  {clip(branch.title, 26)}
+                  {clip(branch.title, 29)}
                 </text>
                 <text x={x} y={y + 16} textAnchor="middle" fontSize={12} fill={isOpen ? 'var(--color-accent-contrast)' : 'var(--color-ink-muted)'}>
                   {clip([branch.note, labels.lessonCounts[branch.id]].filter(Boolean).join(' · '), 40)}
