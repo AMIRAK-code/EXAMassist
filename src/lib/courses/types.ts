@@ -29,7 +29,7 @@ import type { SampleQuestion } from '@/lib/content/guides';
 /** Markdown with TeX: String.raw, so `\frac` stays `\frac`. */
 export const md = String.raw;
 
-export type CourseSlug = 'gre' | 'gmat' | 'bocconi';
+export type CourseSlug = 'gre' | 'gmat' | 'bocconi' | 'bocconi-master';
 
 export interface CourseSource {
   label: string;
@@ -134,4 +134,17 @@ export interface Course {
   /** Official sources for every fact about the exam the course states. */
   sources: CourseSource[];
   units: Unit[];
+  /**
+   * An interactive mind map of the course on its page
+   * (src/components/courses/course-mind-map.tsx): the test in the centre,
+   * the units as branches, lessons as leaves.
+   */
+  mindMap?: {
+    /** The centre node: the test's name, short. */
+    centre: string;
+    /** Under it: the test in a few words ("50 questions · 75 minutes"). */
+    centreNote: string;
+    /** Per unit slug, a short line under the branch title ("24 questions"). */
+    branchNotes?: Record<string, string>;
+  };
 }
