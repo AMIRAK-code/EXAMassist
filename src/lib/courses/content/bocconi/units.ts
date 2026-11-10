@@ -7,9 +7,10 @@ import { geometryUnit } from './geometry';
 import { gettingStartedUnit } from './getting-started';
 import { numbersAndSetsUnit } from './numbers-and-sets';
 import { numericalReasoningUnit } from './numerical-reasoning';
+import { quickRevisionUnit } from './quick-revision';
 import { readingUnit } from './reading';
 
-/** The course's units, in teaching order: mathematics first (almost half the test), then the other three areas. */
+/** The course's units, in teaching order: mathematics first (almost half the test), then the other three areas, and a revision unit that condenses the course. */
 export const bocconiUnits: Unit[] = [
   gettingStartedUnit,
   numbersAndSetsUnit,
@@ -20,4 +21,5 @@ export const bocconiUnits: Unit[] = [
   readingUnit,
   numericalReasoningUnit,
   criticalThinkingUnit,
+  quickRevisionUnit,
 ];
