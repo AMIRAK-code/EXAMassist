@@ -32,8 +32,8 @@ describe('course content', () => {
     expect(issues.map((issue) => `${issue.where}: ${issue.problem}`)).toEqual([]);
   });
 
-  it('has the three courses, each with dozens of published lessons', () => {
-    expect(listCourses().map((course) => course.slug)).toEqual(['gre', 'gmat', 'bocconi']);
+  it('has the four courses, each with dozens of published lessons', () => {
+    expect(listCourses().map((course) => course.slug)).toEqual(['gre', 'gmat', 'bocconi', 'bocconi-master']);
     for (const course of listCourses()) expect(courseLessons(course).length, course.slug).toBeGreaterThanOrEqual(24);
   });
 
@@ -54,6 +54,16 @@ describe('course content', () => {
       for (const examKey of course.examKeys) {
         for (const domain of getExamConfig(examKey)!.domains) expect(practised, `${course.slug}: ${domain.slug}`).toContain(`${examKey}/${domain.slug}`);
       }
+    }
+  });
+
+  it('labels mind-map branches only for units the course has', () => {
+    for (const course of listAllCourses()) {
+      if (!course.mindMap) continue;
+      const units = course.units.map((unit) => unit.slug);
+      for (const slug of Object.keys(course.mindMap.branchNotes ?? {})) expect(units, `${course.slug}: ${slug}`).toContain(slug);
+      expect(course.mindMap.centre.length, course.slug).toBeLessThanOrEqual(22);
+      expect(course.mindMap.centreNote.length, course.slug).toBeLessThanOrEqual(30);
     }
   });
 
