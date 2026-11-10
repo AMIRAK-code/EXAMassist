@@ -105,21 +105,35 @@ describe('the graduate config', () => {
     expect(GRAD.sources[0].url).toContain('online-bocconi-test-international-graduate-applicants');
   });
 
-  it('does not copy the bachelor test’s unverified-for-graduate rules', () => {
+  it('follows the graduate rules PDF: three per screen, no going back, no calculator', () => {
     const section = GRAD.sections[0];
-    // No forward-only paging presented as the exam's rule.
-    expect(section.navigation.source).toBe('unverified');
-    expect(section.navigation.pageSize ?? null).toBeNull();
-    // No calculator rule presented as fact.
-    expect(section.calculator).toBe('unverified');
-    // No simulation without a verified navigation rule.
+    const rulesPdf = GRAD.sources.find((s) => s.url.includes('GR_Instructions'));
+    expect(rulesPdf).toBeDefined();
+    expect(section.navigation.source).toBe(rulesPdf!.url);
+    expect(section.navigation.pageSize).toBe(3);
+    expect(section.navigation.allowBackWithinPart).toBe(false);
+    expect(section.navigation.allowReturnToPreviousPart).toBe(false);
+    expect(section.navigation.reviewScreenEditable).toBe(false);
+    expect(section.navigation.enforcement).toBe('server');
+    expect(section.calculator).toBe('none');
+    // The timed block runs under the real rule; the study formats relax it.
+    const timed = GRAD.blueprints.find((b) => b.id === 'timed-online-test')!;
+    expect(timed.parts[0].navigationOverride).toBeNull();
+    for (const id of ['diagnostic', 'practice']) {
+      const blueprint = GRAD.blueprints.find((b) => b.id === id)!;
+      for (const part of blueprint.parts) expect(part.navigationOverride?.allowBackWithinPart, id).toBe(true);
+    }
+  });
+
+  it('offers no simulation while the -0.33 items are unpublished', () => {
     expect(GRAD.capabilities.fullSimulation.available).toBe(false);
     expect(GRAD.blueprints.some((b) => b.mode === 'simulation')).toBe(false);
     expect(GRAD.blueprints.some((b) => b.fidelity === 'exam_accurate')).toBe(false);
-    // Each gap is disclosed.
-    const unverified = GRAD.unverified.join(' ');
-    for (const gap of ['Navigation', 'answer options', '-0.33', 'Calculator', 'per area']) {
-      expect(unverified.toLowerCase()).toContain(gap.toLowerCase());
+    // The remaining gaps are disclosed; the ones the PDF settled are gone.
+    const unverified = GRAD.unverified.join(' ').toLowerCase();
+    for (const gap of ['-0.33', 'answer options', 'per area']) expect(unverified).toContain(gap);
+    for (const settled of ['calculator policy', 'navigation. whether', 'score report']) {
+      expect(unverified).not.toContain(settled);
     }
   });
 
@@ -202,12 +216,10 @@ describe('graduate readiness against the published floor of 15', () => {
     expect(projection.meetsOfficialFloor).toBe(false);
   });
 
-  it('assumes only the conditions verified for the graduate form', () => {
+  it('assumes the test-day conditions verified for the graduate form', () => {
     const grad = assessReadiness(inputFor(0.6)).target!.projection!;
     const gradText = englishList(grad.assumptions);
-    expect(gradText).toContain('75 minutes');
-    expect(gradText).not.toContain('no calculator');
-    expect(gradText).not.toContain('no going back');
+    expect(gradText).toContain('no calculator, 75 minutes, no going back');
     expect(gradText).toContain('-0.25');
     expect(english(grad.method)).toContain('-0.25 wrong');
 
