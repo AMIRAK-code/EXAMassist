@@ -19,6 +19,7 @@ import {
   practicePath,
 } from '@/lib/courses';
 import { internalLinks, lessonTexts, validateCourse } from '@/lib/courses/validate';
+import { renderInlineMarkdown } from '@/lib/markdown';
 
 const SITE = 'https://uniexamer.com';
 const saved = { ...process.env };
@@ -94,6 +95,28 @@ describe('course content', () => {
         expect(domain, lesson.slug).toBeDefined();
         const skill = url.searchParams.get('skill');
         if (skill) expect(domain!.skills.map((s) => s.slug), lesson.slug).toContain(skill);
+      }
+    }
+  });
+
+  it('typesets maths in objectives and titles without turning their other text into formatting', () => {
+    // These short fields go through InlineMarkdown on the lesson page, so a formula
+    // in them is typeset; everything outside the formulas must come out as written.
+    const decode = (html: string) =>
+      html.replace(/<[^>]+>/g, '').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;|&#x27;/g, "'").replace(/&amp;/g, '&');
+    for (const course of listAllCourses()) {
+      for (const lesson of course.units.flatMap((unit) => unit.lessons)) {
+        const fields = [
+          ...lesson.objectives,
+          ...lesson.examples.map((example) => example.title),
+          ...lesson.traps.map((trap) => trap.title),
+          ...lesson.check.map((question) => question.title),
+        ];
+        for (const field of fields) {
+          const words = field.replace(/\$[^$\n]+?\$/g, 'MATH');
+          expect(decode(renderInlineMarkdown(words)), `${course.slug}/${lesson.slug}: ${field}`).toBe(words);
+          if (field.includes('$')) expect(renderInlineMarkdown(field), `${course.slug}/${lesson.slug}: ${field}`).toContain('class="katex"');
+        }
       }
     }
   });
