@@ -1,0 +1,43 @@
+import { md, type Lesson } from '../../types';
+import { check, example } from './shared';
+
+export const graphsLesson: Lesson = {
+  slug: 'graphs-tables-and-justified-comparisons', title: 'Graphs, tables and justified comparisons',
+  summary: 'Read units and denominators before comparing data, distinguish totals from rates, and avoid conclusions that a graph cannot support.',
+  minutes: 18, objectives: ['Read values using labels, scales and units.', 'Compare counts and rates using the right denominators.', 'Separate a supported calculation from a causal claim.'],
+  teachMd: md`
+### Establish what each value measures
+
+A graph or table compresses information, but the labels determine what its numbers mean. Before calculating, identify the groups or time points, the measured quantity, its unit and any qualification in a caption. A column headed people is different from one headed hundreds of people. A percentage can describe a share of all respondents, a share within one subgroup or a change from an earlier value. Locate the denominator before treating two percentages as directly comparable.
+
+In a table, use row and column labels together to select a cell. Totals can refer to different dimensions: a row total might sum categories within one centre, while a column total sums a category across centres. Trace the required intersection with a finger or write down its labels. This small step prevents answering with a nearby total that looks plausible. If categories overlap, their counts cannot automatically be added to produce a number of distinct people.
+
+### Read the visual scale before judging the size of a change
+
+A bar chart commonly compares separate categories. A line chart often shows a sequence, such as measurements over time. The visual height or slope must be interpreted through the axis values. A truncated vertical axis can make a small numerical difference look large; uneven spacing on the horizontal axis can make equal-looking slopes correspond to different rates. Read the actual values and time intervals before describing growth as rapid or constant.
+
+A pie chart shows shares of a whole, so its categories should correspond to a defined total. A quarter of the circle represents one quarter of that total, not necessarily one quarter of another chart's larger total. Two charts can have the same percentage slice and different category counts. When moving from share to count, multiply the fraction by the relevant whole. When moving from count to share, divide by that same whole. Keep the unit attached throughout the calculation.
+
+### Compare like quantities
+
+A count answers how many; a rate compares that count with an exposure, population or time. A centre with more successful outcomes may also have many more participants. To compare success rates, divide successes by participants within each centre. To compare output per hour, divide each output by its own operating time. Do not use one centre's denominator for another centre's numerator. A larger count can accompany a smaller rate, so state precisely which comparison the question requests.
+
+Percentage change uses the earlier or stated reference value as its denominator. If a quantity rises from 40 to 50, the absolute increase is 10 and the percentage increase is 10 divided by 40, or 25%. A fall from 50 to 40 has the same absolute magnitude but is a 20% decrease because the reference is now 50. When a percentage itself rises from 40% to 50%, the increase is ten percentage points; the relative increase is still 25%.
+
+Combining groups requires their sizes. An overall rate is a weighted average of group rates, with weights proportional to the relevant denominators. Averaging two percentages equally is valid only when the group sizes are equal or the question explicitly requests an unweighted average of those percentages. A useful independent route is to add the underlying successes and divide by the combined participants. This often exposes an incorrectly averaged result immediately.
+
+### Restrict conclusions to the available evidence
+
+A graph can show that two variables changed together without proving that one caused the other. Other factors might influence both, or the direction of influence might differ from the proposed explanation. A before-and-after comparison without an appropriate comparison group does not by itself isolate the effect of an intervention. This does not make the data useless; it limits the conclusion that follows from them.
+
+Interpolation estimates a value between observed points using a stated assumption about the intervening pattern. Extrapolation extends beyond the observed range and needs additional caution. A line joining two points is not evidence that the underlying quantity followed an exactly straight path at every intermediate moment. In a short reasoning problem, distinguish an exact value read from the chart, a value calculated from supplied data and an estimate dependent on an assumption. Choose the claim with the support actually provided.
+`,
+  examples: [example('rate', 'Counts and success rates', 'Centre North records 36 successes from 60 participants; Centre South records 45 from 90. Compare counts and rates.', ['South has more successes because 45 exceeds 36.', 'North has rate 36/60 = 60%, while South has 45/90 = 50%.'], 'South has the larger success count, but North has the higher success rate.'), example('weighted', 'Combining unequal groups', 'One group has 8 successes from 10 attempts and another has 12 from 30. Find the combined rate.', ['Add successes: 8 + 12 = 20. Add attempts: 10 + 30 = 40.', 'Divide combined successes by combined attempts: 20/40 = 50%.'], 'The combined rate is 50%, not the unweighted mean of 80% and 40%, which is 60%.')],
+  traps: [{ title: 'Averaging rates without group sizes', md: 'The overall denominator gives the weights. Add underlying counts when available instead of averaging percentages equally.' }, { title: 'Claiming causation from matching trends', md: 'Parallel trends establish an association in the displayed data. A causal explanation needs evidence that addresses alternative causes.' }],
+  check: [
+    check('check-rate', 'Graphs and tables', 'A has 18 successes in 30 attempts and B has 28 in 40. Which comparison is supported?', [['A has more successes and a higher rate', 'A has fewer successes and its 60% rate is below 70%.'], ['B has more successes and a higher rate', ''], ['A has fewer successes but a higher rate', 'A has fewer successes, but its rate is also lower.'], ['Both have equal rates', '18/30 and 28/40 give different percentages.'], ['The rates cannot be calculated', 'Both success counts and attempt denominators are supplied.']], 'B', 'A has 18/30 = 60%; B has 28/40 = 70%. B also has the larger count, 28 rather than 18.', 'Compute each rate using its own denominator.'),
+    check('check-change', 'Percentage change in data', 'An index rises from 80 to 100. What is its percentage increase?', [['20%', 'Twenty is the absolute increase; the reference is eighty.'], ['80%', 'This repeats the starting value as a percentage.'], ['25%', ''], ['125%', 'This is the final value as a percentage of the initial value, not the increase.'], ['5%', 'This does not follow from dividing the increase by the initial value.']], 'C', 'The increase is 20 and the reference is 80. Therefore the percentage increase is 20/80 × 100 = 25%.', 'Use the reference value as the denominator of a percentage change.'),
+    check('check-cause', 'Interpreting graphic evidence', 'A chart shows that library visits and local rainfall rose during the same month. Which conclusion follows from that chart alone?', [['Rain caused the rise in library visits', 'Matching timing alone does not isolate a causal effect.'], ['Library visits caused the rainfall', 'The chart supplies no causal evidence for this direction.'], ['No other factor could have changed', 'The chart does not rule out other changing factors.'], ['Both displayed quantities increased', ''], ['The same pattern must continue next month', 'Past co-movement alone does not guarantee a future pattern.']], 'D', 'The chart supports the descriptive claim that both quantities rose. It does not establish why they rose or what happens next.', 'Choose the descriptive conclusion when causal evidence is absent.'),
+  ], takeaways: ['Read labels, units and denominators before calculating.', 'A larger count need not imply a larger rate.', 'Combine rates through underlying totals or appropriate weights.', 'Association alone does not establish causation.'],
+  practice: { examKey: 'tolc-f', domain: 'tolcf-logic', skill: 'tolcf-logic-graphs-tables' }, review: { aiAssisted: true, independentCheckOn: '2026-11-10', expertReview: null },
+};
