@@ -207,9 +207,9 @@ function bocconiProjection(
   const floorMatch = floorNote ? /lower than (\d+)/i.exec(floorNote) : null;
   const officialFloor = floorMatch ? Number(floorMatch[1]) : null;
 
-  // Test-day conditions, from what this config verifies. The graduate form
-  // publishes neither a calculator rule nor a navigation rule, so neither is
-  // assumed for it.
+  // Test-day conditions, from what this config verifies. A calculator ban or
+  // a no-going-back rule is stated only when the config records it as a
+  // verified rule (navigation.source not 'unverified').
   const sections = config.sections;
   const minutes = sections.reduce((total, section) => total + (section.officialTimeMinutes ?? 0), 0);
   const conditions = [
