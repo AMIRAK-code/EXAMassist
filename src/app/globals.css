@@ -487,3 +487,28 @@
     background: #fff;
   }
 }
+
+/* Course mind map (src/components/courses/course-mind-map.tsx). SVG groups
+   take keyboard focus, so their focus ring is drawn on the node itself. */
+.mind-map-branch:focus {
+  outline: none;
+}
+.mind-map-branch:focus-visible rect,
+.mind-map-lesson:focus-visible rect {
+  stroke: var(--color-ink);
+  stroke-width: 4;
+}
+.mind-map-lesson:hover rect {
+  fill: var(--color-accent-soft);
+}
+.mind-map-fade {
+  animation: mind-map-fade 0.25s ease-out;
+}
+@keyframes mind-map-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
