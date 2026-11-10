@@ -129,9 +129,10 @@ Exam facts: `docs/research/bocconi-master-facts-2026-11-09.md` only. Checks have
 | Unit file | Unit slug | Lessons |
 | --- | --- | --- |
 | getting-started.ts | getting-started | how-the-bocconi-master-test-works, scoring-pacing-and-guessing |
-| verbal-reasoning.ts | verbal-reasoning | reading-passages-for-structure, main-idea-and-author-purpose, detail-and-inference-questions, data-and-statements, argument-structure, assumptions, strengthen-and-weaken, flaws-and-evaluation |
-| data-insight.ts | data-insight | reading-tables, bar-and-line-charts, pie-charts-and-shares, percentages-and-growth-in-data, averages-and-weighted-data, combining-tables-and-charts, data-sufficiency-basics, data-sufficiency-pitfalls |
-| quantitative-reasoning.ts | quantitative-reasoning | numbers-and-divisibility, fractions-ratios-and-proportions, percentages-and-successive-changes, equations-and-systems, quadratics-and-inequalities, rates-work-and-mixtures, counting-and-probability, averages-and-basic-statistics |
+| verbal-reasoning.ts | verbal-reasoning | reading-passages-for-structure, main-idea-and-author-purpose, detail-and-inference-questions, data-and-statements, argument-structure, quantifiers-and-conditionals, assumptions, strengthen-and-weaken, flaws-and-evaluation, statistical-reasoning-flaws |
+| data-insight.ts | data-insight | reading-tables, bar-and-line-charts, pie-charts-and-shares, percentages-and-growth-in-data, compound-growth-over-several-years, averages-and-weighted-data, subgroups-and-aggregates, combining-tables-and-charts, data-sufficiency-basics, data-sufficiency-pitfalls |
+| quantitative-reasoning.ts | quantitative-reasoning | numbers-and-divisibility, fractions-ratios-and-proportions, percentages-and-successive-changes, interest-present-value-and-break-even, equations-and-systems, quadratics-and-inequalities, exponentials-logarithms-and-sequences, rates-work-and-mixtures, sets-and-overlaps, counting-and-probability, conditional-probability-and-expected-value, averages-and-basic-statistics |
+| beyond-basic-maths.ts | beyond-basic-maths | derivatives-and-optimisation, normal-distribution-and-hypothesis-tests (optional: topics in Bocconi's 2024 sample, not on the current page's description) |
 
 ## Independent check
 
