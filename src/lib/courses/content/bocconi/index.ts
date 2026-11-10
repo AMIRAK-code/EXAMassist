@@ -21,7 +21,7 @@ Applicants to Law and Global Law take a separate Law version with a different mi
 
 ### How to use the course
 
-The mathematics units are the largest because mathematics is almost half the test. Work through a unit in order, take each check before you open the answers, and use the practice link to apply the idea on fresh questions. Every question in this course is original and written for UniExamer; none comes from Bocconi, and difficulty is our editorial judgement.
+The mathematics units are the largest because mathematics is almost half the test. The mind map below shows the whole course at a glance, and the last unit, Quick revision, condenses it into tables, rules and drills for the final weeks. Work through a unit in order, take each check before you open the answers, and use the practice link to apply the idea on fresh questions. Every question in this course is original and written for UniExamer; none comes from Bocconi, and difficulty is our editorial judgement.
 `,
   publishedOn: '2026-11-04',
   updatedOn: '2026-11-04',
@@ -31,4 +31,21 @@ The mathematics units are the largest because mathematics is almost half the tes
     { label: 'Bocconi Online Test AY 2027/28: instructions and rules of conduct (PDF)', url: 'https://www.unibocconi.it/sites/default/files/media/attachments/Instructions%20and%20Rules%20of%20Conduct%2027%2028.pdf', publisher: 'Università Bocconi' },
   ],
   units: bocconiUnits,
+  mindMap: {
+    centre: 'Online Bocconi Test',
+    centreNote: '50 questions · 75 minutes',
+    // Mathematics is 24 of the 50 questions across five units, so those branches name the area only.
+    branchNotes: {
+      'getting-started': 'Format, scoring, guessing',
+      'numbers-and-sets': 'Mathematics',
+      algebra: 'Mathematics',
+      functions: 'Mathematics',
+      geometry: 'Mathematics',
+      'counting-probability-statistics': 'Mathematics',
+      reading: '11 questions',
+      'numerical-reasoning': '6 questions',
+      'critical-thinking': '9 questions',
+      'quick-revision': 'Tables, rules and drills',
+    },
+  },
 };
