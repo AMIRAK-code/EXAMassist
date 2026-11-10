@@ -7,7 +7,7 @@ import sitemap from '@/app/sitemap';
 import { organizationSchema, webSiteSchema } from '@/components/seo/json-ld';
 import { listGuides } from '@/lib/content/guides';
 import { courseLessons, coursePath, lessonPath, listCourses } from '@/lib/courses';
-import { EXAM_HUBS } from '@/lib/exams/registry';
+import { EXAM_HUBS, getConfigsForHub } from '@/lib/exams/registry';
 import { listHubContent } from '@/lib/exams/hub-content';
 import { SITE as SITE_CONFIG, googleSiteVerification } from '@/lib/site';
 import { LOCALES, localizePath, splitLocale } from '@/i18n/locales';
@@ -156,12 +156,13 @@ describe('the sitemap in production', () => {
     }
   });
 
-  it('dates an exam hub and its format guide by the hub’s own content when it changed after the facts were verified', () => {
+  it('dates an exam hub and its format guide by its own content or its facts check, whichever is newer', () => {
     production();
     const dated = (path: string) => (sitemap().find((entry) => entry.url === `${SITE}${path}`)!.lastModified as Date).toISOString().slice(0, 10);
     for (const [slug, content] of listHubContent()) {
-      expect(dated(`/exams/${slug}`), slug).toBe(content.updatedOn);
-      expect(dated(`/exams/${slug}/format`), slug).toBe(content.updatedOn);
+      const newest = [content.updatedOn, ...getConfigsForHub(slug).map((c) => c.verifiedOn)].sort().at(-1);
+      expect(dated(`/exams/${slug}`), slug).toBe(newest);
+      expect(dated(`/exams/${slug}/format`), slug).toBe(newest);
     }
   });
 
