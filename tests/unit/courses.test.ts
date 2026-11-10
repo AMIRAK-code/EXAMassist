@@ -32,8 +32,8 @@ describe('course content', () => {
     expect(issues.map((issue) => `${issue.where}: ${issue.problem}`)).toEqual([]);
   });
 
-  it('lists the five courses, each with dozens of published lessons', () => {
-    expect(listCourses().map((course) => course.slug)).toEqual(['gre', 'gmat', 'bocconi', 'bocconi-master', 'tolc-i']);
+  it('lists the seven courses, each with dozens of published lessons', () => {
+    expect(listCourses().map((course) => course.slug)).toEqual(['gre', 'gmat', 'bocconi', 'bocconi-master', 'tolc-i', 'tolc-e', 'tolc-f']);
     for (const course of listCourses()) expect(courseLessons(course).length, course.slug).toBeGreaterThanOrEqual(24);
   });
 

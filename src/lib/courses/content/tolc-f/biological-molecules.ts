@@ -1,0 +1,45 @@
+import { md, type Lesson } from '../../types';
+import { check, example } from './shared';
+
+export const moleculesLesson: Lesson = {
+  slug: 'biological-molecules-water-and-enzymes', title: 'Biological molecules, water and enzymes',
+  summary: 'Connect water and the major biological molecules with their functions, then explain how enzymes change reaction rates.',
+  minutes: 18,
+  objectives: ['Relate molecular structure to biological function.', 'Distinguish major classes of biological molecules.', 'Explain enzyme specificity and the effects of changing conditions.'],
+  teachMd: md`
+### Start with bonds and water
+
+Living systems use the same chemical principles as other matter. Carbon can form four covalent bonds, allowing chains, rings and branched frameworks. Hydrogen, oxygen, nitrogen, phosphorus and sulphur contribute to biological molecules in different combinations. An element alone does not identify a molecule's role: carbon occurs in sugars, fats, proteins and nucleic acids. Ask which atoms are connected, which groups project from the framework and how those groups interact with the surrounding water.
+
+Water is polar because its electrons are distributed unevenly and its molecular shape does not cancel that unevenness. Hydrogen bonds form between water molecules and suitable groups on other molecules. These interactions help water dissolve ions and many polar substances. Non-polar regions interact less favourably with water and tend to cluster together. This behaviour helps explain membrane assembly and protein folding. It does not mean that every carbon-containing molecule is insoluble or that every charged substance dissolves without limit.
+
+Water also requires considerable energy to change its temperature or evaporate. These properties help organisms moderate temperature changes and lose heat through evaporation. A solvent can take part in reactions as well as surround the reactants. Hydrolysis splits a bond using water, whereas condensation joins units with release of a small molecule, often water. Track the bond and the water molecule rather than treating these two reaction names as arbitrary vocabulary.
+
+### Connect the four major groups to their jobs
+
+Carbohydrates include simple sugars and polymers built from sugar units. Glucose can supply energy through controlled reactions. Starch and glycogen store glucose units, while cellulose supplies structural support in plant cell walls. All three are carbohydrate polymers, but differences in linkages and branching change their properties. Humans can digest starch with their own digestive enzymes; they lack the enzyme needed to break cellulose's characteristic links. A shared building block therefore does not guarantee a shared biological function.
+
+Lipids are a varied group with substantial non-polar regions. A triglyceride contains glycerol joined to three fatty acids and is useful for energy storage. A phospholipid has a polar head and non-polar tails. In water, many phospholipids organise into a bilayer with tails facing inward. Steroids have a different ring-based structure. Do not force every lipid into the triglyceride pattern. The distinction between storage lipids and membrane lipids is more useful than memorising that all fats merely supply fuel.
+
+Proteins are chains of amino acids joined by peptide bonds. Their sequence helps determine their folded shape, which in turn enables activities such as catalysis, transport, movement and signalling. Interactions between side chains and the environment stabilise the structure. Nucleic acids are nucleotide polymers. Each nucleotide includes a sugar, phosphate and nitrogenous base. DNA stores hereditary information; different RNA molecules help express and regulate it. ATP is a nucleotide used in energy transfer, rather than a long-term store equivalent to body fat.
+
+### Explain enzyme action with a reaction pathway
+
+An enzyme accelerates a reaction by providing a pathway with lower activation energy. It does not change the reaction's equilibrium position or create energy. Substrates interact with the active site, where the enzyme's structure supports the relevant transformation. The enzyme is regenerated and can participate again. Specificity depends on chemical interactions and shape, not simply on the substrate being small enough to fit through an opening.
+
+Increasing substrate concentration can increase reaction rate when free active sites are available. Eventually, at fixed enzyme concentration, the active sites spend nearly all their time occupied and the rate approaches a maximum. Adding still more substrate then has little effect. Temperature often increases rate over a limited range, but excessive heat can disrupt the enzyme's structure and reduce activity. Changes in pH can alter charges and interactions. Interpret an activity curve by identifying the conditions held constant: a rate change alone does not prove that enzyme molecules have been destroyed.
+`,
+  examples: [
+    example('membrane', 'Predicting a membrane arrangement', 'A molecule has a charged head and two long non-polar tails. Explain its likely arrangement in water.', ['The head interacts favourably with water, while the tails avoid extensive contact with it.', 'A bilayer places heads on both aqueous surfaces and tails together in the interior.'], 'A phospholipid bilayer is plausible; a layer with tails exposed to water is less favourable.'),
+    example('saturation', 'Interpreting an enzyme plateau', 'With fixed enzyme concentration, doubling an already high substrate concentration barely changes rate. Why?', ['At high substrate concentration, most active sites are already occupied.', 'The enzyme supply and turnover now limit rate, so extra substrate cannot greatly increase it.'], 'The enzyme is approaching saturation; the plateau does not by itself imply denaturation.'),
+  ],
+  traps: [{ title: 'Equating building block with function', md: 'Starch and cellulose share glucose building blocks but differ in linkages. Identify the structure before predicting digestibility.' }, { title: 'Giving enzymes an energy supply role', md: 'A catalyst lowers an activation barrier. It does not make an energetically unfavourable reaction favourable by supplying energy.' }],
+  check: [
+    check('check-polymer', 'Biological molecules', 'Which pair correctly matches a polymer with its building units?', [['Protein — amino acids', ''], ['Protein — fatty acids', 'Fatty acids are components of several lipids, not the monomers of proteins.'], ['DNA — glucose', 'DNA is assembled from nucleotides rather than glucose units.'], ['Cellulose — amino acids', 'Cellulose is a carbohydrate made from glucose units.'], ['Glycogen — nucleotides', 'Glycogen stores linked glucose units, not nucleotides.']], 'A', 'Peptide bonds join amino acids into proteins. The other pairs substitute units from a different molecular class.', 'Identify the repeating unit before naming a polymer.'),
+    check('check-catalyst', 'Enzymes', 'What does an enzyme change for a reaction it catalyses?', [['The equilibrium constant', 'A catalyst accelerates approach to equilibrium without changing that equilibrium.'], ['The activation energy of an available pathway', ''], ['The identity of the chemical elements', 'Chemical catalysis does not change one element into another.'], ['The total number of atoms conserved', 'Atoms remain conserved in catalysed reactions.'], ['The free energy difference between reactants and products', 'The reaction endpoints retain their free energy difference.']], 'B', 'An enzyme offers a lower-barrier pathway. Both forward and reverse reactions can accelerate while the equilibrium and reaction energy difference remain unchanged.', 'Separate the speed of a reaction from its energetic endpoints.'),
+    check('check-lipid', 'Membrane lipids', 'Which feature explains why phospholipids can form bilayers in water?', [['They contain only non-polar groups', 'Phospholipids also have polar heads that interact with water.'], ['They have peptide backbones', 'Peptide backbones characterise proteins rather than phospholipids.'], ['They have polar heads and non-polar tails', ''], ['They are chains of nucleotides', 'Nucleotide chains form nucleic acids, not phospholipids.'], ['They convert all water into oil', 'Assembly rearranges molecules without chemically converting water to oil.']], 'C', 'Heads can remain exposed to water on each face while tails cluster inside. This arrangement follows from having both polar and non-polar regions.', 'Use interactions with water to predict molecular organisation.'),
+  ],
+  takeaways: ['Structure and bonding explain biological function.', 'Proteins contain amino acids; nucleic acids contain nucleotides.', 'Phospholipids have both water-interacting and non-polar regions.', 'Enzymes lower activation barriers without changing equilibrium.'],
+  practice: { examKey: 'tolc-f', domain: 'tolcf-biology', skill: 'tolcf-bio-molecules' },
+  review: { aiAssisted: true, independentCheckOn: '2026-11-10', expertReview: null },
+};

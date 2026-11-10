@@ -146,6 +146,30 @@ Exam facts come from `docs/research/cisia-tolc.md` and `src/lib/exams/configs/to
 | sciences.ts | sciences | vectors-motion-and-inclined-planes, energy-fluids-and-ideal-gases, charges-circuits-and-optics, atoms-bonds-and-reacting-amounts, solutions-equilibrium-and-ph |
 | verbal-comprehension.ts | verbal-comprehension | cohesion-and-inference, stated-information-and-meaning-in-context |
 
+### TOLC-E (`/courses/tolc-e`, practice exam `tolc-e`)
+
+Exam facts come from `docs/research/cisia-tolc.md` and the TOLC-E configuration. Shared teaching is independently checked with its course-specific practice mapping.
+
+| Unit file | Unit slug | Lessons |
+| --- | --- | --- |
+| getting-started.ts | getting-started | how-the-tolc-e-works |
+| logic.ts | logic | implications-and-conditions, quantifiers-negation-and-venn-diagrams, constraints-guarantees-and-flows, sequences-and-patterns, arguments-assumptions-and-evidence |
+| verbal-comprehension.ts | verbal-comprehension | stated-information-and-meaning-in-context, cohesion-and-inference, purpose-and-passage-structure, reading-claims-and-comparisons |
+| mathematics.ts | mathematics | real-numbers-powers-and-radicals, ratios-percentages-and-divisibility, polynomial-division-and-factorisation, linear-equations-and-modelling, quadratic-equations-and-inequalities, rational-inequalities-and-systems, radical-and-absolute-value-inequalities, exponential-and-logarithmic-equations, plane-geometry-triangles-and-circles, solid-geometry-and-scaling, coordinates-lines-and-distances, circles-parabolas-ellipses-and-hyperbolas, function-domains-inverses-and-transformations, exponential-and-logarithmic-graphs |
+
+### TOLC-F (`/courses/tolc-f`, practice exam `tolc-f`)
+
+Exam facts come from `docs/research/cisia-tolc.md` and the TOLC-F configuration. Lessons cover its five main sections, with an introduction and practice links into every domain.
+
+| Unit file | Unit slug | Lessons |
+| --- | --- | --- |
+| getting-started.ts | getting-started | how-the-tolc-f-works |
+| biology.ts | biology | biological-molecules-water-and-enzymes, biodiversity-classification-and-viruses, cells-organelles-and-membrane-transport, cell-division-dna-and-inheritance, photosynthesis-respiration-and-fermentation, ecosystems-food-webs-and-populations, human-organ-systems-and-homeostasis |
+| chemistry.ts | chemistry | atoms-bonds-and-reacting-amounts, inorganic-compounds-formulas-and-names, oxidation-numbers-and-electron-transfer, solutions-equilibrium-and-ph, carbon-bonding-isomers-and-functional-groups |
+| mathematics.ts | mathematics | real-numbers-powers-and-radicals, ratios-percentages-and-divisibility, polynomial-division-and-factorisation, quadratic-equations-and-inequalities, rational-inequalities-and-systems, radical-and-absolute-value-inequalities, exponential-and-logarithmic-equations, plane-geometry-triangles-and-circles, solid-geometry-and-scaling, coordinates-lines-and-distances, circles-parabolas-ellipses-and-hyperbolas, function-domains-inverses-and-transformations, exponential-and-logarithmic-graphs, unit-circle-and-trigonometric-equations, sine-and-cosine-rules, weighted-means-and-probability, factorials-combinations-and-probability |
+| physics.ts | physics | physical-quantities-units-and-errors, vectors-motion-and-inclined-planes, energy-fluids-and-ideal-gases, charges-circuits-and-optics, magnetic-forces-waves-and-thin-lenses |
+| logic.ts | logic | implications-and-conditions, quantifiers-negation-and-venn-diagrams, constraints-guarantees-and-flows, sequences-and-patterns, graphs-tables-and-justified-comparisons |
+
 ## Independent check
 
 The checker reads each lesson cold and, for every worked example and check
