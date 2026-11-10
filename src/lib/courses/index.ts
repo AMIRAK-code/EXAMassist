@@ -2,6 +2,9 @@ import { bocconiCourse } from './content/bocconi';
 import { bocconiMasterCourse } from './content/bocconi-master';
 import { gmatCourse } from './content/gmat';
 import { greCourse } from './content/gre';
+import { tolcICourse } from './content/tolc-i';
+import { tolcECourse } from './content/tolc-e';
+import { tolcFCourse } from './content/tolc-f';
 import type { Course, CourseSlug, Lesson, Unit } from './types';
 
 export type { Course, CourseSlug, Lesson, Unit } from './types';
@@ -11,7 +14,7 @@ export type { Course, CourseSlug, Lesson, Unit } from './types';
  * published only once its independent check is recorded (types.ts); the
  * pages, the sitemap and llms.txt read only what these functions return.
  */
-const ALL_COURSES: readonly Course[] = [greCourse, gmatCourse, bocconiCourse, bocconiMasterCourse];
+const ALL_COURSES: readonly Course[] = [greCourse, gmatCourse, bocconiCourse, bocconiMasterCourse, tolcICourse, tolcECourse, tolcFCourse];
 
 export function isPublished(lesson: Lesson): boolean {
   return lesson.review.independentCheckOn !== null;
