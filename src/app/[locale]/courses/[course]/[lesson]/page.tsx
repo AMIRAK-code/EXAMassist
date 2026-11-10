@@ -8,7 +8,7 @@ import { freeTestPath } from '@/lib/billing/config';
 import { CONTENT_LANG, pageAlternates } from '@/i18n/alternates';
 import { localizePath, type Locale } from '@/i18n/locales';
 import { SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
-import { Markdown } from '@/components/content';
+import { InlineMarkdown, Markdown } from '@/components/content';
 import { LessonCheck } from '@/components/courses/lesson-check';
 import { Breadcrumbs, ButtonLink, Card, Container, PageHeader } from '@/components/ui';
 import { JsonLd, breadcrumbSchema, lessonSchema } from '@/components/seo/json-ld';
@@ -112,7 +112,9 @@ export default async function LessonPage({ params }: Props) {
           </h2>
           <ul className="mt-2 list-disc space-y-1 ps-5">
             {lesson.objectives.map((objective) => (
-              <li key={objective}>{objective}</li>
+              <li key={objective}>
+                <InlineMarkdown source={objective} />
+              </li>
             ))}
           </ul>
         </section>
@@ -131,7 +133,7 @@ export default async function LessonPage({ params }: Props) {
           {lesson.examples.map((example, index) => (
             <div key={example.id} className="mt-6 rounded-card border border-line bg-surface p-5 sm:p-6">
               <h3 id={example.id} className="scroll-mt-24 font-heading text-xl font-semibold">
-                {tl('example', { number: index + 1 })}: {example.title}
+                {tl('example', { number: index + 1 })}: <InlineMarkdown source={example.title} />
               </h3>
               <Markdown source={example.problemMd} className="prose-academic mt-3 font-serif" />
               <ol className="mt-4 space-y-3 border-s-2 border-line ps-4 font-serif">
@@ -159,7 +161,9 @@ export default async function LessonPage({ params }: Props) {
           <ul className="mt-4 space-y-4">
             {lesson.traps.map((trap) => (
               <li key={trap.title} className="rounded-card border border-caution-line bg-caution-soft p-5">
-                <h3 className="font-heading text-lg font-semibold">{trap.title}</h3>
+                <h3 className="font-heading text-lg font-semibold">
+                  <InlineMarkdown source={trap.title} />
+                </h3>
                 <Markdown source={trap.md} className="prose-academic mt-1 font-serif" />
               </li>
             ))}

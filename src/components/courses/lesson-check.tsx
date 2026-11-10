@@ -25,7 +25,7 @@ export async function LessonCheck({ questions }: { questions: CheckQuestion[] })
         return (
           <div key={question.id} className="mt-6 rounded-card border border-line bg-surface p-5 sm:p-6">
             <h3 id={question.id} className="scroll-mt-24 font-heading text-lg font-semibold">
-              {t('question', { number })}: {question.title}
+              {t('question', { number })}: <InlineMarkdown source={question.title} />
             </h3>
             <p className="mt-1 text-sm text-ink-muted">{question.topic}</p>
             {question.stimulusMd ? <Markdown source={question.stimulusMd} className="prose-academic mt-4 overflow-x-auto font-serif" /> : null}
