@@ -4,6 +4,7 @@ import { md, type Lesson } from '../../types';
 export const flawsAndEvaluationLesson: Lesson = {
   slug: 'flaws-and-evaluation',
   title: 'Flaws and evaluation: naming what is wrong and what would settle it',
+  metaTitle: 'Flaws and evaluation: what is wrong and what would settle it',
   summary: 'Recognise the common reasoning flaws, describe them in the abstract wording options use, and find the fact that would best test an argument.',
   minutes: 22,
   objectives: [

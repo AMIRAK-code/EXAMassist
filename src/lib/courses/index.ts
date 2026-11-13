@@ -83,6 +83,69 @@ export function lessonPath(course: Pick<Course, 'slug'> | CourseSlug, lesson: Pi
   return `${coursePath(course)}/${lesson.slug}`;
 }
 
+/** What a course adds to a lesson it shares: its own practice link and its own review record. */
+const COURSE_OWN_FIELDS: ReadonlySet<string> = new Set<keyof Lesson>(['practice', 'review']);
+
+/** Deep equality for plain data, quick when the two share objects, as an adapted lesson does with its source. */
+function sameValue(a: unknown, b: unknown): boolean {
+  if (a === b) return true;
+  if (typeof a !== 'object' || typeof b !== 'object' || a === null || b === null) return false;
+  if (Array.isArray(a) !== Array.isArray(b)) return false;
+  const keys = Object.keys(a);
+  if (keys.length !== Object.keys(b).length) return false;
+  return keys.every((key) => Object.hasOwn(b, key) && sameValue((a as Record<string, unknown>)[key], (b as Record<string, unknown>)[key]));
+}
+
+/** Whether two lessons teach the same thing word for word: every field except the course's own. */
+function sameTeaching(a: Lesson, b: Lesson): boolean {
+  const teaching = (lesson: Lesson) => Object.fromEntries(Object.entries(lesson).filter(([key]) => !COURSE_OWN_FIELDS.has(key)));
+  return sameValue(teaching(a), teaching(b));
+}
+
+/**
+ * The canonical path of every lesson in `courses`, keyed by its own path.
+ * TOLC-E and TOLC-F reuse TOLC-I's shared lessons unchanged (only the
+ * practice link and review record differ: content/tolc-e/adapt.ts,
+ * content/tolc-f/shared.ts), so the same article is at two or three
+ * addresses. Each copy stays in its own course for readers, but names the
+ * first course's copy (in `courses` order) as canonical, and only that copy
+ * goes in the sitemap. Lessons that merely share a slug (GRE and GMAT
+ * "probability") teach different things and keep their own canonical, and a
+ * copy rewritten for its own course gets its own canonical by itself.
+ */
+export function canonicalLessonPaths(courses: readonly Course[]): Map<string, string> {
+  const canonical = new Map<string, string>();
+  const seen = new Map<string, Array<{ lesson: Lesson; path: string }>>();
+  for (const course of courses) {
+    for (const lesson of courseLessons(course)) {
+      const path = lessonPath(course, lesson);
+      const earlier = seen.get(lesson.slug) ?? [];
+      canonical.set(path, earlier.find((other) => sameTeaching(other.lesson, lesson))?.path ?? path);
+      seen.set(lesson.slug, [...earlier, { lesson, path }]);
+    }
+  }
+  return canonical;
+}
+
+let publishedCanonicalPaths: Map<string, string> | undefined;
+
+/**
+ * The path that names where a published lesson's text lives in search: its
+ * own path, or the path of the identical lesson in an earlier course. Only
+ * published lessons count, so a copy in a later course stands in while the
+ * first course's copy is a draft.
+ */
+export function canonicalLessonPath(course: Pick<Course, 'slug'> | CourseSlug, lesson: Pick<Lesson, 'slug'>): string {
+  publishedCanonicalPaths ??= canonicalLessonPaths(COURSES);
+  const path = lessonPath(course, lesson);
+  return publishedCanonicalPaths.get(path) ?? path;
+}
+
+/** Whether a lesson is its text's canonical page, so belongs in the sitemap. */
+export function isCanonicalLesson(course: Pick<Course, 'slug'> | CourseSlug, lesson: Pick<Lesson, 'slug'>): boolean {
+  return canonicalLessonPath(course, lesson) === lessonPath(course, lesson);
+}
+
 /** The app's topic practice for a lesson (paid; the page says so). */
 export function practicePath(lesson: Lesson): string {
   const { examKey, domain, skill } = lesson.practice;

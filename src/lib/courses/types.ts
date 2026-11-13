@@ -87,6 +87,12 @@ export interface Lesson {
   /** URL slug, unique within the course: /courses/<course>/<slug>. */
   slug: string;
   title: string;
+  /**
+   * A shorter title for search results, required when `title` is longer than
+   * 60 characters (TITLE_BUDGET, src/lib/seo/title.ts), so Google does not cut
+   * it off. The page's heading keeps `title`.
+   */
+  metaTitle?: string;
   /** One or two sentences: the lesson's promise. Used as the meta description (≤ 160 characters). */
   summary: string;
   /** Honest time to read the lesson and work the check, in minutes. */
@@ -116,7 +122,13 @@ export interface Unit {
 export interface Course {
   slug: CourseSlug;
   title: string;
-  /** For search results when `title` runs long. */
+  /**
+   * The course in a lesson page's <title>, after the lesson's own title:
+   * the exam and the word course ("TOLC-I course"), at most 24 characters,
+   * so it fits beside most lessons (src/lib/seo/title.ts).
+   */
+  shortTitle: string;
+  /** The course page's <title>, at most 60 characters (TITLE_BUDGET). */
   metaTitle: string;
   /** Meta description, at most about 160 characters. */
   description: string;

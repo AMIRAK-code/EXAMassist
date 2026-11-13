@@ -4,6 +4,7 @@ import { tolcEUnits } from './units';
 export const tolcECourse: Course = {
   slug: 'tolc-e',
   title: 'TOLC-E economics admission test course',
+  shortTitle: 'TOLC-E course',
   metaTitle: 'Free TOLC-E course for economics applicants',
   description: 'Prepare for the TOLC-E with 24 lessons in logic, verbal comprehension and mathematics, original worked examples and five-option checks.',
   examKeys: ['tolc-e'],

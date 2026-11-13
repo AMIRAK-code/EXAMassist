@@ -4,6 +4,7 @@ import { md, type Lesson } from '../../types';
 export const statisticalReasoningFlawsLesson: Lesson = {
   slug: 'statistical-reasoning-flaws',
   title: 'Statistical flaws: base rates, self-selection and the conjunction trap',
+  metaTitle: 'Statistical reasoning flaws: base rates and self-selection',
   summary: 'Spot shares read as rates, self-selected volunteers and over-detailed stories in short arguments, and know which facts weaken or strengthen each.',
   minutes: 22,
   objectives: [

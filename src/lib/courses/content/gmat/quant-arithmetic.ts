@@ -5,6 +5,7 @@ import { md, type Lesson, type Unit } from '../../types';
 const numberProperties: Lesson = {
   slug: 'number-properties',
   title: 'Number properties: primes, divisibility, remainders and parity',
+  metaTitle: 'Number properties: primes, divisibility, remainders, parity',
   summary: 'Use prime factorisation, divisibility rules, remainders and odd-even rules to settle integer questions in a line instead of a page of arithmetic.',
   minutes: 20,
   objectives: [

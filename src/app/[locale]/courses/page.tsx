@@ -6,6 +6,7 @@ import { getHub } from '@/lib/exams/registry';
 import { CONTENT_LANG, pageAlternates } from '@/i18n/alternates';
 import { localizePath, type Locale } from '@/i18n/locales';
 import { shareImages, SITE, siteUrl } from '@/lib/site';
+import { pageTitle } from '@/lib/seo/title';
 import { Breadcrumbs, ButtonLink, Card, Container, PageHeader } from '@/components/ui';
 import { JsonLd, breadcrumbSchema } from '@/components/seo/json-ld';
 
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: 'courses.index.meta' });
   const alternates = await pageAlternates(params, PATH);
   return {
-    title: t('title'),
+    title: pageTitle(t('title')),
     description: t('description'),
     alternates,
     openGraph: {
