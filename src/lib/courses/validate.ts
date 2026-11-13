@@ -1,6 +1,10 @@
 import katex from 'katex';
 import { getExamConfig } from '@/lib/exams/registry';
+import { TITLE_BUDGET } from '@/lib/seo/title';
 import type { Course, Lesson } from './types';
+
+/** A course's short name sits beside each lesson title in the page's <title> (types.ts). */
+const SHORT_TITLE_MAX = 24;
 
 /**
  * Structural and editorial checks for a course: run by tests/unit/courses.test.ts
@@ -64,6 +68,8 @@ export function validateLesson(lesson: Lesson, where: string): CourseIssue[] {
 
   if (!SLUG.test(lesson.slug)) fail(`slug "${lesson.slug}" is not kebab-case`);
   if (!lesson.title.trim()) fail('empty title');
+  if (lesson.title.length > TITLE_BUDGET && !lesson.metaTitle) fail(`title is ${lesson.title.length} characters; give a metaTitle of at most ${TITLE_BUDGET} for search results`);
+  if (lesson.metaTitle !== undefined && (!lesson.metaTitle.trim() || lesson.metaTitle.length > TITLE_BUDGET)) fail(`metaTitle is ${lesson.metaTitle.length} characters; keep it between 1 and ${TITLE_BUDGET}`);
   if (lesson.summary.length < 50 || lesson.summary.length > 160) fail(`summary is ${lesson.summary.length} characters; keep it between 50 and 160`);
   if (!Number.isInteger(lesson.minutes) || lesson.minutes < 5 || lesson.minutes > 45) fail(`minutes ${lesson.minutes} is outside 5–45`);
   if (lesson.objectives.length < 2 || lesson.objectives.length > 4) fail(`${lesson.objectives.length} objectives; write 2–4`);
@@ -136,6 +142,8 @@ export function validateCourse(course: Course): CourseIssue[] {
   const issues: CourseIssue[] = [];
   const fail = (problem: string, where = course.slug) => issues.push({ where, problem });
   if (course.description.length > 160) fail(`description is ${course.description.length} characters; keep it to 160`);
+  if (course.metaTitle.length > TITLE_BUDGET) fail(`metaTitle is ${course.metaTitle.length} characters; keep it to ${TITLE_BUDGET}`);
+  if (course.shortTitle.length > SHORT_TITLE_MAX) fail(`shortTitle is ${course.shortTitle.length} characters; keep it to ${SHORT_TITLE_MAX}`);
   if (!DATE.test(course.publishedOn) || !DATE.test(course.updatedOn)) fail('dates must be YYYY-MM-DD');
   if (course.updatedOn < course.publishedOn) fail('updatedOn is before publishedOn');
   if (course.sources.length === 0) fail('a course cites the official sources for its exam facts');

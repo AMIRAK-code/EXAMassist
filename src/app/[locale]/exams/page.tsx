@@ -9,6 +9,7 @@ import { examCoverage } from '@/lib/attempts/availability';
 import { buildHomeData } from '@/lib/home/home-data';
 import { FormatAvailabilityTable } from '@/components/exams/format-availability';
 import { shareImages, SITE, siteUrl } from '@/lib/site';
+import { pageTitle } from '@/lib/seo/title';
 import { Badge, Breadcrumbs, ButtonLink, Card, Container, PageHeader } from '@/components/ui';
 import { JsonLd, breadcrumbSchema } from '@/components/seo/json-ld';
 
@@ -23,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description = t('metaDescription');
   const alternates = (await pageAlternates(params, '/exams'));
   return {
-    title,
+    title: pageTitle(title),
     description,
     alternates,
     openGraph: { url: alternates.canonical, title: `${title} | ${SITE.shortName}`, description, images: shareImages('site', title) },

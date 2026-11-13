@@ -5,7 +5,8 @@ import { gmatUnits } from './units';
 export const gmatCourse: Course = {
   slug: 'gmat',
   title: 'GMAT Focus Edition course',
-  metaTitle: 'Free GMAT Focus course: Quant, Verbal and Data Insights lessons',
+  shortTitle: 'GMAT course',
+  metaTitle: 'Free GMAT Focus course: Quant, Verbal and Data Insights',
   description: 'A free GMAT Focus Edition course: lessons with worked examples, traps and quick checks for Quantitative Reasoning, Verbal Reasoning and Data Insights.',
   examKeys: ['gmat'],
   hubSlug: 'gmat',

@@ -5,6 +5,7 @@ import { md, type Lesson } from '../../types';
 export const dataInsightsCalculatorPacingLesson: Lesson = {
   slug: 'data-insights-calculator-and-pacing',
   title: 'Data Insights: when to use the calculator, and how to pace 20 questions',
+  metaTitle: 'Data Insights: calculator use and pacing 20 questions',
   summary: 'Decide when the on-screen calculator helps and when estimating is faster, catch keying slips, and pace 20 questions in 45 minutes with checkpoints.',
   minutes: 16,
   objectives: [

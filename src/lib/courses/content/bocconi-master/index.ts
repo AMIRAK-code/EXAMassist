@@ -5,7 +5,8 @@ import { bocconiMasterUnits } from './units';
 export const bocconiMasterCourse: Course = {
   slug: 'bocconi-master',
   title: 'Bocconi master’s admission test course',
-  metaTitle: 'Free Bocconi master’s test course: verbal, data insight and quant',
+  shortTitle: 'Bocconi master’s course',
+  metaTitle: 'Free Bocconi master’s course: verbal, data insight, quant',
   description: 'A free course for the Online Bocconi Test for MSc and MA applicants: verbal reasoning, data insight and quantitative reasoning, with worked examples.',
   examKeys: ['bocconi-graduate'],
   hubSlug: 'bocconi-master',

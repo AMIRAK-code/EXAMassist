@@ -4,6 +4,7 @@ import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/serve
 import { listGuides } from '@/lib/content/guides';
 import { getHub } from '@/lib/exams/registry';
 import { shareImages, SITE, siteUrl } from '@/lib/site';
+import { pageTitle } from '@/lib/seo/title';
 import { Breadcrumbs, Card, Container, PageHeader } from '@/components/ui';
 import { JsonLd, breadcrumbSchema } from '@/components/seo/json-ld';
 import { pageAlternates } from '@/i18n/alternates';
@@ -18,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: 'guides.index.meta' });
   const alternates = (await pageAlternates(params, PATH));
   return {
-    title: t('title'),
+    title: pageTitle(t('title')),
     description: t('description'),
     alternates,
     openGraph: {

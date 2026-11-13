@@ -3,6 +3,7 @@ import { md, type Lesson } from '../../types';
 export const linesAndAnglesLesson: Lesson = {
   slug: 'lines-and-angles',
   title: 'Lines and angles: vertical angles, parallels and transversals',
+  metaTitle: 'Lines and angles: vertical angles, parallels, transversals',
   summary: 'Find unknown angles from straight lines, crossing lines and parallels cut by a transversal, and read a figure for what it states, not what it looks like.',
   minutes: 18,
   objectives: [

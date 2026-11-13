@@ -3,6 +3,7 @@ import { md, type Lesson } from '../../types';
 export const quadraticEquationsLesson: Lesson = {
   slug: 'quadratic-equations',
   title: 'Quadratic equations: factoring, the formula and the discriminant',
+  metaTitle: 'Quadratic equations: factoring, formula and discriminant',
   summary: 'Solve quadratics by factoring or by the formula, keep both roots, read the discriminant, and use the sum and product of roots as a shortcut.',
   minutes: 22,
   objectives: [

@@ -8,6 +8,7 @@ import { freeTestPath } from '@/lib/billing/config';
 import { CONTENT_LANG, pageAlternates } from '@/i18n/alternates';
 import { localizePath, type Locale } from '@/i18n/locales';
 import { SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
+import { pageTitle } from '@/lib/seo/title';
 import { Markdown } from '@/components/content';
 import { CourseMindMap } from '@/components/courses/course-mind-map';
 import { Breadcrumbs, ButtonLink, Card, Container, PageHeader } from '@/components/ui';
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!course) return {};
   const alternates = await pageAlternates(params, coursePath(course));
   return {
-    title: course.metaTitle,
+    title: pageTitle(course.metaTitle),
     description: course.description,
     alternates,
     openGraph: {

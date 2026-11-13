@@ -1,6 +1,6 @@
 import { EXAM_HUBS, getConfigsForHub } from '@/lib/exams/registry';
 import { listGuides } from '@/lib/content/guides';
-import { courseLessons, coursePath, lessonCount, lessonPath, listCourses } from '@/lib/courses';
+import { canonicalLessonPath, courseLessons, coursePath, lessonCount, listCourses } from '@/lib/courses';
 import { INDEPENDENCE_NOTICE, SITE, absoluteUrl } from '@/lib/site';
 import { SUPPORT } from '@/lib/support';
 
@@ -49,10 +49,11 @@ export function llmsTxt(): string {
     '',
     '## Courses',
     '',
-    link('Courses', '/courses', 'free, structured courses for the GRE, the GMAT and the Bocconi bachelor’s admission test.'),
+    // Names no exam itself, so it never falls behind the list of courses that follows.
+    link('Courses', '/courses', `${listCourses().length} free, structured courses with worked examples, common traps and quick checks, each listed below with its lessons.`),
     ...listCourses().flatMap((course) => [
       link(course.title, coursePath(course), `${course.description} ${lessonCount(course)} lessons.`),
-      ...courseLessons(course).map((lesson) => `  ${link(lesson.title, lessonPath(course, lesson), lesson.summary)}`),
+      ...courseLessons(course).map((lesson) => `  ${link(lesson.title, canonicalLessonPath(course, lesson), lesson.summary)}`),
     ]),
     '',
     `## About ${SITE.name}`,

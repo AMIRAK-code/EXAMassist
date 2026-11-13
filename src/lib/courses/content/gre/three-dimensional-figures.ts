@@ -3,6 +3,7 @@ import { md, type Lesson } from '../../types';
 export const threeDimensionalLesson: Lesson = {
   slug: 'three-dimensional-figures',
   title: 'Three-dimensional figures: volume, surface area and diagonals',
+  metaTitle: 'Three-dimensional figures: volume, surface area, diagonals',
   summary: 'Find volumes and surface areas of boxes, cubes, cylinders and prisms, scale them correctly, and count how many objects really fit inside.',
   minutes: 20,
   objectives: [

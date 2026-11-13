@@ -4,6 +4,7 @@ import { md, type Lesson } from '../../types';
 export const planAndDiscrepancyQuestions: Lesson = {
   slug: 'plan-and-discrepancy-questions',
   title: 'Plan and discrepancy questions: will it work, and how can both be true?',
+  metaTitle: 'Plan and discrepancy questions in GMAT Critical Reasoning',
   summary: 'Judge whether a plan will reach its goal, and explain an apparent paradox by finding the fact that lets both surprising statements be true.',
   minutes: 22,
   objectives: [

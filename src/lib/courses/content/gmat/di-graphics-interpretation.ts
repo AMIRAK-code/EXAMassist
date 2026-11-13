@@ -5,6 +5,7 @@ import { md, type Lesson } from '../../types';
 export const graphicsInterpretationLesson: Lesson = {
   slug: 'graphics-interpretation',
   title: 'Graphics Interpretation: line graphs, bar and pie charts, scatter plots and curves',
+  metaTitle: 'Graphics Interpretation: line, bar, pie and scatter charts',
   summary: 'Read the axes, scale and legend first, then turn a graph into the few numbers a question needs: changes, shares, gaps from a trend line, areas.',
   minutes: 22,
   objectives: [

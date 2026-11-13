@@ -7,6 +7,7 @@ import type { Locale } from '@/i18n/locales';
 import { EXAM_HUBS, getConfigsForHub, getHub } from '@/lib/exams/registry';
 import { describePolicy } from '@/lib/assessment/navigation';
 import { shareImages, SITE, siteUrl } from '@/lib/site';
+import { pageTitle } from '@/lib/seo/title';
 import { guidesForHub } from '@/lib/content/guides';
 import { Callout, Alert, Breadcrumbs, ButtonLink, Card, Container } from '@/components/ui';
 import { JsonLd, articleSchema, breadcrumbSchema } from '@/components/seo/json-ld';
@@ -42,7 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const alternates = (await pageAlternates(params, `/exams/${hub.slug}/format`));
 
   return {
-    title,
+    title: pageTitle(title),
     description,
     alternates,
     openGraph: {

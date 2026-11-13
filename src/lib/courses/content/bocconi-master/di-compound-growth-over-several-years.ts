@@ -5,6 +5,7 @@ import { md, type Lesson } from '../../types';
 export const compoundGrowthOverSeveralYearsLesson: Lesson = {
   slug: 'compound-growth-over-several-years',
   title: 'Growth over several years: compounding and average annual rates',
+  metaTitle: 'Compound growth over several years and average annual rates',
   summary: 'Turn several years of growth into one multiplier, find the average annual rate from first and last values, and estimate powers and doubling times by hand.',
   minutes: 22,
   objectives: [

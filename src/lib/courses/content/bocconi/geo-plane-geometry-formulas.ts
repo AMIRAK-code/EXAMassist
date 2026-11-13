@@ -3,6 +3,7 @@ import { md, type Lesson } from '../../types';
 export const planeGeometryFormulasLesson: Lesson = {
   slug: 'plane-geometry-formulas',
   title: 'Plane geometry formulas: triangles, circles and quadrilaterals',
+  metaTitle: 'Plane geometry formulas: triangles, circles, quadrilaterals',
   summary: 'Know the area and perimeter formulas for triangles, circles, squares, trapezoids and rhombi, and find the missing length each one needs.',
   minutes: 20,
   objectives: [

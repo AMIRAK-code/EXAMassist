@@ -5,7 +5,7 @@ import { BOCCONI_HUB_SLUG } from '@/lib/exams/bocconi-landing';
 import { hubUpdatedOn } from '@/lib/exams/hub-content';
 import { absoluteUrl, indexingEnabled } from '@/lib/site';
 import { listGuides } from '@/lib/content/guides';
-import { courseLessons, coursePath, courseUpdatedOn, lessonPath, listCourses } from '@/lib/courses';
+import { courseLessons, coursePath, courseUpdatedOn, isCanonicalLesson, lessonPath, listCourses } from '@/lib/courses';
 import { PAGE_DATES } from '@/lib/content/page-dates';
 import { contentLocales, languageAlternates } from '@/i18n/alternates';
 
@@ -68,9 +68,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   // A lesson's date is when its independent check was recorded, or the course's own date if later.
+  // A lesson shared word for word with an earlier course is listed once, at that course's copy.
   for (const course of courses) {
     entries.push(page(coursePath(course), courseUpdatedOn(course), 'monthly', 0.8));
-    for (const lesson of courseLessons(course)) {
+    for (const lesson of courseLessons(course).filter((lesson) => isCanonicalLesson(course, lesson))) {
       entries.push(page(lessonPath(course, lesson), latest([course.updatedOn, lesson.review.independentCheckOn ?? undefined]), 'monthly', 0.6));
     }
   }

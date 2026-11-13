@@ -5,6 +5,7 @@ import { md, type Lesson } from '../../types';
 export const tableAnalysisLesson: Lesson = {
   slug: 'table-analysis',
   title: 'Table Analysis: reading a data table for exactly what is asked',
+  metaTitle: 'Table Analysis: reading a data table for what is asked',
   summary: 'Read a spreadsheet-style table column by column, test each statement against the right figures, and keep rates, counts and averages apart.',
   minutes: 20,
   objectives: [

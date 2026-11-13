@@ -3,6 +3,7 @@ import { tolcFUnits } from './units';
 
 export const tolcFCourse: Course = {
   slug: 'tolc-f', title: 'TOLC-F pharmacy admission test course',
+  shortTitle: 'TOLC-F course',
   metaTitle: 'Free TOLC-F course for pharmacy applicants',
   description: 'Study TOLC-F biology, chemistry, mathematics, physics and logic with original worked examples, five-option checks and linked practice.',
   examKeys: ['tolc-f'], hubSlug: 'cisia-tolc', examPublisher: 'CISIA',

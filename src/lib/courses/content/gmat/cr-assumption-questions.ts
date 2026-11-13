@@ -4,6 +4,7 @@ import { md, type Lesson } from '../../types';
 export const assumptionQuestions: Lesson = {
   slug: 'assumption-questions',
   title: 'Assumption questions: the unstated premise and the negation test',
+  metaTitle: 'Assumption questions: unstated premise and the negation test',
   summary: 'Find the unstated premise an argument cannot do without, and use the negation test to confirm it and reject options that are merely helpful.',
   minutes: 22,
   objectives: [

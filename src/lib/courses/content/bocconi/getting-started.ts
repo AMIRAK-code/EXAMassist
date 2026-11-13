@@ -10,6 +10,7 @@ import { md, type Lesson, type Unit } from '../../types';
 const howTheBocconiTestWorks: Lesson = {
   slug: 'how-the-bocconi-test-works',
   title: 'How the Online Bocconi Test works: format, scoring and pacing',
+  metaTitle: 'How the Online Bocconi Test works: format, scoring, pacing',
   summary: 'The 50 questions, the four areas, three questions per screen with no going back, the scoring rules and the 17-point floor, and a pacing plan.',
   minutes: 18,
   objectives: [
@@ -189,6 +190,7 @@ The average hides a spread. Some questions take 30 seconds and some take three m
 const negativeMarkingAndGuessing: Lesson = {
   slug: 'negative-marking-and-guessing',
   title: 'Negative marking and guessing: the expected value of an answer',
+  metaTitle: 'Negative marking and guessing: expected value of an answer',
   summary: 'Work out exactly what a guess is worth under the −0.2 and −0.33 penalties, how elimination changes it, and how much risk a guess carries.',
   minutes: 18,
   objectives: [
