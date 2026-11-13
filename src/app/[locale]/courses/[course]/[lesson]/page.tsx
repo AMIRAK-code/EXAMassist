@@ -2,12 +2,13 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
-import { courseLessons, coursePath, getLesson, lessonPath, listCourses, practicePath } from '@/lib/courses';
+import { canonicalLessonPath, courseLessons, coursePath, getLesson, lessonPath, listCourses, practicePath } from '@/lib/courses';
 import { getExamConfig } from '@/lib/exams/registry';
 import { freeTestPath } from '@/lib/billing/config';
 import { CONTENT_LANG, pageAlternates } from '@/i18n/alternates';
 import { localizePath, type Locale } from '@/i18n/locales';
 import { SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
+import { pageTitle } from '@/lib/seo/title';
 import { InlineMarkdown, Markdown } from '@/components/content';
 import { LessonCheck } from '@/components/courses/lesson-check';
 import { Breadcrumbs, ButtonLink, Card, Container, PageHeader } from '@/components/ui';
@@ -34,10 +35,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const found = getLesson(courseSlug, lessonSlug);
   if (!found) return {};
   const { course, lesson } = found;
-  const alternates = await pageAlternates(params, lessonPath(course, lesson));
+  // A lesson shared word for word with an earlier course names that course's copy (src/lib/courses).
+  const alternates = await pageAlternates(params, canonicalLessonPath(course, lesson));
   const title = `${lesson.title} | ${course.title}`;
   return {
-    title,
+    // The lesson first, then its course's short name and the site's, as far as they fit.
+    title: pageTitle(lesson.metaTitle ?? lesson.title, course.shortTitle),
     description: lesson.summary,
     alternates,
     openGraph: {

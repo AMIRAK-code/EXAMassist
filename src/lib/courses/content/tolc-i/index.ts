@@ -4,6 +4,7 @@ import { tolcIUnits } from './units';
 export const tolcICourse: Course = {
   slug: 'tolc-i',
   title: 'TOLC-I engineering admission test course',
+  shortTitle: 'TOLC-I course',
   metaTitle: 'Free TOLC-I course for engineering applicants',
   description: 'Study for the TOLC-I with 28 free lessons in mathematics, logic, sciences and verbal comprehension, with worked examples and five-option checks.',
   examKeys: ['tolc-i'],

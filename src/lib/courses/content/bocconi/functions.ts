@@ -177,6 +177,7 @@ In multiple-choice function questions, wrong options tend to come from predictab
 const graphsLesson: Lesson = {
   slug: 'graphs-of-elementary-functions',
   title: 'Graphs of powers, exponentials, logarithms and absolute value',
+  metaTitle: 'Graphs of powers, exponentials, logs and absolute value',
   summary: 'Know the shape of each elementary graph, move it with shifts and reflections, and count solutions of an equation by counting where two graphs meet.',
   minutes: 24,
   objectives: [

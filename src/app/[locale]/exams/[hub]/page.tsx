@@ -8,6 +8,7 @@ import { getDb } from '@/lib/db';
 import { EXAM_HUBS, getConfigsForHub, getHub } from '@/lib/exams/registry';
 import { blueprintAvailability, examCoverage } from '@/lib/attempts/availability';
 import { shareImages, SITE, siteUrl } from '@/lib/site';
+import { pageTitle } from '@/lib/seo/title';
 import {
   Alert,
   Breadcrumbs,
@@ -63,7 +64,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description = content?.metaDescription ?? hub.metaDescription;
   const alternates = (await pageAlternates(params, `/exams/${hub.slug}`));
   return {
-    title,
+    title: pageTitle(title),
     description,
     alternates,
     openGraph: {
@@ -90,7 +91,7 @@ async function bocconiMetadata(locale: Locale): Promise<Metadata> {
   const description = t('bocconiMetaDescription', { count: counts });
   const alternates = languageAlternates(`/exams/${BOCCONI_HUB_SLUG}`, locale);
   return {
-    title,
+    title: pageTitle(title),
     description,
     alternates,
     openGraph: { url: alternates.canonical, title: `${title} | ${SITE.shortName}`, description, type: 'website', images: shareImages(`exam-${BOCCONI_HUB_SLUG}`, title) },

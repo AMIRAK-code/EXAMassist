@@ -5,7 +5,8 @@ import { greUnits } from './units';
 export const greCourse: Course = {
   slug: 'gre',
   title: 'GRE General Test course',
-  metaTitle: 'Free GRE course: Verbal, Quant and Analytical Writing lessons',
+  shortTitle: 'GRE course',
+  metaTitle: 'Free GRE course: Verbal, Quant and Analytical Writing',
   description: 'A free GRE course: lessons with worked examples, common traps and quick checks for Verbal Reasoning, Quantitative Reasoning and the Issue essay.',
   examKeys: ['gre'],
   hubSlug: 'gre',

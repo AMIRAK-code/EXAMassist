@@ -4,6 +4,7 @@ import { md, type Lesson } from '../../types';
 export const argumentAnatomy: Lesson = {
   slug: 'argument-anatomy',
   title: 'Argument anatomy: conclusion, premises and the gap between them',
+  metaTitle: 'Argument anatomy: conclusion, premises and the gap',
   summary: 'Take any Critical Reasoning argument apart into conclusion, premises, background and counterpoint, and find the gap that most questions ask about.',
   minutes: 20,
   objectives: [

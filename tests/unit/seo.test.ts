@@ -6,7 +6,7 @@ import robots from '@/app/robots';
 import sitemap from '@/app/sitemap';
 import { organizationSchema, webSiteSchema } from '@/components/seo/json-ld';
 import { listGuides } from '@/lib/content/guides';
-import { courseLessons, coursePath, lessonPath, listCourses } from '@/lib/courses';
+import { courseLessons, coursePath, isCanonicalLesson, lessonPath, listCourses } from '@/lib/courses';
 import { EXAM_HUBS, getConfigsForHub } from '@/lib/exams/registry';
 import { listHubContent } from '@/lib/exams/hub-content';
 import { SITE as SITE_CONFIG, googleSiteVerification } from '@/lib/site';
@@ -51,7 +51,11 @@ const ENGLISH_ONLY = [
   ...EXAM_HUBS.filter((hub) => hub.slug !== 'bocconi-online-test').map((hub) => `/exams/${hub.slug}`).filter((path) => !PARTLY_TRANSLATED[path]),
   ...EXAM_HUBS.map((hub) => `/exams/${hub.slug}/format`),
   ...listGuides().map((guide) => `/guides/${guide.slug}`),
-  ...listCourses().flatMap((course) => [coursePath(course), ...courseLessons(course).map((lesson) => lessonPath(course, lesson))]),
+  // A lesson shared word for word with an earlier course is listed once, at that course's copy.
+  ...listCourses().flatMap((course) => [
+    coursePath(course),
+    ...courseLessons(course).filter((lesson) => isCanonicalLesson(course, lesson)).map((lesson) => lessonPath(course, lesson)),
+  ]),
 ];
 
 describe('robots.txt in production', () => {

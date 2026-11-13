@@ -17,6 +17,7 @@ const PRACTICE_DOMAIN = 'bocconi-ug-mathematics';
 const algebraicExpressionsAndIdentities: Lesson = {
   slug: 'algebraic-expressions-and-identities',
   title: 'Algebraic expressions: powers, radicals, polynomials and identities',
+  metaTitle: 'Algebra: powers, radicals, polynomials and identities',
   summary: 'Use the rules of powers and radicals, the special products and the remainder theorem to simplify expressions by hand, without a calculator.',
   minutes: 22,
   objectives: [
