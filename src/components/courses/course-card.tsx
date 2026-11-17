@@ -1,6 +1,6 @@
 import NextLink from 'next/link';
 import { getLocale, getTranslations } from 'next-intl/server';
-import { lessonCount, listCourses } from '@/lib/courses';
+import { lessonCount, listCourses } from '@/lib/courses/catalogue';
 import { courseHref } from '@/lib/courses/languages';
 import { Card, buttonClass } from '@/components/ui';
 

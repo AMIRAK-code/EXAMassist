@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
-import { courseLessons, courseMinutes, coursePath, courseUpdatedOn, getCourse, lessonCount, lessonLang, lessonPath, listCourses } from '@/lib/courses';
+import { courseLessons, courseMinutes, coursePath, courseUpdatedOn, getCourse, lessonCount, lessonLang, lessonPath, listCourses } from '@/lib/courses/catalogue';
 import { getHub } from '@/lib/exams/registry';
 import { freeTestPath } from '@/lib/billing/config';
 import { CONTENT_LANG, pageAlternates } from '@/i18n/alternates';

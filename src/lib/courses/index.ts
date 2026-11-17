@@ -7,8 +7,16 @@ import { tolcECourse } from './content/tolc-e';
 import { tolcFCourse } from './content/tolc-f';
 import { imatCourse } from './content/imat';
 import type { Course, CourseLang, CourseSlug, Lesson, Unit } from './types';
+import { courseLessons, lessonPath } from './view';
 
 export type { Course, CourseLang, CourseSlug, Lesson, Unit } from './types';
+export { courseLessons, courseMinutes, coursePath, courseUpdatedOn, lessonCount, lessonPath, practicePath } from './view';
+
+/*
+ * The whole course catalogue, content included, for Node only: validation,
+ * tests and scripts/export-courses.ts. The app reads the exported data
+ * instead (catalogue.ts, lesson-data.ts; view.ts says why).
+ */
 
 /**
  * Every course, in the order the course index lists them. A lesson is
@@ -115,18 +123,6 @@ export function courseContentLangs(path: string): CourseLang[] | undefined {
   return langs;
 }
 
-export function courseLessons(course: Course): Lesson[] {
-  return course.units.flatMap((unit) => unit.lessons);
-}
-
-export function lessonCount(course: Course): number {
-  return courseLessons(course).length;
-}
-
-export function courseMinutes(course: Course): number {
-  return courseLessons(course).reduce((sum, lesson) => sum + lesson.minutes, 0);
-}
-
 export interface LessonInCourse {
   course: Course;
   unit: Unit;
@@ -145,14 +141,6 @@ export function getLesson(courseSlug: string, lessonSlug: string, locale?: strin
   if (index < 0) return undefined;
   const unit = course.units.find((u) => u.lessons.includes(all[index]))!;
   return { course, unit, lesson: all[index], number: index + 1, previous: all[index - 1] ?? null, next: all[index + 1] ?? null };
-}
-
-export function coursePath(course: Pick<Course, 'slug'> | CourseSlug): string {
-  return `/courses/${typeof course === 'string' ? course : course.slug}`;
-}
-
-export function lessonPath(course: Pick<Course, 'slug'> | CourseSlug, lesson: Pick<Lesson, 'slug'>): string {
-  return `${coursePath(course)}/${lesson.slug}`;
 }
 
 /** What a course adds to a lesson it shares: its own practice link and its own review record. */
@@ -216,16 +204,4 @@ export function canonicalLessonPath(course: Pick<Course, 'slug'> | CourseSlug, l
 /** Whether a lesson is its text's canonical page, so belongs in the sitemap. */
 export function isCanonicalLesson(course: Pick<Course, 'slug'> | CourseSlug, lesson: Pick<Lesson, 'slug'>): boolean {
   return canonicalLessonPath(course, lesson) === lessonPath(course, lesson);
-}
-
-/** The app's topic practice for a lesson (paid; the page says so). */
-export function practicePath(lesson: Lesson): string {
-  const { examKey, domain, skill } = lesson.practice;
-  const query = new URLSearchParams({ domain, ...(skill ? { skill } : {}) });
-  return `/practice/${examKey}?${query.toString()}`;
-}
-
-/** The latest date anything in a course changed: its own date or a lesson's check. */
-export function courseUpdatedOn(course: Course): string {
-  return [course.updatedOn, ...courseLessons(course).map((lesson) => lesson.review.independentCheckOn ?? '')].sort().at(-1)!;
 }

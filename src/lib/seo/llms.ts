@@ -1,6 +1,6 @@
 import { EXAM_HUBS, getConfigsForHub } from '@/lib/exams/registry';
 import { listGuides } from '@/lib/content/guides';
-import { canonicalLessonPath, courseLessons, coursePath, lessonCount, listCourses } from '@/lib/courses';
+import { canonicalLessonPath, courseLessons, coursePath, lessonCount, listCourses } from '@/lib/courses/catalogue';
 import { INDEPENDENCE_NOTICE, SITE, absoluteUrl } from '@/lib/site';
 import { SUPPORT } from '@/lib/support';
 

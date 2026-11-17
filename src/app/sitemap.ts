@@ -5,7 +5,7 @@ import { BOCCONI_HUB_SLUG } from '@/lib/exams/bocconi-landing';
 import { hubUpdatedOn } from '@/lib/exams/hub-content';
 import { absoluteUrl, indexingEnabled } from '@/lib/site';
 import { listGuides } from '@/lib/content/guides';
-import { courseLessons, coursePath, courseUpdatedOn, isCanonicalLesson, lessonPath, listCourses } from '@/lib/courses';
+import { courseLessons, coursePath, courseUpdatedOn, isCanonicalLesson, lessonPath, listCourses } from '@/lib/courses/catalogue';
 import { PAGE_DATES } from '@/lib/content/page-dates';
 import { contentLocales, languageAlternates } from '@/i18n/alternates';
 
