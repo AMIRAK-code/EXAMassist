@@ -5,16 +5,17 @@ import { greCourse } from './content/gre';
 import { tolcICourse } from './content/tolc-i';
 import { tolcECourse } from './content/tolc-e';
 import { tolcFCourse } from './content/tolc-f';
-import type { Course, CourseSlug, Lesson, Unit } from './types';
+import { imatCourse } from './content/imat';
+import type { Course, CourseLang, CourseSlug, Lesson, Unit } from './types';
 
-export type { Course, CourseSlug, Lesson, Unit } from './types';
+export type { Course, CourseLang, CourseSlug, Lesson, Unit } from './types';
 
 /**
  * Every course, in the order the course index lists them. A lesson is
  * published only once its independent check is recorded (types.ts); the
  * pages, the sitemap and llms.txt read only what these functions return.
  */
-const ALL_COURSES: readonly Course[] = [greCourse, gmatCourse, bocconiCourse, bocconiMasterCourse, tolcICourse, tolcECourse, tolcFCourse];
+const ALL_COURSES: readonly Course[] = [greCourse, gmatCourse, bocconiCourse, bocconiMasterCourse, tolcICourse, tolcECourse, tolcFCourse, imatCourse];
 
 export function isPublished(lesson: Lesson): boolean {
   return lesson.review.independentCheckOn !== null;
@@ -28,19 +29,90 @@ function published(course: Course): Course {
   return { ...course, units };
 }
 
-const COURSES: readonly Course[] = ALL_COURSES.map(published).filter((course) => course.units.length > 0);
+/** The language each published lesson object is written in (a localized course mixes them while a translation is in progress). */
+const LESSON_LANG = new WeakMap<Lesson, CourseLang>();
+
+/**
+ * A published course in a translation's language: the translation's own
+ * text for the course and each unit, and for each published lesson its
+ * translation when that is published too, otherwise the original lesson.
+ * Undefined when nothing of the translation is published yet.
+ */
+function localized(original: Course, translation: Course): Course | undefined {
+  const lang = translation.lang ?? 'en';
+  const translatedUnits = new Map(translation.units.map((unit) => [unit.slug, unit]));
+  let translatedLessons = 0;
+  const units = original.units.map((unit) => {
+    const own = translatedUnits.get(unit.slug);
+    const lessons = unit.lessons.map((lesson) => {
+      const translated = own?.lessons.find((other) => other.slug === lesson.slug);
+      if (!translated || !isPublished(translated)) return lesson;
+      LESSON_LANG.set(translated, lang);
+      translatedLessons += 1;
+      return translated;
+    });
+    return { ...unit, title: own?.title ?? unit.title, summary: own?.summary ?? unit.summary, lessons };
+  });
+  if (translatedLessons === 0) return undefined;
+  const { translations: _none, ...rest } = translation;
+  return { ...rest, units };
+}
+
+function publishCourse(course: Course): Course {
+  const original = published(course);
+  for (const lesson of courseLessons(original)) LESSON_LANG.set(lesson, course.lang ?? 'en');
+  const translations: Course['translations'] = {};
+  for (const [lang, translation] of Object.entries(course.translations ?? {}) as Array<[Exclude<CourseLang, 'en'>, Course]>) {
+    const version = localized(original, translation);
+    if (version) translations[lang] = version;
+  }
+  return { ...original, translations };
+}
+
+const COURSES: readonly Course[] = ALL_COURSES.map(publishCourse).filter((course) => course.units.length > 0);
 
 /** Every course with its drafts, for validation only. */
 export function listAllCourses(): readonly Course[] {
   return ALL_COURSES;
 }
 
-export function listCourses(): readonly Course[] {
-  return COURSES;
+/**
+ * Every published course, in `locale`'s version where the course is written
+ * in that language, otherwise in its own language.
+ */
+export function listCourses(locale?: string): readonly Course[] {
+  return locale ? COURSES.map((course) => inLocale(course, locale)) : COURSES;
 }
 
-export function getCourse(slug: string): Course | undefined {
-  return COURSES.find((course) => course.slug === slug);
+function inLocale(course: Course, locale: string): Course {
+  return course.translations?.[locale as Exclude<CourseLang, 'en'>] ?? course;
+}
+
+export function getCourse(slug: string, locale?: string): Course | undefined {
+  const course = COURSES.find((c) => c.slug === slug);
+  return course && locale ? inLocale(course, locale) : course;
+}
+
+/** The language a published lesson is written in. */
+export function lessonLang(lesson: Lesson): CourseLang {
+  return LESSON_LANG.get(lesson) ?? 'en';
+}
+
+/**
+ * The languages a course page or lesson page exists in (src/i18n/alternates.ts):
+ * the course's own language and each published translation of it. Undefined
+ * for a path that is not a published course or lesson.
+ */
+export function courseContentLangs(path: string): CourseLang[] | undefined {
+  const match = /^\/courses\/([^/]+)(?:\/([^/]+))?$/.exec(path);
+  const course = match ? COURSES.find((c) => c.slug === match[1]) : undefined;
+  if (!match || !course) return undefined;
+  const langs: CourseLang[] = [course.lang ?? 'en'];
+  for (const [lang, version] of Object.entries(course.translations ?? {}) as Array<[CourseLang, Course]>) {
+    const lesson = match[2] ? courseLessons(version).find((l) => l.slug === match[2]) : undefined;
+    if (!match[2] || (lesson && lessonLang(lesson) === lang)) langs.push(lang);
+  }
+  return langs;
 }
 
 export function courseLessons(course: Course): Lesson[] {
@@ -65,8 +137,8 @@ export interface LessonInCourse {
   next: Lesson | null;
 }
 
-export function getLesson(courseSlug: string, lessonSlug: string): LessonInCourse | undefined {
-  const course = getCourse(courseSlug);
+export function getLesson(courseSlug: string, lessonSlug: string, locale?: string): LessonInCourse | undefined {
+  const course = getCourse(courseSlug, locale);
   if (!course) return undefined;
   const all = courseLessons(course);
   const index = all.findIndex((lesson) => lesson.slug === lessonSlug);

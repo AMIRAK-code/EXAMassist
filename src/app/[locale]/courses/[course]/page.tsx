@@ -2,10 +2,11 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
-import { courseLessons, courseMinutes, coursePath, courseUpdatedOn, getCourse, lessonCount, lessonPath, listCourses } from '@/lib/courses';
+import { courseLessons, courseMinutes, coursePath, courseUpdatedOn, getCourse, lessonCount, lessonLang, lessonPath, listCourses } from '@/lib/courses';
 import { getHub } from '@/lib/exams/registry';
 import { freeTestPath } from '@/lib/billing/config';
 import { CONTENT_LANG, pageAlternates } from '@/i18n/alternates';
+import { CourseProgressSummary, LessonDoneTick } from '@/components/courses/interactive';
 import { localizePath, type Locale } from '@/i18n/locales';
 import { SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
 import { pageTitle } from '@/lib/seo/title';
@@ -24,8 +25,8 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { course: slug } = await params;
-  const course = getCourse(slug);
+  const { locale, course: slug } = await params;
+  const course = getCourse(slug, locale);
   if (!course) return {};
   const alternates = await pageAlternates(params, coursePath(course));
   return {
@@ -44,8 +45,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function CoursePage({ params }: Props) {
   const { locale, course: slug } = await params;
   setRequestLocale(locale);
-  const course = getCourse(slug);
+  // The course in this locale's language when it is written in it (the IMAT course in Italian), else in its own.
+  const course = getCourse(slug, locale);
   if (!course) notFound();
+  const lang = course.lang ?? CONTENT_LANG;
 
   const t = await getTranslations('courses');
   const hub = getHub(course.hubSlug);
@@ -83,7 +86,7 @@ export default async function CoursePage({ params }: Props) {
       />
       <Breadcrumbs trail={trail} />
 
-      <div lang={CONTENT_LANG} className="max-w-3xl">
+      <div lang={lang} className="max-w-3xl">
         <PageHeader eyebrow={t('course.eyebrow', { exam: hub?.label ?? course.examPublisher })} title={course.title} lead={course.description}>
           <p className="text-sm text-ink-subtle">{summary}</p>
           <div className="mt-4 flex flex-wrap gap-3">
@@ -97,6 +100,17 @@ export default async function CoursePage({ params }: Props) {
         </PageHeader>
 
         <Markdown source={course.introMd} className="prose-academic font-serif" />
+
+        {course.interactive ? (
+          <div className="mt-6">
+            <CourseProgressSummary
+              course={course.slug}
+              lessons={lessons.map((lesson) => lesson.slug)}
+              label={t('course.progress')}
+              empty={t('course.progressEmpty')}
+            />
+          </div>
+        ) : null}
       </div>
 
       {course.mindMap ? (
@@ -105,7 +119,7 @@ export default async function CoursePage({ params }: Props) {
             {t('mindMap.title')}
           </h2>
           <p className="mt-1 max-w-3xl text-ink-muted">{t('mindMap.lead')}</p>
-          <div className="mt-6" lang={CONTENT_LANG}>
+          <div className="mt-6" lang={lang}>
             <CourseMindMap
               centre={course.mindMap.centre}
               centreNote={course.mindMap.centreNote}
@@ -140,10 +154,10 @@ export default async function CoursePage({ params }: Props) {
               <li key={unit.slug} id={unit.slug} className="scroll-mt-24">
                 <Card as="section" className="sm:p-6">
                   <p className="eyebrow">{t('course.unit', { number: unitIndex + 1 })}</p>
-                  <h3 lang={CONTENT_LANG} className="mt-1 font-heading text-xl font-semibold">
+                  <h3 lang={lang} className="mt-1 font-heading text-xl font-semibold">
                     {unit.title}
                   </h3>
-                  <p lang={CONTENT_LANG} className="mt-2 max-w-3xl text-ink-muted">
+                  <p lang={lang} className="mt-2 max-w-3xl text-ink-muted">
                     {unit.summary}
                   </p>
                   <ol className="mt-4 divide-y divide-line border-t border-line">
@@ -151,10 +165,11 @@ export default async function CoursePage({ params }: Props) {
                       <li key={lesson.slug} className="flex items-baseline gap-3 py-3">
                         <span className="w-7 shrink-0 text-end text-sm tabular-nums text-ink-subtle">{first + index + 1}.</span>
                         <span className="min-w-0 flex-1">
-                          <Link lang={CONTENT_LANG} href={lessonPath(course, lesson)} className="font-semibold">
+                          <Link lang={lessonLang(lesson)} href={lessonPath(course, lesson)} className="font-semibold">
                             {lesson.title}
                           </Link>
-                          <span lang={CONTENT_LANG} className="mt-0.5 block text-sm text-ink-muted">
+                          {course.interactive ? <LessonDoneTick course={course.slug} lesson={lesson.slug} label={t('course.done')} /> : null}
+                          <span lang={lessonLang(lesson)} className="mt-0.5 block text-sm text-ink-muted">
                             {lesson.summary}
                           </span>
                         </span>
@@ -187,7 +202,7 @@ export default async function CoursePage({ params }: Props) {
         <ol className="mt-3 space-y-2 text-sm">
           {course.sources.map((source) => (
             <li key={source.url}>
-              <a href={source.url} rel="noopener noreferrer" target="_blank" lang={CONTENT_LANG}>
+              <a href={source.url} rel="noopener noreferrer" target="_blank" lang={lang}>
                 {source.label}
                 <span className="sr-only"> {t('course.opensInNewTab')}</span>
               </a>{' '}

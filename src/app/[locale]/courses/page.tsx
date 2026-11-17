@@ -38,7 +38,7 @@ export default async function CoursesPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations('courses');
-  const courses = listCourses();
+  const courses = listCourses(locale);
   const trail = [{ href: '/', label: t('breadcrumbs.home') }, { label: t('breadcrumbs.courses') }];
   const ldTrail = trail.map((crumb) => (crumb.href ? { ...crumb, href: localizePath(crumb.href, locale as Locale) } : crumb));
 
@@ -54,12 +54,12 @@ export default async function CoursesPage({ params }: Props) {
           return (
             <Card as="li" key={course.slug} className="flex flex-col">
               <p className="eyebrow">{hub?.label ?? course.examPublisher}</p>
-              <h2 lang={CONTENT_LANG} className="mt-1 font-heading text-xl font-semibold">
+              <h2 lang={course.lang ?? CONTENT_LANG} className="mt-1 font-heading text-xl font-semibold">
                 <Link href={coursePath(course)} className="no-underline hover:underline">
                   {course.title}
                 </Link>
               </h2>
-              <p lang={CONTENT_LANG} className="mt-2 flex-1 text-ink-muted">
+              <p lang={course.lang ?? CONTENT_LANG} className="mt-2 flex-1 text-ink-muted">
                 {course.description}
               </p>
               <p className="mt-3 text-sm text-ink-subtle">

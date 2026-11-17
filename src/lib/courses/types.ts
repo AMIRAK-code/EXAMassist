@@ -13,8 +13,10 @@
  *
  * Text is Markdown with KaTeX maths ($...$ inline, $$...$$ displayed),
  * rendered by src/lib/markdown.ts. Lesson files write it with String.raw
- * (`md` below) so that TeX backslashes stay as written. Content is English;
- * the interface around it is translated (messages/<locale>/courses.json).
+ * (`md` below) so that TeX backslashes stay as written. Content is English,
+ * except where a course carries a full translation (Course.translations: the
+ * IMAT course in Italian); the interface around it is translated
+ * (messages/<locale>/courses.json).
  *
  * Review states (docs/COURSE-AUTHORING.md): a lesson is drafted with AI
  * assistance, then every worked example and check question is re-solved by
@@ -29,7 +31,18 @@ import type { SampleQuestion } from '@/lib/content/guides';
 /** Markdown with TeX: String.raw, so `\frac` stays `\frac`. */
 export const md = String.raw;
 
-export type CourseSlug = 'gre' | 'gmat' | 'bocconi' | 'bocconi-master' | 'tolc-i' | 'tolc-e' | 'tolc-f';
+export type CourseSlug = 'gre' | 'gmat' | 'bocconi' | 'bocconi-master' | 'tolc-i' | 'tolc-e' | 'tolc-f' | 'imat';
+
+/** The languages a course's own text can be written in. */
+export type CourseLang = 'en' | 'it';
+
+/** A two-sided recall card: a cue on the front, the fact or method on the back. */
+export interface Flashcard {
+  /** Markdown, short: a question, term or cue. */
+  front: string;
+  /** Markdown: the answer, one to three sentences. */
+  back: string;
+}
 
 export interface CourseSource {
   label: string;
@@ -106,6 +119,12 @@ export interface Lesson {
   check: CheckQuestion[];
   /** 3–5 one-line takeaways. */
   takeaways: string[];
+  /**
+   * Recall cards for the lesson's facts and methods, 4–8 of them. Required in
+   * an interactive course (Course.interactive), where they are drawn as a
+   * flip-card deck; optional elsewhere.
+   */
+  flashcards?: Flashcard[];
   practice: PracticeLink;
   review: LessonReview;
 }
@@ -146,6 +165,24 @@ export interface Course {
   /** Official sources for every fact about the exam the course states. */
   sources: CourseSource[];
   units: Unit[];
+  /** The language the course's text is written in; English when absent. */
+  lang?: CourseLang;
+  /**
+   * The same course written in another language, unit for unit and lesson for
+   * lesson: the same slugs in the same order, the same minutes and practice
+   * links. Its pages are that language's version of the course
+   * (/it/courses/<slug>/…), and the two name each other as alternates. A
+   * lesson whose translation is not yet published is shown in the course's
+   * own language there.
+   */
+  translations?: Partial<Record<Exclude<CourseLang, 'en'>, Course>>;
+  /**
+   * Interactive lessons: checks answered by selecting an option with instant
+   * feedback, worked examples revealed one step at a time, flip-card decks,
+   * and progress kept in the reader's browser. Every lesson then needs
+   * flashcards (validate.ts).
+   */
+  interactive?: boolean;
   /**
    * An interactive mind map of the course on its page
    * (src/components/courses/course-mind-map.tsx): the test in the centre,

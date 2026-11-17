@@ -14,8 +14,10 @@ import {
   courseLessons,
   coursePath,
   getCourse,
+  courseContentLangs,
   getLesson,
   isCanonicalLesson,
+  lessonLang,
   isPublished,
   lessonPath,
   listAllCourses,
@@ -25,6 +27,7 @@ import {
   type Lesson,
 } from '@/lib/courses';
 import { internalLinks, lessonTexts, validateCourse, validateLesson } from '@/lib/courses/validate';
+import { TRANSLATED_COURSES } from '@/lib/courses/languages';
 import { TITLE_BUDGET, pageTitle, renderedTitle } from '@/lib/seo/title';
 import { renderInlineMarkdown } from '@/lib/markdown';
 
@@ -40,9 +43,45 @@ describe('course content', () => {
     expect(issues.map((issue) => `${issue.where}: ${issue.problem}`)).toEqual([]);
   });
 
-  it('lists the seven courses, each with dozens of published lessons', () => {
-    expect(listCourses().map((course) => course.slug)).toEqual(['gre', 'gmat', 'bocconi', 'bocconi-master', 'tolc-i', 'tolc-e', 'tolc-f']);
+  it('lists the eight courses, each with dozens of published lessons', () => {
+    expect(listCourses().map((course) => course.slug)).toEqual(['gre', 'gmat', 'bocconi', 'bocconi-master', 'tolc-i', 'tolc-e', 'tolc-f', 'imat']);
     for (const course of listCourses()) expect(courseLessons(course).length, course.slug).toBeGreaterThanOrEqual(24);
+  });
+
+  it('publishes the IMAT course in Italian too, lesson for lesson, and interactive', () => {
+    const english = getCourse('imat')!;
+    const italian = getCourse('imat', 'it')!;
+    expect(english.interactive).toBe(true);
+    expect(italian.lang).toBe('it');
+    expect(courseLessons(italian).map((lesson) => lesson.slug)).toEqual(courseLessons(english).map((lesson) => lesson.slug));
+    for (const lesson of courseLessons(english)) {
+      expect(lessonLang(lesson), lesson.slug).toBe('en');
+      expect(lesson.flashcards?.length, lesson.slug).toBeGreaterThanOrEqual(4);
+    }
+    for (const lesson of courseLessons(italian)) expect(lessonLang(lesson), lesson.slug).toBe('it');
+    // Other interface languages show the English course.
+    for (const locale of ['es', 'pl', 'tr']) expect(getCourse('imat', locale)).toBe(english);
+  });
+
+  it('declares a course translated (for every page’s alternates) exactly when all its published lessons are', () => {
+    for (const course of listCourses()) {
+      const declared = TRANSLATED_COURSES[course.slug] ?? [];
+      expect(Object.keys(course.translations ?? {}).sort(), course.slug).toEqual([...declared].sort());
+      for (const path of [coursePath(course), ...courseLessons(course).map((lesson) => lessonPath(course, lesson))]) {
+        expect(courseContentLangs(path), path).toEqual(['en', ...declared]);
+      }
+    }
+  });
+
+  it('rejects a translation that does not match its original lesson for lesson', () => {
+    const english = listAllCourses().find((course) => course.slug === 'imat')!;
+    const italian = english.translations!.it!;
+    const [first, ...rest] = italian.units;
+    const reordered = { ...italian, units: [{ ...first, lessons: [...first.lessons].reverse() }, ...rest] };
+    const problems = validateCourse({ ...english, translations: { it: reordered } }).map((issue) => issue.problem);
+    expect(problems).toContain('units and lessons differ from the original, in slugs or order');
+    const unlabelled = validateCourse({ ...english, translations: { it: { ...italian, lang: undefined } } }).map((issue) => issue.problem);
+    expect(unlabelled.some((problem) => problem.includes('lang'))).toBe(true);
   });
 
   it('publishes only lessons whose independent check is recorded, and never claims an expert review', () => {
@@ -157,21 +196,36 @@ describe('course pages in search', () => {
     process.env.SEARCH_INDEXING_ENABLED = 'true';
   }
 
-  it('lists the course index in every language, each course, and each lesson text once, in English', () => {
+  it('lists the course index in every language, each course, and each lesson text once, in each language it is written in', () => {
     production();
     const urls = sitemap().map((entry) => entry.url);
     for (const locale of LOCALES) expect(urls).toContain(`${SITE}${locale === 'en' ? '' : `/${locale}`}/courses`);
     expect(new Set(urls).size, 'no URL twice').toBe(urls.length);
     for (const course of listCourses()) {
+      const italian = (TRANSLATED_COURSES[course.slug] ?? []).includes('it');
       expect(urls).toContain(`${SITE}${coursePath(course)}`);
+      if (italian) expect(urls).toContain(`${SITE}/it${coursePath(course)}`);
       for (const lesson of courseLessons(course)) {
         const own = `${SITE}${lessonPath(course, lesson)}`;
         if (isCanonicalLesson(course, lesson)) expect(urls).toContain(own);
         else expect(urls, `${own} is a copy`).not.toContain(own);
         expect(urls).toContain(`${SITE}${canonicalLessonPath(course, lesson)}`);
-        expect(urls).not.toContain(`${SITE}/it${lessonPath(course, lesson)}`);
+        if (italian) expect(urls).toContain(`${SITE}/it${lessonPath(course, lesson)}`);
+        else expect(urls).not.toContain(`${SITE}/it${lessonPath(course, lesson)}`);
+        expect(urls).not.toContain(`${SITE}/es${lessonPath(course, lesson)}`);
       }
     }
+  });
+
+  it('gives an Italian IMAT lesson its own Italian canonical, paired with the English one', async () => {
+    production();
+    const lesson = courseLessons(getCourse('imat')!)[0];
+    const path = lessonPath('imat', lesson);
+    const italian = await pageAlternates(Promise.resolve({ locale: 'it' }), path);
+    expect(italian.canonical).toBe(`${SITE}/it${path}`);
+    expect(italian.languages).toEqual({ en: `${SITE}${path}`, it: `${SITE}/it${path}`, 'x-default': `${SITE}${path}` });
+    const spanish = await pageAlternates(Promise.resolve({ locale: 'es' }), path);
+    expect(spanish.canonical).toBe(`${SITE}${path}`);
   });
 
   it('gives each copy of a TOLC-I lesson in TOLC-E and TOLC-F the TOLC-I page as canonical', async () => {
@@ -253,7 +307,7 @@ describe('course pages in search', () => {
   });
 
   it('titles every lesson page within the budget, naming the course where it fits', () => {
-    for (const course of listCourses()) {
+    for (const course of [...listCourses(), ...listCourses('it')]) {
       for (const lesson of courseLessons(course)) {
         const where = lessonPath(course, lesson);
         const name = lesson.metaTitle ?? lesson.title;
@@ -277,7 +331,7 @@ describe('course pages in search', () => {
   });
 
   it('titles each course page within the budget', () => {
-    for (const course of listCourses()) {
+    for (const course of [...listCourses(), ...listCourses('it')]) {
       expect(renderedTitle(pageTitle(course.metaTitle)).length, course.slug).toBeLessThanOrEqual(TITLE_BUDGET);
     }
   });

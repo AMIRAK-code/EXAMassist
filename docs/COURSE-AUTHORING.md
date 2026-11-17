@@ -170,6 +170,45 @@ Exam facts come from `docs/research/cisia-tolc.md` and the TOLC-F configuration.
 | physics.ts | physics | physical-quantities-units-and-errors, vectors-motion-and-inclined-planes, energy-fluids-and-ideal-gases, charges-circuits-and-optics, magnetic-forces-waves-and-thin-lenses |
 | logic.ts | logic | implications-and-conditions, quantifiers-negation-and-venn-diagrams, constraints-guarantees-and-flows, sequences-and-patterns, graphs-tables-and-justified-comparisons |
 
+### IMAT (`/courses/imat`, practice exam `imat`), in English and Italian
+
+Exam facts come only from `docs/research/imat.md` and `src/lib/exams/configs/imat.ts`
+(2026/27: 60 five-option questions in 100 minutes, on paper, in English;
++1.5 / 0 / −0.4, out of 90; 20 points to be ranked; nothing published for
+2027/28). Checks have 5 options with exactly one correct answer.
+
+The course is **interactive** (`interactive: true`) and **bilingual**. Every
+lesson is written twice: in English in `content/imat/<file>.ts` and in Italian
+in `content/imat/it/<file>.ts`, with the same slug, minutes, practice link,
+number of examples, traps and check questions, and the same check keys (the
+option order is the same, so the letter of the key is the same). The Italian
+lesson is a faithful, natural Italian version, not a word-for-word gloss;
+write it as an Italian teacher would. Use Italian scientific conventions in
+prose (decimal comma: "1,5"; in maths write `1{,}5` so KaTeX does not add a
+space). Keep the IMAT's English terms where a candidate needs them for the
+English-language test, in brackets on first use: "il crossing-over
+(*crossing over*)". The Italian course's facts are the same as the English
+one's; translate nothing that is not in the English lesson.
+
+Each IMAT lesson also has **4–8 flashcards** (`flashcards: [{ front, back }]`):
+a short cue on the front, the fact, definition or method on the back in one to
+three sentences. Cards test recall of what the lesson teaches; do not
+introduce new facts on them.
+
+| File | Unit slug | Lessons (practice domain › skill) |
+| --- | --- | --- |
+| getting-started.ts | getting-started | how-the-imat-works, scoring-guessing-and-pacing (imat-logic) |
+| reading-and-knowledge.ts | reading-and-knowledge | reading-short-scientific-passages, inference-and-assumptions-in-texts (imat-reading-knowledge › imat-read-comprehension); general-knowledge-history-and-institutions (› imat-read-general-knowledge) |
+| logic.ts | logic | arguments-conclusions-and-assumptions, strengthening-weakening-and-flaws (imat-logic › imat-logic-critical); numerical-problem-solving, sequences-and-logical-puzzles (› imat-logic-problem-solving) |
+| biology-1.ts, biology-2.ts | biology | biological-molecules, cell-structure-and-organelles, membranes-and-transport (imat-biology › imat-bio-molecules-cells); enzymes-and-metabolism, cellular-respiration-and-photosynthesis (› imat-bio-bioenergetics); cell-cycle-mitosis-and-meiosis (› imat-bio-reproduction); dna-replication-and-protein-synthesis, mendelian-genetics-and-pedigrees, biotechnology-and-genetic-engineering (› imat-bio-genetics); mutations-evolution-and-classification (› imat-bio-evolution-ecology); tissues-circulation-and-respiration, nervous-endocrine-and-immune-systems, digestive-and-excretory-systems (› imat-bio-anatomy-physiology); human-reproduction-and-development (› imat-bio-reproduction) |
+| chemistry-1.ts, chemistry-2.ts | chemistry | atomic-structure-and-electron-configuration, periodic-table-trends (imat-chemistry › imat-chem-atoms-periodic); chemical-bonding-and-molecular-shape, intermolecular-forces-and-states-of-matter, inorganic-nomenclature (› imat-chem-bonding); moles-and-stoichiometry, solutions-and-concentration (› imat-chem-stoichiometry); kinetics-and-chemical-equilibrium, acids-bases-and-ph, redox-reactions (› imat-chem-reactions); organic-compounds-and-functional-groups, isomerism-and-organic-reactions (› imat-chem-organic) |
+| physics.ts | physics | units-vectors-and-kinematics, forces-and-newtons-laws, work-energy-and-momentum, fluids-pressure-and-buoyancy (imat-physics-maths › imat-phys-mechanics); heat-gas-laws-and-thermodynamics (› imat-phys-thermo-waves); electric-charge-fields-and-circuits, magnetism-and-electromagnetic-induction (› imat-phys-electricity) |
+| mathematics.ts | mathematics | algebra-equations-and-inequalities, exponentials-logarithms-and-functions (imat-physics-maths › imat-math-algebra-functions); geometry-and-trigonometry (› imat-math-geometry-trig); probability-and-statistics (› imat-math-probability-statistics) |
+
+Lessons are exported one by one (`export const <camelCaseSlug>Lesson: Lesson`
+in English, `<camelCaseSlug>LessonIt` in Italian); the unit files that collect
+them are `content/imat/units.ts` and `content/imat/it/units.ts`.
+
 ## Independent check
 
 The checker reads each lesson cold and, for every worked example and check
