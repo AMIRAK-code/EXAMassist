@@ -1,13 +1,14 @@
-import { Link } from '@/i18n/navigation';
+import NextLink from 'next/link';
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { courseMinutes, coursePath, lessonCount, listCourses } from '@/lib/courses';
+import { courseMinutes, lessonCount, listCourses } from '@/lib/courses';
+import { courseHref } from '@/lib/courses/languages';
 import { getHub } from '@/lib/exams/registry';
 import { CONTENT_LANG, pageAlternates } from '@/i18n/alternates';
 import { localizePath, type Locale } from '@/i18n/locales';
 import { shareImages, SITE, siteUrl } from '@/lib/site';
 import { pageTitle } from '@/lib/seo/title';
-import { Breadcrumbs, ButtonLink, Card, Container, PageHeader } from '@/components/ui';
+import { Breadcrumbs, Card, Container, PageHeader, buttonClass } from '@/components/ui';
 import { JsonLd, breadcrumbSchema } from '@/components/seo/json-ld';
 
 const PATH = '/courses';
@@ -55,9 +56,10 @@ export default async function CoursesPage({ params }: Props) {
             <Card as="li" key={course.slug} className="flex flex-col">
               <p className="eyebrow">{hub?.label ?? course.examPublisher}</p>
               <h2 lang={course.lang ?? CONTENT_LANG} className="mt-1 font-heading text-xl font-semibold">
-                <Link href={coursePath(course)} className="no-underline hover:underline">
+                {/* Courses exist in English and their own translations only: link straight to the right one. */}
+                <NextLink href={courseHref(locale, course.slug)} className="no-underline hover:underline">
                   {course.title}
-                </Link>
+                </NextLink>
               </h2>
               <p lang={course.lang ?? CONTENT_LANG} className="mt-2 flex-1 text-ink-muted">
                 {course.description}
@@ -70,9 +72,9 @@ export default async function CoursesPage({ params }: Props) {
                 })}
               </p>
               <div className="mt-4">
-                <ButtonLink href={coursePath(course)} size="sm" aria-label={t('index.open', { course: course.title })}>
+                <NextLink href={courseHref(locale, course.slug)} className={buttonClass({ size: 'sm' })} aria-label={t('index.open', { course: course.title })}>
                   {t('course.start')}
-                </ButtonLink>
+                </NextLink>
               </div>
             </Card>
           );

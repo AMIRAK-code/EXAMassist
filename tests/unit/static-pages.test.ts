@@ -45,6 +45,19 @@ describe('the pages saved as files', () => {
     expect(staticPagePaths([...sitemap, 'https://uniexamer.com/it/exams/gmat'])).toEqual(paths);
   });
 
+  it('saves course pages only in the languages the course is written in, and the course index in all', () => {
+    const paths = staticPagePaths([
+      'https://uniexamer.com/courses',
+      'https://uniexamer.com/courses/gmat',
+      'https://uniexamer.com/courses/gmat/probability',
+      'https://uniexamer.com/courses/imat/biological-molecules',
+      'https://uniexamer.com/it/courses/imat/biological-molecules',
+    ]);
+    expect(paths.filter((p) => p.endsWith('/courses') || p === '/courses')).toHaveLength(LOCALES.length);
+    expect(paths.filter((p) => p.includes('/courses/gmat'))).toEqual(['/courses/gmat', '/courses/gmat/probability']);
+    expect(paths.filter((p) => p.includes('/courses/imat')).sort()).toEqual(['/courses/imat/biological-molecules', '/it/courses/imat/biological-molecules']);
+  });
+
   it('names each file the way Cloudflare looks for it', () => {
     expect(assetFileFor('/')).toBe('index.html');
     expect(assetFileFor('/it')).toBe('it.html');
@@ -126,6 +139,20 @@ describe('the language choice on a page saved as a file', () => {
     expect(visit('it', { pathname: '/it/exams', languages: ['it-IT'] })).toEqual({ movedTo: null, cookie: '' });
     expect(visit('it', { pathname: '/it/exams', cookie: 'NEXT_LOCALE=it', languages: ['en'] }).cookie).toBe('NEXT_LOCALE=it');
     expect(visit('es', { pathname: '/es', cookie: 'NEXT_LOCALE=it', languages: ['it'] })).toMatchObject({ movedTo: null, cookie: expect.stringContaining('NEXT_LOCALE=es') });
+  });
+
+  it('keeps a reader on a course in English when it has no version in their language, and their language for the rest of the site', () => {
+    // A Spanish reader on an English lesson: no Spanish lesson exists, so no move, and the cookie stays Spanish.
+    expect(visit('en', { pathname: '/courses/gmat/probability', cookie: 'NEXT_LOCALE=es', languages: ['es'] })).toEqual({ movedTo: null, cookie: 'NEXT_LOCALE=es' });
+    expect(visit('en', { pathname: '/courses/imat', languages: ['tr-TR'] })).toEqual({ movedTo: null, cookie: '' });
+    // Italian readers of a course written in English only stay on it too.
+    expect(visit('en', { pathname: '/courses/gmat', cookie: 'NEXT_LOCALE=it', languages: ['it'] })).toEqual({ movedTo: null, cookie: 'NEXT_LOCALE=it' });
+    // The IMAT course exists in Italian, so an Italian reader goes there.
+    expect(visit('en', { pathname: '/courses/imat/biological-molecules', cookie: 'NEXT_LOCALE=it', languages: ['en'] }).movedTo).toBe('/it/courses/imat/biological-molecules?exam=gmat');
+    // A Polish reader on the Italian IMAT lesson keeps Polish for the site.
+    expect(visit('it', { pathname: '/it/courses/imat', cookie: 'NEXT_LOCALE=pl', languages: ['pl'] })).toEqual({ movedTo: null, cookie: 'NEXT_LOCALE=pl' });
+    // The course index exists in every language, so it behaves like any other page.
+    expect(visit('en', { pathname: '/courses', cookie: 'NEXT_LOCALE=es', languages: ['es'] }).movedTo).toBe('/es/courses?exam=gmat');
   });
 });
 

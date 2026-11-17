@@ -16,6 +16,7 @@
  * request carries SNAPSHOT_HEADER.
  */
 import { DEFAULT_LOCALE, LOCALES, isLocale, localizePath, splitLocale, type Locale } from '@/i18n/locales';
+import { TRANSLATED_COURSES, courseLangs, courseSlugOf } from '@/lib/courses/languages';
 
 /** Sent by the deploy's snapshot; pages that see it defer per-visitor parts to the browser. */
 export const SNAPSHOT_HEADER = 'x-examer-snapshot';
@@ -58,10 +59,15 @@ export const STATIC_EXTRA_PATHS: readonly string[] = [
  * (src/i18n/routing.ts), so each page is saved in all of them.
  */
 export function staticPagePaths(sitemapUrls: readonly string[]): string[] {
+  // A course or lesson page only in the languages it is written in (src/lib/courses/languages.ts).
+  const languagesOf = (path: string): readonly Locale[] => {
+    const slug = courseSlugOf(path);
+    return slug ? LOCALES.filter((locale) => courseLangs(slug).includes(locale)) : LOCALES;
+  };
   const pages = sitemapUrls
     .map((url) => splitLocale(new URL(url).pathname).path)
     .filter((path) => !DYNAMIC_PUBLIC_PATHS.includes(path))
-    .flatMap((path) => LOCALES.map((locale) => localizePath(path, locale)));
+    .flatMap((path) => languagesOf(path).map((locale) => localizePath(path, locale)));
   return [...new Set([...pages, ...STATIC_EXTRA_PATHS])];
 }
 
@@ -73,10 +79,15 @@ export function staticPagePaths(sitemapUrls: readonly string[]): string[] {
  * brings the cookie into line with the page, as the proxy does. Crawlers ask
  * for English, so they stay. Inline and first in <body>, so a visitor who is
  * moved never sees the English page drawn.
+ *
+ * Course and lesson pages exist only in English and the course's own
+ * translations (src/lib/courses/languages.ts). On one of those, a visitor whose
+ * language the course is not written in stays where they are, and keeps their
+ * language for the rest of the site: the cookie is left alone.
  */
 export function localeScript(pageLocale: Locale, cookieName: string): string {
-  const args = [pageLocale, LOCALES, DEFAULT_LOCALE, cookieName].map((value) => JSON.stringify(value)).join(',');
-  return `(function(P,L,D,N){try{var m=document.cookie.match(new RegExp("(?:^|; )"+N+"=([^;]*)")),c=m?decodeURIComponent(m[1]):null;function a(){var n=navigator.languages||[navigator.language||""];for(var i=0;i<n.length;i++){var x=String(n[i]).toLowerCase();for(var j=0;j<L.length;j++)if(x===L[j]||x.split("-")[0]===L[j])return L[j]}return D}if(P===D){var w=c&&L.indexOf(c)>=0?c:a();if(w!==D){location.replace("/"+w+(location.pathname==="/"?"":location.pathname)+location.search+location.hash);return}}if(c?c!==P:a()!==P)document.cookie=N+"="+P+"; path=/; max-age=31536000; samesite=lax"}catch(e){}})(${args});`;
+  const args = [pageLocale, LOCALES, DEFAULT_LOCALE, cookieName, TRANSLATED_COURSES].map((value) => JSON.stringify(value)).join(',');
+  return `(function(P,L,D,N,T){try{var m=document.cookie.match(new RegExp("(?:^|; )"+N+"=([^;]*)")),c=m?decodeURIComponent(m[1]):null;function a(){var n=navigator.languages||[navigator.language||""];for(var i=0;i<n.length;i++){var x=String(n[i]).toLowerCase();for(var j=0;j<L.length;j++)if(x===L[j]||x.split("-")[0]===L[j])return L[j]}return D}var s=location.pathname.split("/");if(L.indexOf(s[1])>=0)s.splice(1,1);var k=s[1]==="courses"&&s[2]?s[2]:null;function ok(x){return !k||x===D||(T[k]||[]).indexOf(x)>=0}var w=c&&L.indexOf(c)>=0?c:a();if(P===D){if(w!==D&&ok(w)){location.replace("/"+w+(location.pathname==="/"?"":location.pathname)+location.search+location.hash);return}}if((c?c!==P:a()!==P)&&ok(w))document.cookie=N+"="+P+"; path=/; max-age=31536000; samesite=lax"}catch(e){}})(${args});`;
 }
 
 /**

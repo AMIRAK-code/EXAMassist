@@ -12,6 +12,7 @@ import { pageTitle } from '@/lib/seo/title';
 import { InlineMarkdown, Markdown } from '@/components/content';
 import { LessonCheck } from '@/components/courses/lesson-check';
 import { FlashcardDeck, LessonCompleteToggle, StepReveal } from '@/components/courses/interactive';
+import { courseLangs } from '@/lib/courses/languages';
 import { Breadcrumbs, ButtonLink, Card, Container, PageHeader } from '@/components/ui';
 import { JsonLd, breadcrumbSchema, lessonSchema } from '@/components/seo/json-ld';
 
@@ -27,8 +28,17 @@ type Props = { params: Promise<{ locale: string; course: string; lesson: string 
  */
 export const dynamic = 'force-static';
 
-export function generateStaticParams() {
-  return listCourses().flatMap((course) => courseLessons(course).map((lesson) => ({ course: course.slug, lesson: lesson.slug })));
+/*
+ * Only in the languages the course is written in: English, and Italian for the
+ * IMAT course (src/lib/courses/languages.ts). Other languages' addresses
+ * redirect to the English page (next.config.ts), and nothing else is rendered.
+ */
+export const dynamicParams = false;
+
+export function generateStaticParams({ params }: { params: { locale: string } }) {
+  return listCourses()
+    .filter((course) => courseLangs(course.slug).includes(params.locale))
+    .flatMap((course) => courseLessons(course).map((lesson) => ({ course: course.slug, lesson: lesson.slug })));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
