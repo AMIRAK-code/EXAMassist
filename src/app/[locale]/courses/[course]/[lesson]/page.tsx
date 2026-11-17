@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
-import { canonicalLessonPath, courseLessons, coursePath, getLesson, lessonLang, lessonPath, listCourses, practicePath } from '@/lib/courses';
+import { canonicalLessonPath, courseLessons, coursePath, getLesson, lessonLang, lessonPath, listCourses, practicePath } from '@/lib/courses/catalogue';
 import { getExamConfig } from '@/lib/exams/registry';
 import { freeTestPath } from '@/lib/billing/config';
 import { pageAlternates } from '@/i18n/alternates';
@@ -13,13 +13,14 @@ import { InlineMarkdown, Markdown } from '@/components/content';
 import { LessonCheck } from '@/components/courses/lesson-check';
 import { FlashcardDeck, LessonCompleteToggle, StepReveal } from '@/components/courses/interactive';
 import { courseLangs } from '@/lib/courses/languages';
+import { getFullLesson } from '@/lib/courses/lesson-data';
 import { Breadcrumbs, ButtonLink, Card, Container, PageHeader } from '@/components/ui';
 import { JsonLd, breadcrumbSchema, lessonSchema } from '@/components/seo/json-ld';
 
 type Props = { params: Promise<{ locale: string; course: string; lesson: string }> };
 
 /*
- * Every lesson is rendered at build time, in every language, and served from
+ * Every lesson is rendered at build time, in its languages, and served from
  * there. Rendering one on the Worker (its Markdown and KaTeX, and the whole
  * course catalogue it is loaded with) took several times the CPU the Workers
  * Free plan allows a request, so almost every lesson failed with error 1102.
@@ -75,7 +76,8 @@ export default async function LessonPage({ params }: Props) {
   const { locale, course: courseSlug, lesson: lessonSlug } = await params;
   setRequestLocale(locale);
   // The lesson in this locale's language when the course is written in it (the IMAT course in Italian), else in its own.
-  const found = getLesson(courseSlug, lessonSlug, locale);
+  // Its full text comes from the build-time data, never from the catalogue the Worker carries (src/lib/courses/view.ts).
+  const found = getFullLesson(courseSlug, lessonSlug, locale);
   if (!found) notFound();
   const { course, unit, lesson, number, previous, next } = found;
   const lang = lessonLang(lesson);

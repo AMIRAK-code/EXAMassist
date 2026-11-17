@@ -1,7 +1,7 @@
 import NextLink from 'next/link';
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { courseMinutes, lessonCount, listCourses } from '@/lib/courses';
+import { courseMinutes, lessonCount, listCourses } from '@/lib/courses/catalogue';
 import { courseHref } from '@/lib/courses/languages';
 import { getHub } from '@/lib/exams/registry';
 import { CONTENT_LANG, pageAlternates } from '@/i18n/alternates';

@@ -4,8 +4,8 @@
   "private": true,
   "description": "Configuration-driven exam practice platform",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "tsx scripts/export-courses.ts && next dev",
+    "build": "tsx scripts/export-courses.ts && next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
@@ -27,7 +27,8 @@
     "cf:deploy": "tsx scripts/cloudflare.ts deploy",
     "cf:snapshot": "tsx scripts/cloudflare.ts snapshot",
     "seo:og-images": "tsx scripts/og-images.ts",
-    "seo:indexnow": "tsx scripts/indexnow.ts"
+    "seo:indexnow": "tsx scripts/indexnow.ts",
+    "courses:export": "tsx scripts/export-courses.ts"
   },
   "engines": {
     "node": ">=20.11.0"
