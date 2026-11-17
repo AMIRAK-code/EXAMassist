@@ -1,5 +1,6 @@
 import { siteUrl } from '@/lib/site';
 import { translatedHubLocales } from '@/lib/exams/hub-content';
+import { translatedCourseLangs } from '@/lib/courses/languages';
 import { DEFAULT_LOCALE, LOCALES, LOCALE_INFO, isLocale, localizePath, type Locale } from './locales';
 
 /**
@@ -19,7 +20,9 @@ const TRANSLATED_HUBS = new Set(['bocconi-online-test']);
  * is in TRANSLATED_HUBS; otherwise in English plus the languages its
  * editorial content and exam details are translated into in full
  * (HUB_TRANSLATIONS in src/lib/exams/hub-content.ts). Course and lesson pages
- * (src/lib/courses) are written in English only, like the guides. Every other
+ * (src/lib/courses) are written in English, like the guides, except a course
+ * with a published translation (the IMAT course in Italian), whose pages exist
+ * in that language too (src/lib/courses/languages.ts). Every other
  * page, the course and guide listings included, is translated in full.
  *
  * A page is still served in each interface language (navigation and labels
@@ -30,7 +33,9 @@ const TRANSLATED_HUBS = new Set(['bocconi-online-test']);
  * sitemap. Add a language only when the page's whole body is translated.
  */
 export function contentLocales(path: string): readonly Locale[] {
-  if (path.startsWith('/guides/') || path.startsWith('/courses/')) return [DEFAULT_LOCALE];
+  // A course written in more than one language (the IMAT course in Italian) exists in each of them.
+  if (path.startsWith('/courses/')) return [DEFAULT_LOCALE, ...translatedCourseLangs(path).filter(isLocale)];
+  if (path.startsWith('/guides/')) return [DEFAULT_LOCALE];
   const exam = /^\/exams\/([^/]+)(\/format)?$/.exec(path);
   if (!exam) return LOCALES;
   if (exam[2]) return [DEFAULT_LOCALE];

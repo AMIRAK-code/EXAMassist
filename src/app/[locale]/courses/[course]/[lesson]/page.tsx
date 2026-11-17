@@ -2,15 +2,16 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
-import { canonicalLessonPath, courseLessons, coursePath, getLesson, lessonPath, listCourses, practicePath } from '@/lib/courses';
+import { canonicalLessonPath, courseLessons, coursePath, getLesson, lessonLang, lessonPath, listCourses, practicePath } from '@/lib/courses';
 import { getExamConfig } from '@/lib/exams/registry';
 import { freeTestPath } from '@/lib/billing/config';
-import { CONTENT_LANG, pageAlternates } from '@/i18n/alternates';
+import { pageAlternates } from '@/i18n/alternates';
 import { localizePath, type Locale } from '@/i18n/locales';
 import { SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
 import { pageTitle } from '@/lib/seo/title';
 import { InlineMarkdown, Markdown } from '@/components/content';
 import { LessonCheck } from '@/components/courses/lesson-check';
+import { FlashcardDeck, LessonCompleteToggle, StepReveal } from '@/components/courses/interactive';
 import { Breadcrumbs, ButtonLink, Card, Container, PageHeader } from '@/components/ui';
 import { JsonLd, breadcrumbSchema, lessonSchema } from '@/components/seo/json-ld';
 
@@ -31,8 +32,8 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { course: courseSlug, lesson: lessonSlug } = await params;
-  const found = getLesson(courseSlug, lessonSlug);
+  const { locale, course: courseSlug, lesson: lessonSlug } = await params;
+  const found = getLesson(courseSlug, lessonSlug, locale);
   if (!found) return {};
   const { course, lesson } = found;
   // A lesson shared word for word with an earlier course names that course's copy (src/lib/courses).
@@ -62,13 +63,16 @@ function topicName(examKey: string, domain: string, skill?: string): string {
 export default async function LessonPage({ params }: Props) {
   const { locale, course: courseSlug, lesson: lessonSlug } = await params;
   setRequestLocale(locale);
-  const found = getLesson(courseSlug, lessonSlug);
+  // The lesson in this locale's language when the course is written in it (the IMAT course in Italian), else in its own.
+  const found = getLesson(courseSlug, lessonSlug, locale);
   if (!found) notFound();
   const { course, unit, lesson, number, previous, next } = found;
+  const lang = lessonLang(lesson);
+  const interactive = Boolean(course.interactive);
 
   const t = await getTranslations('courses');
   // Labels inside the lesson are in the lesson's language, like a guide's.
-  const tl = await getTranslations({ locale: CONTENT_LANG, namespace: 'courses.lesson' });
+  const tl = await getTranslations({ locale: lang, namespace: 'courses.lesson' });
   const total = courseLessons(course).length;
   const path = lessonPath(course, lesson);
   const url = (await pageAlternates(params, path)).canonical;
@@ -103,7 +107,7 @@ export default async function LessonPage({ params }: Props) {
       />
       <Breadcrumbs trail={trail} />
 
-      <article lang={CONTENT_LANG}>
+      <article lang={lang}>
         <header className="mb-8">
           <PageHeader eyebrow={tl('position', { number, total, unit: unit.title })} title={lesson.title} lead={lesson.summary} />
           <p className="-mt-4 text-sm text-ink-subtle">{tl('minutes', { minutes: lesson.minutes })}</p>
@@ -139,6 +143,23 @@ export default async function LessonPage({ params }: Props) {
                 {tl('example', { number: index + 1 })}: <InlineMarkdown source={example.title} />
               </h3>
               <Markdown source={example.problemMd} className="prose-academic mt-3 font-serif" />
+              {interactive ? (
+                <StepReveal
+                  steps={example.steps.map((step, stepIndex) => (
+                    <Markdown key={stepIndex} source={step} className="prose-academic" />
+                  ))}
+                  answer={<Markdown source={example.answerMd} className="prose-academic font-serif" />}
+                  labels={{
+                    next: tl('interactive.nextStep'),
+                    all: tl('interactive.allSteps'),
+                    hide: tl('interactive.hideSteps'),
+                    tryFirst: tl('interactive.tryFirst'),
+                    answer: tl('answer'),
+                    progress: tl.raw('interactive.stepProgress') as string,
+                  }}
+                />
+              ) : (
+                <>
               <ol className="mt-4 space-y-3 border-s-2 border-line ps-4 font-serif">
                 {example.steps.map((step, stepIndex) => (
                   <li key={stepIndex} className="flex gap-3">
@@ -153,6 +174,8 @@ export default async function LessonPage({ params }: Props) {
                 <p className="font-sans text-sm font-semibold text-accent-ink">{tl('answer')}</p>
                 <Markdown source={example.answerMd} className="prose-academic mt-1 font-serif" />
               </div>
+                </>
+              )}
             </div>
           ))}
         </section>
@@ -173,7 +196,31 @@ export default async function LessonPage({ params }: Props) {
           </ul>
         </section>
 
-        <LessonCheck questions={lesson.check} />
+        <LessonCheck questions={lesson.check} lang={lang} interactive={interactive} />
+
+        {interactive && lesson.flashcards ? (
+          <section aria-labelledby="flashcards" className="mt-12">
+            <h2 id="flashcards" className="font-heading text-2xl font-semibold">
+              {tl('interactive.flashcards')}
+            </h2>
+            <p className="mt-1 text-ink-muted">{tl('interactive.flashcardsIntro')}</p>
+            <FlashcardDeck
+              cards={lesson.flashcards.map((card) => ({ front: <InlineMarkdown source={card.front} />, back: <InlineMarkdown source={card.back} /> }))}
+              labels={{
+                flip: tl('interactive.flip'),
+                front: tl('interactive.front'),
+                back: tl('interactive.back'),
+                again: tl('interactive.again'),
+                known: tl('interactive.known'),
+                position: tl.raw('interactive.cardPosition') as string,
+                finished: tl.raw('interactive.deckFinished') as string,
+                restart: tl('interactive.restart'),
+                reviewMissed: tl.raw('interactive.reviewMissed') as string,
+                shuffle: tl('interactive.shuffle'),
+              }}
+            />
+          </section>
+        ) : null}
 
         <section aria-labelledby="takeaways" className="mt-12">
           <h2 id="takeaways" className="font-heading text-2xl font-semibold">
@@ -187,6 +234,16 @@ export default async function LessonPage({ params }: Props) {
             ))}
           </ul>
         </section>
+
+        {interactive ? (
+          <div className="mt-12 border-t border-line pt-6">
+            <LessonCompleteToggle
+              course={course.slug}
+              lesson={lesson.slug}
+              labels={{ mark: tl('interactive.markComplete'), done: tl('interactive.completed'), undo: tl('interactive.undo') }}
+            />
+          </div>
+        ) : null}
 
         <p className="mt-10 text-sm text-ink-muted">{tl('original')}</p>
         <p className="mt-2 text-sm text-ink-muted">{tl('authorship')}</p>
@@ -207,7 +264,7 @@ export default async function LessonPage({ params }: Props) {
         {previous ? (
           <Link href={lessonPath(course, previous)} className="rounded-card border border-line p-4 no-underline hover:border-line-strong">
             <span className="block text-sm text-ink-subtle">← {t('nav.previous')}</span>
-            <span lang={CONTENT_LANG} className="mt-1 block font-semibold">
+            <span lang={lessonLang(previous)} className="mt-1 block font-semibold">
               {previous.title}
             </span>
           </Link>
@@ -217,7 +274,7 @@ export default async function LessonPage({ params }: Props) {
         {next ? (
           <Link href={lessonPath(course, next)} className="rounded-card border border-line p-4 text-end no-underline hover:border-line-strong">
             <span className="block text-sm text-ink-subtle">{t('nav.next')} →</span>
-            <span lang={CONTENT_LANG} className="mt-1 block font-semibold">
+            <span lang={lessonLang(next)} className="mt-1 block font-semibold">
               {next.title}
             </span>
           </Link>

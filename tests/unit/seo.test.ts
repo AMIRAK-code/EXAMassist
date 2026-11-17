@@ -7,6 +7,7 @@ import sitemap from '@/app/sitemap';
 import { organizationSchema, webSiteSchema } from '@/components/seo/json-ld';
 import { listGuides } from '@/lib/content/guides';
 import { courseLessons, coursePath, isCanonicalLesson, lessonPath, listCourses } from '@/lib/courses';
+import { TRANSLATED_COURSES } from '@/lib/courses/languages';
 import { EXAM_HUBS, getConfigsForHub } from '@/lib/exams/registry';
 import { listHubContent } from '@/lib/exams/hub-content';
 import { SITE as SITE_CONFIG, googleSiteVerification } from '@/lib/site';
@@ -45,17 +46,23 @@ const TRANSLATED = [
   '/about/editorial-standards', '/about/how-scoring-works', '/about/privacy', '/about/support', '/about/terms',
 ];
 /** Pages translated into some languages only: one address per language their body exists in. */
-const PARTLY_TRANSLATED: Record<string, string[]> = { '/exams/cisia-tolc': ['en', 'it'], '/exams/imat': ['en', 'it'] };
+// A lesson shared word for word with an earlier course is listed once, at that course's copy.
+const COURSE_PAGES = listCourses().map((course) => ({
+  langs: ['en', ...(TRANSLATED_COURSES[course.slug] ?? [])],
+  paths: [coursePath(course), ...courseLessons(course).filter((lesson) => isCanonicalLesson(course, lesson)).map((lesson) => lessonPath(course, lesson))],
+}));
+const PARTLY_TRANSLATED: Record<string, string[]> = {
+  '/exams/cisia-tolc': ['en', 'it'],
+  '/exams/imat': ['en', 'it'],
+  // A course written in Italian too (the IMAT course) has every page in both languages.
+  ...Object.fromEntries(COURSE_PAGES.filter((course) => course.langs.length > 1).flatMap((course) => course.paths.map((path) => [path, course.langs]))),
+};
 /** Pages whose body exists only in English, whatever the interface language: one address. */
 const ENGLISH_ONLY = [
   ...EXAM_HUBS.filter((hub) => hub.slug !== 'bocconi-online-test').map((hub) => `/exams/${hub.slug}`).filter((path) => !PARTLY_TRANSLATED[path]),
   ...EXAM_HUBS.map((hub) => `/exams/${hub.slug}/format`),
   ...listGuides().map((guide) => `/guides/${guide.slug}`),
-  // A lesson shared word for word with an earlier course is listed once, at that course's copy.
-  ...listCourses().flatMap((course) => [
-    coursePath(course),
-    ...courseLessons(course).filter((lesson) => isCanonicalLesson(course, lesson)).map((lesson) => lessonPath(course, lesson)),
-  ]),
+  ...COURSE_PAGES.filter((course) => course.langs.length === 1).flatMap((course) => course.paths),
 ];
 
 describe('robots.txt in production', () => {
