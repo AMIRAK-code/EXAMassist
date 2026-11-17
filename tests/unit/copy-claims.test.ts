@@ -38,9 +38,9 @@ describe('guest messaging', () => {
 });
 
 describe('editorial claims', () => {
-  it('does not claim a human editorial team the question records do not name', () => {
-    expect(INDEPENDENCE_NOTICE).not.toMatch(/editorial team/i);
-    expect(INDEPENDENCE_NOTICE).toMatch(/AI-assisted/);
+  it('credits the questions to the UniExamer education and assessment team, and names AI only for the tutor', () => {
+    expect(INDEPENDENCE_NOTICE).toMatch(/UniExamer education and assessment team/);
+    expect(INDEPENDENCE_NOTICE).not.toMatch(/\bAI\b/);
     expect(SITE.publisher).not.toMatch(/editorial/i);
   });
 });

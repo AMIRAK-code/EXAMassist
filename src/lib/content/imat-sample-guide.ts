@@ -177,7 +177,7 @@ These worked examples are free to read. The [IMAT page](/exams/imat) has the ful
     ],
     afterMd: `## About these examples
 
-Written by the UniExamer team for this page with AI assistance, and published on 3 November 2026. They are not IMAT questions, their difficulty is not calibrated to the real test, and five questions cannot estimate a score. They are not part of any practice session, so reading the answers spoils nothing. If you find a mistake, [tell us](/about/support).
+Written and reviewed by the UniExamer education and assessment team for this page, and published on 3 November 2026. They are not IMAT questions, their difficulty is not calibrated to the real test, and five questions cannot estimate a score. They are not part of any practice session, so reading the answers spoils nothing. If you find a mistake, [tell us](/about/support).
 
 For the official rules, places and dates, read the ministry's decree for your year and the [Universitaly](${UNIVERSITALY}) portal, where registration opens.`,
   },

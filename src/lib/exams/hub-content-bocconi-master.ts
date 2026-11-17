@@ -95,7 +95,7 @@ const samples: SampleQuestionSet = {
   ],
   afterMd: `## About these examples
 
-Written by the UniExamer team for this page with AI assistance, and published on 3 November 2026. They are not Bocconi questions, their difficulty is not calibrated to the real test, and three questions cannot estimate a score. Bocconi does not publish how many options each question has; these use four. They are not in our question bank, so reading the answers spoils no practice session. If you find a mistake, [tell us](/about/support).
+Written and reviewed by the UniExamer education and assessment team for this page, and published on 3 November 2026. They are not Bocconi questions, their difficulty is not calibrated to the real test, and three questions cannot estimate a score. Bocconi does not publish how many options each question has; these use four. They are not in our question bank, so reading the answers spoils no practice session. If you find a mistake, [tell us](/about/support).
 
 Bocconi's own preparation material (a test sample, the Faculty app and an online simulation) is listed on its [graduate test page](${BOCCONI_GRADUATE_TEST_PAGE}).`,
 };

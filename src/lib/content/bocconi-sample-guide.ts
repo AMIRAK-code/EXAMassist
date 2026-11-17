@@ -59,7 +59,7 @@ The areas are mixed through the test rather than grouped, and calculators are no
 
 Bocconi does not publish how many options most questions have, so we use four. For the true / false / cannot-be-deduced format that Bocconi describes for critical thinking, we use its three options.
 
-These questions are original, AI-assisted examples written for this page. They are not past Bocconi questions, their difficulty is not calibrated to the real test, and eleven questions cannot estimate a score. They are not part of UniExamer's question bank, so reading the answers here spoils no diagnostic or practice session.`,
+These questions are original examples written for this page by the UniExamer education and assessment team. They are not past Bocconi questions, their difficulty is not calibrated to the real test, and eleven questions cannot estimate a score. They are not part of UniExamer's question bank, so reading the answers here spoils no diagnostic or practice session.`,
   samples: {
     sections: [
       {
@@ -319,6 +319,6 @@ Bocconi's [test page](https://www.unibocconi.it/en/applying-bocconi/bachelor-and
 
 ## About this page
 
-Written by the UniExamer team with AI assistance and published on 29 October 2026. The facts about the test were checked against Bocconi's official test page on the same day. Every answer was re-derived step by step during editing. Read our [editorial standards](/about/editorial-standards) for how we create and check content. If you find a mistake, write to [support@uniexamer.com](mailto:support@uniexamer.com) and a person will reply.`,
+Written and reviewed by the UniExamer education and assessment team, and published on 29 October 2026. The facts about the test were checked against Bocconi's official test page on the same day. Every answer was re-derived step by step during editing. Read our [editorial standards](/about/editorial-standards) for how we create and check content. If you find a mistake, write to [support@uniexamer.com](mailto:support@uniexamer.com) and a person will reply.`,
   },
 };

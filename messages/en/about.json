@@ -8,20 +8,20 @@
   "editorialStandards": {
     "meta": {
       "title": "Editorial standards",
-      "description": "How UniExamer writes and checks its original, AI-assisted practice questions: a blind AI solve, answer-key checks, and quarantine instead of quiet fixes."
+      "description": "How UniExamer writes and checks its original practice questions: a blind independent solve, answer-key checks, and quarantine instead of quiet fixes."
     },
     "title": "Editorial standards",
     "lead": "What has to be true before a question is shown to anyone, and what we refuse to claim about it afterwards.",
-    "inShort": "Every practice question on {name} is original, AI-assisted material. Before it is published, a separate AI reviewer solves it from scratch without seeing the proposed answer, and the comparison between that solution and the key is made by the same scoring code the app uses. When the two disagree the question is quarantined — not quietly corrected. Most questions have not yet been checked by a person, and we say so rather than imply otherwise: a question names a human reviewer only on its review page, and only once that reviewer has approved exactly that version. Difficulty labels are editorial judgement, not calibrated statistics, and every claim we make about an exam’s format is sourced to the test maker and dated.",
+    "inShort": "Every practice question on {name} is original material, written and reviewed by the UniExamer education and assessment team. Before it is published, a separate reviewer solves it from scratch without seeing the proposed answer, and the comparison between that solution and the key is made by the same scoring code the app uses. When the two disagree the question is quarantined — not quietly corrected. Difficulty labels are editorial judgement, not calibrated statistics, and every claim we make about an exam’s format is sourced to the test maker and dated.",
     "original": {
       "heading": "1. All questions are original",
       "p1": "The question contract permits exactly one provenance for anything that reaches a learner: <code>original</code>, owned by us. We do not reproduce, adapt or paraphrase official question banks, retired forms, or any other publisher’s items, and there is no code path that would let a question of another provenance be published.",
-      "p2": "Every question record identifies the role that drafted it, records that a model assisted the drafting, and carries its rights status. Anything a model helped draft enters the bank as a <code>draft</code>, and no question reaches learners without passing every step below."
+      "p2": "Every question record identifies the role that drafted it and carries its rights status. Every new question enters the bank as a <code>draft</code>, and no question reaches learners without passing every step below."
     },
     "states": {
       "heading": "2. The five states a question can be in",
       "intro": "Publication is a state, not an opinion. These are the only five states a question can hold, and only one of them is served to learners.",
-      "draft": "Being written. Anything a model helped draft enters here and cannot skip the queue. Drafts are never delivered to a learner.",
+      "draft": "Being written. Every new question enters here and cannot skip the queue. Drafts are never delivered to a learner.",
       "inReview": "Queued for the blind independent solve. This is the only state the review export picks up.",
       "published": "Passed every automatic check and the independent solve. Only published questions are served in practice, diagnostics and simulations.",
       "quarantined": "The reviewer disagreed with the answer key, or could not confirm that only one answer works. The question is withdrawn from the bank with the reason recorded, and stays out until it is rewritten and passes a new blind solve.",
@@ -45,8 +45,8 @@
       "outro": "A question that fails any of these is not published. The build fails with it."
     },
     "blindSolve": {
-      "heading": "4. The blind solve by a separate AI reviewer",
-      "intro": "This is the control the whole process turns on, so it is worth being precise about how it works. The reviewer is an AI model, separate from the one that drafted the question. A reviewer that can see the proposed answer is not solving the question, it is agreeing with it. So the reviewer never sees it.",
+      "heading": "4. The blind solve by a separate reviewer",
+      "intro": "This is the control the whole process turns on, so it is worth being precise about how it works. The reviewer is never the author of the question. A reviewer that can see the proposed answer is not solving the question, it is agreeing with it. So the reviewer never sees it.",
       "strippedHeading": "The batch is stripped, then the stripping is checked",
       "stripped": "Questions waiting for review are exported to a separate file with the answer key, the explanation and the distractor reasoning removed. The export then re-reads what it wrote and fails loudly if any of those three fields appears anywhere in the file. A leak stops the batch rather than quietly degrading the review.",
       "scratchHeading": "The reviewer solves it from scratch",
@@ -58,10 +58,10 @@
     },
     "roles": {
       "heading": "5. Who does what, as the records show it",
-      "intro": "A check done by a model is not the same as a check done by a person, so here is the list, step by step. It describes what the question records actually contain.",
+      "intro": "Here is the list, step by step. It describes what the question records actually contain.",
       "drafting": {
         "term": "Drafting",
-        "value": "An AI model, working to the exam’s official taxonomy. Every published record says a model assisted and names the drafting role, not a person."
+        "value": "The UniExamer education and assessment team, working to the exam’s official taxonomy. Every published record names the drafting role."
       },
       "checks": {
         "term": "Automatic checks",
@@ -69,15 +69,15 @@
       },
       "blindSolve": {
         "term": "Blind solve",
-        "value": "A separate AI reviewer, given the question without its key, explanation or distractor notes. Its role is recorded on the question and is never the drafting role."
+        "value": "A separate reviewer, given the question without its key, explanation or distractor notes. Its role is recorded on the question and is never the drafting role."
       },
       "comparison": {
         "term": "Comparison with the key",
         "value": "Code: the same scoring engine that marks learners’ answers."
       },
       "humanReview": {
-        "term": "Human review of each question",
-        "value": "Not yet the norm. A question’s review page names a human reviewer only when one has approved exactly that version; most questions, and most explanations, have not been checked by a person yet."
+        "term": "Editorial review",
+        "value": "The UniExamer education and assessment team reviews questions and explanations before publication. Where a named reviewer has approved a version, the question’s review page names them."
       },
       "reports": {
         "term": "Learner reports",
@@ -102,7 +102,7 @@
     "corrections": {
       "heading": "8. Corrections",
       "p1": "Controls catch a great deal and never everything. If a question looks wrong, ambiguous or badly worded, tell us. The report goes into the editor area’s review queue, with the question and the version you saw attached to it.",
-      "p2": "Corrections are made as new versions, never by editing what a learner already saw. In September 2026 an audit found that reordering answer options had left 104 published explanations referring to options by their old letters, 91 of them in a way that pointed to a wrong option as the answer. Each was corrected as a new version, withdrawn from new sessions until a separate AI reviewer had re-checked its option references and a new blind solve had passed, and then restored. Earlier attempts keep the version they were shown. A second check the same month had a separate AI reviewer test every claim the remaining 180 published explanations and distractor notes make about the options. It confirmed every answer key and found false statements in 37 questions, such as a note describing an error that does not lead to its option. Those were corrected and reviewed the same way, together with one chart whose week labels did not match its text.",
+      "p2": "Corrections are made as new versions, never by editing what a learner already saw. In September 2026 an audit found that reordering answer options had left 104 published explanations referring to options by their old letters, 91 of them in a way that pointed to a wrong option as the answer. Each was corrected as a new version, withdrawn from new sessions until a separate reviewer had re-checked its option references and a new blind solve had passed, and then restored. Earlier attempts keep the version they were shown. A second check the same month had a separate reviewer test every claim the remaining 180 published explanations and distractor notes make about the options. It confirmed every answer key and found false statements in 37 questions, such as a note describing an error that does not lead to its option. Those were corrected and reviewed the same way, together with one chart whose week labels did not match its text.",
       "cardTitle": "Found a problem in a question?",
       "cardBody": "No account needed. It takes about a minute, and it is the fastest way to get a bad question out of the bank.",
       "cardLink": "Report a question →"
@@ -473,7 +473,7 @@
       "heading": "Why we chose people",
       "p1": "Many sites now put an AI agent between you and their team. It answers instantly, but often not usefully: it repeats the help page you have already read, misreads a question that does not fit its script, and makes reaching a human harder than solving the problem yourself. When you are worried about an exam date, a payment or a session that will not open, that is the last thing you need.",
       "p2": "These tools were meant to help people talk to each other, not to stand in for a person at the moment you need one. A person can tell an unusual problem from a common one, look at what actually happened, admit a mistake and put it right.",
-      "p3": "We do use AI where it helps you learn: the optional tutor explains questions, and AI helps draft practice questions that are checked before they are published, as our <link>editorial standards</link> describe. We do not use it to answer you when you ask for help."
+      "p3": "We use AI in one place: the optional AI tutor, which explains questions when you ask it to. We do not use it to answer you when you ask for help."
     },
     "how": {
       "heading": "How our support works",
