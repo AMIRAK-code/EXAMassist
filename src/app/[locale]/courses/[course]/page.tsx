@@ -7,6 +7,7 @@ import { getHub } from '@/lib/exams/registry';
 import { freeTestPath } from '@/lib/billing/config';
 import { CONTENT_LANG, pageAlternates } from '@/i18n/alternates';
 import { CourseProgressSummary, LessonDoneTick } from '@/components/courses/interactive';
+import { courseLangs } from '@/lib/courses/languages';
 import { localizePath, type Locale } from '@/i18n/locales';
 import { SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
 import { pageTitle } from '@/lib/seo/title';
@@ -20,8 +21,13 @@ type Props = { params: Promise<{ locale: string; course: string }> };
 /* Rendered at build time, like the lessons ([lesson]/page.tsx says why). */
 export const dynamic = 'force-static';
 
-export function generateStaticParams() {
-  return listCourses().map((course) => ({ course: course.slug }));
+/* Only in the languages the course is written in, as its lessons ([lesson]/page.tsx). */
+export const dynamicParams = false;
+
+export function generateStaticParams({ params }: { params: { locale: string } }) {
+  return listCourses()
+    .filter((course) => courseLangs(course.slug).includes(params.locale))
+    .map((course) => ({ course: course.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

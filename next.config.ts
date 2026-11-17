@@ -1,5 +1,7 @@
 import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
+import { DEFAULT_LOCALE, LOCALES } from './src/i18n/locales';
+import { TRANSLATED_COURSES } from './src/lib/courses/languages';
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
@@ -13,6 +15,24 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
  */
 const CANONICAL_ORIGIN = 'https://uniexamer.com';
 const REDIRECTED_HOSTS = ['exam.assist365.app', 'www.uniexamer.com'];
+
+/*
+ * Courses and lessons exist only in English, and the IMAT course in Italian
+ * too (src/lib/courses/languages.ts); the other languages are for navigating
+ * the site. A course address in another language goes to the English page.
+ * The course index (/courses) stays in every language.
+ */
+function courseRedirects() {
+  return LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).flatMap((locale) => {
+    const own = Object.keys(TRANSLATED_COURSES).filter((slug) => TRANSLATED_COURSES[slug].includes(locale));
+    // In a parameter's pattern `$` is the end of the whole path, so the exclusion ends at the next "/" too.
+    const course = own.length > 0 ? `:course((?!(?:${own.join('|')})(?:/|$))[^/]+)` : ':course';
+    return [
+      { source: `/${locale}/courses/${course}`, destination: '/courses/:course', permanent: true },
+      { source: `/${locale}/courses/${course}/:lesson`, destination: '/courses/:course/:lesson', permanent: true },
+    ];
+  });
+}
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -53,6 +73,7 @@ const nextConfig: NextConfig = {
       // own /checkout (docs/BILLING.md). Old links keep working, query and all.
       { source: '/premium', destination: '/pricing', permanent: true },
       { source: '/premium/welcome', destination: '/account', permanent: false },
+      ...courseRedirects(),
     ];
   },
   async headers() {
