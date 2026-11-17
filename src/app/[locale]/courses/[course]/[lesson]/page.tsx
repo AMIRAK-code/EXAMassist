@@ -35,10 +35,11 @@ export const dynamic = 'force-static';
  */
 export const dynamicParams = false;
 
-export function generateStaticParams({ params }: { params: { locale: string } }) {
-  return listCourses()
-    .filter((course) => courseLangs(course.slug).includes(params.locale))
-    .flatMap((course) => courseLessons(course).map((lesson) => ({ course: course.slug, lesson: lesson.slug })));
+// Every param, the language included: the build does not hand this page the layout's languages.
+export function generateStaticParams() {
+  return listCourses().flatMap((course) =>
+    courseLangs(course.slug).flatMap((locale) => courseLessons(course).map((lesson) => ({ locale, course: course.slug, lesson: lesson.slug }))),
+  );
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

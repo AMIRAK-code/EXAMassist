@@ -24,10 +24,9 @@ export const dynamic = 'force-static';
 /* Only in the languages the course is written in, as its lessons ([lesson]/page.tsx). */
 export const dynamicParams = false;
 
-export function generateStaticParams({ params }: { params: { locale: string } }) {
-  return listCourses()
-    .filter((course) => courseLangs(course.slug).includes(params.locale))
-    .map((course) => ({ course: course.slug }));
+// Every param, the language included: the build does not hand this page the layout's languages.
+export function generateStaticParams() {
+  return listCourses().flatMap((course) => courseLangs(course.slug).map((locale) => ({ locale, course: course.slug })));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
