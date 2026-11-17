@@ -25,9 +25,10 @@ tone is `src/lib/courses/content/gre/percent-lesson.ts`.
    `review: { aiAssisted: true, independentCheckOn: null, expertReview: null }`.
    An independent checker, who did not write the lesson, re-derives every
    example and solves every check without looking at the key; only when all
-   agree does the checker set `independentCheckOn` to the date. Nobody sets
-   `expertReview`: no human expert has reviewed the courses, and the pages
-   say so.
+   agree does the checker set `independentCheckOn` to the date. Lessons are
+   then reviewed by the UniExamer education and assessment team, which is how
+   every lesson page credits them; the pages do not describe how drafts were
+   produced. `expertReview` stays null (it would name an individual).
 
 ## Lesson shape
 

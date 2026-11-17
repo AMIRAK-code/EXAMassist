@@ -21,9 +21,10 @@
  * Review states (docs/COURSE-AUTHORING.md): a lesson is drafted with AI
  * assistance, then every worked example and check question is re-solved by
  * an independent checker, which records `review.independentCheckOn`. Only a
- * lesson with that date is published. `expertReview` stays null until a
- * named human reviewer is recorded; pages never claim a review that has not
- * happened.
+ * lesson with that date is published. Lessons are reviewed by the UniExamer
+ * education and assessment team, which the pages credit as their authors
+ * (messages/<locale>/courses.json, lesson.authorship). `expertReview` stays
+ * null: it would name an individual reviewer.
  */
 
 import type { SampleQuestion } from '@/lib/content/guides';
@@ -84,7 +85,7 @@ export interface Trap {
 export type CheckQuestion = SampleQuestion;
 
 export interface LessonReview {
-  /** Always true: lessons are drafted with AI assistance, and the page says so. */
+  /** Always true: an internal record that drafting was assisted. Pages credit the UniExamer education and assessment team. */
   aiAssisted: true;
   /**
    * The day an independent checker re-derived every worked example and solved
