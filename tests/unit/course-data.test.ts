@@ -13,7 +13,8 @@ import { createView } from '@/lib/courses/view';
  */
 describe('the exported course data', () => {
   it('has a committed catalogue that matches the content: run npx tsx scripts/export-courses.ts after editing a course', () => {
-    const committed = fs.readFileSync(path.join('src', 'lib', 'courses', 'catalogue.generated.json'), 'utf8');
+    // A Windows checkout may hold the file with CRLF line endings.
+    const committed = fs.readFileSync(path.join('src', 'lib', 'courses', 'catalogue.generated.json'), 'utf8').replace(/\r\n/g, '\n');
     expect(committed).toBe(`${JSON.stringify(courseData('light'), null, 1)}\n`);
   });
 

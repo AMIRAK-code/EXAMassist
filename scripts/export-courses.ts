@@ -17,7 +17,8 @@ const catalogue = path.join(root, 'src', 'lib', 'courses', 'catalogue.generated.
 const lessons = path.join(root, '.course-data', 'lessons.json');
 
 const light = `${JSON.stringify(courseData('light'), null, 1)}\n`;
-if (!fs.existsSync(catalogue) || fs.readFileSync(catalogue, 'utf8') !== light) fs.writeFileSync(catalogue, light);
+// Left alone when only its line endings differ (a Windows checkout), so the build never dirties the tree.
+if (!fs.existsSync(catalogue) || fs.readFileSync(catalogue, 'utf8').replace(/\r\n/g, '\n') !== light) fs.writeFileSync(catalogue, light);
 fs.mkdirSync(path.dirname(lessons), { recursive: true });
 fs.writeFileSync(lessons, JSON.stringify(courseData('full')));
 console.log(`Course data: ${path.relative(root, catalogue)} (${light.length} bytes), ${path.relative(root, lessons)} (${fs.statSync(lessons).size} bytes).`);

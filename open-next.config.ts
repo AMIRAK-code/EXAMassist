@@ -20,5 +20,6 @@ export default {
    * package directly, as every deploy before Next 16 did. `npm run build`
    * and `npm run dev` keep Turbopack.
    */
-  buildCommand: 'npx next build --webpack',
+  // The course data first: the lesson pages read it while they are prerendered (src/lib/courses/view.ts).
+  buildCommand: 'npx tsx scripts/export-courses.ts && npx next build --webpack',
 };
