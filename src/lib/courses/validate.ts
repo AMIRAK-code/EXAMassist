@@ -131,7 +131,7 @@ export function validateLesson(lesson: Lesson, where: string): CourseIssue[] {
   const { review } = lesson;
   if (review.aiAssisted !== true) fail('review.aiAssisted must be true');
   if (review.independentCheckOn !== null && !DATE.test(review.independentCheckOn)) fail('review.independentCheckOn must be YYYY-MM-DD or null');
-  if (review.expertReview !== null) fail('review.expertReview must stay null until a named reviewer is recorded');
+  if (review.expertReview !== null) fail('review.expertReview must stay null (it would name an individual reviewer)');
 
   for (const [at, text] of lessonTexts(lesson)) {
     const place = `${where} › ${at}`;
