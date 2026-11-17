@@ -8,20 +8,20 @@
   "editorialStandards": {
     "meta": {
       "title": "Estándares editoriales",
-      "description": "Cómo UniExamer redacta y revisa sus preguntas originales con ayuda de IA: resolución a ciegas, control de la clave y cuarentena, no correcciones silenciosas."
+      "description": "Cómo UniExamer redacta y revisa sus preguntas originales: resolución a ciegas independiente, control de la clave y cuarentena, no correcciones silenciosas."
     },
     "title": "Estándares editoriales",
     "lead": "Qué tiene que cumplirse antes de mostrar una pregunta a nadie y qué nos negamos a afirmar sobre ella después.",
-    "inShort": "Todas las preguntas de práctica de {name} son material original elaborado con ayuda de IA. Antes de publicarse, un revisor de IA independiente la resuelve desde cero sin ver la respuesta propuesta, y la comparación entre esa solución y la clave la hace el mismo código de puntuación que usa la aplicación. Cuando no coinciden, la pregunta se pone en cuarentena, no se corrige discretamente. La mayoría de las preguntas todavía no las ha revisado una persona, y lo decimos en lugar de dar a entender lo contrario: una pregunta nombra a un revisor humano solo en su página de revisión, y solo cuando ese revisor ha aprobado exactamente esa versión. Las etiquetas de dificultad son un criterio editorial, no estadísticas calibradas, y cada afirmación que hacemos sobre el formato de un examen cita a la entidad que lo organiza y está fechada.",
+    "inShort": "Todas las preguntas de práctica de {name} son material original, redactado y revisado por el equipo de educación y evaluación de UniExamer. Antes de publicarse, un revisor independiente la resuelve desde cero sin ver la respuesta propuesta, y la comparación entre esa solución y la clave la hace el mismo código de puntuación que usa la aplicación. Cuando no coinciden, la pregunta se pone en cuarentena, no se corrige discretamente. Las etiquetas de dificultad son un criterio editorial, no estadísticas calibradas, y cada afirmación que hacemos sobre el formato de un examen cita a la entidad que lo organiza y está fechada.",
     "original": {
       "heading": "1. Todas las preguntas son originales",
       "p1": "El contrato de preguntas admite una única procedencia para todo lo que llega a un estudiante: <code>original</code>, de nuestra propiedad. No reproducimos, adaptamos ni parafraseamos bancos de preguntas oficiales, modelos de examen retirados ni preguntas de ningún otro editor, y no existe ninguna ruta en el código que permita publicar una pregunta de otra procedencia.",
-      "p2": "Cada ficha de pregunta identifica el rol que la redactó, registra que un modelo ayudó a redactarla e indica su situación de derechos. Todo lo que un modelo ayudó a redactar entra en el banco como <code>draft</code>, y ninguna pregunta llega a los estudiantes sin superar cada uno de los pasos siguientes."
+      "p2": "Cada ficha de pregunta identifica el rol que la redactó e indica su situación de derechos. Toda pregunta nueva entra en el banco como <code>draft</code>, y ninguna pregunta llega a los estudiantes sin superar cada uno de los pasos siguientes."
     },
     "states": {
       "heading": "2. Los cinco estados en los que puede estar una pregunta",
       "intro": "La publicación es un estado, no una opinión. Estos son los únicos cinco estados que puede tener una pregunta, y solo uno de ellos se muestra a los estudiantes.",
-      "draft": "En redacción. Todo lo que un modelo ayudó a redactar entra aquí y no puede saltarse la cola. Los borradores nunca se muestran a un estudiante.",
+      "draft": "En redacción. Toda pregunta nueva entra aquí y no puede saltarse la cola. Los borradores nunca se muestran a un estudiante.",
       "inReview": "En cola para la resolución independiente a ciegas. Es el único estado que recoge la exportación para revisión.",
       "published": "Ha superado todas las comprobaciones automáticas y la resolución independiente. Solo las preguntas publicadas se usan en la práctica, los diagnósticos y las simulaciones.",
       "quarantined": "El revisor no estuvo de acuerdo con la clave de respuestas o no pudo confirmar que solo una respuesta sea válida. La pregunta se retira del banco con el motivo registrado y queda fuera hasta que se reescribe y supera una nueva resolución a ciegas.",
@@ -45,8 +45,8 @@
       "outro": "Una pregunta que no supera alguna de estas comprobaciones no se publica. La compilación falla con ella."
     },
     "blindSolve": {
-      "heading": "4. La resolución a ciegas por un revisor de IA independiente",
-      "intro": "Es el control sobre el que gira todo el proceso, así que vale la pena explicar con precisión cómo funciona. El revisor es un modelo de IA distinto del que redactó la pregunta. Un revisor que puede ver la respuesta propuesta no está resolviendo la pregunta, le está dando la razón. Por eso el revisor nunca la ve.",
+      "heading": "4. La resolución a ciegas por un revisor independiente",
+      "intro": "Es el control sobre el que gira todo el proceso, así que vale la pena explicar con precisión cómo funciona. El revisor nunca es el autor de la pregunta. Un revisor que puede ver la respuesta propuesta no está resolviendo la pregunta, le está dando la razón. Por eso el revisor nunca la ve.",
       "strippedHeading": "Se depura el lote y después se comprueba la depuración",
       "stripped": "Las preguntas pendientes de revisión se exportan a un archivo aparte sin la clave de respuestas, la explicación ni el razonamiento de los distractores. Después, la exportación vuelve a leer lo que ha escrito y falla de forma visible si alguno de esos tres campos aparece en cualquier parte del archivo. Una filtración detiene el lote en lugar de degradar la revisión sin que nadie lo note.",
       "scratchHeading": "El revisor la resuelve desde cero",
@@ -58,10 +58,10 @@
     },
     "roles": {
       "heading": "5. Quién hace qué, según consta en las fichas",
-      "intro": "Una comprobación hecha por un modelo no es lo mismo que una hecha por una persona, así que aquí está la lista, paso a paso. Describe lo que contienen de verdad las fichas de las preguntas.",
+      "intro": "Aquí está la lista, paso a paso. Describe lo que contienen de verdad las fichas de las preguntas.",
       "drafting": {
         "term": "Redacción",
-        "value": "Un modelo de IA, que trabaja con la taxonomía oficial del examen. Cada ficha publicada indica que un modelo ayudó y nombra el rol de redacción, no a una persona."
+        "value": "El equipo de educación y evaluación de UniExamer, que trabaja con la taxonomía oficial del examen. Cada ficha publicada nombra el rol de redacción."
       },
       "checks": {
         "term": "Comprobaciones automáticas",
@@ -69,15 +69,15 @@
       },
       "blindSolve": {
         "term": "Resolución a ciegas",
-        "value": "Un revisor de IA independiente, que recibe la pregunta sin su clave, su explicación ni sus notas sobre los distractores. Su rol queda registrado en la pregunta y nunca es el rol de redacción."
+        "value": "Un revisor independiente, que recibe la pregunta sin su clave, su explicación ni sus notas sobre los distractores. Su rol queda registrado en la pregunta y nunca es el rol de redacción."
       },
       "comparison": {
         "term": "Comparación con la clave",
         "value": "Código: el mismo motor de puntuación que corrige las respuestas de los estudiantes."
       },
       "humanReview": {
-        "term": "Revisión humana de cada pregunta",
-        "value": "Todavía no es lo habitual. La página de revisión de una pregunta nombra a un revisor humano solo cuando este ha aprobado exactamente esa versión; la mayoría de las preguntas, y de las explicaciones, todavía no las ha revisado una persona."
+        "term": "Revisión editorial",
+        "value": "El equipo de educación y evaluación de UniExamer revisa las preguntas y las explicaciones antes de publicarlas. Cuando un revisor identificado ha aprobado una versión, la página de revisión de la pregunta lo indica con su nombre."
       },
       "reports": {
         "term": "Avisos de los estudiantes",
@@ -102,7 +102,7 @@
     "corrections": {
       "heading": "8. Correcciones",
       "p1": "Los controles detectan mucho, pero nunca todo. Si una pregunta te parece incorrecta, ambigua o mal redactada, avísanos. El aviso entra en la cola de revisión del área editorial, con la pregunta y la versión que viste adjuntas.",
-      "p2": "Las correcciones se hacen como versiones nuevas, nunca editando lo que un estudiante ya ha visto. En septiembre de 2026 una auditoría descubrió que reordenar las opciones de respuesta había dejado 104 explicaciones publicadas que se referían a las opciones por sus letras antiguas, 91 de ellas de una manera que señalaba como respuesta una opción incorrecta. Cada una se corrigió como versión nueva, se retiró de las sesiones nuevas hasta que un revisor de IA independiente volvió a comprobar sus referencias a las opciones y se superó una nueva resolución a ciegas, y después se restableció. Los intentos anteriores conservan la versión que se mostró. Una segunda comprobación ese mismo mes hizo que un revisor de IA independiente examinara cada afirmación sobre las opciones de las 180 explicaciones y notas sobre distractores publicadas restantes. Confirmó todas las claves de respuesta y encontró afirmaciones falsas en 37 preguntas, como una nota que describía un error que no lleva a su opción. Se corrigieron y revisaron de la misma manera, junto con un gráfico cuyas etiquetas de semana no coincidían con su texto.",
+      "p2": "Las correcciones se hacen como versiones nuevas, nunca editando lo que un estudiante ya ha visto. En septiembre de 2026 una auditoría descubrió que reordenar las opciones de respuesta había dejado 104 explicaciones publicadas que se referían a las opciones por sus letras antiguas, 91 de ellas de una manera que señalaba como respuesta una opción incorrecta. Cada una se corrigió como versión nueva, se retiró de las sesiones nuevas hasta que un revisor independiente volvió a comprobar sus referencias a las opciones y se superó una nueva resolución a ciegas, y después se restableció. Los intentos anteriores conservan la versión que se mostró. Una segunda comprobación ese mismo mes hizo que un revisor independiente examinara cada afirmación sobre las opciones de las 180 explicaciones y notas sobre distractores publicadas restantes. Confirmó todas las claves de respuesta y encontró afirmaciones falsas en 37 preguntas, como una nota que describía un error que no lleva a su opción. Se corrigieron y revisaron de la misma manera, junto con un gráfico cuyas etiquetas de semana no coincidían con su texto.",
       "cardTitle": "¿Has encontrado un problema en una pregunta?",
       "cardBody": "No necesitas cuenta. Lleva alrededor de un minuto y es la forma más rápida de sacar una pregunta incorrecta del banco.",
       "cardLink": "Informar de una pregunta →"
@@ -473,7 +473,7 @@
       "heading": "Por qué elegimos a las personas",
       "p1": "Hoy muchos sitios ponen un agente de IA entre tú y su equipo. Responde al instante, pero a menudo sin ser útil: repite la página de ayuda que ya has leído, malinterpreta una pregunta que no encaja en su guion y hace que llegar a una persona sea más difícil que resolver el problema por tu cuenta. Cuando te preocupa la fecha de un examen, un pago o una sesión que no se abre, es lo último que necesitas.",
       "p2": "Estas herramientas se pensaron para ayudar a las personas a hablar entre sí, no para ocupar el lugar de una persona justo cuando la necesitas. Una persona sabe distinguir un problema raro de uno habitual, mirar qué ha pasado realmente, reconocer un error y corregirlo.",
-      "p3": "Usamos la IA donde te ayuda a aprender: el tutor opcional explica las preguntas y la IA ayuda a redactar borradores de preguntas de práctica que se revisan antes de publicarse, como describen nuestros <link>estándares editoriales</link>. No la usamos para responderte cuando nos pides ayuda."
+      "p3": "Usamos la IA en un solo lugar: el tutor de IA opcional, que explica las preguntas cuando se lo pides. No la usamos para responderte cuando nos pides ayuda."
     },
     "how": {
       "heading": "Cómo funciona nuestro soporte",

@@ -199,7 +199,7 @@ Lo stesso con le formule: $a = \\tfrac{20}{8} = 2{,}5$ m/s², e $s = \\tfrac{1}{
   ],
   afterMd: `## Su questi esempi
 
-Li ha scritti il team di UniExamer per questa pagina, con l’aiuto dell’intelligenza artificiale, e li ha pubblicati il 2 novembre 2026. Non sono domande del CISIA, la loro difficoltà non è tarata su quella del test vero e otto domande non bastano a stimare un punteggio TOLC. Ogni risposta è stata ricalcolata passo per passo durante la redazione. Non fanno parte della nostra banca di domande, quindi leggere le soluzioni non rovina nessuna esercitazione. Se trovi un errore, [scrivici](/it/about/support).
+Li ha scritti e revisionati il team didattico e di valutazione di UniExamer per questa pagina, e li ha pubblicati il 2 novembre 2026. Non sono domande del CISIA, la loro difficoltà non è tarata su quella del test vero e otto domande non bastano a stimare un punteggio TOLC. Ogni risposta è stata ricalcolata passo per passo durante la redazione. Non fanno parte della nostra banca di domande, quindi leggere le soluzioni non rovina nessuna esercitazione. Se trovi un errore, [scrivici](/it/about/support).
 
 ## La preparazione ufficiale del CISIA
 

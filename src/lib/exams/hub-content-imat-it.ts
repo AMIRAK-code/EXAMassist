@@ -28,7 +28,7 @@ export const imatIt: HubContent = {
   translationNote: {
     title: 'Traduzione in attesa di revisione',
     bodyMd:
-      'Abbiamo scritto questa pagina in italiano partendo da quella inglese, con l’aiuto dell’intelligenza artificiale, e l’abbiamo confrontata con il decreto ministeriale, ma **nessun revisore madrelingua l’ha ancora riletta**. Se trovi un errore di lingua o di contenuto, [scrivici](/it/about/support). In caso di dubbio fanno fede il decreto del MUR e il bando del tuo ateneo.',
+      'Questa pagina è stata scritta in italiano dal team didattico e di valutazione di UniExamer partendo da quella inglese, revisionata e confrontata con il decreto ministeriale. Se trovi un errore di lingua o di contenuto, [scrivici](/it/about/support). In caso di dubbio fanno fede il decreto del MUR e il bando del tuo ateneo.',
   },
   leadMd: `**L’IMAT è il test di ammissione ai corsi di laurea in lingua inglese in Medicina e chirurgia, Odontoiatria e protesi dentaria e Medicina veterinaria delle università italiane.** È un’unica prova su carta di 60 quesiti a cinque opzioni in 100 minuti, in inglese, stabilita dal Ministero dell’Università e della Ricerca (MUR) e gestita dal CINECA: 4 quesiti di competenze di lettura e conoscenze acquisite negli studi, 5 di ragionamento logico e problemi, 23 di biologia, 15 di chimica e 13 di fisica e matematica. Una risposta esatta vale 1,5 punti, una errata −0,4 e una non data 0, su un massimo di 90. I candidati comunitari, e quelli non comunitari residenti in Italia, devono ottenere almeno 20 punti per entrare in graduatoria; i posti si assegnano poi secondo la graduatoria nazionale.
 

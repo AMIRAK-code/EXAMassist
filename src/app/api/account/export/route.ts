@@ -228,7 +228,7 @@ export async function GET() {
       exportedAt: new Date().toISOString(),
       notice:
         `This file contains the data held for one ${SITE.name} account. Question text and explanations are ` +
-        'included so your practice makes sense on its own; that material is original, AI-assisted work ' +
+        'included so your practice makes sense on its own; that material is original work by the UniExamer education and assessment team ' +
         `published by ${SITE.name} and is not licensed for republication. Answer keys are included only for ` +
         'practice you have already submitted.',
       account: {

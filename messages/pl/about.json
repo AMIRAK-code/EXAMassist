@@ -8,20 +8,20 @@
   "editorialStandards": {
     "meta": {
       "title": "Standardy redakcyjne",
-      "description": "Jak UniExamer pisze i sprawdza autorskie pytania tworzone z pomocą AI: rozwiązanie na ślepo, kontrola klucza i kwarantanna zamiast cichych poprawek."
+      "description": "Jak UniExamer pisze i sprawdza swoje autorskie pytania: niezależne rozwiązanie na ślepo, kontrola klucza i kwarantanna zamiast cichych poprawek."
     },
     "title": "Standardy redakcyjne",
     "lead": "Co musi być spełnione, zanim pytanie zostanie komukolwiek pokazane, i czego potem nie twierdzimy na jego temat.",
-    "inShort": "Każde pytanie ćwiczeniowe w serwisie {name} to oryginalny materiał przygotowany z pomocą AI. Przed publikacją osobny recenzent AI rozwiązuje je od zera, nie widząc proponowanej odpowiedzi, a jego rozwiązanie porównuje z kluczem ten sam kod punktacji, którego używa aplikacja. Jeśli wyniki się różnią, pytanie trafia do kwarantanny — nie jest po cichu poprawiane. Większość pytań nie została jeszcze sprawdzona przez człowieka i mówimy o tym otwarcie, zamiast sugerować coś innego: pytanie wskazuje recenzenta-człowieka tylko na swojej stronie przeglądu i tylko wtedy, gdy ten recenzent zatwierdził dokładnie tę wersję. Poziomy trudności to ocena redakcyjna, a nie skalibrowane statystyki, a każda nasza informacja o formacie egzaminu powołuje się na organizatora i jest opatrzona datą.",
+    "inShort": "Każde pytanie ćwiczeniowe w serwisie {name} to oryginalny materiał, napisany i zrecenzowany przez zespół edukacji i oceniania UniExamer. Przed publikacją osobny recenzent rozwiązuje je od zera, nie widząc proponowanej odpowiedzi, a jego rozwiązanie porównuje z kluczem ten sam kod punktacji, którego używa aplikacja. Jeśli wyniki się różnią, pytanie trafia do kwarantanny — nie jest po cichu poprawiane. Poziomy trudności to ocena redakcyjna, a nie skalibrowane statystyki, a każda nasza informacja o formacie egzaminu powołuje się na organizatora i jest opatrzona datą.",
     "original": {
       "heading": "1. Wszystkie pytania są oryginalne",
       "p1": "Specyfikacja pytań dopuszcza dokładnie jedno pochodzenie dla wszystkiego, co trafia do uczącego się: <code>original</code>, czyli materiał należący do nas. Nie powielamy, nie adaptujemy ani nie parafrazujemy oficjalnych baz pytań, wycofanych arkuszy ani zadań żadnego innego wydawcy, a w kodzie nie istnieje ścieżka, która pozwoliłaby opublikować pytanie o innym pochodzeniu.",
-      "p2": "Każdy rekord pytania wskazuje rolę, która je przygotowała, odnotowuje, że w jego tworzeniu pomagał model, i zawiera status praw. Wszystko, co powstało z pomocą modelu, trafia do bazy jako <code>draft</code>, a żadne pytanie nie dociera do uczących się, dopóki nie przejdzie wszystkich poniższych etapów."
+      "p2": "Każdy rekord pytania wskazuje rolę, która je przygotowała, i zawiera status praw. Każde nowe pytanie trafia do bazy jako <code>draft</code>, a żadne pytanie nie dociera do uczących się, dopóki nie przejdzie wszystkich poniższych etapów."
     },
     "states": {
       "heading": "2. Pięć stanów, w jakich może być pytanie",
       "intro": "Publikacja to stan, a nie opinia. Pytanie może mieć tylko jeden z tych pięciu stanów, a uczącym się udostępniany jest tylko jeden z nich.",
-      "draft": "W trakcie pisania. Wszystko, co powstało z pomocą modelu, trafia tutaj i nie może ominąć kolejki. Wersje robocze nigdy nie są pokazywane uczącym się.",
+      "draft": "W trakcie pisania. Każde nowe pytanie trafia tutaj i nie może ominąć kolejki. Wersje robocze nigdy nie są pokazywane uczącym się.",
       "inReview": "W kolejce do niezależnego rozwiązania bez znajomości odpowiedzi. To jedyny stan, z którego eksport do przeglądu pobiera pytania.",
       "published": "Przeszło wszystkie automatyczne kontrole i niezależne rozwiązanie. Tylko opublikowane pytania pojawiają się w ćwiczeniach, testach diagnostycznych i symulacjach.",
       "quarantined": "Recenzent nie zgodził się z kluczem odpowiedzi albo nie mógł potwierdzić, że pasuje tylko jedna odpowiedź. Pytanie zostaje wycofane z bazy z odnotowaniem powodu i pozostaje poza nią, dopóki nie zostanie przepisane i nie przejdzie nowego rozwiązania bez znajomości odpowiedzi.",
@@ -45,8 +45,8 @@
       "outro": "Pytanie, które nie przejdzie którejkolwiek z tych kontroli, nie jest publikowane. Razem z nim nie przechodzi cały proces budowania."
     },
     "blindSolve": {
-      "heading": "4. Rozwiązanie bez znajomości odpowiedzi przez osobnego recenzenta AI",
-      "intro": "Na tej kontroli opiera się cały proces, warto więc dokładnie opisać, jak działa. Recenzent to model AI, inny niż ten, który przygotował pytanie. Recenzent, który widzi proponowaną odpowiedź, nie rozwiązuje pytania, tylko się z nim zgadza. Dlatego recenzent nigdy jej nie widzi.",
+      "heading": "4. Rozwiązanie bez znajomości odpowiedzi przez osobnego recenzenta",
+      "intro": "Na tej kontroli opiera się cały proces, warto więc dokładnie opisać, jak działa. Recenzent nigdy nie jest autorem pytania. Recenzent, który widzi proponowaną odpowiedź, nie rozwiązuje pytania, tylko się z nim zgadza. Dlatego recenzent nigdy jej nie widzi.",
       "strippedHeading": "Zestaw jest oczyszczany, a potem oczyszczenie jest sprawdzane",
       "stripped": "Pytania czekające na przegląd są eksportowane do osobnego pliku bez klucza odpowiedzi, wyjaśnienia i uzasadnień dystraktorów. Eksport ponownie odczytuje następnie to, co zapisał, i zgłasza wyraźny błąd, jeśli którekolwiek z tych trzech pól pojawi się gdziekolwiek w pliku. Wyciek zatrzymuje cały zestaw, zamiast po cichu obniżać jakość przeglądu.",
       "scratchHeading": "Recenzent rozwiązuje pytanie od zera",
@@ -58,10 +58,10 @@
     },
     "roles": {
       "heading": "5. Kto co robi — według zapisów",
-      "intro": "Kontrola przeprowadzona przez model to nie to samo co kontrola przeprowadzona przez człowieka, dlatego oto lista, krok po kroku. Opisuje to, co faktycznie zawierają rekordy pytań.",
+      "intro": "Oto lista, krok po kroku. Opisuje to, co faktycznie zawierają rekordy pytań.",
       "drafting": {
         "term": "Przygotowanie",
-        "value": "Model AI pracujący według oficjalnej taksonomii egzaminu. Każdy opublikowany rekord podaje, że pomagał model, i wskazuje rolę przygotowującą, a nie osobę."
+        "value": "Zespół edukacji i oceniania UniExamer, pracujący według oficjalnej taksonomii egzaminu. Każdy opublikowany rekord wskazuje rolę przygotowującą."
       },
       "checks": {
         "term": "Kontrole automatyczne",
@@ -69,15 +69,15 @@
       },
       "blindSolve": {
         "term": "Rozwiązanie bez znajomości odpowiedzi",
-        "value": "Osobny recenzent AI, który dostaje pytanie bez klucza, wyjaśnienia i uwag do dystraktorów. Jego rola jest zapisywana przy pytaniu i nigdy nie jest rolą przygotowującą."
+        "value": "Osobny recenzent, który dostaje pytanie bez klucza, wyjaśnienia i uwag do dystraktorów. Jego rola jest zapisywana przy pytaniu i nigdy nie jest rolą przygotowującą."
       },
       "comparison": {
         "term": "Porównanie z kluczem",
         "value": "Kod: ten sam mechanizm punktacji, który ocenia odpowiedzi uczących się."
       },
       "humanReview": {
-        "term": "Weryfikacja każdego pytania przez człowieka",
-        "value": "To jeszcze nie standard. Strona przeglądu pytania wskazuje recenzenta-człowieka tylko wtedy, gdy zatwierdził on dokładnie tę wersję; większość pytań i wyjaśnień nie została jeszcze sprawdzona przez człowieka."
+        "term": "Weryfikacja redakcyjna",
+        "value": "Zespół edukacji i oceniania UniExamer sprawdza pytania i wyjaśnienia przed publikacją. Jeśli imiennie wskazany recenzent zatwierdził daną wersję, strona przeglądu pytania podaje jego nazwisko."
       },
       "reports": {
         "term": "Zgłoszenia uczących się",
@@ -102,7 +102,7 @@
     "corrections": {
       "heading": "8. Poprawki",
       "p1": "Kontrole wyłapują bardzo wiele, ale nigdy wszystkiego. Jeśli pytanie wygląda na błędne, niejednoznaczne lub źle sformułowane, daj nam znać. Zgłoszenie trafia do kolejki przeglądu w obszarze redakcyjnym, z dołączonym pytaniem i wersją, która została Ci pokazana.",
-      "p2": "Poprawki wprowadzamy jako nowe wersje, nigdy przez edycję tego, co uczący się już widział. We wrześniu 2026 roku audyt wykazał, że zmiana kolejności odpowiedzi sprawiła, że 104 opublikowane wyjaśnienia odwoływały się do opcji według dawnych liter, z czego 91 w taki sposób, że jako odpowiedź wskazywały błędną opcję. Każde z nich poprawiono jako nową wersję, wycofano z nowych sesji, dopóki osobny recenzent AI nie sprawdził ponownie odwołań do opcji i nie przeszło nowe rozwiązanie bez znajomości odpowiedzi, a następnie przywrócono. Wcześniejsze podejścia zachowują wersję, która została w nich pokazana. W ramach drugiej kontroli w tym samym miesiącu osobny recenzent AI sprawdził każde twierdzenie o opcjach zawarte w pozostałych 180 opublikowanych wyjaśnieniach i uwagach do dystraktorów. Potwierdził wszystkie klucze odpowiedzi i znalazł fałszywe stwierdzenia w 37 pytaniach, na przykład uwagę opisującą błąd, który wcale nie prowadzi do danej opcji. Zostały one poprawione i sprawdzone w ten sam sposób, razem z jednym wykresem, którego etykiety tygodni nie zgadzały się z tekstem.",
+      "p2": "Poprawki wprowadzamy jako nowe wersje, nigdy przez edycję tego, co uczący się już widział. We wrześniu 2026 roku audyt wykazał, że zmiana kolejności odpowiedzi sprawiła, że 104 opublikowane wyjaśnienia odwoływały się do opcji według dawnych liter, z czego 91 w taki sposób, że jako odpowiedź wskazywały błędną opcję. Każde z nich poprawiono jako nową wersję, wycofano z nowych sesji, dopóki osobny recenzent nie sprawdził ponownie odwołań do opcji i nie przeszło nowe rozwiązanie bez znajomości odpowiedzi, a następnie przywrócono. Wcześniejsze podejścia zachowują wersję, która została w nich pokazana. W ramach drugiej kontroli w tym samym miesiącu osobny recenzent sprawdził każde twierdzenie o opcjach zawarte w pozostałych 180 opublikowanych wyjaśnieniach i uwagach do dystraktorów. Potwierdził wszystkie klucze odpowiedzi i znalazł fałszywe stwierdzenia w 37 pytaniach, na przykład uwagę opisującą błąd, który wcale nie prowadzi do danej opcji. Zostały one poprawione i sprawdzone w ten sam sposób, razem z jednym wykresem, którego etykiety tygodni nie zgadzały się z tekstem.",
       "cardTitle": "Widzisz problem w pytaniu?",
       "cardBody": "Konto nie jest potrzebne. Zajmuje to około minuty i jest najszybszym sposobem na usunięcie złego pytania z bazy.",
       "cardLink": "Zgłoś pytanie →"
@@ -473,7 +473,7 @@
       "heading": "Dlaczego wybraliśmy ludzi",
       "p1": "Wiele serwisów stawia dziś agenta AI między Tobą a swoim zespołem. Odpowiada natychmiast, ale często bez pożytku: powtarza stronę pomocy, którą już znasz, źle rozumie pytanie niepasujące do jego scenariusza i sprawia, że dotarcie do człowieka jest trudniejsze niż samodzielne rozwiązanie problemu. Gdy martwisz się o termin egzaminu, płatność albo sesję, która się nie otwiera, to ostatnia rzecz, jakiej potrzebujesz.",
       "p2": "Takie narzędzia miały pomagać ludziom rozmawiać ze sobą, a nie zastępować człowieka w chwili, gdy go potrzebujesz. Człowiek odróżni nietypowy problem od częstego, sprawdzi, co naprawdę się stało, przyzna się do błędu i go naprawi.",
-      "p3": "Używamy AI tam, gdzie pomaga Ci się uczyć: opcjonalny tutor wyjaśnia pytania, a AI pomaga przygotowywać szkice pytań treningowych, które są sprawdzane przed publikacją, jak opisują nasze <link>standardy redakcyjne</link>. Nie używamy jej, by odpowiadać Ci, gdy prosisz o pomoc."
+      "p3": "Używamy AI tylko w jednym miejscu: w opcjonalnym tutorze AI, który wyjaśnia pytania, gdy go o to poprosisz. Nie używamy jej, by odpowiadać Ci, gdy prosisz o pomoc."
     },
     "how": {
       "heading": "Jak działa nasza pomoc",

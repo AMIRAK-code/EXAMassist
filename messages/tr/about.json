@@ -8,20 +8,20 @@
   "editorialStandards": {
     "meta": {
       "title": "Editoryal standartlar",
-      "description": "UniExamer özgün, yapay zekâ destekli sorularını nasıl yazar ve denetler: körlemesine çözüm, cevap anahtarı kontrolü ve sessiz düzeltme yerine karantina."
+      "description": "UniExamer özgün sorularını nasıl yazar ve denetler: bağımsız körlemesine çözüm, cevap anahtarı kontrolü ve sessiz düzeltme yerine karantina."
     },
     "title": "Editoryal standartlar",
     "lead": "Bir soru herhangi birine gösterilmeden önce nelerin doğru olması gerektiği ve sonrasında onun hakkında neleri iddia etmeyi reddettiğimiz.",
-    "inShort": "{name} üzerindeki her alıştırma sorusu, yapay zekâ desteğiyle hazırlanmış özgün bir içeriktir. Yayımlanmadan önce ayrı bir yapay zekâ denetçisi soruyu önerilen cevabı görmeden sıfırdan çözer; bu çözüm ile cevap anahtarı arasındaki karşılaştırmayı da uygulamanın kullandığı puanlama kodunun aynısı yapar. İkisi uyuşmadığında soru sessizce düzeltilmez, karantinaya alınır. Soruların çoğu henüz bir insan tarafından kontrol edilmedi ve aksini ima etmek yerine bunu açıkça söylüyoruz: bir soru, bir insan denetçinin adını yalnızca kendi inceleme sayfasında ve yalnızca o denetçi tam o sürümü onayladıysa gösterir. Zorluk etiketleri kalibre edilmiş istatistikler değil, editoryal değerlendirmelerdir; bir sınavın formatı hakkında öne sürdüğümüz her bilgi, sınavı düzenleyen kuruma dayandırılır ve tarihlendirilir.",
+    "inShort": "{name} üzerindeki her alıştırma sorusu, UniExamer eğitim ve değerlendirme ekibi tarafından yazılıp incelenmiş özgün bir içeriktir. Yayımlanmadan önce ayrı bir denetçi soruyu önerilen cevabı görmeden sıfırdan çözer; bu çözüm ile cevap anahtarı arasındaki karşılaştırmayı da uygulamanın kullandığı puanlama kodunun aynısı yapar. İkisi uyuşmadığında soru sessizce düzeltilmez, karantinaya alınır. Zorluk etiketleri kalibre edilmiş istatistikler değil, editoryal değerlendirmelerdir; bir sınavın formatı hakkında öne sürdüğümüz her bilgi, sınavı düzenleyen kuruma dayandırılır ve tarihlendirilir.",
     "original": {
       "heading": "1. Tüm sorular özgündür",
       "p1": "Soru sözleşmesi, öğrenciye ulaşan her içerik için yalnızca tek bir köken türüne izin verir: bize ait olan <code>original</code>. Resmî soru bankalarını, kullanımdan kaldırılmış sınav formlarını ya da başka bir yayıncının sorularını çoğaltmaz, uyarlamaz veya başka sözcüklerle yeniden yazmayız; başka kökenli bir sorunun yayımlanmasına izin verecek bir kod yolu da yoktur.",
-      "p2": "Her soru kaydı, soruyu taslak olarak yazan rolü belirtir, yazımına bir modelin yardım ettiğini kaydeder ve sorunun hak durumunu taşır. Bir modelin yazımına yardım ettiği her şey bankaya <code>draft</code> (taslak) olarak girer ve hiçbir soru aşağıdaki adımların tümünden geçmeden öğrencilere ulaşmaz."
+      "p2": "Her soru kaydı, soruyu taslak olarak yazan rolü belirtir ve sorunun hak durumunu taşır. Her yeni soru bankaya <code>draft</code> (taslak) olarak girer ve hiçbir soru aşağıdaki adımların tümünden geçmeden öğrencilere ulaşmaz."
     },
     "states": {
       "heading": "2. Bir sorunun bulunabileceği beş durum",
       "intro": "Yayında olmak bir görüş değil, bir durumdur. Bir soru yalnızca bu beş durumdan birinde olabilir ve bunlardan yalnızca biri öğrencilere sunulur.",
-      "draft": "Yazılıyor. Bir modelin yazımına yardım ettiği her şey buradan başlar ve sırayı atlayamaz. Taslaklar hiçbir zaman bir öğrenciye gösterilmez.",
+      "draft": "Yazılıyor. Her yeni soru buradan başlar ve sırayı atlayamaz. Taslaklar hiçbir zaman bir öğrenciye gösterilmez.",
       "inReview": "Körlemesine bağımsız çözüm için sırada. İnceleme dışa aktarımının aldığı tek durum budur.",
       "published": "Tüm otomatik kontrollerden ve bağımsız çözümden geçti. Alıştırmalarda, seviye belirleme testlerinde ve deneme sınavlarında yalnızca yayımlanmış sorular sunulur.",
       "quarantined": "Denetçi cevap anahtarına katılmadı ya da yalnızca tek bir cevabın doğru olduğunu teyit edemedi. Soru, nedeni kaydedilerek bankadan çekilir ve yeniden yazılıp yeni bir körlemesine çözümden geçene kadar dışarıda kalır.",
@@ -45,8 +45,8 @@
       "outro": "Bunlardan herhangi birini geçemeyen bir soru yayımlanmaz. Derleme de onunla birlikte başarısız olur."
     },
     "blindSolve": {
-      "heading": "4. Ayrı bir yapay zekâ denetçisinin körlemesine çözümü",
-      "intro": "Tüm süreç bu kontrol üzerine kurulu olduğundan, nasıl işlediğini tam olarak anlatmaya değer. Denetçi, soruyu taslak olarak yazan modelden ayrı bir yapay zekâ modelidir. Önerilen cevabı görebilen bir denetçi soruyu çözmüyor, ona katılıyordur. Bu yüzden denetçi cevabı hiçbir zaman görmez.",
+      "heading": "4. Ayrı bir denetçinin körlemesine çözümü",
+      "intro": "Tüm süreç bu kontrol üzerine kurulu olduğundan, nasıl işlediğini tam olarak anlatmaya değer. Denetçi hiçbir zaman sorunun yazarı değildir. Önerilen cevabı görebilen bir denetçi soruyu çözmüyor, ona katılıyordur. Bu yüzden denetçi cevabı hiçbir zaman görmez.",
       "strippedHeading": "Soru grubu temizlenir, ardından temizlik kontrol edilir",
       "stripped": "İncelemeyi bekleyen sorular; cevap anahtarı, açıklama ve çeldirici gerekçeleri çıkarılarak ayrı bir dosyaya aktarılır. Dışa aktarım ardından yazdığı dosyayı yeniden okur ve bu üç alandan herhangi biri dosyanın herhangi bir yerinde görünürse açıkça hata vererek durur. Bir sızıntı, incelemenin kalitesini sessizce düşürmek yerine grubun tamamını durdurur.",
       "scratchHeading": "Denetçi soruyu sıfırdan çözer",
@@ -58,10 +58,10 @@
     },
     "roles": {
       "heading": "5. Kayıtlara göre kim ne yapıyor",
-      "intro": "Bir modelin yaptığı kontrol, bir insanın yaptığı kontrolle aynı şey değildir; bu yüzden liste adım adım aşağıdadır. Soru kayıtlarının gerçekte neler içerdiğini anlatır.",
+      "intro": "Liste adım adım aşağıdadır. Soru kayıtlarının gerçekte neler içerdiğini anlatır.",
       "drafting": {
         "term": "Taslak yazımı",
-        "value": "Sınavın resmî konu sınıflandırmasına göre çalışan bir yapay zekâ modeli. Yayımlanan her kayıt, bir modelin yardım ettiğini belirtir ve taslağı yazanı bir kişi olarak değil, bir rol olarak adlandırır."
+        "value": "Sınavın resmî konu sınıflandırmasına göre çalışan UniExamer eğitim ve değerlendirme ekibi. Yayımlanan her kayıt, taslağı yazan rolü belirtir."
       },
       "checks": {
         "term": "Otomatik kontroller",
@@ -69,15 +69,15 @@
       },
       "blindSolve": {
         "term": "Körlemesine çözüm",
-        "value": "Soruyu cevap anahtarı, açıklaması ve çeldirici notları olmadan alan ayrı bir yapay zekâ denetçisi. Rolü soruya kaydedilir ve hiçbir zaman taslağı yazan rolle aynı değildir."
+        "value": "Soruyu cevap anahtarı, açıklaması ve çeldirici notları olmadan alan ayrı bir denetçi. Rolü soruya kaydedilir ve hiçbir zaman taslağı yazan rolle aynı değildir."
       },
       "comparison": {
         "term": "Anahtarla karşılaştırma",
         "value": "Kod: öğrencilerin cevaplarını puanlayan puanlama motorunun aynısı."
       },
       "humanReview": {
-        "term": "Her sorunun insan tarafından incelenmesi",
-        "value": "Henüz yaygın değil. Bir sorunun inceleme sayfası, bir insan denetçinin adını yalnızca o denetçi tam o sürümü onayladığında gösterir; soruların ve açıklamaların çoğu henüz bir insan tarafından kontrol edilmedi."
+        "term": "Editoryal inceleme",
+        "value": "UniExamer eğitim ve değerlendirme ekibi, soruları ve açıklamaları yayımlanmadan önce inceler. Adı belirtilen bir denetçi bir sürümü onayladığında, sorunun inceleme sayfası bu kişinin adını verir."
       },
       "reports": {
         "term": "Öğrenci bildirimleri",
@@ -102,7 +102,7 @@
     "corrections": {
       "heading": "8. Düzeltmeler",
       "p1": "Kontroller pek çok şeyi yakalar ama hiçbir zaman her şeyi değil. Bir soru yanlış, belirsiz ya da kötü ifade edilmiş görünüyorsa bize bildirin. Bildiriminiz, soru ve gördüğünüz sürümü eklenmiş olarak editör alanındaki inceleme sırasına girer.",
-      "p2": "Düzeltmeler, bir öğrencinin daha önce gördüğü şey düzenlenerek değil, her zaman yeni sürümler olarak yapılır. Eylül 2026’da yapılan bir denetim, cevap seçeneklerinin yeniden sıralanması nedeniyle yayımlanmış 104 açıklamanın seçeneklere hâlâ eski harfleriyle atıfta bulunduğunu ve bunların 91’inin cevap olarak yanlış bir seçeneği gösterdiğini ortaya koydu. Her biri yeni bir sürüm olarak düzeltildi; ayrı bir yapay zekâ denetçisi seçenek atıflarını yeniden kontrol edene ve yeni bir körlemesine çözüm başarılı olana kadar yeni oturumlardan çekildi, ardından geri getirildi. Önceki oturumlar kendilerine gösterilen sürümü korur. Aynı ay yapılan ikinci bir kontrolde ayrı bir yapay zekâ denetçisi, yayımlanmış geri kalan 180 açıklama ve çeldirici notunun seçenekler hakkında öne sürdüğü her iddiayı test etti. Tüm cevap anahtarlarını teyit etti ve 37 soruda yanlış ifadeler buldu; örneğin, ilgili seçeneğe götürmeyen bir hatayı anlatan bir not. Bunlar, hafta etiketleri metniyle uyuşmayan bir grafikle birlikte aynı şekilde düzeltilip incelendi.",
+      "p2": "Düzeltmeler, bir öğrencinin daha önce gördüğü şey düzenlenerek değil, her zaman yeni sürümler olarak yapılır. Eylül 2026’da yapılan bir denetim, cevap seçeneklerinin yeniden sıralanması nedeniyle yayımlanmış 104 açıklamanın seçeneklere hâlâ eski harfleriyle atıfta bulunduğunu ve bunların 91’inin cevap olarak yanlış bir seçeneği gösterdiğini ortaya koydu. Her biri yeni bir sürüm olarak düzeltildi; ayrı bir denetçi seçenek atıflarını yeniden kontrol edene ve yeni bir körlemesine çözüm başarılı olana kadar yeni oturumlardan çekildi, ardından geri getirildi. Önceki oturumlar kendilerine gösterilen sürümü korur. Aynı ay yapılan ikinci bir kontrolde ayrı bir denetçi, yayımlanmış geri kalan 180 açıklama ve çeldirici notunun seçenekler hakkında öne sürdüğü her iddiayı test etti. Tüm cevap anahtarlarını teyit etti ve 37 soruda yanlış ifadeler buldu; örneğin, ilgili seçeneğe götürmeyen bir hatayı anlatan bir not. Bunlar, hafta etiketleri metniyle uyuşmayan bir grafikle birlikte aynı şekilde düzeltilip incelendi.",
       "cardTitle": "Bir soruda sorun mu buldunuz?",
       "cardBody": "Hesap gerekmez. Yaklaşık bir dakika sürer ve kötü bir soruyu bankadan çıkarmanın en hızlı yoludur.",
       "cardLink": "Bir soruyu bildirin →"
@@ -473,7 +473,7 @@
       "heading": "Neden insanları seçtik",
       "p1": "Artık birçok site, sizinle ekibi arasına bir yapay zekâ ajanı koyuyor. Anında yanıt veriyor ama çoğu zaman işe yaramıyor: zaten okuduğunuz yardım sayfasını tekrarlıyor, kendi senaryosuna uymayan bir soruyu yanlış anlıyor ve bir insana ulaşmayı sorunu kendiniz çözmekten daha zor hâle getiriyor. Sınav tarihinden, bir ödemeden ya da açılmayan bir oturumdan endişe ederken en az ihtiyaç duyacağınız şey budur.",
       "p2": "Bu araçlar insanların birbiriyle konuşmasına yardım etmek için geliştirildi; birine en çok ihtiyaç duyduğunuz anda onun yerine geçmek için değil. Bir insan olağandışı bir sorunu sıradan olandan ayırabilir, gerçekte ne olduğuna bakabilir, hata yapıldıysa bunu kabul edip düzeltebilir.",
-      "p3": "Yapay zekâyı öğrenmenize yardımcı olduğu yerlerde kullanıyoruz: isteğe bağlı eğitmen soruları açıklıyor, yapay zekâ da yayımlanmadan önce kontrol edilen alıştırma sorularının taslağını hazırlamaya yardım ediyor; <link>editoryal standartlarımız</link> bunu anlatıyor. Yardım istediğinizde size yanıt vermek için kullanmıyoruz."
+      "p3": "Yapay zekâyı tek bir yerde kullanıyoruz: siz istediğinizde soruları açıklayan isteğe bağlı yapay zekâ eğitmeni. Yardım istediğinizde size yanıt vermek için kullanmıyoruz."
     },
     "how": {
       "heading": "Desteğimiz nasıl işler",
