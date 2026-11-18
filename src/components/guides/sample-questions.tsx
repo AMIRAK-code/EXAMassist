@@ -1,6 +1,8 @@
 import { getTranslations } from 'next-intl/server';
 import { InlineMarkdown, Markdown } from '@/components/content';
 import type { SampleQuestionSet } from '@/lib/content/guides';
+import NextLink from 'next/link';
+import { sampleLesson } from '@/lib/content/sample-lessons';
 
 /**
  * Worked sample questions in a guide, rendered on the server.
@@ -56,12 +58,23 @@ export async function SampleQuestions({ set, lang = 'en' }: { set: SampleQuestio
           {section.questions.map((question) => {
             const key = question.options.find((option) => option.id === question.answer);
             const wrong = question.options.filter((option) => option.id !== question.answer);
+            // The course lesson that teaches this question's method.
+            const lesson = sampleLesson(question.id);
             return (
               <div key={question.id} className="mt-8 rounded-card border border-line bg-surface p-5 sm:p-6">
                 <h3 id={question.id} className="scroll-mt-24 font-heading text-xl font-semibold">
                   {t('question', { number: question.number })}: {question.title}
                 </h3>
                 <p className="mt-1 text-sm text-ink-muted">{t('topic', { topic: question.topic })}</p>
+                {/* Outside the closed answer, so readers and crawlers both see it. */}
+                {lesson ? (
+                  <p className="mt-1 text-sm">
+                    {t('studyLesson')}{' '}
+                    <NextLink href={lesson.path} lang={lang === 'en' ? undefined : 'en'}>
+                      {lesson.title}
+                    </NextLink>
+                  </p>
+                ) : null}
 
                 {question.stimulusMd ? (
                   <Markdown source={question.stimulusMd} className="prose-academic mt-4 overflow-x-auto font-serif" />
