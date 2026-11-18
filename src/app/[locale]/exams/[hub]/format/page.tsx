@@ -2,8 +2,8 @@ import { Link } from '@/i18n/navigation';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/server';
-import { CONTENT_LANG, pageAlternates } from '@/i18n/alternates';
-import type { Locale } from '@/i18n/locales';
+import { CONTENT_LANG, isTranslatedFor, pageAlternates } from '@/i18n/alternates';
+import { DEFAULT_LOCALE, type Locale } from '@/i18n/locales';
 import { EXAM_HUBS, getConfigsForHub, getHub } from '@/lib/exams/registry';
 import { describePolicy } from '@/lib/assessment/navigation';
 import { shareImages, SITE, siteUrl } from '@/lib/site';
@@ -27,11 +27,16 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, hub: slug } = await params;
-  const t = await getTranslations({ locale, namespace: 'exams.format' });
+  // Every format guide is an English article (src/i18n/alternates.ts), and
+  // its other language versions name the English page as canonical. So they
+  // all carry the English title and description, rather than a translated
+  // title that made each look like a page of its own.
+  const metaLocale = isTranslatedFor(`/exams/${slug}/format`, locale as Locale) ? locale : DEFAULT_LOCALE;
+  const t = await getTranslations({ locale: metaLocale, namespace: 'exams.format' });
   const hub = getHub(slug);
   if (!hub) return { title: t('fallbackTitle') };
 
-  const format = await getFormatter({ locale });
+  const format = await getFormatter({ locale: metaLocale });
   const configs = getConfigsForHub(slug);
   const verifiedOn = configs[0]?.verifiedOn;
   const title = t('metaTitle', { name: hub.name });

@@ -51,14 +51,18 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, hub: slug } = await params;
-  const t = await getTranslations({ locale, namespace: 'exams.hub' });
   const hub = getHub(slug);
-  if (!hub) return { title: t('fallbackTitle') };
+  if (!hub) return { title: (await getTranslations({ locale, namespace: 'exams.hub' }))('fallbackTitle') };
   if (hub.slug === BOCCONI_HUB_SLUG) return bocconiMetadata(locale as Locale);
 
-  // The editorial title is in the content's language: English, or a full
-  // translation. Other languages keep their translated generic title.
-  const content = locale === DEFAULT_LOCALE || isTranslatedFor(`/exams/${hub.slug}`, locale as Locale) ? hubContent(hub.slug, locale) : undefined;
+  // Title and description are in the content's language: English, or a full
+  // translation. A version that is the English article in a translated frame
+  // names the English page as canonical, so it carries the English title and
+  // description too: with a translated title it looked like a different page,
+  // and search engines kept indexing it beside the English one.
+  const metaLocale = isTranslatedFor(`/exams/${hub.slug}`, locale as Locale) ? locale : DEFAULT_LOCALE;
+  const t = await getTranslations({ locale: metaLocale, namespace: 'exams.hub' });
+  const content = hubContent(hub.slug, metaLocale);
   const title = content?.metaTitle ?? t('metaTitle', { name: hub.name });
   // A snippet-length summary; the tagline stays the format guide's "In short".
   const description = content?.metaDescription ?? hub.metaDescription;
