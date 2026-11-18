@@ -175,6 +175,15 @@ describe('billing settings', () => {
     ]);
   });
 
+  it('keeps the paywall on a host that never takes payments, with no Stripe key there', () => {
+    const elsewhere = { BILLING_ENFORCED: 'true', BILLING_PAYMENTS_ELSEWHERE: 'true' };
+    expect(assertBillingConfig(elsewhere)).toMatchObject({ enforced: true, paymentsElsewhere: true, configured: false, checkoutAvailable: false });
+    expect(() => assertBillingConfig({ ...elsewhere, STRIPE_SECRET_KEY: 'sk_live_a' })).toThrow(/No Stripe key/);
+    expect(billingSettings({ ...keys, BILLING_PAYMENTS_ELSEWHERE: 'true' }).checkoutAvailable).toBe(false);
+    // Without the flag, an enforced host still needs every key.
+    expect(() => assertBillingConfig({ BILLING_ENFORCED: 'true' })).toThrow(BillingConfigError);
+  });
+
   it('sells with test keys while everything is free, but never with live keys unless enforced', () => {
     expect(billingSettings(keys).checkoutAvailable).toBe(true);
     const live = { STRIPE_SECRET_KEY: 'sk_live_a', NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: 'pk_live_a', STRIPE_WEBHOOK_SECRET: 'whsec_a' };

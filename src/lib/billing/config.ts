@@ -9,6 +9,14 @@
  *   NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY  sent to the browser for Stripe.js
  *   STRIPE_WEBHOOK_SECRET               verifies /api/billing/webhook
  *   STRIPE_AUTOMATIC_TAX                "true" once Stripe Tax is set up
+ *   BILLING_PAYMENTS_ELSEWHERE          "true" on a host that never takes a
+ *                                       payment: the paywall still applies
+ *                                       (entitlements are read from the
+ *                                       database, never from Stripe), but
+ *                                       pricing, checkout, the account and
+ *                                       the Stripe webhook are served by the
+ *                                       other host (docs/SPLIT-HOSTING.md).
+ *                                       No Stripe key may be set here.
  *
  * With BILLING_ENFORCED=true and any of the three keys missing, the server
  * refuses to start (src/instrumentation.ts) and every entitlement check
@@ -31,6 +39,8 @@ export interface BillingSettings {
   livemode: boolean;
   /** Stripe Tax works out VAT per country (prices stay VAT-inclusive). */
   automaticTax: boolean;
+  /** Payments are taken by another host (BILLING_PAYMENTS_ELSEWHERE): no Stripe keys here, and no checkout. */
+  paymentsElsewhere: boolean;
   /**
    * Whether this deployment can take a payment: keys are set, and either the
    * paywall is on or the keys are test-mode keys (so a staging deployment can
@@ -56,6 +66,7 @@ export function billingSettings(env: Record<string, string | undefined> = proces
   const enforced = env.BILLING_ENFORCED?.trim().toLowerCase() === 'true';
   const configured = Boolean(secretKey && publishableKey && webhookSecret);
   const livemode = Boolean(secretKey && /^(sk|rk)_live_/.test(secretKey));
+  const paymentsElsewhere = env.BILLING_PAYMENTS_ELSEWHERE?.trim().toLowerCase() === 'true';
   return {
     enforced,
     secretKey,
@@ -64,7 +75,8 @@ export function billingSettings(env: Record<string, string | undefined> = proces
     configured,
     livemode,
     automaticTax: env.STRIPE_AUTOMATIC_TAX?.trim() === 'true',
-    checkoutAvailable: configured && (enforced || !livemode),
+    paymentsElsewhere,
+    checkoutAvailable: !paymentsElsewhere && configured && (enforced || !livemode),
   };
 }
 
@@ -72,7 +84,10 @@ export function billingSettings(env: Record<string, string | undefined> = proces
 export function billingConfigProblems(settings: BillingSettings): string[] {
   const problems: string[] = [];
   const { secretKey, publishableKey, webhookSecret } = settings;
-  if (settings.enforced) {
+  if (settings.paymentsElsewhere) {
+    // Keys belong only on the host that takes payments.
+    if (secretKey || publishableKey || webhookSecret) problems.push('No Stripe key may be set with BILLING_PAYMENTS_ELSEWHERE=true.');
+  } else if (settings.enforced) {
     if (!secretKey) problems.push('STRIPE_SECRET_KEY is not set.');
     if (!publishableKey) problems.push('NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY is not set.');
     if (!webhookSecret) problems.push('STRIPE_WEBHOOK_SECRET is not set.');

@@ -251,6 +251,22 @@ describe('clientAddress', () => {
     expect(clientAddress(headers('6.6.6.6, 203.0.113.9, 10.0.0.2'), { TRUSTED_PROXY_HOPS: '2' })).toBe('203.0.113.9');
   });
 
+  it('trusts the router’s visitor address only with the router secret', () => {
+    const routed = (secret?: string) => {
+      const h = headers('6.6.6.6, 104.28.0.1');
+      h.set('x-examer-client-ip', '203.0.113.50');
+      if (secret) h.set('x-examer-router-secret', secret);
+      return h;
+    };
+    const env = { ROUTER_SECRET: 'shared-router-secret' };
+    expect(clientAddress(routed('shared-router-secret'), env, false)).toBe('203.0.113.50');
+    // A wrong or missing secret falls back to the usual rules, so the address cannot be chosen by a caller.
+    expect(clientAddress(routed('guess'), env, false)).toBe('104.28.0.1');
+    expect(clientAddress(routed(), env, false)).toBe('104.28.0.1');
+    // With no secret configured the header is never trusted.
+    expect(clientAddress(routed('shared-router-secret'), {}, false)).toBe('104.28.0.1');
+  });
+
   it('falls back to X-Real-IP, then to a shared bucket', () => {
     expect(clientAddress(headers(undefined, '198.51.100.4'), {})).toBe('198.51.100.4');
     expect(clientAddress(headers(), {})).toBe('unknown');
