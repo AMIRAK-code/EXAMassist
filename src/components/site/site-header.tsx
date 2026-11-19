@@ -42,7 +42,9 @@ export async function SiteHeader({ account, locale, deferred = false }: { accoun
         >
           {/* The brand files in public/brand are the source of truth; never redraw the mark in text.
               PNG, not SVG: the SVG's lettering is live Arial text, which a device without Arial would redraw. */}
-          <img src="/brand/uniexamer-logo.png" alt="" width={125} height={30} className="block h-auto w-[110px] sm:w-[125px]" />
+          <img src="/brand/uniexamer-logo.png" alt="" width={125} height={30} className="logo-on-light block h-auto w-[110px] sm:w-[125px]" />
+          {/* The white file, for the home page's blueprint (src/app/globals.css). */}
+          <img src="/brand/uniexamer-logo-white.png" alt="" width={125} height={30} loading="lazy" className="logo-on-dark h-auto w-[110px] sm:w-[125px]" />
         </Link>
 
         <nav aria-label={t('nav.mainLabel')} className="ms-4 hidden lg:block">

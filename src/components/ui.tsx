@@ -29,7 +29,7 @@ const BUTTON_BASE =
 
 const BUTTON_VARIANTS = {
   primary: 'border-transparent bg-accent text-accent-contrast hover:bg-accent-strong hover:text-accent-contrast',
-  ink: 'border-transparent bg-ink text-ink-inverse hover:bg-black hover:text-ink-inverse',
+  ink: 'border-transparent bg-ink text-ink-inverse hover:bg-ink/85 hover:text-ink-inverse',
   secondary: 'border-line-strong bg-surface text-ink hover:border-ink hover:bg-surface hover:text-ink',
   quiet: 'border-transparent text-accent hover:bg-accent-soft hover:text-accent-ink',
   danger: 'border-negative-line bg-negative-soft text-negative hover:border-negative hover:text-negative',
