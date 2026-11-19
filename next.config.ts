@@ -79,6 +79,13 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
+        // On Vercel the site also answers at its *.vercel.app addresses. Only
+        // uniexamer.com is the site, so search engines must not index those.
+        source: '/:path*',
+        has: [{ type: 'host' as const, value: '(?<host>.*\\.vercel\\.app)' }],
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
+      },
+      {
         source: '/:path*',
         headers: [
           { key: 'X-Content-Type-Options', value: 'nosniff' },
