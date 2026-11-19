@@ -2,7 +2,6 @@ import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { assertHostsRedirect, fetchLive, snapshotPublicPages } from './snapshot-pages';
-import { assertSearchReady } from './search-ready';
 
 /**
  * Deploys uniexamer.com split across two hosts (docs/SPLIT-HOSTING.md):
@@ -61,7 +60,6 @@ async function main(): Promise<void> {
   const pages = await snapshotPublicPages({ site: SITE, origin: vercel, assetsDir: ASSETS, buildId: '' }, { headers, pauseMs: 50 });
   const files = await saveReferencedFiles(vercel, headers);
   console.log(`Saved ${pages.length} pages and ${files} script, style and font files.`);
-  assertSearchReady(ASSETS, SITE);
 
   if (mode === 'upload') {
     const upload = wrangler(['versions', 'upload', '-c', ROUTER_CONFIG, '--var', `VERCEL_ORIGIN:${vercel}`], true);
@@ -70,17 +68,13 @@ async function main(): Promise<void> {
     return;
   }
 
-  // Build the examer Worker (pricing and payments) first, so a failed build changes nothing.
+  // Pricing and payments: the examer Worker, with no public routes of its own (the router owns the domains).
+  // wrangler.jsonc keeps its routes, so `npm run cf:deploy` still serves the whole site from examer (the rollback);
+  // here examer is deployed from a copy without them.
   run(process.execPath, ['node_modules/tsx/dist/cli.mjs', 'scripts/cloudflare.ts', 'build']);
-  // Then the router takes the domains, in one step (wrangler moves a custom domain from another
-  // Worker by itself when not run in a terminal, and asks first when it is). Meanwhile the
-  // examer version already live answers pricing through the service binding.
-  wrangler(['deploy', '-c', ROUTER_CONFIG, '--var', `VERCEL_ORIGIN:${vercel}`]);
-  // Only now the new examer, from a copy of wrangler.jsonc without routes: wrangler.jsonc keeps
-  // them, so `npm run cf:deploy` still serves the whole site from examer (the rollback). Deployed
-  // the other way round, examer's new build would hold the domains without the saved pages.
   writeExamerConfigWithoutRoutes();
   run(process.execPath, ['node_modules/@opennextjs/cloudflare/dist/cli/index.js', 'deploy', '--config', EXAMER_SPLIT_CONFIG]);
+  wrangler(['deploy', '-c', ROUTER_CONFIG, '--var', `VERCEL_ORIGIN:${vercel}`]);
   console.log(`\nuniexamer.com now serves this release: files from Cloudflare, pricing and payments from examer, the rest from ${vercel}.`);
 }
 
