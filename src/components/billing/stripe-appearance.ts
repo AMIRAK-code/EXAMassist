@@ -17,30 +17,30 @@ import type { Appearance, CustomFontSource } from '@stripe/stripe-js';
 
 /** Our tokens, as globals.css defines them. Used until (or if) the computed values cannot be read. */
 export const TOKEN_DEFAULTS = {
-  '--color-surface': '#fffdf8',
-  '--color-surface-sunken': '#eeebe2',
-  '--color-ink': '#151923',
-  '--color-ink-muted': '#454a57',
-  '--color-ink-subtle': '#5e6371',
-  '--color-line': '#dad6cb',
-  '--color-line-strong': '#8c897f',
-  '--color-accent': '#3155e7',
-  '--color-accent-soft': '#e7ecfd',
+  '--color-surface': '#ffffff',
+  '--color-surface-sunken': '#e3e8f1',
+  '--color-ink': '#082448',
+  '--color-ink-muted': '#41506b',
+  '--color-ink-subtle': '#55647e',
+  '--color-line': '#dce2ec',
+  '--color-line-strong': '#7f8ba1',
+  '--color-accent': '#0760f0',
+  '--color-accent-soft': '#e3edff',
   '--color-negative': '#b42318',
   '--color-positive': '#1d7349',
   '--color-caution': '#7a4f00',
-  '--radius-control': '0.625rem',
-  '--radius-sm': '0.375rem',
+  '--radius-control': '0.75rem',
+  '--radius-sm': '0.5rem',
 } as const;
 
 export type TokenName = keyof typeof TOKEN_DEFAULTS;
 
 /** The interface face. Served from /fonts so Stripe's iframe can load it (see next.config.ts for CORS). */
-export const FONT_FAMILY = 'Bricolage Grotesque';
-export const FONT_PATH = '/fonts/bricolage-grotesque-latin-wght-normal.woff2';
+export const FONT_FAMILY = 'Geist';
+export const FONT_PATH = '/fonts/geist-latin-wght-normal.woff2';
 
 export function elementFonts(origin: string): CustomFontSource[] {
-  return [{ family: FONT_FAMILY, src: `url(${origin}${FONT_PATH})`, weight: '200 800', style: 'normal', display: 'swap' }];
+  return [{ family: FONT_FAMILY, src: `url(${origin}${FONT_PATH})`, weight: '100 900', style: 'normal', display: 'swap' }];
 }
 
 /** rem to px at the browser default, because the iframe has its own root size. */

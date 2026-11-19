@@ -2,30 +2,29 @@
 @import 'katex/dist/katex.min.css';
 
 /*
- * Design system: "Academic Avant-Garde".
+ * Design system: "Progress Board".
  *
- * Warm ivory ground, midnight ink, one electric-blue action colour and an
- * occasional highlighter-yellow mark. Public pages are allowed to be loud
- * (oversized headings, the .display-* classes below); anything a learner reads
- * for an hour stays calm: the same palette, no display type, generous measure.
+ * A cool cloud-grey ground, white tiles with soft corners, the logo's navy for
+ * text and the logo's blue for actions, with a mint wash for marks. Every page
+ * uses it except the home page, which wraps itself in the blueprint theme
+ * below (.theme-blueprint) and redefines these same tokens.
  *
  * Token names are stable: components reference bg-surface, text-ink, border-line
- * and so on, so values can be retuned here without touching them. Every text
- * and control pairing below was measured against WCAG 2.2 (see
- * docs/REDESIGN.md, "Colour"). The highlighter is 1.08:1 against ivory, so it
- * never carries meaning on its own.
+ * and so on, so values can be retuned here without touching them. Contrast of
+ * each text and control pairing is noted beside it (WCAG 2.2: 4.5:1 for text,
+ * 3:1 for control borders). The highlight is a wash, never a signal on its own.
  */
 
 @theme {
   /* --- Type ------------------------------------------------------------- */
   /*
-   * Headings and interface: Bricolage Grotesque, self-hosted (src/app/_fonts).
+   * Headings and interface: Geist, self-hosted (src/app/_fonts).
    * The fallback, shown only until the font arrives, is Arial on purpose: the
    * first layout of a slow first visit runs on it, and a system-UI stack loads
    * one file per weight (Segoe UI ships six), which measured as the largest
    * part of the Phase 2 slowdown on phones. See docs/REDESIGN.md §12.
    */
-  --font-sans: var(--font-bricolage), Arial, sans-serif;
+  --font-sans: var(--font-geist), Arial, sans-serif;
   --font-heading: var(--font-sans);
   /* Long passages: the system reading serif. No download. */
   --font-serif: ui-serif, Charter, 'Iowan Old Style', 'Palatino Linotype', Georgia, Cambria, serif;
@@ -45,37 +44,37 @@
   --text-5xl: 2.875rem;
 
   /* --- Surfaces --------------------------------------------------------- */
-  --color-paper: #f7f5ef; /* warm ivory: the page */
-  --color-surface: #fffdf8; /* raised paper: cards, inputs */
-  --color-surface-sunken: #eeebe2; /* wells, disabled fills */
-  --color-surface-raised: #fffdf8;
+  --color-paper: #eef1f6; /* cloud grey: the page */
+  --color-surface: #ffffff; /* tiles, cards, inputs */
+  --color-surface-sunken: #e3e8f1; /* wells, meters, disabled fills */
+  --color-surface-raised: #ffffff;
 
-  /* --- Ink -------------------------------------------------------------- */
-  --color-ink: #151923; /* 16.1:1 on ivory */
-  --color-ink-muted: #454a57; /* 8.1:1 */
-  --color-ink-subtle: #5e6371; /* 5.5:1, 5.0:1 on sunken */
-  --color-ink-inverse: #f7f5ef;
-  /* On the ink ground (footer, dark bands): 10.0:1, 7.0:1 and 7.6:1. */
-  --color-ink-inverse-muted: #c9c6bc;
-  --color-ink-inverse-subtle: #a9a69c;
-  --color-accent-on-ink: #8fa6ff;
-  --color-rule-on-ink: #3a3f4b;
+  /* --- Ink: the logo's navy ---------------------------------------------- */
+  --color-ink: #082448; /* 13.7:1 on cloud, 15.6:1 on white */
+  --color-ink-muted: #41506b; /* 7.2:1 on cloud, 8.1:1 on white */
+  --color-ink-subtle: #55647e; /* 5.3:1 on cloud, 4.8:1 on sunken */
+  --color-ink-inverse: #eef1f6;
+  /* On the navy ground (footer, dark tiles): 13.7:1, 9.6:1 and 7.8:1. */
+  --color-ink-inverse-muted: #c3cee0;
+  --color-ink-inverse-subtle: #a9b8d3;
+  --color-accent-on-ink: #8fb8ff;
+  --color-rule-on-ink: #23395f;
 
   /* --- Lines ------------------------------------------------------------ */
-  --color-line: #dad6cb; /* decorative hairlines only: 1.3:1 */
-  --color-line-strong: #8c897f; /* control borders: 3.2:1 */
-  --color-control: #8c897f;
+  --color-line: #dce2ec; /* decorative hairlines only */
+  --color-line-strong: #7f8ba1; /* control borders: 3.0:1 on cloud, 3.4:1 on white */
+  --color-control: #7f8ba1;
 
-  /* --- Action: electric blue -------------------------------------------- */
-  --color-accent: #3155e7; /* 5.4:1 on ivory; white on it 5.9:1 */
-  --color-accent-strong: #2443c4; /* hover and pressed; white on it 7.9:1 */
-  --color-accent-ink: #1f3bb3; /* text on accent-soft: 7.6:1 */
-  --color-accent-soft: #e7ecfd;
-  --color-accent-line: #b7c4f7;
+  /* --- Action: the logo's blue ------------------------------------------ */
+  --color-accent: #0760f0; /* 4.7:1 on cloud, 5.3:1 on white; white on it 5.3:1 */
+  --color-accent-strong: #0450c8; /* hover and pressed; white on it 7.0:1 */
+  --color-accent-ink: #0447b8; /* text on accent-soft: 6.8:1 */
+  --color-accent-soft: #e3edff;
+  --color-accent-line: #b3ccff;
   --color-accent-contrast: #ffffff;
 
-  /* --- Highlighter: emphasis with ink text, never a signal alone -------- */
-  --color-highlight: #e5f58a;
+  /* --- Highlight: a mint wash behind ink text, never a signal alone ----- */
+  --color-highlight: #cdf2e2;
 
   /* --- Semantic --------------------------------------------------------- */
   --color-positive: #1d7349; /* 5.4:1; 5.1:1 on its soft fill */
@@ -89,15 +88,15 @@
   --color-caution-line: #e3c98a;
 
   /* --- Shape and depth -------------------------------------------------- */
-  /* Editorial surfaces are nearly square; things you touch are rounder. */
-  --radius-card: 0.25rem;
-  --radius-sm: 0.375rem;
-  --radius-control: 0.625rem;
+  /* Tiles are soft-cornered; buttons are pills (src/components/ui.tsx). */
+  --radius-card: 1.25rem;
+  --radius-sm: 0.5rem;
+  --radius-control: 0.75rem;
 
-  --shadow-card: 0 1px 0 rgb(21 25 35 / 0.04);
-  --shadow-raised: 0 1px 2px rgb(21 25 35 / 0.06), 0 10px 28px -14px rgb(21 25 35 / 0.22);
-  /* Reserved for the homepage sample card: one per page, at most. */
-  --shadow-offset: 8px 8px 0 #151923;
+  --shadow-card: 0 1px 3px rgb(8 36 72 / 0.06);
+  --shadow-raised: 0 1px 2px rgb(8 36 72 / 0.05), 0 12px 32px -16px rgb(8 36 72 / 0.28);
+  /* The one lifted element on a page, such as a sample question. */
+  --shadow-offset: 0 1px 2px rgb(8 36 72 / 0.05), 0 22px 48px -26px rgb(8 36 72 / 0.4);
 
   /* --- Layout ----------------------------------------------------------- */
   /* Wide enough for the side panels beside a page (src/components/site/side-panels.tsx). */

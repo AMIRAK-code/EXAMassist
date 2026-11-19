@@ -6,7 +6,7 @@ import { expect, test, type Page } from '@playwright/test';
  *
  * Deterministic, with no network timing involved: web-font requests fail, so
  * the page lays out in the Arial fallback exactly as a slow first visit does.
- * Bricolage is then added through the FontFace API under the page's own family
+ * Geist is then added through the FontFace API under the page's own family
  * name, and the layout shift Chrome reports for that swap is summed. The pages
  * are checked at the lab's viewport sizes.
  */
@@ -28,7 +28,7 @@ const ROUTES = [
 async function swapInWebFont(page: Page): Promise<{ shift: number; textWidthChange: number }> {
   const face = await page.evaluate(() => {
     const family = getComputedStyle(document.documentElement)
-      .getPropertyValue('--font-bricolage')
+      .getPropertyValue('--font-geist')
       .split(',')[0]
       .replace(/['"\s]/g, '');
     for (const sheet of Array.from(document.styleSheets)) {
@@ -41,11 +41,11 @@ async function swapInWebFont(page: Page): Promise<{ shift: number; textWidthChan
     }
     return null;
   });
-  expect(face, 'the page declares Bricolage').not.toBeNull();
+  expect(face, 'the page declares the web font').not.toBeNull();
   const bytes = await (await page.request.get(face!.src)).body();
 
   // The total advance of the main content's text, summed over line boxes. One
-  // heading is not enough: some are as wide in Arial Bold as in Bricolage.
+  // heading is not enough: some are as wide in Arial Bold as in Geist.
   const textWidth = () =>
     page.evaluate(() => {
       const walker = document.createTreeWalker(document.querySelector('main')!, NodeFilter.SHOW_TEXT);

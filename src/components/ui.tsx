@@ -22,7 +22,7 @@ export function cx(...parts: Array<string | false | null | undefined>): string {
 // ---------------------------------------------------------------------------
 
 const BUTTON_BASE =
-  'inline-flex items-center justify-center gap-2 rounded-control border font-semibold no-underline ' +
+  'inline-flex items-center justify-center gap-2 rounded-full border font-semibold no-underline ' +
   'transition-[background-color,border-color,color,box-shadow,transform] duration-150 active:translate-y-px ' +
   'disabled:cursor-not-allowed disabled:border-line-strong disabled:bg-surface-sunken disabled:text-ink-subtle ' +
   'disabled:active:translate-y-0 aria-disabled:cursor-not-allowed';
@@ -115,7 +115,7 @@ export function Card({
   padding?: 'sm' | 'md' | 'lg' | 'none';
 }) {
   const pad = padding === 'none' ? '' : padding === 'sm' ? 'p-4' : padding === 'lg' ? 'p-6 sm:p-8' : 'p-5';
-  return <Tag className={cx('rounded-card border border-line bg-surface', pad, className)}>{children}</Tag>;
+  return <Tag className={cx('rounded-card border border-line bg-surface shadow-card', pad, className)}>{children}</Tag>;
 }
 
 const BADGE_TONES = {
@@ -331,7 +331,7 @@ export function SectionHeading({
 /**
  * Always one line: the last crumb is cut short with an ellipsis rather than
  * wrapping. A trail that fits on one line in the fallback font can wrap once
- * Bricolage arrives, which moved everything below it down a line on narrow
+ * the web font arrives, which moved everything below it down a line on narrow
  * screens (docs/REDESIGN.md §14). The page's heading repeats the last label,
  * and screen readers still read it in full. The padding, cancelled by the
  * negative margin, keeps focus outlines clear of the clipping edge.

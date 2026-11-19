@@ -90,7 +90,7 @@ export async function SiteHeader({ account, locale, deferred = false }: { accoun
 
   const states = deferred ? ACCOUNT_STATES : [account];
   return (
-    <header data-site-chrome className="sticky top-0 z-40 border-b-[1.5px] border-ink bg-paper">
+    <header data-site-chrome className="sticky top-0 z-40 border-b border-line bg-paper">
       <AccountAware served={account} deferred={deferred} bars={Object.fromEntries(states.map((state) => [state, bar(state)]))} />
     </header>
   );

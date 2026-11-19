@@ -102,7 +102,7 @@ export async function startHostedCheckout(
       ...(plan.billing === 'one-time'
         ? { invoice_creation: { enabled: true, invoice_data: { metadata } }, payment_intent_data: { metadata } }
         : { subscription_data: { metadata } }),
-      branding_settings: { display_name: 'UniExamer', background_color: '#f7f5ef', button_color: '#3155e7' },
+      branding_settings: { display_name: 'UniExamer', background_color: '#eef1f6', button_color: '#0760f0' },
       integration_identifier: 'uniexamer-paywall-qmktvhsp',
     } as Stripe.Checkout.SessionCreateParams, { idempotencyKey: `uniexamer-session-${user.id}-${slot.session_id ?? slot.attempt_id}` });
     if (!session.url) throw billingError('billing-unavailable', 'unavailable', 503);
