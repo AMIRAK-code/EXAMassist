@@ -46,10 +46,6 @@ const realSleep = (ms: number) => new Promise<void>((resolve) => setTimeout(reso
 export interface FetchDeps {
   fetch?: typeof fetch;
   sleep?: (ms: number) => Promise<void>;
-  /** Extra request headers, e.g. Vercel's protection bypass (scripts/split-deploy.ts). */
-  headers?: Record<string, string>;
-  /** The pause between pages; 1.5 s spares the Workers Free plan, an origin without that limit needs none. */
-  pauseMs?: number;
 }
 
 export async function fetchLive(url: string, buildId: string, deps: FetchDeps = {}): Promise<Buffer> {
@@ -57,7 +53,7 @@ export async function fetchLive(url: string, buildId: string, deps: FetchDeps = 
   let reason = '';
   for (let attempt = 1; attempt <= ATTEMPTS; attempt++) {
     const response = await get(url, {
-      headers: { ...deps.headers, [SNAPSHOT_HEADER]: '1', 'user-agent': USER_AGENT },
+      headers: { [SNAPSHOT_HEADER]: '1', 'user-agent': USER_AGENT },
       redirect: 'manual',
       cache: 'no-store',
     }).catch((error: unknown) => {
@@ -195,7 +191,7 @@ export async function snapshotPublicPages(
     fs.writeFileSync(file, body);
     const took = Date.now() - started;
     console.log(`  ${index + 1}/${paths.length} ${pathname}${took > SLOW_MS ? ` (${Math.round(took / 1000)} s)` : ''}`);
-    if (index < paths.length - 1) await sleep(deps.pauseMs ?? PAUSE_MS);
+    if (index < paths.length - 1) await sleep(PAUSE_MS);
   }
   if (kept > 0) console.log(`  ${kept} pages kept from an earlier run of this build`);
   return paths;

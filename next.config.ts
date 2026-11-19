@@ -51,14 +51,6 @@ const nextConfig: NextConfig = {
    */
   outputFileTracingRoot: process.cwd(),
   /*
-   * Behind the router Worker (docs/SPLIT-HOSTING.md) Vercel sees its own host
-   * name, while the browser's Origin is uniexamer.com. Server Actions compare
-   * the two, so the public address is allowed explicitly.
-   */
-  experimental: {
-    serverActions: { allowedOrigins: [new URL(CANONICAL_ORIGIN).host] },
-  },
-  /*
    * Readiness is now a view of the study plan (docs/REDESIGN.md §18). Old
    * links and bookmarks keep working: a permanent redirect, which carries the
    * query string (?exam=) across unchanged.
@@ -86,13 +78,6 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
-      {
-        // The Vercel address itself is never the site (docs/SPLIT-HOSTING.md): visitors
-        // reach it only through uniexamer.com, so search engines must not index it.
-        source: '/:path*',
-        has: [{ type: 'host' as const, value: '(?<host>.*\\.vercel\\.app)' }],
-        headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
-      },
       {
         source: '/:path*',
         headers: [

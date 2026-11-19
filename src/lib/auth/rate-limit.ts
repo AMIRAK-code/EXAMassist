@@ -1,4 +1,4 @@
-import { createHash, timingSafeEqual } from 'node:crypto';
+import { createHash } from 'node:crypto';
 import type { Db } from '@/lib/db';
 import { onCloudflareWorkers } from '@/lib/runtime';
 
@@ -110,25 +110,12 @@ export function callerKey(request: Request, userId?: string | null): string {
  * Cloudflare Workers are the exception: nothing appends to X-Forwarded-For
  * there, so it arrives exactly as the client wrote it. Use CF-Connecting-IP,
  * which Cloudflare sets itself and refuses to accept from a client.
- *
- * Behind the router Worker (docs/SPLIT-HOSTING.md), every request reaches
- * Vercel from Cloudflare, so its own proxy headers name the router, not the
- * visitor. The router sends the visitor's CF-Connecting-IP as
- * x-examer-client-ip together with ROUTER_SECRET; that address is trusted only
- * when the secret matches, so a caller of the Vercel address directly cannot
- * choose its own.
  */
 export function clientAddress(
   headers: Headers,
   env: Record<string, string | undefined> = process.env,
   workers = onCloudflareWorkers,
 ): string {
-  const secret = env.ROUTER_SECRET?.trim();
-  const sent = headers.get('x-examer-router-secret');
-  if (secret && sent && sameSecret(sent, secret)) {
-    const routed = headers.get('x-examer-client-ip')?.trim();
-    if (routed) return routed;
-  }
   if (workers) return headers.get('cf-connecting-ip')?.trim() || 'unknown';
   const hops = Math.max(1, Number.parseInt(env.TRUSTED_PROXY_HOPS ?? '1', 10) || 1);
   const chain = (headers.get('x-forwarded-for') ?? '')
@@ -137,10 +124,4 @@ export function clientAddress(
     .filter(Boolean);
   if (chain.length > 0) return chain[Math.max(0, chain.length - hops)];
   return headers.get('x-real-ip')?.trim() || 'unknown';
-}
-
-/** Compares two secrets in constant time (both hashed first, so their lengths match). */
-function sameSecret(a: string, b: string): boolean {
-  const digest = (value: string) => createHash('sha256').update(value).digest();
-  return timingSafeEqual(digest(a), digest(b));
 }
