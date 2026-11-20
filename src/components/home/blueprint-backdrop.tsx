@@ -152,7 +152,7 @@ export function BlueprintBackdrop() {
       focusable="false"
       viewBox="0 0 1440 900"
       preserveAspectRatio="xMidYMid slice"
-      className="pointer-events-none fixed inset-0 -z-10 h-full w-full"
+      className="bp-drawing pointer-events-none fixed inset-0 -z-10 h-full w-full"
       fill="none"
       stroke={LINE}
       strokeWidth="1.2"

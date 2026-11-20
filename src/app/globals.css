@@ -585,6 +585,57 @@ body:has(.theme-blueprint) header[data-site-chrome] .logo-on-dark {
 .theme-blueprint .bp-sheet .eyebrow {
   color: var(--color-ink-muted);
 }
+/*
+ * Reading over the drawing. Where a line or a number of the moving drawing
+ * passes behind a word, the word's contrast fell to about 3:1, so on the home
+ * page every heading, paragraph, list item and link cuts the drawing away
+ * round its letters, the way a label interrupts the lines on a technical
+ * drawing: a crisp 1.5 px edge in the paper colour and a soft fade beyond it.
+ * Text then always sits on plain paper (ink 9.4:1). Buttons and the white
+ * sample sheet have their own grounds and are left alone.
+ */
+.theme-blueprint :is(h1, h2, h3, p, li, dt, dd, legend, a):not(.ui-button, .bp-sheet, .bp-sheet *) {
+  text-shadow:
+    1.5px 0 var(--color-paper),
+    -1.5px 0 var(--color-paper),
+    0 1.5px var(--color-paper),
+    0 -1.5px var(--color-paper),
+    1.5px 1.5px var(--color-paper),
+    -1.5px -1.5px var(--color-paper),
+    1.5px -1.5px var(--color-paper),
+    -1.5px 1.5px var(--color-paper),
+    0 0 10px var(--color-paper),
+    0 0 18px var(--color-paper);
+}
+/* A button inside a paragraph would otherwise inherit the cut-out. */
+.theme-blueprint .ui-button {
+  text-shadow: none;
+}
+
+/*
+ * The drawing at full strength in the margins and on the right, beside the
+ * sample sheet, and at about a third behind the left column, where the
+ * headings and paragraphs are read. The stops follow the 72rem content
+ * column; on a phone nearly the whole width is the quiet part.
+ */
+.theme-blueprint .bp-drawing {
+  --bp-quiet: rgb(0 0 0 / 0.35);
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    #000 calc(50% - 600px),
+    var(--bp-quiet) calc(50% - 500px),
+    var(--bp-quiet) calc(50% + 80px),
+    #000 calc(50% + 260px)
+  );
+  mask-image: linear-gradient(
+    90deg,
+    #000 calc(50% - 600px),
+    var(--bp-quiet) calc(50% - 500px),
+    var(--bp-quiet) calc(50% + 80px),
+    #000 calc(50% + 260px)
+  );
+}
+
 /* Step numbers and other figures drawn in the display face. */
 .theme-blueprint .bp-num {
   font-family: var(--font-barlow), 'Arial Narrow', Arial, sans-serif;
