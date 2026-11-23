@@ -162,6 +162,7 @@ function NavIcon({ name }: { name: NavItem['labelKey'] | 'menu' | 'close' }) {
   const paths: Record<typeof name, string> = {
     dashboard: 'M3 3h5.5v6H3zM11.5 3H17v3.5h-5.5zM11.5 9.5H17V17h-5.5zM3 12h5.5v5H3z',
     exams: 'M5 2.5h7.5L16 6v11.5H5zM12.5 2.5V6H16M8 10h5M8 13.5h5',
+    courses: 'M10 3.5L1.5 7.5 10 11.5l8.5-4zM5 9.5v4c1.5 1.5 3.2 2 5 2s3.5-.5 5-2v-4M18.5 7.5v5',
     bocconi: 'M2.5 7.5L10 3l7.5 4.5M4 8.5v6.5M8 8.5v6.5M12 8.5v6.5M16 8.5v6.5M2.5 17h15',
     guides: 'M10 5.5C8.5 4 6 3.5 3 3.5v12c3 0 5.5.5 7 2 1.5-1.5 4-2 7-2v-12c-3 0-5.5.5-7 2zM10 5.5v12',
     howScoringWorks: 'M3.5 15a6.5 6.5 0 1 1 13 0M10 15l3-4.5M3 17.5h14',

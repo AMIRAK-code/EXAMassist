@@ -23,7 +23,9 @@ export function cx(...parts: Array<string | false | null | undefined>): string {
 
 const BUTTON_BASE =
   'ui-button inline-flex items-center justify-center gap-2 rounded-full border font-semibold no-underline ' +
-  'transition-[background-color,border-color,color,box-shadow,transform] duration-150 active:translate-y-px ' +
+  // `translate`, not only `transform`: Tailwind's translate-* utilities set the
+  // `translate` property, so without it the press and hover shifts would jump.
+  'transition-[background-color,border-color,color,box-shadow,transform,translate] duration-150 active:translate-y-px ' +
   'disabled:cursor-not-allowed disabled:border-line-strong disabled:bg-surface-sunken disabled:text-ink-subtle ' +
   'disabled:active:translate-y-0 aria-disabled:cursor-not-allowed';
 

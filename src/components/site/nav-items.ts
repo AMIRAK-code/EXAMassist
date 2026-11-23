@@ -6,7 +6,7 @@
 export interface NavItem {
   href: string;
   /** Key under `common.nav` in the message catalogues. */
-  labelKey: 'exams' | 'bocconi' | 'guides' | 'howScoringWorks' | 'dashboard' | 'mistakeNotebook' | 'studyPlan';
+  labelKey: 'exams' | 'courses' | 'bocconi' | 'guides' | 'howScoringWorks' | 'dashboard' | 'mistakeNotebook' | 'studyPlan';
   /** Other path prefixes under which this item counts as current. */
   match?: string[];
   /** Path prefixes under `href` that have their own item, so this one is not current there. */
@@ -19,6 +19,7 @@ const BOCCONI = '/exams/bocconi-online-test';
 /** For visitors without a session. */
 export const PUBLIC_NAV: NavItem[] = [
   { href: '/exams', labelKey: 'exams', match: ['/practice'], except: [BOCCONI] },
+  { href: '/courses', labelKey: 'courses' },
   { href: BOCCONI, labelKey: 'bocconi' },
   { href: '/guides', labelKey: 'guides' },
   { href: '/about/how-scoring-works', labelKey: 'howScoringWorks' },
@@ -28,6 +29,7 @@ export const PUBLIC_NAV: NavItem[] = [
 export const LEARNER_NAV: NavItem[] = [
   { href: '/dashboard', labelKey: 'dashboard' },
   { href: '/exams', labelKey: 'exams', match: ['/practice'], except: [BOCCONI] },
+  { href: '/courses', labelKey: 'courses' },
   { href: '/review', labelKey: 'mistakeNotebook' },
   // One planning destination, with Plan and Progress & readiness views.
   { href: '/study-plan', labelKey: 'studyPlan', match: ['/readiness'] },
