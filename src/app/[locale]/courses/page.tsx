@@ -51,7 +51,7 @@ export default async function CoursesPage({ params }: Props) {
 
       <ul className="grid gap-4 md:grid-cols-3">
         {courses.map((course) => {
-          const hub = getHub(course.hubSlug);
+          const hub = course.hubSlug ? getHub(course.hubSlug) : undefined;
           return (
             <Card as="li" key={course.slug} className="flex flex-col">
               <p className="eyebrow">{hub?.label ?? course.examPublisher}</p>

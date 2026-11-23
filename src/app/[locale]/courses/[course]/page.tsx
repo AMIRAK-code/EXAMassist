@@ -56,7 +56,7 @@ export default async function CoursePage({ params }: Props) {
   const lang = course.lang ?? CONTENT_LANG;
 
   const t = await getTranslations('courses');
-  const hub = getHub(course.hubSlug);
+  const hub = course.hubSlug ? getHub(course.hubSlug) : undefined;
   const lessons = courseLessons(course);
   const url = (await pageAlternates(params, coursePath(course))).canonical;
   const trail = [
@@ -189,16 +189,18 @@ export default async function CoursePage({ params }: Props) {
         </ol>
       </section>
 
-      <Card className="mt-10">
-        <h2 className="font-heading text-lg font-semibold">{t('course.practiseTitle')}</h2>
-        <p className="mt-1 text-sm text-ink-muted">{t('course.practiseBody')}</p>
-        <div className="mt-4 flex flex-wrap gap-3">
-          <ButtonLink href={freeTestPath(course.examKeys[0])}>{t('course.freeDiagnostic')}</ButtonLink>
-          <ButtonLink href="/courses" variant="secondary">
-            {t('course.allCourses')}
-          </ButtonLink>
-        </div>
-      </Card>
+      {course.examKeys.length > 0 && (
+        <Card className="mt-10">
+          <h2 className="font-heading text-lg font-semibold">{t('course.practiseTitle')}</h2>
+          <p className="mt-1 text-sm text-ink-muted">{t('course.practiseBody')}</p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <ButtonLink href={freeTestPath(course.examKeys[0])}>{t('course.freeDiagnostic')}</ButtonLink>
+            <ButtonLink href="/courses" variant="secondary">
+              {t('course.allCourses')}
+            </ButtonLink>
+          </div>
+        </Card>
+      )}
 
       <section aria-labelledby="course-sources" className="mt-10 max-w-3xl">
         <h2 id="course-sources" className="font-heading text-lg font-semibold">

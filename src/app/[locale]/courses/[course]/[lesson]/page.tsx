@@ -11,6 +11,7 @@ import { SITE, absoluteUrl, shareImages, siteUrl } from '@/lib/site';
 import { pageTitle } from '@/lib/seo/title';
 import { InlineMarkdown, Markdown } from '@/components/content';
 import { LessonCheck } from '@/components/courses/lesson-check';
+import { PolarisationLab } from '@/components/courses/polarisation-lab';
 import { FlashcardDeck, LessonCompleteToggle, StepReveal } from '@/components/courses/interactive';
 import { courseLangs } from '@/lib/courses/languages';
 import { getFullLesson } from '@/lib/courses/lesson-data';
@@ -96,7 +97,7 @@ export default async function LessonPage({ params }: Props) {
     { label: lesson.title },
   ];
   const ldTrail = trail.map((crumb) => (crumb.href ? { ...crumb, href: localizePath(crumb.href, locale as Locale) } : crumb));
-  const topic = topicName(lesson.practice.examKey, lesson.practice.domain, lesson.practice.skill);
+  const practice = lesson.practice;
   const checkedOn = lesson.review.independentCheckOn ?? course.updatedOn;
 
   return (
@@ -145,6 +146,8 @@ export default async function LessonPage({ params }: Props) {
           </h2>
           <Markdown source={lesson.teachMd} className="prose-academic mt-2 font-serif" />
         </section>
+
+        {lesson.experiment === 'polarisation' && <PolarisationLab />}
 
         <section aria-labelledby="examples" className="mt-12">
           <h2 id="examples" className="font-heading text-2xl font-semibold">
@@ -262,16 +265,18 @@ export default async function LessonPage({ params }: Props) {
         <p className="mt-2 text-sm text-ink-muted">{tl('authorship')}</p>
       </article>
 
-      <Card className="mt-10">
-        <h2 className="font-heading text-lg font-semibold">{t('practice.title')}</h2>
-        <p className="mt-1 text-sm text-ink-muted">{t('practice.body')}</p>
-        <div className="mt-4 flex flex-wrap gap-3">
-          <ButtonLink href={practicePath(lesson)}>{t('practice.button', { topic })}</ButtonLink>
-          <ButtonLink href={freeTestPath(lesson.practice.examKey)} variant="secondary">
-            {t('practice.freeDiagnostic')}
-          </ButtonLink>
-        </div>
-      </Card>
+      {practice && (
+        <Card className="mt-10">
+          <h2 className="font-heading text-lg font-semibold">{t('practice.title')}</h2>
+          <p className="mt-1 text-sm text-ink-muted">{t('practice.body')}</p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <ButtonLink href={practicePath({ practice })}>{t('practice.button', { topic: topicName(practice.examKey, practice.domain, practice.skill) })}</ButtonLink>
+            <ButtonLink href={freeTestPath(practice.examKey)} variant="secondary">
+              {t('practice.freeDiagnostic')}
+            </ButtonLink>
+          </div>
+        </Card>
+      )}
 
       <nav aria-label={t('nav.label')} className="mt-8 grid gap-3 sm:grid-cols-2">
         {previous ? (
