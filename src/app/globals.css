@@ -2,30 +2,29 @@
 @import 'katex/dist/katex.min.css';
 
 /*
- * Design system: "Academic Avant-Garde".
+ * Design system: "Progress Board".
  *
- * Warm ivory ground, midnight ink, one electric-blue action colour and an
- * occasional highlighter-yellow mark. Public pages are allowed to be loud
- * (oversized headings, the .display-* classes below); anything a learner reads
- * for an hour stays calm: the same palette, no display type, generous measure.
+ * A cool cloud-grey ground, white tiles with soft corners, the logo's navy for
+ * text and the logo's blue for actions, with a mint wash for marks. Every page
+ * uses it except the home page, which wraps itself in the blueprint theme
+ * below (.theme-blueprint) and redefines these same tokens.
  *
  * Token names are stable: components reference bg-surface, text-ink, border-line
- * and so on, so values can be retuned here without touching them. Every text
- * and control pairing below was measured against WCAG 2.2 (see
- * docs/REDESIGN.md, "Colour"). The highlighter is 1.08:1 against ivory, so it
- * never carries meaning on its own.
+ * and so on, so values can be retuned here without touching them. Contrast of
+ * each text and control pairing is noted beside it (WCAG 2.2: 4.5:1 for text,
+ * 3:1 for control borders). The highlight is a wash, never a signal on its own.
  */
 
 @theme {
   /* --- Type ------------------------------------------------------------- */
   /*
-   * Headings and interface: Bricolage Grotesque, self-hosted (src/app/_fonts).
+   * Headings and interface: Geist, self-hosted (src/app/_fonts).
    * The fallback, shown only until the font arrives, is Arial on purpose: the
    * first layout of a slow first visit runs on it, and a system-UI stack loads
    * one file per weight (Segoe UI ships six), which measured as the largest
    * part of the Phase 2 slowdown on phones. See docs/REDESIGN.md §12.
    */
-  --font-sans: var(--font-bricolage), Arial, sans-serif;
+  --font-sans: var(--font-geist), Arial, sans-serif;
   --font-heading: var(--font-sans);
   /* Long passages: the system reading serif. No download. */
   --font-serif: ui-serif, Charter, 'Iowan Old Style', 'Palatino Linotype', Georgia, Cambria, serif;
@@ -45,37 +44,37 @@
   --text-5xl: 2.875rem;
 
   /* --- Surfaces --------------------------------------------------------- */
-  --color-paper: #f7f5ef; /* warm ivory: the page */
-  --color-surface: #fffdf8; /* raised paper: cards, inputs */
-  --color-surface-sunken: #eeebe2; /* wells, disabled fills */
-  --color-surface-raised: #fffdf8;
+  --color-paper: #eef1f6; /* cloud grey: the page */
+  --color-surface: #ffffff; /* tiles, cards, inputs */
+  --color-surface-sunken: #e3e8f1; /* wells, meters, disabled fills */
+  --color-surface-raised: #ffffff;
 
-  /* --- Ink -------------------------------------------------------------- */
-  --color-ink: #151923; /* 16.1:1 on ivory */
-  --color-ink-muted: #454a57; /* 8.1:1 */
-  --color-ink-subtle: #5e6371; /* 5.5:1, 5.0:1 on sunken */
-  --color-ink-inverse: #f7f5ef;
-  /* On the ink ground (footer, dark bands): 10.0:1, 7.0:1 and 7.6:1. */
-  --color-ink-inverse-muted: #c9c6bc;
-  --color-ink-inverse-subtle: #a9a69c;
-  --color-accent-on-ink: #8fa6ff;
-  --color-rule-on-ink: #3a3f4b;
+  /* --- Ink: the logo's navy ---------------------------------------------- */
+  --color-ink: #082448; /* 13.7:1 on cloud, 15.6:1 on white */
+  --color-ink-muted: #41506b; /* 7.2:1 on cloud, 8.1:1 on white */
+  --color-ink-subtle: #55647e; /* 5.3:1 on cloud, 4.8:1 on sunken */
+  --color-ink-inverse: #eef1f6;
+  /* On the navy ground (footer, dark tiles): 13.7:1, 9.6:1 and 7.8:1. */
+  --color-ink-inverse-muted: #c3cee0;
+  --color-ink-inverse-subtle: #a9b8d3;
+  --color-accent-on-ink: #8fb8ff;
+  --color-rule-on-ink: #23395f;
 
   /* --- Lines ------------------------------------------------------------ */
-  --color-line: #dad6cb; /* decorative hairlines only: 1.3:1 */
-  --color-line-strong: #8c897f; /* control borders: 3.2:1 */
-  --color-control: #8c897f;
+  --color-line: #dce2ec; /* decorative hairlines only */
+  --color-line-strong: #7f8ba1; /* control borders: 3.0:1 on cloud, 3.4:1 on white */
+  --color-control: #7f8ba1;
 
-  /* --- Action: electric blue -------------------------------------------- */
-  --color-accent: #3155e7; /* 5.4:1 on ivory; white on it 5.9:1 */
-  --color-accent-strong: #2443c4; /* hover and pressed; white on it 7.9:1 */
-  --color-accent-ink: #1f3bb3; /* text on accent-soft: 7.6:1 */
-  --color-accent-soft: #e7ecfd;
-  --color-accent-line: #b7c4f7;
+  /* --- Action: the logo's blue ------------------------------------------ */
+  --color-accent: #0760f0; /* 4.7:1 on cloud, 5.3:1 on white; white on it 5.3:1 */
+  --color-accent-strong: #0450c8; /* hover and pressed; white on it 7.0:1 */
+  --color-accent-ink: #0447b8; /* text on accent-soft: 6.8:1 */
+  --color-accent-soft: #e3edff;
+  --color-accent-line: #b3ccff;
   --color-accent-contrast: #ffffff;
 
-  /* --- Highlighter: emphasis with ink text, never a signal alone -------- */
-  --color-highlight: #e5f58a;
+  /* --- Highlight: a mint wash behind ink text, never a signal alone ----- */
+  --color-highlight: #cdf2e2;
 
   /* --- Semantic --------------------------------------------------------- */
   --color-positive: #1d7349; /* 5.4:1; 5.1:1 on its soft fill */
@@ -89,15 +88,15 @@
   --color-caution-line: #e3c98a;
 
   /* --- Shape and depth -------------------------------------------------- */
-  /* Editorial surfaces are nearly square; things you touch are rounder. */
-  --radius-card: 0.25rem;
-  --radius-sm: 0.375rem;
-  --radius-control: 0.625rem;
+  /* Tiles are soft-cornered; buttons are pills (src/components/ui.tsx). */
+  --radius-card: 1.25rem;
+  --radius-sm: 0.5rem;
+  --radius-control: 0.75rem;
 
-  --shadow-card: 0 1px 0 rgb(21 25 35 / 0.04);
-  --shadow-raised: 0 1px 2px rgb(21 25 35 / 0.06), 0 10px 28px -14px rgb(21 25 35 / 0.22);
-  /* Reserved for the homepage sample card: one per page, at most. */
-  --shadow-offset: 8px 8px 0 #151923;
+  --shadow-card: 0 1px 3px rgb(8 36 72 / 0.06);
+  --shadow-raised: 0 1px 2px rgb(8 36 72 / 0.05), 0 12px 32px -16px rgb(8 36 72 / 0.28);
+  /* The one lifted element on a page, such as a sample question. */
+  --shadow-offset: 0 1px 2px rgb(8 36 72 / 0.05), 0 22px 48px -26px rgb(8 36 72 / 0.4);
 
   /* --- Layout ----------------------------------------------------------- */
   /* Wide enough for the side panels beside a page (src/components/site/side-panels.tsx). */
@@ -236,16 +235,10 @@
     font-weight: 730;
     letter-spacing: -0.04em;
   }
-  /*
-   * Instrument Serif italic, for a few words inside a display heading. The
-   * variable is set on the page that loads the face, not on :root, so it has to
-   * be resolved here: a :root token built from it would already have failed.
-   */
+  /* A few words of emphasis inside a display heading, in the action colour. */
   .accent-italic {
-    font-family: var(--font-instrument, Georgia), Georgia, Cambria, serif;
-    font-style: italic;
-    font-weight: 400;
-    letter-spacing: -0.01em;
+    font-style: normal;
+    color: var(--color-accent);
   }
   /* A highlighter stroke behind a word. Decoration: the words carry the meaning. */
   .highlight {
@@ -453,6 +446,212 @@
   .rule-soft {
     border-top: 1px solid var(--color-line);
   }
+}
+
+/*
+ * Blueprint: the home page's theme.
+ *
+ * The home page wraps its content in .theme-blueprint, and the whole document
+ * (header and page alike) takes these values for the same tokens: cyanotype
+ * blue paper, white line work and a pencil-yellow accent. Components keep
+ * using bg-paper, text-ink and so on, so nothing below needs its own colours.
+ * On the blue paper: ink 9.4:1, muted 7.2:1, subtle 5.2:1, accent 7.4:1,
+ * control lines 5.2:1; the accent's own text is blue on yellow at 7.4:1.
+ *
+ * Two places go back to the light tokens (.bp-sheet and the footer): the
+ * sample question is a white sheet laid on the drawing, so a question and its
+ * explanation read as they do everywhere else, and the footer stays navy.
+ */
+body:has(.theme-blueprint) {
+  color-scheme: dark;
+  --color-paper: #0b3a8a;
+  --color-surface: #0e4194;
+  --color-surface-sunken: #0a3378;
+  --color-surface-raised: #104aa6;
+  --color-ink: #eaf2ff;
+  --color-ink-muted: #c4d6f5;
+  --color-ink-subtle: #9db7e6;
+  --color-ink-inverse: #0b3a8a;
+  --color-ink-inverse-muted: #23508f;
+  --color-ink-inverse-subtle: #3d64a8;
+  --color-accent-on-ink: #0b3a8a;
+  --color-rule-on-ink: #9db7e6;
+  --color-line: #3d64a8;
+  --color-line-strong: #9db7e6;
+  --color-control: #9db7e6;
+  --color-accent: #ffd24a;
+  --color-accent-strong: #ffe07a;
+  --color-accent-ink: #ffd24a;
+  --color-accent-soft: #23508f;
+  --color-accent-line: #c9a73a;
+  --color-accent-contrast: #0b3a8a;
+  --color-highlight: #2a62b8;
+  --color-positive: #7ee2b8;
+  --color-positive-soft: #0f4a6e;
+  --color-positive-line: #4fb38c;
+  --color-negative: #ff9c8f;
+  --color-negative-soft: #4a2f5e;
+  --color-negative-line: #c06f7d;
+  --color-caution: #ffd24a;
+  --color-caution-soft: #3a4a6a;
+  --color-caution-line: #c9a73a;
+  --shadow-card: none;
+  /* The drawing grid: a major line every 128 px over a minor one every 25.6 px. */
+  background-image:
+    linear-gradient(rgb(234 242 255 / 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(234 242 255 / 0.12) 1px, transparent 1px),
+    linear-gradient(rgb(234 242 255 / 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(234 242 255 / 0.045) 1px, transparent 1px);
+  background-size: 128px 128px, 128px 128px, 25.6px 25.6px, 25.6px 25.6px;
+}
+
+body:has(.theme-blueprint) footer[data-site-chrome],
+.theme-blueprint .bp-sheet {
+  color-scheme: light;
+  --color-paper: #eef1f6;
+  --color-surface: #ffffff;
+  --color-surface-sunken: #e3e8f1;
+  --color-surface-raised: #ffffff;
+  --color-ink: #082448;
+  --color-ink-muted: #41506b;
+  --color-ink-subtle: #55647e;
+  --color-ink-inverse: #eef1f6;
+  --color-ink-inverse-muted: #c3cee0;
+  --color-ink-inverse-subtle: #a9b8d3;
+  --color-accent-on-ink: #8fb8ff;
+  --color-rule-on-ink: #23395f;
+  --color-line: #dce2ec;
+  --color-line-strong: #7f8ba1;
+  --color-control: #7f8ba1;
+  --color-accent: #0760f0;
+  --color-accent-strong: #0450c8;
+  --color-accent-ink: #0447b8;
+  --color-accent-soft: #e3edff;
+  --color-accent-line: #b3ccff;
+  --color-accent-contrast: #ffffff;
+  --color-highlight: #cdf2e2;
+  --color-positive: #1d7349;
+  --color-positive-soft: #e4f2ea;
+  --color-positive-line: #a9d3bc;
+  --color-negative: #b42318;
+  --color-negative-soft: #fcebe8;
+  --color-negative-line: #edb8b1;
+  --color-caution: #7a4f00;
+  --color-caution-soft: #fbf0d3;
+  --color-caution-line: #e3c98a;
+  --shadow-card: 0 1px 3px rgb(8 36 72 / 0.06);
+}
+/* Inherited text colour was resolved on the blue page, so the sheet sets its own. */
+.theme-blueprint .bp-sheet {
+  color: var(--color-ink);
+}
+
+/* The header's logo: the navy file on light pages, the white one on the blueprint. */
+.logo-on-dark {
+  display: none;
+}
+body:has(.theme-blueprint) header[data-site-chrome] .logo-on-light {
+  display: none;
+}
+body:has(.theme-blueprint) header[data-site-chrome] .logo-on-dark {
+  display: block;
+}
+
+/* Display type and labels on the blueprint: condensed capitals and a drawing mono. */
+.theme-blueprint .display-xl,
+.theme-blueprint .display-l {
+  font-family: var(--font-barlow), 'Arial Narrow', Arial, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  line-height: 0.94;
+}
+.theme-blueprint .display-xl {
+  font-size: clamp(3.25rem, 1.2rem + 6.4vw, 7rem);
+}
+.theme-blueprint .display-l {
+  font-size: clamp(2.75rem, 1.4rem + 4.4vw, 5.25rem);
+}
+.theme-blueprint .eyebrow,
+.theme-blueprint .bp-mono {
+  font-family: var(--font-martian), ui-monospace, Consolas, monospace;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+}
+.theme-blueprint .eyebrow {
+  font-size: 0.75rem;
+  color: var(--color-accent);
+}
+.theme-blueprint .bp-sheet .eyebrow {
+  color: var(--color-ink-muted);
+}
+/*
+ * Reading over the drawing. Where a line or a number of the moving drawing
+ * passes behind a word, the word's contrast fell to about 3:1, so on the home
+ * page every heading, paragraph, list item and link cuts the drawing away
+ * round its letters, the way a label interrupts the lines on a technical
+ * drawing: a crisp 1.5 px edge in the paper colour and a soft fade beyond it.
+ * Text then always sits on plain paper (ink 9.4:1). Buttons and the white
+ * sample sheet have their own grounds and are left alone.
+ */
+.theme-blueprint :is(h1, h2, h3, p, li, dt, dd, legend, a):not(.ui-button, .bp-sheet, .bp-sheet *) {
+  text-shadow:
+    1.5px 0 var(--color-paper),
+    -1.5px 0 var(--color-paper),
+    0 1.5px var(--color-paper),
+    0 -1.5px var(--color-paper),
+    1.5px 1.5px var(--color-paper),
+    -1.5px -1.5px var(--color-paper),
+    1.5px -1.5px var(--color-paper),
+    -1.5px 1.5px var(--color-paper),
+    0 0 10px var(--color-paper),
+    0 0 18px var(--color-paper);
+}
+/* A button inside a paragraph would otherwise inherit the cut-out. */
+.theme-blueprint .ui-button {
+  text-shadow: none;
+}
+
+/*
+ * The drawing at full strength in the margins and on the right, beside the
+ * sample sheet, and at about a third behind the left column, where the
+ * headings and paragraphs are read. The stops follow the 72rem content
+ * column; on a phone nearly the whole width is the quiet part.
+ */
+.theme-blueprint .bp-drawing {
+  --bp-quiet: rgb(0 0 0 / 0.35);
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    #000 calc(50% - 600px),
+    var(--bp-quiet) calc(50% - 500px),
+    var(--bp-quiet) calc(50% + 80px),
+    #000 calc(50% + 260px)
+  );
+  mask-image: linear-gradient(
+    90deg,
+    #000 calc(50% - 600px),
+    var(--bp-quiet) calc(50% - 500px),
+    var(--bp-quiet) calc(50% + 80px),
+    #000 calc(50% + 260px)
+  );
+}
+
+/* Step numbers and other figures drawn in the display face. */
+.theme-blueprint .bp-num {
+  font-family: var(--font-barlow), 'Arial Narrow', Arial, sans-serif;
+  font-weight: 700;
+}
+/* A dashed construction line between sections. */
+.theme-blueprint .bp-rule {
+  border-top: 1px dashed var(--color-line-strong);
+}
+/*
+ * The page is a positioned stacking context, so its fixed drawing would paint
+ * over the footer that follows it; the footer is lifted above.
+ */
+body:has(.theme-blueprint) footer[data-site-chrome] {
+  position: relative;
+  z-index: 1;
 }
 
 /* KaTeX should inherit the surrounding size rather than imposing its own. */

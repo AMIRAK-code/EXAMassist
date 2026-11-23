@@ -198,21 +198,22 @@ export function ExamPreview({
       <div className="relative lg:col-span-5 lg:pt-14">
         <p
           aria-hidden="true"
-          className="accent-italic absolute -top-1 left-1 hidden items-end gap-1.5 text-[1.6rem] leading-none text-accent lg:flex"
+          className="bp-mono absolute -top-1 left-1 hidden items-end gap-2 text-xs uppercase leading-none text-accent lg:flex"
         >
           {t('tryIt')}
-          <svg width="56" height="40" viewBox="0 0 64 46" fill="none">
-            <path d="M4 8c22-6 42 4 50 30" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-            <path d="M46 32l8 7 3-10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          {/* A dimension leader pointing at the sheet. */}
+          <svg width="56" height="34" viewBox="0 0 56 34" fill="none">
+            <path d="M2 4h30l20 24" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M44 27l8 1-1-8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </p>
 
         <section
           aria-labelledby="sample-heading"
-          className="rounded-card border-[1.5px] border-ink bg-surface shadow-[5px_5px_0_var(--color-ink)] sm:shadow-offset"
+          className="bp-sheet relative rounded-md border border-line bg-surface shadow-offset"
         >
-          <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 border-b-[1.5px] border-ink px-4 py-3 sm:px-6">
-            <h2 id="sample-heading" className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.1em] text-accent">
+          <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 border-b border-dashed border-line-strong px-4 py-3 sm:px-6">
+            <h2 id="sample-heading" className="bp-mono flex items-center gap-2 text-[0.6875rem] uppercase text-accent">
               <span aria-hidden="true" className="text-lg font-normal leading-none">[</span>
               {t('heading')}
               <span aria-hidden="true" className="text-lg font-normal leading-none">]</span>

@@ -187,21 +187,21 @@ describe('the card fields look like ours', () => {
   it('maps the design tokens onto the Stripe Appearance API', () => {
     const appearance = buildAppearance();
     expect(appearance.variables).toMatchObject({
-      colorPrimary: '#3155e7',
-      colorBackground: '#fffdf8',
-      colorText: '#151923',
+      colorPrimary: '#0760f0',
+      colorBackground: '#ffffff',
+      colorText: '#082448',
       colorDanger: '#b42318',
-      borderRadius: '10px',
-      fontFamily: expect.stringContaining('Bricolage Grotesque'),
+      borderRadius: '12px',
+      fontFamily: expect.stringContaining('Geist'),
     });
-    expect(appearance.rules?.['.Input']).toMatchObject({ border: '1.5px solid #8c897f' });
-    expect(appearance.rules?.['.Input:focus']).toMatchObject({ outline: '2px solid #3155e7', outlineOffset: '2px' });
+    expect(appearance.rules?.['.Input']).toMatchObject({ border: '1.5px solid #7f8ba1' });
+    expect(appearance.rules?.['.Input:focus']).toMatchObject({ outline: '2px solid #0760f0', outlineOffset: '2px' });
     expect(appearance.rules?.['.Input--invalid']).toMatchObject({ borderColor: '#b42318' });
   });
 
   it('follows the tokens when they change', () => {
     const appearance = buildAppearance((name) => (name === '--color-accent' ? ' #ff0000 ' : ''));
     expect(appearance.variables?.colorPrimary).toBe('#ff0000');
-    expect(appearance.variables?.colorText).toBe('#151923');
+    expect(appearance.variables?.colorText).toBe('#082448');
   });
 });

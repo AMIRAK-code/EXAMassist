@@ -43,9 +43,15 @@ describe('course content', () => {
     expect(issues.map((issue) => `${issue.where}: ${issue.problem}`)).toEqual([]);
   });
 
-  it('lists the eight courses, each with dozens of published lessons', () => {
-    expect(listCourses().map((course) => course.slug)).toEqual(['gre', 'gmat', 'bocconi', 'bocconi-master', 'tolc-i', 'tolc-e', 'tolc-f', 'imat']);
-    for (const course of listCourses()) expect(courseLessons(course).length, course.slug).toBeGreaterThanOrEqual(24);
+  it('lists the university module alongside the established exam courses', () => {
+    expect(listCourses().map((course) => course.slug)).toEqual(['gre', 'gmat', 'bocconi', 'bocconi-master', 'tolc-i', 'tolc-e', 'tolc-f', 'imat', 'polito-physics-ii']);
+    for (const course of listCourses().filter(course => course.examKeys.length)) expect(courseLessons(course).length, course.slug).toBeGreaterThanOrEqual(24);
+    const physics = getCourse('polito-physics-ii')!;
+    expect(physics.interactive).toBe(true);
+    expect(physics.examKeys).toEqual([]);
+    expect(physics.units).toHaveLength(4);
+    expect(courseLessons(physics)).toHaveLength(8);
+    expect(courseLessons(physics).filter(lesson => lesson.experiment === 'polarisation')).toHaveLength(1);
   });
 
   it('publishes the IMAT course in Italian too, lesson for lesson, and interactive', () => {
@@ -97,7 +103,7 @@ describe('course content', () => {
   it('covers every content area of each exam it prepares for', () => {
     // Analytical Writing, the three Verbal and four Quant areas; the three GMAT sections' domains; Bocconi's four areas.
     for (const course of listCourses()) {
-      const practised = new Set(courseLessons(course).map((lesson) => `${lesson.practice.examKey}/${lesson.practice.domain}`));
+      const practised = new Set(courseLessons(course).flatMap(({ practice }) => practice ? [`${practice.examKey}/${practice.domain}`] : []));
       for (const examKey of course.examKeys) {
         for (const domain of getExamConfig(examKey)!.domains) expect(practised, `${course.slug}: ${domain.slug}`).toContain(`${examKey}/${domain.slug}`);
       }
@@ -135,7 +141,12 @@ describe('course content', () => {
   it('sends every lesson to topic practice on a skill the exam really has', () => {
     for (const course of listCourses()) {
       for (const lesson of courseLessons(course)) {
-        const url = new URL(practicePath(lesson), SITE);
+        if (!lesson.practice) {
+          expect(course.examKeys).toHaveLength(0);
+          expect(lesson.check.length).toBeGreaterThanOrEqual(2);
+          continue;
+        }
+        const url = new URL(practicePath({ practice: lesson.practice }), SITE);
         const config = getExamConfig(url.pathname.split('/')[2])!;
         const domain = config.domains.find((d) => d.slug === url.searchParams.get('domain'));
         expect(domain, lesson.slug).toBeDefined();
@@ -282,7 +293,7 @@ describe('course pages in search', () => {
   it('decides canonicals by the text, whatever the course list', () => {
     const source = courseLessons(getCourse('tolc-i')!).find((lesson) => lesson.slug === 'real-numbers-powers-and-radicals')!;
     const course = (slug: string, lessons: Lesson[]) => ({ slug, units: [{ slug: 'unit', title: 'Unit', summary: '', lessons }] }) as unknown as Course;
-    const forCourse = (lesson: Lesson, examKey: string): Lesson => ({ ...lesson, practice: { ...lesson.practice, examKey } });
+    const forCourse = (lesson: Lesson, examKey: string): Lesson => ({ ...lesson, practice: { ...lesson.practice!, examKey } });
     const at = (slug: string) => `/courses/${slug}/real-numbers-powers-and-radicals`;
 
     // While the first course's copy is a draft, the next course's copy stands in.

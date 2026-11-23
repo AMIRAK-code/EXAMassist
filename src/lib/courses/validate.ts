@@ -119,13 +119,15 @@ export function validateLesson(lesson: Lesson, where: string): CourseIssue[] {
     if (!q.workingMd.trim() || !q.lesson.trim()) fail(`check ${q.id} needs working and a lesson`);
   }
 
-  const { examKey, domain, skill } = lesson.practice;
-  const config = getExamConfig(examKey);
-  if (!config) fail(`practice exam "${examKey}" does not exist`);
-  else {
-    const found = config.domains.find((d) => d.slug === domain);
-    if (!found) fail(`practice domain "${domain}" is not in ${examKey}`);
-    else if (skill && !found.skills.some((s) => s.slug === skill)) fail(`practice skill "${skill}" is not in ${examKey} / ${domain}`);
+  if (lesson.practice) {
+    const { examKey, domain, skill } = lesson.practice;
+    const config = getExamConfig(examKey);
+    if (!config) fail(`practice exam "${examKey}" does not exist`);
+    else {
+      const found = config.domains.find((d) => d.slug === domain);
+      if (!found) fail(`practice domain "${domain}" is not in ${examKey}`);
+      else if (skill && !found.skills.some((s) => s.slug === skill)) fail(`practice skill "${skill}" is not in ${examKey} / ${domain}`);
+    }
   }
 
   const { review } = lesson;
@@ -176,7 +178,8 @@ export function validateCourse(course: Course): CourseIssue[] {
       if (lessons.has(lesson.slug)) fail(`duplicate lesson slug "${lesson.slug}"`);
       lessons.add(lesson.slug);
       if (course.interactive && !lesson.flashcards) fail(`lesson ${lesson.slug} needs flashcards: the course is interactive`);
-      if (!course.examKeys.includes(lesson.practice.examKey)) fail(`lesson ${lesson.slug} practises ${lesson.practice.examKey}, which is not one of the course's exams`);
+      if (course.examKeys.length && !lesson.practice) fail(`lesson ${lesson.slug} needs a practice link`);
+      if (lesson.practice && !course.examKeys.includes(lesson.practice.examKey)) fail(`lesson ${lesson.slug} practises ${lesson.practice.examKey}, which is not one of the course's exams`);
       issues.push(...validateLesson(lesson, `${course.slug}/${unit.slug}/${lesson.slug}`));
     }
   }

@@ -12,9 +12,17 @@ import { LEARNER_NAV, LEARNER_SECONDARY, PUBLIC_NAV, type AccountState } from '.
 // No display utility here: callers add `inline-flex` or `hidden lg:inline-flex`,
 // because two display utilities on one element resolve by stylesheet order, not intent.
 const LINK =
-  'relative min-h-11 items-center px-2.5 text-[0.9375rem] font-medium text-ink-muted no-underline ' +
+  // One line from xl up, where the whole bar fits; narrower desktops may wrap a label.
+  'relative min-h-11 items-center px-2.5 text-[0.9375rem] font-medium text-ink-muted no-underline xl:whitespace-nowrap ' +
   'hover:text-ink aria-[current=page]:font-semibold aria-[current=page]:text-ink ' +
   "after:absolute after:inset-x-2.5 after:bottom-1.5 after:h-0.5 after:rounded-full after:bg-accent after:opacity-0 aria-[current=page]:after:opacity-100 after:content-['']";
+
+// The bar's buttons keep their label on one centred line and never shrink, so
+// a long translation cannot wrap them into a lopsided block. A small lift on
+// hover, left out for anyone who asked their system for reduced motion.
+const BAR_BUTTON =
+  'shrink-0 whitespace-nowrap text-center leading-none ' +
+  'motion-safe:hover:-translate-y-0.5 hover:shadow-md motion-safe:active:translate-y-0';
 
 const ACCOUNT_STATES: AccountState[] = ['visitor', 'guest', 'registered'];
 
@@ -42,7 +50,9 @@ export async function SiteHeader({ account, locale, deferred = false }: { accoun
         >
           {/* The brand files in public/brand are the source of truth; never redraw the mark in text.
               PNG, not SVG: the SVG's lettering is live Arial text, which a device without Arial would redraw. */}
-          <img src="/brand/uniexamer-logo.png" alt="" width={125} height={30} className="block h-auto w-[110px] sm:w-[125px]" />
+          <img src="/brand/uniexamer-logo.png" alt="" width={125} height={30} className="logo-on-light block h-auto w-[110px] sm:w-[125px]" />
+          {/* The white file, for the home page's blueprint (src/app/globals.css). */}
+          <img src="/brand/uniexamer-logo-white.png" alt="" width={125} height={30} loading="lazy" className="logo-on-dark h-auto w-[110px] sm:w-[125px]" />
         </Link>
 
         <nav aria-label={t('nav.mainLabel')} className="ms-4 hidden lg:block">
@@ -62,18 +72,23 @@ export async function SiteHeader({ account, locale, deferred = false }: { accoun
           {state === 'visitor' || state === 'guest' ? (
             // Signing in and creating an account sit side by side, as equals
             <div className="hidden items-center gap-2 lg:flex">
-              <Link href="/sign-in" className={buttonClass({ variant: 'secondary', size: 'sm' })}>
+              <Link href="/sign-in" className={`${buttonClass({ variant: 'secondary', size: 'sm' })} ${BAR_BUTTON}`}>
                 {t('nav.signIn')}
               </Link>
-              <Link href="/sign-up" className={buttonClass({ variant: 'ink', size: 'sm' })}>
+              <Link href="/sign-up" className={`${buttonClass({ variant: 'ink', size: 'sm' })} ${BAR_BUTTON}`}>
                 {t('nav.createAccount')}
               </Link>
             </div>
           ) : null}
           {state === 'visitor' ? (
-            <Link href="/exams" className={buttonClass({ variant: 'primary', size: 'sm' })}>
-              <span className="lg:hidden">{t('nav.start')}</span>
-              <span className="hidden lg:inline">{t('nav.startPractising')}</span>
+            // The bar (max-w-6xl) has no room for the long label in every language, so it
+            // shows the short one; the accessible name keeps the full words and contains the visible one.
+            <Link
+              href="/exams"
+              aria-label={t('nav.startPractising')}
+              className={`${buttonClass({ variant: 'primary', size: 'sm' })} ${BAR_BUTTON}`}
+            >
+              {t('nav.start')}
             </Link>
           ) : null}
           {state === 'registered' ? (
@@ -90,7 +105,7 @@ export async function SiteHeader({ account, locale, deferred = false }: { accoun
 
   const states = deferred ? ACCOUNT_STATES : [account];
   return (
-    <header data-site-chrome className="sticky top-0 z-40 border-b-[1.5px] border-ink bg-paper">
+    <header data-site-chrome className="sticky top-0 z-40 border-b border-line bg-paper">
       <AccountAware served={account} deferred={deferred} bars={Object.fromEntries(states.map((state) => [state, bar(state)]))} />
     </header>
   );

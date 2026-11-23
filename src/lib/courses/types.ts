@@ -4,7 +4,7 @@
  * A lesson teaches one idea the exam tests, works original examples step by
  * step, names the traps that cost marks, and ends with a short check whose
  * answers are hidden until the reader opens them. Every lesson links into
- * the matching topic practice in the app.
+ * the matching topic practice in the app when its course has an exam bank.
  *
  * Courses are free, public pages (src/lib/billing/plans.ts, `guides`): they
  * are teaching, like the guides, and the paid part stays the practice they
@@ -32,7 +32,7 @@ import type { SampleQuestion } from '@/lib/content/guides';
 /** Markdown with TeX: String.raw, so `\frac` stays `\frac`. */
 export const md = String.raw;
 
-export type CourseSlug = 'gre' | 'gmat' | 'bocconi' | 'bocconi-master' | 'tolc-i' | 'tolc-e' | 'tolc-f' | 'imat';
+export type CourseSlug = 'gre' | 'gmat' | 'bocconi' | 'bocconi-master' | 'tolc-i' | 'tolc-e' | 'tolc-f' | 'imat' | 'polito-physics-ii';
 
 /** The languages a course's own text can be written in. */
 export type CourseLang = 'en' | 'it';
@@ -126,7 +126,9 @@ export interface Lesson {
    * flip-card deck; optional elsewhere.
    */
   flashcards?: Flashcard[];
-  practice: PracticeLink;
+  /** Null for university courses whose exercises live entirely in the lesson. */
+  practice: PracticeLink | null;
+  experiment?: 'polarisation';
   review: LessonReview;
 }
 
@@ -152,10 +154,10 @@ export interface Course {
   metaTitle: string;
   /** Meta description, at most about 160 characters. */
   description: string;
-  /** The exam config every practice link of the course belongs to. */
+  /** Exam configurations for linked practice, empty for a self-contained university course. */
   examKeys: string[];
-  /** The exam hub the course prepares for: /exams/<hubSlug>. */
-  hubSlug: string;
+  /** The associated exam hub, or null for a course outside the admissions catalogue. */
+  hubSlug: string | null;
   /** Markdown: who the course is for, what the exam is, how to use the course. */
   introMd: string;
   /** Who publishes the exam, as they name themselves. */

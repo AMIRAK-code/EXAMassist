@@ -21,7 +21,7 @@ const OUT_DIR = path.join(ROOT, 'public', 'og');
 const dataUri = (file: string, type: string) =>
   `data:${type};base64,${fs.readFileSync(path.join(ROOT, file)).toString('base64')}`;
 
-const FONT = dataUri('src/app/_fonts/bricolage-grotesque-latin-wght-normal.woff2', 'font/woff2');
+const FONT = dataUri('src/app/_fonts/geist-latin-wght-normal.woff2', 'font/woff2');
 // The PNG logo: the pack's SVG lettering is live Arial text (src/lib/site.ts).
 const LOGO = dataUri('public/brand/uniexamer-logo.png', 'image/png');
 const SYMBOL = dataUri('public/brand/uniexamer-symbol.svg', 'image/svg+xml');
@@ -41,10 +41,10 @@ function titleSize(title: string): number {
 
 function cardHtml(card: ShareCard): string {
   return `<!doctype html><html><head><meta charset="utf-8"><style>
-@font-face { font-family: Bricolage; src: url(${FONT}) format('woff2'); font-weight: 200 800; }
+@font-face { font-family: Geist; src: url(${FONT}) format('woff2'); font-weight: 100 900; }
 * { box-sizing: border-box; }
 html, body { margin: 0; width: 1200px; height: 630px; }
-body { background: #f7f5ef; color: ${NAVY}; font-family: Bricolage, Arial, sans-serif; position: relative; overflow: hidden; }
+body { background: #eef1f6; color: ${NAVY}; font-family: Geist, Arial, sans-serif; position: relative; overflow: hidden; }
 .mark { position: absolute; right: -40px; bottom: -60px; width: 420px; opacity: 0.07; }
 .frame { position: absolute; inset: 0; padding: 56px 80px; display: flex; flex-direction: column; }
 /* The logo PNG has its own transparent margin; pull it back so the mark lines up with the text. */
@@ -52,7 +52,7 @@ body { background: #f7f5ef; color: ${NAVY}; font-family: Bricolage, Arial, sans-
 .body { margin-top: auto; max-width: 980px; }
 .eyebrow { font-size: 26px; font-weight: 600; color: ${BLUE}; letter-spacing: 0.01em; }
 h1 { margin: 18px 0 0; font-size: ${titleSize(card.title)}px; line-height: 1.06; font-weight: 700; letter-spacing: -0.02em; }
-.foot { margin-top: 44px; padding-top: 22px; border-top: 2px solid #dad6cb; display: flex; justify-content: space-between; font-size: 24px; color: #454a57; }
+.foot { margin-top: 44px; padding-top: 22px; border-top: 2px solid #dce2ec; display: flex; justify-content: space-between; font-size: 24px; color: #41506b; }
 .foot strong { color: ${NAVY}; font-weight: 650; }
 </style></head><body>
 <img class="mark" src="${SYMBOL}" alt="">

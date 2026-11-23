@@ -53,8 +53,8 @@ export function lessonPath(course: Pick<Course, 'slug'> | CourseSlug, lesson: Pi
 }
 
 /** The app's topic practice for a lesson (paid; the page says so). */
-export function practicePath(lesson: Pick<Lesson, 'practice'>): string {
-  const { examKey, domain, skill } = lesson.practice;
+export function practicePath({ practice }: { practice: NonNullable<Lesson['practice']> }): string {
+  const { examKey, domain, skill } = practice;
   const query = new URLSearchParams({ domain, ...(skill ? { skill } : {}) });
   return `/practice/${examKey}?${query.toString()}`;
 }
