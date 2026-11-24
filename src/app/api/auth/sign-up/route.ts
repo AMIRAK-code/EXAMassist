@@ -12,6 +12,7 @@ import {
   sessionCookieOptions,
 } from '@/lib/auth/session';
 import { emailLocale } from '@/lib/email/messages';
+import { recordSignUpConsent } from '@/lib/account/email-consent';
 
 const bodySchema = z.object({
   email: z.string().trim().toLowerCase().email().max(254),
@@ -24,6 +25,10 @@ const bodySchema = z.object({
   isMinor: z.boolean().optional(),
   /** The language of the page the account was created on; English when missing or unknown. */
   locale: z.string().max(16).optional(),
+  /** Agreement that we use the address for what the account needs (sign-in codes, account messages). Required. */
+  accountEmailConsent: z.literal(true),
+  /** Opt-in to news about courses and tests and occasional offers. Optional, off unless ticked. */
+  newsConsent: z.boolean().default(false),
 });
 
 export async function POST(request: Request) {
@@ -79,6 +84,8 @@ export async function POST(request: Request) {
          VALUES (?, ?, ?, ?, 'learner', 0, ?, ?, ?, ?)`,
       ).run(userId, body.email, passwordHash, body.displayName ?? null, locale, body.isMinor ? 1 : 0, nowIso, nowIso));
     }
+
+    await recordSignUpConsent(db, userId, { news: body.newsConsent, isMinor: Boolean(body.isMinor) }, now);
 
     const session = (await createSession(db, userId, false, now));
     const store = await cookies();

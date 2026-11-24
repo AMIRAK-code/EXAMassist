@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { getFormatter, getTranslations } from 'next-intl/server';
 import { Link, redirect } from '@/i18n/navigation';
+import { getEmailConsent } from '@/lib/account/email-consent';
+import { EmailPreferences } from './email-preferences';
 import { pageAlternates } from '@/i18n/alternates';
 import { LOCALE_INFO, type Locale } from '@/i18n/locales';
 import { getCurrentUser, requireUser } from '@/lib/auth/session';
@@ -58,6 +60,7 @@ export default async function AccountPage({
   // so a signed-out visitor gets the sign-in page rather than an error screen.
   if (!(await getCurrentUser())) return redirect({ href: '/sign-in?next=%2Faccount', locale });
   const user = await requireUser();
+  const emailConsent = await getEmailConsent(getDb(), user.id);
 
   function formatDate(value: string | null): string | null {
     if (!value) return null;
@@ -259,6 +262,17 @@ export default async function AccountPage({
           </div>
         </Card>
       </section>
+
+      {user.isGuest || !user.email ? null : (
+        <section aria-labelledby="email-prefs-heading" className="mb-10">
+          <h2 id="email-prefs-heading" className="mb-4 font-heading text-2xl font-semibold">
+            {t('emailPrefs.heading')}
+          </h2>
+          <Card>
+            <EmailPreferences subscribed={Boolean(emailConsent.newsConsentAt)} isMinor={user.isMinor} />
+          </Card>
+        </section>
+      )}
 
       <section aria-labelledby="delete-heading" className="mb-10">
         <h2 id="delete-heading" className="mb-4 font-heading text-2xl font-semibold">

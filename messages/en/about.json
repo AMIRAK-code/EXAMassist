@@ -295,7 +295,7 @@
       "cookies": "No cookies other than the session cookie and the language cookie, with two exceptions. When you enter a card (at checkout, or when you update your card on the account page) Stripe’s payment script sets its own fraud-prevention cookies (__stripe_mid and __stripe_sid). If you choose to sign in with Google, one more cookie of ours, examer_google, exists only for the few minutes the sign-in takes, as described above. Nothing is stored on your device for advertising, measurement or personalisation; the daily totals described above are counted on our server and identify nobody. The browser’s own storage keeps two working notes that never leave it: answers still waiting to reach our server, and whether this browser is signed in (as a guest or with an account), so pages we serve as ready-made files can show you your own menu. Signing out clears both.",
       "selling": "No selling, renting or sharing of personal data with third parties for their own purposes.",
       "ai": "No AI unless you ask for it. The optional AI tutor sends nothing until you press one of its buttons, and it is never needed to practise: every question has its own reviewed explanation.",
-      "marketing": "No email marketing. We hold your address to let you sign in, not to send you campaigns. The only emails we send are the codes described above, as plain text, so they carry no tracking pixel."
+      "marketing": "No email marketing without your consent. We email you sign-in codes and messages about your account or purchases. News about courses and tests, and occasional offers, only if you tick the separate box for it at sign-up or turn it on in your account; you can turn it off there or with the link in any such email."
     },
     "why": {
       "heading": "3. Why we hold it",
@@ -322,7 +322,7 @@
     "services": {
       "heading": "Services we use",
       "intro": "These outside services receive data only for the purposes described here.",
-      "email": "<strong>Brevo (email).</strong> Delivers the one-time sign-in codes. For each code email it receives the recipient address, the subject and the plain-text message, which contains the code.",
+      "email": "<strong>Brevo (email).</strong> Delivers the one-time sign-in codes. For each code email it receives the recipient address, the subject and the plain-text message, which contains the code. Brevo is also used to send account emails, and news to those who asked for it: for that it holds your email address, your interface language and whether you asked for news.",
       "payments": "<strong>Stripe (payments).</strong> When you buy a plan, we create a Stripe customer with your account’s email address, display name (if set) and account id, and Stripe collects your card in its own secure fields on our checkout page. Stripe.js loads from js.stripe.com on the checkout and account pages only.",
       "google": "<strong>Google (optional sign-in).</strong> If you choose to sign in with Google, Google learns that you are signing in to this site and sends us your email address and name.",
       "ai": "<strong>Anthropic (optional AI tutor).</strong> When you press a tutor button, the server sends the question, its choices, our reviewed explanation, which choice you picked and, for an after-test guide, the session’s aggregate results to Anthropic through its API. No name, email address, account id or free text you type is sent.",

@@ -48,7 +48,7 @@ test.describe('Politecnico di Torino and CISIA sessions', () => {
   test('a TIL-I diagnostic follows the published section order and never reopens a section', async ({ page }) => {
     await page.goto('/about/terms');
     const email = `newexams-${Date.now()}@example.invalid`;
-    expect((await api(page, 'POST', '/api/auth/sign-up', { email, password: 'a quiet harbour at dawn' })).status).toBe(201);
+    expect((await api(page, 'POST', '/api/auth/sign-up', { email, password: 'a quiet harbour at dawn', accountEmailConsent: true })).status).toBe(201);
 
     const started = await api(page, 'POST', '/api/attempts', { examKey: 'polito-til-i', blueprintId: 'diagnostic' });
     expect([200, 201], JSON.stringify(started.data)).toContain(started.status);
